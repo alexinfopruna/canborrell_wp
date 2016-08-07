@@ -1,4 +1,5 @@
 <?php
+if( !class_exists('Magee_Promo_Box') ):
 class Magee_Promo_Box {
 
 	public static $args;
@@ -99,3 +100,4 @@ class Magee_Promo_Box {
 }
 
 new Magee_Promo_Box();
+endif;

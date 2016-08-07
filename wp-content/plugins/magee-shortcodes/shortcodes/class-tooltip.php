@@ -1,4 +1,5 @@
 <?php
+if( !class_exists('Magee_Tooltip') ):
 class Magee_Tooltip {
 
 	public static $args;
@@ -26,6 +27,8 @@ class Magee_Tooltip {
 				'id' 					=>'',
 				'class' 				=>'',
 				'title'					=>'',	
+				'background_color'      =>'',
+				'border_radius'         =>'',
 				'trigger'				=>'click',
 				'placement'				=>'top',
 			), $args
@@ -33,9 +36,18 @@ class Magee_Tooltip {
 		
 		extract( $defaults );
 		self::$args = $defaults;
-
+        if(is_numeric($border_radius))
+		$border_radius = $border_radius.'px';
 		
-		$html= sprintf('<span class="%s tooltip-text" id="%s" data-toggle="tooltip" data-trigger="%s" data-placement="%s" data-original-title="%s" >%s</span>',$class,$id,$trigger,$placement,$title,do_shortcode( Magee_Core::fix_shortcodes($content)));
+        $addclass = uniqid("tooltip-");
+		$class .= ' '.$addclass;
+		$html = '';
+		if($background_color !== '')
+		$html .= '<style type="text/css">.'.$addclass.' + .tooltip > .tooltip-inner {background-color: '.$background_color.';border-radius:'.$border_radius.';}
+.'.$addclass.' + .tooltip > .tooltip-arrow {border-'.$placement.'-color: '.$background_color.';}</style>';
+		 
+		
+		$html .= sprintf('<span class="%s tooltip-text" id="%s" data-toggle="tooltip" data-trigger="%s" data-placement="%s" data-original-title="%s" >%s</span>',$class,$id,$trigger,$placement,$title,do_shortcode( Magee_Core::fix_shortcodes($content)));
         $html .= "<script>
 		jQuery(function($){
 			if(jQuery('#magee-sc-form-preview').length>0){
@@ -76,3 +88,4 @@ class Magee_Tooltip {
 }
 
 new Magee_Tooltip();
+endif;

@@ -1,4 +1,5 @@
 <?php
+if( !class_exists('Magee_RSS_feed') ):
 class Magee_RSS_feed {
 
 	public static $args;
@@ -61,4 +62,5 @@ class Magee_RSS_feed {
 	
 }
 
-new Magee_RSS_feed();				
+new Magee_RSS_feed();	
+endif;			

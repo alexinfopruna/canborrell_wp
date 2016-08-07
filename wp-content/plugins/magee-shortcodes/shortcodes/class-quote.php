@@ -1,4 +1,5 @@
 <?php
+if( !class_exists('Magee_Quote') ):
 class Magee_Quote {
 
     public static $args;
@@ -43,3 +44,4 @@ class Magee_Quote {
 }
 
 new Magee_Quote();
+endif;

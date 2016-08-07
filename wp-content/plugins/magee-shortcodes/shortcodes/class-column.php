@@ -1,4 +1,5 @@
 <?php
+if( !class_exists(' Magee_Column') ):
 class Magee_Column {
 
 	public static $args;
@@ -23,6 +24,7 @@ class Magee_Column {
 			array(
 				'id' 					=>'',
 				'class' 				=>'',
+				'align'                 =>'', 
 				'style'					=>'1/1',
 			), $args
 		);
@@ -70,7 +72,7 @@ class Magee_Column {
 				break;
 		}
 		
-		$html = sprintf('<div class="%s %s" id="%s">%s</div>',$class,$columnclass,$id,do_shortcode( Magee_Core::fix_shortcodes($content)));
+		$html = sprintf('<div class="%s %s" id="%s" style="text-align:%s;">%s</div>',$class,$columnclass,$id,esc_attr($align),do_shortcode( Magee_Core::fix_shortcodes($content)));
 				
 
 		return $html;
@@ -79,3 +81,4 @@ class Magee_Column {
 }
 
 new Magee_Column();
+endif;

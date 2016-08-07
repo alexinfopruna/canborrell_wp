@@ -1,0 +1,92 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1" />
+<style>
+	.titol2{font-size:1em;}
+	.Estilo21{font-size:1em;}
+	.Estilo22{font-size:1em;}
+	.llista{font-size:1em;}
+	.estat{font-size:1em;}
+	.Estilo4{font-size:1em;}
+</style>
+</head>
+<body>
+<!-- factura-cli -->
+<table width="650" border="0" align="center" cellpadding="0" cellspacing="0" bgcolor="#F7F9FB">
+  <tr>
+    <td width="471"><span  style="color:#990000"><strong>RESTAURANT MASIA CAN BORRELL</strong><br />
+      CIF-<strong>B-60885449 </strong><br>
+      Carretera d'Horta a Cerdanyola (BV-1415), km. 3<br />
+      08171 Sant Cugat del Vall&egrave;s</span></td>
+    <td width="179" align="right"><div align="right"><span > restaurant@can-borrell.com<br />
+      t.93 692 97 23<br />
+      t.93 691 06 05<br>
+      www.can-borrell.com</span></div></td>
+  </tr>
+</table>
+<p align="center">
+
+</p>
+<div align="center"  style="font-size:34;" >{titol}</div>
+<p>&nbsp;</p>
+<table border="1" align="center" cellpadding="0" cellspacing="0" >
+  <tr>
+    <td align="right" bgcolor="#CFDBE7" style="color:white">Factura</td>
+    <td width="320" align="left" bgcolor="#F7F9FB" ><div align="left" >&nbsp;{id_reserva}</div></td>
+  </tr>
+  <tr>
+    <td align="right" bgcolor="#CFDBE7" style="color:white">&nbsp;{cdata_reserva}</td>
+    <td width="320" align="left" bgcolor="#F7F9FB" ><div align="left" >&nbsp;{data}</div></td>
+  </tr>
+  <tr>
+    <td align="right" bgcolor="#CFDBE7" style="color:white">NIF/CIF</td>
+    <td bgcolor="#F7F9FB" ><div align="left"><span >&nbsp;{cif}</span></div></td>
+  </tr>
+  <tr>
+    <td align="right" bgcolor="#CFDBE7" style="color:white">&nbsp;{cnom}</td>
+    <td width="320" bgcolor="#F7F9FB" ><div align="left"><span >&nbsp;{nom}</span></div></td>
+  </tr>
+  <tr>
+    <td align="right" bgcolor="#CFDBE7" style="color:white">{cadresa}</td>
+    <td bgcolor="#F7F9FB" ><div align="left"><span >&nbsp;{adresa}</span></div></td>
+  </tr>
+  <tr>
+    <td align="right" bgcolor="#CFDBE7" style="color:white">{cadults}</td>
+    <td width="320" align="right" bgcolor="#E6ECF2" ><div align="right">{adults}</span></span>&nbsp;x {menu} = {totadults}&euro;</div></td>
+  </tr>
+  <tr>
+    <td align="right" bgcolor="#CFDBE7" style="color:white">{cnens10_14}</td>
+    <td width="320" align="right" bgcolor="#E6ECF2" ><div align="right">&nbsp;{nens10_14}</div></td>
+  </tr>
+  <tr>
+    <td align="right" bgcolor="#CFDBE7" style="color:white">{cnens4_9}</td>
+    <td width="320" align="right" bgcolor="#E6ECF2" ><div align="right">&nbsp;{nens4_9} </div></td>
+  </tr>
+  <tr>
+    <td align="right" bgcolor="#CFDBE7" style="color:white">&nbsp;{cpreu_subtotal}</td>
+    <td width="320" align="right" bgcolor="#F7F9FB" ><div align="left" >
+      <div align="right" >&nbsp;{preu_subtotal}&euro;</div>
+    </div></td>
+  </tr>
+  <tr>
+    <td align="right" bgcolor="#CFDBE7" style="color:white">&nbsp;{cpreu_iva}</td>
+    <td width="320" align="right" bgcolor="#F7F9FB" ><div align="left" >
+      <div align="right" >&nbsp;{preu_iva}&euro;</div>
+    </div></td>
+  </tr>
+  <tr>
+    <td align="right" bgcolor="#CFDBE7" style="color:white"><strong>&nbsp;{cpreu_total}*</strong></td>
+    <td align="right" bgcolor="#F7F9FB" ><div align="left" >
+      <div align="right" ><strong>&nbsp;{preu_total}&euro;</strong></div>
+    </div></td>
+  </tr>
+  <tr>
+    <td align="right" bgcolor="#CFDBE7" style="color:white">&nbsp;{cpreu_reserva}*</td>
+    <td align="right" bgcolor="#F7F9FB" ><div align="left" >
+      <div align="right" >&nbsp;{preu_reserva}&euro;</div>
+    </div></td>
+  </tr>
+</table>
+<p align="center" >{nota1}</p>
+<p align="center"><span >(*) {nota2} <span >({preu_reserva}&euro;</span>), {nota3} </span></p>
+</body></html>

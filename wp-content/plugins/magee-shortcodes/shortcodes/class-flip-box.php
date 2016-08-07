@@ -1,4 +1,5 @@
 <?php
+if( !class_exists('Magee_Flip_Box') ):
 class Magee_Flip_Box {
 
 	public static $args;
@@ -26,9 +27,11 @@ class Magee_Flip_Box {
 				'class' 				=>'',
 				'direction'					=>'horizontal',
 				'front_paddings'					=>'',
+				'front_color'          =>'',
 				'front_background'				=>'',
 				'front_color'		=>'',
 				'back_paddings'		=>'',
+				'back_color'        =>'', 
 				'back_background'				=>'',
 				'back_color'					=>'',
 			), $args
@@ -52,7 +55,7 @@ class Magee_Flip_Box {
 		$front_content = isset($contentsplit[0])?$contentsplit[0]:'';
 		$back_content = isset($contentsplit[1])?$contentsplit[1]:'';
 		
-		$html = '<style type="text/css" scoped="scoped">.'.$uniq_class.' .flipbox-front{background-color:'.$front_background.';}.'.$uniq_class.' .flipbox-front .flipbox-content{padding:'.$front_paddings.';}.'.$uniq_class.' .flipbox-back{background-color:'.$back_background.';}.'.$uniq_class.' .flipbox-back .flipbox-content{padding:'.$back_paddings.';}</style>';
+		$html = '<style type="text/css" scoped="scoped">.'.$uniq_class.' .flipbox-front{background-color:'.$front_background.';}.'.$uniq_class.' .flipbox-front .flipbox-content{padding:'.$front_paddings.';color:'.$front_color.';}.'.$uniq_class.' .flipbox-back{background-color:'.$back_background.';}.'.$uniq_class.' .flipbox-back .flipbox-content{padding:'.$back_paddings.';color:'.$back_color.'}</style>';
 		$html .= '<div class="magee-flipbox-wrap '.$class.'" id="'.$id.'">
                                                 <div class="magee-flipbox">
                                                     <div class="flipbox-front">
@@ -76,3 +79,4 @@ class Magee_Flip_Box {
 }
 
 new Magee_Flip_Box();
+endif;

@@ -1,4 +1,5 @@
 <?php
+if( !class_exists('Magee_Dropcap') ):
 class Magee_Dropcap {
 
 	public static $args;
@@ -79,3 +80,4 @@ class Magee_Dropcap {
 }
 
 new Magee_Dropcap();
+endif;

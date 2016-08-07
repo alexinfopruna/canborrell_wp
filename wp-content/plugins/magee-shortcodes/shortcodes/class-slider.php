@@ -1,4 +1,5 @@
 <?php
+if( !class_exists('Magee_Slider') ):
 class Magee_Slider {
 
 	public static $args;
@@ -77,3 +78,4 @@ class Magee_Slider {
 }
 
 new Magee_Slider();
+endif;

@@ -1,4 +1,5 @@
 <?php
+if( !class_exists('Magee_Section') ):
 class Magee_Section {
 
 	public static $args;
@@ -383,3 +384,4 @@ class Magee_Section {
 }
 
 new Magee_Section();
+endif;

@@ -1,4 +1,5 @@
 <?php
+if( !class_exists('Magee_Featurebox') ):
 class Magee_Featurebox {
 
 	public static $args;
@@ -144,3 +145,4 @@ class Magee_Featurebox {
 }
 
 new Magee_Featurebox();
+endif;

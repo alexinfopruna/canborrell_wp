@@ -1,4 +1,5 @@
 <?php
+if( !class_exists('Magee_Document') ):
 class Magee_Document {
 
     public static $args;
@@ -76,3 +77,4 @@ class Magee_Document {
 }
 
 new Magee_Document();		
+endif;

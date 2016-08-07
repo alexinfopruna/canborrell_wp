@@ -248,4 +248,61 @@ jQuery(document).ready(function($) {
 		},{ triggerOnce: true, offset: '90%' });
 	}
   $("a[rel^='prettyPhoto']").prettyPhoto();
+  
+  //accordion icon controls 
+  jQuery(".panel-title").each(function(){
+		if(jQuery(this).find("i").attr("data-open")  && jQuery(this).find("i").attr("data-close") ){
+
+			var open_icon =jQuery(this).find("i").attr("data-open");
+			var close_icon = jQuery(this).find("i").attr("data-close");
+			var now_class = jQuery(this).find("i").attr("class");
+			jQuery(this).click(function(){					
+			  if(jQuery(this).find("i").hasClass("open-magee-accordion")){ 
+				  var new_class = now_class.replace('open-magee-accordion','close-magee-accordion').replace(open_icon,close_icon);
+				  jQuery(this).find("i").attr("class",new_class);
+				  }else{
+				  var new_class = now_class.replace('close-magee-accordion','open-magee-accordion').replace(close_icon,open_icon);
+				  jQuery(this).find("i").attr("class",new_class);
+				  jQuery(this).parents(".panel-default").siblings().each(function(){
+					  var sub_icon1 =  jQuery(this).find(".panel-title i").attr("data-open");
+					  var sub_icon2 =  jQuery(this).find(".panel-title i").attr("data-close");
+					  var sub_class = jQuery(this).find(".panel-title i").attr("class");
+					  var new_sub_class = sub_class.replace('open-magee-accordion','close-magee-accordion').replace(sub_icon1,sub_icon2);
+					  jQuery(this).find(".panel-title i").attr("class",new_sub_class);															 
+																				 
+				  });
+				  }					  				   								   
+			  });	
+			
+		}	   
+  });
+  
+  //audio
+ jQuery('.ms-audio').each(function(){
+	jQuery(this).audioPlayer({
+						classPrefix: 'audioplayer',
+						strPlay: 'Play',
+						strPause: 'Pause',
+						strVolume: 'Volume',
+						strControls : jQuery(this).data('controls'),
+						strStyle : jQuery(this).data('style'),
+					});							
+								
+								
+	});
+  
+  
+ });
+
+jQuery(window).load(function($) {
+  ////flipbox
+ 
+ jQuery('.magee-flipbox-wrap').each(function(){
+	var front_height = jQuery(this).find('.flipbox-front').outerHeight();
+	var back_height = jQuery(this).find('.flipbox-back').outerHeight();
+	var height = front_height>back_height?front_height:back_height;
+	
+	 	jQuery(this).css({'height':height});	
+ });					   
+							   
  });

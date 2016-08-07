@@ -1,4 +1,5 @@
 <?php
+if( !class_exists('Magee_Expand') ):
 class Magee_Expand {
 
 	public static $args;
@@ -95,3 +96,4 @@ class Magee_Expand {
 	}
 }
 new  Magee_Expand();		
+endif;

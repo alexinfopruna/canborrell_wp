@@ -1,4 +1,5 @@
 <?php
+if( !class_exists('Magee_Highlight') ):
 class Magee_Highlight {
 
 	public static $args;
@@ -25,7 +26,8 @@ class Magee_Highlight {
 			array(
 				'class'		=> '',			
 				'id'		=> '',
-				'background_color' => '#007005',
+				'background_color' => '#007005',		
+				'color'   => '',
 				'border_radius'	=> '0',
 			), $args 
 		);
@@ -59,7 +61,7 @@ class Magee_Highlight {
 	   	
 	   $attr['style']  = sprintf( 'border-radius:%s;', self::$args['border_radius'] );
 	   $attr['style'] .= sprintf( 'background-color:%s;', self::$args['background_color'] );
-
+       $attr['style'] .= sprintf( 'color:%s;', self::$args['color'] );
 		return $attr;
 
 	}
@@ -67,3 +69,4 @@ class Magee_Highlight {
 }
 
 new Magee_Highlight();
+endif;

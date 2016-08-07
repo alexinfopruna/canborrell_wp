@@ -1,4 +1,5 @@
 <?php
+if( !class_exists('Magee_Pullquote') ):
 class Magee_Pullquote {
 
     public static $args;
@@ -43,3 +44,4 @@ class Magee_Pullquote {
 }
 
 new Magee_Pullquote();
+endif;

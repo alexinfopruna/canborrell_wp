@@ -1,5 +1,5 @@
 <?php
-
+if( !class_exists('Magee_Qrcode') ):
 class Magee_Qrcode
 {
 	public static $args;
@@ -61,3 +61,4 @@ class Magee_Qrcode
 }
 
 new Magee_Qrcode();
+endif;

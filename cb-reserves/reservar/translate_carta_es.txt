@@ -1,0 +1,317 @@
+<?php
+
+/* 
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templatesxº
+
+FIRST- ENTRANTES
+Home Macaroni / Macarrones de la casa
+Home soup / Sopa de la casa
+Green salad / Ensalda verde
+Escalivada (roast aubergine, onion and pepper) / Escalivada
+Roast asparagus / Espárragos trigueros a la brasa
+White asparagus / Espárragos blancos
+Roast mushrooms / Setas a la brasa
+Calçots with sauce romesco (season) / Calçots (temporada)
+Roast artichokes (season) / Alcachofas a la brasa (temporada)
+Esqueixada (codfish) / Esqueixada
+Started / Entremeses
+Home snails / Caracoles de la casa
+Assorted pates / Surtido de patés
+Anchovies / Anchoas de la Escala
+Pineapple with ham / Piña con jamón
+Lettuce cores with tuna and anchovies / Cogollos con atún y anchoascor
+Melon with ham / Melón con jamón
+Roast snails / Caracoles a la "llauna"
+MEAT- CARNES
+Roast lamb (3 pieces) / Cordero a la brasa (3 piezas)
+Roast lamb chops (unity) / Costilla de cordero a la brasa (unidad)
+Roast lamb back / Espalda de cordero
+Roast rabbit /1/2 piece) / Conejo a la brasa (1/2 pieza)
+Roast catalan sausage / Butifarra a la brasa
+Roast black catalan sausage / Butifarra negra a la brasa
+Roast chicken (1/2 piece) / Pollo a la brasa (1/2 pieza)
+Roast veal chop / Chuletón de ternera a la brasa
+Roast pork jaw / Quijada de cerdo a la brasa
+Veal with mushrooms / Ternera con setas
+Roast pork feet (3 pieces) / Pies de cerdo a la brasa
+Roast loin / Lomo a la brasa
+FISH - PESCADOS
+Roast gilthead / Dorada a la brasa
+Roast sea bass / Lubina a la brasa
+COMPLEMENTS - COMPLEMENTOS
+Haricot beans / Judías
+Haricot beans with salt pork / Judías con tocino
+Potatoes / Patatas fritas
+All i oli / All i oli
+Toast bread / Pan tostado
+Toast bread with tomato / Pan tostado con tomate
+RATIONS - RACIONES
+Cheese / Queso
+Ham / Jamón serrano
+Long pork sausage / Longaniza
+Chorizo sausage / Chorizo
+
+
+
+WINE CELLAR - BODEGA
+Cabernet Sauvignon red or rosé / Cabernet Sauvignon negro o rosado
+Rioja Faustino VII / Rioja Faustino VII
+Rioja Marqués de Murrieta Reserva / Rioja Marqués de Murrieta Reserva
+Rioja Viña Cumbrero Crianza / Rioja Viña Cumbrero Crianza
+Rioja Bordón Crianza / Rioja Bordón Crianza
+Rioja Viña Berceo Crianza / Rioja Viña Berceo Crianza
+Yllera / Yllera
+Rioja Marqués de Cáceres Crianza / Rioja Marqués de Cáceres Crianza
+Vega Izan Ribera Duero / Vega Izan Ribera Duero
+Ribera Duero Valduero Crianza / Ribera Duero Valduero Crianza
+Palangre White / Blanco Palangre (aguja)
+Torremilanos Reserva Ribera Duero / Torremilanos Reserva Ribera Duero
+HOUSE WINE - VINOS DE LA CASA
+Black wine glass 1/2 / Porrón de la casa negro 1/2
+Black wine glass 3/4 / Porrón de la casa negro 3/4
+Black wine glass 16º / Porrón de la casa 16º
+SANGRIA - SANGRIAS
+Medium-sized sangria / Sangría de medio
+Big-sized sangria / Sangría grande
+Cava's sangria / Sangria de cava
+REFRESHMENTS - REFRESCOS
+Still mineral water 1/2 litre / Agua mineral 1/2 litro
+Sparkling mineral water 1/2 litre / Agua mineral con gas 1/2 litro
+Soda water 1/2 litre / Gaseosa 1/2 litro
+Coca-cola / Coca-cola
+Lemonade or orangeade / Limonada o naranjada
+Beer / Cerveza
+Tonic water / Tónica
+CAVAS - CAVAS
+House Brut / Brut de la casa
+Brut Vallformosa / Brut Vallformosa
+Brut Reserva Sardà / Brut Reserva Sardà
+Juve Camps Brut Nature / Juve Camps Brut Nature
+Alsina Sarda Brut-Nature sello / Alsina Sarda Brut-Nature sello
+
+
+
+DESSERTS - POSTRES
+Catalan Custard / Crema catalana
+Crême caramel / Flan de la casa
+Crême caramel with cream / Flan con nata
+Musico ( dried fruit and nuts) / Músico
+Peaches in syrup / Melocotón en almíbar
+Pineapple in syrup / Piña en almíbar
+Honey and cottage cheese / Miel y requesón
+Orange juice / Zumo de naranja
+Strawberries and cream / Fresones con nata 
+Pyjamas (crocant, peach and pineapple in syrup and cream) / Pijama
+Baked apples / Manzanas al horno
+Truffles and cream / Trufas con nata
+Cheese cake / Pastel de queso
+Birthday cake by arrangement (five portions minimum) / Pastel de celebración
+ICE CREAMS - HELADOS
+Whisky cake / Tarta de whisky
+Crocant / Crocanti
+Iced lemon / Limón helado
+Iced coconut / Coco helado
+Iced pineapple / Piña helada
+Iced truffles ( 6 unities) / Trufas heladas ( 6 unidades)
+Trufito / Trufito
+Biscuit with chocolate / Copa biscuit al chocolate
+Cream with nuts / Copa de nata con nueces
+Lemon sorbet / Sorbete de limón
+Biscuit crême caramel / Flan biscuit
+Conguitos cornet / Cornetto conguitos
+Ice cream with smarties / Vasito de lacasitos
+Lemon mousse cake / Tarta mousse de limón
+Truffle cake / Tarta selva trufa
+
+
+
+COFFEES AND GLASSES - CAFES Y COPAS
+Black coffee / Café
+Irish coffee / Café irlandés
+Coffe with cream / Café con nata
+White coffee / Café con leche
+Herbal tea / Infusión
+Black coffee with brandy Veterano or similar / Carajillo Veterano o similar
+Black coffee with brandy Magno or similar / Carajillo Magno o similar 
+Brandy Veterano or similar / Copa Brandy Vetarano o similar
+Brandy Magno or similar / Copa Brandy Magno o similar
+Brandy Carlos I / Copa Brandy Carlos I
+Brandy Gran Duque de Alba / Copa Brandy Gran Duque de Alba
+Whisky Cardhu / Copa whisky Cardhú
+Whisky J&B or Ballantines / Copa whisky J&B o Ballantines
+Whisky w. Lawsons or similar / Copa whisky W. Lawsons o similar
+Whisky 12 years or similar / Copa whisky 12 años o similar
+Baileys / Copa Baileys
+
+
+Whisky with ice W. Lawsons or similar / Whisky con hielo W. Lawsons o similar
+Whisky with ice Cardhu or similar / Whisky con hielo Cardhú o similar
+Whisky with ice 12 years or similar / Whisky con hielo 12 años o similar
+Whisky with ice J&B or Ballantines or similar / Whisky con hielo J&B o Ballantines o similar
+1/2 whisky with ice W. Lawsons or similar / 1/2 whisky con hielo W. Lawsons o similar
+1/2 Whisky with ice J&B or Ballantines or similar / 1/2 whisky con hielo J&B o Ballantines o similar
+Baileys with ice / Bailyes con hielo
+Small whisky W. Lawsons / Chupito whisky W. Lawsons
+Small whisky J&B or Ballantines or similar / Chupito Whisky J&B o Ballantines o similar
+Small whisky Cardhu / Chupito whisky Cardhú
+ICED LIQUORS - LICORES HELADOS
+Marc of Champagne Moët Chandon / Marc de Champán Moët Chandon
+Orujo / Orujo
+Various smalls / Chupitos varios
+FIRST- ENTRANTES
+Home Macaroni / Macarrones de la casa
+Home soup / Sopa de la casa
+Green salad / Ensalda verde
+Escalivada (roast aubergine, onion and pepper) / Escalivada
+Roast asparagus / Espárragos trigueros a la brasa
+White asparagus / Espárragos blancos
+Roast mushrooms / Setas a la brasa
+Calçots with sauce romesco (season) / Calçots (temporada)
+Roast artichokes (season) / Alcachofas a la brasa (temporada)
+Esqueixada (codfish) / Esqueixada
+Started / Entremeses
+Home snails / Caracoles de la casa
+Assorted pates / Surtido de patés
+Anchovies / Anchoas de la Escala
+Pineapple with ham / Piña con jamón
+Lettuce cores with tuna and anchovies / Cogollos con atún y anchoas
+Melon with ham / Melón con jamón
+Roast snails / Caracoles a la "llauna"
+MEAT- CARNES
+Roast lamb (3 pieces) / Cordero a la brasa (3 piezas)
+Roast lamb chops (unity) / Costilla de cordero a la brasa (unidad)
+Roast lamb back / Espalda de cordero
+Roast rabbit /1/2 piece) / Conejo a la brasa (1/2 pieza)
+Roast catalan sausage / Butifarra a la brasa
+Roast black catalan sausage / Butifarra negra a la brasa
+Roast chicken (1/2 piece) / Pollo a la brasa (1/2 pieza)
+Roast veal chop / Chuletón de ternera a la brasa
+Roast pork jaw / Quijada de cerdo a la brasa
+Veal with mushrooms / Ternera con setas
+Roast pork feet (3 pieces) / Pies de cerdo a la brasa
+Roast loin / Lomo a la brasa
+FISH - PESCADOS
+Roast gilthead / Dorada a la brasa
+Roast sea bass / Lubina a la brasa
+COMPLEMENTS - COMPLEMENTOS
+Haricot beans / Judías
+Haricot beans with salt pork / Judías con tocino
+Potatoes / Patatas fritas
+All i oli / All i oli
+Toast bread / Pan tostado
+Toast bread with tomato / Pan tostado con tomate
+RATIONS - RACIONES
+Cheese / Queso
+Ham / Jamón serrano
+Long pork sausage / Longaniza
+Chorizo sausage / Chorizo
+
+
+
+WINE CELLAR - BODEGA
+Cabernet Sauvignon red or rosé / Cabernet Sauvignon negro o rosado
+Rioja Faustino VII / Rioja Faustino VII
+Rioja Marqués de Murrieta Reserva / Rioja Marqués de Murrieta Reserva
+Rioja Viña Cumbrero Crianza / Rioja Viña Cumbrero Crianza
+Rioja Bordón Crianza / Rioja Bordón Crianza
+Rioja Viña Berceo Crianza / Rioja Viña Berceo Crianza
+Yllera / Yllera
+Rioja Marqués de Cáceres Crianza / Rioja Marqués de Cáceres Crianza
+Vega Izan Ribera Duero / Vega Izan Ribera Duero
+Ribera Duero Valduero Crianza / Ribera Duero Valduero Crianza
+Palangre White / Blanco Palangre (aguja)
+Torremilanos Reserva Ribera Duero / Torremilanos Reserva Ribera Duero
+HOUSE WINE - VINOS DE LA CASA
+Black wine glass 1/2 / Porrón de la casa negro 1/2
+Black wine glass 3/4 / Porrón de la casa negro 3/4
+Black wine glass 16º / Porrón de la casa 16º
+SANGRIA - SANGRIAS
+Medium-sized sangria / Sangría de medio
+Big-sized sangria / Sangría grande
+Cava's sangria / Sangria de cava
+REFRESHMENTS - REFRESCOS
+Still mineral water 1/2 litre / Agua mineral 1/2 litro
+Sparkling mineral water 1/2 litre / Agua mineral con gas 1/2 litro
+Soda water 1/2 litre / Gaseosa 1/2 litro
+Coca-cola / Coca-cola
+Lemonade or orangeade / Limonada o naranjada
+Beer / Cerveza
+Tonic water / Tónica
+CAVAS - CAVAS
+House Brut / Brut de la casa
+Brut Vallformosa / Brut Vallformosa
+Brut Reserva Sardà / Brut Reserva Sardà
+Juve Camps Brut Nature / Juve Camps Brut Nature
+Alsina Sarda Brut-Nature sello / Alsina Sarda Brut-Nature sello
+
+
+
+DESSERTS - POSTRES
+Catalan Custard / Crema catalana
+Crême caramel / Flan de la casa
+Crême caramel with cream / Flan con nata
+Musico ( dried fruit and nuts) / Músico
+Peaches in syrup / Melocotón en almíbar
+Pineapple in syrup / Piña en almíbar
+Honey and cottage cheese / Miel y requesón
+Orange juice / Zumo de naranja
+Strawberries and cream / Fresones con nata 
+Pyjamas (crocant, peach and pineapple in syrup and cream) / Pijama
+Baked apples / Manzanas al horno
+Truffles and cream / Trufas con nata
+Cheese cake / Pastel de queso
+Birthday cake by arrangement (five portions minimum) / Pastel de celebración
+ICE CREAMS - HELADOS
+Whisky cake / Tarta de whisky
+Crocant / Crocanti
+Iced lemon / Limón helado
+Iced coconut / Coco helado
+Iced pineapple / Piña helada
+Iced truffles ( 6 unities) / Trufas heladas ( 6 unidades)
+Trufito / Trufito
+Biscuit with chocolate / Copa biscuit al chocolate
+Cream with nuts / Copa de nata con nueces
+Lemon sorbet / Sorbete de limón
+Biscuit crême caramel / Flan biscuit
+Conguitos cornet / Cornetto conguitos
+Ice cream with smarties / Vasito de lacasitos
+Lemon mousse cake / Tarta mousse de limón
+Truffle cake / Tarta selva trufa
+
+
+
+COFFEES AND GLASSES - CAFES Y COPAS
+Black coffee / Café
+Irish coffee / Café irlandés
+Coffe with cream / Café con nata
+White coffee / Café con leche
+Herbal tea / Infusión
+Black coffee with brandy Veterano or similar / Carajillo Veterano o similar
+Black coffee with brandy Magno or similar / Carajillo Magno o similar 
+Brandy Veterano or similar / Copa Brandy Vetarano o similar
+Brandy Magno or similar / Copa Brandy Magno o similar
+Brandy Carlos I / Copa Brandy Carlos I
+Brandy Gran Duque de Alba / Copa Brandy Gran Duque de Alba
+Whisky Cardhu / Copa whisky Cardhú
+Whisky J&B or Ballantines / Copa whisky J&B o Ballantines
+Whisky w. Lawsons or similar / Copa whisky W. Lawsons o similar
+Whisky 12 years or similar / Copa whisky 12 años o similar
+Baileys / Copa Baileys
+
+
+Whisky with ice W. Lawsons or similar / Whisky con hielo W. Lawsons o similar
+Whisky with ice Cardhu or similar / Whisky con hielo Cardhú o similar
+Whisky with ice 12 years or similar / Whisky con hielo 12 años o similar
+Whisky with ice J&B or Ballantines or similar / Whisky con hielo J&B o Ballantines o similar
+1/2 whisky with ice W. Lawsons or similar / 1/2 whisky con hielo W. Lawsons o similar
+1/2 Whisky with ice J&B or Ballantines or similar / 1/2 whisky con hielo J&B o Ballantines o similar
+Baileys with ice / Bailyes con hielo
+Small whisky W. Lawsons / Chupito whisky W. Lawsons
+Small whisky J&B or Ballantines or similar / Chupito Whisky J&B o Ballantines o similar
+Small whisky Cardhu / Chupito whisky Cardhú
+ICED LIQUORS - LICORES HELADOS
+Marc of Champagne Moët Chandon / Marc de Champán Moët Chandon
+Orujo / Orujo
+Various smalls / Chupitos varios
+*/

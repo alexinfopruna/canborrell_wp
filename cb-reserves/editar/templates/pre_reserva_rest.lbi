@@ -1,0 +1,438 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>Recepció reserva</title>
+<link href="http://www.can-borrell.com/editar/reserves.css" rel="stylesheet" type="text/css" />
+<link href="http://www.can-borrell.com/estils.css" rel="stylesheet" type="text/css" />
+<style type="text/css">
+<!--
+A.Estilo4 {font-size: 18px}
+A.Estilo4:link {font-size: 18px}
+A.Estilo4:hover {
+	font-size: 18px;
+	color: cc0000;
+}
+A.Estilo4:visited {font-size: 18px}
+
+.Estilo2 {
+	color: #FFFFFF;
+	font-family: Verdana, Arial, Helvetica, sans-serif;
+	background-color: #FFD76E;
+}
+A.llista:link {
+
+	color: #990000;
+	font-family: "Century Gothic", "AvantGarde Bk BT", Arial;
+}
+A.llista:hover {
+
+
+	color: #FF0000;
+	font-family: "Century Gothic", "AvantGarde Bk BT", Arial;
+}
+A.llista:visited {
+
+
+
+	color: #990000;
+	font-family: "Century Gothic", "AvantGarde Bk BT", Arial;
+}
+A.estat:link {
+
+	color: #990000;
+	font-family: "Century Gothic", "AvantGarde Bk BT", Arial;
+	font-weight: bold;
+	font-size: 14px;
+}
+A.estat:hover {
+
+
+	color: #FF0000;
+	font-family: "Century Gothic", "AvantGarde Bk BT", Arial;
+	font-weight: bold;
+	font-size: 14px;
+}
+A.estat:visited {
+
+
+
+	color: #990000;
+	font-family: "Century Gothic", "AvantGarde Bk BT", Arial;
+	font-weight: bold;
+	font-size: 14px;
+}
+
+BODY
+{
+	font-family: verdana, arial, helvetica;
+	font-size: 11px;
+	color: #570600;
+	margin: 20px 0px 20px 0px;
+	bgcolor:#FFFFFF;
+	background-image:url(img/fons.gif);
+	background-color: #E9E9E9;
+}
+
+TD
+{
+	font-family: verdana, arial, helvetica;
+	font-size: 11px;
+	color: #570600;
+}
+
+.titol
+{
+	font-family: verdana, arial, helvetica;
+	font-size: 18px;
+	color: #999966;
+	font-weight: bold;
+}
+
+.titol2
+{
+	font-family: verdana, arial, helvetica;
+	font-size: 15px;
+	color: #999966;
+	font-weight: bold;
+}
+
+A:link
+{
+	font-family: verdana, arial, helvetica;
+	text-decoration: none;
+	color: #FFCC99;
+	font-weight: bold;
+}
+
+A:visited
+{
+	font-family: verdana, arial, helvetica;
+	text-decoration: none;
+	color: #FFCC99;
+	font-weight: bold;
+}
+
+A:active
+{
+	font-family: verdana, arial, helvetica;
+	text-decoration: none;
+	color: #FFCC99;
+	font-weight: bold;
+}
+
+A:hover
+{
+	font-family: verdana, arial, helvetica;
+	text-decoration: none;
+	color: #FFFFFF;
+	font-weight: bold;
+}
+
+A.selec:link
+{
+	font-family: verdana, arial, helvetica;
+	text-decoration: none;
+	color: #FFFFFF;
+	font-weight: bold;
+}
+
+A.selec:visited
+{
+	font-family: verdana, arial, helvetica;
+	text-decoration: none;
+	color: #FFFFFF;
+	font-weight: bold;
+}
+
+A.selec:active
+{
+	font-family: verdana, arial, helvetica;
+	text-decoration: none;
+	color: #FFFFFF;
+	font-weight: bold;
+}
+
+A.selec:hover
+{
+	font-family: verdana, arial, helvetica;
+	text-decoration: none;
+	color: #FFFFFF;
+	font-weight: bold;
+}
+
+A.dins:link
+{
+	font-family: verdana, arial, helvetica;
+	text-decoration: none;
+	color: #CC0000;
+	font-weight: bold;
+}
+
+A.dins:visited
+{
+	font-family: verdana, arial, helvetica;
+	text-decoration: none;
+	color: #CC0000;
+	font-weight: bold;
+}
+
+A.dins:active
+{
+	font-family: verdana, arial, helvetica;
+	text-decoration: none;
+	color: #CC0000;
+	font-weight: bold;
+}
+
+A.dins:hover
+{
+	font-family: verdana, arial, helvetica;
+	text-decoration: none;
+	color: #FF9900;
+	font-weight: bold;
+}
+
+A.nobold:link
+{
+	font-family: verdana, arial, helvetica;
+	text-decoration: none;
+	color: #CC0000;
+	font-weight: normal;
+}
+
+A.nobold:visited
+{
+	font-family: verdana, arial, helvetica;
+	text-decoration: none;
+	color: #CC0000;
+	font-weight: normal;
+}
+
+A.nobold:active
+{
+	font-family: verdana, arial, helvetica;
+	text-decoration: none;
+	color: #CC0000;
+	font-weight: normal;
+}
+
+A.nobold:hover
+{
+	font-family: verdana, arial, helvetica;
+	text-decoration: none;
+	color: #FF9900;
+	font-weight: normal;
+}
+
+.petita
+{
+	font-size: 10px;
+}
+
+.gran
+{
+	font-size: 17px;
+}
+
+
+INPUT {
+	font-family: verdana, arial, helvetica;
+	font-size: 11px;
+	color: #003366;
+	border:1px Solid #CCCCCC;
+	background-color: #FFFFFF;
+	}
+
+SELECT {
+	font-family: verdana, arial, helvetica;
+	font-size: 11px;
+	color: #003366;
+	border:1px Solid #CCCCCC;
+	background-color: #FFFFFF;
+	}
+
+INPUT.bt {
+	font-family: verdana, arial, helvetica;
+	font-size: 11px;
+	width: 90px;
+	color: #CC0000;
+	border:1px Solid #CCCCCC;
+	background-color: #FFFFFF;
+	}
+
+TEXTAREA {
+	font-family: verdana, arial, helvetica;
+	font-size: 11px;
+	width: 310px;
+	color: #003366; 
+	border:1px Solid #CCCCCC;
+	background-color: #FFFFFF;
+	}
+
+TD.transparent {
+	opacity: 0.5;
+	-moz-opacity: 0.5;
+	filter: alpha(opacity=50);
+	background-color: #000000;
+	width:154px;
+	height:18px;
+	text-align: right;
+	padding: 0px 6px 0px 0px;
+	}
+
+TD.opac {
+	background-color: #000000;
+	width:154px;
+	height:18px;
+	text-align: right;
+	padding: 0px 6px 0px 0px;
+	}
+
+LI {
+    	MARGIN-BOTTOM: 6px;
+}
+
+UL {
+    	MARGIN-TOP: 6px;
+	list-style-type: disc;
+}
+
+#dhtmltooltip{
+	font-family:verdana, arial, helvetica;
+    	font-size:8pt;
+	position: absolute;
+	border: 1px solid #999999;
+	padding: 4px;
+	visibility: hidden;
+	z-index: 100;
+}
+.cmenu {
+font-size: 14px}
+.Estilo4 {
+font-size: 14px}
+.Estilo5 {color: #FF3300}
+.Estilo10 {color: #CC0000}
+.Estilo11 {
+	color: #FFFFFF;
+	font-weight: bold;
+}
+-->
+</style>
+</head>
+
+<body>
+<!-- pre-reserva-rest -->		
+
+<table width="773" border="0" align="center" cellpadding="0" cellspacing="0" bgcolor="#FFFFFF">
+  <tr>
+    <td>&nbsp;</td>
+    <td><table width="0" border="0" cellspacing="0" cellpadding="0">
+      <tr>
+        <td width="170">&nbsp;</td>
+        <td>{avui}</td>
+      </tr>
+    </table>
+    </td>
+    <td>&nbsp;</td>
+  </tr>
+  <tr>
+    <td>&nbsp;</td>
+    <td align="center"><span class="titol">SOL·LICITUD DE RESERVA PER GRUP</span></td>
+  <td width="12">  </tr>
+  <tr>
+    <td>&nbsp;</td>
+    <td>&nbsp;</td>
+  <td>  </tr>
+  <tr>
+    <td>&nbsp;</td>
+    <td align="center">El sistema de reserves ha rebut la seg&uuml;ent petici&oacute;: </td>
+  <td>  </tr>
+  <tr>
+    <td>&nbsp;</td>
+    <td>&nbsp;</td>
+  <td align="center" class="estat">  </tr>
+  
+  <tr>
+    <td width="12">&nbsp;</td>
+    <td><table border="0" align="center" cellpadding="3" cellspacing="3">
+      <tr>
+        <td align="right" bgcolor="#FFD76E" class="Estilo2">id reserva</td>
+        <td width="320" align="right" bgcolor="#FFD76E" class="llista"><div align="left" class="titol2"><span class="Estilo4">{id_reserva}</span></div></td>
+      </tr>
+
+      <tr>
+        <td align="right" bgcolor="#FFD76E" class="Estilo2">data reserva</td>
+        <td width="320" align="right" bgcolor="#CCCCCC"><div align="left" class="Estilo5">{data}</div></td>
+      </tr>
+      <tr>
+        <td align="right" bgcolor="#FFD76E" class="Estilo2">hora</td>
+        <td width="320" align="right" bgcolor="#CCCCCC"><div align="left" class="Estilo5">{hora}</div></td>
+      </tr>
+      <tr>
+        <td align="right" bgcolor="#FFD76E" class="Estilo2">nom</td>
+        <td width="320" bgcolor="#CCCCCC"><div align="left" class="Estilo5">{nom}</div></td>
+      </tr>
+      <tr>
+        <td align="right" bgcolor="#FFD76E" class="Estilo2">tel</td>
+        <td width="320" align="right" bgcolor="#CCCCCC"><div align="left" class="Estilo5">{tel}</div></td>
+      </tr>
+      <tr>
+        <td align="right" bgcolor="#FFD76E" class="Estilo2">fax</td>
+        <td width="320" align="right" bgcolor="#CCCCCC"><div align="left" class="Estilo5">{fax}</div></td>
+      </tr>
+      <tr>
+        <td align="right" bgcolor="#FFD76E" class="Estilo2">email</td>
+        <td width="320" bgcolor="#CCCCCC"><span class="Estilo5">{email}</span></td>
+      </tr>
+      <tr>
+        <td align="right" bgcolor="#FFD76E" class="Estilo2">menu</td>
+        <td width="320" bgcolor="#CCCCCC"><div align="left" class="Estilo5">{menu}</div></td>
+      </tr>
+      <tr>
+        <td align="right" bgcolor="#FFD76E" class="Estilo2">adults</td>
+        <td width="320" align="right" bgcolor="#CCCCCC"><div align="left" class="Estilo5">{adults}</div></td>
+      </tr>
+      <tr>
+        <td align="right" bgcolor="#FFD76E" class="Estilo2">nens 10 a 14 anys </td>
+        <td width="320" align="right" bgcolor="#CCCCCC"><div align="left" class="Estilo5">{nens10_14}  {txt_1} </div></td>
+      </tr>
+      <tr>
+        <td align="right" bgcolor="#FFD76E" class="Estilo2">nens 4 a 9 anys </td>
+        <td width="320" align="right" bgcolor="#CCCCCC"><div align="left" class="Estilo5">{nens4_9}  {txt_2} </div></td>
+      </tr>
+      <tr>
+        <td align="right" bgcolor="#FFD76E" class="Estilo2">cotxets de nadons </td>
+        <td width="320" align="right" bgcolor="#CCCCCC"><div align="left" class="Estilo5">{cotxets}</div></td>
+      </tr>
+      <tr>
+        <td align="right" bgcolor="#FFD76E" class="Estilo2">observacions</td>
+        <td width="320" bgcolor="#CCCCCC"><span class="Estilo5">{observacions}</span></td>
+      </tr>
+      <tr>
+        <td align="right" bgcolor="#FFD76E" class="Estilo2">preu reserva</td>
+        <td width="320" align="right" bgcolor="#999999"><div align="left" class="estat Estilo5">
+            <div align="right">{preu_reserva}&euro;</div>
+        </div></td>
+      </tr>
+    </table></td>
+    <td></td>
+  </tr>
+  <tr>
+    <td>&nbsp;</td>
+    <td>&nbsp;</td>
+    <td>&nbsp;</td>
+  </tr>
+  <tr>
+    <td>&nbsp;</td>
+    <td><div align="center">Per accedir al sistema i confirmar-la o denegar-la faci click <a href="http://can-borrell.com/editar/editar.php?id={id_reserva}" class="dins">&lt;aqu&iacute;&gt;</a> </div></td>
+    <td>&nbsp;</td>
+  </tr>
+  <tr>
+    <td>&nbsp;</td>
+    <td>&nbsp;</td>
+    <td>&nbsp;</td>
+  </tr>
+</table>
+</body>
+</html>

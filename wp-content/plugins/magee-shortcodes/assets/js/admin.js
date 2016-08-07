@@ -7,7 +7,7 @@ $('.magee_shortcodes,.magee_shortcodes_textarea').click(function(){
             popup = params.identifier;
         }
 		
-        var magee = "Magee Shortcodes<span class='shortcode_show_name'></span><a class='link-doc' target='_blank' href='https://www.mageewp.com/magee-shortcode-guide.html'>Document</a><a   class='link-forum' target='_blank' href='https://www.mageewp.com/forums/magee-shortcode/'>Forums</a>";
+        var magee = "Magee Shortcodes<span class='shortcode_show_name'></span><a class='link-doc' target='_blank' href='https://www.mageewp.com/magee-shortcode-guide.html'>Document</a><a class='link-forum' target='_blank' href='https://www.mageewp.com/forums/magee-shortcode/'>Forums</a><a class='link-pro' target='_blank' href='https://www.mageewp.com/magee-shortcode.html'>Pro Version</a>";
         // load thickbox
 	    var height = $(window).height()-150;
         tb_show(magee, ajaxurl + "?action=magee_shortcodes_popup&popup=" + popup + "&width=800&height="+height);
@@ -40,6 +40,8 @@ $(document).on("click",'a.magee_shortcode_item',function(){
 		   form.find("#magee-shortcodes-settings .current_shortcode").text(shortcode);
 		   form.find("#magee-shortcodes-settings #magee-shortcode").val(shortcode);
 		   form.find("#magee-shortcodes-settings-inner").html(data);
+		   //ADD clone source
+		   $(".magee-shortcodes-settings-inner-clone").html(form.find(".column-shortcode-inner").html());
 		   var myOptions = {
 		   change: function(event, ui){
 			   $('.magee_shortcodes_container .wp-color-picker-field').each(function(){	
@@ -184,7 +186,19 @@ $(document).on("click",'a.magee_shortcode_item',function(){
 													
 													
 			  });
-			 
+			  //return 
+			  $("#TB_ajaxContent").scroll(function(){								   
+			  var scrollvalue = $(this).scrollTop();
+			  if( scrollvalue >= 300 ){
+				$(".magee-shortcode-return").css("display","block");  
+				 }else{ 
+					$(".magee-shortcode-return").css("display","none");  
+					 }
+					 
+		      });  
+			  $(".magee-shortcode-return").click(function(){									 
+					$("#TB_ajaxContent").animate({scrollTop:0},500);					 		 
+			  });
 			  //date picker
 			  $(".magee-form-datetime").combodate(); 
 			  var year = $("select.year option:selected").text();
@@ -382,13 +396,116 @@ tb_remove();
 			
 												 
 	 });
-	 $(document).on('click',"a.child-shortcode-add",function(){
+	// ADD control 	 
+	 $(document).on('click',"a.child-shortcode-add",function(){															 
 			var html = '<div class="param-item"><a id="child-shortcode-remove" href="#" class="child-clone-row-remove magee-shortcodes-button ">Remove</a></div>';
-			$clone = $(this).parents("#magee_shortcodes_container").children(".column-shortcode-inner").eq(0).clone(true);
-			$clone.removeClass("column-shortcode-inner hidden");
-			$clone.addClass("column-shortcode-inner");
-			$(".shortcode-add").before($clone.append(html));	
-			
+			$clone = $(this).parents("#magee_shortcodes_container").find(".magee-shortcodes-settings-inner-clone").html();
+			//$clone.find('.wp-color-picker-field').wpColorPicker();
+			//$clone.removeClass("magee-shortcodes-settings-inner-clone hidden");
+			//$clone.addClass("column-shortcode-inner");
+			var count = $('.column-shortcode-inner').length;
+			var wraptext = '<div class="column-shortcode-inner">'+$clone+html+'</div>';
+			$(".shortcode-add").before(wraptext);
+			var myclone_Options = {
+		    change: function(event, ui){
+			   $('.magee_shortcodes_container .column-shortcode-inner').eq(count).find('.wp-color-picker-field').each(function(){								
+					var color = $(this).parents('.wp-picker-container').eq(0).find('.wp-color-result').css("background-color");
+					$(this).css("background-color",color);
+					var  top = parseInt($(this).parents('.wp-picker-container').find('a.iris-square-value').css("top").replace('px',''));
+					var percent = parseInt($(this).parents('.wp-picker-container').find('div.iris-slider-offset span').css("bottom"));
+					if(top < 87 && percent < 97){
+						$(this).css({"color":"black",'background-color':color});
+						}else{
+							$(this).css({"color":"white",'background-color':color});
+							}
+			   });
+			   },
+			 defaultColor: true,  
+			};
+			$('.magee_shortcodes_container .column-shortcode-inner').eq(count).find('.wp-color-picker-field').wpColorPicker(myclone_Options);
+			$('.magee_shortcodes_container .column-shortcode-inner').eq(count).find('.wp-color-picker-field').each(function(){
+					var color = $(this).attr('value');
+					$(this).css("background-color",color);
+					var since = 0 ;
+					var show = $(this); 
+					$(this).parents('.wp-picker-container').find('.wp-picker-holder').mouseover(function(e){
+						since = 0;			
+						event.cancelBubble=true;
+					});
+					$(this).parents('.wp-picker-container').find('.wp-picker-holder').mouseout(function(e){
+						since = 1;			
+						event.cancelBubble=true;
+					});
+					$(document).mousedown(function(){
+						if(since == 1){
+							show.parents('.wp-picker-container').find('.wp-picker-holder').css("display","none");
+							}						   
+					});
+					$(this).click(function(){			   			   
+						$(this).parents('.wp-picker-container').find('.wp-picker-holder').css("display","block");	   
+					});	
+					
+			  });
+			 //input number controls
+			  
+			  $('.magee_shortcodes_container .column-shortcode-inner').eq(count).find('.magee-form-number').each(function(){
+				  var number_obj = $(this);
+				  var number = parseInt($(this).attr('max'));
+				  var total =parseInt($(this).parent('.field').find('.probar').width());
+				  var op = total/number;
+				  var val = parseInt($(this).val());
+				  var left = op*val.toString();
+				  $(this).parent('.field').find('.probar-control').css('left',left);							
+				  $(this).parents('.param-item').find('.probar').click(function(e){
+						e = e||window.event;
+						var x2 = e.clientX;
+						var x3 = $(this).parents('.param-item').find('.probar').offset().left;
+						
+						var lv = (x2-x3)/total*100;
+						$(this).parents('.param-item').find('.probar-control').css('left',lv.toString()+'%');
+						number_obj.val(Math.round(parseInt($(this).parents('.param-item').find('.probar-control').css('left'))/op));	
+				  });										
+				  $(this).change(function(){
+						if(parseInt($(this).val()) > number){
+							$(this).parents('.param-item').find('.probar-control').css('left','100%');
+							}else{
+							newleft = op*parseInt($(this).val()).toString();
+						    $(this).parents('.param-item').find('.probar-control').css('left',newleft);	
+								}				  												
+						 });
+				  var z  = 0 ;
+				  var x1,y1;
+				  $(this).parents('.param-item').find('.probar-control').mousedown(function(e){								 
+						 z = 1;
+						 e = e||window.event;    
+						 x1 = $(this).parents('.param-item').find('.probar').offset().left;
+						 y1 = x1 + total;
+						 
+						 });
+				 
+				 $(document).mousemove(function(e){								
+						 if(z == 1){	 
+							 var e=e||window.event;		
+							 var x = e.clientX;
+							 if(x>y1 || x< x1){
+									 if(x>y1){	 
+										number_obj.parents('.param-item').find('.probar-control').css('left','100%') ;								   
+										 }
+									 if(x < x1){
+										   number_obj.parents('.param-item').find('.probar-control').css('left','0%')	 ;			   																					 
+										 }
+								 }else{
+								 var pc = (x-x1)/total*100;
+								 number_obj.parents('.param-item').find('.probar-control').css('left',pc.toString()+'%');
+								 number_obj.val(Math.round(parseInt(number_obj.parents('.param-item').find('.probar-control').css('left'))/op));							   										
+								 }
+							 }
+						
+						 });
+				  $(document).mouseup(function(){
+						 z = 0;												
+						 })	;			  			   																						
+              });
 	 });
 
 	// type choose to show

@@ -1,4 +1,5 @@
 <?php
+if( !class_exists(' Magee_Button') ):
 class Magee_Button {
 
 	public static $args;
@@ -191,3 +192,4 @@ class Magee_Button {
 }
 
 new Magee_Button();
+endif;

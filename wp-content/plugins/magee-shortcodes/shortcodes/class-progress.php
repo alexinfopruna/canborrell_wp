@@ -1,6 +1,6 @@
 <?php
 
-
+if( !class_exists('Magee_Progress') ):
 class Magee_Progress {
 
 	public static $args;
@@ -26,7 +26,7 @@ class Magee_Progress {
 			array(
 				'id' 				=>'',
 				'class' 			=>'',
-				//'style'				=>'normal',
+				'style'				=>'normal',
 				'percent'           => '50',
 				'text'              =>'',
 				'height'            => 30,
@@ -41,9 +41,19 @@ class Magee_Progress {
 		
 		extract( $defaults );
 		self::$args = $defaults;
+		$unqid = uniqid("circle-");
 		$percent = str_replace('%','',$percent);
 		$percent = esc_attr($percent).'%';
 		$css_style = 'width: '.esc_attr($percent).';';
+		$html = '';
+		if($style == 'circle'):
+		$html .= '<style type="text/css">
+		.'.$unqid.'{padding: 3px;border: 1px solid #e3e3e3;border-radius:'.($height+5).'px !important;background-color:#fcfcfc !important;}
+		.'.$unqid.' .progress-bar{border-radius:'.$height.'px !important;}
+		.'.$unqid.' .progress-title{line-height:'.($height-10).'px !important;}
+		</style>';
+		endif;
+		
 		if(is_numeric($height))
 		$height      = $height.'px';
 		$line_height = '';
@@ -81,18 +91,15 @@ class Magee_Progress {
 		if($striped == 'striped animated')
 		$progress_bar .= ' progress-bar-striped animated hinge infinite';
 		
-		
-		
-		
 		if( $color )
 		$css_style .= 'background-color:'.esc_attr($color).';'; 
 		
-		$html = '<div class="magee-progress-box '.esc_attr($class).'" id="'.esc_attr($id).'">';
+		$html .= '<div class="magee-progress-box '.esc_attr($class).'" id="'.esc_attr($id).'">';
 		
 			if( $textposition == '2' ){
 				$html .= '<div class="porgress-title text-'.$a.' clearfix">'.esc_textarea($text).' <div class="pull-'.$b.'">'.esc_attr($percent).'</div></div>';
 				}
-			  $html .= '<div class="progress '.$progress.'" style="'.$bar_height.'">
+			  $html .= '<div class="progress '.$progress.' '.$unqid.'" style="'.$bar_height.'">
                                                     <div class="progress-bar pull-'.$a.' '.esc_attr($progress_bar).'" role="progressbar" aria-valuenow="'.esc_textarea($text).'" aria-valuemin="0" aria-valuemax="100" style="'.$css_style.'">';
 			if( $textposition == '1' ){								
               $html .= '<div class="progress-title text-'.$a.' clearfix" style="'.$line_height.'">'.esc_textarea($text).' <div class="pull-'.$b.'">'.esc_attr($percent).'</div></div>';
@@ -106,3 +113,4 @@ class Magee_Progress {
 }
 
 new Magee_Progress();
+endif;

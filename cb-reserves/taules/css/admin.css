@@ -1,0 +1,227 @@
+/* CSS Document */
+/*
+a:link, a:visited
+{
+	text-align:center;
+	border: thin solid #DDDDFF;
+	background-color:#D2DBDF;
+	color:#122D47;
+	font-family: Arial, Helvetica, sans-serif;
+	text-decoration:none;
+	font-size: 14px;
+	color:#FFFFFF;
+	margin-right:6px;
+}
+a:hover{
+	background-color:#FFFFFF;
+	color:#D2DBDF;
+
+}
+*/
+a.admin:link, a.admin:visited
+{
+	text-align:center;
+	color:#122D47;
+	font-family: Arial, Helvetica, sans-serif;
+	text-decoration:none;
+	font-size: 14px;
+	margin-right:6px;
+}
+a.admin:hover{
+	background-color:#FFFFFF;
+	color:#D2DBDF;
+
+}
+
+
+h1{text-align: left; text-transform: uppercase;  padding-bottom: 10px; font: 200% "Lucida Grande", "Lucida Sans Unicode", "Trebuchet MS", sans-serif;margin-bottom:25px;
+background-color:#F3F5F7;
+color:#0066CC;
+text-align:center;
+clear:both;}
+
+h2{
+	border:1px;
+	background-color:#D2DBDF;
+	padding: 4px;
+	text-align:center;
+	font-family: Arial, Helvetica, sans-serif;
+	font-size: 18px;
+	color:#FFFFFF;
+	width:100%;
+
+}
+
+form
+{
+	text-align:center;
+	border: thin solid #DDDDFF;
+	background-color:#F8FAFA;
+	color:#122D47;
+
+}
+
+#menu
+{	
+	clear:both;
+}
+
+
+#menu a:link,#menu a:visited{
+	text-align:center;
+	border: thin solid #DDDDFF;
+	background-color:#D2DBDF;
+	color:#122D47;
+	font-family: Arial, Helvetica, sans-serif;
+	text-decoration:none;
+	font-size: 18px;
+	color:#FFFFFF;
+	margin-right:6px;
+}
+#menu a:hover{
+	background-color:#FFFFFF;
+	color:#D2DBDF;
+
+}
+
+#caixa
+{
+	padding:1px;
+	border: 1px solid #DDDDFF;
+	margin:4px 0px 35px 0px;
+	
+	float:left;
+}
+
+
+
+
+#flogin 
+{
+	margin:100px auto;
+	width:400px;
+}
+
+input, textarea, select
+{
+	border: thin solid #DDDDFF;
+	background-color:#FFFFFF;
+	color:#CC5555;
+	color:#003366;
+	font-family: Arial, Helvetica, sans-serif;
+	font-size: 14px;
+	
+
+}
+
+
+.etinput
+{
+	color:#0066CC;
+	font-family: Arial, Helvetica, sans-serif;
+	font-size: 14px;
+}
+
+.insert
+{background-color:#D2DBDF;
+
+}
+
+.noborde
+{border:none;}
+
+
+.centrat{margin-left:auto;margin-right:auto;width:950px;}
+
+
+label.error {
+	color: #990000;
+	background: url(unchecked.gif) no-repeat;
+	display:block;
+	padding-left:18px;
+
+}
+input.error{	border: thin dashed #990000;}
+
+
+.amagat{display:none}
+.block{display:block}
+/* MBA */
+a.ordre:link, a.ordre:visited{color:#ffffff;text-decoration:none !important;}
+a.ordre:hover{text-decoration:none !important;color:#dddddd;}
+
+.imgllistat{
+background-image:url(unchecked.gif);
+background-repeat:no-repeat;
+background-position:center;
+text-decoration:none !important;
+
+height:auto;width:40px}
+
+.upload{
+float:right;
+border:1px solid #d2dbdf;
+width:200px;
+min-height:300px;
+color:#ffffff;
+}
+.fotillo{
+clear:both;
+text-align:left;
+padding:8px;
+/*border:2px solid #d2dbdf;*/
+background:#d2dbdf;
+height:70px;
+margin:5px;
+/*font-weight:bold;*/
+
+}
+.fotillo_img{
+/**/float:left;
+display:block;
+max-height:75px;
+max-width:75px;
+margin:5px;
+
+}
+
+.fotillo_esborra,.fotillo_esborra:link,.fotillo_esborra:hover,.fotillo_esborra:visited{
+background-image:url('b_drop.png');
+text-decoration:none;
+max-width:16px !important;
+background-repeat:no-repeat;
+height:16px;
+overflow:hidden;
+
+}
+#qq-upload-button{width:100%;}
+.radio{clear:both;}
+
+
+.transparent {
+        /* Required for IE 5, 6, 7 */
+        /* ...or something to trigger hasLayout, like zoom: 1; */
+        width: 100%; 
+
+        /* Theoretically for IE 8 & 9 (more valid) */
+        /* ...but not required as filter works too */
+        /* should come BEFORE filter */
+        -ms-filter:"progid:DXImageTransform.Microsoft.Alpha(Opacity=50)";
+
+        /* This works in IE 8 & 9 too */
+        /* ... but also 5, 6, 7 */
+        filter: alpha(opacity=50);
+
+        /* Older than Firefox 0.9 */
+        -moz-opacity:0.5;
+
+        /* Safari 1.x (pre WebKit!) */
+        -khtml-opacity: 0.5;
+
+        /* Modern!
+        /* Firefox 0.9+, Safari 2?, Chrome any?
+        /* Opera 9+, IE 9+ */
+        opacity: 0.5;
+}
+
+.zoom img{float:left;}

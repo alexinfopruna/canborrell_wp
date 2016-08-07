@@ -1,4 +1,5 @@
 <?php
+if( !class_exists('Magee_Video') ):
 class Magee_Video {
     
 	
@@ -84,3 +85,4 @@ class Magee_Video {
 }
 
 new Magee_Video();
+endif;

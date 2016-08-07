@@ -1,0 +1,171 @@
+
+/**
+PANTALLES FINS A 500
+*/  @media only screen and (max-width: 450px){ 
+
+    #calendari{font-size:1.1em !important}
+    label{min-width:65px;}
+    #selectorCotxets label{min-width:100%;}
+    #selectorCadiraRodes label{min-width:100%;}
+    td.resum-carta-nom {
+        font-weight: normal;
+        /*font-size: 0.7em;*/
+
+    }
+    #bt-carta, #bt-menu, #bt-no-carta {float:none;min-width:100%}
+}  
+
+/**
+PANTALLES FINS A 770
+*/
+@media only screen and (max-width: 770px){ 
+    #editar_reserva{width:99%;margin:0;padding:8px 0 12px 0;}
+    #caixa_reserva_consulta_online {width:99%;float:none;margin:0;padding:8px 0 12px 0;margin-bottom:35px;}
+
+    h4{font-size:1.7em}
+    h2.titol{font-size:2.5em !important;}
+    div.caixa{display:none;} 
+    div.info{display:none;} 
+    .fr-seccio-submit .caixa.resum{display:block;}
+    .fr-seccio-carta .caixa{display:block;}
+    .grups-fr-seccio-carta .caixa{display:block;}
+    .info-comanda{display:block;}
+    .info-legal{display:block;}
+
+    .fr-seccio-carta .caixa .dere{float:none;}
+    .grups-fr-seccio-carta .caixa .dere{float:none;}
+
+    .fr-seccio{margin-left:0px;margin-right:0px;padding:8px;}  
+    #calendari{font-size:1.3em}
+    img{max-width:100%;}
+    #td_contingut {background-image: none;}
+    #bt-carta, #bt-menu,#bt-no-carta {float:none;}
+
+    .ui-button, h4, h3, h2, legend{font-size:1.7em !important;}
+
+    .ui-dialog{width:90% !important;}
+    .d-mes,.d-menys, td.mes,td.menys{display:none}
+    .m-mes, .m-menys{
+        display:block;
+        background:#570600;
+        color:white;
+        text-align:center;
+        height:25px;
+        font-size: 2em;
+        font-weight: bold;
+    }
+    .mes, .menys{background:white;}
+
+    .menys{margin-bottom:12px;}
+    .contador{width:35px;}
+    #tr_menu{font-size:2em;}
+    #tr_menu a{display:block;text-align:left;}
+    #tr_menu img{display:none;}
+    #table_menu{margin-left:15px !important}
+
+    #caixa_reserva_consulta_online {float:none}
+
+    .fals-overlay{visibility:hidden;}
+    /* .fals-overlay{display:none;}*/
+
+
+    #data{float:none !important;font-size: 1.3em;}
+    #calendari{width:95%;}
+    div.ui-datepicker-inline.ui-datepicker{width:100%;}
+
+    #fr-carta-tabs li, #fr-menu-tabs li {
+        width: 100%;
+        font-size:1.1em;
+    }
+    
+    .fr-seccio-client input{font-size:1.7em;}   
+    .fr-seccio-submit {font-size:1.7em;}   
+}
+    /**
+    PANTALLES GRANS
+    */
+    @media all and (min-width: 770px) {
+        // styles
+        body{font-size:3em !important;}
+        #poma-fons{background-image:url(../../img/fons_9a.jpg) }
+        .fr-seccio-carta {max-width: 729px;}
+        .grups-fr-seccio-carta {max-width: 729px;}
+        #calendari{font-size:1.6em}
+
+        #jnc{max-width:50%;}
+        hr{display:none;} 
+        .m-mes, .m-menys{display:none}
+        .info-ico{display:none}
+
+    }
+
+
+    #dades-client{width:100%;}
+    .ui-icon-closethick,   .ui-button-icon-only .ui-icon {
+        left: 0%;
+        top: -10%; 
+    }
+
+    #carta_MENUS{padding:0;}
+    a:hover {
+        color: red;
+    }
+
+
+    .ui-widget-overlay{
+        background:#444;
+        opacity:0.9;
+        position: fixed;
+        /*overflow:hidden; height:15000px;*/
+        top:0;
+        bottom: 0;
+        left:0;
+        right: 0;
+        z-index:1999  !important;
+    }
+
+    #taula-estructura{background:#444}
+    #poma-fons{background-color:white; }
+    .mes a, .menys a{color:white;}
+    
+    .fr-seccio-client input, .fr-seccio-client  label {display: block;margin-top: 7px;}    
+h4{padding-top: 15px;}
+
+.ui-dialog{z-index:2000  !important;}
+/*
+#peu{display:none;}
+*/
+a:link, a:visited
+{
+    font-family: verdana, arial, helvetica;
+    text-decoration: none;
+    color: #FFCC99;
+    font-weight: bold;
+}
+
+.d-mes{min-width:18px;height:18px;
+       background-color:#570600;
+       margin:auto;
+       font-size:1.3em;
+       color:white;
+       text-align: center;
+       font-weight: bold;
+}
+
+
+.d-menys{min-width:18px;min-height:18px;
+         margin:auto;
+         font-size:1.3em;
+         background-color:#570600;
+         font-size:1.3em;
+         color:white;
+         text-align: center;
+         font-weight: bold;
+}	
+.contador{text-align:right;width:25px;margin-left:0px;}
+
+.ui-dialog-content{height:auto !important;}
+#fr-menu-popup{height:auto !important;}
+#fr-cartaw-popup{height:auto !important;}
+
+.info-paga-i-senyal{background:rgb(255, 255, 161);padding:4px;}

@@ -1,0 +1,48 @@
+Separar BBDD històric
+Botó envia factura pro-forma
+? Refresh push
+? Server local
+
+UNIR SISTEMA GRUPS + TAULES
+Login comú
+Vincular (link)
+Unir BBDD (estat reserva/client)
+Incorporar res.taules a llistat grups (filtre)
+Incorporar res.grups a taules
+Vincular reserves.grups amb taules
+
+?modificar reserves
+
+Llistat Grups
+Ordenar
+Eliminar 
+Filtre
+
+
+---------FORM-------------
+QUANTS SOU?
+Adults
+Junior
+Nens 
+Cotxets
+
+Quin dia vindreu?
+(CALENDARI)
+
+A quina hora? (només es mostren torns disponibles)
+
+Si vols, pots triar els plats de la carta.
+VEURE CARTA
+1ers plats
+2ons plats
+Postres
+Begudes
+
+DADES DE LA RESERVA:
+nom, cognom
+telf1 telf2
+email
+
+
+
+

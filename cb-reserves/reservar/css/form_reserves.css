@@ -1,0 +1,255 @@
+	body
+	{
+	font-family: verdana, arial, helvetica;
+	font-size: 11px;
+	color: #570600;
+	margin:0px;
+	}
+        
+        .dspnn{display:none;}
+
+.dev{background-image:url(obres.png)}
+.local{background-image:url(local.png)}
+
+	
+	td{font-size:none;}
+	
+	h2{text-align:right;margin-top:35px;margin-right:25px;}
+	h4{margin-bottom:0;	}
+	
+	img{border-style: none;}
+	#ui-datepicker-div { display: none; }	
+	#td_contingut{background-image:url(fons_9c.jpg); background-repeat:no-repeat;}	
+.shadow {
+  -moz-box-shadow: 5px 5px 5px #ccc;
+  -webkit-box-shadow: 5px 5px 5px #ccc;
+  box-shadow: 5px 5px 5px #ccc;
+}	
+	
+        .ui-state-focus{color:white !important;}
+	.selector{margin-bottom:15px;}
+	
+	#calendari{font-size:1.6em}
+	.col-dere{width:500px;float:left;}
+	.fr-seccio-carta .ui-button{width:170px;}
+	#bt-no-carta{color:#570600}
+	#bt-carta{color:#570600;float:right;margin-top:8px;}
+	#bt-menu{color:#570600;float:right;margin-top:8px;}
+/*	#bt-carta:hover,#bt-no-carta:hover{color:white;}*/
+/*	#bt-menu:hover,#bt-no-menu:hover{color:white;}*/
+	
+	#carta div.info-comanda{width:95%;margin-top:20px;}
+	
+	.td-carta-preu{
+		font-weight:bold;
+		margin-left:25px;
+		width: 50px;
+		text-align: right;
+	}
+/***********************************************/	
+	td.resum-carta-nom{width:400px;font-weight:bold;}
+	.carta-seleccio{color:red;font-weight:bold;}
+	.resum-carta-preu{
+		font-weight:bold;
+		margin-left:25px;
+		width: 20%;
+		text-align: right;	
+	}	
+	
+	.fr-seccio-carta  .ui-button, .fr-seccio-submit  .ui-button{border:2px solid #570600}
+/*
+	#fr-reserves{
+	  width:775px;
+	 padding-bottom:50px;
+	}
+*/
+/***********************************************/
+	.fr-seccio{
+	clear:both;
+	border:1px solid rgb(203, 199, 189);
+	padding:12px;
+	margin:25px 25px 15px 25px;
+	background:white;
+
+  -moz-box-shadow: 2px 2px 2px #ccc;
+  -webkit-box-shadow: 2px 2px 2px #ccc;
+  box-shadow: 2px 2px 2px #ccc;
+	}
+	
+	
+	#selectorHoraSopar, #selectorHora{font-size:0.9em;}
+	
+	#fr-carta-tabs li,#fr-menu-tabs li{font-size:0.8em;}
+	#fr-carta-tabs, #fr-menu-tabs{
+	border:1px solid rgb(203, 199, 189);
+	padding:12px;
+	margin:0 0px 10px 0;
+	background:white;
+
+/*     height: expresion(this.scrollHeight < 601? "600px": "auto");*/
+	min-height:220px;
+	/**/
+	}
+
+	#dades-client input{margin-left:10px;color:#570600;font-weight:bold;}
+	#dades-client .label{text-align:right;}
+	input[name='client_nom']{width:490px;}
+	input[name='client_cognoms']{width:490px;}
+	input[name='client_email']{width:490px;}
+	textarea{margin-left:0px;width:490px;color:#570600;font-weight:bold;}
+
+	.contador{text-align:right;width:25px;margin-left:20px;}
+	.mes{width:16px;height:16px;
+	background-image:url(custom-theme/images/ui-icons_570600_256x240.png);
+	background-position:0 -189px;
+	}	.menys{width:16px;height:16px;
+	background-image:url(custom-theme/images/ui-icons_570600_256x240.png);
+	background-position:-16px -189px;
+	}	
+	.borra{width:16px;height:16px;
+	background-image:url(custom-theme/images/ui-icons_570600_256x240.png);
+	background-position:-32px -189px;
+	}
+	
+	.ui-widget-overlay{background:#cccccc url(images/ui-bg_flat_20_6e4f1c_40x100.png) 50% 50% repeat-x}
+	
+	.caixa{
+		background:#fbfbff;
+		/*background-image:url('info.png');
+		background-repeat:no-repeat;*/
+		/*width:250px;*/
+		/*height:100%;*/
+		padding:8px;
+		border:1px solid rgb(203, 199, 189);
+		/*margin-right:20px;*/
+		color:#aa8888;
+	
+  -moz-box-shadow: 2px 2px 2px #ccc;
+  -webkit-box-shadow: 2px 2px 2px #ccc;
+  box-shadow: 2px 2px 2px #ccc;
+	}
+	
+	.dere{
+		float:right;
+	}
+	
+	.caixa input{
+		/*background:#fbfbff;*/
+	}
+	.fr-seccio-dia .caixa{width:250px;}
+	.fr-seccio-quants .caixa{width:285px;}
+	.fr-seccio-client .caixa{margin-top:10px;font-size:0.8em;}
+	
+	.fr-seccio-carta 
+	{
+		/*margin:25px 25px 15px 25px;*/
+		width:729px;
+	}
+	.fr-seccio-carta  .info
+	{
+		background:#fbfbff;
+		width:150px;
+		/*background-image:url('info.png');
+		background-repeat:no-repeat;*/
+		margin-bottom:10px;
+		padding:8px;
+		border:1px solid rgb(203, 199, 189);
+		color:#aa8888;
+	
+  -moz-box-shadow: 2px 2px 2px #ccc;
+  -webkit-box-shadow: 2px 2px 2px #ccc;
+  box-shadow: 2px 2px 2px #ccc;
+	}
+	
+	.carta-plat{width:380px;}
+	#carta .caixa{width:500px;}
+	.hores{
+		/*background:#ffffef;*/
+		width:685px;
+		float:none;
+		padding:8px;
+		margin-top:8px;
+		margin-bottom:8px;
+
+	}
+	
+	#submit{float:right;right:0px;padding:10px;font-size:1.2em;}
+	.resum{margin-bottom:10px;color:#570600;}
+	.resum b{font-size:1.2em;}
+	
+	.info-submit{margin-top:2px;width:450px;height:32px;float:left;}
+	/*#submit{float:right;margin:3px 25px 45px;;padding:10px;font-size:1.2em;}*/
+	/*
+	#submit{background:white;}
+	#submit:hover{background:#570600;}
+	*/
+	input[name=totalComensals]{width:15px;color:red;font-weight:bold;border:none;}
+	input[name=totalCotxets]{width:20px;color:red;font-weight:bold;border:none;}
+	
+	.number{
+	padding:3px 8px 3px 8px;
+	margin-right:15px;
+	color:white;
+	background:#996;
+	font-size:1.2em;
+-moz-border-radius: 15px;
+-webkit-border-radius: 15px;
+border-radius: 15px;	}
+
+.error{border:1px dotted red;	background:#fee;}
+em.error {
+display:block;
+	color:red;
+  background:url("error.gif") no-repeat 0px 0px;
+  padding-left: 18px;
+  border:none;
+  margin-left:10px;
+  min-height:16px;
+}
+
+
+
+/* #valida_calendari{display:none},*/
+.tels{text-align:right;padding:5px;color:#C00;margin-bottom:125px;}
+.titol2{text-align:right;}
+.titol1{float:right}
+
+#labelGrups, label[for='comGrups']{font-size:1.2em;color:red;}
+.odd{background:#fcfcff;}
+
+.menu-active, .menu-active:link, .menu-active:visited	{color:white;}
+
+#error_validate{background:#fee url("error.gif") no-repeat 4px 5px;;padding:5px;padding-left:20px;border:#f00 solid 2px;color:#f00;}
+
+
+.titol1{margin:0 25px;}
+.fr-seccio-quants{margin-top:0px;}
+
+#editar_reserva{text-align:center;width:310px;background:#FBFBFF;color:#570600;margin:0 25px 0 25px;padding:3px;float:left;}
+#a_editar_reserva{color:#999;}
+#a_editar_reserva:hover{color:red;}
+#flogin{width:340px;padding:3px;}
+.etinput{width:155px;}
+#info-login{width:290px;color:#999;text-align:justify;}	
+
+#a_consulta_online{color:#999;}
+#a_consulta_online:hover{color:red;}
+#form_contactar input{width:180px;}
+#form_contactar{padding:4px;text-align:justify;}
+#caixa_reserva_consulta_online{margin:0px 25px 45px 25px;width:300px;color:#999;text-align:center;padding:3px;float:right;}
+#caixa_reserva_consulta_online textarea{width:100%;height:60px;}
+#bt_reserva_consulta_online{float:right;}
+#cancel_reserva{font-size:0.8em;}
+
+.no-grup{margin:15px 0 15px 15px;}
+.form-contactar-grups{width:400px;}
+
+.resum strong{color:#570600;}
+.cb_hide{float:left;background:white;position:absolute;	filter: alpha(opacity=80);	opacity: 0.8;z-index:1000;}
+.putoIE{z-index:1000;}
+
+#help{font-size:1.4em}
+
+ .tooltip-red{z-index:1100 !important;}
+ 
+ .ui-helper-hidden-accessible{width:0  !important;}

@@ -1,4 +1,5 @@
 <?php
+if( !class_exists('Magee_Vimeo') ):
 class Magee_Vimeo {
     
 	
@@ -169,3 +170,4 @@ window.$f=e}();
 }
 
 new Magee_Vimeo();
+endif;

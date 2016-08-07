@@ -68,6 +68,38 @@ Activate plugin at "Plugins" administration page.
 
 == Changelog ==
 
+= 1.5.8 - 15/07/2016 =
+Added: new option for Social ( Target )
+Added: new option for accordion( style->spacing style, type->none type, title color, title background color )
+Added: new shortcode Aduio
+Added: new option for Tooltip ( tooltip background color, tooltip border radius )
+
+= 1.5.7 - 21/06/2016 =
+Added: new option for List
+Added: new option for Flip Box ( Diretion:flip top/left/bottom/right; slide top/left/bottom/right )
+Added: new option for Custom Box ( Fixed Background ,Background Position )
+Added: new option for Accordion Item ( icon, status )
+Added: new option for Icon ( data-open/data-close )
+Added: new option for Highlight ( font color )
+Added: new option for Image Compare ( style, percent )
+Added: new option for Piechart ( line cap )
+Added: new option for Progress ( style )
+Added: new option for Column ( align  )
+Improved shortcode Counter
+
+= 1.5.6 - 06/06/2016 =
+* Fix - Fixed image uploader issue
+* Fix - Fixed vimeo/youtube shortcodes issue
+
+= 1.5.5 - 03/06/2016 =
+* Added: New shortcode -- Chart Bar
+* Added: New shortcode -- Chart Doughnut
+* Added: New shortcode -- Chart Line
+* Added: New shortcode -- Chart Pie
+
+= 1.5.4 - 31/05/2016 =
+* Compatible with magee theme
+
 = 1.5.3 - 16/05/2016 =
 * Fix - Fixed animation issue
 

@@ -1,4 +1,5 @@
 <?php
+if( !class_exists('Magee_Testimonial') ):
 class Magee_Testimonial {
 
 	public static $args;
@@ -58,3 +59,4 @@ class Magee_Testimonial {
 }
 
 new Magee_Testimonial();
+endif;

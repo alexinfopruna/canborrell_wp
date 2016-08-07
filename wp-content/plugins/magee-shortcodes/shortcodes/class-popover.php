@@ -1,4 +1,5 @@
 <?php
+if( !class_exists('Magee_Popover') ):
 class Magee_Popover {
 
 	public static $args;
@@ -79,3 +80,4 @@ class Magee_Popover {
 }
 
 new Magee_Popover();
+endif;

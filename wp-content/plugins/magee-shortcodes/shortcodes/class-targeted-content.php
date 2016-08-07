@@ -1,4 +1,5 @@
 <?php
+if( !class_exists('Magee_Targeted_content') ):
 class Magee_Targeted_content {
 
 	public static $args;
@@ -57,4 +58,5 @@ class Magee_Targeted_content {
 	
 }
 
-new Magee_Targeted_content();		
+new Magee_Targeted_content();	
+endif;	

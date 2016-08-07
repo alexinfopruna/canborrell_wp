@@ -1,5 +1,5 @@
 <?php
-
+if( !class_exists('Magee_Timeline') ):
 
 class Magee_Timeline {
 
@@ -90,3 +90,4 @@ class Magee_Timeline {
 }
 
 new Magee_Timeline();
+endif;

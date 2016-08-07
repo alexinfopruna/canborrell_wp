@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE config SYSTEM "config.dtd">
+<config>
+	<url_base><![CDATA[http://localhost/www.can-borrell.com/taules/]]></url_base>
+	<DB_CONNECTION_FILE define="1" ><![CDATA[../Connections/canborrell.php]]></DB_CONNECTION_FILE>
+	<DB_CONNECTION_FILE_DEL define="1" ><![CDATA[../Connections/canborrell_del.php]]></DB_CONNECTION_FILE_DEL>
+	<DB_CONNECTION_SINCRO_REMOTE define="1" ><![CDATA[../Connections/canborrell_remote.php]]></DB_CONNECTION_SINCRO_REMOTE>
+	<CHARSET define="1" >UTF-8</CHARSET>
+	<INC_FILE_PATH define="1" ><![CDATA[../../canBorrell_12.2/]]></INC_FILE_PATH>
+	<debug>0</debug>
+	<ENVIA_SMS define="1" >0</ENVIA_SMS>
+	<REFRESH_INTERVAL define="1" >15000</REFRESH_INTERVAL>
+	<SEPARADOR_ID_RESERVES define="1" >6000</SEPARADOR_ID_RESERVES>
+	<T_RESERVES define="1" >reservestaules</T_RESERVES>
+	<ESTAT_TAULES define="1" >estat_taules</ESTAT_TAULES>
+	<CLEAR_DELETED_BEFORE define="1" >3 Year</CLEAR_DELETED_BEFORE>
+	<UNLOCK_AFTER define="1" >2 MINUTE</UNLOCK_AFTER>
+	<PERSONES_DEFAULT define="1" >6</PERSONES_DEFAULT>
+	<LOG_FILE define="1" ><![CDATA[log/log.txt]]></LOG_FILE>
+	<LOG_QUERYS_FILE define="1" ><![CDATA[log/log_querys.txt]]></LOG_QUERYS_FILE>
+	<LOG_QUERYS define="1" >INSERT,DELETE,UPDATE,REPLACE</LOG_QUERYS>
+
+	<BACKUP_INTERVAL define="1" >1800000</BACKUP_INTERVAL>
+	<RUTA_DB_BACKUP define="1" ><![CDATA[db_Backup/]]></RUTA_DB_BACKUP>
+	<HORA1_DB_BACKUP define="1" >13:00</HORA1_DB_BACKUP>
+	<HORA2_DB_BACKUP define="1" >19:00</HORA2_DB_BACKUP>
+
+	<IVA define="1">8</IVA>
+	<NOM_FACTURA define="1">FacturaProformaCanBorrell</NOM_FACTURA>
+</config>

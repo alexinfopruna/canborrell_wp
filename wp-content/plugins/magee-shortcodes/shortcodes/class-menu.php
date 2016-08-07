@@ -1,4 +1,5 @@
 <?php
+if( !class_exists('Magee_Menu') ):
 class Magee_Menu {
 
 	public static $args;
@@ -40,4 +41,5 @@ class Magee_Menu {
    }
 }
 
-new Magee_Menu();		
+new Magee_Menu();	
+endif;	

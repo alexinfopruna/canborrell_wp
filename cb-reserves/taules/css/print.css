@@ -1,0 +1,46 @@
+h1{margin:0;font-size:1.1em;font-weight:bold;}
+h2{text-align:center;margin:0;}
+h3{margin:0;}
+h5{background:red;width:750px;text-align:center;margin-bottom:10px;color:white;font-size:1.1em;}
+#containerA4{width:750px;}
+
+#llista_reserves{margin-top:50px;clear:both;}
+
+#reserva
+{
+width:750px;border:#eeeeee solid 2px;marginn:3px;padding:5px;
+}
+
+table
+{
+	width:750px;	
+	border:#444 solid 3px;
+}
+
+td
+{
+	padding:5px;	
+	border:#666 solid 1px;
+	text-align:center;
+}
+.esquerre{float:left;width:550px}
+
+.id{font-size:12px;}
+.pageBreak {page-break-before: always}
+.conflicte{background:red;color:white;font-weight:bold;margin-left:30px;}
+.print-taula{color:red;font-weight:bold;font-size:1.1em;}
+
+#menu a{text-decoration:none;color:white;font-weight:bold}
+#menu li{float:left;margin-left:10px;list-style-type: none;}
+#menu li a:link,#menu li a:visited{padding:10px;background:#000;}
+#menu li a:hover{background:#000;}
+
+#reserva a{color:#444;margin-right:12px;}
+
+.taulaf1{font-size:0.8em;color:#00f;text-decoration:none;background:#dde;}
+.taulaf2 td{font-size:0.9em;border-bottom:#eee solid 2px;}
+.observacions td{border-top:none;}
+.columna-nom{width:400}
+.garjola{color:red;}
+.odd{background:#f4f6ff;}
+.amagat{display:none};

@@ -1,4 +1,5 @@
 <?php
+if( !class_exists('Magee_Dailymotion') ):
 class Magee_Dailymotion {
     
 	
@@ -100,4 +101,5 @@ class Magee_Dailymotion {
 	 
 }
 
-new Magee_Dailymotion();		 
+new Magee_Dailymotion();		
+endif; 

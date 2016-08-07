@@ -1,4 +1,5 @@
 <?php
+if( !class_exists('Magee_Divider') ):
 class Magee_Divider {
 
 	public static $args;
@@ -132,3 +133,4 @@ class Magee_Divider {
 }
 
 new Magee_Divider();
+endif;

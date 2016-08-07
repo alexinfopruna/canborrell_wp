@@ -1,0 +1,46 @@
+.Estilo2 {
+	color: #FFFFFF;
+	font-family: Verdana, Arial, Helvetica, sans-serif;
+}
+A.llista:link {
+
+	color: #990000;
+	font-family: Verdana, Arial, Helvetica, sans-serif;
+}
+A.llista:hover {
+
+
+	color: #FF0000;
+	font-family: Verdana, Arial, Helvetica, sans-serif;
+}
+A.llista:visited {
+
+
+
+	color: #990000;
+	font-family: Verdana, Arial, Helvetica, sans-serif;
+}
+A.estat:link {
+
+	color: #990000;
+	font-family: "Century Gothic", "AvantGarde Bk BT", Arial;
+	font-weight: bold;
+	font-size: 14px;
+}
+A.estat:hover {
+
+
+	color: #FF0000;
+	font-family: "Century Gothic", "AvantGarde Bk BT", Arial;
+	font-weight: bold;
+	font-size: 14px;
+}
+A.estat:visited {
+
+
+
+	color: #990000;
+	font-family: "Century Gothic", "AvantGarde Bk BT", Arial;
+	font-weight: bold;
+	font-size: 14px;
+}

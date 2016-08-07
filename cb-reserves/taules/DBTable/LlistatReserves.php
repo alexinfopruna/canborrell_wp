@@ -1,0 +1,29 @@
+<?php
+////////////////////////////////////////////////////////////////////////////////
+if (!defined('UPPER_NO_TILDE')) define('UPPER_NO_TILDE',true);
+$TABLE = "reservestaules";
+$EDITABLE = "true";
+
+////////////////////////////////////////////////////////////////////////////////
+$query = "SELECT 
+id_reserva AS idR , 
+data,
+hora,
+adults,
+nens10_14,
+nens4_9,
+cotxets,
+
+reservestaules.client_id AS ext_client_id,
+CONCAT(client_nom,' ',client_cognoms) AS client,
+client_mobil,
+
+id_reserva AS ui_icon_trash 
+
+FROM $TABLE
+LEFT JOIN client ON client.client_id=reservestaules.client_id
+";
+////////////////////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////////////////
+include("Llistat.php")
+?>

@@ -1,4 +1,5 @@
 <?php
+if( !class_exists(' Magee_Alert') ):
 class Magee_Alert {
 
 	public static $args;
@@ -92,3 +93,4 @@ class Magee_Alert {
 }
 
 new Magee_Alert();
+endif;

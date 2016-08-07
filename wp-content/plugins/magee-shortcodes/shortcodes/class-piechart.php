@@ -1,4 +1,5 @@
 <?php
+if( !class_exists('Magee_Piechart') ):
 class Magee_Piechart {
 
 	public static $args;
@@ -24,6 +25,7 @@ class Magee_Piechart {
 			array(
 				'class' =>'',
 				'percent' => '80',
+				'line_cap' => '',
 				'filledcolor'=>'#fdd200',
 				'unfilledcolor'=>'#f5f5f5',
 				'size' =>'200',
@@ -51,7 +53,7 @@ class Magee_Piechart {
                 lineWidth: 10,
                 trackWidth: 10,
                 size: ".absint($size).",
-                lineCap: 'butt'
+                lineCap: '".esc_attr($line_cap)."'
             }); 
 		}else{
 		jQuery(document).ready(function($){
@@ -63,7 +65,7 @@ class Magee_Piechart {
                 lineWidth: 10,
                 trackWidth: 10,
                 size: ".absint($size).",
-                lineCap: 'butt'
+                lineCap: '".esc_attr($line_cap)."'
             }); });}";
 
 		$html .= '</script>';									
@@ -73,3 +75,4 @@ class Magee_Piechart {
 }
 
 new Magee_Piechart();
+endif;

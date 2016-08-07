@@ -81,6 +81,7 @@ function frontend_scripts() {
 	wp_enqueue_style('prettyPhoto',  plugins_url( 'assets/css/prettyPhoto.css',MAGEE_SHORTCODES_PATH ), '', '', false );
 	
 	wp_enqueue_style('twentytwenty',  plugins_url( 'assets/css/twentytwenty.css',MAGEE_SHORTCODES_PATH ), '', '', false );
+	wp_enqueue_style('audioplayer',   plugins_url(  'assets/css/audioplayer.css',MAGEE_SHORTCODES_PATH ), '', '', false );
 	
 	wp_enqueue_style('animate',  plugins_url( 'assets/css/animate.css',MAGEE_SHORTCODES_PATH ), '', '', false );
 	wp_enqueue_style('magee-shortcode',  plugins_url( 'assets/css/shortcode.css',MAGEE_SHORTCODES_PATH ), '', MAGEE_SHORTCODES_VER, false );
@@ -92,6 +93,9 @@ function frontend_scripts() {
 	
 	wp_enqueue_script( 'jquery.event.move',  plugins_url( 'assets/js/jquery.event.move.js',MAGEE_SHORTCODES_PATH ), array( 'jquery'), '1.3.6', false );
 	wp_enqueue_script( 'jquery.twentytwenty',  plugins_url( 'assets/js/jquery.twentytwenty.js',MAGEE_SHORTCODES_PATH ), array( 'jquery'), '', false );
+	wp_enqueue_script( 'jquery-audioplayer',   plugins_url(  'assets/js/audioplayer.js',MAGEE_SHORTCODES_PATH ), array( 'jquery'), '', false );
+	wp_enqueue_script( 'chart.min',  plugins_url(  'assets/js/chart.min.js',MAGEE_SHORTCODES_PATH ), array( 'jquery'), '2.1.4', false );
+	wp_enqueue_script( 'moment',  plugins_url(  'assets/js/moment.js',MAGEE_SHORTCODES_PATH ), array( 'jquery'),'2.12.0', false );
 		
 	wp_enqueue_script( 'magee-main',  plugins_url( 'assets/js/magee-shortcodes.js',MAGEE_SHORTCODES_PATH ), array( 'jquery'),MAGEE_SHORTCODES_VER, true );
 	//wp_enqueue_script( 'magee-main',  plugins_url( 'assets/js/main.js',MAGEE_SHORTCODES_PATH ), array( 'jquery'),MAGEE_SHORTCODES_VER, true );
@@ -128,13 +132,15 @@ function add_shortcodes_button($context) {
      $magee_shortcodes = $this->magee_shortcodes;
 	
 	 if( isset($_POST['shortcode']) && isset($magee_shortcodes[$_POST['shortcode']]) ){
-	      if( $magee_shortcodes[$_POST['shortcode']]['popup_title'] == 'Column Shortcode'){
+	      if( isset($magee_shortcodes[$_POST['shortcode']]['child_shortcode'])){
 		     echo '<h2 class="shortcode-name">'.$magee_shortcodes[$_POST['shortcode']]['popup_title'].'</h2>';
 			 if(isset($magee_shortcodes[$_POST['shortcode']]['name'])){
 			 echo '<div class="example-list">Want to know more about this shortcode? Check <a class="example-link" target="_blank" href="https://demo.mageewp.com/magee-shortcodes-demo/'.$magee_shortcodes[$_POST['shortcode']]['name'].'"> Examples of use</a>.</div>';
 			 } 
 			 $this->popup = $_POST['shortcode'];
-			 echo '<div class="column-shortcode-inner">'.self::formate_shortcode().'</div>';
+			 echo self::formate_shortcode();
+			 echo '<div class="magee-add-point">Values for the following section can be added multiple times with ADD button</div>';
+			 echo '<div class="column-shortcode-inner">'.self::formate_children_shortcode().'</div>';
 			 echo '<div class="shortcode-add"><a href="#" class="child-shortcode-add">add</a></div>' ;
 			 
 		  }else{
@@ -297,7 +303,7 @@ function get_sidebars() {
 	$list =  plugins_url( 'assets/images/list.png',MAGEE_SHORTCODES_PATH );
 	//path to insert shortcode icon
 	$insert =  plugins_url( 'assets/images/insert_shortcode.png',MAGEE_SHORTCODES_PATH );
-	 echo '<div class="TB_footer" id="TB_footer"><div class="magee-shortcode-actions magee-shortcode-clearfix"><a class="button button-large magee-shortcodes-home"  href="javascript:void(0);"><img src="'.$list.'"/></a><a class="button button-primary button-large magee-shortcodes-preview" ><img style="margin-bottom:-3px;margin-right:5px" src="'.$preview.'"/>'.__("Live Preview",'magee-shortcodes').'</a><a class="button button-primary button-large magee-shortcode-insert"  href="javascript:void(0);"><img style="margin-bottom:-3px;margin-right:5px" src="'.$insert.'"/>'.__("Insert shortcode",'magee-shortcodes').'</a></div></div>';
+	 echo '<div class="TB_footer" id="TB_footer"><div class="magee-shortcode-return">Top</div><div class="magee-shortcode-actions magee-shortcode-clearfix"><a class="button button-large magee-shortcodes-home"  href="javascript:void(0);"><img src="'.$list.'"/></a><a class="button button-primary button-large magee-shortcodes-preview" ><img style="margin-bottom:-3px;margin-right:5px" src="'.$preview.'"/>'.__("Live Preview",'magee-shortcodes').'</a><a class="button button-primary button-large magee-shortcode-insert"  href="javascript:void(0);"><img style="margin-bottom:-3px;margin-right:5px" src="'.$insert.'"/>'.__("Insert shortcode",'magee-shortcodes').'</a></div></div>';
 	 exit(0);
 	 }
 
@@ -334,19 +340,21 @@ function get_sidebars() {
 			}
 			endif;
 			
-			if( $_POST['shortcode'] == 'column' ):
-			
-			   if( count($_POST['attr'])>6){
-			   
+			if( isset($magee_shortcodes[$popup]['child_shortcode'])):
+
 			      $common = array_slice($_POST['attr'],count($_POST['attr'])-2,2) ;
                   array_splice($_POST['attr'],count($_POST['attr'])-2,2);
-                  $loop = array_chunk($_POST['attr'],4);
+				  $number = count($magee_shortcodes[$popup]['child_shortcode']['params']);
+				  $expcet = count($magee_shortcodes[$popup]['params']);
+				  array_splice($_POST['attr'],0,$expcet);
+                  $loop = array_chunk($_POST['attr'],$number);
 			      $i = '';
 				  $copyshortcode = '';
 				  for( $i=0;$i<count($loop);$i++){
-				   $cparams = $magee_shortcodes['column']['child_shortcode']['params'];
+	   
+				   $cparams = $magee_shortcodes[$popup]['child_shortcode']['params'];
 			
-			       $cshortcode = $magee_shortcodes['column']['child_shortcode']['shortcode'];
+			       $cshortcode = $magee_shortcodes[$popup]['child_shortcode']['shortcode'];
 			       $attrs = array();
 				   $perattr = array_merge($loop[$i],$common); 
 				   
@@ -366,31 +374,11 @@ function get_sidebars() {
 						}
 					}
 				    $copyshortcode .= $cshortcode;
+					
 				  }  
-				  $shortcode = str_replace('{{child_shortcode}}',$copyshortcode,$shortcode);
-				
-			   }else{
-			   $cparams = $magee_shortcodes['column']['child_shortcode']['params'];
-			
-			   $cshortcode = $magee_shortcodes['column']['child_shortcode']['shortcode'];
-			   $attrs = array();
-			   foreach( $_POST['attr'] as $attr){ 
+				  $shortcode = str_replace('{{child_shortcode}}',$copyshortcode,$shortcode); 
+				  
 			   
-			   $attrs[str_replace('magee_','',$attr['name'])] = $attr['value'];
-			                          }
-			   foreach( $cparams as $cpkey => $cparam )
-			   {
-			
-				if( isset($attrs[$cpkey] )){
-					
-					$cshortcode = str_replace('{{'.$cpkey.'}}',$attrs[$cpkey],$cshortcode);
-					
-					}else{
-						$cshortcode = str_replace('{{'.$cpkey.'}}','',$cshortcode);
-					}
-			    }
-				$shortcode = str_replace('{{child_shortcode}}',$cshortcode,$shortcode);
-			   }			
 			endif;
 			
 		}
@@ -427,8 +415,9 @@ function get_sidebars() {
 			$this->append_output( "\n" . '<div id="_magee_shortcode" class="hidden">' . $this->shortcode . '</div>' );
 			$this->append_output( "\n" . '<div id="_magee_popup" class="hidden">' . $this->popup . '</div>' );
             
-			
+
 			// filters and excutes params
+			if( $this->params  ):
 			foreach( $this->params as $pkey => $param )
 			{
 				
@@ -754,7 +743,26 @@ function get_sidebars() {
 						break;	 
 				}     
 			}
-
+		endif;
+		         
+			   
+		}
+		
+		return $output;
+		
+	}	
+    //children format shortcode
+	function formate_children_shortcode()
+	{
+		$magee_shortcodes = $this->magee_shortcodes;
+		
+		// get config file
+		require_once( $this->conf );
+        $output = '';
+		unset($magee_shortcodes['shortcode-generator']['params']['select_shortcode']);
+		
+		if( isset( $magee_shortcodes ) && is_array( $magee_shortcodes ) )
+		{
             // checks if has a child shortcode 
 		    if( isset( $magee_shortcodes[$this->popup]['child_shortcode']) ){
 			
@@ -843,7 +851,7 @@ function get_sidebars() {
 
 						    foreach( $cparam['options'] as $value => $option )
 						    {
-							    $selected = (isset($param['std']) && $param['std'] == $value) ? 'selected="selected"' : '';
+							    $selected = (isset($cparam['std']) && $cparam['std'] == $value) ? 'selected="selected"' : '';
 						  	    $output_child .= '<option value="' . $value . '"' . $selected . '>' . $option . '</option>' . "\n";
 						    }
 
@@ -856,7 +864,19 @@ function get_sidebars() {
 				            $this->append_output($output);
 
 							break;
+                        
+						case 'number':
+					
+					    // prepare
+						$output .= $row_start;; 
+						$output .= '<div class="probar"><div class="probar-control"></div></div>'. "\n";;
+						$output .= '<input type="number" class="magee-form-number" name="'.$cpkey.'" id="'.$cpkey.'" max="'.$cparam['max'].'" min="'.$cparam['min'].'" step="1" value="'.$cparam['std'].'"/>'. "\n";
+						$output .= $row_end;	
+					    // append
+						$this->append_output( $output );
 
+						break;
+						 
 						case 'checkbox' :
 
 							// prepare
@@ -896,35 +916,69 @@ function get_sidebars() {
 						case 'colorpicker' :
 
 							// prepare
-							$output_child  = $crow_start;
+							$output_child  = $row_start;
 							$output_child .= '<input type="text" class="magee-form-text magee-cinput wp-color-picker-field" name="' . $cpkey . '" id="' . $cpkey . '" value="' . $cparam['std'] . '" />' . "\n";
-							$output_child .= $crow_end;
+							$output_child .= $row_end;
 
 							// append
 							$output .= $output_child;
 				            $this->append_output($output);
 
 							break;
-
+							
+                        case 'choose' :
+					    
+						// prepare
+						$output_child = $row_start;;
+						$output_child .= '<div class="choose-show">' . "\n";
+						if( $cparam['options'] && is_array($cparam['options']) ) {
+							foreach( $cparam['options'] as $value => $option )
+								{
+								    $selected = (isset($cparam['std']) && $cparam['std'] == $value) ? 'style="display:block"' : ''; 
+									$output_child .= '<span class="choose-show-param" name="'.$value.'" '.$selected.'>' .$option. '</span>' . "\n";
+								}
+							}
+						$output_child .= '</div>' . "\n";	
+                        $output_child .= '<input type="hidden" class="magee-form-choose" value="" name="'.$cpkey.'" id="'.$cpkey.'"/>'. "\n"; 
+						
+						$output_child .= $row_end;	
+					    // append
+						$output .= $output_child;
+						$this->append_output( $output ); 	
+						
+						break;	
+						
 						case 'iconpicker' :
 
-							// prepare
-							$output_child  = $crow_start;
+						// prepare
+						$output_child = $row_start;
+						$output_child .= '<div class="icon-val"><input type="text" class="magee-form-text magee-input" style="display:block" name="' . $cpkey . '" id="' . $cpkey . '" value="' . $cparam['std'] . '" />';	
+						$output_child .= '<button type="button" id="custom_icon" class="button custom_icon">Icon Picker</button>'. "\n";	
+						$output_child .= '<button type="button" id="insert-media-button" class="button magee-upload-button" data-editor="content" data-upid="' . $cpkey . '"><span class="wp-media-buttons-icon">'.__('Upload','magee-shortcodes').'</span></button>' . "\n";	
+						$output_child .= "</div>\n";
+						
+						$output_child .= '<div class="iconpicker">';
+							
+				        
+						foreach( $cparam['options'] as $value => $option ) {
+						
+							$output_child .= '<i class="fa ' . $value . '" data-name="' . $value . '"></i>';
+							
+						}
+						$output_child .= '</div>';
 
-							$output_child .= '<div class="iconpicker">';
-							foreach( $cparam['options'] as $value => $option ) {
-								$output_child .= '<i class="' . $value . '" data-name="' . $value . '"></i>';
-							}
-							$output_child .= '</div>';
+						if(!isset($cparam['std'])) {
+							$cparam['std'] = '';
+						}
 
-							$output_child .= '<input type="hidden" class="magee-form-text magee-cinput" name="' . $cpkey . '" id="' . $cpkey . '" value="' . $cparam['std'] . '" />' . "\n";
-							$output_child .= $crow_end;
+						
+						$output_child .= $row_end;
 
-							// append
-							$output .= $output_child;
-				            $this->append_output($output);
+						// append
+						$output .= $output_child;
+						$this->append_output( $output );
 
-							break;
+						break;
 
 						case 'size' :
 
@@ -950,7 +1004,7 @@ function get_sidebars() {
 
 			
 			         
-			     }
+			 }
 		}
 		
 		return $output;
@@ -1029,19 +1083,22 @@ function say($all){
 						}
 			}
 			endif;
-			if( $_POST['name'] == 'column' ):
 			
-			   if( count($_POST['preview'])>6){
-			   
-			      $common = array_slice($_POST['preview'],count($_POST['preview'])-2,2) ;
+			if( isset($magee_shortcodes[$popup]['child_shortcode'])):
+			
+			      $common = array_slice($_POST['preview'],count($_POST['attr'])-2,2) ;
                   array_splice($_POST['preview'],count($_POST['preview'])-2,2);
-                  $loop = array_chunk($_POST['preview'],4);
+				  $number = count($magee_shortcodes[$popup]['child_shortcode']['params']);
+				  $expcet = count($magee_shortcodes[$popup]['params']);
+				  array_splice($_POST['preview'],0,$expcet);
+                  $loop = array_chunk($_POST['preview'],$number);
 			      $i = '';
 				  $copyshortcode = '';
 				  for( $i=0;$i<count($loop);$i++){
-				   $cparams = $magee_shortcodes['column']['child_shortcode']['params'];
+	   
+				   $cparams = $magee_shortcodes[$popup]['child_shortcode']['params'];
 			
-			       $cshortcode = $magee_shortcodes['column']['child_shortcode']['shortcode'];
+			       $cshortcode = $magee_shortcodes[$popup]['child_shortcode']['shortcode'];
 			       $attrs = array();
 				   $perattr = array_merge($loop[$i],$common); 
 				   
@@ -1061,31 +1118,9 @@ function say($all){
 						}
 					}
 				    $copyshortcode .= $cshortcode;
+					
 				  }  
-				  $shortcode = str_replace('{{child_shortcode}}',$copyshortcode,$shortcode);
-				
-			   }else{
-			   $cparams = $magee_shortcodes['column']['child_shortcode']['params'];
-			
-			   $cshortcode = $magee_shortcodes['column']['child_shortcode']['shortcode'];
-			   $attrs = array();
-			   foreach( $_POST['preview'] as $attr){ 
-			   
-			   $attrs[str_replace('magee_','',$attr['name'])] = $attr['value'];
-			                          }
-			   foreach( $cparams as $cpkey => $cparam )
-			   {
-			
-				if( isset($attrs[$cpkey] )){
-					
-					$cshortcode = str_replace('{{'.$cpkey.'}}',$attrs[$cpkey],$cshortcode);
-					
-					}else{
-						$cshortcode = str_replace('{{'.$cpkey.'}}','',$cshortcode);
-					}
-			    }
-				$shortcode = str_replace('{{child_shortcode}}',$cshortcode,$shortcode);
-			   }			
+				  $shortcode = str_replace('{{child_shortcode}}',$copyshortcode,$shortcode); 	  	   
 			endif;
 			
 			
@@ -1104,7 +1139,9 @@ function js(){
 	$script .= "<link rel='stylesheet' id='twentytwenty-css' href=".plugins_url( 'assets/css/twentytwenty.css',MAGEE_SHORTCODES_PATH )." type='text/css' media='' />";
 	$script .= "<link rel='stylesheet' id='animate-css' href=".plugins_url( 'assets/css/animate.css',MAGEE_SHORTCODES_PATH )." type='text/css' media='' />";
 	$script .= "<link rel='stylesheet' id='magee-shortcode-css' href=".plugins_url( 'assets/css/shortcode.css',MAGEE_SHORTCODES_PATH )." type='text/css' media='' />";
+	$script .= "<link rel='stylesheet' id='audioplayer-css' href=".plugins_url( 'assets/css/audioplayer.css',MAGEE_SHORTCODES_PATH )." type='text/css' media='' />";
     $script .= "<script type='text/javascript' src=".plugins_url( 'assets/js/jquery.twentytwenty.js',MAGEE_SHORTCODES_PATH )."></script>";
+	$script .= "<script type='text/javascript' src=".plugins_url(  'assets/js/audioplayer.js',MAGEE_SHORTCODES_PATH )."></script>";
 	$script .= "<script type='text/javascript' src=".plugins_url( 'assets/bootstrap/js/bootstrap.min.js',MAGEE_SHORTCODES_PATH )."></script>";
 	$script .= "<script type='text/javascript' src=".plugins_url( 'assets/js/jquery.waypoints.js',MAGEE_SHORTCODES_PATH )."></script>";
 	$script .= "<script type='text/javascript' src=".plugins_url( 'assets/jquery-countdown/jquery.countdown.min.js',MAGEE_SHORTCODES_PATH )."></script>";
@@ -1112,10 +1149,73 @@ function js(){
 	$script .= "<script type='text/javascript' src=".plugins_url( 'assets/js/jquery.prettyPhoto.js',MAGEE_SHORTCODES_PATH )."></script>";
 	$script .= "<script type='text/javascript' src=".plugins_url( 'assets/js/jquery.event.move.js',MAGEE_SHORTCODES_PATH )."></script>";
 	$script .= "<script type='text/javascript' src=".plugins_url( 'assets/js/magee-shortcodes.js',MAGEE_SHORTCODES_PATH )."></script>";
+	$script .= "<script type='text/javascript' src=".plugins_url( 'assets/js/chart.min.js',MAGEE_SHORTCODES_PATH )."></script>";
+	$script .= "<script type='text/javascript' src=".plugins_url( 'assets/js/moment.js',MAGEE_SHORTCODES_PATH )."></script>";
 	$script .= "<script type='text/javascript' src='https://f.vimeocdn.com/js/froogaloop2.min.js'></script>";
     echo $script;
     die();
 }		
+
+
+/**
+ * Prints HTML with meta information for the current post-date/time and author.
+ */
+function posted_on( $echo = false ) {
+	$return = '';
+	
+	 $display_meta_author      = 'yes';
+	  $display_meta_date       = 'yes';
+	  $display_meta_categories = 'yes';
+	  $display_meta_comments   = 'yes';
+	  $display_meta_readmore   = 'yes';
+	  $display_meta_tags       = 'yes';
+	  $display_post_meta       = 'yes';
+	 
+	 if( function_exists('alchem_option'))
+	$display_post_meta = alchem_option('display_post_meta');
+	if( function_exists('onetone_option'))
+	$display_post_meta = onetone_option('display_post_meta');
+		
+	if( $display_post_meta == 'yes' ){
+	
+	  if( function_exists('alchem_option')){
+	  $display_meta_author     = alchem_option('display_meta_author');
+	  $display_meta_date       = alchem_option('display_meta_date');
+	  $display_meta_categories = alchem_option('display_meta_categories');
+	  $display_meta_comments   = alchem_option('display_meta_comments');
+	  $display_meta_readmore   = alchem_option('display_meta_readmore');
+	  $display_meta_tags       = alchem_option('display_meta_tags');
+	  $date_format             = alchem_option('date_format');
+	  }
+	if( function_exists('onetone_option')){
+	  $display_meta_author     = onetone_option('display_meta_author','yes');
+	  $display_meta_date       = onetone_option('display_meta_date','yes');
+	  $display_meta_categories = onetone_option('display_meta_categories','yes');
+	  $display_meta_comments   = onetone_option('display_meta_comments','yes');
+	  $display_meta_readmore   = onetone_option('display_meta_readmore','yes');
+	  $display_meta_tags       = onetone_option('display_meta_tags','yes');
+	  $date_format             = onetone_option('date_format','');
+	  }
+		
+	   $return .=  '<ul class="entry-meta">';
+	  if( $display_meta_date == 'yes' )
+		$return .=  '<li class="entry-date"><i class="fa fa-calendar"></i>'. get_the_date( $date_format ).'</li>';
+	  if( $display_meta_author == 'yes' )
+		$return .=  '<li class="entry-author"><i class="fa fa-user"></i>'.get_the_author_link().'</li>';
+	  if( $display_meta_categories == 'yes' )		
+		$return .=  '<li class="entry-catagory"><i class="fa fa-file-o"></i>'.get_the_category_list(', ').'</li>';
+	  if( $display_meta_comments == 'yes' )	
+		$return .=  '<li class="entry-comments pull-right">'.alchem_get_comments_popup_link('', __( '<i class="fa fa-comment"></i> 1 ', 'alchem'), __( '<i class="fa fa-comment"></i> % ', 'alchem'), 'read-comments', '').'</li>';
+        $return .=  '</ul>';
+	}
+
+	 if( $echo == true )
+	echo $return;
+	else
+	return $return;
+
+}
+
 }
 	
 	

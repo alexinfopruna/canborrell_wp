@@ -1,4 +1,5 @@
 <?php
+if( !class_exists('Magee_Row') ):
 class Magee_Row {
 
 	public static $args;
@@ -42,3 +43,4 @@ class Magee_Row {
 }
 
 new Magee_Row();
+endif;

@@ -1,4 +1,5 @@
 <?php
+if( !class_exists('Magee_Widget_Area') ):
 class Magee_Widget_Area {
     
 	
@@ -55,4 +56,5 @@ class Magee_Widget_Area {
 	 
 }
 
-new Magee_Widget_Area();		 
+new Magee_Widget_Area();	
+endif;	 

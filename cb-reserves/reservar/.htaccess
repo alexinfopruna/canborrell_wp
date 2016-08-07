@@ -1,0 +1,25 @@
+RewriteEngine on
+RewriteBase /
+
+RewriteRule ^(es|ca|en).?$ test.php?aaaaaaaaaa [L]
+  # Pass all requests not referring directly to files in the filesystem to
+  # index.php. Clean URLs are handled in drupal_environment_initialize().
+  RewriteCond %{REQUEST_FILENAME} -f
+
+  RewriteCond %{REQUEST_URI} !=/favicon.ico
+  RewriteRule (.*) $1  [L]
+
+
+# lang & page
+   # RewriteRule ^(es|ca|en).?/(.+.*)$ test.php?lang=$1&page=$2 [L]
+
+# Only lang
+RewriteRule ^(es|ca|en).?(.*)$ test.php?qwqw$1 [L]
+
+# no lang -> default "en" lang
+#RewriteRule ^$ ca [R=301,L]
+
+
+#RewriteRule (...)/(.*)/(.*)/$ /test.php?lang=$1&$2=$3
+
+#RewriteRule (es|ca|en).?/(.*) /test.php?lang=$1&p=$2

@@ -1,4 +1,5 @@
 <?php
+if( !class_exists('Magee_Label') ):
 class Magee_Label {
     
 	
@@ -40,3 +41,4 @@ class Magee_Label {
 }
 
 new Magee_Label(); 
+endif;

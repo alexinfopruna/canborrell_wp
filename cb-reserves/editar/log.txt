@@ -1,0 +1,99 @@
+
+
+10-05-2012 06:30:01 >> ENVIAT SMS CADUCADA: 670451682 RESERVA 
+
+
+10-05-2012 06:30:01 >> RESULTAT ENVIO: OK / 279e0e94-94cd-4d73-9dc1-0c97f8108568
+
+
+10-05-2012 09:43:21 >> Modificació valors: 2132
+
+
+10-05-2012 09:43:39 >> Reserva modificada: 2132 / estat=2 / data limit=12-05-13 ---- UPDATE reserves SET estat=2, num_1=0, data_limit="12-05-13" WHERE id_reserva=2132
+
+
+10-05-2012 09:43:40 >> Enviament mail(1): 2132 -- conchigp@ono.com, ..::Reserva Can Borrell::..: Reserva CONFIRMADA 
+
+
+10-05-2012 09:43:41 >> Enviament mail(1): 2132 -- restaurant@can-borrell.com, COPIA D'EMAIL ENVIAT A CLIENT: Reserva CONFIRMADA 
+
+
+11-05-2012 06:30:03 >> Enviament RECORDATORI(1): 2132 -- conchigp@ono.com, ..::Reserva Can Borrell::..: Recordatori de Reserva
+
+
+11-05-2012 06:30:04 >> Enviament RECORDATORI(1): 2132 -- restaurant@can-borrell.com, COPIA D'EMAIL ENVIAT A CLIENT: Recordatori de Reserva
+
+
+11-05-2012 11:45:09 >> Recepció de reserva: : Abel 
+
+
+11-05-2012 11:45:10 >> Enviament mail reserva 2133 (1): restaurant@can-borrell.com, ..::Reserva Can Borrell::..
+
+
+12-05-2012 10:01:16 >> Recepció de reserva: : David 
+
+
+12-05-2012 10:01:16 >> Enviament mail reserva 2134 (1): restaurant@can-borrell.com, ..::Reserva Can Borrell::..
+
+
+13-05-2012 17:44:02 >> Modificació valors: 2134
+
+
+13-05-2012 17:44:20 >> Reserva modificada: 2134 / estat=2 / data limit=12-05-20 ---- UPDATE reserves SET estat=2, num_1=0, data_limit="12-05-20" WHERE id_reserva=2134
+
+
+13-05-2012 17:44:21 >> Enviament mail(1): 2134 -- Davidriba@habitatapartments.com, ..::Reserva Can Borrell::..: Reserva CONFIRMADA 
+
+
+13-05-2012 17:44:21 >> Enviament mail(1): 2134 -- restaurant@can-borrell.com, COPIA D'EMAIL ENVIAT A CLIENT: Reserva CONFIRMADA 
+
+
+14-05-2012 15:45:21 >> Recepció de reserva: : Jose Antonio 
+
+
+14-05-2012 15:45:21 >> Enviament mail reserva 2135 (1): restaurant@can-borrell.com, ..::Reserva Can Borrell::..
+
+
+14-05-2012 15:53:56 >> Modificació valors: 2135
+
+
+14-05-2012 15:54:45 >> Reserva modificada: 2135 / estat=2 / data limit=12-05-25 ---- UPDATE reserves SET estat=2, num_1=0, data_limit="12-05-25" WHERE id_reserva=2135
+
+
+14-05-2012 15:54:45 >> Enviament mail(1): 2135 -- Medina_jose-antonio@lilly.com, ..::Reserva Can Borrell::..: Reserva CONFIRMADA 
+
+
+14-05-2012 15:54:46 >> Enviament mail(1): 2135 -- restaurant@can-borrell.com, COPIA D'EMAIL ENVIAT A CLIENT: Reserva CONFIRMADA 
+
+
+16-05-2012 09:38:52 >> Modificació valors: 2134
+
+
+16-05-2012 09:39:38 >> Modificació valors: 2134
+
+
+16-05-2012 09:40:13 >> Reserva modificada: 2134 / estat=2 / data limit=12-05-23 ---- UPDATE reserves SET estat=2, num_1=0, data_limit="12-05-23" WHERE id_reserva=2134
+
+
+16-05-2012 09:40:13 >> Enviament mail(1): 2134 -- Davidriba@habitatapartments.com, ..::Reserva Can Borrell::..: Reserva CONFIRMADA 
+
+
+16-05-2012 09:40:13 >> Enviament mail(1): 2134 -- restaurant@can-borrell.com, COPIA D'EMAIL ENVIAT A CLIENT: Reserva CONFIRMADA 
+
+
+16-05-2012 15:04:22 >> Recepció de reserva: : TEST_nom_çñ 
+
+
+16-05-2012 15:04:22 >> Enviament mail reserva 2136 (1): alex@infopruna.net, ..::Reserva Can Borrell::..
+
+
+16-05-2012 20:25:11 >> Recepció de reserva: : TEST_nom_çñ 
+
+
+16-05-2012 20:25:11 >> Enviament mail reserva 2137 (1): alex@infopruna.net, ..::Reserva Can Borrell::..
+
+
+16-05-2012 20:26:10 >> Recepció de reserva: : TEST_nom_çñ 
+
+
+16-05-2012 20:26:11 >> Enviament mail reserva 2138 (1): alex@infopruna.net, ..::Reserva Can Borrell::..

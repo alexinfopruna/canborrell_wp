@@ -1,0 +1,12 @@
+
+
+12-05-2012 20:33:43 >> TPV: Enviament  mail CLIENT(...OK) id_reserva: 2132 -- conchigp@ono.com, ..::Reserva Can Borrell::..: PAGAMENT OK **** 20
+
+
+12-05-2012 20:33:43 >> TPV: MAIL (restaurant@can-borrell.com (...OK)) Confirmació pagament tarja. id_reserva:  -- restaurant@can-borrell.com, ..::Reserva Can Borrell::..: RESERVA PAGADA
+
+
+16-05-2012 10:16:03 >> TPV: Enviament  mail CLIENT(...OK) id_reserva: 2134 -- Davidriba@habitatapartments.com, ..::Reserva Can Borrell::..: PAGAMENT OK **** 20
+
+
+16-05-2012 10:16:04 >> TPV: MAIL (restaurant@can-borrell.com (...OK)) Confirmació pagament tarja. id_reserva:  -- restaurant@can-borrell.com, ..::Reserva Can Borrell::..: RESERVA PAGADA

@@ -1,4 +1,5 @@
 <?php
+if( !class_exists('Magee_Audio') ):
 class Magee_Audio {
     
 	
@@ -33,13 +34,16 @@ class Magee_Audio {
 				 'autoplay'              =>'',
 				 'loop'                  =>'',    
 				 'controls'              =>'', 
+				 'style'                 =>'dark',
 			 ),$args
 	     );
 	     
 		 extract( $defaults );
 		 self::$args = $defaults;
+		 $addclass = uniqid('audiocontrols-');
+		 $class .= ' '.$addclass;
 		 if( $mute =='yes'):
-		 $mute = 'muted';
+		 $mute = 'mute';
 		 else:
 		 $mute = '';
 		 endif;
@@ -54,11 +58,11 @@ class Magee_Audio {
 		 $loop = '';
 		 endif;
 		 if( $controls == 'yes'):
-		 $controls = 'controls';
-		 else:
 		 $controls = '';
+		 else:
+		 $controls = 'controls';
 		 endif;
-		 $html = '<audio class="'.esc_attr($class).'" id="'.esc_attr($id).'" '.esc_attr($autoplay).' '.esc_attr($loop).' '.esc_attr($mute).' '.esc_attr($controls).'>';
+		 $html = '<audio preload="auto" class="ms-audio '.esc_attr($class).'" data-style="'.$style.'" data-controls="'.$controls.'"  id="'.esc_attr($id).'" data-mute="'.$mute.'" data-loop="'.$loop.'" data-autoplay="'.$autoplay.'" >';
 		 if( !empty($mp3)){
 		 $html .= '<source src="'.esc_url($mp3).'" type="audio/mpeg">';
 		 }
@@ -70,7 +74,23 @@ class Magee_Audio {
 		 }
 		 $html .= 'Your browser does not support the audio element.' ;
 		 $html .='</audio>'	 ;
+		 $html .= "<script>
+		jQuery(function($){
+			if(jQuery('#magee-sc-form-preview').length>0){
+				jQuery('#magee-sc-form-preview').ready(function(){
+					jQuery('#magee-sc-form-preview').contents().find('.ms-audio').audioPlayer({
+					classPrefix: 'audioplayer',
+					strPlay: 'Play',
+					strPause: 'Pause',
+					strVolume: 'Volume',
+					strControls : '".$controls."',
+					strStyle : '".$style."',
+				});
+		        });
+			}
+		 });</script>";
 		 return $html;
 	 } 	 
 }		 
-new Magee_Audio();		 
+new Magee_Audio();	
+endif;	 

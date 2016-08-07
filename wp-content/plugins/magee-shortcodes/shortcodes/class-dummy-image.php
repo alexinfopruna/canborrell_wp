@@ -1,4 +1,5 @@
 <?php
+if( !class_exists('Magee_Dummy_Image') ):
 class Magee_Dummy_Image {
 
 	public static $args;
@@ -46,4 +47,5 @@ class Magee_Dummy_Image {
 	
 }
 
-new Magee_Dummy_Image();		
+new Magee_Dummy_Image();	
+endif;	

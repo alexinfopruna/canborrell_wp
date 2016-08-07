@@ -1,0 +1,1 @@
+<?phpfunction cb_error_handler($errno, $errstr, $errfile, $errline, $errctx) {   if ($errno!=8)	echo "($errfile > $errline): $errno = $errstr"."<br/>".$errctx."<br/>"."<br/>";	//Gestor::greg_log("ERROR!!!!!!!!!!!!!!!!!!!!!!!!!! -- $errfile > $errline): $errno = $errstr"."<br/>".$errctx."<br/>"."<br/>");}set_error_handler("cb_error_handler");?>

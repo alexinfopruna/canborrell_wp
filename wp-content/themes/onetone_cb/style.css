@@ -14,4 +14,194 @@ Template: onetone
 
 */
 
+@font-face {
+    font-family:"Encient German Gothic";
+    src:url("Germgoth.eot?") format("eot"),url("Germgoth.woff") format("woff"),url("Germgoth.ttf") format("truetype"),url("Germgoth.svg#EncientGermanGothic") format("svg");
+    font-weight:normal;
+    font-style:normal;
+}
 
+
+/***************************************************************/
+/***************************************************************/
+/***************************************************************/
+/***************************************************************/
+/* HEADER */
+.site-name{
+    font-family:"Encient German Gothic";
+    font-size: 40px;
+    color:white;
+}
+
+.site-tagline{
+    font-size: 21px;
+}
+
+.logo-left .logo-box {
+    float: left;
+    text-align: center;
+}
+
+.widget-box.calendari_reserves{
+    margin-bottom: 0;
+}
+
+#calendari-header{
+    position: fixed;
+    top: -5px;
+    right: 25px;
+    z-index: 99;
+}
+
+body.admin-bar #calendari-header{
+    top: 28px
+}
+
+#ui-datepicker-div{
+    z-index: 10000 !important;
+}
+
+
+#calendari-header input,
+#calendari-header button{
+    height:20px;
+    padding:0 5px;
+    border-radius: 5px;
+}
+
+/*
+#ui-datepicker-div{
+    z-index: 10000 !important;
+}
+#wpadminbar{
+    z-index: 888;
+}
+*/
+/***************************************************************/
+/***************************************************************/
+/***************************************************************/
+/***************************************************************/
+
+/*MENU MAIN*/
+.site-nav > ul > li a  {
+    line-height: 2;
+}
+
+.site-nav > ul > li a:hover {
+    background-color: rgba(4,4,4,0.6);
+}
+
+.fxd-header span.site-tagline{display:none;}
+.logo-left  .fxd-header .site-nav {
+    margin-top: 25px;
+}
+ .logo-left .main-header .site-nav {
+    margin-top: 60px;
+    //margin-top: 10px;
+}
+
+
+@media (min-width: 920px){
+.site-nav > ul > li + li {
+    margin-left: 0px;
+}
+}
+.site-nav > ul > li a {
+    padding: 8px;
+}
+/**/
+ .fxd-header .site-nav > ul > li > a {
+    font-size: 14px !important;
+}
+
+
+
+
+/***************************************************************/
+/***************************************************************/
+/***************************************************************/
+/***************************************************************/
+
+/* SECTIONS */
+/* SECTIONS */
+/* SECTIONS */
+/* SECTIONS */
+
+.magee-feature-box h3 {
+    font-weight: bold;
+}
+
+
+.fa-grill{
+  //  visibility: initial;
+    width: 45px;
+    height: 45px;
+    background-image: url(brasa3.png);
+}
+.fa-calcots{
+  //  visibility: initial;
+    width: 31px;
+    height: 45px;
+    background-image: url(calcots.png);
+}
+.fa-grup{
+  //  visibility: initial;
+    width: 40px;
+    height: 39px;
+    background-image: url(grup.png);
+}
+
+img.txt-foto-isqui {
+    float: left;
+    margin-right: 10px;
+    margin-bottom: 8px;
+    border: #fff solid 6px;
+    -moz-box-shadow: 2px 2px 2px #ccc;
+    -webkit-box-shadow: 2px 2px 2px #ccc;
+    box-shadow: 2px 2px 2px #ccc;
+}
+
+
+
+
+/***************************************************************/
+/***************************************************************/
+/***************************************************************/
+/***************************************************************/
+/* FOOTER */
+
+.footer-widget-area {
+    background-color: #252525;
+    padding: 18px 0 0px;
+}
+
+.footer nav li{float:none;}
+
+footer .border-left{
+    border-left: #444 solid 1px;
+}
+
+.ui-datepicker-inline{
+    width:200px;
+}
+
+.site-nav-footer{
+    margin-top:25px;
+}
+
+#datepicker{
+    font-size: 75%;
+    font-size: 60%;
+    font-family: Raleway, Oxygen, Poiret One, Pt Sans Narrow, verdana, arial, helvetica;
+}
+#datepicker td{
+    font-size: 11px;
+}
+
+.widget-box a.ui-state-default{
+    text-align: center;
+}
+
+.widget-box a.ui-state-hover:hover {
+     color: white;
+}

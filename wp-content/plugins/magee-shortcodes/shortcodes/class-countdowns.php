@@ -1,6 +1,6 @@
 <?php
 
-
+if( !class_exists(' Magee_Countdowns') ):
 class Magee_Countdowns {
 
 	public static $args;
@@ -137,3 +137,4 @@ class Magee_Countdowns {
 }
 
 new Magee_Countdowns();
+endif;

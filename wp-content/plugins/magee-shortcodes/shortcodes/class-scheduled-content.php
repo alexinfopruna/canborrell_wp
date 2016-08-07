@@ -1,4 +1,5 @@
 <?php
+if( !class_exists('Magee_Scheduled_content') ):
 class Magee_Scheduled_content {
 
 	public static $args;
@@ -175,3 +176,4 @@ class Magee_Scheduled_content {
 }
 
 new Magee_Scheduled_content();		
+endif;

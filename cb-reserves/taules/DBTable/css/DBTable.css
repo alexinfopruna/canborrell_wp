@@ -1,0 +1,20 @@
+@import "../../js/DataTables/media/css/demo_page.css";
+@import "../../js/DataTables/media/css/demo_table.css";
+
+.ui-button{padding:0 4px;}
+html, body{width:880px}
+table{width:100%;}
+thead{font-weight:bold}
+.ffila:hover{background:lightblue}
+.ui-icon{float:left;}
+
+.ui-widget-header{color:blue;background:#EFEFFF;background-image:none;border:lightgray solid 1px;}
+.ui-state-disabled, .ui-widget-content .ui-state-disabled, .ui-widget-header .ui-state-disabled{
+color:#CCC;
+opacity: 1;
+filter: Alpha(Opacity=100);
+background-image: none;
+}
+
+.info-comanda table {font-size:1em;}
+em.error{display:block;color:#FF0000;font-size:0.8em;font-weight:bold;background:none;border:none}

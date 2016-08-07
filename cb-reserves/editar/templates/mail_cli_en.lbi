@@ -1,0 +1,473 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>Recepció reserva</title>
+<style type="text/css">
+<!--
+A.Estilo4 {font-size: 18px}
+A.Estilo4:link {font-size: 18px}
+A.Estilo4:hover {
+	font-size: 18px;
+	color: cc0000;
+}
+A.Estilo4:visited {font-size: 18px}
+
+.Estilo2 {
+	color: #FFFFFF;
+	font-family: Verdana, Arial, Helvetica, sans-serif;
+	background-color: #FFD76E;
+}
+A.llista:link {
+
+	color: #990000;
+	font-family: "Century Gothic", "AvantGarde Bk BT", Arial;
+}
+A.llista:hover {
+
+
+	color: #FF0000;
+	font-family: "Century Gothic", "AvantGarde Bk BT", Arial;
+}
+A.llista:visited {
+
+
+
+	color: #990000;
+	font-family: "Century Gothic", "AvantGarde Bk BT", Arial;
+}
+A.estat:link {
+
+	color: #990000;
+	font-family: "Century Gothic", "AvantGarde Bk BT", Arial;
+	font-weight: bold;
+	font-size: 14px;
+}
+A.estat:hover {
+
+
+	color: #FF0000;
+	font-family: "Century Gothic", "AvantGarde Bk BT", Arial;
+	font-weight: bold;
+	font-size: 14px;
+}
+A.estat:visited {
+
+
+
+	color: #990000;
+	font-family: "Century Gothic", "AvantGarde Bk BT", Arial;
+	font-weight: bold;
+	font-size: 14px;
+}
+
+BODY
+{
+	font-family: verdana, arial, helvetica;
+	font-size: 11px;
+	color: #570600;
+	margin: 20px 0px 20px 0px;
+	bgcolor:#FFFFFF;
+	background-image:url(img/fons.gif);
+	background-color: #E9E9E9;
+}
+
+TD
+{
+	font-family: verdana, arial, helvetica;
+	font-size: 11px;
+	color: #570600;
+}
+
+.titol
+{
+	font-family: verdana, arial, helvetica;
+	font-size: 18px;
+	color: #999966;
+	font-weight: bold;
+}
+
+.titol2
+{
+	font-family: verdana, arial, helvetica;
+	font-size: 15px;
+	color: #999966;
+	font-weight: bold;
+}
+
+A:link
+{
+	font-family: verdana, arial, helvetica;
+	text-decoration: none;
+	color: #FFCC99;
+	font-weight: bold;
+}
+
+A:visited
+{
+	font-family: verdana, arial, helvetica;
+	text-decoration: none;
+	color: #FFCC99;
+	font-weight: bold;
+}
+
+A:active
+{
+	font-family: verdana, arial, helvetica;
+	text-decoration: none;
+	color: #FFCC99;
+	font-weight: bold;
+}
+
+A:hover
+{
+	font-family: verdana, arial, helvetica;
+	text-decoration: none;
+	color: #FFFFFF;
+	font-weight: bold;
+}
+
+A.selec:link
+{
+	font-family: verdana, arial, helvetica;
+	text-decoration: none;
+	color: #FFFFFF;
+	font-weight: bold;
+}
+
+A.selec:visited
+{
+	font-family: verdana, arial, helvetica;
+	text-decoration: none;
+	color: #FFFFFF;
+	font-weight: bold;
+}
+
+A.selec:active
+{
+	font-family: verdana, arial, helvetica;
+	text-decoration: none;
+	color: #FFFFFF;
+	font-weight: bold;
+}
+
+A.selec:hover
+{
+	font-family: verdana, arial, helvetica;
+	text-decoration: none;
+	color: #FFFFFF;
+	font-weight: bold;
+}
+
+A.dins:link
+{
+	font-family: verdana, arial, helvetica;
+	text-decoration: none;
+	color: #CC0000;
+	font-weight: bold;
+}
+
+A.dins:visited
+{
+	font-family: verdana, arial, helvetica;
+	text-decoration: none;
+	color: #CC0000;
+	font-weight: bold;
+}
+
+A.dins:active
+{
+	font-family: verdana, arial, helvetica;
+	text-decoration: none;
+	color: #CC0000;
+	font-weight: bold;
+}
+
+A.dins:hover
+{
+	font-family: verdana, arial, helvetica;
+	text-decoration: none;
+	color: #FF9900;
+	font-weight: bold;
+}
+
+A.nobold:link
+{
+	font-family: verdana, arial, helvetica;
+	text-decoration: none;
+	color: #CC0000;
+	font-weight: normal;
+}
+
+A.nobold:visited
+{
+	font-family: verdana, arial, helvetica;
+	text-decoration: none;
+	color: #CC0000;
+	font-weight: normal;
+}
+
+A.nobold:active
+{
+	font-family: verdana, arial, helvetica;
+	text-decoration: none;
+	color: #CC0000;
+	font-weight: normal;
+}
+
+A.nobold:hover
+{
+	font-family: verdana, arial, helvetica;
+	text-decoration: none;
+	color: #FF9900;
+	font-weight: normal;
+}
+
+.petita
+{
+	font-size: 10px;
+}
+
+.gran
+{
+	font-size: 17px;
+}
+
+
+INPUT {
+	font-family: verdana, arial, helvetica;
+	font-size: 11px;
+	color: #003366;
+	border:1px Solid #CCCCCC;
+	background-color: #FFFFFF;
+	}
+
+SELECT {
+	font-family: verdana, arial, helvetica;
+	font-size: 11px;
+	color: #003366;
+	border:1px Solid #CCCCCC;
+	background-color: #FFFFFF;
+	}
+
+INPUT.bt {
+	font-family: verdana, arial, helvetica;
+	font-size: 11px;
+	width: 90px;
+	color: #CC0000;
+	border:1px Solid #CCCCCC;
+	background-color: #FFFFFF;
+	}
+
+TEXTAREA {
+	font-family: verdana, arial, helvetica;
+	font-size: 11px;
+	width: 310px;
+	color: #003366; 
+	border:1px Solid #CCCCCC;
+	background-color: #FFFFFF;
+	}
+
+TD.transparent {
+	opacity: 0.5;
+	-moz-opacity: 0.5;
+	filter: alpha(opacity=50);
+	background-color: #000000;
+	width:154px;
+	height:18px;
+	text-align: right;
+	padding: 0px 6px 0px 0px;
+	}
+
+TD.opac {
+	background-color: #000000;
+	width:154px;
+	height:18px;
+	text-align: right;
+	padding: 0px 6px 0px 0px;
+	}
+
+LI {
+    	MARGIN-BOTTOM: 6px;
+}
+
+UL {
+    	MARGIN-TOP: 6px;
+	list-style-type: disc;
+}
+
+#dhtmltooltip{
+	font-family:verdana, arial, helvetica;
+    	font-size:8pt;
+	position: absolute;
+	border: 1px solid #999999;
+	padding: 4px;
+	visibility: hidden;
+	z-index: 100;
+}
+.cmenu {
+font-size: 14px}
+.Estilo4 {
+font-size: 14px}
+.Estilo5 {color: #FF3300}
+.Estilo10 {color: #CC0000}
+.Estilo11 {
+	color: #FFFFFF;
+	font-weight: bold;
+}
+-->
+</style>
+</head>
+
+<body>
+<!-- mail-cli -->		
+<table width="775" border="0" align="center" cellpadding="0" cellspacing="0" bgcolor="#F8F8F0">
+  <tr>
+    <td width="775" colspan="2" align="right" background="http://www.can-borrell.com/img/fons_9a.jpg"><a href="http://www.can-borrell.com/index.html"><img src="http://www.can-borrell.com/img/lg_sup.gif" alt="img" width="303" height="114" border="0" title="INICI" /></a></td>
+  </tr>
+  <tr>
+    <td bgcolor="#570600" colspan="2" align="center">&nbsp;</td>
+  </tr>
+</table>
+<div align="center">
+  <table width="773" border="0" align="center" cellpadding="0" cellspacing="0" bgcolor="#FFFFFF">
+    <tr>
+      <td>&nbsp;</td>
+      <td width="748">{avui}</td>
+      <td>&nbsp;</td>
+    </tr>
+    <tr>
+      <td>&nbsp;</td>
+      <td align="center"><span class="titol">{titol}</span></td>
+      <td width="12">  </tr>
+    <tr>
+      <td>&nbsp;</td>
+      <td>&nbsp;</td>
+    <td>  </tr>
+    <tr>
+      <td>&nbsp;</td>
+      <td align="center">{text1}{import}{text2}{aki}{datat}</td>
+      <td>  </tr>
+    <tr>
+      <td>&nbsp;</td>
+      <td>&nbsp;</td>
+    <td align="center" class="estat">  </tr>
+    
+    <tr>
+      <td width="13">&nbsp;</td>
+      <td><table border="0" align="center" cellpadding="3" cellspacing="3">
+        <tr>
+          <td align="right" bgcolor="#999999" style="color:white">id_reserva</td>
+          <td width="320" align="right" bgcolor="#999999" class="Estilo2"><div align="left" class="titol2"><span class="Estilo4"><font color="white">&nbsp;{id_reserva}</span></div></td>
+        </tr>
+        
+        <tr>
+          <td align="right" bgcolor="#999999" style="color:white">&nbsp;{cdata_reserva}</td>
+          <td width="320" align="right" bgcolor="#CCCCCC" class="llista"><div align="left" class="estat"><span class="Estilo4">&nbsp;{data}</span></div></td>
+        </tr>
+        <tr>
+          <td align="right" bgcolor="#999999" style="color:white">hora</td>
+          <td width="320" align="right" bgcolor="#CCCCCC" class="llista"><div align="left" class="estat"><span class="Estilo4">&nbsp;{hora}</span></div></td>
+        </tr>
+        <tr>
+          <td align="right" bgcolor="#999999" style="color:white">&nbsp;{cnom}</td>
+          <td width="320" bgcolor="#CCCCCC" class="llista"><div align="left"><span class="Estilo4">&nbsp;{nom}</span></div></td>
+        </tr>
+        <tr>
+          <td align="right" bgcolor="#999999" style="color:white">tel</td>
+          <td width="320" align="right" bgcolor="#CCCCCC" class="llista"><div align="left"><span class="Estilo4">&nbsp;{tel}</span></div></td>
+        </tr>
+        <tr>
+          <td align="right" bgcolor="#999999" style="color:white">fax</td>
+          <td width="320" align="right" bgcolor="#CCCCCC" class="llista"><div align="left"><span class="Estilo4">&nbsp;{fax}</span></div></td>
+        </tr>
+        <tr>
+          <td align="right" bgcolor="#999999" style="color:white">email</td>
+          <td width="320" bgcolor="#CCCCCC" class="llista"><div align="left"><span class="Estilo4">&nbsp;{email}</span></div></td>
+        </tr>
+        <tr>
+          <td align="right" bgcolor="#999999" style="color:white">men&uacute;</td>
+          <td width="320" bgcolor="#CCCCCC" class="llista"><div align="left"><span class="Estilo4">&nbsp;{menu}</span></div></td>
+        </tr>
+        <tr>
+          <td align="right" bgcolor="#999999" style="color:white">{cadults}</td>
+          <td width="320" align="right" bgcolor="#CCCCCC" class="llista"><div align="left"><span class="Estilo4">&nbsp;{adults}</span></div></td>
+        </tr>
+        <tr>
+          <td align="right" bgcolor="#999999" style="color:white">{cnens10_14}</td>
+          <td width="320" align="right" bgcolor="#CCCCCC" class="llista"><div align="left"><span class="Estilo4">&nbsp;{nens10_14}</span>  {txt_1} </div></td>
+        </tr>
+        <tr>
+          <td align="right" bgcolor="#999999" style="color:white">{cnens4_9}</td>
+          <td width="320" align="right" bgcolor="#CCCCCC" class="llista"><div align="left"><span class="Estilo4">&nbsp;{nens4_9}</span>  {txt_2} </div></td>
+        </tr>
+        <tr>
+          <td align="right" bgcolor="#999999" style="color:white">{ccotxets} </td>
+          <td width="320" align="right" bgcolor="#CCCCCC" class="llista"><div align="left"><span class="Estilo4">&nbsp;{cotxets}</span></div></td>
+        </tr>
+        <tr>
+          <td align="right" bgcolor="#999999" style="color:white">{cobservacions}</td>
+          <td width="320" bgcolor="#CCCCCC" class="llista"><span class="Estilo4">&nbsp;{observacions}</span></td>
+        </tr>
+        <tr>
+          <td align="right" bgcolor="#660000" style="color:white">{cresposta}</td>
+          <td align="right" bgcolor="#FFD7D7" class="llista"><div align="left">{resposta}</div></td>
+        </tr>
+        <tr>
+          <td align="right" bgcolor="#999999" style="color:white">&nbsp;{cpreu_reserva}</td>
+          <td width="320" align="right" bgcolor="#999999" class="llista"><div align="left" class="estat">
+            <div align="right" class="Estilo4">&nbsp;{preu_reserva}&euro;</div>
+          </div></td>
+        </tr>
+      </table></td>
+      <td></td>
+    </tr>
+    <tr>
+      <td>&nbsp;</td>
+      <td><div align="center">{data_limit} </div></td>
+      <td>&nbsp;</td>
+    </tr>
+    <tr>
+      <td>&nbsp;</td>
+      <td>&nbsp;</td>
+      <td>&nbsp;</td>
+    </tr>
+    <tr>
+      <td>&nbsp;</td>
+      <td class="Estilo5"><div align="center" class="Estilo10">{ident}</div></td>
+      <td>&nbsp;</td>
+    </tr>
+    <tr>
+      <td>&nbsp;</td>
+      <td class="Estilo5"><div align="center"><a href="http://www.can-borrell.com/editar/confirma.php?id={confirlink}" class="dins">{confirma}</a></div></td>
+      <td>&nbsp;</td>
+    </tr>
+    <tr>
+      <td>&nbsp;</td>
+      <td class="Estilo5"><div align="center" ><a href="http://www.can-borrell.com/editar/cancela.php?id={cancelink}" class="dins">{cancela}</a></div></td>
+      <td>&nbsp;</td>
+    </tr>
+    <tr>
+      <td>&nbsp;</td>
+      <td class="Estilo5"><p align="center" >{advertencia}</p></td>
+      <td>&nbsp;</td>
+    </tr>
+    <tr>
+      <td>&nbsp;</td>
+      <td>&nbsp;</td>
+      <td>&nbsp;</td>
+    </tr>
+    <tr>
+      <td>&nbsp;</td>
+      <td><div align="center">{contacti}</div></td>
+      <td>&nbsp;</td>
+    </tr>
+    <tr>
+      <td>&nbsp;</td>
+      <td>&nbsp;</td>
+      <td>&nbsp;</td>
+    </tr>
+  </table>
+</div>
+</body>
+</html>

@@ -1,4 +1,5 @@
 <?php
+if( !class_exists('Magee_Accordion') ):
 class Magee_Accordion {
 
 	public static $args;
@@ -43,8 +44,7 @@ class Magee_Accordion {
 		$html = '<div class="panel-group magee-accordion accordion-'.$style.' '.esc_attr($class).'" role="tablist" aria-multiselectable="true" id="'.esc_attr($this->id).'">'.do_shortcode( Magee_Core::fix_shortcodes($content)).'</div>';
 	    $html .= '<script>
 	   jQuery(function($) {
-	      if($("#magee-sc-form-preview").length>0){
-			  if($("#magee-sc-form-preview").contents().find(".panel-heading").length>1){
+	      if($("#magee-sc-form-preview").length>0){ 
 			  num = $("#magee-sc-form-preview").contents().find(".panel-heading").length ;
 				  for($i=0;$i<num;$i++){
 					  $("#magee-sc-form-preview").contents().find(".panel-heading").eq($i).on("click",function(e){
@@ -63,7 +63,30 @@ class Magee_Accordion {
 						  }
 					   }); 
 				  };
-			  }
+		$("#magee-sc-form-preview").contents().find(".panel-title").each(function(){
+		if($(this).find(".open-magee-accordion").length>0 || $(this).find(".close-magee-accordion").length>0){
+			var open_icon =$(this).find("i").attr("data-open");
+			var close_icon = $(this).find("i").attr("data-close");
+			var now_class = $(this).find("i").attr("class");
+			$(this).click(function(){					
+			  if($(this).find("i").hasClass("open-magee-accordion")){ 
+				  var new_class = now_class.replace("open-magee-accordion","close-magee-accordion").replace(open_icon,close_icon);
+				  $(this).find("i").attr("class",new_class);
+				  }else{
+				  var new_class = now_class.replace("close-magee-accordion","open-magee-accordion").replace(close_icon,open_icon);
+				  $(this).find("i").attr("class",new_class);
+				  $(this).parents(".panel-default").siblings().each(function(){
+					  var sub_icon1 =  $(this).find(".panel-title i").attr("data-open");
+					  var sub_icon2 =  $(this).find(".panel-title i").attr("data-close");
+					  var sub_class = $(this).find(".panel-title i").attr("class");
+					  var new_sub_class = sub_class.replace("open-magee-accordion","close-magee-accordion").replace(sub_icon1,sub_icon2);
+					  $(this).find(".panel-title i").attr("class",new_sub_class);															 
+																				 
+				  });
+				  }					  				   								   
+			  });						
+		}	   
+  });	  
 		  }	   	  
 	   });
 	   </script>'; 
@@ -84,31 +107,62 @@ class Magee_Accordion {
 			array(
 				'title' =>'',
 				'status' =>'',
-				'icon' =>'',
+				'close_icon' =>'',
+				'open_icon' =>'',
+				'background_color' => '',
+				'color' => '',
 			), $args
 		);
 
 		extract( $defaults );
 		self::$args = $defaults;
-
+        $html = '';
+		$icon_str = '';
 		if( $status == "open" ) {
 		$status   = "in";
 		$expanded = "true";
 		$collapse = "";
+		if($open_icon !== ''):
+		$icon_str = '<i class="fa '.esc_attr($open_icon).' open-magee-accordion" data-close="'.$close_icon.'" data-open="'.$open_icon.'"></i>';
+		endif;
 		}
 		else{
 		$status = "";
 		$expanded = "false";
 		$collapse = "collapsed";
+		if($close_icon !== ''):
+		$icon_str = '<i class="fa '.esc_attr($close_icon).' close-magee-accordion" data-close="'.$close_icon.'" data-open="'.$open_icon.'"></i>';
+		endif;
 		}
-
-        $itemId = 'collapse'.$this->id."-".$this->num;
+        /*if( stristr($icon,'fa-')):
 		
-		$html = '<div class="panel panel-default">
+		else:
+		$icon_str = '<img class="image-instead" src="'.esc_attr($icon).'"/>';
+		endif;*/
+		
+        $itemId = 'collapse'.$this->id."-".$this->num;
+		$addclass = 'panel-css-'.$this->num;
+		
+		
+		$html .= '<div class="panel panel-default '.$addclass.'">';
+		$html .= '<style type="text/css">';
+		if($background_color !== '')
+		$html .= '#'.$this->id.' .'.$addclass.' .panel-heading{
+		background-color:'.$background_color.'!important;}
+		#'.$this->id.' .'.$addclass.'{border-color:'.$background_color.'!important;}';
+		
+		if($color !== '')
+		$html .= '#'.$this->id.' .'.$addclass.' .panel-title{color:'.$color.'!important;}
+		#'.$this->id.' .'.$addclass.' .panel-title i{color:'.$color.';}
+		#'.$this->id.' .'.$addclass.' .panel-heading .accordion-toggle:after{color:'.$color.';}';
+		
+		$html .= '</style>';
+		
+		$html .= '
                                                     <div class="panel-heading" role="tab" id="heading'.$itemId.'">
                                                         <a class="accordion-toggle '.$collapse.'" data-toggle="collapse" data-parent="#'.$this->id.'" href="#'.$itemId.'" aria-expanded="'.$expanded.'" aria-controls="'.$itemId.'">
                                                             <h4 class="panel-title">
-                                                                <i class="fa '.$icon.'"></i> '.esc_attr($title).'
+                                                                 '.$icon_str.esc_attr($title).'
                                                             </h4>
                                                         </a>
                                                     </div>
@@ -129,3 +183,4 @@ $this->num++;
 }
 
 new Magee_Accordion();
+endif;

@@ -1,4 +1,5 @@
 <?php
+if( !class_exists('Magee_Icon') ):
 class Magee_Icon {
 
 	public static $args;
@@ -60,3 +61,4 @@ class Magee_Icon {
 }
 
 new Magee_Icon();
+endif;

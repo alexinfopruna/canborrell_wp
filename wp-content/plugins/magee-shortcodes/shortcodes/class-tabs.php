@@ -1,4 +1,5 @@
 <?php
+if( !class_exists(' Magee_Tabs ') ):
 class Magee_Tabs {
 
 	public static $args;
@@ -152,3 +153,4 @@ class Magee_Tabs {
 }
 
 new Magee_Tabs();
+endif;

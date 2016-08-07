@@ -1,0 +1,286 @@
+BODY
+{	
+	font-family: verdana, arial, helvetica;
+	font-size: 18px;
+	color: #570600;
+	margin: 20px 0px 20px 0px;
+	bgcolor:#FFFFFF;
+	background-image:url(img/fons.gif);
+}
+
+TD
+{
+	font-family: verdana, arial, helvetica;
+	font-size: 11px;
+	color: #570600;
+}
+.titol
+{
+	font-family: verdana, arial, helvetica;
+	font-size: 18px;
+	color: #999966;
+	font-weight: bold;
+}
+
+.titol2
+{
+	font-family: verdana, arial, helvetica;
+	font-size: 15px;
+	color: #999966;
+	font-weight: bold;
+}
+
+A:link
+{
+	font-family: verdana, arial, helvetica;
+	text-decoration: none;
+	color: #FFCC99;
+	font-weight: bold;
+}
+
+A:visited
+{
+	font-family: verdana, arial, helvetica;
+	text-decoration: none;
+	color: #FFCC99;
+	font-weight: bold;
+}
+
+A:active
+{
+	font-family: verdana, arial, helvetica;
+	text-decoration: none;
+	color: #FFCC99;
+	font-weight: bold;
+}
+
+A:hover
+{
+	font-family: verdana, arial, helvetica;
+	text-decoration: none;
+	color: #FFFFFF;
+	font-weight: bold;
+}
+
+A.selec:link
+{
+	font-family: verdana, arial, helvetica;
+	text-decoration: none;
+	color: #FFFFFF;
+	font-weight: bold;
+}
+
+A.selec:visited
+{
+	font-family: verdana, arial, helvetica;
+	text-decoration: none;
+	color: #FFFFFF;
+	font-weight: bold;
+}
+
+A.selec:active
+{
+	font-family: verdana, arial, helvetica;
+	text-decoration: none;
+	color: #FFFFFF;
+	font-weight: bold;
+}
+
+A.selec:hover
+{
+	font-family: verdana, arial, helvetica;
+	text-decoration: none;
+	color: #FFFFFF;
+	font-weight: bold;
+}
+
+A.dins:link
+{
+	font-family: verdana, arial, helvetica;
+	text-decoration: none;
+	color: #CC0000;
+	font-weight: bold;
+}
+
+A.dins:visited
+{
+	font-family: verdana, arial, helvetica;
+	text-decoration: none;
+	color: #CC0000;
+	font-weight: bold;
+}
+
+A.dins:active
+{
+	font-family: verdana, arial, helvetica;
+	text-decoration: none;
+	color: #CC0000;
+	font-weight: bold;
+}
+
+A.dins:hover
+{
+	font-family: verdana, arial, helvetica;
+	text-decoration: none;
+	color: #FF9900;
+	font-weight: bold;
+}
+
+A.nobold:link
+{
+	font-family: verdana, arial, helvetica;
+	text-decoration: none;
+	color: #CC0000;
+	font-weight: normal;
+}
+
+A.nobold:visited
+{
+	font-family: verdana, arial, helvetica;
+	text-decoration: none;
+	color: #CC0000;
+	font-weight: normal;
+}
+
+A.nobold:active
+{
+	font-family: verdana, arial, helvetica;
+	text-decoration: none;
+	color: #CC0000;
+	font-weight: normal;
+}
+
+A.nobold:hover
+{
+	font-family: verdana, arial, helvetica;
+	text-decoration: none;
+	color: #FF9900;
+	font-weight: normal;
+}
+
+.petita
+{
+	font-size: 10px;
+}
+
+.gran
+{
+	font-size: 17px;
+}
+
+
+INPUT {
+	font-family: verdana, arial, helvetica;
+	font-size: 11px;
+	color: #003366;
+	border:1px Solid #CCCCCC;
+	background-color: #FFFFFF;
+	}
+
+SELECT {
+	font-family: verdana, arial, helvetica;
+	font-size: 11px;
+	color: #003366;
+	border:1px Solid #CCCCCC;
+	background-color: #FFFFFF;
+	}
+
+INPUT.bt {
+	font-family: verdana, arial, helvetica;
+	font-size: 11px;
+	width: 90px;
+	color: #CC0000;
+	border:1px Solid #CCCCCC;
+	background-color: #FFFFFF;
+	}
+
+TEXTAREA {
+	font-family: verdana, arial, helvetica;
+	font-size: 11px;
+	width: 310px;
+	color: #003366; 
+	border:1px Solid #CCCCCC;
+	background-color: #FFFFFF;
+	}
+
+TD.transparent {
+	opacity: 0.5;
+	-moz-opacity: 0.5;
+	filter: alpha(opacity=50);
+	background-color: #000000;
+	width:154px;
+	height:18px;
+	text-align: right;
+	padding: 0px 6px 0px 0px;
+	}
+
+TD.opac {
+	background-color: #000000;
+	width:154px;
+	height:18px;
+	text-align: right;
+	padding: 0px 6px 0px 0px;
+	}
+
+LI {
+    	MARGIN-BOTTOM: 6px;
+}
+
+UL {
+    	MARGIN-TOP: 6px;
+	list-style-type: disc;
+}
+
+#dhtmltooltip{
+	font-family:verdana, arial, helvetica;
+    	font-size:8pt;
+	position: absolute;
+	border: 1px solid #999999;
+	padding: 4px;
+	visibility: hidden;
+	z-index: 100;
+}
+.input_blanc {
+	font-family: verdana, arial, helvetica;
+	font-size: 11px;
+	color: #003366;
+	border:1px Solid #FFFFFF;
+	background-color: #FFFFFF;
+}
+
+.bg-dev{
+background-image:url('img/obres.png');}
+
+.menu-active, .menu-active:link, .menu-active:visited	{color:white;}
+table:first-child  table:first-child[height='18']{visibility:hidden}
+table#menu{visibility:visible}
+img[height='114']{height:112px}
+
+.novetat
+{
+	/*display:none;*/
+	margin:30px 15px;
+	background: white;
+	background-image: url('reservar/css/nuevo.png');
+	width: 400px;
+	padding: 8px;
+	border: red solid 4px;
+	text-align: center;
+	font-size:1.3em;
+	float:left;
+	
+	
+-moz-box-shadow: 4px 4px 4px #ccc;
+-webkit-box-shadow: 4px 4px 4px #ccc;
+box-shadow: 4px 4px 4px #ccc;	
+	
+}
+.novetat a:link{	color: red;}
+.novetat a:visited{	color: red;}
+.novetat a:hover{	color: red;}
+.ui-button-icon-only .ui-icon {
+left: 0%;
+top: 0px;
+}
+
+.error{display:block;color:red}

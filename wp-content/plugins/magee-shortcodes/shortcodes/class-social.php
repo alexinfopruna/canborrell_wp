@@ -1,4 +1,5 @@
 <?php
+if( !class_exists('Magee_Social') ):
 class Magee_Social {
 
 	public static $args;
@@ -29,6 +30,7 @@ class Magee_Social {
 				'title'					=>'',
 				'icon'					=>'',
 				'iconlink'				=>'#',
+				'icontarget'            =>'',
 				'iconcolor'				=>'#A0A0A0',
 				'backgroundcolor'		=>'transparent',
 				'iconboxedradius'		=>'',
@@ -71,10 +73,10 @@ class Magee_Social {
 		}
 		
 		if( stristr($icon,'fa-')):	
-		$html=sprintf(' %s <a href="%s" Id="%s" class="fa %s magee-icon  %s %s %s_social_icon_acolor" data-toggle="tooltip" data-placement="top" title="" data-original-title="%s"></a>',
-			$styles,$iconlink,$id,$icon,$sty3d,$class,$uqid,$title);
+		$html=sprintf(' %s <a href="%s" target="%s" Id="%s" class="fa %s magee-icon  %s %s %s_social_icon_acolor" data-toggle="tooltip" data-placement="top" title="" data-original-title="%s"></a>',
+			$styles,$iconlink,$icontarget,$id,$icon,$sty3d,$class,$uqid,$title);
 		else:
-		$html=sprintf(' %s <a href="%s" Id="%s" class="fa magee-icon  %s %s %s_social_icon_acolor" data-toggle="tooltip" data-placement="top" title="" data-original-title="%s"><img src="%s" class="image_instead"/></a>',$styles,$iconlink,$id,$sty3d,$class,$uqid,$title,$icon);
+		$html=sprintf(' %s <a href="%s" target="%s" Id="%s" class="fa magee-icon  %s %s %s_social_icon_acolor" data-toggle="tooltip" data-placement="top" title="" data-original-title="%s"><img src="%s" class="image_instead"/></a>',$styles,$iconlink,$icontarget,$id,$sty3d,$class,$uqid,$title,$icon);
 			
 		endif;
 		$html .= "<script>
@@ -106,3 +108,4 @@ class Magee_Social {
 }
 
 new Magee_Social();
+endif;

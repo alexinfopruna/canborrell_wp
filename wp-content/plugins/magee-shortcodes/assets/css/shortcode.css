@@ -819,6 +819,53 @@ a.magee-btn-normal:hover {
 	font-size: 16px;
 }
 
+.magee-accordion .magee-accordion.style3 .panel-heading .accordion-toggle:after {
+	display:none ;
+}
+
+.magee-accordion.style3 .panel-heading .accordion-toggle.collapsed:after {
+	display:none ;
+}
+
+.magee-accordion.style3 .panel-heading .accordion-toggle:after {
+	display:none ;
+}
+.magee-accordion.accordion-spacing .panel-heading {
+	padding: 15px;
+}
+
+.magee-accordion.accordion-spacing .panel-default > .panel-heading {
+	background-color: #fdfdfd;
+}
+
+.magee-accordion.accordion-spacing .panel-heading:hover {
+	background: #f8f8f8;
+}
+
+.magee-accordion.accordion-spacing .panel-body {
+	padding: 15px;
+}
+
+.magee-accordion.accordion-spacing .panel-heading .accordion-toggle:after {
+	top: 15px;
+	right: 15px;
+}
+
+.magee-accordion.accordion-spacing .panel {
+	border: 1px solid #ddd;
+	overflow: hidden;
+	margin-bottom: 10px;
+}
+
+.magee-accordion.accordion-spacing .panel:last-child {
+	border-bottom-width: 1px;
+}
+
+.magee-accordion.accordion-spacing.panel-group .panel+.panel {
+	margin-top: 0;
+	
+}
+
 .magee-accordion .panel-heading .accordion-toggle:after {
 	position: absolute;
 	display: block;
@@ -1621,7 +1668,7 @@ button.close:active {
 }
 
 .progress.rounded {
-	border-radius: 5px!important;
+	border-radius: 5px;
 }
 
 .progress.rounded .progress-bar {
@@ -3126,6 +3173,16 @@ ol.multi-carousel-indicators {
 .magee-blog-list-wrap .entry-box-wrap .entry-header a:hover h4 {
     color: #fdd200;
 }
+.shortcode-blog-list-wrap .post-pagination-decoration{
+	height:auto;
+	position:static;
+	background-color:transparent;
+	}
+.shortcode-blog-list-wrap .post-pagination-decoration li{
+	    display: inline;
+		padding:5px;
+	}
+
 
 /*
  * 23.0 Client Logos
@@ -3405,6 +3462,173 @@ ol.multi-carousel-indicators {
 	padding: 15px;
 }
 
+.magee-flipbox-wrap.slide-left:hover .flipbox-front{
+	-webkit-transform: translateX(0);
+	transform: translateX(0);
+	opacity:0;
+}
+
+.magee-flipbox-wrap.slide-left .flipbox-back {
+	-webkit-transform: translateX(-50%);
+	transform: translateX(-50%);
+    opacity: 0; 
+}
+
+.magee-flipbox-wrap.slide-left:hover .flipbox-back{
+	-webkit-transform: translateX(0);
+	transform: translateX(0);
+    opacity: 1; 
+}
+
+.magee-flipbox-wrap.slide-right:hover .flipbox-front{
+	-webkit-transform: translateX(0);
+	transform: translateX(0);
+	opacity:0;
+}
+
+.magee-flipbox-wrap.slide-right .flipbox-back {
+	-webkit-transform: translateX(50%);
+	transform: translateX(50%);
+    opacity: 0; 
+}
+
+.magee-flipbox-wrap.slide-right:hover .flipbox-back{
+	-webkit-transform: translateX(0);
+	transform: translateX(0);
+    opacity: 1; 
+}
+
+.magee-flipbox-wrap.slide-top:hover .flipbox-front{
+	-webkit-transform: translateY(0);
+	transform: translateY(0);
+	opacity:0;
+}
+
+.magee-flipbox-wrap.slide-top .flipbox-back {
+	-webkit-transform: translateY(-50%);
+	transform: translateY(-50%);
+    opacity: 0; 
+}
+
+.magee-flipbox-wrap.slide-top:hover .flipbox-back{
+	-webkit-transform: translateY(0);
+	transform: translateY(0);
+    opacity: 1; 
+}
+
+.magee-flipbox-wrap.slide-bottom:hover .flipbox-front{
+	-webkit-transform: translateY(0);
+	transform: translateY(0);
+	opacity:0;
+}
+
+.magee-flipbox-wrap.slide-bottom .flipbox-back {
+	-webkit-transform: translateY(50%);
+	transform: translateY(50%);
+    opacity: 0; 
+}
+
+.magee-flipbox-wrap.slide-bottom:hover .flipbox-back{
+	-webkit-transform: translateY(0);
+	transform: translateY(0);
+    opacity: 1; 
+}
+
+.magee-flipbox-wrap.flip-bottom .flipbox-back {
+    -webkit-transform-origin: 0% 100%;
+    -moz-transform-origin: 0% 100%;
+    -ms-transform-origin: 0% 100%;
+    -o-transform-origin: 0% 100%;
+    transform-origin: 0% 100%;
+    -webkit-transform: rotateX(-270deg);
+    -moz-transform: rotateX(-270deg);
+    -ms-transform: rotateX(-270deg);
+    -o-transform: rotateX(-270deg);
+    transform: rotateX(-270deg);
+    -webkit-backface-visibility: visible;
+    -moz-backface-visibility: visible;
+    -o-backface-visibility: visible;
+    backface-visibility: visible;
+}
+.magee-flipbox-wrap.flip-bottom:hover .flipbox-back{
+     -webkit-transform: rotateX(0deg);
+    -moz-transform: rotateX(0deg);
+    -ms-transform: rotateX(0deg);
+    -o-transform: rotateX(0deg);
+    transform: rotateX(0deg);
+}
+
+.magee-flipbox-wrap.flip-top .flipbox-back {
+    -webkit-transform-origin: 0% 0%;
+    -moz-transform-origin: 0% 0%;
+    -ms-transform-origin: 0% 0%;
+    -o-transform-origin: 0% 0%;
+    transform-origin: 0% 0%;
+    -webkit-transform: rotateX(270deg);
+    -moz-transform: rotateX(270deg) ;
+    -ms-transform: rotateX(270deg)  ;
+    -o-transform: rotateX(270deg)  ;
+    transform: rotateX(270deg) ;
+    -webkit-backface-visibility: visible;
+    -moz-backface-visibility: visible;
+    -o-backface-visibility: visible;
+    backface-visibility: visible;
+}
+.magee-flipbox-wrap.flip-top:hover .flipbox-back{
+     -webkit-transform: rotateX(0deg) ;
+    -moz-transform: rotateX(0deg) ;
+    -ms-transform: rotateX(0deg) ;
+    -o-transform: rotateX(0deg) ;
+    transform: rotateX(0deg) ;
+}
+
+.magee-flipbox-wrap.flip-left .flipbox-back {
+    -moz-transform-origin: 0%;
+    -ms-transform-origin: 0%;
+    -o-transform-origin: 0%;
+    -webkit-transform-origin: 0%;
+    transform-origin: 0%;
+    -webkit-transform: rotateY(-270deg);
+    -moz-transform: rotateY(-270deg);
+    -ms-transform: rotateY(-270deg);
+    -o-transform: rotateY(-270deg);
+    transform: rotateY(-270deg);
+    -webkit-backface-visibility: visible;
+    -moz-backface-visibility: visible;
+    -o-backface-visibility: visible;
+    backface-visibility: visible;
+}
+.magee-flipbox-wrap.flip-left:hover .flipbox-back{
+     -webkit-transform: rotateY(0deg);
+    -moz-transform: rotateY(0deg);
+    -ms-transform: rotateY(0deg);
+    -o-transform: rotateY(0deg);
+    transform: rotateY(0deg);
+}
+
+.magee-flipbox-wrap.flip-right .flipbox-back {
+    -moz-transform-origin: 100%;
+    -ms-transform-origin: 100%;
+    -o-transform-origin: 100%;
+    -webkit-transform-origin: 100%;
+    transform-origin: 100%;
+    -webkit-transform: rotateY(270deg);
+    -moz-transform: rotateY(270deg);
+    -ms-transform: rotateY(270deg);
+    -o-transform: rotateY(270deg);
+    transform: rotateY(270deg);
+    -webkit-backface-visibility: visible;
+    -moz-backface-visibility: visible;
+    -o-backface-visibility: visible;
+    backface-visibility: visible;
+}
+.magee-flipbox-wrap.flip-right:hover .flipbox-back{
+     -webkit-transform: rotateY(0deg);
+    -moz-transform: rotateY(0deg);
+    -ms-transform: rotateY(0deg);
+    -o-transform: rotateY(0deg);
+    transform: rotateY(0deg);
+}
 /*
  * 27.0 Font Awesome Icons
  */
