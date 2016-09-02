@@ -44,8 +44,10 @@ if (function_exists('add_action')) {
 
 function reserves_bootstrap() {
   if (!defined("GESTOR")) {
+    
+    //echo $_SERVER['DOCUMENT_ROOT'];die();
     if (!defined('ROOT'))
-      define('ROOT', "/cb-reserves/taules/");
+      define('ROOT', $_SERVER['DOCUMENT_ROOT']."/cb-reserves/taules/");
     require_once (ROOT . "gestor_reserves.php");
 
     $lang = gestor_reserves::getLanguage();
@@ -76,6 +78,10 @@ function load_calendari_reserves() {
   if (!defined("LLISTA_NITS_NEGRA"))
     define("LLISTA_NITS_NEGRA", INC_FILE_PATH . "llista_dies_negra_online.txt");
 
+    if (!defined("PREU_MIG"))
+    define("PREU_MIG", $gestor->configVars("PREU_MIG"));
+
+  
   require_once(ROOT . INC_FILE_PATH . 'alex.inc');
   require_once (ROOT . INC_FILE_PATH . "llista_dies_taules.php");
 
@@ -119,4 +125,7 @@ add_action("wp_enqueue_scripts", "load_calendari_reserves");
 
 
 include("widget/calendari_reserves_widget.php");
+
+
+
 ?>

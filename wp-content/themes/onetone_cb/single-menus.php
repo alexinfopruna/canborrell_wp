@@ -5,10 +5,11 @@
  *
  * @package onetone
  */
-
 get_header(); 
 //$left_sidebar   = onetone_option('left_sidebar_blog_posts','');
-$left_sidebar   = "sidebar-6";
+$left_sidebar   = 'sidebar-6';
+
+//echo $left_sidebar;die(); 
 $right_sidebar  = onetone_option('right_sidebar_blog_posts','');
 $aside          = 'no-aside';
 if( $left_sidebar !='' )
@@ -17,13 +18,17 @@ if( $right_sidebar !='' )
 $aside          = 'right-aside';
 if(  $left_sidebar !='' && $right_sidebar !='' )
 $aside          = 'both-aside';
+
+
 ?>
+
+
+
+
 <article id="post-<?php the_ID(); ?>" <?php post_class(); ?>>
-<section class="page-title-bar title-left no-subtitle" style="">
+<section class=" title-left no-subtitle" style="">
             <div class="container">
-                <hgroup class="page-title">
-                    <h1><?php the_title();?></h1>
-                </hgroup>
+                
                 <?php onetone_get_breadcrumb(array("before"=>"<div class=''>","after"=>"</div>","show_browse"=>false,"separator"=>'','container'=>'div'));?> 
                 <div class="clearfix"></div>            
             </div>
@@ -46,14 +51,7 @@ $aside          = 'both-aside';
                                 <div class="entry-main">
                                     <div class="entry-header">                                            
                                         <h1 class="entry-title"><?php the_title();?></h1>
-                                        <ul class="entry-meta">
-                                            <li class="entry-date"><i class="fa fa-calendar"></i><a href="<?php echo get_month_link(get_the_time('Y'), get_the_time('m'));?>"><?php echo get_the_date("M d, Y");?></a></li>
-                                            <li class="entry-author"><i class="fa fa-user"></i><?php echo get_the_author_link();?></li>
-                                            <li class="entry-catagory"><i class="fa fa-file-o"></i><?php the_category(', '); ?></li>
-                                            <li class="entry-comments"><i class="fa fa-comment"></i><a href="<?php the_permalink();?>#comments"><?php  comments_popup_link( __('No comments yet','onetone'), __('1 comment','onetone'), __('% comments','onetone'), 'comments-link', __('No comments yet','onetone'));?></a></li>
-                                             <?php edit_post_link( __('Edit','onetone'), '<li class="entry-edit"><i class="fa fa-edit"></i>', '</li>', get_the_ID() ); ?> 
-                                            
-                                        </ul>
+                                        
                                     </div>
                                     <div class="entry-content">                                        
                                         <?php the_content();?>   
@@ -74,16 +72,6 @@ $aside          = 'both-aside';
                             </article>
 
                             <div class="post-attributes">
-                                <!--About Author-->
-                                <div class="about-author">
-                                    <h3><?php _e("About the author","onetone");?>: <?php the_author_link(); ?></h3>
-                                    <div class="author-avatar">
-                                        <?php echo get_avatar( get_the_author_meta( 'ID' ), 70 ); ?>
-                                    </div>
-                                    <div class="author-description">
-                                        <?php the_author_meta('description');?>
-                                    </div>
-                                </div>
                                 
                                 <?php 
 									$related_number = onetone_option('related_number',8);
@@ -152,7 +140,7 @@ $aside          = 'both-aside';
                     <div class="col-aside-left">
                         <aside class="blog-side left text-left">
                             <div class="widget-area">
-                                <?php get_sidebar('postleft');?> 
+                                <?php get_sidebar('menus');?> 
                             </div>
                         </aside>
                     </div>

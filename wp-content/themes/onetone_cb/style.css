@@ -21,7 +21,16 @@ Template: onetone
     font-style:normal;
 }
 
+         body{
+    font-family: 'Poppins', 'Open Sans', sans-serif;
+    //font-family: 'Tangerine', 'Open Sans', sans-serif;
+    //font-size: 1.4em;
+}
 
+.cb{clear:both}
+.cl{clear:left}
+.cr{clear:right}
+h6.infantil{font-size:13px;}
 /***************************************************************/
 /***************************************************************/
 /***************************************************************/
@@ -69,6 +78,8 @@ body.admin-bar #calendari-header{
     border-radius: 5px;
 }
 
+section.title-left{background-color: #eee;}
+.breadcrumbs{font-size:11px;}
 /*
 #ui-datepicker-div{
     z-index: 10000 !important;
@@ -89,6 +100,7 @@ body.admin-bar #calendari-header{
 
 .site-nav > ul > li a:hover {
     background-color: rgba(4,4,4,0.6);
+    background-color: rgba(255,255,255,1);
 }
 
 .fxd-header span.site-tagline{display:none;}
@@ -115,12 +127,52 @@ body.admin-bar #calendari-header{
 }
 
 
+/* MENU LEFT */
+.widget_nav_menu li.current-menu-item a {
+   background-color: #333;
+   color: white;
+}
 
+.widget_nav_menu{
+    font-size: 14px;
+}
 
 /***************************************************************/
 /***************************************************************/
 /***************************************************************/
 /***************************************************************/
+
+/* CONTENT */
+/* CONTENT */
+/* CONTENT */
+/* CONTENT */
+
+.menu-content { overflow: auto;}
+.menu-content p{margin-bottom: 0;}
+.menu-content    b{background: #333;color:white;display:block;padding-left: 30px;}
+
+ul.carta li, .menu-content li{
+	list-style:circle;
+	margin-left:25px;
+}
+    
+.carta-fotos{
+    margin-top: 50px;
+}
+
+.caixa-negre{
+    color:white;
+    background-color: #333;
+    padding:0 20px;
+    display: inline-block;
+    margin-top:55px;
+    float:right;
+     overflow: auto;
+}
+.preu{
+    font-weight: bold;
+}
+
 
 /* SECTIONS */
 /* SECTIONS */
@@ -170,6 +222,15 @@ img.txt-foto-isqui {
 /***************************************************************/
 /* FOOTER */
 
+.post-pagination{
+    background-color: #eee;
+    border:none;
+    padding: 0 20px;
+}
+
+.entry-footer {
+    border: none;
+}
 .footer-widget-area {
     background-color: #252525;
     padding: 18px 0 0px;
