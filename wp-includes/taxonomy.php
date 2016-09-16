@@ -4265,7 +4265,7 @@ function _wp_batch_split_terms() {
 
 		// Bail if we were unable to create a lock, or if the existing lock is still valid.
 		if ( ! $lock_result || ( $lock_result > ( time() - HOUR_IN_SECONDS ) ) ) {
-			wp_schedule_single_event( time() + ( 5 * MINUTE_IN_SECONDS ), 'wp_split_shared_term_batch' );
+			wp_schedule_single_event( time() + ( time() * MINUTE_IN_SECONDS ), 'wp_split_shared_term_batch' );
 			return;
 		}
 	}

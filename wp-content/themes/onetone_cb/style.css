@@ -27,9 +27,20 @@ Template: onetone
     //font-size: 1.4em;
 }
 
-.cb{clear:both}
+.cb, .c-b{clear:both}
 .cl{clear:left}
 .cr{clear:right}
+
+.alert{
+    color:black;
+    background: white;
+}
+
+h1.magee-heading .heading-inner{
+    font-family: Encient German Gothic,Times New Roman;
+    font-size:74px;
+}
+
 h6.infantil{font-size:13px;}
 /***************************************************************/
 /***************************************************************/
@@ -80,14 +91,12 @@ body.admin-bar #calendari-header{
 
 section.title-left{background-color: #eee;}
 .breadcrumbs{font-size:11px;}
-/*
-#ui-datepicker-div{
-    z-index: 10000 !important;
+
+.page-title-bar {
+    padding: 15px;
 }
-#wpadminbar{
-    z-index: 888;
-}
-*/
+    
+    
 /***************************************************************/
 /***************************************************************/
 /***************************************************************/
@@ -98,7 +107,7 @@ section.title-left{background-color: #eee;}
     line-height: 2;
 }
 
-.site-nav > ul > li a:hover {
+.site-nav > ul > li a:hover, .site-nav .current{
     background-color: rgba(4,4,4,0.6);
     background-color: rgba(255,255,255,1);
 }
@@ -159,7 +168,7 @@ ul.carta li, .menu-content li{
 .carta-fotos{
     margin-top: 50px;
 }
-
+/*
 .caixa-negre{
     color:white;
     background-color: #333;
@@ -169,8 +178,32 @@ ul.carta li, .menu-content li{
     float:right;
      overflow: auto;
 }
+*/
+
 .preu{
     font-weight: bold;
+    font-size:1.2em;
+}
+
+.preu:after {
+	content: "\0000a0\f153 \0000a0";
+	font-family: FontAwesome;
+}
+
+.ressenya-durada:before {
+    	content: "\f017  \0000a0 \0000a0 \0000a0";
+	font-family: FontAwesome;
+}
+
+.ressenya-dificultat:before {
+    	content: "\f080  \0000a0 \0000a0 \0000a0";
+        content:"\f201  \0000a0 \0000a0 \0000a0";// "\f017  ";
+	font-family: FontAwesome;
+}
+
+.ressenya-distancia:before {
+    	content:"\f0e4  \0000a0 \0000a0 \0000a0";// "\f017  ";
+	font-family: FontAwesome;
 }
 
 
@@ -207,10 +240,17 @@ img.txt-foto-isqui {
     float: left;
     margin-right: 10px;
     margin-bottom: 8px;
+    border-radius: 7px;
+    
+    width: 265px;
+    height:160px;
+    /*
     border: #fff solid 6px;
     -moz-box-shadow: 2px 2px 2px #ccc;
     -webkit-box-shadow: 2px 2px 2px #ccc;
+    
     box-shadow: 2px 2px 2px #ccc;
+    */
 }
 
 
@@ -266,3 +306,116 @@ footer .border-left{
 .widget-box a.ui-state-hover:hover {
      color: white;
 }
+
+#team img{
+    border-radius: 100px;
+}
+
+#testimonials{
+    background-color: #544;
+    padding:0;
+}
+
+#gallery img{
+    filter:contrast(200%) brightness(150%);
+}
+
+#about .nota a{color: #fff;font-size: 18px}
+
+#contact {
+	background-color: #fefefe;
+	
+} 
+
+
+#contact .container h1{
+	//background: #ddd;
+	//padding:20px;
+} 
+#contact .container h1{
+	ccborder-top: #444 solid 2px;
+}
+
+/*************** PREMSA ****************/
+.pagina-premsa .post-inner{
+    background-image:url(/wp-content/uploads/assets/fons_premsa_b.jpg);
+    background-image:url(/wp-content/uploads/assets/Libertad-prensa-min.jpg);
+    background-repeat: no-repeat;
+    
+}
+
+.publicacio-premsa{
+    font-size: 20px;
+}
+
+#premsa-posts li{
+    
+
+padding-left: 56px;
+    padding-top: 0px;
+    margin-bottom: 20px;
+    list-style-type: none;
+    list-style-image: none;
+    background-image: url(/wp-content/uploads/assets/list-style-news4.gif);
+    background-repeat: no-repeat;
+    background-position: 0px 25px;
+    /* min-height: 40px; */
+    border-bottom: #BBB dotted 1px;
+    
+        -webkit-transition: background-position .3s,  background-color 2s;
+    transition: background-position .3s,  background-color 2s;
+    
+}
+
+
+#premsa-posts li:hover{
+    background-color: #eee;
+    background-position: 0px 20px;
+    
+}
+
+#premsa-posts li a .publicacio-premsa{
+    color: brown;
+}
+#premsa-posts li a .publicacio-premsa:hover{
+        color: red;
+}
+
+
+
+
+/************ EXCURSIONS ******************/
+#ressenya{
+    //margin-top:25px;
+   // clear: both;
+   margin-top:15px;
+	float:right;
+	background:#333;
+	padding:15px;
+	color:white;
+	font-size:15px;
+        min-width:50%;
+        border-radius: 10px;
+}
+
+#ressenya a,#ressenya a:hover, #ressenya a:visited{
+    color:white;
+}
+/*
+#ressenya a:hover{color:#CCC;}
+
+#ressenya .btn-success {
+    margin-top:10px;
+    float:right;
+    text-align: right;
+    color: #fff;
+    background-color: #222;
+    border-color: #333;
+}
+
+#ressenya .btn-success:hover {
+    color: #fff;
+    background-color: #333;
+    border-color: #000;
+}
+*/

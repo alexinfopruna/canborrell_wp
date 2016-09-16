@@ -22,7 +22,7 @@ function cb_premsa_register() {
         'capability_type' => 'post',
         'hierarchical' => true,
         'rewrite' => true,
-        'supports' => array('title','thumbnail')
+        'supports' => array('title','thumbnail', 'editor')
        );  
 
     register_post_type( 'Premsa' , $args );
@@ -52,13 +52,13 @@ function cb_premsa_title_config(){
 		
 		if(isset($custom["premsa_content"][0])) $testimonial_content = $custom["premsa_content"][0];
 		if(isset($custom["role"][0])) $role = $custom["role"][0];
-		if(isset($custom["name"][0])) $name = $custom["name"][0];
+		if(isset($custom["file"][0])) $file = $custom["file"][0];
 ?>
 	<div class="metabox-options form-table fullwidth-metabox image-upload-dep">
 		
 		<div class="metabox-option">
-			<h6><?php _e('Name', 'cb_backend') ?>:</h6>
-			<input type="text" name="name" value="<?php echo $name; ?>">
+			<h6><?php _e('File', 'cb_backend') ?>:</h6>
+			<input type="text" name="file" value="<?php echo $file; ?>">
 		</div>		
 		
 		<div class="metabox-option">
@@ -87,7 +87,7 @@ function cb_save_premsa_meta(){
 		return $post_id;
 	}else{
 	
-		$post_metas = array('name','role','premsa_content');
+		$post_metas = array('file','role','premsa_content');
 		
 		foreach($post_metas as $post_meta) {
 			if(isset($_POST[$post_meta])) update_post_meta($post->ID, $post_meta, $_POST[$post_meta]);

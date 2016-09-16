@@ -1,10 +1,10 @@
 <?php
-/*
-Template Name: menus Template
-*/
+/**
+ * The template for displaying all single posts.
+ *
+ * @package onetone
+ */
 get_header(); 
-
-echo "WEWEEEEEEEE";
 
 //the_post();
 //global $post;
@@ -12,9 +12,6 @@ echo "WEWEEEEEEEE";
 
 $sidebar                   = isset($page_meta['page_layout'])?$page_meta['page_layout']:'none';
 $left_sidebar              = isset($page_meta['left_sidebar'])?$page_meta['left_sidebar']:'';
-$left_sidebar   = "sidebar-6";
-
-echo "RRRRRRRRRR";die();
 $right_sidebar             = isset($page_meta['right_sidebar'])?$page_meta['right_sidebar']:'';
 $full_width                = isset($page_meta['full_width'])?$page_meta['full_width']:'no';
 $display_breadcrumb        = isset($page_meta['display_breadcrumb'])?$page_meta['display_breadcrumb']:'yes';
@@ -41,8 +38,10 @@ $container_css .= 'padding-top:'.$padding_top.';';
 if( $padding_bottom )
 $container_css .= 'padding-bottom:'.$padding_bottom.';';
 
+
+
 ?>
-<article id="post-<?php the_ID(); ?>" <?php post_class(); ?>>
+<article id="post-<?php the_ID(); ?>" <?php post_class('pagina-premsa'); ?>>
   <?php if (  $display_breadcrumb == 'yes' ): ?>
   
   <section class="page-title-bar title-left no-subtitle" style="">
@@ -61,7 +60,7 @@ $container_css .= 'padding-bottom:'.$padding_bottom.';';
     <div class="<?php echo $container;?>">
       <div class="post-inner row <?php echo $aside; ?>" style=" <?php echo $container_css;?>">
         <div class="col-main">
-          <section class="post-main" role="main" id="content">
+          <section class="post-main " role="main" id="content">
             <?php while ( have_posts() ) : the_post(); ?>
             <article class="post type-post" id="">
               <?php if (  has_post_thumbnail() ): ?>
@@ -86,15 +85,70 @@ $container_css .= 'padding-bottom:'.$padding_bottom.';';
               <!--Comments Area-->
               <div class="comments-area text-left">
                 <?php
-					  // If comments are open or we have at least one comment, load up the comment template
-					  if ( comments_open()  ) :
-						  comments_template();
-					  endif;
 				  ?>
               </div>
               <!--Comments End-->
             </div>
             <?php endwhile; // end of the loop. ?>
+              
+              
+              
+              
+                                  <div id="premsa-posts">
+                                      <ul>
+                  <?php
+                  
+                              $args = array(
+	'posts_per_page'   => 0,
+	'offset'           => 0,
+	'category'         => '',
+	'category_name'    => '',
+	'orderby'          => 'date',
+	'order'            => 'DESC',
+	'include'          => '',
+	'exclude'          => '',
+	'meta_key'         => '',
+	'meta_value'       => '',
+	'post_type'        => 'premsa',
+	'post_mime_type'   => '',
+	'post_parent'      => '',
+	'author'	   => '',
+	'author_name'	   => '',
+	'post_status'      => 'publish',
+	'suppress_filters' => true 
+);
+                              wp_reset_postdata();
+                              $premsa_array = get_posts( $args ); 
+                              
+                              foreach( $premsa_array as $post ) : 
+                                $meta = get_post_meta($post->ID);
+                                
+                              if (substr($meta['file'][0],0,7)=='http://'){
+                                $dir=$meta['file'][0];
+                              }else{
+                                $updir = wp_upload_dir();
+                                $dir = $updir['baseurl'].'/premsa/' . $meta['file'][0];
+                                
+                              }
+                                ?>
+                                          <li>
+                                          <a href="<?php echo $dir;?>" target="_blank" class="publi">
+                                              <?php the_title();?>
+                                          <br>
+                                          <span class="publicacio-premsa">  <?php echo $post->post_content;?></span>
+                                      </a>
+    <?php
+    
+    ?>
+                                          </li>
+<?php endforeach; ?>
+                                      </ul>
+                </div>
+              
+              
+              
+              <br><br><br>
+              
           </section>
         </div>
         <?php if(  $sidebar =='left' || $sidebar =='both' ):?>
