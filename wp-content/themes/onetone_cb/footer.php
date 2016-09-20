@@ -15,7 +15,7 @@ $enable_footer_widget_area = esc_attr(onetone_option('enable_footer_widget_area'
                       
                      -->
                      <p style="font-size:15px;COLOR:#ccc;line-height: 1.3;margin-top:12px;">
-                          <a href="https://www.google.com/maps/embed?pb=!1m10!1m8!1m3!1d5980.091215599049!2d2.1106732571472264!3d41.45992612611381!3m2!1i1024!2i768!4f13.1!5e0!3m2!1sca!2ses!4v1461711293148" class="gmaps" style="font-size:15px;COLOR:#ccc;" target="_blank" title="Mapa">
+                          <a href="<?php echo WP_CB_GOOGLEMAPS;?>" class="gmaps" style="font-size:15px;COLOR:#ccc;" target="_blank" title="Mapa">
                               Carretera d'Horta a Cerdanyola (BV-1415), km 3 <br> 08171 Sant Cugat del Vallès
                           </a>
                       </p>

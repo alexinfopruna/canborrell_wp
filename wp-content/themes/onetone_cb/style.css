@@ -50,6 +50,12 @@ i{color:#666;}
     border: #dedede;
     color: #333;
 }
+
+
+.panel-heading{
+    font-size:20px;
+    text-transform: uppercase;
+}
 /***************************************/
 
 .aborder{border: #e5e5e5 solid 1px;border-radius: 7px;padding:10px;}
@@ -162,6 +168,11 @@ section.title-left{background-color: #eee;}
 @media (min-width: 920px){
     .site-nav > ul > li + li {
         margin-left: 0px;
+    }
+    
+    #team .row{
+	width:900px;
+	margin:auto;
     }
 }
 .site-nav > ul > li a {
@@ -285,8 +296,8 @@ ul.carta li:before,
 
 img.txt-foto-isqui {
     float: left;
-    margin-right: 10px;
-    margin-bottom: 8px;
+    margin-right: 20px;
+    margin-bottom: 15px;
     border-radius: 3px;
 }
 
@@ -391,7 +402,7 @@ footer nav.footer-menu-2 #menu-main li:nth-child(4) a:before{
 
 /*******HISTORIA ***********/
 
-
+/*
 .page-horari-general-de-cuina .col-main,
 .single-menus .col-main,
 .page-template-page_excursions_template-php .col-main,
@@ -406,7 +417,7 @@ footer nav.footer-menu-2 #menu-main li:nth-child(4) a:before{
                                                       box-shadow: inset 0 1px 1px rgba(0,0,0,.05);
 
 }
-
+*/
 
 
 
@@ -433,32 +444,6 @@ footer nav.footer-menu-2 #menu-main li:nth-child(4) a:before{
 
 .widget-box a.ui-state-hover:hover {
     color: white;
-}
-
-#team img{
-    border-radius: 10px;
-}
-
-#testimonials{
-    background-color: #544;
-    padding:0;
-}
-
-#gallery img{
-    filter:contrast(200%) brightness(150%);
-}
-
-#about .nota a{color: #fff;font-size: 18px}
-
-#contact {
-    background-color: #fefefe;
-
-} 
-
-
-
-#contact .container h1{
-    ccborder-top: #444 solid 2px;
 }
 
 
@@ -494,9 +479,13 @@ footer nav.footer-menu-2 #menu-main li:nth-child(4) a:before{
 
 }
 
-.publicacio-premsa{
-    font-size: 20px;
+.fa-walk{
+	background-image:url(/wp-content/uploads/assets/walk2.png);
+	width:12px;
+	height:12px;
+	background-repeat:no-repeat;
 }
+
 
 #premsa-posts li{
     list-style-type: none;
@@ -624,13 +613,56 @@ footer nav.footer-menu-2 #menu-main li:nth-child(4) a:before{
 /************ HOME *************************/
 /************ HOME *************************/
 
-/***** LA MASIA ***********/
+#about .col-md-8 .alert-white{
+   font-size: 12px;
+}
+
+#about .col-md-4 .alert-white{
+   font-size: 18px;
+}
+#about .col-md-4 .alert-white h4{
+   font-size: 22px;
+}
+
+
+#about .alert-white li{
+    list-style:none;
+}
 
 
 #about img.txt-foto-isqui {
-    width: 265px;
-    height:160px;
+    width: 350px;
+    height:200px;
     border-radius: 3px;
 }
 
+section.home-section-6 .row p {
+    font-size: 16px;
+}
+
+#team img{
+    border-radius: 10px;
+}
+
+#testimonials{
+    background-color: #544;
+    padding:0;
+}
+
+#gallery img{
+    filter:contrast(200%) brightness(150%);
+}
+
+#about .nota a{color: #fff;font-size: 18px}
+
+#contact {
+    background-color: #fefefe;
+
+} 
+
+
+
+#contact .container h1{
+    ccborder-top: #444 solid 2px;
+}
 

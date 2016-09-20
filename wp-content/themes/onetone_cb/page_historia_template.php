@@ -71,8 +71,16 @@ $container_css .= 'padding-bottom:'.$padding_bottom.';';
               <div class="entry-main">
             
                 <div class="entry-content">
-                    <h3><?php the_title();?></h3>
-                  <?php the_content();?>
+                    
+                    <div class="panel panel-default">
+  <div class="panel-heading"><?php the_title();?></div>
+  <div class="panel-body"><?php the_content();?></div>
+</div>
+                    
+                    
+                    <h3><?php //the_title();?></h3>
+                  <?php //the_content();?>
+                  
                   <?php
 				wp_link_pages( array( 'before' => '<div class="page-links"><span class="page-links-title">' . __( 'Pages:', 'onetone' ) . '</span>', 'after' => '</div>', 'link_before' => '<span>', 'link_after' => '</span>' ) );
 				?>

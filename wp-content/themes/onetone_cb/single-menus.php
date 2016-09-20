@@ -55,12 +55,21 @@ $aside          = 'both-aside';
                                 </div>
                                 <?php endif;?>
                                 <div class="entry-main aborder">
+                                                                           <div class="panel panel-default">
+  <div class="panel-heading"><?php the_title();?></div>
+  <div class="panel-body"><?php the_content();?></div>
+</div>
+                    
+
+                                    
+                                    
+                                    
                                     <div class="entry-header">                                            
-                                        <h3 class="entry-title"><?php the_title();?></h3>
+                                        <h3 class="entry-title"><?php //the_title();?></h3>
                                         
                                     </div>
                                     <div class="entry-content">                                        
-                                        <?php the_content();?>   
+                                        <?php //the_content();?>   
                                         <?php
 				wp_link_pages( array( 'before' => '<div class="page-links"><span class="page-links-title">' . __( 'Pages:', 'onetone' ) . '</span>', 'after' => '</div>', 'link_before' => '<span>', 'link_after' => '</span>' ) );
 				?>    

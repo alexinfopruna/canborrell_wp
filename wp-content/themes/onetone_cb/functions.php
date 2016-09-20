@@ -52,14 +52,11 @@ function cb_preu_plat_func($atts) {
 }
 function cb_constant_func($atts) {
   $name = $atts['name'];
-  
-  //return "DDDDD";
-  return '<span class="preu">' . constant($name) . '</span>';
+  return constant($name);
 }
 
 add_shortcode('cb_preu_plat', 'cb_preu_plat_func');
 add_shortcode('cb_constant', 'cb_constant_func');
-
 
 /**** MENU ACTIVE ****/
 add_filter('nav_menu_css_class' , 'special_nav_class' , 10 , 2);
