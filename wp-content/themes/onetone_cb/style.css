@@ -21,20 +21,38 @@ Template: onetone
     font-style:normal;
 }
 
-         body{
+body{
     font-family: 'Poppins', 'Open Sans', sans-serif;
-    //font-family: 'Tangerine', 'Open Sans', sans-serif;
-    //font-size: 1.4em;
+    font-size: 16px;
 }
 
+i{color:#666;}
 .cb, .c-b{clear:both}
 .cl{clear:left}
 .cr{clear:right}
-
-.alert{
-    color:black;
-    background: white;
+.img-center{
+    display: block;
+    margin-left: auto;
+    margin-right: auto 
 }
+
+/************* BOOTSTRAP *************/
+.panel-default>.panel-heading {
+
+
+    color:white;
+    background-color:#333;
+}
+
+
+.alert-white{
+    background-color: white;
+    border: #dedede;
+    color: #333;
+}
+/***************************************/
+
+.aborder{border: #e5e5e5 solid 1px;border-radius: 7px;padding:10px;}
 
 h1.magee-heading .heading-inner{
     font-family: Encient German Gothic,Times New Roman;
@@ -94,9 +112,18 @@ section.title-left{background-color: #eee;}
 
 .page-title-bar {
     padding: 15px;
+    padding-left:80px;
+
 }
-    
-    
+
+.page-title-bar h1:before{
+
+    content:"\f0a9  ";
+    font-family: FontAwesome;
+
+}
+
+
 /***************************************************************/
 /***************************************************************/
 /***************************************************************/
@@ -107,39 +134,49 @@ section.title-left{background-color: #eee;}
     line-height: 2;
 }
 
-.site-nav > ul > li a:hover, .site-nav .current{
-    background-color: rgba(4,4,4,0.6);
-    background-color: rgba(255,255,255,1);
+
+
+.site-nav > ul {
+
+}
+.site-nav > ul > li a:hover{
+    background-color: white;
+    border-top-right-radius: 3px;
+    border-top-left-radius: 3px;
+}
+.site-nav .current{
+    background-color: rgba(215,215,215,1);
+    border-top-right-radius: 3px;
+    border-top-left-radius: 3px;
 }
 
 .fxd-header span.site-tagline{display:none;}
 .logo-left  .fxd-header .site-nav {
     margin-top: 25px;
 }
- .logo-left .main-header .site-nav {
+.logo-left .main-header .site-nav {
     margin-top: 60px;
-    //margin-top: 10px;
 }
 
 
 @media (min-width: 920px){
-.site-nav > ul > li + li {
-    margin-left: 0px;
-}
+    .site-nav > ul > li + li {
+        margin-left: 0px;
+    }
 }
 .site-nav > ul > li a {
     padding: 8px;
 }
 /**/
- .fxd-header .site-nav > ul > li > a {
+.fxd-header .site-nav > ul > li > a {
     font-size: 14px !important;
 }
 
 
 /* MENU LEFT */
 .widget_nav_menu li.current-menu-item a {
-   background-color: #333;
-   color: white;
+    background-color: #333;
+    color: white;
 }
 
 .widget_nav_menu{
@@ -156,19 +193,47 @@ section.title-left{background-color: #eee;}
 /* CONTENT */
 /* CONTENT */
 
+.entry-title{
+    font-family: 'Poppins', 'Open Sans', sans-serif;
+    text-transform: none;
+
+}
+
+h3.entry-title{
+    font-size: 23px;
+}
+
 .menu-content { overflow: auto;}
 .menu-content p{margin-bottom: 0;}
-.menu-content    b{background: #333;color:white;display:block;padding-left: 30px;}
+.menu-content    b{background: #333;color:white;display:block;padding-left: 30px; border-radius: 3px;}
 
+ul.carta{margin-top:25px;margin-bottom:25px;}
 ul.carta li, .menu-content li{
-	list-style:circle;
-	margin-left:25px;
+    list-style:none;
+
+    margin-left:5px;
 }
-    
+
+ul.carta li:before,
+.menu-content li:before{
+    content: "\f14a   \0000a0";
+    font-family: FontAwesome;
+}
+
+#myTab1 li:before{
+    content: none;
+}
+
+.menus-carta .well h6{
+    text-align: right;
+}
+
 .carta-fotos{
     margin-top: 50px;
 }
-/*
+
+
+/**/
 .caixa-negre{
     color:white;
     background-color: #333;
@@ -176,35 +241,20 @@ ul.carta li, .menu-content li{
     display: inline-block;
     margin-top:55px;
     float:right;
-     overflow: auto;
+    overflow: auto;
 }
-*/
+
 
 .preu{
     font-weight: bold;
     font-size:1.2em;
 }
-
+/*
 .preu:after {
-	content: "\0000a0\f153 \0000a0";
-	font-family: FontAwesome;
+        content: "\0000a0\f153 \0000a0";
+        font-family: FontAwesome;
 }
-
-.ressenya-durada:before {
-    	content: "\f017  \0000a0 \0000a0 \0000a0";
-	font-family: FontAwesome;
-}
-
-.ressenya-dificultat:before {
-    	content: "\f080  \0000a0 \0000a0 \0000a0";
-        content:"\f201  \0000a0 \0000a0 \0000a0";// "\f017  ";
-	font-family: FontAwesome;
-}
-
-.ressenya-distancia:before {
-    	content:"\f0e4  \0000a0 \0000a0 \0000a0";// "\f017  ";
-	font-family: FontAwesome;
-}
+*/
 
 
 /* SECTIONS */
@@ -218,19 +268,16 @@ ul.carta li, .menu-content li{
 
 
 .fa-grill{
-  //  visibility: initial;
     width: 45px;
     height: 45px;
     background-image: url(brasa3.png);
 }
 .fa-calcots{
-  //  visibility: initial;
     width: 31px;
     height: 45px;
     background-image: url(calcots.png);
 }
 .fa-grup{
-  //  visibility: initial;
     width: 40px;
     height: 39px;
     background-image: url(grup.png);
@@ -240,19 +287,14 @@ img.txt-foto-isqui {
     float: left;
     margin-right: 10px;
     margin-bottom: 8px;
-    border-radius: 7px;
-    
-    width: 265px;
-    height:160px;
-    /*
-    border: #fff solid 6px;
-    -moz-box-shadow: 2px 2px 2px #ccc;
-    -webkit-box-shadow: 2px 2px 2px #ccc;
-    
-    box-shadow: 2px 2px 2px #ccc;
-    */
+    border-radius: 3px;
 }
 
+
+.txt-foto-dere{
+    border-radius: 3px;
+
+}
 
 
 
@@ -261,6 +303,14 @@ img.txt-foto-isqui {
 /***************************************************************/
 /***************************************************************/
 /* FOOTER */
+
+
+footer nav a:hover{
+    color:white;
+}
+.footer-info-area{
+    display: none;
+}
 
 .post-pagination{
     background-color: #eee;
@@ -286,6 +336,84 @@ footer .border-left{
     width:200px;
 }
 
+/**** FOOTER MENU ************************************************************************/
+footer nav.footer-menu-1 #menu-main li:first-child a:before{
+    content:"\f271  \0000a0 \0000a0 \0000a0";
+    font-family: FontAwesome;
+
+}
+footer nav.footer-menu-1 #menu-main li:nth-child(2) a:before{
+    content:"\f278   \0000a0 \0000a0 \0000a0";
+    font-family: FontAwesome;
+
+}
+footer nav.footer-menu-1 #menu-main li:nth-child(3) a:before{
+    content:"\f017   \0000a0 \0000a0 \0000a0";
+    font-family: FontAwesome;
+
+}
+footer nav.footer-menu-1 #menu-main li:nth-child(4) a:before{
+    content:"\f003  \0000a0 \0000a0 \0000a0";
+    font-family: FontAwesome;
+
+}
+/**********/
+footer nav.footer-menu-2 #menu-main li:first-child a:before{
+    content:"\f044  \0000a0 \0000a0 \0000a0";
+    font-family: FontAwesome;
+
+}
+footer nav.footer-menu-2 #menu-main li:nth-child(2) a:before{
+    content:"\f273   \0000a0 \0000a0 \0000a0";
+    font-family: FontAwesome;
+
+}
+footer nav.footer-menu-2 #menu-main li:nth-child(3) a:before{
+    content:"\f0c0   \0000a0 \0000a0 \0000a0";
+    font-family: FontAwesome;
+
+}
+footer nav.footer-menu-2 #menu-main li:nth-child(4) a:before{
+    content:"\f153  \0000a0 \0000a0 \0000a0";
+    font-family: FontAwesome;
+
+}
+/**** FOOTER MENU *************************************************************************/
+/*********************************************************************************************/
+
+
+/**** HORARIS *******/
+.page-horari-general-de-cuina  .post-inner {
+    background-image: url(/wp-content/uploads/assets/reloj3.jpg);
+    background-repeat: no-repeat;
+}
+
+
+/*******HISTORIA ***********/
+
+
+.page-horari-general-de-cuina .col-main,
+.single-menus .col-main,
+.page-template-page_excursions_template-php .col-main,
+.page-template-page_historia_template-php .col-main{  
+                                                      min-height: 20px;
+                                                      padding: 19px;
+                                                      margin-bottom: 20px;
+                                                      background-color: #f5f5f5;
+                                                      border: 1px solid #e3e3e3;
+                                                      border-radius: 4px;
+                                                      -webkit-box-shadow: inset 0 1px 1px rgba(0,0,0,.05);
+                                                      box-shadow: inset 0 1px 1px rgba(0,0,0,.05);
+
+}
+
+
+
+
+
+.menus-informaciosobre-els-menus img{margin-left:75px;}
+
+
 .site-nav-footer{
     margin-top:25px;
 }
@@ -304,11 +432,11 @@ footer .border-left{
 }
 
 .widget-box a.ui-state-hover:hover {
-     color: white;
+    color: white;
 }
 
 #team img{
-    border-radius: 100px;
+    border-radius: 10px;
 }
 
 #testimonials{
@@ -323,25 +451,47 @@ footer .border-left{
 #about .nota a{color: #fff;font-size: 18px}
 
 #contact {
-	background-color: #fefefe;
-	
+    background-color: #fefefe;
+
 } 
 
 
+
 #contact .container h1{
-	//background: #ddd;
-	//padding:20px;
-} 
-#contact .container h1{
-	ccborder-top: #444 solid 2px;
+    ccborder-top: #444 solid 2px;
 }
+
+
+
+/***** CARTA-MENUS **************/
+.credit-card{
+    font-size: 27px;
+}
+
+
+.entry-title{
+    text-align: center;
+     font-size: 30px !important;
+     text-decoration: underline;
+}
+/*
+.entry-title:before{
+	content:url(/wp-content/uploads/assets/filigrana12.png);
+         margin:20px;
+}
+
+.entry-title:after{
+	content:url(/wp-content/uploads/assets/filigrana11.png);
+        margin:20px;
+}
+*/
 
 /*************** PREMSA ****************/
 .pagina-premsa .post-inner{
     background-image:url(/wp-content/uploads/assets/fons_premsa_b.jpg);
     background-image:url(/wp-content/uploads/assets/Libertad-prensa-min.jpg);
     background-repeat: no-repeat;
-    
+
 }
 
 .publicacio-premsa{
@@ -349,58 +499,107 @@ footer .border-left{
 }
 
 #premsa-posts li{
-    
-
-padding-left: 56px;
-    padding-top: 0px;
-    margin-bottom: 20px;
     list-style-type: none;
     list-style-image: none;
-    background-image: url(/wp-content/uploads/assets/list-style-news4.gif);
     background-repeat: no-repeat;
     background-position: 0px 25px;
-    /* min-height: 40px; */
-    border-bottom: #BBB dotted 1px;
-    
-        -webkit-transition: background-position .3s,  background-color 2s;
-    transition: background-position .3s,  background-color 2s;
-    
+
+    -webkit-transition:color .3s, background-position .3s,  background-color 2s;
+    transition: color .3s, background-position .3s,  background-color 2s;
+
 }
 
 
 #premsa-posts li:hover{
-    background-color: #eee;
-    background-position: 0px 20px;
-    
+    color: #343;
+    background-color:rgba(100, 100, 100, 0.3); 
+    background-position: 0px 0px;
+
+
 }
 
+#premsa-posts li .panel-body{
+    padding-left: 56px;
+    background-repeat: no-repeat;
+    background-position: 0px 10px;
+    -webkit-transition:color .3s, background-position .3s,  background-color 2s;
+    transition: color .3s, background-position .3s,  background-color 2s;
+}
+
+#premsa-posts li a.premsa-video  .panel-body{
+    background-image: url(/wp-content/uploads/assets/video.png);   
+}
+#premsa-posts li a.premsa-pdf  .panel-body{
+    background-image: url(/wp-content/uploads/assets/list-style-news4.gif);   
+}
+
+
+
+#premsa-posts li .panel-body:hover{
+    background-color:rgba(200, 200, 200, 0.5); 
+    background-position: 0px 8px;
+    color: red;
+}
+
+
 #premsa-posts li a .publicacio-premsa{
-    color: brown;
+    color: #3c763d;
 }
 #premsa-posts li a .publicacio-premsa:hover{
-        color: red;
+    color: #3c763d;
 }
 
 
 
 
 /************ EXCURSIONS ******************/
-#ressenya{
-    //margin-top:25px;
-   // clear: both;
-   margin-top:15px;
-	float:right;
-	background:#333;
-	padding:15px;
-	color:white;
-	font-size:15px;
-        min-width:50%;
-        border-radius: 10px;
+#ressenya, .caixa-preus{
+    margin-top:15px;
+    float:right;
+    background:#333;
+    padding:15px;
+    color:white;
+    font-size:15px;
+    min-width:50%;
+    border-radius: 10px;
+}
+
+.menus-carta .well,
+#ressenya.caixa-preus{
+    padding:5px;
+    background-color:#333;
+    text-align:right;
+    color: white;
 }
 
 #ressenya a,#ressenya a:hover, #ressenya a:visited{
     color:white;
 }
+
+#ressenya i{
+    color: #ddd;
+}
+
+#ressenya .btn-success {
+    margin-top:15px;   
+    float:right;
+}
+
+.ressenya-durada:before {
+    content: "\f017  \0000a0 \0000a0 \0000a0";
+    font-family: FontAwesome;
+}
+
+.ressenya-dificultat:before {
+    content:"\f201  \0000a0 \0000a0 \0000a0";
+    font-family: FontAwesome;
+}
+
+.ressenya-distancia:before {
+    content:"\f07e  \0000a0 \0000a0 \0000a0";
+    font-family: FontAwesome;
+}
+
 /*
 #ressenya a:hover{color:#CCC;}
 
@@ -419,3 +618,19 @@ padding-left: 56px;
     border-color: #000;
 }
 */
+
+/************ HOME *************************/
+/************ HOME *************************/
+/************ HOME *************************/
+/************ HOME *************************/
+
+/***** LA MASIA ***********/
+
+
+#about img.txt-foto-isqui {
+    width: 265px;
+    height:160px;
+    border-radius: 3px;
+}
+
+

@@ -45,7 +45,8 @@ $container_css .= 'padding-bottom:'.$padding_bottom.';';
     <div class="container">
       <hgroup class="page-title">
         <h1>
-          <?php the_title();?>
+             <?php echo  __( 'History', 'canborrell' );//the_title();?>
+          <?php //the_title();?>
         </h1>
       </hgroup>
       <?php onetone_get_breadcrumb(array("before"=>"<div class=''>","after"=>"</div>","show_browse"=>false,"separator"=>'','container'=>'div'));?>
@@ -70,6 +71,7 @@ $container_css .= 'padding-bottom:'.$padding_bottom.';';
               <div class="entry-main">
             
                 <div class="entry-content">
+                    <h3><?php the_title();?></h3>
                   <?php the_content();?>
                   <?php
 				wp_link_pages( array( 'before' => '<div class="page-links"><span class="page-links-title">' . __( 'Pages:', 'onetone' ) . '</span>', 'after' => '</div>', 'link_before' => '<span>', 'link_after' => '</span>' ) );

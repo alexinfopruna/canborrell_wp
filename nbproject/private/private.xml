@@ -4,11 +4,15 @@
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
             <file>file:/var/www/canborrell-wp/wp-content/themes/onetone_cb/functions.php</file>
+            <file>file:/var/www/canborrell-wp/wp-content/themes/onetone_cb/single-menus.php</file>
+            <file>file:/var/www/canborrell-wp/wp-content/themes/onetone_cb/page_historia_template.php</file>
             <file>file:/var/www/canborrell-wp/wp-content/themes/onetone_cb/style.css</file>
+            <file>file:/var/www/canborrell-wp/wp-content/themes/onetone_cb/footer.php</file>
+            <file>file:/var/www/canborrell-wp/wp-content/themes/onetone_cb/page_excursions_template.php</file>
             <file>file:/var/www/canborrell-wp/wp-content/plugins/calendari_reserves/calendari_reserves.php</file>
             <file>file:/var/www/canborrell-wp/wp-content/themes/onetone_cb/header.php</file>
-            <file>file:/var/www/canborrell-wp/wp-content/themes/onetone_cb/page-premsa.php</file>
             <file>file:/var/www/canborrell-wp/cb-reserves/reservar/form_grups.php</file>
+            <file>file:/var/www/canborrell-wp/wp-content/themes/onetone_cb/single-premsa.php</file>
         </group>
     </open-files>
 </project-private>

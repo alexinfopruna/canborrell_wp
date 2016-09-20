@@ -84,7 +84,7 @@
 
                     <div class="main-header <?php echo $header_background_parallax; ?>">
                         <div class="container">
-                            <
+                            
                             <div class="logo-box">
                                 <?php if ($logo): ?>
 

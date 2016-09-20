@@ -70,7 +70,7 @@ $container_css .= 'padding-bottom:'.$padding_bottom.';';
               <?php endif;?>
               <div class="entry-main">
             
-                <div class="entry-content">
+                <div class="entry-content ">
                   <?php the_content();?>
                   <?php
 				wp_link_pages( array( 'before' => '<div class="page-links"><span class="page-links-title">' . __( 'Pages:', 'onetone' ) . '</span>', 'after' => '</div>', 'link_before' => '<span>', 'link_after' => '</span>' ) );

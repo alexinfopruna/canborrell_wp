@@ -24,7 +24,7 @@ $enable_footer_widget_area = esc_attr(onetone_option('enable_footer_widget_area'
                   </div>
 
                   <div class="col-md-2 col-md-6 border-left">
-                       <nav class="site-nav-footer">
+                       <nav class="site-nav-footer footer-menu-1">
                            Accés directe
                           <?php
                           $onepage_menu = '';
@@ -33,7 +33,7 @@ $enable_footer_widget_area = esc_attr(onetone_option('enable_footer_widget_area'
                       </nav>                     
                   </div>
                   <div class="col-md-2 col-md-6 border-left">
-                       <nav class="site-nav-footer">
+                       <nav class="site-nav-footer footer-menu-2">
                            Gestió de reserves
                           <?php
                           $onepage_menu = '';
@@ -73,7 +73,8 @@ else {
     </div>			
 </footer>
 </div>
-<?php wp_footer(); ?>	
+<?php wp_footer(); ?>
+<?php if (isset($_GET['database'])) echo DB_NAME; ?>
 </body>
 </html>
 

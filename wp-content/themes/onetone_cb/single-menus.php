@@ -26,8 +26,14 @@ $aside          = 'both-aside';
 
 
 <article id="post-<?php the_ID(); ?>" <?php post_class(); ?>>
-<section class=" title-left no-subtitle" style="">
+<section class="page-title-bar title-left no-subtitle" style="">
             <div class="container">
+                <hgroup class="page-title">
+                    <h1>
+                         <?php echo __( 'Menus', 'canborrell' );//the_title();?>
+                    
+                    </h1>
+                </hgroup>
                 
                 <?php onetone_get_breadcrumb(array("before"=>"<div class=''>","after"=>"</div>","show_browse"=>false,"separator"=>'','container'=>'div'));?> 
                 <div class="clearfix"></div>            
@@ -48,9 +54,9 @@ $aside          = 'both-aside';
                                     </div>                                                 
                                 </div>
                                 <?php endif;?>
-                                <div class="entry-main">
+                                <div class="entry-main aborder">
                                     <div class="entry-header">                                            
-                                        <h1 class="entry-title"><?php the_title();?></h1>
+                                        <h3 class="entry-title"><?php the_title();?></h3>
                                         
                                     </div>
                                     <div class="entry-content">                                        
