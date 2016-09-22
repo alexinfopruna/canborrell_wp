@@ -1,7 +1,7 @@
 var TIMER_INTERVAL = 110000;
 
 var th;//timer d'ajuda
-var GESTOR = "Gestor_form.php";
+var GESTOR = "/cb-reserves/reservar/Gestor_form.php";
 var client_auto = true;
 var TAULA = 0;
 var DATA = "01/01/2011";
@@ -141,6 +141,23 @@ $(function () {
     }
     );
 */
+
+    $("#popupGrups").dialog({
+        autoOpen: false,
+        modal: true,
+        width: 400,
+        buttons: {
+            t: function () {
+                document.location.href = "form_grups.html";
+            },
+            "Modificar": function () {
+                $(this).dialog("close");
+            }
+        }
+    });    
+
+
+
 help();
 
     $("#info_reserves").click(function () {
@@ -171,7 +188,11 @@ help();
     {
         monta_calendari("#calendari");
     }
+    
+    
+    
     /**************************/
+    
     comportamentQuantsSou();
 
     $(".llista-menus").accordion({active: false, collapsible: true, autoHeight: false,
@@ -186,19 +207,7 @@ help();
     //RESETEJA EL TIMER D'AJUDA SI TECA LA PANTALLA
     /***$(document).change(function(e) {clearTimeout(th);	if (SECCIO) th=setTimeout('timer_help("'+l(SECCIO)+'")',TIMER_HELP_INTERVAL);});
      */
-    $("#popupGrups").dialog({
-        autoOpen: false,
-        modal: true,
-        width: 400,
-        buttons: {
-            t: function () {
-                document.location.href = "form_grups.html";
-            },
-            "Modificar": function () {
-                $(this).dialog("close");
-            }
-        }
-    });    
+
     
 
     $("#flogin").hide();
@@ -259,6 +268,8 @@ function comportamentQuantsSou()
         $("#selectorComensals").buttonset("destroy");
         $("#selectorComensals").buttonset();
         $.scrollTo("#titol_SelectorJuniors", 600);
+        
+        
         return false;
     });
     
@@ -387,8 +398,8 @@ function comportamentDia()
  */
 function recargaHores()
 {
-    $("#selectorHora").html('<img src="css/loading.gif"/>');
-    $("#selectorHoraSopar").html('<img src="css/loading.gif"/>');
+    $("#selectorHora").html('<img src="/cb-reserves/reservar/css/loading.gif"/>');
+    $("#selectorHoraSopar").html('<img src="/cb-reserves/reservar/css/loading.gif"/>');
     var hora = $("input[name='selectorHora']:checked").val();
     $.post(GESTOR + "?a=totesHores&b=" + $("#calendari").val(), function (dades) {
 
@@ -830,7 +841,7 @@ function controlSubmit()
 
         clearInterval(th);
 
-        $("#popup").html('<div style="height:420px"><img src="css/loading.gif" /></div>');
+        $("#popup").html('<div style="height:420px"><img src="/cb-reserves/reservar/css/loading.gif"/></div>');
         $("#popup").dialog('open');
         $('#submit').hide();
         $('#form-reserves').ajaxSubmit(function (dades) {

@@ -324,7 +324,7 @@ ORDER BY carta_subfamilia_order,carta_plats_nom_es , carta_plats_nom_ca";
 </td>
 				<td class="menys"><div  class="d-menys ui-corner-all" ><a href"#">-</a></div></td>
 				<td class="borra" style="display:none"></td>
-				<td><a class="resum-carta-nom" href="Gestor_form.php?a=TTmenu&b=' . $val['id'] . '" >' . $val['nom'] . '</a></td>
+				<td><a class="resum-carta-nom" href="/cb-reserves/reservar/Gestor_form.php?a=TTmenu&b=' . $val['id'] . '" >' . $val['nom'] . '</a></td>
 				<td class="td-carta-preu"><span class="carta-preu">' . $preu . '</span>&euro; </td>
 				<!--<td class="carta-subtotal"><em>(subtotal: <span class="carta-preu-subtotal">0</span>&euro; )</em></td></tr>-->
                                            
@@ -992,83 +992,8 @@ WHERE  `client`.`client_id` =$idc;
     return ($comensals >= $this->configVars("persones_paga_i_senyal") && $comensals < $this->configVars("persones_grup"));
   }
 
-  /*   * ******************************************************************************************************* */
-  /*   * ******************************************************************************************************* */
-  /*   * ******************************************************************************************************* */
-  /*
-    public function ANULATgeneraFormTpv($id_reserva, $import, $nom) {
-    echo __FILE__;die("<br><br>ANUAT");
-
-    die("ANULATgeneraFormTpv");
-    ANULAT();
-    include(TPV_CONFIG_FILE . TPV_CONFIG_FILE);
-    $lang = $this->lang;
-    $order = substr(time(), 0, 3) . $id_reserva;
-    $id = $order = $id_reserva;
-
-    $name = 'Restaurant Can Borrell';
-    $amount = $import * 100;
-
-    $urlMerchant = 'http://' . $_SERVER['HTTP_HOST'] . '/reservar/Gestor_form.php?a=respostaTPV';
-    $producte = "Reserva restaurant Can Borrell";
-    $titular = $nom;
-    $urlOK = "http://www.can-borrell.com/editar/TPV/pagamentOK.php?id=$id&lang=$lang";
-    $urlKO = "http://www.can-borrell.com/editar/TPV/pagamentKO.php?id=$id&lang=$lang";
-    $idioma = ($lang == "cat") ? "003" : "001";
-    $boto['cat'] = "Realitzar Pagament";
-    $boto['esp'] = "Realizar Pago";
-    //$url_tpvv="https://sis-t.redsys.es:25443/sis/realizarPago";
-
-    $HTML = "    <script language=JavaScript>
-    function calc() {
-
-
-    document.getElementById('boto').style.display = 'none';
-    vent=window.open('','frame-tpv','width=725,height=600,scrollbars=no,resizable=yes,status=yes,menubar=no,location=no');
-    // vent.moveTo(eje_x,eje_y);
-    document.compra.submit();}
-    </script>
-    ";
-    $hidden = "hidden";
-    $HTML .= "<form id='compra' name='compra' action='$url_tpvv' method='post' target='frame-tpv'  style='display:none'>
-
-    <input type=$hidden name=Ds_Merchant_Amount value='$amount'>
-    <input type=$hidden name=Ds_Merchant_Currency value='$currency'>
-    <input id=tpv_order type=$hidden name=Ds_Merchant_Order  value='$order'>
-    <input type=$hidden name=Ds_Merchant_MerchantCode value='$code'>
-    <input type=$hidden name=Ds_Merchant_Terminal value='$terminal'>
-    <input type=$hidden name=Ds_Merchant_TransactionType value='$transactionType'>
-
-    <input type=$hidden name=Ds_Merchant_ProductDescription value='$producte'>
-    <input id=tpv_titular type=$hidden name=Ds_Merchant_Titular value='$titular'>
-    <input type=$hidden name=Ds_Merchant_UrlOK value='$urlOK'>
-    <input type=$hidden name=Ds_Merchant_UrlKO value='$urlKO'>
-    <input type=$hidden name=Ds_Merchant_ConsumerLanguage value='$idioma'>
-    <input type=$hidden name=Ds_Merchant_PayMethods value='C'>
-    <input type=$hidden name=Ds_Merchant_MerchantURL value='$urlMerchant'>";
-
-
-
-    $HTML.= "<input id=tpv_signature type=$hidden name=Ds_Merchant_MerchantSignature value='------------'>
-    <input id='boto' type='submit' name='Submit' value='" . $this->l('Realizar Pago', false) . "' onclick='javascript:calc(); '/>
-    </form>";
-
-
-    $this->xgreg_log("generaFormTpv:$id_reserva > $import > $nom",0, LOG_FILE_TPVPKPK);
-    return $HTML;
-    }
-   */
-
-  /*
-    private function signatureTpv($order, $import, $urlMerchant = 'http://www.can-borrell.com/editar/TPV/respostaTPV.php') {
-    include(INC_FILE_PATH . TPV_CONFIG_FILE);
-    //echo $amount." / ".$order." / ".$code." / ".$currency." / ".$transactionType." / ".$urlMerchant." / ".$clave;
-    $clave = 0;
-    $amount = $import * 100;
-    $message = $amount . $order . $code . $currency . $transactionType . $urlMerchant . $clave;
-    return strtoupper(sha1($message));
-    }
-   */
+  
+   
   /*   * ******************************************************************************************************* */
   /*   * ******************************************************************************************************* */
   /*   * ******************************************************************************************************* */

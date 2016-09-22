@@ -6,7 +6,7 @@ $surt = false;
 if (isset($_REQUEST['reset_estat']) && $_REQUEST['reset_estat'] == 'reset_estat') {
   $id_reserva = isset($_REQUEST['pidr']) ? $_REQUEST['pidr'] : '****';
   $idr = substr($id_reserva,-4);
-  $dest = 'http://' . $_SERVER['HTTP_HOST'] . "/reservar/Gestor_form.php?a=reset_estat&b=$idr&c=reserves";
+  $dest = 'http://' . $_SERVER['HTTP_HOST'] . "/cb-reserves/reservar/Gestor_form.php?a=reset_estat&b=$idr&c=reserves";
   header("Location: $dest ");
 }
 

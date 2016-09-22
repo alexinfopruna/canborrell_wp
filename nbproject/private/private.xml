@@ -4,12 +4,16 @@
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
             <file>file:/var/www/canborrell-wp/wp-content/themes/onetone_cb/functions.php</file>
+            <file>file:/var/www/canborrell-wp/wp-content/plugins/photo-gallery/photo-gallery.php</file>
+            <file>file:/var/www/canborrell-wp/wp-content/themes/onetone_cb/js/galeria.js</file>
+            <file>file:/var/www/canborrell-wp/cb-reserves/reservar/Gestor_form.php</file>
             <file>file:/var/www/canborrell-wp/wp-content/themes/onetone_cb/style.css</file>
-            <file>file:/var/www/canborrell-wp/wp-content/themes/onetone_cb/footer.php</file>
-            <file>file:/var/www/canborrell-wp/wp-config.php</file>
-            <file>file:/var/www/canborrell-wp/wp-content/plugins/calendari_reserves/calendari_reserves.php</file>
-            <file>file:/var/www/canborrell-wp/wp-content/themes/onetone_cb/header.php</file>
+            <file>file:/var/www/canborrell-wp/wp-content/themes/onetone_cb/page-reservar.php</file>
+            <file>file:/var/www/canborrell-wp/cb-reserves/reservar/js/form_reserves_grups.js</file>
+            <file>file:/var/www/canborrell-wp/wp-content/themes/onetone_cb/alax_template.php</file>
             <file>file:/var/www/canborrell-wp/cb-reserves/reservar/form_grups.php</file>
+            <file>file:/var/www/canborrell-wp/cb-reserves/reservar/js/form_reserves.js</file>
+            <file>file:/var/www/canborrell-wp/cb-reserves/reservar/translate_ca.php</file>
         </group>
     </open-files>
 </project-private>

@@ -1,5 +1,5 @@
 <?php
-
+echo "WWWWWWWWWWWWWWWWWW";die();
 
 if (!isset($lang)) $lang='cat';
 if (!isset($PERSONES_GRUP)) $PERSONES_GRUP=12;

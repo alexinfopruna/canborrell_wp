@@ -1,4 +1,10 @@
 <?php
+if ($_SERVER['REQUEST_URI']=='/reservar/') {
+  $newURL = '/reservar/realitzar-reserva';
+  header('Location: '.$newURL);
+  exit();
+}
+
 /*
   Template Name: Reserves
  */
@@ -91,7 +97,6 @@ else {
 if (!isset($_POST['idr']))
   $_POST['idr'] = null;
 $EDITA_RESERVA = $_POST['idr'];
-
 
 
 
@@ -200,7 +205,7 @@ function reservar_enqueue_styles() {
       }                 
 
       <?php
-      if (!$paga_i_senyal)
+      if (isset($paga_i_senyal) && !$paga_i_senyal)
         echo ".info-paga-i-senyal{display:none}";
       ?>
 
@@ -225,12 +230,13 @@ print "\nvar HORA='" . $row['hora'] . "';";
   </script>
 
   <?php
-//require_once('cb-reserves/reservar/translate_' . $gestor->lng . '.php');
-  require_once('cb-reserves/reservar/translate_' . 'ca' . '.php');
+//  require_once(ROOT.'/../reservar/translate_' . 'ca' . '.php');
   //wp_enqueue_style('reservar', '/cb-reserves/taules/css/blitzer/jquery-ui-1.8.9.forms.css');
 }
-
+require_once(ROOT.'../reservar/translate_' . $lang . '.php');
+$g=$gestor;
 get_header();
+$gestor=$g;
 
 $sidebar = isset($page_meta['page_layout']) ? $page_meta['page_layout'] : 'none';
 $left_sidebar = isset($page_meta['left_sidebar']) ? $page_meta['left_sidebar'] : '';
@@ -269,12 +275,12 @@ if ($padding_bottom)
 
       <section class="page-title-bar title-left no-subtitle" style="">
           <div class="container">
+              <?php onetone_get_breadcrumb(array("before" => "<div class=''>", "after" => "</div>", "show_browse" => false, "separator" => '', 'container' => 'div')); ?>
               <hgroup class="page-title">
                   <h1>
                       <?php the_title(); ?>
                   </h1>
               </hgroup>
-              <?php onetone_get_breadcrumb(array("before" => "<div class=''>", "after" => "</div>", "show_browse" => false, "separator" => '', 'container' => 'div')); ?>
               <div class="clearfix"></div>
           </div>
       </section>
@@ -375,7 +381,7 @@ if ($padding_bottom)
                                                   <?php
                                                   $test = isset($_REQUEST['testTPV']) ? '&testTPV=' . $_REQUEST['testTPV'] : "";
                                                   ?>
-                                                  <form id="form-reserves" action="Gestor_form.php?a=submit<?php echo $test; ?>" method="post" name="fr-reserves" accept-charset="utf-8"><!---->
+                                                  <form id="form-reserves" action="/cb-reserves/reservar/Gestor_form.php?a=submit<?php echo $test; ?>" method="post" name="fr-reserves" accept-charset="utf-8"><!---->
                                                       <input type="hidden" name="id_reserva" value="<?php echo isset($_REQUEST['idr']) ? $_REQUEST['idr'] : ""; ?>"/>
                                                       <input type="hidden" name="reserva_info" value="<?php echo $row['reserva_info']; ?>"/>
                                                       <div id="fr-reserves" class="fr-reserves">
@@ -780,47 +786,12 @@ if ($padding_bottom)
                                                   </div>
 
                                                   <div id="reserves_info" class="ui-helper-hidden">
-                                                      <?php include("reservesInfo_" . substr($lang, 0, 2) . ".html"); ?>
+                                                      <?php include(ROOT."/../reservar/reservesInfo_" . substr($lang, 0, 2) . ".html"); ?>
                                                   </div>
 
-                                                  <div id="debug">  </div>
                                               </div>
 
-                                              <div class="c-b"></div>
-                                              <footer>
-                                                  <div class="col-md-9" style="">
-                                                      <a href="/<?php echo $lang ?>/canborrell" style="font-size:40px;COLOR:WHITE;text-decoration: none;">Masia Can Borrell</a> 
-                                                      <p style="font-size:15px;COLOR:WHITE;">
-                                                          <a href="https://www.google.com/maps/embed?pb=!1m10!1m8!1m3!1d5980.091215599049!2d2.1106732571472264!3d41.45992612611381!3m2!1i1024!2i768!4f13.1!5e0!3m2!1sca!2ses!4v1461711293148" class="gmaps" style="font-size:15px;COLOR:WHITE;" target="_blank" title="Mapa">
-                                                              Carretera d'Horta a Cerdanyola (BV-1415), km 3 <br> 08171 Sant Cugat del Vallès
-                                                          </a>
-                                                      </p>
-                                                      <style scoped>
-                                                          footer #main-menu a{background-color: transparent;}
-                                                      </style>
-                                                      <?php
-                                                      $footer_elements = array(
-                                                        array('link' => 'reservar', 'txt' => 'RESERVES'),
-                                                        array('link' => 'plats', 'txt' => 'CARTA I MENU'),
-                                                        array('link' => 'on', 'txt' => 'ON SOM: MAPA'),
-                                                        array('link' => 'horaris', 'txt' => 'HORARI'),
-                                                        array('link' => 'reservar/form.php?contacte', 'txt' => 'CONTACTE'),
-                                                      );
-
-                                                      echo main_menu($footer_elements, $lang);
-                                                      ?>
-
-                                                  </div>
-
-                                                  <div class="col-md-3">
-                                                      <div id="datepicker"></div> 
-
-                                                      <!-- <button type="submit" class="btn btn-success">Reservar</button> -->
-                                                  </div>
-
-                                                  <div class="c-b"></div>
-                                              </footer>
-
+                                            
                                           </div> <!-- row -->
                                       </div> <!-- container -->
 

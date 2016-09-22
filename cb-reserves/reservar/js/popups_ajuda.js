@@ -113,6 +113,8 @@ function dialog_opened() {
     if ($("#popup").dialog("isOpen"))       return true;
     if ($("#caixa_reserva_consulta_online").is(":visible")) return true;
     if ($("#osx-modal-content").is(":visible")) return true;
+    
+    //if ($("#popupGrups").hasClass('ui-dialog-content')) {alert("SIII");}
     if ($("#popupGrups").dialog("isOpen"))  return true;
 
     return false;

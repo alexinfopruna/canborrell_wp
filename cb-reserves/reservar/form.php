@@ -432,7 +432,7 @@ else {
 <?php
 $test = isset($_REQUEST['testTPV']) ? '&testTPV=' . $_REQUEST['testTPV'] : "";
 ?>
-                                    <form id="form-reserves" action="Gestor_form.php?a=submit<?php echo $test; ?>" method="post" name="fr-reserves" accept-charset="utf-8"><!---->
+                                    <form id="form-reserves" action="/cb-reserves/reservar/Gestor_form.php?a=submit<?php echo $test; ?>" method="post" name="fr-reserves" accept-charset="utf-8"><!---->
                                         <input type="hidden" name="id_reserva" value="<?php echo isset($_REQUEST['idr']) ? $_REQUEST['idr'] : ""; ?>"/>
                                         <input type="hidden" name="reserva_info" value="<?php echo $row['reserva_info']; ?>"/>
                                         <div id="fr-reserves" class="fr-reserves">
@@ -609,12 +609,12 @@ $chek1 = ($estat['accesible'] == 0 ? '' : 'checked="checked"');
                                                 <!-- ******  DINAR  ********   -->
                                                 <h4><?php l('Dinar'); ?></h4>
                                                 <div id="selectorHora" class="col_dere">
-                                                    <img src="css/loading.gif"/>
+                                                    <img src="/cb-reserves/reservar/css/loading.gif"/>
                                                 </div>
                                                 <!-- ******  SOPAR  ********   -->
                                                 <h4><?php l('Sopar'); ?></h4>
                                                 <div id="selectorHoraSopar" class="col_dere" >
-                                                    <img src="css/loading.gif"/>
+                                                    <img src="/cb-reserves/reservar/css/loading.gif"/>
                                                 </div>
 
                                                 <input type="hidden" name="taulaT1" value="">
@@ -815,7 +815,7 @@ if (FALSE && isset($_REQUEST["testTPV"]) && $_REQUEST["testTPV"] = 'testTPV') {
                                                             <!-- ******************* POPUPS INFO *********************** -->
                                                             <!-- ******************* POPUPS INFO *********************** -->
                                                             <!-- ******************* POPUPS INFO *********************** -->
-                                                            <div id="popup" title="<?php l("Connexió amb el sistema de reserves") ?>"><img src="css/loading.gif"/></div>
+                                                            <div id="popup" title="<?php l("Connexió amb el sistema de reserves") ?>"><img src="/cb-reserves/reservar/css/loading.gif"/></div>
                                                             <!--
                                                             <div id="helpxx" title="<?php l("Necessites ajuda?") ?>"><?php l('ALERTA_INFO_INICIAL'); ?>
                                                             </div>

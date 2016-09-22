@@ -36,6 +36,7 @@ i{color:#666;}
     margin-right: auto 
 }
 
+.nota{font-size:12px;}
 /************* BOOTSTRAP *************/
 .panel-default>.panel-heading {
 
@@ -55,6 +56,8 @@ i{color:#666;}
 .panel-heading{
     font-size:20px;
     text-transform: uppercase;
+    padding: 21px 15px 3px 15px;
+    line-height: 1;
 }
 /***************************************/
 
@@ -193,6 +196,12 @@ section.title-left{background-color: #eee;}
 .widget_nav_menu{
     font-size: 14px;
 }
+.widget_nav_menu li {
+    padding: 0;
+    margin: 0;
+    border-bottom: 0;
+    border-radius: 4px;
+}
 
 /***************************************************************/
 /***************************************************************/
@@ -203,6 +212,18 @@ section.title-left{background-color: #eee;}
 /* CONTENT */
 /* CONTENT */
 /* CONTENT */
+
+iframe .gm-style,
+iframe html,
+iframe body,
+iframe
+{
+     border-radius: 6px;
+}
+
+#mapDiv{
+     border-radius: 6px;
+}
 
 .entry-title{
     font-family: 'Poppins', 'Open Sans', sans-serif;
@@ -268,6 +289,70 @@ ul.carta li:before,
 */
 
 
+/***************vGALERIA ********************/
+#spider_popup_wrap .fa{
+    font-size: 50px;
+}
+
+#galeria-ajax{background:white;margin-top:45px;}
+#galeria-ajax .loading{width:30px;}
+#galeria-ajax .bwg_standart_thumb_spun1_0:hover{
+    opacity: 0.9 !important;
+    filter: Alpha(opacity=90)  !important;;
+    transform: scale(1.05) !important;;
+}
+#galeria-ajax #galeria-ajax .bwg_standart_thumbnails_0 {
+    text-align: left !important;
+}
+
+#galeria-ajax #bwg_container1_0 #bwg_container2_0 .bwg_standart_thumbnails_0{
+    max-width:none;
+    text-align: left;
+}
+
+
+
+.img-box .fa-link:before{
+	content: "\f03e";
+}
+
+.img-box i.fa.fa-link:after{
+    font-family:  'Poppins', 'Open Sans', sans-serif;
+}
+
+.col-md-4:nth-child(1) i.fa.fa-link:after{
+	content: " Exterior";
+        
+}
+ .col-md-4:nth-child(2) i.fa.fa-link:after{
+	content: " Interior";
+}
+ .col-md-4:nth-child(3) i.fa.fa-link:after{
+	content: " Cuina";
+}
+#gallery .row:nth-child(4)  .col-md-4:nth-child(1) i.fa.fa-link:after{
+	content: " Graella";
+}
+#gallery  .row:nth-child(4) .col-md-4:nth-child(2) i.fa.fa-link:after{
+	content: " Equip";
+}
+#gallery  .row:nth-child(4) .col-md-4:nth-child(3) i.fa.fa-link:after{
+	content: " Plats";
+}
+
+
+.dotted {
+  padding: 2.25em 1.6875em;
+  background-image: -webkit-repeating-radial-gradient(center center, rgba(0,0,0,.2), rgba(0,0,0,.2) 2px, transparent 1px, transparent 100%);
+  background-image: -moz-repeating-radial-gradient(center center, rgba(0,0,0,.2), rgba(0,0,0,.2) 2px, transparent 1px, transparent 100%);
+  background-image: -ms-repeating-radial-gradient(center center, rgba(0,0,0,.2), rgba(0,0,0,.2) 2px, transparent 1px, transparent 100%);
+  background-image: repeating-radial-gradient(center center, rgba(0,0,0,.2), rgba(0,0,0,.2) 2px, transparent 1px, transparent 100%);
+  -webkit-background-size: 4px 4px;
+  -moz-background-size: 4px 4px;
+  background-size: 4px 4px;
+  }
+
+
 /* SECTIONS */
 /* SECTIONS */
 /* SECTIONS */
@@ -282,6 +367,8 @@ ul.carta li:before,
     width: 45px;
     height: 45px;
     background-image: url(brasa3.png);
+    background-image: url(grill.png);
+    background-repeat: no-repeat;
 }
 .fa-calcots{
     width: 31px;
@@ -348,43 +435,57 @@ footer .border-left{
 }
 
 /**** FOOTER MENU ************************************************************************/
-footer nav.footer-menu-1 #menu-main li:first-child a:before{
-    content:"\f271  \0000a0 \0000a0 \0000a0";
+
+footer nav.footer-menu-1 #menu-main li:nth-child(1) a:before{
+    content:"\f278   \0000a0 \0000a0 \0000a0";
+    content:"\f041   \0000a0 \0000a0 \0000a0";
     font-family: FontAwesome;
 
 }
 footer nav.footer-menu-1 #menu-main li:nth-child(2) a:before{
-    content:"\f278   \0000a0 \0000a0 \0000a0";
-    font-family: FontAwesome;
-
-}
-footer nav.footer-menu-1 #menu-main li:nth-child(3) a:before{
     content:"\f017   \0000a0 \0000a0 \0000a0";
     font-family: FontAwesome;
 
 }
+footer nav.footer-menu-1 #menu-main li:nth-child(3) a:before{
+    content:"\f0f6  \0000a0 \0000a0 \0000a0";
+    font-family: FontAwesome;
+
+}
 footer nav.footer-menu-1 #menu-main li:nth-child(4) a:before{
+    content:"\f278  \0000a0 \0000a0 \0000a0";
+    font-family: FontAwesome;
+
+}
+footer nav.footer-menu-1 #menu-main li:nth-child(5) a:before{
     content:"\f003  \0000a0 \0000a0 \0000a0";
     font-family: FontAwesome;
 
 }
 /**********/
-footer nav.footer-menu-2 #menu-main li:first-child a:before{
+footer nav.footer-menu-2 #menu-main li:nth-child(1) a:before{
+    content:"\f271  \0000a0 \0000a0 \0000a0";
+    font-family: FontAwesome;
+
+}
+
+
+footer nav.footer-menu-2 #menu-main li:nth-child(2) a:before{
     content:"\f044  \0000a0 \0000a0 \0000a0";
     font-family: FontAwesome;
 
 }
-footer nav.footer-menu-2 #menu-main li:nth-child(2) a:before{
+footer nav.footer-menu-2 #menu-main li:nth-child(3) a:before{
     content:"\f273   \0000a0 \0000a0 \0000a0";
     font-family: FontAwesome;
 
 }
-footer nav.footer-menu-2 #menu-main li:nth-child(3) a:before{
+footer nav.footer-menu-2 #menu-main li:nth-child(4) a:before{
     content:"\f0c0   \0000a0 \0000a0 \0000a0";
     font-family: FontAwesome;
 
 }
-footer nav.footer-menu-2 #menu-main li:nth-child(4) a:before{
+footer nav.footer-menu-2 #menu-main li:nth-child(5) a:before{
     content:"\f153  \0000a0 \0000a0 \0000a0";
     font-family: FontAwesome;
 
@@ -401,7 +502,11 @@ footer nav.footer-menu-2 #menu-main li:nth-child(4) a:before{
 
 
 /*******HISTORIA ***********/
-
+.popo{
+    text-decoration:underline;
+     color: #741414;
+    font-style: italic;
+}
 /*
 .page-horari-general-de-cuina .col-main,
 .single-menus .col-main,
@@ -417,8 +522,8 @@ footer nav.footer-menu-2 #menu-main li:nth-child(4) a:before{
                                                       box-shadow: inset 0 1px 1px rgba(0,0,0,.05);
 
 }
-*/
 
+*/
 
 
 
@@ -532,10 +637,10 @@ footer nav.footer-menu-2 #menu-main li:nth-child(4) a:before{
 
 
 #premsa-posts li a .publicacio-premsa{
-    color: #3c763d;
+    color: #741414;
 }
 #premsa-posts li a .publicacio-premsa:hover{
-    color: #3c763d;
+    color: 770000;
 }
 
 
@@ -647,6 +752,13 @@ section.home-section-6 .row p {
 #testimonials{
     background-color: #544;
     padding:0;
+}
+
+#gallery-close{
+    font-size:40px;
+}
+#gallery-close:hover{
+    opacity: 0.7;
 }
 
 #gallery img{

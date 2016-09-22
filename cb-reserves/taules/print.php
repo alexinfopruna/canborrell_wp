@@ -192,7 +192,7 @@ td.hora-mati.online{background:#FFB300} /*groc*/
 	</div>
 
 <div id="img_menjador">
-	<img src="css/loading.gif"/>
+	<img src="/cb-reserves/reservar/css/loading.gif"/>
 </div>
 			<div id="llista_reserves" class="pageBreak">
 			  <?php

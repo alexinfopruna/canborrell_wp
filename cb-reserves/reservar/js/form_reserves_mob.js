@@ -342,8 +342,8 @@ function comportamentDia()
 
 function recargaHores()
 {
-	$("#selectorHora").html('<img src="css/loading.gif"/>');
-	$("#selectorHoraSopar").html('<img src="css/loading.gif"/>');		
+	$("#selectorHora").html('<img src="/cb-reserves/reservar/css/loading.gif"/>');
+	$("#selectorHoraSopar").html('<img src="/cb-reserves/reservar/css/loading.gif"/>');		
 	
 	var hora=$("input[name='hora']:checked").val();
 	if (HORA!='') 

@@ -309,12 +309,12 @@ echo LOCAL ? " local " : "" ?>">
                                 <!-- ******  DINAR  ********   -->
                                 <h4><?php l('Dinar'); ?></h4>
                                 <div id="selectorHora" class="col_dere">
-                                    <img src="css/loading.gif"/>
+                                    <img src="/cb-reserves/reservar/css/loading.gif"/>
                                 </div>
                                 <!-- ******  SOPAR  ********   -->
                                 <h4><?php l('Sopar'); ?></h4>
                                 <div id="selectorHoraSopar" class="col_dere" >
-                                    <img src="css/loading.gif"/>
+                                    <img src="/cb-reserves/reservar/css/loading.gif"/>
                                 </div>
 
                                 <input type="hidden" name="taulaT1" value="">

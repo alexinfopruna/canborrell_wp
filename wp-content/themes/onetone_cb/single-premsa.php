@@ -20,10 +20,10 @@ $aside          = 'both-aside';
 <article id="post-<?php the_ID(); ?>" <?php post_class(); ?>>
 <section class="page-title-bar title-left no-subtitle" style="">
             <div class="container">
+                <?php onetone_get_breadcrumb(array("before"=>"<div class=''>","after"=>"</div>","show_browse"=>false,"separator"=>'','container'=>'div'));?> 
                 <hgroup class="page-title">
                     <h1><?php the_title();?></h1>
                 </hgroup>
-                <?php onetone_get_breadcrumb(array("before"=>"<div class=''>","after"=>"</div>","show_browse"=>false,"separator"=>'','container'=>'div'));?> 
                 <div class="clearfix"></div>            
             </div>
         </section>

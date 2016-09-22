@@ -3,7 +3,7 @@ var browser_malo = (navigator.appVersion.indexOf("MSIE 7.") != -1);
 //var TIMER_INTERVAL = 110000;
 var TIMER_INTERVAL = 110000;
 
-var GESTOR = "Gestor_form.php";
+var GESTOR = "/cb-reserves/reservar/Gestor_form.php";
 var client_auto = true;
 var TAULA = 0;
 var DATA = "01/01/2011";
@@ -36,7 +36,6 @@ var dlg = {
     },
     close: tanca_dlg
 };
-
 
 
 if (typeof permisos === 'undefined')
@@ -279,7 +278,7 @@ $(function () {
     /* */
     var d = new Date();
     var rand = d.getTime();
-    var desti = "../taules/dumpBD.php?drop&file&hores=4";
+    var desti = "/cb-reserves/taules/dumpBD.php?drop&file&hores=4";
     $.post(desti, {r: rand}, function (datos) {
         if (datos == "backup" && permisos > 64)
             alert("S'ha realitzat una còpia de la base de dades");
@@ -469,8 +468,8 @@ function comportamentDia()
 
 function recargaHores()
 {
-    $("#selectorHora").html('<img src="css/loading.gif"/>');
-    $("#selectorHoraSopar").html('<img src="css/loading.gif"/>');
+    $("#selectorHora").html('<img src="/cb-reserves/reservar/css/loading.gif"/>');
+    $("#selectorHoraSopar").html('<img src="/cb-reserves/reservar/css/loading.gif"/>');
 
     var hora = $("input[name='hora']:checked").val();
     if (HORA != '')
@@ -971,7 +970,7 @@ function controlSubmit()
         if ($("#popup").is(':visible'))
             SUBMIT_OK = SUBMIT_OK;
         else {
-            $("#popup").html('<div style="height:320px"><img src="css/loading.gif" /></div>');
+            $("#popup").html('<div style="height:320px"><img src="/cb-reserves/reservar/css/loading.gif"/></div>');
             $("#popup").dialog('open');
         }
 
@@ -989,7 +988,7 @@ function controlSubmit()
             {
                 $("#popup").bind("dialogclose", function (event, ui) {
                     $.post(GESTOR + "?a=cancelPagaISenyal&b=" + obj.idr);
-                    window.location.href = "../" + lang + "/on.html";
+                    window.location.href = "/#about";
                 });
 
                 SUBMIT_OK = true;

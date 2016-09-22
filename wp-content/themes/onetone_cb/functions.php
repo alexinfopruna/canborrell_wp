@@ -11,16 +11,62 @@ require_once('tipus/premsa-functions.php'); // Testimonial Post Type
 require_once('tipus/menus-functions.php'); // Testimonial Post Type
 // require_once('tipus/menusz-functions.php'); // Testimonial Post Type
 
+
+add_filter( 'the_content', 'filter_the_content_in_the_main_loop' );
+ 
+function filter_the_content_in_the_main_loop( $content ) {
+ 
+ if (isset($_REQUEST['gallery']) && isset($_REQUEST['title'])) {
+   $galeria = bwg_shortcode(array('id' => $_REQUEST['gallery']));
+   $title = $_REQUEST['title'];
+   $content =  '<h1>'.$title.'</h1><div class="well cb-ajax-gallery">'.$galeria.'</div>'.$content;
+   
+   $contentxxx = '<div class="panel panel-default">
+  <div class="panel-heading">'.$title.'</div>
+  <div class="panel-body"><div class=" cb-ajax-gallery">'.$galeria.'</div></div>
+</div>'.$content;
+   
+  // $content .= $galeria;
+   
+ }
+ 
+ 
+ 
+    return $content;
+}
+
+
 function canborrell_enqueue_styles() {
 
   $parent_style = 'parent-style';
 
   wp_enqueue_style($parent_style, get_template_directory_uri() . '/style.css');
-  wp_enqueue_style('child-style', get_stylesheet_directory_uri() . '/style.css', array($parent_style)
-  );
-}
+  wp_enqueue_style('child-style', get_stylesheet_directory_uri() . '/style.css', array($parent_style)  );
+  wp_enqueue_script( 'galeria', get_stylesheet_directory_uri() .'/js/galeria.js', array('jquery'), '1.0', true );
+  $translation_array = array(
+  'exterior' => __( 'Exterior' ),
+  'interior' => __( 'Interior' ),
+  'cuina' => __( 'Cuina' ),
+  'graella' => __( 'Graella' ),
+  'equip' => __( 'Equip' ),
+  'plats' => __( 'Plats')
+);
+wp_localize_script( 'galeria', 'gallery_texts', $translation_array );
 
+  //cho get_stylesheet_directory_uri() .'/js/galeria.js';die();
+}
 add_action('wp_enqueue_scripts', 'canborrell_enqueue_styles');
+
+
+
+
+add_action( 'wp_ajax_nopriv_ajax_galeria', 'my_ajax_galeria' );
+add_action( 'wp_ajax_ajax_galeria', 'my_ajax_galeria' );
+
+function my_ajax_galeria() {
+    echo "EOEEEEEOEOEO";
+    die();
+}
 
 
 

@@ -116,7 +116,7 @@ class Gestor_filtre_carta extends Gestor_form
           <td>
           '.$publicat.'
           <input id="carta_check'.$val['id'].'" cpid="'.$val['id'].'" type="checkbox" name="carta_cjeck'.$c++.'" class="contador '.$class.'" '.$value.' preu="'.$preu.'" nom="'.$val['nom'].'" '.$checked.'/></td>
-              <td class="resum-carta-nom" href="Gestor_form.php?a=TTmenu&b='.$val['id'].'">'.$val['nom'].'</td>
+              <td class="resum-carta-nom" href="/cb-reserves/reservar/Gestor_form.php?a=TTmenu&b='.$val['id'].'">'.$val['nom'].'</td>
                   <td class="td-carta-preu"><span class="carta-preu">'.$preu.'</span>&euro; </td>
                       <!--<td class="carta-subtotal"><em>(subtotal: <span class="carta-preu-subtotal">0</span>&euro; )</em></td></tr>-->'.PHP_EOL;
     }
