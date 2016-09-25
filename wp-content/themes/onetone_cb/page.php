@@ -38,6 +38,8 @@ $container_css .= 'padding-top:'.$padding_top.';';
 if( $padding_bottom )
 $container_css .= 'padding-bottom:'.$padding_bottom.';';
 
+
+
 ?>
 <article id="post-<?php the_ID(); ?>" <?php post_class(); ?>>
   <?php if (  $display_breadcrumb == 'yes' ): ?>

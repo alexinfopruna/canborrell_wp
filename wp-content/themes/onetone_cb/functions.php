@@ -5,6 +5,16 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
+$translation_array = array(
+  'exterior' => __( 'Exterior' ),
+  'interior' => __( 'Menjadors' ),
+  'cuina' => __( 'Cuina' ),
+  'graella' => __( 'Graella' ),
+  'equip' => __( 'Equip' ),
+  'plats' => __( 'Plats')
+);
+
+
 
 // TIPUS
 require_once('tipus/premsa-functions.php'); // Testimonial Post Type
@@ -37,22 +47,17 @@ function filter_the_content_in_the_main_loop( $content ) {
 
 
 function canborrell_enqueue_styles() {
+  global $translation_array;
 
   $parent_style = 'parent-style';
 
   wp_enqueue_style($parent_style, get_template_directory_uri() . '/style.css');
   wp_enqueue_style('child-style', get_stylesheet_directory_uri() . '/style.css', array($parent_style)  );
   wp_enqueue_script( 'galeria', get_stylesheet_directory_uri() .'/js/galeria.js', array('jquery'), '1.0', true );
-  $translation_array = array(
-  'exterior' => __( 'Exterior' ),
-  'interior' => __( 'Interior' ),
-  'cuina' => __( 'Cuina' ),
-  'graella' => __( 'Graella' ),
-  'equip' => __( 'Equip' ),
-  'plats' => __( 'Plats')
-);
+  
 wp_localize_script( 'galeria', 'gallery_texts', $translation_array );
 
+capsaleres_geleria();
   //cho get_stylesheet_directory_uri() .'/js/galeria.js';die();
 }
 add_action('wp_enqueue_scripts', 'canborrell_enqueue_styles');
@@ -62,6 +67,38 @@ add_action('wp_enqueue_scripts', 'canborrell_enqueue_styles');
 
 add_action( 'wp_ajax_nopriv_ajax_galeria', 'my_ajax_galeria' );
 add_action( 'wp_ajax_ajax_galeria', 'my_ajax_galeria' );
+
+
+function capsaleres_geleria(){
+  global $translation_array;
+  
+  
+  echo '<style id="puf">';
+  
+  echo '
+    .col-md-4:nth-child(1) i.fa.fa-link:after{
+	content: " '.$translation_array['exterior'].'";
+}
+ .col-md-4:nth-child(2) i.fa.fa-link:after{
+	content: " '.$translation_array['interior'].'";
+}
+ .col-md-4:nth-child(3) i.fa.fa-link:after{
+	content: " '.$translation_array['cuina'].'";
+}
+#gallery .row:nth-child(4)  .col-md-4:nth-child(1) i.fa.fa-link:after{
+	content: " '.$translation_array['graella'].'";
+}
+#gallery  .row:nth-child(4) .col-md-4:nth-child(2) i.fa.fa-link:after{
+	content: " '.$translation_array['equip'].'";
+}
+#gallery  .row:nth-child(4) .col-md-4:nth-child(3) i.fa.fa-link:after{
+	content: " '.$translation_array['plats'].'";
+}';
+  
+  echo '</style>';
+}
+
+
 
 function my_ajax_galeria() {
     echo "EOEEEEEOEOEO";

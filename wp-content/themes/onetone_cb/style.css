@@ -316,16 +316,17 @@ ul.carta li:before,
 	content: "\f03e";
 }
 
+
 .img-box i.fa.fa-link:after{
     font-family:  'Poppins', 'Open Sans', sans-serif;
 }
-
+/*
 .col-md-4:nth-child(1) i.fa.fa-link:after{
 	content: " Exterior";
         
 }
  .col-md-4:nth-child(2) i.fa.fa-link:after{
-	content: " Interior";
+	content: " Menjadors";
 }
  .col-md-4:nth-child(3) i.fa.fa-link:after{
 	content: " Cuina";
@@ -340,16 +341,27 @@ ul.carta li:before,
 	content: " Plats";
 }
 
-
+*/
 .dotted {
   padding: 2.25em 1.6875em;
-  background-image: -webkit-repeating-radial-gradient(center center, rgba(0,0,0,.2), rgba(0,0,0,.2) 2px, transparent 1px, transparent 100%);
-  background-image: -moz-repeating-radial-gradient(center center, rgba(0,0,0,.2), rgba(0,0,0,.2) 2px, transparent 1px, transparent 100%);
-  background-image: -ms-repeating-radial-gradient(center center, rgba(0,0,0,.2), rgba(0,0,0,.2) 2px, transparent 1px, transparent 100%);
-  background-image: repeating-radial-gradient(center center, rgba(0,0,0,.2), rgba(0,0,0,.2) 2px, transparent 1px, transparent 100%);
-  -webkit-background-size: 4px 4px;
-  -moz-background-size: 4px 4px;
-  background-size: 4px 4px;
+  background-image: -webkit-repeating-radial-gradient(center center, rgba(0,0,0,.8), rgba(0,0,0,.8) 1px, transparent 1px, transparent 100%);
+  background-image: -moz-repeating-radial-gradient(center center, rgba(0,0,0,.8), rgba(0,0,0,.8) 1px, transparent 1px, transparent 100%);
+  background-image: -ms-repeating-radial-gradient(center center, rgba(0,0,0,.8), rgba(0,0,0,.8) 1px, transparent 1px, transparent 100%);
+  background-image: repeating-radial-gradient(center center, rgba(0,0,0,.8), rgba(0,0,0,.8) 1px, transparent 1px, transparent 100%);
+  -webkit-background-size: 5px 5px;
+  -moz-background-size: 5px 5px;
+  background-size: 5px 5px;
+  }
+
+.dotted2 {
+  padding: 2.25em 1.6875em;
+  background-image: -webkit-repeating-radial-gradient(center center, rgba(0,0,0,.2), rgba(0,0,0,.2) 1.5px, transparent 1px, transparent 100%);
+  background-image: -moz-repeating-radial-gradient(center center, rgba(0,0,0,.2), rgba(0,0,0,.2) 1.5px, transparent 1px, transparent 100%);
+  background-image: -ms-repeating-radial-gradient(center center, rgba(0,0,0,.2), rgba(0,0,0,.2) 1.5px, transparent 1px, transparent 100%);
+  background-image: repeating-radial-gradient(center center, rgba(0,0,0,.2), rgba(0,0,0,.2) 1.5px, transparent 1px, transparent 100%);
+  -webkit-background-size: 3px 3px;
+  -moz-background-size: 3px 3px;
+  background-size: 3px 3px;
   }
 
 
@@ -507,6 +519,12 @@ footer nav.footer-menu-2 #menu-main li:nth-child(5) a:before{
      color: #741414;
     font-style: italic;
 }
+
+
+.well-center{text-align:center;}
+.well-center img{float:none;
+	 display:inline-block;}
+
 /*
 .page-horari-general-de-cuina .col-main,
 .single-menus .col-main,

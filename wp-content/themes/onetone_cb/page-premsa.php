@@ -1,9 +1,7 @@
 <?php
-/**
- * The template for displaying all single posts.
- *
- * @package onetone
- */
+/*
+Template Name: Premsa Template
+*/
 get_header(); 
 
 //the_post();
