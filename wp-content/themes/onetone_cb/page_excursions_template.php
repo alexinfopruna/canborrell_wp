@@ -8,6 +8,7 @@ get_header();
 //global $post;
 //print_r($post);die();
 
+
 $sidebar                   = isset($page_meta['page_layout'])?$page_meta['page_layout']:'none';
 $left_sidebar              = isset($page_meta['left_sidebar'])?$page_meta['left_sidebar']:'';
 $left_sidebar   = "sidebar-4";
@@ -122,4 +123,7 @@ $container_css .= 'padding-bottom:'.$padding_bottom.';';
     </div>
   </div>
 </article>
-<?php get_footer(); ?>
+<?php 
+get_footer(); 
+?>
+
