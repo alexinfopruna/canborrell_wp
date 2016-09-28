@@ -203,6 +203,14 @@ section.title-left{background-color: #eee;}
     border-radius: 4px;
 }
 
+.widget_nav_menu li a{
+    border-left:#e5e5e5 solid 1px;
+}
+.widget_nav_menu li a:hover{
+    background-color: #F1F1F1;
+    color: #444;
+}
+
 /***************************************************************/
 /***************************************************************/
 /***************************************************************/
@@ -352,7 +360,7 @@ ul.carta li:before,
   background-size: 5px 5px;
   }
 
-.dotted2 {
+.dotte2 {
   padding: 2.25em 1.6875em;
   background-image: -webkit-repeating-radial-gradient(center center, rgba(0,0,0,.2), rgba(0,0,0,.2) 1.5px, transparent 1px, transparent 100%);
   background-image: -moz-repeating-radial-gradient(center center, rgba(0,0,0,.2), rgba(0,0,0,.2) 1.5px, transparent 1px, transparent 100%);
@@ -369,7 +377,7 @@ ul.carta li:before,
 /* SECTIONS */
 /* SECTIONS */
 
-
+/*
 section.home-section-1{
       background-color: black;
       background: black;
@@ -377,7 +385,7 @@ section.home-section-1{
 #wrapper_mbYTP_onetone-youtube-video{
     z-index:1 !important;
 }
-
+*/
 .magee-feature-box h3 {
     font-weight: bold;
 }
@@ -696,6 +704,10 @@ footer nav.footer-menu-2 #menu-main li:nth-child(5) a:before{
     color:white;
 }
 
+#ressenya a:hover{
+    text-decoration: underline;
+}
+
 #ressenya i{
     color: #ddd;
 }
@@ -743,6 +755,13 @@ footer nav.footer-menu-2 #menu-main li:nth-child(5) a:before{
 /************ HOME *************************/
 /************ HOME *************************/
 /************ HOME *************************/
+body.home{
+    background-color: black !important;
+}
+
+
+
+
 
 #about .col-md-8 .alert-white{
    font-size: 12px;
@@ -802,9 +821,62 @@ section.home-section-6 .row p {
 
 } 
 
+#wrapper_mbYTP_onetone-youtube-video{
+    background-color: black !important;
+}
+
+
 
 
 #contact .container h1{
     ccborder-top: #444 solid 2px;
 }
 
+/***********************************************/
+/***********************************************/
+/************  FORM RESERVES  ******************/
+/***********************************************/
+/***********************************************/
+.page-realitzar-reserva  .post-inner {
+    background-image: url(/wp-content/uploads/assets/reserva.jpg);
+    background-repeat: no-repeat;
+}
+
+
+.reservar .ui-state-active{
+   background:#8E7252; 
+}
+.reservar .ui-state-default:hover{
+   background:#BD7E22; 
+}
+
+
+label.ptpv.ui-state-active {
+    background: #BD7E00;
+}
+label.ptpv.ui-state-active:hover {
+    background: #BD7E22;
+}
+
+#labelGrups, label[for='comGrups'] {
+    font-size: 1.2em;
+    color: #FFC000;
+}
+
+label.ptpv {
+    background: #FFC000;
+}
+label.ptpv:hover {
+    background: #FFF000;
+}
+
+.number{
+    border-radius: 33px;
+    width: 52px;
+    text-align: center;
+}
+
+.caixa{
+    color: #555;
+    font-size: 12px;
+}

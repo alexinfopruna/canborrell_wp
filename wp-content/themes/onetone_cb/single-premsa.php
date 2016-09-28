@@ -161,7 +161,7 @@ $aside          = 'both-aside';
                        <?php get_sidebar('postright');?>
                     </div>
                     <?php endif; ?>
-                </div>
+                </div> 
             </div>  
         </div>
 

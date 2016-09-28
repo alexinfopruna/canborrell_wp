@@ -409,10 +409,10 @@ PANTALLES FINS A 770
         // styles
         body{font-size:3em !important;}
         #poma-fons{background-image:url(../../img/fons_9a.jpg) }
-        .fr-seccio-carta {max-width: 729px;}
+      /*  .fr-seccio-carta {max-width: 729px;}*/
         #calendari{font-size:1.6em}
 
-        #jnc{max-width:50%;}
+        #jnc{max-width:500px;}
         hr{display:none;} 
         .m-mes, .m-menys{display:none}
         .info-ico{display:none}

@@ -6,6 +6,7 @@
 var ajaxgaleria = {"ajaxurl":"http:\/\/wordpress.local\/wp-admin\/admin-ajax.php"};
 
 jQuery(document).ready( function($) {
+    
     $("#gallery .img-frame a").click(load_galeria);
      
     $("#galeria-ajax").hide("slow");

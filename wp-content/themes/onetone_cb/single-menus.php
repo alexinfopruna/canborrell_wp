@@ -8,7 +8,6 @@
 get_header(); 
 //$left_sidebar   = onetone_option('left_sidebar_blog_posts','');
 $left_sidebar   = 'sidebar-6';
-
 //echo $left_sidebar;die(); 
 $right_sidebar  = onetone_option('right_sidebar_blog_posts','');
 $aside          = 'no-aside';
@@ -26,7 +25,7 @@ $aside          = 'both-aside';
                 <?php onetone_get_breadcrumb(array("before"=>"<div class=''>","after"=>"</div>","show_browse"=>false,"separator"=>'','container'=>'div'));?> 
                 <hgroup class="page-title">
                     <h1>
-                         <?php echo __( 'Menus', 'canborrell' );//the_title();?>
+                          <?php echo __( 'Menus', 'canborrell' );//the_title();?>
                     
                     </h1>
                 </hgroup>

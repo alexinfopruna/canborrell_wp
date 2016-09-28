@@ -43,9 +43,6 @@ $gestorf->netejaImpagatsTpv(); // TPV I IMPAGATS
 $paga_i_senyal = $PERSONES_GRUP >= persones_paga_i_senyal;
 
 
-
-
-
 //ELIMINA RESERVA 
 if (isset($_POST['cancel_reserva']) && $_POST['cancel_reserva'] == "Eliminar reserva" && $_POST['idr'] > SEPARADOR_ID_RESERVES) {
   if ($gestorf->cancelReserva($_POST['mob'], $_POST['idr'])) {
@@ -301,7 +298,7 @@ if ($padding_bottom)
                               <?php endif; ?>
                               <div class="entry-main">
 
-                                  <div class="entry-content">
+                                  <div class="entry-content reservar">
                                       <?php
                                       the_content();
                                       /*                                       * ******************************************************************* */
@@ -325,17 +322,21 @@ if ($padding_bottom)
                                                   <!-- ***************************************************************************************   -->
                                                   <!-- ***************************************************************************************   -->
                                                   <?php
-                                                  if (!$EDITA_RESERVA)
+                                                  /*
+                                                  if ( !$EDITA_RESERVA)
                                                     include("cb-reserves/reservar/login.php");
                                                   if ($EDITA_RESERVA && $EDITA_RESERVA < SEPARADOR_ID_RESERVES && !isset($_POST['incidencia_grups'])) {
                                                     include("cb-reserves/reservar/form_contactar_grups.php");
                                                   }
+                                                   * 
+                                                   */
                                                   ?>
                                                   <!-- ***************************************************************************************   -->
                                                   <!-- ********     CONTACTE       ***********************************************************   -->
                                                   <!-- ***************************************************************************************   -->
                                                   <!-- ***************************************************************************************   -->
                                                   <?php
+                                                  /*
                                                   if (isset($_POST['incidencia_grups'])) {
                                                     if (!$gestorf->contactar_grups($_POST))
                                                       l("ERROR_CONTACTAR");
@@ -351,6 +352,8 @@ if ($padding_bottom)
                                                   }
                                                   else
                                                     include("cb-reserves/reservar/form_contactar.php");
+                                                   * 
+                                                   */
                                                   ?>
 
 
@@ -388,17 +391,17 @@ if ($padding_bottom)
                                                           <!-- *******************************  QUANTS SOU ********************************************************   -->
                                                           <!-- *******************************  QUANTS SOU ********************************************************   -->
                                                           <!-- *******************************  QUANTS SOU ********************************************************   -->
+                                                          <div class="fr-seccio ui-corner-all fr-seccio-quants" style="xxxmax-width:950px;">
 
        <h1 class="titol"><span class="number">1</span><?php l('Quants sou?'); ?>
                                                                   <a href="#" id="info-quants" class="info-ico"><img src="/cb-reserves/reservar/css/info.png" title="<?php l('Ajuda'); ?>" style="width:16px;height:auto;margin-left:8px"/></a>
                                                               </h1>
-                                                              <h4  id="titol_SelectorComensals"><?php l('Adults (més de 14 anys)'); ?>:</h4>
+                                                              
       
         
 
 
-                                                          <div class="fr-seccio ui-corner-all fr-seccio-quants" style="xxxmax-width:950px;">
-                                                             
+                                                             <h4  id="titol_SelectorComensals"><?php l('Adults (més de 14 anys)'); ?>:</h4>
 
 
                                                               <!-- ******  ADULTS  ********   -->

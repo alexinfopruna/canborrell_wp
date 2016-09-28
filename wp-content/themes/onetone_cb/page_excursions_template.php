@@ -94,11 +94,11 @@ $container_css .= 'padding-bottom:'.$padding_bottom.';';
               <!--Comments Area-->
               <div class="comments-area text-left">
                 <?php
-					  // If comments are open or we have at least one comment, load up the comment template
-					  if ( comments_open()  ) :
-						  comments_template();
-					  endif;
-				  ?>
+                    // If comments are open or we have at least one comment, load up the comment template
+                    if ( comments_open()  ) :
+                                                comments_template();
+                    endif;
+                ?>
               </div>
               <!--Comments End-->
             </div>
