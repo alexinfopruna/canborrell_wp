@@ -1,9 +1,9 @@
 msgid ""
 msgstr ""
-"Project-Id-Version: onetone 1.8.3\n"
+"Project-Id-Version: onetone\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2016-07-01 11:30+0800\n"
-"PO-Revision-Date: 2016-07-01 11:30+0800\n"
+"POT-Creation-Date: 2016-09-21 11:23+0800\n"
+"PO-Revision-Date: 2016-09-21 11:23+0800\n"
 "Last-Translator: shijun quan <support@mageewp.com>\n"
 "Language-Team: Magee <support@mageewp.com>\n"
 "Language: en_US\n"
@@ -195,15 +195,15 @@ msgstr ""
 msgid "Leave a Reply"
 msgstr ""
 
-#: comments.php:73 home-sections/section-9.php:62
+#: comments.php:73 home-sections/section-9.php:63
 msgid "Message"
 msgstr ""
 
-#: comments.php:77 home-sections/section-9.php:60
+#: comments.php:77 home-sections/section-9.php:61
 msgid "Name"
 msgstr ""
 
-#: comments.php:81 home-sections/section-9.php:61
+#: comments.php:81 home-sections/section-9.php:62
 msgid "Email"
 msgstr ""
 
@@ -245,12 +245,12 @@ msgid ""
 "searching can help."
 msgstr ""
 
-#: footer.php:48
+#: footer.php:35
 #, php-format
 msgid "Designed by <a href=\"%s\">MageeWP Themes</a>."
 msgstr ""
 
-#: footer.php:50
+#: footer.php:37
 msgid "Designed by MageeWP Themes."
 msgstr ""
 
@@ -289,7 +289,7 @@ msgstr ""
 msgid "All plugins installed and activated successfully. %s"
 msgstr ""
 
-#: header-home.php:104 header-home.php:188 header.php:103 header.php:140
+#: header-home.php:111 header-home.php:197 header.php:109 header.php:146
 msgid "Toggle navigation"
 msgstr ""
 
@@ -309,16 +309,16 @@ msgstr ""
 msgid "No"
 msgstr ""
 
-#: includes/admin-options.php:111 includes/admin-options.php:596
+#: includes/admin-options.php:111 includes/admin-options.php:597
 #: includes/metabox-options.php:164
 msgid "Default"
 msgstr ""
 
-#: includes/admin-options.php:112 includes/admin-options.php:1380
+#: includes/admin-options.php:112 includes/admin-options.php:1460
 msgid "left"
 msgstr ""
 
-#: includes/admin-options.php:113 includes/admin-options.php:1382
+#: includes/admin-options.php:113 includes/admin-options.php:1462
 msgid "right"
 msgstr ""
 
@@ -438,7 +438,7 @@ msgid "Home Page Header Overlay"
 msgstr ""
 
 #: includes/admin-options.php:301
-msgid "Choose to set home page header as overlay style."
+msgid "Choose to set header in home page as overlay style"
 msgstr ""
 
 #: includes/admin-options.php:320
@@ -458,7 +458,7 @@ msgid "Start Time"
 msgstr ""
 
 #: includes/admin-options.php:332
-msgid "Start to play."
+msgid "Choose time to start to play, in seconds."
 msgstr ""
 
 #: includes/admin-options.php:336
@@ -475,16 +475,33 @@ msgstr ""
 msgid "Mute"
 msgstr ""
 
+#: includes/admin-options.php:346
+msgid "Choose to set the video mute."
+msgstr ""
+
 #: includes/admin-options.php:354
 msgid "AutoPlay"
+msgstr ""
+
+#: includes/admin-options.php:355
+msgid "Choose to set the video autoplay."
 msgstr ""
 
 #: includes/admin-options.php:363
 msgid "Loop"
 msgstr ""
 
+#: includes/admin-options.php:364
+msgid "Choose to set the video loop."
+msgstr ""
+
 #: includes/admin-options.php:372
 msgid "Background Type"
+msgstr ""
+
+#: includes/admin-options.php:373
+msgid ""
+"Choose to set the video as background of the whole site or just one section."
 msgstr ""
 
 #: includes/admin-options.php:377
@@ -503,6 +520,10 @@ msgstr ""
 msgid "Video Background Section"
 msgstr ""
 
+#: includes/admin-options.php:389
+msgid "Choose a section to set the video as background for."
+msgstr ""
+
 #: includes/admin-options.php:393
 msgid "Display slider instead in section 1"
 msgstr ""
@@ -511,7 +532,7 @@ msgstr ""
 msgid "Content"
 msgstr ""
 
-#: includes/admin-options.php:397 includes/admin-options.php:2389
+#: includes/admin-options.php:397 includes/admin-options.php:2459
 msgid "Slider"
 msgstr ""
 
@@ -574,13 +595,14 @@ msgstr ""
 
 #: includes/admin-options.php:519
 msgid ""
-"The \"slug\" is the URL-friendly version of menu title. It is usually all "
-"lowercase and contains only letters, numbers, and hyphens. If the menu title "
-"contains non-eng characters, you need to fill this form."
+"Attention! The \"slug\" is the URL-friendly version of menu title. It is "
+"usually all lowercase and contains only letters, numbers, and hyphens. If "
+"the menu title contains non-eng characters or spaces, you need to fill this "
+"form."
 msgstr ""
 
 #: includes/admin-options.php:529
-msgid "Set background color & background image for this section."
+msgid "Set background color & background image for this section"
 msgstr ""
 
 #: includes/admin-options.php:533
@@ -588,7 +610,7 @@ msgid "Parallax Scrolling Background Image"
 msgstr ""
 
 #: includes/admin-options.php:539
-msgid "Choose to apply parallax scrolling effect for background image."
+msgid "Choose to apply parallax scrolling effect for background image"
 msgstr ""
 
 #: includes/admin-options.php:544
@@ -596,7 +618,7 @@ msgid "Section Css Class"
 msgstr ""
 
 #: includes/admin-options.php:549
-msgid "Set an aditional css class of this section."
+msgid "Set an aditional css class of this section"
 msgstr ""
 
 #: includes/admin-options.php:552
@@ -606,7 +628,7 @@ msgstr ""
 #: includes/admin-options.php:557
 msgid ""
 "Set padding for this section. In pixels (px), eg: 10px 20px 30px 0. These "
-"four numbers represent padding top/right/bottom/left."
+"four numbers represent padding top/right/bottom/left"
 msgstr ""
 
 #: includes/admin-options.php:561
@@ -614,7 +636,7 @@ msgid "Text Align"
 msgstr ""
 
 #: includes/admin-options.php:567
-msgid "Set content align for this section."
+msgid "Set content align for this section"
 msgstr ""
 
 #: includes/admin-options.php:572
@@ -630,768 +652,1165 @@ msgid "Section Content Model"
 msgstr ""
 
 #: includes/admin-options.php:596
+msgid ""
+"Default: fixed layout, no code knowledge needed; Custom: non-fixed layout, "
+"user can use html and shortcode to get more complex structure"
+msgstr ""
+
+#: includes/admin-options.php:597
 msgid "Custom"
 msgstr ""
 
-#: includes/admin-options.php:604
+#: includes/admin-options.php:605
 msgid "Font Color"
 msgstr ""
 
-#: includes/admin-options.php:613
+#: includes/admin-options.php:606
+msgid "Set font color for the content of this section"
+msgstr ""
+
+#: includes/admin-options.php:614
 msgid "Section Subtitle"
 msgstr ""
 
-#: includes/admin-options.php:618
+#: includes/admin-options.php:619
 msgid ""
 "Insert sub-title for this section. It would appear at the bottom of the "
-"section title."
+"section title"
 msgstr ""
 
-#: includes/admin-options.php:625 includes/admin-options.php:673
-#: includes/admin-options.php:1001
+#: includes/admin-options.php:626 includes/admin-options.php:678
+#: includes/admin-options.php:1032
 msgid "Button Text"
 msgstr ""
 
-#: includes/admin-options.php:632 includes/admin-options.php:680
+#: includes/admin-options.php:630 includes/admin-options.php:681
+#: includes/admin-options.php:1035
+msgid "Insert text for the button"
+msgstr ""
+
+#: includes/admin-options.php:634 includes/admin-options.php:686
 msgid "Button Link"
 msgstr ""
 
-#: includes/admin-options.php:639 includes/admin-options.php:687
+#: includes/admin-options.php:637 includes/admin-options.php:689
+msgid "Insert link for the button, begin with http:// or https://"
+msgstr ""
+
+#: includes/admin-options.php:642 includes/admin-options.php:694
 msgid "Button Target"
 msgstr ""
 
-#: includes/admin-options.php:651 includes/admin-options.php:1337
+#: includes/admin-options.php:645 includes/admin-options.php:697
+#: includes/admin-options.php:756 includes/admin-options.php:810
+msgid "Self: open in the same window; blank: open in a new window"
+msgstr ""
+
+#: includes/admin-options.php:655 includes/admin-options.php:1417
+#: includes/admin-options.php:2785
 msgid "Social Icon"
 msgstr ""
 
-#: includes/admin-options.php:658 includes/admin-options.php:1347
+#: includes/admin-options.php:660 includes/admin-options.php:723
+msgid "Insert Fontawsome icon code"
+msgstr ""
+
+#: includes/admin-options.php:663 includes/admin-options.php:1427
+#: includes/admin-options.php:2795
 msgid "Social Icon Link"
 msgstr ""
 
-#: includes/admin-options.php:663
-msgid "Using Fontawsome Icon."
+#: includes/admin-options.php:668 includes/admin-options.php:903
+msgid "Insert link for the icon"
 msgstr ""
 
-#: includes/admin-options.php:696
+#: includes/admin-options.php:704
 msgid "Description"
 msgstr ""
 
-#: includes/admin-options.php:712
+#: includes/admin-options.php:707 includes/admin-options.php:766
+msgid "Insert content for the banner, html tags allowed"
+msgstr ""
+
+#: includes/admin-options.php:720
 #, php-format
 msgid "Service Icon %d"
 msgstr ""
 
-#: includes/admin-options.php:719
+#: includes/admin-options.php:728
 #, php-format
 msgid "Service Image %d"
 msgstr ""
 
-#: includes/admin-options.php:726
+#: includes/admin-options.php:731
+msgid "Or choose to upload icon image"
+msgstr ""
+
+#: includes/admin-options.php:736
 #, php-format
 msgid "Service Title %d"
 msgstr ""
 
-#: includes/admin-options.php:733
+#: includes/admin-options.php:739
+msgid "Set title for service item"
+msgstr ""
+
+#: includes/admin-options.php:744
 #, php-format
 msgid "Title Link %d"
 msgstr ""
 
-#: includes/admin-options.php:741 includes/admin-options.php:791
+#: includes/admin-options.php:747
+msgid "Insert link for service item"
+msgstr ""
+
+#: includes/admin-options.php:753 includes/admin-options.php:807
 #, php-format
 msgid "Link Target %d"
 msgstr ""
 
-#: includes/admin-options.php:750
+#: includes/admin-options.php:763
 #, php-format
 msgid "Service Description %d"
 msgstr ""
 
-#: includes/admin-options.php:775
+#: includes/admin-options.php:789
 #, php-format
 msgid "Image %d"
 msgstr ""
 
-#: includes/admin-options.php:783 includes/admin-options.php:838
+#: includes/admin-options.php:792
+msgid "Choose to upload image for gallery item"
+msgstr ""
+
+#: includes/admin-options.php:798 includes/admin-options.php:856
 #, php-format
 msgid "Link %d"
 msgstr ""
 
-#: includes/admin-options.php:819 includes/admin-options.php:945
+#: includes/admin-options.php:801
+msgid "Insert link for this item"
+msgstr ""
+
+#: includes/admin-options.php:836 includes/admin-options.php:970
 msgid "Columns"
 msgstr ""
 
-#: includes/admin-options.php:830 includes/admin-options.php:959
+#: includes/admin-options.php:837
+msgid "Set columns for team module"
+msgstr ""
+
+#: includes/admin-options.php:847 includes/admin-options.php:985
 #, php-format
 msgid "Avatar %d"
 msgstr ""
 
-#: includes/admin-options.php:845 includes/admin-options.php:967
+#: includes/admin-options.php:850
+msgid "Choose to upload image for the person avatar"
+msgstr ""
+
+#: includes/admin-options.php:859
+msgid "Set link for the person"
+msgstr ""
+
+#: includes/admin-options.php:864 includes/admin-options.php:994
 #, php-format
 msgid "Name %d"
 msgstr ""
 
-#: includes/admin-options.php:852 includes/admin-options.php:974
+#: includes/admin-options.php:867
+msgid "Set name for the person"
+msgstr ""
+
+#: includes/admin-options.php:872 includes/admin-options.php:1002
 #, php-format
 msgid "Byline %d"
 msgstr ""
 
-#: includes/admin-options.php:859 includes/admin-options.php:981
+#: includes/admin-options.php:875
+msgid "Set byline for the person"
+msgstr ""
+
+#: includes/admin-options.php:880 includes/admin-options.php:1010
 #, php-format
 msgid "Description %d"
 msgstr ""
 
-#: includes/admin-options.php:870
+#: includes/admin-options.php:883
+msgid "Insert description for the person"
+msgstr ""
+
+#: includes/admin-options.php:892
 #, php-format
 msgid "Social Icon %d - %d"
 msgstr ""
 
-#: includes/admin-options.php:878
+#: includes/admin-options.php:896
+msgid "Choose social icon"
+msgstr ""
+
+#: includes/admin-options.php:901
 #, php-format
 msgid "Social Icon Link %d - %d"
 msgstr ""
 
-#: includes/admin-options.php:894 includes/admin-options.php:1240
+#: includes/admin-options.php:917 includes/admin-options.php:1320
 msgid "Left Content"
 msgstr ""
 
-#: includes/admin-options.php:903 includes/admin-options.php:1257
+#: includes/admin-options.php:922
+msgid "Insert content for the left column, html tags allowed"
+msgstr ""
+
+#: includes/admin-options.php:927 includes/admin-options.php:1337
 msgid "Right Content"
 msgstr ""
 
-#: includes/admin-options.php:993
+#: includes/admin-options.php:945
+msgid "Insert content for the right column, html tags allowed"
+msgstr ""
+
+#: includes/admin-options.php:973
+msgid "Set columns for testimonial module"
+msgstr ""
+
+#: includes/admin-options.php:988
+msgid "Choose to upload image for the client avatar"
+msgstr ""
+
+#: includes/admin-options.php:997
+msgid "Insert name for the client"
+msgstr ""
+
+#: includes/admin-options.php:1005
+msgid "Insert byline for the client"
+msgstr ""
+
+#: includes/admin-options.php:1013
+msgid "Insert description for the client"
+msgstr ""
+
+#: includes/admin-options.php:1023
 msgid "Your E-mail"
 msgstr ""
 
-#: includes/admin-options.php:1012
+#: includes/admin-options.php:1026
+msgid "Set email address to receive mails from contact form"
+msgstr ""
+
+#: includes/admin-options.php:1044
 msgid "Section Content"
 msgstr ""
 
-#: includes/admin-options.php:1039
+#: includes/admin-options.php:1071
 msgid "General Options"
 msgstr ""
 
-#: includes/admin-options.php:1045
+#: includes/admin-options.php:1077
 msgid "Back to Top Button"
 msgstr ""
 
-#: includes/admin-options.php:1050
+#: includes/admin-options.php:1080
+msgid "Choose to display back to top button"
+msgstr ""
+
+#: includes/admin-options.php:1083
 msgid "Show"
 msgstr ""
 
-#: includes/admin-options.php:1050
+#: includes/admin-options.php:1083
 msgid "Hide"
 msgstr ""
 
-#: includes/admin-options.php:1055
+#: includes/admin-options.php:1088
 msgid "Custom CSS"
 msgstr ""
 
-#: includes/admin-options.php:1056
+#: includes/admin-options.php:1089
 msgid ""
 "The following css code will add to the header before the closing &lt;/"
 "head&gt; tag."
 msgstr ""
 
-#: includes/admin-options.php:1063
+#: includes/admin-options.php:1096
 msgid "Tracking"
 msgstr ""
 
-#: includes/admin-options.php:1075
+#: includes/admin-options.php:1108
 msgid "Tracking Code"
 msgstr ""
 
-#: includes/admin-options.php:1076
+#: includes/admin-options.php:1109
 msgid ""
 "Paste your Google Analytics (or other) tracking code here. This will be "
 "added into the header template of your theme. Please put code inside script "
 "tags."
 msgstr ""
 
-#: includes/admin-options.php:1086
+#: includes/admin-options.php:1119
 msgid "Space before &lt;/head&gt;"
 msgstr ""
 
-#: includes/admin-options.php:1087
+#: includes/admin-options.php:1120
 msgid "Add code before the head tag."
 msgstr ""
 
-#: includes/admin-options.php:1098
+#: includes/admin-options.php:1131
 msgid "Space before &lt;/body&gt;"
 msgstr ""
 
-#: includes/admin-options.php:1099
+#: includes/admin-options.php:1132
 msgid "Add code before the body tag."
 msgstr ""
 
-#: includes/admin-options.php:1113
+#: includes/admin-options.php:1146
 msgid "Header"
 msgstr ""
 
-#: includes/admin-options.php:1121
+#: includes/admin-options.php:1154
+msgid "Header Options"
+msgstr ""
+
+#: includes/admin-options.php:1167
+msgid "Full Width Header"
+msgstr ""
+
+#: includes/admin-options.php:1168
+msgid "Enable header full width."
+msgstr ""
+
+#: includes/admin-options.php:1179
+msgid "Nav Hover Effect"
+msgstr ""
+
+#: includes/admin-options.php:1201
 msgid "Header Background"
 msgstr ""
 
-#: includes/admin-options.php:1133
+#: includes/admin-options.php:1213
 msgid "Header Background Image"
 msgstr ""
 
-#: includes/admin-options.php:1134
+#: includes/admin-options.php:1214
 msgid "Background Image For Header Area"
 msgstr ""
 
-#: includes/admin-options.php:1144
+#: includes/admin-options.php:1224 includes/admin-options.php:2691
 msgid "100% Background Image"
 msgstr ""
 
-#: includes/admin-options.php:1145
+#: includes/admin-options.php:1225
 msgid ""
 "Turn on to have the header background image display at 100% in width and "
 "height and scale according to the browser size."
 msgstr ""
 
-#: includes/admin-options.php:1155
+#: includes/admin-options.php:1235 includes/admin-options.php:2702
 msgid "Parallax Background Image"
 msgstr ""
 
-#: includes/admin-options.php:1156
+#: includes/admin-options.php:1236
 msgid ""
 "Turn on to enable parallax scrolling on the background image for header top "
 "positions."
 msgstr ""
 
-#: includes/admin-options.php:1167
+#: includes/admin-options.php:1247 includes/admin-options.php:2713
 msgid "Background Repeat"
 msgstr ""
 
-#: includes/admin-options.php:1168
+#: includes/admin-options.php:1248
 msgid "Select how the background image repeats."
 msgstr ""
 
-#: includes/admin-options.php:1178
+#: includes/admin-options.php:1258
 msgid "Header Top Padding"
 msgstr ""
 
-#: includes/admin-options.php:1179 includes/admin-options.php:1190
-#: includes/admin-options.php:1866 includes/admin-options.php:1877
+#: includes/admin-options.php:1259 includes/admin-options.php:1270
+#: includes/admin-options.php:1936 includes/admin-options.php:1947
+#: includes/admin-options.php:2736 includes/admin-options.php:2747
 msgid "In pixels or percentage, ex: 10px or 10%."
 msgstr ""
 
-#: includes/admin-options.php:1189
+#: includes/admin-options.php:1269
 msgid "Header Bottom Padding"
 msgstr ""
 
-#: includes/admin-options.php:1205
+#: includes/admin-options.php:1285
 msgid "Top Bar Options"
 msgstr ""
 
-#: includes/admin-options.php:1218
+#: includes/admin-options.php:1298
 msgid "Display Top Bar"
 msgstr ""
 
-#: includes/admin-options.php:1229
+#: includes/admin-options.php:1299
+msgid "Choose to display top bar above the header"
+msgstr ""
+
+#: includes/admin-options.php:1309
 msgid "Background Color"
 msgstr ""
 
-#: includes/admin-options.php:1248 includes/admin-options.php:1265
+#: includes/admin-options.php:1310
+msgid "Set background color for top bar"
+msgstr ""
+
+#: includes/admin-options.php:1321
+msgid "Choose content in left side"
+msgstr ""
+
+#: includes/admin-options.php:1328 includes/admin-options.php:1345
 msgid "info"
 msgstr ""
 
-#: includes/admin-options.php:1249 includes/admin-options.php:1267
+#: includes/admin-options.php:1329 includes/admin-options.php:1347
 msgid "sns"
 msgstr ""
 
-#: includes/admin-options.php:1250 includes/admin-options.php:1269
+#: includes/admin-options.php:1330 includes/admin-options.php:1349
 msgid "menu"
 msgstr ""
 
-#: includes/admin-options.php:1251 includes/admin-options.php:1271
+#: includes/admin-options.php:1331 includes/admin-options.php:1351
 msgid "none"
 msgstr ""
 
-#: includes/admin-options.php:1279
+#: includes/admin-options.php:1338
+msgid "Choose content in right side"
+msgstr ""
+
+#: includes/admin-options.php:1359
 msgid "Info Color"
 msgstr ""
 
-#: includes/admin-options.php:1290
+#: includes/admin-options.php:1360
+msgid "Set color for info in top bar"
+msgstr ""
+
+#: includes/admin-options.php:1370
 msgid "Info Content"
 msgstr ""
 
-#: includes/admin-options.php:1301
+#: includes/admin-options.php:1371
+msgid "Insert content for info in top bar"
+msgstr ""
+
+#: includes/admin-options.php:1381
 msgid "Menu Color"
 msgstr ""
 
-#: includes/admin-options.php:1312
+#: includes/admin-options.php:1382
+msgid "Set color for menu in top bar"
+msgstr ""
+
+#: includes/admin-options.php:1392
 msgid "Social Links"
 msgstr ""
 
-#: includes/admin-options.php:1327
+#: includes/admin-options.php:1407 includes/admin-options.php:2775
 msgid "Social Title"
 msgstr ""
 
-#: includes/admin-options.php:1338
-msgid "FontAwesome Icon"
+#: includes/admin-options.php:1408 includes/admin-options.php:2776
+msgid "Set title for social icon"
 msgstr ""
 
-#: includes/admin-options.php:1363
+#: includes/admin-options.php:1418
+msgid "Choose FontAwesome Icon"
+msgstr ""
+
+#: includes/admin-options.php:1428 includes/admin-options.php:2796
+msgid "Set link for social icon"
+msgstr ""
+
+#: includes/admin-options.php:1443
 msgid "Social Icons Color"
 msgstr ""
 
-#: includes/admin-options.php:1373
+#: includes/admin-options.php:1444
+msgid "Set color for social icons in top bar"
+msgstr ""
+
+#: includes/admin-options.php:1453
 msgid "Social Icon Tooltip Position"
 msgstr ""
 
-#: includes/admin-options.php:1384
+#: includes/admin-options.php:1454
+msgid "Set position for tooltip of social icon"
+msgstr ""
+
+#: includes/admin-options.php:1464
 msgid "bottom"
 msgstr ""
 
-#: includes/admin-options.php:1394
+#: includes/admin-options.php:1474
 msgid "Sticky Header"
 msgstr ""
 
-#: includes/admin-options.php:1401
+#: includes/admin-options.php:1481
 msgid "Enable Sticky Header"
 msgstr ""
 
-#: includes/admin-options.php:1412
+#: includes/admin-options.php:1482
+msgid "Choose to enable sticky header"
+msgstr ""
+
+#: includes/admin-options.php:1492
 msgid "Enable Sticky Header on Tablets"
 msgstr ""
 
-#: includes/admin-options.php:1423
+#: includes/admin-options.php:1493
+msgid "Choose to enable sticky header on tablets"
+msgstr ""
+
+#: includes/admin-options.php:1503
 msgid "Enable Sticky Header on Mobiles"
 msgstr ""
 
-#: includes/admin-options.php:1435
+#: includes/admin-options.php:1504
+msgid "Choose to enable sticky header on mobiles"
+msgstr ""
+
+#: includes/admin-options.php:1515
 msgid "Sticky Header Menu Item Padding"
 msgstr ""
 
-#: includes/admin-options.php:1436
+#: includes/admin-options.php:1516
 msgid ""
 "Controls the space between each menu item in the sticky header. Use a number "
 "without 'px', default is 0. ex: 10"
 msgstr ""
 
-#: includes/admin-options.php:1446
+#: includes/admin-options.php:1526
 msgid "Sticky Header Navigation Font Size"
 msgstr ""
 
-#: includes/admin-options.php:1447
+#: includes/admin-options.php:1527
 msgid ""
 "Controls the font size of the menu items in the sticky header. Use a number "
 "without 'px', default is 14. ex: 14"
 msgstr ""
 
-#: includes/admin-options.php:1457
+#: includes/admin-options.php:1537
 msgid "Sticky Header Logo Width"
 msgstr ""
 
-#: includes/admin-options.php:1458
+#: includes/admin-options.php:1538
 msgid ""
 "Controls the logo width in the sticky header. Use a number without 'px'."
 msgstr ""
 
-#: includes/admin-options.php:1470 includes/admin-options.php:1477
+#: includes/admin-options.php:1550 includes/admin-options.php:1557
 msgid "Logo"
 msgstr ""
 
-#: includes/admin-options.php:1490 includes/admin-options.php:1555
+#: includes/admin-options.php:1570 includes/admin-options.php:1635
 msgid "Upload Logo"
 msgstr ""
 
-#: includes/admin-options.php:1491 includes/admin-options.php:1556
+#: includes/admin-options.php:1571 includes/admin-options.php:1636
 msgid "Select an image file for your logo."
 msgstr ""
 
-#: includes/admin-options.php:1502 includes/admin-options.php:1567
+#: includes/admin-options.php:1582 includes/admin-options.php:1647
 msgid "Upload Logo (Retina Version @2x)"
 msgstr ""
 
-#: includes/admin-options.php:1503 includes/admin-options.php:1568
+#: includes/admin-options.php:1583 includes/admin-options.php:1648
 msgid ""
 "Select an image file for the retina version of the logo. It should be "
 "exactly 2x the size of main logo."
 msgstr ""
 
-#: includes/admin-options.php:1513
+#: includes/admin-options.php:1593
 msgid "Standard Logo Width for Retina Logo"
 msgstr ""
 
-#: includes/admin-options.php:1514 includes/admin-options.php:1579
+#: includes/admin-options.php:1594 includes/admin-options.php:1659
 msgid ""
 "If retina logo is uploaded, enter the standard logo (1x) version width, do "
 "not enter the retina logo width. Use a number without 'px', ex: 40"
 msgstr ""
 
-#: includes/admin-options.php:1525
+#: includes/admin-options.php:1605
 msgid "Standard Logo Height for Retina Logo"
 msgstr ""
 
-#: includes/admin-options.php:1526 includes/admin-options.php:1591
+#: includes/admin-options.php:1606 includes/admin-options.php:1671
 msgid ""
 "If retina logo is uploaded, enter the standard logo (1x) version height, do "
 "not enter the retina logo height. Use a number without 'px', ex: 40"
 msgstr ""
 
-#: includes/admin-options.php:1542
+#: includes/admin-options.php:1622
 msgid "Sticky Header Logo"
 msgstr ""
 
-#: includes/admin-options.php:1578
+#: includes/admin-options.php:1658
 msgid "Sticky Logo Width for Retina Logo"
 msgstr ""
 
-#: includes/admin-options.php:1590
+#: includes/admin-options.php:1670
 msgid "Sticky Logo Height for Retina Logo"
 msgstr ""
 
-#: includes/admin-options.php:1606
+#: includes/admin-options.php:1686
 msgid "Logo Position"
 msgstr ""
 
-#: includes/admin-options.php:1617
+#: includes/admin-options.php:1687
+msgid "Set position for logo in header"
+msgstr ""
+
+#: includes/admin-options.php:1697
 msgid "Logo Left Margin"
 msgstr ""
 
-#: includes/admin-options.php:1618 includes/admin-options.php:1629
-#: includes/admin-options.php:1640 includes/admin-options.php:1651
+#: includes/admin-options.php:1698 includes/admin-options.php:1709
+#: includes/admin-options.php:1720 includes/admin-options.php:1731
 msgid "Use a number without 'px', ex: 40"
 msgstr ""
 
-#: includes/admin-options.php:1628
+#: includes/admin-options.php:1708
 msgid "Logo Right Margin"
 msgstr ""
 
-#: includes/admin-options.php:1639
+#: includes/admin-options.php:1719
 msgid "Logo Top Margin"
 msgstr ""
 
-#: includes/admin-options.php:1650
+#: includes/admin-options.php:1730
 msgid "Logo Bottom Margin"
 msgstr ""
 
-#: includes/admin-options.php:1663
+#: includes/admin-options.php:1743
 msgid "Styling"
 msgstr ""
 
-#: includes/admin-options.php:1669
+#: includes/admin-options.php:1749
 msgid "Primary Color"
 msgstr ""
 
-#: includes/admin-options.php:1682
+#: includes/admin-options.php:1750
+msgid "Set primary color for the theme"
+msgstr ""
+
+#: includes/admin-options.php:1762
 msgid "Background Colors"
 msgstr ""
 
-#: includes/admin-options.php:1695
+#: includes/admin-options.php:1775
 msgid "Sticky Header Background Color"
 msgstr ""
 
-#: includes/admin-options.php:1706
+#: includes/admin-options.php:1776
+msgid "Set background color for sticky header"
+msgstr ""
+
+#: includes/admin-options.php:1786
 msgid "Sticky Header Background Opacity"
 msgstr ""
 
-#: includes/admin-options.php:1707 includes/admin-options.php:1730
+#: includes/admin-options.php:1787 includes/admin-options.php:1810
 msgid ""
 "Opacity only works with header top position and ranges between 0 "
 "(transparent) and 1."
 msgstr ""
 
-#: includes/admin-options.php:1718
+#: includes/admin-options.php:1798
 msgid "Header Background Color"
 msgstr ""
 
-#: includes/admin-options.php:1729
+#: includes/admin-options.php:1799
+msgid "Set background color for main header"
+msgstr ""
+
+#: includes/admin-options.php:1809
 msgid "Header Background Opacity"
 msgstr ""
 
-#: includes/admin-options.php:1742
+#: includes/admin-options.php:1822
 msgid "Content Background Color"
 msgstr ""
 
-#: includes/admin-options.php:1753
+#: includes/admin-options.php:1823
+msgid "Set background color for site content"
+msgstr ""
+
+#: includes/admin-options.php:1833
 msgid "Sidebar Background Color"
 msgstr ""
 
-#: includes/admin-options.php:1764
+#: includes/admin-options.php:1834
+msgid "Set background color for sidebar"
+msgstr ""
+
+#: includes/admin-options.php:1844
 msgid "Footer Background Color"
 msgstr ""
 
-#: includes/admin-options.php:1776
+#: includes/admin-options.php:1845
+msgid "Set background color for the footer"
+msgstr ""
+
+#: includes/admin-options.php:1856
 msgid "Copyright Background Color"
 msgstr ""
 
-#: includes/admin-options.php:1791
+#: includes/admin-options.php:1857
+msgid "Set background color for the copyright area in footer"
+msgstr ""
+
+#: includes/admin-options.php:1871
 msgid "Element Colors"
 msgstr ""
 
-#: includes/admin-options.php:1804
-msgid "Footer Widget Divider Color"
-msgstr ""
-
-#: includes/admin-options.php:1805
-msgid "Controls the divider color in the footer."
-msgstr ""
-
-#: includes/admin-options.php:1815
+#: includes/admin-options.php:1885
 msgid "Form Background Color"
 msgstr ""
 
-#: includes/admin-options.php:1816
-msgid "Controls the background color of form fields."
+#: includes/admin-options.php:1886
+msgid "Controls the background color of form fields"
 msgstr ""
 
-#: includes/admin-options.php:1826
+#: includes/admin-options.php:1896
 msgid "Form Text Color"
 msgstr ""
 
-#: includes/admin-options.php:1827
-msgid "Controls the text color for forms."
+#: includes/admin-options.php:1897
+msgid "Controls the text color for forms"
 msgstr ""
 
-#: includes/admin-options.php:1837
+#: includes/admin-options.php:1907
 msgid "Form Border Color"
 msgstr ""
 
-#: includes/admin-options.php:1838
-msgid "Controls the border color for forms."
+#: includes/admin-options.php:1908
+msgid "Controls the border color for forms"
 msgstr ""
 
-#: includes/admin-options.php:1852
+#: includes/admin-options.php:1922
 msgid "Layout Options"
 msgstr ""
 
-#: includes/admin-options.php:1865
+#: includes/admin-options.php:1935
 msgid "Page Content Top Padding"
 msgstr ""
 
-#: includes/admin-options.php:1876
+#: includes/admin-options.php:1946
 msgid "Page Content Bottom Padding"
 msgstr ""
 
-#: includes/admin-options.php:1887
+#: includes/admin-options.php:1957
 msgid "100% Width Left/Right Padding ###"
 msgstr ""
 
-#: includes/admin-options.php:1888
+#: includes/admin-options.php:1958
 msgid ""
 "This option controls the left/right padding for page content when using 100% "
 "site width or 100% width page template. In pixels or percentage, ex: 10px or "
 "10%."
 msgstr ""
 
-#: includes/admin-options.php:1898
+#: includes/admin-options.php:1968
 msgid "Sidebar Padding"
 msgstr ""
 
-#: includes/admin-options.php:1899
+#: includes/admin-options.php:1969
 msgid "Enter a pixel or percentage based value, ex: 5px or 5%"
 msgstr ""
 
-#: includes/admin-options.php:1909
+#: includes/admin-options.php:1979
 msgid "Column Top Margin"
 msgstr ""
 
-#: includes/admin-options.php:1910
+#: includes/admin-options.php:1980
 msgid ""
 "Controls the top margin for all column sizes. In pixels or percentage, ex: "
 "10px or 10%."
 msgstr ""
 
-#: includes/admin-options.php:1920
+#: includes/admin-options.php:1990
 msgid "Column Bottom Margin"
 msgstr ""
 
-#: includes/admin-options.php:1921
+#: includes/admin-options.php:1991
 msgid ""
 "Controls the bottom margin for all column sizes. In pixels or percentage, "
 "ex: 10px or 10%."
 msgstr ""
 
-#: includes/admin-options.php:1936
+#: includes/admin-options.php:2006
 msgid "Font Colors"
 msgstr ""
 
-#: includes/admin-options.php:1950
+#: includes/admin-options.php:2020
 msgid "Header Tagline"
 msgstr ""
 
-#: includes/admin-options.php:1961
+#: includes/admin-options.php:2021
+msgid "Set color for tagline in header"
+msgstr ""
+
+#: includes/admin-options.php:2031
 msgid "Page Title"
 msgstr ""
 
-#: includes/admin-options.php:1973
+#: includes/admin-options.php:2032
+msgid "Set color for page title"
+msgstr ""
+
+#: includes/admin-options.php:2043
 msgid "Heading 1 (H1) Font Color"
 msgstr ""
 
-#: includes/admin-options.php:1984
+#: includes/admin-options.php:2044
+msgid "Choose color for H1 headings"
+msgstr ""
+
+#: includes/admin-options.php:2054
 msgid "Heading 2 (H2) Font Color"
 msgstr ""
 
-#: includes/admin-options.php:1995
+#: includes/admin-options.php:2055
+msgid "Choose color for H2 headings"
+msgstr ""
+
+#: includes/admin-options.php:2065
 msgid "Heading 3 (H3) Font Color"
 msgstr ""
 
-#: includes/admin-options.php:2006
+#: includes/admin-options.php:2066
+msgid "Choose color for H3 headings"
+msgstr ""
+
+#: includes/admin-options.php:2076
 msgid "Heading 4 (H4) Font Color"
 msgstr ""
 
-#: includes/admin-options.php:2017
+#: includes/admin-options.php:2077
+msgid "Choose color for H4 headings"
+msgstr ""
+
+#: includes/admin-options.php:2087
 msgid "Heading 5 (H5) Font Color"
 msgstr ""
 
-#: includes/admin-options.php:2028
+#: includes/admin-options.php:2088
+msgid "Choose color for H5 headings"
+msgstr ""
+
+#: includes/admin-options.php:2098
 msgid "Heading 6 (H6) Font Color"
 msgstr ""
 
-#: includes/admin-options.php:2040
+#: includes/admin-options.php:2099
+msgid "Choose color for H6 headings"
+msgstr ""
+
+#: includes/admin-options.php:2110
 msgid "Body Text Color"
 msgstr ""
 
-#: includes/admin-options.php:2051
+#: includes/admin-options.php:2111
+msgid "Choose color for body text"
+msgstr ""
+
+#: includes/admin-options.php:2121
 msgid "Links Color"
 msgstr ""
 
-#: includes/admin-options.php:2062
+#: includes/admin-options.php:2122
+msgid "Choose color for links"
+msgstr ""
+
+#: includes/admin-options.php:2132
 msgid "Breadcrumbs Text Color"
 msgstr ""
 
-#: includes/admin-options.php:2074
+#: includes/admin-options.php:2133
+msgid "Choose color for breadcrumbs"
+msgstr ""
+
+#: includes/admin-options.php:2144
 msgid "Sidebar Widget Headings Color"
 msgstr ""
 
-#: includes/admin-options.php:2085
+#: includes/admin-options.php:2145
+msgid "Choose color for Sidebar widget headings"
+msgstr ""
+
+#: includes/admin-options.php:2155
 msgid "Footer Headings Color"
 msgstr ""
 
-#: includes/admin-options.php:2096
+#: includes/admin-options.php:2156
+msgid "Choose color for footer headings"
+msgstr ""
+
+#: includes/admin-options.php:2166
 msgid "Footer Text Color"
 msgstr ""
 
-#: includes/admin-options.php:2107
+#: includes/admin-options.php:2167
+msgid "Choose color for footer text"
+msgstr ""
+
+#: includes/admin-options.php:2177
 msgid "Footer Link Color"
 msgstr ""
 
-#: includes/admin-options.php:2122
+#: includes/admin-options.php:2178
+msgid "Choose color for links in footer"
+msgstr ""
+
+#: includes/admin-options.php:2192
 msgid "Main Menu Colors"
 msgstr ""
 
-#: includes/admin-options.php:2135
+#: includes/admin-options.php:2205
 msgid "Main Menu Background Color"
 msgstr ""
 
-#: includes/admin-options.php:2146
+#: includes/admin-options.php:2206
+msgid "Choose background color for main menu"
+msgstr ""
+
+#: includes/admin-options.php:2216
 msgid "Main Menu Font Color ( First Level )"
 msgstr ""
 
-#: includes/admin-options.php:2157
+#: includes/admin-options.php:2217
+msgid "Choose font color for first level of main menu"
+msgstr ""
+
+#: includes/admin-options.php:2227
 msgid "Main Menu Font Hover Color ( First Level )"
 msgstr ""
 
-#: includes/admin-options.php:2168
+#: includes/admin-options.php:2228
+msgid "Choose hover color for first level of main menu"
+msgstr ""
+
+#: includes/admin-options.php:2238
 msgid "Main Menu Background Color ( Sub Level )"
 msgstr ""
 
-#: includes/admin-options.php:2180
+#: includes/admin-options.php:2239
+msgid "Choose background color for sub level of main menu"
+msgstr ""
+
+#: includes/admin-options.php:2250
 msgid "Main Menu Font Color ( Sub Level )"
 msgstr ""
 
-#: includes/admin-options.php:2191
+#: includes/admin-options.php:2251
+msgid "Choose font color for sub level of main menu"
+msgstr ""
+
+#: includes/admin-options.php:2261
 msgid "Main Menu Font Hover Color ( Sub Level )"
 msgstr ""
 
-#: includes/admin-options.php:2202
+#: includes/admin-options.php:2262
+msgid "Choose hover color for sub level of main menu"
+msgstr ""
+
+#: includes/admin-options.php:2272
 msgid "Main Menu Separator Color ( Sub Levels )"
 msgstr ""
 
-#: includes/admin-options.php:2218
+#: includes/admin-options.php:2273
+msgid "Choose separator color for sub level of main menu"
+msgstr ""
+
+#: includes/admin-options.php:2288
 msgid "Sidebar"
 msgstr ""
 
-#: includes/admin-options.php:2224
+#: includes/admin-options.php:2294
 msgid "Blog Posts"
 msgstr ""
 
-#: includes/admin-options.php:2238 includes/admin-options.php:2279
-#: includes/admin-options.php:2321 includes/admin-options.php:2362
+#: includes/admin-options.php:2308 includes/admin-options.php:2349
+#: includes/admin-options.php:2391 includes/admin-options.php:2432
 #: includes/metabox-options.php:237
 msgid "Left Sidebar"
 msgstr ""
 
-#: includes/admin-options.php:2250 includes/admin-options.php:2291
-#: includes/admin-options.php:2333 includes/admin-options.php:2374
+#: includes/admin-options.php:2309
+msgid "Choose left sidebar for blog posts"
+msgstr ""
+
+#: includes/admin-options.php:2320 includes/admin-options.php:2361
+#: includes/admin-options.php:2403 includes/admin-options.php:2444
 #: includes/metabox-options.php:238
 msgid "Right Sidebar"
 msgstr ""
 
-#: includes/admin-options.php:2266
+#: includes/admin-options.php:2321
+msgid "Choose right sidebar for blog posts"
+msgstr ""
+
+#: includes/admin-options.php:2336
 msgid "Blog Archive / Category Pages"
 msgstr ""
 
-#: includes/admin-options.php:2308
+#: includes/admin-options.php:2350
+msgid "Choose left sidebar for blog archive page"
+msgstr ""
+
+#: includes/admin-options.php:2362
+msgid "Choose right sidebar for blog archive page"
+msgstr ""
+
+#: includes/admin-options.php:2378
 msgid "Search Page"
 msgstr ""
 
-#: includes/admin-options.php:2349
+#: includes/admin-options.php:2392
+msgid "Choose left sidebar for blog search result page"
+msgstr ""
+
+#: includes/admin-options.php:2404
+msgid "Choose right sidebar for blog search result page"
+msgstr ""
+
+#: includes/admin-options.php:2419
 msgid "404 Page"
 msgstr ""
 
-#: includes/admin-options.php:2395
+#: includes/admin-options.php:2433
+msgid "Choose left sidebar for 404 page"
+msgstr ""
+
+#: includes/admin-options.php:2445
+msgid "Choose right sidebar for 404 page"
+msgstr ""
+
+#: includes/admin-options.php:2465
 msgid "Slideshow"
 msgstr ""
 
-#: includes/admin-options.php:2400
+#: includes/admin-options.php:2470
 msgid "Slide 1"
 msgstr ""
 
-#: includes/admin-options.php:2410 includes/admin-options.php:2442
-#: includes/admin-options.php:2473 includes/admin-options.php:2504
-#: includes/admin-options.php:2534
+#: includes/admin-options.php:2480 includes/admin-options.php:2512
+#: includes/admin-options.php:2543 includes/admin-options.php:2574
+#: includes/admin-options.php:2604
 msgid "Image"
 msgstr ""
 
-#: includes/admin-options.php:2419 includes/admin-options.php:2450
-#: includes/admin-options.php:2481 includes/admin-options.php:2512
-#: includes/admin-options.php:2541
-msgid "Text"
+#: includes/admin-options.php:2489 includes/admin-options.php:2520
+#: includes/admin-options.php:2551 includes/admin-options.php:2582
+#: includes/admin-options.php:2611
+msgid "Caption"
 msgstr ""
 
-#: includes/admin-options.php:2432
+#: includes/admin-options.php:2502
 msgid "Slide 2"
 msgstr ""
 
-#: includes/admin-options.php:2463
+#: includes/admin-options.php:2533
 msgid "Slide 3"
 msgstr ""
 
-#: includes/admin-options.php:2494
+#: includes/admin-options.php:2564
 msgid "Slide 4"
 msgstr ""
 
-#: includes/admin-options.php:2524
+#: includes/admin-options.php:2594
 msgid "Slide 5"
 msgstr ""
 
-#: includes/admin-options.php:2550
+#: includes/admin-options.php:2620
 msgid "Slide Speed"
 msgstr ""
 
-#: includes/admin-options.php:2553
+#: includes/admin-options.php:2623
 msgid ""
 "Milliseconds between the end of the sliding effect and the start of the nex "
 "one."
 msgstr ""
 
-#: includes/admin-options.php:2561
+#: includes/admin-options.php:2631
 msgid "Footer"
 msgstr ""
 
-#: includes/admin-options.php:2565
-msgid "Enable Footer Widgets Area"
+#: includes/admin-options.php:2639
+msgid "Footer Widgets Area Options"
 msgstr ""
 
-#: includes/admin-options.php:2575
+#: includes/admin-options.php:2652
+msgid "Display footer widgets?"
+msgstr ""
+
+#: includes/admin-options.php:2653
+msgid "Choose to display footer widgets"
+msgstr ""
+
+#: includes/admin-options.php:2663
+msgid "Number of Footer Columns"
+msgstr ""
+
+#: includes/admin-options.php:2664
+msgid "Set column number for footer widget area"
+msgstr ""
+
+#: includes/admin-options.php:2680
+msgid "Upload Background Image"
+msgstr ""
+
+#: includes/admin-options.php:2681
+msgid "Choose to upload background image for footer"
+msgstr ""
+
+#: includes/admin-options.php:2692
+msgid ""
+"Select yes to have the footer widgets area background image display at 100% "
+"in width and height and scale according to the browser size."
+msgstr ""
+
+#: includes/admin-options.php:2703
+msgid "Choose to set parallax background effect for footer"
+msgstr ""
+
+#: includes/admin-options.php:2714
+msgid "Set repeat for background image in footer"
+msgstr ""
+
+#: includes/admin-options.php:2724
+msgid "Background Position"
+msgstr ""
+
+#: includes/admin-options.php:2725
+msgid "Set position for background image in footer"
+msgstr ""
+
+#: includes/admin-options.php:2735
+msgid "Footer Top Padding"
+msgstr ""
+
+#: includes/admin-options.php:2746
+msgid "Footer Bottom Padding"
+msgstr ""
+
+#: includes/admin-options.php:2757
+msgid "Footer Social Icons"
+msgstr ""
+
+#: includes/admin-options.php:2786
+msgid "Choose FontAwesome icon"
+msgstr ""
+
+#: includes/admin-options.php:2812
 msgid "404 page"
 msgstr ""
 
-#: includes/admin-options.php:2580
+#: includes/admin-options.php:2817
 msgid "404 page content"
 msgstr ""
 
@@ -1731,52 +2150,52 @@ msgstr ""
 msgid "Your comment is awaiting moderation."
 msgstr ""
 
-#: includes/theme-functions.php:235 includes/theme-functions.php:728
+#: includes/theme-functions.php:216
 msgid "Upgrade to Pro"
 msgstr ""
 
-#: includes/theme-functions.php:236
+#: includes/theme-functions.php:217
 msgid "MageeWP Themes"
 msgstr ""
 
-#: includes/theme-functions.php:237
+#: includes/theme-functions.php:218
 msgid "Manual"
 msgstr ""
 
-#: includes/theme-functions.php:238
+#: includes/theme-functions.php:219
 msgid "FAQ"
 msgstr ""
 
-#: includes/theme-functions.php:239
+#: includes/theme-functions.php:220
 msgid "Knowledge"
 msgstr ""
 
-#: includes/theme-functions.php:240
+#: includes/theme-functions.php:221
 msgid "Support Forums"
 msgstr ""
 
-#: includes/theme-functions.php:263
+#: includes/theme-functions.php:244
 #, php-format
 msgid " Page %s "
 msgstr ""
 
-#: includes/theme-functions.php:291
+#: includes/theme-functions.php:272
 msgid "TOP"
 msgstr ""
 
-#: includes/theme-functions.php:465
+#: includes/theme-functions.php:446
 msgid " Prev"
 msgstr ""
 
-#: includes/theme-functions.php:466
+#: includes/theme-functions.php:447
 msgid "Next "
 msgstr ""
 
-#: includes/theme-functions.php:669
+#: includes/theme-functions.php:650
 msgid "About Onetone"
 msgstr ""
 
-#: includes/theme-functions.php:671
+#: includes/theme-functions.php:652
 msgid ""
 "Based on Bootstrap and coded with HTML5 and CSS3 language, Onetone is fully "
 "responsive in desktops and mobile devices. With enriched settings in theme "
@@ -1785,15 +2204,11 @@ msgid ""
 "for additional information about Onetone."
 msgstr ""
 
-#: includes/theme-functions.php:675
+#: includes/theme-functions.php:656
 msgid "Theme Support"
 msgstr ""
 
-#: includes/theme-functions.php:675
-msgid "Import Demos"
-msgstr ""
-
-#: includes/theme-functions.php:699
+#: includes/theme-functions.php:680
 msgid ""
 "<div class=\"theme-support\"><div class=\"col-1-3\">\n"
 "  <h4>Documentation</h4>\n"
@@ -1817,38 +2232,15 @@ msgid ""
 "</div></div>"
 msgstr ""
 
-#: includes/theme-functions.php:716
-msgid "Import Onetone Demos"
-msgstr ""
-
-#: includes/theme-functions.php:727
-msgid "Check out the pro version to import these demos."
-msgstr ""
-
-#: includes/theme-functions.php:761 includes/theme-functions.php:770
-#: includes/theme-functions.php:779
-msgid "Check out the pro version to import this demo."
-msgstr ""
-
-#: includes/theme-functions.php:761 includes/theme-functions.php:770
-#: includes/theme-functions.php:779
-msgid "Import"
-msgstr ""
-
-#: includes/theme-functions.php:761 includes/theme-functions.php:770
-#: includes/theme-functions.php:779
-msgid "Preview"
-msgstr ""
-
-#: includes/theme-functions.php:809
+#: includes/theme-functions.php:709
 msgid "Onetone step 2"
 msgstr ""
 
-#: includes/theme-functions.php:809 includes/theme-functions.php:810
+#: includes/theme-functions.php:709 includes/theme-functions.php:710
 msgid "Customize Content for Homepage"
 msgstr ""
 
-#: includes/theme-functions.php:810
+#: includes/theme-functions.php:710
 msgid ""
 "Open this page to edit content for homepage and customize styles of the site."
 msgstr ""
@@ -1865,11 +2257,17 @@ msgstr ""
 msgid "Top Bar Menu"
 msgstr ""
 
-#: includes/theme-setup.php:596 includes/theme-setup.php:597
+#: includes/theme-setup.php:530
+#, php-format
+msgid ""
+"To edit contents for homepage, please go to <a href=\"%s\">Theme Options</a>"
+msgstr ""
+
+#: includes/theme-setup.php:629 includes/theme-setup.php:630
 msgid "Onetone Options"
 msgstr ""
 
-#: includes/theme-setup.php:628
+#: includes/theme-setup.php:661
 msgid "Untitled"
 msgstr ""
 

@@ -49,4 +49,6 @@ $("#gallery .img-box a").hover(function(){
 	//alert($(this).index("#gallery .img-box a"));
         })        ;
         */
+       
+       $("#mbYTP_onetone-youtube-video").css("bacground","black");
 })

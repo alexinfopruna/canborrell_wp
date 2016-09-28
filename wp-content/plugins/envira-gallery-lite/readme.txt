@@ -2,7 +2,7 @@
 Contributors: griffinjt, smub
 Tags: wordpress gallery, gallery, wordpress gallery plugin, gallery plugin, responsive, responsive gallery, image gallery, image gallery plugin, responsive gallery plugin, responsive image gallery, responsive image gallery plugin, custom post types, slideshow, responsive slideshow, slideshow plugin, responsive slideshow plugin, rotator, image rotator, responsive rotator, jquery gallery, javascript gallery, jquery rotator, javascript rotator, picture gallery, photo gallery, photo rotator, shortcode, template tag, custom post type, media uploader, ajax, wordpress galleries, responsive galleries, fullscreen, deeplinking, best wordpress gallery, best wordpress gallery plugin, best gallery plugin, best gallery, best responsive gallery, best responsive wordpress gallery, best wp gallery, portfolio, design portfolio, lightroom, adobe lightroom, masonry gallery, polaroid gallery
 Requires at least: 4.0
-Tested up to: 4.6
+Tested up to: 4.6.1
 Stable tag: trunk
 License: GNU General Public License v2.0 or later
 
@@ -184,6 +184,9 @@ Envira Gallery is absolutely, positively the <a href="http://enviragallery.com/?
 Also, I'm an <a href="https://thomasgriffin.io" rel="me" title="WordPress Developer - Thomas Griffin">expert WordPress developer</a> and I write a lot about WordPress in general. You can check out my blog at the link above.
 
 == Changelog ==
+
+= 1.5.4 =
+* Fix: Error with lightbox script causing it not to load in some instances.
 
 = 1.5.3 =
 * Updated: Revising Fancybox JS.

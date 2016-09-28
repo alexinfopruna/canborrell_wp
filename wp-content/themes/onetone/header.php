@@ -21,6 +21,8 @@
   $header_background_parallax  = $header_background_parallax=="yes"?"parallax-scrolling":"";
   $top_bar_left_content        = onetone_option('top_bar_left_content','info');
   $top_bar_right_content       = onetone_option('top_bar_right_content','info');
+  $header_fullwidth            = onetone_option('header_fullwidth');
+  $nav_hover_effect            = absint(onetone_option('nav_hover_effect'));
   
   $logo               = onetone_option('logo','');
   $logo_retina        = onetone_option('logo_retina');
@@ -51,6 +53,10 @@
  if( is_front_page() )
  $body_class  = 'page homepage';
  
+ $header_container = 'container';
+ if( $header_fullwidth == 1)
+ $header_container = 'container-fluid';
+ 
   $header_image = get_header_image();
 ?>
 <body <?php body_class($body_class); ?>>
@@ -63,7 +69,7 @@
             <header class="header-wrap logo-<?php echo $logo_position; ?> <?php echo $overlay; ?>">
              <?php if( $display_top_bar == 'yes' ):?>
                 <div class="top-bar">
-                    <div class="container">
+                    <div class="<?php echo $header_container; ?>">
                         <div class="top-bar-left">
                             <?php  onetone_get_topbar_content( $top_bar_left_content );?>                      
                         </div>
@@ -75,7 +81,7 @@
                  <?php endif;?>
                 
                 <div class="main-header <?php echo $header_background_parallax; ?>">
-                    <div class="container">
+                    <div class="<?php echo $header_container; ?>">
                         <div class="logo-box">
                         <?php if( $logo ):?>
                         
@@ -103,7 +109,7 @@
                             <span class="sr-only"><?php _e( 'Toggle navigation', 'onetone' );?></span>
                             <i class="fa fa-bars fa-2x"></i>
                         </button>
-                        <nav class="site-nav" role="navigation">
+                        <nav class="site-nav style<?php echo $nav_hover_effect;?>" role="navigation">
                             <?php 
 					 wp_nav_menu(array('theme_location'=>$theme_location,'depth'=>0,'fallback_cb' =>false,'container'=>'','container_class'=>'main-menu','menu_id'=>'menu-main','menu_class'=>'main-nav','link_before' => '<span>', 'link_after' => '</span>','items_wrap'=> '<ul id="%1$s" class="%2$s">%3$s</ul>'));
 					?>
@@ -115,7 +121,7 @@
             <?php if( !$detect->isTablet() || ( $detect->isTablet() && $enable_sticky_header_tablets == 'yes' ) || ( $detect->isMobile() && !$detect->isTablet() && $enable_sticky_header_mobiles == 'yes' )  ):?>
             
                 <div class="fxd-header">
-                    <div class="container">
+                    <div class="<?php echo $header_container; ?>">
                         <div class="logo-box">
                         <?php if( $sticky_logo ):?>
                             <a href="<?php echo esc_url(home_url('/')); ?>"><img class="site-logo normal_logo" src="<?php echo esc_url($sticky_logo); ?>"></a>
@@ -140,7 +146,7 @@
                             <span class="sr-only"><?php _e( 'Toggle navigation', 'onetone' );?></span>
                             <i class="fa fa-bars fa-2x"></i>
                         </button>
-                        <nav class="site-nav" role="navigation">
+                        <nav class="site-nav style<?php echo $nav_hover_effect;?>" role="navigation">
                             <?php 
 					 wp_nav_menu(array('theme_location'=>$theme_location,'depth'=>0,'fallback_cb' =>false,'container'=>'','container_class'=>'main-menu','menu_id'=>'menu-main','menu_class'=>'main-nav','link_before' => '<span>', 'link_after' => '</span>','items_wrap'=> '<ul id="%1$s" class="%2$s">%3$s</ul>'));
 					?>

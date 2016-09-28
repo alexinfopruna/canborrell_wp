@@ -303,3 +303,7 @@ li.info-website:before {
 .homepage section{
 	position:relative;
 	}
+	
+#optionsframework-wrap .group .section h4 {
+    text-align: left;
+}

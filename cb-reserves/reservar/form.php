@@ -441,7 +441,7 @@ $test = isset($_REQUEST['testTPV']) ? '&testTPV=' . $_REQUEST['testTPV'] : "";
                                             <!-- *******************************  QUANTS SOU ********************************************************   -->
 
 
-                                            <div class="fr-seccio ui-corner-all fr-seccio-quants" style="max-width:950px;">
+                                            <div class="fr-seccio ui-corner-all fr-seccio-quants" style="xxxmax-width:950px;">
                                                 <h1 class="titol"><span class="number">1</span><?php l('Quants sou?'); ?>
                                                     <a href="#" id="info-quants" class="info-ico"><img src="css/info.png" title="<?php l('Ajuda'); ?>" style="width:16px;height:auto;margin-left:8px"/></a>
                                                 </h1>

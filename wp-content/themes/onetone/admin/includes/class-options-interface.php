@@ -101,7 +101,7 @@ class Options_Framework_Interface {
 					$val = $settings[($value['id'])];
 					// Striping slashes of non-array options
 					if ( !is_array($val) ) {
-						$val = stripslashes( $val );
+						//$val = stripslashes( $val );
 					}
 				}
 			}
@@ -149,7 +149,7 @@ class Options_Framework_Interface {
 					}
 				}
 
-				$val = stripslashes( $val );
+				//$val = stripslashes( $val );
 				$output .= '<textarea id="' .esc_attr( $value['id'] ) . '" class="of-input" name="' . esc_attr( $option_name . '[' . $value['id'] . ']' ) . '" rows="' . $rows . '"' . $placeholder . '>' . esc_textarea( $val ) . '</textarea>';
 				break;
 
@@ -440,7 +440,7 @@ class Options_Framework_Interface {
 					}
 				}
 				
-			 $val = stripslashes( $val );
+			// $val = stripslashes( $val );
 			
     
 		  /* format setting outer wrapper */

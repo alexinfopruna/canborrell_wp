@@ -21,6 +21,8 @@
   $header_background_parallax  = $header_background_parallax=="yes"?"parallax-scrolling":"";
   $top_bar_left_content        = onetone_option('top_bar_left_content','info');
   $top_bar_right_content       = onetone_option('top_bar_right_content','info');
+  $header_fullwidth            = onetone_option('header_fullwidth');
+  $nav_hover_effect            = absint(onetone_option('nav_hover_effect'));
   
   $logo               = onetone_option('logo','');
   $logo_retina        = onetone_option('logo_retina');
@@ -51,6 +53,11 @@
  $body_class  = '';
  if(is_home() || is_front_page() )
  $body_class  = 'page homepage';
+ 
+ $header_container = 'container';
+ if( $header_fullwidth == 1)
+ $header_container = 'container-fluid';
+ 
  $header_image = get_header_image();
 ?>
 <body <?php body_class($body_class); ?>>
@@ -63,7 +70,7 @@
             <header class="header-wrap logo-<?php echo $logo_position; ?> home-header <?php echo $overlay; ?>">
              <?php if( $display_top_bar == 'yes' ):?>
                 <div class="top-bar">
-                    <div class="container">
+                    <div class="<?php echo $header_container; ?>">
                         <div class="top-bar-left">
                             <?php  onetone_get_topbar_content( $top_bar_left_content );?>                      
                         </div>
@@ -75,7 +82,7 @@
                  <?php endif;?>
                 
                 <div class="main-header <?php echo $header_background_parallax; ?>">
-                    <div class="container">
+                    <div class="<?php echo $header_container; ?>">
                         <div class="logo-box">
                         <?php if( $logo ):?>
                         
@@ -104,7 +111,7 @@
                             <span class="sr-only"><?php _e( 'Toggle navigation', 'onetone' );?></span>
                             <i class="fa fa-bars fa-2x"></i>
                         </button>
-                        <nav class="site-nav" role="navigation">
+                        <nav class="site-nav style<?php echo $nav_hover_effect;?>" role="navigation">
                             <?php
 							$output = array();
                         if ( function_exists( 'optionsframework_options' ) ) {
@@ -136,15 +143,17 @@
 							 $section_slug = onetone_option( 'menu_slug_'.$i,isset($default_options['menu_slug_'.$i])?$default_options['menu_slug_'.$i]:'' );
 							  if( $section_slug )
 							  $section_slug =  sanitize_title($section_slug );
+							  
+							   $hide_section  = onetone_option( 'section_hide_'.$i );
 							
-							 if(isset($section_menu) && $section_menu !=""){
+							 if( isset($section_menu) && $section_menu !="" &&  $hide_section != '1' ){
 							 $sanitize_title = 'section-'.($i+1);
 							 
 							 $section_menu = onetone_option( 'menu_title_'.$i,isset($default_options['menu_title_'.$i])?$default_options['menu_title_'.$i]:'' );
 							 if(trim($section_slug) !=""){
 								 $sanitize_title = $section_slug; 
 								 }
-							 $onepage_menu .= '<li  class="onetone-menuitem"><a id="onetone-'.$sanitize_title.'" href="#'.$sanitize_title.'" >
+							 $onepage_menu .= '<li  class="onetone-menuitem"><a id="onetone-'.$sanitize_title.'" href="#'.strtolower($sanitize_title).'" >
 							 <span>'.$section_menu.'</span></a></li>';
 							 }
 							 }
@@ -163,7 +172,7 @@
             <?php if( (!$detect->isTablet() && $enable_sticky_header == 'yes') || ( $detect->isTablet() && $enable_sticky_header_tablets == 'yes' ) || ( $detect->isMobile() && !$detect->isTablet() && $enable_sticky_header_mobiles == 'yes' )  ):?>
             
                 <div class="fxd-header">
-                    <div class="container">
+                    <div class="<?php echo $header_container; ?>">
                         <div class="logo-box">
                         <?php if( $sticky_logo ):?>
                             <a href="<?php echo esc_url(home_url('/')); ?>"><img class="site-logo normal_logo" src="<?php echo esc_url($sticky_logo); ?>"></a>
@@ -188,7 +197,7 @@
                             <span class="sr-only"><?php _e( 'Toggle navigation', 'onetone' );?></span>
                             <i class="fa fa-bars fa-2x"></i>
                         </button>
-                        <nav class="site-nav" role="navigation">
+                        <nav class="site-nav style<?php echo $nav_hover_effect;?>" role="navigation">
                           <?php
 
 						  if ( has_nav_menu( "home_menu" ) ) {
@@ -207,4 +216,3 @@
             </header>
             <div class="slider-wrap"></div>
         </div>
-                                

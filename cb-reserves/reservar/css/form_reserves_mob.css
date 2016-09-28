@@ -283,7 +283,7 @@ em.error {
             color: #570600
         }
 
-/* ESTILS.CSS*/
+/* ESTILS.CSS
 a:link
 {
     font-family: verdana, arial, helvetica;
@@ -477,7 +477,7 @@ h4{padding-top: 15px;}
 #fr-menu-popup{height:auto !important;}
 #fr-cartaw-popup{height:auto !important;}
 
- label.ptpv{background:rgb(255, 255, 161);}
+ label.ptpv{background:rgb(255, 255, 161);color:#333;}
  label.ptpv.ui-state-active{background:#570600;}
  
  .paga{background:rgb(255, 255, 161);padding:4px;}
@@ -486,3 +486,9 @@ h4{padding-top: 15px;}
 .pastis{background:rgb(255, 255, 161);padding:4px;}
 
 #debug{position:fixed;bottom:0;width:250px;}
+
+
+
+#calendari .ui-datepicker-inline {
+     width: inherit;
+}

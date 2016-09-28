@@ -20,7 +20,6 @@ function onetone_widgets_init() {
 			'footer_widget_2'  => __( 'Footer Area Two', 'onetone' ),
 			'footer_widget_3'  => __( 'Footer Area Three', 'onetone' ),
 			'footer_widget_4'  => __( 'Footer Area Four', 'onetone' ),
-			'header_widget_1'  => __( 'Header Area One', 'canborrell' ),
           );
 	  
 	  foreach( $sidebars as $k => $v ){

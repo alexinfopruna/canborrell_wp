@@ -389,12 +389,16 @@ if ($padding_bottom)
                                                           <!-- *******************************  QUANTS SOU ********************************************************   -->
                                                           <!-- *******************************  QUANTS SOU ********************************************************   -->
 
-
-                                                          <div class="fr-seccio ui-corner-all fr-seccio-quants" style="max-width:950px;">
-                                                              <h1 class="titol"><span class="number">1</span><?php l('Quants sou?'); ?>
+       <h1 class="titol"><span class="number">1</span><?php l('Quants sou?'); ?>
                                                                   <a href="#" id="info-quants" class="info-ico"><img src="/cb-reserves/reservar/css/info.png" title="<?php l('Ajuda'); ?>" style="width:16px;height:auto;margin-left:8px"/></a>
                                                               </h1>
                                                               <h4  id="titol_SelectorComensals"><?php l('Adults (més de 14 anys)'); ?>:</h4>
+      
+        
+
+
+                                                          <div class="fr-seccio ui-corner-all fr-seccio-quants" style="xxxmax-width:950px;">
+                                                             
 
 
                                                               <!-- ******  ADULTS  ********   -->
@@ -513,7 +517,7 @@ if ($padding_bottom)
                                                               <div style="clear:both"></div>
 
                                                           </div>		
-
+     
                                                           <!-- *******************************  QUIN DIA ********************************************************   -->
                                                           <!-- *******************************  QUIN DIA ********************************************************   -->
                                                           <!-- *******************************  QUIN DIA ********************************************************   -->

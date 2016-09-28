@@ -2,6 +2,30 @@
 
 == CHANGE LOG == 
 
+= Version 1.8.8 = = 23/09/2016
+* Add - Added 'Full Width Header' option
+* Add - Added 'Nav Hover Effect' option
+* Fix - Fixed admin bar issue
+* Fix - Fixed 'Slide Speed' option issue
+* Remove - Removed styling - element colors - footer widget divider color
+
+= Version 1.8.7 = = 09/09/2016
+* Fix - Fixed home page Hide Section issue
+* Remove - Removed 'Import Onetone Demos'
+
+= Version 1.8.6 = = 25/08/2016
+* Fix - Fixed home page section menu slug issue
+* Add - Added Template: Front Page
+
+= Version 1.8.5 = = 29/07/2016
+* Add - Added footer sns
+* Add - Added Gallery Section lightbox
+* Fix - Fixed Custom CSS backslash issue
+* Fix - Fixed logo issue
+
+= Version 1.8.4 = = 20/07/2016
+* Add - Added Footer Widgets Area Options
+
 = Version 1.8.3 = 
 * Add - Added YouTube Video Background - Mute option
 * Add - Added YouTube Video Background - AutoPlay option

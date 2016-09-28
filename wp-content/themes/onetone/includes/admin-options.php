@@ -298,7 +298,7 @@ SHINES ONE PAGE SMALL BUSINESS WEBSITE.",
 		$options[] = array(
         'id'          => 'header_overlay',
         'name'       => __( 'Home Page Header Overlay', 'onetone' ),
-        'desc'        => __( 'Choose to set home page header as overlay style.', 'onetone' ),
+        'desc'        => __( 'Choose to set header in home page as overlay style', 'onetone' ),
         'std'         => $header_overlay,
         'type'        => 'checkbox',
         'section'     => 'header_tab_section',
@@ -329,7 +329,7 @@ SHINES ONE PAGE SMALL BUSINESS WEBSITE.",
 		$options[] = array('name' => __('YouTube ID for Video Background', 'onetone'),'std' => '9ZfN87gSjvI','desc' => __('Insert the eleven-letter id here, not url.', 'onetone'),'id' => 'section_background_video_0',
 		'type' => 'text','class' => 'section-item accordion-group-youtube_video' );
 		
-		$options[] = array('name' => __('Start Time', 'onetone'),'std' => '28','desc' => __('Start to play.', 'onetone'),'id' => 'section_youtube_start',
+		$options[] = array('name' => __('Start Time', 'onetone'),'std' => '28','desc' => __('Choose time to start to play, in seconds.', 'onetone'),'id' => 'section_youtube_start',
 		'type' => 'text','class' => 'section-item accordion-group-youtube_video' );
 		
 		$options[] = array(
@@ -343,7 +343,7 @@ SHINES ONE PAGE SMALL BUSINESS WEBSITE.",
 		
 		$options[] = array(
 		'name' => __('Mute', 'onetone'),
-		'desc' => '',
+		'desc' => __('Choose to set the video mute.', 'onetone'),
 		'id' => 'youtube_mute',
 		'std' => '0',
 		'class' => 'mini section-item accordion-group-youtube_video',
@@ -352,7 +352,7 @@ SHINES ONE PAGE SMALL BUSINESS WEBSITE.",
 		
 		$options[] = array(
 		'name' => __('AutoPlay', 'onetone'),
-		'desc' => '',
+		'desc' => __('Choose to set the video autoplay.', 'onetone'),
 		'id' => 'youtube_autoplay',
 		'std' => '1',
 		'class' => 'mini section-item accordion-group-youtube_video',
@@ -361,7 +361,7 @@ SHINES ONE PAGE SMALL BUSINESS WEBSITE.",
 		
 		$options[] = array(
 		'name' => __('Loop', 'onetone'),
-		'desc' => '',
+		'desc' => __('Choose to set the video loop.', 'onetone'),
 		'id' => 'youtube_loop',
 		'std' => '1',
 		'class' => 'mini section-item accordion-group-youtube_video',
@@ -370,7 +370,7 @@ SHINES ONE PAGE SMALL BUSINESS WEBSITE.",
 		
 		$options[] = array(
 		'name' => __('Background Type', 'onetone'),
-		'desc' => '',
+		'desc' => __('Choose to set the video as background of the whole site or just one section.', 'onetone'),
 		'id' => 'youtube_bg_type',
 		'std' => '1',
 		'class' => 'mini section-item accordion-group-youtube_video',
@@ -386,7 +386,7 @@ SHINES ONE PAGE SMALL BUSINESS WEBSITE.",
 			$video_background_section[$k] = $v;
 			}
 		$options[] = array('name' => __('Video Background Section', 'onetone'),'std' => '1','id' => 'video_background_section',
-		'type' => 'select','options'=>$video_background_section);
+		'type' => 'select', 'desc' => __('Choose a section to set the video as background for.', 'onetone'), 'options'=>$video_background_section);
 		
 		
 		$options[] = array(
@@ -516,7 +516,7 @@ SHINES ONE PAGE SMALL BUSINESS WEBSITE.",
 						   'id' => 'menu_slug_'.$i.'',
 						   'type' => 'text',
 						   'std'=>$section_slug[$i],
-						   'desc'=> __('The "slug" is the URL-friendly version of menu title. It is usually all lowercase and contains only letters, numbers, and hyphens. If the menu title contains non-eng characters, you need to fill this form.', 'onetone'),
+						   'desc'=> __('Attention! The "slug" is the URL-friendly version of menu title. It is usually all lowercase and contains only letters, numbers, and hyphens. If the menu title contains non-eng characters or spaces, you need to fill this form.', 'onetone'),
 						   'class'=>'section-item accordion-group-section-'.$i
 						   );
 		
@@ -526,7 +526,7 @@ SHINES ONE PAGE SMALL BUSINESS WEBSITE.",
 						   'std' => $section_background[$i],
 						   'type' => 'background' ,
 						   'class'=>'section-item accordion-group-section-'.$i,
-						   'desc'=> __('Set background color & background image for this section.', 'onetone'),
+						   'desc'=> __('Set background color & background image for this section', 'onetone'),
 						   );
 		
 		$options[] = array(
@@ -536,7 +536,7 @@ SHINES ONE PAGE SMALL BUSINESS WEBSITE.",
 		                   'type' => 'select',
 						   'class'=>'mini section-item accordion-group-section-'.$i,
 						   'options'=>$choices,
-						   'desc'=> __('Choose to apply parallax scrolling effect for background image.', 'onetone'),
+						   'desc'=> __('Choose to apply parallax scrolling effect for background image', 'onetone'),
 						   );
 
 		
@@ -546,7 +546,7 @@ SHINES ONE PAGE SMALL BUSINESS WEBSITE.",
 						   'type' => 'text',
 						   'std'=>$section_css_class[$i],
 						   'class'=>'section-item accordion-group-section-'.$i,
-						   'desc' => __('Set an aditional css class of this section.', 'onetone'),
+						   'desc' => __('Set an aditional css class of this section', 'onetone'),
 						   );
 		$options[] = array(
 						   'name' => __('Section Padding', 'onetone'),
@@ -554,7 +554,7 @@ SHINES ONE PAGE SMALL BUSINESS WEBSITE.",
 						   'type' => 'text',
 						   'std'=>$section_padding[$i],
 						   'class'=>'section-item accordion-group-section-'.$i,
-						   'desc' => __('Set padding for this section. In pixels (px), eg: 10px 20px 30px 0. These four numbers represent padding top/right/bottom/left.', 'onetone'),
+						   'desc' => __('Set padding for this section. In pixels (px), eg: 10px 20px 30px 0. These four numbers represent padding top/right/bottom/left', 'onetone'),
 						   );
 		
 		$options[] = array(
@@ -564,7 +564,7 @@ SHINES ONE PAGE SMALL BUSINESS WEBSITE.",
 		                   'type' => 'select',
 						   'class'=>'mini section-item accordion-group-section-'.$i,
 						   'options'=>$align,
-						   'desc' => __('Set content align for this section.', 'onetone'),
+						   'desc' => __('Set content align for this section', 'onetone')
 						   );
 		
 		
@@ -593,6 +593,7 @@ SHINES ONE PAGE SMALL BUSINESS WEBSITE.",
 					  'std' => $content_model,
 					  'class' => 'section-content-model section-item accordion-group-section-'.$i,
 					  'type' => 'radio',
+					  'desc' => __('Default: fixed layout, no code knowledge needed; Custom: non-fixed layout, user can use html and shortcode to get more complex structure', 'onetone'),
 					  'options'=>array('0'=> __('Default', 'onetone'),'1'=>__('Custom', 'onetone'))
 		);
 		
@@ -602,7 +603,7 @@ SHINES ONE PAGE SMALL BUSINESS WEBSITE.",
 		$options[] = array(
 							'id'          => 'section_color_'.$i.'',
 							'name'       => __( 'Font Color', 'onetone' ),
-							'desc'        => '',
+							'desc'        => __( 'Set font color for the content of this section', 'onetone' ),
 							'std'         => $section_color[$i],
 							'type'        => 'color',
 							'class'       => 'content-model-0 section-item accordion-group-section-'.$i,
@@ -615,7 +616,7 @@ SHINES ONE PAGE SMALL BUSINESS WEBSITE.",
 						   'type' => 'text',
 						   'std'=> $section_subtitle[$i],
 						   'class'=>'content-model-0 section-item accordion-group-section-'.$i,
-						   'desc'=> __('Insert sub-title for this section. It would appear at the bottom of the section title.', 'onetone'),
+						   'desc'=> __('Insert sub-title for this section. It would appear at the bottom of the section title', 'onetone'),
 						   );
 		
 		switch( $i ){
@@ -626,12 +627,14 @@ SHINES ONE PAGE SMALL BUSINESS WEBSITE.",
 						  'id'   => "section_btn_text_".$i,
 						  'std'  => 'Click Me',
 						  'type' => 'text',
+						  'desc' => __('Insert text for the button', 'onetone'),
 						  'class'=>'content-model-0 section-item accordion-group-section-'.$i
 						  );
 			  $options[] = array(
 						  'name' => __('Button Link', 'onetone'),
 						  'id'   => "section_btn_link_".$i,
 						  'std'  => '#',
+						  'desc' => __('Insert link for the button, begin with http:// or https://', 'onetone'),
 						  'type' => 'text',
 						  'class'=>'content-model-0 section-item accordion-group-section-'.$i
 						  );
@@ -639,6 +642,7 @@ SHINES ONE PAGE SMALL BUSINESS WEBSITE.",
 						  'name' => __('Button Target', 'onetone'),
 						  'id'   => "section_btn_target_".$i,
 						  'std'  => '_self',
+						  'desc' => __('Self: open in the same window; blank: open in a new window', 'onetone'),
 						  'type' => 'select',
 						  'class'=>'content-model-0 section-item accordion-group-section-'.$i,
 						  'options'     => $target
@@ -652,7 +656,8 @@ SHINES ONE PAGE SMALL BUSINESS WEBSITE.",
 						  'id'   => "section_social_icon_".$i."_".$s,
 						  'std'  => $banner_social_icon[$s],
 						  'type' => 'text',
-						  'class'=>'content-model-0 section-item accordion-group-section-'.$i
+						  'class'=>'content-model-0 section-item accordion-group-section-'.$i,
+						  'desc' => __('Insert Fontawsome icon code', 'onetone')
 						  );
 			  $options[] = array(
 						  'name' => __('Social Icon Link', 'onetone').' '.($s+1),
@@ -660,7 +665,7 @@ SHINES ONE PAGE SMALL BUSINESS WEBSITE.",
 						  'std'  => '#',
 						  'type' => 'text',
 						  'class'=>'content-model-0 section-item accordion-group-section-'.$i,
-						  'desc' => __('Using Fontawsome Icon.', 'onetone')
+						  'desc' => __('Insert link for the icon', 'onetone')
 						  );
 			  
 			  
@@ -673,6 +678,7 @@ SHINES ONE PAGE SMALL BUSINESS WEBSITE.",
 						  'name' => __('Button Text', 'onetone'),
 						  'id'   => "section_btn_text_".$i,
 						  'std'  => 'Click Me',
+						  'desc' => __('Insert text for the button', 'onetone'),
 						  'type' => 'text',
 						  'class'=>'content-model-0 section-item accordion-group-section-'.$i
 						  );
@@ -680,6 +686,7 @@ SHINES ONE PAGE SMALL BUSINESS WEBSITE.",
 						  'name' => __('Button Link', 'onetone'),
 						  'id'   => "section_btn_link_".$i,
 						  'std'  => '#',
+						  'desc' => __('Insert link for the button, begin with http:// or https://', 'onetone'),
 						  'type' => 'text',
 						  'class'=>'content-model-0 section-item accordion-group-section-'.$i
 						  );
@@ -687,6 +694,7 @@ SHINES ONE PAGE SMALL BUSINESS WEBSITE.",
 						  'name' => __('Button Target', 'onetone'),
 						  'id'   => "section_btn_target_".$i,
 						  'std'  => '_self',
+						  'desc' => __('Self: open in the same window; blank: open in a new window', 'onetone'),
 						  'type' => 'select',
 						  'class'=>'content-model-0 section-item accordion-group-section-'.$i,
 						  'options'     => $target
@@ -694,9 +702,9 @@ SHINES ONE PAGE SMALL BUSINESS WEBSITE.",
 			  
 			$options[] = array(
 						  'name' => __('Description', 'onetone'),
-						  'desc' => '',
 						  'id' => 'section_desc_'.$i,
 						  'std' => '<h4>Morbi rutrum, elit ac fermentum egestas, tortor ante vestibulum est, eget scelerisque nisl velit eget tellus.</h4>',
+						  'desc' => __('Insert content for the banner, html tags allowed', 'onetone'),
 						  'type' => 'textarea',
 						  'class'=>'content-model-0 section-item accordion-group-section-'.$i,
 						  );
@@ -712,6 +720,7 @@ SHINES ONE PAGE SMALL BUSINESS WEBSITE.",
 						  'name' => sprintf(__('Service Icon %d', 'onetone'),$c+1),
 						  'id'   => "section_icon_".$i."_".$c,
 						  'std'  => $icons[$c],
+						  'desc' => __('Insert Fontawsome icon code', 'onetone'),
 						  'type' => 'text',
 						  'class'=>'content-model-0 section-item accordion-group-section-'.$i
 						  );
@@ -719,6 +728,7 @@ SHINES ONE PAGE SMALL BUSINESS WEBSITE.",
 						  'name' => sprintf(__('Service Image %d', 'onetone'),$c+1),
 						  'id'   => "section_image_".$i."_".$c,
 						  'std'  => '',
+						  'desc' => __('Or choose to upload icon image', 'onetone'),
 						  'type' => 'upload',
 						  'class'=>'content-model-0 section-item accordion-group-section-'.$i
 						  );
@@ -726,6 +736,7 @@ SHINES ONE PAGE SMALL BUSINESS WEBSITE.",
 						  'name' => sprintf(__('Service Title %d', 'onetone'),$c+1),
 						  'id'   => "section_title_".$i."_".$c,
 						  'std'  => 'FREE PSD TEMPLATE',
+						  'desc' => __('Set title for service item', 'onetone'),
 						  'type' => 'text',
 						  'class'=>'content-model-0 section-item accordion-group-section-'.$i
 						  );
@@ -733,6 +744,7 @@ SHINES ONE PAGE SMALL BUSINESS WEBSITE.",
 						  'name' => sprintf(__('Title Link %d', 'onetone'),$c+1),
 						  'id'   => "section_link_".$i."_".$c,
 						  'std'  => '',
+						  'desc' => __('Insert link for service item', 'onetone'),
 						  'type' => 'text',
 						  'class'=>'content-model-0 section-item accordion-group-section-'.$i
 						  );
@@ -741,6 +753,7 @@ SHINES ONE PAGE SMALL BUSINESS WEBSITE.",
 						  'name' => sprintf(__('Link Target %d', 'onetone'),$c+1),
 						  'id'   => "section_target_".$i."_".$c,
 						  'std'  => '',
+						  'desc' => __('Self: open in the same window; blank: open in a new window', 'onetone'),
 						  'type' => 'select',
 						  'options'=>$target,
 						  'class'=>'content-model-0 section-item accordion-group-section-'.$i
@@ -750,6 +763,7 @@ SHINES ONE PAGE SMALL BUSINESS WEBSITE.",
 						  'name' => sprintf(__('Service Description %d', 'onetone'),$c+1),
 						  'id'   => "section_desc_".$i."_".$c,
 						  'std'  => 'Integer pulvinar elementum est, suscipit ornare ante finibus ac. Praesent vel ex dignissim, rhoncus eros luctus, dignissim arcu.',
+						  'desc' => __('Insert content for the banner, html tags allowed', 'onetone'),
 						  'type' => 'textarea',
 						  'class'=>'content-model-0 section-item accordion-group-section-'.$i
 						  );
@@ -775,6 +789,7 @@ SHINES ONE PAGE SMALL BUSINESS WEBSITE.",
 						  'name' => sprintf(__('Image %d', 'onetone'),$c+1),
 						  'id'   => "section_image_".$i."_".$c,
 						  'std'  => $default_images[$c],
+						  'desc' => __('Choose to upload image for gallery item', 'onetone'),
 						  'type' => 'upload',
 						  'class'=>'content-model-0 section-item accordion-group-section-'.$i
 						  );
@@ -783,6 +798,7 @@ SHINES ONE PAGE SMALL BUSINESS WEBSITE.",
 						  'name' => sprintf(__('Link %d', 'onetone'),$c+1),
 						  'id'   => "section_link_".$i."_".$c,
 						  'std'  => '',
+						  'desc' => __('Insert link for this item', 'onetone'),
 						  'type' => 'text',
 						  'class'=>'content-model-0 section-item accordion-group-section-'.$i
 						  );
@@ -791,6 +807,7 @@ SHINES ONE PAGE SMALL BUSINESS WEBSITE.",
 						  'name' => sprintf(__('Link Target %d', 'onetone'),$c+1),
 						  'id'   => "section_target_".$i."_".$c,
 						  'std'  => '',
+						  'desc' => __('Self: open in the same window; blank: open in a new window', 'onetone'),
 						  'type' => 'select',
 						  'options'=>$target,
 						  'class'=>'content-model-0 section-item accordion-group-section-'.$i
@@ -817,7 +834,7 @@ SHINES ONE PAGE SMALL BUSINESS WEBSITE.",
 			$options[] = array(
 						  'id' => "section_team_columns",
 						  'name' => __( 'Columns', 'onetone' ),
-						  'desc' => '',
+						  'desc' => __( 'Set columns for team module', 'onetone' ),
 						  'type'    => 'select',
 						  'options' => array(2=>2,3=>3,4=>4),
 						  'std' => '4',
@@ -830,6 +847,7 @@ SHINES ONE PAGE SMALL BUSINESS WEBSITE.",
 						  'name' => sprintf(__('Avatar %d', 'onetone'),$t+1),
 						  'id'   => "section_avatar_".$i."_".$t,
 						  'std'  => $avatar[$t],
+						  'desc' => __( 'Choose to upload image for the person avatar', 'onetone' ),
 						  'type' => 'upload',
 						  'class'=>'content-model-0 section-item accordion-group-section-'.$i
 						  );
@@ -838,6 +856,7 @@ SHINES ONE PAGE SMALL BUSINESS WEBSITE.",
 						  'name' => sprintf(__('Link %d', 'onetone'),$t+1),
 						  'id'   => "section_link_".$i."_".$t,
 						  'std'  => '',
+						  'desc' => __( 'Set link for the person', 'onetone' ),
 						  'type' => 'text',
 						  'class'=>'content-model-0 section-item accordion-group-section-'.$i
 						  );
@@ -845,6 +864,7 @@ SHINES ONE PAGE SMALL BUSINESS WEBSITE.",
 						  'name' => sprintf(__('Name %d', 'onetone'),$t+1),
 						  'id'   => "section_name_".$i."_".$t,
 						  'std'  => 'KEVIN PERRY',
+						  'desc' => __( 'Set name for the person', 'onetone' ),
 						  'type' => 'text',
 						  'class'=>'content-model-0 section-item accordion-group-section-'.$i
 						  );
@@ -852,6 +872,7 @@ SHINES ONE PAGE SMALL BUSINESS WEBSITE.",
 						  'name' => sprintf(__('Byline %d', 'onetone'),$t+1),
 						  'id'   => "section_byline_".$i."_".$t,
 						  'std'  => 'SOFTWARE DEVELOPER',
+						  'desc' => __( 'Set byline for the person', 'onetone' ),
 						  'type' => 'text',
 						  'class'=>'content-model-0 section-item accordion-group-section-'.$i
 						  );
@@ -859,6 +880,7 @@ SHINES ONE PAGE SMALL BUSINESS WEBSITE.",
 						  'name' => sprintf(__('Description %d', 'onetone'),$t+1),
 						  'id'   => "section_desc_".$i."_".$t,
 						  'std'  => 'Vivamus congue justo eget diam interdum scelerisque. In hac habitasse platea dictumst.',
+						  'desc' => __( 'Insert description for the person', 'onetone' ),
 						  'type' => 'textarea',
 						  'class'=>'content-model-0 section-item accordion-group-section-'.$i
 						  );
@@ -871,13 +893,14 @@ SHINES ONE PAGE SMALL BUSINESS WEBSITE.",
 					  'desc'   => '',
 					  'type'    => 'text',
 					  'std' => $social_icon[$k],
+					  'desc' => __( 'Choose social icon', 'onetone' ),
 					  'class'=>'content-model-0 section-item accordion-group-section-'.$i,
 				  );
 					  $options[] = array(
 					  'id' => 'section_icon_link_'.$i.'_'.$t.'_'.$k,
 					  'name' => sprintf(__( 'Social Icon Link %d - %d', 'onetone' ),$t+1,$k+1),
-					  'desc'   => '',
 					  'type'    => 'text',
+					  'desc' => __( 'Insert link for the icon', 'onetone' ),
 					  'std' => '#',
 					  'class'=>'content-model-0 section-item accordion-group-section-'.$i,
 				  );
@@ -896,6 +919,7 @@ SHINES ONE PAGE SMALL BUSINESS WEBSITE.",
 						  'std'  => '<h3>Biography</h3>
 <p>Morbi rutrum, elit ac fermentum egestas, tortor ante vestibulum est, eget scelerisque nisl velit eget tellus. Fusce porta facilisis luctus. Integer neque dolor, rhoncus nec euismod eget, pharetra et tortor. Nulla id pulvinar nunc. Vestibulum auctor nisl vel lectus ullamcorper sed pellentesque dolor eleifend. Praesent lobortis magna vel diam mattis sagittis.Mauris porta odio eu risus scelerisque id facilisis ipsum dictum vitae volutpat. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed pulvinar neque eu purus sollicitudin et sollicitudin dui ultricies. Maecenas cursus auctor tellus sit amet blandit. Maecenas a erat ac nibh molestie interdum. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Sed lorem enim, ultricies sed sodales id, convallis molestie ipsum. Morbi eget dolor ligula. Vivamus accumsan rutrum nisi nec elementum. Pellentesque at nunc risus. Phasellus ullamcorper bibendum varius. Quisque quis ligula sit amet felis ornare porta. Aenean viverra lacus et mi elementum mollis. Praesent eu justo elit.</p>',
 						  'type' => 'textarea',
+						  'desc' => __( 'Insert content for the left column, html tags allowed', 'onetone' ),
 						  'class'=>'content-model-0 section-item accordion-group-section-'.$i
 						  );
 			
@@ -918,6 +942,7 @@ SHINES ONE PAGE SMALL BUSINESS WEBSITE.",
     </ul>
   </div>',
 						  'type' => 'textarea',
+						  'desc' => __( 'Insert content for the right column, html tags allowed', 'onetone' ),
 						  'class'=>'content-model-0 section-item accordion-group-section-'.$i
 						  );
 			
@@ -945,6 +970,7 @@ SHINES ONE PAGE SMALL BUSINESS WEBSITE.",
 						  'name' => __( 'Columns', 'onetone' ),
 						  'desc' => '',
 						  'type'    => 'select',
+						  'desc' => __( 'Set columns for testimonial module', 'onetone' ),
 						  'options' => array(2=>2,3=>3,4=>4),
 						  'std' => '3',
 						  'class'=>'content-model-0 section-item accordion-group-section-'.$i,
@@ -959,6 +985,7 @@ SHINES ONE PAGE SMALL BUSINESS WEBSITE.",
 						  'name' => sprintf(__('Avatar %d', 'onetone'),$t+1),
 						  'id'   => "section_avatar_".$i."_".$t,
 						  'std'  => $avatar[$t],
+						  'desc' => __( 'Choose to upload image for the client avatar', 'onetone' ),
 						  'type' => 'upload',
 						  'class'=>'content-model-0 section-item accordion-group-section-'.$i
 						  );
@@ -967,6 +994,7 @@ SHINES ONE PAGE SMALL BUSINESS WEBSITE.",
 						  'name' => sprintf(__('Name %d', 'onetone'),$t+1),
 						  'id'   => "section_name_".$i."_".$t,
 						  'std'  => 'KEVIN PERRY',
+						  'desc' => __( 'Insert name for the client', 'onetone' ),
 						  'type' => 'text',
 						  'class'=>'content-model-0 section-item accordion-group-section-'.$i
 						  );
@@ -974,6 +1002,7 @@ SHINES ONE PAGE SMALL BUSINESS WEBSITE.",
 						  'name' => sprintf(__('Byline %d', 'onetone'),$t+1),
 						  'id'   => "section_byline_".$i."_".$t,
 						  'std'  => 'Web Developer',
+						  'desc' => __( 'Insert byline for the client', 'onetone' ),
 						  'type' => 'text',
 						  'class'=>'content-model-0 section-item accordion-group-section-'.$i
 						  );
@@ -981,6 +1010,7 @@ SHINES ONE PAGE SMALL BUSINESS WEBSITE.",
 						  'name' => sprintf(__('Description %d', 'onetone'),$t+1),
 						  'id'   => "section_desc_".$i."_".$t,
 						  'std'  => $description,
+						  'desc' => __( 'Insert description for the client', 'onetone' ),
 						  'type' => 'textarea',
 						  'class'=>'content-model-0 section-item accordion-group-section-'.$i
 						  );
@@ -993,6 +1023,7 @@ SHINES ONE PAGE SMALL BUSINESS WEBSITE.",
 						  'name' => __('Your E-mail', 'onetone'),
 						  'id'   => "section_email_".$i,
 						  'std'  => $emailTo,
+						  'desc' => __( 'Set email address to receive mails from contact form', 'onetone' ),
 						  'type' => 'text',
 						  'class'=>'content-model-0 section-item accordion-group-section-'.$i
 						  );
@@ -1001,6 +1032,7 @@ SHINES ONE PAGE SMALL BUSINESS WEBSITE.",
 						  'name' => __('Button Text', 'onetone'),
 						  'id'   => "section_btn_text_".$i,
 						  'std'  => 'Post',
+						  'desc' => __('Insert text for the button', 'onetone'),
 						  'type' => 'text',
 						  'class'=>'content-model-0 section-item accordion-group-section-'.$i
 						  );
@@ -1045,6 +1077,7 @@ SHINES ONE PAGE SMALL BUSINESS WEBSITE.",
 		'name' =>  __('Back to Top Button', 'onetone'),
 		'id' => 'back_to_top_btn',
 		'std' => 'show',
+		'desc' => __( 'Choose to display back to top button', 'onetone' ),
 		'class' => 'mini',
 		'type' => 'select',
 		'options'=>array("show"=> __('Show', 'onetone'),"hide"=>__('Hide', 'onetone'))
@@ -1113,6 +1146,53 @@ SHINES ONE PAGE SMALL BUSINESS WEBSITE.",
 		'name' => __('Header', 'onetone'),
 		'type' => 'heading'
 		);
+	   
+	   $options[] = array('name' => '','id' => 'header_options_titled_group','type' => 'start_group','class'=>'');
+		  ////
+		$options[] =   	 array(
+        'id'          => 'header_options_titled',
+        'name'       => __( 'Header Options', 'onetone' ).' <span id="accordion-group-header_options" class="fa fa-plus"></span>',
+        'desc'        => '',
+        'std'         => '',
+        'type'        => 'textblock-titled',
+        'section'     => 'header_tab_section',
+        'rows'        => '4',
+        'class'       => 'section-accordion close',
+        
+      );
+
+		$options[] = array('name' => '','id' => 'wrapper_start','type' => 'wrapper_start','class'=>'');
+		$options[] = array(
+        'id'          => 'header_fullwidth',
+        'name'       => __( 'Full Width Header', 'onetone' ),
+        'desc'        => __( 'Enable header full width.', 'onetone' ),
+        'std'         => '',
+        'type'        => 'checkbox',
+        'section'     => 'header_tab_section',
+        'class'       => ' accordion-group-header_options',
+        
+      );
+		
+		
+		$options[] = array(
+        'id'          => 'nav_hover_effect',
+        'name'        => __( 'Nav Hover Effect', 'onetone' ),
+        'desc'        => '',
+        'std'         => '0',
+        'type'        => 'images',
+        'section'     => 'header_tab_section',
+        'class'       => ' accordion-group-header_options',
+        'options'     => array(
+							   '0'=> ONETONE_THEME_BASE_URL.'/images/nav-style0.gif',
+							   '1'=> ONETONE_THEME_BASE_URL.'/images/nav-style1.gif',
+							   '2'=> ONETONE_THEME_BASE_URL.'/images/nav-style2.gif',
+							   '3'=> ONETONE_THEME_BASE_URL.'/images/nav-style3.gif',
+							   )
+      );
+		
+		
+	 $options[] = array('name' => '','id' => 'wrapper_end','type' => 'wrapper_end','class'=>'');
+	 $options[] = array('name' => '','id' => 'header_options_titled_group_','type' => 'end_group','class'=>'group_close');	
 	
 		  ////
 		 $options[] = array('name' => '','id' => 'header_background_group','type' => 'start_group','class'=>'');
@@ -1216,7 +1296,7 @@ SHINES ONE PAGE SMALL BUSINESS WEBSITE.",
 		$options[] = array(
         'id'          => 'display_top_bar',
         'name'       => __( 'Display Top Bar', 'onetone' ),
-        'desc'        => '',
+        'desc' => __( 'Choose to display top bar above the header', 'onetone' ),
         'std'         => '',
         'type'        => 'select',
         'section'     => 'header_tab_section',
@@ -1227,7 +1307,7 @@ SHINES ONE PAGE SMALL BUSINESS WEBSITE.",
 	$options[] = array(
         'id'          => 'top_bar_background_color',
         'name'       => __( 'Background Color', 'onetone' ),
-        'desc'        => '',
+        'desc' => __( 'Set background color for top bar', 'onetone' ),
         'std'         => '',
         'type'        => 'color',
         'section'     => 'header_tab_section',
@@ -1238,7 +1318,7 @@ SHINES ONE PAGE SMALL BUSINESS WEBSITE.",
 		$options[] =  array(
         'id'          => 'top_bar_left_content',
         'name'       => __( 'Left Content', 'onetone' ),
-        'desc'        => '',
+        'desc' => __( 'Choose content in left side', 'onetone' ),
         'std'         => '',
         'type'        => 'select',
         'section'     => 'header_tab_section',
@@ -1255,7 +1335,7 @@ SHINES ONE PAGE SMALL BUSINESS WEBSITE.",
 		$options[] = array(
         'id'          => 'top_bar_right_content',
         'name'       => __( 'Right Content', 'onetone' ),
-        'desc'        => '',
+        'desc' => __( 'Choose content in right side', 'onetone' ),
         'std'         => '',
         'type'        => 'select',
         'section'     => 'header_tab_section',
@@ -1277,7 +1357,7 @@ SHINES ONE PAGE SMALL BUSINESS WEBSITE.",
 		$options[] = array(
         'id'          => 'top_bar_info_color',
         'name'       => __( 'Info Color', 'onetone' ),
-        'desc'        => '',
+        'desc' => __( 'Set color for info in top bar', 'onetone' ),
         'std'         => '',
         'type'        => 'color',
         'section'     => 'header_tab_section',
@@ -1288,7 +1368,7 @@ SHINES ONE PAGE SMALL BUSINESS WEBSITE.",
 	$options[] = 	array(
         'id'          => 'top_bar_info_content',
         'name'       => __( 'Info Content', 'onetone' ),
-        'desc'        => '',
+        'desc' => __( 'Insert content for info in top bar', 'onetone' ),
         'std'         => '',
         'type'        => 'textarea',
         'section'     => 'header_tab_section',
@@ -1299,7 +1379,7 @@ SHINES ONE PAGE SMALL BUSINESS WEBSITE.",
 	$options[] = array(
         'id'          => 'top_bar_menu_color',
         'name'       => __( 'Menu Color', 'onetone' ),
-        'desc'        => '',
+        'desc' => __( 'Set color for menu in top bar', 'onetone' ),
         'std'         => '',
         'type'        => 'color',
         'section'     => 'header_tab_section',
@@ -1325,7 +1405,7 @@ $i = 1;
 	 $options[] =  array(
         'id'          => 'header_social_title_'.$i,
         'name'       => __( 'Social Title', 'onetone' ) .' '.$i,
-        'desc'        => '',
+        'desc' => __( 'Set title for social icon', 'onetone' ),
         'std'         => $social_icon['title'],
         'type'        => 'text',
         'section'     => 'header_tab_section',
@@ -1335,7 +1415,7 @@ $i = 1;
  $options[] = array(
         'id'          => 'header_social_icon_'.$i,
         'name'       => __( 'Social Icon', 'onetone' ).' '.$i,
-        'desc'        => __( 'FontAwesome Icon', 'onetone' ),
+        'desc'        => __( 'Choose FontAwesome Icon', 'onetone' ),
         'std'         => $social_icon['icon'],
         'type'        => 'text',
         'section'     => 'header_tab_section',
@@ -1345,7 +1425,7 @@ $i = 1;
  $options[] = array(
         'id'          => 'header_social_link_'.$i,
         'name'       => __( 'Social Icon Link', 'onetone' ).' '.$i,
-        'desc'        => '',
+        'desc' => __( 'Set link for social icon', 'onetone' ),
         'std'         => $social_icon['link'],
         'type'        => 'text',
         'section'     => 'header_tab_section',
@@ -1361,7 +1441,7 @@ $i = 1;
  $options[] =  array(
         'id'          => 'top_bar_social_icons_color',
         'name'       => __( 'Social Icons Color', 'onetone' ),
-        'desc'        => '',
+        'desc' => __( 'Set color for social icons in top bar', 'onetone' ),
         'std'         => '',
         'type'        => 'color',
         'section'     => 'header_tab_section',
@@ -1371,7 +1451,7 @@ $i = 1;
 $options[] = array(
         'id'          => 'top_bar_social_icons_tooltip_position',
         'name'       => __( 'Social Icon Tooltip Position', 'onetone' ),
-        'desc'        => '',
+        'desc' => __( 'Set position for tooltip of social icon', 'onetone' ),
         'std'         => 'bottom',
         'type'        => 'select',
         'section'     => 'header_tab_section',
@@ -1399,7 +1479,7 @@ $options[] = array(
 $options[] =  array(
         'id'          => 'enable_sticky_header',
         'name'       => __( 'Enable Sticky Header', 'onetone' ),
-        'desc'        => '',
+        'desc'       => __( 'Choose to enable sticky header', 'onetone' ),
         'std'         => 'yes',
         'type'        => 'select',
         'section'     => 'sticky_header_tab_section',
@@ -1410,7 +1490,7 @@ $options[] =  array(
 $options[] = array(
         'id'          => 'enable_sticky_header_tablets',
         'name'       => __( 'Enable Sticky Header on Tablets', 'onetone' ),
-        'desc'        => '',
+        'desc'       => __( 'Choose to enable sticky header on tablets', 'onetone' ),
         'std'         => 'yes',
         'type'        => 'select',
         'section'     => 'sticky_header_tab_section',
@@ -1421,7 +1501,7 @@ $options[] = array(
 $options[] = array(
         'id'          => 'enable_sticky_header_mobiles',
         'name'       => __( 'Enable Sticky Header on Mobiles', 'onetone' ),
-        'desc'        => 'yes',
+        'desc'       => __( 'Choose to enable sticky header on mobiles', 'onetone' ),
         'std'         => '',
         'type'        => 'select',
         'section'     => 'sticky_header_tab_section',
@@ -1604,7 +1684,7 @@ $options[] = array('name' => '','id' => 'section_group_end_sticky_header','type'
 $options[] =  array(
         'id'          => 'logo_position',
         'name'       => __( 'Logo Position', 'onetone' ),
-        'desc'        => '',
+        'desc'       => __( 'Set position for logo in header', 'onetone' ),
         'std'         => 'left',
         'type'        => 'select',
         'section'     => 'logo_tab_section',
@@ -1667,7 +1747,7 @@ $options[] =  array(
 $options[] =  array(
         'id'          => 'primary_color',
         'name'       => __( 'Primary Color', 'onetone' ),
-        'desc'        => '',
+        'desc'       => __( 'Set primary color for the theme', 'onetone' ),
         'std'         => '#eda869',
         'type'        => 'color',
         'section'     => 'styling_tab_section',
@@ -1693,7 +1773,7 @@ $options[] = array('name' => '','id' => 'wrapper_start','type' => 'wrapper_start
 $options[] =  array(
         'id'          => 'sticky_header_background_color',
         'name'       => __( 'Sticky Header Background Color', 'onetone' ),
-        'desc'        => '',
+        'desc'       => __( 'Set background color for sticky header', 'onetone' ),
         'std'         => '',
         'type'        => 'color',
         'section'     => 'styling_tab_section',
@@ -1716,7 +1796,7 @@ $options[] = array(
 $options[] = array(
         'id'          => 'header_background_color',
         'name'       => __( 'Header Background Color', 'onetone' ),
-        'desc'        => '',
+        'desc'       => __( 'Set background color for main header', 'onetone' ),
         'std'         => '',
         'type'        => 'color',
         'section'     => 'styling_tab_section',
@@ -1740,7 +1820,7 @@ $options[] = array(
 $options[] = array(
         'id'          => 'content_background_color',
         'name'       => __( 'Content Background Color', 'onetone' ),
-        'desc'        => '',
+        'desc'       => __( 'Set background color for site content', 'onetone' ),
         'std'         => '',
         'type'        => 'color',
         'section'     => 'styling_tab_section',
@@ -1751,7 +1831,7 @@ $options[] = array(
 $options[] = array(
         'id'          => 'sidebar_background_color',
         'name'       => __( 'Sidebar Background Color', 'onetone' ),
-        'desc'        => '',
+        'desc'       => __( 'Set background color for sidebar', 'onetone' ),
         'std'         => '',
         'type'        => 'color',
         'section'     => 'styling_tab_section',
@@ -1762,7 +1842,7 @@ $options[] = array(
 $options[] = array(
         'id'          => 'footer_background_color',
         'name'       => __( 'Footer Background Color', 'onetone' ),
-        'desc'        => '',
+        'desc'       => __( 'Set background color for the footer', 'onetone' ),
         'std'         => '',
         'type'        => 'color',
         'section'     => 'styling_tab_section',
@@ -1774,7 +1854,7 @@ $options[] = array(
 $options[] = array(
         'id'          => 'copyright_background_color',
         'name'       => __( 'Copyright Background Color', 'onetone' ),
-        'desc'        => '',
+        'desc'       => __( 'Set background color for the copyright area in footer', 'onetone' ),
         'std'         => '',
         'type'        => 'color',
         'section'     => 'styling_tab_section',
@@ -1799,21 +1879,11 @@ $options[] =  array(
         
       );
 $options[] = array('name' => '','id' => 'wrapper_start','type' => 'wrapper_start','class'=>'');
-$options[] =  array(
-        'id'          => 'footer_widget_divider_color',
-        'name'       => __( 'Footer Widget Divider Color', 'onetone' ),
-        'desc'        => __( 'Controls the divider color in the footer.', 'onetone' ),
-        'std'         => '',
-        'type'        => 'color',
-        'section'     => 'styling_tab_section',
-        
-        'class'       => 'accordion-group-element_colors',
-        
-      );
+
 $options[] =  array(
         'id'          => 'form_background_color',
         'name'       => __( 'Form Background Color', 'onetone' ),
-        'desc'        => __( 'Controls the background color of form fields.', 'onetone' ),
+        'desc'        => __( 'Controls the background color of form fields', 'onetone' ),
         'std'         => '',
         'type'        => 'color',
         'section'     => 'styling_tab_section',
@@ -1824,7 +1894,7 @@ $options[] =  array(
 $options[] =  array(
         'id'          => 'form_text_color',
         'name'       => __( 'Form Text Color', 'onetone' ),
-        'desc'        => __( 'Controls the text color for forms.', 'onetone' ),
+        'desc'        => __( 'Controls the text color for forms', 'onetone' ),
         'std'         => '',
         'type'        => 'color',
         'section'     => 'styling_tab_section',
@@ -1835,7 +1905,7 @@ $options[] =  array(
 $options[] =  array(
         'id'          => 'form_border_color',
         'name'       => __( 'Form Border Color', 'onetone' ),
-        'desc'        => __( 'Controls the border color for forms.', 'onetone' ),
+        'desc'        => __( 'Controls the border color for forms', 'onetone' ),
         'std'         => '',
         'type'        => 'color',
         'section'     => 'styling_tab_section',
@@ -1948,7 +2018,7 @@ $options[] =  array(
 $options[] =  array(
         'id'          => 'header_tagline_color',
         'name'       => __( 'Header Tagline', 'onetone' ),
-        'desc'        => '',
+        'desc'       => __( 'Set color for tagline in header', 'onetone' ),
         'std'         => '',
         'type'        => 'color',
         'section'     => 'styling_tab_section',
@@ -1959,7 +2029,7 @@ $options[] =  array(
 $options[] =  array(
         'id'          => 'page_title_color',
         'name'       => __( 'Page Title', 'onetone' ),
-        'desc'        => '',
+        'desc'       => __( 'Set color for page title', 'onetone' ),
         'std'         => '',
         'type'        => 'color',
         'section'     => 'styling_tab_section',
@@ -1971,7 +2041,7 @@ $options[] =  array(
 $options[] =  array(
         'id'          => 'h1_color',
         'name'       => __( 'Heading 1 (H1) Font Color', 'onetone' ),
-        'desc'        => '',
+        'desc'       => __( 'Choose color for H1 headings', 'onetone' ),
         'std'         => '',
         'type'        => 'color',
         'section'     => 'styling_tab_section',
@@ -1982,7 +2052,7 @@ $options[] =  array(
 $options[] =  array(
         'id'          => 'h2_color',
         'name'       => __( 'Heading 2 (H2) Font Color', 'onetone' ),
-        'desc'        => '',
+        'desc'       => __( 'Choose color for H2 headings', 'onetone' ),
         'std'         => '',
         'type'        => 'color',
         'section'     => 'styling_tab_section',
@@ -1993,7 +2063,7 @@ $options[] =  array(
 $options[] =  array(
         'id'          => 'h3_color',
         'name'       => __( 'Heading 3 (H3) Font Color', 'onetone' ),
-        'desc'        => '',
+        'desc'       => __( 'Choose color for H3 headings', 'onetone' ),
         'std'         => '',
         'type'        => 'color',
         'section'     => 'styling_tab_section',
@@ -2004,7 +2074,7 @@ $options[] =  array(
 $options[] =  array(
         'id'          => 'h4_color',
         'name'       => __( 'Heading 4 (H4) Font Color', 'onetone' ),
-        'desc'        => '',
+        'desc'       => __( 'Choose color for H4 headings', 'onetone' ),
         'std'         => '',
         'type'        => 'color',
         'section'     => 'styling_tab_section',
@@ -2015,7 +2085,7 @@ $options[] =  array(
 $options[] =  array(
         'id'          => 'h5_color',
         'name'       => __( 'Heading 5 (H5) Font Color', 'onetone' ),
-        'desc'        => '',
+        'desc'       => __( 'Choose color for H5 headings', 'onetone' ),
         'std'         => '',
         'type'        => 'color',
         'section'     => 'styling_tab_section',
@@ -2026,7 +2096,7 @@ $options[] =  array(
 $options[] =  array(
         'id'          => 'h6_color',
         'name'       => __( 'Heading 6 (H6) Font Color', 'onetone' ),
-        'desc'        => '',
+        'desc'       => __( 'Choose color for H6 headings', 'onetone' ),
         'std'         => '',
         'type'        => 'color',
         'section'     => 'styling_tab_section',
@@ -2038,7 +2108,7 @@ $options[] =  array(
 $options[] =  array(
         'id'          => 'body_text_color',
         'name'       => __( 'Body Text Color', 'onetone' ),
-        'desc'        => '',
+        'desc'       => __( 'Choose color for body text', 'onetone' ),
         'std'         => '',
         'type'        => 'color',
         'section'     => 'styling_tab_section',
@@ -2049,7 +2119,7 @@ $options[] =  array(
 $options[] =  array(
         'id'          => 'links_color',
         'name'       => __( 'Links Color', 'onetone' ),
-        'desc'        => '',
+        'desc'       => __( 'Choose color for links', 'onetone' ),
         'std'         => '',
         'type'        => 'color',
         'section'     => 'styling_tab_section',
@@ -2060,7 +2130,7 @@ $options[] =  array(
 $options[] =  array(
         'id'          => 'breadcrumbs_text_color',
         'name'       => __( 'Breadcrumbs Text Color', 'onetone' ),
-        'desc'        => '',
+        'desc'       => __( 'Choose color for breadcrumbs', 'onetone' ),
         'std'         => '',
         'type'        => 'color',
         'section'     => 'styling_tab_section',
@@ -2072,7 +2142,7 @@ $options[] =  array(
 $options[] =  array(
         'id'          => 'sidebar_widget_headings_color',
         'name'       => __( 'Sidebar Widget Headings Color', 'onetone' ),
-        'desc'        => '',
+        'desc'       => __( 'Choose color for Sidebar widget headings', 'onetone' ),
         'std'         => '',
         'type'        => 'color',
         'section'     => 'styling_tab_section',
@@ -2083,7 +2153,7 @@ $options[] =  array(
 $options[] = array(
         'id'          => 'footer_headings_color',
         'name'       => __( 'Footer Headings Color', 'onetone' ),
-        'desc'        => '',
+        'desc'       => __( 'Choose color for footer headings', 'onetone' ),
         'std'         => '',
         'type'        => 'color',
         'section'     => 'styling_tab_section',
@@ -2094,7 +2164,7 @@ $options[] = array(
 $options[] = array(
         'id'          => 'footer_text_color',
         'name'       => __( 'Footer Text Color', 'onetone' ),
-        'desc'        => '',
+        'desc'       => __( 'Choose color for footer text', 'onetone' ),
         'std'         => '',
         'type'        => 'color',
         'section'     => 'styling_tab_section',
@@ -2105,7 +2175,7 @@ $options[] = array(
 $options[] = array(
         'id'          => 'footer_link_color',
         'name'       => __( 'Footer Link Color', 'onetone' ),
-        'desc'        => '',
+        'desc'       => __( 'Choose color for links in footer', 'onetone' ),
         'std'         => '',
         'type'        => 'color',
         'section'     => 'styling_tab_section',
@@ -2133,7 +2203,7 @@ $options[] = array('name' => '','id' => 'wrapper_start','type' => 'wrapper_start
 $options[] =  array(
         'id'          => 'main_menu_background_color_1',
         'name'       => __( 'Main Menu Background Color', 'onetone' ),
-        'desc'        => '',
+        'desc'       => __( 'Choose background color for main menu', 'onetone' ),
         'std'         => '',
         'type'        => 'color',
         'section'     => 'styling_tab_section',
@@ -2144,7 +2214,7 @@ $options[] =  array(
 $options[] =  array(
         'id'          => 'main_menu_font_color_1',
         'name'       => __( 'Main Menu Font Color ( First Level )', 'onetone' ),
-        'desc'        => '',
+        'desc'       => __( 'Choose font color for first level of main menu', 'onetone' ),
         'std'         => '',
         'type'        => 'color',
         'section'     => 'styling_tab_section',
@@ -2155,7 +2225,7 @@ $options[] =  array(
 $options[] =  array(
         'id'          => 'main_menu_font_hover_color_1',
         'name'       => __( 'Main Menu Font Hover Color ( First Level )', 'onetone' ),
-        'desc'        => '',
+        'desc'       => __( 'Choose hover color for first level of main menu', 'onetone' ),
         'std'         => '',
         'type'        => 'color',
         'section'     => 'styling_tab_section',
@@ -2166,7 +2236,7 @@ $options[] =  array(
 $options[] =  array(
         'id'          => 'main_menu_background_color_2',
         'name'       => __( 'Main Menu Background Color ( Sub Level )', 'onetone' ),
-        'desc'        => '',
+        'desc'       => __( 'Choose background color for sub level of main menu', 'onetone' ),
         'std'         => '',
         'type'        => 'color',
         'section'     => 'styling_tab_section',
@@ -2178,7 +2248,7 @@ $options[] =  array(
 $options[] =  array(
         'id'          => 'main_menu_font_color_2',
         'name'       => __( 'Main Menu Font Color ( Sub Level )', 'onetone' ),
-        'desc'        => '',
+        'desc'       => __( 'Choose font color for sub level of main menu', 'onetone' ),
         'std'         => '',
         'type'        => 'color',
         'section'     => 'styling_tab_section',
@@ -2189,7 +2259,7 @@ $options[] =  array(
 $options[] =  array(
         'id'          => 'main_menu_font_hover_color_2',
         'name'       => __( 'Main Menu Font Hover Color ( Sub Level )', 'onetone' ),
-        'desc'        => '',
+        'desc'       => __( 'Choose hover color for sub level of main menu', 'onetone' ),
         'std'         => '',
         'type'        => 'color',
         'section'     => 'styling_tab_section',
@@ -2200,7 +2270,7 @@ $options[] =  array(
 $options[] =  array(
         'id'          => 'main_menu_separator_color_2',
         'name'       => __( 'Main Menu Separator Color ( Sub Levels )', 'onetone' ),
-        'desc'        => '',
+        'desc'       => __( 'Choose separator color for sub level of main menu', 'onetone' ),
         'std'         => '',
         'type'        => 'color',
         'section'     => 'styling_tab_section',
@@ -2236,7 +2306,7 @@ $options[] = array('name' => '','id' => 'wrapper_start','type' => 'wrapper_start
 $options[] =  array(
         'id'          => 'left_sidebar_blog_posts',
         'name'       => __( 'Left Sidebar', 'onetone' ),
-        'desc'        => '',
+        'desc'       => __( 'Choose left sidebar for blog posts', 'onetone' ),
         'std'         => '',
         'type'        => 'select',
         'section'     => 'sidebar_tab_section',
@@ -2248,7 +2318,7 @@ $options[] =  array(
 $options[] =  array(
         'id'          => 'right_sidebar_blog_posts',
         'name'       => __( 'Right Sidebar', 'onetone' ),
-        'desc'        => '',
+        'desc'       => __( 'Choose right sidebar for blog posts', 'onetone' ),
         'std'         => '',
         'type'        => 'select',
         'section'     => 'sidebar_tab_section',
@@ -2277,7 +2347,7 @@ $options[] = array('name' => '','id' => 'wrapper_start','type' => 'wrapper_start
 $options[] =  array(
         'id'          => 'left_sidebar_blog_archive',
         'name'       => __( 'Left Sidebar', 'onetone' ),
-        'desc'        => '',
+        'desc'       => __( 'Choose left sidebar for blog archive page', 'onetone' ),
         'std'         => '',
         'type'        => 'select',
         'section'     => 'sidebar_tab_section',
@@ -2289,7 +2359,7 @@ $options[] =  array(
 $options[] =  array(
         'id'          => 'right_sidebar_blog_archive',
         'name'       => __( 'Right Sidebar', 'onetone' ),
-        'desc'        => '',
+        'desc'       => __( 'Choose right sidebar for blog archive page', 'onetone' ),
         'std'         => '',
         'type'        => 'select',
         'section'     => 'sidebar_tab_section',
@@ -2319,7 +2389,7 @@ $options[] = array('name' => '','id' => 'wrapper_start','type' => 'wrapper_start
 $options[] =  array(
         'id'          => 'left_sidebar_search',
         'name'       => __( 'Left Sidebar', 'onetone' ),
-        'desc'        => '',
+        'desc'       => __( 'Choose left sidebar for blog search result page', 'onetone' ),
         'std'         => '',
         'type'        => 'select',
         'section'     => 'sidebar_tab_section',
@@ -2331,7 +2401,7 @@ $options[] =  array(
 $options[] =  array(
         'id'          => 'right_sidebar_search',
         'name'       => __( 'Right Sidebar', 'onetone' ),
-        'desc'        => '',
+        'desc'       => __( 'Choose right sidebar for blog search result page', 'onetone' ),
         'std'         => '',
         'type'        => 'select',
         'section'     => 'sidebar_tab_section',
@@ -2360,7 +2430,7 @@ $options[] = array('name' => '','id' => 'wrapper_start','type' => 'wrapper_start
 $options[] =  array(
         'id'          => 'left_sidebar_404',
         'name'       => __( 'Left Sidebar', 'onetone' ),
-        'desc'        => '',
+        'desc'       => __( 'Choose left sidebar for 404 page', 'onetone' ),
         'std'         => '',
         'type'        => 'select',
         'section'     => 'sidebar_tab_section',
@@ -2372,7 +2442,7 @@ $options[] =  array(
 $options[] =  array(
         'id'          => 'right_sidebar_404',
         'name'       => __( 'Right Sidebar', 'onetone' ),
-        'desc'        => '',
+        'desc'       => __( 'Choose right sidebar for 404 page', 'onetone' ),
         'std'         => '',
         'type'        => 'select',
         'section'     => 'sidebar_tab_section',
@@ -2416,7 +2486,7 @@ $options[] = array('name' => '','id' => 'sidebar_404_group_','type' => 'end_grou
 		
 
 		$options[] = array(
-						   'name' => __('Text', 'onetone'),
+						   'name' => __('Caption', 'onetone'),
 						   'id' => 'onetone_slide_text_1',
 						   'type' => 'editor',
 						   'std'=>'<h1>The jQuery slider that just slides.</h1><p>No fancy effects or unnecessary markup.</p><a class="btn" href="#download">Download</a>',
@@ -2447,7 +2517,7 @@ $options[] = array('name' => '','id' => 'sidebar_404_group_','type' => 'end_grou
 						   );
 		
 		$options[] = array(
-						   'name' => __('Text', 'onetone'),
+						   'name' => __('Caption', 'onetone'),
 						   'id' => 'onetone_slide_text_2',
 						   'type' => 'editor',
 						   'std'=>'<h1>Fluid, flexible, fantastically minimal.</h1><p>Use any HTML in your slides, extend with CSS. You have full control.</p><a class="btn" href="#download">Download</a>',
@@ -2478,7 +2548,7 @@ $options[] = array('name' => '','id' => 'sidebar_404_group_','type' => 'end_grou
 						   );
 		
 		$options[] = array(
-						   'name' => __('Text', 'onetone'),
+						   'name' => __('Caption', 'onetone'),
 						   'id' => 'onetone_slide_text_3',
 						   'type' => 'editor',
 						   'std'=>'<h1>Open-source.</h1><p> Vestibulum auctor nisl vel lectus ullamcorper sed pellentesque dolor eleifend.</p><a class="btn" href="#">Contribute</a>',
@@ -2509,7 +2579,7 @@ $options[] = array('name' => '','id' => 'sidebar_404_group_','type' => 'end_grou
 						   );
 		
 		$options[] = array(
-						   'name' => __('Text', 'onetone'),
+						   'name' => __('Caption', 'onetone'),
 						   'id' => 'onetone_slide_text_4',
 						   'type' => 'editor','std'=>'<h1>Uh, that\'s about it.</h1><p>I just wanted to show you another slide.</p><a class="btn" href="#download">Download</a>',
 						    'class'=>'slide-item accordion-group-slide-4'
@@ -2538,7 +2608,7 @@ $options[] = array('name' => '','id' => 'sidebar_404_group_','type' => 'end_grou
 						   );
 	 
 		$options[] = array(
-						   'name' => __('Text', 'onetone'),
+						   'name' => __('Caption', 'onetone'),
 						   'id' => 'onetone_slide_text_5',
 						   'type' => 'editor',
 						   'class'=>'slide-item accordion-group-slide-5'
@@ -2561,12 +2631,179 @@ $options[] = array('name' => '','id' => 'sidebar_404_group_','type' => 'end_grou
 		'name' => __('Footer', 'onetone'),
 		'type' => 'heading');
 	
-        $options[] = array(
-		'name' => __('Enable Footer Widgets Area', 'onetone'),
-		'desc' => '',
-		'id' => 'enable_footer_widget_area',
-		'std' => '0',
-		'type' => 'checkbox');
+       
+		
+		
+$options[] =  array(
+        'id'          => 'footer_widgets_area_options',
+        'name'       => __( 'Footer Widgets Area Options', 'onetone' ),
+        'desc'        => '',
+        'std'         => '',
+        'type'        => 'textblock-titled',
+        'section'     => 'footer_tab_section',
+        'rows'        => '4',
+        
+        'class'       => 'sub_section_titled',
+        
+      );
+
+$options[] =  array(
+        'id'          => 'enable_footer_widget_area',
+        'name'       => __( 'Display footer widgets?', 'onetone' ),
+        'desc'       => __( 'Choose to display footer widgets', 'onetone' ),
+        'std'         => '1',
+        'type'        => 'select',
+        'section'     => 'footer_tab_section',
+        
+        'class'       => '',
+        'options'     => $choices2
+      );
+$options[] =  array(
+        'id'          => 'footer_columns',
+        'name'       => __( 'Number of Footer Columns', 'onetone' ),
+        'desc'       => __( 'Set column number for footer widget area', 'onetone' ),
+        'std'         => '4',
+        'type'        => 'select',
+        'section'     => 'footer_tab_section',
+        'class'       => '',
+        'options'     => array( 
+          '1'     => '1',
+          '2'     => '2',
+          '3'     => '3',
+          '4'     => '4',
+           
+        ),
+	
+      );
+$options[] =  array(
+        'id'          => 'footer_background_image',
+        'name'       => __( 'Upload Background Image', 'onetone' ),
+        'desc'       => __( 'Choose to upload background image for footer', 'onetone' ),
+        'std'         => '',
+        'type'        => 'upload',
+        'section'     => 'footer_tab_section',
+        
+        'class'       => '',
+        
+      );
+$options[] =  array(
+        'id'          => 'footer_bg_full',
+        'name'       => __( '100% Background Image', 'onetone' ),
+        'desc'        => __( 'Select yes to have the footer widgets area background image display at 100% in width and height and scale according to the browser size.', 'onetone' ),
+        'std'         => 'no',
+        'type'        => 'select',
+        'section'     => 'footer_tab_section',
+        
+        'class'       => '',
+        'options'     => $choices_reverse
+      );
+$options[] =  array(
+        'id'          => 'footer_parallax_background',
+        'name'       => __( 'Parallax Background Image', 'onetone' ),
+        'desc'       => __( 'Choose to set parallax background effect for footer', 'onetone' ),
+        'std'         => 'no',
+        'type'        => 'select',
+        'section'     => 'footer_tab_section',
+        
+        'class'       => '',
+        'options'     => $choices_reverse
+      );
+$options[] =  array(
+        'id'          => 'footer_background_repeat',
+        'name'       => __( 'Background Repeat', 'onetone' ),
+        'desc'       => __( 'Set repeat for background image in footer', 'onetone' ),
+        'std'         => 'repeat',
+        'type'        => 'select',
+        'section'     => 'footer_tab_section',
+        
+        'class'       => '',
+        'options'     => $repeat
+      );
+$options[] =  array(
+        'id'          => 'footer_background_position',
+        'name'       => __( 'Background Position', 'onetone' ),
+        'desc'       => __( 'Set position for background image in footer', 'onetone' ),
+        'std'         => 'top left',
+        'type'        => 'select',
+        'section'     => 'footer_tab_section',
+        
+        'class'       => '',
+        'options'     => $position
+      );
+$options[] =  array(
+        'id'          => 'footer_top_padding',
+        'name'       => __( 'Footer Top Padding', 'onetone' ),
+        'desc'        => __( 'In pixels or percentage, ex: 10px or 10%.', 'onetone' ),
+        'std'         => '60px',
+        'type'        => 'text',
+        'section'     => 'footer_tab_section',
+        
+        'class'       => '',
+        
+      );
+$options[] =  array(
+        'id'          => 'footer_bottom_padding',
+        'name'       => __( 'Footer Bottom Padding', 'onetone' ),
+        'desc'        => __( 'In pixels or percentage, ex: 10px or 10%.', 'onetone' ),
+        'std'         => '40px',
+        'type'        => 'text',
+        'section'     => 'footer_tab_section',
+        
+        'class'       => '',
+        
+      );
+$options[] =  array(
+        'id'          => 'footer_social_icons',
+        'name'       => __( 'Footer Social Icons', 'onetone' ),
+        'desc'        => '',
+        'std'         => '',
+        'type'        => 'textblock-titled',
+        'section'     => 'footer_tab_section',
+        'rows'        => '4',
+        
+        'class'       => 'sub_section_titled',
+        
+      );
+
+
+ if( $social_icons ):
+ $i = 1;
+ foreach($social_icons as $social_icon){
+	
+	 $options[] =  array(
+        'id'          => 'footer_social_title_'.$i,
+        'name'       => __( 'Social Title', 'onetone' ) .' '.$i,
+        'desc'       => __( 'Set title for social icon', 'onetone' ),
+        'std'         => $social_icon['title'],
+        'type'        => 'text',
+        'section'     => 'footer_tab_section',
+        'class'       => '',
+        
+      );
+ $options[] = array(
+        'id'          => 'footer_social_icon_'.$i,
+        'name'       => __( 'Social Icon', 'onetone' ).' '.$i,
+        'desc'        => __( 'Choose FontAwesome icon', 'onetone' ),
+        'std'         => $social_icon['icon'],
+        'type'        => 'text',
+        'section'     => 'footer_tab_section',
+        'class'       => '',
+        
+      );
+ $options[] = array(
+        'id'          => 'footer_social_link_'.$i,
+        'name'       => __( 'Social Icon Link', 'onetone' ).' '.$i,
+        'desc'       => __( 'Set link for social icon', 'onetone' ),
+        'std'         => $social_icon['link'],
+        'type'        => 'text',
+        'section'     => 'footer_tab_section',
+        'class'       => '',
+        
+      );
+
+	 $i++;
+	 }
+	endif;	
 		
 		 // 404
 		

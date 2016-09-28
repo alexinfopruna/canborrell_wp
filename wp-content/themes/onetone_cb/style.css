@@ -340,7 +340,6 @@ ul.carta li:before,
 #gallery  .row:nth-child(4) .col-md-4:nth-child(3) i.fa.fa-link:after{
 	content: " Plats";
 }
-
 */
 .dotted {
   padding: 2.25em 1.6875em;
@@ -369,6 +368,15 @@ ul.carta li:before,
 /* SECTIONS */
 /* SECTIONS */
 /* SECTIONS */
+
+
+section.home-section-1{
+      background-color: black;
+      background: black;
+ }
+#wrapper_mbYTP_onetone-youtube-video{
+    z-index:1 !important;
+}
 
 .magee-feature-box h3 {
     font-weight: bold;
@@ -770,6 +778,10 @@ section.home-section-6 .row p {
 #testimonials{
     background-color: #544;
     padding:0;
+}
+
+.bwg_next_btn:hover, .bwg_prev_btn:hover, .bwg_close_btn:hover{
+    color:white;
 }
 
 #gallery-close{

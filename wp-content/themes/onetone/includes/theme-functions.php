@@ -169,25 +169,6 @@ function onetone_native_pagenavi($echo,$wp_query){
 <?php
         }
 		
- add_action( 'wp_head', 'onetone_favicon' );
-
-	function onetone_favicon()
-	{
-	    $url =  onetone_option('favicon');
-	
-		$icon_link = "";
-		if($url)
-		{
-			$type = "image/x-icon";
-			if(strpos($url,'.png' )) $type = "image/png";
-			if(strpos($url,'.gif' )) $type = "image/gif";
-		
-			$icon_link = '<link rel="icon" href="'.esc_url($url).'" type="'.$type.'">';
-		}
-		
-		echo $icon_link;
-	}
-	
 	
 	function onetone_get_default_slider(){
 	
@@ -672,7 +653,7 @@ function onetone_admin_tabs( $current = 'onetone' ) {
 	echo '</div>';
 	echo '</div></div>';
 	
-    $tabs = array( 'onetone' => __('Theme Support', 'onetone' ), 'import-demos' => __('Import Demos', 'onetone' ) );
+    $tabs = array( 'onetone' => __('Theme Support', 'onetone' ) );
     echo '<div id="icon-themes" class=""><br></div>';
     echo '<h2 class="nav-tab-wrapper">';
 	if( isset($_GET['page']) && $_GET['page'] !=''  )
@@ -712,88 +693,7 @@ function onetone_menu_page(){
 }
 
 
-function onetone_register_admin_submenu_page(){
-	 add_theme_page(__('Import Onetone Demos', 'onetone' ),__('Import Onetone Demos', 'onetone' ), 'edit_theme_options', 'import-demos', 'onetone_import_demos');
- 
-}
 
-add_action('admin_menu', 'onetone_register_admin_submenu_page');
-
-
-function onetone_import_demos(){
-	onetone_admin_tabs();
-	?>
-	<div class="updated error importer-notice importer-notice-3" style=" display:none; margin-bottom:15px;">
-		<div style="width:66%;box-sizing:border-box;float: left;padding: 10px 0;"><?php _e('Check out the pro version to import these demos.','onetone');?></div>
-	<div style="width:33%;box-sizing:border-box;float: left;padding: 10px 0;"><a class="button-primary" target="_blank" href="<?php echo esc_url('http://www.mageewp.com/onetone-one-page-wordpress-themes/');?>"><?php _e('Upgrade to Pro','onetone');?></a></div>
-	<div style="clear:both;"></div>
-	</div>
-   
-<?php
-	echo '<div class="onetone-import-demos">
-	<style> .theme-browser .theme .theme-actions{opacity: 1 !important; }.demo-import-loader {
-	background: rgba(255,255,255,0.7);
-	position: absolute;
-	width: 100%;
-	height: 100%;
-	top: 0;
-	text-align: center;
-	display:none;
-}
-.demo-import-loader i {
-	text-align: center;
-	display: inline-block;
-	margin: 0 auto;
-	height: 32px;
-	width: 32px;
-	top: 110px;
-	position: relative;
-	font-size: 32px;
-	line-height: 32px;
-}
-</style>
-
-	<div class="feature-section theme-browser rendered">
-	
-  <div class="theme">
-    <div class="theme-screenshot"> <img src="'.get_template_directory_uri().'/lib/importer/images/classic.jpg"> </div>
-    <h3 class="theme-name" id="classic">Onetone - Classic</h3>
-    <div class="theme-actions"> <a class="button button-primary button-import-demo" data-notice="'.__('Check out the pro version to import this demo.','onetone').'" data-demo-id="classic" href="javascript:;">'.__('Import', 'onetone' ).'</a> <a class="button" target="_blank" href="'.esc_url('http://demo.mageewp.com/onetone-pro/').'">'.__('Preview', 'onetone' ).'</a> </div>
-<div class="demo-import-loader preview-all"></div>
-<div class="demo-import-loader preview-classic "><i class="fa fa-cog dashicons-admin-generic fa-spin"></i></div>
-  </div>
-
-
- <div class="theme">
-    <div class="theme-screenshot"> <img src="'.get_template_directory_uri().'/lib/importer/images/app.jpg"> </div>
-    <h3 class="theme-name" id="classic">Onetone - App</h3>
-    <div class="theme-actions"> <a class="button button-primary button-import-demo" data-notice="'.__('Check out the pro version to import this demo.','onetone').'" data-demo-id="resume" href="javascript:;">'.__('Import', 'onetone' ).'</a> <a class="button" target="_blank" href="'.esc_url('http://demo.mageewp.com/onetone-pro-demo-app/').'">'.__('Preview', 'onetone' ).'</a></div>
-<div class="demo-import-loader preview-all"></div>
-<div class="demo-import-loader preview-app "><i class="fa fa-cog dashicons-admin-generic fa-spin"></i></div>
-  </div>
-  
-
- <div class="theme">
-    <div class="theme-screenshot"> <img src="'.get_template_directory_uri().'/lib/importer/images/resume.jpg"> </div>
-    <h3 class="theme-name" id="classic">Onetone - Resume</h3>
-    <div class="theme-actions"> <a class="button button-primary button-import-demo" data-notice="'.__('Check out the pro version to import this demo.','onetone').'" data-demo-id="resume" href="javascript:;">'.__('Import', 'onetone' ).'</a> <a class="button" target="_blank" href="'.esc_url('http://demo.mageewp.com/onetone-pro-demo-resume/').'">'.__('Preview', 'onetone' ).'</a> </div>
-<div class="demo-import-loader preview-all"></div>
-<div class="demo-import-loader preview-resume "><i class="fa fa-cog dashicons-admin-generic fa-spin"></i></div>
-  </div>
-  
-   
-  
-  <div class="theme">
-    <div class="theme-screenshot"> <img src="'.get_template_directory_uri().'/lib/importer/images/coming-soon.jpg"> </div>
-    <h3 class="theme-name" id="classic">Onetone - Foo</h3>
-<div class="demo-import-loader preview-all"></div>
-<div class="demo-import-loader preview-foo "><i class="fa fa-cog dashicons-admin-generic fa-spin"></i></div>
-  </div>
-
-
-</div>
-';
-	}
 	
 // Onetone guide tips
 global $options_saved;

@@ -22,6 +22,8 @@ global $onetone_animated;
   if( $section_id == '' )
   $section_id      = 'section-'.($i+1);
   
+  $section_id  = strtolower( $section_id );
+  
   $container_class = "container";
   if( $full_width == "yes" ){
   $container_class = "";

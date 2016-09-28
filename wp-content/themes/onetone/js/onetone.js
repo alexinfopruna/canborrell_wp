@@ -221,7 +221,7 @@ jQuery(document).ready(function($){
 	loop:true,
 	paginationSpeed : 400,
 	singleItem:true,
-	autoPlay:parseInt(onetone_params.slideSpeed)
+	autoplayTimeout:parseInt(onetone_params.slideSpeed)
  
 });
 }

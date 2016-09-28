@@ -15,7 +15,7 @@
         s = B.extend(B("<div/>")[0], {
             prop: 0
         }),
-        S = B.browser.msie && B.browser.version < 7 && !window.XMLHttpRequest,
+        S = false,
         r = function() {
             T.hide();
             o.onerror = o.onload = null;
@@ -434,7 +434,7 @@
                 B(window).bind("scroll.fb", B.envirabox.center)
             }
             if (G.type == "iframe") {
-                B('<iframe id="envirabox-frame" name="envirabox-frame' + new Date().getTime() + '" frameborder="0" hspace="0" ' + (B.browser.msie ? 'allowtransparency="true""' : "") + ' scrolling="' + H.scrolling + '" src="' + G.href + '"></iframe>').appendTo(m)
+                B('<iframe id="envirabox-frame" name="envirabox-frame' + new Date().getTime() + '" frameborder="0" hspace="0" scrolling="' + H.scrolling + '" src="' + G.href + '"></iframe>').appendTo(m)
             }
             M.show();
             P = false;

@@ -20,6 +20,8 @@ global $onetone_animated;
   $section_id      = sanitize_title( onetone_option( 'menu_slug_'.$i ,'section-'.($i+1) ) );
   if( $section_id == '' )
    $section_id = 'section-'.($i+1);
+   
+   $section_id  = strtolower( $section_id );
   
   $container_class = "container";
   if( $full_width == "yes" ){

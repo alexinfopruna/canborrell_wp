@@ -149,4 +149,3 @@ function onetone_theme_register_required_plugins() {
 }
 
 add_filter('widget_text', 'do_shortcode');
-

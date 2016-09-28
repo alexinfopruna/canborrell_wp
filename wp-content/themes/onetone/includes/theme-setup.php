@@ -255,15 +255,11 @@ add_action( 'after_setup_theme', 'onetone_setup' );
 	 
 		
 	// Element Colors
-	
-	$footer_widget_divider_color       = esc_attr(onetone_option('footer_widget_divider_color',''));
+
 	$form_background_color             = esc_attr(onetone_option('form_background_color',''));
 	$form_text_color                   = esc_attr(onetone_option('form_text_color',''));
 	$form_border_color                 = esc_attr(onetone_option('form_border_color',''));
 	
-
-	if( $footer_widget_divider_color )
-	$onetone_custom_css  .= ".footer-widget-area .widget-box li{\r\nborder-color:".$footer_widget_divider_color.";}";
 	
 	if( $form_background_color )
 	$onetone_custom_css  .= "footer input,footer textarea{background-color:".$form_background_color.";}";
@@ -438,6 +434,37 @@ add_action( 'after_setup_theme', 'onetone_setup' );
 	
 	endfor;
 	
+	// footer
+	
+	$footer_background_image          = onetone_option('footer_background_image',''); 
+	$footer_bg_full                   = onetone_option('footer_bg_full','yes'); 
+	$footer_background_repeat         = onetone_option('footer_background_repeat',''); 
+	$footer_background_position       = onetone_option('footer_background_position',''); 
+	$footer_top_padding               = onetone_option('footer_top_padding',''); 
+	$footer_bottom_padding            = onetone_option('footer_bottom_padding',''); 
+	$footer_background = "";
+	
+	if( $footer_background_image ){
+		$footer_background  .= ".footer-widget-area{\r\n";
+		
+	    $footer_background  .= "background-image: url(".esc_url($footer_background_image).");\r\n";
+		if( $footer_bg_full == 'yes' )
+		$footer_background  .= "-webkit-background-size: cover;
+								-moz-background-size: cover;
+								-o-background-size: cover;
+								background-size: cover;\r\n";
+		
+	   $footer_background  .=  "background-repeat:".esc_attr($footer_background_repeat).";";
+	   $footer_background  .=  "background-position:".esc_attr($footer_background_position).";";
+
+		  
+        $footer_background  .= "}\r\n";	
+	}
+	
+	$onetone_custom_css      .= $footer_background ;
+	
+	
+	
 	$onetone_custom_css  .=  $section_title_css;
 	$onetone_custom_css  .=  $section_content_css;
 	
@@ -497,11 +524,19 @@ add_action( 'after_setup_theme', 'onetone_setup' );
 		wp_enqueue_style('onetone-options',  get_template_directory_uri() .'/css/options.css', false, $theme_info->get( 'Version' ), false);
 		endif;
 		
+		wp_localize_script( 'onetone-admin', 'onetone_admin_params', array(
+			'ajaxurl'        => admin_url('admin-ajax.php'),
+			'themeurl' => get_template_directory_uri(),
+			'go_to_options' => sprintf(__( 'To edit contents for homepage, please go to <a href="%s">Theme Options</a>','onetone' ),admin_url('themes.php?page=onetone-options')),
+			
+		)  );
+		
 		}
 	
 
   add_action( 'wp_enqueue_scripts', 'onetone_custom_scripts' );
   add_action( 'admin_enqueue_scripts', 'onetone_admin_scripts' );
+
 
 
 
@@ -530,7 +565,7 @@ function onetone_of_get_options($default = false) {
 	//$option_name = $optionsframework_settings['id'];
 	
 	$option_name  = optionsframework_option_name();
-	
+
 	if ( get_option($option_name) ) {
 		$options = get_option($option_name);
 		$options_saved = true;

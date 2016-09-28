@@ -85,9 +85,9 @@ TD
 
 #container{
 
-    max-width:775px;
+   // max-width:775px;
     margin:auto;
-    margin-top:85px;
+  //  margin-top:85px;
 }
 
 header{
@@ -414,7 +414,7 @@ UL {
 }
 
 .content.col-md-10{
-    width:81%;
+    //width:81%;
 }
 
 .bg-dev{

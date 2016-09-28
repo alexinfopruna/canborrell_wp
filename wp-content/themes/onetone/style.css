@@ -2,7 +2,7 @@
 Theme Name: Onetone
 Theme URI: http://www.mageewp.com/onetone-theme.html
 Description: Onetone is a one-page business theme based on Bootstrap framework and coded with HTML5/CSS3. All required information are displayed on a single page with clear order according to users' preferences. The basic sections designed for business purpose have already been built for you, such as services, about, gallery, clients, etc. There's also an extensive admin panel where unlimited sections can be easily added. Multiple options are available if you prefer to do some adjustments, such as changing background, parallax scrolling background, video background, Font Awesome Icons, uploading logo and  favicon,adding custom CSS and so on. The theme is also responsive, clean, and SEO optimized. Please note that with our updation, interface of your blog can grow up with futher more diversities.
-Version: 1.8.3
+Version: 1.8.8
 Author: MageeWP
 Author URI: http://www.mageewp.com
 License: GNU General Public License
@@ -1288,6 +1288,20 @@ ul.footer-links {
 .footer-links li + li::before {
 	content: "\/";
 }
+.site-social ul {
+    margin: 0;
+    overflow: hidden;
+}
+
+.site-social li {
+    list-style-type: none;
+    float: left;
+}
+
+.site-social li a {
+    display: block;
+    margin-left: 1em;
+}
 
 /*
  * 4.0 Page title bar
@@ -2336,7 +2350,96 @@ section.video-section .home-container {
 	padding: 20px; 
 }
 
+/*
+ *  10.1 Onetone Owl Slider
+ */ 
 
+.onetone-owl-slider {
+    position: relative;
+}
+
+.owl-theme .owl-controls {
+    height: 0;
+    margin: 0!important;
+    position:static;
+}
+
+.owl-prev,
+.owl-next {
+    display:block!important;
+    position:absolute;
+    content:'';
+    font-size:0;
+    color: #fff;
+    opacity: .3;
+    bottom:50%;
+    margin-bottom: -48px;
+    background-color: #000;
+    padding: 40px 10px;
+}
+
+.owl-prev:hover,
+.owl-next:hover {
+    opacity: .5;
+}
+
+.owl-prev {
+    left: 10px;
+}
+
+.owl-prev:before,
+.owl-next:before {
+    font: normal normal normal 16px/1 'FontAwesome';
+}
+
+.owl-prev:before {
+    content: "\f053";
+}
+
+.owl-next {
+    right:10px;
+}
+
+.owl-next:before {
+    content: "\f054";
+}
+
+.owl-dots {
+    position:absolute;
+    left: 0;
+    bottom: 10px;
+    width: 100%;
+    text-align: center;
+}
+
+.owl-dot {
+    width: 16px;
+    height: 16px;
+    border-radius: 10px;
+    display: inline-block;
+    margin: 3px;
+    border: 2px solid rgba(255,255,255,1);
+}
+
+.owl-dot.active {
+    background-color: #fff;
+}
+
+#onetone-owl-slider .owl-item .item .inner {
+	position: absolute;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left:0;
+}
+
+.owl-item .inner {
+	padding: 20px; 
+}
+
+#onetone-owl-slider .owl-item .item > img {
+    width:100%;
+}
 /*
  * 11.0 bbPress
  */
@@ -2747,5 +2850,30 @@ border:none;
 		margin: 10px 0;
 		display: inline;
 	}
+	.logo-center .site-logo.retina_logo {
+    display: none;
+}
 
+}
+
+@media screen and (min-width: 920px) {
+    .site-nav.style1 > ul > li.current > a > span,
+    .site-nav.style1 > ul > li > a:hover > span {
+        padding: 10px;
+        background-color: #963;
+        color: #fff;
+        border-radius: 5px;
+    }
+    .site-nav.style2 > ul > li.current > a > span,
+    .site-nav.style2 > ul > li > a:hover > span {
+        padding: 8px;
+        border: 2px solid #963;
+        border-radius: 5px;
+    }
+    .site-nav.style3 > ul > li.current > a > span,
+    .site-nav.style3 > ul > li > a:hover > span {
+        font-weight: bold;
+        padding: 5px 0;
+        border-bottom: 2px solid #963;
+    }
 }
