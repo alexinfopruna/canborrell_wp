@@ -377,6 +377,17 @@ ul.carta li:before,
 /* SECTIONS */
 /* SECTIONS */
 
+.home-container .magee-animated{
+    //display:none;
+    //position: relative;
+    //top:-100%;
+    visibility: hidden;
+}
+
+section.home-section-1{
+max-height:80% ;
+}
+
 /*
 section.home-section-1{
       background-color: black;
@@ -811,7 +822,7 @@ section.home-section-6 .row p {
 }
 
 #gallery img{
-    filter:contrast(200%) brightness(150%);
+  //  filter:contrast(200%) brightness(150%);
 }
 
 #about .nota a{color: #fff;font-size: 18px}
