@@ -814,6 +814,8 @@ section.home-section-6 .row p {
     color:white;
 }
 
+
+
 #gallery-close{
     font-size:40px;
 }
@@ -823,6 +825,12 @@ section.home-section-6 .row p {
 
 #gallery img{
  /*  filter:contrast(200%) brightness(150%);*/
+}
+
+#gallery .img-frame.rounded{
+	border-radius: 0px;
+
+	padding:3px;
 }
 
 #about .nota a{color: #fff;font-size: 18px}
