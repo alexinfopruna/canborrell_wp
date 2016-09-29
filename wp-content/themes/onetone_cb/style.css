@@ -822,7 +822,7 @@ section.home-section-6 .row p {
 }
 
 #gallery img{
-  //  filter:contrast(200%) brightness(150%);
+ /*  filter:contrast(200%) brightness(150%);*/
 }
 
 #about .nota a{color: #fff;font-size: 18px}
