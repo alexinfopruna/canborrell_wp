@@ -59,6 +59,19 @@ i{color:#666;}
     padding: 21px 15px 3px 15px;
     line-height: 1;
 }
+
+.panel-body{
+    padding-top:35px;
+    padding-bottom:35px;
+
+}
+
+.page-template-page-premsa .panel-body{
+    padding-top:15px;
+    padding-bottom:15px;
+
+}
+
 /***************************************/
 
 .aborder{border: #e5e5e5 solid 1px;border-radius: 7px;padding:10px;}
@@ -99,6 +112,22 @@ h6.infantil{font-size:13px;}
     right: 25px;
     z-index: 99;
 }
+
+#calendari .bondia .ui-state-active{
+    background-color: #005A00;
+}
+
+@media (min-width: 770px){
+#calendari {
+    font-size: 1.6em;
+    width: 450px;
+}
+}
+
+#osx-container span.ui-button-text {
+    color: white;
+}
+
 
 body.admin-bar #calendari-header{
     top: 28px
@@ -188,6 +217,13 @@ section.title-left{background-color: #eee;}
 
 
 /* MENU LEFT */
+
+
+.col-aside-left .widget_nav_menu li.current_page_item a:hover {
+    background-color: #333;
+    color: white;
+}
+
 .widget_nav_menu li.current-menu-item a {
     background-color: #333;
     color: white;
@@ -210,6 +246,8 @@ section.title-left{background-color: #eee;}
     background-color: #F1F1F1;
     color: #444;
 }
+
+
 
 /***************************************************************/
 /***************************************************************/
@@ -245,7 +283,7 @@ h3.entry-title{
 
 .menu-content { overflow: auto;}
 .menu-content p{margin-bottom: 0;}
-.menu-content    b{background: #333;color:white;display:block;padding-left: 30px; border-radius: 3px;}
+.menu-content    b,.single-menus  strong {background: #333;color:white;display:block;padding-left: 30px; border-radius: 3px;}
 
 ul.carta{margin-top:25px;margin-bottom:25px;}
 ul.carta li, .menu-content li{
@@ -319,6 +357,9 @@ ul.carta li:before,
 }
 
 
+.fa-coberts:before {
+    content: "\f0f5";
+}
 
 .img-box .fa-link:before{
 	content: "\f03e";
@@ -547,6 +588,11 @@ footer nav.footer-menu-2 #menu-main li:nth-child(5) a:before{
     font-style: italic;
 }
 
+span.llista{
+    font-style: italic;
+    color:#999;
+    font-size:0.8em;
+}
 
 .well-center{text-align:center;}
 .well-center img{float:none;
@@ -620,6 +666,12 @@ footer nav.footer-menu-2 #menu-main li:nth-child(5) a:before{
         margin:20px;
 }
 */
+
+.single-menus ul,
+.tab-pane ul{
+    padding-top: 35px;
+}
+
 
 /*************** PREMSA ****************/
 .pagina-premsa .post-inner{
@@ -864,19 +916,24 @@ section.home-section-6 .row p {
 
 .reservar .ui-state-active{
    background:#8E7252; 
+   /*background:#B8BF00; */
 }
 .reservar .ui-state-default:hover{
    background:#BD7E22; 
+  /* background:#94A903; */
 }
 
 
 label.ptpv.ui-state-active {
     background: #BD7E00;
+   /* background: #B8BF00;*/
 }
 label.ptpv.ui-state-active:hover {
     background: #BD7E22;
-}
+   /* background: #729419;
+    background: #94A903;*/
 
+}
 #labelGrups, label[for='comGrups'] {
     font-size: 1.2em;
     color: #FFC000;
@@ -884,9 +941,12 @@ label.ptpv.ui-state-active:hover {
 
 label.ptpv {
     background: #FFC000;
+    //background: #B9D01E;
 }
 label.ptpv:hover {
     background: #FFF000;
+   /* background: #729419;
+    background: #94A903;*/
 }
 
 .number{

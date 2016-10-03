@@ -2,21 +2,13 @@
 # This file is distributed under the same license as the Twenty Fifteen package.
 msgid ""
 msgstr ""
-"PO-Revision-Date: 2015-07-27 22:21:25+0000\n"
+"PO-Revision-Date: 2015-08-18 16:52:11+0000\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: GlotPress/1.0-alpha-1100\n"
+"X-Generator: GlotPress/2.1.0-alpha\n"
 "Project-Id-Version: Twenty Fifteen\n"
-
-#. Author of the plugin/theme
-msgid "the WordPress team"
-msgstr "L'equip del WordPress"
-
-#. Theme URI of the plugin/theme
-msgid "https://wordpress.org/themes/twentyfifteen/"
-msgstr "https://wordpress.org/themes/twentyfifteen/"
 
 #. Description of the plugin/theme
 msgid "Our 2015 default theme is clean, blog-focused, and designed for clarity. Twenty Fifteen's simple, straightforward typography is readable on a wide variety of screen sizes, and suitable for multiple languages. We designed it using a mobile-first approach, meaning your content takes center-stage, regardless of whether your visitors arrive by smartphone, tablet, laptop, or desktop computer."
@@ -25,6 +17,11 @@ msgstr "El tema predeterminat 2015 és net, centrat en el blog, i dissenyat amb 
 #. Theme Name of the plugin/theme
 msgid "Twenty Fifteen"
 msgstr "Twenty Fifteen"
+
+#. translators: %s: post title
+#: inc/template-tags.php:123
+msgid "Leave a comment<span class=\"screen-reader-text\"> on %s</span>"
+msgstr "Deixa un comentari<span class=\"screen-reader-text\"> a %s</span>"
 
 #: single.php:37
 msgid "Previous post:"
@@ -45,18 +42,6 @@ msgstr "Següent"
 #: search.php:18
 msgid "Search Results for: %s"
 msgstr "Resultats de la cerca per a: %s"
-
-#: inc/template-tags.php:122
-msgid "% Comments"
-msgstr "% comentaris"
-
-#: inc/template-tags.php:122
-msgid "1 Comment"
-msgstr "1 comentari"
-
-#: inc/template-tags.php:122
-msgid "Leave a comment"
-msgstr "Deixa un comentari"
 
 #: inc/template-tags.php:113
 msgctxt "Used before full size attachment link."
@@ -95,7 +80,7 @@ msgstr "Publicat el"
 
 #: inc/template-tags.php:49
 msgid "Featured"
-msgstr "Destacat"
+msgstr "Destacades"
 
 #: inc/template-tags.php:30
 msgid "Newer Comments"
@@ -109,99 +94,99 @@ msgstr "Comentaris anteriors"
 msgid "Comment navigation"
 msgstr "Navegació dels comentaris"
 
-#: inc/customizer.php:147
+#: inc/customizer.php:205
 msgid "Blue"
 msgstr "Blau"
 
-#: inc/customizer.php:136
+#: inc/customizer.php:194
 msgid "Purple"
-msgstr "Morat"
+msgstr "Violeta"
 
-#: inc/customizer.php:125
+#: inc/customizer.php:183
 msgid "Pink"
 msgstr "Rosa"
 
-#: inc/customizer.php:114
+#: inc/customizer.php:172
 msgid "Yellow"
 msgstr "Groc"
 
-#: inc/customizer.php:103
+#: inc/customizer.php:161
 msgid "Dark"
-msgstr "Fosc"
+msgstr "Obscur"
 
-#: inc/customizer.php:92
+#: inc/customizer.php:150
 msgid "Default"
-msgstr "Predeterminat"
+msgstr "Predeterminada"
 
-#: inc/customizer.php:62
+#: inc/customizer.php:75
 msgid "Header and Sidebar Background Color"
 msgstr "Color de fons de la capçalera i barra lateral"
 
-#: inc/customizer.php:47 inc/customizer.php:63 inc/customizer.php:68
-msgid "Applied to the header on small screens and the sidebar on wide screens."
-msgstr "S'aplica a la capçalera de pantalles petites i a la barra lateral en pantalles amples."
-
-#: inc/customizer.php:31
-msgid "Base Color Scheme"
-msgstr "Esquema de color base"
-
-#: inc/customizer.php:46
+#: inc/customizer.php:59
 msgid "Header and Sidebar Text Color"
 msgstr "Color del text de la capçalera i barra lateral"
 
-#: inc/back-compat.php:37 inc/back-compat.php:47 inc/back-compat.php:60
-msgid "Twenty Fifteen requires at least WordPress version 4.1. You are running version %s. Please upgrade and try again."
-msgstr "El tema Twenty Fifteen necessita, almenys, de la versió 4.1 del WordPress. Esteu executant la versió %s. Actualitzeu i torneu a provar."
+#: inc/customizer.php:60 inc/customizer.php:76 inc/customizer.php:81
+msgid "Applied to the header on small screens and the sidebar on wide screens."
+msgstr "S'aplica a la capçalera de pantalles petites i a la barra lateral en pantalles amples."
+
+#: inc/customizer.php:44
+msgid "Base Color Scheme"
+msgstr "Esquema de color base"
 
 #: image.php:84
 msgctxt "Parent post link"
 msgid "<span class=\"meta-nav\">Published in</span><span class=\"post-title\">%title</span>"
 msgstr "<span class=\"meta-nav\">Publicat en</span><span class=\"post-title\">%title</span>"
 
+#: inc/back-compat.php:37 inc/back-compat.php:47 inc/back-compat.php:60
+msgid "Twenty Fifteen requires at least WordPress version 4.1. You are running version %s. Please upgrade and try again."
+msgstr "El tema Twenty Fifteen necessita, almenys, de la versió 4.1 del WordPress. Esteu executant la versió %s. Actualitzeu i torneu a provar."
+
 #: image.php:24
 msgid "Next Image"
 msgstr "Imatge següent"
-
-#: header.php:43
-msgid "Menu and widgets"
-msgstr "Menú i ginys"
 
 #: image.php:24
 msgid "Previous Image"
 msgstr "Imatge anterior"
 
+#: header.php:45
+msgid "Menu and widgets"
+msgstr "Menú i ginys"
+
 #: header.php:26
 msgid "Skip to content"
 msgstr "Vés al contingut"
 
-#: functions.php:256
+#: functions.php:269
+msgid "expand child menu"
+msgstr "amplia el menú fill"
+
+#: functions.php:270
 msgid "collapse child menu"
 msgstr "contrau el menú fill"
 
-#: functions.php:255
-msgid "expand child menu"
-msgstr "amplia el menú fill"
+#. Translators: If there are characters in your language that are not supported
+#. by Inconsolata, translate this to 'off'. Do not translate into your own
+#. language.
+#: functions.php:191
+msgctxt "Inconsolata font: on or off"
+msgid "on"
+msgstr "activa"
 
 #. Translators: To add an additional character subset specific to your
 #. language, translate this to 'greek', 'cyrillic', 'devanagari' or
 #. 'vietnamese'. Do not translate into your own language.
-#: functions.php:185
+#: functions.php:199
 msgctxt "Add new subset (greek, cyrillic, devanagari, vietnamese)"
 msgid "no-subset"
 msgstr "no-subset"
 
 #. Translators: If there are characters in your language that are not supported
-#. by Inconsolata, translate this to 'off'. Do not translate into your own
-#. language.
-#: functions.php:177
-msgctxt "Inconsolata font: on or off"
-msgid "on"
-msgstr "activa"
-
-#. Translators: If there are characters in your language that are not supported
 #. by Noto Serif, translate this to 'off'. Do not translate into your own
 #. language.
-#: functions.php:169
+#: functions.php:183
 msgctxt "Noto Serif font: on or off"
 msgid "on"
 msgstr "activa"
@@ -209,16 +194,16 @@ msgstr "activa"
 #. Translators: If there are characters in your language that are not supported
 #. by Noto Sans, translate this to 'off'. Do not translate into your own
 #. language.
-#: functions.php:161
+#: functions.php:175
 msgctxt "Noto Sans font: on or off"
 msgid "on"
 msgstr "activa"
 
-#: functions.php:135
+#: functions.php:149
 msgid "Add widgets here to appear in your sidebar."
-msgstr "Afegix ginys aquí que apareixeran a la barra lateral."
+msgstr "Afegeix aquí ginys perquè apareguin a la barra lateral."
 
-#: functions.php:133
+#: functions.php:147
 msgid "Widget Area"
 msgstr "Àrea de ginys"
 
@@ -234,7 +219,7 @@ msgstr "Menú principal"
 msgid "Proudly powered by %s"
 msgstr "Gràcies al %s."
 
-#. #-#-#-#-#  twentyfifteen.pot (Twenty Fifteen 1.2)  #-#-#-#-#
+#. #-#-#-#-#  twentyfifteen.pot (Twenty Fifteen 1.6)  #-#-#-#-#
 #. Author URI of the plugin/theme
 #: footer.php:25
 msgid "https://wordpress.org/"
@@ -242,7 +227,7 @@ msgstr "https://wordpress.org/"
 
 #: content-none.php:31
 msgid "It seems we can&rsquo;t find what you&rsquo;re looking for. Perhaps searching can help."
-msgstr "Sembla que no em trobat el que esteu cercant. Potser una cerca us ajudaria."
+msgstr "Sembla que no podem trobar el que esteu cercant. Potser ajudaria si feu una recerca."
 
 #: content-none.php:26
 msgid "Sorry, but nothing matched your search terms. Please try again with some different keywords."
@@ -266,7 +251,7 @@ msgid "Pages:"
 msgstr "Pàgines:"
 
 #. translators: %s: Name of current post
-#: content-link.php:31 content.php:33 inc/template-tags.php:237
+#: content-link.php:31 content.php:33 inc/template-tags.php:238
 msgid "Continue reading %s"
 msgstr "Continua la lectura de %s"
 
@@ -278,8 +263,8 @@ msgstr "Els comentaris estan tancats."
 msgctxt "comments title"
 msgid "One thought on &ldquo;%2$s&rdquo;"
 msgid_plural "%1$s thoughts on &ldquo;%2$s&rdquo;"
-msgstr[0] "Una resposta a &ldquo;%2$s&rdquo;"
-msgstr[1] "%1$s respostes a &ldquo;%2$s&rdquo;"
+msgstr[0] "Un pensament sobre &ldquo;%2$s&rdquo;"
+msgstr[1] "%1$s pensaments sobre &ldquo;%2$s&rdquo;"
 
 #: author-bio.php:34
 msgid "View all posts by %s"
@@ -300,12 +285,20 @@ msgstr "Pàgina següent"
 
 #: archive.php:49 index.php:46 search.php:38
 msgid "Previous page"
-msgstr "Pàgina anterior"
+msgstr "Pàgina prèvia"
 
 #: 404.php:21
 msgid "It looks like nothing was found at this location. Maybe try a search?"
-msgstr "Sembla que no s'ha trobat res aquí. Voleu intentar una cerca?"
+msgstr "Sembla que no s'ha trobat res aquí. Potser podeu provar i fer una cerca?"
 
 #: 404.php:17
 msgid "Oops! That page can&rsquo;t be found."
-msgstr "Buf! Aquesta pàgina no es pot trobar."
+msgstr "Aquesta pàgina no es pot trobar."
+
+#. Author of the plugin/theme
+msgid "the WordPress team"
+msgstr "L'equip del WordPress"
+
+#. Theme URI of the plugin/theme
+msgid "https://wordpress.org/themes/twentyfifteen/"
+msgstr "https://wordpress.org/themes/twentyfifteen/"

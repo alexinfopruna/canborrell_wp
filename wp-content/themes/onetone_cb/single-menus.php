@@ -5,6 +5,8 @@
  *
  * @package onetone
  */
+
+
 get_header(); 
 //$left_sidebar   = onetone_option('left_sidebar_blog_posts','');
 $left_sidebar   = 'sidebar-6';

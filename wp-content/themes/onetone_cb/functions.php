@@ -6,15 +6,14 @@
  * and open the template in the editor.
  */
 $translation_array = array(
-  'exterior' => __( 'Exterior' ),
-  'interior' => __( 'Menjadors' ),
-  'cuina' => __( 'Cuina' ),
-  'graella' => __( 'Graella' ),
-  'equip' => __( 'Equip' ),
-  'plats' => __( 'Plats')
+  'exterior' => __( 'Indoor','WordPress'),
+  'interior' => __( 'Outdoor','WordPress' ),
+  'cuina' => __( 'Kitchen','WordPress' ),
+  'graella' => __( 'Grill','WordPress' ),
+  'equip' => __( 'Team','WordPress' ),
+  'plats' => __( 'Dishes','WordPress')
 );
-
-
+//
 
 // TIPUS
 require_once('tipus/premsa-functions.php'); // Testimonial Post Type
