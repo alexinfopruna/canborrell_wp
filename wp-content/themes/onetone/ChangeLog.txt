@@ -2,6 +2,12 @@
 
 == CHANGE LOG == 
 
+= Version 1.8.9 = = 30/09/2016
+* Add - Added 'Display Author Info' option
+* Add - Added 'Display Related Posts' option
+* Fix - Fixed 'Home Page Header Overlay' option issue
+* Changed the default youtube video ID
+
 = Version 1.8.8 = = 23/09/2016
 * Add - Added 'Full Width Header' option
 * Add - Added 'Nav Hover Effect' option

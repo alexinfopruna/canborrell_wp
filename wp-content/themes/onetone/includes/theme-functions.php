@@ -588,7 +588,7 @@ function onetone_options_typography_get_os_fonts() {
 	 $return .= 'font-family:'.$option['face'].';' ;
 	
 	 }
-	 if(isset($option['size']) && !is_array($option['size']))
+	 if(isset($option['size']))
 	 $return .= 'font-size:'.$option['size'].';' ;
 	 if($option['style'])
 	 $return .= 'font-weight:'.$option['style'].';' ;

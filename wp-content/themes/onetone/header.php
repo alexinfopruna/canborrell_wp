@@ -34,7 +34,7 @@
   $logo_position      = $logo_position==''?'left':$logo_position;
   
   $header_overlay               = onetone_option('header_overlay','');
- 
+  
   $overlay = '';
   if( ($header_overlay == 'yes'|| $header_overlay == '1') && (is_front_page()) )
   $overlay = 'overlay';

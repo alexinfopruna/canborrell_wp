@@ -2,8 +2,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: onetone\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2016-09-21 11:23+0800\n"
-"PO-Revision-Date: 2016-09-21 11:23+0800\n"
+"POT-Creation-Date: 2016-09-30 14:50+0800\n"
+"PO-Revision-Date: 2016-09-30 14:50+0800\n"
 "Last-Translator: shijun quan <support@mageewp.com>\n"
 "Language-Team: Magee <support@mageewp.com>\n"
 "Language: en_US\n"
@@ -148,7 +148,7 @@ msgstr ""
 msgid "Has one comment"
 msgstr ""
 
-#: comments.php:11 content-article.php:26 content.php:30 single.php:52
+#: comments.php:11 content-article.php:26 content.php:30 single.php:54
 #, php-format
 msgid "% comments"
 msgstr ""
@@ -211,11 +211,11 @@ msgstr ""
 msgid "Website"
 msgstr ""
 
-#: content-article.php:26 content.php:30 single.php:52
+#: content-article.php:26 content.php:30 single.php:54
 msgid "No comments yet"
 msgstr ""
 
-#: content-article.php:26 content.php:30 single.php:52
+#: content-article.php:26 content.php:30 single.php:54
 msgid "1 comment"
 msgstr ""
 
@@ -289,7 +289,7 @@ msgstr ""
 msgid "All plugins installed and activated successfully. %s"
 msgstr ""
 
-#: header-home.php:111 header-home.php:197 header.php:109 header.php:146
+#: header-home.php:114 header-home.php:200 header.php:109 header.php:146
 msgid "Toggle navigation"
 msgstr ""
 
@@ -1814,6 +1814,26 @@ msgstr ""
 msgid "404 page content"
 msgstr ""
 
+#: includes/admin-options.php:2829
+msgid "Blog"
+msgstr ""
+
+#: includes/admin-options.php:2836
+msgid "Display Author Info?"
+msgstr ""
+
+#: includes/admin-options.php:2837
+msgid "Display author info on single page."
+msgstr ""
+
+#: includes/admin-options.php:2844
+msgid "Display Related Posts?"
+msgstr ""
+
+#: includes/admin-options.php:2845
+msgid "Display related posts on single page."
+msgstr ""
+
 #: includes/breadcrumbs.php:147
 msgid "Browse:"
 msgstr ""
@@ -1851,7 +1871,7 @@ msgid "Week %s"
 msgstr ""
 
 #: includes/breadcrumbs.php:907 includes/breadcrumbs.php:933
-#: includes/breadcrumbs.php:945 includes/breadcrumbs.php:967 single.php:53
+#: includes/breadcrumbs.php:945 includes/breadcrumbs.php:967 single.php:55
 msgid "Edit"
 msgstr ""
 
@@ -2323,14 +2343,14 @@ msgstr ""
 msgid "Footer Area Four"
 msgstr ""
 
-#: page.php:73 single.php:60
+#: page.php:73 single.php:62
 msgid "Pages:"
 msgstr ""
 
-#: single.php:78
+#: single.php:81
 msgid "About the author"
 msgstr ""
 
-#: single.php:98
+#: single.php:104
 msgid "Related Posts"
 msgstr ""

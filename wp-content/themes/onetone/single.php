@@ -8,6 +8,8 @@
 get_header(); 
 $left_sidebar   = onetone_option('left_sidebar_blog_posts','');
 $right_sidebar  = onetone_option('right_sidebar_blog_posts','');
+$display_author_info    = onetone_option('display_author_info',1 );
+$display_related_posts  = onetone_option('display_related_posts',1 );
 $aside          = 'no-aside';
 if( $left_sidebar !='' )
 $aside          = 'left-aside';
@@ -73,6 +75,7 @@ $aside          = 'both-aside';
                             </article>
 
                             <div class="post-attributes">
+                            <?php if( $display_author_info == 1 ):?>
                                 <!--About Author-->
                                 <div class="about-author">
                                     <h3><?php _e("About the author","onetone");?>: <?php the_author_link(); ?></h3>
@@ -83,7 +86,10 @@ $aside          = 'both-aside';
                                         <?php the_author_meta('description');?>
                                     </div>
                                 </div>
+                                 <!--About Author End-->
+                                <?php endif;?>
                                 
+                                 <?php if( $display_related_posts == 1 ):?>
                                 <?php 
 									$related_number = onetone_option('related_number',8);
 									$related        = onetone_get_related_posts($post->ID, $related_number,'post'); 
@@ -92,7 +98,7 @@ $aside          = 'both-aside';
 			                        <?php if($related->have_posts()): 
 									        $date_format = onetone_option('date_format','M d, Y');
 									?>
-                                <!--About Author End-->
+                                
                                 <!--Related Posts-->
                                 <div class="related-posts">
                                         <h3><?php _e( 'Related Posts', 'onetone' );?></h3>
@@ -131,6 +137,7 @@ $aside          = 'both-aside';
                                     </div>
                                 <!--Related Posts End-->
                                 <?php wp_reset_postdata(); endif; ?>
+                                 <?php endif; ?>
                                 <!--Comments Area-->                                
                                 <div class="comments-area text-left">
                                      <?php

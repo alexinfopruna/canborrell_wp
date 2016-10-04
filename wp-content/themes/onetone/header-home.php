@@ -15,7 +15,7 @@
   global  $page_meta;
   $detect                      = new Mobile_Detect;
   $display_top_bar             = onetone_option('display_top_bar','yes');
-  $header_background_parallax  = onetone_option('header_background_parallax','');
+  $header_background_parallax  = onetone_option('header_background_parallax');
   $header_top_padding          = onetone_option('header_top_padding','');
   $header_bottom_padding       = onetone_option('header_bottom_padding','');
   $header_background_parallax  = $header_background_parallax=="yes"?"parallax-scrolling":"";
@@ -33,11 +33,14 @@
   $logo_position      = onetone_option('logo_position','left');
   $logo_position      = $logo_position==''?'left':$logo_position;
   
-  $header_overlay               = onetone_option('header_overlay','');
- 
+  $header_overlay     = onetone_option('header_overlay');
+  
+  $object_id = $wp_query->get_queried_object_id() ;
+  
   $overlay = '';
-  if( ($header_overlay == 'yes'|| $header_overlay == '1') && (is_front_page()) )
+  if( ($header_overlay == 'yes'|| $header_overlay == '1') && (is_front_page() || ( is_home() && $object_id==0 )) )
   $overlay = 'overlay';
+  
   
   //sticky
   $enable_sticky_header         = onetone_option('enable_sticky_header','yes');

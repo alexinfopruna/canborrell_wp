@@ -172,7 +172,7 @@ SHINES ONE PAGE SMALL BUSINESS WEBSITE.",
 	$default_section_num = count($section_menu);
 	$section_background  = array(
 	     array(
-		'color' => '',
+		'color' => '#333333',
 		'image' => ONETONE_THEME_BASE_URL.'/images/home-bg01.jpg',
 		'repeat' => 'repeat',
 		'position' => 'top left',
@@ -326,7 +326,7 @@ SHINES ONE PAGE SMALL BUSINESS WEBSITE.",
         
       );
 		$options[] = array('name' => '','id' => 'wrapper_start','type' => 'wrapper_start','class'=>'');
-		$options[] = array('name' => __('YouTube ID for Video Background', 'onetone'),'std' => '9ZfN87gSjvI','desc' => __('Insert the eleven-letter id here, not url.', 'onetone'),'id' => 'section_background_video_0',
+		$options[] = array('name' => __('YouTube ID for Video Background', 'onetone'),'std' => 'cS4Fz_A4Mas','desc' => __('Insert the eleven-letter id here, not url.', 'onetone'),'id' => 'section_background_video_0',
 		'type' => 'text','class' => 'section-item accordion-group-youtube_video' );
 		
 		$options[] = array('name' => __('Start Time', 'onetone'),'std' => '28','desc' => __('Choose time to start to play, in seconds.', 'onetone'),'id' => 'section_youtube_start',
@@ -2820,6 +2820,33 @@ $options[] =  array(
 		'std' => '<h2>WHOOPS!</h2>
                         <p>THERE IS NOTHING HERE.<br>PERHAPS YOU WERE GIVEN THE WRONG URL?</p>',
 		'type' => 'editor');
+		
+		
+		 // Blog
+		
+		$options[] = array(	
+						   'icon' => 'fa-bold',
+						   'name' => __('Blog', 'onetone'),
+						   'type' => 'heading'
+						   );
+		
+		
+		$options[] =  array(
+        'id'          => 'display_author_info',
+        'name'       => __( 'Display Author Info?', 'onetone' ),
+        'desc'        => __('Display author info on single page.', 'onetone'),
+        'std'         => '1',
+        'type'        => 'checkbox',
+        'class'       => '',
+      );
+		$options[] =  array(
+        'id'          => 'display_related_posts',
+        'name'       => __( 'Display Related Posts?', 'onetone' ),
+        'desc'        => __('Display related posts on single page.', 'onetone'),
+        'std'         => '1',
+        'type'        => 'checkbox',
+        'class'       => '',
+      );
 		
 	return $options;
 }
