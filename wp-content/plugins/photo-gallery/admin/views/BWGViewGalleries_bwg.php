@@ -434,10 +434,10 @@ class BWGViewGalleries_bwg {
           input_alt.setAttribute('style', "resize: vertical; height: 54px;");
           input_alt.setAttribute('rows', "2");
           if (is_embed && !is_direct_url) {
-            input_alt.innerHtml = files[i]['name'];
+            input_alt.innerHTML = files[i]['name'];
           }
           else {/*uploaded images and direct URLs of images only*/
-            input_alt.innerHtml = files[i]['filename'];
+            input_alt.innerHTML = files[i]['filename'];
           }
           td_alt.appendChild(input_alt);
 

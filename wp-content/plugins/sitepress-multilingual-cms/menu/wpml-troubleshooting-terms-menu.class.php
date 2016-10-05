@@ -20,11 +20,11 @@ class WPML_Troubleshooting_Terms_Menu {
 
 				ICL_AdminNotifier::addMessage( "termssuffixnotice", $message, 'error', true, false, false, 'terms-suffix', true );
 			}
-			$sitepress->save_settings( array( 'taxonomy_names_checked' => true ) );
+			$sitepress->set_setting( 'taxonomy_names_checked', true, true );
 		}
 
 
-		//Todo: in WPML 3.2 the ICL_AdminNotifier class got improved and we should not call \ICL_AdminNotifier::displayMessages to display an admin notice
+		//TODO: [WPML 3.3] the ICL_AdminNotifier class got improved and we should not call \ICL_AdminNotifier::displayMessages to display an admin notice
 		ICL_AdminNotifier::displayMessages( 'terms-suffix' );
 	}
 
@@ -110,12 +110,12 @@ class WPML_Troubleshooting_Terms_Menu {
 
 		$term_names = array();
 
-		$nonce = (string)filter_input( INPUT_POST, '_icl_nonce', FILTER_SANITIZE_STRING );
+		$nonce = filter_input( INPUT_POST, '_icl_nonce', FILTER_SANITIZE_STRING );
 		if ( !wp_verify_nonce( $nonce, 'update_term_names_nonce' ) ) {
 			die( 'Wrong Nonce' );
 		}
 
-		$request_post_terms = filter_input ( INPUT_POST, 'terms' );
+		$request_post_terms = filter_input(INPUT_POST, 'terms');
 		if ( $request_post_terms ) {
 			$term_names = json_decode( stripcslashes( $request_post_terms ) );
 			if ( ! is_object( $term_names ) ) {

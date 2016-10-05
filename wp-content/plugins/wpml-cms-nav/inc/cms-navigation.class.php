@@ -148,11 +148,11 @@ class WPML_CMS_Navigation{
     
     function save_form(){
         global $wpdb;
-
+        
         if ( !wp_verify_nonce( filter_input( INPUT_POST, 'icl_cms_nav_nonce' ), 'icl_cms_nav_nonce' ) ) {
             return false;
         }
-
+        
         $this->settings['page_order'] = $_POST['icl_navigation_page_order'];
         $this->settings['show_cat_menu'] = @intval($_POST['icl_navigation_show_cat_menu']);
         if($_POST['icl_navigation_cat_menu_title']){
@@ -302,9 +302,28 @@ class WPML_CMS_Navigation{
                     echo $post_types[$post_type]->labels->name
                             . $this->settings['breadcrumbs_separator'];
                 }
+            } elseif( is_archive() && isset( $post_types[$post_type]->labels->name ) ) {
+                echo $post_types[$post_type]->labels->name;
             }elseif(!is_page() && !is_home() && !is_tax() && $page_for_posts){
-                ?><a href="<?php echo get_permalink($page_for_posts); ?>"><?php echo get_the_title($page_for_posts) ?></a><?php 
+
+                // get all custom post types
+                $custom_post_types = get_post_types( array(
+                    'public' => true,
+                    '_builtin' => false
+                ), 'objects', 'and' );
+
+                // if custom post type
+                if( isset( $custom_post_types[$post_type] ) ) {
+                    // if custom post type has archive
+                    if( $custom_post_types[$post_type]->has_archive ) {
+                        echo '<a href="' . get_post_type_archive_link( $post_type ) . '">'
+                             . $custom_post_types[$post_type]->labels->name . '</a>'
+                             . $this->settings['breadcrumbs_separator'];
+                    }
+                } else {
+                    ?><a href="<?php echo get_permalink($page_for_posts); ?>"><?php echo get_the_title($page_for_posts) ?></a><?php
                     echo $this->settings['breadcrumbs_separator'];
+                }
             }
             
             if(is_home() && $page_for_posts && !isset($post_type_name)){                
@@ -315,7 +334,7 @@ class WPML_CMS_Navigation{
                 rewind_posts();
             }elseif(is_page() && $page_on_front!=$post->ID){                        
                 the_post();
-                if(is_array($post->ancestors)){            
+	            if ( $this->post_has_ancestors( $post ) ) {
                     $ancestors = array_reverse($post->ancestors);
                     foreach($ancestors as $anc){
                         if($page_on_front==$anc) {continue;}
@@ -429,8 +448,8 @@ class WPML_CMS_Navigation{
             
             // save the menu to a cache
             ob_start();
-            
-            $order = isset($this->settings['page_order']) ? $this->settings['page_order'] : 'menu_order';
+
+	        $order         = esc_sql( isset( $this->settings['page_order'] ) ? $this->settings['page_order'] : 'menu_order' );
             $show_cat_menu = isset($this->settings['show_cat_menu']) ? $this->settings['show_cat_menu'] : false;
             
             if(0 === strpos('page', get_option('show_on_front'))){
@@ -454,11 +473,7 @@ class WPML_CMS_Navigation{
                 $excluded_pages[] = $page_for_posts;    
             }                                       
             $excluded_pages = wpml_prepare_in( $excluded_pages, '%d' );
-            
-            if(!empty($post) && !isset($post->ancestors)){
-                $post->ancestors = array();
-            }   
-            
+
             if(current_user_can('read_private_pages')){
                 $private = " OR post_status='private'";
             }else{
@@ -474,13 +489,13 @@ class WPML_CMS_Navigation{
                         JOIN {$wpdb->prefix}icl_translations tr ON p.ID = tr.element_id AND element_type='post_page'
                     WHERE post_type='page' AND (post_status='publish' {$private})
                         AND post_parent=0 AND p.ID NOT IN ({$excluded_pages})  AND tr.language_code = %s
-                    ORDER BY {$order}", $current_language);
+                    ORDER BY " . $order, $current_language);
 				$pages = $wpdb->get_col( $pages_prepared );
             }else{
 				$pages_prepared = "
                     SELECT p.ID FROM {$wpdb->posts} p
                     WHERE post_type='page' AND (post_status='publish' {$private}) AND post_parent=0 AND p.ID NOT IN ({$excluded_pages})
-                    ORDER BY {$order}";
+                    ORDER BY " . $order;
 				$pages = $wpdb->get_col( $pages_prepared );
             }
             
@@ -535,18 +550,18 @@ class WPML_CMS_Navigation{
                         ?><li<?php if(!empty($smain_li_classes)):?> class="<?php echo join(' ' , $smain_li_classes)?>"<?php endif?>><a href="<?php echo trailingslashit(get_option('home')) ?>" class="<?php if($this->settings['cat_menu_contents'] != 'nothing'):?>trigger<?php endif?>"><?php echo $cat_menu_title ?><?php if(!isset($cms_nav_ie_ver) || $cms_nav_ie_ver > 6): ?></a><?php endif; ?><?php
                     }else{
                         $sections = array();
-						$subpages_prepared = $wpdb->prepare("
+
+						$subpages_prepared = $wpdb->prepare( "
                             SELECT p.ID, meta_value AS section
                             FROM {$wpdb->posts} p LEFT JOIN {$wpdb->postmeta} m ON p.ID=m.post_id AND (meta_key='_cms_nav_section' OR meta_key IS NULL)
-                            WHERE p.post_parent=%d AND post_type='page' AND p.post_status='publish' AND p.ID NOT IN ({$excluded_pages}) ORDER BY %s", array($p, $order) );
+                            WHERE p.post_parent=%d AND post_type='page' AND p.post_status='publish' AND p.ID NOT IN ({$excluded_pages}) ORDER BY " . $order, array( $p ) );
 						$subpages = $wpdb->get_results( $subpages_prepared );
                         foreach((array)$subpages as $s){
                             $sections[$s->section][] = $s->ID;    
                         }
-                        ksort($sections);  
-                        
-                        if(isset($post) && 
-                                ($p==$post->ID || in_array($p,(array)$post->ancestors) || ($p == $page_for_posts && is_home()))){
+                        ksort($sections);
+
+	                    if ( isset( $post ) && ( $p == $post->ID || $this->post_ancestor_exists( $post, $p ) || ( $p == $page_for_posts && is_home() ) ) ) {
                             $sel = true;
                         }else{
                             $sel = false;
@@ -645,7 +660,7 @@ class WPML_CMS_Navigation{
 												if ( !isset( $post ) || $sp != $post->ID ) {
 													$item_permalink = get_permalink( $sp );
 													$item_selection = '';
-													if (isset( $post ) && in_array( $sp, (array)$post->ancestors ) ) {
+													if ( $this->is_an_ancestor( $post, $sp ) ) {
 														$item_selection = ' class="selected"';
 													}
 													?>
@@ -667,7 +682,11 @@ class WPML_CMS_Navigation{
                     </li>
                     <?php   
                 }
-                ?></ul></div><br class="cms-nav-clearit" /><?php
+                ?>
+	            </ul>
+	            </div>
+	            <br class="cms-nav-clearit" />
+	            <?php
             }
             
             $output = ob_get_contents();
@@ -724,15 +743,15 @@ class WPML_CMS_Navigation{
             ob_start();
             
             
-            $order = isset($this->settings['page_order']) ? $this->settings['page_order'] : 'menu_order';
+            $order = esc_sql( isset($this->settings['page_order']) ? $this->settings['page_order'] : 'menu_order' );
             $heading_start = isset($this->settings['heading_start']) ? $this->settings['heading_start'] : '<h4>';
             $heading_end = isset($this->settings['heading_end']) ? $this->settings['heading_end'] : '</h4>';
                 
             // is home?
-            $is_home = get_post_meta($post->ID,'_cms_nav_minihome',true);        
-            if($is_home || !$post->ancestors){
+            $is_home = get_post_meta($post->ID,'_cms_nav_minihome',true);
+	        if ( $is_home || ! $this->post_has_ancestors( $post ) ) {
                 $pid = $post->ID;
-            }else{
+	        } elseif ( $this->post_has_ancestors( $post ) ) {
                 //get top level page parent or home
                 $parent = $post->ancestors[0];            
                 do{
@@ -758,21 +777,21 @@ class WPML_CMS_Navigation{
             }
             echo $heading_end;
             ?>
-            
+
             <?php
-    
+
             if (empty($pid)) return;
 
 			$sub_prepared = $wpdb->prepare( "
                     SELECT p1.ID, meta_value AS section FROM {$wpdb->posts} p1
                     LEFT JOIN {$wpdb->postmeta} p2 ON p1.ID=p2.post_id AND (meta_key='_cms_nav_section' OR meta_key IS NULL)
-                    WHERE post_parent=%d AND post_type='page' AND post_status='publish' ORDER BY {$order}", $pid );
+                    WHERE post_parent=%d AND post_type='page' AND post_status='publish' ORDER BY " . $order, $pid );
 			$sub = $wpdb->get_results( $sub_prepared );
-            if(empty($sub))  return;                   
+            if(empty($sub))  return;
             foreach($sub as $s){
                 $sections[$s->section][] = $s->ID;    
             }
-            ksort($sections);    
+            ksort($sections);
             echo '<ul class="cms-nav-sidebar">';
             foreach($sections as $sec_name=>$sec){
                 ?>            
@@ -820,7 +839,7 @@ class WPML_CMS_Navigation{
 		$subpages_prepared = $wpdb->prepare( "
             SELECT p1.ID, p2.meta_value IS NOT NULL AS minihome FROM {$wpdb->posts} p1
             LEFT JOIN {$wpdb->postmeta} p2 ON p1.ID=p2.post_id AND (meta_key='_cms_nav_minihome' OR meta_key IS NULL)
-            WHERE post_parent=%d AND post_type='page' AND post_status='publish' ORDER BY {$order}", $pid );
+            WHERE post_parent=%d AND post_type='page' AND post_status='publish' ORDER BY " . $order, $pid );
 		$subpages          = $wpdb->get_results( $subpages_prepared );
 		if ( $subpages ): ?>
 			<ul>
@@ -845,14 +864,16 @@ class WPML_CMS_Navigation{
 		$offsite_url_cache = $this->cache[ 'offsite_url_cache' ];
 		$offsite_url_cache->clear();
         $wpdb->query("TRUNCATE {$wpdb->prefix}icl_cms_nav_cache");
-        
-        if(
-            (isset($_POST['post_type']) && $_POST['post_type']!='page'    ) || 
-            (isset($_POST['action'])    && $_POST['action']=='inline-save') || 
-            (isset($_POST['autosave'])  && $_POST['autosave']) || 
-            (isset($_POST['post_type']) && $_POST['post_type']=='revision')  || 
-            (isset($post->post_status)  && $post->post_status=='auto-draft')
-        ) return;
+
+		if ( ( isset( $post->post_status ) && $post->post_status === 'auto-draft' )
+		     || ( defined( 'DOING_AUTOSAVE' ) && DOING_AUTOSAVE )
+		     || ( isset( $_POST['autosave'] ) && $_POST['autosave'] )
+		     || ( isset( $_POST['post_type'] ) && $_POST['post_type'] !== 'page' )
+		     || ( isset( $_POST['action'] ) && $_POST['action'] === 'inline-save' )
+		     || ( isset( $_POST['post_type'] ) && $_POST['post_type'] === 'revision' )
+		) {
+			return;
+		}
         
         if(!empty($_POST['exclude_from_top_nav'])){
             update_post_meta($post_id, '_top_nav_excluded',1);
@@ -995,10 +1016,7 @@ class WPML_CMS_Navigation{
         if(defined('ICL_DONT_LOAD_NAVIGATION_CSS') && ICL_DONT_LOAD_NAVIGATION_CSS){
             return;
         }
-        $path = dirname(substr(__FILE__, strpos(__FILE__,'wp-content')));
-        $path = str_replace('\\','/',$path);
-		$stylesheet = rtrim(get_option('siteurl'),'/') . '/' . $path . '/res';
-        wp_enqueue_style('cms-navigation-style-base', 
+        wp_enqueue_style('cms-navigation-style-base',
             WPML_CMS_NAV_PLUGIN_URL . '/res/css/cms-navigation-base.css', array(), WPML_CMS_NAV_VERSION, 'screen');            
         wp_enqueue_style('cms-navigation-style', 
             WPML_CMS_NAV_PLUGIN_URL . '/res/css/cms-navigation.css', array(), WPML_CMS_NAV_VERSION, 'screen');            
@@ -1070,5 +1088,34 @@ class WPML_CMS_Navigation{
     function plugin_localization(){
         load_plugin_textdomain( 'wpml-cms-nav', false, WPML_CMS_NAV_PLUGIN_FOLDER . '/locale');
     }
-    
+
+	/**
+	 * @param $post
+	 * @param $sp
+	 *
+	 * @return bool
+	 */
+	private function is_an_ancestor( $post, $sp ) {
+		return isset( $post, $post->ancestors ) && in_array( $sp, (array) $post->ancestors, true );
+	}
+
+	/**
+	 * @param $post
+	 * @param $p
+	 *
+	 * @return bool
+	 */
+	private function post_ancestor_exists( $post, $p ) {
+		return $this->post_has_ancestors( $post->ancestors ) && in_array( $p, $post->ancestors );
+	}
+
+	/**
+	 * @param $post
+	 *
+	 * @return bool
+	 */
+	private function post_has_ancestors( $post ) {
+		return isset( $post->ancestors ) && is_array( $post->ancestors ) && count( $post->ancestors ) > 0;
+	}
+
 }

@@ -1,13 +1,25 @@
 <?php
-if ( ! defined( 'ABSPATH' ) ) exit; // Exit if accessed directly
-	global $wpdb;
-	$hugeit_lightbox = "CREATE TABLE IF NOT EXISTS " . $wpdb->prefix . "hugeit_lightbox (
-		`id` int(11) NOT NULL AUTO_INCREMENT,
-		`name` text NOT NULL,
-		`title` text NOT NULL,
-		`value` text NOT NULL,
+
+if ( ! defined( 'ABSPATH' ) ) {
+	exit; // Exit if accessed directly
+}
+
+global $wpdb;
+
+$collate = '';
+
+if ( $wpdb->has_cap( 'collation' ) ) {
+	$collate = $wpdb->get_charset_collate();
+}
+
+$hugeit_lightbox = "CREATE TABLE IF NOT EXISTS " . $wpdb->prefix . "hugeit_lightbox (
+		`id` INT(11) NOT NULL AUTO_INCREMENT,
+		`name` TEXT NOT NULL,
+		`title` TEXT NOT NULL,
+		`value` TEXT NOT NULL,
 		PRIMARY KEY (`id`)
-	) ENGINE=MyISAM  DEFAULT CHARSET=utf8;";
+	) " . $collate . ";";
+
 	$wpdb->query($hugeit_lightbox);
 	$sql_hugeit_lightbox = "INSERT INTO " . $wpdb->prefix . "hugeit_lightbox (`name`, `title`, `value`) VALUES	
 	('light_box_size', 'Light box size', '17'),
@@ -63,32 +75,33 @@ if ( ! defined( 'ABSPATH' ) ) exit; // Exit if accessed directly
 	('light_box_fastiframe', 'Light box fastIframe', 'true'),
 	('light_box_preloading', 'Light box preloading', 'true'),
 	('slider_title_position', 'Slider title position', '5'),
+	('watermark_img_src', 'Watermark image source', '" . plugins_url() . "/lightbox/images/No-image-found.jpg'),
 	('light_box_style', 'Light Box style', '1')";
-	if (!$wpdb->get_var("select count(*) from " . $wpdb->prefix . "hugeit_lightbox")) {
-		$wpdb->query($sql_hugeit_lightbox);
-	}
+if ( ! $wpdb->get_var( "SELECT count(*) FROM " . $wpdb->prefix . "hugeit_lightbox" ) ) {
+	$wpdb->query( $sql_hugeit_lightbox );
+}
 		///////////////////////////update////////////////////////////////////
-    $table_name = $wpdb->prefix . "hugeit_lightbox";
-	$sql_update_p1 = <<<query1
-	INSERT INTO `$table_name` (`name`, `title`, `value`) VALUES
-	('light_box_size_fix', 'Light Box size fix', 'false')
-
-query1;
-
-	$query="SELECT name FROM ".$wpdb->prefix."hugeit_lightbox";
-	$update_p1=$wpdb->get_results($query);
-	if(end($update_p1)->name=='light_box_style'){
-		$wpdb->query($sql_update_p1);
-	}
-        
 $table_name = $wpdb->prefix . "hugeit_lightbox";
-	$sql_update_p2 = <<<query2
-	UPDATE `$table_name` set value='true' WHERE name='light_box_closebutton';
-query2;
 
-	$query2="SELECT * FROM ".$wpdb->prefix."hugeit_lightbox WHERE name='light_box_closebutton'";
-	$update_p2=$wpdb->get_row($query2);
-	if($update_p2->value=='false') {
-		$wpdb->query($sql_update_p2);
-	}
-?>
+$update_p1 = $wpdb->get_results( "SELECT name FROM " . $wpdb->prefix . "hugeit_lightbox" );
+
+if ( end( $update_p1 )->name === 'light_box_style' ) {
+	$wpdb->insert(
+		$table_name,
+		array(
+			'name' => 'light_box_size_fix',
+			'title' => 'Light Box size fix',
+			'value' => 'false',
+		)
+	);
+}
+
+$update_p2=$wpdb->get_row("SELECT * FROM ".$wpdb->prefix."hugeit_lightbox WHERE name='light_box_closebutton'");
+
+if($update_p2->value=='false') {
+	$wpdb->update(
+		$table_name,
+		array('value' => 'true'),
+		array('name' => 'light_box_closebutton')
+	);
+}

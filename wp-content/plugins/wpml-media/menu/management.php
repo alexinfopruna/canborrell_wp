@@ -8,7 +8,6 @@
 
 <div class="wrap">
 
-	<div id="icon-wpml" class="icon32"><br/></div>
 	<h2><?php echo __('Media translation', 'wpml-media') ?></h2>
 
 	<?php if ($orphan_attachments): ?>
@@ -39,9 +38,9 @@
 			</tr>
 
 			<tr>
-				<td><a href="https://wpml.org/documentation/getting-started-guide/media-translation/"><?php _e('Media Translation Documentation') ?></a></td>
+				<td><a href="https://wpml.org/documentation/getting-started-guide/media-translation/" target="_blank"><?php _e('Media Translation Documentation', 'wpml-media') ?></a></td>
 				<td align="right">
-					<input class="button-primary" name="start" type="submit" value="<?php esc_attr_e('Start'); ?> &raquo;"/>
+					<input class="button-primary" name="start" type="submit" value="<?php esc_attr_e('Start', 'wpml-media'); ?> &raquo;"/>
 				</td>
 
 			</tr>
@@ -100,8 +99,9 @@
 
 		</table>
 
-		<p id="wpml_media_all_done" class="hidden icl_cyan_box"
-		   style=""><?php _e("You're all done. Now that the Media Translation plugin is running, all new media files that you upload to content will receive a language. You can automatically duplicate them to translations from the post-edit screen.") ?></p>
+		<div id="wpml_media_all_done" class="hidden updated">
+			<p><?php _e("You're all done. Now that the Media Translation plugin is running, all new media files that you upload to content will receive a language. You can automatically duplicate them to translations from the post-edit screen.", 'wpml-media') ?></p>
+		</div>
 
 	</form>
 

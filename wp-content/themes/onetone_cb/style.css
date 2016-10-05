@@ -208,7 +208,7 @@ section.title-left{background-color: #eee;}
     }
 }
 .site-nav > ul > li a {
-    padding: 8px;
+    padding: 7px;
 }
 /**/
 .fxd-header .site-nav > ul > li > a {
@@ -284,6 +284,16 @@ h3.entry-title{
 .menu-content { overflow: auto;}
 .menu-content p{margin-bottom: 0;}
 .menu-content    b,.single-menus  strong {background: #333;color:white;display:block;padding-left: 30px; border-radius: 3px;}
+
+.single-menus  em{
+  font-size:0.8em;
+  color:#999;
+}
+
+.single-menus  em:before{
+ content:"   ";
+}
+
 
 ul.carta{margin-top:25px;margin-bottom:25px;}
 ul.carta li, .menu-content li{

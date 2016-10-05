@@ -9,17 +9,7 @@ $icl_ncp_plugins = array_intersect($icl_ncp_plugins, $active_plugins);
 
 if(!empty($icl_ncp_plugins)){
     $icl_sitepress_disabled = true;
-    $icl_sitepress_idx = array_search(ICL_PLUGIN_FOLDER . '/sitepress.php', $active_plugins);
-    if(false !== $icl_sitepress_idx){
-        unset($active_plugins[$icl_sitepress_idx]);
-        update_option('active_plugins', $active_plugins);
-        unset($_GET['activate']);
-        $recently_activated = get_option('recently_activated');
-        if(!isset($recently_activated[ICL_PLUGIN_FOLDER . '/sitepress.php'])){
-            $recently_activated[ICL_PLUGIN_FOLDER . '/sitepress.php'] = time();
-            update_option('recently_activated', $recently_activated);
-        }
-    }
+    icl_suppress_activation();
     
     
     add_action('admin_notices', 'icl_incomp_plugins_warn');
@@ -39,8 +29,8 @@ if(!empty($icl_ncp_plugins)){
     $icl_sitepress_disabled = false;
 }
 
-$filtered_page = filter_input( INPUT_GET, 'page' );
-if( 0 === strcmp( $filtered_page, ICL_PLUGIN_FOLDER . '/menu/troubleshooting.php' ) || isset($pagenow) && $pagenow === 'index.php'){
+$filtered_page = filter_input( INPUT_GET, 'page', FILTER_SANITIZE_FULL_SPECIAL_CHARS, FILTER_NULL_ON_FAILURE);
+if( 0 === strcmp( $filtered_page, ICL_PLUGIN_FOLDER . '/menu/troubleshooting.php' ) || isset($pagenow) && $pagenow=='index.php'){
     $icl_ncp_plugins2 = array(
         'wp-no-category-base/no-category-base.php'
     );  
@@ -72,4 +62,52 @@ if( 0 === strcmp( $filtered_page, ICL_PLUGIN_FOLDER . '/menu/troubleshooting.php
     }
 }
 
+
+// WCML versions before 3.8 are not fully compatible with WPML versions after 3.4
+add_action('admin_head', 'wpml_wcml_3_8_is_required');
+function wpml_wcml_3_8_is_required(){
+
+    if( defined('WCML_VERSION') ){
+
+        $message_id = 'icl_wcml_3_8_is_required';
+
+        if ( version_compare( WCML_VERSION, '3.8', '<' ) ) {
+            $message = array(
+                'id' => $message_id,
+                'type' => 'icl-admin-message-warning',
+                'limit_to_page' => 'wpml-wcml',
+                'admin_notice' => true,
+                'classes' => array( 'error' ),
+                'text' => sprintf( __( "%sIMPORTANT:%s You are using a version of WooCommerce Multilingual that is not fully compatible with the current WPML version. The %sproducts translation editor has been deactivated%s for this reason.%sPlease upgrade to %sWooCommerce Multilingual 3.8%s to restore the translation editor for products and use all the other functions.", 'sitepress' ),
+                    '<strong>', '</strong>', '<strong>', '</strong>', '<br /><br />', '<strong><a href="https://wpml.org/?p=867248">', '</a></strong>' )
+            );
+            ICL_AdminNotifier::add_message( $message );
+
+            ?>
+
+            <?php if( isset( $_GET['page'] ) && $_GET['page'] == 'wpml-wcml'): ?>
+            <script>
+                jQuery(document).ready(function () {
+                    jQuery('.wcml_details').unbind('click');
+                    jQuery('.wcml_products_translation input[type=text], .wcml_products_translation textarea, .wcml_products_translation button').attr('disabled', 'disabled');
+                    jQuery('.wcml_products a.wcml_details').css('text-decoration', 'line-through');
+                    jQuery('.wcml_products').on('click', 'a.wcml_details', function () {
+                        location.href = '#adminmenumain';
+                        jQuery('#icl-id-icl_wcml_3_8_is_required').fadeIn(100).fadeOut(100).fadeIn(100).fadeOut(100).fadeIn(100);
+                        return false;
+                    })
+                })
+            </script>
+            <?php endif; ?>
+
+            <?php
+
+        } else {
+
+            ICL_AdminNotifier::remove_message( $message_id );
+
+        }
+
+    }
+}
 

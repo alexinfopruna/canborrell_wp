@@ -16,3 +16,5 @@ $wpdb->query($sql);
 
 
 $wpdb->query("DELETE m FROM {$wpdb->postmeta} m JOIN {$wpdb->posts} p ON p.ID = m.post_id WHERE m.meta_key='_alp_processed' AND p.post_type='nav_menu_item'");
+  
+?>

@@ -161,7 +161,10 @@
                                     if (trim($section_slug) != "") {
                                       $sanitize_title = $section_slug;
                                     }
-                                    $onepage_menu .= '<li  class="onetone-menuitem"><a id="onetone-' . $sanitize_title . '" href="/#' . $sanitize_title . '" >
+                                    
+                                    $prefix="/".ICL_LANGUAGE_CODE."/";
+                                    if (ICL_LANGUAGE_CODE == 'ca') $prefix="/";
+                                    $onepage_menu .= '<li  class="onetone-menuitem"><a id="onetone-' . $sanitize_title . '" href="'.$prefix.'#' . $sanitize_title . '" >
 							 <span>' . $section_menu . '</span></a></li>';
                                   }
                                 }

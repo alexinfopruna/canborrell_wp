@@ -5,7 +5,6 @@
 var wpml_cms_nav_ajx_cache_cleared = '<?php echo wpml_cms_nav_js_escape(__('The cache has been cleared.','wpml-cms-nav')); ?>';
 </script>        
 <div class="wrap wpml_cms_navigation">
-    <div id="icon-wpml" class="icon32"><br /></div>
     <h2><?php echo __('Setup WPML CMS Navigation', 'wpml-cms-nav') ?></h2>    
     
     <h3><?php echo __('Navigation', 'wpml-cms-nav') ?></h3>    

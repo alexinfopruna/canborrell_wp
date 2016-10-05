@@ -25,7 +25,7 @@ $enable_footer_widget_area = esc_attr(onetone_option('enable_footer_widget_area'
 
                   <div class="col-md-2 col-md-6 border-left">
                        <nav class="site-nav-footer footer-menu-1">
-                           Accés directe
+                           <?php echo __('Direct access','canborrell')?>
                           <?php
                           $onepage_menu = '';
                           wp_nav_menu(array('menu' => 19, 'theme_location' => 'home_menu', 'depth' => 0, 'fallback_cb' => false, 'container' => '', 'container_class' => 'main-menu', 'menu_id' => 'menu-main', 'menu_class' => 'main-nav', 'link_before' => '<span>', 'link_after' => '</span>', 'items_wrap' => '<ul id="%1$s" class="%2$s">' . $onepage_menu . '%3$s</ul>'));
@@ -34,7 +34,7 @@ $enable_footer_widget_area = esc_attr(onetone_option('enable_footer_widget_area'
                   </div>
                   <div class="col-md-2 col-md-6 border-left">
                        <nav class="site-nav-footer footer-menu-2">
-                           Gestió de reserves
+                           <?php echo __('Reservation management','canborrell')?>
                           <?php
                           $onepage_menu = '';
                           wp_nav_menu(array('menu' => 20, 'theme_location' => 'home_menu', 'depth' => 0, 'fallback_cb' => false, 'container' => '', 'container_class' => 'main-menu', 'menu_id' => 'menu-main', 'menu_class' => 'main-nav', 'link_before' => '<span>', 'link_after' => '</span>', 'items_wrap' => '<ul id="%1$s" class="%2$s">' . $onepage_menu . '%3$s</ul>'));

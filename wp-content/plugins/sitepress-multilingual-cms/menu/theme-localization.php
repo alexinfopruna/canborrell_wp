@@ -1,5 +1,5 @@
 <?php
-global $WPML_ST_MO_Downloader, $sitepress;
+global $WPML_ST_MO_Downloader;
 
 if((!isset($sitepress_settings['existing_content_language_verified']) || !$sitepress_settings['existing_content_language_verified']) || 2 > count($sitepress->get_active_languages())){
     return;
@@ -10,11 +10,10 @@ $locales = $sitepress->get_locale_file_names();
 ?>
 
 <div class="wrap">
-    <div id="icon-wpml" class="icon32"><br /></div>
-    <h2><?php _e('Theme and plugins localization', 'sitepress') ?></h2>    
+    <h2><?php _e('Theme and plugins localization', 'sitepress') ?></h2>
 
-    <h3><?php _e('Select how to localize the theme','sitepress'); ?></h3>
-    <p><?php _e("If your theme's texts are wrapped in gettext calls, WPML can help you display it multilingual.",'sitepress'); ?></p>
+    <h3><?php _e('Select how to translate strings in the theme and plugins','sitepress'); ?></h3>
+    <p><?php _e("If your theme and plugins include .mo files with translations, these translations will always be used. This option allows you to provide new and alternative translations for texts in the theme and in plugins using WPML's String Translation.",'sitepress'); ?></p>
     <form name="icl_theme_localization_type" id="icl_theme_localization_type" method="post" action="">    
     <?php wp_nonce_field('icl_theme_localization_type_nonce', '_icl_nonce'); ?>
     <ul>
@@ -25,23 +24,21 @@ $locales = $sitepress->get_locale_file_names();
             }else{
                 $st_disabled = ''; 
             }
-            $td_value = icl_get_setting( 'gettext_theme_domain_name' );
-	        $theme_localization_load_textdomain = icl_get_setting( 'theme_localization_load_textdomain' );
-	        if(!empty( $theme_localization_load_textdomain )){
+            $td_value = isset($sitepress_settings['gettext_theme_domain_name'])?$sitepress_settings['gettext_theme_domain_name']:'';
+            if(!empty($sitepress_settings['theme_localization_load_textdomain'])){
                 $ltd_checked = 'checked="checked" ';                
             }else{
                 $ltd_checked = '';
             }
-            $theme_localization_type = icl_get_setting('theme_localization_type' );
         ?>
-        <li><label><input <?php echo $st_disabled; ?>type="radio" name="icl_theme_localization_type" value="1" <?php
-	        if($theme_localization_type == 1):?>checked="checked"<?php endif; ?> />&nbsp;<?php _e('Translate by WPML.', 'sitepress') ?></label>
+        <li><label><input <?php echo $st_disabled; ?>type="radio" name="icl_theme_localization_type" value="1" <?php 
+            if($sitepress_settings['theme_localization_type']==1):?>checked="checked"<?php endif; ?> />&nbsp;<?php _e("Translate the theme and plugins using WPML's String Translation", 'sitepress') ?></label>
             <?php if(isset($icl_st_note)) echo '<br><small><i>' . $icl_st_note . '</i></small>'; ?>
             </li>
         <li><label>
             <input type="radio" name="icl_theme_localization_type" value="2" <?php 
-            if($theme_localization_type ==2):?>checked="checked"<?php endif; ?> />&nbsp;<?php _e('Translate using .mo files.', 'sitepress') ?></label>
-            <div id="icl_tt_type_extra" <?php if($theme_localization_type !=2):?>style="display:none"<?php endif;?>>
+            if($sitepress_settings['theme_localization_type']==2):?>checked="checked"<?php endif; ?> />&nbsp;<?php _e("Don't use String Translation to translate the theme and plugins", 'sitepress') ?></label>
+            <div id="icl_tt_type_extra" <?php if($sitepress_settings['theme_localization_type']!=2):?>style="display:none"<?php endif;?>>
                 <label><input type="checkbox" name="icl_theme_localization_load_td" value="1" <?php echo $ltd_checked ?>/>
                 &nbsp;<?php _e("Automatically load the theme's .mo file using 'load_theme_textdomain'.", 'sitepress') ?></label>
                 <label id="icl_tt_type_extra_td" <?php if(empty($ltd_checked)):?>style="display:none"<?php endif;?>>
@@ -58,9 +55,9 @@ $locales = $sitepress->get_locale_file_names();
     <img src="<?php echo ICL_PLUGIN_URL ?>/res/img/question-green.png" width="29" height="29" alt="need help" align="left" /><p style="margin-top:14px;">&nbsp;<a href="https://wpml.org/?page_id=2717"><?php _e('Theme localization instructions', 'sitepress')?> &raquo;</a></p>
     </form>
     
-    <?php if(defined('WPML_ST_VERSION') && version_compare(WPML_ST_VERSION, '1.4.0', '>') && isset( $theme_localization_type ) && $theme_localization_type == 1) include WPML_ST_PATH . '/menu/auto-download-mo-config.php'; ?>
+    <?php if(defined('WPML_ST_VERSION') && version_compare(WPML_ST_VERSION, '1.4.0', '>') && isset($sitepress_settings['theme_localization_type']) && $sitepress_settings['theme_localization_type'] == 1) include WPML_ST_PATH . '/menu/auto-download-mo-config.php'; ?>
     
-    <?php if( $theme_localization_type > 0):?>
+    <?php if($sitepress_settings['theme_localization_type'] > 0):?>
     <br />
     <div id="icl_tl">
     <h3><?php _e('Language locale settings', 'sitepress') ?></h3>
@@ -74,9 +71,9 @@ $locales = $sitepress->get_locale_file_names();
     <th scope="col"><?php echo __('Language', 'sitepress') ?></th>
     <th scope="col"><?php echo __('Code', 'sitepress') ?></th>
     <th scope="col"><?php echo __('Locale file name', 'sitepress') ?></th>        
-    <th scope="col"><?php printf(__('MO file in %s', 'sitepress'), LANGDIR) ?></th>        
-    <?php if( $theme_localization_type ==2):?>
-    <th scope="col"><?php printf(__('MO file in %s', 'sitepress'), '/wp-content/themes/' . get_option('template')) ?></th>        
+    <th scope="col"><?php printf(__('MO file in %s', 'sitepress'), WP_LANG_DIR ) ?></th>        
+    <?php if($sitepress_settings['theme_localization_type']==2):?>
+    <th scope="col"><?php printf(__('MO file in %s', 'sitepress'), WP_CONTENT_DIR . '/themes/' . get_option('template') ) ?></th>        
     <?php endif; ?>
     <?php if ( isset( $WPML_ST_MO_Downloader ) && ! empty( $sitepress_settings[ 'st' ][ 'auto_download_mo' ] ) ): ?>
 	    <?php
@@ -96,13 +93,13 @@ $locales = $sitepress->get_locale_file_names();
         <input type="text" size="10" name="locale_file_name_<?php echo $lang['code']?>" value="<?php echo isset($locales[$lang['code']]) ? $locales[$lang['code']] : ''; ?>" />.mo
     </td> 
     <td>
-        <?php if(@is_readable(ABSPATH . (defined('WP_CONTENT_DIR')? basename( WP_CONTENT_DIR ).'/languages': LANGDIR) . '/' . $locales[$lang['code']] . '.mo')): ?>
+        <?php if(@is_readable( WP_LANG_DIR . '/' . $locales[$lang['code']] . '.mo')): ?>
         <span class="icl_valid_text"><?php echo __('File exists.', 'sitepress') ?></span>                
 		<?php elseif($lang['code'] != 'en' ): ?>
         <span class="icl_error_text"><?php echo __('File not found!', 'sitepress') ?></span>
         <?php endif; ?>
     </td>
-    <?php if( $theme_localization_type ==2):?>
+    <?php if($sitepress_settings['theme_localization_type']==2):?>       
     <td>
         <?php 
             $mofound = @is_readable($sitepress_settings['theme_language_folders']['parent'] . '/' . $locales[$lang['code']] . '.mo') 

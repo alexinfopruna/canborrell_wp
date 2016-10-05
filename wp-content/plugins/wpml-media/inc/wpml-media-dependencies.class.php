@@ -28,4 +28,5 @@ class WPML_Media_Dependencies
 													'https://wpml.org/' ); ?></p></div>
 	<?php
 	}
+
 }
