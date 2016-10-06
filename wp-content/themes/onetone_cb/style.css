@@ -25,6 +25,8 @@ body{
     font-family: 'Poppins', 'Open Sans', sans-serif;
     font-size: 16px;
 }
+/**/
+
 
 i{color:#666;}
 .cb, .c-b{clear:both}
@@ -94,7 +96,7 @@ h6.infantil{font-size:13px;}
 }
 
 .site-tagline{
-    font-size: 21px;
+    font-size: 16px;
 }
 
 .logo-left .logo-box {
@@ -161,6 +163,30 @@ section.title-left{background-color: #eee;}
 
 }
 
+/************ IDIOMES*************/
+.lang_selector{
+	//float:left;
+	position:absolute;
+	//display:table-block;
+	//left:500px;
+	right:0;
+	padding:0 4px;
+	
+	border-bottom:#444 solid 1px;
+	border-left:#444 solid 1px;
+	border-right:#444 solid 1px;
+	border-radius:4px;
+}
+
+
+.lang_selector a{
+	color:#999;
+	font-size:10px
+}
+
+.lang_selector a:hover,.lang_selector a.active{
+	color:white;
+}
 
 /***************************************************************/
 /***************************************************************/
@@ -292,6 +318,19 @@ h3.entry-title{
 
 .single-menus  em:before{
  content:"   ";
+}
+
+.single-menus  code{
+    color: #666;
+    font-size: 12px;
+    margin-left:28px;
+}
+.single-menus  code:before{
+    content:" * ";
+}
+
+.single-menus  p{
+  margin-bottom: 0px;
 }
 
 

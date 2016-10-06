@@ -6,8 +6,8 @@
  * and open the template in the editor.
  */
 $translation_array = array(
-  'exterior' => __( 'Indoor','WordPress'),
-  'interior' => __( 'Outdoor','WordPress' ),
+  'exterior' => __( 'Outdoor','WordPress'),
+  'interior' => __( 'Indoor','WordPress' ),
   'cuina' => __( 'Kitchen','WordPress' ),
   'graella' => __( 'Grill','WordPress' ),
   'equip' => __( 'Team','WordPress' ),
@@ -53,7 +53,7 @@ function canborrell_enqueue_styles() {
   wp_enqueue_style($parent_style, get_template_directory_uri() . '/style.css');
   wp_enqueue_style('child-style', get_stylesheet_directory_uri() . '/style.css', array($parent_style)  );
   wp_enqueue_script( 'galeria', get_stylesheet_directory_uri() .'/js/galeria.js', array('jquery'), '1.0', true );
-  
+  //print_r($translation_array);die();
 wp_localize_script( 'galeria', 'gallery_texts', $translation_array );
 
 capsaleres_geleria();
@@ -188,4 +188,36 @@ function special_nav_class($classes, $item){
              $classes[] = "special-class";
      }*/
      return $classes;
+}
+
+function language_selector(){
+ $langs = 
+  
+      $lis="";
+  foreach ($langs as $key => $value) {
+    $lis.='<li><a href="'.$href.'" class="'.$actiu.'">'.$key.'</a></li>';
+  }
+  $ls='<div id="language-selector">'
+      . '<ul>'
+      . $lis
+      . '</ul></div>';
+  
+  return $ls;
+}
+
+function language_selector_flags(){
+  $langs="";  
+    if (function_exists('icl_get_languages')) {
+        $languages = icl_get_languages('skip_missing=0&orderby=code&order=desc');           
+        echo '<div class="lang_selector">';
+            if(!empty($languages)){
+                foreach($languages as $l){
+                    $class = $l['active'] ? ' class="active"' : NULL;
+                    $langs .=  '<a ' . $class . ' href="'.$l['url'].'">' . strtoupper ($l['language_code']). '</a> | ';
+                }
+                $langs = substr($langs,0,-3);
+                echo $langs;
+            }
+        echo '</div>';
+    }
 }

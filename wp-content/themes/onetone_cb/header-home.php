@@ -84,7 +84,7 @@
 
                     <div class="main-header <?php echo $header_background_parallax; ?>">
                         <div class="container">
-                            
+                             <?php  language_selector_flags(); ?>
                             <div class="logo-box">
                                 <?php if ($logo): ?>
 
@@ -109,6 +109,9 @@
                                 </div>
 
                             </div>
+                            
+                         
+                            
                             <button class="site-nav-toggle">
                                 <span class="sr-only"><?php _e('Toggle navigation', 'onetone'); ?></span>
                                 <i class="fa fa-bars fa-2x"></i>
