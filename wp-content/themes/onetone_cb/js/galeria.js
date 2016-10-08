@@ -6,7 +6,6 @@
 var ajaxgaleria = {"ajaxurl":"http:\/\/wordpress.local\/wp-admin\/admin-ajax.php"};
 
 jQuery(document).ready( function($) {
-    
     $("#gallery .img-frame a").click(load_galeria);
      
     $("#galeria-ajax").hide("slow");
@@ -35,21 +34,19 @@ $("#gallery-close").click(function(){  $("#galeria-ajax").fadeOut("slow");});
 
 });//function
 
-      // alert(gallery_texts.exterior);
         e.preventDefault();
         return false;
     }
+    
+    
+    $(".publi").magnificPopup({
+  type: 'ajax'
+});
 
-
-/*
-var titol = ['Exterior','Interior','Cuina','Graelles','Equip','Plats'];
-var i=0;
-
-$("#gallery .img-box a").each(function(){$( this ).attr('title',titol[i]);i++;});
-$("#gallery .img-box a").hover(function(){
-	//alert($(this).index("#gallery .img-box a"));
-        })        ;
-        */
+$("#ressenya .btn-success").magnificPopup({
+  type: 'ajax'
+});
+    
        
        $("#mbYTP_onetone-youtube-video").css("bacground","black");
 })

@@ -61,13 +61,7 @@
                 <!--Header-->
                 <header class="header-wrap logo-<?php echo $logo_position; ?> home-header <?php echo $overlay; ?>">
                     
-                                          <div id="calendari-header">
-                          <?php
-                          if (is_active_sidebar("header_widget_1")) {
-                            dynamic_sidebar("header_widget_1");
-                          }
-                          ?>
-                      </div>
+                                          
                     
                     <?php if ($display_top_bar == 'yes'): ?>
                       <div class="top-bar">
@@ -84,6 +78,13 @@
 
                     <div class="main-header <?php echo $header_background_parallax; ?>">
                         <div class="container">
+                            <div id="calendari-header">
+                          <?php
+                          if (is_active_sidebar("header_widget_1")) {
+                            dynamic_sidebar("header_widget_1");
+                          }
+                          ?>
+                      </div>
                              <?php  language_selector_flags(); ?>
                             <div class="logo-box">
                                 <?php if ($logo): ?>
@@ -176,6 +177,15 @@
                       <div class="fxd-header">
 
                           <div class="container">
+                              <div id="calendari-header">
+                          <?php
+                          if (is_active_sidebar("header_widget_1")) {
+                            dynamic_sidebar("header_widget_1");
+                          }
+                          ?>
+                      </div>
+                              
+                               <?php  language_selector_flags(); ?>
                               <div class="logo-box">
                                   <?php if ($sticky_logo): ?>
                                     <a href="<?php echo esc_url(home_url('/')); ?>"><img class="site-logo normal_logo" src="<?php echo esc_url($sticky_logo); ?>"></a>

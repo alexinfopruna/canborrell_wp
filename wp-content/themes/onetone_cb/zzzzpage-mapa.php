@@ -1,5 +1,17 @@
 <?php
 /*
+$mapa['sanadjuntori']  = 'sanadjuntori.pdf';
+$mapa['pantacanborrell']  = 'sanadjuntori.pdf';
+$mapa['fontdelarata']  = 'sanadjuntori.pdf';
+$mapa['pidenxandri']  = 'sanadjuntori.pdf';
+$mapa['bicistcugat']  = 'sanadjuntori.pdf';
+$mapa['santmedir']  = 'sanadjuntori.pdf';
+$mapa['fontermeta']  = 'sanadjuntori.pdf';
+$doc=$mapa[$_GET['m']];
+//header('Location: /view-document?doc='.$doc);
+ * */
+ 
+/*
 Template Name: Premsa Template
 */
 get_header(); 
@@ -126,16 +138,15 @@ $container_css .= 'padding-bottom:'.$padding_bottom.';';
                              // echo substr($meta['file'][0],0,4);die();
                               if (substr($meta['file'][0],0,4)=='http'){
                                 
-                                $dir='/view-document/?doc='.$meta['file'][0];
+                                $dir=$meta['file'][0];
                                 $video="premsa-video";
                               }else{
                                 $updir = wp_upload_dir();
                                 $dir = $updir['baseurl'].'/premsa/' . $meta['file'][0];
-                                $dir='/view-document/?doc=docs.google.com/gview?url=http://can-borrell.com/wp-content/uploads/premsa/'.$meta['file'][0].'&embedded=true';
                               }
                                 ?>
                                           <li>
-                                               <a href="<?php echo $dir;?>" class="<?php echo $video; ?> publi" target="_self" >
+                                               <a href="<?php echo $dir;?>" class="<?php echo $video; ?>" target="_blank" class="publi">
   <div class="panel panel-default">
   <div class="panel-heading">
                                              <?php the_title();?>                                   </div>
@@ -152,6 +163,7 @@ $container_css .= 'padding-bottom:'.$padding_bottom.';';
                                           <span class="publicacio-premsa">  <?php echo $post->post_content;?></span>
                                       </a>
                                            -->
+                                           
     <?php
     
     ?>

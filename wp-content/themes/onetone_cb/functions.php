@@ -190,20 +190,7 @@ function special_nav_class($classes, $item){
      return $classes;
 }
 
-function language_selector(){
- $langs = 
-  
-      $lis="";
-  foreach ($langs as $key => $value) {
-    $lis.='<li><a href="'.$href.'" class="'.$actiu.'">'.$key.'</a></li>';
-  }
-  $ls='<div id="language-selector">'
-      . '<ul>'
-      . $lis
-      . '</ul></div>';
-  
-  return $ls;
-}
+
 
 function language_selector_flags(){
   $langs="";  
@@ -213,7 +200,7 @@ function language_selector_flags(){
             if(!empty($languages)){
                 foreach($languages as $l){
                     $class = $l['active'] ? ' class="active"' : NULL;
-                    $langs .=  '<a ' . $class . ' href="'.$l['url'].'">' . strtoupper ($l['language_code']). '</a> | ';
+                    $langs .=  '<a ' . $class . ' href="'.$l['url'].'">' . strtolower ($l['language_code']). '</a> | ';
                 }
                 $langs = substr($langs,0,-3);
                 echo $langs;
@@ -221,3 +208,19 @@ function language_selector_flags(){
         echo '</div>';
     }
 }
+
+
+
+function arphabet_widgets_init() {
+
+	register_sidebar( array(
+		'name'          => 'header_widget_1',
+		'id'            => 'header_widget_1',
+		'before_widget' => '<div class="header_widget_1">',
+		'after_widget'  => '</div>',
+		'before_title'  => '<h2 class="rounded">',
+		'after_title'   => '</h2>',
+	) );
+
+}
+add_action( 'widgets_init', 'arphabet_widgets_init' );
