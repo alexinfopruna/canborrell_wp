@@ -1,5 +1,5 @@
 <?php
-
+/*
 $mapa['santadjuntori']  = 'https://www.google.com/maps/d/embed?mid=16Ck3t221OwId_SGeRq7TL_Ad3BE&hl=ca';
 $mapa['pantacanborrell']  = 'https://www.google.com/maps/d/embed?mid=1Wxu0LV6OkAgqcpA8dkvSDyDoYEo&hl=ca';
 $mapa['fontdelarata']  = 'https://www.google.com/maps/d/embed?mid=1bC_th5NbXHLinOhoihUejTsTiAo';//https://www.google.com/maps/d/viewer?hl=ca&authuser=0&mid=1bC_th5NbXHLinOhoihUejTsTiAo
@@ -8,6 +8,8 @@ $mapa['bicistcugat']  = '/view-document/?doc=google.com/maps/d/embed?mid=10XfBFs
 $mapa['santmedir']  = '/view-document/?doc=google.com/maps/d/embed?mid=1uQ47UCYNdJy5VLBAgc0w26s3rFw';//
 $mapa['fontermeta']  = '/view-document/?doc=google.com/maps/d/embed?mid=120fX_RRJUcFgpAMoJP2MogGmwoI';//
 //https://docs.google.com/gview?url=http://infolab.stanford.edu/pub/papers/google.pdf&embedded=true
+ 
+ */
 /*
 if (isset($_GET['map'])){
   $iframe_url = $mapa[$_GET['map']];
@@ -71,7 +73,8 @@ $container_css .= 'padding-bottom:'.$padding_bottom.';';
 
 
 ?>
-<script type="application/javascript">
+<script>
+  alert("DDD");
 jQuery(document).ready( function($) {
     var iFrame = document.getElementById( 'iFrame1' );
     resizeIFrameToFitContent( iFrame );

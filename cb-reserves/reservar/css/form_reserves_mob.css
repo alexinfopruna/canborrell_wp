@@ -31,10 +31,10 @@ img{border-style: none;}
 
 #calendari{font-size:1.6em}
 .col-dere{width:500px;float:left;}
-.fr-seccio-carta .ui-button{width:170px;}
-#bt-no-carta{color:#570600}
-#bt-carta{color:#570600;margin-top:8px;}
-#bt-menu{color:#570600;margin-top:8px;margin-bottom:8px;}
+//.fr-seccio-carta .ui-button{width:170px;}
+//#bt-no-carta{color:#570600}
+/*#bt-carta{color:#570600;margin-top:8px;}*/
+//#bt-menu{color:#570600;margin-top:8px;margin-bottom:8px;}
 /*	#bt-carta:hover,#bt-no-carta:hover{color:white;}*/
 /*	#bt-menu:hover,#bt-no-menu:hover{color:white;}*/
 
@@ -56,7 +56,7 @@ td.resum-carta-nom{width:400px;font-weight:bold;}
     text-align: right;	
 }	
 
-.fr-seccio-carta  .ui-button, .fr-seccio-submit  .ui-button{border:2px solid #570600}
+//.fr-seccio-carta  .ui-button, .fr-seccio-submit  .ui-button{border:2px solid #570600}
 /*
         #fr-reserves{
           width:775px;
@@ -176,7 +176,7 @@ textarea{margin-left:0px;width:90%;color:#570600;font-weight:bold;}
 .fr-seccio-carta  .info
 {
     background:#fbfbff;
-    width:150px;
+    width:40%;
     /*background-image:url('info.png');
     background-repeat:no-repeat;*/
     margin-bottom:10px;

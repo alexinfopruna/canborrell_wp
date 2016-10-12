@@ -156,10 +156,22 @@
 
                                 $onepage_menu = '';
                                 $sections_num = 15;
-
+/***********************************************************************************/
+                                // CANVI IDIOMA. APLICA IDIOMA DE SESSIO
+                                global $sitepress;
+                                $meta_options['en']='onetone_cb';
+                                $meta_options['es']='onetone_cb_es';
+                                $meta_options['ca']='onetone_cb_ca';
+                                
+                                $lang = $sitepress->get_current_language();
+                                global $onetone_options;
+                                $onetone_options = get_option($meta_options[$lang]);
+/***********************************************************************************/                                
                                 for ($i = 0; $i < $sections_num; $i++) {
 
                                   $section_menu = onetone_option('menu_title_' . $i, isset($default_options['menu_title_' . $i]) ? $default_options['menu_title_' . $i] : '');
+                                  //echo $section_menu;die();
+                                  
                                   $section_slug = onetone_option('menu_slug_' . $i, isset($default_options['menu_slug_' . $i]) ? $default_options['menu_slug_' . $i] : '' );
                                   if ($section_slug)
                                     $section_slug = sanitize_title($section_slug);
@@ -172,13 +184,20 @@
                                       $sanitize_title = $section_slug;
                                     }
                                     
-                                    $prefix="/".ICL_LANGUAGE_CODE."/";
-                                    if (ICL_LANGUAGE_CODE == 'ca') $prefix="/";
+                                    
+                                    
+                                    $prefix="/".$lang."/";
+                                    if ($lang == 'ca') $prefix="/";
                                     $onepage_menu .= '<li  class="onetone-menuitem"><a id="onetone-' . $sanitize_title . '" href="'.$prefix.'#' . $sanitize_title . '" >
 							 <span>' . $section_menu . '</span></a></li>';
                                   }
                                 }
-
+/*
+                                $onepage_menu = '<li class="onetone-menuitem"><a id="onetone-home" href="/en/#home"><span>Home</span></a></li>
+                                  <li class="onetone-menuitem"><a id="onetone-services" href="/en/#services"><span>Services</span></a></li>
+                                  <li class="onetone-menuitem"><a id="onetone-gallery" href="/en/#gallery"><span>Pictures</span></a></li>
+                                  <li class="onetone-menuitem"><a id="onetone-about" href="/en/#about"><span>Where</span></a></li>';
+                                */
                                 if (has_nav_menu("home_menu")) {
                                   wp_nav_menu(array('theme_location' => 'home_menu', 'depth' => 0, 'fallback_cb' => false, 'container' => '', 'container_class' => 'main-menu', 'menu_id' => 'menu-main', 'menu_class' => 'main-nav', 'link_before' => '<span>', 'link_after' => '</span>', 'items_wrap' => '<ul id="%1$s" class="%2$s">' . $onepage_menu . '%3$s</ul>'));
                                 }

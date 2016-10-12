@@ -1,38 +1,9 @@
 <?php
-
-$mapa['santadjuntori']  = 'https://www.google.com/maps/d/embed?mid=16Ck3t221OwId_SGeRq7TL_Ad3BE&hl=ca';
-$mapa['pantacanborrell']  = 'https://www.google.com/maps/d/embed?mid=1Wxu0LV6OkAgqcpA8dkvSDyDoYEo&hl=ca';
-$mapa['fontdelarata']  = 'https://www.google.com/maps/d/embed?mid=1bC_th5NbXHLinOhoihUejTsTiAo';//https://www.google.com/maps/d/viewer?hl=ca&authuser=0&mid=1bC_th5NbXHLinOhoihUejTsTiAo
-$mapa['pidenxandri']  = '/view-document/?doc=google.com/maps/d/embed?mid=1r9ee1eaPo1klNnfykf6gply3ZuA';//
-$mapa['bicistcugat']  = '/view-document/?doc=google.com/maps/d/embed?mid=10XfBFsws36NY4weQ32Srfp2oYPI';//https://www.google.com/maps/d/viewer?hl=ca&authuser=0&mid=10XfBFsws36NY4weQ32Srfp2oYPI
-$mapa['santmedir']  = '/view-document/?doc=google.com/maps/d/embed?mid=1uQ47UCYNdJy5VLBAgc0w26s3rFw';//
-$mapa['fontermeta']  = '/view-document/?doc=google.com/maps/d/embed?mid=120fX_RRJUcFgpAMoJP2MogGmwoI';//
-//https://docs.google.com/gview?url=http://infolab.stanford.edu/pub/papers/google.pdf&embedded=true
 /*
-if (isset($_GET['map'])){
-  $iframe_url = $mapa[$_GET['map']];
- //echo $mapa[$_GET['map']];die();
-}
-
-elseif(isset($_GET['pdf'])) $iframe_url = $mapa[$_GET['pdf']];
+Template Name: Input reserva
 */
-if(isset($_GET['doc'])) {
-  $iframe_url = $_GET['doc'];
-}
-
-if(isset($_GET['embedded'])) {
-  $iframe_url .= '&embedded=true';
-}
-
-if(substr($iframe_url,0,4)!='http') $iframe_url = 'https://'.$iframe_url;
 
 
-//echo $iframe_url;die();
-/**
- * The template for displaying all single posts.
- *
- * @package onetone
- */
 get_header(); 
 
 //the_post();
@@ -67,52 +38,47 @@ $container_css .= 'padding-top:'.$padding_top.';';
 if( $padding_bottom )
 $container_css .= 'padding-bottom:'.$padding_bottom.';';
 
+if(!isset($_GET['a'])) {
+  global $sitepress;
+  $lang = $sitepress->get_current_language();
+  header("Location: reservar/realizar-reserva/?lang=".$lang);
+  $_GET['a']="edit";
+}
 
-
+$action_title['edit'] = 'Edit reservation';
+$action_title['cancel'] = 'Cancel reservation';
+$action_title['pay'] = 'Reservation payment';
+$title = __($action_title[$_GET['a']],'canborrell');
 
 ?>
-<script type="application/javascript">
-jQuery(document).ready( function($) {
-    var iFrame = document.getElementById( 'iFrame1' );
-    resizeIFrameToFitContent( iFrame );
-    
-    $( window ).resize(function(){
-      resizeIFrameToFitContent( document.getElementById( 'iFrame1' ) );
-    });
-    
-    // or, to resize all iframes:
-    /*
-    var iframes = document.querySelectorAll("iframe");
-    for( var i = 0; i < iframes.length; i++) {
-        resizeIFrameToFitContent( iframes[i] );
-    }
-    */
-});
 
-function resizeIFrameToFitContent( iFrame ) {
-  var h= iFrame.contentWindow.document.body.scrollHeight;
-  //if (h<500) h=500;
+<script  type='text/javascript' src='https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.15.1/jquery.validate.min.js'></script>
+<script>
+   
+  jQuery("#input-reserva").validate();
+  
+  });
+</script>  
 
-    iFrame.width  = '100%';
-    
-      var w = iFrame.contentWindow.document.body.scrollWidth;
-  h = w * 1.4;
-h = w * 0.5;
-    iFrame.height = h;
-    
-}
-</script>
-
-  
-  
-  
 <style>
-    body, html{
-        min-height: 100% ;
-    }
-    article, .post-inner{ background:#333;}
+    label.error {
+    color: red;
+    font-style: italic;
+    display:inline;
+}
+
+input{display:block;}
+
+input.error {
+    border: 1px dotted red;
+}
+
+form{
+    padding:20px;
+    background-color: #eee;
+}
 </style>
-    
+  
 <article id="post-<?php the_ID(); ?>" <?php post_class(); ?>>
   <?php if (  $display_breadcrumb == 'yes' ): ?>
   
@@ -121,7 +87,11 @@ h = w * 0.5;
       <?php onetone_get_breadcrumb(array("before"=>"<div class=''>","after"=>"</div>","show_browse"=>false,"separator"=>'','container'=>'div'));?>
       <hgroup class="page-title">
         <h1>
-          <?php the_title();?>
+          <?php 
+          echo $title;
+          //
+          //
+          //the_title();?>
         </h1>
       </hgroup>
       <div class="clearfix"></div>
@@ -133,9 +103,7 @@ h = w * 0.5;
       <div class="post-inner row <?php echo $aside; ?>" style=" <?php echo $container_css;?>">
         <div class="col-main">
           <section class="post-main" role="main" id="content">
-              <a class="dins btn btn-success" href="#" target="_self" onclick=" window.history.back();"> <i class="fa  fa-arrow-left" style="color:white;"></i>  <?php echo __('Go back','canborrell');?></a>
-           
- <?php while ( have_posts() ) : the_post(); ?>
+            <?php while ( have_posts() ) : the_post(); ?>
             <article class="post type-post" id="">
               <?php if (  has_post_thumbnail() ): ?>
               <div class="feature-img-box">
@@ -149,7 +117,24 @@ h = w * 0.5;
                 <div class="entry-content ">
                   <?php the_content();?>
                     
-                    <iframe id="iFrame1" src="<?php echo $iframe_url;?>" width="100%" height="499px"></iframe>
+                    <?php
+                       $required=__('This field is required','canborrell');
+                       $number=__('Enter a valid number','canborrell');
+                       $email=__('Enter a valid email','canborrell');
+                       $submit=__('Continue','canborrell');
+                    ?>
+                    
+                    <form id="input-reserva" method="post" >
+                         <label for="rid">ID de reserva</label>
+  <input name="rid" type="number" id="rid" required data-msg-required="<?php echo $required?>" data-msg-email="<?php echo $number?>">
+  <br>
+   <label for="email">Email</label>
+  <input name="email" type="email" id="email" required data-msg-required="<?php echo $required?>" data-msg-email="<?php echo $email?>">
+  <br>
+  <button name="Continue" type="submit" id="submit"><?php echo $submit?></button>
+  
+</form>
+                    
                   <?php
 				wp_link_pages( array( 'before' => '<div class="page-links"><span class="page-links-title">' . __( 'Pages:', 'onetone' ) . '</span>', 'after' => '</div>', 'link_before' => '<span>', 'link_after' => '</span>' ) );
 				?>

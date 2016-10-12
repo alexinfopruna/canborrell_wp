@@ -276,7 +276,13 @@ section.title-left{background-color: #eee;}
 .tab-pane ul{
     padding-top: 35px;
 }
-
+/*
+.tab-pane.fade{
+       opacity: 1 !important;
+    filter: Alpha(opacity=1)  !important;;
+    transform: scale(1.05) !important;;
+} 
+*/
 @media (max-width: 1140px){
     .site-tagline {
         display:none;
@@ -1030,6 +1036,12 @@ section.home-section-6 .row p {
 
 } 
 
+#section-9 .container {
+    width: 80%;
+    background-color: rgba(255,255,255,0.3);
+    border-radius: 8px;
+}
+
 #wrapper_mbYTP_onetone-youtube-video{
     background-color: black !important;
 }
@@ -1046,6 +1058,12 @@ section.home-section-6 .row p {
 /************  FORM RESERVES  ******************/
 /***********************************************/
 /***********************************************/
+body.page-template-page-reservar #calendari-header,
+body.page-template-page-reservar #calendari_reserves-2{
+    display:none;
+}
+
+
 .page-realitzar-reserva  .post-inner {
     background-image: url(/wp-content/uploads/assets/reserva.jpg);
     background-repeat: no-repeat;

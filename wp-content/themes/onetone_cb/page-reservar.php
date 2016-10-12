@@ -30,8 +30,31 @@ if (defined("CB_FORA_DE_SERVEI") && CB_FORA_DE_SERVEI === true && !$gestorf->val
 require_once(ROOT . INC_FILE_PATH . 'alex.inc');
 require_once(ROOT . INC_FILE_PATH . "llista_dies_taules.php");
 
+
+global $sitepress;
+                                $language_uri=substr($_SERVER['REQUEST_URI'], 0, 4);
+                                //echo $language_uri;die();
+                                if ( $language_uri == '/es/' || $language_uri == '/en/') {
+                                  $lang=substr($_SERVER['REQUEST_URI'], 1, 2);
+                                  $gestorf->idioma($lang);
+                                  //echo "Location: /reservar/realitzar-reserva/?lang=".$lang;
+                                  header("Location: /reservar/realitzar-reserva/?lang=".$lang);
+                                  exit();die();
+                                }
+                                else{
+                                  $lang = isset($_GET['lang'])?$_GET['lang']:'ca';
+                                  $gestorf->idioma($lang);
+                                }
+                               
+
 $gestorf->lng = $lang = Gestor::getLanguage();
 $l = $gestorf->lng;
+
+
+/***********************************************************************************/
+                                $sitepress->switch_lang($lang);
+/***********************************************************************************/                     
+
 
 //RECUPERA CONIG ANTIC
 $PERSONES_GRUP = $gestorf->configVars("persones_grup");
@@ -230,8 +253,23 @@ print "\nvar HORA='" . $row['hora'] . "';";
 //  require_once(ROOT.'/../reservar/translate_' . 'ca' . '.php');
   //wp_enqueue_style('reservar', '/cb-reserves/taules/css/blitzer/jquery-ui-1.8.9.forms.css');
 }
+
+global $sitepress;
+/*
+//echo $sitepress->get_current_language();
+ //$lang = ICL_LANGUAGE_CODE
+//switches the language for the English:
+/*
+echo '<pre>';
+var_dump($sitepress);
+echo '</pre>';
+$sitepress->switch_lang('en');
+*/
+
+$lang = $sitepress->get_current_language();
 require_once(ROOT.'../reservar/translate_' . $lang . '.php');
 $g=$gestor;
+
 get_header();
 $gestor=$g;
 
@@ -275,7 +313,12 @@ if ($padding_bottom)
               <?php onetone_get_breadcrumb(array("before" => "<div class=''>", "after" => "</div>", "show_browse" => false, "separator" => '', 'container' => 'div')); ?>
               <hgroup class="page-title">
                   <h1>
-                      <?php the_title(); ?>
+                      <?php 
+                      
+                      $original_ID = icl_object_id( 1154, 'any', false, $lang );
+                      $original_title = get_the_title( $original_ID );
+                      echo $original_title;
+                      //the_title(); ?>
                   </h1>
               </hgroup>
               <div class="clearfix"></div>

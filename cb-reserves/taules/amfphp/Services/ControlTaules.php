@@ -1,5 +1,4 @@
 <?php
-
 define('AMF', true);
 define('ROOT', "../");
 include(ROOT . "php/define.php");

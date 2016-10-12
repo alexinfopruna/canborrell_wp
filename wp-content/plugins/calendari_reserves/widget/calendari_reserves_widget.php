@@ -66,13 +66,15 @@ class calendari_reserves extends WP_Widget {
       echo $args['after_widget'];
     }
     else {
+      $data = __('Reservation date','canborrell');
+      $reservar = __('Reservation','canborrell');
       $html = <<<HEREDOC
      
  
      <form class = "navbar-form navbar-right" action = "reservar/">
     <div class = "form-group">
-    <input type = "text" name = "rdata" placeholder = "Data de reserva" id = "top-datepicker" class = "form-control top-datepicker">
-    <button type = "submit" class = "btn btn-success">Reservar</button>
+    <input type = "text" name = "rdata" placeholder = "$data" id = "top-datepicker" class = "form-control top-datepicker">
+    <button type = "submit" class = "btn btn-success">$reservar</button>
     </div>
       </form>
 HEREDOC;

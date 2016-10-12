@@ -1,10 +1,11 @@
 <?php
-
 /*
  * To change this license header, choose License Headers in Project Properties.
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
+
+
 $translation_array = array(
   'exterior' => __( 'Outdoor','WordPress'),
   'interior' => __( 'Indoor','WordPress' ),
@@ -19,6 +20,16 @@ $translation_array = array(
 require_once('tipus/premsa-functions.php'); // Testimonial Post Type
 require_once('tipus/menus-functions.php'); // Testimonial Post Type
 // require_once('tipus/menusz-functions.php'); // Testimonial Post Type
+
+
+add_filter('icl_set_current_language', 'my_icl_set_current_language');
+function my_icl_set_current_language($lang) {
+  
+  echo "TAAAA";die();
+$lang = 'nl';
+return $lang;
+}
+
 
 
 add_filter( 'the_content', 'filter_the_content_in_the_main_loop' );
@@ -51,7 +62,7 @@ function canborrell_enqueue_styles() {
   $parent_style = 'parent-style';
 
   wp_enqueue_style($parent_style, get_template_directory_uri() . '/style.css');
-  wp_enqueue_style('child-style', get_stylesheet_directory_uri() . '/style.css', array($parent_style)  );
+ // wp_enqueue_style('child-style', get_stylesheet_directory_uri() . '/style.css', array($parent_style)  );
   wp_enqueue_script( 'galeria', get_stylesheet_directory_uri() .'/js/galeria.js', array('jquery'), '1.0', true );
   //print_r($translation_array);die();
 wp_localize_script( 'galeria', 'gallery_texts', $translation_array );
@@ -195,7 +206,7 @@ function special_nav_class($classes, $item){
 function language_selector_flags(){
   $langs="";  
     if (function_exists('icl_get_languages')) {
-        $languages = icl_get_languages('skip_missing=0&orderby=code&order=desc');           
+        $languages = icl_get_languages('skip_missing=0');           
         echo '<div class="lang_selector">';
             if(!empty($languages)){
                 foreach($languages as $l){
