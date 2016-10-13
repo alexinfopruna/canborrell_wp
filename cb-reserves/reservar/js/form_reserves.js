@@ -174,7 +174,7 @@ $(function () {
     $("input[type=submit]").find("label").unbind("mouseup");
 
     $("#selectorComensals input[value=grups]").click(function () {
-        window.location.href = "form_grups.php";
+        window.location.href = "/reservar/reserva-grup/?lang="+lang;
         return false;
     })
     $("button, .bt").button();

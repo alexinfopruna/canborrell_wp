@@ -40,7 +40,7 @@ jQuery(document).ready(function ($) {
         return false;
     }
 
-/*
+/**/
     $(".publi").magnificPopup({
         type: 'ajax'
     });
@@ -49,6 +49,6 @@ jQuery(document).ready(function ($) {
         type: 'ajax'
     });
 
-*/
+
     $("#mbYTP_onetone-youtube-video").css("bacground", "black");
 })

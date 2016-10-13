@@ -54,6 +54,15 @@ $lang = $lang_cli = $fila['lang'];
 if (!isset($lang))
   $lang = $lang_cli = "esp";
 
+
+$old_lang_code['cat']='cat';
+$old_lang_code['ca']='cat';
+$old_lang_code['es']='esp';
+$old_lang_code['esp']='esp';
+$old_lang_code['en']='en';
+
+
+$lang=$old_lang_code[$lang];
 // comprovacions estat reserva
 // ARREGLAR MISSATGES
 

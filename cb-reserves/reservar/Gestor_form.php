@@ -261,7 +261,7 @@ ORDER BY carta_subfamilia_order,carta_plats_nom_es , carta_plats_nom_ca";
 
     while ($row = mysqli_fetch_array($Result1)) {
       if (empty($row['carta_plats_nom_ca']))
-        $row['carta_plats_nom_ca'] = $row['carta_plats_nom_es'];
+        $row['carta_plats_nom_ca'] =$row['carta_plats_nom_en'] = $row['carta_plats_nom_es'];
       $plat = array('id' => $row['carta_plats_id'], 'nom' => $row['carta_plats_nom_' . $lng], 'preu' => $row['carta_plats_preu'], 'quantitat' => $row['comanda_plat_quantitat']);
       $arCarta[$row['carta_subfamilia_nom_' . $lng]][] = $plat;
     }
@@ -789,7 +789,6 @@ FROM client
     $_POST['reserva_info'] = $this->flagBit($_POST['reserva_info'], 8, $selectorCadiraRodes);
     $selectorAccesible = (isset($_POST['selectorAccesible']) && $_POST['selectorAccesible'] == 'on');
     $_POST['reserva_info'] = $this->flagBit($_POST['reserva_info'], 9, $selectorAccesible);
-    //echo $selectorAccesible;die();
     $_POST['observacions'] = preg_replace("/Portem cadira de rodes /", "", $_POST['observacions']);
     if ($selectorCadiraRodes) {
       $_POST['observacions'] = 'Portem cadira de rodes ' . $_POST['observacions'];

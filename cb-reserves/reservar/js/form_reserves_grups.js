@@ -77,7 +77,7 @@ $(function () {
     $("button, .bt").button();
 
     $("#selectorComensals input[value=grups]").click(function () {
-        window.location.href = "form.php";
+        window.location.href = "/reservar/realitzar-reserva/?lang="+lang;
         return false;
     });
 
@@ -853,7 +853,8 @@ function controlSubmit()
             {
                 $("#popup").html($("#popupInfo").html() + $(".resum").html());
                 $("#popup").bind("dialogclose", function (event, ui) {
-                    window.location.href = "../" + lang + "/on.html";
+                    //window.location.href = "../" + lang + "/on.html";
+                    window.location.href = "../../#about";
                     //return false;
                 });
                 //return false;

@@ -119,7 +119,7 @@ $translate['LLEI'] = 'In accordance with the provisions of Organic Law 15/1999 o
     . 'through the email address: ' . MAIL_RESTAURANT;
 
 
-$translate['INFO_NO_CONFIRMADA'] = '<b> Remember </b>: The reservation <b> IS NOT CONFIRMED </b> until a text message is received on the Mobile phone number given.';
+$translate['INFO_NO_CONFIRMADA'] = '<b> <strong> Remember </strong> : The reservation <strong> IS NOT CONFIRMED </strong> until a text message is received on the Mobile phone number given.</b>';
 
 
 $translate['INFO_CARTA'] = 'If you wish you can choose the dishes you will order so you are able to estimate the price. <br/> <br/>

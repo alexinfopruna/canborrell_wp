@@ -151,7 +151,7 @@ h6.infantil{font-size:13px;}
 @media (min-width: 770px){
     #calendari {
         font-size: 1.6em;
-        width: 450px;
+      //  width: 450px;
     }
 }
 
@@ -648,7 +648,7 @@ footer .border-left{
     border-left: #444 solid 1px;
 }
 
-.ui-datepicker-inline{
+footer .ui-datepicker-inline{
     width:200px;
 }
 
@@ -1058,17 +1058,51 @@ section.home-section-6 .row p {
 /************  FORM RESERVES  ******************/
 /***********************************************/
 /***********************************************/
+#form-reserves a.ui-button:hover{
+    color:white;
+}
+
 body.page-template-page-reservar #calendari-header,
 body.page-template-page-reservar #calendari_reserves-2{
     display:none;
 }
 
+body.page-template-page-reserva-grups #calendari-header,
+body.page-template-page-reserva-grups #calendari_reserves-2{
+    display:none;
+}
 
-.page-realitzar-reserva  .post-inner {
+body.page-template-page-reservar em,
+body.page-template-page-reserva-grups em{
+    color:#888;
+    font-size:12px;
+}
+
+body.page-template-page-reservar .label,
+body.page-template-page-reserva-grups .label{
+    color:#333;
+    text-align: left;
+    font-size:14px;
+    white-space: normal; 
+}
+
+#form-reserves input.coberts{
+    background-color:white;
+    border:#333 solid 1px;
+    color:#333;
+}
+
+#cancel_reserva{background-color: red;}
+.page-template-page-reservar  .post-inner,
+.page-template-page-reserva-grups  .post-inner {
     background-image: url(/wp-content/uploads/assets/reserva.jpg);
     background-repeat: no-repeat;
 }
 
+#labelGrups, label[for='comGrups'] {
+    font-size: 1.2em;
+    color: #FFC000;
+}
 
 .reservar .ui-state-active{
     background:#8E7252; 
@@ -1108,6 +1142,7 @@ label.ptpv:hover {
 .number{
     border-radius: 33px;
     width: 52px;
+    padding: 0 20px;
     text-align: center;
 }
 

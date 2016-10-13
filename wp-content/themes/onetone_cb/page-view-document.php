@@ -74,7 +74,6 @@ $container_css .= 'padding-bottom:'.$padding_bottom.';';
 
 ?>
 <script>
-  alert("DDD");
 jQuery(document).ready( function($) {
     var iFrame = document.getElementById( 'iFrame1' );
     resizeIFrameToFitContent( iFrame );

@@ -68,10 +68,10 @@
 	}
 	
 	
-	.fr-seccio-carta  .ui-button, .fr-seccio-submit  .ui-button{border:2px solid #570600}
-	.grups-fr-seccio-carta  .ui-button, .fr-seccio-submit  .ui-button{border:2px solid #570600}
+	/*.fr-seccio-carta  .ui-button, .fr-seccio-submit  .ui-button{border:2px solid #570600}*/
+	/*.grups-fr-seccio-carta  .ui-button, .fr-seccio-submit  .ui-button{border:2px solid #570600}*/
 	#fr-reserves{
-	  max-width:775px;
+	  //max-width:775px;
 /*	 margin-top:-500px;*/
 	/* padding-bottom:50px;*/
 	}
@@ -234,8 +234,8 @@ padding: .4em .8em;
 #caixa_reserva_consulta_online{margin:0px 25px 45px 25px;width:300px;color:#999;text-align:center;float:right;}
 #caixa_reserva_consulta_online textarea{height:60px;}
 #bt_reserva_consulta_online{float:right;}
-#bt-menu{margin-top:10px;color: #570600;}
-#bt-menu:hover{margin-top:10px;color: white;}
+#ZZZZbt-menu{margin-top:10px;color: #570600;}
+#ZZZZbt-menu:hover{margin-top:10px;color: white;}
 
 #help{font-size:1.2em}
 .gris-ajuda{

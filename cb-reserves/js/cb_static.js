@@ -46,7 +46,7 @@ $(function() {
 	});
 */
         $('#datepicker').datepicker( 'option' , 'onSelect', function (date) { // 'onSelect' here, but could be any datepicker event
-            window.location.href = "reservar/form.php?rdata="+date;
+            window.location.href = "/reservar/reserva-grup/?lang="+lang+"&rdata="+date;
 });
 });
 

@@ -51,6 +51,7 @@ Una vez enviada el correo, <b>HAY QUE ESPERAR CONFIRMACIÓN</b> por parte del re
 Hasta que no sea confirmada, la reserva seguirá tal como se había solicitado originalmente 
 <br/>
 <br/>
+<?php if (!isset($EDITA_RESERVA)) $EDITA_RESERVA='';?>
 <a href="mailto:restaurant@can-borrell.com?subject=MODIFICACION DE RESERVA ID:<?php echo $EDITA_RESERVA;?> &amp;body=(Indicar Mobil / Nombre / Fecha Reserva / Adultos / Ni&ntilde;os / Cochecitos) - Solicito, para la reserva ID:<?php echo $EDITA_RESERVA;?> las seguientes modificaciones: ">restaurant@can-borrell.com</a>
 </div>
 

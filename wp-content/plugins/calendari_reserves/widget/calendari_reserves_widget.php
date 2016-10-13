@@ -66,13 +66,16 @@ class calendari_reserves extends WP_Widget {
       echo $args['after_widget'];
     }
     else {
+      global $sitepress;
+      $lang = $sitepress->get_current_language();
       $data = __('Reservation date','canborrell');
       $reservar = __('Reservation','canborrell');
       $html = <<<HEREDOC
      
- 
-     <form class = "navbar-form navbar-right" action = "reservar/">
+          
+     <form class = "navbar-form navbar-right" action = "/reservar/realitzar-reserva/">
     <div class = "form-group">
+    <input type = "hidden" name = "lang" class = "" value="$lang">
     <input type = "text" name = "rdata" placeholder = "$data" id = "top-datepicker" class = "form-control top-datepicker">
     <button type = "submit" class = "btn btn-success">$reservar</button>
     </div>

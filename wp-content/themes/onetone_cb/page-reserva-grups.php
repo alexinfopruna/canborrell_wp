@@ -2,25 +2,16 @@
 /*
   Template Name: Reserves grups
  */
-
-header('Content-Type: text/html; charset=utf-8');
-
 defined('ROOT') or define('ROOT', 'cb-reserves/taules/');
 require_once (ROOT . "Gestor.php");
 
 if (defined("CB_FORA_DE_SERVEI") && CB_FORA_DE_SERVEI === true)
   header("Location:fora_de_servei.html");
 
-
 define("LLISTA_DIES_NEGRA", INC_FILE_PATH . "bloq.txt");
 define("LLISTA_NITS_NEGRA", INC_FILE_PATH . "bloq_nit.txt");
 define("LLISTA_DIES_BLANCA", INC_FILE_PATH . "llista_dies_blanca.txt");
 define('USR_FORM_WEB', 3); //ES LA ID D'USUARI (admin) ANONIM QUE CREA RESERVA ONLINE
-
-/*
-  // ERROR HANDLER
-  require_once("../taules/php/error_handler.php");
- */
 
 // CREA USUARI ANONIM
 if (!isset($_SESSION))
@@ -40,11 +31,29 @@ $nj = isset($_REQUEST['c']) ? $_REQUEST['c'] : 0;
 $nn = isset($_REQUEST['d']) ? $_REQUEST['d'] : 0;
 $total = $na + $nj + $nn;
 //RECUPERA IDIOMA
-//$lang_default=isset($_REQUEST["lang"])?$_REQUEST["lang"]:'cat';
-$lang = $gestor->idioma();
+global $sitepress;
+                                $language_uri=substr($_SERVER['REQUEST_URI'], 0, 4);
+                                if ( $language_uri == '/es/' || $language_uri == '/en/') {
+                                  $lang=substr($_SERVER['REQUEST_URI'], 1, 2);
+                                  $gestor->idioma($lang);
+                                  //echo "Location: /reservar/realitzar-reserva/?lang=".$lang;
+                                  header("Location: /reservar/realitzar-reserva/?lang=".$lang);
+                                  exit();die();
+                                }
+                                else{
+                                  $lang = isset($_REQUEST['lang'])?$_REQUEST['lang']:'ca';
+                                  $gestor->idioma($lang);
+                                }
+                               
 
+$gestor->lng = $lang = Gestor::getLanguage();
 $l = $gestor->lng;
 
+
+
+/***********************************************************************************/
+                                $sitepress->switch_lang($lang);
+/***********************************************************************************/   
 //RECUPERA CONIG ANTIC
 $PERSONES_GRUP = $gestor->configVars("persones_grup");
 define("PERSONES_GRUP", $PERSONES_GRUP);
@@ -74,32 +83,60 @@ $row['hora'] = null;
 $row['observacions'] = null;
 
 $g=$gestor;
+add_action('wp_enqueue_scripts', 'reservar_enqueue_styles');
 get_header();
 $gestor=$g;
 
+$sidebar = isset($page_meta['page_layout']) ? $page_meta['page_layout'] : 'none';
+$left_sidebar = isset($page_meta['left_sidebar']) ? $page_meta['left_sidebar'] : '';
+$right_sidebar = isset($page_meta['right_sidebar']) ? $page_meta['right_sidebar'] : '';
+$full_width = isset($page_meta['full_width']) ? $page_meta['full_width'] : 'no';
+$display_breadcrumb = isset($page_meta['display_breadcrumb']) ? $page_meta['display_breadcrumb'] : 'yes';
+$display_title = isset($page_meta['display_title']) ? $page_meta['display_title'] : 'yes';
+$padding_top = isset($page_meta['padding_top']) ? $page_meta['padding_top'] : '';
+$padding_bottom = isset($page_meta['padding_bottom']) ? $page_meta['padding_bottom'] : '';
+
+if ($full_width == 'no')
+  $container = 'container';
+else
+  $container = 'container-fullwidth';
+
+$aside = 'no-aside';
+if ($sidebar == 'left')
+  $aside = 'left-aside';
+if ($sidebar == 'right')
+  $aside = 'right-aside';
+if ($sidebar == 'both')
+  $aside = 'both-aside';
+
+$container_css = '';
+if ($padding_top)
+  $container_css .= 'padding-top:' . $padding_top . ';';
+if ($padding_bottom)
+  $container_css .= 'padding-bottom:' . $padding_bottom . ';';
+
+
+require(ROOT.'../reservar/translate_grups_' . $gestor->lng . '.php');
+
+/* * *********************************************************** */
+/* * *********************************************************** */
+/* * *********************************************************** */
+/* * *********************************************************** */
+/* * *********************************************************** */
+
+function reservar_enqueue_styles() {
+  
+
 ?>
-<!DOCTYPE HTML>
-<html>
-    <head>
-        <meta http-equiv="Content-Type" content="text/html; charset=utf-8" pageEncoding="UTF-8"/>
-        <meta name="viewport" content="width=device-width, initial-scale=1">
-
-        <title> Masia Can Borrell </title>
-
-
-        <!-- this goes into the <head> tag ALEX ESTILS! -->
         <link type="text/css" href="/cb-reserves/taules/css/blitzer/jquery-ui-1.8.9.custom.css" rel="stylesheet" />	
-        <link type="text/css" href="/cb-reserves/reservar/css/custom-theme/jquery-ui-1.8.16.custom.css" rel="stylesheet" />	
-        <link type="text/css" href="/cb-reserves/reservar/css/custom-theme/jquery.ui.all.css" rel="stylesheet" />	
+        <zzlink type="text/css" href="/cb-reserves/reservar/css/custom-theme/jquery-ui-1.8.16.custom.css" rel="stylesheet" />	
+        <zzlink type="text/css" href="/cb-reserves/reservar/css/custom-theme/jquery.ui.all.css" rel="stylesheet" />	
         <!--<link type="text/css" href="../css/estils.css" rel="stylesheet" />	-->
         <link type="text/css" href="/cb-reserves/reservar/css/form_reserves_grups.css" rel="stylesheet" />	
         <link type="text/css" href="/cb-reserves/reservar/css/form_reserves_grups_mob.css" rel="stylesheet" />	
         <link type="text/css" href="/cb-reserves/reservar/css/jquery.tooltip.css" rel="stylesheet" />	
         <link type="text/css" href="/cb-reserves/reservar/css/osx.css" rel="stylesheet" />
         <link type="text/css" href="/cb-reserves/reservar/css/glyphicons.css" rel="stylesheet" />
-
-                        <!--<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.5.1/jquery.min.js"></script>-->
-
         <?php echo Gestor::loadJQuery(); ?>
 
         <script type="text/javascript" src="/cb-reserves/taules/js/ui/dev/ui/i18n/jquery.ui.datepicker-ca.js"></script>
@@ -115,16 +152,10 @@ $gestor=$g;
         <script type="text/javascript" src="/cb-reserves/reservar/js/jquery.amaga.js"></script>
         <script type="text/javascript" src="/cb-reserves/reservar/js/jquery.tooltip.js"></script>
         <script type="text/javascript" src="/cb-reserves/taules/js/jquery.browser.js"></script>
-
-
-        <?php
         
-
-        require(ROOT.'../reservar/translate_grups_' . $gestor->lng . '.php');
-        ?>
         <script type="text/javascript">
-          var PERSONES_GRUP =<?php echo $PERSONES_GRUP; ?>;
-          var lang = "<?php echo $lang; ?>";
+          var PERSONES_GRUP =<?php global $PERSONES_GRUP;echo $PERSONES_GRUP; ?>;
+          var lang = "<?php  global $lang;echo $lang; ?>";
 <?php
 //TRANSLATES
 
@@ -140,48 +171,100 @@ print crea_llista_js($llista_blanca, "LLISTA_BLANCA");
 ?>
         </script>
 
-            <script type="text/javascript" src="/cb-reserves/reservar/js/jquery.simplemodal.js"></script>
+        <script type="text/javascript" src="/cb-reserves/reservar/js/jquery.simplemodal.js"></script>
         <script type="text/javascript" src="/cb-reserves/reservar/js/control_carta.js?<?php echo time(); ?>"></script>
         <script type="text/javascript" src="/cb-reserves/reservar/js/form_reserves_grups.js?<?php echo time(); ?>"></script>
         <script type="text/javascript" src="/cb-reserves/reservar/js/popups_ajuda.js<?php //echo '?'.time();   ?>"></script>		
  
-    </head>
-    <body style="display:none" class="<?php echo DEV ? " dev " : "";
-echo LOCAL ? " local " : "" ?>">
-        <table bgcolor="#F8F8F0" cellpadding="0" cellspacing="0"   border="0" align="center">
-            <tr height="114">
-                <td  id="poma-fons"  colspan="2" align="RIGHT"><a HREF="../index.htm">
-                        <img src="/cb-reserves/reservar/../img/lg_sup.gif" width="303" height="114" border="0" title="INICI"></a>
-                </td>
-            </tr>
-            <tr height="18">
-                <td bgcolor="#570600" colspan="2" align="">
-                    <table cellpadding="0" cellspacing="0" width="761" height="19" border="0">
-                        <?php //require_once($ruta_lang."menu.php");?>
-                    </table>
-                </td>
-            </tr>
-            <tr height="18">
-                <td id="td_contingut" bgcolor="#F8F8F0" colspan="2" align="">
+<?php 
+}  // enqueue styles
 
-                    <?php
+                    /*
                     if (isset($_POST['incidencia'])) {
                       if (!$gestor->contactar_grups($_POST))
                         l("ERROR_CONTACTAR");
                       else
                         l("CONTACTAR_OK");
 
-                      //die();
                     }
                     else {
                       include(ROOT."../reservar/form_contactar.php");
                     }
+                     * 
+                     */
+                    
+                    
                     ?>
-                    <div style="clear:both"></div>
+                    
+        
+        
+ <article id="post-<?php the_ID(); ?>" <?php post_class(); ?>>
+    <?php if ($display_breadcrumb == 'yes'): ?>
+
+      <section class="page-title-bar title-left no-subtitle" style="">
+          <div class="container">
+              <?php onetone_get_breadcrumb(array("before" => "<div class=''>", "after" => "</div>", "show_browse" => false, "separator" => '', 'container' => 'div')); ?>
+              <hgroup class="page-title">
+                  <h1>
+                      <?php 
+                      
+                      $original_ID = icl_object_id( 418, 'any', false, $lang );
+                      $original_title = get_the_title( $original_ID );
+                      echo $original_title;
+                      //the_title(); ?>
+                  </h1>
+              </hgroup>
+              <div class="clearfix"></div>
+          </div>
+      </section>
+    <?php endif; ?>
+    <div class="post-wrap">
+        <div class="<?php echo $container; ?>">
+            <div class="post-inner row <?php echo $aside; ?>" style=" <?php echo $container_css; ?>">
+                <div class="col-main">
+                    <section class="post-main" role="main" id="content">
+                        <?php while (have_posts()) : the_post(); ?>
+                          <article class="post type-post" id="">
+                              <?php if (has_post_thumbnail()): ?>
+                                <div class="feature-img-box">
+                                    <div class="img-box">
+                                        <?php the_post_thumbnail(); ?>
+                                    </div>
+                                </div>
+                              <?php endif; ?>
+                              <div class="entry-main">
+
+                                  <div class="entry-content reservar">
+                                      <?php
+                                      the_content();
+                                      /*                                       * ******************************************************************* */
+                                      /*                                       * ******************************************************************* */
+                                      /*                                       * ******************************************************************* */
+                                      /*                                       * ******************************************************************* */
+                                      /*                                       * ******************************************************************* */
+                                      /*                                       * ******************************************************************* */
+                                      /*                                       * ******************************************************************* */
+                                      /*                                       * ******************************************************************* */
+                                      /*                                       * ******************************************************************* */
+                                      ?>
+
+                                      <div id="container">
+                                          <div class="row row-offcanvas row-offcanvas-left">
+                                              <div id="cos">       
 
                     <!-- ***************************************************************************************   -->
                     <!-- ***************************************************************************************   -->
                     <!-- ***************************************************************************************   -->
+                    <!-- ***************************************************************************************   -->
+                    <!-- ***************************************************************************************   -->
+                    <!-- ***************************************************************************************   -->
+                    <!-- ***************************************************************************************   -->
+                    <!-- ***************************************************************************************   -->
+                    <!-- **s*************************************************************************************   -->
+                    <!-- ***************************************************************************************   -->
+                    <!-- ***************************************************************************************   -->
+                    
+                    <div style="clear:both"></div>
                     <form id="form-reserves" action="/cb-reserves/editar/reserves_grups.php" method="post" name="fr-reserves" accept-charset="UTF-8"><!---->
                         <div id="fr-reserves" class="fr-reserves">
                             <!-- *******************************  QUANTS SOU ********************************************************   -->
@@ -200,7 +283,7 @@ echo LOCAL ? " local " : "" ?>">
 
                                 <!-- ******  ADULTS  ********   -->
                                 <div id="selectorComensals" class="fr-col-dere">
-                                    <input type="text" id="com" name="adults" value="<?php echo $na ? $na : '' ?>"  style="width:35px;font-size:1.2em;padding-left:0;padding-right:0" class="ui-button ui-widget ui-state-default ui-button-text-only coberts"/><label for="comGrupsN" ><?php //l('Més de ');//echo ($PERSONES_GRUP+14) ?></label>	
+                                    <input type="text" id="com" name="adults" value="<?php echo $na ? $na : '' ?>"  style="background-color:white;width:35px;font-size:1.2em;padding-left:0;padding-right:0" class="ui-button ui-widget ui-state-default ui-button-text-only coberts"/><label for="comGrupsN" ><?php //l('Més de ');//echo ($PERSONES_GRUP+14) ?></label>	
                                     &lArr;
 
                                     <input type="radio" id="comGrups" name="selectorComensals" value="grups"  /><label for="comGrups" ><?php l('<=' . ($PERSONES_GRUP - 1)); ?></label>
@@ -209,6 +292,8 @@ echo LOCAL ? " local " : "" ?>">
                                       $checked = ($i == $na ? ' checked="checked' : '');
                                       print '<input type="radio" id="com' . $i . '" name="selectorComensals" value="' . $i . '" ' . $checked . ' class="adults "/><label for="com' . $i . '">' . $i . '</label>';
                                     }
+                                    
+                                    
                                     ?>
 
                                 </div>
@@ -219,10 +304,13 @@ echo LOCAL ? " local " : "" ?>">
                                         <input id="totalComensals" type="text" name="totalComensals" value="<?php echo $total ?>" readonly="readonly" class="coberts"/></b>
                                         <!--Tingue's present que si vols modificar aquest nombre més endavant no podem garantir la disponibilitat de taula.<br/><br/>-->
                                     </div>
+                                    
+                                    <div id="jnc" style="float:left">
+                                        
                                     <!-- ******  JUNIOR  ********   -->
                                     <h4  id="titol_SelectorJuniors"><?php l('Juniors (de 10 a 14 anys):'); ?></h4>
                                     <div id="selectorJuniors" class="col_dere">
-                                        <input type="text" id="junior" name="nens10_14" value="<?php echo $nj ? $nj : '' ?>"  style="width:35px;font-size:1.2em;padding-left:0;padding-right:0" class="ui-button ui-widget ui-state-default ui-button-text-only coberts"/><label for="comGrupsN" ><?php //l('Més de ');//echo ($PERSONES_GRUP+14) ?></label>
+                                        <input type="text" id="junior" name="nens10_14" value="<?php echo $nj ? $nj : '' ?>"  style="background-color:white;width:35px;font-size:1.2em;padding-left:0;padding-right:0" class="ui-button ui-widget ui-state-default ui-button-text-only coberts"/><label for="comGrupsN" ><?php //l('Més de ');//echo ($PERSONES_GRUP+14) ?></label>
                                         &lArr;
 
                                         <?php
@@ -238,7 +326,7 @@ echo LOCAL ? " local " : "" ?>">
                                     <!-- ******  NENS  ********   -->
                                     <h4 id="titol_SelectorNens"><?php l('Nens (de 4 a 9 anys)'); ?>:</h4>
                                     <div id="selectorNens" class="col_dere">
-                                        <input type="text" id="nens" name="nens4_9" value="<?php echo $nn ? $nn : '' ?>"  style="width:35px;font-size:1.2em;padding-left:0;padding-right:0" class="ui-button ui-widget ui-state-default ui-button-text-only coberts"/><label for="comGrupsN" ><?php //l('Més de ');//echo ($PERSONES_GRUP+14) ?></label>
+                                        <input type="text" id="nens" name="nens4_9" value="<?php echo $nn ? $nn : '' ?>"  style="background-color:white;width:35px;font-size:1.2em;padding-left:0;padding-right:0" class="ui-button ui-widget ui-state-default ui-button-text-only coberts"/><label for="comGrupsN" ><?php //l('Més de ');//echo ($PERSONES_GRUP+14) ?></label>
                                         &lArr;
                                         <?php
                                         for ($i = 0; $i <= $max_nens_grup; $i++) {
@@ -250,6 +338,7 @@ echo LOCAL ? " local " : "" ?>">
                                         }
                                         ?>
                                     </div>
+                                    
                                     <!-- ******  COTXETS  ********   -->
                                     <h4  id="titol_SelectorCotxets"><?php l('Cotxets de nadó'); ?>:</h4>
                                     <div id="selectorCotxets" class="col_dere">
@@ -272,6 +361,7 @@ echo LOCAL ? " local " : "" ?>">
                                     </div>
 
                                     <input type="hidden" name="amplaCotxets" value="0" /> 
+                                    </div>
                                     <div style="clear:both"></div>
                                 </div>		
                             </div>		
@@ -402,7 +492,7 @@ echo LOCAL ? " local " : "" ?>">
                                             <div><label class="label" for="client_nom"><?php l('Nom'); ?>*</label><input type="text" name="client_nom" value="<?php echo $row['client_nom'] ?>"/></div>
                                             <div><label class="label" for="client_cognoms"><?php l('Cognoms'); ?>*</label><input type="text" name="client_cognoms" value="<?php echo $row['client_cognoms'] ?>"/></div>
                                             <div><label class="label" for="client_id"><?php //l('Client_id'); ?></label><input type="hidden" name="client_id" value="<?php echo $row['client_id'] ?>"/></div>
-                                            <div class="ui-corner-all info-legal info-observacions  caixa" style="width:496px;">
+                                            <div class="ui-corner-all info-legal info-observacions  caixa" >
                                                 <?php l('NO_COBERTS_OBSERVACIONS'); ?>
                                             </div>
 
@@ -443,6 +533,8 @@ echo LOCAL ? " local " : "" ?>">
                             <!-- *******************************  SUBMIT ********************************************************   -->
                             <!-- *******************************  SUBMIT ********************************************************   -->
                             <!-- *******************************  SUBMIT ********************************************************   -->
+                            
+                            
                             <a id="scroll-seccio-submit"></a>
                             <div class="fr-seccio ui-corner-all fr-seccio-submit"> 
                                 <h1 class="titol"><span class="number">6</span><?php l('Envia la sol·licitud'); ?></h1>
@@ -467,21 +559,21 @@ echo LOCAL ? " local " : "" ?>">
 
                         </div>
 
-                    </form>	<!--
+                    </form>	
+                    
+                    
+                    <!--
                                                 
                     -->
                     <!--	
                     <div id="peu" style="margin-top:50px;	text-align:center;padding:15px;background:#FFFFFF" ><b>Restaurant CAN BORRELL:</b> <span class="dins cb-contacte" style="text-align:right">93 692 97 23 / 93 691 06 05 </span>  /  <a href="mailto:<?php echo MAIL_RESTAURANT; ?>" class="dins"><?php echo MAIL_RESTAURANT; ?></a>
                     </div>
-                    -->	
+                   
                     <div id="peu" style="margin-top:50px;	text-align:center;padding:15px;background:#FFFFFF" ><b>Restaurant CAN BORRELL:</b> <button class="dins cb-contacte" style="text-align:right">Contactar amb el restaurant </button>  /  <a href="mailto:<?php echo MAIL_RESTAURANT; ?>" target="_blank" class="dins"><?php echo MAIL_RESTAURANT; ?></a>
                     </div>
+ -->	
 
-                </td>
-            </tr>
-        </table>
 
-<?php get_footer();?>
 
         <!-- ******************* CARTA *********************** -->
         <!-- ******************* CARTA *********************** -->
@@ -540,7 +632,80 @@ echo LOCAL ? " local " : "" ?>">
         <div id="reserves_info" class="ui-helper-hidden">
 <?php include(ROOT."../reservar/reservesInfo_" . substr($lang, 0, 2) . ".html"); ?>
         </div>
+        
+        
+ <?php       
+/*************************************************************************************/        
+/*************************************************************************************/        
+/*************************************************************************************/        
+/*************************************************************************************/        
+/*************************************************************************************/        
+/*************************************************************************************/        
+/*************************************************************************************/        
+/*************************************************************************************/        
+/*************************************************************************************/        
+/*************************************************************************************/        
+/*************************************************************************************/        
+/*************************************************************************************/
+ 
+ ?>
+                                              </div>
 
+                                            
+                                          </div> <!-- row -->
+                                      </div> <!-- container -->
 
-    </body>
-</html>
+                                      <?php
+                                      /*                                       * ******************************************************************* */
+                                      /*                                       * ******************************************************************* */
+                                      /*                                       * ******************************************************************* */
+                                      /*                                       * ******************************************************************* */
+                                      /*                                       * ******************************************************************* */
+                                      /*                                       * ******************************************************************* */
+                                      /*                                       * ******************************************************************* */
+                                      /*                                       * ******************************************************************* */
+                                      /*                                       * ******************************************************************* */
+                                      ?>
+                                      <?php
+                                      wp_link_pages(array('before' => '<div class="page-links"><span class="page-links-title">' . __('Pages:', 'onetone') . '</span>', 'after' => '</div>', 'link_before' => '<span>', 'link_after' => '</span>'));
+                                      ?>
+                                  </div>
+
+                              </div>
+                          </article>
+                          <div class="post-attributes">
+                              <!--Comments Area-->
+                              <div class="comments-area text-left">
+                                      <?php
+                                      // If comments are open or we have at least one comment, load up the comment template
+                                      if (comments_open()) :
+                                        comments_template();
+                                      endif;
+                                      ?>
+                              </div>
+                              <!--Comments End-->
+                          </div>
+                                <?php endwhile; // end of the loop.   ?>
+                    </section>
+                </div>
+                                <?php if ($sidebar == 'left' || $sidebar == 'both'): ?>
+                  <div class="col-aside-left">
+                      <aside class="blog-side left text-left">
+                          <div class="widget-area">
+  <?php get_sidebar('pageleft'); ?>
+                          </div>
+                      </aside>
+                  </div>
+                <?php endif; ?>
+                <?php if ($sidebar == 'right' || $sidebar == 'both'): ?>
+                  <div class="col-aside-right">
+  <?php get_sidebar('pageright'); ?>
+                  </div>
+                            <?php endif; ?>
+            </div>
+        </div>
+    </div>
+</article>
+
+        
+<?php get_footer();?>

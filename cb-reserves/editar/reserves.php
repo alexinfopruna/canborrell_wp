@@ -11,8 +11,15 @@ include(ROOT.DB_CONNECTION_FILE);
 include(INC_FILE_PATH.'valors.php'); 
 include(INC_FILE_PATH.'alex.inc'); if (!$AJAX) valida_admin('editar.php') ;
 //$gestor = new gestor_reserves();
+$old_lang_code['cat']='cat';
+$old_lang_code['ca']='cat';
+$old_lang_code['es']='esp';
+$old_lang_code['esp']='esp';
+$old_lang_code['en']='en';
 
 $l=$lang=$gestor->idioma();
+$lang=$old_lang_code[$lang];
+
 $estat=1;
 $preu=calcula_preu();
 
@@ -45,8 +52,8 @@ function GetSQLValueString($theValue, $theType, $theDefinedValue = "", $theNotDe
   return $theValue;
 }
 
-$resp['cat']="Petició de reserva rebuda";
-$resp['esp']="Petición de reserva recibida";
+$resp['cat']=$resp['ca']="Petició de reserva rebuda";
+$resp['esp']=$resp['es']="Petición de reserva recibida";
 $resp['en']="Request for a received reservation";
 if ($_POST['nens10_14']<=0) $_POST['txt_1']="NO";
 if ($_POST['nens4_9']<=0) $_POST['txt_2']="NO";

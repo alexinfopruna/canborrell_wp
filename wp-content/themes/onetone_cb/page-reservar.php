@@ -42,7 +42,7 @@ global $sitepress;
                                   exit();die();
                                 }
                                 else{
-                                  $lang = isset($_GET['lang'])?$_GET['lang']:'ca';
+                                  $lang = isset($_REQUEST['lang'])?$_REQUEST['lang']:'ca';
                                   $gestorf->idioma($lang);
                                 }
                                
@@ -78,12 +78,24 @@ if (isset($_POST['cancel_reserva']) && $_POST['cancel_reserva'] == "Eliminar res
   }
 }
 
+
+global $sitepress;
+$lang = $sitepress->get_current_language();
+require_once(ROOT.'../reservar/translate_' . $lang . '.php');
+$g=$gestor;
 /* * ****************************************************** */
 //RECUPERA RESERVA UPDATE
-if (isset($_POST['Submit']) && $_POST['Submit'] == "Editar reserva") {
+if (isset($_REQUEST['rid']))  {
+  $decode=  base64_decode($_REQUEST['rid']);
+  
+  $st=explode('&',$decode);
+  $_REQUEST['idr']=$_POST['idr']=$st[0];
+  //$_POST['email']=$st[1];
+  $_REQUEST['mob']=$_POST['mob']=$st[1];
+  
   if (isset($_POST['idr']) && $_POST['idr'] > SEPARADOR_ID_RESERVES) { //si es reserva de grups
     $row = $gestorf->recuperaReserva($_POST['mob'], $_POST['idr']);
-    if (!$row) {
+    if (!$row ) {
       l("ERROR_LOAD_RESERVA");
       $_REQUEST['idr'] = $_POST['idr'] = null;
     }
@@ -114,6 +126,7 @@ else {
   $comanda = null;
 }
 
+
 if (!isset($_POST['idr']))
   $_POST['idr'] = null;
 $EDITA_RESERVA = $_POST['idr'];
@@ -134,7 +147,7 @@ function reservar_enqueue_styles() {
   <link type="text/css" href="/cb-reserves/taules/css/blitzer/jquery-ui-1.8.9.forms.css" rel="stylesheet" />	
   <link type="text/css" href="/cb-reserves/reservar/css/jquery.tooltip.css" rel="stylesheet" />	
   <link type="text/css" href="/cb-reserves/reservar/css/form_reserves_mob.css" rel="stylesheet" />		
-  <link type="text/css" href="/cb-reserves/css/estils.css" rel="stylesheet" />	
+  <zzlink type="text/css" href="/cb-reserves/css/estils.css" rel="stylesheet" />	
   <link type="text/css" href="/cb-reserves/reservar/css/osx.css" rel="stylesheet" />
   <link type="text/css" href="/cb-reserves/reservar/css/glyphicons.css" rel="stylesheet" />
   <link rel="stylesheet" href="/wp-content/plugins/magee-shortcodes/assets/bootstrap/css/bootstrap.min.css"> 
@@ -240,10 +253,11 @@ function reservar_enqueue_styles() {
   <?php
   
   global $row;
+  global $gestorf;
   print "\nvar IDR='" . $row['id_reserva'] . "';";
 print "var RDATA;";
 if (!empty($row['data']))
-  print "\nRDATA='" . $gestor->cambiaf_a_normal($row['data']) . "';";
+  print "\nRDATA='" . $gestorf->cambiaf_a_normal($row['data']) . "';";
 print "\nvar HORA='" . $row['hora'] . "';";
   ?>
 
@@ -254,21 +268,7 @@ print "\nvar HORA='" . $row['hora'] . "';";
   //wp_enqueue_style('reservar', '/cb-reserves/taules/css/blitzer/jquery-ui-1.8.9.forms.css');
 }
 
-global $sitepress;
-/*
-//echo $sitepress->get_current_language();
- //$lang = ICL_LANGUAGE_CODE
-//switches the language for the English:
-/*
-echo '<pre>';
-var_dump($sitepress);
-echo '</pre>';
-$sitepress->switch_lang('en');
-*/
 
-$lang = $sitepress->get_current_language();
-require_once(ROOT.'../reservar/translate_' . $lang . '.php');
-$g=$gestor;
 
 get_header();
 $gestor=$g;
@@ -587,7 +587,7 @@ if ($padding_bottom)
                                                                       var BLOQ_DATA = '<?php echo $gestorf->cambiaf_a_normal($row['data']); ?>';
                                                                     </script>
                                                                   <?php endif ?>
-                                                                  <div id="calendari"></div>
+                                                                  <div id="calendari" class="fr-seccio ui-corner-all fr-seccio-dia"></div>
                                                               </div>
                                                               <div style="clear:both"></div>
 
@@ -700,7 +700,7 @@ if ($padding_bottom)
                                                                           <div><label class="label" for="client_nom"><?php l('Nom'); ?>*</label><input type="text" name="client_nom" value="<?php echo $row['client_nom'] ?>"/></div>
                                                                           <div><label class="label" for="client_cognoms"><?php l('Cognoms'); ?>*</label><input type="text" name="client_cognoms" value="<?php echo $row['client_cognoms'] ?>"/></div>
                                                                           <div><label class="label" for="client_id"><?php //l('Client_id');    ?></label><input type="hidden" name="client_id" value="<?php echo $row['client_id'] ?>"/></div>
-                                                                          <div class="ui-corner-all info-legal info-observacions  caixa" style="width:496px;">
+                                                                          <div class="ui-corner-all info-legal info-observacions  caixa">
                                                                               <?php l('NO_COBERTS_OBSERVACIONS'); ?>
                                                                           </div>
 
@@ -838,10 +838,7 @@ if ($padding_bottom)
                                                   <div id="reserves_info" class="ui-helper-hidden">
                                                       <?php include(ROOT."/../reservar/reservesInfo_" . substr($lang, 0, 2) . ".html"); ?>
                                                   </div>
-
                                               </div>
-
-                                            
                                           </div> <!-- row -->
                                       </div> <!-- container -->
 
