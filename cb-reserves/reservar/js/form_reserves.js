@@ -151,7 +151,7 @@ $(function () {
 
 
     $("#cancel_reserva").click(function () {
-        if (!confirm("Segur que vols eliminar la teva reserva?"))
+        if (!confirm(l("Segur que vols eliminar la teva reserva?")))
             return false;
         else
             return true;
@@ -285,14 +285,19 @@ $(function () {
     });
    
    // Si ens passen la data
-   if (typeof rdata != 'undefined')  setCalendDate(rdata);
+  // if (typeof rdata != 'undefined')  setCalendDate(rdata);
    if (typeof obre_contacte != 'undefined')  {
        $("#a_consulta_online.r-petita").click();
       // $("#caixa_reserva_consulta_online").css("background-color",'yellow').delay(3).css("background-color",'gold');
         $("#caixa_reserva_consulta_online").dialog({modal:true});
    }//click();
    
-   
+   if (RDATA > ""){
+             monta_calendari("#calendari");
+            $(".fr-seccio-dia").show();
+            SECCIO = "fr-seccio-dia";
+            //updateCalendari();       
+   }
 }); //ONLOAD, PRESENTACIO UI
 //***********************************************************************************************************/
 /************************************************************************************************************/
@@ -343,8 +348,8 @@ function comportamentQuantsSou()
             updateCalendari();
         }
         else{
-            //comportamentDia();
-           // $("#calendari").change();
+            comportamentDia();
+            $("#calendari").change();
         }
         
     });
@@ -785,9 +790,13 @@ function monta_calendari(selector)
 
 
 
-    var defData = null;
-    if (RDATA != "")
-        defData = RDATA;
+    var defData = new Date();;
+    if (RDATA != ""){
+        
+     //   var msec = Date.parse('10-26-2016');
+ defData = new Date(RDATA);
+   //     alert(defData);
+    }
     $(selector).datepicker("destroy");
     $(selector).datepicker({
         beforeShowDay: function (date, inst) {
@@ -806,6 +815,7 @@ function monta_calendari(selector)
             }
             return r;
         },
+        //dateFormat : 'mm/dd/yy',
         defaultDate: defData,
         minDate: limit_passat
     });
@@ -1175,16 +1185,9 @@ function avis_modificacions(e) {
         return FALSE;
     }
 
+help($("#avis-modificacions").html());
 
-    e.preventDefault();
-    $("#avis-modificacions-overlay").addClass("anima-avis");
-    $("#avis-modificacions").addClass("anima-avis");
-
-    $("#avis-modificacions .tanca-avis a").click(function () {
-        $("#avis-modificacions-overlay").removeClass("anima-avis");
-        $("#avis-modificacions").removeClass("anima-avis");
-        
-        if (typeof rdata != 'undefined'){
+        if (typeof RDATA != 'undefined'){
            comportamentDia();
             $("#calendari").change();
         }
@@ -1193,10 +1196,30 @@ function avis_modificacions(e) {
             SECCIO = 'fr-seccio-dia';
         }
         
+
+/* 
+    e.preventDefault();
+    $("#avis-modificacions-overlay").addClass("anima-avis");
+    $("#avis-modificacions").addClass("anima-avis");
+
+    $("#avis-modificacions .tanca-avis a").click(function () {
+        $("#avis-modificacions-overlay").removeClass("anima-avis");
+        $("#avis-modificacions").removeClass("anima-avis");
         
+        if (typeof RDATA != 'undefined'){
+           comportamentDia();
+            $("#calendari").change();
+        }
+        else{
+             $.scrollTo("#titol_SelectorJuniors", 600);
+            SECCIO = 'fr-seccio-dia';
+        }
+        
+    
         
         
     });
+    */   
 }
 
 var getUrlParameter = function getUrlParameter(sParam) {

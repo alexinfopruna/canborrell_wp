@@ -244,7 +244,7 @@ class Gestor_form extends gestor_reserves {
 
     $CONTROLA_ARTICLES_ACTIUS = "";
 
-    $query = "select `carta_plats_id`,`carta_plats_nom_es`,`carta_plats_nom_ca`,`carta_plats_preu`,carta_subfamilia.carta_subfamilia_id AS subfamilia_id,`carta_subfamilia_nom_$lng`, comanda_client.comanda_plat_quantitat 
+    $query = "select `carta_plats_id`,`carta_plats_nom_es`,`carta_plats_nom_en`,`carta_plats_nom_ca`,`carta_plats_preu`,carta_subfamilia.carta_subfamilia_id AS subfamilia_id,`carta_subfamilia_nom_$lng`, comanda_client.comanda_plat_quantitat 
 FROM carta_plats 
 LEFT JOIN carta_publicat ON carta_plats_id=carta_publicat_plat_id
 LEFT JOIN carta_subfamilia ON carta_subfamilia.carta_subfamilia_id=carta_plats_subfamilia_id
@@ -854,10 +854,12 @@ FROM client
     if ($this->recuperaReserva($mob, $idr)) {
       $perm = $_SESSION['permisos'];
       $_SESSION['permisos'] = Gestor::$PERMISOS; //LI DONO PERMISOS PER FER LA PERMUTA
+      
       $this->paperera_reserves($idr); //paperera
       $_SESSION['permisos'] = $perm;
 
       //ENVIA MAIL
+      $_POST['id_reserva'] = $idr;
       $extres['subject'] = "Can-Borrell: RESERVA CANCELADA " . $_POST['id_reserva'];
       $mail = $this->enviaMail($idr, "cancelada_", FALSE, $extres);
 

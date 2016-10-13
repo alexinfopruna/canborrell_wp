@@ -167,7 +167,7 @@ class Gestor {
 
     $sessuser = $_SESSION['uSer'];
 
-
+    if (!property_exists ( $sessuser , 'id' )) return FALSE;
     $c = $sessuser->id;
     
     if (!isset($_COOKIE['tok']))

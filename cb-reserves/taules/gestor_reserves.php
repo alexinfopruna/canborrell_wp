@@ -2508,8 +2508,8 @@ ORDER BY `estat_hores_data` DESC";
 //return "ENVIAMENT MAIL DESACTIVAT";
     }
 
-    require_once("../editar/mailer.php");
-    require_once(INC_FILE_PATH . "template.inc");
+    require_once(ROOT."../editar/mailer.php");
+    require_once(ROOT . INC_FILE_PATH . "template.inc");
 
     $taula = (floor($idr) > SEPARADOR_ID_RESERVES) ? T_RESERVES : 'reserves';
     $query = "SELECT * FROM $taula
@@ -2529,7 +2529,7 @@ ORDER BY `estat_hores_data` DESC";
 //Gestor::printr($row);
     $avui = date("d/m/Y");
     $ara = date("H:i");
-    $file = $plantilla . $this->lng . ".lbi";
+    $file = ROOT.$plantilla . $this->lng . ".lbi";
     $t = new Template('.', 'comment');
     if (is_array($extres)) {
       foreach ($row as $k => $v) {
@@ -2537,7 +2537,6 @@ ORDER BY `estat_hores_data` DESC";
       }
     }
     $t->set_file("page", $file);
-
     $t->set_var('avui', date("l d M Y"));
     $t->set_var('id_reserva', $idr);
     $t->set_var('data', $row['data']);

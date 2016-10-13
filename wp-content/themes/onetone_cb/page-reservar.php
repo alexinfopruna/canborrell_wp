@@ -69,11 +69,12 @@ $paga_i_senyal = $PERSONES_GRUP >= persones_paga_i_senyal;
 //ELIMINA RESERVA 
 if (isset($_POST['cancel_reserva']) && $_POST['cancel_reserva'] == "Eliminar reserva" && $_POST['idr'] > SEPARADOR_ID_RESERVES) {
   if ($gestorf->cancelReserva($_POST['mob'], $_POST['idr'])) {
-    l("RESERVA_CANCELADA");
+    $message=__("Your reservation is now cancelled",'canborrell');
     $_REQUEST['idr'] = $_POST['idr'] = null;
   }
   else {
-    l("ERROR_CANCEL_RESERVA");
+   //$message=__("ERROR: No s'ha pogut cancel·lar la reserva per problemes tècnics. <a href='mailto:restaurant@can-borrell.com'>Contacta amb el restaurant</a>",'canborrell');
+   $message=__("ERROR: Unfortunatelly the system has been unable to cancel you reservation due to tecnical troubles.<br> Please, contact us at:<a href='mailto:restaurant@can-borrell.com'> restaurant@can-borrell.com</a> ",'canborrell');
     $_REQUEST['idr'] = $_POST['idr'] = null;
   }
 }
@@ -87,11 +88,12 @@ $g=$gestor;
 //RECUPERA RESERVA UPDATE
 if (isset($_REQUEST['rid']))  {
   $decode=  base64_decode($_REQUEST['rid']);
-  
+  //print_r($decode);
   $st=explode('&',$decode);
   $_REQUEST['idr']=$_POST['idr']=$st[0];
   //$_POST['email']=$st[1];
   $_REQUEST['mob']=$_POST['mob']=$st[1];
+ // $_REQUEST['lang']=$_POST['lang']=  $_GET['lang'] =$st[2];
   
   if (isset($_POST['idr']) && $_POST['idr'] > SEPARADOR_ID_RESERVES) { //si es reserva de grups
     $row = $gestorf->recuperaReserva($_POST['mob'], $_POST['idr']);
@@ -141,6 +143,7 @@ $EDITA_RESERVA = $_POST['idr'];
 add_action('wp_enqueue_scripts', 'reservar_enqueue_styles');
 
 function reservar_enqueue_styles() {
+  global $lang;
   ?>
   <link href='https://fonts.googleapis.com/css?family=Raleway:400,300,700,300italic' rel='stylesheet' type='text/css'>
 
@@ -152,9 +155,7 @@ function reservar_enqueue_styles() {
   <link type="text/css" href="/cb-reserves/reservar/css/glyphicons.css" rel="stylesheet" />
   <link rel="stylesheet" href="/wp-content/plugins/magee-shortcodes/assets/bootstrap/css/bootstrap.min.css"> 
   <?php echo Gestor::loadJQuery(); ?>
-  <script type="text/javascript" src="/cb-reserves/taules/js/ui/dev/ui/i18n/jquery.ui.datepicker-ca.js"></script>
-  <script type="text/javascript" src="/cb-reserves/taules/js/ui/dev/ui/i18n/jquery.ui.datepicker-es.js"></script>
-  <script type="text/javascript" src="/cb-reserves/taules/js/ui/dev/ui/i18n/jquery.ui.datepicker-en.js"></script>
+  <script type="text/javascript" src="/cb-reserves/taules/js/ui/dev/ui/i18n/jquery.ui.datepicker-<?php echo $lang; ?>.js"></script>
   <script type="text/javascript" src="/cb-reserves/taules/js/jquery.metadata.js"></script>
   <script type="text/javascript" src="/cb-reserves/taules/js/jquery.validate.min.js"></script>
   <script type="text/javascript" src="/cb-reserves/taules/js/jquery.timers.js"></script>
@@ -175,10 +176,21 @@ function reservar_enqueue_styles() {
           .row{margin:0}
       }
 
-      .titol{display:flex}
+      .titol{display:flex;
+      margin-right: 35px;
+      
+      }
 
-
-      .anima-avis .tanca-avis{display:inline}
+.anima-avis{
+position:fixed;
+          top:50px;
+          left:50%;
+          margin-left:-300px;
+          width:600px;
+}
+      .anima-avis .tanca-avis{
+         
+          display:inline}
       .tanca-avis{display:none;}
 
       #avis-modificacions.anima-avis{
@@ -195,7 +207,8 @@ function reservar_enqueue_styles() {
       }
       .dspnn{display:none;}
       #avis-modificacions{
-          position:relative;
+          
+        //  position:relative;
           font-size: 14px;
           color:#570600;
           background-color: white;
@@ -250,17 +263,23 @@ function reservar_enqueue_styles() {
   <script type="text/javascript" src="/cb-reserves/reservar/js/popups_ajuda.js"></script>
 
   <script>
+    
+    
   <?php
   
   global $row;
   global $gestorf;
+  
   print "\nvar IDR='" . $row['id_reserva'] . "';";
 print "var RDATA;";
-if (!empty($row['data']))
-  print "\nRDATA='" . $gestorf->cambiaf_a_normal($row['data']) . "';";
+if (!empty($row['data']))  print "\nRDATA='" . $gestorf->cambiaf_a_normal($row['data']) . "';";
+print "\nvar HORA='" . $row['hora'] . "';";
+
+if (isset($_GET['rdata']))  print "\nRDATA='" . $_GET['rdata'] . "';";
+//print "\nRDATA='2016-10-25';";
 print "\nvar HORA='" . $row['hora'] . "';";
   ?>
-
+ 
   </script>
 
   <?php
@@ -316,6 +335,7 @@ if ($padding_bottom)
                       <?php 
                       
                       $original_ID = icl_object_id( 1154, 'any', false, $lang );
+                      
                       $original_title = get_the_title( $original_ID );
                       echo $original_title;
                       //the_title(); ?>
@@ -324,7 +344,9 @@ if ($padding_bottom)
               <div class="clearfix"></div>
           </div>
       </section>
+    
     <?php endif; ?>
+
     <div class="post-wrap">
         <div class="<?php echo $container; ?>">
             <div class="post-inner row <?php echo $aside; ?>" style=" <?php echo $container_css; ?>">
@@ -397,6 +419,11 @@ if ($padding_bottom)
                                                     include("cb-reserves/reservar/form_contactar.php");
                                                    * 
                                                    */
+                                                  
+                                                  if (isset($message)){
+                                                    echo '<div class="alert alert-info"><i class="fa fa-info-circle" style="font-size:28px;color:#31708f;"></i> '.$message.'</div>';
+                                                  }
+                                                  
                                                   ?>
 
 
@@ -409,13 +436,10 @@ if ($padding_bottom)
 
 
                                                         echo '<a href="info_reserves.html" id="info_reserves"><img src="/cb-reserves/reservar/css/info.png" title="' . l("Informació de reserves", false) . '" style="width:16px;height:auto;margin-left:8px"/></a>';
-                                                        echo '<form id="fdelete" name="form1" method="POST" action="' . $_SERVER['PHP_SELF'] . '">
-	<input type="hidden" name="mob" value="' . $_REQUEST['mob'] . '"/>
-	<input type="hidden" name="idr" value="' . $_REQUEST['idr'] . '"/>
-	<input type="submit" id="cancel_reserva" name="cancel_reserva" value="Eliminar reserva" />
-	</form>';
+                                                       
                                                       }
                                                       else {
+                                                        
                                                         l('Sol·licitud de reserva');
                                                         echo '<a href="info_reserves.html" id="info_reserves"><img src="/cb-reserves/reservar/css/info.png" title="' . l("Informació de reserves", false) . '" style="width:16px;height:auto;margin-left:8px"/></a>';
                                                       }
@@ -877,8 +901,24 @@ if ($padding_bottom)
                 </div>
                                 <?php if ($sidebar == 'left' || $sidebar == 'both'): ?>
                   <div class="col-aside-left">
-                      <aside class="blog-side left text-left">
-                          <div class="widget-area">
+                      <aside class="blog-side left text-left" style="padding-top:70px;">
+                          
+                          <?php
+                          if($EDITA_RESERVA){
+                            
+                          $eliminar=l("Cancel·lar reserva", FALSE); 
+                          echo '<form id="fdelete" name="form1" method="POST" action="/reservar/realitzar-reserva/?lang='.$lang.'">
+	<input type="hidden" name="mob" value="' . $_REQUEST['mob'] . '"/>
+	<input type="hidden" name="idr" value="' . $_REQUEST['idr'] . '"/>
+	<button type="submit" id="cancel_reserva" name="cancel_reserva" value="Eliminar reserva" class="btn btn-danger" style="font-size:16px;color:white"><i class="fa fa-trash " style="font-size:24px;color:white"></i> '.$eliminar.'</button>
+	</form>';
+                            
+                          }else {
+                            $prefix=($lang!='ca')?"/$lang":'';?>
+                              <a href="<?php echo $prefix?>/reservar/localitza-reserva/?a=edit" class="btn btn-success" >     <?php l('Edita una reserva existent');  ?></a>
+                          <?php } ?>
+                              
+                              <div class="widget-area">
   <?php get_sidebar('pageleft'); ?>
                           </div>
                       </aside>

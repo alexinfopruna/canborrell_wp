@@ -274,7 +274,9 @@ $translate["resposta"] = "answer";
 $translate["Data límit per efectuar el pagament"] = "Last date for making payment";
 $translate["menu"] = "menu";
 $translate["cdata_reserva"] = "date";
-
+$translate["Edita una reserva existent"] = "Edit an existing reservation";
+$translate["Cancel·lar reserva"] = "Cancel reservation";
+$translate["RESERVA_CANCELADA"] = "Your reservation is canceled";
 
 
 /* * **************************** SMS ************************************* */
@@ -295,6 +297,7 @@ $translate["Restaurant Can Borrell, reserva MODIFICADA: L'esperem el %s a les %s
 
 $translateJS['HOLA'] = "hole";
 $translateJS['Ho semtim.\n\nNo podem reservar per la data que ens demanes'] = "We’re sorry, we can’t make a reservation for the date shown.";
+$translateJS["Segur que vols eliminar la teva reserva?"]="Cancel reservation. Are you sure?";
 
 
 // $translateJS passa per html htmlentities

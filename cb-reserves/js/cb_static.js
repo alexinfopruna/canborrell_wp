@@ -5,12 +5,9 @@
  */
 (function($){
 $(function() {
-    //$( "#top-datepicker" ).datepicker();
-    monta_calendari(".top-datepicker");
-    //$( "#datepicker" ).datepicker();
-    monta_calendari("#datepicker");
     
-    //$( "document" ).tooltip();
+    monta_calendari(".top-datepicker");
+    monta_calendari("#datepicker");
     
     $(window).on('resize', function(){
         jQuery("#container").css("margin-top",jQuery(".navbar-header").height());
@@ -19,42 +16,24 @@ $(function() {
     $('[data-toggle="offcanvas"]').click(function () {
         $('.row-offcanvas').toggleClass('active')
   });
-/*  
-  $(".gmaps").fancybox({
-                type : 'iframe',
-		//maxWidth	: 300,
-		//maxHeight	: 290,
-		fitToView	: true,
-		//width		: '70%',
-		//height		: '70%',
-		autoSize	: true,
-		//closeClick	: false,
-		openEffect	: 'none',
-		closeEffect	: 'none'
-	});
-  $(".dins").fancybox({
-                type : 'iframe',
-		//maxWidth	: 300,
-		//maxHeight	: 290,
-		fitToView	: true,
-		//width		: '70%',
-		//height		: '70%',
-		autoSize	: true,
-		//closeClick	: false,
-		openEffect	: 'none',
-		closeEffect	: 'none'
-	});
-*/
+
+      $('#datepicker').datepicker( "option", "dateFormat", "mm-dd-yy" );
         $('#datepicker').datepicker( 'option' , 'onSelect', function (date) { // 'onSelect' here, but could be any datepicker event
-            window.location.href = "/reservar/reserva-grup/?lang="+lang+"&rdata="+date;
+            window.location.href = "/reservar/realitzar-reserva/?lang="+lang+"&rdata="+date;
 });
+     // $('#top-datepicker').datepicker( "option", "dateFormat", "mm-dd-yy" );
+      /**/
+        $('#top-datepicker').datepicker( 'option' , 'onSelect', function (date) { // 'onSelect' here, but could be any datepicker event
+            window.location.href = "/reservar/realitzar-reserva/?lang="+lang+"&rdata="+date;
+    
+        });
+    
 });
 
 
 
 function monta_calendari(selector)
 {
-    //var limit_passat=(arxiu=="del" || historic)?-10000:0;
     limit_passat = MARGE_DIES_RESERVA_ONLINE;
 
     if (!MARGE_DIES_RESERVA_ONLINE)
@@ -65,8 +44,6 @@ function monta_calendari(selector)
         var entraAvui = (hours < MAX_HORA_RESERVA_ONLINE) ? 0 : 1;
         limit_passat = entraAvui;
     }
-
-
 
     var defData = null;
     if (RDATA != "")
@@ -94,8 +71,7 @@ function monta_calendari(selector)
             }
             return r;
         },
-         
-        defaultDate: defData,
+         dateFormat:'mm-dd-yy',
         minDate: limit_passat
     });
 

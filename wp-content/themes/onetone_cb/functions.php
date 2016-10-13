@@ -173,25 +173,38 @@ function special_nav_class($classes, $item){
     die();
   */
    
+    if (ICL_LANGUAGE_CODE!='ca'){
+    $lid = icl_object_id(get_the_ID(), 'any', false,'ca');
+      $cat_post = get_post($lid);
+      
+      if (!is_object($cat_post) || !isset( $cat_post->post_name)) return $classes;
+      $cat_slug= $cat_post->post_name;
+    }else{
+       if (!is_object($post) || !isset( $post->post_name)) return $classes;
+      $cat_slug=$post->post_name;
+    }
+     
     
-    if (isset($post_meta ["_wp_page_template"]) && $post_meta ["_wp_page_template"][0] == 'page_historia_template.php' && $item->title == "Història"){
+    if (isset($post_meta ["_wp_page_template"]) && $post_meta ["_wp_page_template"][0] == 'page_historia_template.php' && $item->menu_order==3){
        $classes[] = "current";
     }
-    if (isset($post_meta ["_wp_page_template"]) && $post_meta ["_wp_page_template"][0] == 'page_excursions_template.php' && $item->title == "Excursions"){
+    if (isset($post_meta ["_wp_page_template"]) && $post_meta ["_wp_page_template"][0] == 'page_excursions_template.php' && $item->menu_order==4){
+      
+      
+      $classes[] = "current";
+    }
+    if (isset($post->post_type) && $post->post_type == 'menus' && $item->menu_order==1){
        $classes[] = "current";
     }
-    if (isset($post->post_type) && $post->post_type == 'menus' && $item->title == "Carta-Menu"){
-       $classes[] = "current";
-    }
-    if (isset($post_slug) && $post_slug == 'premsa' && $item->title == "Premsa"){
+    if ($cat_slug=='premsa'  && $item->menu_order==5){
        $classes[] = "current";
     }
   
-    if (isset($post_slug) && $post_slug == 'horari-general-de-cuina' && $item->title == "Horaris"){
+    if ($cat_slug=='horari-general-de-cuina' && $item->menu_order==2){
        $classes[] = "current";
     }
     
-    if (substr($current_rel_uri, 0,9) == '/reservar'  && $item->title == "Reservar"){
+    if (substr($current_rel_uri, 0,9) == '/reservar'  && $item->menu_order==6){
       $classes[] = "current";
     }
   /*

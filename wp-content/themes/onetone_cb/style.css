@@ -117,7 +117,7 @@ h6.infantil{font-size:13px;}
 */
 #calendari-header {
     position: absolute;
-    top: -10px;
+    top: 3px;
     right: 110px;
     z-index: 99;
 
@@ -127,6 +127,18 @@ h6.infantil{font-size:13px;}
      margin-top: 0px; 
 }
 */
+
+#top-datepicker{
+    background-color:      #5CB85C;
+    border: #005A00;
+color:white;
+}
+
+#top-datepicker::-webkit-input-placeholder{color:white;}
+#top-datepicker::-moz-placeholder{color:white;}
+#top-datepicker:-ms-input-placeholder{color:white;}
+#top-datepicker:-moz-placeholder{color:white;}
+
 @media (max-width: 768px){
     #calendari-header {
         top:-19px;
@@ -135,7 +147,6 @@ h6.infantil{font-size:13px;}
     }
     #calendari-header #top-datepicker{
         display:none;
-
     }
 }
 @media (max-width: 605px){
@@ -272,7 +283,7 @@ section.title-left{background-color: #eee;}
 }
 
 
-.single-menus ul,
+.single-menus .post-main ul,
 .tab-pane ul{
     padding-top: 35px;
 }
@@ -416,6 +427,24 @@ h3.entry-title{
     margin-bottom: 0px;
 }
 
+#carta-seccions li{
+    background:white;
+}
+
+.ui-dialog .ui-dialog-titlebar-close span {
+    margin: -8px -8px;
+    /* margin: inherit; */
+}
+
+ a.bt:focus{color:white;}
+
+
+.d-mes, .d-menys {
+    height: inherit;
+    /* height: 18px; */
+    background-color: #F1F1F1;
+    background-image:   none;
+}
 
 ul.carta{margin-top:25px;margin-bottom:25px;}
 ul.carta li, .menu-content li{
@@ -1058,6 +1087,12 @@ section.home-section-6 .row p {
 /************  FORM RESERVES  ******************/
 /***********************************************/
 /***********************************************/
+#form-reserves .fa{font-size:24px;}
+#form-reserves h2.titol{
+    
+margin-right: 35px;
+}
+
 #form-reserves a.ui-button:hover{
     color:white;
 }

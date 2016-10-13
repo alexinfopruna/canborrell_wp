@@ -125,7 +125,8 @@ require(ROOT.'../reservar/translate_grups_' . $gestor->lng . '.php');
 /* * *********************************************************** */
 
 function reservar_enqueue_styles() {
-  
+    global $lang;
+
 
 ?>
         <link type="text/css" href="/cb-reserves/taules/css/blitzer/jquery-ui-1.8.9.custom.css" rel="stylesheet" />	
@@ -139,9 +140,7 @@ function reservar_enqueue_styles() {
         <link type="text/css" href="/cb-reserves/reservar/css/glyphicons.css" rel="stylesheet" />
         <?php echo Gestor::loadJQuery(); ?>
 
-        <script type="text/javascript" src="/cb-reserves/taules/js/ui/dev/ui/i18n/jquery.ui.datepicker-ca.js"></script>
-        <script type="text/javascript" src="/cb-reserves/taules/js/ui/dev/ui/i18n/jquery.ui.datepicker-es.js"></script>
-        <script type="text/javascript" src="/cb-reserves/taules/js/ui/dev/ui/i18n/jquery.ui.datepicker-en.js"></script>
+  <script type="text/javascript" src="/cb-reserves/taules/js/ui/dev/ui/i18n/jquery.ui.datepicker-<?php echo $lang; ?>.js"></script>
         <script type="text/javascript" src="/cb-reserves/taules/js/jquery.metadata.js"></script>
         <script type="text/javascript" src="/cb-reserves/taules/js/jquery.validate.min.js"></script>
         <script type="text/javascript" src="/cb-reserves/taules/js/jquery.timers.js"></script>

@@ -76,12 +76,12 @@ class calendari_reserves extends WP_Widget {
      <form class = "navbar-form navbar-right" action = "/reservar/realitzar-reserva/">
     <div class = "form-group">
     <input type = "hidden" name = "lang" class = "" value="$lang">
-    <input type = "text" name = "rdata" placeholder = "$data" id = "top-datepicker" class = "form-control top-datepicker">
+    <input type = "text" name = "rdata" placeholder = "$data" id = "top-datepicker" class = "form-control ctop-datepicker">
     <button type = "submit" class = "btn btn-success">$reservar</button>
     </div>
       </form>
 HEREDOC;
-
+$html=""; // NO FUNCIONA!!!
       echo $args['before_widget'] . $html . $args['after_widget'];
     }
   }

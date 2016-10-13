@@ -1,6 +1,6 @@
 <?php
 /*
-  Template Name: Input reserva
+  Template Name: Input pagament
  */
 
 $result="";

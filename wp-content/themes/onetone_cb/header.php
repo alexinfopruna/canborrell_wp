@@ -5,12 +5,12 @@
         <meta name="viewport" content="width=device-width">
         <link rel="profile" href="http://gmpg.org/xfn/11">
         <link rel="pingback" href="<?php bloginfo('pingback_url'); ?>">
-        
-       <link href="https://fonts.googleapis.com/css?family=Poppins" rel="stylesheet">
-       <style>
+
+        <link href="https://fonts.googleapis.com/css?family=Poppins" rel="stylesheet">
+        <style>
 
 
-       </style>
+        </style>
         <!--[if lt IE 9]>
         <script src="<?php echo esc_url(get_template_directory_uri() . '/js/html5.js'); ?>"></script>
         <![endif]-->
@@ -57,6 +57,11 @@
       $body_class = 'page homepage';
 
     $header_image = get_header_image();
+
+    $data = __('Make a resevation', 'canborrell');
+    $reservar = __('Reservation', 'canborrell');
+    $top_datepicker = ' <input type = "text" name = "rdata" placeholder = "' . $data . '" id = "top-datepicker" class = "form-control top-datepicker ">';
+//fa-calendar-plus-o
     ?>
     <body <?php body_class($body_class); ?>>
         <div class="wrapper">
@@ -71,6 +76,7 @@
                         <?php
                         if (is_active_sidebar("header_widget_1")) {
                           dynamic_sidebar("header_widget_1");
+                          echo $top_datepicker;
                         }
                         ?>
                     </div>
@@ -94,16 +100,20 @@
 
                     <div class="main-header <?php echo $header_background_parallax; ?>">
                         <div class="container">
-                             <div id="calendari-header">
-                          <?php
-                          if (is_active_sidebar("header_widget_1")) {
-                            dynamic_sidebar("header_widget_1");
-                          }
-                          ?>
-                      </div>
-                            
-                            
-                            <?php  language_selector_flags(); ?>
+                            <div id="calendari-header">
+                                <?php
+                                if (is_active_sidebar("header_widget_1")) {
+                                  dynamic_sidebar("header_widget_1");
+                                  echo $top_datepicker;
+                                  ?>
+
+                                  <?php
+                                }
+                                ?>
+                            </div>
+
+
+                            <?php language_selector_flags(); ?>
                             <div class="logo-box">
                                 <?php if ($logo): ?>
 
@@ -156,22 +166,22 @@
 
                                 $onepage_menu = '';
                                 $sections_num = 15;
-/***********************************************************************************/
+                                /*                                 * ******************************************************************************** */
                                 // CANVI IDIOMA. APLICA IDIOMA DE SESSIO
                                 global $sitepress;
-                                $meta_options['en']='onetone_cb';
-                                $meta_options['es']='onetone_cb_es';
-                                $meta_options['ca']='onetone_cb_ca';
-                                
+                                $meta_options['en'] = 'onetone_cb';
+                                $meta_options['es'] = 'onetone_cb_es';
+                                $meta_options['ca'] = 'onetone_cb_ca';
+
                                 $lang = $sitepress->get_current_language();
                                 global $onetone_options;
                                 $onetone_options = get_option($meta_options[$lang]);
-/***********************************************************************************/                                
+                                /*                                 * ******************************************************************************** */
                                 for ($i = 0; $i < $sections_num; $i++) {
 
                                   $section_menu = onetone_option('menu_title_' . $i, isset($default_options['menu_title_' . $i]) ? $default_options['menu_title_' . $i] : '');
                                   //echo $section_menu;die();
-                                  
+
                                   $section_slug = onetone_option('menu_slug_' . $i, isset($default_options['menu_slug_' . $i]) ? $default_options['menu_slug_' . $i] : '' );
                                   if ($section_slug)
                                     $section_slug = sanitize_title($section_slug);
@@ -183,21 +193,22 @@
                                     if (trim($section_slug) != "") {
                                       $sanitize_title = $section_slug;
                                     }
-                                    
-                                    
-                                    
-                                    $prefix="/".$lang."/";
-                                    if ($lang == 'ca') $prefix="/";
-                                    $onepage_menu .= '<li  class="onetone-menuitem"><a id="onetone-' . $sanitize_title . '" href="'.$prefix.'#' . $sanitize_title . '" >
+
+
+
+                                    $prefix = "/" . $lang . "/";
+                                    if ($lang == 'ca')
+                                      $prefix = "/";
+                                    $onepage_menu .= '<li  class="onetone-menuitem"><a id="onetone-' . $sanitize_title . '" href="' . $prefix . '#' . $sanitize_title . '" >
 							 <span>' . $section_menu . '</span></a></li>';
                                   }
                                 }
-/*
-                                $onepage_menu = '<li class="onetone-menuitem"><a id="onetone-home" href="/en/#home"><span>Home</span></a></li>
+                                /*
+                                  $onepage_menu = '<li class="onetone-menuitem"><a id="onetone-home" href="/en/#home"><span>Home</span></a></li>
                                   <li class="onetone-menuitem"><a id="onetone-services" href="/en/#services"><span>Services</span></a></li>
                                   <li class="onetone-menuitem"><a id="onetone-gallery" href="/en/#gallery"><span>Pictures</span></a></li>
                                   <li class="onetone-menuitem"><a id="onetone-about" href="/en/#about"><span>Where</span></a></li>';
-                                */
+                                 */
                                 if (has_nav_menu("home_menu")) {
                                   wp_nav_menu(array('theme_location' => 'home_menu', 'depth' => 0, 'fallback_cb' => false, 'container' => '', 'container_class' => 'main-menu', 'menu_id' => 'menu-main', 'menu_class' => 'main-nav', 'link_before' => '<span>', 'link_after' => '</span>', 'items_wrap' => '<ul id="%1$s" class="%2$s">' . $onepage_menu . '%3$s</ul>'));
                                 }
@@ -209,24 +220,25 @@
                     </div>
 
                     <?php if ($enable_sticky_header == 'yes'): ?>
-                      <?php if (!$detect->isTablet() || ( $detect->isTablet() && $enable_sticky_header_tablets == 'yes' ) || ( $detect->isMobile() && !$detect->isTablet() && $enable_sticky_header_mobiles == 'yes' )): ?>
+  <?php if (!$detect->isTablet() || ( $detect->isTablet() && $enable_sticky_header_tablets == 'yes' ) || ( $detect->isMobile() && !$detect->isTablet() && $enable_sticky_header_mobiles == 'yes' )): ?>
 
                         <div class="fxd-header">
                             <div class="container">
-                                  <div id="calendari-header">
-                          <?php
-                          if (is_active_sidebar("header_widget_1")) {
-                            dynamic_sidebar("header_widget_1");
-                          }
-                          ?>
-                      </div>
-                            
-                            
-                            <?php  language_selector_flags(); ?>
-                                
-                                
+                                <div id="calendari-header">
+                                    <?php
+                                    if (is_active_sidebar("header_widget_1")) {
+                                      dynamic_sidebar("header_widget_1");
+                                     echo $top_datepicker;
+                                    }
+                                    ?>
+                                </div>
+
+
+    <?php language_selector_flags(); ?>
+
+
                                 <div class="logo-box">
-                                    <?php if ($sticky_logo): ?>
+    <?php if ($sticky_logo): ?>
                                       <a href="<?php echo esc_url(home_url('/')); ?>"><img class="site-logo normal_logo" src="<?php echo esc_url($sticky_logo); ?>"></a>
 
                                       <?php
@@ -239,7 +251,7 @@
                                         <a href="<?php echo esc_url(home_url('/')); ?>"><img src="<?php echo $sticky_logo_retina; ?>" alt="<?php bloginfo('name'); ?>" style="width:<?php echo onetone_option('sticky_logo_width_for_retina_logo') . $pixels; ?>;max-height:<?php echo onetone_option('sticky_logo_height_for_retina_logo') . $pixels; ?>; height: auto !important" class="site-logo retina_logo" /></a>
                                       <?php endif; ?>
 
-                                    <?php endif ?>
+    <?php endif ?>
                                     <div class="name-box" style=" display:block;">
                                         <a href="<?php echo esc_url(home_url('/')); ?>"><h1 class="site-name"><?php bloginfo('name'); ?></h1></a>
                                         <span class="site-tagline"><?php bloginfo('description'); ?></span>
@@ -305,7 +317,7 @@
                         </div>
 
                       <?php endif; ?>
-                    <?php endif; ?>
+<?php endif; ?>
 
                 </header>
                 <div class="slider-wrap"></div>

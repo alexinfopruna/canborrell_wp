@@ -61,9 +61,15 @@ function reserves_bootstrap() {
 }
 
 function load_calendari_reserves() {
+  
   global $gestor;
   $gestor->lng = $lang = Gestor::getLanguage();
   $l = $gestor->lng;
+  
+   // wp_register_script('uii18', '//ajax.googleapis.com/ajax/libs/jqueryui/1.11.1/i18n/jquery-ui-i18n.min.js', array('jquery'), null, true);
+  //wp_enqueue_script('uii18')
+  
+  
   
   $PERSONES_GRUP = $gestor->configVars("persones_grup");
   echo $gestor->dumpJSVars();
@@ -98,15 +104,23 @@ function load_calendari_reserves() {
   print crea_llista_js($llista_dies_no_carta, "LLISTA_DIES_NO_CARTA");
   print "\n////////////3\n";
 
-  echo "\n          var RDATA;\n\n ";
+  echo "\n          if (typeof variable === 'undefined') var RDATA;\n\n ";
   echo "\n         </script>\n\n ";
 
   wp_enqueue_style('jqueryui', '/cb-reserves/css/jquery-ui.css');
 
-  wp_register_script('datepicker', '/cb-reserves' . '/taules/js/jquery-ui-1.10.3.custom/js/jquery-ui-1.10.3.custom.min.js', array('jquery'), null, true);
+  wp_register_script('datepicker', '/cb-reserves/taules/js/jquery-ui-1.10.3.custom/js/jquery-ui-1.10.3.custom.min.js', array('jquery'), null, true);
   wp_enqueue_script('datepicker');
-  wp_register_script('canborrell', '/cb-reserves' . '/js/cb_static.js', array('jquery'), null, true);
+
+      wp_register_script('lang_calend', '/cb-reserves/taules/js/ui/dev/ui/i18n/jquery.ui.datepicker-'.ICL_LANGUAGE_CODE.'.js', array('jquery'), null, true);
+  wp_enqueue_script('lang_calend');
+  
+    wp_register_script('canborrell', '/cb-reserves' . '/js/cb_static.js', array('jquery'), null, true);
   wp_enqueue_script('canborrell');
+
+
+  
+
 }
 
 /* * ************************************************************************** */

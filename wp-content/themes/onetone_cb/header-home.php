@@ -51,6 +51,11 @@
     if (is_home() || is_front_page())
       $body_class = 'page homepage';
     $header_image = get_header_image();
+    
+        $data = __('Make a resevation', 'canborrell');
+    $reservar = __('Reservation', 'canborrell');
+    $top_datepicker = ' <input type = "text" name = "rdata" placeholder = "' . $data . '" id = "top-datepicker" class = "form-control top-datepicker ">';
+
     ?>
     <body <?php body_class($body_class); ?>>
         <div class="wrapper">
@@ -79,11 +84,12 @@
                     <div class="main-header <?php echo $header_background_parallax; ?>">
                         <div class="container">
                             <div id="calendari-header">
-                          <?php
-                          if (is_active_sidebar("header_widget_1")) {
-                            dynamic_sidebar("header_widget_1");
-                          }
-                          ?>
+                                 <?php
+                                 if (is_active_sidebar("header_widget_1")) {
+                                   dynamic_sidebar("header_widget_1");
+                                    echo $top_datepicker;
+                                 }
+                                 ?>
                       </div>
                              <?php  language_selector_flags(); ?>
                             <div class="logo-box">
@@ -178,11 +184,12 @@
 
                           <div class="container">
                               <div id="calendari-header">
-                          <?php
-                          if (is_active_sidebar("header_widget_1")) {
-                            dynamic_sidebar("header_widget_1");
-                          }
-                          ?>
+                                 <?php
+                                 if (is_active_sidebar("header_widget_1")) {
+                                   dynamic_sidebar("header_widget_1");
+                                    echo $top_datepicker;
+                                 }
+                                 ?>
                       </div>
                               
                                <?php  language_selector_flags(); ?>
