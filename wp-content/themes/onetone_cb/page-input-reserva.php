@@ -6,7 +6,6 @@
 $result="";
 $rid="";
 $mobil="";
-
 if (isset($_POST['rid']) && isset($_POST['mobil'])){
   if (!defined('ROOT'))
   define('ROOT', "cb-reserves/taules/");
@@ -45,7 +44,7 @@ else{
   $b64=base64_encode($_POST['rid']."&".$_POST['mobil']."&".ICL_LANGUAGE_CODE);
   switch ($_POST['accio']) {
     case 'pay':
-      header('Location: /cb-reserves/editar/pagament256.php?id='.$_POST['rid'].'&lang='.ICL_LANGUAGE_CODE);
+      header('Location: /reservar/pagament/?rid='.$b64.'&lang='.ICL_LANGUAGE_CODE);
 exit();
       break;
 
@@ -77,8 +76,9 @@ exit();
 global $sitepress;
 $lang = $sitepress->get_current_language();
 if (!isset($_GET['a'])) {
-  header("Location: /reservar/realizar-reserva/?lang=" . $lang);
   $_GET['a'] = "edit";
+  //header("Location: /reservar/realizar-reserva/?lang=" . $lang);
+  
 }
 
 get_header();

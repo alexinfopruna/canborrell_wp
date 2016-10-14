@@ -1173,12 +1173,31 @@ label.ptpv:hover {
     /* background: #729419;
      background: #94A903;*/
 }
-
+/*
 .number{
     border-radius: 33px;
     width: 52px;
+    height: 52px;
+    max-width: 52px;
+    max-height: 52px;
     padding: 0 20px;
     text-align: center;
+}
+*/
+.number {
+    border-radius: 50%;
+    float:left;
+    width: 56px;
+    height: 56px;
+    padding: 8px;
+    margin-top: -10px;
+    margin-right: 15px;
+    background:#FFC000; //#005A00;
+    border: 2px solid #F3C000;
+    color: #fff;
+    text-align: center;
+    
+    font: 32px Arial, sans-serif;
 }
 
 .caixa{

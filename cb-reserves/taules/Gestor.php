@@ -913,7 +913,7 @@ class Gestor {
     // Valores de entrada del ejemplo de redsy
     //$fuc="999008881";$terminal="871";$moneda="978";$trans="0";//$url="";$urlMerchant="";$urlOKKO="";$urlKO="";$urlOK="";$id=time();$amount="145";
     // Se incluye la librería
-    include INC_FILE_PATH . 'API_PHP/redsysHMAC256_API_PHP_5.2.0/apiRedsys.php';
+    include ROOT.INC_FILE_PATH . 'API_PHP/redsysHMAC256_API_PHP_5.2.0/apiRedsys.php';
     // Se crea Objeto
     $miObj = new RedsysAPI;
     // Se Rellenan los campos
@@ -956,7 +956,8 @@ class Gestor {
               <div class="ds_input">Ds_Merchant_SignatureVersion <input type="text" name="Ds_SignatureVersion" value="' . $version . '"/></div>
               <div class="ds_input">Ds_Merchant_MerchantParameters <input type="text" name="Ds_MerchantParameters" value="' . $params . '"/></div>
               <div class="ds_input">Ds_Merchant_Signature <input type="text" name="Ds_Signature" value="' . $signature . '"/></div>
-              <input id="boto" type="submit" name="Submit" value="' . $this->l('Realizar Pago', false) . '" onclickxx="javascript:calc();" />
+              <!--<input id="boto" type="submit" name="Submit" value="' . $this->l('Realizar Pago', false) . '" onclickxx="javascript:calc();" />-->
+                <button id="boto" type="submit" name="Submit" value="' . $this->l('Realizar Pago', false) . '" class="btn btn-success">' . $this->l('Realizar Pago', false) . '</button>
 </form>';
 
     return $form;

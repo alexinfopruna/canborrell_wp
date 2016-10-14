@@ -180,15 +180,7 @@
 	.info-submit{margin-top:2px;width:450px;height:32px;float:left;}
 	input[name=totalComensals]{width:25px;color:red;font-weight:bold;border:none;}
 	
-	.number{
-	padding:3px 8px 3px 8px;
-	margin-right:15px;
-	color:white;
-	background:#996;
-	font-size:1.2em;
--moz-border-radius: 15px;
--webkit-border-radius: 15px;
-border-radius: 15px;	}
+
 
 .error{border:1px dotted red;	background:#fee;}
 em.error {
