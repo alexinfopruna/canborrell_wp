@@ -22,6 +22,7 @@ $(function() {
             window.location.href = "/reservar/realitzar-reserva/?lang="+lang+"&rdata="+date;
 });
       $('.top-datepicker').datepicker( "option", "dateFormat", "mm-dd-yy" );
+      $('#top-datepicker').datepicker( "option", "dateFormat", "mm-dd-yy" );
      
         $('#top-datepicker').datepicker( 'option' , 'onSelect', function (date) { // 'onSelect' here, but could be any datepicker event
             window.location.href = "/reservar/realitzar-reserva/?lang="+lang+"&rdata="+date;
