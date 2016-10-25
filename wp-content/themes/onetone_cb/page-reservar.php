@@ -1,10 +1,9 @@
 <?php
-if ($_SERVER['REQUEST_URI']=='/reservar/') {
+if ($_SERVER['REQUEST_URI'] == '/reservar/') {
   $newURL = '/reservar/realitzar-reserva';
-  header('Location: '.$newURL);
+  header('Location: ' . $newURL);
   exit();
 }
-
 /*
   Template Name: Reserves
  */
@@ -32,28 +31,29 @@ require_once(ROOT . INC_FILE_PATH . "llista_dies_taules.php");
 
 
 global $sitepress;
-                                $language_uri=substr($_SERVER['REQUEST_URI'], 0, 4);
-                                //echo $language_uri;die();
-                                if ( $language_uri == '/es/' || $language_uri == '/en/') {
-                                  $lang=substr($_SERVER['REQUEST_URI'], 1, 2);
-                                  $gestorf->idioma($lang);
-                                  //echo "Location: /reservar/realitzar-reserva/?lang=".$lang;
-                                  header("Location: /reservar/realitzar-reserva/?lang=".$lang);
-                                  exit();die();
-                                }
-                                else{
-                                  $lang = isset($_REQUEST['lang'])?$_REQUEST['lang']:'ca';
-                                  $gestorf->idioma($lang);
-                                }
-                               
+$language_uri = substr($_SERVER['REQUEST_URI'], 0, 4);
+//echo $language_uri;die();
+if ($language_uri == '/es/' || $language_uri == '/en/') {
+  $lang = substr($_SERVER['REQUEST_URI'], 1, 2);
+  $gestorf->idioma($lang);
+  //echo "Location: /reservar/realitzar-reserva/?lang=".$lang;
+  header("Location: /reservar/realitzar-reserva/?lang=" . $lang);
+  exit();
+  die();
+}
+else {
+  $lang = isset($_REQUEST['lang']) ? $_REQUEST['lang'] : 'ca';
+  $gestorf->idioma($lang);
+}
+
 
 $gestorf->lng = $lang = Gestor::getLanguage();
 $l = $gestorf->lng;
 
 
-/***********************************************************************************/
-                                $sitepress->switch_lang($lang);
-/***********************************************************************************/                     
+/* * ******************************************************************************** */
+$sitepress->switch_lang($lang);
+/* * ******************************************************************************** */
 
 
 //RECUPERA CONIG ANTIC
@@ -69,12 +69,12 @@ $paga_i_senyal = $PERSONES_GRUP >= persones_paga_i_senyal;
 //ELIMINA RESERVA 
 if (isset($_POST['cancel_reserva']) && $_POST['cancel_reserva'] == "Eliminar reserva" && $_POST['idr'] > SEPARADOR_ID_RESERVES) {
   if ($gestorf->cancelReserva($_POST['mob'], $_POST['idr'])) {
-    $message=__("Your reservation is now cancelled",'canborrell');
+    $message = __("Your reservation is now cancelled", 'canborrell');
     $_REQUEST['idr'] = $_POST['idr'] = null;
   }
   else {
-   //$message=__("ERROR: No s'ha pogut cancel·lar la reserva per problemes tècnics. <a href='mailto:restaurant@can-borrell.com'>Contacta amb el restaurant</a>",'canborrell');
-   $message=__("ERROR: Unfortunatelly the system has been unable to cancel you reservation due to tecnical troubles.<br> Please, contact us at:<a href='mailto:restaurant@can-borrell.com'> restaurant@can-borrell.com</a> ",'canborrell');
+    //$message=__("ERROR: No s'ha pogut cancel·lar la reserva per problemes tècnics. <a href='mailto:restaurant@can-borrell.com'>Contacta amb el restaurant</a>",'canborrell');
+    $message = __("ERROR: Unfortunatelly the system has been unable to cancel you reservation due to tecnical troubles.<br> Please, contact us at:<a href='mailto:restaurant@can-borrell.com'> restaurant@can-borrell.com</a> ", 'canborrell');
     $_REQUEST['idr'] = $_POST['idr'] = null;
   }
 }
@@ -82,22 +82,22 @@ if (isset($_POST['cancel_reserva']) && $_POST['cancel_reserva'] == "Eliminar res
 
 global $sitepress;
 $lang = $sitepress->get_current_language();
-require_once(ROOT.'../reservar/translate_' . $lang . '.php');
-$g=$gestor;
+require_once(ROOT . '../reservar/translate_' . $lang . '.php');
+$g = $gestor;
 /* * ****************************************************** */
 //RECUPERA RESERVA UPDATE
-if (isset($_REQUEST['rid']))  {
-  $decode=  base64_decode($_REQUEST['rid']);
+if (isset($_REQUEST['rid'])) {
+  $decode = base64_decode($_REQUEST['rid']);
   //print_r($decode);
-  $st=explode('&',$decode);
-  $_REQUEST['idr']=$_POST['idr']=$st[0];
+  $st = explode('&', $decode);
+  $_REQUEST['idr'] = $_POST['idr'] = $st[0];
   //$_POST['email']=$st[1];
-  $_REQUEST['mob']=$_POST['mob']=$st[1];
- // $_REQUEST['lang']=$_POST['lang']=  $_GET['lang'] =$st[2];
-  
+  $_REQUEST['mob'] = $_POST['mob'] = $st[1];
+  // $_REQUEST['lang']=$_POST['lang']=  $_GET['lang'] =$st[2];
+
   if (isset($_POST['idr']) && $_POST['idr'] > SEPARADOR_ID_RESERVES) { //si es reserva de grups
     $row = $gestorf->recuperaReserva($_POST['mob'], $_POST['idr']);
-    if (!$row ) {
+    if (!$row) {
       l("ERROR_LOAD_RESERVA");
       $_REQUEST['idr'] = $_POST['idr'] = null;
     }
@@ -177,19 +177,19 @@ function reservar_enqueue_styles() {
       }
 
       .titol{display:flex;
-      margin-right: 35px;
-      
+             margin-right: 35px;
+
       }
 
-.anima-avis{
-position:fixed;
+      .anima-avis{
+          position:fixed;
           top:50px;
           left:50%;
           margin-left:-300px;
           width:600px;
-}
+      }
       .anima-avis .tanca-avis{
-         
+
           display:inline}
       .tanca-avis{display:none;}
 
@@ -207,8 +207,8 @@ position:fixed;
       }
       .dspnn{display:none;}
       #avis-modificacions{
-          
-        //  position:relative;
+
+          //  position:relative;
           font-size: 14px;
           color:#570600;
           background-color: white;
@@ -248,7 +248,18 @@ position:fixed;
 
       #compra input[type=text], .ds_input {
           display: none;
-      }                 
+      } 
+
+      aside .btn{
+          display:block;
+          margin-top:20px;
+      }
+
+      @media (min-width: 992px){
+          .post-inner.left-aside   .col-main {
+              left: 0;
+          }
+      }
 
       <?php
       if (isset($paga_i_senyal) && !$paga_i_senyal)
@@ -263,23 +274,24 @@ position:fixed;
   <script type="text/javascript" src="/cb-reserves/reservar/js/popups_ajuda.js"></script>
 
   <script>
-    
-    
+
+
   <?php
-  
   global $row;
   global $gestorf;
-  
-  print "\nvar IDR='" . $row['id_reserva'] . "';";
-print "var RDATA;";
-if (!empty($row['data']))  print "\nRDATA='" . $gestorf->cambiaf_a_normal($row['data']) . "';";
-print "\nvar HORA='" . $row['hora'] . "';";
 
-if (isset($_GET['rdata']))  print "\nRDATA='" . $_GET['rdata'] . "';";
+  print "\nvar IDR='" . $row['id_reserva'] . "';";
+  print "var RDATA;";
+  if (!empty($row['data']))
+    print "\nRDATA='" . $gestorf->cambiaf_a_normal($row['data']) . "';";
+  print "\nvar HORA='" . $row['hora'] . "';";
+
+  if (isset($_GET['rdata']))
+    print "\nRDATA='" . $_GET['rdata'] . "';";
 //print "\nRDATA='2016-10-25';";
-print "\nvar HORA='" . $row['hora'] . "';";
+  print "\nvar HORA='" . $row['hora'] . "';";
   ?>
- 
+
   </script>
 
   <?php
@@ -287,10 +299,8 @@ print "\nvar HORA='" . $row['hora'] . "';";
   //wp_enqueue_style('reservar', '/cb-reserves/taules/css/blitzer/jquery-ui-1.8.9.forms.css');
 }
 
-
-
 get_header();
-$gestor=$g;
+$gestor = $g;
 
 $sidebar = isset($page_meta['page_layout']) ? $page_meta['page_layout'] : 'none';
 $left_sidebar = isset($page_meta['left_sidebar']) ? $page_meta['left_sidebar'] : '';
@@ -332,35 +342,64 @@ if ($padding_bottom)
               <?php onetone_get_breadcrumb(array("before" => "<div class=''>", "after" => "</div>", "show_browse" => false, "separator" => '', 'container' => 'div')); ?>
               <hgroup class="page-title">
                   <h1>
-                      <?php 
-                      
-                      $original_ID = icl_object_id( 1154, 'any', false, $lang );
-                      
-                      $original_title = get_the_title( $original_ID );
+                      <?php
+                      $original_ID = icl_object_id(1154, 'any', false, $lang);
+
+                      $original_title = get_the_title($original_ID);
                       echo $original_title;
-                      //the_title(); ?>
+                      //the_title(); 
+                      ?>
                   </h1>
               </hgroup>
               <div class="clearfix"></div>
           </div>
       </section>
-    
+
     <?php endif; ?>
+    <?php if ($sidebar == 'left' || $sidebar == 'both'): ?>
+      <div class="col-aside-left">
+          <aside class="blog-side left text-left" style="padding-top:70px;">
+
+              <?php
+              if ($EDITA_RESERVA) {
+
+                $eliminar = l("Cancel·lar reserva", FALSE);
+                echo '<form id="fdelete" name="form1" method="POST" action="/reservar/realitzar-reserva/?lang=' . $lang . '">
+	<input type="hidden" name="mob" value="' . $_REQUEST['mob'] . '"/>
+	<input type="hidden" name="idr" value="' . $_REQUEST['idr'] . '"/>
+	<button type="submit" id="cancel_reserva" name="cancel_reserva" value="Eliminar reserva" class="btn btn-danger" style="font-size:16px;color:white"><i class="fa fa-trash " style="font-size:24px;color:white"></i> ' . $eliminar . '</button>
+	</form>';
+              }
+              else {
+                $prefix = ($lang != 'ca') ? "/$lang" : '';
+                ?>
+                <a href="<?php echo $prefix ?>/reservar/localitza-reserva/?a=edit" class="btn btn-success" >     <?php l('Edita una reserva existent'); ?></a>
+
+
+                <a href="#" class="btn btn-warning  ecp-trigger" data-modal="modal" >     <?php l('Tens algun dubte?'); ?></a>
+  <?php } ?> 
+
+              <div class="widget-area">
+  <?php get_sidebar('pageleft'); ?>
+              </div>
+          </aside>
+      </div>
+<?php endif; ?>
 
     <div class="post-wrap">
         <div class="<?php echo $container; ?>">
             <div class="post-inner row <?php echo $aside; ?>" style=" <?php echo $container_css; ?>">
                 <div class="col-main">
                     <section class="post-main" role="main" id="content">
-                        <?php while (have_posts()) : the_post(); ?>
+                            <?php while (have_posts()) : the_post(); ?>
                           <article class="post type-post" id="">
-                              <?php if (has_post_thumbnail()): ?>
+  <?php if (has_post_thumbnail()): ?>
                                 <div class="feature-img-box">
                                     <div class="img-box">
-                                        <?php the_post_thumbnail(); ?>
+    <?php the_post_thumbnail(); ?>
                                     </div>
                                 </div>
-                              <?php endif; ?>
+  <?php endif; ?>
                               <div class="entry-main">
 
                                   <div class="entry-content reservar">
@@ -388,11 +427,11 @@ if ($padding_bottom)
                                                   <!-- ***************************************************************************************   -->
                                                   <?php
                                                   /*
-                                                  if ( !$EDITA_RESERVA)
+                                                    if ( !$EDITA_RESERVA)
                                                     include("cb-reserves/reservar/login.php");
-                                                  if ($EDITA_RESERVA && $EDITA_RESERVA < SEPARADOR_ID_RESERVES && !isset($_POST['incidencia_grups'])) {
+                                                    if ($EDITA_RESERVA && $EDITA_RESERVA < SEPARADOR_ID_RESERVES && !isset($_POST['incidencia_grups'])) {
                                                     include("cb-reserves/reservar/form_contactar_grups.php");
-                                                  }
+                                                    }
                                                    * 
                                                    */
                                                   ?>
@@ -402,28 +441,27 @@ if ($padding_bottom)
                                                   <!-- ***************************************************************************************   -->
                                                   <?php
                                                   /*
-                                                  if (isset($_POST['incidencia_grups'])) {
+                                                    if (isset($_POST['incidencia_grups'])) {
                                                     if (!$gestorf->contactar_grups($_POST))
-                                                      l("ERROR_CONTACTAR");
+                                                    l("ERROR_CONTACTAR");
                                                     else
-                                                      l("CONTACTAR_OK");
+                                                    l("CONTACTAR_OK");
 
                                                     //die();
-                                                  }elseif (isset($_POST['incidencia'])) {
+                                                    }elseif (isset($_POST['incidencia'])) {
                                                     if (!$gestorf->contactar($_POST))
-                                                      l("ERROR_CONTACTAR");
+                                                    l("ERROR_CONTACTAR");
                                                     else
-                                                      l("CONTACTAR_OK");
-                                                  }
-                                                  else
+                                                    l("CONTACTAR_OK");
+                                                    }
+                                                    else
                                                     include("cb-reserves/reservar/form_contactar.php");
                                                    * 
                                                    */
-                                                  
-                                                  if (isset($message)){
-                                                    echo '<div class="alert alert-info"><i class="fa fa-info-circle" style="font-size:28px;color:#31708f;"></i> '.$message.'</div>';
+
+                                                  if (isset($message)) {
+                                                    echo '<div class="alert alert-info"><i class="fa fa-info-circle" style="font-size:28px;color:#31708f;"></i> ' . $message . '</div>';
                                                   }
-                                                  
                                                   ?>
 
 
@@ -436,10 +474,9 @@ if ($padding_bottom)
 
 
                                                         echo '<a href="info_reserves.html" id="info_reserves"><img src="/cb-reserves/reservar/css/info.png" title="' . l("Informació de reserves", false) . '" style="width:16px;height:auto;margin-left:8px"/></a>';
-                                                       
                                                       }
                                                       else {
-                                                        
+
                                                         l('Sol·licitud de reserva');
                                                         echo '<a href="info_reserves.html" id="info_reserves"><img src="/cb-reserves/reservar/css/info.png" title="' . l("Informació de reserves", false) . '" style="width:16px;height:auto;margin-left:8px"/></a>';
                                                       }
@@ -460,20 +497,20 @@ if ($padding_bottom)
                                                           <!-- *******************************  QUANTS SOU ********************************************************   -->
                                                           <div class="fr-seccio ui-corner-all fr-seccio-quants" style="xxxmax-width:950px;">
 
-       <h1 class="titol"><span class="number">1</span><?php l('Quants sou?'); ?>
+                                                              <h1 class="titol"><span class="number">1</span><?php l('Quants sou?'); ?>
                                                                   <a href="#" id="info-quants" class="info-ico"><img src="/cb-reserves/reservar/css/info.png" title="<?php l('Ajuda'); ?>" style="width:16px;height:auto;margin-left:8px"/></a>
                                                               </h1>
-                                                              
-      
-        
 
 
-                                                             <h4  id="titol_SelectorComensals"><?php l('Adults (més de 14 anys)'); ?>:</h4>
+
+
+
+                                                              <h4  id="titol_SelectorComensals"><?php l('Adults (més de 14 anys)'); ?>:</h4>
 
 
                                                               <!-- ******  ADULTS  ********   -->
                                                               <div id="selectorComensals" class="fr-col-dere selector">
-                                                                  <input type="hidden" id="com" name="adults" value="<?php echo $row['adults'] ?>"  style="width:35px;font-size:1.2em;padding-left:0;padding-right:0" class="ui-button ui-widget ui-state-default ui-button-text-only coberts"/><label for="comGrupsN" ><?php //l('Més de ');//echo ($PERSONES_GRUP+14)   ?></label>	
+                                                                  <input type="hidden" id="com" name="adults" value="<?php echo $row['adults'] ?>"  style="width:35px;font-size:1.2em;padding-left:0;padding-right:0" class="ui-button ui-widget ui-state-default ui-button-text-only coberts"/><label for="comGrupsN" ><?php //l('Més de ');//echo ($PERSONES_GRUP+14)    ?></label>	
                                                                   <?php
                                                                   for ($i = 2; $i < $PERSONES_GRUP; $i++) {
                                                                     $chek = ($i == $row['adults'] ? 'checked="checked"' : '');
@@ -505,10 +542,12 @@ if ($padding_bottom)
 
 
                                                               <hr/>
-                                                              <div id="jnc" style="float:left">
+                                                               
+                                                              <div id="jnc" style="float:left; ">
                                                                   <!-- ******  JUNIOR  ********   -->
+                                                                  <?php /* 
                                                                   <h4  id="titol_SelectorJuniors"><?php l('Juniors (de 10 a 14 anys):'); ?></h4>
-                                                                  <input type="hidden" id="junior" name="nens10_14" value="<?php echo $row['nens10_14'] ?>"  style="width:35px;font-size:1.2em;padding-left:0;padding-right:0" class="ui-button ui-widget ui-state-default ui-button-text-only coberts"/><label for="comGrupsN" ><?php //l('Més de ');//echo ($PERSONES_GRUP+14)    ?></label>
+                                                                  <input type="hidden" id="junior" name="nens10_14" value="<?php echo $row['nens10_14'] ?>"  style="width:35px;font-size:1.2em;padding-left:0;padding-right:0" class="ui-button ui-widget ui-state-default ui-button-text-only coberts"/><label for="comGrupsN" ><?php //l('Més de ');//echo ($PERSONES_GRUP+14)     ?></label>
                                                                   <div id="selectorJuniors" class="col_dere">
                                                                       <?php
                                                                       for ($i = 0; $i <= $max_juniors; $i++) {
@@ -521,12 +560,12 @@ if ($padding_bottom)
                                                                       }
                                                                       ?>
                                                                   </div>
-
+                                                                  */ ?>
                                                                   <hr/>
                                                                   <!-- ******  NENS  ********   -->
-                                                                  <h4  id="titol_SelectorNens"><?php l('Nens (de 4 a 9 anys)'); ?>:</h4>
+                                                                  <h4  id="titol_SelectorNens"><?php l('Nens (fins a 14 anys)'); ?>:</h4>
                                                                   <div id="selectorNens" class="col_dere">
-                                                                      <input type="hidden" id="nens" name="nens4_9" value="<?php echo $row['nens4_9'] ?>"  style="width:35px;font-size:1.2em;padding-left:0;padding-right:0" class="ui-button ui-widget ui-state-default ui-button-text-only coberts"/><label for="comGrupsN" ><?php //l('Més de ');//echo ($PERSONES_GRUP+14)   ?></label>
+                                                                      <input type="hidden" id="nens" name="nens4_9" value="<?php echo $row['nens4_9'] ?>"  style="width:35px;font-size:1.2em;padding-left:0;padding-right:0" class="ui-button ui-widget ui-state-default ui-button-text-only coberts"/><label for="comGrupsN" ><?php //l('Més de ');//echo ($PERSONES_GRUP+14)    ?></label>
                                                                       <?php
                                                                       for ($i = 0; $i <= $max_nens; $i++) {
                                                                         //if (is_null($row['nens4_9'])) $row['nens10_14']=-1; 
@@ -587,7 +626,7 @@ if ($padding_bottom)
                                                               <div style="clear:both"></div>
 
                                                           </div>		
-     
+
                                                           <!-- *******************************  QUIN DIA ********************************************************   -->
                                                           <!-- *******************************  QUIN DIA ********************************************************   -->
                                                           <!-- *******************************  QUIN DIA ********************************************************   -->
@@ -634,12 +673,12 @@ if ($padding_bottom)
                                                               <div id="selectorHora" class="col_dere">
                                                                   <img src="/cb-reserves/reservar/css/loading.gif"/>
                                                               </div>
-                                                              <!-- ******  SOPAR  ********   -->
+                                                              <!-- ******  SOPAR  ********   
                                                               <h4><?php l('Sopar'); ?></h4>
                                                               <div id="selectorHoraSopar" class="col_dere" >
                                                                   <img src="/cb-reserves/reservar/css/loading.gif"/>
                                                               </div>
-
+-->
                                                               <input type="hidden" name="taulaT1" value="">
                                                               <input type="hidden" name="taulaT2" value="">
                                                               <input type="hidden" name="taulaT3" value="">
@@ -674,7 +713,7 @@ if ($padding_bottom)
                                                                               <td class="menysX"></td>
                                                                               <td class="Xborra"></td>
                                                                               <td class="carta-plat">
-                                                                                  <h3><?php //l("SELECCIÓ")    ?></h3>
+                                                                                  <h3><?php //l("SELECCIÓ")     ?></h3>
                                                                               </td>
                                                                               <td></td>
                                                                           </tr>
@@ -723,7 +762,9 @@ if ($padding_bottom)
                                                                           <div><label class="label" for="client_email">Email*</label><input type="email" name="client_email" value="<?php echo $row['client_email'] ?>"/></div>
                                                                           <div><label class="label" for="client_nom"><?php l('Nom'); ?>*</label><input type="text" name="client_nom" value="<?php echo $row['client_nom'] ?>"/></div>
                                                                           <div><label class="label" for="client_cognoms"><?php l('Cognoms'); ?>*</label><input type="text" name="client_cognoms" value="<?php echo $row['client_cognoms'] ?>"/></div>
-                                                                          <div><label class="label" for="client_id"><?php //l('Client_id');    ?></label><input type="hidden" name="client_id" value="<?php echo $row['client_id'] ?>"/></div>
+                                                                          <div><label class="label" for="client_id"><?php //l('Client_id');     ?></label><input type="hidden" name="client_id" value="<?php echo $row['client_id'] ?>"/></div>
+                                                                      
+                                                                          <!--
                                                                           <div class="ui-corner-all info-legal info-observacions  caixa">
                                                                               <?php l('NO_COBERTS_OBSERVACIONS'); ?>
                                                                           </div>
@@ -733,7 +774,7 @@ if ($padding_bottom)
                                                                                   <a href="#" id="info-observacions" class="info-ico"><img src="/cb-reserves/reservar/css/info.png" title="<?php l('Ajuda'); ?>" style="width:16px;height:auto;margin-left:8px"/></a>
                                                                               </label><textarea type="text" name="observacions"><?php echo $row['observacions'] ?></textarea>
                                                                           </div>
-
+-->
                                                                       </td></tr>
                                                                   <tr><td >
 
@@ -860,7 +901,7 @@ if ($padding_bottom)
                                                   </div>
 
                                                   <div id="reserves_info" class="ui-helper-hidden">
-                                                      <?php include(ROOT."/../reservar/reservesInfo_" . substr($lang, 0, 2) . ".html"); ?>
+                                                      <?php include(ROOT . "/../reservar/reservesInfo_" . substr($lang, 0, 2) . ".html"); ?>
                                                   </div>
                                               </div>
                                           </div> <!-- row -->
@@ -887,50 +928,25 @@ if ($padding_bottom)
                           <div class="post-attributes">
                               <!--Comments Area-->
                               <div class="comments-area text-left">
-                                      <?php
-                                      // If comments are open or we have at least one comment, load up the comment template
-                                      if (comments_open()) :
-                                        comments_template();
-                                      endif;
-                                      ?>
+                                  <?php
+                                  // If comments are open or we have at least one comment, load up the comment template
+                                  if (comments_open()) :
+                                    comments_template();
+                                  endif;
+                                  ?>
                               </div>
                               <!--Comments End-->
                           </div>
-                                <?php endwhile; // end of the loop.   ?>
+                        <?php endwhile; // end of the loop.    ?>
                     </section>
                 </div>
-                                <?php if ($sidebar == 'left' || $sidebar == 'both'): ?>
-                  <div class="col-aside-left">
-                      <aside class="blog-side left text-left" style="padding-top:70px;">
-                          
-                          <?php
-                          if($EDITA_RESERVA){
-                            
-                          $eliminar=l("Cancel·lar reserva", FALSE); 
-                          echo '<form id="fdelete" name="form1" method="POST" action="/reservar/realitzar-reserva/?lang='.$lang.'">
-	<input type="hidden" name="mob" value="' . $_REQUEST['mob'] . '"/>
-	<input type="hidden" name="idr" value="' . $_REQUEST['idr'] . '"/>
-	<button type="submit" id="cancel_reserva" name="cancel_reserva" value="Eliminar reserva" class="btn btn-danger" style="font-size:16px;color:white"><i class="fa fa-trash " style="font-size:24px;color:white"></i> '.$eliminar.'</button>
-	</form>';
-                            
-                          }else {
-                            $prefix=($lang!='ca')?"/$lang":'';?>
-                              <a href="<?php echo $prefix?>/reservar/localitza-reserva/?a=edit" class="btn btn-success" >     <?php l('Edita una reserva existent');  ?></a>
-                          <?php } ?>
-                              
-                              <div class="widget-area">
-  <?php get_sidebar('pageleft'); ?>
-                          </div>
-                      </aside>
-                  </div>
-                <?php endif; ?>
                 <?php if ($sidebar == 'right' || $sidebar == 'both'): ?>
                   <div class="col-aside-right">
-  <?php get_sidebar('pageright'); ?>
+                      <?php get_sidebar('pageright'); ?>
                   </div>
-                            <?php endif; ?>
+                <?php endif; ?>
             </div>
         </div>
     </div>
 </article>
-                <?php get_footer(); ?>
+<?php get_footer(); ?>

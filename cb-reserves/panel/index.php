@@ -34,7 +34,7 @@ if (isset($_GET['exit']))
 <link type="text/css" href="../reservar/css/custom-theme/jquery.ui.all.css" rel="stylesheet" />	
 <link type="text/css" href="../css/estils.css" rel="stylesheet" />	
 <link type="text/css" href="../reservar/css/form_reserves.css" rel="stylesheet" />	
-
+<xxxlink rel="stylesheet" href="http://ajax.googleapis.com/ajax/libs/jqueryui/1.8.9/themes/redmond/jquery-ui.css" type="text/css" media="all" />
 
 <style>
 	.admin{display:none}

@@ -1,0 +1,172 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: Popup contact form\n"
+"POT-Creation-Date: 2016-03-23 23:13+0800\n"
+"PO-Revision-Date: 2016-03-23 23:13+0800\n"
+"Last-Translator: \n"
+"Language-Team: www.gopiplus.com\n"
+"Language: pl\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Generator: Poedit 1.5.7\n"
+"X-Poedit-Basepath: .\n"
+"X-Poedit-KeywordsList: __;_e\n"
+"X-Poedit-SearchPath-0: ..\n"
+
+#: ../content-setting.php:5 ../popup-contact-form.php:109
+#: ../popup-contact-form.php:114 ../popup-contact-form.php:131
+msgid "Popup contact form"
+msgstr "Lud formularz kontaktowy"
+
+#: ../content-setting.php:47
+msgid "Details successfully updated."
+msgstr "Szczegóły pomyślnie zaktualizowane."
+
+#: ../content-setting.php:52
+msgid "Popup email setting"
+msgstr "Lud e-mail ustawienie"
+
+#: ../content-setting.php:55
+msgid "Email address"
+msgstr "Email"
+
+#: ../content-setting.php:57
+msgid "Please enter admin email address to receive mails."
+msgstr "Proszę podać adres e-mail administratora, aby otrzymywać maile."
+
+#: ../content-setting.php:59
+msgid "Email subject"
+msgstr "Temat e-mail"
+
+#: ../content-setting.php:61
+msgid "Please enter mail subject."
+msgstr "Podaj swój temat wiadomości."
+
+#: ../content-setting.php:63
+msgid "Link Button / Text"
+msgstr "Przycisk/tekst linku:"
+
+#: ../content-setting.php:65
+msgid ""
+"This box is to add the contact us Image Button or Text, Entered value will "
+"display in the front end."
+msgstr ""
+"To pole jest, aby dodać kontakt nam Przycisk obrazu lub tekstu, Wprowadzona "
+"wartość będzie wyświetlana w przód."
+
+#: ../content-setting.php:68
+msgid "Popup widget setting"
+msgstr "Widżet ustawienie"
+
+#: ../content-setting.php:70
+msgid "Popup title"
+msgstr "Tytuł"
+
+#: ../content-setting.php:72
+msgid "Please enter popup box title."
+msgstr "Tytuł wpisz podręczne okno."
+
+#: ../content-setting.php:74
+msgid "On home page display"
+msgstr "Opcja wyświetlania (strona startowa)"
+
+#: ../content-setting.php:79
+msgid "Select YES if you need to display on home page."
+msgstr "Wybierz opcję tak, jeśli chcesz wyświetlić na stronie głównej."
+
+#: ../content-setting.php:81
+msgid "On posts display"
+msgstr "Opcja wyświetlania (posty)"
+
+#: ../content-setting.php:86
+msgid "Select YES if you need to display on posts."
+msgstr "Wybierz opcję tak, jeśli chcesz wyświetlić na posty."
+
+#: ../content-setting.php:88
+msgid "On pages display"
+msgstr "Na wyświetlanie stron"
+
+#: ../content-setting.php:93
+msgid "Select YES if you need to display on wordpress pages."
+msgstr "Wybierz opcję tak, jeśli chcesz wyświetlać na stronach wordpress."
+
+#: ../content-setting.php:95
+msgid "On search page display"
+msgstr "Opcja wyświetlania (strona wyszukiwania)"
+
+#: ../content-setting.php:100
+msgid "Select YES if you need to display on search pages."
+msgstr "Wybierz opcję TAK, jeśli chcesz wyświetlać na stronach wyszukiwania."
+
+#: ../content-setting.php:102
+msgid "On archive page display"
+msgstr "Na wyświetlanie strony Archiwum"
+
+#: ../content-setting.php:107
+msgid "Select YES if you need to display on archive pages."
+msgstr "Wybierz opcję tak, jeśli chcesz wyświetlać na stronach archiwum."
+
+#: ../content-setting.php:109
+msgid "Security Check (Spam Stopper)"
+msgstr "Kontrola bezpieczeństwa (Spam korek)"
+
+#: ../content-setting.php:110
+msgid "Home URL"
+msgstr "Adres URL strony startowej"
+
+#: ../content-setting.php:112
+msgid ""
+"This home URL is for security check. We can submit the form only on this "
+"website. "
+msgstr ""
+"Ta strona URL jest do kontroli bezpieczeństwa. Możemy przesłać formularz "
+"tylko na tej stronie."
+
+#: ../content-setting.php:116
+msgid "Update All Details"
+msgstr "Aktualizuj ustawienia"
+
+#: ../content-setting.php:117
+msgid "Help"
+msgstr "Pomoc"
+
+#: ../content-setting.php:121
+msgid "Plugin configuration option"
+msgstr "Opcja konfiguracji plugin"
+
+#: ../content-setting.php:123
+msgid "Drag and drop the plugin widget to your sidebar."
+msgstr "Przeciągnij i upuść do paska bocznego widget plugin."
+
+#: ../content-setting.php:124
+msgid "Add plugin in the posts or pages using short code."
+msgstr "Dodaj plugin na stanowiskach lub stron za pomocą krótkiego kodu."
+
+#: ../content-setting.php:125
+msgid "Add directly in to the theme using PHP code."
+msgstr "Dodaj bezpośrednio do tematu z wykorzystaniem kodu PHP."
+
+#: ../content-setting.php:127 ../popup-contact-form.php:101
+msgid "Check official website for more information"
+msgstr "Sprawdzić oficjalną stronę internetową, aby uzyskać więcej informacji"
+
+#: ../content-setting.php:128 ../popup-contact-form.php:102
+msgid "click here"
+msgstr "kliknij tutaj"
+
+#: ../popup-contact-form.php:32 ../popup-contact-form.php:170
+msgid "Close"
+msgstr "Zamknij"
+
+#: ../popup-contact-form.php:37 ../popup-contact-form.php:175
+msgid "Your Name"
+msgstr "Nazwisko"
+
+#: ../popup-contact-form.php:41 ../popup-contact-form.php:179
+msgid "Your Email"
+msgstr "Email"
+
+#: ../popup-contact-form.php:45 ../popup-contact-form.php:183
+msgid "Enter Your Message"
+msgstr "Wpisz wiadomość"

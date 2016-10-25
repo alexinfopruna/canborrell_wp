@@ -84,6 +84,7 @@ $translate['Connexió amb el sistema de reserves'] = 'Connect to our reservation
 $translate['Cap taula o restaurant tancat'] = 'There are no tables available or the restaurant is closed';
 $translate['Editant reserva ID'] = 'Editing reservation ID';
 $translate['Sol·licitud de reserva per a GRUPS'] = 'Reservation request for GROUPS';
+$translate['Tens algun dubte?'] = 'Any question?';
 
 
 
@@ -186,6 +187,7 @@ $translate['ADULTS_TECLAT'] = '<span class="gris-ajuda">&#8625;You can type the 
 
 $translate['Juniors (de 10 a 14 anys):'] = "Juniors (from 10 to 14 years old)";
 $translate['Nens (de 4 a 9 anys)'] = "Children younger than 9 years old <b>without a push chair</b>";
+$translate['Nens (fins a 14 anys)'] = "Children up to 14 years old <b>without a push chair</b>";
 $translate['Cotxets de nadó'] = "Children in prams or push chairs<br/><em style='font-size:0.8em'> (unfortunately we only have room for one push chair per table)</em>. <br/><b style='font-size:0.8em'>The child will use the push chair instead of as seat or high chair.</b>";
 $translate['Grups'] = "Reservation request for groups";
 $translate['A quina hora?'] = "At what time?";
@@ -218,7 +220,7 @@ $translate['Donan´s algunes dades de contacte'] = "Give contact information";
 $translate['Sense'] = "Without";
 $translate['Sol·licitar reserva'] = "Reservation request";
 
-$translate['ESBORRA_DADES'] = "<emI would like my information to be removed from the Can Borrell database after my reservation date (for future reservations you will re-enter your information)</em>";
+$translate['ESBORRA_DADES'] = "<em>I would like my information to be removed from the Can Borrell database after my reservation date (for future reservations you will re-enter your information)</em>";
 $translate['Cadira de rodes'] = "Reduced mobility";
 $translate['Portem una cadira de rodes'] = "We will bring a wheelchair";
 $translate['Movilitat reduïda'] = "Reduced mobility";

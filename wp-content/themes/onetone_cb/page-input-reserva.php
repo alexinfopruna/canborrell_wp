@@ -28,7 +28,7 @@ else {
 
 //print_r($r);die();
 
-if ($mob!=$_POST['mobil']){
+if (intval($mob)!=intval($_POST['mobil'])){
   $rid=$_POST['rid'];
   $mobil=$_POST['mobil'];
   $notfound=__('Reservation not found', 'canborrell');

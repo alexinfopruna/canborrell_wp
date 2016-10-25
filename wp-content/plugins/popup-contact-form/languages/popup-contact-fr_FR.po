@@ -1,0 +1,177 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: popup contact\n"
+"POT-Creation-Date: 2016-03-23 23:13+0800\n"
+"PO-Revision-Date: 2016-03-23 23:13+0800\n"
+"Last-Translator: \n"
+"Language-Team: www.gopiplus.com\n"
+"Language: fr\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Generator: Poedit 1.5.7\n"
+"X-Poedit-Basepath: .\n"
+"X-Poedit-KeywordsList: __;_e\n"
+"X-Poedit-SearchPath-0: ..\n"
+
+#: ../content-setting.php:5 ../popup-contact-form.php:109
+#: ../popup-contact-form.php:114 ../popup-contact-form.php:131
+msgid "Popup contact form"
+msgstr "Popup Formulaire de contact | Icône"
+
+#: ../content-setting.php:47
+msgid "Details successfully updated."
+msgstr "Détails a été mis à jour."
+
+#: ../content-setting.php:52
+msgid "Popup email setting"
+msgstr "Configuration de courriel"
+
+#: ../content-setting.php:55
+msgid "Email address"
+msgstr "Adresse email"
+
+#: ../content-setting.php:57
+msgid "Please enter admin email address to receive mails."
+msgstr ""
+"Entrez l'adresse e-mail pour recevoir administrateur Avertir un ami copie "
+"Mail."
+
+#: ../content-setting.php:59
+msgid "Email subject"
+msgstr "Sujet de votre message :"
+
+#: ../content-setting.php:61
+msgid "Please enter mail subject."
+msgstr "Merci d'entrer un sujet"
+
+#: ../content-setting.php:63
+msgid "Link Button / Text"
+msgstr "Lien texte / Button"
+
+#: ../content-setting.php:65
+msgid ""
+"This box is to add the contact us Image Button or Text, Entered value will "
+"display in the front end."
+msgstr ""
+"Cette boîte est d'ajouter le contact nous l'image ou le texte, valeur entrée "
+"afficher dans l'extrémité avant."
+
+#: ../content-setting.php:68
+msgid "Popup widget setting"
+msgstr "Titre du widget"
+
+#: ../content-setting.php:70
+msgid "Popup title"
+msgstr "Titre de la popup"
+
+#: ../content-setting.php:72
+msgid "Please enter popup box title."
+msgstr "Entrez le titre de votre boîte de pop-up."
+
+#: ../content-setting.php:74
+msgid "On home page display"
+msgstr "Option d'affichage (page d'accueil)"
+
+#: ../content-setting.php:79
+msgid "Select YES if you need to display on home page."
+msgstr "Sélectionnez OUI si vous avez besoin d'afficher sur la page d'accueil."
+
+#: ../content-setting.php:81
+msgid "On posts display"
+msgstr "Afficher les posts"
+
+#: ../content-setting.php:86
+msgid "Select YES if you need to display on posts."
+msgstr "Sélectionnez OUI si vous avez besoin d'afficher sur les poteaux."
+
+#: ../content-setting.php:88
+msgid "On pages display"
+msgstr "Sur l'affichage des pages"
+
+#: ../content-setting.php:93
+msgid "Select YES if you need to display on wordpress pages."
+msgstr ""
+"Sélectionnez OUI si vous avez besoin d'afficher sur les pages wordpress."
+
+#: ../content-setting.php:95
+msgid "On search page display"
+msgstr "Sur la recherche affichage de la page"
+
+#: ../content-setting.php:100
+msgid "Select YES if you need to display on search pages."
+msgstr ""
+"Sélectionnez OUI si vous avez besoin d'afficher sur les pages de recherche."
+
+#: ../content-setting.php:102
+msgid "On archive page display"
+msgstr "Sur affichage de la page d'archives"
+
+#: ../content-setting.php:107
+msgid "Select YES if you need to display on archive pages."
+msgstr ""
+"Sélectionnez OUI si vous avez besoin d'afficher sur les pages d'archives."
+
+#: ../content-setting.php:109
+msgid "Security Check (Spam Stopper)"
+msgstr "Vérification de sécurité (Spam Stopper)"
+
+#: ../content-setting.php:110
+msgid "Home URL"
+msgstr "URL de la page d’accueil"
+
+#: ../content-setting.php:112
+msgid ""
+"This home URL is for security check. We can submit the form only on this "
+"website. "
+msgstr ""
+"Cette maison est URL pour le contrôle de la sécurité. Nous pouvons soumettre "
+"le formulaire uniquement sur ce site."
+
+#: ../content-setting.php:116
+msgid "Update All Details"
+msgstr "Mettez à jour les Paramètres."
+
+#: ../content-setting.php:117
+msgid "Help"
+msgstr "Aide"
+
+#: ../content-setting.php:121
+msgid "Plugin configuration option"
+msgstr "Plugin l'option de configuration"
+
+#: ../content-setting.php:123
+msgid "Drag and drop the plugin widget to your sidebar."
+msgstr "Glissez et déposez le widget de plugin à votre barre latérale."
+
+#: ../content-setting.php:124
+msgid "Add plugin in the posts or pages using short code."
+msgstr "Ajouter plugin dans les messages ou des pages à l'aide de code court."
+
+#: ../content-setting.php:125
+msgid "Add directly in to the theme using PHP code."
+msgstr "Ajouter directement dans le thème en utilisant le code PHP."
+
+#: ../content-setting.php:127 ../popup-contact-form.php:101
+msgid "Check official website for more information"
+msgstr "Consultez le site officiel pour plus d'informations"
+
+#: ../content-setting.php:128 ../popup-contact-form.php:102
+msgid "click here"
+msgstr "Cliquer ici"
+
+#: ../popup-contact-form.php:32 ../popup-contact-form.php:170
+msgid "Close"
+msgstr "Fermer"
+
+#: ../popup-contact-form.php:37 ../popup-contact-form.php:175
+msgid "Your Name"
+msgstr "S'il vous plaît sélectionnez votre sujet mail."
+
+#: ../popup-contact-form.php:41 ../popup-contact-form.php:179
+msgid "Your Email"
+msgstr "Entrez votre adresse de courriel avec des virgules."
+
+#: ../popup-contact-form.php:45 ../popup-contact-form.php:183
+msgid "Enter Your Message"
+msgstr "Introduisez votre message"

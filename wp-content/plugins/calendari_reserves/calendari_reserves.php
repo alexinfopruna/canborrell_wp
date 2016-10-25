@@ -42,6 +42,8 @@ if (function_exists('add_action')) {
   add_action('admin_menu', 'calendari_reserves_add_menu');
 }
 
+
+
 function reserves_bootstrap() {
   if (!defined("GESTOR")) {
     
@@ -51,6 +53,8 @@ function reserves_bootstrap() {
     require_once (ROOT . "gestor_reserves.php");
 
     $lang = gestor_reserves::getLanguage();
+    
+    
     require_once("cb-reserves/translate_web_$lang.php");
   }
 

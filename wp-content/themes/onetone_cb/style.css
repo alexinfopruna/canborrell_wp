@@ -118,7 +118,7 @@ h6.infantil{font-size:13px;}
 #calendari-header {
     position: absolute;
     top: 3px;
-    right: 110px;
+    right: 140px;
     z-index: 99;
 
 }
@@ -209,19 +209,29 @@ section.title-left{background-color: #eee;}
 
 /************ IDIOMES*************/
 .lang_selector{
+    background-color: #eee;
     position:absolute;
-    right:25px;
+    height:22px;
+    right:16px;
+	padding:0 6px;
+	border-bottom-left-radius: 4px;
+	border-bottom-right-radius: 4px;
+        //font-weight: bold;
 }
-
 
 .lang_selector a{
-    color:#999;
-    font-size:10px
+    color:#555;
+    
+    font-size:15px
 }
-
-.lang_selector a:hover,.lang_selector a.active{
-    color:white;
+.lang_selector a.active{
     text-decoration: underline;
+    color:black;
+}
+.lang_selector a:hover{
+    color:black;
+    
+    
 }
 
 /***************************************************************/
@@ -742,6 +752,7 @@ footer nav.footer-menu-2 #menu-main li:nth-child(5) a:before{
 
 
 /**** HORARIS *******/
+.cb-caslug-horari-general-de-cuina  .post-inner,
 .page-horari-general-de-cuina  .post-inner {
     background-image: url(/wp-content/uploads/assets/reloj3.jpg);
     background-repeat: no-repeat;
@@ -1065,6 +1076,8 @@ section.home-section-6 .row p {
 
 } 
 
+.xxxecp-button{display:none;}
+
 #section-9 .container {
     width: 80%;
     background-color: rgba(255,255,255,0.3);
@@ -1075,8 +1088,14 @@ section.home-section-6 .row p {
     background-color: black !important;
 }
 
-
-
+.ecp-content h1{background:#eee;color:#444;padding:10px;    font-size: 30px;}
+.ecp-content h3{
+    //display:none;
+    height: 0;
+    padding:0;
+    margin:0;
+        
+}
 
 #contact .container h1{
     ccborder-top: #444 solid 2px;

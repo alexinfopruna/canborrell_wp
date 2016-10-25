@@ -74,8 +74,7 @@ $subtitol['esp'] = "Reservation Information";
 /* * *************************************************************************** */
 $gestor = new gestor_reserves();
 /* * *************************************************************************** */
-if (!isset($_GET['rid']))
-  die("ERRROR: Falta RID");
+if (!isset($_GET['rid']))  die("ERRROR: Falta RID");
 $rid = base64_decode($_GET['rid']);
 $st = explode('&', $rid);
 $id = $_GET["id"] = $st[0];
@@ -85,7 +84,7 @@ $r = $gestor->load_reserva($_GET["id"], 'reserves');
 
 $mob = $r['tel'];
 
-if ($mob != $_GET["mob"])
+if (intval($mob) != intval($_GET["mob"]))
   header('Location: /reservar/localiza-reserva/&lang=' . ICL_LANGUAGE_CODE);
 
 $result = "";
@@ -105,6 +104,8 @@ if ($id) {
   $import = $fila['preu_reserva'];
   $nom = $fila['nom'];
   $lang = $lang_cli = $fila['lang'];
+}else{
+  
 }
 if (!isset($lang))
   $lang = $lang_cli = "esp";
@@ -127,6 +128,13 @@ if (($estat == 3) || ($estat == 7)) { // JA S?HA PAGAT
   $titol['en'] = "This reservation has now been paid<br><br><br><br><br><br><br>";
   $surt = true;
   $gestor->xgreg_log($titol['cat'], 1);
+}else if($estat  == 6){
+   $titol['cat'] = "Lamentablement aquesta reserva ha caducat! Contacti amb el restaurant<br><br><br><br><br><br><br><br>";
+  $titol['esp'] = "Lamentablemente esta reserva ha caducado! Contacte con el restaurante<br><br><br><br><br><br><br><br>";
+  $titol['en'] = "Unfortunately, this reservation has not been confirmed or has expired! Contact the restaurant<br><br><br><br><br><br><br><br>";
+  $surt = true;
+  $gestor->xgreg_log($titol['cat'], 1);
+ 
 }
 else if ($estat != 2) {    // NO ESTA CONFIRMADA
   $titol['cat'] = "Lamentablement aquesta reserva no ha estat confirmada o ha caducat! Contacti amb el restaurant<br><br><br><br><br><br><br><br>";
@@ -231,10 +239,15 @@ $translate['COMPRA_SEGURA']['en'] = "To make a payment using this bank gateway, 
               <hgroup class="page-title">
                   <h1>
                       <?php
-                      // echo $title;
+                       
                       //
                       //
-          the_title();
+                      if ($surt){
+                        echo $titol[$lang];
+                      }else{
+                         the_title();
+                      }
+         
                       ?>
                   </h1>
               </hgroup>

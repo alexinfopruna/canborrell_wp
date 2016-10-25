@@ -36,6 +36,7 @@ class TaulesDisponibles extends Gestor {
   public $llista_dies_negra; // 
   public $llista_nits_negra; // 
   public $llista_dies_blanca; // 
+  public $rang_hores_nens = array(); // 
   private $arResultat = null; // RESULTAT PER ID
   private $arResultatTaula = null; //RESULTAT PER OBJ. Taula
   private $arHores = array(); //RESULTAT HORES DISPONIBLES
@@ -639,7 +640,7 @@ ORDER BY  `estat_hores_hora` ASC ";
       /////////////////////////////////////////////////////
       // CONTROLA MAX PER HORA
       //
-			// El màx x hora s'agafa de estat_hores. Si treballem amb una altra taula, cal recuperar el valor 
+      // El màx x hora s'agafa de estat_hores. Si treballem amb una altra taula, cal recuperar el valor 
       if ($table != $this->defaultTableHores)
         $row['estat_hores_max'] = $this->recuperaMaximHora($row['estat_hores_hora']);
 
@@ -649,6 +650,13 @@ ORDER BY  `estat_hores_hora` ASC ";
       // HORES DESACTIVADES
       if (!empty($disabled) && !$mostraDisableds)
         continue;
+      // NENS A ULTIMA HORA
+      
+      //print_r( $this->rang_hores_nens);die();
+      if ( is_array($this->rang_hores_nens) && !in_array($row['estat_hores_hora'], $this->rang_hores_nens))
+        continue;
+
+      
 
       $this->arHores[] = $row['estat_hores_hora']; // GUARDA LES HORES BONES EN UN ARRAY
       ///////////////////////////////////////////////////

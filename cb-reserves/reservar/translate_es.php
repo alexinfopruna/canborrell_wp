@@ -173,6 +173,7 @@ $translate['ADULTS_TECLAT']='<span class="gris-ajuda">&#8625;Puedes teclear el n
 
 $translate['Juniors (de 10 a 14 anys):']="Juniors (de 10 a 14 años )";
 $translate['Nens (de 4 a 9 anys)']="Niños menores de 9 años <b>sin cochecito</b>";
+$translate['Nens (fins a 14 anys)']="Niños hasta 14 años <b>sin cochecito</b>";
 $translate['Cotxets de nadó']="Niños en cochecito de bebé <br/><em style='font-size:0.8em'>(desafortunaamente solo disponemos de espacio para un cochecito por mesa)</em>. <br/><b style='font-size:0.8em'>El niño ocupará el cochecito y no una silla/trona</b>";
 $translate['Grups']="Solicitud de reserva para Grupos";
 $translate['A quina hora?']="¿A qué hora?";
@@ -254,7 +255,7 @@ $translate["menu"] = "menú";
 $translate["cdata_reserva"] = "fecha";
 $translate["Edita una reserva existent"] = "Edita una reserva existente";
 $translate["Cancel·lar reserva"] = "Cancelar reserva";
-
+$translate['Tens algun dubte?'] = '¿Tienes alguna duda?';
 
 
 /****************************** SMS **************************************/

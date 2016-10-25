@@ -30,7 +30,6 @@ class Gestor_form extends gestor_reserves {
 
   var $data_BASE = "2011-01-01";
   var $menjadorsBloquejatsOnline;
-
   /*   * ******************************************************************************************************* */
 
   public function __construct($usuari_minim = 1) {
@@ -165,7 +164,7 @@ class Gestor_form extends gestor_reserves {
 
   /*   * ******************************************************************************************************* */
 
-  public function horesDisponibles($data, $coberts, $cotxets = 0, $accesible = 0, $idr = 0) {
+  public function horesDisponibles($data, $coberts, $cotxets = 0, $accesible = 0, $idr = 0, $nens=null) {
 
     $mydata = $this->cambiaf_a_mysql($data);
 
@@ -188,11 +187,16 @@ class Gestor_form extends gestor_reserves {
     $this->taulesDisponibles->llista_dies_negra = LLISTA_DIES_NEGRA_RES_PETITES;
     $this->taulesDisponibles->llista_nits_negra = LLISTA_DIES_NEGRA_RES_PETITES;
     $this->taulesDisponibles->llista_dies_blanca = LLISTA_DIES_BLANCA;
+    $this->taulesDisponibles->rang_hores_nens = $this->rang_hores_nens($coberts-$nens,$nens);
+    
 
+
+//print_r($this->taulesDisponibles->rang_hores_nens);echo "WEWE";die();
     /* 	 */
     //TORN1
     $this->taulesDisponibles->torn = 1;
     $dinar = $this->taulesDisponibles->recupera_hores();
+    
     $taules = $this->taulesDisponibles->taulesDisponibles();
     $taulaT1 = $taules[0]->id;
     if (!$dinar)
@@ -221,7 +225,109 @@ class Gestor_form extends gestor_reserves {
     return json_encode($json);
     //////////////////////////////////					
   }
+  
+  private function rang_hores_nens($adults, $nens){
+    //defined(CONTROL_HORES_NENS)
+    if (!$adults || !$nens || !defined(CONTROL_HORES_NENS) || !CONTROL_HORES_NENS ) return;
+     echo "dddd";
+    echo CONTROL_HORES_NENS; die();
+   
+    $limits=array();
+    $limits[4][3]=array("15:30","15:45","16:00","16:15","16:30");
+    $limits[4][4]=array("15:30","15:45","16:00","16:15","16:30");
+    $limits[4][5]=array("15:30","15:45","16:00","16:15","16:30");
+    $limits[4][6]=array("15:30","15:45","16:00","16:15","16:30");
+    $limits[4][7]=array("15:30","15:45","16:00","16:15","16:30");
 
+    $limits[5][3]=array("15:30","15:45","16:00","16:15","16:30");
+    $limits[5][4]=array("15:30","15:45","16:00","16:15","16:30");
+    $limits[5][5]=array("15:30","15:45","16:00","16:15","16:30");
+    $limits[5][6]=array("15:30","15:45","16:00","16:15","16:30");
+    $limits[5][7]=array("15:30","15:45","16:00","16:15","16:30");
+    
+    $limits[6][3]=array("15:30","15:45","16:00","16:15","16:30");
+    $limits[6][4]=array("15:30","15:45","16:00","16:15","16:30");
+    $limits[6][5]=array("15:30","15:45","16:00","16:15","16:30");
+    $limits[6][6]=array("15:30","15:45","16:00","16:15","16:30");
+    $limits[6][7]=array("15:30","15:45","16:00","16:15","16:30");
+    
+    $limits[7][3]=array("15:30","15:45","16:00","16:15","16:30");
+    $limits[7][7]=array("15:30","15:45","16:00","16:15","16:30");
+    $limits[7][5]=array("15:30","15:45","16:00","16:15","16:30");
+    $limits[7][6]=array("15:30","15:45","16:00","16:15","16:30");
+    $limits[7][7]=array("15:30","15:45","16:00","16:15","16:30");
+
+    $limits[8][3]=array("15:30","15:45","16:00","16:15","16:30");
+    $limits[8][4]=array("15:30","15:45","16:00","16:15","16:30");
+    $limits[8][5]=array("15:30","15:45","16:00","16:15","16:30");
+    $limits[8][6]=array("15:30","15:45","16:00","16:15","16:30");
+    $limits[8][7]=array("15:30","15:45","16:00","16:15","16:30");
+
+    $limits[9][3]=array("15:45","16:00","16:15","16:30");
+    $limits[9][4]=array("15:45","16:00","16:15","16:30");
+    $limits[9][5]=array("15:45","16:00","16:15","16:30");
+    $limits[9][6]=array("15:45","16:00","16:15","16:30");
+    $limits[9][7]=array("15:45","16:00","16:15","16:30");
+    
+    $limits[10][3]=array("15:45","16:00","16:15","16:30");
+    $limits[10][4]=array("15:45","16:00","16:15","16:30");
+    $limits[10][5]=array("15:45","16:00","16:15","16:30");
+    $limits[10][6]=array("15:45","16:00","16:15","16:30");
+    $limits[10][7]=array("15:45","16:00","16:15","16:30");
+    
+    $limits[11][3]=array("15:45","16:00","16:15","16:30");
+    $limits[11][4]=array("15:45","16:00","16:15","16:30");
+    $limits[11][5]=array("15:45","16:00","16:15","16:30");
+    $limits[11][6]=array("15:45","16:00","16:15","16:30");
+    $limits[11][7]=array("15:45","16:00","16:15","16:30");
+    
+    $limits[12][3]=array("15:45","16:00","16:15","16:30");
+    $limits[12][4]=array("15:45","16:00","16:15","16:30");
+    $limits[12][5]=array("15:45","16:00","16:15","16:30");
+    $limits[12][6]=array("15:45","16:00","16:15","16:30");
+    $limits[12][7]=array("15:45","16:00","16:15","16:30");
+    
+    //$limits[13][3]=array("16:00","16:15","16:30");
+    //$limits[13][4]=array("16:00","16:15","16:30");
+    $limits[13][5]=array("16:00","16:15","16:30");
+    $limits[13][6]=array("16:00","16:15","16:30");
+    $limits[13][7]=array("16:00","16:15","16:30");
+    
+    //$limits[14][3]=array("16:00","16:15","16:30");
+    //$limits[14][4]=array("16:00","16:15","16:30");
+    $limits[14][5]=array("16:00","16:15","16:30");
+    $limits[14][6]=array("16:00","16:15","16:30");
+    $limits[14][7]=array("16:00","16:15","16:30");
+    
+    //$limits[15][3]=array("16:00","16:15","16:30");
+    //$limits[15][4]=array("16:00","16:15","16:30");
+    $limits[15][5]=array("16:00","16:15","16:30");
+    $limits[15][6]=array("16:00","16:15","16:30");
+    $limits[15][7]=array("16:00","16:15","16:30");
+    
+    //$limits[16][3]=array("15:45","16:00","16:15","16:30");
+    //$limits[16][4]=array("15:45","16:00","16:15","16:30");
+    $limits[16][5]=array("15:45","16:00","16:15","16:30");
+    $limits[16][6]=array("15:45","16:00","16:15","16:30");
+    $limits[16][7]=array("15:45","16:00","16:15","16:30");
+    
+    //$limits[17][3]=array("15:45","16:00","16:15","16:30");
+    //$limits[17][4]=array("15:45","16:00","16:15","16:30");
+    $limits[17][5]=array("15:45","16:00","16:15","16:30");
+    $limits[17][6]=array("15:45","16:00","16:15","16:30");
+    $limits[17][7]=array("15:45","16:00","16:15","16:30");
+    
+    //$limits[18][3]=array("15:45","16:00","16:15","16:30");
+    //$limits[18][4]=array("15:45","16:00","16:15","16:30");
+    $limits[18][5]=array("15:45","16:00","16:15","16:30");
+    $limits[18][6]=array("15:45","16:00","16:15","16:30");
+    $limits[18][7]=array("15:45","16:00","16:15","16:30");
+    
+    
+    if (isset($limits[$adults][$nens]))     return $limits[$adults][$nens];
+    
+    return FALSE;
+  }
   /*   * ******************************************************************************************************* */
   /*   * ******************************************************************************************************* */
 
@@ -519,6 +625,8 @@ FROM client
 
     //$this->taulesDisponibles->tableHores="estat_hores_form";
     $this->taulesDisponibles->tableHores = "estat_hores";
+    
+   
     $this->taulesDisponibles->recupera_hores();
 
     // VALIDA SI HEM TROBAT TAULA

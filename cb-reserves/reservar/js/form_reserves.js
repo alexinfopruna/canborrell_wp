@@ -488,7 +488,7 @@ function recargaHores()
     var accesibilidad = $("input[name='selectorCadiraRodes']:checked").length;
     accesibilidad += $("input[name='selectorAccesible']:checked").length;
 
-    $.post(GESTOR + "?a=horesDisponibles&b=" + $("#calendari").val() + "&c=" + comensals + "&d=" + $("input[name='selectorCotxets']:checked").val() + "&e=" + accesibilidad + "&f=" + IDR, function (dades) {
+    $.post(GESTOR + "?a=horesDisponibles&b=" + $("#calendari").val() + "&c=" + comensals + "&d=" + $("input[name='selectorCotxets']:checked").val() + "&e=" + accesibilidad + "&f=" + IDR +"&g=" + NENS, function (dades) {
         var obj = JSON.parse(dades);
         var txt = "";
         if ((obj.dinar + obj.dinarT2) == "")
