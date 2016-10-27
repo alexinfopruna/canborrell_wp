@@ -875,6 +875,8 @@ if ($padding_bottom)
                                                                           <div><label class="label" for="client_cognoms"><?php l('Cognoms'); ?>*</label><input type="text" name="client_cognoms" value="<?php echo $row['client_cognoms'] ?>"/></div>
                                                                           <div><label class="label" for="client_id"><?php //l('Client_id');     ?></label><input type="hidden" name="client_id" value="<?php echo $row['client_id'] ?>"/></div>
                                                                       
+                                                                          <input name="observacions" value="" type="hidden" />
+                                                                          
                                                                           <!--
                                                                           <div class="ui-corner-all info-legal info-observacions  caixa">
                                                                               <?php l('NO_COBERTS_OBSERVACIONS'); ?>

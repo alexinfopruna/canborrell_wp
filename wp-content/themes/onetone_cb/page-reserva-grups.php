@@ -178,9 +178,10 @@ function reservar_enqueue_styles() {
   <style>
       #carta{width:100%}
       #data{width:100%}
-      .ui-button-text-only .ui-button-text {
+       .fr-seccio-hora .ui-button .ui-button-text{
           padding: .4em .9em;
       }
+      
 
       #calendari{
           display: flex;
@@ -594,7 +595,7 @@ function reservar_enqueue_styles() {
 
 
                                                           <a id="scroll-seccio-submit"></a>
-                                                          <div class="fr-seccio ui-corner-all fr-seccio-submit"> 
+                                                          <div class="fr-seccio ui-corner-all fr-seccio-submit" style="display:block;"> 
                                                               <h1 class="titol"><span class="number">6</span><?php l('Envia la sol·licitud'); ?></h1>
                                                               <div class="ui-corner-all caixa resum">
                                                                   <b><?php l('Resum reserva'); ?>:</b><br/><br/>

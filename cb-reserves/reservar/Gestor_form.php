@@ -1,7 +1,11 @@
 <?php
 if (!defined('ROOT')) header('Content-Type: text/html; charset=utf-8');
 
-defined('ROOT') or define('ROOT', '../taules/');
+if (!defined('ROOT')){
+  $root = '../taules/';
+ // $root = '../cb-reserves/taules/';
+   define('ROOT', $root);
+}
 
 if (isset($_REQUEST['a']))
   $accio = $_REQUEST['a'];$_REQUEST['a'] = null;
@@ -942,7 +946,7 @@ FROM client
 //envia MAIL
     $extres['subject'] = "Can-Borrell: MODIFICACIÓ RESERVA ONLINE " . $_POST['id_reserva'];
     if ($_POST['client_email'])
-      $mail = $this->enviaMail($_POST['id_reserva'], "mail_res_modificada_", FALSE, $extres);
+      $mail = $this->enviaMail($_POST['id_reserva'], "../reservar/mail_res_modificada_", FALSE, $extres);
 
 
 //PREPARA RESPOSTA JSON	

@@ -2494,14 +2494,10 @@ ORDER BY `estat_hores_data` DESC";
 
   public function enviaMail($idr, $plantilla = "confirmada_", $destinatari = null, $extres = null) {
     $subject = isset($extres['subject']) ? $extres['subject'] : 'No subject';
-//$query = "INSERT INTO `email` ( `email_recipients`, `email_body`, `email_resultat`, `email_subject`, `reserva_id`, `email_categoria`) "
-//    . "VALUES ( '$destinatari', 'En procés...', '1', 'Test', '$idr', '$plantilla')";
-//$this->qry_result = mysqli_query($this->connexioDB, $query) or die(((is_object($GLOBALS["___mysqli_ston"])) ? mysqli_error($GLOBALS["___mysqli_ston"]) : (($___mysqli_res = mysqli_connect_error()) ? $___mysqli_res : false)));
     $ts = $this->insert_id();
 
     $this->reg_log(">>>> ENVIA EMAIL >>>> enviaMail($idr, $plantilla, $destinatari )", 1);
     $this->xgreg_log(">>>> ENVIA EMAIL >>>> enviaMail(<span class='idr'>$idr</span>, $plantilla, $destinatari )", 0, '/log/logMAILSMS.txt');
-//$this->xgreg_log(">>>> ENVIA EMAIL >>>> enviaMail($idr, $plantilla, $destinatari )",1);
     if (!ENVIA_MAILS) {
       $this->reg_log("ENVIA_MAILS DESACTIVAT", 1);
 //testMail($idr, $plantilla = "confirmada_", $destinatari = null, $extres = null);
@@ -2530,6 +2526,7 @@ ORDER BY `estat_hores_data` DESC";
     $avui = date("d/m/Y");
     $ara = date("H:i");
     $file = ROOT.$plantilla . $this->lng . ".lbi";
+    //echo $file."  ".__FILE__;die();
     $t = new Template('.', 'comment');
     if (is_array($extres)) {
       foreach ($row as $k => $v) {

@@ -108,7 +108,8 @@ function mail_cli($id=false, $plantilla="templates/recordatori_cli.lbi")
             
             $fila['import']="***********";
             $mulink=substr($fila['email'],0,2).substr($fila['nom'],0,2).$idd."***".substr($fila['import'],0,2);
-        
+        if ($lang=='ca') $lang='cat';
+        if ($lang=='es') $lang='esp';
 			$t->set_var('ident',$txt[75][$lang]);
 			$t->set_var('confirma',$txt[76][$lang]);
 			$t->set_var('cancela',$txt[77][$lang]);
@@ -175,7 +176,7 @@ function mail_cli($id=false, $plantilla="templates/recordatori_cli.lbi")
 	$recipient=$fila['email'];
     $subject="..::Reserva Can Borrell: Recordatori reserva";
     //$r=mailer($recipient, $subject , $html, $altbdy, null, false, MAIL_CCO);
-    
+    $r=true;
     echo $html;
     
     $nreserva=$fila['id_reserva'];

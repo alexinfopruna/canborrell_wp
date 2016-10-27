@@ -4,6 +4,7 @@ if (!defined('DB_CONNECTION_FILE')) define('DB_CONNECTION_FILE', "../Connections
 
 require_once(ROOT."Gestor.php");
 require(ROOT."../Connections/".DB_CONNECTION_FILE);
+
 ?>
 
     <link rel="shortcut icon" type="image/ico" href="/gear-favicon.ico" />
@@ -37,6 +38,21 @@ echo '<br/>';
 echo '<br/>';
 echo '<br/>';
 
-
+ob_start();
 phpinfo();
+$variable = ob_get_contents();
+ob_get_clean();
+
+if (isset($_GET['mail'])){
+  require(ROOT."/gestor_reserves.php");
+  $g = new gestor_reserves();
+      require_once(ROOT."../editar/mailer.php");
+
+  echo "Enviem mail...";
+  $er=mailer("alexinfopruna@gmail.com","Test mail - infoConn",$_GET['mail'].$variable);
+  var_dump($er);
+}
+//phpinfo();
+
+echo $variable;
 ?>

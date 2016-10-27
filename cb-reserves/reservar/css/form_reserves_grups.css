@@ -176,7 +176,7 @@
 	.resum b{font-size:1.2em;}
 	/*#resum-comanda{font-size:0.8em;}*/
 	
-	.info-submit{margin-top:2px;width:450px;height:32px;float:left;}
+	//.info-submit{margin-top:2px;width:450px;height:32px;float:left;}
 	input[name=totalComensals]{width:25px;color:red;font-weight:bold;border:none;}
 	
 
