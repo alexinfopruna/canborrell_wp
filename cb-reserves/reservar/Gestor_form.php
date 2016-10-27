@@ -191,7 +191,6 @@ class Gestor_form extends gestor_reserves {
     
 
 
-//print_r($this->taulesDisponibles->rang_hores_nens);echo "WEWE";die();
     /* 	 */
     //TORN1
     $this->taulesDisponibles->torn = 1;
@@ -227,11 +226,8 @@ class Gestor_form extends gestor_reserves {
   }
   
   private function rang_hores_nens($adults, $nens){
-    //defined(CONTROL_HORES_NENS)
-    if (!$adults || !$nens || !defined(CONTROL_HORES_NENS) || !CONTROL_HORES_NENS ) return;
-     echo "dddd";
-    echo CONTROL_HORES_NENS; die();
-   
+    if (!$adults || !$nens || !defined("CONTROL_HORES_NENS") || !CONTROL_HORES_NENS ) return;
+
     $limits=array();
     $limits[4][3]=array("15:30","15:45","16:00","16:15","16:30");
     $limits[4][4]=array("15:30","15:45","16:00","16:15","16:30");
@@ -475,7 +471,6 @@ FROM client
 	
 	ORDER BY id_reserva_grup DESC , id_reserva DESC , client.client_id DESC";
 
-    // echo $query;
     $Result1 = mysqli_query($this->connexioDB, $query) or die(((is_object($GLOBALS["___mysqli_ston"])) ? mysqli_error($GLOBALS["___mysqli_ston"]) : (($___mysqli_res = mysqli_connect_error()) ? $___mysqli_res : false)));
 
     if (mysqli_num_rows($Result1) == 0)

@@ -653,7 +653,7 @@ ORDER BY  `estat_hores_hora` ASC ";
       // NENS A ULTIMA HORA
       
       //print_r( $this->rang_hores_nens);die();
-      if ( is_array($this->rang_hores_nens) && !in_array($row['estat_hores_hora'], $this->rang_hores_nens))
+      if ( is_array($this->rang_hores_nens) && count($this->rang_hores_nens) && !in_array($row['estat_hores_hora'], $this->rang_hores_nens))
         continue;
 
       
@@ -756,7 +756,7 @@ ORDER BY  `estat_hores_hora` ASC ";
   public function horaDisponible($hora) {
     if (!isset($this->arHores) || !count($this->arHores))
       $this->recupera_hores();
-    if (!$this->arHores)
+    if (!isset($this->arHores))
       return false;
     return (in_array($hora, $this->arHores) === true);
   }

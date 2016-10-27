@@ -1,4 +1,6 @@
 <?php
+header('Location: /reservar/realitzar-reserva');exit();
+
 if (!defined('ROOT')) header('Content-Type: text/html; charset=utf-8');
 
 defined('ROOT') or define('ROOT', '/cb-reserves/taules/');

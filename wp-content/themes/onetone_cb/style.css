@@ -221,12 +221,12 @@ section.title-left{background-color: #eee;}
 
 .lang_selector a{
     color:#555;
-    
     font-size:15px
 }
 .lang_selector a.active{
     text-decoration: underline;
     color:black;
+    font-weight:bold;
 }
 .lang_selector a:hover{
     color:black;

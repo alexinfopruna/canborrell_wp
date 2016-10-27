@@ -92,7 +92,7 @@ $translate['Tens algun dubte?'] = 'Any question?';
 $translate["Hi ha errors al formulari. Revisa les dades, si us plau"] = 'There are errors in this form. Check the information, please';
 
 $translate['Paga i senyal necessària'] = "Payment of deposit necessary";
-$translate['INFO_QUANTS_SOU'] = '<b> Tell us how many people will come </b>, firstly age 14 and above, then juniors and children.  
+$translate['INFO_QUANTS_SOU'] = '<b> Tell us how many people will come </b>, firstly age 14 and above, then children up to 14.  
 <br/> 
                          <div class=info-paga-i-senyal> <b>  If you are more than ' . (persones_paga_i_senyal - 1) . ' people,
 you will need to make a ' . import_paga_i_senyal . '€ deposit payment with a credit card </ b>.

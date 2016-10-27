@@ -10,7 +10,7 @@ if (!isset($PERSONES_GRUP)) $PERSONES_GRUP=12;
 			<br/><br/>Només permetem l´entrada de gossos pigall acompanyant invidents
 					<br/><br/>
 					<em>Si, en total, sou menys de <b>'.($PERSONES_GRUP).'</b> persones, marca el botó "<='.($PERSONES_GRUP-1).'"</em><br/><br/>
-					<b>TOTAL PERSONES:';
+					<b>TOTAL PERSONES:</b>';
 	$translate['INFO_CARTA_GRUPS']='Cal que indiquis el menú que prendreu els adults. 
 	<br/><strong style="font-size:1.2em">Si han de venir nens/juniors és IMPRESCINDIBLE que indiquis també quin menú voleu per ells
 			<br/><br/>

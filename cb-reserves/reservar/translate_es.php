@@ -87,7 +87,7 @@ $translate["Hi ha errors al formulari. Revisa les dades, si us plau"]='Hay error
 
 $translate['Paga i senyal necessària']="Paga i señal necesaria";
 $translate['INFO_QUANTS_SOU']='<b> Dinos cuántas personas vendrán </b>, indicando, en primer lugar los mayores de 14 años
- seguido de juniors y niños. 
+ seguido de niños hasta 14. 
 <br/> 
                          <div class=info-paga-i-senyal> <b> Si sois más de '. (persones_paga_i_senyal-1).' personas,
 será necesario que realices una paga y señal de '. import_paga_i_senyal.'€ con tarjeta de crédito </ b>.

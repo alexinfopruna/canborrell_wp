@@ -26,7 +26,10 @@
 .ui-accordion-content{max-height:300px;font-size:0.8em;}
 	#editar_reserva{color:#999;text-align:right;float:right;margin:8px 25px;}	
 	#flogin{color:#999;float:right;text-align:right;width:300px;margin:8px 25px;}	
-	#calendari{font-size:1.6em}
+	//#calendari{font-size:1.6em}
+         #calendari .ui-datepicker{
+        font-size: 0.8em;
+    }
 	.col-dere{width:500px;float:left;}
 	.fr-seccio-carta .ui-button{width:170px;}
 	.grups-fr-seccio-carta .ui-button{width:170px;}
@@ -39,7 +42,6 @@
            padding: 12px;
            margin: 0 0px 10px 0;
            background: white;
-           height: expresion(this.scrollHeight < 601? "600px": "auto");
            min-height: 620px;
            }
         
@@ -130,17 +132,14 @@
   -webkit-box-shadow: 2px 2px 2px #ccc;
   box-shadow: 2px 2px 2px #ccc;
 	}
-	
+	/*
 	.dere{
 		float:right;
 	}
-	
+	*/
 	.caixa input{
 		background:#fbfbff;
 	}
-	.fr-seccio-dia .caixa{width:250px;}
-	.fr-seccio-quants .caixa{width:250px;}
-	.fr-seccio-client .caixa{margin-top:10px;font-size:0.8em;}
 	
 	.fr-seccio-carta  .info,
 	.grups-fr-seccio-carta  .info
@@ -164,7 +163,7 @@
 	.llista-menus{float:left;width:200px;margin:7px;}	
 	.hores{
 		/*background:#ffffef;*/
-		max-width:685px;
+		/*max-width:685px;*/
 		float:none;
 		padding:8px;
 		margin-top:8px;
@@ -172,7 +171,7 @@
 
 	}
 	
-	#submit{float:right;right:0px;padding:10px;font-size:1.2em;}
+	//#submit{float:right;right:0px;padding:10px;font-size:1.2em;}
 	.resum{margin-bottom:10px;color:#570600;}
 	.resum b{font-size:1.2em;}
 	/*#resum-comanda{font-size:0.8em;}*/
@@ -257,7 +256,7 @@ padding: .4em .8em;
     50% {color: white;font-size:1em;}
     65% {color: red;font-size:1em;}
     100% {color: #999966;font-size:1em;}
-
+}
 /* Standard syntax */
 @keyframes myfirst {
     0% {color: #999966;font-size:1em;}

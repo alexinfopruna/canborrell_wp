@@ -1,4 +1,5 @@
 <?php
+header('Location: /reservar/reserva-grup');exit();
 header('Content-Type: text/html; charset=utf-8');
 
 defined('ROOT') or define('ROOT', '/cb-reserves/taules/');

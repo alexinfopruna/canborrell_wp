@@ -175,12 +175,12 @@ function reservar_enqueue_styles() {
       @media (max-width: 768px){
           .row{margin:0}
       }
-
+/*
       .titol{display:flex;
              margin-right: 35px;
 
       }
-
+*/
       .anima-avis{
           position:fixed;
           top:50px;
@@ -255,6 +255,7 @@ function reservar_enqueue_styles() {
           margin-top:20px;
       }
 
+  
       @media (min-width: 992px){
           .post-inner.left-aside   .col-main {
               left: 0;
@@ -265,7 +266,69 @@ function reservar_enqueue_styles() {
       if (isset($paga_i_senyal) && !$paga_i_senyal)
         echo ".info-paga-i-senyal{display:none}";
       ?>
-
+      
+      .caixa.caixa100{width:initial;}
+      .fr-seccio{
+        display:flex;  
+        flex-wrap:wrap;
+      }
+      
+      .flex{
+          display:flex;  
+        flex-wrap:nowrap;
+      }
+      .flexw{
+          display:flex;  
+        flex-wrap:wrap;
+      }
+      .error_validate, #error_validate{
+         clear:both; 
+      }
+      
+      #submit span{
+          font-size:20px;
+      }
+      
+      #calendari {margin-top:15px;}
+      
+      .putoIE{
+          display:flex;justify-content:center;width:100%;
+      }
+      
+      @media (max-width: 1180px){
+           #calendari .ui-datepicker{  font-size: 80%;}
+      }
+      @media (max-width: 992px){
+           #calendari .ui-datepicker{  font-size: 120%;}
+      }
+      
+      @media (min-width: 992px){
+      .caixa{
+          margin:15px;
+          width:30%;
+          min-width:250px;
+      }
+      }
+      
+      .flex{
+       display:flex;   
+      }
+      @media (max-width: 992px){
+          .fr-seccio .col-isqui{
+              flex-wrap:  wrap;
+              flex-direction: row;
+              justify-content:flex-start;
+          
+          }
+          .col-isqui-carta{
+               flex-wrap:  wrap;
+          }
+          .fr-seccio.fr-seccio-dia {
+    flex-direction: row;
+}
+           .caixa{ width:100%;}
+      }
+      
   </style>                
 
   <script type="text/javascript" src="/cb-reserves/reservar/js/jquery.simplemodal.js"></script>
@@ -483,7 +546,12 @@ if ($padding_bottom)
                                                       ?>
                                                   </h2>
 
-                                                  <!-- ***************************************************************************************   -->
+<!-- ***************************************************************************************   -->
+<!-- ***************************************************************************************   -->
+<!-- ***************************************************************************************   -->
+<!-- ***************************************************************************************   -->
+<!-- ***************************************************************************************   -->
+<!-- ***************************************************************************************   -->
                                                   <!-- ***************************************************************************************   -->
                                                   <?php
                                                   $test = isset($_REQUEST['testTPV']) ? '&testTPV=' . $_REQUEST['testTPV'] : "";
@@ -495,15 +563,27 @@ if ($padding_bottom)
                                                           <!-- *******************************  QUANTS SOU ********************************************************   -->
                                                           <!-- *******************************  QUANTS SOU ********************************************************   -->
                                                           <!-- *******************************  QUANTS SOU ********************************************************   -->
+                                                          
+                                                              
                                                           <div class="fr-seccio ui-corner-all fr-seccio-quants" style="xxxmax-width:950px;">
-
+                                                                                        
                                                               <h1 class="titol"><span class="number">1</span><?php l('Quants sou?'); ?>
                                                                   <a href="#" id="info-quants" class="info-ico"><img src="/cb-reserves/reservar/css/info.png" title="<?php l('Ajuda'); ?>" style="width:16px;height:auto;margin-left:8px"/></a>
                                                               </h1>
+                              
+                                                              <div class="col-isqui flex">
+ 
 
+                                                              <!-- ******  INFO  ********   -->
+                                                              <div class="caixa dere info ui-corner-all info-quants"><?php l('INFO_QUANTS_SOU'); ?>
+                                                                  <input type="text" name="totalComensals" value="<?php echo $row['adults'] + $row['nens10_14'] + $row['nens4_9'] ?>" readonly="readonly"/></b>
+                                                                  <input type="text" name="totalCotxets" value="<?php echo $row['cotxets'] ? "/ " . $row['cotxets'] : "" ?>" readonly="readonly"/></b>
+                                                                  <!--Tingue's present que si vols modificar aquest nombre més endavant no podem garantir la disponibilitat de taula.<br/><br/>-->
+                                                              </div>
+ 
 
-
-
+ <div class="col-isqui ">
+ 
 
                                                               <h4  id="titol_SelectorComensals"><?php l('Adults (més de 14 anys)'); ?>:</h4>
 
@@ -535,16 +615,19 @@ if ($padding_bottom)
                                                               <div id="avis-modificacions" class="transition-1s" style="" >
                                                                   <?php l('AVIS_MODIFICACIONS'); ?>
                                                               </div> 
-                                                              <br/>
                                                               <!------------------- FI AVIS MODIFICACIONS ---------------------------->
 
 
 
 
                                                               <hr/>
+                                                              
                                                                
+                                                              
+                                                              
                                                               <div id="jnc" style="float:left; ">
                                                                   <!-- ******  JUNIOR  ********   -->
+                                                                  <input type="hidden" id="junior" name="nens10_14" value="<?php echo $row['nens10_14'] ?>" />
                                                                   <?php /* 
                                                                   <h4  id="titol_SelectorJuniors"><?php l('Juniors (de 10 a 14 anys):'); ?></h4>
                                                                   <input type="hidden" id="junior" name="nens10_14" value="<?php echo $row['nens10_14'] ?>"  style="width:35px;font-size:1.2em;padding-left:0;padding-right:0" class="ui-button ui-widget ui-state-default ui-button-text-only coberts"/><label for="comGrupsN" ><?php //l('Més de ');//echo ($PERSONES_GRUP+14)     ?></label>
@@ -561,7 +644,6 @@ if ($padding_bottom)
                                                                       ?>
                                                                   </div>
                                                                   */ ?>
-                                                                  <hr/>
                                                                   <!-- ******  NENS  ********   -->
                                                                   <h4  id="titol_SelectorNens"><?php l('Nens (fins a 14 anys)'); ?>:</h4>
                                                                   <div id="selectorNens" class="col_dere">
@@ -615,14 +697,10 @@ if ($padding_bottom)
                                                                   </div>
 
                                                               </div>	
+                                                              </div>	
+                                                              </div>	
 
 
-                                                              <!-- ******  INFO  ********   -->
-                                                              <div class="caixa dere info ui-corner-all info-quants"><?php l('INFO_QUANTS_SOU'); ?>
-                                                                  <input type="text" name="totalComensals" value="<?php echo $row['adults'] + $row['nens10_14'] + $row['nens4_9'] ?>" readonly="readonly"/></b>
-                                                                  <input type="text" name="totalCotxets" value="<?php echo $row['cotxets'] ? "/ " . $row['cotxets'] : "" ?>" readonly="readonly"/></b>
-                                                                  <!--Tingue's present que si vols modificar aquest nombre més endavant no podem garantir la disponibilitat de taula.<br/><br/>-->
-                                                              </div>
                                                               <div style="clear:both"></div>
 
                                                           </div>		
@@ -632,16 +710,19 @@ if ($padding_bottom)
                                                           <!-- *******************************  QUIN DIA ********************************************************   -->
 
                                                           <div class="fr-seccio ui-corner-all fr-seccio-dia"> 
-                                                              <div class="putoIE">
-                                                                  <h1 class="titol"><span class="number">2</span><?php l("Quin dia voleu venir?") ?>
-                                                                      <a href="#" id="info_dia" class="info-ico"><img src="/cb-reserves/reservar/css/info.png" title="<?php l('Ajuda'); ?>" style="width:16px;height:auto;margin-left:8px"/></a>
-                                                                  </h1></div>
                                                               <!-- ******  INFO  ********   -->
+                                                              <h1 class="titol"><span class="number">2</span><?php l("Quin dia voleu venir?") ?>
+                                                                      <a href="#" id="info_dia" class="info-ico"><img src="/cb-reserves/reservar/css/info.png" title="<?php l('Ajuda'); ?>" style="width:16px;height:auto;margin-left:8px"/></a>
+                                                                  </h1>
+                                                              <div class="col-isqui flex ">
                                                               <div class="caixa dere ui-corner-all info_dia">
                                                                   <?php l('INFO_DATA'); ?>	
                                                                   <input type="hidden" id="valida_calendari" name="selectorData" value="<?php echo $row['data']; ?>"/>
 
                                                               </div>
+                                                                  
+                                                              
+                                                              <div class="putoIE " style="">
                                                               <!-- ******  CALENDARI  ********   -->
                                                               <div id="data" style="float:left">
                                                                   <?php if ($EDITA_RESERVA): ?>
@@ -650,10 +731,12 @@ if ($padding_bottom)
                                                                       var BLOQ_DATA = '<?php echo $gestorf->cambiaf_a_normal($row['data']); ?>';
                                                                     </script>
                                                                   <?php endif ?>
-                                                                  <div id="calendari" class="fr-seccio ui-corner-all fr-seccio-dia"></div>
+                                                                  <div id="calendari" class=" ui-corner-all fr-seccio-dia"></div>
                                                               </div>
                                                               <div style="clear:both"></div>
 
+                                                          </div>		
+                                                          </div>		
                                                           </div>		
 
                                                           <!-- *******************************  QUINA HORA ********************************************************   -->
@@ -664,10 +747,13 @@ if ($padding_bottom)
                                                               <h1 class="titol"><span class="number">3</span><?php l('A quina hora?'); ?>
                                                                   <a href="#" id="info_hora" class="info-ico"><img src="/cb-reserves/reservar/css/info.png" title="<?php l('Ajuda'); ?>" style="width:16px;height:auto;margin-left:8px"/></a>
                                                               </h1>
+                                                              <div class="col-isqui flexw">
+                                                              
                                                               <!-- ******  INFO  ********   -->
-                                                              <div class="ui-corner-all caixa dere hores info_hora">
+                                                                       <div class="ui-corner-all caixa caixa100 dere hores info_hora">
                                                                   <?php l('INFO_HORES'); ?>	
                                                               </div>
+                                                              <div>
                                                               <!-- ******  DINAR  ********   -->
                                                               <h4><?php l('Dinar'); ?></h4>
                                                               <div id="selectorHora" class="col_dere">
@@ -683,6 +769,8 @@ if ($padding_bottom)
                                                               <input type="hidden" name="taulaT2" value="">
                                                               <input type="hidden" name="taulaT3" value="">
                                                           </div>	
+                                                          </div>	
+                                                          </div>	
 
 
                                                           <!-- *******************************  CARTA  *********************************   -->
@@ -690,15 +778,33 @@ if ($padding_bottom)
                                                           <!-- *******************************  CARTA  *********************************   -->
                                                           <a id="scroll-seccio-carta"></a>
                                                           <div class="fr-seccio ui-corner-all fr-seccio-carta"> 
-                                                              <h1 class="titol"><span class="number">4</span><?php l('Vols triar els plats?'); ?> (opcional)
+                                                              <!-- ******  INFO  ********   -->
+                                                              
+                                                              <h1 class="titol"><span class="number">4</span><?php l('Vols triar els plats?'); ?> <span class="nota"><?php l('(opcional)'); ?></span>
                                                                   <a href="#" id="info_carta" class="info-ico"><img src="/cb-reserves/reservar/css/info.png" title="<?php l('Ajuda'); ?>" style="width:16px;height:auto;margin-left:8px"/></a>
                                                               </h1>
+                                                              <div class="col-isqui-carta " style="display:flex;">
+                                                                  
+                                                              
+                                                                 
+                                                                  
+                                                                  
+                                                              
+                                                                  
+                                                                  
+                                                               <div class="ui-corner-all info caixa" >
+                                                                      <?php l('INFO_CARTA'); ?>
+                                                                  </div>
+                                                              <div class="col-isqui " >    
+                                                                  
+                                                                  
                                                               <div id="carta" class="col_derexx">
                                                                   <input id="te-comanda" name="te_comanda" type="text" value="" style="display:none"> 
                                                                   <!-- ******  COMANDA  ********   -->
-                                                                  <div class="caixa dere ui-corner-all" >
+                                                                  <div class=" ui-corner-all" >
 
-                                                                      <input type="checkbox" id="RESERVA_PASTIS" name="RESERVA_PASTIS" value="on" <?php echo $row['reserva_pastis'] ? 'checked="checked"' : "" ?>/><label for="RESERVA_PASTIS" ><?php l("RESERVA_PASTIS") ?></label>
+                                                                      <input type="checkbox" id="RESERVA_PASTIS" name="RESERVA_PASTIS" value="on" <?php echo $row['reserva_pastis'] ? 'checked="checked"' : "" ?>/>
+                                                                      <label class="" for="RESERVA_PASTIS" style="display:initial"><?php l("RESERVA_PASTIS") ?></label>
                                                                       <?php
                                                                       $pastis = $row['reserva_pastis'];
                                                                       $pastis_info = $row['reserva_info_pastis'];
@@ -733,17 +839,20 @@ if ($padding_bottom)
 
                                                                   </div>
 
-                                                                  <!-- ******  INFO  ********   -->
-                                                                  <div class="ui-corner-all info">
-                                                                      <?php l('INFO_CARTA'); ?>
-                                                                  </div>
+                                                                  
                                                                   <!-- ******  BUTO CARTA  ********   -->
+                                                                  
+                                                              </div>
+                                                                 
+                                                          </div>
+                                                          </div>
+                                                              
+                                                               <div>
                                                                   <a href="#"  id="bt-carta" name="bt-carta" class="bt" ><?php l('Carta'); ?></a>
                                                                   <a href="#"  id="bt-menu" name="bt-menu" class="bt"><?php l('Menús'); ?></a>
                                                                   <a href="#" id="bt-no-carta" name="bt-no-carta" class="bt" ><?php l('Continuar'); ?></a>
                                                                   <div style="clear:both"></div>
-
-                                                              </div>
+                                                                  </div>
                                                           </div>	
 
 
@@ -752,6 +861,8 @@ if ($padding_bottom)
                                                           <!-- *******************************  CLIENT ********************************************************   -->
                                                           <a id="scroll-seccio-client"></a>
                                                           <div class="fr-seccio ui-corner-all fr-seccio-client"> 
+                                                              
+                                                               <div class="col-isqui " >
                                                               <h1 class="titol"><span class="number">5</span><?php l('Donan´s algunes dades de contacte'); ?>
 
                                                               </h1>
@@ -776,7 +887,7 @@ if ($padding_bottom)
                                                                           </div>
 -->
                                                                       </td></tr>
-                                                                  <tr><td >
+                                                                  <tr><td>
 
 
 
@@ -784,7 +895,7 @@ if ($padding_bottom)
                                                                       </td></tr>
                                                               </table>
                                                               <div style="clear:both"></div>
-                                                              <div class="ui-corner-all info-legal info-legal-dades caixa">
+                                                              <div class="ui-corner-all info-legal info-legal-dades caixa caixa100">
                                                                   <?php
                                                                   l('LLEI');
                                                                   $chek = ($gestorf->flagBit($row['reserva_info'], 7) ? 'checked="checked"' : '');
@@ -797,20 +908,25 @@ if ($padding_bottom)
 
                                                               <div style="clear:both"></div>
                                                           </div>	
+                                                          </div>	
 
                                                           <!-- *******************************  SUBMIT ********************************************************   -->
                                                           <!-- *******************************  SUBMIT ********************************************************   -->
                                                           <!-- *******************************  SUBMIT ********************************************************   -->
                                                           <a id="scroll-seccio-submit"></a>
                                                           <div class="fr-seccio ui-corner-all fr-seccio-submit"> 
+                                                              
+                                                                <div class="col-isqui " >
                                                               <h1 class="titol"><span class="number">6</span><?php l('Envia la sol·licitud'); ?></h1>
 
-                                                              <div class="ui-corner-all caixa resum">
+                                                              <div class="ui-corner-all caixa caixa100 resum">
                                                                   <b><?php l('Resum reserva'); ?>:</b><br/><br/>
                                                                   <?php l('Data'); ?>: <b id="resum-data">-</b> | <?php l('Hora'); ?>: <b id="resum-hora">-</b><br/>
-                                                                  <?php l('Adults'); ?>: <b id="resum-adults">-</b> | <?php l('Juniors'); ?>: <b id="resum-juniors">-</b> | <?php l('Nens'); ?>: <b id="resum-nens">-</b> | <?php l('Cotxets'); ?>: <b id="resum-cotxets">-</b><br/>
+                                                                  <?php l('Adults'); ?>: <b id="resum-adults">-</b> | <?php l('Nens'); ?>: <b id="resum-nens">-</b> | <?php l('Cotxets'); ?>: <b id="resum-cotxets">-</b><br/>
                                                                   <?php l('Comanda'); ?>: <b id="resum-comanda"><?php l('Sense'); ?> </b> <?php l('plats'); ?> (<b id="resum-preu"></b> €)
                                                               </div>
+                                                              
+                                                              <div class="flex"></div>
                                                               <div class="ui-corner-all info-submit caixa dere">
                                                                   <?php l('INFO_NO_CONFIRMADA'); ?>:
 
@@ -820,6 +936,7 @@ if ($padding_bottom)
 
 
                                                               <div id="error_validate" class="ui-helper-hidden"><?php l("Hi ha errors al formulari. Revisa les dades, si us plau"); ?></div>
+                                                          </div>
                                                           </div>
                                                       </div>
 

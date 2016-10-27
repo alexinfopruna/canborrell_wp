@@ -68,7 +68,7 @@ $translate['INFO_COMANDA']="Pots escollir diferents menús o diferents plats de 
 	$translate['Cotxets de nadó']="Nens en cotxet de nadó <br/><em style='font-size:0.8em;'>(Malauradament només disposem d'espai per un cotxet per taula)</em>. <br/><b style='font-size:0.8em'>El nen ocuparà el cotxet i no una cadira/trona</b>";
 
 	
-	$translate['INFO_QUANTS_SOU']='<b>Digue\'ns quantes persones vindreu</b>, indicant, en primer lloc els majors de 14 anys seguit de juniors i nens. 
+	$translate['INFO_QUANTS_SOU']='<b>Digue\'ns quantes persones vindreu</b>, indicant, en primer lloc els majors de 14 anys seguit de nens fins a 14. 
 			<br/><br/>
                         <div class=info-paga-i-senyal><b>Si sou més de '.(persones_paga_i_senyal-1).' persones, 
                             caldrà que realitzeu una paga i senyal de '.import_paga_i_senyal.'€ amb targeta de crèdit</b>.

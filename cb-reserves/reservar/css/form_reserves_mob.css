@@ -26,7 +26,7 @@ img{border-style: none;}
     box-shadow: 5px 5px 5px #ccc;
 }	
 
-
+.m-menys, .m-mes{display:none;}
 .selector{margin-bottom:15px;}
 
 #calendari{font-size:1.6em}
@@ -164,8 +164,8 @@ textarea{margin-left:0px;width:90%;color:#570600;font-weight:bold;}
 .caixa input{
     /*background:#fbfbff;*/
 }
-.fr-seccio-dia .caixa{width:250px;}
-.fr-seccio-quants .caixa{width:285px;}
+/*.fr-seccio-dia .caixa{width:250px;}*/
+
 .fr-seccio-client .caixa{margin-top:10px;font-size:0.8em;}
 
 .fr-seccio-carta 
@@ -173,27 +173,13 @@ textarea{margin-left:0px;width:90%;color:#570600;font-weight:bold;}
     /*margin:25px 25px 15px 25px;*/
     /*width:729px; MOBIL*/
 }
-.fr-seccio-carta  .info
-{
-    background:#fbfbff;
-    width:40%;
-    /*background-image:url('info.png');
-    background-repeat:no-repeat;*/
-    margin-bottom:10px;
-    padding:8px;
-    border:1px solid rgb(203, 199, 189);
-    color:#aa8888;
 
-    -moz-box-shadow: 2px 2px 2px #ccc;
-    -webkit-box-shadow: 2px 2px 2px #ccc;
-    box-shadow: 2px 2px 2px #ccc;
-}
 
 .carta-plat{width:380px;}
 #carta .caixa{max-width:500px;}
 .hores{
     /*background:#ffffef;*/
-    width:685px;
+   // width:685px;
     float:none;
     padding:8px;
     margin-top:8px;
@@ -347,8 +333,8 @@ PANTALLES FINS A 770
 
     h4{font-size:1.7em}
     h2.titol{font-size:2.5em !important;}
-    div.caixa{display:none;} 
-    div.info{display:none;} 
+    /*div.caixa{display:none;} 
+    div.info{display:none;} */
     .fr-seccio-submit .caixa.resum{display:block;}
     .fr-seccio-carta .caixa{display:block;}
     .info-comanda{display:block;}
@@ -365,19 +351,7 @@ PANTALLES FINS A 770
     .ui-button, h4, h3, h2, legend{font-size:1.7em !important;}
 
     .ui-dialog{width:95% !important;}
-    .d-mes,.d-menys, td.mes,td.menys{display:none}
-    .m-mes, .m-menys{
-        display:block;
-        background:#570600;
-        color:white;
-        text-align:center;
-        height:25px;
-        font-size: 2em;
-        font-weight: bold;
-    }
-    .mes, .menys{background:white;}
 
-    .menys{margin-bottom:12px;}
     .contador{width:35px;}
     #tr_menu{font-size:2em;}
     #tr_menu a{display:block;text-align:left;}
@@ -391,7 +365,7 @@ PANTALLES FINS A 770
 
 
     #data{float:none !important;font-size: 1.3em;}
-    #calendari{width:95%;}
+  //  #calendari{width:95%;}
     div.ui-datepicker-inline.ui-datepicker{width:100%;}
 
     #fr-carta-tabs li, #fr-menu-tabs li {
@@ -412,9 +386,8 @@ PANTALLES FINS A 770
       /*  .fr-seccio-carta {max-width: 729px;}*/
         #calendari{font-size:1.6em}
 
-        #jnc{max-width:500px;}
+        
         hr{display:none;} 
-        .m-mes, .m-menys{display:none}
         .info-ico{display:none}
 
     }

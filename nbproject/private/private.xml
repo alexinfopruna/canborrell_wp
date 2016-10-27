@@ -5,14 +5,11 @@
         <group>
             <file>file:/var/www/canborrell-wp/wp-content/themes/onetone_cb/functions.php</file>
             <file>file:/var/www/canborrell-wp/wp-content/themes/onetone_cb/page-resultat-tpv.php</file>
-            <file>file:/var/www/canborrell-wp/cb-reserves/js/cb_static.js</file>
             <file>file:/var/www/canborrell-wp/cb-reserves/reservar/Gestor_form.php</file>
-            <file>file:/var/www/canborrell-wp/wp-content/themes/onetone_cb/header-home.php</file>
             <file>file:/var/www/canborrell-wp/wp-content/themes/onetone_cb/style.css</file>
-            <file>file:/var/www/canborrell-wp/cb-reserves/panel/index.php</file>
             <file>file:/var/www/canborrell-wp/wp-content/themes/onetone_cb/page-reservar.php</file>
             <file>file:/var/www/canborrell-wp/wp-content/plugins/calendari_reserves/calendari_reserves.php</file>
-            <file>file:/var/www/canborrell-wp/wp-content/themes/onetone_cb/page-input-reserva.php</file>
+            <file>file:/var/www/canborrell-wp/cb-reserves/taules/TaulesDisponibles.php</file>
         </group>
     </open-files>
 </project-private>

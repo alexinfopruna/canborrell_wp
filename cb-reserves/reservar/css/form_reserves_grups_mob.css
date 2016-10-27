@@ -1,9 +1,10 @@
+        .m-mes, .m-menys{display:none}
 
 /**
 PANTALLES FINS A 500
 */  @media only screen and (max-width: 450px){ 
 
-    #calendari{font-size:1.1em !important}
+    
     label{min-width:65px;}
     #selectorCotxets label{min-width:100%;}
     #selectorCadiraRodes label{min-width:100%;}
@@ -44,24 +45,7 @@ PANTALLES FINS A 770
     .ui-button, h4, h3, h2, legend{font-size:1.7em !important;}
 
     .ui-dialog{width:90% !important;}
-    .d-mes,.d-menys, td.mes,td.menys{display:none}
-    .m-mes, .m-menys{
-        display:block;
-        background:#570600;
-        color:white;
-        text-align:center;
-        height:25px;
-        font-size: 2em;
-        font-weight: bold;
-    }
-    .mes, .menys{background:white;}
-
-    .menys{margin-bottom:12px;}
-    .contador{width:35px;}
-    #tr_menu{font-size:2em;}
-    #tr_menu a{display:block;text-align:left;}
-    #tr_menu img{display:none;}
-    #table_menu{margin-left:15px !important}
+ 
 
     #caixa_reserva_consulta_online {float:none}
 
@@ -71,7 +55,6 @@ PANTALLES FINS A 770
 
     #data{float:none !important;font-size: 1.3em;}
     #calendari{width:95%;}
-    div.ui-datepicker-inline.ui-datepicker{width:100%;}
 
     #fr-carta-tabs li, #fr-menu-tabs li {
         width: 100%;
@@ -92,9 +75,7 @@ PANTALLES FINS A 770
         .ZZZgrups-fr-seccio-carta {max-width: 729px;}
         #calendari{font-size:1.6em}
 
-        #jnc{max-width:70%;}
         hr{display:none;} 
-        .m-mes, .m-menys{display:none}
         .info-ico{display:none}
 
     }
@@ -173,3 +154,4 @@ a:link, a:visited
 #fr-cartaw-popup{height:auto !important;}
 
 .info-paga-i-senyal{background:rgb(255, 255, 161);padding:4px;}
+
