@@ -447,7 +447,7 @@ function comportamentMenus()
     $(".resum-carta-nom").click(function (e) {
         $(this).closest("tr").find("td.mes a").trigger("click");
         e.preventDefault();
-        return FALSE;
+        return false;
     });
 }
 

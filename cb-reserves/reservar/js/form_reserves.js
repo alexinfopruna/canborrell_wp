@@ -1183,7 +1183,7 @@ function avis_modificacions(e) {
     var adults = $("input[name='selectorComensals']:checked").val()
     if (adults < 6) {
         $.scrollTo("#titol_SelectorJuniors", 600);
-        return FALSE;
+        return false;
     }
 
 help($("#avis-modificacions").html());
