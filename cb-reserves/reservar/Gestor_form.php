@@ -1237,7 +1237,7 @@ WHERE  `client`.`client_id` =$idc;
 
 
       $extres['subject'] = "Can-Borrell: !!!! $msg!!!";
-      $mail = $this->enviaMail($idr, "paga_i_senyal_", MAIL_RESTAURANT, $extres);
+      $mail = $this->enviaMail($idr, "../reservar/paga_i_senyal_", MAIL_RESTAURANT, $extres);
       return FALSE;
     }
 
@@ -1251,7 +1251,7 @@ WHERE  `client`.`client_id` =$idc;
 
     //echo $query." >>> ".$result;
     if ($mail)
-      $this->enviaMail($idr, "paga_i_senyal_", "", $extres);
+      $this->enviaMail($idr, "../reservar/paga_i_senyal_", "", $extres);
 
     $persones = $row['adults'] + $row['nens10_14'] + $row['nens4_9'];
     $persones.='p';
@@ -1300,7 +1300,7 @@ WHERE  `client`.`client_id` =$idc;
       $this->xgreg_log($msg, 1, LOG_FILE_TPVPK, FALSE); /* LOG */
       echo "ERROR ESTAT!=2";
       $extres['subject'] = "Can-Borrell: !!!! $msg!!!";
-      $mail = $this->enviaMail($idr, "paga_i_senyal_", MAIL_RESTAURANT, $extres);
+      $mail = $this->enviaMail($idr, "../reservar/paga_i_senyal_", MAIL_RESTAURANT, $extres);
       return FALSE;
     }
     $referer = $_SERVER['REMOTE_ADDR'];
