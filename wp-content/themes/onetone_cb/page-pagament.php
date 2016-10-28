@@ -188,6 +188,7 @@ $translate['COMPRA_SEGURA']['en'] = "To make a payment using this bank gateway, 
           vent = window.open('', 'frame-tpv', 'width=725,height=600,scrollbars=no,resizable=yes,status=yes,menubar=no,location=no');
           // vent.moveTo(eje_x,eje_y);
           document.forms[0].submit();
+          //document.location ="/#";
       });
   });
 </script>

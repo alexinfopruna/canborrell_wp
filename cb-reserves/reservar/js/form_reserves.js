@@ -999,9 +999,9 @@ function controlSubmit()
             {
                 $("#popup").bind("dialogclose", function (event, ui) {
                     $.post(GESTOR + "?a=cancelPagaISenyal&b=" + obj.idr);
-                    //ALEXDEBUG window.location.href = "/#about";
-                    $("#popup").dialog('close');
-                    $('#submit').show();
+                    window.location.href = "/#about";
+                    //$("#popup").dialog('close');
+                    //$('#submit').show();
                 });
 
                 SUBMIT_OK = true;
