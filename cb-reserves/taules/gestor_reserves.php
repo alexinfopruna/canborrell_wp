@@ -2554,11 +2554,8 @@ ORDER BY `estat_hores_data` DESC";
 
     $altbdy = 'HTML NOT PROCESSED';
 
-
     $t->parse("OUT", "page");
     $html = $t->get("OUT");
-//$query = "UPDATE email SET email_body ='$html' WHERE email_timestamp=$ts";
-//$this->qry_result = mysqli_query($this->connexioDB, $query) or die(((is_object($GLOBALS["___mysqli_ston"])) ? mysqli_error($GLOBALS["___mysqli_ston"]) : (($___mysqli_res = mysqli_connect_error()) ? $___mysqli_res : false)));
 
 
     if ($destinatari)

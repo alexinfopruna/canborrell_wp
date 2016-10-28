@@ -1228,8 +1228,8 @@ WHERE  `client`.`client_id` =$idc;
 
     $estat = $row['estat'];
     $mail = $row['client_email'];
-
-    if ($estat != 2) { // NO ESTÀ CONFIRMADA PER PAGAR
+//ALEXDEBUG
+    if (FALSE && $estat != 2) { // NO ESTÀ CONFIRMADA PER PAGAR
       $msg = "PAGAMENT INAPROPIAT RESERVA PETITA???: " . $idr . " estat: $estat  $mail";
       $this->xgreg_log($msg, 1, LOG_FILE_TPVPK, TRUE, 1); /* LOG */
       $this->xgreg_log($msg, 1, LOG_FILE_TPVPK, TRUE, 0); /* LOG */
@@ -1240,7 +1240,6 @@ WHERE  `client`.`client_id` =$idc;
       $mail = $this->enviaMail($idr, "../reservar/paga_i_senyal_", MAIL_RESTAURANT, $extres);
       return FALSE;
     }
-
     $referer = $_SERVER['REMOTE_ADDR'];
     $import = $amount / 100;
     $resposta = "PAGA I SENYAL TPV: " . $import . "Euros (" . $pdata . " " . $phora . ")";
@@ -1249,9 +1248,9 @@ WHERE  `client`.`client_id` =$idc;
 
     $extres['subject'] = $this->l("Can-Borrell: RESERVA CONFIRMADA", false);
 
-    //echo $query." >>> ".$result;
-    if ($mail)
+    if ($mail){
       $this->enviaMail($idr, "../reservar/paga_i_senyal_", "", $extres);
+    }
 
     $persones = $row['adults'] + $row['nens10_14'] + $row['nens4_9'];
     $persones.='p';
@@ -1270,6 +1269,7 @@ WHERE  `client`.`client_id` =$idc;
     $missatge = "Recordi: reserva al Restaurant Can Borrell. %s %s (%s).Preguem comuniqui qualsevol canvi: 936929723/936910605.Gràcies.(ID%s)"; 
     
     $missatge .= "\n***\nConservi quest SMS com a comprovant de la paga y senyal de %s€ que li serà descomptada. També hem enviat un email que pot imprimir";
+    $row['lang'] = isset($row['lang'])?$row['lang']:"ca";
     $missatge = gestor_reserves::SMS_language($missatge, $row['lang'], $args);
     $this->enviaSMS($idr, $missatge);
 
