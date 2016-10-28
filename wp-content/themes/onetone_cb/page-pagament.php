@@ -74,7 +74,8 @@ $subtitol['esp'] = "Reservation Information";
 /* * *************************************************************************** */
 $gestor = new gestor_reserves();
 /* * *************************************************************************** */
-if (!isset($_GET['rid']))  die("ERRROR: Falta RID");
+if (!isset($_GET['rid']))
+  die("ERRROR: Falta RID");
 $rid = base64_decode($_GET['rid']);
 $st = explode('&', $rid);
 $id = $_GET["id"] = $st[0];
@@ -85,7 +86,7 @@ $r = $gestor->load_reserva($_GET["id"], 'reserves');
 $mob = $r['tel'];
 
 if (intval($mob) != intval($_GET["mob"]))
-  header('Location: /reservar/localiza-reserva/&lang=' . ICL_LANGUAGE_CODE);
+  header('Location: /reservar/localitza-reserva/&lang=' . ICL_LANGUAGE_CODE);
 
 $result = "";
 $rid = "";
@@ -104,7 +105,12 @@ if ($id) {
   $import = $fila['preu_reserva'];
   $nom = $fila['nom'];
   $lang = $lang_cli = $fila['lang'];
-}else{
+
+
+  $usr = new Usuari($fila['client_id'], $fila['nom'], 1);
+  $_SESSION['uSer'] = $usr;
+}
+else {
   
 }
 if (!isset($lang))
@@ -128,13 +134,13 @@ if (($estat == 3) || ($estat == 7)) { // JA S?HA PAGAT
   $titol['en'] = "This reservation has now been paid<br><br><br><br><br><br><br>";
   $surt = true;
   $gestor->xgreg_log($titol['cat'], 1);
-}else if($estat  == 6){
-   $titol['cat'] = "Lamentablement aquesta reserva ha caducat! Contacti amb el restaurant<br><br><br><br><br><br><br><br>";
+}
+else if ($estat == 6) {
+  $titol['cat'] = "Lamentablement aquesta reserva ha caducat! Contacti amb el restaurant<br><br><br><br><br><br><br><br>";
   $titol['esp'] = "Lamentablemente esta reserva ha caducado! Contacte con el restaurante<br><br><br><br><br><br><br><br>";
   $titol['en'] = "Unfortunately, this reservation has not been confirmed or has expired! Contact the restaurant<br><br><br><br><br><br><br><br>";
   $surt = true;
   $gestor->xgreg_log($titol['cat'], 1);
- 
 }
 else if ($estat != 2) {    // NO ESTA CONFIRMADA
   $titol['cat'] = "Lamentablement aquesta reserva no ha estat confirmada o ha caducat! Contacti amb el restaurant<br><br><br><br><br><br><br><br>";
@@ -172,8 +178,6 @@ $translate['COMPRA_SEGURA']['en'] = "To make a payment using this bank gateway, 
 
 
 ((mysqli_free_result($Result) || (is_object($Result) && (get_class($Result) == "mysqli_result"))) ? true : false);
-
-
 ?>
 <?php echo Gestor::loadJQuery(); ?>
 <script language=JavaScript>
@@ -239,40 +243,39 @@ $translate['COMPRA_SEGURA']['en'] = "To make a payment using this bank gateway, 
               <hgroup class="page-title">
                   <h1>
                       <?php
-                       
                       //
                       //
-                      if ($surt){
+                      if ($surt) {
                         echo $titol[$lang];
-                      }else{
-                         the_title();
                       }
-         
+                      else {
+                        the_title();
+                      }
                       ?>
                   </h1>
               </hgroup>
               <div class="clearfix"></div>
           </div>
       </section>
-    <?php endif; ?>
+<?php endif; ?>
     <div class="post-wrap">
         <div class="<?php echo $container; ?>">
             <div class="post-inner row <?php echo $aside; ?>" style=" <?php echo $container_css; ?>">
                 <div class="col-main">
                     <section class="post-main" role="main" id="content">
-                        <?php while (have_posts()) : the_post(); ?>
+<?php while (have_posts()) : the_post(); ?>
                           <article class="post type-post" id="">
-                              <?php if (has_post_thumbnail()): ?>
+                          <?php if (has_post_thumbnail()): ?>
                                 <div class="feature-img-box">
                                     <div class="img-box">
-                                        <?php the_post_thumbnail(); ?>
+    <?php the_post_thumbnail(); ?>
                                     </div>
                                 </div>
-                              <?php endif; ?>
+  <?php endif; ?>
                               <div class="entry-main">
 
                                   <div class="entry-content ">
-                                      <?php the_content(); ?>
+  <?php the_content(); ?>
 
                                       <?php
                                       if ($surt && !isset($_REQUEST['testTPV']))
@@ -280,7 +283,7 @@ $translate['COMPRA_SEGURA']['en'] = "To make a payment using this bank gateway, 
                                       ?>
 
                                       <div class="alert alert-info">
-                                          <?php echo $txt[40][$lang] ?>
+  <?php echo $txt[40][$lang] ?>
 
                                       </div>
 
@@ -288,7 +291,7 @@ $translate['COMPRA_SEGURA']['en'] = "To make a payment using this bank gateway, 
                                           <tr>
                                               <td   class="Estilo2">id_reserva</td>
                                               <td   class="llista"><div  class="titol2"><?php echo $fila['id_reserva'];
-                                          ?> </div></td>
+  ?> </div></td>
                                           </tr>
 
                                           <tr>
@@ -319,8 +322,8 @@ $translate['COMPRA_SEGURA']['en'] = "To make a payment using this bank gateway, 
                                               <td   class="Estilo2">menú</td>
                                               <td  class="llista"><div  ><?php
 ///// COMANDA
-                                          echo $comanda = $gestor->plats_comanda($fila['id_reserva']);
-                                          ?> </div></td>
+  echo $comanda = $gestor->plats_comanda($fila['id_reserva']);
+  ?> </div></td>
                                           </tr>
                                           <tr>
                                               <td   class="Estilo2"><?php echo $camps[2][$lang] ?></td>
@@ -353,28 +356,28 @@ $translate['COMPRA_SEGURA']['en'] = "To make a payment using this bank gateway, 
                                                   </div></td>
                                           </tr>
                                       </table>
-                                      <?php
-                                      $id_reserva = ((int) $_GET["id"]) + 100000;
-                                      //$url_resposta = 'http://' . $_SERVER['HTTP_HOST'] . '/reservar/Gestor_form.php?a=respostaTPV_GRUPS_SHA256';
-                                      $responaseok_callback_alter = "reserva_grups_tpv_ok_callback";
-                                      $response = isset($_GET["testTPV"]) ? $_GET["testTPV"] : -1;
+  <?php
+  $id_reserva = ((int) $_GET["id"]) + 100000;
+  //$url_resposta = 'http://' . $_SERVER['HTTP_HOST'] . '/reservar/Gestor_form.php?a=respostaTPV_GRUPS_SHA256';
+  $responaseok_callback_alter = "reserva_grups_tpv_ok_callback";
+  $response = isset($_GET["testTPV"]) ? $_GET["testTPV"] : -1;
 
-                                      if (isset($_REQUEST["testTPV"]) && $_REQUEST["testTPV"] == 'testTPV')
-                                        echo $gestor->generaTESTTpvSHA256($id_reserva, $import, $nom, $responaseok_callback_alter);
-                                      else
-                                        echo $gestor->generaFormTpvSHA256($id_reserva, $import, $nom, $responaseok_callback_alter);
-                                      ?>  
-
-
+  if (isset($_REQUEST["testTPV"]) && $_REQUEST["testTPV"] == 'testTPV')
+    echo $gestor->generaTESTTpvSHA256($id_reserva, $import, $nom, $responaseok_callback_alter);
+  else
+    echo $gestor->generaFormTpvSHA256($id_reserva, $import, $nom, $responaseok_callback_alter);
+  ?>  
 
 
 
 
 
 
-                                      <?php
-                                      wp_link_pages(array('before' => '<div class="page-links"><span class="page-links-title">' . __('Pages:', 'onetone') . '</span>', 'after' => '</div>', 'link_before' => '<span>', 'link_after' => '</span>'));
-                                      ?>
+
+
+  <?php
+  wp_link_pages(array('before' => '<div class="page-links"><span class="page-links-title">' . __('Pages:', 'onetone') . '</span>', 'after' => '</div>', 'link_before' => '<span>', 'link_after' => '</span>'));
+  ?>
                                   </div>
 
                               </div>
@@ -382,32 +385,32 @@ $translate['COMPRA_SEGURA']['en'] = "To make a payment using this bank gateway, 
                           <div class="post-attributes">
                               <!--Comments Area-->
                               <div class="comments-area text-left">
-                                  <?php
-                                  // If comments are open or we have at least one comment, load up the comment template
-                                  if (comments_open()) :
-                                    comments_template();
-                                  endif;
-                                  ?>
+  <?php
+  // If comments are open or we have at least one comment, load up the comment template
+  if (comments_open()) :
+    comments_template();
+  endif;
+  ?>
                               </div>
                               <!--Comments End-->
                           </div>
-                        <?php endwhile; // end of the loop.   ?>
+<?php endwhile; // end of the loop.    ?>
                     </section>
                 </div>
-                <?php if ($sidebar == 'left' || $sidebar == 'both'): ?>
+<?php if ($sidebar == 'left' || $sidebar == 'both'): ?>
                   <div class="col-aside-left">
                       <aside class="blog-side left text-left">
                           <div class="widget-area">
-                              <?php get_sidebar('pageleft'); ?>
+  <?php get_sidebar('pageleft'); ?>
                           </div>
                       </aside>
                   </div>
-                <?php endif; ?>
+<?php endif; ?>
                 <?php if ($sidebar == 'right' || $sidebar == 'both'): ?>
                   <div class="col-aside-right">
-                      <?php get_sidebar('pageright'); ?>
+                  <?php get_sidebar('pageright'); ?>
                   </div>
-                <?php endif; ?>
+                    <?php endif; ?>
             </div>
         </div>
     </div>

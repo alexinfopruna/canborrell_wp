@@ -1,4 +1,10 @@
 <?php
+
+$qs = $_SERVER['QUERY_STRING'];die();
+header("Location: /reservar/pagament/?".$qs);
+exit();
+
+
 $r = null;
 $surt = false;
 

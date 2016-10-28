@@ -700,6 +700,23 @@ class Gestor {
 
     return ($trans);
   }
+  
+  /*   * *************************************************************************************************** */
+
+  static function newlang($oldlang){
+    $map['cat'] = $map['ca'] = 'ca';
+    $map['esp'] = $map['es'] = 'es';
+    $map['eng'] = $map['en'] = 'en';
+    
+    return $map[$oldlang];
+  }
+  static function oldlang($newlang){
+    $map['cat'] = $map['ca'] = 'cat';
+    $map['esp'] = $map['es'] = 'esp';
+    $map['eng'] = $map['en'] = 'eng';
+    
+    return $map[$newlang];
+  }
  /*   * *************************************************************************************************** */
   
     static function lv($text) {

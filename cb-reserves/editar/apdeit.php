@@ -134,6 +134,7 @@ function mail_SMS_cli($id=false,$SMS=null)
 {    
   $resultats = array('mail_cli'=>FALSE,'mail_rest'=>FALSE,'sms'=>FALSE);
   $copia = "Sense plantilla ";
+  $d=false;
   
    Gestor::xgreg_log("<span class='mail'>ENVIA SMS+MAIL: <span class='idr'>$id</span></span>",0,'/log/logGRUPS.txt');
   
@@ -179,8 +180,15 @@ function mail_SMS_cli($id=false,$SMS=null)
 	switch ((int)$fila['estat'])
 	{
           case 2: // RESRVA CONFIRMADA
-		$v=10;      
-		$aki="<a href='http://www.can-borrell.com/editar/pagament256.php?id=".$fila["id_reserva"]."&lang=$lang_cli' class='dins'>AQUI</a>";
+		$v=10; 
+                                                        $lng = Gestor::newlang($lang_cli);
+            
+            
+		//$aki="<a href='http://www.can-borrell.com/editar/pagament256.php?id=".$fila["id_reserva"]."&lang=$lang_cli' class='dins'>AQUI</a>";
+                                                        $b64=base64_encode($fila["id_reserva"]."&".$fila['tel']."&".$lng);
+                                                        //var_dump(base64_decode($b64));die();
+                                                        $aki="<a href='http://www.can-borrell.com/reservar/pagament?rid=$b64&lang=$lng' class='dins'>AQUI</a>";
+                                                        
         $copia="Reserva Grups CONFIRMADA";
         $subject="Can-Borrell: RESERVA CONFIRMADA";
         $altbdy="Su reserva para el Restaurante Can Borrel ha sido confirmada. \n\nDebido a que su cliente de correo no puede interpretar correctamente este mensaje no es posible automatizar el proceso de pago.\n\n Por favor, póngase en contacto con el restaurante llamando al 936 929 723 o al 936 910 605. \n\nDisculpe las molestias";
