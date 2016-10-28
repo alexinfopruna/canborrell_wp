@@ -150,7 +150,6 @@ function reservar_enqueue_styles() {
   <link type="text/css" href="/cb-reserves/taules/css/blitzer/jquery-ui-1.8.9.forms.css" rel="stylesheet" />	
   <link type="text/css" href="/cb-reserves/reservar/css/jquery.tooltip.css" rel="stylesheet" />	
   <link type="text/css" href="/cb-reserves/reservar/css/form_reserves_mob.css" rel="stylesheet" />		
-  <zzlink type="text/css" href="/cb-reserves/css/estils.css" rel="stylesheet" />	
   <link type="text/css" href="/cb-reserves/reservar/css/osx.css" rel="stylesheet" />
   <link type="text/css" href="/cb-reserves/reservar/css/glyphicons.css" rel="stylesheet" />
   <link rel="stylesheet" href="/wp-content/plugins/magee-shortcodes/assets/bootstrap/css/bootstrap.min.css"> 
@@ -955,7 +954,7 @@ if ($padding_bottom)
                                                   <div id="peu" style="margin-top:50px;	text-align:center;padding:15px;background:#FFFFFF" ><b>Restaurant CAN BORRELL:</b> <button class="dins cb-contacte" style="text-align:right">Contactar amb el restaurant </button>  /  <a href="mailto:<?php echo MAIL_RESTAURANT; ?>" target="_blank"  class="dins"><?php echo MAIL_RESTAURANT; ?></a>
                                                   </div>
                                                   -->	
-                                                  <div>
+                                                  <div id="td-form-tpv">
                                                       <?php
                                                       if (FALSE && isset($_REQUEST["testTPV"]) && $_REQUEST["testTPV"] = 'testTPV') {
                                                         echo "<style>"

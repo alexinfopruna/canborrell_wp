@@ -5,7 +5,9 @@ body
     color: #570600;
     margin:0px;
 }
-
+#selectorHora .ui-button-text-only .ui-button-text {
+padding: .4em .9em;
+}
 .dev{background-image:url(obres.png)}
 .local{background-image:url(local.png)}
 

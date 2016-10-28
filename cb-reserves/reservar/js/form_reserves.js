@@ -296,9 +296,9 @@ $(function () {
              monta_calendari("#calendari");
             $(".fr-seccio-dia").show();
             SECCIO = "fr-seccio-dia";
-            //updateCalendari();       
+            //updateCalendari();   
    }
-  // $(".fr-seccio").show();
+  document.body.scrollTop = document.documentElement.scrollTop = 0;
 }); //ONLOAD, PRESENTACIO UI
 //***********************************************************************************************************/
 /************************************************************************************************************/
@@ -999,7 +999,9 @@ function controlSubmit()
             {
                 $("#popup").bind("dialogclose", function (event, ui) {
                     $.post(GESTOR + "?a=cancelPagaISenyal&b=" + obj.idr);
-                    window.location.href = "/#about";
+                    //ALEXDEBUG window.location.href = "/#about";
+                    $("#popup").dialog('close');
+                    $('#submit').show();
                 });
 
                 SUBMIT_OK = true;
