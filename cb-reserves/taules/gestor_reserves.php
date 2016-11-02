@@ -2768,6 +2768,8 @@ ORDER BY `estat_hores_data` DESC";
   /*   * ********************************************************************************************************************* */
 
   public function cerca_taula($persones = null, $cotxets = 0, $findes = null) {
+    $BLOC = $BLOC2 = $t ="";
+    $ntaules = 0;
     $persones = $persones == "undefined" ? 0 : $persones;
     $cotxets = $cotxets == "undefined" ? 0 : $cotxets;
 

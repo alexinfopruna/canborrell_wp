@@ -262,7 +262,7 @@ em.error {
 
 .resum strong{color:#570600;}
 .cb_hide{float:left;background:white;position:absolute;	filter: alpha(opacity=80);	opacity: 0.8;z-index:1000;}
-.putoIE{z-index:1000;}
+/*.putoIE{z-index:1000;}*/
 
 #help{font-size:1.4em}
 

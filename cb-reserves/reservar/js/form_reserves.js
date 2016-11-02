@@ -100,7 +100,8 @@ $(function () {
         width: 400,
         buttons: {
             t: function () {
-                document.location.href = "form_grups.html";
+                //document.location.href = "form_grups.html";
+                document.location.href = "/reservar/reserva-grup/";
             },
             "Modificar": function () {
                 $(this).dialog("close");
@@ -405,7 +406,9 @@ function totalPersones()
         comportamentDia();
 
         if (confirm(l("REDIR_GRUPS"))) {
-            window.location.href = "form_grups.php?a=redir&b=" + na + "&c=" + nj + "&d=" + nn + "&e=" + cotxets;
+         //   window.location.href = "form_grups.php?a=redir&b=" + na + "&c=" + nj + "&d=" + nn + "&e=" + cotxets;
+            window.location.href = "/reservar/reserva-grup/?a=redir&b=" + na + "&c=" + nj + "&d=" + nn + "&e=" + cotxets;
+            $("body").fadeOut();
         }
 
         $("#selectorComensals input").prop('checked', false);

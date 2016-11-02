@@ -1,10 +1,12 @@
 <?php
-if (!defined('ROOT')) header('Content-Type: text/html; charset=utf-8');
 
-if (!defined('ROOT')){
+if (!defined('ROOT'))
+  header('Content-Type: text/html; charset=utf-8');
+
+if (!defined('ROOT')) {
   $root = '../taules/';
- // $root = '../cb-reserves/taules/';
-   define('ROOT', $root);
+  // $root = '../cb-reserves/taules/';
+  define('ROOT', $root);
 }
 
 if (isset($_REQUEST['a']))
@@ -34,6 +36,7 @@ class Gestor_form extends gestor_reserves {
 
   var $data_BASE = "2011-01-01";
   var $menjadorsBloquejatsOnline;
+
   /*   * ******************************************************************************************************* */
 
   public function __construct($usuari_minim = 1) {
@@ -168,7 +171,7 @@ class Gestor_form extends gestor_reserves {
 
   /*   * ******************************************************************************************************* */
 
-  public function horesDisponibles($data, $coberts, $cotxets = 0, $accesible = 0, $idr = 0, $nens=null) {
+  public function horesDisponibles($data, $coberts, $cotxets = 0, $accesible = 0, $idr = 0, $nens = null) {
 
     $mydata = $this->cambiaf_a_mysql($data);
 
@@ -191,16 +194,21 @@ class Gestor_form extends gestor_reserves {
     $this->taulesDisponibles->llista_dies_negra = LLISTA_DIES_NEGRA_RES_PETITES;
     $this->taulesDisponibles->llista_nits_negra = LLISTA_DIES_NEGRA_RES_PETITES;
     $this->taulesDisponibles->llista_dies_blanca = LLISTA_DIES_BLANCA;
-    $this->taulesDisponibles->rang_hores_nens = $this->rang_hores_nens($coberts-$nens,$nens);
-    
+    $this->taulesDisponibles->rang_hores_nens = $this->rang_hores_nens($coberts - $nens, $nens);
+
 
 
     /* 	 */
     //TORN1
     $this->taulesDisponibles->torn = 1;
     $dinar = $this->taulesDisponibles->recupera_hores();
-    
+
     $taules = $this->taulesDisponibles->taulesDisponibles();
+
+    if (!$taules) {
+      $json = array('dinar' => '', 'dinarT2' => '', 'sopar' => '', 'taulaT1' => 0, 'taulaT2' => 0, 'taulaT3' => 0, 'error' => 3);
+      return json_encode($json);
+    }
     $taulaT1 = $taules[0]->id;
     if (!$dinar)
       $dinar = "";
@@ -228,106 +236,109 @@ class Gestor_form extends gestor_reserves {
     return json_encode($json);
     //////////////////////////////////					
   }
-  
-  private function rang_hores_nens($adults, $nens){
-    if (!$adults || !$nens || !defined("CONTROL_HORES_NENS") || !CONTROL_HORES_NENS ) return;
 
-    $limits=array();
-    $limits[4][3]=array("15:30","15:45","16:00","16:15","16:30");
-    $limits[4][4]=array("15:30","15:45","16:00","16:15","16:30");
-    $limits[4][5]=array("15:30","15:45","16:00","16:15","16:30");
-    $limits[4][6]=array("15:30","15:45","16:00","16:15","16:30");
-    $limits[4][7]=array("15:30","15:45","16:00","16:15","16:30");
+  private function rang_hores_nens($adults, $nens) {
+    if (!$adults || !$nens || !defined("CONTROL_HORES_NENS") || !CONTROL_HORES_NENS)
+      return;
 
-    $limits[5][3]=array("15:30","15:45","16:00","16:15","16:30");
-    $limits[5][4]=array("15:30","15:45","16:00","16:15","16:30");
-    $limits[5][5]=array("15:30","15:45","16:00","16:15","16:30");
-    $limits[5][6]=array("15:30","15:45","16:00","16:15","16:30");
-    $limits[5][7]=array("15:30","15:45","16:00","16:15","16:30");
-    
-    $limits[6][3]=array("15:30","15:45","16:00","16:15","16:30");
-    $limits[6][4]=array("15:30","15:45","16:00","16:15","16:30");
-    $limits[6][5]=array("15:30","15:45","16:00","16:15","16:30");
-    $limits[6][6]=array("15:30","15:45","16:00","16:15","16:30");
-    $limits[6][7]=array("15:30","15:45","16:00","16:15","16:30");
-    
-    $limits[7][3]=array("15:30","15:45","16:00","16:15","16:30");
-    $limits[7][7]=array("15:30","15:45","16:00","16:15","16:30");
-    $limits[7][5]=array("15:30","15:45","16:00","16:15","16:30");
-    $limits[7][6]=array("15:30","15:45","16:00","16:15","16:30");
-    $limits[7][7]=array("15:30","15:45","16:00","16:15","16:30");
+    $limits = array();
+    $limits[4][3] = array("15:30", "15:45", "16:00", "16:15", "16:30");
+    $limits[4][4] = array("15:30", "15:45", "16:00", "16:15", "16:30");
+    $limits[4][5] = array("15:30", "15:45", "16:00", "16:15", "16:30");
+    $limits[4][6] = array("15:30", "15:45", "16:00", "16:15", "16:30");
+    $limits[4][7] = array("15:30", "15:45", "16:00", "16:15", "16:30");
 
-    $limits[8][3]=array("15:30","15:45","16:00","16:15","16:30");
-    $limits[8][4]=array("15:30","15:45","16:00","16:15","16:30");
-    $limits[8][5]=array("15:30","15:45","16:00","16:15","16:30");
-    $limits[8][6]=array("15:30","15:45","16:00","16:15","16:30");
-    $limits[8][7]=array("15:30","15:45","16:00","16:15","16:30");
+    $limits[5][3] = array("15:30", "15:45", "16:00", "16:15", "16:30");
+    $limits[5][4] = array("15:30", "15:45", "16:00", "16:15", "16:30");
+    $limits[5][5] = array("15:30", "15:45", "16:00", "16:15", "16:30");
+    $limits[5][6] = array("15:30", "15:45", "16:00", "16:15", "16:30");
+    $limits[5][7] = array("15:30", "15:45", "16:00", "16:15", "16:30");
 
-    $limits[9][3]=array("15:45","16:00","16:15","16:30");
-    $limits[9][4]=array("15:45","16:00","16:15","16:30");
-    $limits[9][5]=array("15:45","16:00","16:15","16:30");
-    $limits[9][6]=array("15:45","16:00","16:15","16:30");
-    $limits[9][7]=array("15:45","16:00","16:15","16:30");
-    
-    $limits[10][3]=array("15:45","16:00","16:15","16:30");
-    $limits[10][4]=array("15:45","16:00","16:15","16:30");
-    $limits[10][5]=array("15:45","16:00","16:15","16:30");
-    $limits[10][6]=array("15:45","16:00","16:15","16:30");
-    $limits[10][7]=array("15:45","16:00","16:15","16:30");
-    
-    $limits[11][3]=array("15:45","16:00","16:15","16:30");
-    $limits[11][4]=array("15:45","16:00","16:15","16:30");
-    $limits[11][5]=array("15:45","16:00","16:15","16:30");
-    $limits[11][6]=array("15:45","16:00","16:15","16:30");
-    $limits[11][7]=array("15:45","16:00","16:15","16:30");
-    
-    $limits[12][3]=array("15:45","16:00","16:15","16:30");
-    $limits[12][4]=array("15:45","16:00","16:15","16:30");
-    $limits[12][5]=array("15:45","16:00","16:15","16:30");
-    $limits[12][6]=array("15:45","16:00","16:15","16:30");
-    $limits[12][7]=array("15:45","16:00","16:15","16:30");
-    
+    $limits[6][3] = array("15:30", "15:45", "16:00", "16:15", "16:30");
+    $limits[6][4] = array("15:30", "15:45", "16:00", "16:15", "16:30");
+    $limits[6][5] = array("15:30", "15:45", "16:00", "16:15", "16:30");
+    $limits[6][6] = array("15:30", "15:45", "16:00", "16:15", "16:30");
+    $limits[6][7] = array("15:30", "15:45", "16:00", "16:15", "16:30");
+
+    $limits[7][3] = array("15:30", "15:45", "16:00", "16:15", "16:30");
+    $limits[7][7] = array("15:30", "15:45", "16:00", "16:15", "16:30");
+    $limits[7][5] = array("15:30", "15:45", "16:00", "16:15", "16:30");
+    $limits[7][6] = array("15:30", "15:45", "16:00", "16:15", "16:30");
+    $limits[7][7] = array("15:30", "15:45", "16:00", "16:15", "16:30");
+
+    $limits[8][3] = array("15:30", "15:45", "16:00", "16:15", "16:30");
+    $limits[8][4] = array("15:30", "15:45", "16:00", "16:15", "16:30");
+    $limits[8][5] = array("15:30", "15:45", "16:00", "16:15", "16:30");
+    $limits[8][6] = array("15:30", "15:45", "16:00", "16:15", "16:30");
+    $limits[8][7] = array("15:30", "15:45", "16:00", "16:15", "16:30");
+
+    $limits[9][3] = array("15:45", "16:00", "16:15", "16:30");
+    $limits[9][4] = array("15:45", "16:00", "16:15", "16:30");
+    $limits[9][5] = array("15:45", "16:00", "16:15", "16:30");
+    $limits[9][6] = array("15:45", "16:00", "16:15", "16:30");
+    $limits[9][7] = array("15:45", "16:00", "16:15", "16:30");
+
+    $limits[10][3] = array("15:45", "16:00", "16:15", "16:30");
+    $limits[10][4] = array("15:45", "16:00", "16:15", "16:30");
+    $limits[10][5] = array("15:45", "16:00", "16:15", "16:30");
+    $limits[10][6] = array("15:45", "16:00", "16:15", "16:30");
+    $limits[10][7] = array("15:45", "16:00", "16:15", "16:30");
+
+    $limits[11][3] = array("15:45", "16:00", "16:15", "16:30");
+    $limits[11][4] = array("15:45", "16:00", "16:15", "16:30");
+    $limits[11][5] = array("15:45", "16:00", "16:15", "16:30");
+    $limits[11][6] = array("15:45", "16:00", "16:15", "16:30");
+    $limits[11][7] = array("15:45", "16:00", "16:15", "16:30");
+
+    $limits[12][3] = array("15:45", "16:00", "16:15", "16:30");
+    $limits[12][4] = array("15:45", "16:00", "16:15", "16:30");
+    $limits[12][5] = array("15:45", "16:00", "16:15", "16:30");
+    $limits[12][6] = array("15:45", "16:00", "16:15", "16:30");
+    $limits[12][7] = array("15:45", "16:00", "16:15", "16:30");
+
     //$limits[13][3]=array("16:00","16:15","16:30");
     //$limits[13][4]=array("16:00","16:15","16:30");
-    $limits[13][5]=array("16:00","16:15","16:30");
-    $limits[13][6]=array("16:00","16:15","16:30");
-    $limits[13][7]=array("16:00","16:15","16:30");
-    
+    $limits[13][5] = array("16:00", "16:15", "16:30");
+    $limits[13][6] = array("16:00", "16:15", "16:30");
+    $limits[13][7] = array("16:00", "16:15", "16:30");
+
     //$limits[14][3]=array("16:00","16:15","16:30");
     //$limits[14][4]=array("16:00","16:15","16:30");
-    $limits[14][5]=array("16:00","16:15","16:30");
-    $limits[14][6]=array("16:00","16:15","16:30");
-    $limits[14][7]=array("16:00","16:15","16:30");
-    
+    $limits[14][5] = array("16:00", "16:15", "16:30");
+    $limits[14][6] = array("16:00", "16:15", "16:30");
+    $limits[14][7] = array("16:00", "16:15", "16:30");
+
     //$limits[15][3]=array("16:00","16:15","16:30");
     //$limits[15][4]=array("16:00","16:15","16:30");
-    $limits[15][5]=array("16:00","16:15","16:30");
-    $limits[15][6]=array("16:00","16:15","16:30");
-    $limits[15][7]=array("16:00","16:15","16:30");
-    
+    $limits[15][5] = array("16:00", "16:15", "16:30");
+    $limits[15][6] = array("16:00", "16:15", "16:30");
+    $limits[15][7] = array("16:00", "16:15", "16:30");
+
     //$limits[16][3]=array("15:45","16:00","16:15","16:30");
     //$limits[16][4]=array("15:45","16:00","16:15","16:30");
-    $limits[16][5]=array("15:45","16:00","16:15","16:30");
-    $limits[16][6]=array("15:45","16:00","16:15","16:30");
-    $limits[16][7]=array("15:45","16:00","16:15","16:30");
-    
+    $limits[16][5] = array("15:45", "16:00", "16:15", "16:30");
+    $limits[16][6] = array("15:45", "16:00", "16:15", "16:30");
+    $limits[16][7] = array("15:45", "16:00", "16:15", "16:30");
+
     //$limits[17][3]=array("15:45","16:00","16:15","16:30");
     //$limits[17][4]=array("15:45","16:00","16:15","16:30");
-    $limits[17][5]=array("15:45","16:00","16:15","16:30");
-    $limits[17][6]=array("15:45","16:00","16:15","16:30");
-    $limits[17][7]=array("15:45","16:00","16:15","16:30");
-    
+    $limits[17][5] = array("15:45", "16:00", "16:15", "16:30");
+    $limits[17][6] = array("15:45", "16:00", "16:15", "16:30");
+    $limits[17][7] = array("15:45", "16:00", "16:15", "16:30");
+
     //$limits[18][3]=array("15:45","16:00","16:15","16:30");
     //$limits[18][4]=array("15:45","16:00","16:15","16:30");
-    $limits[18][5]=array("15:45","16:00","16:15","16:30");
-    $limits[18][6]=array("15:45","16:00","16:15","16:30");
-    $limits[18][7]=array("15:45","16:00","16:15","16:30");
-    
-    
-    if (isset($limits[$adults][$nens]))     return $limits[$adults][$nens];
-    
+    $limits[18][5] = array("15:45", "16:00", "16:15", "16:30");
+    $limits[18][6] = array("15:45", "16:00", "16:15", "16:30");
+    $limits[18][7] = array("15:45", "16:00", "16:15", "16:30");
+
+
+    if (isset($limits[$adults][$nens]))
+      return $limits[$adults][$nens];
+
     return FALSE;
   }
+
   /*   * ******************************************************************************************************* */
   /*   * ******************************************************************************************************* */
 
@@ -367,7 +378,7 @@ ORDER BY carta_subfamilia_order,carta_plats_nom_es , carta_plats_nom_ca";
 
     while ($row = mysqli_fetch_array($Result1)) {
       if (empty($row['carta_plats_nom_ca']))
-        $row['carta_plats_nom_ca'] =$row['carta_plats_nom_en'] = $row['carta_plats_nom_es'];
+        $row['carta_plats_nom_ca'] = $row['carta_plats_nom_en'] = $row['carta_plats_nom_es'];
       $plat = array('id' => $row['carta_plats_id'], 'nom' => $row['carta_plats_nom_' . $lng], 'preu' => $row['carta_plats_preu'], 'quantitat' => $row['comanda_plat_quantitat']);
       $arCarta[$row['carta_subfamilia_nom_' . $lng]][] = $plat;
     }
@@ -545,6 +556,7 @@ FROM client
     if ($_POST['adults'] < 2)
       return $this->jsonErr(7, $resposta); //Adults < 2
 
+
       
 // MIREM SI ESTÀ EDITANT UNA RESERVA EXISTENT
 //MIRA SI ENS VOLEM FER UNA DUPLICADA
@@ -581,6 +593,7 @@ FROM client
     if ($total_coberts < 2 || $total_coberts > $PERSONES_GRUP)
       return $this->jsonErr(7, $resposta); // "err7 adults";
 
+
       
 //ESBRINA EL TORN	
     $data = $this->cambiaf_a_mysql($_POST['selectorData']);
@@ -599,6 +612,7 @@ FROM client
     //COMPROVEM HORA LIMIT
     if (!$this->reserva_entra_avui($data, $hora))
       return $this->jsonErr(11, $resposta); // "err7 adults";
+
 
       
 //COMPROVA hora - torn - taula ok?
@@ -624,8 +638,8 @@ FROM client
 
     //$this->taulesDisponibles->tableHores="estat_hores_form";
     $this->taulesDisponibles->tableHores = "estat_hores";
-    
-   
+
+
     $this->taulesDisponibles->recupera_hores();
 
     // VALIDA SI HEM TROBAT TAULA
@@ -650,6 +664,7 @@ FROM client
       return $this->jsonErr(5, $resposta); // "err5 nom";
     if (empty($_POST['client_cognoms']))
       return $this->jsonErr(6, $resposta); // "err6: cognoms";
+
 
       
 //comanda?		
@@ -810,6 +825,7 @@ FROM client
     if (!$torn)
       return $this->jsonErr(8, $resposta); // COMPROVA torn
 
+
       
 //VALIDA DADES	
 
@@ -827,7 +843,7 @@ FROM client
     if ($coberts < 2 || $coberts > $PERSONES_GRUP)
       return $this->jsonErr(7, $resposta);;
 
-    $cotxets = isset($_POST['selectorCotxets'])? $_POST['selectorCotxets']:0;
+    $cotxets = isset($_POST['selectorCotxets']) ? $_POST['selectorCotxets'] : 0;
 
     if (!isset($_POST['selectorAccesible']))
       $_POST['selectorAccesible'] = false;
@@ -931,7 +947,6 @@ FROM client
 //envia SMS
     $idr = $_POST['id_reserva'];
     //$mensa = "Restaurant Can Borrell, reserva MODIFICADA: Le esperamos el $data a las $hora. Rogamos comunique cualquier cambio en la web o tels.936929723 - 936910605. Gracias.(ID:$idr)";
-
     //$mensa = $this->lv("Restaurant Can Borrell, reserva MODIFICADA: L'esperem el %s a les %s. Preguem comuniqui qualsevol canvi al web o tel.936929723 - 936910605. Gràcies.(ID:%s)");
     //$mensa = sprintf($mensa, $data, $hora, $idr);
 
@@ -961,7 +976,7 @@ FROM client
     if ($this->recuperaReserva($mob, $idr)) {
       $perm = $_SESSION['permisos'];
       $_SESSION['permisos'] = Gestor::$PERMISOS; //LI DONO PERMISOS PER FER LA PERMUTA
-      
+
       $this->paperera_reserves($idr); //paperera
       $_SESSION['permisos'] = $perm;
 
@@ -1100,8 +1115,6 @@ WHERE  `client`.`client_id` =$idc;
     return ($comensals >= $this->configVars("persones_paga_i_senyal") && $comensals < $this->configVars("persones_grup"));
   }
 
-  
-   
   /*   * ******************************************************************************************************* */
   /*   * ******************************************************************************************************* */
   /*   * ******************************************************************************************************* */
@@ -1228,8 +1241,7 @@ WHERE  `client`.`client_id` =$idc;
 
     $estat = $row['estat'];
     $mail = $row['client_email'];
-//ALEXDEBUG
-    if (FALSE && $estat != 2) { // NO ESTÀ CONFIRMADA PER PAGAR
+    if ($estat != 2) { // NO ESTÀ CONFIRMADA PER PAGAR
       $msg = "PAGAMENT INAPROPIAT RESERVA PETITA???: " . $idr . " estat: $estat  $mail";
       $this->xgreg_log($msg, 1, LOG_FILE_TPVPK, TRUE, 1); /* LOG */
       $this->xgreg_log($msg, 1, LOG_FILE_TPVPK, TRUE, 0); /* LOG */
@@ -1248,7 +1260,7 @@ WHERE  `client`.`client_id` =$idc;
 
     $extres['subject'] = $this->l("Can-Borrell: RESERVA CONFIRMADA", false);
 
-    if ($mail){
+    if ($mail) {
       $this->enviaMail($idr, "../reservar/paga_i_senyal_", "", $extres);
     }
 
@@ -1260,16 +1272,16 @@ WHERE  `client`.`client_id` =$idc;
 
     $missatge = "Recuerde: reserva en Restaurant Can Borrell el $data a las $hora ($persones).Rogamos comunique cualquier cambio: 936929723 - 936910605.Gracias.(ID:$idr)";
     $missatge.="\n***\nConserve este SMS como comprobante de la paga y señal de " . $import . "€ que le será descontada. También hemos enviado un email que puede imprimir";
-    
+
     $args[] = $data;
     $args[] = $hora;
     $args[] = $persones;
     $args[] = $idr;
     $args[] = $import;
-    $missatge = "Recordi: reserva al Restaurant Can Borrell. %s %s (%s).Preguem comuniqui qualsevol canvi: 936929723/936910605.Gràcies.(ID%s)"; 
-    
+    $missatge = "Recordi: reserva al Restaurant Can Borrell. %s %s (%s).Preguem comuniqui qualsevol canvi: 936929723/936910605.Gràcies.(ID%s)";
+
     $missatge .= "\n***\nConservi quest SMS com a comprovant de la paga y senyal de %s€ que li serà descomptada. També hem enviat un email que pot imprimir";
-    $row['lang'] = isset($row['lang'])?$row['lang']:"ca";
+    $row['lang'] = isset($row['lang']) ? $row['lang'] : "ca";
     $missatge = gestor_reserves::SMS_language($missatge, $row['lang'], $args);
     $this->enviaSMS($idr, $missatge);
 
@@ -1346,13 +1358,13 @@ WHERE  `client`.`client_id` =$idc;
     $hora = $row['hora'];
     //$missatge = "Recuerde: reserva en Restaurant Can Borrell el $data a las $hora ($persones).Rogamos comunique cualquier cambio: 936929723 - 936910605.Gracias.(ID:$idr)";
     //$missatge.="\n***\nConserve este SMS como comprobante de la paga y señal de " . $import . "€ que le será descontada. También hemos enviado un email que puede imprimir";
-    
-        $args[] = $data;
+
+    $args[] = $data;
     $args[] = $hora;
     $args[] = $persones;
     $args[] = $idr;
     $args[] = $import;
-    $missatge = "Recordi: reserva al Restaurant Can Borrell. %s %s (%s).Preguem comuniqui qualsevol canvi: 936929723/936910605.Gràcies.(ID%s)"; 
+    $missatge = "Recordi: reserva al Restaurant Can Borrell. %s %s (%s).Preguem comuniqui qualsevol canvi: 936929723/936910605.Gràcies.(ID%s)";
     $missatge .= "\n***\nConservi quest SMS com a comprovant de la paga y senyal de %s€ que li serà descomptada. També hem enviat un email que pot imprimir";
     $missatge = gestor_reserves::SMS_language($missatge, $row['lang'], $args);
     $this->enviaSMS($idr, $missatge);
