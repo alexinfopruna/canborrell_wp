@@ -53,7 +53,7 @@ function mailer($addr,$subject,$body,$altbody = null,$attach=null, $test=false, 
   $mail->SMTPAuth = true;
   $mail->Username = "mail6224"; 
   $mail->Password = "joseprov";
-  $mail->From = "info@can-borrell.com";
+  $mail->From = "restaurant@can-borrell.com";
   $mail->FromName = "Reserves Can Borrell";
   $mail->Timeout=30;
   $mail->AddAddress($addr);
@@ -64,7 +64,7 @@ function mailer($addr,$subject,$body,$altbody = null,$attach=null, $test=false, 
   */
    include(ROOT.INC_FILE_PATH."mailer_profile.php");
 
-  if ($addr=="info@can-borrell.com" && isset($_POST['client_email']))  $mail->From=$_POST['client_email'];
+  if ($addr=="restaurant@can-borrell.com" && isset($_POST['client_email']))  $mail->From=$_POST['client_email'];
   if ($addr==MAIL_RESTAURANT && isset($_POST['client_email']))  $mail->From=$_POST['client_email'];
   
   if ($attach) $mail->AddAttachment($attach,basename($attach));
@@ -79,7 +79,7 @@ function mailer($addr,$subject,$body,$altbody = null,$attach=null, $test=false, 
 	  $o.='<meta http-equiv="Content-Type" content="text/html; charset=utf-8" pageEncoding="UTF-8"/>';
 	  $o.='<meta http-equiv="Content-Type" content="text/html; charset=utf-8" pageEncoding="UTF-8"/>';
 	  $o.= "<br/>charset=".CHARSET." *** mailer: ".$mail->CharSet."<br/>";
-	  $o.= "MAIL TO: $addr  FROM: info@can-borrell.com<br/>";
+	  $o.= "MAIL TO: $addr  FROM: restaurant@can-borrell.com<br/>";
 	  if ($cco) $occo= "CCO: $cco<br/>";
 	  $o.=$occo;
 	  $o.= "SUBJECT: $subject<br/>";  
