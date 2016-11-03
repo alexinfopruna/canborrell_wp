@@ -6,11 +6,11 @@ require_once(ROOT."gestor_reserves.php");
 
 if (!isset($_SESSION)) session_start(); 
 
-require_once(INC_FILE_PATH.'alex.inc');valida_admin('editar.php');
+require_once( ROOT . INC_FILE_PATH.'alex.inc');valida_admin('editar.php');
 
 
 require(ROOT.DB_CONNECTION_FILE); 
-require_once(INC_FILE_PATH.'valors.php'); 
+require_once(ROOT . INC_FILE_PATH.'valors.php'); 
 require_once('mailer.php');
  
 //$lang='cat';
@@ -34,9 +34,6 @@ valida_admin('editar.php');
 $reserva = $gestor->load_reserva($id_reserva, 'reserves');
 $lang_r=Gestor::codelang($reserva['lang']);
 require_once(ROOT."../editar/translate_editar_$lang_r.php");
-
-
-
 
 
 switch($func)

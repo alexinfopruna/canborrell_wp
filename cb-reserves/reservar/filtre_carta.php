@@ -18,8 +18,8 @@ if (!isset($_SESSION['uSer'])) $_SESSION['uSer']=$usr;
 
 require_once(ROOT."/../reservar/Gestor_filtre_carta.php");
 $gestor=new Gestor_filtre_carta();
-require_once(INC_FILE_PATH.'alex.inc');
-require_once(INC_FILE_PATH."llista_dies_taules.php");
+require_once(ROOT . INC_FILE_PATH.'alex.inc');
+require_once(ROOT . INC_FILE_PATH."llista_dies_taules.php");
 
 
 if (!$gestor->valida_sessio(64))

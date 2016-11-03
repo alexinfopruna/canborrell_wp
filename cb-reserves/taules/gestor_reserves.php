@@ -5,11 +5,11 @@ if (!defined('ROOT'))
 
 require_once(ROOT . "Gestor.php");
 if (!defined('LLISTA_DIES_NEGRA'))
-  define("LLISTA_DIES_NEGRA", INC_FILE_PATH . "llista_dies_negra.txt");
+  define("LLISTA_DIES_NEGRA", ROOT . INC_FILE_PATH . "llista_dies_negra.txt");
 if (!defined('LLISTA_NITS_NEGRA'))
-  define("LLISTA_NITS_NEGRA", INC_FILE_PATH . "llista_dies_negra.txt");
+  define("LLISTA_NITS_NEGRA", ROOT . INC_FILE_PATH . "llista_dies_negra.txt");
 if (!defined('LLISTA_DIES_BLANCA'))
-  define("LLISTA_DIES_BLANCA", INC_FILE_PATH . "llista_dies_blanca.txt");
+  define("LLISTA_DIES_BLANCA", ROOT . INC_FILE_PATH . "llista_dies_blanca.txt");
 
 require_once(ROOT . "Menjador.php");
 require_once(ROOT . "TaulesDisponibles.php");
@@ -3103,8 +3103,8 @@ ORDER BY `estat_hores_data` DESC";
   /*   * ********************************************************************************************************************* */
 
   public function lastBackup($format = '%h') {
-// $files = scandir(INC_FILE_PATH . "db_Backup", SCANDIR_SORT_ASCENDING);
-    $files = scan_sort_dir(INC_FILE_PATH . "db_Backup");
+// $files = scandir(ROOT . INC_FILE_PATH . "db_Backup", SCANDIR_SORT_ASCENDING);
+    $files = scan_sort_dir(ROOT . INC_FILE_PATH . "db_Backup");
     $newest_file = $files[0];
 
 

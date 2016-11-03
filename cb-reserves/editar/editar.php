@@ -2,7 +2,7 @@
 if (!defined('ROOT')) define('ROOT', "../taules/");
 require_once(ROOT."Gestor.php");
 
-require_once(INC_FILE_PATH.'alex.inc'); 
+require_once(ROOT . INC_FILE_PATH.'alex.inc'); 
 valida_admin('login.php') ;
 $id=isset($_GET["id"])?$_GET["id"]:'';
 

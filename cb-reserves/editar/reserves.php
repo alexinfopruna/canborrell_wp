@@ -8,8 +8,8 @@ require_once(ROOT."Gestor.php");
 require_once(ROOT."gestor_reserves.php");
 
 include(ROOT.DB_CONNECTION_FILE); 
-include(INC_FILE_PATH.'valors.php'); 
-include(INC_FILE_PATH.'alex.inc'); if (!$AJAX) valida_admin('editar.php') ;
+include(ROOT . INC_FILE_PATH.'valors.php'); 
+include(ROOT . INC_FILE_PATH.'alex.inc'); if (!$AJAX) valida_admin('editar.php') ;
 //$gestor = new gestor_reserves();
 $old_lang_code['cat']='cat';
 $old_lang_code['ca']='cat';

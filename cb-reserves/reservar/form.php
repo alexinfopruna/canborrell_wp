@@ -7,13 +7,13 @@ defined('ROOT') or define('ROOT', '/cb-reserves/taules/');
 require_once (ROOT . "Gestor.php");
 
 if (!defined('LLISTA_DIES_NEGRA'))
-  define("LLISTA_DIES_NEGRA", INC_FILE_PATH . "bloq.txt");
+  define("LLISTA_DIES_NEGRA", ROOT . INC_FILE_PATH . "bloq.txt");
 if (!defined('LLISTA_DIES_NEGRA_RES_PETITES'))
-  define("LLISTA_DIES_NEGRA_RES_PETITES", INC_FILE_PATH . "llista_dies_negra_online.txt");
+  define("LLISTA_DIES_NEGRA_RES_PETITES", ROOT . INC_FILE_PATH . "llista_dies_negra_online.txt");
 if (!defined('LLISTA_NITS_NEGRA'))
-  define("LLISTA_NITS_NEGRA", INC_FILE_PATH . "bloq_nit.txt");
+  define("LLISTA_NITS_NEGRA", ROOT . INC_FILE_PATH . "bloq_nit.txt");
 if (!defined('LLISTA_DIES_BLANCA'))
-  define("LLISTA_DIES_BLANCA", INC_FILE_PATH . "llista_dies_blanca.txt");
+  define("LLISTA_DIES_BLANCA", ROOT . INC_FILE_PATH . "llista_dies_blanca.txt");
 define('USR_FORM_WEB', 3); //ES LA ID D'USUARI (admin) ANONIM QUE CREA RESERVA ONLINE
 
 $ruta_lang = "../";
@@ -214,7 +214,7 @@ print "\n\n";
 $llista_blanca = llegir_dies(LLISTA_DIES_BLANCA);
 print crea_llista_js($llista_blanca, "LLISTA_BLANCA");
 
-$llista_dies_no_carta = llegir_dies(INC_FILE_PATH . "llista_dies_no_carta.txt");
+$llista_dies_no_carta = llegir_dies(ROOT . INC_FILE_PATH . "llista_dies_no_carta.txt");
 print crea_llista_js($llista_dies_no_carta, "LLISTA_DIES_NO_CARTA");
 
 print "\nvar IDR='" . $row['id_reserva'] . "';";

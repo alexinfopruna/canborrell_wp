@@ -10,9 +10,9 @@ if (strpos($_SERVER['HTTP_HOST'],"dev")) $dev=true;
 
 // LLISTES DE DIES BLANCS / NEGRES
 require_once("Gestor.php");
-if (!defined('LLISTA_DIES_NEGRA'))define("LLISTA_DIES_NEGRA",INC_FILE_PATH."llista_dies_negra.txt");
-if (!defined('LLISTA_DIES_BLANCA'))define("LLISTA_DIES_BLANCA",INC_FILE_PATH."llista_dies_blanca.txt");
-if (!defined('LLISTA_NITS_NEGRA')) define("LLISTA_NITS_NEGRA",INC_FILE_PATH."llista_dies_negra.txt");
+if (!defined('LLISTA_DIES_NEGRA'))define("LLISTA_DIES_NEGRA",ROOT . INC_FILE_PATH."llista_dies_negra.txt");
+if (!defined('LLISTA_DIES_BLANCA'))define("LLISTA_DIES_BLANCA",ROOT . INC_FILE_PATH."llista_dies_blanca.txt");
+if (!defined('LLISTA_NITS_NEGRA')) define("LLISTA_NITS_NEGRA",ROOT . INC_FILE_PATH."llista_dies_negra.txt");
 
 require_once("gestor_reserves.php");
 $gestor=new gestor_reserves();   
@@ -27,7 +27,7 @@ if (!$gestor->valida_sessio())
 
 
 
-require(INC_FILE_PATH."llista_dies_taules.php");
+require(ROOT . INC_FILE_PATH."llista_dies_taules.php");
 
 /**************************************************************************************************************************************************************************/
 /**************************************************************************************************************************************************************************/

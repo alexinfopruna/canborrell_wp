@@ -10,8 +10,8 @@ $sms_activat=!$test;
 define ('SMS_ACTIVAT',$sms_activat);
 
 require(ROOT.DB_CONNECTION_FILE); 
-require_once(INC_FILE_PATH.'valors.php'); 
-require_once(INC_FILE_PATH.'alex.inc'); 
+require_once(ROOT . INC_FILE_PATH.'valors.php'); 
+require_once(ROOT . INC_FILE_PATH.'alex.inc'); 
 include_once( "SMSphp/EsendexSendService.php" );
 
 $mensaini="";

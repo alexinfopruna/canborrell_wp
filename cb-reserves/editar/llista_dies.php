@@ -76,8 +76,6 @@ function crea_llista_js($dies)
       $k=0;$q=0; 
       while (isset($dies[$i][$k])) 
       {
-            
-			//echo $i." - ".$dies[$i][$k]." --> ".((int)date("m")-1)." - ".date("d");
 			if (  (((int)date("m")-1)!=$i)  ||  (($dies[$i][$k])!=((int)date("d")))   ) 
 			{	
 				if ($q>0)echo ",";
@@ -86,7 +84,6 @@ function crea_llista_js($dies)
 			}				
 		
 			$k++;			
-
       }      
       echo "]".$coma;
     }  

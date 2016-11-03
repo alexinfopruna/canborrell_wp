@@ -82,11 +82,11 @@ function load_calendari_reserves() {
 
   //TRANSLATES
   if (!defined("LLISTA_DIES_NEGRA"))
-    define("LLISTA_DIES_NEGRA", INC_FILE_PATH . "llista_dies_negra_online.txt");
+    define("LLISTA_DIES_NEGRA", ROOT . INC_FILE_PATH . "llista_dies_negra_online.txt");
   if (!defined("LLISTA_DIES_BLANCA"))
-    define("LLISTA_DIES_BLANCA", INC_FILE_PATH . "llista_dies_blanca.txt");
+    define("LLISTA_DIES_BLANCA", ROOT . INC_FILE_PATH . "llista_dies_blanca.txt");
   if (!defined("LLISTA_NITS_NEGRA"))
-    define("LLISTA_NITS_NEGRA", INC_FILE_PATH . "llista_dies_negra_online.txt");
+    define("LLISTA_NITS_NEGRA", ROOT . INC_FILE_PATH . "llista_dies_negra_online.txt");
 
     if (!defined("PREU_MIG"))
     define("PREU_MIG", $gestor->configVars("PREU_MIG"));
@@ -95,16 +95,16 @@ function load_calendari_reserves() {
   require_once(ROOT . INC_FILE_PATH . 'alex.inc');
   require_once (ROOT . INC_FILE_PATH . "llista_dies_taules.php");
 
-  $llista_negra = llegir_dies(LLISTA_DIES_NEGRA);
+  $llista_negra = llegir_dies( LLISTA_DIES_NEGRA);
   print crea_llista_js($llista_negra, "LLISTA_NEGRA");
   print "\n////////////1\n";
 
-  $llista_blanca = llegir_dies(LLISTA_DIES_BLANCA);
+  $llista_blanca = llegir_dies( LLISTA_DIES_BLANCA);
   print crea_llista_js($llista_blanca, "LLISTA_BLANCA");
   print "\n////////////2\n";
 
 
-  $llista_dies_no_carta = llegir_dies(INC_FILE_PATH . "llista_dies_no_carta.txt");
+  $llista_dies_no_carta = llegir_dies(ROOT . INC_FILE_PATH . "llista_dies_no_carta.txt");
   print crea_llista_js($llista_dies_no_carta, "LLISTA_DIES_NO_CARTA");
   print "\n////////////3\n";
 

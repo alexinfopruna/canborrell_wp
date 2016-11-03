@@ -2,11 +2,11 @@
 header('Content-Type: text/html; charset=UTF-8');
 header('Set-Cookie: fileDownload=true');
 
-//define("LLISTA_DIES_NEGRA",INC_FILE_PATH."llista_dies_negra.txt");
-//define("LLISTA_DIES_BLANCA",INC_FILE_PATH."llista_dies_blanca.txt");
+//define("LLISTA_DIES_NEGRA",ROOT . INC_FILE_PATH."llista_dies_negra.txt");
+//define("LLISTA_DIES_BLANCA",ROOT . INC_FILE_PATH."llista_dies_blanca.txt");
 require_once("Gestor.php");
-define("LLISTA_DIES_NEGRA",INC_FILE_PATH."llista_dies_negra.txt");
-define("LLISTA_DIES_BLANCA",INC_FILE_PATH."llista_dies_blanca.txt");
+define("LLISTA_DIES_NEGRA",ROOT . INC_FILE_PATH."llista_dies_negra.txt");
+define("LLISTA_DIES_BLANCA",ROOT . INC_FILE_PATH."llista_dies_blanca.txt");
  
 
 require_once("gestor_reserves.php");

@@ -18,10 +18,10 @@ require_once(ROOT."Gestor.php");
 require_once(ROOT."gestor_reserves.php");
 
 
-require_once(INC_FILE_PATH.'alex.inc');
+require_once(ROOT . INC_FILE_PATH.'alex.inc');
 
 require(ROOT.DB_CONNECTION_FILE); 
-require_once(INC_FILE_PATH.'valors.php'); 
+require_once(ROOT . INC_FILE_PATH.'valors.php'); 
 require_once('mailer.php'); 
 
 

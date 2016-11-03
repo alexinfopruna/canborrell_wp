@@ -5,10 +5,10 @@ require_once(ROOT . "Gestor.php");
 require_once(ROOT . "gestor_reserves.php");
 
 
-require_once(INC_FILE_PATH . 'alex.inc');
+require_once(ROOT . INC_FILE_PATH . 'alex.inc');
 
 require(ROOT . DB_CONNECTION_FILE);
-require_once(INC_FILE_PATH . 'valors.php');
+require_once(ROOT . INC_FILE_PATH . 'valors.php');
 require_once('mailer.php');
 //   error_reporting(E_ALL); 
 $ltxt[0]['cat'] = "Gràcies un cop haguem comprovat el pagament, la reserva serà vàlida";

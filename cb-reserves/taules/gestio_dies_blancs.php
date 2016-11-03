@@ -3,8 +3,8 @@ require_once("gestor_reserves.php");
 $gestor=new gestor_reserves();   
 if (!$gestor->valida_sessio())  header("Location: index.php");
 
-require(INC_FILE_PATH."llista_dies_taules.php");
-$fitxer=INC_FILE_PATH."llista_dies_blanca.txt";
+require(ROOT . INC_FILE_PATH."llista_dies_taules.php");
+$fitxer=ROOT . INC_FILE_PATH."llista_dies_blanca.txt";
 
 if (isset($_POST["bloq"]))
 {

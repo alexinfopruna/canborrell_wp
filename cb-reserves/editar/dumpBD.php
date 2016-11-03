@@ -3,8 +3,8 @@ if (!defined('ROOT')) define('ROOT', "../taules/");
 require_once(ROOT."Gestor.php");
 
  require(ROOT.DB_CONNECTION_FILE); 
- //require_once(INC_FILE_PATH.'valors.php'); 
- require_once(INC_FILE_PATH.'alex.inc'); 
+ //require_once(ROOT . INC_FILE_PATH.'valors.php'); 
+ require_once(ROOT . INC_FILE_PATH.'alex.inc'); 
  valida_admin('editar.php') ;
 
 

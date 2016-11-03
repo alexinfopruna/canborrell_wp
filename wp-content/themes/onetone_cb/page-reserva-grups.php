@@ -8,9 +8,9 @@ require_once (ROOT . "Gestor.php");
 if (defined("CB_FORA_DE_SERVEI") && CB_FORA_DE_SERVEI === true)
   header("Location:fora_de_servei.html");
 
-define("LLISTA_DIES_NEGRA", INC_FILE_PATH . "bloq.txt");
-define("LLISTA_NITS_NEGRA", INC_FILE_PATH . "bloq_nit.txt");
-define("LLISTA_DIES_BLANCA", INC_FILE_PATH . "llista_dies_blanca.txt");
+define("LLISTA_DIES_NEGRA",ROOT .  INC_FILE_PATH . "bloq.txt");
+define("LLISTA_NITS_NEGRA", ROOT . INC_FILE_PATH . "bloq_nit.txt");
+define("LLISTA_DIES_BLANCA",ROOT .  INC_FILE_PATH . "llista_dies_blanca.txt");
 define('USR_FORM_WEB', 3); //ES LA ID D'USUARI (admin) ANONIM QUE CREA RESERVA ONLINE
 // CREA USUARI ANONIM
 if (!isset($_SESSION))
@@ -21,7 +21,6 @@ if (!isset($_SESSION['uSer']))
 
 require (ROOT . "../reservar/Gestor_form.php");
 $gestor = new Gestor_form();
-require_once(ROOT . INC_FILE_PATH . 'alex.inc');
 require_once(ROOT . INC_FILE_PATH . 'alex.inc');
 require(ROOT . INC_FILE_PATH . "llista_dies_taules.php");
 //PERSONES PARAM

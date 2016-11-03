@@ -45,7 +45,7 @@ function mailer($addr,$subject,$body,$altbody = null,$attach=null, $test=false, 
   $mail->CharSet = 'UTF-8';  
   
   /* SENSE IMATGE CAPSALERA */
-  if ($addr==MAIL_RESTAURANT) $body=str_replace('<img src="http://www.can-borrell.com/img/lg_sup.gif" alt="img" width="303" height="114" border="0" title="INICI" />', "", $body);
+  if ($addr==MAIL_RESTAURANT) $body=str_replace('<img src="http://www.can-borrell.com/img/lg_sup.png" alt="img" width="303" height="114" border="0" title="INICI" />', "", $body);
 
  /*
   $mail->IsSMTP();
@@ -104,7 +104,7 @@ function mailer($addr,$subject,$body,$altbody = null,$attach=null, $test=false, 
    if ($cco) {
        $mail->ClearAllRecipients(); 
                $mail->AddAddress($cco);
-               $body=str_replace('<img src="http://www.can-borrell.com/img/lg_sup.gif" alt="img" width="303" height="114" border="0" title="INICI" />', "", $body);
+               $body=str_replace('<img src="http://www.can-borrell.com/img/lg_sup.png" alt="img" width="303" height="114" border="0" title="INICI" />', "", $body);
                $mail->Body=$body;
                $intentos=0;
                $exito2=false;

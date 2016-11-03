@@ -15,13 +15,13 @@ require_once(ROOT . "Gestor.php");
 
 
 if (!defined('LLISTA_DIES_NEGRA'))
-  define("LLISTA_DIES_NEGRA", INC_FILE_PATH . "bloq.txt");
+  define("LLISTA_DIES_NEGRA", ROOT . INC_FILE_PATH . "bloq.txt");
 if (!defined('LLISTA_DIES_NEGRA_RES_PETITES'))
-  define("LLISTA_DIES_NEGRA_RES_PETITES", INC_FILE_PATH . "llista_dies_negra_online.txt");
+  define("LLISTA_DIES_NEGRA_RES_PETITES", ROOT . INC_FILE_PATH . "llista_dies_negra_online.txt");
 if (!defined('LLISTA_NITS_NEGRA'))
-  define("LLISTA_NITS_NEGRA", INC_FILE_PATH . "bloq_nit.txt");
+  define("LLISTA_NITS_NEGRA", ROOT . INC_FILE_PATH . "bloq_nit.txt");
 if (!defined('LLISTA_DIES_BLANCA'))
-  define("LLISTA_DIES_BLANCA", INC_FILE_PATH . "llista_dies_blanca.txt");
+  define("LLISTA_DIES_BLANCA", ROOT . INC_FILE_PATH . "llista_dies_blanca.txt");
 if (!defined('TPV_CONFIG_FILE'))
   define("TPV_CONFIG_FILE", "TPV256_test.php");
 
@@ -1137,8 +1137,8 @@ WHERE  `client`.`client_id` =$idc;
     echo "RESPOSTA TPV >>> ";
 
     $id = $lang = "not set";
-    include(INC_FILE_PATH . TPV_CONFIG_FILE); //NECESSITO TENIR A PUNT $id i $lang
-    require_once INC_FILE_PATH . 'API_PHP/redsysHMAC256_API_PHP_5.2.0/apiRedsys.php';
+    include(ROOT . INC_FILE_PATH . TPV_CONFIG_FILE); //NECESSITO TENIR A PUNT $id i $lang
+    require_once ROOT . INC_FILE_PATH . 'API_PHP/redsysHMAC256_API_PHP_5.2.0/apiRedsys.php';
     // Se crea Objeto
     $miObj = new RedsysAPI;
     if (!empty($_POST)) {//URL DE RESP. ONLINE
