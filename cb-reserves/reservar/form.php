@@ -35,7 +35,7 @@ require_once("Gestor_form.php");
 $gestor = new Gestor_form();
 
 if (defined("CB_FORA_DE_SERVEI") && CB_FORA_DE_SERVEI === true && !$gestor->valida_login())
-  header("Location:fora_de_servei.html");
+  header("Location:/cb-reserves/reservar/fora_de_servei.html");
 
 require_once(ROOT . INC_FILE_PATH . 'alex.inc');
 require_once(ROOT . INC_FILE_PATH . "llista_dies_taules.php");

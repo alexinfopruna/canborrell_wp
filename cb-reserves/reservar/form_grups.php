@@ -6,8 +6,7 @@ defined('ROOT') or define('ROOT', '/cb-reserves/taules/');
 require_once (ROOT . "Gestor.php");
 
 if (defined("CB_FORA_DE_SERVEI") && CB_FORA_DE_SERVEI === true)
-  header("Location:fora_de_servei.html");
-
+  header("Location:/cb-reserves/reservar/fora_de_servei.html");
 
 define("LLISTA_DIES_NEGRA", ROOT . INC_FILE_PATH . "bloq.txt");
 define("LLISTA_NITS_NEGRA", ROOT . INC_FILE_PATH . "bloq_nit.txt");

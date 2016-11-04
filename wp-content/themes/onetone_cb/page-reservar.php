@@ -24,7 +24,7 @@ $_SESSION['admin_id'] = $_SESSION['uSer']->id;
 $_SESSION['permisos'] = $_SESSION['uSer']->permisos;
 
 if (defined("CB_FORA_DE_SERVEI") && CB_FORA_DE_SERVEI === true && !$gestorf->valida_login())
-  header("Location:fora_de_servei.html");
+  header("Location:/cb-reserves/reservar/fora_de_servei.html");
 
 require_once(ROOT . INC_FILE_PATH . 'alex.inc');
 require_once(ROOT . INC_FILE_PATH . "llista_dies_taules.php");
