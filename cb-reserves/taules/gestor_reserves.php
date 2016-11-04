@@ -2021,8 +2021,8 @@ EOHTML;
       $missatge = "Recordi: reserva %s, el %s - %s per a %s personas.Es IMPRESCINDIBLE que ens comuniqui qualsevol canvi abans de les 11:00h: 936929723 - 936910605";
       $missatge = gestor_reserves::SMS_language($missatge, $lang, $args);
 
-      $this->enviaSMS($id_reserva, $missatge);
-// echo "ENVIAT: ".$missatge;
+    //  $this->enviaSMS($id_reserva, $missatge);
+ echo "ENVIAT: ".$missatge;
 
       $query_reserves = "UPDATE " . T_RESERVES . " SET num_1=1 WHERE id_reserva=" . $row["id_reserva"];
       $update = mysqli_query($this->connexioDB, $query_reserves) or die(((is_object($GLOBALS["___mysqli_ston"])) ? mysqli_error($GLOBALS["___mysqli_ston"]) : (($___mysqli_res = mysqli_connect_error()) ? $___mysqli_res : false)));
