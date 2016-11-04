@@ -5,7 +5,7 @@ require(ROOT."gestor_reserves.php");
 $gestor=new gestor_reserves();
 //if (!$gestor->valida_sessio())die("USUARI NO AUTORITZAT!");
 $test=isset($_REQUEST['test']);
-$sms_activat=!$test;
+$sms_activat = !$test;
 
 define ('SMS_ACTIVAT',$sms_activat);
 
