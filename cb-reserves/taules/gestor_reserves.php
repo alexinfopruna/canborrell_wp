@@ -1985,7 +1985,7 @@ EOHTML;
 
 // ENVIA UN
   function recordatori_petites_3dies() {
-    return false;
+   
 
     $html = " ... ";
     $query = "SELECT * FROM " . T_RESERVES . " WHERE (adults + nens10_14 + nens4_9)>=6 AND estat=100 AND  data <= ADDDATE(CURDATE(), INTERVAL 3 DAY) AND data>=CURDATE() AND  num_1=0";
