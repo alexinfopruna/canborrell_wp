@@ -25,6 +25,7 @@ function sms_caducades()
 	//$mensa="ENVIEM SMS RESERVES CADUCADES. TROBATS $nr REGISTRES";
     while ($row=mysqli_fetch_array($reserves))
     {
+      $args = array();
                                                                                     $lang =  $row['lang'];
 			ereg( "([0-9]{2,4})-([0-9]{1,2})-([0-9]{1,2})", $row['data'], $mifecha); 
 			$lafecha=$mifecha[3]."/".$mifecha[2]; 
@@ -42,7 +43,7 @@ function sms_caducades()
 
                                                                                     if (SMS_ACTIVAT) 
 			{
-				
+			$dataSMS = $hora = $coberts = $idr = "";	
                                                                                             $args[]=$dataSMS;
                                                                                             $args[]=$hora;
                                                                                             $args[]=$coberts;

@@ -17,7 +17,7 @@ include_once( "SMSphp/EsendexSendService.php" );
 $mensaini="";
 
 echo "<br/>**********************************************************************************************<br/>";
-echo "<br/><br/>".date("D d-m-Y H:i:s")." Execució  /home/5500/webs/can-borrell.com/htdocs/editar/caducades.php <br/><br/>";
+echo "<br/><br/>".date("D d-m-Y H:i:s")." Execució  /home/hostings/webs/can-borrell.com/www/htdocs/cb-reserves/editar/caducades.php <br/><br/>";
 echo "<br/><br/><br/>";
 
 ?>

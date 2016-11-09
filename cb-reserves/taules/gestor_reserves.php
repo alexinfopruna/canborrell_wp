@@ -2501,7 +2501,8 @@ ORDER BY `estat_hores_data` DESC";
     $this->xgreg_log(">>>> ENVIA EMAIL >>>> enviaMail(<span class='idr'>$idr</span>, $plantilla, $destinatari )", 0, '/log/logMAILSMS.txt');
     if (!ENVIA_MAILS) {
       $this->reg_log("ENVIA_MAILS DESACTIVAT", 1);
-//testMail($idr, $plantilla = "confirmada_", $destinatari = null, $extres = null);
+      echo time()." EddEExxE  $mail";die();
+//$this->testMail($idr, $plantilla = "confirmada_", $destinatari = null, $extres = null);
 //return "ENVIAMENT MAIL DESACTIVAT";
     }
 

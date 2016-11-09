@@ -3,24 +3,13 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/var/www/canborrell-wp/wp-content/themes/onetone_cb/style.css</file>
-            <file>file:/var/www/canborrell-wp/wp-content/themes/onetone_cb/functions.php</file>
-            <file>file:/var/www/canborrell-wp/cb-reserves/reservar/Gestor_form.php</file>
+            <file>file:/var/www/canborrell-wp/cb-reserves/editar/mailer.php</file>
+            <file>file:/var/www/canborrell-wp/cb-reserves/reservar/form.php</file>
             <file>file:/var/www/canborrell-wp/cb-reserves/taules/gestor_reserves.php</file>
-            <file>file:/var/www/canborrell-wp/wp-content/themes/onetone_cb/page-reservar.php</file>
-            <file>file:/var/www/canborrell-wp/cb-reserves/reservar/css/form_reserves_mob.css</file>
-            <file>file:/var/www/canborrell-wp/cb-reserves/reservar/js/form_reserves.js</file>
-            <file>file:/var/www/canborrell-wp/cb-reserves/editar/apdeit.php</file>
-            <file>file:/var/www/canborrell-wp/cb-reserves/taules/head.php</file>
-            <file>file:/var/www/canborrell-wp/wp-content/plugins/calendari_reserves/calendari_reserves.php</file>
-            <file>file:/var/www/canborrell-wp/wp-content/themes/onetone_cb/page-reserva-grups.php</file>
-            <file>file:/var/www/canborrell-wp/cb-reserves/editar/cancela.php</file>
-            <file>file:/var/www/canborrell-wp/cb-reserves/editar/detall.php</file>
-            <file>file:/var/www/canborrell-wp/cb-reserves/editar/dumpBD.php</file>
-            <file>file:/var/www/canborrell-wp/cb-reserves/editar/edit_reserva.php</file>
-            <file>file:/var/www/canborrell-wp/cb-reserves/reservar/subfamilies_sorter.php</file>
-            <file>file:/var/www/canborrell-wp/cb-reserves/taules/print.php</file>
-            <file>file:/var/www/canborrell-wp/cb-reserves/taules/config_define.php</file>
+            <file>file:/var/www/canborrell-wp/cb-reserves/taules/js/taules.js</file>
+            <file>file:/var/www/canborrell-wp/cb-reserves/editar/caducades.php</file>
+            <file>file:/var/www/canborrell-wp/cb-reserves/taules/esborra_clients_llei.php</file>
+            <file>file:/var/www/canborrell-wp/cb-reserves/editar/sms_caducades.php</file>
         </group>
     </open-files>
 </project-private>
