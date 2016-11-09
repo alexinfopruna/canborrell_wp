@@ -118,10 +118,7 @@ function mailer($addr, $subject, $body, $altbody = null, $attach = null, $test =
     $mail->Body = $body;
     $intentos = 0;
     $exito2 = false;
-    while ((!$exito2) && ($intentos < 1)) { //NOMES UN INTENT
-      if (true) {
-        if ($intentos)
-          sleep(3);
+
         $exito2 = $mail->Send();
 
         error_log("<li><span style='color:green'>MAILER CCO:</span>:".( $exito2?'!!!SUCCESS!!!':'***ERROR***')." Enviat CCO TO: $cco SUBJECT: $subject</li>", 3, ROOT . INC_FILE_PATH . '/log/logMAILSMS.txt');
