@@ -163,6 +163,12 @@ input[type=text], .ds_input {
       Ds_Merchant_SignatureVersion <input type="text" name="Ds_SignatureVersion" value="<?php echo $version; ?>"/><br/>
       Ds_Merchant_MerchantParameters <input type="text" name="Ds_MerchantParameters" value="<?php echo $params; ?>"/><br/>
       Ds_Merchant_Signature <input type="text" name="Ds_Signature" value="<?php echo $signature; ?>"/><br/>
+      no-update 
+      <select name="param">
+          <option value="none">none</option>
+          <option value="no-update">no-update</option>
+          
+      </select>
       <input type="submit" value="Enviar" >
   </form>
 <?php endif; ?>

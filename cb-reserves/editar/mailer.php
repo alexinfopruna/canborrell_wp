@@ -52,21 +52,7 @@ function mailer($addr, $subject, $body, $altbody = null, $attach = null, $test =
   if ($addr == MAIL_RESTAURANT)
     $body = str_replace('<img src="http://www.can-borrell.com/img/lg_sup.png" alt="img" width="303" height="114" border="0" title="INICI" />', "", $body);
 
-  /*
-    $mail->IsSMTP();
-    $mail->Host = "mail.can-borrell.com";
-    $mail->SMTPAuth = true;
-    $mail->Username = "mail6224";
-    $mail->Password = "joseprov";
-    $mail->From = "restaurant@can-borrell.com";
-    $mail->FromName = "Reserves Can Borrell";
-    $mail->Timeout=30;
-    $mail->AddAddress($addr);
-    $mail->Subject = $subject;
-    $mail->Body = $body;
-    $mail->AltBody = $altbody;
-    $mail->IsHTML(true);
-   */
+ 
   include(ROOT . INC_FILE_PATH . "mailer_profile.php");
 
   if ($addr == MAIL_RESTAURANT && isset($_POST['client_email']))
@@ -109,23 +95,18 @@ function mailer($addr, $subject, $body, $altbody = null, $attach = null, $test =
     $exito = $mail->Send();
   }
 
-  if ($cco == $addr)
-    $cco = NULL;
+  if ($cco == $addr)    $cco = NULL;
   if ($cco) {
     $mail->ClearAllRecipients();
     $mail->AddAddress($cco);
     $body = str_replace('<img src="http://www.can-borrell.com/img/lg_sup.png" alt="img" width="303" height="114" border="0" title="INICI" />', "<br><br>---- COPIA RESTAURANT ----<br><br>", $body);
     $mail->Body = $body;
-    $intentos = 0;
-    $exito2 = false;
-
-        $exito2 = $mail->Send();
+    $exito2 = $mail->Send();
 
         error_log("<li><span style='color:green'>MAILER CCO:</span>:".( $exito2?'!!!SUCCESS!!!':'***ERROR***')." Enviat CCO TO: $cco SUBJECT: $subject</li>", 3, ROOT . INC_FILE_PATH . '/log/logMAILSMS.txt');
         error_log('<li>' . $body . '</li></ul>', 3, ROOT . INC_FILE_PATH . '/log/logMAILSMS.txt');
-      }
-      $intentos = $intentos + 1;
-    }
+      
+  }    
 
     if (!$exito) {
 
@@ -141,7 +122,7 @@ function mailer($addr, $subject, $body, $altbody = null, $attach = null, $test =
       error_log('<li>' . $body . '</li></ul>', 3, ROOT . INC_FILE_PATH . '/log/logMAILSMS.txt');
       return TRUE;
     }
-  }
+  
 
   return $exito;
 }

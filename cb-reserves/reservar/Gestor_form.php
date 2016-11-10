@@ -1257,9 +1257,15 @@ WHERE  `client`.`client_id` =$idc;
     $referer = $_SERVER['REMOTE_ADDR'];
     $import = $amount / 100;
     $resposta = "PAGA I SENYAL TPV: " . $import . "Euros (" . $pdata . " " . $phora . ")";
-    $query = "UPDATE " . T_RESERVES . " SET estat=100, preu_reserva='$import', resposta='$resposta' WHERE id_reserva=$idr";
+    
+    if (isset($_REQUEST['param']) && $_REQUEST['param']=='no-update'){
+      $result="ANULAT";
+    }else{
+      $query = "UPDATE " . T_RESERVES . " SET estat=100, preu_reserva='$import', resposta='$resposta' WHERE id_reserva=$idr";
+       $rest = $this->log_mysql_query($query, $this->connexioDB) or die(((is_object($GLOBALS["___mysqli_ston"])) ? mysqli_error($GLOBALS["___mysqli_ston"]) : (($___mysqli_res = mysqli_connect_error()) ? $___mysqli_res : false)));
+       $result = $res?"!!!SUCCESS!!!":"***ERROR***";
+    }
 //$result = "ANULAT";    
-    $result = $this->log_mysql_query($query, $this->connexioDB) or die(((is_object($GLOBALS["___mysqli_ston"])) ? mysqli_error($GLOBALS["___mysqli_ston"]) : (($___mysqli_res = mysqli_connect_error()) ? $___mysqli_res : false)));
 
     $extres['subject'] = $this->l("Can-Borrell: RESERVA CONFIRMADA", false);
 
