@@ -129,7 +129,7 @@ $(function () {
 
     $("#flogin").hide();
     $(".cb-contacte").click(function () {
-        $.scrollTo("#table_menu", 600);
+        $.scrollTo("#table_menu", 600, {offset:-100 });
         $("#a_consulta_online.r-petita").trigger("click")
     });
     $("#a_editar_reserva").click(function () {
@@ -220,9 +220,6 @@ $(function () {
         $(".fr-seccio-carta").amaga();
         $(".fr-seccio-client").amaga();
         $(".fr-seccio-submit").amaga();
-        //$(".fr-seccio-submit").css("visibility","hidden");
-        //comportamentClient();
-
     }
 
     if (IDR)
@@ -241,22 +238,10 @@ $(function () {
     }
     /**************************/
     comportamentQuantsSou();
-    comportamentDia();
-
-
-
-
     controlSubmit();
-
-
     $("body").fadeIn("slow");
-
-/*********** HEEELP *************/
+    /*********** HEEELP *************/
    // $("#help").dialog(dlg);
-    
-
-    
-    
     help();
 
     $(".info-ico").click(function (e) {
@@ -267,14 +252,11 @@ $(function () {
         e.preventDefault();
     });
 
-
-
     $("textarea[name='observacions']").change(observacions_cotxets);
     $('.pastis_toggle').toggle($('#RESERVA_PASTIS').prop("checked"));
     $('#RESERVA_PASTIS').change(function () {
         $('.pastis_toggle').toggle(this.checked);
     }).change(); //ensure visible state matches initially
-
 
     /* */
     var d = new Date();
@@ -332,50 +314,52 @@ function comportamentQuantsSou()
 {
     //ADULTS
     SECCIO = "fr-seccio-quants";
+    
     //update_debug();
     $(".fr-seccio-quants").change(function (e) {
         
         ADULTS = $("input[name='selectorComensals']:checked").val();
+        JUNIORS = $("input[name='selectorJuniors']:checked").val();
+        NENS = $("input[name='selectorNens']:checked").val();
+        COTXETS = $("input[name='selectorCotxets']:checked").val();
+
         $("input[name='adults']").val(ADULTS)
         totalPersones();
-
-        if (!ADULTS)
-            return;
-
-        if ($(".fr-seccio-dia").is(":hidden"))
-        {
-            monta_calendari("#calendari");
-            $(".fr-seccio-dia").show();
-            SECCIO = "fr-seccio-dia";
-            updateCalendari();
+ console.log(ADULTS);
+        if (!ADULTS){
+               $("input[name=selectorComensals]").change(function (e) {
+    });
+     return;
         }
-        else{
-            comportamentDia();
-            $("#calendari").change();
-        }
-        
+            avis_modificacions(e);
     });
 
     $("input[name=selectorComensals]").change(function (e) {
         avis_modificacions(e);
     });
+    
     //JUNIORS
+    /*
     $("input[name=selectorJuniors]").change(function () {
         JUNIORS = $("input[name='selectorJuniors']:checked").val();
         $("input[name='nens10_14']").val(JUNIORS)
-        $.scrollTo("#titol_SelectorNens", 600);
+        $.scrollTo("#titol_SelectorNens", 600, {offset:-100 });
     });
-
+/*/
     //NENS
     $("input[name=selectorNens]").change(function () {
         NENS = $("input[name='selectorNens']:checked").val();
+               ADULTS = $("input[name='selectorComensals']:checked").val();
+        console.log(ADULTS);
+        
         $("input[name='nens4_9']").val(NENS);
-        $.scrollTo("#titol_SelectorCotxets", 600);
+        
+        if (!ADULTS) $.scrollTo("#titol_SelectorComensals", 600, {offset:-100 });
+        else $.scrollTo("#titol_SelectorCotxets", 600, {offset:-100 });
     });
 
     //COTXETS
     $("input[name=selectorCotxets]").change(function () {
-        COTXETS = $("input[name='selectorCotxets']:checked").val();
         help(l("NENS_COTXETS"));
     });
 }
@@ -648,7 +632,7 @@ function validaDadesClient() {
             $(".fr-seccio-submit").css("display", "block");
             $(".fr-seccio-submit").css("visibility", "visible");
 
-            $.scrollTo("#scroll-seccio-submit", 800);
+            $.scrollTo("#scroll-seccio-submit", 800, {offset:-100 });
         }
 
     }
@@ -1146,7 +1130,7 @@ function seccio(selector_seccio) {
     if (!selector_seccio)
         return;
 
-    $.scrollTo("." + selector_seccio, 800);
+    $.scrollTo("." + selector_seccio, 800, {offset:-100 });
     SECCIO = selector_seccio;
 }
 
@@ -1181,51 +1165,44 @@ function calc() {
 }
 
 function avis_modificacions(e) {
-    $("input[name=selectorComensals]").unbind("change");
+   // $("input[name=selectorComensals]").unbind("change");
     var secc = SECCIO;
     SECCIO = null;
     
     var adults = $("input[name='selectorComensals']:checked").val()
+    /*
+    
     if (adults < 6) {
-        $.scrollTo("#titol_SelectorJuniors", 600);
+        $.scrollTo("#titol_SelectorNens", 600, {offset:-100 });
         return false;
     }
+*/
+    help($("#avis-modificacions").html());
 
-help($("#avis-modificacions").html());
+      if ($(".fr-seccio-dia").is(":hidden"))
+        {
+            monta_calendari("#calendari");
+            $(".fr-seccio-dia").show();
+            SECCIO = "fr-seccio-dia";
+            updateCalendari();
+            comportamentDia();
+        }
+
 
         if (typeof RDATA != 'undefined'){
            comportamentDia();
-            $("#calendari").change();
+           recargaHores();
+           $(".fr-seccio-hora").show();
+            $.scrollTo("#titol_SelectorNens", 600, {offset:-100 });
+            //$("#calendari").change();
         }
         else{
-             $.scrollTo("#titol_SelectorJuniors", 600);
+             $.scrollTo("#titol_SelectorNens", 600, {offset:-100 });
             SECCIO = 'fr-seccio-dia';
-        }
-        
 
-/* 
-    e.preventDefault();
-    $("#avis-modificacions-overlay").addClass("anima-avis");
-    $("#avis-modificacions").addClass("anima-avis");
 
-    $("#avis-modificacions .tanca-avis a").click(function () {
-        $("#avis-modificacions-overlay").removeClass("anima-avis");
-        $("#avis-modificacions").removeClass("anima-avis");
-        
-        if (typeof RDATA != 'undefined'){
-           comportamentDia();
-            $("#calendari").change();
-        }
-        else{
-             $.scrollTo("#titol_SelectorJuniors", 600);
-            SECCIO = 'fr-seccio-dia';
-        }
-        
-    
-        
-        
-    });
-    */   
+
+        }  
 }
 
 var getUrlParameter = function getUrlParameter(sParam) {

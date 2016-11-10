@@ -3,10 +3,10 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/var/www/canborrell-wp/cb-reserves/reservar/form.php</file>
-            <file>file:/var/www/canborrell-wp/cb-reserves/reservar/Gestor_form.php</file>
-            <file>file:/var/www/canborrell-wp/cb-reserves/taules/gestor_reserves.php</file>
             <file>file:/var/www/canborrell-wp/cb-reserves/editar/mailer.php</file>
+            <file>file:/var/www/canborrell-wp/cb-reserves/reservar/form.php</file>
+            <file>file:/var/www/canborrell-wp/cb-reserves/taules/gestor_reserves.php</file>
+            <file>file:/var/www/canborrell-wp/cb-reserves/reservar/Gestor_form.php</file>
         </group>
     </open-files>
 </project-private>

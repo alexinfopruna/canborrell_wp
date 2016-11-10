@@ -103,8 +103,11 @@ function help(txt) {
         $("#td_contingut").addClass("fals-overlay");
     if (dialog_opened())    return;
     if (txt) {
-        txt = txt+ '<p><button class="simplemodal-close ui-button ui-widget ui-state-default ui-corner-all ui-button-text-only" role="button" aria-disabled="false"><span class="ui-button-text">'+l("Tanca")+'</span></button></p>';
-        $("#osx-modal-data").html(txt);
+		
+        //txt = txt+ '<p><button class="simplemodal-close ui-button ui-widget ui-state-default ui-corner-all ui-button-text-only" role="button" aria-disabled="false"><span class="ui-button-text">'+l("Tanca")+'</span></button></p>';
+       // txt = txt+ '<p><button class="simplemodal-close ui-button ui-widget ui-state-default ui-corner-all ui-button-text-only" role="button" aria-disabled="false"><span class="ui-button-text">'+l("Tanca")+'</span></button></p>';
+        $("#pp-content").html(txt);
+        //$("#osx-modal-data").html(txt);
     }
   OSX.init();
 }

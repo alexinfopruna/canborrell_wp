@@ -826,7 +826,8 @@ if (FALSE && isset($_REQUEST["testTPV"]) && $_REQUEST["testTPV"] = 'testTPV') {
                                                                 <div id="osx-modal-title"><?php l("Necessites ajuda?") ?></div>
                                                                 <div class="close"><a href="#" class="simplemodal-close">x</a></div>
                                                                 <div id="osx-modal-data">
-<?php l('ALERTA_INFO_INICIAL'); ?>
+
+                                                                    <div id="pp-content"><?php l('ALERTA_INFO_INICIAL'); ?></div>
                                                                     <p><button class="simplemodal-close"><?php l("Tanca") ?></button></p>
                                                                 </div>
                                                             </div>                                                    
