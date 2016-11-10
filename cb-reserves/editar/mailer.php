@@ -93,7 +93,20 @@ function mailer($addr, $subject, $body, $altbody = null, $attach = null, $test =
   }
   else {
     $exito = $mail->Send();
-  }
+    if (!$exito) {
+
+      $err = $mail->ErrorInfo;
+      //print_log("<span style='color:red'>MAILER ERROR:$err - </span> Enviat mail TO:$addr $cco SUBJECT: $subject");
+      error_log("<li><span style='color:red'>MAILER ERROR:$err - </span> Enviat mail TO:$addr $cco SUBJECT: $subject </li>", 3, ROOT . INC_FILE_PATH . '/log/logMAILSMS.txt');
+     // error_log("</ul>", 3, ROOT . INC_FILE_PATH . '/log/logMAILSMS.txt');
+
+      //return FALSE;
+    }
+    else {
+      error_log("<li><span style='color:green'>MAILER SUCCESS:</span>: Enviat mail TO:$addr SUBJECT: $subject</li>", 3, ROOT . INC_FILE_PATH . '/log/logMAILSMS.txt');
+     // error_log('<li>' . $body . '</li>, 3, ROOT . INC_FILE_PATH . '/log/logMAILSMS.txt');
+      //return TRUE;
+    }
 
   if ($cco == $addr)    $cco = NULL;
   if ($cco) {
@@ -104,26 +117,13 @@ function mailer($addr, $subject, $body, $altbody = null, $attach = null, $test =
     $exito2 = $mail->Send();
 
         error_log("<li><span style='color:green'>MAILER CCO:</span>:".( $exito2?'!!!SUCCESS!!!':'***ERROR***')." Enviat CCO TO: $cco SUBJECT: $subject</li>", 3, ROOT . INC_FILE_PATH . '/log/logMAILSMS.txt');
-        error_log('<li>' . $body . '</li></ul>', 3, ROOT . INC_FILE_PATH . '/log/logMAILSMS.txt');
-      
+        error_log('<li>' . $body . '</li>', 3, ROOT . INC_FILE_PATH . '/log/logMAILSMS.txt');
+  }
   }    
 
-    if (!$exito) {
-
-      $err = $mail->ErrorInfo;
-      //print_log("<span style='color:red'>MAILER ERROR:$err - </span> Enviat mail TO:$addr $cco SUBJECT: $subject");
-      error_log("<li><span style='color:red'>MAILER ERROR:$err - </span> Enviat mail TO:$addr $cco SUBJECT: $subject", 3, ROOT . INC_FILE_PATH . '/log/logMAILSMS.txt');
-      error_log("</ul>", 3, ROOT . INC_FILE_PATH . '/log/logMAILSMS.txt');
-
-      return FALSE;
-    }
-    else {
-      error_log("<li><span style='color:green'>MAILER SUCCESS:</span>: Enviat mail TO:$addr SUBJECT: $subject</li>", 3, ROOT . INC_FILE_PATH . '/log/logMAILSMS.txt');
-      error_log('<li>' . $body . '</li></ul>', 3, ROOT . INC_FILE_PATH . '/log/logMAILSMS.txt');
-      return TRUE;
-    }
   
-
+        error_log( '</ul>', 3, ROOT . INC_FILE_PATH . '/log/logMAILSMS.txt');
+  
   return $exito;
 }
 
