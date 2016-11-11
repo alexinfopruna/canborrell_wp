@@ -34,14 +34,22 @@ $row_reserva['cotxets'] > $row_reserva['estat_taula_cotxets']) {
       die();
     }
     
-    
-    
     $editFormAction = "gestor_reserves.php?a=permuta_reserva&p=" . $id;
   }
   else {
     $permuta = false;
     $gestor->canvi_data($row_reserva['data']);
   }
+
+  //dprint_r($row_reserva);die();
+    if ($row_reserva['estat']!=100){
+        echo '<br><br><h1>Aquesta reserva no està activa. 
+        <br>
+        Possiblement està en procés de pagament.
+        <br>
+        Esperi o corregeixi primer l\'estat de la reserva</h1>';
+        die();
+    }
 }
 else {
   $permuta = false;

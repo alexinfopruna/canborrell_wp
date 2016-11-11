@@ -1017,8 +1017,9 @@ function controlSubmit()
                     timer = setTimeout(function () {  // RESET 
                         clearTimeout(timer);
 
-                        $.post(GESTOR + "?a=estatReserva&b=" + obj.idr, function (d) {
-                            if (d == 2 || d == 0) {
+                        $.post(GESTOR + "?a=estatReserva&b=" + obj.idr, function (r) {
+                            d=parseInt(r);
+                            if (d != 100) {
                                 alert("La sessió ha caducat");
                                 $("#popup").dialog('close');
                             } else {

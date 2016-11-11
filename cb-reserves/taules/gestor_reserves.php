@@ -339,9 +339,10 @@ print_r($_REQUEST);die();
     $editor_id = $this->SQLVal($_SESSION['uSer']->id, "text");
     if (isset($_REQUEST['editor_id']) && $_REQUEST['editor_id']) $editor_id = $_REQUEST['editor_id'];
     
+    $estat = 100; // !!!!!!!!!! SEMPRE  ??????
     $insertSQL = sprintf("INSERT INTO " . T_RESERVES . " ( id_reserva, client_id, data, hora, adults, 
       nens4_9, nens10_14, cotxets, reserva_pastis, reserva_info_pastis, observacions, resposta, estat, usuari_creacio, reserva_navegador, reserva_info) 
-      VALUES (%s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s)", $this->SQLVal($_POST['id_reserva'], "text"), $this->SQLVal($_POST['client_id'], "text"), $this->SQLVal($_POST['data'], "datePHP"), $this->SQLVal($_POST['hora'], "text"), $this->SQLVal($_POST['adults'], "zero"), $this->SQLVal($_POST['nens4_9'], "zero"), $this->SQLVal($_POST['nens10_14'], "zero"), $this->SQLVal($_POST['cotxets'], "zero"), $this->SQLVal($_POST['RESERVA_PASTIS'] == 'on', "zero"), $this->SQLVal($_POST['INFO_PASTIS'], "text"), $this->SQLVal($_POST['observacions'], "text"), $this->SQLVal($_POST['resposta'], "text"), $this->SQLVal(100, "text"), $editor_id, $this->SQLVal($_SERVER['HTTP_USER_AGENT'], "text"), $this->SQLVal($_POST['reserva_info'], "zero"));
+      VALUES (%s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s)", $this->SQLVal($_POST['id_reserva'], "text"), $this->SQLVal($_POST['client_id'], "text"), $this->SQLVal($_POST['data'], "datePHP"), $this->SQLVal($_POST['hora'], "text"), $this->SQLVal($_POST['adults'], "zero"), $this->SQLVal($_POST['nens4_9'], "zero"), $this->SQLVal($_POST['nens10_14'], "zero"), $this->SQLVal($_POST['cotxets'], "zero"), $this->SQLVal($_POST['RESERVA_PASTIS'] == 'on', "zero"), $this->SQLVal($_POST['INFO_PASTIS'], "text"), $this->SQLVal($_POST['observacions'], "text"), $this->SQLVal($_POST['resposta'], "text"), $this->SQLVal($estat, "text"), $editor_id, $this->SQLVal($_SERVER['HTTP_USER_AGENT'], "text"), $this->SQLVal($_POST['reserva_info'], "zero"));
 
     $a = $this->qry_result = $this->log_mysql_query($insertSQL, $this->connexioDB) or die(((is_object($GLOBALS["___mysqli_ston"])) ? mysqli_error($GLOBALS["___mysqli_ston"]) : (($___mysqli_res = mysqli_connect_error()) ? $___mysqli_res : false)));
     $idr = ((is_null($___mysqli_res = mysqli_insert_id($this->connexioDB))) ? false : $___mysqli_res);
@@ -435,6 +436,9 @@ print_r($_REQUEST);die();
     if ($_SESSION['permisos'] < 16)
       return "error:sin permisos";
 
+      var_dump($_POST);
+      die();
+
     $this->reg_log("update_reserva <span class='idr'>" . $_POST['id_reserva'] . '</span>');
     if (!$this->valida_reserva($_POST['estat_taula_taula_id'], $this->cambiaf_a_mysql($_POST['data'])))
       return "DATA ANOMALA update_reserva";
@@ -465,7 +469,7 @@ print_r($_REQUEST);die();
      * 
      */
     $updateSQL = sprintf("UPDATE " . T_RESERVES . " SET  id_reserva=%s, client_id=%s, data=%s, hora=%s, adults=%s,nens4_9=%s, 
-      nens10_14 = %s, cotxets = % s, reserva_pastis= %s, reserva_info_pastis = %s, observacions = %s, resposta = %s, estat=%s, reserva_info=%s WHERE id_reserva=%s", $this->SQLVal($_POST['id_reserva'], "text"), $this->SQLVal($_POST['client_id'], "text"), $this->SQLVal($_POST['data'], "datePHP"), $this->SQLVal($_POST['hora'], "text"), $this->SQLVal($_POST['adults'], "text"), $this->SQLVal($_POST['nens4_9'], "text"), $this->SQLVal($_POST['nens10_14'], "text"), $this->SQLVal($_POST['cotxets'], "text"), $this->SQLVal($_POST['RESERVA_PASTIS'] == 'on' ? 1 : 0, "zero"), $this->SQLVal($_POST['INFO_PASTIS'], "text"), $this->SQLVal($_POST['observacions'], "text"), $this->SQLVal($_POST['resposta'], "text"), $this->SQLVal(100, "text"), $this->SQLVal($_POST['reserva_info'], "int"), $this->SQLVal($_POST['id_reserva'], "text"));
+      nens10_14 = %s, cotxets = % s, reserva_pastis= %s, reserva_info_pastis = %s, observacions = %s, resposta = %s,  reserva_info=%s WHERE id_reserva=%s", $this->SQLVal($_POST['id_reserva'], "text"), $this->SQLVal($_POST['client_id'], "text"), $this->SQLVal($_POST['data'], "datePHP"), $this->SQLVal($_POST['hora'], "text"), $this->SQLVal($_POST['adults'], "text"), $this->SQLVal($_POST['nens4_9'], "text"), $this->SQLVal($_POST['nens10_14'], "text"), $this->SQLVal($_POST['cotxets'], "text"), $this->SQLVal($_POST['RESERVA_PASTIS'] == 'on' ? 1 : 0, "zero"), $this->SQLVal($_POST['INFO_PASTIS'], "text"), $this->SQLVal($_POST['observacions'], "text"), $this->SQLVal($_POST['resposta'], "text"),  $this->SQLVal($_POST['reserva_info'], "int"), $this->SQLVal($_POST['id_reserva'], "text"));
 
     $result = $this->log_mysql_query($updateSQL, $this->connexioDB) or die(((is_object($GLOBALS["___mysqli_ston"])) ? mysqli_error($GLOBALS["___mysqli_ston"]) : (($___mysqli_res = mysqli_connect_error()) ? $___mysqli_res : false)));
 
