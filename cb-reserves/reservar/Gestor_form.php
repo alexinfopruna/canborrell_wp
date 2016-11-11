@@ -1150,10 +1150,10 @@ WHERE  `client`.`client_id` =$idc;
       $signatureEsperada = $miObj->createMerchantSignatureNotif($clave256, $datos);
       $param = json_decode($params, TRUE);
 
-      $this->xgreg_log("RESPOSTA TPV256 >>>>>>>>> <span class='idr'>" . $param['Ds_Order'] . "</span>", 0, "/log/log_TPV.txt", FALSE);
+      $this->xgreg_log("RESPOSTA TPV256 >>>>>>>>> <span class='idr'>" . $param['Ds_Order'] . "</span>", 0, LOG_FILE_TPVPK, FALSE);
       $p = print_r($param, TRUE);
       $p = '<pre class="tpv-response-params">' . $p . "</pre>";
-      $this->xgreg_log("DECODE Paràmetres >>> $p", 1, "/log/log_TPV.txt", FALSE);
+      $this->xgreg_log("DECODE Paràmetres >>> $p", 1, LOG_FILE_TPVPK, FALSE);
       echo " >>> ";
       echo "<pre>";
       print_r($param);
@@ -1168,16 +1168,17 @@ WHERE  `client`.`client_id` =$idc;
       /*       * *********************************************************************************** */
       if ($signatureEsperada === $signatureRecibida) { //**** VALIDA SIGNATURA
         echo "<br/>SIGNATURE OK<br/>";
-        $this->xgreg_log("SIGNATURE OK", 1, "/log/log_TPV.txt", FALSE);
+        $this->xgreg_log("SIGNATURE OK", 1, LOG_FILE_TPVPK, FALSE);
         $response = $param['Ds_Response'];
         $response = intval($response);
+        
         if ($response < 0 || $response > 99) {  // ****** VERIFICA RESPOSTA entre 0000 i 0099
           echo "Response incorrecta!! >>>  $response";
-          $this->xgreg_log("Response incorrecta >>> $response", 1, "/log/log_TPV.txt", FALSE);
+          $this->xgreg_log("Response incorrecta >>> $response", 1, LOG_FILE_TPVPK, FALSE);
           return FALSE;
         }
 
-        $this->xgreg_log("Response ok >>> $response", 1, "/log/log_TPV.txt", FALSE);
+        $this->xgreg_log("Response ok >>> $response", 1,LOG_FILE_TPVPK, FALSE);
         $k = substr($param['Ds_Order'], 3, 6);
         //$k = substr($param['Ds_Order'], -5);
         $idr = $order = (int) $k;
@@ -1195,25 +1196,31 @@ WHERE  `client`.`client_id` =$idc;
         }
 
         echo "<br/>FIRMA OK<br/>";
-        $this->xgreg_log("dades >>> ", 1, "/log/log_TPV.txt", FALSE);
-        $this->xgreg_log("$order $amount", 1, "/log/log_TPV.txt", FALSE);
-        $this->xgreg_log("$callback ", 1, "/log/log_TPV.txt", FALSE);
+        $this->xgreg_log("dades >>> ", 1, LOG_FILE_TPVPK, FALSE);
+        $this->xgreg_log("$order $amount", 1, LOG_FILE_TPVPK, FALSE);
+        $this->xgreg_log("$callback ", 1, LOG_FILE_TPVPK, FALSE);
 
         $this->$callback($idr, $amount, $data, $hora);
       }
       else {
         echo "<br/>FIRMA KO<br/>";
-        $this->xgreg_log("xxx SIGNATURE KO xxx >>> ", 1, "/log/log_TPV.txt", FALSE);
+        $this->xgreg_log("xxx SIGNATURE KO xxx >>> ", 1, LOG_FILE_TPVPK, FALSE);
       }
     }
     else {
       echo "<br/>NO REBEM DADES<br/>";
-      $this->xgreg_log("RESPOSTA TPV256 >>>>>>>>> NO REBEM DADES", 0, "/log/log_TPV.txt", FALSE);
+      $this->xgreg_log("RESPOSTA TPV256 >>>>>>>>> NO REBEM DADES", 0, LOG_FILE_TPVPK, FALSE);
     }
   }
 
+/******************************************************************************************/
+/******************************************************************************************/
+/******************************************************************************************/
+/******************************************************************************************/
+/******************************************************************************************/
+/******************************************************************************************/
   private function reserva_pk_tpv_ok_callback($idr, $amount, $pdata, $phora) {
-    $this->xgreg_log("reserva_pk_tpv_ok_callback", 1, "/log/log_TPV.txt", FALSE);
+    $this->xgreg_log("reserva_pk_tpv_ok_callback", 1, LOG_FILE_TPVPK, FALSE);
     $query = "SELECT estat, client_email, data, hora, adults, nens10_14, nens4_9 "
         . "FROM " . T_RESERVES . " "
         . "LEFT JOIN client ON client.client_id=" . T_RESERVES . ".client_id "
@@ -1304,7 +1311,7 @@ WHERE  `client`.`client_id` =$idc;
   }
 
   private function reserva_grups_tpv_ok_callback($idrl, $amount, $pdata, $phora) {
-    $this->xgreg_log("reserva_grups_tpv_ok_callback", 1, "/log/log_TPV.txt", FALSE);
+    $this->xgreg_log("reserva_grups_tpv_ok_callback", 1, LOG_FILE_TPVPK, FALSE);
 
     $idr = substr($idrl, -4);
     $query = "SELECT estat, client_email, data, hora, lang, adults, nens10_14, nens4_9, lang "

@@ -23,6 +23,46 @@ if (strtolower($path_parts['extension'] == 'pdf'))
   header('Content-type: application/pdf');
 else
   header('Content-Type: text/html; charset=utf-8');
+
+
+
+
+	function tailShell($filepath, $lines = 50) {
+    if ($lines=='ALL') return  readAll($filepath);
+
+		ob_start();
+		passthru('tail -'  . $lines . ' ' . escapeshellarg($filepath));
+		return trim(ob_get_clean());
+	}  
+
+  function readAll($file){
+           $parodd = false;
+        $cnt = 0;
+        $out = "";
+        $file_handle = fopen($file, "r");
+        $first = TRUE;
+       
+        while (!feof($file_handle)) {
+          $line = fgets($file_handle);
+          $date = date("Y-m-d H:i:s");
+
+          $cnt++;
+         
+          $line = str_replace('<br/>', '', $line);
+          $line = str_replace('<br>', '', $line);
+          
+          //echo $line;
+          $out.=$line ; 
+
+          if ($cnt > 500) {
+            $cnt = 0;
+            flush();
+          }
+        }
+        fclose($file_handle);
+
+        return $out;
+  }
 ?>
 <html>
     <head>
@@ -86,27 +126,15 @@ else
     </head>
     <body>
         <?php
-        echo "Llegim fitxer: <b>$file</b><br/><br/><div>";
-        $parodd = false;
-        $cnt = 0;
-        $file_handle = fopen($file, "r");
-        $first = TRUE;
-        while (!feof($file_handle)) {
-          $line = fgets($file_handle);
-          $date = date("Y-m-d H:i:s");
-
-          $cnt++;
-         
-          $line = str_replace('<br/>', '', $line);
-          $line = str_replace('<br>', '', $line);
-          
-          echo $line;
-          if ($cnt > 500) {
-            $cnt = 0;
-            flush();
-          }
-        }
-        fclose($file_handle);
+        echo "Llegim fitxer: <b>$file</b><br/><br/>
+        <i>Params: (linies ex:) &l=500  (tot) &l=ALL</b><br/><br/></i>
+        <div>";
+        $lins = (isset($_GET['l'])?$_GET['l']:100);
+        
+        echo tailShell($file,$lins);
+ /*
+ 
+        */
         ?>
     </body>
 </html>

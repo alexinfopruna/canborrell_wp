@@ -987,8 +987,6 @@ function controlSubmit()
                 $("#popup").bind("dialogclose", function (event, ui) {
                     $.post(GESTOR + "?a=cancelPagaISenyal&b=" + obj.idr);
                     window.location.href = "/#about";
-                    //$("#popup").dialog('close');
-                    //$('#submit').show();
                 });
 
                 SUBMIT_OK = true;
