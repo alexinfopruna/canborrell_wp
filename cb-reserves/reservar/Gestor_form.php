@@ -1172,17 +1172,19 @@ WHERE  `client`.`client_id` =$idc;
         $response = $param['Ds_Response'];
         $response = intval($response);
         
+        $k = substr($param['Ds_Order'], 3, 6);
+        $idr = $order = (int) $k;
+        
+        /** RESPOSTA INCORRECTA **/
         if ($response < 0 || $response > 99) {  // ****** VERIFICA RESPOSTA entre 0000 i 0099
+          $this->cancelPagaISenyal($idr);
           echo "Response incorrecta!! >>>  $response";
-          $this->xgreg_log("Response incorrecta >>> $response", 1, LOG_FILE_TPVPK, FALSE);
+          $this->xgreg_log("Response incorrecta >>> $response", 1, LOG_FILE_TPVPK, TRUE);
           return FALSE;
         }
 
         $this->xgreg_log("Response ok >>> $response", 1,LOG_FILE_TPVPK, FALSE);
-        $k = substr($param['Ds_Order'], 3, 6);
-        //$k = substr($param['Ds_Order'], -5);
-        $idr = $order = (int) $k;
-        $amount = $param['Ds_Amount'];
+          $amount = $param['Ds_Amount'];
         $data = $param['Ds_Date'];
         $hora = $param['Ds_Hour'];
         $callback = $param["Ds_MerchantData"];
