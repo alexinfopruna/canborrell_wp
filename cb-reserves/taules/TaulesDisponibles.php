@@ -653,7 +653,7 @@ ORDER BY  `estat_hores_hora` ASC ";
       // NENS A ULTIMA HORA
       
       //print_r( $this->rang_hores_nens);die();
-      if ( is_array($this->rang_hores_nens) && count($this->rang_hores_nens) && !in_array($row['estat_hores_hora'], $this->rang_hores_nens))
+      if ($torn < 3 && is_array($this->rang_hores_nens) && count($this->rang_hores_nens) && !in_array($row['estat_hores_hora'], $this->rang_hores_nens))
         continue;
 
       

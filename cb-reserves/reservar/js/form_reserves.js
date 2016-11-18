@@ -493,8 +493,10 @@ function recargaHores()
         $("#selectorHora").buttonset();
         $("#selectorHora").find("label").unbind("mouseup");
         txt = "";
-        if (obj.sopar == "")
+        if (obj.sopar == ""){
             txt = l("Cap taula o restaurant tancat");
+            $("#tira-sopars").hide();
+        }
         $("#selectorHoraSopar").html(obj.sopar + txt);
         $("#selectorHoraSopar").buttonset();
         $("#selectorHoraSopar").find("label").unbind("mouseup");

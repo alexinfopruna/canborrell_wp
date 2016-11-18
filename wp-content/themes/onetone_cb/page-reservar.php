@@ -759,9 +759,11 @@ if ($padding_bottom)
                                                                   <img src="/cb-reserves/reservar/css/loading.gif"/>
                                                               </div>
                                                               <!-- ******  SOPAR  ********   -->
+                                                              <div id="tira-sopars">
                                                               <h4><?php l('Sopar'); ?></h4>
                                                               <div id="selectorHoraSopar" class="col_dere" >
                                                                   <img src="/cb-reserves/reservar/css/loading.gif"/>
+                                                              </div>
                                                               </div>
 
                                                               <input type="hidden" name="taulaT1" value="">
