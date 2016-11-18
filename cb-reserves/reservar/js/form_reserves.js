@@ -1204,7 +1204,7 @@ function calc() {
 function avis_modificacions(e) {
     // $("input[name=selectorComensals]").unbind("change");
     var secc = SECCIO;
-    SECCIO = null;
+   // SECCIO = null;
     if (AVIS_MODIFICACIONS)
         return;
     AVIS_MODIFICACIONS = true;
