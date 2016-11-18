@@ -610,7 +610,7 @@ AND (
 estat_hores_actiu =1 $OR_HORA_RESERVA  ) 
 ORDER BY  `estat_hores_hora` ASC ";
     }
-    //echo $query;
+  //  echo $query;
     $Result1 = mysqli_query($this->connexioDB, $query); //or die(mysql_error());
     //
 		///////////////////////////////////////////////////////////////////////////////////////////////	

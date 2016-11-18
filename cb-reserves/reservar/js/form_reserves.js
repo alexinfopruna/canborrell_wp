@@ -21,6 +21,7 @@ var SUBMIT_OK = false;
 var resub = false;
 
 var SECCIO_INICIAL = "fr-seccio-quants";
+var AVIS_MODIFICACIONS = false;
 
 var dlg = {
     autoOpen: false,
@@ -81,17 +82,17 @@ if (!Array.prototype.indexOf)
 $(function () {
 
 
-    $(window).on('resize', function(){
-        jQuery("#container").css("margin-top",jQuery(".navbar-header").height());
+    $(window).on('resize', function () {
+        jQuery("#container").css("margin-top", jQuery(".navbar-header").height());
     }).resize();
-    
-        $('.navbar-toggle').click(function () {
-       //$('#navbar').toggleClass('collapse');
-       if ($('#navbar').is(':visible'))
-        $('#navbar').hide("slow");
-    else
-        $('#navbar').show("slow");
-  });
+
+    $('.navbar-toggle').click(function () {
+        //$('#navbar').toggleClass('collapse');
+        if ($('#navbar').is(':visible'))
+            $('#navbar').hide("slow");
+        else
+            $('#navbar').show("slow");
+    });
 
     /* popupGrups */
     $("#popupGrups").dialog({
@@ -129,7 +130,7 @@ $(function () {
 
     $("#flogin").hide();
     $(".cb-contacte").click(function () {
-        $.scrollTo("#table_menu", 600, {offset:-100 });
+        $.scrollTo("#table_menu", 600, {offset: -100});
         $("#a_consulta_online.r-petita").trigger("click")
     });
     $("#a_editar_reserva").click(function () {
@@ -175,7 +176,7 @@ $(function () {
     $("input[type=submit]").find("label").unbind("mouseup");
 
     $("#selectorComensals input[value=grups]").click(function () {
-        window.location.href = "/reservar/reserva-grup/?lang="+lang;
+        window.location.href = "/reservar/reserva-grup/?lang=" + lang;
         return false;
     })
     $("button, .bt").button();
@@ -241,7 +242,7 @@ $(function () {
     controlSubmit();
     $("body").fadeIn("slow");
     /*********** HEEELP *************/
-   // $("#help").dialog(dlg);
+    // $("#help").dialog(dlg);
     help();
 
     $(".info-ico").click(function (e) {
@@ -266,22 +267,22 @@ $(function () {
         if (datos == "backup" && permisos > 64)
             alert("S'ha realitzat una còpia de la base de dades");
     });
-   
-   // Si ens passen la data
-  // if (typeof rdata != 'undefined')  setCalendDate(rdata);
-   if (typeof obre_contacte != 'undefined')  {
-       $("#a_consulta_online.r-petita").click();
-      // $("#caixa_reserva_consulta_online").css("background-color",'yellow').delay(3).css("background-color",'gold');
-        $("#caixa_reserva_consulta_online").dialog({modal:true});
-   }//click();
-   
-   if (RDATA > ""){
-             monta_calendari("#calendari");
-            $(".fr-seccio-dia").show();
-            SECCIO = "fr-seccio-dia";
-            //updateCalendari();   
-   }
-  document.body.scrollTop = document.documentElement.scrollTop = 0;
+
+    // Si ens passen la data
+    // if (typeof rdata != 'undefined')  setCalendDate(rdata);
+    if (typeof obre_contacte != 'undefined') {
+        $("#a_consulta_online.r-petita").click();
+        // $("#caixa_reserva_consulta_online").css("background-color",'yellow').delay(3).css("background-color",'gold');
+        $("#caixa_reserva_consulta_online").dialog({modal: true});
+    }//click();
+
+    if (RDATA > "") {
+        monta_calendari("#calendari");
+        $(".fr-seccio-dia").show();
+        SECCIO = "fr-seccio-dia";
+        //updateCalendari();   
+    }
+    document.body.scrollTop = document.documentElement.scrollTop = 0;
 }); //ONLOAD, PRESENTACIO UI
 //***********************************************************************************************************/
 /************************************************************************************************************/
@@ -314,10 +315,10 @@ function comportamentQuantsSou()
 {
     //ADULTS
     SECCIO = "fr-seccio-quants";
-    
+
     //update_debug();
     $(".fr-seccio-quants").change(function (e) {
-        
+
         ADULTS = $("input[name='selectorComensals']:checked").val();
         JUNIORS = $("input[name='selectorJuniors']:checked").val();
         NENS = $("input[name='selectorNens']:checked").val();
@@ -325,37 +326,39 @@ function comportamentQuantsSou()
 
         $("input[name='adults']").val(ADULTS)
         totalPersones();
- console.log(ADULTS);
-        if (!ADULTS){
-               $("input[name=selectorComensals]").change(function (e) {
-    });
-     return;
+        console.log(ADULTS);
+        if (!ADULTS) {
+            $("input[name=selectorComensals]").change(function (e) {
+            });
+            return;
         }
-            avis_modificacions(e);
+        avis_modificacions(e);
     });
 
     $("input[name=selectorComensals]").change(function (e) {
         avis_modificacions(e);
     });
-    
+
     //JUNIORS
     /*
-    $("input[name=selectorJuniors]").change(function () {
-        JUNIORS = $("input[name='selectorJuniors']:checked").val();
-        $("input[name='nens10_14']").val(JUNIORS)
-        $.scrollTo("#titol_SelectorNens", 600, {offset:-100 });
-    });
-/*/
+     $("input[name=selectorJuniors]").change(function () {
+     JUNIORS = $("input[name='selectorJuniors']:checked").val();
+     $("input[name='nens10_14']").val(JUNIORS)
+     $.scrollTo("#titol_SelectorNens", 600, {offset:-100 });
+     });
+     /*/
     //NENS
     $("input[name=selectorNens]").change(function () {
         NENS = $("input[name='selectorNens']:checked").val();
-               ADULTS = $("input[name='selectorComensals']:checked").val();
+        ADULTS = $("input[name='selectorComensals']:checked").val();
         console.log(ADULTS);
-        
+
         $("input[name='nens4_9']").val(NENS);
-        
-        if (!ADULTS) $.scrollTo("#titol_SelectorComensals", 600, {offset:-100 });
-        else $.scrollTo("#titol_SelectorCotxets", 600, {offset:-100 });
+
+        if (!ADULTS)
+            $.scrollTo("#titol_SelectorComensals", 600, {offset: -100});
+        else
+            $.scrollTo("#titol_SelectorCotxets", 600, {offset: -100});
     });
 
     //COTXETS
@@ -390,7 +393,7 @@ function totalPersones()
         comportamentDia();
 
         if (confirm(l("REDIR_GRUPS"))) {
-         //   window.location.href = "form_grups.php?a=redir&b=" + na + "&c=" + nj + "&d=" + nn + "&e=" + cotxets;
+            //   window.location.href = "form_grups.php?a=redir&b=" + na + "&c=" + nj + "&d=" + nn + "&e=" + cotxets;
             window.location.href = "/reservar/reserva-grup/?a=redir&b=" + na + "&c=" + nj + "&d=" + nn + "&e=" + cotxets;
             $("body").fadeOut();
         }
@@ -476,8 +479,13 @@ function recargaHores()
     var accesibilidad = $("input[name='selectorCadiraRodes']:checked").length;
     accesibilidad += $("input[name='selectorAccesible']:checked").length;
 
-    $.post(GESTOR + "?a=horesDisponibles&b=" + $("#calendari").val() + "&c=" + comensals + "&d=" + $("input[name='selectorCotxets']:checked").val() + "&e=" + accesibilidad + "&f=" + IDR +"&g=" + NENS, function (dades) {
+    $.post(GESTOR + "?a=horesDisponibles&b=" + $("#calendari").val() + "&c=" + comensals + "&d=" + $("input[name='selectorCotxets']:checked").val() + "&e=" + accesibilidad + "&f=" + IDR + "&g=" + NENS, function (dades) {
         var obj = JSON.parse(dades);
+
+        //var obj = ControlLocal($("#calendari").val(), comensals, obj);
+        
+
+
         var txt = "";
         if ((obj.dinar + obj.dinarT2) == "")
             txt = l("Cap taula o restaurant tancat");
@@ -524,6 +532,33 @@ function recargaHores()
 
 }
 
+function ControlLocal(data, comensals, obj) {
+        var index= "hores"+data+"-"+comensals;
+        var val=0;
+        var value=0;
+
+    for (var i in window.localStorage) {
+        
+        if (i != "hores"+data+"-"+comensals) continue;
+        val = localStorage.getItem(i);
+        value = JSON.parse(localStorage.getItem(index));
+      //  if (value && value.data == data && value.comensals == comensals)
+      obj.dinar= value.obj.dinar;
+      obj.dinarT2= value.obj.dinarT2;
+      obj.sopar= value.obj.sopar;
+      
+            return obj;
+    }
+    
+    var hores = new Object();//{data data, comensals: comensals, obj: obj};
+    hores.data = data;
+    hores.comensals = comensals;
+    hores.time = Date.now;
+    hores.obj = obj;
+  localStorage.setItem(index, JSON.stringify(hores));
+    return obj;
+    
+}
 
 
 /********************************************************************************************************************/
@@ -632,7 +667,7 @@ function validaDadesClient() {
             $(".fr-seccio-submit").css("display", "block");
             $(".fr-seccio-submit").css("visibility", "visible");
 
-            $.scrollTo("#scroll-seccio-submit", 800, {offset:-100 });
+            $.scrollTo("#scroll-seccio-submit", 800, {offset: -100});
         }
 
     }
@@ -778,12 +813,13 @@ function monta_calendari(selector)
 
 
 
-    var defData = new Date();;
-    if (RDATA != ""){
-        
-     //   var msec = Date.parse('10-26-2016');
- defData = new Date(RDATA);
-   //     alert(defData);
+    var defData = new Date();
+    ;
+    if (RDATA != "") {
+
+        //   var msec = Date.parse('10-26-2016');
+        defData = new Date(RDATA);
+        //     alert(defData);
     }
     $(selector).datepicker("destroy");
     $(selector).datepicker({
@@ -1018,7 +1054,7 @@ function controlSubmit()
                         clearTimeout(timer);
 
                         $.post(GESTOR + "?a=estatReserva&b=" + obj.idr, function (r) {
-                            d=parseInt(r);
+                            d = parseInt(r);
                             if (d != 100) {
                                 alert("La sessió ha caducat");
                                 $("#popup").dialog('close');
@@ -1129,7 +1165,7 @@ function seccio(selector_seccio) {
     if (!selector_seccio)
         return;
 
-    $.scrollTo("." + selector_seccio, 800, {offset:-100 });
+    $.scrollTo("." + selector_seccio, 800, {offset: -100});
     SECCIO = selector_seccio;
 }
 
@@ -1164,44 +1200,48 @@ function calc() {
 }
 
 function avis_modificacions(e) {
-   // $("input[name=selectorComensals]").unbind("change");
+    // $("input[name=selectorComensals]").unbind("change");
     var secc = SECCIO;
     SECCIO = null;
-    
+    if (AVIS_MODIFICACIONS)
+        return;
+    AVIS_MODIFICACIONS = true;
+
+
     var adults = $("input[name='selectorComensals']:checked").val()
     /*
-    
-    if (adults < 6) {
-        $.scrollTo("#titol_SelectorNens", 600, {offset:-100 });
-        return false;
-    }
-*/
+     
+     if (adults < 6) {
+     $.scrollTo("#titol_SelectorNens", 600, {offset:-100 });
+     return false;
+     }
+     */
     help($("#avis-modificacions").html());
 
-      if ($(".fr-seccio-dia").is(":hidden"))
-        {
-            monta_calendari("#calendari");
-            $(".fr-seccio-dia").show();
-            SECCIO = "fr-seccio-dia";
-            updateCalendari();
-            comportamentDia();
-        }
+    if ($(".fr-seccio-dia").is(":hidden"))
+    {
+        monta_calendari("#calendari");
+        $(".fr-seccio-dia").show();
+        SECCIO = "fr-seccio-dia";
+        updateCalendari();
+        comportamentDia();
+    }
 
 
-        if (typeof RDATA != 'undefined'){
-           comportamentDia();
-           recargaHores();
-           $(".fr-seccio-hora").show();
-            $.scrollTo("#titol_SelectorNens", 600, {offset:-100 });
-            //$("#calendari").change();
-        }
-        else{
-             $.scrollTo("#titol_SelectorNens", 600, {offset:-100 });
-            SECCIO = 'fr-seccio-dia';
+    if (typeof RDATA != 'undefined') {
+        comportamentDia();
+        recargaHores();
+        $(".fr-seccio-hora").show();
+        $.scrollTo("#titol_SelectorNens", 600, {offset: -100});
+        //$("#calendari").change();
+    }
+    else {
+        $.scrollTo("#titol_SelectorNens", 600, {offset: -100});
+        SECCIO = 'fr-seccio-dia';
 
 
 
-        }  
+    }
 }
 
 var getUrlParameter = function getUrlParameter(sParam) {
@@ -1219,19 +1259,19 @@ var getUrlParameter = function getUrlParameter(sParam) {
     }
 };
 
-function setCalendDate(date){
-              monta_calendari("#calendari");
-              
-             var dt=new Date(date);
-            // alert(date);
-            $(".fr-seccio-dia").show();
-            SECCIO = "fr-seccio-dia";
-            updateCalendari();  
-             $('#calendari').datepicker("setDate", dt );
-            comportamentQuantsSou();
-            //$.scrollTo("#table_menu", 600);
-            window.scrollTo(0, 0);
-           // comportamentDia();
+function setCalendDate(date) {
+    monta_calendari("#calendari");
 
-   
+    var dt = new Date(date);
+    // alert(date);
+    $(".fr-seccio-dia").show();
+    SECCIO = "fr-seccio-dia";
+    updateCalendari();
+    $('#calendari').datepicker("setDate", dt);
+    comportamentQuantsSou();
+    //$.scrollTo("#table_menu", 600);
+    window.scrollTo(0, 0);
+    // comportamentDia();
+
+
 }

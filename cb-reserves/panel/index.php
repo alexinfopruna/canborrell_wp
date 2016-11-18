@@ -145,9 +145,9 @@ $(function(){$("#panel").accordion({collapsible:true,active:false,heightStyle: "
 		<a target="_blank" href="../editar/gestio_dies.php" class=" bt ui-button ui-widget ui-state-default ui-corner-all ui-button-text-only">GRUPS: Gestió dies bloquejats calendari GRUPS</a>
 		<!-- -->
 		<a target="_blank" href="../panel/editMenjadorsOnline_pk.php" class=" bt ui-button ui-widget ui-state-default ui-corner-all ui-button-text-only">ONLINE: Gestió menjadors OBERTS</a>
-		<!-- 
+		<!-- --><!-- -->
 		<a target="_blank" href="../panel/editHoresOnline_pk.php" class=" bt ui-button ui-widget ui-state-default ui-corner-all ui-button-text-only">ONLINE: Gestió HORES</a>
-		--><!-- -->
+		
 		<a target="_blank" href="../reservar/update_carta.php" class=" bt ui-button ui-widget ui-state-default ui-corner-all ui-button-text-only">Actualitzar CARTA</a>
 		<!-- -->
 		<a target="_blank" href="../reservar/filtre_carta.php" class=" bt ui-button ui-widget ui-state-default ui-corner-all ui-button-text-only">CARTA: Gestionar plats publicats</a>
