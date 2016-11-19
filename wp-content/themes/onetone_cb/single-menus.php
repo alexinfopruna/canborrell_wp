@@ -21,6 +21,8 @@ if(  $left_sidebar !='' && $right_sidebar !='' )
 $aside          = 'both-aside';
 ?>
 
+
+
 <article id="post-<?php the_ID(); ?>" <?php post_class(); ?>>
 <section class="page-title-bar title-left no-subtitle" style="">
             <div class="container">
@@ -36,11 +38,31 @@ $aside          = 'both-aside';
             </div>
         </section>
         
+    
 <div class="post-wrap">
             <div class="container">
                 <div class="post-inner row <?php echo $aside; ?>">
                     <div class="col-main">
                         <section class="post-main" role="main" id="content">
+                            
+                            <div class="alert alert-success">
+<span class="glyphicon glyphicon-info-sign" style="font-size:1.8em"></span>   <?php
+switch (ICL_LANGUAGE_CODE){
+  case 'en':
+        echo SUGGERIMENTS_EN;
+    break;
+  case 'es':
+          echo SUGGERIMENTS_ES;
+    break;
+  default:
+    echo SUGGERIMENTS_CA;
+    break;
+}
+
+ ?>
+</div>
+    
+                            
                         <?php while ( have_posts() ) : the_post(); ?>
                             <article class="post type-post" id="">
                             <?php if (  has_post_thumbnail() ): ?>
