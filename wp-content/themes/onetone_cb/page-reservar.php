@@ -266,7 +266,7 @@ function reservar_enqueue_styles() {
         echo ".info-paga-i-senyal{display:none}";
       ?>
       
-      .caixa.caixa100{width:initial;}
+      .caixa.caixa100{width:95%;}
       .fr-seccio{
         display:flex;  
         flex-wrap:wrap;

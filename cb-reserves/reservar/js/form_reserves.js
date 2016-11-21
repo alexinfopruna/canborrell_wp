@@ -326,7 +326,7 @@ function comportamentQuantsSou()
 
         $("input[name='adults']").val(ADULTS)
         totalPersones();
-        console.log(ADULTS);
+        //console.log(ADULTS);
         if (!ADULTS) {
             $("input[name=selectorComensals]").change(function (e) {
             });
@@ -482,7 +482,7 @@ function recargaHores()
     $.post(GESTOR + "?a=horesDisponibles&b=" + $("#calendari").val() + "&c=" + comensals + "&d=" + $("input[name='selectorCotxets']:checked").val() + "&e=" + accesibilidad + "&f=" + IDR + "&g=" + NENS, function (dades) {
         var obj = JSON.parse(dades);
 
-        //var obj = ControlLocal($("#calendari").val(), comensals, obj);
+        //ANULAT var obj = ControlLocal($("#calendari").val(), comensals, obj);
         
 
 

@@ -9,6 +9,10 @@ if (!defined('ROOT')) {
   define('ROOT', $root);
 }
 
+// caduca la limitació d'horari per nens
+if (!defined('CB_CHILD_CACHE_MAX_TIME'))
+  define('CB_CHILD_CACHE_MAX_TIME', 80000);
+
 if (isset($_REQUEST['a']))
   $accio = $_REQUEST['a'];$_REQUEST['a'] = null;
 require_once(ROOT . "Gestor.php");
@@ -176,7 +180,7 @@ class Gestor_form extends gestor_reserves {
     $mydata = $this->cambiaf_a_mysql($data);
 
     //$this->taulesDisponibles->tableHores="estat_hores_form";
-    $this->taulesDisponibles->tableHores = "estat_hores";   //ANULAT GESTOR HORES FORM. Toto es gestiona igual, des de estat hores
+    $this->taulesDisponibles->tableHores = "estat_hores";   //ANULAT GESTOR HORES FORM. Tot es gestiona igual, des d'estat hores
     if ($idr) {
       if (!$this->taulesDisponibles->loadReserva($idr)) {
         $json = array('dinar' => '', 'dinarT2' => '', 'sopar' => '', 'taulaT1' => 0, 'taulaT2' => 0, 'taulaT3' => 0, 'error' => 3);
@@ -194,7 +198,12 @@ class Gestor_form extends gestor_reserves {
     $this->taulesDisponibles->llista_dies_negra = LLISTA_DIES_NEGRA_RES_PETITES;
     $this->taulesDisponibles->llista_nits_negra = LLISTA_DIES_NEGRA_RES_PETITES;
     $this->taulesDisponibles->llista_dies_blanca = LLISTA_DIES_BLANCA;
-    $this->taulesDisponibles->rang_hores_nens = $this->rang_hores_nens($coberts - $nens, $nens);
+    $cacheNens = $nens;
+    $cacheAdults = $coberts - $nens;
+
+    //$this->comprovaCacheNens($mydata, $cacheAdults, $cacheNens);
+
+    $this->taulesDisponibles->rang_hores_nens = $this->rang_hores_nens($mydata, $cacheAdults, $cacheNens);
 
 
 
@@ -237,90 +246,48 @@ class Gestor_form extends gestor_reserves {
     //////////////////////////////////					
   }
 
-  private function rang_hores_nens($adults, $nens) {
-    if (!$adults || !$nens || !defined("CONTROL_HORES_NENS") || !CONTROL_HORES_NENS)
+  private function rang_hores_nens($data, $adults, $nens) {
+    if (!$adults || !defined("CONTROL_HORES_NENS") || !CONTROL_HORES_NENS)
       return;
+    /*
+      $adults = 10;
+      $nens= 0;
+     */
+    /*     * *************************** */
+    require("hores_nens.php");
+    /*     * **************************** */
 
-    $limits = array();
-    $limits[4][3] = array("16:00", "16:15", "16:30");
-    $limits[4][4] = array("16:00", "16:15", "16:30");
-    $limits[4][5] = array("16:00", "16:15", "16:30");
-    $limits[4][6] = array("16:00", "16:15", "16:30");
-    $limits[4][7] = array("16:00", "16:15", "16:30");
-
-    $limits[5][3] = array("16:00", "16:15", "16:30");
-    $limits[5][4] = array("16:00", "16:15", "16:30");
-    $limits[5][5] = array("16:00", "16:15", "16:30");
-    $limits[5][6] = array("16:00", "16:15", "16:30");
-    $limits[5][7] = array("16:00", "16:15", "16:30");
-
-    $limits[6][3] = array("16:00", "16:15", "16:30");
-    $limits[6][4] = array("16:00", "16:15", "16:30");
-    $limits[6][5] = array("16:00", "16:15", "16:30");
-    $limits[6][6] = array("16:00", "16:15", "16:30");
-    $limits[6][7] = array("16:00", "16:15", "16:30");
-
-    $limits[7][3] = array("16:00", "16:15", "16:30");
-    $limits[7][4] = array("16:00", "16:15", "16:30");
-    $limits[7][5] = array("16:00", "16:15", "16:30");
-    $limits[7][6] = array("16:00", "16:15", "16:30");
-    $limits[7][7] = array("16:00", "16:15", "16:30");
-
-    $limits[8][3] = array("16:00", "16:15", "16:30");
-    $limits[8][4] = array("16:00", "16:15", "16:30");
-    $limits[8][5] = array("16:00", "16:15", "16:30");
-    $limits[8][6] = array("16:00", "16:15", "16:30");
-    $limits[8][7] = array("16:00", "16:15", "16:30");
-
-    $limits[9][4] = array("16:00", "16:15", "16:30");
-    $limits[9][5] = array("16:00", "16:15", "16:30");
-    $limits[9][6] = array("16:00", "16:15", "16:30");
-    $limits[9][7] = array("16:00", "16:15", "16:30");
-
-    $limits[10][4] = array("16:00", "16:15", "16:30");
-    $limits[10][5] = array("16:00", "16:15", "16:30");
-    $limits[10][6] = array("16:00", "16:15", "16:30");
-    $limits[10][7] = array("16:00", "16:15", "16:30");
-
-    $limits[11][4] = array("16:00", "16:15", "16:30");
-    $limits[11][5] = array("16:00", "16:15", "16:30");
-    $limits[11][6] = array("16:00", "16:15", "16:30");
-    $limits[11][7] = array("16:00", "16:15", "16:30");
-
-    $limits[12][4] = array("16:00", "16:15", "16:30");
-    $limits[12][5] = array("16:00", "16:15", "16:30");
-    $limits[12][6] = array("16:00", "16:15", "16:30");
-    $limits[12][7] = array("16:00", "16:15", "16:30");
-
-    $limits[13][5] = array("16:15", "16:30");
-    $limits[13][6] = array("16:15", "16:30");
-    $limits[13][7] = array("16:15", "16:30");
-
-    $limits[14][5] = array("16:15", "16:30");
-    $limits[14][6] = array("16:15", "16:30");
-    $limits[14][7] = array("16:15", "16:30");
-
-    $limits[15][5] = array("16:15", "16:30");
-    $limits[15][6] = array("16:15", "16:30");
-    $limits[15][7] = array("16:15", "16:30");
-
-    $limits[16][5] = array("16:15", "16:30");
-    $limits[16][6] = array("16:15", "16:30");
-    $limits[16][7] = array("16:15", "16:30");
-
-    $limits[17][5] = array("16:15", "16:30");
-    $limits[17][6] = array("16:15", "16:30");
-    $limits[17][7] = array("16:15", "16:30");
-
-    $limits[18][5] = array("16:15", "16:30");
-    $limits[18][6] = array("16:15", "16:30");
-    $limits[18][7] = array("16:15", "16:30");
-
-
+    $limit = FALSE;
     if (isset($limits[$adults][$nens]))
-      return $limits[$adults][$nens];
+      $limit = $limits[$adults][$nens];
+      
+    //CACHEEEEEEE
+    $index = 'cacheNens' . $data . "-" . ($adults + $nens);
 
-    return FALSE;
+    $time = time();
+    
+    //   $time += CB_CHILD_CACHE_MAX_TIME + 1000;
+    $cache = FALSE;
+    if (isset($_SESSION[$index]) && count($_SESSION[$index]['hores']) && $_SESSION[$index]['timestamp'] > $time) {
+      $cache = $_SESSION[$index]['hores'];
+    }
+
+    $limitNens = FALSE;
+    if ($limit) $limitNens = $limit;
+    if ($cache) $limitNens = $cache;
+    if ($limit && $cache) $limitNens = array_intersect($limit, $cache);
+
+    if (count($limitNens)) {
+      $cachev = array();
+      $cachev['timestamp'] = time() + CB_CHILD_CACHE_MAX_TIME;
+      $cachev['hores'] = $limitNens;
+      $_SESSION[$index] = $cachev;
+    }
+    /*
+    echo "CACHE ";print_r($cache);
+    echo "limit ";print_r($limit);
+    echo "limitNens ";print_r($limitNens);*/
+    return $limitNens;
   }
 
   /*   * ******************************************************************************************************* */
@@ -541,6 +508,8 @@ FROM client
       return $this->jsonErr(7, $resposta); //Adults < 2
 
 
+
+
       
 // MIREM SI ESTÀ EDITANT UNA RESERVA EXISTENT
 //MIRA SI ENS VOLEM FER UNA DUPLICADA
@@ -578,6 +547,8 @@ FROM client
       return $this->jsonErr(7, $resposta); // "err7 adults";
 
 
+
+
       
 //ESBRINA EL TORN	
     $data = $this->cambiaf_a_mysql($_POST['selectorData']);
@@ -596,6 +567,8 @@ FROM client
     //COMPROVEM HORA LIMIT
     if (!$this->reserva_entra_avui($data, $hora))
       return $this->jsonErr(11, $resposta); // "err7 adults";
+
+
 
 
       
@@ -648,6 +621,8 @@ FROM client
       return $this->jsonErr(5, $resposta); // "err5 nom";
     if (empty($_POST['client_cognoms']))
       return $this->jsonErr(6, $resposta); // "err6: cognoms";
+
+
 
 
       
@@ -808,6 +783,8 @@ FROM client
     $torn = $this->torn($data, $hora);
     if (!$torn)
       return $this->jsonErr(8, $resposta); // COMPROVA torn
+
+
 
 
       
@@ -1155,11 +1132,11 @@ WHERE  `client`.`client_id` =$idc;
         $this->xgreg_log("SIGNATURE OK", 1, LOG_FILE_TPVPK, FALSE);
         $response = $param['Ds_Response'];
         $response = intval($response);
-        
+
         $k = substr($param['Ds_Order'], 3, 6);
         $idr = $order = (int) $k;
-        
-        /** RESPOSTA INCORRECTA **/
+
+        /** RESPOSTA INCORRECTA * */
         if ($response < 0 || $response > 99) {  // ****** VERIFICA RESPOSTA entre 0000 i 0099
           $this->cancelPagaISenyal($idr);
           echo "Response incorrecta!! >>>  $response";
@@ -1167,8 +1144,8 @@ WHERE  `client`.`client_id` =$idc;
           return FALSE;
         }
 
-        $this->xgreg_log("Response ok >>> $response", 1,LOG_FILE_TPVPK, FALSE);
-          $amount = $param['Ds_Amount'];
+        $this->xgreg_log("Response ok >>> $response", 1, LOG_FILE_TPVPK, FALSE);
+        $amount = $param['Ds_Amount'];
         $data = $param['Ds_Date'];
         $hora = $param['Ds_Hour'];
         $callback = $param["Ds_MerchantData"];
@@ -1199,12 +1176,13 @@ WHERE  `client`.`client_id` =$idc;
     }
   }
 
-/******************************************************************************************/
-/******************************************************************************************/
-/******************************************************************************************/
-/******************************************************************************************/
-/******************************************************************************************/
-/******************************************************************************************/
+  /*   * *************************************************************************************** */
+  /*   * *************************************************************************************** */
+  /*   * *************************************************************************************** */
+  /*   * *************************************************************************************** */
+  /*   * *************************************************************************************** */
+  /*   * *************************************************************************************** */
+
   private function reserva_pk_tpv_ok_callback($idr, $amount, $pdata, $phora) {
     $this->xgreg_log("reserva_pk_tpv_ok_callback", 1, LOG_FILE_TPVPK, FALSE);
     $query = "SELECT estat, client_email, data, hora, adults, nens10_14, nens4_9 "
@@ -1245,19 +1223,20 @@ WHERE  `client`.`client_id` =$idc;
       $mail = $this->enviaMail($idr, "../reservar/paga_i_senyal_", MAIL_RESTAURANT, $extres);
       return FALSE;
     }
-    
-    
+
+
     $referer = $_SERVER['REMOTE_ADDR'];
     $import = $amount / 100;
     $resposta = "PAGA I SENYAL TPV: " . $import . "Euros (" . $pdata . " " . $phora . ")";
-    
-    if (isset($_REQUEST['param']) && $_REQUEST['param']=='no-update'){
-      $result="ANULAT";
-    }else{
+
+    if (isset($_REQUEST['param']) && $_REQUEST['param'] == 'no-update') {
+      $result = "ANULAT";
+    }
+    else {
       $query = "UPDATE " . T_RESERVES . " SET estat=100, preu_reserva='$import', resposta='$resposta' WHERE id_reserva=$idr";
-       $res = $this->log_mysql_query($query, $this->connexioDB) or die(((is_object($GLOBALS["___mysqli_ston"])) ? mysqli_error($GLOBALS["___mysqli_ston"]) : (($___mysqli_res = mysqli_connect_error()) ? $___mysqli_res : false)));
-       $result = print_r($res, TRUE);
-       //$result = $res?"!!!SUCCESS!!!":"***ERROR***";
+      $res = $this->log_mysql_query($query, $this->connexioDB) or die(((is_object($GLOBALS["___mysqli_ston"])) ? mysqli_error($GLOBALS["___mysqli_ston"]) : (($___mysqli_res = mysqli_connect_error()) ? $___mysqli_res : false)));
+      $result = print_r($res, TRUE);
+      //$result = $res?"!!!SUCCESS!!!":"***ERROR***";
     }
 //$result = "ANULAT";    
 
@@ -1310,7 +1289,7 @@ WHERE  `client`.`client_id` =$idc;
 
     $estat = $row['estat'];
     $mail = $row['client_email'];
-  
+
     if ($estat != 2) { // NO ESTÀ CONFIRMADA PER PAGAR
       $msg = "PAGAMENT INAPROPIAT RESERVA PETITA???: " . $idr . " estat: $estat  $mail";
       $this->xgreg_log($msg, 1, LOG_FILE_TPVPK, FALSE); /* LOG */
