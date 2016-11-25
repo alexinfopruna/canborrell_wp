@@ -180,6 +180,8 @@ function reservar_enqueue_styles() {
 
       }
 */
+
+.fxd-header{display:none !important;position:absolute;left:-1000px;}
 h2.titol{
    // background-blend-mode: multiply;
     background: white;

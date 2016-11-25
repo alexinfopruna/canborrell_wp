@@ -368,8 +368,10 @@ section.title-left{background-color: #eee;}
 
 @media (max-width: 470px){
     .lang_selector{
+        display:block;
     position: initial;
-    float:right;
+    width:100px;
+    float:none;
 }
 }
 
