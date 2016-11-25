@@ -341,6 +341,9 @@ h2.titol{
     padding: 10px !important;
 }
 
+#carta_MENUS tbody{
+   font-size:12px;   
+}
       
   </style>                
 
