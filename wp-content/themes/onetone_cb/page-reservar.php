@@ -180,6 +180,13 @@ function reservar_enqueue_styles() {
 
       }
 */
+h2.titol{
+   // background-blend-mode: multiply;
+    background: white;
+    padding: 4px;   
+    //mix-blend-mode: multiply;
+}
+
       .anima-avis{
           position:fixed;
           top:50px;
