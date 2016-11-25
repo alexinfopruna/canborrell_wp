@@ -337,6 +337,11 @@ h2.titol{
            .caixa{ width:100%;}
       }
       
+      .ui-button-text {
+    padding: 10px !important;
+}
+
+      
   </style>                
 
   <script type="text/javascript" src="/cb-reserves/reservar/js/jquery.simplemodal.js"></script>
