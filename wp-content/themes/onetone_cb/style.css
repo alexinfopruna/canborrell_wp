@@ -118,7 +118,7 @@ h6.infantil{font-size:13px;}
 #calendari-header {
     position: absolute;
     top: 3px;
-    right: 140px;
+    right: 200px;
     z-index: 99;
 
 }
@@ -153,6 +153,22 @@ color:white;
     #calendari-header {
         display:none;
     }
+}
+
+
+@media (max-width: 450px){
+    .site-name{font-size:5vw !important;}
+}
+@media (max-width: 600px){
+    .site-name{font-size:30px;}
+    
+    .site-nav-toggle{
+        margin-top: 0;
+    }
+    
+    
+    
+    .lang_selector{right:85px !important;}
 }
 
 #calendari .bondia .ui-state-active{
@@ -212,7 +228,7 @@ section.title-left{background-color: #eee;}
     background-color: #eee;
     position:absolute;
     height:22px;
-    right:16px;
+    right:85px;
 	padding:0 6px;
 	border-bottom-left-radius: 4px;
 	border-bottom-right-radius: 4px;
@@ -240,6 +256,16 @@ section.title-left{background-color: #eee;}
 /***************************************************************/
 
 /*MENU MAIN*/
+
+
+.fa-2x{
+        font-size: 30px;
+    }
+
+.site-nav-toggle {
+    margin-top: 0px;
+}
+
 .site-nav > ul > li a  {
     line-height: 2;
 }
