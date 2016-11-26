@@ -1695,8 +1695,8 @@ AND client.client_id='$client_id'";
         $updateSQL = sprintf("UPDATE client SET  client_cognoms=%s, client_nom=%s,  client_telefon=%s, client_conflictes=%s, client_email=%s
                 WHERE client_id=%s", $this->SQLVal($_POST['client_cognoms'], "text"), $this->SQLVal($_POST['client_nom'], "text"), $this->SQLVal($_POST['client_telefon'], "text"), $this->SQLVal($_POST['client_conflictes'], "text"), $this->SQLVal($_POST['client_email'], "text"), $this->SQLVal($client_id, "text"));
 
-        $this->qry_result = $this->log_mysql_query($query, $this->connexioDB) or die(((is_object($GLOBALS["___mysqli_ston"])) ? mysqli_error($GLOBALS["___mysqli_ston"]) : (($___mysqli_res = mysqli_connect_error()) ? $___mysqli_res : false)));
 
+        $this->qry_result = $this->log_mysql_query($updateSQL, $this->connexioDB) or die(((is_object($GLOBALS["___mysqli_ston"])) ? mysqli_error($GLOBALS["___mysqli_ston"]) : (($___mysqli_res = mysqli_connect_error()) ? $___mysqli_res : false)));
         $this->reg_log("CLIENT EXISTENT: $client_id - " . $_POST['client_cognoms'] . " - $client_mobil", 1);
       }
     }

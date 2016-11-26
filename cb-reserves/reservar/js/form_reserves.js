@@ -625,6 +625,8 @@ function comportamentClient()
      $(".fr-seccio-submit").css("visibility","visible");
      *****/
     $("#bt-no-carta").hide();
+    
+    /*
     $("input[name='client_mobil']").change(function () {
         var n = $("input[name='client_mobil']").val();
         if (n.length >= 9 && isNumber(n))
@@ -634,12 +636,16 @@ function comportamentClient()
         if ($(this).valid())
             updateClient();
     });
+*/
 
-
-    if ($(".fr-seccio-client").is(":hidden"))
+    if ($(".fr-seccio-client").is(":hidden")){
         $(".fr-seccio-client").slideDown("slow", function () {
             seccio("fr-seccio-client");
         });
+        
+    }
+    
+    //(".fr-seccio-client input").change(validaDadesClient);
     $(".fr-seccio-client input").bind('blur change ', validaDadesClient);
     $(".fr-seccio-client").bind('blur change ', validaDadesClient);
 
@@ -693,8 +699,6 @@ function updateClient()
             resetClient();
             $(".fr-seccio-client input[name='client_email']").val(email);
         }
-
-        //if(dades!='false' && dades!='err0')
         else
         {
             var obj = JSON.parse(dades);
@@ -711,7 +715,6 @@ function updateClient()
             }
 
             $(".fr-seccio-client input[name='client_id']").val(obj.client_id);
-            //$(".fr-seccio-client input[name='client_mobil']").val();
             if (!num)
                 $(".fr-seccio-client input[name='client_mobil']").val(obj.client_mobil);
             $(".fr-seccio-client input[name='client_nom']").val(obj.client_nom);

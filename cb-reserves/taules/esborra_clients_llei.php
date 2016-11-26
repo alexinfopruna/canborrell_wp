@@ -48,7 +48,7 @@ function esborra_clients_llei($t)
     //ESBORRO DADES CLIENT
     $query_reserves="
         UPDATE client
-        SET client_nom='ESBORRAT',client_cognoms='ESBORRAT', client_telefon='ESBORRAT', client_mobil='ESBORRAT', client_email='ESBORRAT', client_dni='ESBORRAT'
+        SET client_nom='ESBORRAT',client_cognoms='ESBORRAT', client_telefon='ESBORRAT',  client_email='ESBORRAT', client_dni='ESBORRAT'
         WHERE client_id=".$row['clid'];
     	
     $mensa.=$query_reserves."<br/>";

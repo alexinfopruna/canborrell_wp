@@ -456,6 +456,7 @@ function comportamentMenus()
  */
 function comportamentClient()
 {
+    /*
     $("input[name='client_mobil']").change(function () {
 
         var n = $("input[name='client_mobil']").val();
@@ -466,7 +467,7 @@ function comportamentClient()
         if ($(this).valid())
             updateClient();
     });
-
+*/
     if ($(".fr-seccio-client").is(":hidden"))
         $(".fr-seccio-client").slideDown("slow", function () {
             seccio("fr-seccio-client");

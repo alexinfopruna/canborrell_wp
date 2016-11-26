@@ -317,6 +317,7 @@ class Gestor {
     $log_querys_file = ROOT . INC_FILE_PATH . LOG_QUERYS_FILE;
     if (!$conn)
       $conn = $this->connexioDB;
+    
     if (Gestor::stringMultiSearch($query, LOG_QUERYS) && DEBUG === false) {
       $ip = isset($ips[$_SERVER['REMOTE_ADDR']]) ? $ips[$_SERVER['REMOTE_ADDR']] : $_SERVER['REMOTE_ADDR'];
       $sessuser = $_SESSION['uSer'];
@@ -342,7 +343,7 @@ class Gestor {
 
     if ($charset)
       $query = gestor_reserves::charset($query);
-
+//echo "$query······3333";die();
     $r = mysqli_query($conn, $query);
     if (Gestor::stringMultiSearch($query, LOG_QUERYS) && DEBUG === false) {
       $insert_id = ((is_null($___mysqli_res = mysqli_insert_id($conn))) ? false : $___mysqli_res);

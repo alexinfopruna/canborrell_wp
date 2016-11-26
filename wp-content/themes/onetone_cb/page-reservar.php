@@ -174,20 +174,20 @@ function reservar_enqueue_styles() {
       @media (max-width: 768px){
           .row{margin:0}
       }
-/*
-      .titol{display:flex;
-             margin-right: 35px;
+      /*
+            .titol{display:flex;
+                   margin-right: 35px;
+      
+            }
+      */
 
+      .fxd-header{display:none !important;position:absolute;left:-1000px;}
+      h2.titol{
+          // background-blend-mode: multiply;
+          background: white;
+          padding: 4px;   
+          //mix-blend-mode: multiply;
       }
-*/
-
-.fxd-header{display:none !important;position:absolute;left:-1000px;}
-h2.titol{
-   // background-blend-mode: multiply;
-    background: white;
-    padding: 4px;   
-    //mix-blend-mode: multiply;
-}
 
       .anima-avis{
           position:fixed;
@@ -263,7 +263,7 @@ h2.titol{
           margin-top:20px;
       }
 
-  
+
       @media (min-width: 992px){
           .post-inner.left-aside   .col-main {
               left: 0;
@@ -274,77 +274,80 @@ h2.titol{
       if (isset($paga_i_senyal) && !$paga_i_senyal)
         echo ".info-paga-i-senyal{display:none}";
       ?>
-      
+
       .caixa.caixa100{width:95%;}
       .fr-seccio{
-        display:flex;  
-        flex-wrap:wrap;
+          display:flex;  
+          flex-wrap:wrap;
       }
-      
+
       .flex{
           display:flex;  
-        flex-wrap:nowrap;
+          flex-wrap:nowrap;
       }
       .flexw{
           display:flex;  
-        flex-wrap:wrap;
+          flex-wrap:wrap;
       }
       .error_validate, #error_validate{
-         clear:both; 
+          clear:both; 
       }
-      
+
       #submit span{
           font-size:20px;
       }
-      
+
       #calendari {margin-top:15px;}
-      
+
       .putoIE{
           display:flex;justify-content:center;width:100%;
       }
-      
+
+       @media (max-width: 770px){ 
+          .ui-button-text {
+              padding: 5px 15px !important;
+          }   
+      }
       @media (max-width: 1180px){
-           #calendari .ui-datepicker{  font-size: 80%;}
+          #calendari .ui-datepicker{  font-size: 80%;}
       }
       @media (max-width: 992px){
-           #calendari .ui-datepicker{  font-size: 120%;}
+          #calendari .ui-datepicker{  font-size: 120%;}
       }
-      
+
       @media (min-width: 992px){
-      .caixa{
-          margin:15px;
-          width:30%;
-          min-width:250px;
+          .caixa{
+              margin:15px;
+              width:30%;
+              min-width:250px;
+          }
       }
-      }
-      
+
       .flex{
-       display:flex;   
+          display:flex;   
       }
       @media (max-width: 992px){
           .fr-seccio .col-isqui{
               flex-wrap:  wrap;
               flex-direction: row;
               justify-content:flex-start;
-          
+
           }
           .col-isqui-carta{
-               flex-wrap:  wrap;
+              flex-wrap:  wrap;
           }
           .fr-seccio.fr-seccio-dia {
-    flex-direction: row;
-}
-           .caixa{ width:100%;}
+              flex-direction: row;
+          }
+          .caixa{ width:100%;}
       }
-      
-      .ui-button-text {
-    padding: 10px !important;
-}
 
-#c1 tbody{
-   font-size:12px;   
-}
-      
+
+
+      #c1 tbody{
+          font-size:12px;   
+      }
+
   </style>                
 
   <script type="text/javascript" src="/cb-reserves/reservar/js/jquery.simplemodal.js"></script>
@@ -456,29 +459,29 @@ if ($padding_bottom)
 
 
                 <a href="#" class="btn btn-warning  ecp-trigger" data-modal="modal" >     <?php l('Tens algun dubte?'); ?></a>
-  <?php } ?> 
+              <?php } ?> 
 
               <div class="widget-area">
-  <?php get_sidebar('pageleft'); ?>
+                  <?php get_sidebar('pageleft'); ?>
               </div>
           </aside>
       </div>
-<?php endif; ?>
+    <?php endif; ?>
 
     <div class="post-wrap">
         <div class="<?php echo $container; ?>">
             <div class="post-inner row <?php echo $aside; ?>" style=" <?php echo $container_css; ?>">
                 <div class="col-main">
                     <section class="post-main" role="main" id="content">
-                            <?php while (have_posts()) : the_post(); ?>
+                        <?php while (have_posts()) : the_post(); ?>
                           <article class="post type-post" id="">
-  <?php if (has_post_thumbnail()): ?>
+                              <?php if (has_post_thumbnail()): ?>
                                 <div class="feature-img-box">
                                     <div class="img-box">
-    <?php the_post_thumbnail(); ?>
+                                        <?php the_post_thumbnail(); ?>
                                     </div>
                                 </div>
-  <?php endif; ?>
+                              <?php endif; ?>
                               <div class="entry-main">
 
                                   <div class="entry-content reservar">
@@ -562,12 +565,12 @@ if ($padding_bottom)
                                                       ?>
                                                   </h2>
 
-<!-- ***************************************************************************************   -->
-<!-- ***************************************************************************************   -->
-<!-- ***************************************************************************************   -->
-<!-- ***************************************************************************************   -->
-<!-- ***************************************************************************************   -->
-<!-- ***************************************************************************************   -->
+                                                  <!-- ***************************************************************************************   -->
+                                                  <!-- ***************************************************************************************   -->
+                                                  <!-- ***************************************************************************************   -->
+                                                  <!-- ***************************************************************************************   -->
+                                                  <!-- ***************************************************************************************   -->
+                                                  <!-- ***************************************************************************************   -->
                                                   <!-- ***************************************************************************************   -->
                                                   <?php
                                                   $test = isset($_REQUEST['testTPV']) ? '&testTPV=' . $_REQUEST['testTPV'] : "";
@@ -579,141 +582,141 @@ if ($padding_bottom)
                                                           <!-- *******************************  QUANTS SOU ********************************************************   -->
                                                           <!-- *******************************  QUANTS SOU ********************************************************   -->
                                                           <!-- *******************************  QUANTS SOU ********************************************************   -->
-                                                          
-                                                              
+
+
                                                           <div class="fr-seccio ui-corner-all fr-seccio-quants" style="xxxmax-width:950px;">
-                                                                                        
+
                                                               <h1 class="titol"><span class="number">1</span><?php l('Quants sou?'); ?>
                                                                   <a href="#" id="info-quants" class="info-ico"><img src="/cb-reserves/reservar/css/info.png" title="<?php l('Ajuda'); ?>" style="width:16px;height:auto;margin-left:8px"/></a>
                                                               </h1>
-                              
+
                                                               <div class="col-isqui flex">
- 
-
-                                                              <!-- ******  INFO  ********   -->
-                                                              <div class="caixa dere info ui-corner-all info-quants"><?php l('INFO_QUANTS_SOU'); ?>
-                                                                  <input type="text" name="totalComensals" value="<?php echo $row['adults'] + $row['nens10_14'] + $row['nens4_9'] ?>" readonly="readonly"/></b>
-                                                                  <input type="text" name="totalCotxets" value="<?php echo $row['cotxets'] ? "/ " . $row['cotxets'] : "" ?>" readonly="readonly"/></b>
-                                                                  <!--Tingue's present que si vols modificar aquest nombre més endavant no podem garantir la disponibilitat de taula.<br/><br/>-->
-                                                              </div>
- 
-
- <div class="col-isqui ">
- 
-
-                                                              <h4  id="titol_SelectorComensals"><?php l('Adults (més de 14 anys)'); ?>:</h4>
 
 
-                                                              <!-- ******  ADULTS  ********   -->
-                                                              <div id="selectorComensals" class="fr-col-dere selector">
-                                                                  <input type="hidden" id="com" name="adults" value="<?php echo $row['adults'] ?>"  style="width:35px;font-size:1.2em;padding-left:0;padding-right:0" class="ui-button ui-widget ui-state-default ui-button-text-only coberts"/><label for="comGrupsN" ><?php //l('Més de ');//echo ($PERSONES_GRUP+14)    ?></label>	
-                                                                  <?php
-                                                                  for ($i = 2; $i < $PERSONES_GRUP; $i++) {
-                                                                    $chek = ($i == $row['adults'] ? 'checked="checked"' : '');
-                                                                    $tpv = ($i >= persones_paga_i_senyal ? "ptpv" : "");
-                                                                    $title = ($i >= persones_paga_i_senyal ? "Paga i senyal necessària" : "Reserva sense paga i senyal");
-                                                                    $bt = '<input type="radio" id="com' . $i . '" name="selectorComensals" value="' . $i . '" ' . $chek . '/><label for="com' . $i . '" class="' . $tpv . '" title="' . $title . '">' . $i . '</label>';
-
-                                                                    if ($EDITA_RESERVA && $tpv) {
-                                                                      $bt = "";
-                                                                    }
-                                                                    print $bt;
-                                                                  }
-                                                                  ?>
-                                                                  <input type="radio" id="comGrups" name="selectorComensals" value="grups"  /><label id="labelGrups" for="comGrups" style="font-size:1.2em"><?php l('Grups'); ?></label>
-                                                              </div>
-
-
-                                                              <a class="scroll-seccio-dia" id="scroll-seccio-dia"></a>
-
-                                                              <!------------------- AVIS MODIFICACIONS ---------------------------->
-                                                              <div id="avis-modificacions-overlay" class="ui-widget-overlay dspnn" > </div> 
-                                                              <div id="avis-modificacions" class="transition-1s" style="" >
-                                                                  <?php l('AVIS_MODIFICACIONS'); ?>
-                                                              </div> 
-                                                              <!------------------- FI AVIS MODIFICACIONS ---------------------------->
-
-
-
-
-                                                              <hr/>
-                                                              
-                                                               
-                                                              
-                                                              
-                                                              <div id="jnc" style="float:left; ">
-                                                                  <!-- ******  JUNIOR  ********   -->
-                                                                  <input type="hidden" id="junior" name="nens10_14" value="<?php echo $row['nens10_14'] ?>" />
-                                                                  <?php /* 
-                                                                  <h4  id="titol_SelectorJuniors"><?php l('Juniors (de 10 a 14 anys):'); ?></h4>
-                                                                  <input type="hidden" id="junior" name="nens10_14" value="<?php echo $row['nens10_14'] ?>"  style="width:35px;font-size:1.2em;padding-left:0;padding-right:0" class="ui-button ui-widget ui-state-default ui-button-text-only coberts"/><label for="comGrupsN" ><?php //l('Més de ');//echo ($PERSONES_GRUP+14)     ?></label>
-                                                                  <div id="selectorJuniors" class="col_dere">
-                                                                      <?php
-                                                                      for ($i = 0; $i <= $max_juniors; $i++) {
-                                                                        // if (is_null($row['nens10_14'])) $row['nens10_14']=-1; 
-                                                                        $chek = ($i === $row['nens10_14'] ? 'checked="checked"' : '');
-                                                                        $k = $i;
-                                                                        if (!$i)
-                                                                          $k = l("Cap", false);
-                                                                        print '<input type="radio" id="junior' . $i . '" name="selectorJuniors" value="' . $i . '" ' . $chek . '/><label for="junior' . $i . '">' . $k . '</label>';
-                                                                      }
-                                                                      ?>
-                                                                  </div>
-                                                                  */ ?>
-                                                                  <!-- ******  NENS  ********   -->
-                                                                  <h4  id="titol_SelectorNens"><?php l('Nens (fins a 14 anys)'); ?>:</h4>
-                                                                  <div id="selectorNens" class="col_dere">
-                                                                      <input type="hidden" id="nens" name="nens4_9" value="<?php echo $row['nens4_9'] ?>"  style="width:35px;font-size:1.2em;padding-left:0;padding-right:0" class="ui-button ui-widget ui-state-default ui-button-text-only coberts"/><label for="comGrupsN" ><?php //l('Més de ');//echo ($PERSONES_GRUP+14)    ?></label>
-                                                                      <?php
-                                                                      for ($i = 0; $i <= $max_nens; $i++) {
-                                                                        //if (is_null($row['nens4_9'])) $row['nens10_14']=-1; 
-                                                                        $chek = ($i === $row['nens4_9'] ? 'checked="checked"' : '');
-                                                                        $k = $i;
-                                                                        if (!$i)
-                                                                          $k = l("Cap", false);
-                                                                        print '<input type="radio" id="nens' . $i . '" name="selectorNens" value="' . $i . '" ' . $chek . '/><label for="nens' . $i . '">' . $k . '</label>';
-                                                                      }
-                                                                      ?>
+                                                                  <!-- ******  INFO  ********   -->
+                                                                  <div class="caixa dere info ui-corner-all info-quants"><?php l('INFO_QUANTS_SOU'); ?>
+                                                                      <input type="text" name="totalComensals" value="<?php echo $row['adults'] + $row['nens10_14'] + $row['nens4_9'] ?>" readonly="readonly"/></b>
+                                                                      <input type="text" name="totalCotxets" value="<?php echo $row['cotxets'] ? "/ " . $row['cotxets'] : "" ?>" readonly="readonly"/></b>
+                                                                      <!--Tingue's present que si vols modificar aquest nombre més endavant no podem garantir la disponibilitat de taula.<br/><br/>-->
                                                                   </div>
 
-                                                                  <hr/>
-                                                                  <!-- ******  COTXETS  ********   -->
-                                                                  <h4 id="titol_SelectorCotxets"><?php l('Cotxets de nadó'); ?>:</h4>
-                                                                  <div id="selectorCotxets" class="col_dere">
-                                                                      <?php
-                                                                      $estat = $gestorf->decodeInfo($row['reserva_info']);
 
-                                                                      $chek0 = ($row['cotxets'] === 0 ? 'checked="checked"' : '');
-                                                                      $chek1 = ($estat['ampla'] === 0 && $row['cotxets'] == 1 ? 'checked="checked"' : '');
-                                                                      $chek11 = ($estat['ampla'] == 2 ? 'checked="checked"' : '');
-                                                                      $chek12 = ($estat['ampla'] == 3 ? 'checked="checked"' : '');
-                                                                      ?>
-                                                                      <input type="radio" id="cotxets0" name="selectorCotxets" value="0"  <?php echo $chek0 ?> /><label for="cotxets0"><br/><?php l("Cap"); ?></label>
-                                                                      <input type="radio" id="cotxets1" name="selectorCotxets" value="1"  <?php echo $chek1 ?>/><label for="cotxets1">1<br/> Simple</label>
-                                                                      <?php
-                                                                      for ($i = 2; $i <= MAX_COTXETS; $i++)
-                                                                        echo '<input type="radio" id="cotxets' . $i . '" name="selectorCotxets" value="' . $i . '"  ' . ($i == $row['cotxets'] ? 'checked="checked"' : '') . ' /><label for="cotxets' . $i . '">' . $i . '<br/> Simples</label>';
-                                                                      ?>
-                                                                      <input type="radio" id="cotxets2A" name="selectorCotxets" value="1"  <?php echo $chek11 ?>/><label for="cotxets2A">1<br/><?php l("Doble ample"); ?></label>
-                                                                      <input type="radio" id="cotxets2L" name="selectorCotxets" value="1"  <?php echo $chek12 ?>/><label for="cotxets2L">1<br/><?php l("Doble llarg"); ?></label>
+                                                                  <div class="col-isqui ">
 
-                                                                  </div>
-                                                                  <input type="hidden" name="amplaCotxets" value="<?php echo $estat['ampla'] ?>" /> 
-                                                                  <hr/>
-                                                                  <!--  -->
-                                                                  <h4 id="titol_SelectorCadiraRodes"><?php l('Cadira de rodes'); ?>:</h4>
-                                                                  <div id="selectorCadiraRodes" class="col_dere">
-                                                                      <?php
-                                                                      $estat = $gestorf->decodeInfo($row['reserva_info']);
-                                                                      $chek0 = ($estat['cadiraRodes'] == 0 ? '' : 'checked="checked"');
-                                                                      $chek1 = ($estat['accesible'] == 0 ? '' : 'checked="checked"');
-                                                                      ?>
-                                                                      <input type="checkbox" id="accesible" name="selectorAccesible" value="on"  <?php echo $chek1 ?> /><label for="accesible"><?php l("Algú amb movilitat reduïda"); ?></label>
-                                                                      <input type="checkbox" id="cadira0" name="selectorCadiraRodes" value="on"  <?php echo $chek0 ?> /><label for="cadira0"><?php l("Portem una cadira de rodes"); ?></label>
-                                                                  </div>
 
-                                                              </div>	
-                                                              </div>	
+                                                                      <h4  id="titol_SelectorComensals"><?php l('Adults (més de 14 anys)'); ?>:</h4>
+
+
+                                                                      <!-- ******  ADULTS  ********   -->
+                                                                      <div id="selectorComensals" class="fr-col-dere selector">
+                                                                          <input type="hidden" id="com" name="adults" value="<?php echo $row['adults'] ?>"  style="width:35px;font-size:1.2em;padding-left:0;padding-right:0" class="ui-button ui-widget ui-state-default ui-button-text-only coberts"/><label for="comGrupsN" ><?php //l('Més de ');//echo ($PERSONES_GRUP+14)       ?></label>	
+                                                                          <?php
+                                                                          for ($i = 2; $i < $PERSONES_GRUP; $i++) {
+                                                                            $chek = ($i == $row['adults'] ? 'checked="checked"' : '');
+                                                                            $tpv = ($i >= persones_paga_i_senyal ? "ptpv" : "");
+                                                                            $title = ($i >= persones_paga_i_senyal ? "Paga i senyal necessària" : "Reserva sense paga i senyal");
+                                                                            $bt = '<input type="radio" id="com' . $i . '" name="selectorComensals" value="' . $i . '" ' . $chek . '/><label for="com' . $i . '" class="' . $tpv . '" title="' . $title . '">' . $i . '</label>';
+
+                                                                            if ($EDITA_RESERVA && $tpv) {
+                                                                              $bt = "";
+                                                                            }
+                                                                            print $bt;
+                                                                          }
+                                                                          ?>
+                                                                          <input type="radio" id="comGrups" name="selectorComensals" value="grups"  /><label id="labelGrups" for="comGrups" style="font-size:1.2em"><?php l('Grups'); ?></label>
+                                                                      </div>
+
+
+                                                                      <a class="scroll-seccio-dia" id="scroll-seccio-dia"></a>
+
+                                                                      <!------------------- AVIS MODIFICACIONS ---------------------------->
+                                                                      <div id="avis-modificacions-overlay" class="ui-widget-overlay dspnn" > </div> 
+                                                                      <div id="avis-modificacions" class="transition-1s" style="" >
+                                                                          <?php l('AVIS_MODIFICACIONS'); ?>
+                                                                      </div> 
+                                                                      <!------------------- FI AVIS MODIFICACIONS ---------------------------->
+
+
+
+
+                                                                      <hr/>
+
+
+
+
+                                                                      <div id="jnc" style="float:left; ">
+                                                                          <!-- ******  JUNIOR  ********   -->
+                                                                          <input type="hidden" id="junior" name="nens10_14" value="<?php echo $row['nens10_14'] ?>" />
+                                                                          <?php /*
+                                                                            <h4  id="titol_SelectorJuniors"><?php l('Juniors (de 10 a 14 anys):'); ?></h4>
+                                                                            <input type="hidden" id="junior" name="nens10_14" value="<?php echo $row['nens10_14'] ?>"  style="width:35px;font-size:1.2em;padding-left:0;padding-right:0" class="ui-button ui-widget ui-state-default ui-button-text-only coberts"/><label for="comGrupsN" ><?php //l('Més de ');//echo ($PERSONES_GRUP+14)     ?></label>
+                                                                            <div id="selectorJuniors" class="col_dere">
+                                                                            <?php
+                                                                            for ($i = 0; $i <= $max_juniors; $i++) {
+                                                                            // if (is_null($row['nens10_14'])) $row['nens10_14']=-1;
+                                                                            $chek = ($i === $row['nens10_14'] ? 'checked="checked"' : '');
+                                                                            $k = $i;
+                                                                            if (!$i)
+                                                                            $k = l("Cap", false);
+                                                                            print '<input type="radio" id="junior' . $i . '" name="selectorJuniors" value="' . $i . '" ' . $chek . '/><label for="junior' . $i . '">' . $k . '</label>';
+                                                                            }
+                                                                            ?>
+                                                                            </div>
+                                                                           */ ?>
+                                                                          <!-- ******  NENS  ********   -->
+                                                                          <h4  id="titol_SelectorNens"><?php l('Nens (fins a 14 anys)'); ?>:</h4>
+                                                                          <div id="selectorNens" class="col_dere">
+                                                                              <input type="hidden" id="nens" name="nens4_9" value="<?php echo $row['nens4_9'] ?>"  style="width:35px;font-size:1.2em;padding-left:0;padding-right:0" class="ui-button ui-widget ui-state-default ui-button-text-only coberts"/><label for="comGrupsN" ><?php //l('Més de ');//echo ($PERSONES_GRUP+14)       ?></label>
+                                                                              <?php
+                                                                              for ($i = 0; $i <= $max_nens; $i++) {
+                                                                                //if (is_null($row['nens4_9'])) $row['nens10_14']=-1; 
+                                                                                $chek = ($i === $row['nens4_9'] ? 'checked="checked"' : '');
+                                                                                $k = $i;
+                                                                                if (!$i)
+                                                                                  $k = l("Cap", false);
+                                                                                print '<input type="radio" id="nens' . $i . '" name="selectorNens" value="' . $i . '" ' . $chek . '/><label for="nens' . $i . '">' . $k . '</label>';
+                                                                              }
+                                                                              ?>
+                                                                          </div>
+
+                                                                          <hr/>
+                                                                          <!-- ******  COTXETS  ********   -->
+                                                                          <h4 id="titol_SelectorCotxets"><?php l('Cotxets de nadó'); ?>:</h4>
+                                                                          <div id="selectorCotxets" class="col_dere">
+                                                                              <?php
+                                                                              $estat = $gestorf->decodeInfo($row['reserva_info']);
+
+                                                                              $chek0 = ($row['cotxets'] === 0 ? 'checked="checked"' : '');
+                                                                              $chek1 = ($estat['ampla'] === 0 && $row['cotxets'] == 1 ? 'checked="checked"' : '');
+                                                                              $chek11 = ($estat['ampla'] == 2 ? 'checked="checked"' : '');
+                                                                              $chek12 = ($estat['ampla'] == 3 ? 'checked="checked"' : '');
+                                                                              ?>
+                                                                              <input type="radio" id="cotxets0" name="selectorCotxets" value="0"  <?php echo $chek0 ?> /><label for="cotxets0"><br/><?php l("Cap"); ?></label>
+                                                                              <input type="radio" id="cotxets1" name="selectorCotxets" value="1"  <?php echo $chek1 ?>/><label for="cotxets1">1<br/> Simple</label>
+                                                                              <?php
+                                                                              for ($i = 2; $i <= MAX_COTXETS; $i++)
+                                                                                echo '<input type="radio" id="cotxets' . $i . '" name="selectorCotxets" value="' . $i . '"  ' . ($i == $row['cotxets'] ? 'checked="checked"' : '') . ' /><label for="cotxets' . $i . '">' . $i . '<br/> Simples</label>';
+                                                                              ?>
+                                                                              <input type="radio" id="cotxets2A" name="selectorCotxets" value="1"  <?php echo $chek11 ?>/><label for="cotxets2A">1<br/><?php l("Doble ample"); ?></label>
+                                                                              <input type="radio" id="cotxets2L" name="selectorCotxets" value="1"  <?php echo $chek12 ?>/><label for="cotxets2L">1<br/><?php l("Doble llarg"); ?></label>
+
+                                                                          </div>
+                                                                          <input type="hidden" name="amplaCotxets" value="<?php echo $estat['ampla'] ?>" /> 
+                                                                          <hr/>
+                                                                          <!--  -->
+                                                                          <h4 id="titol_SelectorCadiraRodes"><?php l('Cadira de rodes'); ?>:</h4>
+                                                                          <div id="selectorCadiraRodes" class="col_dere">
+                                                                              <?php
+                                                                              $estat = $gestorf->decodeInfo($row['reserva_info']);
+                                                                              $chek0 = ($estat['cadiraRodes'] == 0 ? '' : 'checked="checked"');
+                                                                              $chek1 = ($estat['accesible'] == 0 ? '' : 'checked="checked"');
+                                                                              ?>
+                                                                              <input type="checkbox" id="accesible" name="selectorAccesible" value="on"  <?php echo $chek1 ?> /><label for="accesible"><?php l("Algú amb movilitat reduïda"); ?></label>
+                                                                              <input type="checkbox" id="cadira0" name="selectorCadiraRodes" value="on"  <?php echo $chek0 ?> /><label for="cadira0"><?php l("Portem una cadira de rodes"); ?></label>
+                                                                          </div>
+
+                                                                      </div>	
+                                                                  </div>	
                                                               </div>	
 
 
@@ -728,31 +731,31 @@ if ($padding_bottom)
                                                           <div class="fr-seccio ui-corner-all fr-seccio-dia"> 
                                                               <!-- ******  INFO  ********   -->
                                                               <h1 class="titol"><span class="number">2</span><?php l("Quin dia voleu venir?") ?>
-                                                                      <a href="#" id="info_dia" class="info-ico"><img src="/cb-reserves/reservar/css/info.png" title="<?php l('Ajuda'); ?>" style="width:16px;height:auto;margin-left:8px"/></a>
-                                                                  </h1>
+                                                                  <a href="#" id="info_dia" class="info-ico"><img src="/cb-reserves/reservar/css/info.png" title="<?php l('Ajuda'); ?>" style="width:16px;height:auto;margin-left:8px"/></a>
+                                                              </h1>
                                                               <div class="col-isqui flex ">
-                                                              <div class="caixa dere ui-corner-all info_dia">
-                                                                  <?php l('INFO_DATA'); ?>	
-                                                                  <input type="hidden" id="valida_calendari" name="selectorData" value="<?php echo $row['data']; ?>"/>
+                                                                  <div class="caixa dere ui-corner-all info_dia">
+                                                                      <?php l('INFO_DATA'); ?>	
+                                                                      <input type="hidden" id="valida_calendari" name="selectorData" value="<?php echo $row['data']; ?>"/>
 
-                                                              </div>
-                                                                  
-                                                              
-                                                              <div class="putoIE " style="">
-                                                              <!-- ******  CALENDARI  ********   -->
-                                                              <div id="data" style="float:left">
-                                                                  <?php if ($EDITA_RESERVA): ?>
+                                                                  </div>
 
-                                                                    <script>
-                                                                      var BLOQ_DATA = '<?php echo $gestorf->cambiaf_a_normal($row['data']); ?>';
-                                                                    </script>
-                                                                  <?php endif ?>
-                                                                  <div id="calendari" class=" ui-corner-all fr-seccio-dia"></div>
-                                                              </div>
-                                                              <div style="clear:both"></div>
 
-                                                          </div>		
-                                                          </div>		
+                                                                  <div class="putoIE " style="">
+                                                                      <!-- ******  CALENDARI  ********   -->
+                                                                      <div id="data" style="float:left">
+                                                                          <?php if ($EDITA_RESERVA): ?>
+
+                                                                            <script>
+                                                                              var BLOQ_DATA = '<?php echo $gestorf->cambiaf_a_normal($row['data']); ?>';
+                                                                            </script>
+                                                                          <?php endif ?>
+                                                                          <div id="calendari" class=" ui-corner-all fr-seccio-dia"></div>
+                                                                      </div>
+                                                                      <div style="clear:both"></div>
+
+                                                                  </div>		
+                                                              </div>		
                                                           </div>		
 
                                                           <!-- *******************************  QUINA HORA ********************************************************   -->
@@ -764,30 +767,30 @@ if ($padding_bottom)
                                                                   <a href="#" id="info_hora" class="info-ico"><img src="/cb-reserves/reservar/css/info.png" title="<?php l('Ajuda'); ?>" style="width:16px;height:auto;margin-left:8px"/></a>
                                                               </h1>
                                                               <div class="col-isqui flexw">
-                                                              
-                                                              <!-- ******  INFO  ********   -->
-                                                                       <div class="ui-corner-all caixa caixa100 dere hores info_hora">
-                                                                  <?php l('INFO_HORES'); ?>	
-                                                              </div>
-                                                              <div>
-                                                              <!-- ******  DINAR  ********   -->
-                                                              <h4><?php l('Dinar'); ?></h4>
-                                                              <div id="selectorHora" class="col_dere">
-                                                                  <img src="/cb-reserves/reservar/css/loading.gif"/>
-                                                              </div>
-                                                              <!-- ******  SOPAR  ********   -->
-                                                              <div id="tira-sopars">
-                                                              <h4><?php l('Sopar'); ?></h4>
-                                                              <div id="selectorHoraSopar" class="col_dere" >
-                                                                  <img src="/cb-reserves/reservar/css/loading.gif"/>
-                                                              </div>
-                                                              </div>
 
-                                                              <input type="hidden" name="taulaT1" value="">
-                                                              <input type="hidden" name="taulaT2" value="">
-                                                              <input type="hidden" name="taulaT3" value="">
-                                                          </div>	
-                                                          </div>	
+                                                                  <!-- ******  INFO  ********   -->
+                                                                  <div class="ui-corner-all caixa caixa100 dere hores info_hora">
+                                                                      <?php l('INFO_HORES'); ?>	
+                                                                  </div>
+                                                                  <div>
+                                                                      <!-- ******  DINAR  ********   -->
+                                                                      <h4><?php l('Dinar'); ?></h4>
+                                                                      <div id="selectorHora" class="col_dere">
+                                                                          <img src="/cb-reserves/reservar/css/loading.gif"/>
+                                                                      </div>
+                                                                      <!-- ******  SOPAR  ********   -->
+                                                                      <div id="tira-sopars">
+                                                                          <h4><?php l('Sopar'); ?></h4>
+                                                                          <div id="selectorHoraSopar" class="col_dere" >
+                                                                              <img src="/cb-reserves/reservar/css/loading.gif"/>
+                                                                          </div>
+                                                                      </div>
+
+                                                                      <input type="hidden" name="taulaT1" value="">
+                                                                      <input type="hidden" name="taulaT2" value="">
+                                                                      <input type="hidden" name="taulaT3" value="">
+                                                                  </div>	
+                                                              </div>	
                                                           </div>	
 
 
@@ -797,80 +800,80 @@ if ($padding_bottom)
                                                           <a id="scroll-seccio-carta"></a>
                                                           <div class="fr-seccio ui-corner-all fr-seccio-carta"> 
                                                               <!-- ******  INFO  ********   -->
-                                                              
+
                                                               <h1 class="titol"><span class="number">4</span><?php l('Vols triar els plats?'); ?> <span class="nota"><?php l('(opcional)'); ?></span>
                                                                   <a href="#" id="info_carta" class="info-ico"><img src="/cb-reserves/reservar/css/info.png" title="<?php l('Ajuda'); ?>" style="width:16px;height:auto;margin-left:8px"/></a>
                                                               </h1>
                                                               <div class="col-isqui-carta " style="display:flex;">
-                                                                  
-                                                              
-                                                                 
-                                                                  
-                                                                  
-                                                              
-                                                                  
-                                                                  
-                                                               <div class="ui-corner-all info caixa" >
+
+
+
+
+
+
+
+
+                                                                  <div class="ui-corner-all info caixa" >
                                                                       <?php l('INFO_CARTA'); ?>
                                                                   </div>
-                                                              <div class="col-isqui " >    
-                                                                  
-                                                                  
-                                                              <div id="carta" class="col_derexx">
-                                                                  <input id="te-comanda" name="te_comanda" type="text" value="" style="display:none"> 
-                                                                  <!-- ******  COMANDA  ********   -->
-                                                                  <div class=" ui-corner-all" >
+                                                                  <div class="col-isqui " >    
 
-                                                                      <input type="checkbox" id="RESERVA_PASTIS" name="RESERVA_PASTIS" value="on" <?php echo $row['reserva_pastis'] ? 'checked="checked"' : "" ?>/>
-                                                                      <label class="" for="RESERVA_PASTIS" style="display:initial"><?php l("RESERVA_PASTIS") ?></label>
-                                                                      <?php
-                                                                      $pastis = $row['reserva_pastis'];
-                                                                      $pastis_info = $row['reserva_info_pastis'];
-                                                                      ?>
-                                                                      <label for="INFO_PASTIS" class="pastis_toggle" style="margin-left:25px;">
-                                                                          <?php l("INFO_PASTIS") ?>
-                                                                      </label>
-                                                                      <textarea id="INFO_PASTIS" name="INFO_PASTIS" style="margin-left:25px;" class="pastis_toggle"><?php echo $pastis_info ?></textarea>
-                                                                      <table id="caixa-carta" class="col_dere">
-                                                                          <tr>
-                                                                              <td class="mesX"></td>
-                                                                              <td class="menysX"></td>
-                                                                              <td class="Xborra"></td>
-                                                                              <td class="carta-plat">
-                                                                                  <h3><?php //l("SELECCIÓ")     ?></h3>
-                                                                              </td>
-                                                                              <td></td>
-                                                                          </tr>
-                                                                          <tr>
-                                                                              <td class="mesX">							
-                                                                                  <?php echo $comanda ?></td>
-                                                                              <td class="menysX"></td><td class="Xborra"></td>
-                                                                              <td class="carta-plat"><h3>	</h3></td>
-                                                                              <td></td>
-                                                                          </tr>
-                                                                      </table>
-                                                                      <!-- ******  BUTO CARTA  ********   -->
-                                                                      <div class="ui-corner-all info info-comanda info_carta" style="float:left;">
-                                                                          <?php l('INFO_COMANDA'); ?>
+
+                                                                      <div id="carta" class="col_derexx">
+                                                                          <input id="te-comanda" name="te_comanda" type="text" value="" style="display:none"> 
+                                                                          <!-- ******  COMANDA  ********   -->
+                                                                          <div class=" ui-corner-all" >
+
+                                                                              <input type="checkbox" id="RESERVA_PASTIS" name="RESERVA_PASTIS" value="on" <?php echo $row['reserva_pastis'] ? 'checked="checked"' : "" ?>/>
+                                                                              <label class="" for="RESERVA_PASTIS" style="display:initial"><?php l("RESERVA_PASTIS") ?></label>
+                                                                              <?php
+                                                                              $pastis = $row['reserva_pastis'];
+                                                                              $pastis_info = $row['reserva_info_pastis'];
+                                                                              ?>
+                                                                              <label for="INFO_PASTIS" class="pastis_toggle" style="margin-left:25px;">
+                                                                                  <?php l("INFO_PASTIS") ?>
+                                                                              </label>
+                                                                              <textarea id="INFO_PASTIS" name="INFO_PASTIS" style="margin-left:25px;" class="pastis_toggle"><?php echo $pastis_info ?></textarea>
+                                                                              <table id="caixa-carta" class="col_dere">
+                                                                                  <tr>
+                                                                                      <td class="mesX"></td>
+                                                                                      <td class="menysX"></td>
+                                                                                      <td class="Xborra"></td>
+                                                                                      <td class="carta-plat">
+                                                                                          <h3><?php //l("SELECCIÓ")        ?></h3>
+                                                                                      </td>
+                                                                                      <td></td>
+                                                                                  </tr>
+                                                                                  <tr>
+                                                                                      <td class="mesX">							
+                                                                                          <?php echo $comanda ?></td>
+                                                                                      <td class="menysX"></td><td class="Xborra"></td>
+                                                                                      <td class="carta-plat"><h3>	</h3></td>
+                                                                                      <td></td>
+                                                                                  </tr>
+                                                                              </table>
+                                                                              <!-- ******  BUTO CARTA  ********   -->
+                                                                              <div class="ui-corner-all info info-comanda info_carta" style="float:left;">
+                                                                                  <?php l('INFO_COMANDA'); ?>
+                                                                              </div>
+
+
+                                                                          </div>
+
+
+                                                                          <!-- ******  BUTO CARTA  ********   -->
+
                                                                       </div>
 
-
                                                                   </div>
-
-                                                                  
-                                                                  <!-- ******  BUTO CARTA  ********   -->
-                                                                  
                                                               </div>
-                                                                 
-                                                          </div>
-                                                          </div>
-                                                              
-                                                               <div>
+
+                                                              <div>
                                                                   <a href="#"  id="bt-carta" name="bt-carta" class="bt" ><?php l('Carta'); ?></a>
                                                                   <a href="#"  id="bt-menu" name="bt-menu" class="bt"><?php l('Menús'); ?></a>
                                                                   <a href="#" id="bt-no-carta" name="bt-no-carta" class="bt" ><?php l('Continuar'); ?></a>
                                                                   <div style="clear:both"></div>
-                                                                  </div>
+                                                              </div>
                                                           </div>	
 
 
@@ -879,55 +882,55 @@ if ($padding_bottom)
                                                           <!-- *******************************  CLIENT ********************************************************   -->
                                                           <a id="scroll-seccio-client"></a>
                                                           <div class="fr-seccio ui-corner-all fr-seccio-client"> 
-                                                              
-                                                               <div class="col-isqui " >
-                                                              <h1 class="titol"><span class="number">5</span><?php l('Donan´s algunes dades de contacte'); ?>
 
-                                                              </h1>
-                                                              <table id="dades-client" class="col_dere">
-                                                                  <tr><td class="label" >* <em style="font-size:0.9em;"><?php l('Camps obligatoris'); ?></em>
-                                                                          <div><label class="label" for="client_mobil"><?php l('Telèfon mòbil'); ?>*</label><input type="text" name="client_mobil" value="<?php echo $row['client_mobil'] ?>"/></div>
-                                                                          <div><label class="label" for="client_telefon"><?php l('Ens vols deixar una altre telèfon?'); ?></label><input type="text" name="client_telefon" value="<?php echo $row['client_telefon'] ?>"/></div>
-                                                                          <div><label class="label" for="client_email">Email*</label><input type="email" name="client_email" value="<?php echo $row['client_email'] ?>"/></div>
-                                                                          <div><label class="label" for="client_nom"><?php l('Nom'); ?>*</label><input type="text" name="client_nom" value="<?php echo $row['client_nom'] ?>"/></div>
-                                                                          <div><label class="label" for="client_cognoms"><?php l('Cognoms'); ?>*</label><input type="text" name="client_cognoms" value="<?php echo $row['client_cognoms'] ?>"/></div>
-                                                                          <div><label class="label" for="client_id"><?php //l('Client_id');     ?></label><input type="hidden" name="client_id" value="<?php echo $row['client_id'] ?>"/></div>
-                                                                      
-                                                                          <input name="observacions" value="" type="hidden" />
-                                                                          
-                                                                          <!--
-                                                                          <div class="ui-corner-all info-legal info-observacions  caixa">
+                                                              <div class="col-isqui " >
+                                                                  <h1 class="titol"><span class="number">5</span><?php l('Donan´s algunes dades de contacte'); ?>
+
+                                                                  </h1>
+                                                                  <table id="dades-client" class="col_dere">
+                                                                      <tr><td class="label" >* <em style="font-size:0.9em;"><?php l('Camps obligatoris'); ?></em>
+                                                                              <div><label class="label" for="client_mobil"><?php l('Telèfon mòbil'); ?>*</label><input type="text" name="client_mobil" value="<?php echo $row['client_mobil'] ?>"/></div>
+                                                                              <div><label class="label" for="client_telefon"><?php l('Ens vols deixar una altre telèfon?'); ?></label><input type="text" name="client_telefon" value="<?php echo $row['client_telefon'] ?>"/></div>
+                                                                              <div><label class="label" for="client_email">Email*</label><input type="email" name="client_email" value="<?php echo $row['client_email'] ?>"/></div>
+                                                                              <div><label class="label" for="client_nom"><?php l('Nom'); ?>*</label><input type="text" name="client_nom" value="<?php echo $row['client_nom'] ?>"/></div>
+                                                                              <div><label class="label" for="client_cognoms"><?php l('Cognoms'); ?>*</label><input type="text" name="client_cognoms" value="<?php echo $row['client_cognoms'] ?>"/></div>
+                                                                              <div><label class="label" for="client_id"><?php //l('Client_id');        ?></label><input type="hidden" name="client_id" value="<?php echo $row['client_id'] ?>"/></div>
+
+                                                                              <input name="observacions" value="" type="hidden" />
+
+                                                                              <!--
+                                                                              <div class="ui-corner-all info-legal info-observacions  caixa">
                                                                               <?php l('NO_COBERTS_OBSERVACIONS'); ?>
-                                                                          </div>
+                                                                              </div>
+    
+    
+                                                                              <div><label class="label" for=""><?php l('Observacions'); ?>
+                                                                                      <a href="#" id="info-observacions" class="info-ico"><img src="/cb-reserves/reservar/css/info.png" title="<?php l('Ajuda'); ?>" style="width:16px;height:auto;margin-left:8px"/></a>
+                                                                                  </label><textarea type="text" name="observacions"><?php echo $row['observacions'] ?></textarea>
+                                                                              </div>
+                                                                              -->
+                                                                          </td></tr>
+                                                                      <tr><td>
 
 
-                                                                          <div><label class="label" for=""><?php l('Observacions'); ?>
-                                                                                  <a href="#" id="info-observacions" class="info-ico"><img src="/cb-reserves/reservar/css/info.png" title="<?php l('Ajuda'); ?>" style="width:16px;height:auto;margin-left:8px"/></a>
-                                                                              </label><textarea type="text" name="observacions"><?php echo $row['observacions'] ?></textarea>
-                                                                          </div>
--->
-                                                                      </td></tr>
-                                                                  <tr><td>
 
 
+                                                                          </td></tr>
+                                                                  </table>
+                                                                  <div style="clear:both"></div>
+                                                                  <div class="ui-corner-all info-legal info-legal-dades caixa caixa100">
+                                                                      <?php
+                                                                      l('LLEI');
+                                                                      $chek = ($gestorf->flagBit($row['reserva_info'], 7) ? 'checked="checked"' : '');
+                                                                      ?>
+                                                                      <br/>
 
+                                                                      <input type="checkbox" id="esborra_dades" name="esborra_dades" value="on" <?php print $chek ?>/><label for="esborra_dades"><?php l("ESBORRA_DADES") ?></label>
 
-                                                                      </td></tr>
-                                                              </table>
-                                                              <div style="clear:both"></div>
-                                                              <div class="ui-corner-all info-legal info-legal-dades caixa caixa100">
-                                                                  <?php
-                                                                  l('LLEI');
-                                                                  $chek = ($gestorf->flagBit($row['reserva_info'], 7) ? 'checked="checked"' : '');
-                                                                  ?>
-                                                                  <br/>
+                                                                  </div>
 
-                                                                  <input type="checkbox" id="esborra_dades" name="esborra_dades" value="on" <?php print $chek ?>/><label for="esborra_dades"><?php l("ESBORRA_DADES") ?></label>
-
-                                                              </div>
-
-                                                              <div style="clear:both"></div>
-                                                          </div>	
+                                                                  <div style="clear:both"></div>
+                                                              </div>	
                                                           </div>	
 
                                                           <!-- *******************************  SUBMIT ********************************************************   -->
@@ -935,28 +938,28 @@ if ($padding_bottom)
                                                           <!-- *******************************  SUBMIT ********************************************************   -->
                                                           <a id="scroll-seccio-submit"></a>
                                                           <div class="fr-seccio ui-corner-all fr-seccio-submit"> 
-                                                              
-                                                                <div class="col-isqui " >
-                                                              <h1 class="titol"><span class="number">6</span><?php l('Envia la sol·licitud'); ?></h1>
 
-                                                              <div class="ui-corner-all caixa caixa100 resum">
-                                                                  <b><?php l('Resum reserva'); ?>:</b><br/><br/>
-                                                                  <?php l('Data'); ?>: <b id="resum-data">-</b> | <?php l('Hora'); ?>: <b id="resum-hora">-</b><br/>
-                                                                  <?php l('Adults'); ?>: <b id="resum-adults">-</b> | <?php l('Nens'); ?>: <b id="resum-nens">-</b> | <?php l('Cotxets'); ?>: <b id="resum-cotxets">-</b><br/>
-                                                                  <?php l('Comanda'); ?>: <b id="resum-comanda"><?php l('Sense'); ?> </b> <?php l('plats'); ?> (<b id="resum-preu"></b> €)
+                                                              <div class="col-isqui " >
+                                                                  <h1 class="titol"><span class="number">6</span><?php l('Envia la sol·licitud'); ?></h1>
+
+                                                                  <div class="ui-corner-all caixa caixa100 resum">
+                                                                      <b><?php l('Resum reserva'); ?>:</b><br/><br/>
+                                                                      <?php l('Data'); ?>: <b id="resum-data">-</b> | <?php l('Hora'); ?>: <b id="resum-hora">-</b><br/>
+                                                                      <?php l('Adults'); ?>: <b id="resum-adults">-</b> | <?php l('Nens'); ?>: <b id="resum-nens">-</b> | <?php l('Cotxets'); ?>: <b id="resum-cotxets">-</b><br/>
+                                                                      <?php l('Comanda'); ?>: <b id="resum-comanda"><?php l('Sense'); ?> </b> <?php l('plats'); ?> (<b id="resum-preu"></b> €)
+                                                                  </div>
+
+                                                                  <div class="flex"></div>
+                                                                  <div class="ui-corner-all info-submit caixa dere">
+                                                                      <?php l('INFO_NO_CONFIRMADA'); ?>:
+
+                                                                  </div>
+                                                                  <?php $t = (isset($_POST['idr']) && $_POST['idr'] > 5000) ? 'Modificar reserva' : 'Sol·licitar reserva'; ?>
+                                                                  <button id="submit"><?php l($t); ?></button>
+
+
+                                                                  <div id="error_validate" class="ui-helper-hidden"><?php l("Hi ha errors al formulari. Revisa les dades, si us plau"); ?></div>
                                                               </div>
-                                                              
-                                                              <div class="flex"></div>
-                                                              <div class="ui-corner-all info-submit caixa dere">
-                                                                  <?php l('INFO_NO_CONFIRMADA'); ?>:
-
-                                                              </div>
-                                                              <?php $t = (isset($_POST['idr']) && $_POST['idr'] > 5000) ? 'Modificar reserva' : 'Sol·licitar reserva'; ?>
-                                                              <button id="submit"><?php l($t); ?></button>
-
-
-                                                              <div id="error_validate" class="ui-helper-hidden"><?php l("Hi ha errors al formulari. Revisa les dades, si us plau"); ?></div>
-                                                          </div>
                                                           </div>
                                                       </div>
 

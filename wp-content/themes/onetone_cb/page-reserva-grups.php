@@ -8,9 +8,9 @@ require_once (ROOT . "Gestor.php");
 if (defined("CB_FORA_DE_SERVEI") && CB_FORA_DE_SERVEI === true)
   header("Location:/cb-reserves/reservar/fora_de_servei.html");
 
-define("LLISTA_DIES_NEGRA",ROOT .  INC_FILE_PATH . "bloq.txt");
+define("LLISTA_DIES_NEGRA", ROOT . INC_FILE_PATH . "bloq.txt");
 define("LLISTA_NITS_NEGRA", ROOT . INC_FILE_PATH . "bloq_nit.txt");
-define("LLISTA_DIES_BLANCA",ROOT .  INC_FILE_PATH . "llista_dies_blanca.txt");
+define("LLISTA_DIES_BLANCA", ROOT . INC_FILE_PATH . "llista_dies_blanca.txt");
 define('USR_FORM_WEB', 3); //ES LA ID D'USUARI (admin) ANONIM QUE CREA RESERVA ONLINE
 // CREA USUARI ANONIM
 if (!isset($_SESSION))
@@ -147,10 +147,12 @@ function reservar_enqueue_styles() {
   <script type="text/javascript" src="/cb-reserves/taules/js/jquery.browser.js"></script>
 
   <script type="text/javascript">
-    var PERSONES_GRUP =<?php global $PERSONES_GRUP;
+    var PERSONES_GRUP =<?php
+  global $PERSONES_GRUP;
   echo $PERSONES_GRUP;
   ?>;
-    var lang = "<?php global $lang;
+    var lang = "<?php
+  global $lang;
   echo $lang;
   ?>";
 
@@ -172,15 +174,15 @@ function reservar_enqueue_styles() {
   <script type="text/javascript" src="/cb-reserves/reservar/js/jquery.simplemodal.js"></script>
   <script type="text/javascript" src="/cb-reserves/reservar/js/control_carta.js?<?php echo time(); ?>"></script>
   <script type="text/javascript" src="/cb-reserves/reservar/js/form_reserves_grups.js?<?php echo time(); ?>"></script>
-  <script type="text/javascript" src="/cb-reserves/reservar/js/popups_ajuda.js<?php //echo '?'.time();     ?>"></script>		
+  <script type="text/javascript" src="/cb-reserves/reservar/js/popups_ajuda.js<?php //echo '?'.time();      ?>"></script>		
 
   <style>
       #carta{width:100%}
       #data{width:100%}
-       .fr-seccio-hora .ui-button .ui-button-text{
+      .fr-seccio-hora .ui-button .ui-button-text{
           padding: .4em .9em;
       }
-      
+
 
       #calendari{
           display: flex;
@@ -204,6 +206,11 @@ function reservar_enqueue_styles() {
       }          
 
       .titol{width: 100%;}
+      @media (max-width: 770px){ 
+          .ui-button-text {
+              padding: 5px 15px !important;
+          }   
+      }
       @media (max-width: 992px){ 
           .flex, .flexw{
               flex-wrap:  wrap;
@@ -225,6 +232,19 @@ function reservar_enqueue_styles() {
       }
 
 
+      .fxd-header{display:none !important;position:absolute;left:-1000px;}
+      h2.titol{
+          // background-blend-mode: multiply;
+          background: white;
+          padding: 4px;   
+          //mix-blend-mode: multiply;
+      }
+
+
+
+      #c1 tbody{
+          font-size:12px;   
+      }
 
   </style>
   <?php
@@ -343,7 +363,7 @@ function reservar_enqueue_styles() {
 
                                                                       <!-- ******  ADULTS  ********   -->
                                                                       <div id="selectorComensals" class="fr-col-dere">
-                                                                          <input type="text" id="com" name="adults" value="<?php echo $na ? $na : '' ?>"  style="background-color:white;width:35px;font-size:1.2em;padding-left:0;padding-right:0" class="ui-button ui-widget ui-state-default ui-button-text-only coberts"/><label for="comGrupsN" ><?php //l('Més de ');//echo ($PERSONES_GRUP+14)   ?></label>	
+                                                                          <input type="text" id="com" name="adults" value="<?php echo $na ? $na : '' ?>"  style="background-color:white;width:35px;font-size:1.2em;padding-left:0;padding-right:0" class="ui-button ui-widget ui-state-default ui-button-text-only coberts"/><label for="comGrupsN" ><?php //l('Més de ');//echo ($PERSONES_GRUP+14)    ?></label>	
                                                                           &lArr;
 
                                                                           <input type="radio" id="comGrups" name="selectorComensals" value="grups"  /><label for="comGrups" ><?php l('<=' . ($PERSONES_GRUP - 1)); ?></label>
@@ -363,7 +383,7 @@ function reservar_enqueue_styles() {
                                                                               <!-- ******  JUNIOR  ********   -->
                                                                               <h4  id="titol_SelectorJuniors"><?php l('Juniors (de 10 a 14 anys):'); ?></h4>
                                                                               <div id="selectorJuniors" class="col_dere">
-                                                                                  <input type="text" id="junior" name="nens10_14" value="<?php echo $nj ? $nj : '' ?>"  style="background-color:white;width:35px;font-size:1.2em;padding-left:0;padding-right:0" class="ui-button ui-widget ui-state-default ui-button-text-only coberts"/><label for="comGrupsN" ><?php //l('Més de ');//echo ($PERSONES_GRUP+14)   ?></label>
+                                                                                  <input type="text" id="junior" name="nens10_14" value="<?php echo $nj ? $nj : '' ?>"  style="background-color:white;width:35px;font-size:1.2em;padding-left:0;padding-right:0" class="ui-button ui-widget ui-state-default ui-button-text-only coberts"/><label for="comGrupsN" ><?php //l('Més de ');//echo ($PERSONES_GRUP+14)    ?></label>
                                                                                   &lArr;
 
                                                                                   <?php
@@ -640,7 +660,7 @@ function reservar_enqueue_styles() {
                                                   <!-- ******************* CARTA *********************** 
                                                   <div id="fr-cartaw-popup" title="<?php l("La nostra carta") ?>" class="carta-menu" style="height:300px">
                                                   <div id="fr-carta-tabs" >
-  <?php //echo $gestor->recuperaCarta($row['id_reserva'])   ?>
+  <?php //echo $gestor->recuperaCarta($row['id_reserva'])    ?>
                                                   </div>	
                                                   </div>	-->
                                                   <!-- ******************* CARTA-MENU *********************** -->
@@ -744,7 +764,7 @@ function reservar_enqueue_styles() {
                               </div>
                               <!--Comments End-->
                           </div>
-                <?php endwhile; // end of the loop.     ?>
+                <?php endwhile; // end of the loop.      ?>
                     </section>
                 </div>
 <?php if ($sidebar == 'left' || $sidebar == 'both'): ?>
