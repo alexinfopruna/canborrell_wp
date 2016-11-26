@@ -61,6 +61,7 @@ function cb_autocompletes(){
                 $("#campsClient input", FORMULARI_INSERTA_RES).val("");
                 $("#campsClient input[name='client_cognoms']", FORMULARI_INSERTA_RES).val(ui.item.client_cognoms.toUpperCase());
                 $("#campsClient input[name='client_mobil']", FORMULARI_INSERTA_RES).val(ui.item.client_mobil.toUpperCase());
+                
                 if (isNaN(ui.item.value) || ui.item.value==""){ 
                          $("#campsClient input[name='client_mobil']",FORMULARI_INSERTA_RES).focus();
                  }
@@ -75,7 +76,7 @@ function cb_autocompletes(){
              $("#campsClient input[name='client_cognoms']",FORMULARI_INSERTA_RES).val(ui.item.client_cognoms.toUpperCase());
              $("#campsClient input[name='client_nom']",FORMULARI_INSERTA_RES).val(ui.item.client_nom.toUpperCase());
              $("#campsClient input[name='client_email']",FORMULARI_INSERTA_RES).val(ui.item.client_email.toUpperCase());
-             $("#campsClient input[name='client_conflictes']",FORMULARI_INSERTA_RES).val(ui.item.client_conflictes.toUpperCase());
+             $("#campsClient textarea[name='client_conflictes']",FORMULARI_INSERTA_RES).val(ui.item.client_conflictes.toUpperCase());
          }
       },
       minLength: 4
