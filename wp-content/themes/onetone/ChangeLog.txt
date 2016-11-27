@@ -2,6 +2,29 @@
 
 == CHANGE LOG == 
 
+= Version 1.9.2 = 09/14/2016
+* Add - Added 'autoplay' option for slider
+* Add - Added 'Display Control' option for slider
+* Add - Added 'Full Height' option for slider
+* Add - Added 'Icon Color' option for service section of home page
+* Add - Added 'Counter' options for custom section of home page
+* Add - Added 'Main Menu Font Color of Overlay Header ( First Level )' option
+* Fix - Fixed 'Menu Background Color' option issue on mobile
+* Fix - Fixed 'Footer Text Color' option issue
+* Fix - Fixed footer info issue on mobile
+* Fix - Fixed admin bar issue on mobile
+* Improved home page slider performance
+* Improved gallery performance
+* Improved main menu performance
+
+= Version 1.9.1 = 27/10/2016
+* Add - Added top icon option for section banner
+* Optimized section banner typography option
+
+= Version 1.9.0 = 14/10/2016
+* Add - Added Options Backup function
+* Fix - Fixed Metabox Option Padding Bottom issue
+
 = Version 1.8.9 = = 30/09/2016
 * Add - Added 'Display Author Info' option
 * Add - Added 'Display Related Posts' option

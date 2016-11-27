@@ -47,8 +47,6 @@ class Magee_Title {
 		$class .=' '.$uniqid;
  		if(is_numeric($font_size))
 		$font_size = $font_size.'px';
-		if(is_numeric($font_weight))
-		$font_weight = $font_weight.'px';
 		if(is_numeric($margin_top))
 		$margin_top = $margin_top.'px';
 		if(is_numeric($margin_bottom))
@@ -76,52 +74,11 @@ class Magee_Title {
 									    border-width: '.$border_width.';
 									}
                                 </style>';
-		if( $responsive_text == 'yes'){
-		$html .= '<script>' ; 
-		$html .= 'jQuery(function($) {  
-		          if($("#magee-sc-form-preview").length>0){
-				  
-				     $("#magee-sc-form-preview").ready(function(){
-					      if($("#magee-sc-form-preview").contents().find("body").width() <1200){	
-						  newPercentage = (($("#magee-sc-form-preview").contents().find("body").width() / 1200) * 100) + "%";
-						  $("#magee-sc-form-preview").contents().find(".'.$uniqid.' .heading-inner").css({"font-size": newPercentage});
-						  }	
-					 });
-				     $("#preview",window.parent.document).resize(function (){
-					      
-						  if($("#magee-sc-form-preview").contents().find("body").width() <1200){
-						  newPercentage = (($("#magee-sc-form-preview").contents().find("body").width() / 1200) * 100) + "%";
-						  $("#magee-sc-form-preview").contents().find(".'.$uniqid.' .heading-inner").css({"font-size": newPercentage});
-						  }else{
-						  $("#magee-sc-form-preview").contents().find(".'.$uniqid.' .heading-inner").css({"font-size": "'.$font_size.'"});
-						  }
-					  });     
-				  }else{
-				      $(document).ready(function () {	
-						  if($(window).width() <1200){	
-						  newPercentage = (($(window).width() / 1200) * 100) + "%";
-						  $(".'.$uniqid.' .heading-inner").css({"font-size": newPercentage});
-						  }	
-					  });			
-					  $(window).on("resize", function (){
-						  if($(window).width() <1200){
-						  newPercentage = (($(window).width() / 1200) * 100) + "%";
-						  $(".'.$uniqid.' .heading-inner").css({"font-size": newPercentage});
-						  }else{
-						  $(".'.$uniqid.' .heading-inner").css({"font-size": "'.$font_size.'"});
-						  }
-					  });   
-				  
-				  
-				  }    	
-					  
-		         });
-		     </script>' ;
-		}	
+
 		if( $style == 'none'){
-		$html .= '<h1 class="magee-heading  '.esc_attr($class).'" id="'.$id.'"><span class="heading-inner">'.do_shortcode( Magee_Core::fix_shortcodes($content)).'</span></h1>';
+		$html .= '<h1 class="magee-heading  '.esc_attr($class).'" id="'.$id.'" data-fontsize="'.$font_size.'" data-responsive="'.$responsive_text.'"><span class="heading-inner">'.do_shortcode( Magee_Core::fix_shortcodes($content)).'</span></h1>';
 		}else{					
-		$html .= '<h1 class="magee-heading heading-'.$style.' '.esc_attr($class).'" id="'.$id.'"><span class="heading-inner">'.do_shortcode( Magee_Core::fix_shortcodes($content)).'</span></h1>'; }
+		$html .= '<h1 class="magee-heading heading-'.$style.' '.esc_attr($class).'" id="'.$id.'" data-fontsize="'.$font_size.'" data-responsive="'.$responsive_text.'"><span class="heading-inner">'.do_shortcode( Magee_Core::fix_shortcodes($content)).'</span></h1>'; }
 		
 		
 		return $html;

@@ -198,7 +198,7 @@ class onetone_metaboxClass {
 		$display_title      = isset( $display_title )? $display_title:'yes'; 
 		
 		$padding_top         = isset( $padding_top )? $padding_top:'50px';
-		$padding_bottom      = isset( $padding_bottom )? $padding_top:'50px';
+		$padding_bottom      = isset( $padding_bottom )? $padding_bottom:'50px';
 		
 		echo '<p class="meta-options"><label for="full_width"  style="display: inline-block;width: 150px;">';
 		_e( 'Content Full Width', 'onetone' );

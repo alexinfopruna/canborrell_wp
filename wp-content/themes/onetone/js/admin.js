@@ -97,26 +97,6 @@ $('.onetone-close-guide').click(function(e){
 
 /////
 
- // save options
-  
- /* $(function(){
-          //Keep track of last scroll
-          var lastScroll = 0;
-          $(window).scroll(function(event){
-              //Sets the current scroll position
-              var st = $(this).scrollTop();
-
-              //Determines up-or-down scrolling
-              if (st > lastScroll){
-                $(".onetone-admin-footer").css("display",'inline')
-              } 
-              if(st == 0){
-                $(".onetone-admin-footer").css("display",'none')
-              }
-              //Updates scroll position
-              lastScroll = st;
-          });
-        });*/
 
 $('.onetone-import-demos .button-import-demo').click(function(){
 			$('.importer-notice').show();															  
@@ -140,18 +120,47 @@ $(document).on('click','#onetone-save-options',function(){
  $('#customize-theme-controls > ul').append('<li id="accordion-section-options" class="accordion-section control-section control-section-onetone-options" style="display: list-item;box-sizing:border-box;-moz-box-sizing:border-box;-webkit-box-sizing:border-box; padding: 10px 10px 20px;background: #fff;">'+onetone_admin_params.go_to_options+'</li>');
 
 
-/*$(document).on('click',"#optionsframework-submit [name='update']",function(e){
-	e.preventDefault();
-	
-	$('.options-saving').fadeIn("fast");
-	$.post('options.php',$('#optionsframework form').serialize(),function(msg){
-		$('.options-saving').fadeOut("fast");
-		$('.options-saved').fadeIn("fast", function() {
-		   $(this).delay(2000).fadeOut("slow");
-		});
-	  return false;
-    });	
-	  return false;
-   });*/
+// backup theme options
+ $(document).on('click','#onetone-backup-btn',function(){
+		$('.onetone-backup-complete').hide();								   
+		$.ajax({type: "POST",url: onetone_admin_params.ajaxurl,dataType: "html",data: { action: "onetone_options_backup"},	
+		success:function(content){
+			$('.onetone-backup-complete').show();
+            $('#onetone-backup-lists').append(content);
+			return false;
+			}
+		});											   
+		return false;											 
+   });
+ // delete theme options backup
+ $(document).on('click','#onetone-delete-btn',function(){
+		 if(confirm("Are you sure you want to do this?")){
+	     var key = $(this).data('key');								   
+		$.ajax({type: "POST",url: onetone_admin_params.ajaxurl,dataType: "html",data: { key:key,action: "onetone_options_backup_delete"},	
+		success:function(content){
+			$('#tr-'+key).remove();
+			return false;
+			}
+		});											   
+		return false;		
+		 }
+   });
+ // restore theme options backup
+ $(document).on('click','#onetone-restore-btn',function(){
+		 if(confirm("Are you sure you want to do this?")){	
+		  var restore_icon = $(this).find('.fa');
+		 restore_icon.addClass('fa-spin');
+		var key = $(this).data('key');								   
+		$.ajax({type: "POST",url: onetone_admin_params.ajaxurl,dataType: "html",data: { key:key,action: "onetone_options_backup_restore"},	
+		success:function(content){
+			restore_icon.removeClass('fa-spin');
+			alert(content);
+			window.location.reload();
+			return false;
+			}
+		});											   
+		return false;
+		}
+   });
  
  });

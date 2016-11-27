@@ -25,6 +25,7 @@ abstract class WPML_TM_Xliff_Shared extends WPML_TM_Job_Factory_User {
 		$job_identifier_parts = explode( '-', (string) $identifier );
 		if ( sizeof( $job_identifier_parts ) == 2 && is_numeric( $job_identifier_parts[0] ) ) {
 			$job_id = $job_identifier_parts[0];
+			$job_id = apply_filters( 'wpml_job_id', $job_id );
 			$md5    = $job_identifier_parts[1];
 			/** @var stdClass $job */
 			$job = $this->job_factory->get_translation_job( (int) $job_id, false, 1, false );
@@ -117,6 +118,15 @@ abstract class WPML_TM_Xliff_Shared extends WPML_TM_Job_Factory_User {
 		}
 
 		return array( $job, $job_data );
+	}
+
+	/**
+	 * @param string $filename 
+	 * @return bool
+	 */
+	function validate_file_name( $filename ) {
+		$ignored_files = apply_filters( 'wpml_xliff_ignored_files', array( '__MACOSX' ) );
+		return !( preg_match( '/(\/)/', $filename ) || in_array( $filename, $ignored_files, false ) );
 	}
 
 	protected function is_user_the_job_owner( $current_user, $job ) {

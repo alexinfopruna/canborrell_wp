@@ -385,14 +385,16 @@ class WPML_TM_Xliff_Frontend extends WPML_TM_Xliff_Shared {
 			}
 
 			foreach ( $contents as $name => $content ) {
-				list( $job, $job_data ) = $this->validate_file( $name, $content, $current_user );
-
-				if ( null !== $this->error ) {
-					return $job_data;
+				if( $this->validate_file_name( $name ) ) {
+					list( $job, $job_data ) = $this->validate_file( $name, $content, $current_user );
+					if ( null !== $this->error ) {
+						return $job_data;
+					}
+					wpml_tm_save_data( $job_data );
+					$this->success[] = sprintf( __( 'Translation of job %s has been uploaded and completed.', 'wpml-translation-management' ), $job->job_id );
 				}
-				wpml_tm_save_data( $job_data );
-				$this->success[] = sprintf( __( 'Translation of job %s has been uploaded and completed.', 'wpml-translation-management' ), $job->job_id );
 			}
+
 			if ( count( $this->success ) ) {
 				add_action( 'admin_notices', array( $this, '_success' ) );
 

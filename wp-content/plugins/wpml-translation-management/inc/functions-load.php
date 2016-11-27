@@ -4,11 +4,11 @@
  * @return WPML_TM_Element_Translations
  */
 function wpml_tm_load_element_translations() {
-	global $wpml_tm_element_translations, $wpdb;
+	global $wpml_tm_element_translations, $wpdb, $wpml_post_translations, $wpml_term_translations;
 
 	if ( ! isset( $wpml_tm_element_translations ) ) {
 		require WPML_TM_PATH . '/inc/core/wpml-tm-element-translations.class.php';
-		$tm_records                   = new WPML_TM_Records( $wpdb );
+		$tm_records                   = new WPML_TM_Records( $wpdb, $wpml_post_translations, $wpml_term_translations );
 		$wpml_tm_element_translations = new WPML_TM_Element_Translations( $tm_records );
 		$wpml_tm_element_translations->init_hooks();
 	}
@@ -67,9 +67,9 @@ function wpml_tm_load_tp_networking() {
  * @return WPML_TM_Blog_Translators
  */
 function wpml_tm_load_blog_translators() {
-	global $wpdb, $sitepress;
+	global $wpdb, $sitepress, $wpml_post_translations, $wpml_term_translations;
 
-	$tm_records = new WPML_TM_Records( $wpdb );
+	$tm_records = new WPML_TM_Records( $wpdb, $wpml_post_translations, $wpml_term_translations );
 
 	return new WPML_TM_Blog_Translators( $sitepress, $tm_records );
 }
@@ -106,9 +106,15 @@ function wpml_tm_init_mail_notifications() {
 function wpml_tm_load_tm_dashboard_ajax(){
 	global $wpml_tm_dashboard_ajax;
 
-	if(!isset($wpml_tm_dashboard_ajax)){
-	require WPML_TM_PATH . '/menu/dashboard/wpml-tm-dashboard-ajax.class.php';
+	if ( ! isset( $wpml_tm_dashboard_ajax ) ) {
+		require WPML_TM_PATH . '/menu/dashboard/wpml-tm-dashboard-ajax.class.php';
 		$wpml_tm_dashboard_ajax = new WPML_Dashboard_Ajax();
+
+		if ( defined( 'OTG_TRANSLATION_PROXY_URL' ) ) {
+			$wpml_tp_communication = new WPML_TP_Communication( OTG_TRANSLATION_PROXY_URL, new WP_Http() );
+			$wpml_tp_api           = new WPML_TP_API( $wpml_tp_communication, '1.1', new WPML_TM_Log() );
+			new WPML_TP_API_AJAX( $wpml_tp_api );
+		}
 	}
 
 	return $wpml_tm_dashboard_ajax;
@@ -118,10 +124,10 @@ function wpml_tm_load_tm_dashboard_ajax(){
  * @return WPML_Translation_Job_Factory
  */
 function wpml_tm_load_job_factory() {
-	global $wpml_translation_job_factory, $wpdb;
+	global $wpml_translation_job_factory, $wpdb, $wpml_post_translations, $wpml_term_translations;
 
 	if ( ! isset( $wpml_translation_job_factory ) ) {
-		$tm_records                   = new WPML_TM_Records( $wpdb );
+		$tm_records                   = new WPML_TM_Records( $wpdb, $wpml_post_translations, $wpml_term_translations );
 		$wpml_translation_job_factory = new WPML_Translation_Job_Factory( $tm_records );
 		$wpml_translation_job_factory->init_hooks();
 	}
@@ -130,17 +136,17 @@ function wpml_tm_load_job_factory() {
 }
 
 if ( defined( 'DOING_AJAX' ) ) {
-    $wpml_tm_dashboard_ajax = wpml_tm_load_tm_dashboard_ajax();
-    add_action( 'init', array( $wpml_tm_dashboard_ajax, 'init_ajax_actions' ) );
-} elseif ( is_admin() && isset( $_GET[ 'page' ] ) && $_GET[ 'page' ] == WPML_TM_FOLDER . '/menu/main.php'
-    && ( !isset( $_GET[ 'sm' ] ) || $_GET['sm'] === 'dashboard' ) )
-{
-    $wpml_tm_dashboard_ajax = wpml_tm_load_tm_dashboard_ajax();
-    add_action( 'wpml_tm_scripts_enqueued', array( $wpml_tm_dashboard_ajax, 'enqueue_js' ) );
+	$wpml_tm_dashboard_ajax = wpml_tm_load_tm_dashboard_ajax();
+	add_action( 'init', array( $wpml_tm_dashboard_ajax, 'init_ajax_actions' ) );
+} elseif ( is_admin() && isset( $_GET['page'] ) && $_GET['page'] == WPML_TM_FOLDER . '/menu/main.php'
+           && ( ! isset( $_GET['sm'] ) || $_GET['sm'] === 'dashboard' )
+) {
+	$wpml_tm_dashboard_ajax = wpml_tm_load_tm_dashboard_ajax();
+	add_action( 'wpml_tm_scripts_enqueued', array( $wpml_tm_dashboard_ajax, 'enqueue_js' ) );
 }
 
 function tm_after_load() {
-	global $wpml_tm_translation_status, $wpdb;
+	global $wpml_tm_translation_status, $wpdb, $wpml_post_translations, $wpml_term_translations;
 
 	if ( ! isset( $wpml_tm_translation_status ) ) {
 		require WPML_TM_PATH . '/inc/actions/wpml-tm-action-helper.class.php';
@@ -152,7 +158,7 @@ function tm_after_load() {
 		wpml_tm_load_job_factory();
 		wpml_tm_init_mail_notifications();
 		wpml_tm_load_element_translations();
-		$tm_records                 = new WPML_TM_Records( $wpdb );
+		$tm_records                 = new WPML_TM_Records( $wpdb, $wpml_post_translations, $wpml_term_translations );
 		$wpml_tm_translation_status = new WPML_TM_Translation_Status( $tm_records );
 		$wpml_tm_translation_status->init();
 		add_action( 'wpml_pre_status_icon_display', 'wpml_tm_load_status_display_filter' );
@@ -160,27 +166,15 @@ function tm_after_load() {
 	}
 }
 
-function wpml_tm_load_dashboard_widget() {
-	global $pagenow;
-	if ( $pagenow === 'index.php' ) {
-		global $sitepress, $wp_taxonomies;
-		$widget = new WPML_TM_CPT_Dashboard_Widget( $sitepress, $wp_taxonomies );
-		echo $widget->render();
-	}
-}
-
 /**
  * @return WPML_TM_Records
  */
 function wpml_tm_get_records() {
-	global $wpdb;
+	global $wpdb, $wpml_post_translations, $wpml_term_translations;
 
-	return new WPML_TM_Records( $wpdb );
+	return new WPML_TM_Records( $wpdb, $wpml_post_translations, $wpml_term_translations );
 }
 
-if ( is_admin() ) {
-	add_action( 'icl_dashboard_widget_notices', 'wpml_tm_load_dashboard_widget' );
-}
 /**
  * @return WPML_TM_Xliff_Frontend
  */

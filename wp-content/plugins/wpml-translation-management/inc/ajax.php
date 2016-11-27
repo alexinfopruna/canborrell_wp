@@ -70,9 +70,9 @@ function icl_pickup_translations() {
 	if ( ! wpml_is_action_authenticated( 'icl_pickup_translations' ) ) {
 		die( 'Wrong Nonce' );
 	}
-	global $ICL_Pro_Translation, $wpdb;
+	global $ICL_Pro_Translation, $wpdb, $wpml_post_translations, $wpml_term_translations;
 	$job_factory         = wpml_tm_load_job_factory();
-	$wpml_tm_records     = new WPML_TM_Records( $wpdb );
+	$wpml_tm_records     = new WPML_TM_Records( $wpdb, $wpml_post_translations, $wpml_term_translations );
 	$cms_id_helper       = new WPML_TM_CMS_ID( $wpml_tm_records, $job_factory );
 	$project             = TranslationProxy::get_current_project();
 	$remote_sync_factory = new WPML_TP_Remote_Sync_Factory( $project,

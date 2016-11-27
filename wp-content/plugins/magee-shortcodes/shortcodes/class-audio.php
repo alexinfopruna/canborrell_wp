@@ -74,21 +74,6 @@ class Magee_Audio {
 		 }
 		 $html .= 'Your browser does not support the audio element.' ;
 		 $html .='</audio>'	 ;
-		 $html .= "<script>
-		jQuery(function($){
-			if(jQuery('#magee-sc-form-preview').length>0){
-				jQuery('#magee-sc-form-preview').ready(function(){
-					jQuery('#magee-sc-form-preview').contents().find('.ms-audio').audioPlayer({
-					classPrefix: 'audioplayer',
-					strPlay: 'Play',
-					strPause: 'Pause',
-					strVolume: 'Volume',
-					strControls : '".$controls."',
-					strStyle : '".$style."',
-				});
-		        });
-			}
-		 });</script>";
 		 return $html;
 	 } 	 
 }		 

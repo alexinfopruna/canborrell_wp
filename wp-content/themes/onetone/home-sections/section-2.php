@@ -53,7 +53,7 @@ global $onetone_animated;
         <div class="section-subtitle"><?php echo do_shortcode($section_subtitle);?></div>
          <?php endif;?>
         
-       <div class="<?php echo $onetone_animated; ?>" data-animationduration="0.9" data-animationtype="fadeInRight" data-imageanimation="no" id="">
+       <div class="<?php echo $onetone_animated; ?>" data-animationduration="0.9" data-animationtype="fadeInRight" data-imageanimation="no">
         <div style="color:<?php echo $color; ?>;">
  
           <div class="magee-promo-box">
@@ -62,7 +62,7 @@ global $onetone_animated;
               </div>
               <div class="promo-action">
                <?php if( $btn_text != ''):?>
-              <a href="<?php echo esc_url($btn_link);?>" target="<?php echo esc_attr($btn_target);?>" class="btn-normal btn-lg"><?php echo do_shortcode($btn_text);?></a>
+              <a href="<?php echo esc_url($btn_link);?>" target="<?php echo esc_attr($btn_target);?>" class="btn-normal btn-md"><?php echo do_shortcode($btn_text);?></a>
                <?php endif;?>
               </div>
             </div>

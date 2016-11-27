@@ -39,7 +39,7 @@ class WPML_Admin_Scripts_Setup extends WPML_Full_Translation_API {
 			var icl_cat_adder_msg = '<?php echo icl_js_escape(sprintf(__('To add categories that already exist in other languages go to the <a%s>category management page</a>','sitepress'), ' href="'.admin_url('edit-tags.php?taxonomy=category').'"'));?>';
 			// ]]>
 
-			<?php if(!$this->sitepress->get_setting('ajx_health_checked')): ?>
+			<?php if ( ! $this->sitepress->get_setting( 'ajx_health_checked' ) && ! (bool) get_option( '_wpml_inactive' ) ) : ?>
 			addLoadEvent(function () {
 				jQuery.ajax({
 					type: "POST", url: icl_ajx_url, data: "icl_ajx_action=health_check", error: function (msg) {

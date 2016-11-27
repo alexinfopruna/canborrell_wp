@@ -91,15 +91,15 @@ function onetone_contact(){
 	
    $show_breadcrumb = "";
    if ( 'page' == get_option( 'show_on_front' ) && ( '' != get_option( 'page_for_posts' ) ) && $wp_query->get_queried_object_id() == get_option( 'page_for_posts' ) ) { 
-    $postid = $wp_query->get_queried_object_id();
+      $postid = $wp_query->get_queried_object_id();
    }
   
    if(isset($postid) && is_numeric($postid)){
-    $show_breadcrumb = get_post_meta( $postid, '_onetone_show_breadcrumb', true );
+      $show_breadcrumb = get_post_meta( $postid, '_onetone_show_breadcrumb', true );
 	}
 	if($show_breadcrumb == 'yes' || $show_breadcrumb==""){
 
-               onetone_breadcrumb_trail( $options);           
+      onetone_breadcrumb_trail( $options);           
 	}
 	   
 	}
@@ -127,12 +127,12 @@ function onetone_native_pagenavi($echo,$wp_query){
  
     if( !empty($wp_query->query_vars['s']) )
         $pagination['add_args'] = array('s'=>get_query_var('s'));
+		
     if($echo == "echo"){
-    echo '<div class="page_navi post-list-pagination"><div class="text-center">'.paginate_links($pagination).'</div></div>'; 
+        echo '<div class="page_navi post-list-pagination"><div class="text-center">'.paginate_links($pagination).'</div></div>'; 
 	}else
 	{
-	
-	return '<div class="page_navi post-list-pagination"><div class="text-center">'.paginate_links($pagination).'</div></div>';
+	    return '<div class="page_navi post-list-pagination"><div class="text-center">'.paginate_links($pagination).'</div></div>';
 	}
 }
    
@@ -186,13 +186,13 @@ function onetone_native_pagenavi($echo,$wp_query){
 	 
 	$return = '<section id="'.$sanitize_title.'" class="section homepage-slider onetone-'.$sanitize_title.'"><div id="onetone-owl-slider" class="owl-carousel owl-theme">';
 	 for($i=1;$i<=5;$i++){
-	$active = '';
+	 $active = '';
 	
 	 $text       = onetone_option('onetone_slide_text_'.$i);
 	 $image      = onetone_option('onetone_slide_image_'.$i);
 	
      if( $image != "" ){
-     $return .= '<div class="item"><img src="'.$image.'" alt=""><div class="inner">'. do_shortcode($text) .'</div></div>';
+     $return .= '<div class="item"><img src="'.$image.'" alt=""><div class="inner"><div class="caption"><div class="caption-inner">'. do_shortcode($text) .'</div></div></div></div>';
 	 
 
 	 }
@@ -225,38 +225,6 @@ function onetone_options_page_title() { ?>
 }
 
 
-if ( ! function_exists( '_wp_render_title_tag' ) ) {
- function onetone_wp_title( $title, $sep ) {
-	global $paged, $page;
-	if ( is_feed() )
-		return $title;
-
-	// Add the site name.
-	$title .= get_bloginfo( 'name' );
-
-	// Add the site description for the home/front page.
-	$site_description = get_bloginfo( 'description', 'display' );
-	if ( $site_description && ( is_home() || is_front_page() ) )
-		$title = "$title $sep $site_description";
-
-	// Add a page number if necessary.
-	if ( $paged >= 2 || $page >= 2 )
-		$title = "$title $sep " . sprintf( __( ' Page %s ', 'onetone' ), max( $paged, $page ) );
-
-	return $title;
-}
-add_filter( 'wp_title', 'onetone_wp_title', 10, 2 );
-	}
-
-if ( ! function_exists( '_wp_render_title_tag' ) ) {
-	function onetone_slug_render_title() {
-?>
-<title><?php wp_title( '|', true, 'right' ); ?></title>
-<?php
-	}
-	add_action( 'wp_head', 'onetone_slug_render_title' );
-}
-
  
  /**
  * back to top
@@ -287,16 +255,17 @@ function onetone_get_social( $position, $class = 'top-bar-sns',$placement='top',
    $rel    = '';
    
    $social_links_nofollow  = onetone_option( 'social_links_nofollow','no' ); 
-   $social_new_window = onetone_option( 'social_new_window','yes' );  
+   $social_new_window = onetone_option( 'social_new_window','yes' ); 
+   
    if( $social_new_window == 'no')
-   $target = '_self';
+     $target = '_self';
    
    if( $social_links_nofollow == 'yes' )
-   $rel    = 'nofollow';
+     $rel    = 'nofollow';
    
    if(is_array($social_icons) && !empty($social_icons)):
-   $return .= '<ul class="'.esc_attr($class).'">';
-   $i = 1;
+     $return .= '<ul class="'.esc_attr($class).'">';
+     $i = 1;
    foreach($social_icons as $sns_list_item){
 	 
 		 $icon = onetone_option( $position.'_social_icon_'.$i,'' );  
@@ -460,14 +429,10 @@ function onetone_paging_nav($echo='echo',$wp_query='') {
 		
 	if( $wp_query->max_num_pages > 1 ){
     if($echo == "echo"){
-    echo '<nav class="post-pagination post-list-pagination" role="navigation">
-                                    <div class="post-pagination-decoration"></div>
-                                    '.paginate_links($pagination).'</nav>'; 
+       echo '<nav class="post-pagination post-list-pagination" role="navigation"><div class="post-pagination-decoration"></div>'.paginate_links($pagination).'</nav>'; 
 	}else
 	{
-	
-	return '<nav class="post-pagination post-list-pagination" role="navigation">
-                                    <div class="post-pagination-decoration"></div>'.paginate_links($pagination).'</nav>';
+	   return '<nav class="post-pagination post-list-pagination" role="navigation"><div class="post-pagination-decoration"></div>'.paginate_links($pagination).'</nav>';
 	}
 	
 	}
@@ -505,7 +470,7 @@ endif;
 
 // get post content css class
  function onetone_get_content_class( $sidebar = '' ){
-	 
+
 	 if( $sidebar == 'left' )
 	 return 'left-aside';
 	 if( $sidebar == 'right' )
@@ -514,7 +479,7 @@ endif;
 	 return 'both-aside';
 	  if( $sidebar == 'none' )
 	 return 'no-aside';
-	 
+	
 	 return 'no-aside';
 	 
 	 }
@@ -696,11 +661,11 @@ function onetone_menu_page(){
 
 	
 // Onetone guide tips
-global $options_saved;
-$onetone_close_guide = get_option('onetone_close_guide');
-if( $onetone_close_guide != '1' )
-if( (!isset($_GET['page']) || ($_GET['page'] !='onetone-options' && $_GET['page'] !='import-demos' && $_GET['page'] !='onetone' ) ) && $options_saved == false  )
-add_action('admin_menu', 'onetone_guide_submenu_page');
+  global $onetone_options_saved;
+  $onetone_close_guide = get_option('onetone_close_guide');
+  if( $onetone_close_guide != '1' )
+  if( (!isset($_GET['page']) || ($_GET['page'] !='onetone-options' && $_GET['page'] !='import-demos' && $_GET['page'] !='onetone' ) ) && $onetone_options_saved == false  )
+  add_action('admin_menu', 'onetone_guide_submenu_page');
 
 function onetone_guide_submenu_page() {
 	
@@ -766,4 +731,101 @@ function onetone_close_guide(){
 
 add_action('wp_ajax_onetone_close_guide', 'onetone_close_guide');
 add_action('wp_ajax_nopriv_onetone_close_guide', 'onetone_close_guide');
+
+
+
+/**
+// onetone options backup
+*/
+function onetone_options_backup(){
+	$options        = array();
+	$keys           = array();
+	$option_name    = optionsframework_option_name();
+	$key            = time();
+    $keys           = get_option('onetone_options_backup');
+	$keys[]         = $key;
+	update_option('onetone_options_backup',$keys,'','no');
+	
+	$options        = get_option( $option_name );
+	add_option( 'onetone_options_backup_'.$key,$options,'','no' );
+	
+	$list_item = '<tr id="tr-'.$key.'">
+    <td style="padding-left:20px;"> '.__('Backup', 'onetone').' '.date('Y-m-d H:i:s',$key).'</td>
+    <td><a class="button" id="onetone-restore-btn" data-key="'.$key.'" href="#"><i class="fa fa-refresh"></i> '.__('Restore', 'onetone').'</a></td>
+    <td><a class="button" id="onetone-delete-btn" data-key="'.$key.'" href="#"><i class="fa fa-remove"></i> '.__('Delete', 'onetone').'</a></td>
+  </tr>';
+	echo $list_item;
+	}
+ add_action('wp_ajax_onetone_options_backup', 'onetone_options_backup');
+ add_action('wp_ajax_nopriv_onetone_options_backup', 'onetone_options_backup');
+ 
+/**
+// delete onetone options backup
+*/
+ function onetone_options_backup_delete(){
+	if( isset($_POST['key'])){
+		$key  = $_POST['key'];
+		delete_option( 'onetone_options_backup_'.$key );
+		$keys = get_option('onetone_options_backup');
+   	    
+		foreach ($keys as $k=>$v)
+		{
+			
+		   if ($v == $key){
+		     unset($keys[$k]);
+		   }
+		}
+	    update_option('onetone_options_backup',$keys,'','no');
+	
+		}
+	
+	}
+ add_action('wp_ajax_onetone_options_backup_delete', 'onetone_options_backup_delete');
+ add_action('wp_ajax_nopriv_onetone_options_backup_delete', 'onetone_options_backup_delete');
+ 
+ /**
+// restore onetone options backup
+*/
+ function onetone_options_backup_restore(){
+	if( isset($_POST['key'])){
+		$key = $_POST['key'];
+		$options        = get_option( 'onetone_options_backup_'.$key );
+		$option_name    = optionsframework_option_name();
+	    update_option( $option_name, $options );
+		_e('Restore successfully.','onetone' ) ;
+		exit(0);
+	
+		}
+	
+	}
+ add_action('wp_ajax_onetone_options_backup_restore', 'onetone_options_backup_restore');
+ add_action('wp_ajax_nopriv_onetone_options_backup_restore', 'onetone_options_backup_restore');
+
+ /**
+ * A unique identifier is defined to store the options in the database and reference them from the theme.
+ */
+  if( !function_exists('onetone_option_name') ):
+  function onetone_option_name() {
+  
+	  $themename = get_option( 'stylesheet' );
+	  $themename = preg_replace("/\W/", "_", strtolower($themename) );
+  
+	  if( is_child_theme() ){	
+		  $themename = str_replace("_child","",$themename ) ;
+		  }
+	  $themename_lan = $themename;
+	  
+	  if( defined('ICL_LANGUAGE_CODE') && ICL_LANGUAGE_CODE != 'en' )
+	  $themename_lan = $themename.'_'.ICL_LANGUAGE_CODE;
+	  
+	  if(function_exists('pll_current_language')){
+	  $default_lan = pll_default_language('slug');
+	  $current_lan = pll_current_language('slug');
+	  if($current_lan !='')
+	  $themename_lan = $themename.'_'.$current_lan;
+	  }
+	  return $themename_lan;
+  }
+  endif;
+
  

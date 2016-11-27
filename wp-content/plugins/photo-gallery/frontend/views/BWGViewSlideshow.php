@@ -1,34 +1,12 @@
 <?php
-
 class BWGViewSlideshow {
-  ////////////////////////////////////////////////////////////////////////////////////////
-  // Events                                                                             //
-  ////////////////////////////////////////////////////////////////////////////////////////
-  ////////////////////////////////////////////////////////////////////////////////////////
-  // Constants                                                                          //
-  ////////////////////////////////////////////////////////////////////////////////////////
-  ////////////////////////////////////////////////////////////////////////////////////////
-  // Variables                                                                          //
-  ////////////////////////////////////////////////////////////////////////////////////////
-  private $model;
-
-
-  ////////////////////////////////////////////////////////////////////////////////////////
-  // Constructor & Destructor                                                           //
-  ////////////////////////////////////////////////////////////////////////////////////////
-  public function __construct($model) {
-    $this->model = $model;
-  }
-  ////////////////////////////////////////////////////////////////////////////////////////
-  // Public Methods                                                                     //
-  ////////////////////////////////////////////////////////////////////////////////////////
   public function display($params, $from_shortcode = 0, $bwg = 0) {
     require_once(WD_BWG_DIR . '/framework/WDWLibrary.php');
     require_once(WD_BWG_DIR . '/framework/WDWLibraryEmbed.php');
 
     global $WD_BWG_UPLOAD_DIR;
     $from = (isset($params['from']) ? esc_html($params['from']) : 0);
-    $options_row = $this->model->get_options_row_data();
+    $options_row = WDWLibrary::get_options_row_data();
     if (!isset($params['order_by'])) {
       $order_by = 'asc'; 
     }
@@ -38,10 +16,13 @@ class BWGViewSlideshow {
     if (!isset($params['slideshow_title_full_width'])) {
       $params['slideshow_title_full_width'] = 0;
     }
+    if (!isset($params['tag'])) {
+      $params['tag'] = 0;
+    }
     $image_right_click = $options_row->image_right_click;
     if (!$from) {
       $theme_id = (isset($params['theme_id']) ? esc_html($params['theme_id']) : 1);
-      $theme_row = $this->model->get_theme_row_data($theme_id);
+      $theme_row = WDWLibrary::get_theme_row_data($theme_id);
       if (!$theme_row) {
         echo WDWLibrary::message(__('There is no theme selected or the theme was deleted.', 'bwg'), 'wd_error');
         return;
@@ -82,7 +63,7 @@ class BWGViewSlideshow {
     }
     else {      
       $theme_id = (isset($params['theme_id']) ? esc_html($params['theme_id']) : 0);
-      $theme_row = $this->model->get_theme_row_data($theme_id);
+      $theme_row = WDWLibrary::get_theme_row_data($theme_id);
       if (!$theme_row) {
         echo WDWLibrary::message(__('There is no theme selected or the theme was deleted.', 'bwg'), 'wd_error');
         return;
@@ -121,14 +102,21 @@ class BWGViewSlideshow {
       $watermark_width = $options_row->watermark_width;
       $watermark_height = $options_row->watermark_height;
     }
-    $gallery_row = $this->model->get_gallery_row_data($gallery_id);
-    if (!$gallery_row) {
+    $gallery_row = WDWLibrary::get_gallery_row_data($gallery_id);
+    if (!$gallery_row && $params["tag"] == 0) {
       echo WDWLibrary::message(__('There is no gallery selected or the gallery was deleted.', 'bwg'), 'wd_error');
       return;
     }
-    $image_rows = $this->model->get_image_rows_data($gallery_id, $sort_by, $order_by, $bwg);
-    if (!$image_rows) {
-      echo WDWLibrary::message(__('There are no images in this gallery.', 'bwg'), 'wd_error');
+    $image_rows = WDWLibrary::get_image_rows_data($gallery_id, $bwg, 'slideshow', '', $params['tag'], '', '', $sort_by, $order_by);
+    $image_rows = $image_rows['images'];
+    $images_count = count($image_rows);
+    if (!$images_count) {
+      if ($params['tag']) {
+        echo WDWLibrary::message(__('There are no images.', 'bwg'), 'wd_error');
+      }
+      else {
+        echo WDWLibrary::message(__('There are no images in this gallery.', 'bwg'), 'wd_error');
+      }
     }
     $current_image_id = ($image_rows ? $image_rows[0]->id : 0);
     $play_pause_button_display = 'undefined';
@@ -1535,14 +1523,4 @@ class BWGViewSlideshow {
       die();
     }
   }
-  
-  ////////////////////////////////////////////////////////////////////////////////////////
-  // Getters & Setters                                                                  //
-  ////////////////////////////////////////////////////////////////////////////////////////
-  ////////////////////////////////////////////////////////////////////////////////////////
-  // Private Methods                                                                    //
-  ////////////////////////////////////////////////////////////////////////////////////////
-  ////////////////////////////////////////////////////////////////////////////////////////
-  // Listeners                                                                          //
-  ////////////////////////////////////////////////////////////////////////////////////////
 }

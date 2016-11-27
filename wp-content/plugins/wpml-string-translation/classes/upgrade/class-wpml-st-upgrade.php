@@ -1,12 +1,19 @@
 <?php
 
-class WPML_ST_Upgrade extends WPML_WPDB_And_SP_User {
+class WPML_ST_Upgrade {
+
+	/** @var SitePress $sitepress */
+	private $sitepress;
 	
 	private $string_settings;
-	
-	public function __construct( &$wpdb, &$sitepress ) {
-		parent::__construct( $wpdb, $sitepress );
+
+	/** @var  WPML_ST_Upgrade_Command_Factory */
+	private $command_factory;
+
+	public function __construct(&$sitepress, WPML_ST_Upgrade_Command_Factory $command_factory ) {
+		$this->sitepress = $sitepress;
 		$this->string_settings = $this->sitepress->get_setting( 'st', array() );
+		$this->command_factory = $command_factory;
 	}
 	
 	public function run() {
@@ -23,35 +30,36 @@ class WPML_ST_Upgrade extends WPML_WPDB_And_SP_User {
 	
 	private function run_admin() {
 		$this->maybe_run( 'WPML_ST_Upgrade_Migrate_Originals' );
+		$this->maybe_run( 'WPML_ST_Upgrade_Db_Cache_Command' );
+		$this->maybe_run( 'WPML_ST_Upgrade_Display_Strings_Scan_Notices' );
 	}
 
 	private function run_ajax() {
 		$this->maybe_run_ajax( 'WPML_ST_Upgrade_Migrate_Originals' );
+
+		// it has to be maybe_run
+		$this->maybe_run( 'WPML_ST_Upgrade_Db_Cache_Command' );
 	}
 
 	private function run_front_end() {
-		
+		$this->maybe_run( 'WPML_ST_Upgrade_Db_Cache_Command' );
 	}
 	
 	private function maybe_run( $class ) {
-		if ( ! isset( $this->string_settings[ $class . '_has_run' ] ) ) {
-			$upgrade = new $class( $this->wpdb, $this->sitepress );
+		if ( ! $this->has_been_command_executed( $class ) ) {
+			$upgrade = $this->command_factory->create( $class );
 			if ( $upgrade->run() ) {
-				$this->string_settings[ $class . '_has_run' ] = true;
-				$this->sitepress->set_setting( 'st', $this->string_settings, true );
-				wp_cache_flush();
+				$this->mark_command_as_executed( $class );
 			}
 		}
 	}
 
 	private function maybe_run_ajax( $class ) {
-		if ( ! isset( $this->string_settings[ $class . '_has_run' ] ) ) {
+		if ( ! $this->has_been_command_executed( $class ) ) {
 			if ( $this->nonce_ok( $class ) ) {
-				$upgrade = new $class( $this->wpdb, $this->sitepress );
+				$upgrade = $this->command_factory->create( $class );
 				if ( $upgrade->run_ajax() ) {
-					$this->string_settings[ $class . '_has_run' ] = true;
-					$this->sitepress->set_setting( 'st', $this->string_settings, true );
-					wp_cache_flush();
+					$this->mark_command_as_executed( $class );
 					$this->sitepress->get_wp_api()->wp_send_json_success( '' );
 				}
 			}
@@ -70,6 +78,26 @@ class WPML_ST_Upgrade extends WPML_WPDB_And_SP_User {
 			}
 		}
 		return $ok;
+	}
+
+	/**
+	 * @param string $class
+	 *
+	 * @return bool
+	 */
+	private function has_been_command_executed( $class ) {
+		$id = call_user_func( array( $class, 'get_command_id' ) );
+		return isset( $this->string_settings[ $id . '_has_run' ] );
+	}
+
+	/**
+	 * @param string $class
+	 */
+	private function mark_command_as_executed( $class ) {
+		$id = call_user_func( array( $class, 'get_command_id' ) );
+		$this->string_settings[ $id . '_has_run' ] = true;
+		$this->sitepress->set_setting( 'st', $this->string_settings, true );
+		wp_cache_flush();
 	}
 }
 

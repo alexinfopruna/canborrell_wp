@@ -79,29 +79,6 @@ class Magee_Social {
 		$html=sprintf(' %s <a href="%s" target="%s" Id="%s" class="fa magee-icon  %s %s %s_social_icon_acolor" data-toggle="tooltip" data-placement="top" title="" data-original-title="%s"><img src="%s" class="image_instead"/></a>',$styles,$iconlink,$icontarget,$id,$sty3d,$class,$uqid,$title,$icon);
 			
 		endif;
-		$html .= "<script>
-	    jQuery(function($) {
-	      if($('#magee-sc-form-preview').length>0){
-		  $('#magee-sc-form-preview').contents().find('a.magee-icon').css({\"position\":\"relative\",\"top\":\"50px\",\"left\":\"200px\"});
-				 $('#magee-sc-form-preview').contents().find('a.magee-icon').on('click',function(e){
-				    if($(this).attr('href') == '#'){
-					   e.preventDefault();
-				    }
-				 });
-				 $('#magee-sc-form-preview').contents().find('a.magee-icon').on('hover',function(){
-				     if($('#magee-sc-form-preview').contents().find('#tooltip-hidden').length>0){
-					   $('#magee-sc-form-preview').contents().find('#tooltip-hidden').remove();
-					   }else{
-					   var html = '<div class=\"tooltip fade top in\" id=\"tooltip-hidden\" role=\"tooltip\" style=\"display: block;\"><div class=\"tooltip-arrow\"></div><div class=\"tooltip-inner\">".$title."</div></div>';
-					   $('#magee-sc-form-preview').contents().find('a.magee-icon').after(html);
-					   var hidden = $('#magee-sc-form-preview').contents().find('#tooltip-hidden');
-					   size = ($('#magee-sc-form-preview').contents().find('a.magee-icon').width()/2+200-hidden.width()/2).toString();
-					   hidden.css({\"position\":\"absolute\",\"top\":\"20px\",\"left\":size+\"px\"});
-					   }				   
-			     });  
-			  }
-		  });           
-		</script>";		
 		return $html;
 	}
 	

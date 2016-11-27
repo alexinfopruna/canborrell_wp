@@ -45,7 +45,6 @@ class WPML_Color_Picker {
 		$input_attributes['name']               = $input_name;
 		$input_attributes['value']              = $color_value;
 		$input_attributes['data-default-color'] = $color_default;
-		$input_attributes['pattern']            = '^#+([a-fA-F0-9]{6}|[a-fA-F0-9]{3})$';
 
 		foreach ( $input_attributes as $key => $value ) {
 			$input .= $key . '="' . $value . '" ';

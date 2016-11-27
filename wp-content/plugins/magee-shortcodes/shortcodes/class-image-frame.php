@@ -96,15 +96,6 @@ class Magee_Image_Frame {
 		
 		endif;											
         $html .= '</div></div>';
-        $html .= '<script>
-		jQuery(function($) {
-			if(jQuery("#magee-sc-form-preview").length>0){
-			
-			$("#magee-sc-form-preview").contents().find("a[rel^=\'prettyPhoto\']").prettyPhoto();
-			}
-		});
-		
-		</script>';
   	
 		return $html;
 	}

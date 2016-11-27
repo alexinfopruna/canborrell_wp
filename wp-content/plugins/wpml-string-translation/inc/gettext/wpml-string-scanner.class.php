@@ -359,6 +359,7 @@ class WPML_String_Scanner {
                         SELECT * FROM {$wpdb->prefix}icl_strings
                         WHERE context=%s", esc_sql( $domain ) );
 
+			/** @var array $results */
 			$results = $wpdb->get_results( $query, ARRAY_A );
 			foreach ( $results as $result ) {
 				
@@ -434,7 +435,8 @@ class WPML_String_Scanner {
         global $wpdb;
 		
         $old_context = $this->get_old_context( );
-        
+
+	    /** @var array $results */
 		$results = $wpdb->get_results( $wpdb->prepare( "
 	        SELECT id, name, value
 	        FROM {$wpdb->prefix}icl_strings
@@ -444,15 +446,16 @@ class WPML_String_Scanner {
 		
 		foreach( $results as $string ) {
 			// See if the string has no translations
-			
+
+			/** @var array $old_translations */
 			$old_translations = $wpdb->get_results( $wpdb->prepare( "
 				SELECT id, language, status, value
 				FROM {$wpdb->prefix}icl_string_translations
 				WHERE string_id = %d",
 				$string->id
 				) );
-			
-			if ( empty( $old_translations ) ) {
+
+			if ( ! $old_translations ) {
 				// We don't have any translations so we can delete the string.
 				
 				$wpdb->delete( $wpdb->prefix . 'icl_strings', array( 'id' => $string->id ), array( '%d' ) );
@@ -472,7 +475,8 @@ class WPML_String_Scanner {
 					if ( $new_string_id ) {
 						
 						// See if it has the same translations
-						
+
+						/** @var array $new_translations */
 						$new_translations = $wpdb->get_results( $wpdb->prepare( "
 							SELECT id, language, status, value
 							FROM {$wpdb->prefix}icl_string_translations
@@ -489,7 +493,7 @@ class WPML_String_Scanner {
 								}
 							}
 						}
-						if ( empty( $old_translations ) ) {
+						if ( ! $old_translations ) {
 							// We don't have any old translations that are not in the new strings so we can delete the string.
 							
 							$wpdb->delete( $wpdb->prefix . 'icl_strings', array( 'id' => $string->id ), array( '%d' ) );
@@ -525,6 +529,7 @@ class WPML_String_Scanner {
 		global $wpdb;
 		
 		foreach ( $contexts as $context ) {
+			/** @var array $new_strings */
 			$new_strings = $wpdb->get_results( $wpdb->prepare( "
 				SELECT id, name, value
 				FROM {$wpdb->prefix}icl_strings
@@ -546,7 +551,8 @@ class WPML_String_Scanner {
 			} else {
 				$new_translations = array( );
 			}
-			
+
+			/** @var array $old_strings */
 			$old_strings = $wpdb->get_results( $wpdb->prepare( "
 				SELECT id, name, value
 				FROM {$wpdb->prefix}icl_strings
@@ -558,7 +564,7 @@ class WPML_String_Scanner {
 				$old_ids[ ] = $old_string->id;
 			}
 			$old_ids = implode( ',', $old_ids );
-			
+
 			if ( $old_ids != '' ) {
 				$old_translations = $wpdb->get_results( "
 							SELECT id, string_id, language, status, value
@@ -568,10 +574,12 @@ class WPML_String_Scanner {
 			} else {
 				$old_translations = array( );
 			}
-			
+
+			/** @var array $old_translations */
 			foreach( $old_translations as $old_translation ) {
 				// see if we have a new translation.
 				$found = false;
+				/** @var array $new_translations */
 				foreach ( $new_translations as $new_translation ) {
 					if ( $new_translation->string_id == $old_translation->string_id &&
 							$new_translation->language == $old_translation->language ) {
@@ -604,6 +612,13 @@ class WPML_String_Scanner {
 		}
 			
 	}
-	
+
+	protected function remove_notice( $notice_id ) {
+		global $wpml_st_admin_notices;
+		if ( isset( $wpml_st_admin_notices ) ) {
+			/** @var WPML_ST_Themes_And_Plugins_Updates $wpml_st_admin_notices */
+			$wpml_st_admin_notices->remove_notice( $notice_id );
+		}
+	}
 }
 

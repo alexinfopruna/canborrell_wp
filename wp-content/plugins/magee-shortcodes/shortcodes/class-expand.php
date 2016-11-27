@@ -25,9 +25,11 @@ class Magee_Expand {
 			array(
 				'id' 					=>'',
 				'class' 				=>'',
-				'more_icon'				=>'',	
+				'more_icon'				=>'',
+				'more_icon_color'	    =>'',
 				'more_text'				=>'',
-				'less_icon'				=>'',	
+				'less_icon'				=>'',
+				'less_icon_color'	    =>'', 
 				'less_text'				=>'',
 				
 			), $args
@@ -35,11 +37,12 @@ class Magee_Expand {
 		extract( $defaults );
 		self::$args = $defaults;
 		$uniqid = uniqid("control-");
+	
         $html ='
-		<div class="magee-expand '.esc_attr($class).'" id="'.esc_attr($id).'">
+		<div class="magee-expand '.esc_attr($class).'" id="'.esc_attr($id).'" data-less-icon="'.esc_attr($less_icon).'" data-less-icon-color="'.esc_attr($less_icon_color).'" data-less-text="'.esc_attr($less_text).'" data-more-icon="'.esc_attr($more_icon).'" data-more-icon-color="'.esc_attr($more_icon_color).'" data-more-text="'.esc_attr($more_text).'">
             <div class="expand-control '.$uniqid.'">';
 		if( stristr($more_icon,'fa-')):
-		$html	.=	'<i class="fa '.esc_attr($more_icon).'"></i> ';
+		$html	.=	'<i class="fa '.esc_attr($more_icon).'" style="color:'.$more_icon_color.';"></i> ';
 		else:
 		$html	.=	'<img src="'.esc_attr($more_icon).'" class="image-instead"/>';
 		endif;
@@ -48,48 +51,7 @@ class Magee_Expand {
                 '.do_shortcode( Magee_Core::fix_shortcodes($content)).'
             </div>
         </div>' ;
-		$html .='
-		<script>
-        jQuery(function($) {
-		     if("'.$less_icon.'".indexOf("fa-")>=0){
-			 var more = \'<i class="fa '.esc_attr($less_icon).'"></i> '.esc_attr($less_text).'\';
-			 }else{
-			 var more = \'<img src="'.esc_attr($less_icon).'" class="image-instead"/>'.esc_attr($less_text).'\';
-			 }
-			 if("'.$more_icon.'".indexOf("fa-")>=0){
-			 var less = \'<i class="fa '.esc_attr($more_icon).'"></i> '.esc_attr($more_text).'\';
-			 }else{
-			 var less = \'<img src="'.esc_attr($more_icon).'" class="image-instead"/>'.esc_attr($more_text).'\';
-			 }
-		     if($("#magee-sc-form-preview").length>0){
-			 $("#magee-sc-form-preview").contents().find(".'.$uniqid.'").toggle(
-				 function(){	      				  
-							$(this).html(more);
-						  },
-				 function(){	      				  
-							$(this).html(less);
-						  }
-				 );
-			 $("#magee-sc-form-preview").contents().find(".'.$uniqid.'").click(function(){
-				  $(this).parents(".magee-expand").find(".expand-content").slideToggle(500);
-				 });    
-			 }else{
-				 $(".'.$uniqid.'").toggle(
-				  function(){	      				  
-							$(this).html(more);
-						  },
-				 function(){	      				  
-							$(this).html(less);
-						  }
-				 );
-				 $(".'.$uniqid.'").click(function(){
-				  $(this).parents(".magee-expand").find(".expand-content").slideToggle(500);
-				 });
-			 }
-		     
-		   
-		});
-        </script>';
+		
         return $html;
 		
 		

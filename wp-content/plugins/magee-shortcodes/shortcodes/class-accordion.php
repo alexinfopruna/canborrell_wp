@@ -42,55 +42,6 @@ class Magee_Accordion {
 		$class .= ' style'.$type;
 		
 		$html = '<div class="panel-group magee-accordion accordion-'.$style.' '.esc_attr($class).'" role="tablist" aria-multiselectable="true" id="'.esc_attr($this->id).'">'.do_shortcode( Magee_Core::fix_shortcodes($content)).'</div>';
-	    $html .= '<script>
-	   jQuery(function($) {
-	      if($("#magee-sc-form-preview").length>0){ 
-			  num = $("#magee-sc-form-preview").contents().find(".panel-heading").length ;
-				  for($i=0;$i<num;$i++){
-					  $("#magee-sc-form-preview").contents().find(".panel-heading").eq($i).on("click",function(e){
-					      e.preventDefault();	
-						  if($(this).find("a").attr("class") == "accordion-toggle" || $(this).find("a").attr("class") == "accordion-toggle "){
-						  $(this).find("a").addClass("collapsed");
-						  $(this).find("a").attr("aria-expanded","false");
-						  $(this).next().removeClass("in");		
-						  }else{
-						  $(this).find("a").removeClass("collapsed");
-						  $(this).find("a").attr("aria-expanded","true");
-						  $(this).next().addClass("in");
-						  $(this).parent(".panel-default").siblings().find("a").addClass("collapsed");
-						  $(this).parent(".panel-default").siblings().find("a").attr("aria-expanded","false");
-						  $(this).parent(".panel-default").siblings().find(".panel-heading").next().removeClass("in");		
-						  }
-					   }); 
-				  };
-		$("#magee-sc-form-preview").contents().find(".panel-title").each(function(){
-		if($(this).find(".open-magee-accordion").length>0 || $(this).find(".close-magee-accordion").length>0){
-			var open_icon =$(this).find("i").attr("data-open");
-			var close_icon = $(this).find("i").attr("data-close");
-			var now_class = $(this).find("i").attr("class");
-			$(this).click(function(){					
-			  if($(this).find("i").hasClass("open-magee-accordion")){ 
-				  var new_class = now_class.replace("open-magee-accordion","close-magee-accordion").replace(open_icon,close_icon);
-				  $(this).find("i").attr("class",new_class);
-				  }else{
-				  var new_class = now_class.replace("close-magee-accordion","open-magee-accordion").replace(close_icon,open_icon);
-				  $(this).find("i").attr("class",new_class);
-				  $(this).parents(".panel-default").siblings().each(function(){
-					  var sub_icon1 =  $(this).find(".panel-title i").attr("data-open");
-					  var sub_icon2 =  $(this).find(".panel-title i").attr("data-close");
-					  var sub_class = $(this).find(".panel-title i").attr("class");
-					  var new_sub_class = sub_class.replace("open-magee-accordion","close-magee-accordion").replace(sub_icon1,sub_icon2);
-					  $(this).find(".panel-title i").attr("class",new_sub_class);															 
-																				 
-				  });
-				  }					  				   								   
-			  });						
-		}	   
-  });	  
-		  }	   	  
-	   });
-	   </script>'; 
-
 		return $html;
 
 	}

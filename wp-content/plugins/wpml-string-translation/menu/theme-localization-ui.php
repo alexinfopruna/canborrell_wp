@@ -29,14 +29,14 @@ function fix_removed_contexts_from_3_2_upgrade( ) {
 
 fix_removed_contexts_from_3_2_upgrade( );
 
-function show_automatic_text_domain_checkbox( ) {
+function show_automatic_text_domain_checkbox( $for ) {
 	global $sitepress_settings;
 	
 	?>
 	<div class="wpml_st_theme_localization_type_wpml_extra">
 		<?php $use_header_text_domains_when_missing_checked = checked( true, ! empty( $sitepress_settings[ 'st' ][ 'use_header_text_domains_when_missing' ] ), false ); ?>
-		<input type="checkbox" name="wpml_st_theme_localization_type_wpml_td" value="1" <?php echo $use_header_text_domains_when_missing_checked; ?>/>
-		<label for="wpml_st_theme_localization_type_wpml_td">
+		<input type="checkbox" id="wpml_st_theme_localization_type_<?php echo $for; ?>" name="wpml_st_theme_localization_type_wpml_td" value="1" <?php echo $use_header_text_domains_when_missing_checked; ?>/>
+		<label for="wpml_st_theme_localization_type_<?php echo $for; ?>">
 			<?php _e( 'Automatically use theme or plugin text domains when gettext calls do not use a string literal.', 'wpml-string-translation' ) ?>
 		</label>
 		<?php
@@ -60,7 +60,8 @@ $theme_localization_stats         = $local->get_theme_localization_stats();
 $theme_requires_rescan            = $local->does_theme_require_rescan();
 $plugin_localization_stats        = $local->get_plugin_localization_stats();
 $plugin_wrong_localization_stats  = $local->get_wrong_plugin_localization_stats();
-$theme_localization_domains       = icl_get_sub_setting( 'st', 'theme_localization_domains' );
+/** @var array $theme_localization_domains */
+$theme_localization_domains = icl_get_sub_setting( 'st', 'theme_localization_domains' );
 ?>
 
 <h3><?php _e( 'Strings in the theme', 'wpml-string-translation' ); ?></h3>
@@ -165,13 +166,13 @@ $theme_localization_domains       = icl_get_sub_setting( 'st', 'theme_localizati
 </div>
 
 <p>
-	<label>
-		<input type="checkbox" id="icl_load_mo_themes" value="1" checked="checked"/>
-		<?php _e( 'Load translations if found in the .mo files. (it will not override existing translations)',
-		          'wpml-string-translation' ) ?></label>
+	<input type="checkbox" id="icl_load_mo_themes" value="1" checked="checked"/>
+	<label for="icl_load_mo_themes">
+		<?php _e( 'Load translations if found in the .mo files. (it will not override existing translations)', 'wpml-string-translation' ) ?>
+	</label>
 </p>
 
-<?php show_automatic_text_domain_checkbox(); ?>
+<?php show_automatic_text_domain_checkbox( 'theme' ); ?>
 
 <p>
 	<input id="st_theme_localization_rescan" type="button" class="button-primary"
@@ -260,20 +261,28 @@ $wpmu_sitewide_plugins = (array) maybe_unserialize( get_site_option( 'active_sit
 					unset( $plugin_wrong_localization_stats[ $old_plugin_context ] );
 				}
 
+				$item_check_box_name      = $is_mu_plugin ? 'mu-plugin[]' : 'plugin[]';
+				$item_check_box_id        = ( $is_mu_plugin ? 'mu-plugin-' : 'plugin-' ) . str_replace( '/', '-', $file );
+
+				$checked = '';
+				if ( array_key_exists( 'plugin', $_GET ) && $_GET['plugin'] === $plugin['Name'] ) {
+					$checked = 'checked="checked"';
+				}
+
 				?>
-				<tr<?php if ( $requires_update ) { echo ' class="st_requires_update"'; } ?>>
-					<td><input type="checkbox" value="<?php echo $file ?>"
-					           name="<?php if ( $is_mu_plugin ): ?>mu-plugin[]<?php else: ?>plugin[]<?php endif; ?>"/>
+				<tr<?php echo $requires_update ? ' class="st_requires_update"' : ''; ?>>
+					<td>
+						<input type="checkbox" <?php echo $checked; ?> value="<?php echo $file ?>" id="<?php echo esc_attr( $item_check_box_id ); ?>" name="<?php echo esc_attr( $item_check_box_name ); ?>"/>
 					</td>
 					<td>
+						<label for="<?php echo $item_check_box_id ?>">
+							<?php echo $plugin['Name']; ?>
+						</label>
 						<?php
 							if ( $requires_update ) {
 								?>
-									<p><?php echo $plugin[ 'Name' ]; ?></p>
 									<p class="update-message"> <?php _e('Update required - please rescan this plugin', 'wpml-string-translation'); ?></p>
 								<?php
-							} else {
-								echo $plugin[ 'Name' ];
 							}
 						?>
 					</td>
@@ -320,19 +329,17 @@ $wpmu_sitewide_plugins = (array) maybe_unserialize( get_site_option( 'active_sit
 	</div>
 
 	<p>
-		<label>
-			<input type="checkbox" name="icl_load_mo" value="1" checked="checked"/>
-			<?php _e( 'Load translations if found in the .mo files. (it will not override existing translations)',
-			          'wpml-string-translation' ) ?></label>
+		<input type="checkbox" id="icl_load_mo" name="icl_load_mo" value="1" checked="checked"/>
+		<label for="icl_load_mo">
+			<?php _e( 'Load translations if found in the .mo files. (it will not override existing translations)', 'wpml-string-translation' ) ?>
+		</label>
 	</p>
-	
-	<?php show_automatic_text_domain_checkbox(); ?>
+
+	<?php show_automatic_text_domain_checkbox( 'plugins' ); ?>
 
 	<p>
-		<input type="submit" class="button-primary"
-		       value="<?php echo __( "Scan the selected plugins for strings", 'wpml-string-translation' ) ?>"/>
-		<img class="icl_ajx_loader_p" src="<?php echo WPML_ST_URL ?>/res/img/ajax-loader.gif" style="display:none;"
-		     alt=""/>
+		<input type="submit" class="button-primary" value="<?php echo __( "Scan the selected plugins for strings", 'wpml-string-translation' ) ?>"/>
+		<img class="icl_ajx_loader_p" src="<?php echo WPML_ST_URL ?>/res/img/ajax-loader.gif" style="display:none;" alt=""/>
 	</p>
 
 

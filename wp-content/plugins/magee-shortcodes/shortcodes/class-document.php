@@ -38,38 +38,12 @@ class Magee_Document {
 		$html = '';
 		switch(esc_attr($viewer)){
 		case 'google':
-		$html .= '<div id="'.esc_attr($id).'" class="magee-document ' .esc_attr($class) . '" ><iframe src="//docs.google.com/viewer?url='.esc_url($url) .'&embedded=true" width="' . esc_attr($width) . 'px" height="'.esc_attr($height). 'px" ></iframe></div>';
+		$html .= '<div id="'.esc_attr($id).'" class="magee-document ' .esc_attr($class) . '" data-responsive="'.esc_attr($responsive).'" data-width="'.esc_attr($width).'" data-height="'.esc_attr($height).'"><iframe src="//docs.google.com/viewer?url='.esc_url($url) .'&embedded=true" width="' . esc_attr($width) . 'px" height="'.esc_attr($height). 'px" ></iframe></div>';
 		break;
 		case 'microsoft':
-		$html .= '<div id="'.esc_attr($id).'" class="magee-document ' .esc_attr($class) . '"><iframe src="//view.officeapps.live.com/op/embed.aspx?src='.esc_url($url) .'" width="' . esc_attr($width) . 'px" height="' .  esc_attr($height) . 'px" class="su-document' .esc_attr($class) . '" id="'.esc_attr($id).'"></iframe></div>';
+		$html .= '<div id="'.esc_attr($id).'" class="magee-document ' .esc_attr($class) . '" data-responsive="'.esc_attr($responsive).'" data-width="'.esc_attr($width).'" data-height="'.esc_attr($height).'"><iframe src="//view.officeapps.live.com/op/embed.aspx?src='.esc_url($url) .'" width="' . esc_attr($width) . 'px" height="' .  esc_attr($height) . 'px" class="su-document' .esc_attr($class) . '" id="'.esc_attr($id).'"></iframe></div>';
 		break;
 		}
-		
-		if($responsive == 'yes'):
-		$html .= '<script>';
-		$html .= 'jQuery(function($) {
-					 if($("#magee-sc-form-preview").length>0){
-					 $("#magee-sc-form-preview").ready(function(){
-					 width = $("#magee-sc-form-preview").contents().find(".magee-document").width();
-						 if(width < '.$width.'){
-						 op = '.$height.'/'.$width.';
-						 $("#magee-sc-form-preview").contents().find("iframe").eq(0).width(width);
-						 $("#magee-sc-form-preview").contents().find("iframe").eq(0).height(op*width);
-						 }
-					 });
-					 }else{
-					 $(document).ready(function(){
-					  width = $(".magee-document").width();
-						 if(width < '.$width.'){
-						 op = '.$height.'/'.$width.';
-						 $("iframe").eq(0).width(width);
-						 $("iframe").eq(0).height(op*width);
-						 }
-					 });
-					 }				  
-			      });';	 
-		$html .= '</script>';
-		endif;
 		
 		return $html;
 		

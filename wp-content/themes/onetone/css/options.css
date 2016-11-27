@@ -491,3 +491,17 @@ h2 .nav-tab {
 #optionsframework .controls .of-background-attachment {
     width: 120px;
 }
+
+#onetone-backup-lists {
+    border-collapse:collapse;
+}
+
+table#onetone-backup-lists,
+#onetone-backup-lists td,
+#onetone-backup-lists th {
+    border: 1px solid #ccc;
+}
+
+#onetone-backup-lists td {
+    padding: 10px;
+}

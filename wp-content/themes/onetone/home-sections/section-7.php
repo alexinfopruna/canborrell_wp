@@ -54,6 +54,28 @@ global $onetone_animated;
         <div class="section-subtitle"><?php echo do_shortcode($section_subtitle);?></div>
          <?php endif;?>
          
+         <div class="home-section-content">
+  <?php
+  $counters = '';
+  for($c=1;$c<=4;$c++){
+		 $title    = onetone_option( "counter_title_".$c."_".$i );
+		 $number   = onetone_option( "counter_number_".$c."_".$i );
+		 
+		 if( $title !='' || $number!='' )
+		   $counters .= '<div class="col-md-3">
+			  <div class="magee-counter-box">
+				<div class="counter"><span class="counter-num">'.absint($number).'</span></div>
+				<h3 class="counter-bottom_title" style="color:'.$color.'">'.esc_attr($title).'</h3>
+			  </div>
+			</div>';
+	
+     }
+	 if( $counters !='' )
+	   echo '<div class="row">'.$counters.'</div>';
+	 
+	 ?>
+</div>
+         
     </div>
             <?php
 		else:

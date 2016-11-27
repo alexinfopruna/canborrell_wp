@@ -56,7 +56,7 @@ class Magee_Flip_Box {
 		$back_content = isset($contentsplit[1])?$contentsplit[1]:'';
 		
 		$html = '<style type="text/css" scoped="scoped">.'.$uniq_class.' .flipbox-front{background-color:'.$front_background.';}.'.$uniq_class.' .flipbox-front .flipbox-content{padding:'.$front_paddings.';color:'.$front_color.';}.'.$uniq_class.' .flipbox-back{background-color:'.$back_background.';}.'.$uniq_class.' .flipbox-back .flipbox-content{padding:'.$back_paddings.';color:'.$back_color.'}</style>';
-		$html .= '<div class="magee-flipbox-wrap '.$class.'" id="'.$id.'">
+		$html .= '<div class="magee-flipbox-wrap '.$class.'" id="'.$id.'" data-direction="'.$direction.'">
                                                 <div class="magee-flipbox">
                                                     <div class="flipbox-front">
                                                         <div class="flipbox-content">

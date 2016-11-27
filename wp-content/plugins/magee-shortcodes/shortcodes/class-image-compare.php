@@ -36,17 +36,10 @@ class Magee_Image_Compare {
 		self::$args = $defaults;
 		$unqid = uniqid( 'class-');
 		$class .= $unqid;
-		$html = '<div  id="'.esc_attr($id).'" class="twentytwenty-container '.esc_attr($class).'">
+		$html = '<div  id="'.esc_attr($id).'" class="magee-image-compare twentytwenty-container '.esc_attr($class).'" data-pct="'.esc_attr($percent).'" data-orientation="'.esc_attr($style).'">
 				  <img src="'.$image_left.'">
 		          <img src="'.$image_right.'">
 				</div>' ;	
-		$html .= '<script>
-		jQuery(function($){
-			$(document).ready(function(){
-			$(".'.esc_attr($class).'").twentytwenty({default_offset_pct: '.esc_attr($percent).', orientation: "'.esc_attr($style).'"});
-			});	
-		});
-		</script>';		
 		return $html;
 	}
 	

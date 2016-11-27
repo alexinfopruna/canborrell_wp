@@ -10,20 +10,22 @@ global $onetone_animated;
  
  $content_model       = onetone_option( 'section_content_model_'.$i,1);
  $section_subtitle    = onetone_option( 'section_subtitle_'.$i );
- $color       = onetone_option( 'section_color_'.$i );
+ $color               = onetone_option( 'section_color_'.$i );
+ $icon_color          = onetone_option( 'section_service_icon_color_'.$i );
 	
   if( !isset($section_content) || $section_content=="" ) 
-  $section_content = onetone_option( 'sction_content_'.$i );
+    $section_content = onetone_option( 'sction_content_'.$i );
   
   $section_id      = sanitize_title( onetone_option( 'menu_slug_'.$i ,'section-'.($i+1) ) );
+  
   if( $section_id == '' )
    $section_id = 'section-'.($i+1);
    
-   $section_id  = strtolower( $section_id );
-  
+  $section_id      = strtolower( $section_id );
   $container_class = "container";
+  
   if( $full_width == "yes" ){
-  $container_class = "";
+    $container_class = "";
   }
   
   if( $parallax_scrolling == "yes" || $parallax_scrolling == "1" ){
@@ -74,7 +76,7 @@ global $onetone_animated;
 		 if( $image !='' )
 		 $service_icon = '<img src="'.esc_url($image).'" alt="" />';
 		 else
-		 $service_icon = '<div class="icon-box" data-animation=""><i class="feature-box-icon fa '.esc_attr($icon).'"></i></div>';
+		 $service_icon = '<div class="icon-box" data-animation=""><i class="feature-box-icon fa '.esc_attr($icon).'" style="color:'.$icon_color.';"></i></div>';
 			
 	$service .= '<div class="col-md-4">
 	<div class="'.$onetone_animated.'" data-animationduration="0.9" data-animationtype="zoomIn" data-imageanimation="no" id="">

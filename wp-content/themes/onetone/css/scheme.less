@@ -336,3 +336,18 @@ a.magee-btn-normal {
 .woocommerce p.stars a:before {
     color: @color-main;
 }
+
+@media screen and (min-width: 920px) {
+    .site-nav.style1 > ul > li.current > a > span,
+    .site-nav.style1 > ul > li > a:hover > span {
+        background-color: @color-main;
+    }
+    .site-nav.style2 > ul > li.current > a > span,
+    .site-nav.style2 > ul > li > a:hover > span {
+        border-color: @color-main;
+    }
+    .site-nav.style3 > ul > li.current > a > span,
+    .site-nav.style3 > ul > li > a:hover > span {
+        border-bottom-color: @color-main;
+    }
+}

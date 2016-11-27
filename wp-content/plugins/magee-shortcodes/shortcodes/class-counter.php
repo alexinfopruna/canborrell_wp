@@ -40,6 +40,7 @@ class Magee_Counter {
 		
 		extract( $defaults );
 		self::$args = $defaults;
+		$status_class = $class;
 		$columnclass='';
 		switch($box_width)
 		{
@@ -89,10 +90,10 @@ class Magee_Counter {
 		$css_style .= '.'.$addclass.' .counter-top-icon i{color:'.$top_icon_color.'}';
 		$html  .= '<style  type="text/css">'.$css_style.'</style>';
 		
-		if( $border == '1' ):
+		if( $border == '1' || $border == 'yes'  ):
 		$html .= '<div class="magee-counter-box '.esc_attr($class).'" id="'.esc_attr($id).'">';
 		else:
-		$html .= '<div class="magee-counter-box " id="'.esc_attr($id).'">';
+		$html .= '<div class="magee-counter-box '.$addclass.' '.$status_class.'" id="'.esc_attr($id).'">';
 		endif;
 		if( $top_icon )
 		    if( stristr($top_icon,'fa-')):

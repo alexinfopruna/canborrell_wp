@@ -218,8 +218,8 @@ class BWGViewGalleries_bwg {
   public function edit($id) {
     global $WD_BWG_UPLOAD_DIR;
     $row = $this->model->get_row_data($id);
-    $option_row = $this->model->get_option_row_data();
-    $page_title = (($id != 0) ? __("Edit gallery ", 'bwg_back'). $row->name : __("Create new gallery", 'bwg_back'));
+    $option_row = WDWLibrary::get_options_row_data();
+    $page_title = (($id != 0) ? __('Edit gallery','bwg_back') . $row->name : __('Create new gallery','bwg_back'));
     $per_page = $this->model->per_page();
     $images_count = $this->model->get_images_count($id);
     ?>
@@ -378,7 +378,7 @@ class BWGViewGalleries_bwg {
             span_edit_recover.setAttribute('class', "edit_thumb");
             div_edit.appendChild(span_edit_recover);
             var a_recover = document.createElement('a');
-            a_recover.setAttribute('onclick', 'if (confirm("<?php echo addslashes(__("Do you want to reset the image?", 'bwg_back')); ?>")) { spider_set_input_value("ajax_task", "recover"); spider_set_input_value("image_current_id", "' + bwg_j + '"); spider_ajax_save("galleries_form");} return false;');
+            a_recover.setAttribute('onclick', 'if (confirm("<?php echo addslashes(__('Do you want to reset the image?', 'bwg_back')); ?>")) { spider_set_input_value("ajax_task", "recover"); spider_set_input_value("image_current_id", "' + bwg_j + '"); spider_ajax_save("galleries_form");} return false;');
             a_recover.innerHTML = "<?php _e('Reset', 'bwg_back'); ?>";
             span_edit_recover.appendChild(a_recover);
           }
@@ -478,12 +478,12 @@ class BWGViewGalleries_bwg {
           tr.appendChild(td_tag);
           var a_tag = document.createElement('a');
           a_tag.setAttribute('class', "button-small wd-btn wd-btn-primary wd-not-image thickbox thickbox-preview");
-          a_tag.setAttribute('title' , "<?php _e("Add tag", 'bwg_back'); ?>");
+          a_tag.setAttribute('title' , "<?php addslashes(_e("Add tag", 'bwg_back')); ?>");
           <?php 
           $query_url = wp_nonce_url( admin_url('admin-ajax.php'), 'addTags', 'bwg_nonce' );
           ?>
           a_tag.setAttribute('href', "<?php echo add_query_arg(array('action' => 'addTags', 'width' => '650', 'height' => '500', 'bwg_items_per_page' => $per_page), $query_url); ?>&image_id=" + bwg_j + "&TB_iframe=1");
-          a_tag.innerHTML = '<?php _e("Add tag", 'bwg_back'); ?>';
+          a_tag.innerHTML = '<?php addslashes(_e("Add tag", 'bwg_back')); ?>';
           td_tag.appendChild(a_tag);
           var div_tag = document.createElement('div');
           div_tag.setAttribute('class', "tags_div");
@@ -529,8 +529,8 @@ class BWGViewGalleries_bwg {
           j_int++;
           bwg_j = 'pr_' + j_int;
         }
-        jQuery("#show_hide_weights").val("<?php _e("Hide order column", 'bwg_back'); ?>");
-        jQuery("#show_hide_weights").attr('title',"<?php _e("Hide order column", 'bwg_back'); ?>");
+        jQuery("#show_hide_weights").val("<?php addslashes(_e("Hide order column", 'bwg_back')); ?>");
+        jQuery("#show_hide_weights").attr('title',"<?php addslashes(_e("Hide order column", 'bwg_back')); ?>");
         spider_show_hide_weights();
       }
     </script>
@@ -697,7 +697,7 @@ class BWGViewGalleries_bwg {
     global $WD_BWG_UPLOAD_DIR;
     $rows_data = $this->model->get_image_rows_data($id);
     $page_nav = $this->model->image_page_nav($id);
-    $option_row = $this->model->get_option_row_data();
+    $option_row = WDWLibrary::get_options_row_data();
     $search_value = ((isset($_POST['search_value'])) ? esc_html(stripslashes($_POST['search_value'])) : '');
     $image_asc_or_desc = ((isset($_POST['image_asc_or_desc'])) ? esc_html(stripslashes($_POST['image_asc_or_desc'])) : ((isset($_COOKIE['bwg_image_asc_or_desc'])) ? esc_html(stripslashes($_COOKIE['bwg_image_asc_or_desc'])) : 'asc'));
     $image_order_by = ((isset($_POST['image_order_by'])) ? esc_html(stripslashes($_POST['image_order_by'])) : ((isset($_COOKIE['bwg_image_order_by'])) ? esc_html(stripslashes($_COOKIE['bwg_image_order_by'])) : 'order'));
@@ -712,6 +712,8 @@ class BWGViewGalleries_bwg {
       'image_set_watermark' => __('Set Watermark', 'bwg_back'),
       'image_get_resize' => __('Resize', 'bwg_back'),
       'resize_image_thumb' => __('Recreate Thumbnail', 'bwg_back'),
+      'rotate_left' => __('Rotate left', 'bwg_back'),
+      'rotate_right' => __('Rotate right', 'bwg_back'),
       'image_recover_all' => __('Reset', 'bwg_back'),
       'image_publish_all' => __('Publish', 'bwg_back'),
       'image_unpublish_all' => __('Unpublish', 'bwg_back'),

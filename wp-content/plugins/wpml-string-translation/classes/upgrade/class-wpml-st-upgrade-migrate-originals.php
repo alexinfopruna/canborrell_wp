@@ -1,6 +1,6 @@
 <?php
 
-class WPML_ST_Upgrade_Migrate_Originals extends WPML_WPDB_And_SP_User {
+class WPML_ST_Upgrade_Migrate_Originals extends WPML_WPDB_And_SP_User implements IWPML_St_Upgrade_Command {
 	
 
 	private $translations = array();
@@ -13,6 +13,10 @@ class WPML_ST_Upgrade_Migrate_Originals extends WPML_WPDB_And_SP_User {
 		foreach( $active_languages as $lang ) {
 			$this->active_languages[] = $lang['code'];
 		}
+	}
+
+	public static function get_command_id() {
+		return __CLASS__;
 	}
 	
 	public function run() {
@@ -80,7 +84,10 @@ class WPML_ST_Upgrade_Migrate_Originals extends WPML_WPDB_And_SP_User {
 
 		return true;
 	}
-	
+
+	public function run_frontend() {}
+
+
 	private function is_migration_required() {
 		$query = "
 					SELECT id

@@ -33,29 +33,35 @@ get_header('home');
 			
             $new_homepage_section = array();
 			for($i=0;$i<$sections_num;$i++){
-			$section = onetone_option('section_order_'.$i);
-			if( is_numeric($section ) )
-			$new_homepage_section[] = $section;
-			else
-			$new_homepage_section[] = $i;
+				
+				$section = onetone_option('section_order_'.$i);
+				
+				if( is_numeric($section ) )
+				  $new_homepage_section[] = $section;
+				else
+				  $new_homepage_section[] = $i;
+			  
 			}
+			
 			$i = 0 ;
 			foreach( $new_homepage_section as $section_part ):
-			$hide_section  = onetone_option( 'section_hide_'.($section_part-1) );
-			
-			if( $hide_section != '1' ){
-			if( $section_part == 1 && $section_1_content == '1'){
-				get_template_part('home-sections/section','slider');
-				}else{
-			//if( $video_background_section == $section_part && !$detect->isMobile() && !$detect->isTablet() )
-			if( $video_background_section == $section_part  )
-			get_template_part('home-sections/section',$video_background_type.'-video');
-			else
-			get_template_part('home-sections/section',$section_part);
-			}
-			
-			}
-			$i++;
+				$hide_section  = onetone_option( 'section_hide_'.($section_part-1) );
+				
+				if( $hide_section != '1' ){
+					
+				  if( $section_part == 1 && $section_1_content == '1'){
+					  get_template_part('home-sections/section','slider');
+					  }else{
+				  //if( $video_background_section == $section_part && !$detect->isMobile() && !$detect->isTablet() )
+				  if( $video_background_section == $section_part  )
+				    get_template_part('home-sections/section',$video_background_type.'-video');
+				  else
+				    get_template_part('home-sections/section',$section_part);
+				  
+				}
+				
+				}
+				$i++;
 			endforeach;
 			?>
             <div class="clear"></div>

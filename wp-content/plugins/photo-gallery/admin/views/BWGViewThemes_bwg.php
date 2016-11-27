@@ -218,6 +218,7 @@ class  BWGViewThemes_bwg {
       'monospace' => 'Monospace',
       'serif' => 'Serif',
     );
+    $google_fonts = WDWLibrary::get_google_fonts();
     $aligns = array(
       'left' => __('Left', 'bwg_back'),
       'center' => __('Center', 'bwg_back'),
@@ -467,15 +468,21 @@ class  BWGViewThemes_bwg {
                 <tr>
                   <td class="spider_label"><label for="thumb_title_font_style"><?php _e("Title font family:", 'bwg_back'); ?> </label></td>
                   <td>
-                    <select name="thumb_title_font_style" id="thumb_title_font_style">
+                    <select name="thumb_title_font_style" id="thumb_title_font_style" class="select_icon_them">
                       <?php
-                      foreach ($font_families as $key => $font_family) {
+                      $is_google_fonts = (in_array(str_replace('+', ' ', $row->thumb_title_font_style), $google_fonts) ) ? true : false;
+                      $thumb_font_families = ($is_google_fonts == true) ? $google_fonts : $font_families;
+                      foreach ($thumb_font_families as $key => $font_family) {
                         ?>
                         <option value="<?php echo $key; ?>" <?php echo (($row->thumb_title_font_style == $key) ? 'selected="selected"' : ''); ?>><?php echo $font_family; ?></option>
                         <?php
                       }
                       ?>
                     </select>
+                    <input type="radio" name="thumb_title_google_fonts" id="thumb_title_google_fonts1" onchange="bwg_change_fonts('thumb_title_font_style', jQuery(this).attr('id'))" value="1" <?php if ($is_google_fonts == true) echo 'checked="checked"'; ?> />
+                    <label for="thumb_title_google_fonts1" id="thumb_title_google_fonts1_lbl"><?php echo __('Google fonts', 'bwg_back'); ?></label>
+                    <input type="radio" name="thumb_title_google_fonts" id="thumb_title_google_fonts0" onchange="bwg_change_fonts('thumb_title_font_style', '')" value="0" <?php if ($is_google_fonts == false) echo 'checked="checked"'; ?> />
+                    <label for="thumb_title_google_fonts0" id="thumb_title_google_fonts0_lbl"><?php echo __('Default', 'bwg_back'); ?></label>
                   </td>
                 </tr>
                 <tr>
@@ -645,14 +652,20 @@ class  BWGViewThemes_bwg {
                 <tr>
                   <td class="spider_label"><label for="masonry_description_font_style"><?php _e("Description font family:", 'bwg_back'); ?> </label></td>
                   <td>
-                    <select name="masonry_description_font_style" id="masonry_description_font_style">
+                    <select name="masonry_description_font_style" id="masonry_description_font_style" class="select_icon_them">
                       <?php
-                      foreach ($font_families as $key => $font_family) {
+                      $is_google_fonts = (in_array(str_replace('+', ' ', $row->masonry_description_font_style), $google_fonts) ) ? true : false;
+                      $masonry_font_families = ($is_google_fonts == true) ? $google_fonts : $font_families;
+                      foreach ($masonry_font_families as $key => $font_family) {
                         ?>
                         <option value="<?php echo $key; ?>" <?php echo (($row->masonry_description_font_style == $key) ? 'selected="selected"' : ''); ?>><?php echo $font_family; ?></option>
                         <?php
                       }
                       ?>
+		      <input type="radio" name="masonry_description_google_fonts" id="masonry_description_google_fonts1" onchange="bwg_change_fonts('masonry_description_font_style', jQuery(this).attr('id'))" value="1" <?php if ($is_google_fonts == true) echo 'checked="checked"'; ?> />
+                    <label for="masonry_description_google_fonts1" id="masonry_description_google_fonts1_lbl"><?php echo __('Google fonts', 'bwg_back'); ?></label>
+                    <input type="radio" name="masonry_description_google_fonts" id="masonry_description_google_fonts0" onchange="bwg_change_fonts('masonry_description_font_style', '')" value="0" <?php if ($is_google_fonts == false) echo 'checked="checked"'; ?> />
+                    <label for="masonry_description_google_fonts0" id="masonry_description_google_fonts0_lbl"><?php echo __('Default', 'bwg_back'); ?></label>
                     </select>
                   </td>
                 </tr>
@@ -966,15 +979,21 @@ class  BWGViewThemes_bwg {
                 <tr>
                   <td class="spider_label"><label for="slideshow_title_font"><?php _e("Title font family:", 'bwg_back'); ?> </label></td>
                   <td>
-                    <select name="slideshow_title_font" id="slideshow_title_font">
+                    <select name="slideshow_title_font" id="slideshow_title_font" class="select_icon_them">
                       <?php
-                      foreach ($font_families as $key => $font_family) {
+                       $is_google_fonts = (in_array(str_replace('+', ' ', $row->slideshow_title_font), $google_fonts) ) ? true : false;
+                       $slideshow_title_font_families = ($is_google_fonts == true) ? $google_fonts : $font_families;
+                      foreach ($slideshow_title_font_families as $key => $font_family) {
                         ?>
                         <option value="<?php echo $key; ?>" <?php echo (($row->slideshow_title_font == $key) ? 'selected="selected"' : ''); ?>><?php echo $font_family; ?></option>
                         <?php
                       }
                       ?>
                     </select>
+                    <input type="radio" name="slideshow_title_google_fonts" id="slideshow_title_google_fonts1" onchange="bwg_change_fonts('slideshow_title_font', jQuery(this).attr('id'))" value="1" <?php if ($is_google_fonts == true) echo 'checked="checked"'; ?> />
+                    <label for="slideshow_title_google_fonts1" id="slideshow_title_google_fonts1_lbl"><?php echo __('Google fonts', 'bwg_back'); ?></label>
+                    <input type="radio" name="slideshow_title_google_fonts" id="slideshow_title_google_fonts0" onchange="bwg_change_fonts('slideshow_title_font', '')" value="0" <?php if ($is_google_fonts == false) echo 'checked="checked"'; ?> />
+                    <label for="slideshow_title_google_fonts0" id="slideshow_title_google_fonts0_lbl"><?php echo __('Default', 'bwg_back'); ?></label>
                   </td>
                 </tr>
                 <tr>
@@ -1019,15 +1038,21 @@ class  BWGViewThemes_bwg {
                 <tr>
                   <td class="spider_label"><label for="slideshow_description_font"><?php _e("Description font family: ", 'bwg_back'); ?></label></td>
                   <td>
-                    <select name="slideshow_description_font" id="slideshow_description_font">
+                    <select name="slideshow_description_font" id="slideshow_description_font" class="select_icon_them">
                       <?php
-                      foreach ($font_families as $key => $font_family) {
+                      $is_google_fonts = (in_array(str_replace('+', ' ', $row->slideshow_description_font), $google_fonts) ) ? true : false;
+                      $slideshow_description_font_families = ($is_google_fonts == true) ? $google_fonts : $font_families;
+                      foreach ($slideshow_description_font_families as $key => $font_family) {
                         ?>
                         <option value="<?php echo $key; ?>" <?php echo (($row->slideshow_description_font == $key) ? 'selected="selected"' : ''); ?>><?php echo $font_family; ?></option>
                         <?php
                       }
                       ?>
                     </select>
+                    <input type="radio" name="slideshow_description_google_fonts" id="slideshow_description_google_fonts1" onchange="bwg_change_fonts('slideshow_description_font', jQuery(this).attr('id'))" value="1" <?php if ($is_google_fonts == true) echo 'checked="checked"'; ?> />
+                    <label for="slideshow_description_google_fonts1" id="slideshow_description_google_fonts1_lbl"><?php echo __('Google fonts', 'bwg_back'); ?></label>
+                    <input type="radio" name="slideshow_description_google_fonts" id="slideshow_description_google_fonts0" onchange="bwg_change_fonts('slideshow_description_font', '')" value="0" <?php if ($is_google_fonts == false) echo 'checked="checked"'; ?> />
+                    <label for="slideshow_description_google_fonts0" id="slideshow_description_google_fonts0_lbl"><?php echo __('Default', 'bwg_back'); ?></label>
                   </td>
                 </tr>
               </tbody>
@@ -1214,15 +1239,21 @@ class  BWGViewThemes_bwg {
                 <tr>
                   <td class="spider_label"><label for="image_browser_img_font_family"><?php _e("Font family:", 'bwg_back'); ?> </label></td>
                   <td>
-                    <select name="image_browser_img_font_family" id="image_browser_img_font_family">
+                    <select name="image_browser_img_font_family" id="image_browser_img_font_family" class="select_icon_them">
                       <?php
-                      foreach ($font_families as $key => $font_family) {
+                      $is_google_fonts = (in_array(str_replace('+', ' ', $row->image_browser_img_font_family), $google_fonts) ) ? true : false;
+                      $image_browser_font_families = ($is_google_fonts == true) ? $google_fonts : $font_families;
+                      foreach ($image_browser_font_families as $key => $font_family) {
                         ?>
                         <option value="<?php echo $key; ?>" <?php echo (($row->image_browser_img_font_family == $key) ? 'selected="selected"' : ''); ?>><?php echo $font_family; ?></option>
                         <?php
                       }
                       ?>
                     </select>
+                    <input type="radio" name="image_browser_img_google_fonts" id="image_browser_img_google_fonts1" onchange="bwg_change_fonts('image_browser_img_font_family', jQuery(this).attr('id'))" value="1" <?php if ($is_google_fonts == true) echo 'checked="checked"'; ?> />
+                    <label for="image_browser_img_google_fonts1" id="image_browser_img_google_fonts1_lbl"><?php echo __('Google fonts', 'bwg_back'); ?></label>
+                    <input type="radio" name="image_browser_img_google_fonts" id="image_browser_img_google_fonts0" onchange="bwg_change_fonts('image_browser_img_font_family', '')" value="0" <?php if ($is_google_fonts == false) echo 'checked="checked"'; ?> />
+                    <label for="image_browser_img_google_fonts0" id="image_browser_img_google_fonts0_lbl"><?php echo __('Default', 'bwg_back'); ?></label>
                   </td>
                 </tr>
                 <tr>
@@ -1447,15 +1478,21 @@ class  BWGViewThemes_bwg {
                 <tr>
                   <td class="spider_label"><label for="album_compact_title_font_style"><?php _e("Title font family:", 'bwg_back'); ?> </label></td>
                   <td>
-                    <select name="album_compact_title_font_style" id="album_compact_title_font_style">
+                    <select name="album_compact_title_font_style" id="album_compact_title_font_style" class="select_icon_them">
                       <?php
-                      foreach ($font_families as $key => $font_family) {
+                      $is_google_fonts = (in_array(str_replace('+', ' ', $row->album_compact_title_font_style), $google_fonts) ) ? true : false;
+                      $album_compact_title_font_families = ($is_google_fonts == true) ? $google_fonts : $font_families;
+                      foreach ($album_compact_title_font_families as $key => $font_family) {
                         ?>
                         <option value="<?php echo $key; ?>" <?php echo (($row->album_compact_title_font_style == $key) ? 'selected="selected"' : ''); ?>><?php echo $font_family; ?></option>
                         <?php
                       }
                       ?>
                     </select>
+                    <input type="radio" name="album_compact_title_google_fonts" id="album_compact_title_google_fonts1" onchange="bwg_change_fonts('album_compact_title_font_style', jQuery(this).attr('id'))" value="1" <?php if ($is_google_fonts == true) echo 'checked="checked"'; ?> />
+                    <label for="album_compact_title_google_fonts1" id="album_compact_title_google_fonts1_lbl"><?php echo __('Google fonts', 'bwg_back'); ?></label>
+                    <input type="radio" name="album_compact_title_google_fonts" id="album_compact_title_google_fonts0" onchange="bwg_change_fonts('album_compact_title_font_style', '')" value="0" <?php if ($is_google_fonts == false) echo 'checked="checked"'; ?> />
+                    <label for="album_compact_title_google_fonts0" id="album_compact_title_google_fonts0_lbl"><?php echo __('Default', 'bwg_back'); ?></label>
                   </td>
                 </tr>
                 <tr>
@@ -1501,15 +1538,21 @@ class  BWGViewThemes_bwg {
                 <tr>
                   <td class="spider_label"><label for="album_compact_back_font_style"><?php _e("Font family:", 'bwg_back'); ?> </label></td>
                   <td>
-                    <select name="album_compact_back_font_style" id="album_compact_back_font_style">
+                    <select name="album_compact_back_font_style" id="album_compact_back_font_style" class="select_icon_them">
                       <?php
-                      foreach ($font_families as $key => $font_family) {
+                      $is_google_fonts = (in_array(str_replace('+', ' ', $row->album_compact_back_font_style), $google_fonts) ) ? true : false;
+                      $album_compact_back_font_families = ($is_google_fonts == true) ? $google_fonts : $font_families;
+                      foreach ($album_compact_back_font_families as $key => $font_family) {
                         ?>
                         <option value="<?php echo $key; ?>" <?php echo (($row->album_compact_back_font_style == $key) ? 'selected="selected"' : ''); ?>><?php echo $font_family; ?></option>
                         <?php
                       }
                       ?>
                     </select>
+                    <input type="radio" name="album_compact_back_google_fonts" id="album_compact_back_google_fonts1" onchange="bwg_change_fonts('album_compact_back_font_style', jQuery(this).attr('id'))" value="1" <?php if ($is_google_fonts == true) echo 'checked="checked"'; ?> />
+                    <label for="album_compact_back_google_fonts1" id="album_compact_back_google_fonts1_lbl"><?php echo __('Google fonts', 'bwg_back'); ?></label>
+                    <input type="radio" name="album_compact_back_google_fonts" id="album_compact_back_google_fonts0" onchange="bwg_change_fonts('album_compact_back_font_style', '')" value="0" <?php if ($is_google_fonts == false) echo 'checked="checked"'; ?> />
+                    <label for="album_compact_back_google_fonts0" id="album_compact_back_google_fonts0_lbl"><?php echo __('Default', 'bwg_back'); ?></label>
                   </td>
                 </tr>
                 <tr>
@@ -1798,15 +1841,21 @@ class  BWGViewThemes_bwg {
                 <tr>
                   <td class="spider_label"><label for="album_extended_back_font_style"><?php _e("Back font family:", 'bwg_back'); ?> </label></td>
                   <td>
-                    <select name="album_extended_back_font_style" id="album_extended_back_font_style">
+                    <select name="album_extended_back_font_style" id="album_extended_back_font_style" class="select_icon_them">
                       <?php
-                      foreach ($font_families as $key => $font_family) {
+                      $is_google_fonts = (in_array(str_replace('+', ' ', $row->album_extended_back_font_style), $google_fonts) ) ? true : false;
+                      $album_extended_back_font_families = ($is_google_fonts == true) ? $google_fonts : $font_families;
+                      foreach ($album_extended_back_font_families as $key => $font_family) {
                         ?>
                         <option value="<?php echo $key; ?>" <?php echo (($row->album_extended_back_font_style == $key) ? 'selected="selected"' : ''); ?>><?php echo $font_family; ?></option>
                         <?php
                       }
                       ?>
                     </select>
+                    <input type="radio" name="album_extended_back_google_fonts" id="album_extended_back_google_fonts1" onchange="bwg_change_fonts('album_extended_back_font_style', jQuery(this).attr('id'))" value="1" <?php if ($is_google_fonts == true) echo 'checked="checked"'; ?> />
+                    <label for="album_extended_back_google_fonts1" id="album_extended_back_google_fonts1_lbl"><?php echo __('Google fonts', 'bwg_back'); ?></label>
+                    <input type="radio" name="album_extended_back_google_fonts" id="album_extended_back_google_fonts0" onchange="bwg_change_fonts('album_extended_back_font_style', '')" value="0" <?php if ($is_google_fonts == false) echo 'checked="checked"'; ?> />
+                    <label for="album_extended_back_google_fonts0" id="album_extended_back_google_fonts0_lbl"><?php echo __('Default', 'bwg_back'); ?></label>
                   </td>
                 </tr>
                 <tr>
@@ -1929,15 +1978,21 @@ class  BWGViewThemes_bwg {
                 <tr>
                   <td class="spider_label"><label for="album_extended_title_font_style"><?php _e("Title font family:", 'bwg_back'); ?> </label></td>
                   <td>
-                    <select name="album_extended_title_font_style" id="album_extended_title_font_style">
+                    <select name="album_extended_title_font_style" id="album_extended_title_font_style" class="select_icon_them">
                       <?php
-                      foreach ($font_families as $key => $font_family) {
+                      $is_google_fonts = (in_array(str_replace('+', ' ', $row->album_extended_title_font_style), $google_fonts) ) ? true : false;
+                      $album_extended_title_font_families = ($is_google_fonts == true) ? $google_fonts : $font_families;
+                      foreach ($album_extended_title_font_families as $key => $font_family) {
                         ?>
                         <option value="<?php echo $key; ?>" <?php echo (($row->album_extended_title_font_style == $key) ? 'selected="selected"' : ''); ?>><?php echo $font_family; ?></option>
                         <?php
                       }
                       ?>
                     </select>
+                    <input type="radio" name="album_extended_title_google_fonts" id="album_extended_title_google_fonts1" onchange="bwg_change_fonts('album_extended_title_font_style', jQuery(this).attr('id'))" value="1" <?php if ($is_google_fonts == true) echo 'checked="checked"'; ?> />
+                    <label for="album_extended_title_google_fonts1" id="album_extended_title_google_fonts1_lbl"><?php echo __('Google fonts', 'bwg_back'); ?></label>
+                    <input type="radio" name="album_extended_title_google_fonts" id="album_extended_title_google_fonts0" onchange="bwg_change_fonts('album_extended_title_font_style', '')" value="0" <?php if ($is_google_fonts == false) echo 'checked="checked"'; ?> />
+                    <label for="album_extended_title_google_fonts0" id="album_extended_title_google_fonts0_lbl"><?php echo __('Default', 'bwg_back'); ?></label>
                   </td>
                 </tr>
                 <tr>
@@ -2002,15 +2057,21 @@ class  BWGViewThemes_bwg {
                 <tr>
                   <td class="spider_label"><label for="album_extended_desc_font_style"><?php _e("Description font family:", 'bwg_back'); ?> </label></td>
                   <td>
-                    <select name="album_extended_desc_font_style" id="album_extended_desc_font_style">
+                    <select name="album_extended_desc_font_style" id="album_extended_desc_font_style" class="select_icon_them">
                       <?php
-                      foreach ($font_families as $key => $font_family) {
+                      $is_google_fonts = (in_array(str_replace('+', ' ', $row->album_extended_desc_font_style), $google_fonts) ) ? true : false;
+                      $album_extended_desc_font_families = ($is_google_fonts == true) ? $google_fonts : $font_families;
+                      foreach ($album_extended_desc_font_families as $key => $font_family) {
                         ?>
                         <option value="<?php echo $key; ?>" <?php echo (($row->album_extended_desc_font_style == $key) ? 'selected="selected"' : ''); ?>><?php echo $font_family; ?></option>
                         <?php
                       }
                       ?>
                     </select>
+                    <input type="radio" name="album_extended_desc_google_fonts" id="album_extended_desc_google_fonts1" onchange="bwg_change_fonts('album_extended_desc_font_style', jQuery(this).attr('id'))" value="1" <?php if ($is_google_fonts == true) echo 'checked="checked"'; ?> />
+                    <label for="album_extended_desc_google_fonts1" id="album_extended_desc_google_fonts1_lbl"><?php echo __('Google fonts', 'bwg_back'); ?></label>
+                    <input type="radio" name="album_extended_desc_google_fonts" id="album_extended_desc_google_fonts0" onchange="bwg_change_fonts('album_extended_desc_font_style', '')" value="0" <?php if ($is_google_fonts == false) echo 'checked="checked"'; ?> />
+                    <label for="album_extended_desc_google_fonts0" id="album_extended_desc_google_fonts0_lbl"><?php echo __('Default', 'bwg_back'); ?></label>
                   </td>
                 </tr>
                 <tr>
@@ -2105,15 +2166,21 @@ class  BWGViewThemes_bwg {
                 <tr>
                   <td class="spider_label"><label for="blog_style_img_font_family"><?php _e("Font family:", 'bwg_back'); ?> </label></td>
                   <td>
-                    <select name="blog_style_img_font_family" id="blog_style_img_font_family">
+                    <select name="blog_style_img_font_family" id="blog_style_img_font_family" class="select_icon_them">
                       <?php
-                      foreach ($font_families as $key => $font_family) {
+                      $is_google_fonts = (in_array(str_replace('+', ' ', $row->blog_style_img_font_family), $google_fonts) ) ? true : false;
+                      $blog_style_img_font_families = ($is_google_fonts == true) ? $google_fonts : $font_families;
+                      foreach ($blog_style_img_font_families as $key => $font_family) {
                         ?>
                         <option value="<?php echo $key; ?>" <?php echo (($row->blog_style_img_font_family == $key) ? 'selected="selected"' : ''); ?>><?php echo $font_family; ?></option>
                         <?php
                       }
                       ?>
                     </select>
+                    <input type="radio" name="blog_style_img_google_fonts" id="blog_style_img_google_fonts1" onchange="bwg_change_fonts('blog_style_img_font_family', jQuery(this).attr('id'))" value="1" <?php if ($is_google_fonts == true) echo 'checked="checked"'; ?> />
+                    <label for="blog_style_img_google_fonts1" id="blog_style_img_google_fonts1_lbl"><?php echo __('Google fonts', 'bwg_back'); ?></label>
+                    <input type="radio" name="blog_style_img_google_fonts" id="blog_style_img_google_fonts0" onchange="bwg_change_fonts('blog_style_img_font_family', '')" value="0" <?php if ($is_google_fonts == false) echo 'checked="checked"'; ?> />
+                    <label for="blog_style_img_google_fonts0" id="blog_style_img_google_fonts0_lbl"><?php echo __('Default', 'bwg_back'); ?></label>
                   </td>
                 </tr>
                 <tr>
@@ -2818,15 +2885,21 @@ class  BWGViewThemes_bwg {
                 <tr>
                   <td class="spider_label"><label for="lightbox_hit_font_style"><?php _e("Hit counter font family:", 'bwg_back'); ?> </label></td>
                   <td>
-                    <select name="lightbox_hit_font_style" id="lightbox_hit_font_style">
+                    <select name="lightbox_hit_font_style" id="lightbox_hit_font_style" class="select_icon_them">
                       <?php
-                      foreach ($font_families as $key => $font_family) {
+                      $is_google_fonts = (in_array(str_replace('+', ' ', $row->lightbox_hit_font_style), $google_fonts) ) ? true : false;
+                      $lightbox_hit_font_families = ($is_google_fonts == true) ? $google_fonts : $font_families;
+                      foreach ($lightbox_hit_font_families as $key => $font_family) {
                         ?>
                         <option value="<?php echo $key; ?>" <?php echo (($row->lightbox_hit_font_style == $key) ? 'selected="selected"' : ''); ?>><?php echo $font_family; ?></option>
                         <?php
                       }
                       ?>
                     </select>
+                    <input type="radio" name="lightbox_hit_google_fonts" id="lightbox_hit_google_fonts1" onchange="bwg_change_fonts('lightbox_hit_font_style', jQuery(this).attr('id'))" value="1" <?php if ($is_google_fonts == true) echo 'checked="checked"'; ?> />
+                    <label for="lightbox_hit_google_fonts1" id="lightbox_hit_google_fonts1_lbl"><?php echo __('Google fonts', 'bwg_back'); ?></label>
+                    <input type="radio" name="lightbox_hit_google_fonts" id="lightbox_hit_google_fonts0" onchange="bwg_change_fonts('lightbox_hit_font_style', '')" value="0" <?php if ($is_google_fonts == false) echo 'checked="checked"'; ?> />
+                    <label for="lightbox_hit_google_fonts0" id="lightbox_hit_google_fonts0_lbl"><?php echo __('Default', 'bwg_back'); ?></label>
                   </td>
                 </tr>
                 <tr>
@@ -2948,15 +3021,21 @@ class  BWGViewThemes_bwg {
                 <tr>
                   <td class="spider_label"><label for="lightbox_title_font_style"><?php _e("Title font family:", 'bwg_back'); ?> </label></td>
                   <td>
-                    <select name="lightbox_title_font_style" id="lightbox_title_font_style">
+                    <select name="lightbox_title_font_style" id="lightbox_title_font_style" class="select_icon_them">
                       <?php
-                      foreach ($font_families as $key => $font_family) {
+                      $is_google_fonts = (in_array(str_replace('+', ' ', $row->lightbox_title_font_style), $google_fonts) ) ? true : false;
+                      $lightbox_title_font_families = ($is_google_fonts == true) ? $google_fonts : $font_families;
+                      foreach ($lightbox_title_font_families as $key => $font_family) {
                         ?>
                         <option value="<?php echo $key; ?>" <?php echo (($row->lightbox_title_font_style == $key) ? 'selected="selected"' : ''); ?>><?php echo $font_family; ?></option>
                         <?php
                       }
                       ?>
                     </select>
+                    <input type="radio" name="lightbox_title_google_fonts" id="lightbox_title_google_fonts1" onchange="bwg_change_fonts('lightbox_title_font_style', jQuery(this).attr('id'))" value="1" <?php if ($is_google_fonts == true) echo 'checked="checked"'; ?> />
+                    <label for="lightbox_title_google_fonts1" id="lightbox_title_google_fonts1_lbl"><?php echo __('Google fonts', 'bwg_back'); ?></label>
+                    <input type="radio" name="lightbox_title_google_fonts" id="lightbox_title_google_fonts0" onchange="bwg_change_fonts('lightbox_title_font_style', '')" value="0" <?php if ($is_google_fonts == false) echo 'checked="checked"'; ?> />
+                    <label for="lightbox_title_google_fonts0" id="lightbox_title_google_fonts0_lbl"><?php echo __('Default', 'bwg_back'); ?></label>
                   </td>
                 </tr>
                 <tr>
@@ -2989,15 +3068,21 @@ class  BWGViewThemes_bwg {
                 <tr>
                   <td class="spider_label"><label for="lightbox_description_font_style"><?php _e("Description font family:", 'bwg_back'); ?> </label></td>
                   <td>
-                    <select name="lightbox_description_font_style" id="lightbox_description_font_style">
+                    <select name="lightbox_description_font_style" id="lightbox_description_font_style" class="select_icon_them">
                       <?php
-                      foreach ($font_families as $key => $font_family) {
+                      $is_google_fonts = (in_array(str_replace('+', ' ', $row->lightbox_description_font_style), $google_fonts) ) ? true : false;
+                      $lightbox_description_font_families = ($is_google_fonts == true) ? $google_fonts : $font_families;
+                      foreach ($lightbox_description_font_families as $key => $font_family) {
                         ?>
                         <option value="<?php echo $key; ?>" <?php echo (($row->lightbox_description_font_style == $key) ? 'selected="selected"' : ''); ?>><?php echo $font_family; ?></option>
                         <?php
                       }
                       ?>
                     </select>
+                    <input type="radio" name="lightbox_description_google_fonts" id="lightbox_description_google_fonts1" onchange="bwg_change_fonts('lightbox_description_font_style', jQuery(this).attr('id'))" value="1" <?php if ($is_google_fonts == true) echo 'checked="checked"'; ?> />
+                    <label for="lightbox_description_google_fonts1" id="lightbox_description_google_fonts1_lbl"><?php echo __('Google fonts', 'bwg_back'); ?></label>
+                    <input type="radio" name="lightbox_description_google_fonts" id="lightbox_description_google_fonts0" onchange="bwg_change_fonts('lightbox_description_font_style', '')" value="0" <?php if ($is_google_fonts == false) echo 'checked="checked"'; ?> />
+                    <label for="lightbox_description_google_fonts0" id="lightbox_description_google_fonts0_lbl"><?php echo __('Default', 'bwg_back'); ?></label>
                   </td>
                 </tr>
                 <tr>
@@ -3057,15 +3142,21 @@ class  BWGViewThemes_bwg {
                 <tr id="lightbox_comment15">
                   <td class="spider_label"><label for="lightbox_comment_font_style"><?php _e("Comments font family:", 'bwg_back'); ?> </label></td>
                   <td>
-                    <select name="lightbox_comment_font_style" id="lightbox_comment_font_style">
+                    <select name="lightbox_comment_font_style" id="lightbox_comment_font_style" class="select_icon_them">
                       <?php
-                      foreach ($font_families as $key => $font_family) {
+                      $is_google_fonts = (in_array(str_replace('+', ' ', $row->lightbox_comment_font_style), $google_fonts) ) ? true : false;
+                      $lightbox_comment_font_families = ($is_google_fonts == true) ? $google_fonts : $font_families;
+                      foreach ($lightbox_comment_font_families as $key => $font_family) {
                         ?>
                         <option value="<?php echo $key; ?>" <?php echo (($row->lightbox_comment_font_style == $key) ? 'selected="selected"' : ''); ?>><?php echo $font_family; ?></option>
                         <?php
                       }
                       ?>
                     </select>
+                    <input type="radio" name="lightbox_comment_google_fonts" id="lightbox_comment_google_fonts1" onchange="bwg_change_fonts('lightbox_comment_font_style', jQuery(this).attr('id'))" value="1" <?php if ($is_google_fonts == true) echo 'checked="checked"'; ?> />
+                    <label for="lightbox_comment_google_fonts1" id="lightbox_comment_google_fonts1_lbl"><?php echo __('Google fonts', 'bwg_back'); ?></label>
+                    <input type="radio" name="lightbox_comment_google_fonts" id="lightbox_comment_google_fonts0" onchange="bwg_change_fonts('lightbox_comment_font_style', '')" value="0" <?php if ($is_google_fonts == false) echo 'checked="checked"'; ?> />
+                    <label for="lightbox_comment_google_fonts0" id="lightbox_comment_google_fonts0_lbl"><?php echo __('Default', 'bwg_back'); ?></label>
                   </td>
                 </tr>
                 <tr id="lightbox_comment10">
@@ -3228,15 +3319,21 @@ class  BWGViewThemes_bwg {
                 <tr>
                   <td class="spider_label"><label for="page_nav_font_style"><?php _e("Font family:", 'bwg_back'); ?> </label></td>
                   <td>
-                    <select name="page_nav_font_style" id="page_nav_font_style">
+                    <select name="page_nav_font_style" id="page_nav_font_style" class="select_icon_them">
                       <?php
-                      foreach ($font_families as $key => $font_family) {
+                      $is_google_fonts = (in_array(str_replace('+', ' ', $row->page_nav_font_style), $google_fonts) ) ? true : false;
+                      $page_nav_font_families = ($is_google_fonts == true) ? $google_fonts : $font_families;
+                      foreach ($page_nav_font_families as $key => $font_family) {
                         ?>
                         <option value="<?php echo $key; ?>" <?php echo (($row->page_nav_font_style == $key) ? 'selected="selected"' : ''); ?>><?php echo $font_family; ?></option>
                         <?php
                       }
                       ?>
                     </select>
+                    <input type="radio" name="page_nav_google_fonts" id="page_nav_google_fonts1" onchange="bwg_change_fonts('page_nav_font_style', jQuery(this).attr('id'))" value="1" <?php if ($is_google_fonts == true) echo 'checked="checked"'; ?> />
+                    <label for="page_nav_google_fonts1" id="page_nav_google_fonts1_lbl"><?php echo __('Google fonts', 'bwg_back'); ?></label>
+                    <input type="radio" name="page_nav_google_fonts" id="page_nav_google_fonts0" onchange="bwg_change_fonts('page_nav_font_style', '')" value="0" <?php if ($is_google_fonts == false) echo 'checked="checked"'; ?> />
+                    <label for="page_nav_google_fonts0" id="page_nav_google_fonts0_lbl"><?php echo __('Default', 'bwg_back'); ?></label>
                   </td>
                 </tr>
                 <tr>

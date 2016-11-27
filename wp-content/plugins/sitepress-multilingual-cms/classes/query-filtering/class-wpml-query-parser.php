@@ -225,10 +225,11 @@ class WPML_Query_Parser extends WPML_Full_Translation_API {
 				$conditions[ $key ] = $condition;
 
 			} else if ( is_scalar( $condition['terms'] ) ) {
-				$field = $condition['field'];
+				$field = isset( $condition['field'] ) ? $condition['field'] : 'id';
 				$term  = $this->sitepress->get_wp_api()->get_term_by( $field, $condition['terms'], $condition['taxonomy'] );
 
 				if ( is_object( $term ) ) {
+					$field = $field == 'id' ? 'term_id' : $field;
 					$conditions[ $key ]['terms'] = isset( $term->{$field} ) ? $term->{$field} : null;
 				}
 			}
@@ -249,10 +250,12 @@ class WPML_Query_Parser extends WPML_Full_Translation_API {
 			return $q;
 		}
 
+		$q = apply_filters( 'wpml_pre_parse_query', $q );
+
 		list( $q, $redir_pid ) = $this->maybe_adjust_name_var( $q );
 		/** @var WP_Query $q */
 		if ( $q->is_main_query() && (bool) $redir_pid === true ) {
-			if ( (bool) ( $redir_target = $this->is_redirected( $redir_pid ) ) ) {
+			if ( (bool) ( $redir_target = $this->is_redirected( $redir_pid, $q ) ) ) {
 				$this->sitepress->get_wp_api()->wp_safe_redirect( $redir_target, 301 );
 			}
 		}
@@ -307,6 +310,8 @@ class WPML_Query_Parser extends WPML_Full_Translation_API {
 
 			$q = $this->adjust_taxonomy_query( $q );
 		}
+
+		$q = apply_filters( 'wpml_post_parse_query', $q );
 
 		return $q;
 	}
@@ -410,20 +415,23 @@ class WPML_Query_Parser extends WPML_Full_Translation_API {
 
 	/**
 	 * @param int $post_id
+	 * @param WP_Query $q
 	 *
 	 * @return false|string redirect target url if redirect is needed, false otherwise
 	 */
-	private function is_redirected( $post_id ) {
+	private function is_redirected( $post_id, $q ) {
 		$request_uri = explode( '?', $_SERVER['REQUEST_URI'] );
 		$redirect    = false;
 		$permalink   = $this->sitepress->get_wp_api()->get_permalink( $post_id );
 		if ( ! $this->is_permalink_part_of_request( $permalink, $request_uri[0] ) ) {
 			if ( isset( $request_uri[1] ) ) {
-				$permalink .= '?' . $request_uri[1];
+				$lang = substr( $request_uri[1], strpos( $request_uri[1], '=' ) + 1 );
+				$permalink = add_query_arg( array( 'lang' => $lang ), $permalink );
 			}
 			$redirect = $permalink;
 		}
-		return $redirect;
+
+		return apply_filters( 'wpml_is_redirected', $redirect, $post_id, $q );
 	}
 
 	private function is_permalink_part_of_request( $permalink, $request_uri ) {

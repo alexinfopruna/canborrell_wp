@@ -1,3 +1,85 @@
+# 3.5.3.1
+
+## Fixes
+* [wpmlcore-3392] Fixed performance issue with SSO when language per domain is configured. 
+
+# 3.5.3
+
+## Fixes
+* [wpmlcore-3366] Update language switcher color picker validation to support rgb and transparent option
+
+# 3.5.2
+
+## Fixes
+* [wpmlcore-3244] Fixed issue with re-initialization of WPML in Network install after resetting settings of main sub-site.
+* [wpmlcore-2663] Fixed issue with browser-redirection when using Languages in Directories.
+* [wpmlcore-2682] Fixed issue with browser redirection and languages with variations.
+* [wpmlcore-3009] Fixed duplicated lang query param when redirection to child page is made.
+* [wpmlcore-3310] Post meta won't return an empty value after automatic post meta synchronization is run.
+* [wpmlcore-3334] Fixed issues with translation from second language are loaded when MO files are used (introduced in WP 4.6)
+* [wpmltm-1532] Ensure the the correct source language is used when sending translation jobs to translation proxy.
+* Other minor bug fixes.
+
+## API
+
+### Filters
+* [wpmlcore-3160] Added `wpml_is_translated_taxonomy`
+
+### Actions
+* [wpmlcore-3316] Added `wpml_user_switch_language`
+
+## Performances
+* [wpmlcore-3227] Reduced the number of queries on the posts listing pages
+* [wpmlcore-2692] Added caching for Twig templates
+
+## Features
+* [wpmlcore-3320] Users can now login across domains when WPML is configured to use language per domain using "window.postMessage"
+* [wpmlcore-1101] Added a spinner and disabled buttons in the WPML installation wizard, to improve usability
+
+## Usability
+* [wpmlcore-3006] Improved usability of the admin notice "Term hierarchy synchronization".
+
+# 3.5.1.1
+
+# Fixes
+* [wpmlcore-3303] Removed updating of ST DB Cache tables: moved to ST plugin, to avoid dependency issues
+
+# 3.5.1
+
+# Fixes
+* [wpmlcore-3280] Fixed `Fatal error: Uncaught exception 'InvalidArgumentException' with message 'Argument ID must be numeric and greater than 0` when filtering permalinks
+* [wpmlcore-3272] Fixed `Fatal error: Declaration of WPML_Post_Element::get_type() must be compatible with that of WPML_Translation_Element::get_type()` for PHP 5.2
+* [wpmlst-881] Removed leading backslash `\` to avoid warnings in PHP <5.3
+* [wpmlcore-3278] Fixed fatal error appearing during upgrade: `WordPress database error: specified key was too long; max key length is 1000`
+* [wpmlcore-3273] Fixed uncaught exception in cases where `domain_name_context_md5` column didn't exist in `icl_strings` table
+* [wpmlcore-3291] Improved query validation used for caching strings
+* [wpmlst-888] Improved caching of strings per page, update of db structure.
+
+# 3.5.0
+
+## Fixes
+* [wpmlcore-2590] Fix conversion to absolute link when link is to a post in another language
+* [wpmlcore-2937] Fixed multisite so that links to posts on sub-sites are correct
+* [wpmlcore-2952] Canonical for non translated post types must always be the "default language" URL
+* [wpmlcore-2631] Fixed XML-RPC API calls to set the language of a newly created post (e.g. `metaWeblog.newPost`, `wp.newPost`, and `wp.newPage`).
+* [wpmlcore-3081] Duplicated content will use the same canonical for all all languages
+* [wpmlsl-28] Fix sticky links so that the correct link is used when the same slug is used in different languages
+* [wpmlsl-32] Fix sticky links so that they convert correctly when the current post has duplicates
+* [wpmlcore-1761] Fix notice when no field is specified in tax_query when getting posts.
+* Other minor bug fixes
+
+## Performances
+* [wpmlcore-3172] Reduce SQL queries when checking if site uses ICanLocalize translation services previous to WPML 3.2
+* [wpmlcore-3197] Removed the WPML Dashboard Widget to avoid unnecessary calls.
+
+# 3.4.1.1
+ 
+## Fixes
+* [wpmltm-1487] Reduced automatic calls to ICanLocalize server to one per hour
+
+## Compatibility
+* [wpmlcore-3143] Add filters for the Events Calendar and Events Pro plugins to use for recurring events 
+
 # 3.4.1
 
 ## Fixes

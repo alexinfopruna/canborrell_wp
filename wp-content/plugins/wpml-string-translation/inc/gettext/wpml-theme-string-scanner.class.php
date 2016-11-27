@@ -36,7 +36,10 @@ class WPML_Theme_String_Scanner extends WPML_String_Scanner {
 		}
 		$this->copy_old_translations( $theme_localization_domains, 'theme' );
 		$this->cleanup_wrong_contexts( );
-		
+
+		if ( $theme_info && ! is_wp_error( $theme_info ) ) {
+			$this->remove_notice( $theme_info->get( 'Name' ) );
+		}
 
 		if ( ! $no_echo ) {
 			$this->scan_response();

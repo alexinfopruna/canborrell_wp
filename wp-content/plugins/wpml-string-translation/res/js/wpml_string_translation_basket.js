@@ -1,6 +1,11 @@
+/*jshint devel:true */
+/*global jQuery */
+
 var WPML_String_Translation = WPML_String_Translation || {};
 
 WPML_String_Translation.TranslationBasket = function () {
+	"use strict";
+
 	var self         = this;
 	var private_data = {};
 
@@ -8,7 +13,7 @@ WPML_String_Translation.TranslationBasket = function () {
 		jQuery(document).ready(function() {
 			private_data.button = jQuery('#icl_send_strings');
 		});
-	}
+	};
 	
 	self.maybe_enable_button = function () {
 		if ( self.is_not_active_lang_selected() ) {
@@ -26,7 +31,7 @@ WPML_String_Translation.TranslationBasket = function () {
 		}
 		
 		return !private_data.button.prop('disabled');
-	}
+	};
 	
 	self.basket_has_strings_in_different_lang = function () {
 		var different = false;
@@ -36,16 +41,16 @@ WPML_String_Translation.TranslationBasket = function () {
 		if (basket_lang) {
 			var checked = jQuery('.icl_st_row_cb:checked:first');
 			var lang = checked.data('language');
-			different = basket_lang != lang;
+			different = basket_lang !== lang;
 		}
 		
 		return different;
 		
-	}
+	};
 	
 	self.is_not_active_lang_selected = function () {
 		return jQuery('.js-lang-not-active:checked').length;
-	}
+	};
 
 	self.is_more_than_on_lang_selected = function () {
 		var checked = jQuery('.icl_st_row_cb:checked');
@@ -53,11 +58,11 @@ WPML_String_Translation.TranslationBasket = function () {
 		
 		if (checked.length > 1) {
 			
-			var langs = Array();
+			var langs = [];
 			
 			jQuery(checked).each( function () {
 				var lang = jQuery(this).data('language');
-				if ( langs.indexOf(lang) == -1) {
+				if ( langs.indexOf(lang) === -1) {
 					langs.push(lang);
 				}
 			});
@@ -68,7 +73,7 @@ WPML_String_Translation.TranslationBasket = function () {
 		}
 		
 		return !OK;
-	}
+	};
 	
 	self.show_target_languages = function () {
 		if (!self.is_more_than_on_lang_selected()) {
@@ -76,21 +81,21 @@ WPML_String_Translation.TranslationBasket = function () {
 			var lang = checked.data('language');
 			
 			jQuery('#icl_tm_languages').find('input').each(function() {
-				if (lang == jQuery(this).data('language')) {
+				if (lang === jQuery(this).data('language')) {
 					jQuery(this).parent().hide();
 				} else {
 					jQuery(this).parent().show();
 				}
-			})
+			});
 			
-			jQuery('input[name="icl-tr-from"').val(lang);
+			jQuery('input[name="icl-tr-from"]').val(lang);
 			
 		}
-	}
+	};
 	
 	self.clear_message = function () {
 		jQuery('.js-translation-message').html('').hide();
-	}
+	};
 	
 	init();
 	

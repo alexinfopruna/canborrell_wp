@@ -37,7 +37,7 @@
     line-height: 21px;
 }
 
-.iconpicker i{
+.magee_shortcodes_container .iconpicker i{
     padding:5px;
     cursor:pointer;
 }
@@ -76,21 +76,23 @@ a.magee_shortcode_item i {
 
 #TB_ajaxWindowTitle {
     font-size: 16px;
-    line-height: 40px;
+    line-height: 50px;
 }
 
 #TB_title {
-    height: 40px;
+    height: 50px;
     padding-left: 10px;
 }
 
 .tb-close-icon {
-    height: 40px;
+    height: 50px;
     width: 50px;
+    background-color: #0085BA;
+    color: #fff!important;
 }
 
 .tb-close-icon:before {
-    line-height: 40px;
+    line-height: 50px;
 }
 
 .shortcode-name {
@@ -165,13 +167,13 @@ input#magee_icon {
     display:none;
 }
 
-.iconpicker {
+.magee_shortcodes_container .iconpicker {
     border: 1px solid #ccc;
     border-width: 1px 0 0 1px;
     display:none;
 }
 
-.iconpicker .fa {
+.magee_shortcodes_container .iconpicker .fa {
     width: 15px;
     line-height: 15px;
     height: 15px;
@@ -180,7 +182,7 @@ input#magee_icon {
     border-width: 0 1px 1px 0;
 }
 
-.iconpicker .fa.selected {
+.magee_shortcodes_container .iconpicker .fa.selected {
     background-color: #F9E4DC;
     transform: scale(1.2);
 }
@@ -539,7 +541,7 @@ max-width:100%;
     background-color: #fff;
 }
 
-.iconpicker .fa {
+.magee_shortcodes_container .iconpicker .fa {
     width: 15px;
     line-height: 15px;
     border-width: 0;
@@ -549,7 +551,7 @@ max-width:100%;
     transition: .1s;
 }
 
-.iconpicker i:hover {
+.magee_shortcodes_container .iconpicker i:hover {
     -webkit-transform: scale(1.8);
     transform: scale(1.8);
 }
@@ -574,5 +576,5 @@ max-width:100%;
     color: #B5A96C;
     padding: 10px;
     border-left: 3px solid #A59649;
-	margin-bottom:10px;
+    margin-bottom:10px;
 }

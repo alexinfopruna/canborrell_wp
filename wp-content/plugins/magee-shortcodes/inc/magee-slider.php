@@ -47,6 +47,7 @@
 	if(isset($custom["magee_custom_slider"][0]))
 	$slider = json_decode( $custom["magee_custom_slider"][0],true );
 
+    
   ?>
 <script>
   jQuery(document).ready(function() {
@@ -116,9 +117,9 @@
 		<li id="listItem_<?php echo $i ?>"  class="ui-state-default" style="margin-bottom:10px;">
 			<div class="widget-content option-item" style="margin:5px; padding:5px;">
 				<div class="slider-img"><?php echo wp_get_attachment_image( $slide['id'] , 'thumbnail' );  ?></div>
-				<label for="magee_custom_slider[<?php echo $i ?>][title]"><span><?php _e("Slide Title",'magee-shortcodes');?> :</span><input id="magee_custom_slider[<?php echo $i ?>][title]" name="magee_custom_slider[<?php echo $i ?>][title]" value="<?php  echo stripslashes( $slide['title'] )  ?>" type="text" /></label>
+				<label for="magee_custom_slider[<?php echo $i ?>][title]"><span><?php _e("Slide Title",'magee-shortcodes');?> :</span><input id="magee_custom_slider[<?php echo $i ?>][title]" name="magee_custom_slider[<?php echo $i ?>][title]" value="<?php  echo esc_textarea(stripslashes( base64_decode($slide['title']) ));  ?>" type="text" /></label>
 				
-				<label for="magee_custom_slider[<?php echo $i ?>][caption]"><span style="float:left" ><?php _e("Slide Caption",'magee-shortcodes');?> :</span><textarea name="magee_custom_slider[<?php echo $i ?>][caption]" id="magee_custom_slider[<?php echo $i ?>][caption]"><?php echo stripslashes($slide['caption']) ; ?></textarea></label>
+				<label for="magee_custom_slider[<?php echo $i ?>][caption]"><span style="float:left" ><?php _e("Slide Caption",'magee-shortcodes');?> :</span><textarea name="magee_custom_slider[<?php echo $i ?>][caption]" id="magee_custom_slider[<?php echo $i ?>][caption]"><?php echo esc_textarea(stripslashes(base64_decode($slide['caption']))) ; ?></textarea></label>
 				<input id="magee_custom_slider[<?php echo $i ?>][id]" name="magee_custom_slider[<?php echo $i ?>][id]" value="<?php  echo $slide['id']  ?>" type="hidden" />
                 <a class="sort-item"><?php _e("Sort",'magee-shortcodes');?></a>
 				<a class="del-item"><?php _e("Delete",'magee-shortcodes');?></a>
@@ -140,6 +141,19 @@
 	  global $post;
 	  if(isset($post->ID) && isset($_POST['magee-custom-slider'])){
 		if( isset($_POST['magee_custom_slider']) && $_POST['magee_custom_slider'] != "" ){
+			foreach($_POST['magee_custom_slider'] as $pkey=>$attrs){
+				foreach($attrs as $key => $val){
+					switch($key){
+						case 'title':
+						$_POST['magee_custom_slider'][$pkey]['title'] = base64_encode($val);
+						break;
+						case 'caption':
+						$_POST['magee_custom_slider'][$pkey]['caption'] = base64_encode($val);
+						break;
+						}
+					
+					}
+				}
 			$magee_custom_slider = json_encode($_POST['magee_custom_slider']);
 			update_post_meta($post->ID, 'magee_custom_slider' , $magee_custom_slider);		
 		}

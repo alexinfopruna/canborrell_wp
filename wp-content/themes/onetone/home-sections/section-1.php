@@ -16,6 +16,7 @@
  $btn_target  = onetone_option( 'section_btn_target_'.$i );
  $icons       = onetone_option( 'section_icons_'.$i );
  $color       = onetone_option( 'section_color_'.$i );
+ $section_icon        = onetone_option( 'section_icon_'.$i );
  
   if( !isset($section_content) || $section_content=="" ) 
   $section_content = onetone_option( 'sction_content_'.$i );
@@ -49,6 +50,9 @@
        <div class="<?php echo $onetone_animated; ?>" data-animationduration="0.9" data-animationtype="bounceInDown" data-imageanimation="no" id="">
         <div style="text-align:center;color:<?php echo $color; ?>;">
           <div style="font-family: 'Lustria',serif;">
+          <?php if( $section_icon !='' ):?>
+           <img class="section-banner-icon" src="<?php echo esc_url($section_icon); ?>" alt="" />
+          <?php endif; ?>
             <h1 class="magee-heading section-title heading-border" id=""><span class="heading-inner"><?php echo do_shortcode($section_title);?></span></h1>
           </div>
           <p class="home-section-content" style="margin-top: 50px;"><?php echo do_shortcode($section_subtitle);?></p>

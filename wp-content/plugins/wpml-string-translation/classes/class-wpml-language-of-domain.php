@@ -1,11 +1,21 @@
 <?php
 
-class WPML_Language_Of_Domain extends WPML_SP_User {
+class WPML_Language_Of_Domain {
+	/**
+	 * @var SitePress
+	 */
+	private $sitepress;
 
+	/**
+	 * @var array
+	 */
 	private $language_of_domain = array();
 
-	public function __construct( &$sitepress ) {
-		parent::__construct( $sitepress );
+	/**
+	 * @param SitePress $sitepress
+	 */
+	public function __construct( SitePress $sitepress ) {
+		$this->sitepress = $sitepress;
 		
 		$string_settings = $this->sitepress->get_setting( 'st' );
 		

@@ -41,7 +41,7 @@ class WPML_TM_Blog_Translators extends WPML_SP_User {
 		                                 ->user_can( $user_id, 'translate' );
 		// check if user is administrator and return true if he is
 		if ( $admin_override && $this->sitepress->get_wp_api()
-		                                        ->user_can( $user_id, 'activate_plugins' )
+		                                        ->user_can( $user_id, 'manage_options' )
 		) {
 			$is_translator = true;
 		} else {

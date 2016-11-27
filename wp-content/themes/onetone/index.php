@@ -105,10 +105,10 @@ $aside          = 'both-aside';
 			if( $section_part == 1 && $section_1_content == '1'){
 				get_template_part('home-sections/section','slider');
 				}else{
-			if( $video_background_section >0 && $video_background_section == $section_part && !$detect->isMobile() && !$detect->isTablet() )
-			get_template_part('home-sections/section',$video_background_type.'-video');
+			if( $video_background_section >0 && $video_background_section == $section_part  )
+			    get_template_part('home-sections/section',$video_background_type.'-video');
 			else
-			get_template_part('home-sections/section',$section_part);
+			    get_template_part('home-sections/section',$section_part);
 			}
 			
 			}

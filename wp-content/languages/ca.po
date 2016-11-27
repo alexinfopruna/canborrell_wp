@@ -1,5 +1,5 @@
-# Translation of 4.6.x in Catalan
-# This file is distributed under the same license as the 4.6.x package.
+# Translation of WordPress - 4.6.x in Catalan
+# This file is distributed under the same license as the WordPress - 4.6.x package.
 msgid ""
 msgstr ""
 "PO-Revision-Date: 2016-08-11 20:14:58+0000\n"
@@ -7,8 +7,9 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: GlotPress/2.1.0-alpha\n"
-"Project-Id-Version: 4.6.x\n"
+"X-Generator: GlotPress/2.3.0-alpha\n"
+"Language: ca\n"
+"Project-Id-Version: WordPress - 4.6.x\n"
 
 #. translators: Translate this to the correct language tag for your locale, see
 #. https://www.w3.org/International/articles/language-tags/ for reference. Do
@@ -5361,7 +5362,7 @@ msgstr "Precàrrega "
 msgid "Destination directory for file streaming does not exist or is not writable."
 msgstr "El directori de destí per al flux de fitxers no existeix o no té permisos d'escriptura."
 
-#: wp-includes/class-http.php:535
+#: wp-includes/class-http.php:533
 msgid "There are no HTTP transports available which can complete the requested request."
 msgstr "No hi ha transports HTTP disponibles que puguin completar la sol·licitud."
 
@@ -7763,7 +7764,7 @@ msgstr "Comentari duplicat: sembla que ja s'havia dit això abans!"
 msgid "Empty filename"
 msgstr "Nom de fitxer buit"
 
-#: wp-includes/class-http.php:966 wp-includes/class-wp-http-curl.php:232
+#: wp-includes/class-http.php:964 wp-includes/class-wp-http-curl.php:232
 #: wp-includes/class-wp-http-curl.php:271
 msgid "Too many redirects."
 msgstr "Massa reencaminaments."

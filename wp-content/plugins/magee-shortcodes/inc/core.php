@@ -12,7 +12,7 @@ class Magee_Core{
 	
 	public function __construct( $args = array() ) {
 		global  $magee_shortcodes,$magee_sliders ;
-		
+		require_once( MAGEE_SHORTCODES_DIR_PATH. 'inc/google-fonts.php' );
 		add_action( 'plugins_loaded', array( $this, 'init' ) );
 		//add a button to the content editor, next to the media button
 		//this button will show a popup that contains inline content
@@ -80,9 +80,11 @@ function frontend_scripts() {
 	wp_enqueue_style('bootstrap',  plugins_url( 'assets/bootstrap/css/bootstrap.min.css',MAGEE_SHORTCODES_PATH ), '', '3.3.4', false );
 	wp_enqueue_style('prettyPhoto',  plugins_url( 'assets/css/prettyPhoto.css',MAGEE_SHORTCODES_PATH ), '', '', false );
 	
+	wp_enqueue_style('classycountdown',   plugins_url(  'assets/jquery-countdown/jquery.classycountdown.css',MAGEE_SHORTCODES_PATH ), '', '1.1.0', false );
+	
 	wp_enqueue_style('twentytwenty',  plugins_url( 'assets/css/twentytwenty.css',MAGEE_SHORTCODES_PATH ), '', '', false );
 	wp_enqueue_style('audioplayer',   plugins_url(  'assets/css/audioplayer.css',MAGEE_SHORTCODES_PATH ), '', '', false );
-	
+	wp_enqueue_style('weather-icons',   plugins_url(  'assets/weathericons/css/weather-icons.min.css',MAGEE_SHORTCODES_PATH ), '', '', false );
 	wp_enqueue_style('animate',  plugins_url( 'assets/css/animate.css',MAGEE_SHORTCODES_PATH ), '', '', false );
 	wp_enqueue_style('magee-shortcode',  plugins_url( 'assets/css/shortcode.css',MAGEE_SHORTCODES_PATH ), '', MAGEE_SHORTCODES_VER, false );
 	wp_enqueue_script( 'bootstrap',  plugins_url( 'assets/bootstrap/js/bootstrap.min.js',MAGEE_SHORTCODES_PATH ), array( 'jquery'), '3.3.4', false );
@@ -91,6 +93,10 @@ function frontend_scripts() {
 	wp_enqueue_script( 'easy-pie-chart',  plugins_url( 'assets/jquery-easy-pie-chart/jquery.easypiechart.min.js',MAGEE_SHORTCODES_PATH ), array( 'jquery'), '2.1.7', false );
 	wp_enqueue_script( 'jquery.prettyPhoto',  plugins_url( 'assets/js/jquery.prettyPhoto.js',MAGEE_SHORTCODES_PATH ), array( 'jquery'), '3.1.6', false );
 	
+	wp_enqueue_script( 'jquery.knob',  plugins_url( 'assets/jquery-countdown/jquery.knob.js',MAGEE_SHORTCODES_PATH ), array( 'jquery'), '1.2.11', false );
+	wp_enqueue_script( 'jquery.throttle',  plugins_url( 'assets/jquery-countdown/jquery.throttle.js',MAGEE_SHORTCODES_PATH ), array( 'jquery'), '', false );
+	wp_enqueue_script( 'jquery.classycountdown',  plugins_url( 'assets/jquery-countdown/jquery.classycountdown.min.js',MAGEE_SHORTCODES_PATH ), array( 'jquery'), '1.1.0', false );
+	
 	wp_enqueue_script( 'jquery.event.move',  plugins_url( 'assets/js/jquery.event.move.js',MAGEE_SHORTCODES_PATH ), array( 'jquery'), '1.3.6', false );
 	wp_enqueue_script( 'jquery.twentytwenty',  plugins_url( 'assets/js/jquery.twentytwenty.js',MAGEE_SHORTCODES_PATH ), array( 'jquery'), '', false );
 	wp_enqueue_script( 'jquery-audioplayer',   plugins_url(  'assets/js/audioplayer.js',MAGEE_SHORTCODES_PATH ), array( 'jquery'), '', false );
@@ -98,6 +104,7 @@ function frontend_scripts() {
 	wp_enqueue_script( 'moment',  plugins_url(  'assets/js/moment.js',MAGEE_SHORTCODES_PATH ), array( 'jquery'),'2.12.0', false );
 		
 	wp_enqueue_script( 'magee-main',  plugins_url( 'assets/js/magee-shortcodes.js',MAGEE_SHORTCODES_PATH ), array( 'jquery'),MAGEE_SHORTCODES_VER, true );
+	wp_enqueue_script( 'magee-modal',  plugins_url(  'assets/js/magee-modal.js',MAGEE_SHORTCODES_PATH ),array( 'jquery'),MAGEE_SHORTCODES_VER, true );
 	//wp_enqueue_script( 'magee-main',  plugins_url( 'assets/js/main.js',MAGEE_SHORTCODES_PATH ), array( 'jquery'),MAGEE_SHORTCODES_VER, true );
 	
 	}
@@ -207,7 +214,42 @@ function init_shortcodes() {
 			return strtr( $content, $replace_tags_from_to );
 		}
 		
+ /**
+ * Convert Hex Code to RGB
+ * @param  string $hex Color Hex Code
+ * @return array       RGB values
+ */
+ 
+function hex2rgb( $hex ) {
+		if ( strpos( $hex,'rgb' ) !== FALSE ) {
 
+			$rgb_part = strstr( $hex, '(' );
+			$rgb_part = trim($rgb_part, '(' );
+			$rgb_part = rtrim($rgb_part, ')' );
+			$rgb_part = explode( ',', $rgb_part );
+
+			$rgb = array($rgb_part[0], $rgb_part[1], $rgb_part[2], $rgb_part[3]);
+
+		} elseif( $hex == 'transparent' ) {
+			$rgb = array( '255', '255', '255', '0' );
+		} else {
+
+			$hex = str_replace( '#', '', $hex );
+
+			if( strlen( $hex ) == 3 ) {
+				$r = hexdec( substr( $hex, 0, 1 ) . substr( $hex, 0, 1 ) );
+				$g = hexdec( substr( $hex, 1, 1 ) . substr( $hex, 1, 1 ) );
+				$b = hexdec( substr( $hex, 2, 1 ) . substr( $hex, 2, 1 ) );
+			} else {
+				$r = hexdec( substr( $hex, 0, 2 ) );
+				$g = hexdec( substr( $hex, 2, 2 ) );
+				$b = hexdec( substr( $hex, 4, 2 ) );
+			}
+			$rgb = array( $r, $g, $b );
+		}
+
+		return $rgb; // returns an array with the rgb values
+	}
 		
   public static function unrecognize_shortcodes($content){  
 			$pre  = "/<pre(.*?)>(.*?)<\/pre>/";  
@@ -509,6 +551,29 @@ function get_sidebars() {
 						$this->append_output( $output );
 
 						break;
+						
+					case 'more_select' :
+
+						// prepare
+						$output .= $row_start;
+						$output .= '<div class="magee-form-select-field">';
+						$output .= '<select name="' . $pkey . '" id="' . $pkey . '" class="magee-form-select magee-input" size="10">' . "\n";
+						
+
+						foreach( $param['options'] as $value => $option )
+						{
+							$selected = (isset($param['std']) && $param['std'] == $value) ? 'selected="selected"' : '';
+							$output .= '<option value="' . $value . '"' . $selected . '>' . $option . '</option>' . "\n";
+						}
+
+						$output .= '</select>' . "\n";
+						$output .= '</div>';
+						$output .= $row_end;
+
+						// append
+						$this->append_output( $output );
+
+						break;	
 
 					case 'multiple_select' :
 
@@ -1133,13 +1198,15 @@ function say($all){
         die();	
 	}
 function js(){
-    $script = "<link rel='stylesheet' id='font-awesome-css' href=".plugins_url( 'assets/font-awesome/css/font-awesome.css',MAGEE_SHORTCODES_PATH )." type='text/css' media='' />";
-	$script .= "<link rel='stylesheet' id='bootstrap-css' href=".plugins_url( 'assets/bootstrap/css/bootstrap.min.css',MAGEE_SHORTCODES_PATH )." type='text/css' media='' />";
-	$script .= "<link rel='stylesheet' id='prettyPhoto-css' href=".plugins_url( 'assets/css/prettyPhoto.css',MAGEE_SHORTCODES_PATH )." type='text/css' media='' />";
-	$script .= "<link rel='stylesheet' id='twentytwenty-css' href=".plugins_url( 'assets/css/twentytwenty.css',MAGEE_SHORTCODES_PATH )." type='text/css' media='' />";
-	$script .= "<link rel='stylesheet' id='animate-css' href=".plugins_url( 'assets/css/animate.css',MAGEE_SHORTCODES_PATH )." type='text/css' media='' />";
-	$script .= "<link rel='stylesheet' id='magee-shortcode-css' href=".plugins_url( 'assets/css/shortcode.css',MAGEE_SHORTCODES_PATH )." type='text/css' media='' />";
-	$script .= "<link rel='stylesheet' id='audioplayer-css' href=".plugins_url( 'assets/css/audioplayer.css',MAGEE_SHORTCODES_PATH )." type='text/css' media='' />";
+    $script = "<link rel='stylesheet' id='font-awesome-css' href=".plugins_url( 'assets/font-awesome/css/font-awesome.css',MAGEE_SHORTCODES_PATH )." type='text/css' media='all' />";
+	$script .= "<link rel='stylesheet' id='bootstrap-css' href=".plugins_url( 'assets/bootstrap/css/bootstrap.min.css',MAGEE_SHORTCODES_PATH )." type='text/css' media='all' />";
+	$script .= "<link rel='stylesheet' id='prettyPhoto-css' href=".plugins_url( 'assets/css/prettyPhoto.css',MAGEE_SHORTCODES_PATH )." type='text/css' media='all' />";
+	$script .= "<link rel='stylesheet' id='twentytwenty-css' href=".plugins_url( 'assets/css/twentytwenty.css',MAGEE_SHORTCODES_PATH )." type='text/css' media='all' />";
+	$script .= "<link rel='stylesheet' id='animate-css' href=".plugins_url( 'assets/css/animate.css',MAGEE_SHORTCODES_PATH )." type='text/css' media='all' />";
+	$script .= "<link rel='stylesheet' id='magee-shortcode-css' href=".plugins_url( 'assets/css/shortcode.css',MAGEE_SHORTCODES_PATH )." type='text/css' media='all' />";
+	$script .= "<link rel='stylesheet' id='audioplayer-css' href=".plugins_url( 'assets/css/audioplayer.css',MAGEE_SHORTCODES_PATH )." type='text/css' media='all' />";
+	$script .= "<link rel='stylesheet' id='weather-icons' href=".plugins_url( 'assets/weathericons/css/weather-icons.min.css',MAGEE_SHORTCODES_PATH )." type='text/css' media='all' />";
+	$script .= "<link rel='stylesheet' id='classycountdown' href=".plugins_url( 'assets/jquery-countdown/jquery.classycountdown.css',MAGEE_SHORTCODES_PATH )." type='text/css' media='all' />";
     $script .= "<script type='text/javascript' src=".plugins_url( 'assets/js/jquery.twentytwenty.js',MAGEE_SHORTCODES_PATH )."></script>";
 	$script .= "<script type='text/javascript' src=".plugins_url(  'assets/js/audioplayer.js',MAGEE_SHORTCODES_PATH )."></script>";
 	$script .= "<script type='text/javascript' src=".plugins_url( 'assets/bootstrap/js/bootstrap.min.js',MAGEE_SHORTCODES_PATH )."></script>";
@@ -1151,6 +1218,10 @@ function js(){
 	$script .= "<script type='text/javascript' src=".plugins_url( 'assets/js/magee-shortcodes.js',MAGEE_SHORTCODES_PATH )."></script>";
 	$script .= "<script type='text/javascript' src=".plugins_url( 'assets/js/chart.min.js',MAGEE_SHORTCODES_PATH )."></script>";
 	$script .= "<script type='text/javascript' src=".plugins_url( 'assets/js/moment.js',MAGEE_SHORTCODES_PATH )."></script>";
+	$script .= "<script type='text/javascript' src=".plugins_url( 'assets/jquery-countdown/jquery.knob.js',MAGEE_SHORTCODES_PATH )."></script>";
+	$script .= "<script type='text/javascript' src=".plugins_url('assets/jquery-countdown/jquery.throttle.js',MAGEE_SHORTCODES_PATH )."></script>";
+	$script .= "<script type='text/javascript' src=".plugins_url('assets/jquery-countdown/jquery.classycountdown.min.js',MAGEE_SHORTCODES_PATH )."></script>";
+	$script .= "<script type='text/javascript' src=".plugins_url('assets/js/magee-modal.js',MAGEE_SHORTCODES_PATH )."></script>";
 	$script .= "<script type='text/javascript' src='https://f.vimeocdn.com/js/froogaloop2.min.js'></script>";
     echo $script;
     die();
@@ -1215,6 +1286,34 @@ function posted_on( $echo = false ) {
 	return $return;
 
 }
+/**
+ * Returns a select list of Google fonts
+ * Feel free to edit this, update the fallbacks, etc.
+ */
+ 
+function magee_countdowns_get_google_fonts() {
+    // Google Font Defaults
+	
+	global $google_fonts_json;
+	
+	$googleFontArray = array();
+
+   $fontArray = json_decode($google_fonts_json, true);
+   
+   foreach($fontArray['items'] as $index => $value){
+	   
+   $_family = strtolower( str_replace(' ','_',$value['family']) );
+   $googleFontArray[$_family]['family'] = $value['family'];
+   $googleFontArray[$_family]['variants'] = $value['variants'];
+   $googleFontArray[$_family]['subsets'] = $value['subsets'];
+ 
+   $category = '';
+   if( isset($value['category']) ) $category = ', '.$value['category'];
+   $googleFontArray['magee_of_family'][$value['family'].$category] = $value['family'];
+   
+   }
+   	    return $googleFontArray;
+	} 
 
 }
 	

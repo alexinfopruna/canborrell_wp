@@ -38,8 +38,12 @@
   $object_id = $wp_query->get_queried_object_id() ;
   
   $overlay = '';
-  if( ($header_overlay == 'yes'|| $header_overlay == '1') && (is_front_page() || ( is_home() && $object_id==0 )) )
-  $overlay = 'overlay';
+  if( ($header_overlay == 'yes'|| $header_overlay == '1') && (is_front_page() || ( is_home() && $object_id==0 )) ){
+    $overlay      = 'overlay';
+	$overlay_logo = onetone_option('overlay_logo');
+	$logo         = ( $overlay_logo == '' ) ? $logo : $overlay_logo;
+  
+  }
   
   
   //sticky

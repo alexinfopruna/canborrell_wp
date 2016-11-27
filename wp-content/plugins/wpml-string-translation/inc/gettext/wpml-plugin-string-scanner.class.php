@@ -82,6 +82,13 @@ class WPML_Plugin_String_Scanner extends WPML_String_Scanner {
 		}
 		$this->add_scan_stat_summary();
 
+		if ( $this->current_plugin_file ) {
+			$plugin_data = get_plugin_data( $this->current_plugin_file );
+			if ( $plugin_data && ! is_wp_error( $plugin_data ) ) {
+				$this->remove_notice( $plugin_data['Name'] );
+			}
+		}
+
 		if ( ! $no_echo ) {
 			$this->scan_response();
 		}

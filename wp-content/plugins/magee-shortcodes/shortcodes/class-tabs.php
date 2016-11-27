@@ -87,29 +87,7 @@ class Magee_Tabs {
 		$html= $styles.'<div class="magee-tab-box '.$class.'" role="tabpanel" data-example-id="togglable-tabs id='.$id.'">
                <ul id="myTab1" class="list-inline '.$txtsty1.'" role="tablist">'.$this->item_tital.'
                </ul><div id="myTabContent" class="tab-content '.$tab_content_class.'">'.$items_content.'</div></div>';
-		$html .= '<script>
-		jQuery(function($) {
-	      if($("#magee-sc-form-preview").length>0){
-		     if($("#magee-sc-form-preview").contents().find(".magee-tab-box>ul>li").length>0){
-				 num = $("#magee-sc-form-preview").contents().find(".magee-tab-box>ul>li").length;
-				 for($i=0;$i<num;$i++){
-					 $("#magee-sc-form-preview").contents().find(".magee-tab-box>ul>li").eq($i).on("click",function(e){
-					     e.preventDefault();	  
-						 if($(this).attr("class") == ""){
-						 $(this).addClass("active").siblings().attr("class",""); 
-						 $(this).find("a").attr("aria-expanded","true");
-						 $(this).siblings().find("a").attr("aria-expanded","false");
-						 $(this).parents(".magee-tab-box").find(".tab-pane").eq($(this).index()).addClass("active in").siblings().removeClass("active in");
-						 }
-					 });
-				 }
-			 
-			 }
-		  
-		  
-		  }
-		});		
-		</script>';		   		
+		
 		return $html;
 	}
 	
@@ -135,7 +113,7 @@ class Magee_Tabs {
 		$tabid = uniqid('tab-');
 		
 		$txtstyle='';
-		$txtbl = ' falas';
+		$txtbl = ' false';
 		$txtat = '' ;
 		if($this->num == 1)
 		{

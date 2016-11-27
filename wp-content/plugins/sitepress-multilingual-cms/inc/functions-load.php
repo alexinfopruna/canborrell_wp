@@ -92,20 +92,23 @@ function wpml_load_request_handler( $is_admin, $active_language_codes, $default_
 	}
 
 	$wpml_cookie = new WPML_Cookie();
+	$wp_api      = new WPML_WP_API();
+
 	if ( $is_admin === true ) {
 		$wpml_request_handler = new WPML_Backend_Request(
 			$wpml_url_converter,
 			$active_language_codes,
-			$default_language, $wpml_cookie );
+			$default_language, $wpml_cookie,
+			$wp_api );
 	} else {
-		global $pagenow;
-
 		$wpml_request_handler = new WPML_Frontend_Request(
 			$wpml_url_converter,
 			$active_language_codes,
 			$default_language, $wpml_cookie,
-			$pagenow );
+			$wp_api );
 	}
+
+	add_action( 'wpml_before_init', array( $wpml_request_handler, 'detect_user_switch_language' ) );
 
 	return $wpml_request_handler;
 }
@@ -226,12 +229,16 @@ function maybe_load_translated_tax_screen() {
 function wpml_reload_active_languages_setting( $override = false ) {
 	global $wpdb, $sitepress_settings;
 
-	if ( (bool) $sitepress_settings === true
+	if ( true === (bool) $sitepress_settings
 	     && ( $override || wpml_get_setting_filter( false, 'setup_complete' ) )
 	) {
-		$active_languages                       = $wpdb->get_col( "	SELECT code
+		if ( $wpdb->query( "SHOW TABLES LIKE '{$wpdb->prefix}icl_languages'") ) {
+			$active_languages                       = $wpdb->get_col( "	SELECT code
 																	FROM {$wpdb->prefix}icl_languages
 																	WHERE active = 1" );
+		} else {
+			$active_languages = array();
+		}
 		$sitepress_settings['active_languages'] = $active_languages;
 		icl_set_setting( 'active_languages', $active_languages, true );
 	} else {

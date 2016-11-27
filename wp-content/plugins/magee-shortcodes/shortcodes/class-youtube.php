@@ -66,9 +66,7 @@ class Magee_Youtube {
 		    $mute = '0';
 		 endif;
 		 $out = '';
-		 
-//		 $aaa = parse_url($link='https://vimeo.com/channels/staffpicks/153773597');
-//		 print_r($aaa);
+
 				$sid = substr($link,32,11);
 				if( $width == '100%' || $height == '100%' && $width == '' || $height == ''):
 				$out .= "<div id=\"youtube\" class=\"youtube-video " .$position . "\"><iframe id=\"player_".$sid."\" class=\"".$class."\" src=\"//www.youtube.com/embed/" . $sid . "?rel=0&controls=".$controls."&loop=".$loop."&playlist=".$sid."&autoplay=".$autoplay."&enablejsapi=".$mute."\" frameborder=\"0\" allowfullscreen></iframe>";

@@ -45,13 +45,15 @@
 } 
 
 .ecp-wrap {
-	width: 60%;
+	width: 98%;
 	float: left;
     margin: 20px 20px 20px 0 !important;
     border: 2px solid #c7e6eb !important;
 	background-color: #fff;
 	box-sizing: border-box;
 	border-radius: 5px;
+	display: block;
+	position: relative;
 }
 
 .ecp-option-title {
@@ -70,8 +72,8 @@
 
 .ecp-wrap .nav-tab {
     border-bottom: none;
-    padding: 6px 10px;
-    font-size: 20px;
+    padding: 0px 25px;
+    font-size: 18px;
     line-height: 36px;
     background: #c7e6eb;
     color: #555;
@@ -128,5 +130,5 @@
 }
 
 .ecp-ads .ads-txt {
-    font-size: 18px  !important;
+    font-size: 16px  !important;
 }

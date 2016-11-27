@@ -159,7 +159,7 @@ class WPML_Installation extends WPML_WPDB_And_SP_User {
 		icl_save_settings();
 		wp_cache_flush();
 		$this->refresh_active_lang_cache( $initial_language_code );
-		add_filter( 'locale', array( $this->sitepress, 'locale' ), 10, 1 );
+		add_filter( 'locale', array( $this->sitepress, 'locale_filter' ), 10, 1 );
 
 		if ( $this->sitepress->is_rtl( $initial_language_code ) ) {
 			$GLOBALS['text_direction'] = 'rtl';

@@ -2,42 +2,43 @@
 /**
  * A unique identifier is defined to store the options in the database and reference them from the theme.
  */
-if( !function_exists('optionsframework_option_name') ):
-function optionsframework_option_name() {
-
-	$themename = get_option( 'stylesheet' );
-	$themename = preg_replace("/\W/", "_", strtolower($themename) );
-
-	if( is_child_theme() ){	
-		$themename = str_replace("_child","",$themename ) ;
-		}
-	$themename_lan = $themename;
-	
-	if( defined('ICL_LANGUAGE_CODE') && ICL_LANGUAGE_CODE != 'en' )
-	$themename_lan = $themename.'_'.ICL_LANGUAGE_CODE;
-	
-	if(function_exists('pll_current_language')){
-	$default_lan = pll_default_language('slug');
-	$current_lan = pll_current_language('slug');
-	if($current_lan !='')
-	$themename_lan = $themename.'_'.$current_lan;
-	}
-	return $themename_lan;
-}
-endif;
-
-global $social_icons;
-$social_icons = array(
-			array('title'=>'Facebook','icon' => 'facebook', 'link'=>'#'),
-			array ('title'=>'Twitter','icon' => 'twitter', 'link'=>'#'), 
-			array('title'=>'LinkedIn','icon' => 'linkedin', 'link'=>'#'),
-			array  ('title'=>'YouTube','icon' => 'youtube', 'link'=>'#'),
-			array('title'=>'Skype','icon' => 'skype', 'link'=>'#'),
-			array ('title'=>'Pinterest','icon' => 'pinterest', 'link'=>'#'),
-			array('title'=>'Google+','icon' => 'google-plus', 'link'=>'#'),
-			array('title'=>'Email','icon' => 'envelope', 'link'=>'#'),
-			array ('title'=>'RSS','icon' => 'rss', 'link'=>'#')
-        );
+  if( !function_exists('optionsframework_option_name') ):
+  function optionsframework_option_name() {
+  
+	  $themename = get_option( 'stylesheet' );
+	  $themename = preg_replace("/\W/", "_", strtolower($themename) );
+  
+	  if( is_child_theme() ){	
+		  $themename = str_replace("_child","",$themename ) ;
+		  }
+	  $themename_lan = $themename;
+	  
+	  if( defined('ICL_LANGUAGE_CODE') && ICL_LANGUAGE_CODE != 'en' )
+	      $themename_lan = $themename.'_'.ICL_LANGUAGE_CODE;
+	  
+	  if(function_exists('pll_current_language')){
+		  $default_lan = pll_default_language('slug');
+		  $current_lan = pll_current_language('slug');
+		  
+		  if($current_lan !='')
+		    $themename_lan = $themename.'_'.$current_lan;
+		  }
+	  return $themename_lan;
+  }
+  endif;
+  
+  global $social_icons;
+  $social_icons = array(
+	  array('title'=>'Facebook','icon' => 'facebook', 'link'=>'#'),
+	  array ('title'=>'Twitter','icon' => 'twitter', 'link'=>'#'), 
+	  array('title'=>'LinkedIn','icon' => 'linkedin', 'link'=>'#'),
+	  array  ('title'=>'YouTube','icon' => 'youtube', 'link'=>'#'),
+	  array('title'=>'Skype','icon' => 'skype', 'link'=>'#'),
+	  array ('title'=>'Pinterest','icon' => 'pinterest', 'link'=>'#'),
+	  array('title'=>'Google+','icon' => 'google-plus', 'link'=>'#'),
+	  array('title'=>'Email','icon' => 'envelope', 'link'=>'#'),
+	  array ('title'=>'RSS','icon' => 'rss', 'link'=>'#')
+  );
 
 
 
@@ -49,10 +50,10 @@ $social_icons = array(
 
 if( !function_exists('optionsframework_options') ):
 function optionsframework_options() {
-     global $social_icons,$sidebars,$options_saved,$onetone_home_sections;
+     global $social_icons,$sidebars,$onetone_home_sections,$onetone_options_saved;
 	 
-	$os_fonts        = onetone_options_typography_get_os_fonts();
-    $os_fonts        = array_merge(array('' => __( '-- Default --', 'onetone' ) ), $os_fonts);
+	$os_fonts           = onetone_options_typography_get_os_fonts();
+    $os_fonts           = array_merge(array('' => __( '-- Default --', 'onetone' ) ), $os_fonts);
 	$font_color         = array('color' =>  '');
 	$section_font_color = array('color' => '');
  
@@ -99,20 +100,21 @@ function optionsframework_options() {
           
             '1'   => __( 'Yes', 'onetone' ),
             '0' => __( 'No', 'onetone' )
- 
         );
+	
     $choices_reverse =  array( 
           
            'no'=> __( 'No', 'onetone' ),
             'yes' => __( 'Yes', 'onetone' )
-         
         );
+	
 	$align =  array( 
           '' => __( 'Default', 'onetone' ),
           'left' => __( 'left', 'onetone' ),
           'right' => __( 'right', 'onetone' ),
            'center'  => __( 'center', 'onetone' )         
         );
+	
 	$repeat = array( 
 			
 			'repeat' => __( 'repeat', 'onetone' ),
@@ -123,9 +125,9 @@ function optionsframework_options() {
 		  );
 	
 	$target = array(
-				  '_blank' => __( 'Blank', 'onetone' ),
-				  '_self' => __( 'Self', 'onetone' )
-				  );
+			'_blank' => __( 'Blank', 'onetone' ),
+			'_self' => __( 'Self', 'onetone' )
+			);
 	
 	$position =  array( 
 			
@@ -143,8 +145,8 @@ function optionsframework_options() {
   
     $opacity             =  array_combine(range(0.1,1,0.1), range(0.1,1,0.1));
     $font_size           =  array_combine(range(1,100,1), range(1,100,1));
-	$section_title       = array("POWERFUL ONE PAGE THEME","","","GALLERY","OUR TEAM","ABOUT","TESTIMONIALS","","CONTACT","","","","","");
-	$section_color = array("#ffffff","","","","","#ffffff","#ffffff","","");
+	$section_title       = array("POWERFUL ONE PAGE THEME","","","GALLERY","OUR TEAM","ABOUT","","","CONTACT","","","","","");
+	$section_color       = array("#ffffff","#555555","#555555","#555555","#555555","#666666","#ffffff","#555555","#555555");
 	$section_subtitle    = array(
 								 "BASED ON BOOTSTRAP FRAMEWORK AND SHORTCODES, QUICK SET AND EASY BUILD,
 SHINES ONE PAGE SMALL BUSINESS WEBSITE.",
@@ -152,19 +154,22 @@ SHINES ONE PAGE SMALL BUSINESS WEBSITE.",
 								 "",
 								 "Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere c.<br/>Etiam ut dui eu nisi lobortis rhoncus ac quis nunc.",
 								 "Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere c.<br/>Etiam ut dui eu nisi lobortis rhoncus ac quis nunc.",
-								 "Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere c.<br/>Etiam ut dui eu nisi lobortis rhoncus ac quis nunc.","Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere c.<br/>Etiam ut dui eu nisi lobortis rhoncus ac quis nunc.","","Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere c.<br/>Etiam ut dui eu nisi lobortis rhoncus ac quis nunc.");
+								 "Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere c.<br/>Etiam ut dui eu nisi lobortis rhoncus ac quis nunc.",
+								 "",
+								 "",
+								 "Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere c.<br/>Etiam ut dui eu nisi lobortis rhoncus ac quis nunc.");
 	
 	
 	
 	$section_menu        = array("Home","","Services","Gallery","Team","About","Testimonials","","Contact");
 	$section_slug        = array('home','','services','gallery','team','about','testimonials','','contact');
-	$section_padding     = array('','30px 0','50px 0','50px 0','50px 0','50px 0','10px 0 50px','50px 0','50px 0');
+	$section_padding     = array('','30px 0','50px 0','50px 0','50px 0','50px 0','50px 0 30px','50px 0','50px 0');
 	$text_align          = array('center','left','center','center','center','left','center','left','center');
 	
-	if( $options_saved )
-	$content_model = '1';
+	if( $onetone_options_saved )
+	  $content_model = '1';
 	else
-	$content_model = '0';
+	  $content_model = '0';
 	
 	$section_1_content   = onetone_option( 'section_1_content');	
     $section_1_content   = $section_1_content=='slider'?1:$section_1_content;
@@ -177,18 +182,21 @@ SHINES ONE PAGE SMALL BUSINESS WEBSITE.",
 		'repeat' => 'repeat',
 		'position' => 'top left',
 		'attachment'=>'scroll' ),
+		 
 		 array(
 		'color' => '#eeeeee',
 		'image' => '',
 		'repeat' => 'repeat',
 		'position' => 'top left',
 		'attachment'=>'scroll' ),
+		 
 		 array(
 		'color' => '#ffffff',
 		'image' => '',
 		'repeat' => 'repeat',
 		'position' => 'top left',
 		'attachment'=>'scroll' ),
+		 
 		 array(
 		'color' => '#eeeeee',
 		'image' => '',
@@ -202,18 +210,21 @@ SHINES ONE PAGE SMALL BUSINESS WEBSITE.",
 		'repeat' => 'repeat',
 		'position' => 'top left',
 		'attachment'=>'scroll' ),
+		 
 		 array(
 		'color' => '',
-		'image' => esc_url('https://www.mageewp.com/onetone/wp-content/uploads/sites/17/2015/11/banner_large.jpg'),
+		'image' => esc_url('https://demo.mageewp.com/wootest/wp-content/uploads/sites/31/2016/11/Image_02.png'),
 		'repeat' => 'repeat',
-		'position' => 'top left',
-		'attachment'=>'scroll' ),
+		'position' => 'center center',
+		'attachment'=>'fixed' ),
+		 
 		 array(
-		'color' => '#eda869',
-		'image' => esc_url('https://www.mageewp.com/onetone/wp-content/uploads/sites/17/2015/11/123.jpg'),
+		'color' => '#37cadd',
+		'image' => '',
 		'repeat' => 'no-repeat',
 		'position' => 'bottom center',
 		'attachment'=>'scroll' ),
+		 
 		 array(
 		'color' => '#ffffff',
 		'image' => '',
@@ -221,16 +232,14 @@ SHINES ONE PAGE SMALL BUSINESS WEBSITE.",
 		'position' => 'top left',
 		'attachment'=>'scroll' ),
 		 
-		  array(
+		array(
 		'color' => '',
-		'image' => esc_url('https://www.mageewp.com/onetone/wp-content/uploads/sites/17/2015/11/last4.jpg'),
+		'image' => esc_url('https://demo.mageewp.com/wootest/wp-content/uploads/sites/31/2016/11/16110810_1.jpg'),
 		'repeat' => 'repeat',
 		'position' => 'top left',
 		'attachment'=>'scroll' )
-		 
-		 
-		 
 			);
+	
 	$section_css_class = array("section-banner","","","","","","","","");
 	
 	
@@ -240,7 +249,7 @@ SHINES ONE PAGE SMALL BUSINESS WEBSITE.",
 	  array('size'  => '48px','face'  => '','style' => 'normal','color' => '#666666' ),
 	  array('size'  => '36px','face'  => '','style' => 'bold','color' => '#666666' ),
 	  array('size'  => '36px','face'  => '','style' => 'bold','color' => '#666666' ),
-	  array('size'  => '36px','face'  => '','style' => 'bold','color' => '#ffffff' ),
+	  array('size'  => '36px','face'  => '','style' => 'bold','color' => '#666666' ),
 	  array('size'  => '36px','face'  => '','style' => 'bold','color' => '#ffffff' ),
 	  array('size'  => '36px','face'  => '','style' => 'bold','color' => '#666666' ),
 	  array('size'  => '36px','face'  => '','style' => 'bold','color' => '#666666' ),
@@ -253,7 +262,7 @@ SHINES ONE PAGE SMALL BUSINESS WEBSITE.",
 	  array('size'  => '14px','face'  => '','style' => 'normal','color' => '#666666' ),
 	  array('size'  => '14px','face'  => '','style' => 'normal','color' => '#666666' ),
 	  array('size'  => '14px','face'  => '','style' => 'normal','color' => '#666666' ),
-	  array('size'  => '14px','face'  => '','style' => 'normal','color' => '#ffffff' ),
+	  array('size'  => '14px','face'  => '','style' => 'normal','color' => '#666666' ),
 	  array('size'  => '14px','face'  => '','style' => 'normal','color' => '#ffffff' ),
 	  array('size'  => '14px','face'  => '','style' => 'normal','color' => '#666666' ),
 	  array('size'  => '14px','face'  => '','style' => 'normal','color' => '#666666' ),
@@ -263,37 +272,37 @@ SHINES ONE PAGE SMALL BUSINESS WEBSITE.",
 	
 		
 	 $home_sections = array(
-							   1 => __('Section 1 - Banner', 'onetone' ),
-							   2 => __('Section 2 - Slogan', 'onetone' ),
-							   3 => __('Section 3 - Service', 'onetone' ),
-							   4 => __('Section 4 - Gallery', 'onetone' ),
-							   5 => __('Section 5 - Team', 'onetone' ),
-							   6 => __('Section 6 - About', 'onetone' ),
-							   7 => __('Section 7 - Custom', 'onetone' ),
-							   8 => __('Section 8 - Testimonial', 'onetone' ),
-							   9 => __('Section 9 - Contact', 'onetone' ),
-							   10 => sprintf(__('Section %s', 'onetone'),10),
-							   11 => sprintf(__('Section %s', 'onetone'),11),
-							   12 => sprintf(__('Section %s', 'onetone'),12),
-							   13 => sprintf(__('Section %s', 'onetone'),13),
-							   14 => sprintf(__('Section %s', 'onetone'),14),
-							   15 => sprintf(__('Section %s', 'onetone'),15),
-							   );
-	$onetone_home_sections = $home_sections;
+	   1 => __('Section 1 - Banner', 'onetone' ),
+	   2 => __('Section 2 - Slogan', 'onetone' ),
+	   3 => __('Section 3 - Service', 'onetone' ),
+	   4 => __('Section 4 - Gallery', 'onetone' ),
+	   5 => __('Section 5 - Team', 'onetone' ),
+	   6 => __('Section 6 - About', 'onetone' ),
+	   7 => __('Section 7 - Counter', 'onetone' ),
+	   8 => __('Section 8 - Testimonial', 'onetone' ),
+	   9 => __('Section 9 - Contact', 'onetone' ),
+	   10 => sprintf(__('Section %s', 'onetone'),10),
+	   11 => sprintf(__('Section %s', 'onetone'),11),
+	   12 => sprintf(__('Section %s', 'onetone'),12),
+	   13 => sprintf(__('Section %s', 'onetone'),13),
+	   14 => sprintf(__('Section %s', 'onetone'),14),
+	   15 => sprintf(__('Section %s', 'onetone'),15),
+	   );
 	 
-    $section_num = count( $home_sections );
+	$onetone_home_sections = $home_sections;
+    $section_num           = count( $home_sections );
 	
 	$options = array();
    
 	
-	////HOME PAGE
+	    //HOME PAGE
 		$options[] = array(
 		'icon' => 'fa-home',
 		'name' => __('Home Page', 'onetone'),
 		'type' => 'heading');
 		
 		//HOME PAGE SECTION
-		$header_overlay   = onetone_option( 'header_overlay' ,0);
+		$header_overlay   = onetone_option( 'header_overlay' ,1);
 	    $header_overlay   = $header_overlay == 'yes'?1:$header_overlay;
 		$options[] = array(
         'id'          => 'header_overlay',
@@ -306,14 +315,7 @@ SHINES ONE PAGE SMALL BUSINESS WEBSITE.",
 		'options'     => $choices_reverse
       );
 		
-	 /*  $options[] = array(
-		'name' => __('Number of Sections in Homepage', 'onetone'),
-		'desc' => __('Insert the number of sections here. You need to click the following "save" button to refresh this page so your change would be applied.', 'onetone'),
-		'id' => 'section_num',
-		'std' => $section_num,
-		'type' => 'text');*/
-	   
-	   
+	 	   
 	   $options[] = array('name' => '','id' => 'youtube_video_group','type' => 'start_group','class'=>'group_close'); 
 	   $options[] =   	 array(
         'id'          => 'youtube_video_titled',
@@ -385,6 +387,7 @@ SHINES ONE PAGE SMALL BUSINESS WEBSITE.",
 		foreach( $home_sections as $k=>$v ){
 			$video_background_section[$k] = $v;
 			}
+			
 		$options[] = array('name' => __('Video Background Section', 'onetone'),'std' => '1','id' => 'video_background_section',
 		'type' => 'select', 'desc' => __('Choose a section to set the video as background for.', 'onetone'), 'options'=>$video_background_section);
 		
@@ -394,31 +397,29 @@ SHINES ONE PAGE SMALL BUSINESS WEBSITE.",
 						   'std' => $section_1_content,
 						   'id' => 'section_1_content',
 						   'type' => 'checkbox',
-						   'options'=>array("content"=> __('Content', 'onetone'),"slider"=> __('Slider', 'onetone')),
 						   'desc' =>  __('Choose to display default slider instead of section contents here.', 'onetone')
 						   );
 		
-		$options[] = array('name' => __('Enable Animation', 'onetone'),'desc'=>__('Enable animation for default section content. You need to activate Magee Shortcodes plugin to apply animation effects.', 'onetone'),'std' => '1','id' => 'home_animated',
-		'type' => 'checkbox');
-
-		/*if(isset($section_num) && is_numeric($section_num) && $section_num>0){
-		$section_num = $section_num;
-		}
-		else{
-		$section_num = $default_section_num;
-		}*/
+		$options[] = array(
+						   'name' => __('Enable Animation', 'onetone'),
+						   'desc'=>__('Enable animation for default section content. You need to activate Magee Shortcodes plugin to apply animation effects.', 'onetone'),
+						   'std' => '1',
+						   'id' => 'home_animated',
+		                   'type' => 'checkbox');
 		
 		$options[] = array('name' => '','id' => 'section_order','type' => 'start_group','class'=>''); 
-		 $options[] =   	 array(
-        'id'          => 'section_order_titled',
-        'name'       => __( 'Sections Order', 'onetone' ).' <span id="accordion-group-section_order" class="fa fa-plus"></span>',
-        'desc'        => '',
-        'std'         => '',
-        'type'        => 'textblock-titled',
-        'rows'        => '4',
-        'class'       => 'section-accordion close',
-        
-      );
+		
+		$options[] =   	 array(
+						  'id'          => 'section_order_titled',
+						  'name'       => __( 'Sections Order', 'onetone' ).' <span id="accordion-group-section_order" class="fa fa-plus"></span>',
+						  'desc'        => '',
+						  'std'         => '',
+						  'type'        => 'textblock-titled',
+						  'rows'        => '4',
+						  'class'       => 'section-accordion close',
+						  
+						);
+		
 		$options[] = array('name' => '','id' => 'wrapper_start','type' => 'wrapper_start','class'=>'home-section-wrapper');
 		
 		$options[] = array(
@@ -435,20 +436,24 @@ SHINES ONE PAGE SMALL BUSINESS WEBSITE.",
 	   
 		
 		$o_section_num = onetone_option( 'section_num' ); 
+		
 		for($i=0; $i < $section_num; $i++){
 		
 		if(!isset($section_title[$i])){$section_title[$i] = "";}
 		if(!isset($section_subtitle[$i])){$section_subtitle[$i] = "";}
 		if(!isset($section_color[$i])){$section_color[$i] = "";}
 		if(!isset($section_menu[$i])){$section_menu[$i] = "";}
+		
 		if(!isset($section_background[$i])){
-		$section_background[$i] = array('color' => '','image' => '','repeat' => '','position' => '','attachment'=>'');
+		  $section_background[$i] = array('color' => '','image' => '','repeat' => '','position' => '','attachment'=>'');
 		}
+		
 		if(!isset($section_css_class[$i])){$section_css_class[$i] = "";}
 		if(!isset($section_content[$i])){$section_content[$i] = "";}
 		if(!isset($section_slug[$i])){ $section_slug[$i] = "";}
 		if(!isset($text_align[$i])){ $text_align[$i] = "";}
 		if(!isset($section_padding[$i])){ $section_padding[$i] = "";}
+		
 		$section_name = onetone_option('section_title_'.$i);
 		$section_name = $section_name?$section_name:onetone_option('menu_title_'.$i);
         $section_name = $section_name? ' ('.$section_name.')':'';
@@ -457,14 +462,16 @@ SHINES ONE PAGE SMALL BUSINESS WEBSITE.",
 		if(!isset($section_title_typography_defaults[$i])){ $section_title_typography_defaults[$i] = $section_title_typography_defaults_1;}
 		if(!isset($section_content_typography_defaults[$i])){ $section_content_typography_defaults[$i] = $section_title_typography_defaults_1;}
 		
-		
 		$hide_section = '';
+		
 		if( $i >= $o_section_num && $o_section_num >0  )
-		$hide_section = 1;
+		  $hide_section = 1;
+		  
 		if( $o_section_num <=0 && $i >8 ){
-		$hide_section  = 1;
-		$content_model = 1;
+		  $hide_section  = 1;
+		  $content_model = 1;
 		}
+		
 		if ( isset( $_POST['reset'] ) ) 
 		$content_model = 0;
 		
@@ -601,27 +608,36 @@ SHINES ONE PAGE SMALL BUSINESS WEBSITE.",
 		
 		
 		$options[] = array(
-							'id'          => 'section_color_'.$i.'',
-							'name'       => __( 'Font Color', 'onetone' ),
-							'desc'        => __( 'Set font color for the content of this section', 'onetone' ),
-							'std'         => $section_color[$i],
-							'type'        => 'color',
-							'class'       => 'content-model-0 section-item accordion-group-section-'.$i,
-							
-						  );
+					'id'          => 'section_color_'.$i.'',
+					'name'       => __( 'Font Color', 'onetone' ),
+					'desc'        => __( 'Set font color for the content of this section', 'onetone' ),
+					'std'         => $section_color[$i],
+					'type'        => 'color',
+					'class'       => 'content-model-0 section-item accordion-group-section-'.$i,
+					
+				  );
 			
 			$options[] = array(
-						   'name' => __('Section Subtitle', 'onetone'),
-						   'id' => 'section_subtitle_'.$i.'',
-						   'type' => 'text',
-						   'std'=> $section_subtitle[$i],
-						   'class'=>'content-model-0 section-item accordion-group-section-'.$i,
-						   'desc'=> __('Insert sub-title for this section. It would appear at the bottom of the section title', 'onetone'),
-						   );
+				   'name' => __('Section Subtitle', 'onetone'),
+				   'id' => 'section_subtitle_'.$i.'',
+				   'type' => 'text',
+				   'std'=> $section_subtitle[$i],
+				   'class'=>'content-model-0 section-item accordion-group-section-'.$i,
+				   'desc'=> __('Insert sub-title for this section. It would appear at the bottom of the section title', 'onetone'),
+				   );
 		
 		switch( $i ){
 			case "0": // Section Slogan
-						
+			  
+			 $options[] = array(
+						  'name' => __('Icon', 'onetone'),
+						  'id'   => "section_icon_".$i,
+						  'std'  => '',
+						  'desc' => __( 'The image will display above the section title.', 'onetone' ),
+						  'type' => 'upload',
+						  'class'=>'content-model-0 section-item accordion-group-section-'.$i
+						  );
+			 
 		     $options[] = array(
 						  'name' => __('Button Text', 'onetone'),
 						  'id'   => "section_btn_text_".$i,
@@ -649,6 +665,7 @@ SHINES ONE PAGE SMALL BUSINESS WEBSITE.",
 						  );
 			  
 			  $banner_social_icon = array('fa-facebook','fa-skype','fa-twitter','fa-linkedin','fa-google-plus','fa-rss');
+			  
 			  for( $s=0;$s<6;$s++ ):
 			  
 			  $options[] = array(
@@ -667,7 +684,6 @@ SHINES ONE PAGE SMALL BUSINESS WEBSITE.",
 						  'class'=>'content-model-0 section-item accordion-group-section-'.$i,
 						  'desc' => __('Insert link for the icon', 'onetone')
 						  );
-			  
 			  
 			  endfor;
 			  
@@ -712,14 +728,32 @@ SHINES ONE PAGE SMALL BUSINESS WEBSITE.",
 			
 			break;
 			case "2": // Section Service
-			$icons  = array('fa-leaf','fa-hourglass-end','fa-signal','fa-heart','fa-camera','fa-tag');
+			$icons   = array('fa-leaf','fa-hourglass-end','fa-signal','fa-heart','fa-camera','fa-tag');
+			$images  = array(
+							 'https://demo.mageewp.com/wootest/wp-content/uploads/sites/31/2016/11/Icon_1.png',
+							 'https://demo.mageewp.com/wootest/wp-content/uploads/sites/31/2016/11/Icon_2.png',
+							 'https://demo.mageewp.com/wootest/wp-content/uploads/sites/31/2016/11/Icon_3.png',
+							 'https://demo.mageewp.com/wootest/wp-content/uploads/sites/31/2016/11/Icon_4.png',
+							 'https://demo.mageewp.com/wootest/wp-content/uploads/sites/31/2016/11/Icon_5.png',
+							 'https://demo.mageewp.com/wootest/wp-content/uploads/sites/31/2016/11/Icon_6.png'
+							 );
+			
+			$options[] = array(
+						  'id'          => 'section_service_icon_color_'.$i.'',
+						  'name'       => __( 'Icon Color', 'onetone' ),
+						  'desc'        => __( 'Set service icon color.', 'onetone' ),
+						  'std'         => '#666666',
+						  'type'        => 'color',
+						  'class'       => 'content-model-0 section-item accordion-group-section-'.$i,
+						  
+						);
 			
 			for($c=0;$c<6;$c++){
 				
 				$options[] = array(
 						  'name' => sprintf(__('Service Icon %d', 'onetone'),$c+1),
 						  'id'   => "section_icon_".$i."_".$c,
-						  'std'  => $icons[$c],
+						  'std'  => '',
 						  'desc' => __('Insert Fontawsome icon code', 'onetone'),
 						  'type' => 'text',
 						  'class'=>'content-model-0 section-item accordion-group-section-'.$i
@@ -727,7 +761,7 @@ SHINES ONE PAGE SMALL BUSINESS WEBSITE.",
 				$options[] = array(
 						  'name' => sprintf(__('Service Image %d', 'onetone'),$c+1),
 						  'id'   => "section_image_".$i."_".$c,
-						  'std'  => '',
+						  'std'  => $images[$c],
 						  'desc' => __('Or choose to upload icon image', 'onetone'),
 						  'type' => 'upload',
 						  'class'=>'content-model-0 section-item accordion-group-section-'.$i
@@ -775,12 +809,12 @@ SHINES ONE PAGE SMALL BUSINESS WEBSITE.",
 			case "3": // Section Gallery
 			
 			$default_images = array(
-									esc_url('http://www.mageewp.com/onetone/wp-content/uploads/sites/17/2015/11/7.jpg'),
-									esc_url('http://www.mageewp.com/onetone/wp-content/uploads/sites/17/2015/11/8.jpg'),
-									esc_url('http://www.mageewp.com/onetone/wp-content/uploads/sites/17/2015/11/9.jpg'),
-									esc_url('http://www.mageewp.com/onetone/wp-content/uploads/sites/17/2015/11/10.jpg'),
-									esc_url('http://www.mageewp.com/onetone/wp-content/uploads/sites/17/2015/11/11.jpg'),
-									esc_url('http://www.mageewp.com/onetone/wp-content/uploads/sites/17/2015/11/12.jpg'),
+									esc_url('https://demo.mageewp.com/wootest/wp-content/uploads/sites/31/2016/11/16110807.jpg'),
+									esc_url('https://demo.mageewp.com/wootest/wp-content/uploads/sites/31/2016/11/16110805.jpg'),
+									esc_url('https://demo.mageewp.com/wootest/wp-content/uploads/sites/31/2016/11/16110806.jpg'),
+									esc_url('https://demo.mageewp.com/wootest/wp-content/uploads/sites/31/2016/11/16110802.jpg'),
+									esc_url('https://demo.mageewp.com/wootest/wp-content/uploads/sites/31/2016/11/161110001.jpg'),
+									esc_url('https://demo.mageewp.com/wootest/wp-content/uploads/sites/31/2016/11/16110803.jpg'),
 									);
 			for($c=0;$c<6;$c++){
 				
@@ -821,10 +855,10 @@ SHINES ONE PAGE SMALL BUSINESS WEBSITE.",
 			case "4": // Section Team
 			$social_icon = array('instagram','facebook','google-plus','envelope','','');
 			$avatar = array(
-							esc_url('http://www.mageewp.com/onetone/wp-content/uploads/sites/17/2015/11/001.jpg'),
-							esc_url('http://www.mageewp.com/onetone/wp-content/uploads/sites/17/2015/11/002.jpg'),
-							esc_url('http://www.mageewp.com/onetone/wp-content/uploads/sites/17/2015/11/003.jpg'),
-							esc_url('http://www.mageewp.com/onetone/wp-content/uploads/sites/17/2015/11/004.jpg'),
+							esc_url('https://demo.mageewp.com/wootest/wp-content/uploads/sites/31/2016/11/team16110801.jpg'),
+							esc_url('https://demo.mageewp.com/wootest/wp-content/uploads/sites/31/2016/11/team16110802.jpg'),
+							esc_url('https://demo.mageewp.com/wootest/wp-content/uploads/sites/31/2016/11/team16110803.jpg'),
+							esc_url('https://demo.mageewp.com/wootest/wp-content/uploads/sites/31/2016/11/team16110804.jpg'),
 							'',
 							'',
 							'',
@@ -926,7 +960,7 @@ SHINES ONE PAGE SMALL BUSINESS WEBSITE.",
 			$options[] = array(
 						  'name' => __('Right Content', 'onetone'),
 						  'id'   => "section_right_content_".$i,
-						  'std'  => '<h3>Personal Info</span></h3>
+						  'std'  => '<h3>Personal Info</h3>
   <div>
     <ul class="magee-icon-list">
       <li><i class="fa fa-phone">&nbsp;</i> +1123 2456 689</li>
@@ -947,17 +981,84 @@ SHINES ONE PAGE SMALL BUSINESS WEBSITE.",
 						  );
 			
 			break;
-			case "6": // Section Custom
+			case "6": // Section Counter
 			
-			
+			$options[] = array(
+						  'name' => __('Counter Title 1', 'onetone'),
+						  'id'   => "counter_title_1_".$i,
+						  'std'  => $onetone_options_saved?'':'Themes',
+						  'desc' => '',
+						  'type' => 'text',
+						  'class'=>'content-model-0 section-item accordion-group-section-'.$i
+						  );
+			 $options[] = array(
+						  'name' => __('Counter Number 1', 'onetone'),
+						  'id'   => "counter_number_1_".$i,
+						  'std'  => $onetone_options_saved?'':'200',
+						  'desc' => '',
+						  'type' => 'text',
+						  'class'=>'content-model-0 section-item accordion-group-section-'.$i
+						  );
+			 
+			 $options[] = array(
+						  'name' => __('Counter Title 2', 'onetone'),
+						  'id'   => "counter_title_2_".$i,
+						  'std'  => $onetone_options_saved?'':'Supporters',
+						  'desc' => '',
+						  'type' => 'text',
+						  'class'=>'content-model-0 section-item accordion-group-section-'.$i
+						  );
+			 $options[] = array(
+						  'name' => __('Counter Number 2', 'onetone'),
+						  'id'   => "counter_number_2_".$i,
+						  'std'  => $onetone_options_saved?'':'98',
+						  'desc' => '',
+						  'type' => 'text',
+						  'class'=>'content-model-0 section-item accordion-group-section-'.$i
+						  );
+			 
+			 
+			 $options[] = array(
+						  'name' => __('Counter Title 3', 'onetone'),
+						  'id'   => "counter_title_3_".$i,
+						  'std'  => $onetone_options_saved?'':'Projuects',
+						  'desc' => '',
+						  'type' => 'text',
+						  'class'=>'content-model-0 section-item accordion-group-section-'.$i
+						  );
+			 $options[] = array(
+						  'name' => __('Counter Number 3', 'onetone'),
+						  'id'   => "counter_number_3_".$i,
+						  'std'  => $onetone_options_saved?'':'1360',
+						  'desc' => '',
+						  'type' => 'text',
+						  'class'=>'content-model-0 section-item accordion-group-section-'.$i
+						  );
+			 
+			 $options[] = array(
+						  'name' => __('Counter Title 4', 'onetone'),
+						  'id'   => "counter_title_4_".$i,
+						  'std'  => $onetone_options_saved?'':'Customers',
+						  'desc' => '',
+						  'type' => 'text',
+						  'class'=>'content-model-0 section-item accordion-group-section-'.$i
+						  );
+			 $options[] = array(
+						  'name' => __('Counter Number 4', 'onetone'),
+						  'id'   => "counter_number_4_".$i,
+						  'std'  => $onetone_options_saved?'':'8000',
+						  'desc' => '',
+						  'type' => 'text',
+						  'class'=>'content-model-0 section-item accordion-group-section-'.$i
+						  );
 			
 			break;
 			case "7": // Section Testimonial
 			
 			$avatar = array(
-							esc_url('http://www.mageewp.com/onetone/wp-content/uploads/sites/17/2015/11/111.jpg'),
-							esc_url('http://www.mageewp.com/onetone/wp-content/uploads/sites/17/2015/11/222.jpg'),
-							esc_url('http://www.mageewp.com/onetone/wp-content/uploads/sites/17/2015/11/333.jpg'),
+							esc_url('https://demo.mageewp.com/wootest/wp-content/uploads/sites/31/2016/11/person-8-thumbnail.jpg'),
+							esc_url('https://demo.mageewp.com/wootest/wp-content/uploads/sites/31/2016/11/person-7-thumbnail.jpg'),
+							esc_url('https://demo.mageewp.com/wootest/wp-content/uploads/sites/31/2016/11/person-6-thumbnail.jpg'),
 							'',
 							'',
 							'',
@@ -1178,7 +1279,7 @@ SHINES ONE PAGE SMALL BUSINESS WEBSITE.",
         'id'          => 'nav_hover_effect',
         'name'        => __( 'Nav Hover Effect', 'onetone' ),
         'desc'        => '',
-        'std'         => '0',
+        'std'         => '3',
         'type'        => 'images',
         'section'     => 'header_tab_section',
         'class'       => ' accordion-group-header_options',
@@ -1297,10 +1398,9 @@ SHINES ONE PAGE SMALL BUSINESS WEBSITE.",
         'id'          => 'display_top_bar',
         'name'       => __( 'Display Top Bar', 'onetone' ),
         'desc' => __( 'Choose to display top bar above the header', 'onetone' ),
-        'std'         => '',
+        'std'         => 'yes',
         'type'        => 'select',
         'section'     => 'header_tab_section',
-        
         'class'       => 'accordion-group-3',
         'options'     => $choices
       );
@@ -1308,10 +1408,9 @@ SHINES ONE PAGE SMALL BUSINESS WEBSITE.",
         'id'          => 'top_bar_background_color',
         'name'       => __( 'Background Color', 'onetone' ),
         'desc' => __( 'Set background color for top bar', 'onetone' ),
-        'std'         => '',
+        'std'         => '#eeeeee',
         'type'        => 'color',
         'section'     => 'header_tab_section',
-        
         'class'       => 'accordion-group-3',
         
       );
@@ -1319,7 +1418,7 @@ SHINES ONE PAGE SMALL BUSINESS WEBSITE.",
         'id'          => 'top_bar_left_content',
         'name'       => __( 'Left Content', 'onetone' ),
         'desc' => __( 'Choose content in left side', 'onetone' ),
-        'std'         => '',
+        'std'         => 'info',
         'type'        => 'select',
         'section'     => 'header_tab_section',
         
@@ -1336,7 +1435,7 @@ SHINES ONE PAGE SMALL BUSINESS WEBSITE.",
         'id'          => 'top_bar_right_content',
         'name'       => __( 'Right Content', 'onetone' ),
         'desc' => __( 'Choose content in right side', 'onetone' ),
-        'std'         => '',
+        'std'         => 'sns',
         'type'        => 'select',
         'section'     => 'header_tab_section',
         
@@ -1358,7 +1457,7 @@ SHINES ONE PAGE SMALL BUSINESS WEBSITE.",
         'id'          => 'top_bar_info_color',
         'name'       => __( 'Info Color', 'onetone' ),
         'desc' => __( 'Set color for info in top bar', 'onetone' ),
-        'std'         => '',
+        'std'         => '#555555',
         'type'        => 'color',
         'section'     => 'header_tab_section',
         
@@ -1369,7 +1468,7 @@ SHINES ONE PAGE SMALL BUSINESS WEBSITE.",
         'id'          => 'top_bar_info_content',
         'name'       => __( 'Info Content', 'onetone' ),
         'desc' => __( 'Insert content for info in top bar', 'onetone' ),
-        'std'         => '',
+        'std'         => 'Tel: 123456789',
         'type'        => 'textarea',
         'section'     => 'header_tab_section',
         'rows'        => '4',
@@ -1380,7 +1479,7 @@ SHINES ONE PAGE SMALL BUSINESS WEBSITE.",
         'id'          => 'top_bar_menu_color',
         'name'       => __( 'Menu Color', 'onetone' ),
         'desc' => __( 'Set color for menu in top bar', 'onetone' ),
-        'std'         => '',
+        'std'         => '#555555',
         'type'        => 'color',
         'section'     => 'header_tab_section',
         'class'       => 'accordion-group-3',
@@ -1525,7 +1624,7 @@ $options[] = array(
         'id'          => 'sticky_header_navigation_font_size',
         'name'       => __( 'Sticky Header Navigation Font Size', 'onetone' ),
         'desc'        => __( 'Controls the font size of the menu items in the sticky header. Use a number without \'px\', default is 14. ex: 14', 'onetone' ),
-        'std'         => '14',
+        'std'         => '13',
         'type'        => 'text',
         'section'     => 'sticky_header_tab_section',
         
@@ -1569,12 +1668,21 @@ $options[] = array(
         'id'          => 'logo',
         'name'       => __( 'Upload Logo', 'onetone' ),
         'desc'        => __( 'Select an image file for your logo.', 'onetone' ),
-        'std'         => '',
+        'std'         => ONETONE_THEME_BASE_URL.'/images/logo.png',
         'type'        => 'upload',
         'section'     => 'logo_tab_section',
-        
         'class'       => '',
         
+      );
+
+$options[] = array(
+        'id'          => 'overlay_logo',
+        'name'       => __( 'Upload Overlay Header Logo', 'onetone' ),
+        'desc'        => __( 'Select an image file for your logo.', 'onetone' ),
+        'std'         => ONETONE_THEME_BASE_URL.'/images/overlay-logo.png',
+        'type'        => 'upload',
+        'section'     => 'logo_tab_section',
+        'class'       => '',
       );
 	
 $options[] =  array(
@@ -1634,7 +1742,7 @@ $options[] = array(
         'id'          => 'sticky_logo',
         'name'       => __( 'Upload Logo', 'onetone' ),
         'desc'        => __( 'Select an image file for your logo.', 'onetone' ),
-        'std'         => '',
+        'std'         => ONETONE_THEME_BASE_URL.'/images/logo.png',
         'type'        => 'upload',
         'section'     => 'logo_tab_section',
         
@@ -1696,7 +1804,7 @@ $options[] =  array(
         'id'          => 'logo_left_margin',
         'name'       => __( 'Logo Left Margin', 'onetone' ),
         'desc'        => __( 'Use a number without \'px\', ex: 40', 'onetone' ),
-        'std'         => '',
+        'std'         => '0',
         'type'        => 'text',
         'section'     => 'logo_tab_section',
         
@@ -1707,7 +1815,7 @@ $options[] = array(
         'id'          => 'logo_right_margin',
         'name'       => __( 'Logo Right Margin', 'onetone' ),
         'desc'        => __( 'Use a number without \'px\', ex: 40', 'onetone' ),
-        'std'         => '',
+        'std'         => '10',
         'type'        => 'text',
         'section'     => 'logo_tab_section',
         
@@ -1718,7 +1826,7 @@ $options[] = array(
         'id'          => 'logo_top_margin',
         'name'       => __( 'Logo Top Margin', 'onetone' ),
         'desc'        => __( 'Use a number without \'px\', ex: 40', 'onetone' ),
-        'std'         => '',
+        'std'         => '10',
         'type'        => 'text',
         'section'     => 'logo_tab_section',
         
@@ -1729,7 +1837,7 @@ $options[] = array(
         'id'          => 'logo_bottom_margin',
         'name'       => __( 'Logo Bottom Margin', 'onetone' ),
         'desc'        => __( 'Use a number without \'px\', ex: 40', 'onetone' ),
-        'std'         => '',
+        'std'         => '10',
         'type'        => 'text',
         'section'     => 'logo_tab_section',
         
@@ -1737,7 +1845,7 @@ $options[] = array(
         
       );
 
-// styleling
+// styling
 $options[] =  array(
 		'icon' => 'fa-eyedropper', 
 		'name' => __('Styling', 'onetone'),
@@ -1748,7 +1856,7 @@ $options[] =  array(
         'id'          => 'primary_color',
         'name'       => __( 'Primary Color', 'onetone' ),
         'desc'       => __( 'Set primary color for the theme', 'onetone' ),
-        'std'         => '#eda870',
+        'std'         => '#37cadd',
         'type'        => 'color',
         'section'     => 'styling_tab_section',
         'class'       => '',
@@ -1774,7 +1882,7 @@ $options[] =  array(
         'id'          => 'sticky_header_background_color',
         'name'       => __( 'Sticky Header Background Color', 'onetone' ),
         'desc'       => __( 'Set background color for sticky header', 'onetone' ),
-        'std'         => '',
+        'std'         => '#ffffff',
         'type'        => 'color',
         'section'     => 'styling_tab_section',
         
@@ -1797,7 +1905,7 @@ $options[] = array(
         'id'          => 'header_background_color',
         'name'       => __( 'Header Background Color', 'onetone' ),
         'desc'       => __( 'Set background color for main header', 'onetone' ),
-        'std'         => '',
+        'std'         => '#ffffff',
         'type'        => 'color',
         'section'     => 'styling_tab_section',
         
@@ -1821,7 +1929,7 @@ $options[] = array(
         'id'          => 'content_background_color',
         'name'       => __( 'Content Background Color', 'onetone' ),
         'desc'       => __( 'Set background color for site content', 'onetone' ),
-        'std'         => '',
+        'std'         => '#ffffff',
         'type'        => 'color',
         'section'     => 'styling_tab_section',
         
@@ -1832,7 +1940,7 @@ $options[] = array(
         'id'          => 'sidebar_background_color',
         'name'       => __( 'Sidebar Background Color', 'onetone' ),
         'desc'       => __( 'Set background color for sidebar', 'onetone' ),
-        'std'         => '',
+        'std'         => '#ffffff',
         'type'        => 'color',
         'section'     => 'styling_tab_section',
         
@@ -1843,7 +1951,7 @@ $options[] = array(
         'id'          => 'footer_background_color',
         'name'       => __( 'Footer Background Color', 'onetone' ),
         'desc'       => __( 'Set background color for the footer', 'onetone' ),
-        'std'         => '',
+        'std'         => '#555555',
         'type'        => 'color',
         'section'     => 'styling_tab_section',
         
@@ -1855,7 +1963,7 @@ $options[] = array(
         'id'          => 'copyright_background_color',
         'name'       => __( 'Copyright Background Color', 'onetone' ),
         'desc'       => __( 'Set background color for the copyright area in footer', 'onetone' ),
-        'std'         => '',
+        'std'         => '#000000',
         'type'        => 'color',
         'section'     => 'styling_tab_section',
         
@@ -1895,7 +2003,7 @@ $options[] =  array(
         'id'          => 'form_text_color',
         'name'       => __( 'Form Text Color', 'onetone' ),
         'desc'        => __( 'Controls the text color for forms', 'onetone' ),
-        'std'         => '',
+        'std'         => '#666666',
         'type'        => 'color',
         'section'     => 'styling_tab_section',
         
@@ -1906,7 +2014,7 @@ $options[] =  array(
         'id'          => 'form_border_color',
         'name'       => __( 'Form Border Color', 'onetone' ),
         'desc'        => __( 'Controls the border color for forms', 'onetone' ),
-        'std'         => '',
+        'std'         => '#666666',
         'type'        => 'color',
         'section'     => 'styling_tab_section',
         
@@ -2014,26 +2122,36 @@ $options[] =  array(
         
       );
  
- $options[] = array('name' => '','id' => 'wrapper_start','type' => 'wrapper_start','class'=>'');
+$options[] = array('name' => '','id' => 'wrapper_start','type' => 'wrapper_start','class'=>'');
+
 $options[] =  array(
-        'id'          => 'header_tagline_color',
-        'name'       => __( 'Header Tagline', 'onetone' ),
-        'desc'       => __( 'Set color for tagline in header', 'onetone' ),
-        'std'         => '',
+        'id'          => 'fixed_header_text_color',
+        'name'       => __( 'Fixed Header Text Color', 'onetone' ),
+        'desc'       => __( 'Set color for tagline in fixed header', 'onetone' ),
+        'std'         => '#333333',
         'type'        => 'color',
         'section'     => 'styling_tab_section',
-        
         'class'       => 'accordion-group-font_colors_options',
-        
       );
+
+$options[] =  array(
+        'id'          => 'overlay_header_text_color',
+        'name'       => __( 'Overlay Header Text Color', 'onetone' ),
+        'desc'       => __( 'Set color for tagline in overlay header', 'onetone' ),
+        'std'         => '#ffffff',
+        'type'        => 'color',
+        'section'     => 'styling_tab_section',
+        'class'       => 'accordion-group-font_colors_options',
+      );
+
+
 $options[] =  array(
         'id'          => 'page_title_color',
         'name'       => __( 'Page Title', 'onetone' ),
         'desc'       => __( 'Set color for page title', 'onetone' ),
-        'std'         => '',
+        'std'         => '#555555',
         'type'        => 'color',
         'section'     => 'styling_tab_section',
-        
         'class'       => 'accordion-group-font_colors_options',
         
       );
@@ -2042,10 +2160,9 @@ $options[] =  array(
         'id'          => 'h1_color',
         'name'       => __( 'Heading 1 (H1) Font Color', 'onetone' ),
         'desc'       => __( 'Choose color for H1 headings', 'onetone' ),
-        'std'         => '',
+        'std'         => '#555555',
         'type'        => 'color',
         'section'     => 'styling_tab_section',
-        
         'class'       => 'accordion-group-font_colors_options',
         
       );
@@ -2053,10 +2170,9 @@ $options[] =  array(
         'id'          => 'h2_color',
         'name'       => __( 'Heading 2 (H2) Font Color', 'onetone' ),
         'desc'       => __( 'Choose color for H2 headings', 'onetone' ),
-        'std'         => '',
+        'std'         => '#555555',
         'type'        => 'color',
         'section'     => 'styling_tab_section',
-        
         'class'       => 'accordion-group-font_colors_options',
         
       );
@@ -2064,10 +2180,9 @@ $options[] =  array(
         'id'          => 'h3_color',
         'name'       => __( 'Heading 3 (H3) Font Color', 'onetone' ),
         'desc'       => __( 'Choose color for H3 headings', 'onetone' ),
-        'std'         => '',
+        'std'         => '#555555',
         'type'        => 'color',
         'section'     => 'styling_tab_section',
-        
         'class'       => 'accordion-group-font_colors_options',
         
       );
@@ -2075,10 +2190,9 @@ $options[] =  array(
         'id'          => 'h4_color',
         'name'       => __( 'Heading 4 (H4) Font Color', 'onetone' ),
         'desc'       => __( 'Choose color for H4 headings', 'onetone' ),
-        'std'         => '',
+        'std'         => '#555555',
         'type'        => 'color',
         'section'     => 'styling_tab_section',
-        
         'class'       => 'accordion-group-font_colors_options',
         
       );
@@ -2086,10 +2200,9 @@ $options[] =  array(
         'id'          => 'h5_color',
         'name'       => __( 'Heading 5 (H5) Font Color', 'onetone' ),
         'desc'       => __( 'Choose color for H5 headings', 'onetone' ),
-        'std'         => '',
+        'std'         => '#555555',
         'type'        => 'color',
         'section'     => 'styling_tab_section',
-        
         'class'       => 'accordion-group-font_colors_options',
         
       );
@@ -2097,10 +2210,9 @@ $options[] =  array(
         'id'          => 'h6_color',
         'name'       => __( 'Heading 6 (H6) Font Color', 'onetone' ),
         'desc'       => __( 'Choose color for H6 headings', 'onetone' ),
-        'std'         => '',
+        'std'         => '#555555',
         'type'        => 'color',
         'section'     => 'styling_tab_section',
-        
         'class'       => 'accordion-group-font_colors_options',
         
       );
@@ -2109,10 +2221,9 @@ $options[] =  array(
         'id'          => 'body_text_color',
         'name'       => __( 'Body Text Color', 'onetone' ),
         'desc'       => __( 'Choose color for body text', 'onetone' ),
-        'std'         => '',
+        'std'         => '#333333',
         'type'        => 'color',
         'section'     => 'styling_tab_section',
-        
         'class'       => 'accordion-group-font_colors_options',
         
       );
@@ -2120,10 +2231,9 @@ $options[] =  array(
         'id'          => 'links_color',
         'name'       => __( 'Links Color', 'onetone' ),
         'desc'       => __( 'Choose color for links', 'onetone' ),
-        'std'         => '',
+        'std'         => '#37cadd',
         'type'        => 'color',
         'section'     => 'styling_tab_section',
-        
         'class'       => 'accordion-group-font_colors_options',
         
       );
@@ -2131,10 +2241,9 @@ $options[] =  array(
         'id'          => 'breadcrumbs_text_color',
         'name'       => __( 'Breadcrumbs Text Color', 'onetone' ),
         'desc'       => __( 'Choose color for breadcrumbs', 'onetone' ),
-        'std'         => '',
+        'std'         => '#555555',
         'type'        => 'color',
         'section'     => 'styling_tab_section',
-        
         'class'       => 'accordion-group-font_colors_options',
         
       );
@@ -2143,10 +2252,9 @@ $options[] =  array(
         'id'          => 'sidebar_widget_headings_color',
         'name'       => __( 'Sidebar Widget Headings Color', 'onetone' ),
         'desc'       => __( 'Choose color for Sidebar widget headings', 'onetone' ),
-        'std'         => '',
+        'std'         => '#333333',
         'type'        => 'color',
         'section'     => 'styling_tab_section',
-        
         'class'       => 'accordion-group-font_colors_options',
         
       );
@@ -2154,10 +2262,9 @@ $options[] = array(
         'id'          => 'footer_headings_color',
         'name'       => __( 'Footer Headings Color', 'onetone' ),
         'desc'       => __( 'Choose color for footer headings', 'onetone' ),
-        'std'         => '',
+        'std'         => '#ffffff',
         'type'        => 'color',
         'section'     => 'styling_tab_section',
-        
         'class'       => 'accordion-group-font_colors_options',
         
       );
@@ -2165,10 +2272,9 @@ $options[] = array(
         'id'          => 'footer_text_color',
         'name'       => __( 'Footer Text Color', 'onetone' ),
         'desc'       => __( 'Choose color for footer text', 'onetone' ),
-        'std'         => '',
+        'std'         => '#ffffff',
         'type'        => 'color',
         'section'     => 'styling_tab_section',
-        
         'class'       => 'accordion-group-font_colors_options',
         
       );
@@ -2176,10 +2282,9 @@ $options[] = array(
         'id'          => 'footer_link_color',
         'name'       => __( 'Footer Link Color', 'onetone' ),
         'desc'       => __( 'Choose color for links in footer', 'onetone' ),
-        'std'         => '',
+        'std'         => '#a0a0a0',
         'type'        => 'color',
         'section'     => 'styling_tab_section',
-        
         'class'       => 'accordion-group-font_colors_options',
         
       );
@@ -2195,7 +2300,6 @@ $options[] =  array(
         'type'        => 'textblock-titled',
         'section'     => 'styling_tab_section',
         'rows'        => '4',
-        
         'class'       => 'section-accordion close',
         
       );
@@ -2207,7 +2311,6 @@ $options[] =  array(
         'std'         => '',
         'type'        => 'color',
         'section'     => 'styling_tab_section',
-        
         'class'       => 'accordion-group-main_menu_colors_options',
         
       );
@@ -2215,21 +2318,31 @@ $options[] =  array(
         'id'          => 'main_menu_font_color_1',
         'name'       => __( 'Main Menu Font Color ( First Level )', 'onetone' ),
         'desc'       => __( 'Choose font color for first level of main menu', 'onetone' ),
-        'std'         => '',
+        'std'         => '#3d3d3d',
         'type'        => 'color',
         'section'     => 'styling_tab_section',
-        
         'class'       => 'accordion-group-main_menu_colors_options',
         
       );
+
+$options[] =  array(
+        'id'          => 'main_menu_overlay_font_color_1',
+        'name'       => __( 'Main Menu Font Color of Overlay Header ( First Level )', 'onetone' ),
+        'desc'       => __( 'Choose font color for first level of main menu', 'onetone' ),
+        'std'         => '#ffffff',
+        'type'        => 'color',
+        'section'     => 'styling_tab_section',
+        'class'       => 'accordion-group-main_menu_colors_options',
+        
+      );
+
 $options[] =  array(
         'id'          => 'main_menu_font_hover_color_1',
         'name'       => __( 'Main Menu Font Hover Color ( First Level )', 'onetone' ),
         'desc'       => __( 'Choose hover color for first level of main menu', 'onetone' ),
-        'std'         => '',
+        'std'         => '#3d3d3d',
         'type'        => 'color',
         'section'     => 'styling_tab_section',
-        
         'class'       => 'accordion-group-main_menu_colors_options',
         
       );
@@ -2237,10 +2350,9 @@ $options[] =  array(
         'id'          => 'main_menu_background_color_2',
         'name'       => __( 'Main Menu Background Color ( Sub Level )', 'onetone' ),
         'desc'       => __( 'Choose background color for sub level of main menu', 'onetone' ),
-        'std'         => '',
+        'std'         => '#000000',
         'type'        => 'color',
         'section'     => 'styling_tab_section',
-        
         'class'       => 'accordion-group-main_menu_colors_options',
         
       );
@@ -2249,10 +2361,9 @@ $options[] =  array(
         'id'          => 'main_menu_font_color_2',
         'name'       => __( 'Main Menu Font Color ( Sub Level )', 'onetone' ),
         'desc'       => __( 'Choose font color for sub level of main menu', 'onetone' ),
-        'std'         => '',
+        'std'         => '#ffffff',
         'type'        => 'color',
         'section'     => 'styling_tab_section',
-        
         'class'       => 'accordion-group-main_menu_colors_options',
         
       );
@@ -2260,10 +2371,9 @@ $options[] =  array(
         'id'          => 'main_menu_font_hover_color_2',
         'name'       => __( 'Main Menu Font Hover Color ( Sub Level )', 'onetone' ),
         'desc'       => __( 'Choose hover color for sub level of main menu', 'onetone' ),
-        'std'         => '',
+        'std'         => '#ffffff',
         'type'        => 'color',
         'section'     => 'styling_tab_section',
-        
         'class'       => 'accordion-group-main_menu_colors_options',
         
       );
@@ -2271,10 +2381,9 @@ $options[] =  array(
         'id'          => 'main_menu_separator_color_2',
         'name'       => __( 'Main Menu Separator Color ( Sub Levels )', 'onetone' ),
         'desc'       => __( 'Choose separator color for sub level of main menu', 'onetone' ),
-        'std'         => '',
+        'std'         => '#000000',
         'type'        => 'color',
         'section'     => 'styling_tab_section',
-        
         'class'       => 'accordion-group-main_menu_colors_options',
         
       );
@@ -2297,7 +2406,6 @@ $options[] =  array(
         'type'        => 'textblock-titled',
         'section'     => 'sidebar_tab_section',
         'rows'        => '4',
-        
         'class'       => 'section-accordion close',
         
       );
@@ -2310,7 +2418,6 @@ $options[] =  array(
         'std'         => '',
         'type'        => 'select',
         'section'     => 'sidebar_tab_section',
-        
         'class'       => 'accordion-group-8',
         'options'     => $sidebars,
 	
@@ -2322,7 +2429,6 @@ $options[] =  array(
         'std'         => '',
         'type'        => 'select',
         'section'     => 'sidebar_tab_section',
-        
         'class'       => 'accordion-group-8',
         'options'     => $sidebars,
 	
@@ -2339,7 +2445,6 @@ $options[] =  array(
         'type'        => 'textblock-titled',
         'section'     => 'sidebar_tab_section',
         'rows'        => '4',
-        
         'class'       => 'section-accordion close',
         
       );
@@ -2351,7 +2456,6 @@ $options[] =  array(
         'std'         => '',
         'type'        => 'select',
         'section'     => 'sidebar_tab_section',
-        
         'class'       => 'accordion-group-10',
         'options'     => $sidebars,
 	
@@ -2600,170 +2704,206 @@ $options[] = array('name' => '','id' => 'sidebar_404_group_','type' => 'end_grou
         
       );
 	  $options[] = array('name' => '','id' => 'wrapper_start','type' => 'wrapper_start','class'=>'');
-		$options[] = array(
+	  $options[] = array(
 						   'name' => __('Image', 'onetone'),
 						   'id' => 'onetone_slide_image_5',
 						   'type' => 'upload',
 						   'class'=>'slide-item accordion-group-slide-5'
 						   );
 	 
-		$options[] = array(
+	  $options[] = array(
 						   'name' => __('Caption', 'onetone'),
 						   'id' => 'onetone_slide_text_5',
 						   'type' => 'editor',
 						   'class'=>'slide-item accordion-group-slide-5'
 						   );
-		$options[] = array('name' => '','id' => 'wrapper_end','type' => 'wrapper_end','class'=>'');
-	    $options[] = array('name' => '','id' => 'slide_5_group','type' => 'end_group','class'=>'');
+		
+	  $options[] = array('name' => '','id' => 'wrapper_end','type' => 'wrapper_end','class'=>'');
+	  $options[] = array('name' => '','id' => 'slide_5_group','type' => 'end_group','class'=>'');
 	
-		$options[] = array(
-		'name' => __('Slide Speed', 'onetone'),
-		'id' => 'slide_time',
-		'std' => '5000',
-		'desc'=>__('Milliseconds between the end of the sliding effect and the start of the nex one.','onetone'),
-		'type' => 'text');		
+	  $options[] =  array(
+						'id'          => 'slide_autoplay',
+						'name'       => __( 'Autoplay', 'onetone' ),
+						'desc'       => 'Enable slider autoplay.',
+						'std'         => '1',
+						'type'        => 'checkbox',
+						'class'       => '',
+					  );
+						  
+		
+	 $options[] = array(
+					  'name' => __('Autoplay Timeout', 'onetone'),
+					  'id' => 'slide_time',
+					  'std' => '5000',
+					  'desc'=>__('Milliseconds between the end of the sliding effect and the start of the nex one.','onetone'),
+					  'type' => 'text');	
+	 
+	 $options[] =  array(
+						  'id'          => 'slider_control',
+						  'name'       => __( 'Display Control', 'onetone' ),
+						  'desc'       => 'Display control.',
+						  'std'         => '1',
+						  'type'        => 'checkbox',
+						  'class'       => '',
+						);
+	 $options[] =  array(
+						  'id'          => 'slider_pagination',
+						  'name'       => __( 'Display Pagination', 'onetone' ),
+						  'desc'       => 'Display pagination.',
+						  'std'         => '1',
+						  'type'        => 'checkbox',
+						  'class'       => '',
+						);
+	 
+	 $options[] =  array(
+						  'id'          => 'slide_fullheight',
+						  'name'       => __( 'Full Height', 'onetone' ),
+						  'desc'       => 'Full screen height.',
+						  'std'         => '',
+						  'type'        => 'checkbox',
+						  'class'       => '',
+						);	
 		
 		//END HOME PAGE SLIDER
 
 	    // FOOTER
-	    $options[] = array(
-		'icon' => 'fa-hand-o-down',
-		'name' => __('Footer', 'onetone'),
-		'type' => 'heading');
+	$options[] = array(
+	'icon' => 'fa-hand-o-down',
+	'name' => __('Footer', 'onetone'),
+	'type' => 'heading');
 	
        
 		
-		
-$options[] =  array(
-        'id'          => 'footer_widgets_area_options',
-        'name'       => __( 'Footer Widgets Area Options', 'onetone' ),
-        'desc'        => '',
-        'std'         => '',
-        'type'        => 'textblock-titled',
-        'section'     => 'footer_tab_section',
-        'rows'        => '4',
-        
-        'class'       => 'sub_section_titled',
-        
-      );
-
-$options[] =  array(
-        'id'          => 'enable_footer_widget_area',
-        'name'       => __( 'Display footer widgets?', 'onetone' ),
-        'desc'       => __( 'Choose to display footer widgets', 'onetone' ),
-        'std'         => '1',
-        'type'        => 'select',
-        'section'     => 'footer_tab_section',
-        
-        'class'       => '',
-        'options'     => $choices2
-      );
-$options[] =  array(
-        'id'          => 'footer_columns',
-        'name'       => __( 'Number of Footer Columns', 'onetone' ),
-        'desc'       => __( 'Set column number for footer widget area', 'onetone' ),
-        'std'         => '4',
-        'type'        => 'select',
-        'section'     => 'footer_tab_section',
-        'class'       => '',
-        'options'     => array( 
-          '1'     => '1',
-          '2'     => '2',
-          '3'     => '3',
-          '4'     => '4',
-           
-        ),
-	
-      );
-$options[] =  array(
-        'id'          => 'footer_background_image',
-        'name'       => __( 'Upload Background Image', 'onetone' ),
-        'desc'       => __( 'Choose to upload background image for footer', 'onetone' ),
-        'std'         => '',
-        'type'        => 'upload',
-        'section'     => 'footer_tab_section',
-        
-        'class'       => '',
-        
-      );
-$options[] =  array(
-        'id'          => 'footer_bg_full',
-        'name'       => __( '100% Background Image', 'onetone' ),
-        'desc'        => __( 'Select yes to have the footer widgets area background image display at 100% in width and height and scale according to the browser size.', 'onetone' ),
-        'std'         => 'no',
-        'type'        => 'select',
-        'section'     => 'footer_tab_section',
-        
-        'class'       => '',
-        'options'     => $choices_reverse
-      );
-$options[] =  array(
-        'id'          => 'footer_parallax_background',
-        'name'       => __( 'Parallax Background Image', 'onetone' ),
-        'desc'       => __( 'Choose to set parallax background effect for footer', 'onetone' ),
-        'std'         => 'no',
-        'type'        => 'select',
-        'section'     => 'footer_tab_section',
-        
-        'class'       => '',
-        'options'     => $choices_reverse
-      );
-$options[] =  array(
-        'id'          => 'footer_background_repeat',
-        'name'       => __( 'Background Repeat', 'onetone' ),
-        'desc'       => __( 'Set repeat for background image in footer', 'onetone' ),
-        'std'         => 'repeat',
-        'type'        => 'select',
-        'section'     => 'footer_tab_section',
-        
-        'class'       => '',
-        'options'     => $repeat
-      );
-$options[] =  array(
-        'id'          => 'footer_background_position',
-        'name'       => __( 'Background Position', 'onetone' ),
-        'desc'       => __( 'Set position for background image in footer', 'onetone' ),
-        'std'         => 'top left',
-        'type'        => 'select',
-        'section'     => 'footer_tab_section',
-        
-        'class'       => '',
-        'options'     => $position
-      );
-$options[] =  array(
-        'id'          => 'footer_top_padding',
-        'name'       => __( 'Footer Top Padding', 'onetone' ),
-        'desc'        => __( 'In pixels or percentage, ex: 10px or 10%.', 'onetone' ),
-        'std'         => '60px',
-        'type'        => 'text',
-        'section'     => 'footer_tab_section',
-        
-        'class'       => '',
-        
-      );
-$options[] =  array(
-        'id'          => 'footer_bottom_padding',
-        'name'       => __( 'Footer Bottom Padding', 'onetone' ),
-        'desc'        => __( 'In pixels or percentage, ex: 10px or 10%.', 'onetone' ),
-        'std'         => '40px',
-        'type'        => 'text',
-        'section'     => 'footer_tab_section',
-        
-        'class'       => '',
-        
-      );
-$options[] =  array(
-        'id'          => 'footer_social_icons',
-        'name'       => __( 'Footer Social Icons', 'onetone' ),
-        'desc'        => '',
-        'std'         => '',
-        'type'        => 'textblock-titled',
-        'section'     => 'footer_tab_section',
-        'rows'        => '4',
-        
-        'class'       => 'sub_section_titled',
-        
-      );
+		  
+  $options[] =  array(
+		  'id'          => 'footer_widgets_area_options',
+		  'name'       => __( 'Footer Widgets Area Options', 'onetone' ),
+		  'desc'        => '',
+		  'std'         => '',
+		  'type'        => 'textblock-titled',
+		  'section'     => 'footer_tab_section',
+		  'rows'        => '4',
+		  
+		  'class'       => 'sub_section_titled',
+		  
+		);
+  
+  $options[] =  array(
+		  'id'          => 'enable_footer_widget_area',
+		  'name'       => __( 'Display footer widgets?', 'onetone' ),
+		  'desc'       => __( 'Choose to display footer widgets', 'onetone' ),
+		  'std'         => '',
+		  'type'        => 'checkbox',
+		  'section'     => 'footer_tab_section',
+		  'class'       => '',
+		);
+  
+  $options[] =  array(
+		  'id'          => 'footer_columns',
+		  'name'       => __( 'Number of Footer Columns', 'onetone' ),
+		  'desc'       => __( 'Set column number for footer widget area', 'onetone' ),
+		  'std'         => '4',
+		  'type'        => 'select',
+		  'section'     => 'footer_tab_section',
+		  'class'       => '',
+		  'options'     => array( 
+			'1'     => '1',
+			'2'     => '2',
+			'3'     => '3',
+			'4'     => '4',
+			 
+		  ),
+	  
+		);
+  $options[] =  array(
+		  'id'          => 'footer_background_image',
+		  'name'       => __( 'Upload Background Image', 'onetone' ),
+		  'desc'       => __( 'Choose to upload background image for footer', 'onetone' ),
+		  'std'         => '',
+		  'type'        => 'upload',
+		  'section'     => 'footer_tab_section',
+		  
+		  'class'       => '',
+		  
+		);
+  $options[] =  array(
+		  'id'          => 'footer_bg_full',
+		  'name'       => __( '100% Background Image', 'onetone' ),
+		  'desc'        => __( 'Select yes to have the footer widgets area background image display at 100% in width and height and scale according to the browser size.', 'onetone' ),
+		  'std'         => 'no',
+		  'type'        => 'select',
+		  'section'     => 'footer_tab_section',
+		  
+		  'class'       => '',
+		  'options'     => $choices_reverse
+		);
+  $options[] =  array(
+		  'id'          => 'footer_parallax_background',
+		  'name'       => __( 'Parallax Background Image', 'onetone' ),
+		  'desc'       => __( 'Choose to set parallax background effect for footer', 'onetone' ),
+		  'std'         => 'no',
+		  'type'        => 'select',
+		  'section'     => 'footer_tab_section',
+		  
+		  'class'       => '',
+		  'options'     => $choices_reverse
+		);
+  $options[] =  array(
+		  'id'          => 'footer_background_repeat',
+		  'name'       => __( 'Background Repeat', 'onetone' ),
+		  'desc'       => __( 'Set repeat for background image in footer', 'onetone' ),
+		  'std'         => 'repeat',
+		  'type'        => 'select',
+		  'section'     => 'footer_tab_section',
+		  
+		  'class'       => '',
+		  'options'     => $repeat
+		);
+  $options[] =  array(
+		  'id'          => 'footer_background_position',
+		  'name'       => __( 'Background Position', 'onetone' ),
+		  'desc'       => __( 'Set position for background image in footer', 'onetone' ),
+		  'std'         => 'top left',
+		  'type'        => 'select',
+		  'section'     => 'footer_tab_section',
+		  
+		  'class'       => '',
+		  'options'     => $position
+		);
+  $options[] =  array(
+		  'id'          => 'footer_top_padding',
+		  'name'       => __( 'Footer Top Padding', 'onetone' ),
+		  'desc'        => __( 'In pixels or percentage, ex: 10px or 10%.', 'onetone' ),
+		  'std'         => '60px',
+		  'type'        => 'text',
+		  'section'     => 'footer_tab_section',
+		  
+		  'class'       => '',
+		  
+		);
+  $options[] =  array(
+		  'id'          => 'footer_bottom_padding',
+		  'name'       => __( 'Footer Bottom Padding', 'onetone' ),
+		  'desc'        => __( 'In pixels or percentage, ex: 10px or 10%.', 'onetone' ),
+		  'std'         => '40px',
+		  'type'        => 'text',
+		  'section'     => 'footer_tab_section',
+		  
+		  'class'       => '',
+		  
+		);
+  $options[] =  array(
+		  'id'          => 'footer_social_icons',
+		  'name'       => __( 'Footer Social Icons', 'onetone' ),
+		  'desc'        => '',
+		  'std'         => '',
+		  'type'        => 'textblock-titled',
+		  'section'     => 'footer_tab_section',
+		  'rows'        => '4',
+		  
+		  'class'       => 'sub_section_titled',
+		  
+		);
 
 
  if( $social_icons ):
@@ -2780,73 +2920,119 @@ $options[] =  array(
         'class'       => '',
         
       );
- $options[] = array(
-        'id'          => 'footer_social_icon_'.$i,
-        'name'       => __( 'Social Icon', 'onetone' ).' '.$i,
-        'desc'        => __( 'Choose FontAwesome icon', 'onetone' ),
-        'std'         => $social_icon['icon'],
-        'type'        => 'text',
-        'section'     => 'footer_tab_section',
-        'class'       => '',
-        
-      );
- $options[] = array(
-        'id'          => 'footer_social_link_'.$i,
-        'name'       => __( 'Social Icon Link', 'onetone' ).' '.$i,
-        'desc'       => __( 'Set link for social icon', 'onetone' ),
-        'std'         => $social_icon['link'],
-        'type'        => 'text',
-        'section'     => 'footer_tab_section',
-        'class'       => '',
-        
-      );
+	 $options[] = array(
+			'id'          => 'footer_social_icon_'.$i,
+			'name'       => __( 'Social Icon', 'onetone' ).' '.$i,
+			'desc'        => __( 'Choose FontAwesome icon', 'onetone' ),
+			'std'         => $social_icon['icon'],
+			'type'        => 'text',
+			'section'     => 'footer_tab_section',
+			'class'       => '',
+			
+		  );
+	 $options[] = array(
+			'id'          => 'footer_social_link_'.$i,
+			'name'       => __( 'Social Icon Link', 'onetone' ).' '.$i,
+			'desc'       => __( 'Set link for social icon', 'onetone' ),
+			'std'         => $social_icon['link'],
+			'type'        => 'text',
+			'section'     => 'footer_tab_section',
+			'class'       => '',
+			
+		  );
 
 	 $i++;
 	 }
 	endif;	
 		
-		 // 404
+	   // 404
+	  
+	  $options[] = array(	
+						 'icon' => 'fa-frown-o',
+						 'name' => __('404 page', 'onetone'),
+						 'type' => 'heading'
+						 );
+	  $options[] = array(
+	  
+	  'name' => __('404 page content', 'onetone'),
+	  'desc' => '',
+	  'id' => 'content_404',
+	  'std' => '<h2>WHOOPS!</h2>
+					  <p>THERE IS NOTHING HERE.<br>PERHAPS YOU WERE GIVEN THE WRONG URL?</p>',
+	  'type' => 'editor');
+	  
+	  
+	   // Blog
+	  
+	  $options[] = array(	
+	   'icon' => 'fa-bold',
+	   'name' => __('Blog', 'onetone'),
+	   'type' => 'heading'
+	   );
+	  
+	  
+	  $options[] =  array(
+	  'id'          => 'display_author_info',
+	  'name'       => __( 'Display Author Info?', 'onetone' ),
+	  'desc'        => __('Display author info on single page.', 'onetone'),
+	  'std'         => '1',
+	  'type'        => 'checkbox',
+	  'class'       => '',
+	);
+	  $options[] =  array(
+	  'id'          => 'display_related_posts',
+	  'name'       => __( 'Display Related Posts?', 'onetone' ),
+	  'desc'        => __('Display related posts on single page.', 'onetone'),
+	  'std'         => '1',
+	  'type'        => 'checkbox',
+	  'class'       => '',
+	);
+	  
+	  
+  // Options Backup
+	  $options[] = array(
+	  'icon' => 'fa-files-o',
+	  'name' => __('Options Backup', 'onetone'),
+	  'type' => 'heading');
+	  
+	  $options[] =   	 array(
+	  'id'          => 'options-backup',
+	  'name'       => __('Options Backup', 'onetone'),
+	  'desc'        => '',
+	  'std'         => '',
+	  'type'        => 'textblock-titled',
+	  'rows'        => '',
+	  'class'       => 'sub_section_titled',
+	  );
+	  
+	  
+	$backup_list      = get_option('onetone_options_backup');
+	$backup_list_html = '';
+	if( is_array($backup_list) && $backup_list != NULL )
+	{
+		foreach( $backup_list as $backup_item ){
+			
+			$backup_list       = get_option('onetone_options_backup_'.$backup_item);
+			$backup_list_html .= '<tr id="tr-'.$backup_item.'">
+  <td style="padding-left:20px;"> '.__('Backup', 'onetone').' '.date('Y-m-d H:i:s',$backup_item).'</td>
+  <td><a class="button" id="onetone-restore-btn" data-key="'.$backup_item.'" href="#"><i class="fa fa-refresh"></i> '.__('Restore', 'onetone').'</a></td>
+  <td><a class="button" id="onetone-delete-btn" data-key="'.$backup_item.'" href="#"><i class="fa fa-remove"></i> '.__('Delete', 'onetone').'</a></td>
+</tr>';
+			}
 		
-		$options[] = array(	
-						   'icon' => 'fa-frown-o',
-						   'name' => __('404 page', 'onetone'),
-						   'type' => 'heading'
-						   );
-		$options[] = array(
-		
-		'name' => __('404 page content', 'onetone'),
-		'desc' => '',
-		'id' => 'content_404',
-		'std' => '<h2>WHOOPS!</h2>
-                        <p>THERE IS NOTHING HERE.<br>PERHAPS YOU WERE GIVEN THE WRONG URL?</p>',
-		'type' => 'editor');
-		
-		
-		 // Blog
-		
-		$options[] = array(	
-						   'icon' => 'fa-bold',
-						   'name' => __('Blog', 'onetone'),
-						   'type' => 'heading'
-						   );
-		
-		
-		$options[] =  array(
-        'id'          => 'display_author_info',
-        'name'       => __( 'Display Author Info?', 'onetone' ),
-        'desc'        => __('Display author info on single page.', 'onetone'),
-        'std'         => '1',
-        'type'        => 'checkbox',
-        'class'       => '',
-      );
-		$options[] =  array(
-        'id'          => 'display_related_posts',
-        'name'       => __( 'Display Related Posts?', 'onetone' ),
-        'desc'        => __('Display related posts on single page.', 'onetone'),
-        'std'         => '1',
-        'type'        => 'checkbox',
-        'class'       => '',
-      );
+		}
+	
+	$options[] = array(
+						'name' => '',
+						'desc' => '
+						<div class="onetone-desc"> <a class="button" id="onetone-backup-btn" href="#">'.__('Create New Backup', 'onetone').'</a> <span style=" padding-left:20px; display:none; color:green;" class="onetone-backup-complete">'.__('Theme options have been backuped.', 'onetone').'</span></div>
+						<table width="100%" border="1" id="onetone-backup-lists" style=" margin-top:50px;">
+					  '.$backup_list_html.'   </table>',
+						'id' => 'options_backup',
+						'std' => '',
+						'type' => 'info',
+						'class'=>'',
+						);
 		
 	return $options;
 }

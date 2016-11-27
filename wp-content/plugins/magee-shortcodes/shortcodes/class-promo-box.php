@@ -77,23 +77,12 @@ class Magee_Promo_Box {
 											if( stristr($button_icon,'fa-')):
 		 							        $html .= '<i class="fa '.esc_attr($button_icon).'"></i>'; 
 											else:
-											$html .= '<img src="'.esc_attr($button_icon).'" class="image_instead"/>'; 
+											$html .= '<img src="'.esc_attr($button_icon).'" class="image-instead"/>'; 
 											endif;
 		$html .= 						    esc_attr($button_text).'</a>
                                         </div>
                                     </div>';
 		
-		$html .= '<script>
-	    jQuery(function($) {
-	      if($("#magee-sc-form-preview").length>0){
-				 $("#magee-sc-form-preview").contents().find(".promo-action a").on("click",function(e){
-				    if($(this).attr("href") == "#"){
-					   e.preventDefault();
-				    }
-				 });
-		      }
-		  });           
-		</script>';
 		return $html;
 	}
 	

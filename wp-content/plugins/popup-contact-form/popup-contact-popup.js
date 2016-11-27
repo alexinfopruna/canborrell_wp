@@ -27,7 +27,7 @@ function PopupContact_OpenForm(PopupContact_BoxContainer_Id,PopupContact_BoxCont
     var formdiv = document.getElementById(PopupContact_BoxContainer_Id);
     formdiv.style.display="block";
 
-    var pt = window.center({width:390,height:350});
+    var pt = window.center({width:390,height:450});
 
     formdiv.style.top = pt.y + "px";
     formdiv.style.left = pt.x + "px";

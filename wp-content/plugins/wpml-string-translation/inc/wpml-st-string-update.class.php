@@ -17,7 +17,7 @@ class WPML_ST_String_Update extends WPML_WPDB_User {
 		if ( $new_value != $old_value ) {
 			$string = $this->get_initial_string( $name, $context, $old_value, $new_value );
 			$this->wpdb->update( $this->wpdb->prefix . 'icl_strings',
-			                     array( 'value' => $new_value ),
+			                     array( 'value' => $this->sanitize_string( $new_value ) ),
 			                     array( 'id' => $string->id ) );
 			$is_widget = $context === 'Widgets';
 			if ( $is_widget && $new_value ) {
@@ -27,6 +27,14 @@ class WPML_ST_String_Update extends WPML_WPDB_User {
 		}
 
 		return isset( $string ) && isset( $string->id ) ? $string->id : null;
+	}
+
+	/**
+	 * @param string $string 
+	 * @return string
+	 */
+	function sanitize_string( $string ) {
+		return html_entity_decode( $string, ENT_QUOTES );
 	}
 
 	/**

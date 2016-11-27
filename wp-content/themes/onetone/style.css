@@ -2,7 +2,7 @@
 Theme Name: Onetone
 Theme URI: http://www.mageewp.com/onetone-theme.html
 Description: Onetone is a one-page business theme based on Bootstrap framework and coded with HTML5/CSS3. All required information are displayed on a single page with clear order according to users' preferences. The basic sections designed for business purpose have already been built for you, such as services, about, gallery, clients, etc. There's also an extensive admin panel where unlimited sections can be easily added. Multiple options are available if you prefer to do some adjustments, such as changing background, parallax scrolling background, video background, Font Awesome Icons, uploading logo and  favicon,adding custom CSS and so on. The theme is also responsive, clean, and SEO optimized. Please note that with our updation, interface of your blog can grow up with futher more diversities.
-Version: 1.8.9
+Version: 1.9.2
 Author: MageeWP
 Author URI: http://www.mageewp.com
 License: GNU General Public License
@@ -880,7 +880,12 @@ img.site-logo {
 	content: "---";
 	margin: 0 3px 0 30px;
 }
-
+.site-nav > ul > li > a,
+.fxd-header .site-nav > ul > li > a {
+    font-size: 13px;
+    font-weight: 700;
+    text-transform: uppercase;
+}
 @media (min-width: 920px) {
 	.site-nav-toggle {
 		display: none;
@@ -987,8 +992,12 @@ img.site-logo {
 	color: #555;
 	width: 100%;
 	border-bottom: 1px solid transparent;
-}
+	box-shadow: 1px 1px 5px 0 rgba(100,100,100,.2);
 
+}
+header.overlay .main-header{
+	box-shadow:none;
+	}
 .header-wrap.overlay {
 	position: absolute;
 	top: 0;
@@ -1308,15 +1317,16 @@ ul.footer-links {
  */
 
 .page-title-bar {
-	background-color: transparent;
-	background-position: ;
-	padding: 50px 0 50px;
 	border-top:1px solid transparent;
 	border-bottom: 1px solid transparent;
+	padding: 20px 0;
+    text-transform: uppercase;
+    font-size: 13px;
+    background-color: #f5f5f5;
 }
 
 .page-title h1 {
-	font-size: 30px;
+	font-size: 18px;
 	line-height: 1;
 	margin: 0;
 }
@@ -1772,6 +1782,35 @@ input[type="color"]:focus,
 	border-radius: 0;
 	display: inline-block;
 	text-align: center;
+}
+
+.form-control,
+select,
+textarea,
+input[type="text"],
+input[type="password"],
+input[type="datetime"],
+input[type="datetime-local"],
+input[type="date"],
+input[type="month"],
+input[type="time"],
+input[type="week"],
+input[type="number"],
+input[type="email"],
+input[type="url"],
+input[type="search"],
+input[type="tel"],
+input[type="color"],
+.uneditable-input {
+    border: 1px solid #666;
+    padding: 5px;
+    background-color: transparent;
+}
+
+input[type="submit"] {
+    border: 1px solid #666;
+    background-color: transparent;
+    padding: 5px;
 }
 
 /*
@@ -2329,7 +2368,9 @@ section.video-section .home-container {
 .noticefailed {
 	color: #FF0000 !important;
 }
-
+.section-banner-icon{
+	margin-bottom:30px;
+	}
 /*
  *  10.0 Back to Top
  */ 
@@ -2374,7 +2415,6 @@ section.video-section .home-container {
     opacity: .3;
     bottom:50%;
     margin-bottom: -48px;
-    background-color: #000;
     padding: 40px 10px;
 }
 
@@ -2439,6 +2479,217 @@ section.video-section .home-container {
 
 #onetone-owl-slider .owl-item .item > img {
     width:100%;
+}
+
+.onetone-owl-slider {
+    position: relative;
+}
+
+.owl-theme .owl-controls {
+    height: 0;
+    margin: 0!important;
+    position:static;
+}
+
+.owl-prev,
+.owl-next {
+    display:block!important;
+    position:absolute;
+    content:'';
+    font-size:0;
+    color: #fff;
+    opacity: 0;
+    bottom:50%;
+    margin-bottom: -48px;
+    padding: 40px 10px;
+    transition: .3s;
+}
+
+.owl-carousel:hover .owl-prev,
+.owl-carousel:hover .owl-next {
+    opacity: 1;
+}
+
+.owl-prev {
+    left: 10px;
+}
+
+.owl-prev:before,
+.owl-next:before {
+    
+}
+
+.owl-prev:before {
+    content: "";
+    width: 40px;
+    height: 40px;
+    display: block;
+    border: 0 solid #fff;
+    border-width: 0 0 3px 3px;
+    -webkit-transform: rotate(45deg);
+}
+
+.owl-next {
+    right:10px;
+}
+
+.owl-next:before {
+    content: "";
+    width: 40px;
+    height: 40px;
+    display: block;
+    border: 0 solid #fff;
+    border-width: 3px 3px 0 0;
+    -webkit-transform: rotate(45deg);
+}
+
+.owl-dots {
+    position:absolute;
+    left: 0;
+    bottom: 10px;
+    width: 100%;
+    text-align: center;
+}
+
+.owl-dot {
+    width: 14px;
+    height: 14px;
+    border-radius: 10px;
+    display: inline-block;
+    margin: 2px;
+    border: 2px solid rgba(255,255,255,1);
+}
+
+.owl-dot.active {
+    background-color: #fff;
+}
+
+#onetone-owl-slider .owl-item .item .inner {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left:0;
+}
+
+.owl-item .inner {
+    padding: 20px; 
+}
+
+#onetone-owl-slider .owl-item .item > img {
+    width:100%;
+}
+
+#onetone-owl-slider .owl-item .item .inner {
+    padding: 0;
+}
+
+#onetone-owl-slider .owl-item .item .inner .caption {
+    display: table;
+    width: 100%;
+    height: 100%;
+}
+
+#onetone-owl-slider .owl-item .item .inner .caption-inner {
+    display: table-cell;
+    vertical-align: middle;
+}
+
+#onetone-owl-slider .btn {
+    border-radius: 0;
+    border: 2px solid #fff;
+    display: inline-block;
+    margin-top: 10px;
+}
+
+@media only screen and (max-device-width: 480px) {
+	section.homepage-slider .inner {
+		padding-top: 10px;
+		padding-bottom: 0;
+	}
+
+	section.homepage-slider h1,
+	section.homepage-slider h2 {
+		font-size: 20px;
+		line-height: 28px;
+		margin-bottom:0;
+	}
+	
+	section.homepage-slider p {
+		font-size: 12px;
+		width: 100%;
+		margin: 0 auto;
+	}
+	.owl-dots {
+		display:none !important;
+	}
+}
+
+@media only screen and (min-device-width: 481px) and (max-device-width: 640px) {
+	section.homepage-slider .inner {
+		padding-top: 30px;
+		padding-bottom: 0;
+	}
+
+	section.homepage-slider h1,
+	section.homepage-slider h2 {
+		font-size: 20px;
+		line-height: 30px;
+		margin-bottom:0;
+	}
+	
+	section.homepage-slider p {
+		font-size: 12px;
+		width: 100%;
+		margin: 0 auto 10px;
+	}
+	.owl-dots {
+		display:none !important;
+	}
+}
+
+@media only screen and (min-device-width: 641px) and (max-device-width: 768px) {
+	section.homepage-slider .inner {
+		padding-top: 50px;
+		padding-bottom: 0;
+	}
+
+	section.homepage-slider h1,
+	section.homepage-slider h2 {
+		font-size: 28px;
+		line-height: 40px;
+		margin-bottom:0;
+	}
+	
+	section.homepage-slider p {
+		font-size: 14px;
+		width: 80%;
+		margin: 0 auto 10px;
+	}
+
+	.owl-dots {
+		display:none !important;
+	}
+}
+
+@media only screen and (min-device-width: 769px) and (max-device-width: 1200px) {
+	section.homepage-slider .inner {
+		padding-top: 100px;
+		padding-bottom: 0;
+	}
+
+	section.homepage-slider h1,
+	section.homepage-slider h2 {
+		font-size: 32px;
+		line-height: 40px;
+		margin-bottom:0;
+	}
+	
+	section.homepage-slider p {
+		font-size: 14px;
+		width: 80%;
+		margin: 0 auto 10px;
+	}
 }
 /*
  * 11.0 bbPress
@@ -2876,4 +3127,36 @@ border:none;
         padding: 5px 0;
         border-bottom: 2px solid #963;
     }
+}
+
+@media screen and (max-width: 600px) {
+    body.admin-bar {
+        margin-top: -46px;
+    }
+    body.admin-bar .wrapper {
+        padding-top: 46px;
+    }
+}
+
+@media screen and (max-width: 768px) {
+    .footer-info-area .site-info,
+    .footer-info-area .site-social {
+        float: none!important;
+        text-align: center;
+    }
+    .footer-info-area .site-social ul {
+        margin: 0 auto;
+    }
+    .site-social li a {
+    	margin-left: .5em;
+    	margin-right: .5em;
+    }
+}
+.img-frames {
+	font-size:0;
+	line-height:0;
+}
+
+.img-frames .img-box {
+	margin-bottom:0;
 }

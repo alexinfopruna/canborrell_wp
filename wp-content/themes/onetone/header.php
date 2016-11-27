@@ -32,30 +32,32 @@
   $sticky_logo        = ( $sticky_logo == '' ) ? $sticky_logo_retina : $sticky_logo;
   $logo_position      = onetone_option('logo_position','left');
   $logo_position      = $logo_position==''?'left':$logo_position;
-  
-  $header_overlay               = onetone_option('header_overlay','');
+  $header_overlay     = onetone_option('header_overlay','');
   
   $overlay = '';
-  if( ($header_overlay == 'yes'|| $header_overlay == '1') && (is_front_page()) )
-  $overlay = 'overlay';
-  
+  if( ($header_overlay == 'yes'|| $header_overlay == '1') && (is_front_page()) ){
+  $overlay      = 'overlay';
+  $overlay_logo = onetone_option('overlay_logo');
+  $logo         = ( $overlay_logo == '' ) ? $logo : $overlay_logo;
+  }
   //sticky
   $enable_sticky_header         = onetone_option('enable_sticky_header','yes');
   $enable_sticky_header_tablets = onetone_option('enable_sticky_header_tablets','yes');
   $enable_sticky_header_mobiles = onetone_option('enable_sticky_header_mobiles','yes');
    
  if(isset($page_meta['nav_menu']) && $page_meta['nav_menu'] !='')
- $theme_location = $page_meta['nav_menu'];
+   $theme_location = $page_meta['nav_menu'];
  else
- $theme_location = 'primary';
+   $theme_location = 'primary';
  
  $body_class  = 'page blog';
  if( is_front_page() )
- $body_class  = 'page homepage';
+  $body_class  = 'page homepage';
  
  $header_container = 'container';
+ 
  if( $header_fullwidth == 1)
- $header_container = 'container-fluid';
+  $header_container = 'container-fluid';
  
   $header_image = get_header_image();
 ?>

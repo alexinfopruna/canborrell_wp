@@ -75,16 +75,7 @@ class Magee_Alert {
 		endif;
 		$styles  = sprintf( '<style type="text/css" scoped="scoped">.%s{%s} </style>', $add_class ,$css_style);		
 		$content = $icon_str.do_shortcode( Magee_Core::fix_shortcodes($content));
-		$script  = '<script>
-         jQuery(function($){
-						if($("#magee-sc-form-preview").length>0){
-								$("#magee-sc-form-preview").contents().find(".close").on("click",function(){
-								   $("#magee-sc-form-preview").contents().find(".'.$add_class.'").remove();
-								});
-						}
-				});		
-		</script>';
-		$html    = sprintf(' %s<div class="alert magee-alert %s " role="alert" id= "%s">%s</div>%s',$styles,$class,$id,$content,$script);
+		$html    = sprintf(' %s<div class="alert magee-alert %s " role="alert" id= "%s">%s</div>',$styles,$class,$id,$content);
         
 		
 		return $html;

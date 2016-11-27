@@ -1,8 +1,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: Popup contact form\n"
-"POT-Creation-Date: 2016-03-23 23:12+0800\n"
-"PO-Revision-Date: 2016-03-23 23:12+0800\n"
+"POT-Creation-Date: 2016-11-15 22:00+0800\n"
+"PO-Revision-Date: 2016-11-15 22:00+0800\n"
 "Last-Translator: \n"
 "Language-Team: www.gopiplus.com <www.gopiplus.com>\n"
 "MIME-Version: 1.0\n"
@@ -18,135 +18,135 @@ msgstr ""
 msgid "Popup contact form"
 msgstr ""
 
-#: ../content-setting.php:47
+#: ../content-setting.php:53
 msgid "Details successfully updated."
 msgstr ""
 
-#: ../content-setting.php:52
+#: ../content-setting.php:58
 msgid "Popup email setting"
 msgstr ""
 
-#: ../content-setting.php:55
+#: ../content-setting.php:61
 msgid "Email address"
 msgstr ""
 
-#: ../content-setting.php:57
+#: ../content-setting.php:63
 msgid "Please enter admin email address to receive mails."
 msgstr ""
 
-#: ../content-setting.php:59
+#: ../content-setting.php:65
 msgid "Email subject"
 msgstr ""
 
-#: ../content-setting.php:61
+#: ../content-setting.php:67
 msgid "Please enter mail subject."
 msgstr ""
 
-#: ../content-setting.php:63
+#: ../content-setting.php:69
 msgid "Link Button / Text"
 msgstr ""
 
-#: ../content-setting.php:65
+#: ../content-setting.php:71
 msgid ""
 "This box is to add the contact us Image Button or Text, Entered value will "
 "display in the front end."
 msgstr ""
 
-#: ../content-setting.php:68
+#: ../content-setting.php:74
 msgid "Popup widget setting"
 msgstr ""
 
-#: ../content-setting.php:70
+#: ../content-setting.php:76
 msgid "Popup title"
 msgstr ""
 
-#: ../content-setting.php:72
+#: ../content-setting.php:78
 msgid "Please enter popup box title."
 msgstr ""
 
-#: ../content-setting.php:74
+#: ../content-setting.php:80
 msgid "On home page display"
 msgstr ""
 
-#: ../content-setting.php:79
+#: ../content-setting.php:85
 msgid "Select YES if you need to display on home page."
 msgstr ""
 
-#: ../content-setting.php:81
+#: ../content-setting.php:87
 msgid "On posts display"
 msgstr ""
 
-#: ../content-setting.php:86
+#: ../content-setting.php:92
 msgid "Select YES if you need to display on posts."
 msgstr ""
 
-#: ../content-setting.php:88
+#: ../content-setting.php:94
 msgid "On pages display"
 msgstr ""
 
-#: ../content-setting.php:93
+#: ../content-setting.php:99
 msgid "Select YES if you need to display on wordpress pages."
 msgstr ""
 
-#: ../content-setting.php:95
+#: ../content-setting.php:101
 msgid "On search page display"
 msgstr ""
 
-#: ../content-setting.php:100
+#: ../content-setting.php:106
 msgid "Select YES if you need to display on search pages."
 msgstr ""
 
-#: ../content-setting.php:102
+#: ../content-setting.php:108
 msgid "On archive page display"
 msgstr ""
 
-#: ../content-setting.php:107
+#: ../content-setting.php:113
 msgid "Select YES if you need to display on archive pages."
 msgstr ""
 
-#: ../content-setting.php:109
+#: ../content-setting.php:115
 msgid "Security Check (Spam Stopper)"
 msgstr ""
 
-#: ../content-setting.php:110
+#: ../content-setting.php:116
 msgid "Home URL"
 msgstr ""
 
-#: ../content-setting.php:112
+#: ../content-setting.php:118
 msgid ""
 "This home URL is for security check. We can submit the form only on this "
 "website. "
 msgstr ""
 
-#: ../content-setting.php:116
+#: ../content-setting.php:122
 msgid "Update All Details"
 msgstr ""
 
-#: ../content-setting.php:117
+#: ../content-setting.php:123
 msgid "Help"
 msgstr ""
 
-#: ../content-setting.php:121
+#: ../content-setting.php:127
 msgid "Plugin configuration option"
 msgstr ""
 
-#: ../content-setting.php:123
+#: ../content-setting.php:129
 msgid "Drag and drop the plugin widget to your sidebar."
 msgstr ""
 
-#: ../content-setting.php:124
+#: ../content-setting.php:130
 msgid "Add plugin in the posts or pages using short code."
 msgstr ""
 
-#: ../content-setting.php:125
+#: ../content-setting.php:131
 msgid "Add directly in to the theme using PHP code."
 msgstr ""
 
-#: ../content-setting.php:127 ../popup-contact-form.php:101
+#: ../content-setting.php:133 ../popup-contact-form.php:101
 msgid "Check official website for more information"
 msgstr ""
 
-#: ../content-setting.php:128 ../popup-contact-form.php:102
+#: ../content-setting.php:134 ../popup-contact-form.php:102
 msgid "click here"
 msgstr ""
 

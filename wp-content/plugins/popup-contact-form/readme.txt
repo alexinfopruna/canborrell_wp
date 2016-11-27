@@ -5,8 +5,8 @@ Author URI: http://www.gopiplus.com/work/2012/05/18/popup-contact-form-wordpress
 Plugin URI: http://www.gopiplus.com/work/2012/05/18/popup-contact-form-wordpress-plugin/
 Tags: popup, contact, contact form, gopiplus
 Requires at least: 3.4
-Tested up to: 4.6
-Stable tag: 6.0
+Tested up to: 4.7
+Stable tag: 6.1
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -132,6 +132,10 @@ Plugin *.po file (popup-contact.po) available in the languages folder.
 
 1. Tested up to 4.6
 
+= 6.1 =
+
+1. Tested up to 4.7
+
 == Upgrade Notice ==
 
 = 1.0 =
@@ -204,3 +208,7 @@ Plugin *.po file (popup-contact.po) available in the languages folder.
 = 6.0 =
 
 1. Tested up to 4.6
+
+= 6.1 =
+
+1. Tested up to 4.7

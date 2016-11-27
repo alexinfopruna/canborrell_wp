@@ -66,7 +66,7 @@ global $onetone_animated;
 	  $link        =  esc_url(onetone_option('section_link_'.$i.'_'.$j));
 	  $name        =  esc_attr(onetone_option('section_name_'.$i.'_'.$j));
 	  $byline      =  esc_attr(onetone_option('section_byline_'.$i.'_'.$j));
-	  $description = onetone_option('section_desc_'.$i.'_'.$j);
+	  $description =  onetone_option('section_desc_'.$i.'_'.$j);
 	 
 	  
 	  if( $avatar != '' ):

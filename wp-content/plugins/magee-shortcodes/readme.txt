@@ -3,8 +3,8 @@ Contributors: magictheme
 Donate link: http://www.mageewp.com/
 Tags: shortcodes, shortcode, accordion, alert, button, column, custom box, countdowns, counter, divider, dropcap, feature box, flip box, highlight, list, modal, popover, tooltip, person, promo box, scocial, tab, testimonial, progress, piechart, timeline, panel, section, slider
 Requires at least: 4.0
-Tested up to: 4.5
-Stable tag: 4.5
+Tested up to: 4.6
+Stable tag: 4.6
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -67,6 +67,19 @@ Activate plugin at "Plugins" administration page.
 
 
 == Changelog ==
+
+= 1.6.0 - 07/11/2016 =
+* Improve - Improved modal shortcode
+* Added : new option for countdowns( type -> circle, day/hours/minutes/seconds field text, google fonts, circle type day/hours/minutes/seconds color )
+* Fix - Fixed magee slider translation issue
+* Fix - Fixed counter shortcode issue
+* Fix - Fixed font weight option issue for heading shortcode
+* Fix - Fixed promo box shortcode issue
+* Fix - Fixed icon/person/tab iconpicker issues
+* Fix - Fixed styles( beside/below ) issue for person shortcode
+
+= 1.5.9 - 17/10/2016 =
+* Fix - Fixed filp-box responsive issue on mobile 
 
 = 1.5.8 - 15/07/2016 =
 Added: new option for Social ( Target )

@@ -17,7 +17,7 @@ class WPML_ST_Verify_Dependencies {
 				$this,
 				'notice_no_wpml'
 			) );
-		} elseif ( version_compare( $wpml_core_version, '3.3', '<' ) ) {
+		} elseif ( version_compare( $wpml_core_version, '3.5', '<' ) ) {
 			add_action( 'admin_notices', array( $this, 'wpml_is_outdated' ) );
 		}
 	}

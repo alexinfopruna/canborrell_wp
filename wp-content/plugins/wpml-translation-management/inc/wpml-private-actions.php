@@ -38,7 +38,7 @@ function wpml_tm_add_translation_job( $rid, $translator_id, $translation_package
 
 add_action( 'wpml_add_translation_job', 'wpml_tm_add_translation_job', 10, 3 );
 
-require 'wpml-private-filters.php';
+require dirname( __FILE__ ) . '/wpml-private-filters.php';
 
 function wpml_set_job_translated_term_values( $job_id, $delete = false ) {
 
@@ -49,12 +49,12 @@ function wpml_set_job_translated_term_values( $job_id, $delete = false ) {
 add_action( 'wpml_added_local_translation_job', 'wpml_set_job_translated_term_values', 10, 2 );
 
 function wpml_tm_save_post( $post_id, $post, $force_set_status ) {
-	global $wpdb;
+	global $wpdb, $wpml_post_translations, $wpml_term_translations;
 
 	require_once WPML_TM_PATH . '/inc/actions/wpml-tm-post-actions.class.php';
 	$action_helper    = new WPML_TM_Action_Helper();
 	$blog_translators = wpml_tm_load_blog_translators();
-	$tm_records       = new WPML_TM_Records( $wpdb );
+	$tm_records       = new WPML_TM_Records( $wpdb, $wpml_post_translations, $wpml_term_translations );
 	$save_post_action = new WPML_TM_Post_Actions( $action_helper, $blog_translators, $tm_records );
 	if ( $post->post_type == 'revision' || $post->post_status == 'auto-draft' || isset( $_POST['autosave'] ) ) {
 		return;

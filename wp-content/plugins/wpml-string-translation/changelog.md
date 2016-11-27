@@ -1,3 +1,43 @@
+# 2.4.2.1
+
+## Fixes
+* [wcml-1499] Problem with WooCommerce endpoints resolved
+* [wpmlst-945] Fixed PHP notice when Views uses AJAX pagination.
+* [wpmlst-946] Fixed PHP notice when "My Account" endpoint contains special chars
+
+# 2.4.2
+
+## Fixes
+* [wpmlst-889] Sanitized the strings before registering them in String Translation tables.
+* [wpmlst-896] Improved the detection of URLs used to store data in `icl_string_urls`.
+* [wpmlst-919] Admin notices for strings scanning when a plugin is installed/updated can be permanently dismissed.
+
+# 2.4.1.1
+
+## Fixes
+* [wpmlst-892] Moved table migration from Core plugin to String Translation, to avoid dependency issues
+* [wpmlst-895] Fixed index in icl_string_pages table
+
+# 2.4.1
+
+## Fixes
+* [wpmlcore-3278] Fixed illegal mix of collations between `icl_strings` and `icl_string_pages` tables 
+* [wpmlst-881] Removed leading backslash `\` to avoid warnings in PHP <5.3
+* [wpmlst-880] Fixed error appearing during plugin update
+* [wpmlst-882] Improved handling of the the admin notice Something doesn't look right with "Caching of String Translation plugin"
+* [wpmlst-886] Improved caching of strings per page, to not flood tables with duplicated data and not cause performance issues
+* [wpmlst-888] Improved caching of strings per page, it requires less memory in db now.
+
+# 2.4.0
+
+## Fixes
+* [wpmlst-836] Fixed getting translated string when icl_t is called directly after icl_register_string.
+* [wpmlst-819] Improvement to ST performance, especially important where there are a lot of registered strings.  
+* [wpmlst-825] New box in WPML > ST to exclude contexts from auto-registration. Currently all strings are auto-registered by default.
+* [wpmlst-745] Keep track of which strings have links to content and fix the links to translated content in string translations
+* [wpmlst-879] Fixed outdated check message.
+* Other minor bug fixes and improvements
+
 # 2.3.9
 
 ## Fixes

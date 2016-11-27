@@ -29,10 +29,17 @@ class Magee_Modal {
 			array(
 				'id' 					=>'',
 				'class' 				=>'',
-				//'name'					=>'',	
+				'effect'                =>'',	
 				'title' 				=>'',
-				'size' 					=>'small',
-				'showfooter'			=>'yes',
+				'title_color' 			=>'',
+				'heading_background' 	=>'',
+				'background' 			=>'',
+				'color' 				=>'',
+				'width' 				=>'',
+				'height' 				=>'',
+				'overlay_color' 		=>'#000000',
+				'overlay_opacity' 		=>'0.3',
+				'close_icon'            =>'yes',
 			), $args
 		);
 		
@@ -40,52 +47,33 @@ class Magee_Modal {
 		self::$args = $defaults;
 		$uniqid = uniqid('modal-');
 		$this->id = $id.$uniqid;
+        if(isset($width) && is_numeric($width))
+		$width = $width.'px';
+		if(isset($height) && is_numeric($height))
+		$height = $height.'px';
+		 
+		$html = '';
+		$html .='<style type="text/css">';
+		if(isset($title_color) && $title_color !== '')
+		$html .='#'.$uniqid.' .magee-modal-title-wrapper h3{color:'.$title_color.'}';
+		if(isset($heading_background) && $heading_background !== '')
+		$html .='#'.$uniqid.' .magee-modal-title-wrapper{background:'.$heading_background.'}';
+		if(isset($background) && $background !== '')
+		$html .='#'.$uniqid.' .magee-modal-content-wrapper{background:'.$background.'}';
+		if(isset($color) && $color !== '')
+		$html .='#'.$uniqid.' .magee-modal-content-wrapper{color:'.$color.'}';
+		if(isset($width) && $width !== '')
+		$html .='#'.$uniqid.' .magee-modal-content-wrapper{width:'.$width.'}';
+		if(isset($height) && $height !== '')
+		$html .='#'.$uniqid.' .magee-modal-content-wrapper{height:'.$height.'}';
+		if(isset($overlay_color) && $overlay_color !== '')
+		$overlay_color = Magee_Core::hex2rgb($overlay_color);
+		$html .='#'.$uniqid.' .magee-modal-overlay{background-color:rgba('.$overlay_color[0].','.$overlay_color[1].','.$overlay_color[2].','.$overlay_opacity.');}';
 		
-		$sz ='';
-		if($size == 'small'){
-		$sz='modal-sm';
-		}	
-		if($size == 'large'){
-		$sz='modal-lg';
-		}
+		$html .='</style>';
+        do_shortcode( Magee_Core::fix_shortcodes($content));
 		
-		$content = do_shortcode( Magee_Core::fix_shortcodes($content));
-		
-		$diva=sprintf(' <span class="%s" id="%s" data-toggle="modal" data-target="#%s_ModalLg" > %s</span>',$class,$id,$uniqid,do_shortcode( Magee_Core::fix_shortcodes($this->modal_anchor_text)));
-		
-		$divheadra = '<a type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">x</span></a>';
-		$divheadrtitle =sprintf('<h4 class="modal-title" id="%s_ModalLgLabel">%s</h4>',$uniqid,$title);
-		$divheadr = sprintf('<div class="modal-header">%s %s</div>',$divheadra,$divheadrtitle);
-		$divbody = sprintf('<div class="modal-body">%s</div>',do_shortcode( Magee_Core::fix_shortcodes($this->modal_content)));
-		$divfooter = '<div class="modal-footer"><a type="button" class="btn-normal" data-dismiss="modal" style="color:#fff">Close</a></div>';
-		$divmodelcontent = sprintf('<div class="modal-content">%s %s %s</div>',$divheadr,$divbody ,$divfooter );
-		$divmodel = sprintf('<div class="modal fade" id="%s_ModalLg" tabindex="-1" role="dialog" aria-labelledby="%s_ModalLgLabel" aria-hidden="true" style="display: none;">
-                             <div class="modal-dialog %s"> %s</div></div>',$uniqid,$uniqid,$sz,$divmodelcontent);
-		$html= sprintf('%s %s',$diva,$divmodel);
-        $html .= '<script>
-		jQuery(function($) {   
-		   if($("#magee-sc-form-preview").length>0){
-		      $("#magee-sc-form-preview").contents().find("span").on("click",function(){
-				  $("#magee-sc-form-preview").contents().find("#'.$uniqid.'_ModalLg").addClass("in");
-				  $("#magee-sc-form-preview").contents().find("#'.$uniqid.'_ModalLg").attr("aria-hidden","false");
-				  $("#magee-sc-form-preview").contents().find("#'.$uniqid.'_ModalLg").css("display","block");
-				  $("#magee-sc-form-preview").contents().find("#'.$uniqid.'_ModalLg").css("padding-right","17px");
-			  });
-			  $("#magee-sc-form-preview").contents().find(".btn-normal").on("click",function(){
-				  $("#magee-sc-form-preview").contents().find("#'.$uniqid.'_ModalLg").removeClass("in");
-				  $("#magee-sc-form-preview").contents().find("#'.$uniqid.'_ModalLg").attr("aria-hidden","true");
-				  $("#magee-sc-form-preview").contents().find("#'.$uniqid.'_ModalLg").css("display","none");
-				  $("#magee-sc-form-preview").contents().find("#'.$uniqid.'_ModalLg").css("padding-right","");
-			  });
-			  $("#magee-sc-form-preview").contents().find(".close").on("click",function(){
-				  $("#magee-sc-form-preview").contents().find("#'.$uniqid.'_ModalLg").removeClass("in");
-				  $("#magee-sc-form-preview").contents().find("#'.$uniqid.'_ModalLg").attr("aria-hidden","true");
-				  $("#magee-sc-form-preview").contents().find("#'.$uniqid.'_ModalLg").css("display","none");
-				  $("#magee-sc-form-preview").contents().find("#'.$uniqid.'_ModalLg").css("padding-right","");
-			  });
-		   }
-		});		
-		</script>';
+		$html .= sprintf('<div id="%s" class="magee-modal-trigger %s" data-id="%s" data-title="%s" data-content="%s" data-effect="%s" data-close_icon="%s">%s</div>',$id,$class,$uniqid,$title,do_shortcode( Magee_Core::fix_shortcodes($this->modal_content)),$effect,$close_icon,do_shortcode( Magee_Core::fix_shortcodes($this->modal_anchor_text)));
 		
 		return $html;
 	}

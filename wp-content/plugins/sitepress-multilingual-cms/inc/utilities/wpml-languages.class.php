@@ -77,6 +77,7 @@ class WPML_Languages extends WPML_SP_And_PT_User {
 			$translations          = null;
 		}
 
+		$translations = apply_filters( 'wpml_get_ls_translations', $translations, $wp_query );
 		return array( $translations, $wp_query );
 	}
 

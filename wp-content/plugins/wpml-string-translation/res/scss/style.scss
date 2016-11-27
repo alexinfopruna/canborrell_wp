@@ -209,3 +209,28 @@ label[for="wpml-cdl-set-default"] {
 	display: block;
 	margin-top: 5px;
   }
+
+
+.wpml-st-exclude-contexts {
+	.wpml-st-excluded-info {
+		font-weight: bold;
+	}
+}
+
+.wpml-st-exclude-contexts-box {
+  .contexts {
+    p {
+      float: left;
+      width: 50%;
+    }
+  }
+
+
+  .wpml-st-filter-and-select-all-box {
+    border-bottom: 1px solid #e5e5e5;
+  }
+}
+
+.wpml-st-cancel-button {
+  margin-right: 20px;
+}

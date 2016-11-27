@@ -172,17 +172,7 @@ class Magee_Button {
 		
 		$html = '<style type="text/css">'.$css_style.'</style>';		
 		$html .= sprintf( '<a href="%s" target="%s" style="" class="%s" id="%s">%s</a>', esc_url($link),$target, $class,$id, do_shortcode( Magee_Core::fix_shortcodes($content)) );
-		$html .= '<script>
-	    jQuery(function($) {
-	      if($("#magee-sc-form-preview").length>0){
-				 $("#magee-sc-form-preview").contents().find("a").on("click",function(e){
-				    if($(this).attr("href") == "#"){
-					   e.preventDefault();
-				    }
-				 });
-		      }
-		  });           
-		</script>';
+
 		return $html;
 	}
 	

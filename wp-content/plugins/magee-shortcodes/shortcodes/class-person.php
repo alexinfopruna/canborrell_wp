@@ -81,9 +81,9 @@ class Magee_Person {
 		if( $picbordercolor !='' )
 		$imgstyle .= sprintf('.'.$uniqid.' .img-box img{border-color: %s;}',$picbordercolor);
 		if( $style == 'beside'){
-        $afterstyle = '.person-vcard .person-title:after{margin-left:0;}';
-		$leftstyle1 = '.person-social{text-align:left;}' ;
-		$leftstyle2 = '.person-social li a i{margin-left:6px;} ' ;
+        $afterstyle = '.'.$uniqid.' .person-vcard .person-title:after{margin-left:0;}';
+		$leftstyle1 = '.'.$uniqid.' .person-social{text-align:left;}' ;
+		$leftstyle2 = '.'.$uniqid.' .person-social li a i{margin-left:6px;} ' ;
  		$styles = sprintf( '<style type="text/css" scoped="scoped">%s %s %s %s %s %s</style>', $textstyle1,$textstyle2,$imgstyle,$afterstyle,$leftstyle1,$leftstyle2);
 		}else{
 		$styles = sprintf( '<style type="text/css" scoped="scoped">%s %s %s</style>', $textstyle1,$textstyle2,$imgstyle);

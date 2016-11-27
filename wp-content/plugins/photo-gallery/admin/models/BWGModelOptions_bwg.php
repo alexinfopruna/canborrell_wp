@@ -79,7 +79,7 @@ class BWGModelOptions_bwg {
       $row->slideshow_enable_music = 0;
       $row->slideshow_audio_url = '';
       $row->slideshow_effect_duration = 1;
-      
+
       $row->popup_width = 800;
       $row->popup_height = 500;
       $row->popup_type = 'fade';
@@ -108,7 +108,7 @@ class BWGModelOptions_bwg {
       $row->watermark_text = 'web-dorado.com';
       $row->watermark_link = 'https://web-dorado.com';
       $row->watermark_font_size = 20;
-      $row->watermark_font = 'arial';
+      $row->watermark_font = 'segoe ui';
       $row->watermark_color = 'FFFFFF';
       $row->watermark_opacity = 30;
 

@@ -14,65 +14,71 @@ jQuery("form.contact-form #submit").click(function(){
 	Name    = Name.replace('Name','');
 	Email   = Email.replace('Email','');
 	Message = Message.replace('Message','');
+	
 	if( !obj.find(".noticefailed").length ){
 		obj.append('<div class="noticefailed"></div>');
 		}
+		
 	obj.find(".noticefailed").text("");
+	
    if( !IsEmail( Email ) ) {
-	obj.find(".noticefailed").text("Please enter valid email.");
-	return false;
+	  obj.find(".noticefailed").text("Please enter valid email.");
+	  return false;
 	}
+	
 	if(Name ===""){
-	obj.find(".noticefailed").text("Please enter your name.");
-	return false;
+	  obj.find(".noticefailed").text("Please enter your name.");
+	  return false;
 	}
+	
 	if(Message === ""){
-	obj.find(".noticefailed").text("Message is required.");
-	return false;
+	  obj.find(".noticefailed").text("Message is required.");
+	  return false;
 	}
+	
 	obj.find(".noticefailed").html("");
 	obj.find(".noticefailed").append("<img alt='loading' class='loading' src='"+onetone_params.themeurl+"/images/loading.gif' />");
 	
 	 jQuery.ajax({
-				 type:"POST",
-				 dataType:"json",
-				 url:onetone_params.ajaxurl,
-				 data:"Name="+Name+"&Email="+Email+"&Message="+Message+"&sendto="+sendto+"&action=onetone_contact",
-				 success:function(data){ 
-				     if(data.error==0){
-						 obj.find(".noticefailed").addClass("noticesuccess").removeClass("noticefailed");
-						 obj.find(".noticesuccess").html(data.msg);
-						 }else{
-							 obj.find(".noticefailed").html(data.msg);	
-							 }
-							 jQuery('.loading').remove();obj[0].reset();
-					},
-					error:function(){
-						obj.find(".noticefailed").html("Error.");
-						obj.find('.loading').remove();
-						}
-						});
+		 type:"POST",
+		 dataType:"json",
+		 url:onetone_params.ajaxurl,
+		 data:"Name="+Name+"&Email="+Email+"&Message="+Message+"&sendto="+sendto+"&action=onetone_contact",
+		 success:function(data){ 
+			 if(data.error==0){
+				 obj.find(".noticefailed").addClass("noticesuccess").removeClass("noticefailed");
+				 obj.find(".noticesuccess").html(data.msg);
+				 }else{
+					 obj.find(".noticefailed").html(data.msg);	
+					 }
+					 jQuery('.loading').remove();obj[0].reset();
+			},
+			error:function(){
+				obj.find(".noticefailed").html("Error.");
+				obj.find('.loading').remove();
+				}
+          });
 	 });
 
 
   //top menu
 
-	jQuery(".site-navbar,.home-navbar").click(function(){
+ jQuery(".site-navbar,.home-navbar").click(function(){
 				jQuery(".top-nav").toggle();
 			});
 	
-  jQuery('.top-nav ul li').hover(function(){
-	jQuery(this).find('ul:first').slideDown(100);
-	jQuery(this).addClass("hover");
+ jQuery('.top-nav ul li').hover(function(){
+	  jQuery(this).find('ul:first').slideDown(100);
+      jQuery(this).addClass("hover");
 	},function(){
-	jQuery(this).find('ul').css('display','none');
-	jQuery(this).removeClass("hover");
+	  jQuery(this).find('ul').css('display','none');
+	  jQuery(this).removeClass("hover");
 	});
   jQuery('.top-nav li ul li:has(ul)').find("a:first").append(" <span class='menu_more'>»</span> ");
  
    jQuery(".top-nav > ul > li,.main-nav > li").click(function(){
-	jQuery(".top-nav > ul > li,.main-nav > li").removeClass("active");
-	jQuery(this).addClass("active");
+	  jQuery(".top-nav > ul > li,.main-nav > li").removeClass("active");
+	  jQuery(this).addClass("active");
     });
    
    //
@@ -141,6 +147,7 @@ jQuery("form.contact-form #submit").click(function(){
 			
  if( $("body.admin-bar").length){
 		if( $(window).width() < 765) {
+			
 				stickyTop = 46;
 				
 			} else {
@@ -155,8 +162,9 @@ jQuery("form.contact-form #submit").click(function(){
 			var stickyMenu = function(){
 
 				var scrollTop = $(window).scrollTop(); 
+				
 				if (scrollTop > stickyTop) { 
-					$('.sticky-header').css({ 'position': 'fixed'}).addClass('fxd');
+					    $('.sticky-header').css({ 'position': 'fixed'}).addClass('fxd');
 					} else {
 						$('.sticky-header').css({ 'position': 'static' }).removeClass('fxd'); 
 					}   
@@ -191,9 +199,9 @@ jQuery("form.contact-form #submit").click(function(){
 		 		var id = $(this).attr('href');
 				if(typeof $('section'+ id).offset() !== 'undefined'){
 				if( $("header").css("position") === "static")
-				goTo = $(id).offset().top  - 2*selectorHeight;
+				  goTo = $(id).offset().top  - 2*selectorHeight;
 				else
-				 goTo = $(id).offset().top - selectorHeight;
+				  goTo = $(id).offset().top - selectorHeight;
 				 
 				$("html, body").animate({ scrollTop: goTo }, scrollSpeed);
 				}
@@ -208,15 +216,33 @@ jQuery("form.contact-form #submit").click(function(){
 
 jQuery(document).ready(function($){
 								
-								
 //slider
 
- if(jQuery("section.homepage-slider .item").length >1 ){
- jQuery("#onetone-owl-slider").owlCarousel({
-	navigation : false, // Show next and prev buttons
+ if($("section.homepage-slider .item").length >1 ){
+	 
+	  if( $("body.admin-bar").length){
+		if( $(window).width() < 765) {
+				stickyTop = 46;
+				
+			} else {
+				stickyTop = 32;
+			}
+	  }
+	  else{
+		  stickyTop = 0;
+		  }
+		
+  if( onetone_params.slide_fullheight == '1' ){
+	  $('section.homepage-slider').height($(window).height()-stickyTop);
+	  $('section.homepage-slider .item').height($(window).height()-stickyTop);
+	 }
+	 
+ $("#onetone-owl-slider").owlCarousel({
+	nav:onetone_params.slider_control == '1'?true:false,
+	dots:onetone_params.slider_pagination == '1'?true:false,
 	slideSpeed : 300,
 	items:1,
-	autoplay:true,
+	autoplay:onetone_params.slide_autoplay == '1'?true:false,
 	margin:0,
 	loop:true,
 	paginationSpeed : 400,
@@ -225,14 +251,14 @@ jQuery(document).ready(function($){
  
 });
 }
- if(jQuery("section.homepage-slider .item").length ==1 ){
-	 jQuery("section.homepage-slider .owl-carousel").show();
+ if($("section.homepage-slider .item").length ==1 ){
+	 $("section.homepage-slider .owl-carousel").show();
  }
 								
 								
  $(".site-nav-toggle").click(function(){
-                $(".site-nav").toggle();
-            });
+    $(".site-nav").toggle();
+ });
  // retina logo
 if( window.devicePixelRatio > 1 ){
 	if($('.normal_logo').length && $('.retina_logo').length){
@@ -247,8 +273,8 @@ if( window.devicePixelRatio > 1 ){
 //video background
 
  var myPlayer;
-        jQuery(function () {
-             myPlayer = jQuery("#onetone-youtube-video").YTPlayer();
+ $(function () {
+             myPlayer = $("#onetone-youtube-video").YTPlayer();
         });
 
  
@@ -282,10 +308,10 @@ if( $('.parallax-scrolling').length ){
 /*  sticky header             	  								  	    */
 /* ------------------------------------------------------------------------ */
 	
-jQuery(window).scroll(function(){
+$(window).scroll(function(){
 							   
-		if(jQuery("body.admin-bar").length){
-		if(jQuery(window).width() < 765) {
+		if($("body.admin-bar").length){
+		if($(window).width() < 765) {
 				stickyTop = 46;
 				
 			} else {
@@ -353,21 +379,22 @@ jQuery(window).scroll(function(){
  
  
   if($(window).width() <1200){	
-						  newPercentage = (($(window).width() / 1200) * 100) + "%";
-						  $(".home-banner .heading-inner").css({"font-size": newPercentage});
-						  }			
-$(window).on("resize", function (){
+	  newPercentage = (($(window).width() / 1200) * 100) + "%";
+	  $(".home-banner .heading-inner").css({"font-size": newPercentage});
+    }
+
+ $(window).on("resize", function (){
 	if($(window).width() <1200){
-	newPercentage = (($(window).width() / 1200) * 100) + "%";
-	$(".home-banner .heading-inner").css({"font-size": newPercentage});
+	   newPercentage = (($(window).width() / 1200) * 100) + "%";
+	   $(".home-banner .heading-inner").css({"font-size": newPercentage});
 	}else{
-	$(".home-banner .heading-inner").css({"font-size": "100%"});
+	   $(".home-banner .heading-inner").css({"font-size": "100%"});
 	}
 });  
 
 // section fullheight
-	var win_height = $(window).height();
-	$("section.fullheight").each(function(){
+ var win_height = $(window).height();
+ $("section.fullheight").each(function(){
          var section_height = $(this).height();
 		 $(this).css({'height':section_height,'min-height':win_height});
      });

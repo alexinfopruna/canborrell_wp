@@ -1,5 +1,5 @@
 <?php
-require_once 'wpml-admin-text-functionality.class.php';
+require_once dirname( __FILE__ ) . '/wpml-admin-text-functionality.class.php';
 
 class WPML_Admin_Text_Configuration extends WPML_Admin_Text_Functionality {
 

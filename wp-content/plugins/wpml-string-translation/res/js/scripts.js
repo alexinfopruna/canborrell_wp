@@ -11,8 +11,6 @@ jQuery(document).ready(function(){
     jQuery('#icl_st_filter_search_sb').click(icl_st_filter_search);    
     jQuery('#icl_st_filter_search_remove').click(icl_st_filter_search_remove);    
     jQuery('#icl_st_delete_selected').click(icl_st_delete_selected);
-    jQuery('.icl_auto_reg_type').click(icl_st_auto_register_notes);
-    icl_st_auto_register_notes();
 
     jQuery('#icl_st_po_translations').click(function(){
         if(jQuery(this).attr('checked')){
@@ -34,7 +32,6 @@ jQuery(document).ready(function(){
     });
     
     jQuery('#icl_st_track_strings').submit(iclSaveForm);
-    jQuery('#icl_st_ar_form').submit(iclSaveForm);
 
     var iclSTOptionWriteForm = jQuery('#icl_st_option_write_form');
     iclSTOptionWriteForm.submit(icl_st_admin_options_form_submit);
@@ -488,15 +485,6 @@ function icl_st_change_service(){
         icl_st_hide_estimated_cost(lang);
     }
     
-}
-
-function icl_st_auto_register_notes() {
-	var selected_value = jQuery('.icl_auto_reg_type:checked');
-	if(selected_value.length && selected_value.val()!='disable') {
-		jQuery('#auto_register_notes').fadeIn();
-	} else {
-		jQuery('#auto_register_notes').fadeOut();
-	}
 }
 
 var icl_auto_download_mo = {

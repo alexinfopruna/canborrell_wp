@@ -470,8 +470,6 @@ class ECP_Settings_API {
         return $default;
     }
 
-
-
     /**
      * Show navigations as tab
      *
@@ -602,24 +600,12 @@ class ECP_Settings_API {
                     onSlideEnd: function(position, value) {}
                 });
         });
-
-        var ecp_option = document.getElementById("ecp_popup_options[popup-effect]").getElementsByTagName("option");
-        for (var i = 0; i < ecp_option.length; i++) {
-          // lowercase comparison for case-insensitivity
-          (ecp_option[i].value.toLowerCase() == "ecp-effect-1") 
-            ? ecp_option[i].disabled = false 
-            : ecp_option[i].disabled = true ;
-        }
     </script>
 
     <style type="text/css">
             /** WordPress 3.8 Fix **/
         .form-table th { padding: 20px 10px; }
             #wpbody-content .metabox-holder { padding-top: 5px; }
-
-        .disabled {
-               color: #ddd;
-        }
      </style>
         <?php
     }

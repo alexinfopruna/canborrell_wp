@@ -65,6 +65,13 @@ class BWGModelThemes_bwg {
           $row->id = $row_id;
           $row->name = $row_name;
           $row->default_theme = FALSE;
+          $themes = json_decode($row->options);
+          foreach ($themes as $key => $value) {
+            $row->$key = $value;
+          }
+          if (!isset($row->lightbox_bg_transparent)) {
+            $row->lightbox_bg_transparent = 100;
+          }
         }
         else {
           $row->thumb_margin = 4;
@@ -500,7 +507,7 @@ class BWGModelThemes_bwg {
           $row->carousel_close_rl_btn_hover_color = 'CCCCCC';
           $row->carousel_rl_btn_style='fa-chevron';
           $row->carousel_mergin_bottom = '0.5';      
-          $row->carousel_font_family = 'Arial';
+          $row->carousel_font_family = 'segoe ui';
           $row->carousel_feature_border_width = 2;
           $row->carousel_feature_border_style = 'solid';
           $row->carousel_feature_border_color= '5D204F';          
@@ -521,6 +528,10 @@ class BWGModelThemes_bwg {
       $row = $wpdb->get_row($wpdb->prepare('SELECT * FROM ' . $wpdb->prefix . 'bwg_theme WHERE default_theme="%d"', 1));
       $row->id = 0;
       $row->name = '';
+      $themes = json_decode($row->options);
+      foreach ($themes as $key => $value) {
+        $row->$key = $value;
+      }
       $row->default_theme = 0;
       $themes = json_decode($row->options);
       foreach ($themes as $key => $value) {

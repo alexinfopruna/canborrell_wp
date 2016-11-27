@@ -30,6 +30,9 @@ class TranslationManagement {
 	/** @var WPML_Custom_Field_Setting_Factory $settings_factory */
 	private $settings_factory;
 
+	/** @var  WPML_Cache_Facotry */
+	private $cache_factory;
+
 	/**
 	 * Keep list of message ID suffixes.
 	 *
@@ -37,12 +40,15 @@ class TranslationManagement {
 	 */
 	private $message_ids               = array( 'add_translator', 'edit_translator', 'remove_translator', 'save_notification_settings', 'cancel_jobs' );
 
-	function __construct(){
+	function __construct( ){
+
+		global $sitepress, $wpml_cache_factory;
 
 		$this->selected_translator     = new WPML_Translator();
 		$this->selected_translator->ID = 0;
 		$this->current_translator      = new WPML_Translator();
 		$this->current_translator->ID  = 0;
+		$this->cache_factory = $wpml_cache_factory;
 
 		add_action( 'init', array( $this, 'init' ), 1500 );
 		add_action( 'wp_loaded', array( $this, 'wp_loaded' ) );
@@ -82,15 +88,23 @@ class TranslationManagement {
 		 *
 		 */
 		add_filter( 'wpml_translation_job_id', array( $this, 'get_translation_job_id_filter' ), 10, 2 );
+		
+		$this->filters_and_actions = new WPML_Translation_Management_Filters_And_Actions( $this, $sitepress );
 	}
 
 	public function wpml_loaded_action() {
-		$this->settings = apply_filters( 'wpml_setting', null, 'translation-management' );
+		$this->load_settings_if_required();
 		if ( is_admin() ) {
 			add_action( 'wpml_config', array( $this, 'wpml_config_action' ), 10, 1 );
 		}
 	}
 
+	public function load_settings_if_required() {
+		if ( ! $this->settings ) {
+			$this->settings = apply_filters( 'wpml_setting', null, 'translation-management' );
+		}
+	}
+	
 	/**
 	 * @param array $args      {
 	 *
@@ -1176,6 +1190,7 @@ class TranslationManagement {
 
 	function add_message( $message ) {
 		$this->messages[ ] = $message;
+		$this->messages    = array_unique( $this->messages, SORT_REGULAR );
 	}
 
 	/**
@@ -1288,6 +1303,7 @@ class TranslationManagement {
 						$translation_id = $sitepress->set_element_language_details( null, $element_type, $post_trid, $lang, $translate_from );
 					} else {
 						$translation_id = $post_translations[ $lang ]->translation_id;
+						$sitepress->set_element_language_details( $post_translations[ $lang ]->element_id, $element_type, $post_trid, $lang, $translate_from );
 					}
 
 					// don't send documents that are in progress
@@ -1357,6 +1373,16 @@ class TranslationManagement {
 								$wpdb->update( "{$wpdb->prefix}icl_translation_status", $backup_translation_status, array( 'translation_id' => $data['translation_id'] ) );
 							} else {
 								$wpdb->delete( "{$wpdb->prefix}icl_translation_status", array( 'translation_id' => $data['translation_id'] )  );
+							}
+							foreach ( $ICL_Pro_Translation->errors as $error ) {
+								if ( is_subclass_of( $error, 'Exception' ) ) {
+									/** @var Exception $error */
+									$message = array(
+										'type' => 'error',
+										'text' => $error->getMessage(),
+									);
+									$this->add_message( $message );
+								}
 							}
 						}
 					}
@@ -1535,15 +1561,29 @@ class TranslationManagement {
 	function get_translation_job_id( $trid, $language_code ) {
 		global $wpdb;
 
-		$job_id = $wpdb->get_var( $wpdb->prepare( "
-			SELECT tj.job_id FROM {$wpdb->prefix}icl_translate_job tj
-				JOIN {$wpdb->prefix}icl_translation_status ts ON tj.rid = ts.rid
-				JOIN {$wpdb->prefix}icl_translations t ON ts.translation_id = t.translation_id
-				WHERE t.trid = %d AND t.language_code=%s
-				ORDER BY tj.job_id DESC LIMIT 1
-		", $trid, $language_code ) );
+		$found = false;
+		$cache = $this->cache_factory->get( 'TranslationManagement::get_translation_job_id' );
+		$job_ids = $cache->get( $trid, $found );
+		if ( ! $found ) {
 
-		return $job_id;
+			$results = $wpdb->get_results( $wpdb->prepare( "
+				SELECT tj.job_id, t.language_code FROM {$wpdb->prefix}icl_translate_job tj
+					JOIN {$wpdb->prefix}icl_translation_status ts ON tj.rid = ts.rid
+					JOIN {$wpdb->prefix}icl_translations t ON ts.translation_id = t.translation_id
+					WHERE t.trid = %d
+					ORDER BY tj.job_id DESC 
+					", $trid ) );
+
+			$job_ids = array();
+			foreach ( $results as $result ) {
+				if ( ! isset( $job_ids[ $result->language_code ] ) ) {
+					$job_ids[ $result->language_code ] = $result->job_id;
+				}
+			}
+			$cache->set( $trid, $job_ids );
+		}
+
+		return isset( $job_ids[ $language_code ] ) ? $job_ids[ $language_code ] : null;
 	}
 
 	function save_translation( $data ) {
@@ -1842,7 +1882,7 @@ class TranslationManagement {
 	// set slug according to user preference
 	static function set_page_url( $post_id ) {
 
-		global $sitepress, $wpdb;
+		global $wpdb;
 
 		if (  wpml_get_setting_filter( false, 'translated_document_page_url' ) === 'copy-encoded' ) {
 
@@ -1871,7 +1911,8 @@ class TranslationManagement {
 						$taken = false;
 					}
 				} while ( $taken == true );
-				$wpdb->update( $wpdb->posts, array( 'post_name' => $post_name_to_be ), array( 'ID' => $post_id ) );
+				$post_to_update = new WPML_WP_Post( $wpdb, $post_id );
+				$post_to_update->update( array( 'post_name' => $post_name_to_be ), true );
 			}
 		}
 	}
@@ -1941,6 +1982,17 @@ class TranslationManagement {
 			$where = array( 'translation_id' => $translation_id );
 			$data  = array( 'language_code' => $default_language );
 			$wpdb->update( $wpdb->prefix . 'icl_translations', $data, $where );
+
+			do_action(
+				'wpml_translation_update',
+				array(
+					'type' => 'update',
+					'element_id' => $post->ID,
+					'element_type' => 'post_' . $post->post_type,
+					'translation_id' => $translation_id,
+					'context' => 'post'
+				)
+			);
 		}
 	}
 
@@ -2160,7 +2212,7 @@ class TranslationManagement {
 	}
 
 	public function get_readonly_translation_setting_name( $section ) {
-		return $section . '_readonly_config';
+		return $this->get_sanitized_translation_setting_section( $section ) . '_readonly_config';
 	}
 
 	private function get_sanitized_translation_setting_section( $section ) {

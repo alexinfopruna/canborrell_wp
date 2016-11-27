@@ -51,6 +51,34 @@ class WPML_TM_Translation_Status_Display extends WPML_Full_PT_API {
 			'filter_status_text'
 		), 10, 4 );
 		$this->statuses = array();
+
+		$this->maybe_preload_stats();
+	}
+
+	private function maybe_preload_stats() {
+		$trids = $this->post_translations->get_trids();
+		$this->load_stats( $trids );
+	}
+
+	private function load_stats( $trids ) {
+		$trids = implode( ',', $trids );
+		$trids_query = $trids ? "i.trid IN ( {$trids} )" : '1=1';
+		$stats = $this->wpdb->get_results(
+			"SELECT st.status, l.code, st.translator_id, st.translation_service, i.trid
+				FROM {$this->wpdb->prefix}icl_languages l
+				LEFT JOIN {$this->wpdb->prefix}icl_translations i
+					ON l.code = i.language_code
+				JOIN {$this->wpdb->prefix}icl_translation_status st
+					ON i.translation_id = st.translation_id
+				WHERE l.active = 1
+					AND {$trids_query}
+					OR i.trid IS NULL",
+			ARRAY_A
+		);
+		foreach ( $stats as $element ) {
+			$this->statuses[ $element['trid'] ][ $element['code'] ] = $element;
+		}
+
 	}
 
 	public function filter_status_icon( $icon, $post_id, $lang, $trid ) {
@@ -200,25 +228,8 @@ class WPML_TM_Translation_Status_Display extends WPML_Full_PT_API {
 	 */
 	private function maybe_load_stats( $trid ) {
 		if ( ! isset( $this->statuses[ $trid ] ) ) {
-			$stats                   = $this->wpdb->get_results(
-				$this->wpdb->prepare(
-					"SELECT st.status, l.code, st.translator_id, st.translation_service
-								FROM {$this->wpdb->prefix}icl_languages l
-								LEFT JOIN {$this->wpdb->prefix}icl_translations i
-									ON l.code = i.language_code
-								JOIN {$this->wpdb->prefix}icl_translation_status st
-									ON i.translation_id = st.translation_id
-								WHERE l.active = 1
-									AND i.trid = %d
-									OR i.trid IS NULL",
-					$trid
-				),
-				ARRAY_A
-			);
 			$this->statuses[ $trid ] = array();
-			foreach ( $stats as $element ) {
-				$this->statuses[ $trid ][ $element['code'] ] = $element;
-			}
+			$this->load_stats( array( $trid ) );
 		}
 	}
 

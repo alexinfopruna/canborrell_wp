@@ -15,6 +15,13 @@ function plugin_dependencies_admin_notice() {
     }
 }
 
+/*
+* Disable default CSS for this form
+* Disables CSS that comes bundled with Contact Form 7.
+ */
+
+if ($disable_css == 'off') { define( 'WPCF7_LOAD_CSS', false ); }
+
 /* 
 * Get Options
 *
@@ -38,14 +45,14 @@ function ecp_get_option( $option, $section, $default = '' ) {
 * @author     WPQastle <info@wpqastle.com>
 */
 function ecp_insert_button() {
-	$btn_position = ecp_get_option('button-position', 'ecp_button_options', 'left');
-	$btn_title = ecp_get_option('button_title', 'ecp_button_options', 'Contact Now');
-    echo '<div class="ecp-button '.$btn_position.'"> ';
-    echo '<span class="ecp-trigger arrow" data-modal="modal" id="onload"> ';
-   	echo $btn_title;
-    echo '</span>';
-    echo '</div> ';
-}
+    	$btn_position = ecp_get_option('button-position', 'ecp_button_options', 'left');
+    	$btn_title = ecp_get_option('button_title', 'ecp_button_options', 'Contact Now');
+        echo '<div class="ecp-button '.$btn_position.'"> ';
+        echo '<a href="#" class="ecp-trigger arrow" data-modal="modal" id="onload"> ';
+       	echo $btn_title;
+        echo '</a>';
+        echo '</div> ';
+    }
 
 /* Load Plugin Onload Button
 *
@@ -55,7 +62,7 @@ function ecp_insert_button() {
 */
 
 function ecp_onload_button() {
-    echo '<span class="ecp-trigger" data-modal="modal" id="onload-popup"></span> ';
+    echo '<a href="#" class="ecp-trigger" data-modal="modal" id="onload-popup"></a> ';
 }
 
 /* Load Plugin Overlay 
@@ -77,60 +84,62 @@ function ecp_insert_overlay() {
 
 function ecp_insert_popup_modal() {
 	$ecp_effect = ecp_get_option('popup-effect', 'ecp_popup_options', 'ecp-effect-1');
-	echo " <div class='ecp-modal ".$ecp_effect."' id='modal'> ";
-	echo " <div class='ecp-content'> ";
-	echo " <h3>".ecp_get_option('popup_title', 'ecp_popup_options', 'Contact Now')." <span class='ecp-close'>x</span></h3> ";
-	echo " <div>";
+	echo "<div class='ecp-modal ".$ecp_effect."' id='modal'> ";
+	echo "<div class='ecp-content'> ";
+	echo "<h3>" .ecp_get_option('popup_title', 'ecp_popup_options', 'Contact Now'). "<span class='ecp-close'></span>" . "</h3>";
+	echo "<div>";
     
     $contact_form = ecp_get_option('ecp_shortcode', 'ecp_general_options', '');
 
     if (!empty($contact_form)) {
 	   echo  do_shortcode(''.$contact_form.'');
     } 
+
     else {
-       echo ' <div class="ecp-error-form"><p> Please Set a<strong> Contact Form 7</strong> Shortcode. Check This Video Tutorial </p></div>';
+       echo ' <div class="ecp-error-form"><p> Please Set a<strong> Contact Form 7</strong> Shortcode. Check This <a href="https://www.youtube.com/watch?v=kK0rg8Lt9kw" target="_blank" > Video Tutorial </a></p></div>';
    }
 	echo "</div>";
 	echo " </div> ";
 	echo " </div> ";
 }
 
-
-function hex2rgba($color, $opacity = false) {
-             
-    $default = 'rgb(0,0,0)';
-                
-    //Return default if no color provided
-    if(empty($color))
-            return $default; 
-             
-        //Sanitize $color if "#" is provided 
-        if ($color[0] == '#' ) {
-            $color = substr( $color, 1 );
-        }
-    
-        //Check if color has 6 or 3 characters and get values
-        if (strlen($color) == 6) {
-            $hex = array( $color[0] . $color[1], $color[2] . $color[3], $color[4] . $color[5] );
-        } elseif ( strlen( $color ) == 3 ) {
-            $hex = array( $color[0] . $color[0], $color[1] . $color[1], $color[2] . $color[2] );
-        } else {
-            return $default;
-        }
-             
-        //Convert hexadec to rgb
-        $rgb =  array_map('hexdec', $hex);
-             
-        //Check if opacity is set(rgba or rgb)
-        if($opacity){
+if (!function_exists( 'ecp_hex2rgba' ) ) {
+    function ecp_hex2rgba($color, $opacity = false) {
+                 
+        $default = 'rgb(0,0,0)';
+                    
+        //Return default if no color provided
+        if(empty($color))
+                return $default; 
+                 
+            //Sanitize $color if "#" is provided 
+            if ($color[0] == '#' ) {
+                $color = substr( $color, 1 );
+            }
         
-        if(abs($opacity) > 1)
-        $opacity = 1.0;
-        $output = 'rgba('.implode(",",$rgb).','.$opacity.')';
-        } else {
-            $output = 'rgb('.implode(",",$rgb).')';
-        }
-    
-    //Return rgb(a) color string
-    return $output;
+            //Check if color has 6 or 3 characters and get values
+            if (strlen($color) == 6) {
+                $hex = array( $color[0] . $color[1], $color[2] . $color[3], $color[4] . $color[5] );
+            } elseif ( strlen( $color ) == 3 ) {
+                $hex = array( $color[0] . $color[0], $color[1] . $color[1], $color[2] . $color[2] );
+            } else {
+                return $default;
+            }
+                 
+            //Convert hexadec to rgb
+            $rgb =  array_map('hexdec', $hex);
+                 
+            //Check if opacity is set(rgba or rgb)
+            if($opacity){
+            
+            if(abs($opacity) > 1)
+            $opacity = 1.0;
+            $output = 'rgba('.implode(",",$rgb).','.$opacity.')';
+            } else {
+                $output = 'rgb('.implode(",",$rgb).')';
+            }
+        
+        //Return rgb(a) color string
+        return $output;
+    }
 }

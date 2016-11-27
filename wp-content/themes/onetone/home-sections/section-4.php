@@ -64,7 +64,13 @@ global $onetone_animated;
 	     $target =  esc_attr(onetone_option("section_target_".$i."_".$c));
 		 $animationtype = array('fadeInLeft','fadeInDown','fadeInRight','fadeInLeft','fadeInUp','fadeInRight','fadeInDown','fadeInDown');
 		 if( $link == "" )
-	     $img_wrap = '<a href="'.$image.'" rel="portfolio-image"><img src="'.$image.'" alt="" class="feature-img "></a>';
+	     $img_wrap = '<a href="'.$image.'" rel="portfolio-image"><img src="'.$image.'" alt="" class="feature-img "><div class="img-overlay dark">
+																			<div class="img-overlay-container">
+																				<div class="img-overlay-content">
+																					<i class="fa fa-search"></i>
+																				</div>
+																			</div>
+																		</div></a>';
 	     else
 	     $img_wrap = '<a href="'.$link.'" target="'.$target.'"><img src="'.$image.'" alt="" class="feature-img "><div class="img-overlay dark">
 																			<div class="img-overlay-container">
@@ -79,7 +85,7 @@ global $onetone_animated;
 	$item .= '<div class="col-md-4">
 	<div class="'.$onetone_animated.'" data-animationduration="0.9" data-animationtype="'.$animationtype[$c].'" data-imageanimation="no" id="">
   <div class="magee-feature-box style1" id="" data-os-animation="fadeOut">
-    <div class="img-frame rounded"><div class="img-box figcaption-middle text-center fade-in">'.$img_wrap.'</div></div>
+    <div class="img-frames"><div class="img-box figcaption-middle text-center fade-in">'.$img_wrap.'</div></div>
 </div></div></div>';
      if( ($c+1) % 3 == 0){
 		 $items .= '<div class="row no-padding no-margin">'.$item.'</div>';
