@@ -2,7 +2,16 @@
 
 == CHANGE LOG == 
 
-= Version 1.9.2 = 09/14/2016
+= Version 1.9.3 = 25/11/2016
+* Add - Added button options for home page slider
+* Add - Added background image for background video loading
+* Add - Added "Copyright Info" option
+* Changed the default youtube video ID
+* Fix - Fixed translation issues
+* Fix - Fixed default value issue of "Upload Overlay Header Logo" option
+
+
+= Version 1.9.2 = 09/11/2016
 * Add - Added 'autoplay' option for slider
 * Add - Added 'Display Control' option for slider
 * Add - Added 'Full Height' option for slider

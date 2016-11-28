@@ -23,7 +23,6 @@ function onetone_get_background($args){
 return $background;
 }
 
-
  	/*	
 	*	send email
 	*	---------------------------------------------------------------------
@@ -175,26 +174,41 @@ function onetone_native_pagenavi($echo,$wp_query){
 	$sanitize_title = "home";
 	$section_menu   = onetone_option( 'menu_title_0' );
 	$section_slug   = onetone_option( 'menu_slug_0' );
+	
 	if( $section_menu  != "" ){
-    $sanitize_title = sanitize_title($section_menu );
-    if( trim($section_slug) !="" ){
-	 $sanitize_title = sanitize_title($section_slug); 
-	 }
+	  $sanitize_title = sanitize_title($section_menu );
+	  
+	  if( trim($section_slug) !="" ){
+		  
+	   $sanitize_title = sanitize_title($section_slug);
+	   
+	   }
  }
 	
 	
 	 
 	$return = '<section id="'.$sanitize_title.'" class="section homepage-slider onetone-'.$sanitize_title.'"><div id="onetone-owl-slider" class="owl-carousel owl-theme">';
-	 for($i=1;$i<=5;$i++){
-	 $active = '';
+	 for($i=1;$i<=10;$i++){
+		 
+	   $active     = '';
+	   $text       = onetone_option('onetone_slide_text_'.$i);
+	   $image      = onetone_option('onetone_slide_image_'.$i);
+	   $btn_txt    = onetone_option('onetone_slide_btn_txt_'.$i);
+	   $btn_link   = onetone_option('onetone_slide_btn_link_'.$i);
+	   $btn_target = onetone_option('onetone_slide_btn_target_'.$i);
+		 
+	   $btn_str    = '';
+	   
+	   if( $btn_txt != '' ){
+		   
+		   $btn_str = '<br/><a class="btn" target="'.esc_attr($btn_target).'" href="'.esc_url($btn_link).'">'.do_shortcode($btn_txt).'</a>';
+		   
+			 }
 	
-	 $text       = onetone_option('onetone_slide_text_'.$i);
-	 $image      = onetone_option('onetone_slide_image_'.$i);
-	
-     if( $image != "" ){
-     $return .= '<div class="item"><img src="'.$image.'" alt=""><div class="inner"><div class="caption"><div class="caption-inner">'. do_shortcode($text) .'</div></div></div></div>';
+     if( trim($image) != "" ){
+		 
+       $return .= '<div class="item"><img src="'.esc_url($image).'" alt=""><div class="inner"><div class="caption"><div class="caption-inner">'. do_shortcode($text) .$btn_str.'</div></div></div></div>';
 	 
-
 	 }
 
 	}
@@ -250,7 +264,8 @@ function onetone_back_to_top(){
 // get social icon
 
 function onetone_get_social( $position, $class = 'top-bar-sns',$placement='top',$target='_blank'){
-	global $social_icons;
+	
+   global $social_icons;
    $return = '';
    $rel    = '';
    
@@ -314,6 +329,7 @@ function onetone_get_social( $position, $class = 'top-bar-sns',$placement='top',
  */
  
 function onetone_hex2rgb( $hex ) {
+	
 		if ( strpos( $hex,'rgb' ) !== FALSE ) {
 
 			$rgb_part = strstr( $hex, '(' );
@@ -350,6 +366,7 @@ function onetone_hex2rgb( $hex ) {
  
 
 function onetone_enqueue_less_styles($tag, $handle) {
+	
 		global $wp_styles;
 		$match_pattern = '/\.less$/U';
 		if ( preg_match( $match_pattern, $wp_styles->registered[$handle]->src ) ) {
@@ -370,6 +387,7 @@ add_filter( 'style_loader_tag', 'onetone_enqueue_less_styles', 5, 2);
 	// get related posts
 	
  function onetone_get_related_posts($post_id, $number_posts = -1,$post_type = 'post') {
+	 
 	$query = new WP_Query();
 
     $args = '';
@@ -399,6 +417,7 @@ if ( ! function_exists( 'onetone_paging_nav' ) ) :
  * Display navigation to next/previous set of posts when applicable.
  */
 function onetone_paging_nav($echo='echo',$wp_query='') {
+	
     if(!$wp_query){global $wp_query;}
     global $wp_rewrite;      
     $wp_query->query_vars['paged'] > 1 ? $current = $wp_query->query_vars['paged'] : $current = 1;
@@ -515,6 +534,7 @@ add_action('wp_footer', 'onetone_space_before_body');
 
 add_action('init', 'onetone_html_tags_code', 10);
 function onetone_html_tags_code() {
+	
   global $allowedposttags;
 
     $allowedposttags["javascript"] = array("src" => array(),"type" => array());
@@ -567,6 +587,7 @@ function onetone_options_typography_get_os_fonts() {
 	 
 
 function onetone_is_plugin_active( $plugin ) {
+	
     return in_array( $plugin, (array) get_option( 'active_plugins', array() ) );
 }
 
@@ -634,12 +655,14 @@ function onetone_admin_tabs( $current = 'onetone' ) {
 
 
 function onetone_register_admin_menu_page(){
+	
 	add_theme_page('About Onetone', 'About Onetone', 'edit_theme_options', 'onetone', 'onetone_menu_page');
 	
 }
 add_action( 'admin_menu', 'onetone_register_admin_menu_page' );
 
 function onetone_menu_page(){
+	
 	onetone_admin_tabs();
 	
 	_e('<div class="theme-support"><div class="col-1-3">
@@ -726,7 +749,9 @@ function onetone_allowedposttags_filter( $allowedposttags ) {
 }
 
 function onetone_close_guide(){
+	
 	update_option("onetone_close_guide",'1');
+	
 	}
 
 add_action('wp_ajax_onetone_close_guide', 'onetone_close_guide');
@@ -738,6 +763,7 @@ add_action('wp_ajax_nopriv_onetone_close_guide', 'onetone_close_guide');
 // onetone options backup
 */
 function onetone_options_backup(){
+	
 	$options        = array();
 	$keys           = array();
 	$option_name    = optionsframework_option_name();
@@ -755,6 +781,7 @@ function onetone_options_backup(){
     <td><a class="button" id="onetone-delete-btn" data-key="'.$key.'" href="#"><i class="fa fa-remove"></i> '.__('Delete', 'onetone').'</a></td>
   </tr>';
 	echo $list_item;
+	
 	}
  add_action('wp_ajax_onetone_options_backup', 'onetone_options_backup');
  add_action('wp_ajax_nopriv_onetone_options_backup', 'onetone_options_backup');

@@ -1,6 +1,6 @@
-  ///// contact form
+///// contact form
   
-  function IsEmail($email ) {
+function IsEmail($email ) {
        var emailReg = /^([\w-\.]+@([\w-]+\.)+[\w-]{2,4})?$/;
        return emailReg.test( $email );
       }
@@ -60,54 +60,55 @@ jQuery("form.contact-form #submit").click(function(){
           });
 	 });
 
-
+(function($){
   //top menu
 
- jQuery(".site-navbar,.home-navbar").click(function(){
-				jQuery(".top-nav").toggle();
+ $(".site-navbar,.home-navbar").click(function(){
+				$(".top-nav").toggle();
 			});
 	
- jQuery('.top-nav ul li').hover(function(){
-	  jQuery(this).find('ul:first').slideDown(100);
-      jQuery(this).addClass("hover");
+      $('.top-nav ul li').hover(function(){
+	  $(this).find('ul:first').slideDown(100);
+      $(this).addClass("hover");
 	},function(){
-	  jQuery(this).find('ul').css('display','none');
-	  jQuery(this).removeClass("hover");
+	  $(this).find('ul').css('display','none');
+	  $(this).removeClass("hover");
 	});
-  jQuery('.top-nav li ul li:has(ul)').find("a:first").append(" <span class='menu_more'>»</span> ");
+    $('.top-nav li ul li:has(ul)').find("a:first").append(" <span class='menu_more'>»</span> ");
  
-   jQuery(".top-nav > ul > li,.main-nav > li").click(function(){
-	  jQuery(".top-nav > ul > li,.main-nav > li").removeClass("active");
-	  jQuery(this).addClass("active");
+     $(".top-nav > ul > li,.main-nav > li").click(function(){
+	  $(".top-nav > ul > li,.main-nav > li").removeClass("active");
+	  $(this).addClass("active");
     });
    
-   //
      ////
-  var windowWidth = jQuery(window).width(); 
+  var windowWidth = $(window).width(); 
   if(windowWidth > 939){
-	  if(jQuery(".site-main .sidebar").height() > jQuery(".site-main .main-content").height()){
-		  jQuery(".site-main .main-content").css("height",(jQuery(".site-main .sidebar").height()+140)+"px");
+	  if($(".site-main .sidebar").height() > $(".site-main .main-content").height()){
+		  $(".site-main .main-content").css("height",($(".site-main .sidebar").height()+140)+"px");
 		  }
 	}else{
-		jQuery(".site-main .main-content").css("height","auto");
+		 $(".site-main .main-content").css("height","auto");
 		}
-	jQuery(window).resize(function() {
-	var windowWidth = jQuery(window).width(); 
+	$(window).resize(function() {
+	var windowWidth = $(window).width(); 
 	 if(windowWidth > 939){
-	  if(jQuery(".site-main .sidebar").height() > jQuery(".site-main .main-content").height()){
-		  jQuery(".site-main .main-content").css("height",(jQuery(".site-main .sidebar").height()+140)+"px");
+	  if(jQuery(".site-main .sidebar").height() > $(".site-main .main-content").height()){
+		  $(".site-main .main-content").css("height",($(".site-main .sidebar").height()+140)+"px");
 		  }
 	}		else{
-		jQuery(".site-main .main-content").css("height","auto");
+		  $(".site-main .main-content").css("height","auto");
 		}	
 		
 		if(windowWidth > 919){
-			jQuery(".top-nav").show();
+			$(".top-nav").show();
 		}else{
-			jQuery(".top-nav").hide();
+			$(".top-nav").hide();
 			}
 		
   });
+	
+})(jQuery);
 
 // sticky menu
 
@@ -143,7 +144,6 @@ jQuery("form.contact-form #submit").click(function(){
 				var scrollSpeed = settings.scrollSpeed
 
 			}
-			
 			
  if( $("body.admin-bar").length){
 		if( $(window).width() < 765) {
@@ -255,7 +255,6 @@ jQuery(document).ready(function($){
 	 $("section.homepage-slider .owl-carousel").show();
  }
 								
-								
  $(".site-nav-toggle").click(function(){
     $(".site-nav").toggle();
  });
@@ -275,10 +274,12 @@ if( window.devicePixelRatio > 1 ){
  var myPlayer;
  $(function () {
              myPlayer = $("#onetone-youtube-video").YTPlayer();
-        });
-
- 
 		
+			 $("#onetone-youtube-video").on("YTPReady",function(e){
+				  $(".onetone-youtube-section,.onetone-youtube-section section").css('background', 'none');
+				  $("#video-controls").show();
+				});
+        });
 
 // BACK TO TOP 											
  $(window).scroll(function(){
@@ -371,6 +372,7 @@ $(window).scroll(function(){
 				}
 
 			});	
+ 
  $('header .fxd-header .site-nav ul').onePageNav({filter: 'a[href^="#"]',scrollThreshold:0.3});	
   //prettyPhoto
  $("a[rel^='portfolio-image']").prettyPhoto();	 
@@ -400,6 +402,3 @@ $(window).scroll(function(){
      });
 
  });
-
-
- 

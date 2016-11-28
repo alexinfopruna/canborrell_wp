@@ -36,6 +36,10 @@
                       }else{
 						 printf(__('Designed by MageeWP Themes.','onetone')); 
 						  }
+						  ?>
+                          &nbsp;&nbsp;
+                     <?php
+							echo do_shortcode($copyright_text);
                       ?>
 					</div>
                      <div class="site-social pull-right">

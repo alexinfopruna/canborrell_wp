@@ -72,7 +72,6 @@ class onetone_metaboxClass {
 		 * We need to verify this came from the our screen and with proper authorization,
 		 * because save_post can be triggered at other times.
 		 */
-		
 
 		// Check if our nonce is set.
 		if ( ! isset( $_POST['onetone_inner_custom_box_nonce'] ) )
@@ -112,7 +111,6 @@ class onetone_metaboxClass {
 
 		if( isset($_POST) && $_POST ){
 			
-			
 		$post_metas                      = array();
 		$post_metas['header_position']   =  isset($_POST['header_position'])?$_POST['header_position']:'top';
 		$post_metas['full_width']        =  isset($_POST['full_width'])?$_POST['full_width']:'no';
@@ -133,9 +131,7 @@ class onetone_metaboxClass {
 		update_post_meta( $post_id, '_onetone_post_meta', $onetone_post_meta );
 		}
 
-	
 	}
-
 
 	/**
 	 * Render Meta Box content.
@@ -239,7 +235,6 @@ class onetone_metaboxClass {
 		<option '.selected($page_layout,'both',false).' value="both">'.__("Both Sidebar","onetone").'</option>
 		</select></p>';
 		
-		
 		echo '<p class="meta-options"><label for="left_sidebar"  style="display: inline-block;width: 150px;">';
 		_e( 'Select Left Sidebar', 'onetone' );
 		echo '</label> ';
@@ -257,8 +252,6 @@ class onetone_metaboxClass {
 		echo '<option '.selected($right_sidebar,$sidebar['value'],false).' value="'.$sidebar['value'].'">'.$sidebar['label'].'</option>';
 		}
 		echo '</select></p>';
-		
-		
-		
+				
 	}
 }
