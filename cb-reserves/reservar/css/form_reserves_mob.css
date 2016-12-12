@@ -199,8 +199,10 @@ textarea{margin-left:0px;width:90%;color:#570600;font-weight:bold;}
 #submit{background:white;}
 #submit:hover{background:#570600;}
 */
-input[name=totalComensals]{width:15px;color:red;font-weight:bold;border:none;}
-input[name=totalCotxets]{width:20px;color:red;font-weight:bold;border:none;}
+	input[type=text][name=totalComensals]{width:15px;color:red;font-weight:bold;border:none;padding:0;border:none}
+	input[type=text][name=totalCotxets]{width:20px;color:red;font-weight:bold;border:none;padding:0;border:none}
+	
+
 /*
 .number{
     padding:3px 8px 3px 8px;
