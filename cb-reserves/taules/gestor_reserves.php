@@ -1922,6 +1922,17 @@ EOHTML;
     $this->qry_result = mysqli_query($this->connexioDB, $query) or die(((is_object($GLOBALS["___mysqli_ston"])) ? mysqli_error($GLOBALS["___mysqli_ston"]) : (($___mysqli_res = mysqli_connect_error()) ? $___mysqli_res : false)));
     $this->total_rows = mysqli_num_rows($this->qry_result);
 
+    if (!$this->total_rows){
+      $row['client_id'] = "";
+      $row['client_email'] = "";
+      $row['client_nom'] = "";
+      $row['client_cognoms'] = "";
+      $row['client_mobil'] = "";
+      $row['client_conflictes'] = "";
+      
+    }
+    
+    
     $clients0['label'] = "+++ Nou client (" . strtoupper($q) . ")|$q\n";
     $clients0['client_cognoms'] = is_numeric($q) ? "" : $q;
     $clients0['client_mobil'] = is_numeric($q) ? $q : "";
@@ -1934,10 +1945,10 @@ EOHTML;
         $conflictes = '***[' . $row['client_conflictes'] . ']*** ';
       else
         $conflictes = "";
-
+/*
       if ($this->garjola($row['client_mobil'], $row['client_email'])) 
           $row['client_conflictes'].="GARJOLA!!!";
-      
+      */
       $key = "(" . $row['client_id'] . ") " . $conflictes . $row['client_nom'] . " " . $row['client_cognoms'] . " tel:" . $row['client_mobil'];
 
 //$q_normal=Gestor::normalitzar($q);
