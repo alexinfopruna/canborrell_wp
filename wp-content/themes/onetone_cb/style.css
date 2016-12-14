@@ -1251,3 +1251,14 @@ label.ptpv:hover {
     color: #555;
     font-size: 12px;
 }
+
+section.home-section-1 .home-section-content, section.home-section-1 p{
+    font-size: 2vw !important;
+}
+
+@media (max-width: 450px){
+section.home-section-1 .home-section-content, section.home-section-1 p{
+    font-size: 12px !important;
+}}
+
+

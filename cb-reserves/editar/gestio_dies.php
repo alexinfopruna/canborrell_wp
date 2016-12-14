@@ -40,7 +40,7 @@ if (isset($_POST["bloq"]))
     }
     else
     {
-        echo "ERROR ESCRIBINT DATA!!!";    
+        echo "ERROR ESCRIVINT DATA!!!";    
     }
 
 }

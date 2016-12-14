@@ -20,6 +20,8 @@ function plugin_dependencies_admin_notice() {
 * Disables CSS that comes bundled with Contact Form 7.
  */
 
+if (!isset($disable_css)) $disable_css = null;
+
 if ($disable_css == 'off') { define( 'WPCF7_LOAD_CSS', false ); }
 
 /* 

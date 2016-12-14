@@ -1935,14 +1935,16 @@ EOHTML;
       else
         $conflictes = "";
 
+      if ($this->garjola($row['client_mobil'], $row['client_email'])) 
+          $row['client_conflictes'].="GARJOLA!!!";
+      
       $key = "(" . $row['client_id'] . ") " . $conflictes . $row['client_nom'] . " " . $row['client_cognoms'] . " tel:" . $row['client_mobil'];
 
 //$q_normal=Gestor::normalitzar($q);
 //$key_normal=Gestor::normalitzar($key);
 //$clients.= "$key|$value\n";
 
-      if (empty($row['client_email']))
-        $row['client_email'] = "";
+      if (empty($row['client_email']))        $row['client_email'] = "";
       $row['label'] = $key;
       $row['value'] = $q;
       if ($p != "modo")
@@ -1953,6 +1955,7 @@ EOHTML;
       $clients[] = $clients0;
 //return $clients;
 
+    
     return json_encode($clients);
   }
 

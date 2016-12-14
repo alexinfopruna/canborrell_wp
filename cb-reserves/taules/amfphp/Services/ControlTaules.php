@@ -207,7 +207,7 @@ class ControlTaules {
 
   function recuperaEstatMenjador($data, $torn) {
     $this->recuperaSesion($data, $torn);
-
+$menjadors = array();
 
     //if ($data=="1900-01-01") $data=$_SESSION['data'];
     if ($data == "1900-01-01")

@@ -11,7 +11,7 @@ if (isset($_POST["bloq"]))
   $dat=$_POST["datab"];
   $dat.="\n";
   
-  	$gestor = @fopen($fitxer, "a");
+  	$gestor = @gfopen($fitxer, "a");
 	if ($gestor) 
     {
        $d=strtok($dat, "-/");
@@ -27,7 +27,7 @@ if (isset($_POST["bloq"]))
     }
     else
     {
-        echo "ERROR ESCRIBINT DATA!!!";    
+        echo "ERROR ESCRIVINT DATA!!! $fitxer";    
     }
 
 }

@@ -813,7 +813,7 @@ function monta_calendari(selector)
         var currentTime = new Date();
         var hours = currentTime.getHours();
         hours = hours + ":00";
-        var entraAvui = (hours < MAX_HORA_RESERVA_ONLINE) ? 0 : 1;
+        var entraAvui = ((hours < MAX_HORA_RESERVA_ONLINE) ? 0 : 1);
         limit_passat = entraAvui;
     }
 
