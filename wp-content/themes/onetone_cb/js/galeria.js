@@ -3,10 +3,11 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-var ajaxgaleria = {"ajaxurl": "http:\/\/wordpress.local\/wp-admin\/admin-ajax.php"};
+//var ajaxgaleria = {"ajaxurl": "http:\/\/wordpress.local\/wp-admin\/admin-ajax.php"};
+var ajaxgaleria = {"ajaxurl": "http:\/\/cbwp-localhost\/wp-admin\/admin-ajax.php"};
 
 jQuery(document).ready(function ($) {
-    $("#gallery .img-frame a").click(load_galeria);
+    $("#gallery .img-frames a").click(load_galeria);
 
     $("#galeria-ajax").hide("slow");
     function load_galeria(e) {
@@ -50,5 +51,5 @@ jQuery(document).ready(function ($) {
     });
 
 
-    $("#mbYTP_onetone-youtube-video").css("bacground", "black");
+    $("#mbYTP_onetone-youtube-video").css("background", "black");
 })
