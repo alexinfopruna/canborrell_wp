@@ -490,6 +490,16 @@ ul.carta li, .menu-content li{
 
     margin-left:5px;
 }
+ul.carta li:nth-child(even){background:#eef;}
+
+ul.carta li span{
+    float:right;
+    margin-right:30px;
+}
+ul.carta li span:after{
+    content:" €";
+}
+
 
 ul.carta li:before,
 .menu-content li:before{
@@ -1255,6 +1265,67 @@ label.ptpv:hover {
 section.home-section-1 .home-section-content, section.home-section-1 p{
     font-size: 2vw !important;
 }
+
+
+
+
+.alergogens{
+	position:relative;
+	top:9px;
+	display:inline-flex;
+	width:30px;
+	height:30px;
+	background-color:red;
+        margin-left: 10px;
+	//background:url(/wp-content/themes/onetone_cb/img/alergogens2.png) -160px -80px;
+	background:url(/wp-content/themes/onetone_cb/img/alergens.png) -160px -80px;
+}
+
+.alergogens-alt{background-position: -0px -0px;}
+.alergogens-api{background-position: -30px -0px;}
+.alergogens-cac{background-position: -60px -0px;}
+.alergogens-glu{background-position: -90px -0px;}
+.alergogens-cru{background-position: -120px -0px;}
+.alergogens-dio{background-position: -150px -0px;}
+.alergogens-fru{background-position: -180px -0px;}
+.alergogens-gra{background-position: -0px -90px;}
+.alergogens-hue{background-position: -30px -90px;}
+.alergogens-lac{background-position: -60px -90px;}
+.alergogens-mol{background-position: -90px -90px;}
+.alergogens-mos{background-position: -120px -90px;}
+.alergogens-pes{background-position: -150px -90px;}
+.alergogens-soj{background-position: -180px -90px;}
+/*
+.alergogens{
+	position:relative;
+	top:9px;
+	display:inline-flex;
+	width:30px;
+	height:30px;
+	background-color:red;
+        margin-left: 10px;
+	//background:url(/wp-content/themes/onetone_cb/img/alergogens2.png) -160px -80px;
+	background:url(/wp-content/themes/onetone_cb/img/alergenos.jpg) -160px -80px;
+}
+
+
+
+
+.alergogens-glu{background-position: -0px -0px;}
+.alergogens-cru{background-position: -30px -0px;}
+.alergogens-hue{background-position: -60px -0px;}
+.alergogens-pes{background-position: -90px -0px;}
+.alergogens-cac{background-position: -120px -0px;}
+.alergogens-soj{background-position: -150px -0px;}
+.alergogens-lac{background-position: -180px -0px;}
+.alergogens-fru{background-position: -0px -90px;}
+.alergogens-api{background-position: -30px -90px;}
+.alergogens-mos{background-position: -60px -90px;}
+.alergogens-gra{background-position: -90px -90px;}
+.alergogens-dio{background-position: -120px -90px;}
+.alergogens-alt{background-position: -150px -90px;}
+.alergogens-mol{background-position: -180px -90px;}
+*/
 
 @media (max-width: 450px){
 section.home-section-1 .home-section-content, section.home-section-1 p{

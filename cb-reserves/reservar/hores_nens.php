@@ -5,6 +5,9 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
+    $limit_cotxets = array();
+    $limit_cotxets[1][1] = array("15:30",  "15:45", "16:00","16:15", "16:30");
+    $limit_cotxets[1][2] = array( "15:45", "16:00","16:15", "16:30");
 
     $limits = array();
     $limits[4][3] = array("16:00", "16:15", "16:30");

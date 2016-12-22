@@ -1879,6 +1879,8 @@ EOHTML;
 
   public function autocomplete_clients($q, $p) {
 //if (is_numeric($q) && $q>2000 && $q<99999) $q="ID".$q;
+$GARJOLA = "";
+$r=FALSE;
 
     switch ($_SESSION['modo']) {
       case 1:
@@ -1921,39 +1923,56 @@ EOHTML;
 // echo $query;
     $this->qry_result = mysqli_query($this->connexioDB, $query) or die(((is_object($GLOBALS["___mysqli_ston"])) ? mysqli_error($GLOBALS["___mysqli_ston"]) : (($___mysqli_res = mysqli_connect_error()) ? $___mysqli_res : false)));
     $this->total_rows = mysqli_num_rows($this->qry_result);
-
+    
+    /*
+        $query = "SELECT * FROM llista_negra WHERE llista_negra_mobil LIKE '$q%'";
+    $qry_result = mysqli_query($this->connexioDB, $query) or die(((is_object($GLOBALS["___mysqli_ston"])) ? mysqli_error($GLOBALS["___mysqli_ston"]) : (($___mysqli_res = mysqli_connect_error()) ? $___mysqli_res : false)));
+    $r = mysqli_num_rows($this->qry_result);
+    $GARJOLA = $r?'GARJOLA!!!':"";
+*/
     if (!$this->total_rows){
       $row['client_id'] = "";
       $row['client_email'] = "";
       $row['client_nom'] = "";
       $row['client_cognoms'] = "";
       $row['client_mobil'] = "";
-      $row['client_conflictes'] = "";
+      $row['client_conflictes'] = $GARJOLA;
       
     }
     
+    /* */
+
+   
+      $clients0['label'] = "+++ Nou client (" . strtoupper($q) . ")|$q\n";
+      $clients0['client_cognoms'] = is_numeric($q) ? "" : $q;
+      $clients0['client_mobil'] = is_numeric($q) ? $q : "";
+      $clients0['client_email'] = "";
+     // $clients0['client_conflictes'] = $r?$GARJOLA:"";;
+      $clients0['value'] = is_numeric($q) ? $q : "";
     
-    $clients0['label'] = "+++ Nou client (" . strtoupper($q) . ")|$q\n";
-    $clients0['client_cognoms'] = is_numeric($q) ? "" : $q;
-    $clients0['client_mobil'] = is_numeric($q) ? $q : "";
-    $clients0['client_email'] = "";
-    $clients0['value'] = is_numeric($q) ? $q : "";
     while ($row = mysqli_fetch_assoc($this->qry_result)) {
       $br = array("<br>", "<br/>", "\n", "\r");
+      
+      
       $row['client_conflictes'] = str_replace($br, "", $row['client_conflictes']);
+      
+       // $query = "SELECT * FROM llista_negra WHERE llista_negra_mobil LIKE '$q%'";
+        $query = "SELECT * FROM llista_negra WHERE llista_negra_mobil = '".$row['client_mobil']."'";
+    $result = mysqli_query($this->connexioDB, $query) or die(((is_object($GLOBALS["___mysqli_ston"])) ? mysqli_error($GLOBALS["___mysqli_ston"]) : (($___mysqli_res = mysqli_connect_error()) ? $___mysqli_res : false)));
+   $row['client_conflictes'] = mysqli_num_rows($result)?"GARJOLA!!!":"";
+      
+      
       if (!empty($row['client_conflictes']))
         $conflictes = '***[' . $row['client_conflictes'] . ']*** ';
       else
         $conflictes = "";
-/*
-      if ($this->garjola($row['client_mobil'], $row['client_email'])) 
-          $row['client_conflictes'].="GARJOLA!!!";
-      */
+      
+      
+/*   */
+    
+    
       $key = "(" . $row['client_id'] . ") " . $conflictes . $row['client_nom'] . " " . $row['client_cognoms'] . " tel:" . $row['client_mobil'];
 
-//$q_normal=Gestor::normalitzar($q);
-//$key_normal=Gestor::normalitzar($key);
-//$clients.= "$key|$value\n";
 
       if (empty($row['client_email']))        $row['client_email'] = "";
       $row['label'] = $key;
@@ -1962,8 +1981,31 @@ EOHTML;
         $row['value'] = $row['client_mobil'];
       $clients[] = $row;
     }
-    if (empty($clients) && $p != "modo")
+    if (empty($clients) && $p != "modo"){
       $clients[] = $clients0;
+      
+              $query = "SELECT * FROM llista_negra WHERE llista_negra_mobil LIKE '$q%'";
+    $this->qry_result = mysqli_query($this->connexioDB, $query) or die(((is_object($GLOBALS["___mysqli_ston"])) ? mysqli_error($GLOBALS["___mysqli_ston"]) : (($___mysqli_res = mysqli_connect_error()) ? $___mysqli_res : false)));
+    $r = mysqli_num_rows($this->qry_result);
+    
+    if ($r){
+  $row = mysqli_fetch_assoc($this->qry_result);
+  $row['client_conflictes'] = "GARJOLA!!!";
+     
+      
+    $clients1['label'] = $row['llista_negra_mobil']." >>> GARJOLA!!!";
+    $clients1['client_cognoms'] = $row['llista_negra_mobil'];
+    $clients1['client_mobil'] = $row['llista_negra_mobil'];
+    $clients1['client_email'] = $row['llista_negra_mail'];
+    $clients1['client_conflictes'] = $GARJOLA;
+    $clients1['value'] = is_numeric($q) ? $q : "";
+      
+      
+      
+       $clients[] = $clients1;
+    }
+      
+    }
 //return $clients;
 
     

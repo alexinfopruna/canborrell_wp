@@ -176,7 +176,7 @@ class Gestor_form extends gestor_reserves {
   /*   * ******************************************************************************************************* */
 
   public function horesDisponibles($data, $coberts, $cotxets = 0, $accesible = 0, $idr = 0, $nens = null) {
-
+//echo $cotxets;die();
     $mydata = $this->cambiaf_a_mysql($data);
 
     //$this->taulesDisponibles->tableHores="estat_hores_form";
@@ -203,7 +203,7 @@ class Gestor_form extends gestor_reserves {
 
     //$this->comprovaCacheNens($mydata, $cacheAdults, $cacheNens);
 
-    $this->taulesDisponibles->rang_hores_nens = $this->rang_hores_nens($mydata, $cacheAdults, $cacheNens);
+    $this->taulesDisponibles->rang_hores_nens = $this->rang_hores_nens($mydata, $cacheAdults, $cacheNens, $cotxets);
 
 
 
@@ -246,7 +246,7 @@ class Gestor_form extends gestor_reserves {
     //////////////////////////////////					
   }
 
-  private function rang_hores_nens($data, $adults, $nens) {
+  private function rang_hores_nens($data, $adults, $nens, $cotxets=0) {
     if (!$adults || !defined("CONTROL_HORES_NENS") || !CONTROL_HORES_NENS)
       return;
     /*
@@ -283,6 +283,19 @@ class Gestor_form extends gestor_reserves {
       $cachev['hores'] = $limitNens;
       $_SESSION[$index] = $cachev;
     }
+    
+    $limitcotxets = FALSE;
+    
+   
+    if (isset($limit_cotxets[$cotxets])) {
+      $limitcotxets = $limit_cotxets[$cotxets][1];
+      if ($limitcotxets && $limitNens) $limitNens = array_intersect($limitcotxets, $limitNens);
+      else $limitNens = $limitcotxets;
+      
+    }
+   // var_dump($cotxets) ;
+   // var_dump($limitNens) ;die();
+    
     /*
     echo "CACHE ";print_r($cache);
     echo "limit ";print_r($limit);
@@ -1530,6 +1543,133 @@ SQL;
 
     return $rjson;
   }
+  
+  
+  
+  
+  
+  
+  
+  
+  
+/*******************************************************************************************/  
+/*******************************************************************************************/  
+/*******************************************************************************************/  
+/*******************************************************************************************/  
+/*******************************************************************************************/  
+/*******************************************************************************************/  
+/*******************************************************************************************/  
+/*******************************************************************************************/
+    public function recuperaCartaWeb($idr=-1, $es_menu = false) {
+      
+    $lng = $leng = $this->lng;
+    if ($idr < 1)
+      $idr = -1;
+    //CONTROL DIES NOMES CARTA
+
+
+    if ($es_menu)
+      $were = ' carta_plats.carta_plats_subfamilia_id=20 ';
+    else
+      $were = ' (carta_plats.carta_plats_subfamilia_id<>20) ';
+
+    $were.=' AND carta_plats_subfamilia_id IN (1101, 1102, 1103, 1104, 1105)';
+    $were.=' AND carta_publicat = TRUE ';
+
+    if ($leng == 'en') $leng='ca';
+    
+    $CONTROLA_ARTICLES_ACTIUS = "";
+
+    $query = "select `carta_plats_id`,`carta_plats_nom_es`,`carta_plats_nom_$leng` AS `carta_plats_nom_$lng`,`carta_plats_nom_ca`,`carta_plats_preu`,"
+        . "carta_subfamilia.carta_subfamilia_id AS subfamilia_id,`carta_subfamilia_nom_$leng` AS `carta_subfamilia_nom_$lng`, 
+          comanda_client.comanda_plat_quantitat 
+FROM carta_plats 
+LEFT JOIN carta_publicat ON carta_plats_id=carta_publicat_plat_id
+LEFT JOIN comanda as comanda_client ON carta_plats_id=comanda_plat_id AND comanda_reserva_id='$idr'
+LEFT JOIN carta_subfamilia ON carta_subfamilia.carta_subfamilia_id=carta_plats_subfamilia_id
+
+LEFT JOIN carta_subfamilia_order ON carta_subfamilia.carta_subfamilia_id=carta_subfamilia_order.carta_subfamilia_id
+
+$CONTROLA_ARTICLES_ACTIUS
+
+WHERE $were
+ORDER BY carta_subfamilia_order,carta_plats_nom_es , carta_plats_nom_ca";
+    
+    //
+//ORDER BY (carta_subfamilia_id=2),carta_subfamilia_id";
+//echo $query;
+    $Result1 = mysqli_query($this->connexioDB, $query) or die(((is_object($GLOBALS["___mysqli_ston"])) ? mysqli_error($GLOBALS["___mysqli_ston"]) : (($___mysqli_res = mysqli_connect_error()) ? $___mysqli_res : false)));
+
+    while ($row = mysqli_fetch_array($Result1)) {
+      if (empty($row['carta_plats_nom_ca']))
+        $row['carta_plats_nom_ca'] = $row['carta_plats_nom_en'] = $row['carta_plats_nom_es'];
+      $plat = array('id' => $row['carta_plats_id'], 'nom' => $row['carta_plats_nom_' . $lng], 'preu' => $row['carta_plats_preu'], 'quantitat' => $row['comanda_plat_quantitat']);
+      $arCarta[$row['carta_subfamilia_nom_' . $lng]][] = $plat;
+    }
+    
+//    echo "<pre>";
+//print_r($arCarta);
+//    echo "</pre>";
+    /*     * ******************************************************************************************************* */
+
+    $class = $es_menu ? "cmenu" : "ccarta";
+    $obreLlista = '[ms_tabs style="simple" title_color="" class="" id=""]' . PHP_EOL;
+    $llista = "";
+    $tancaLlista = ' [/ms_tabs]' . PHP_EOL;
+    $carta = "";
+/**/
+    foreach ($arCarta as $key => $val) {
+      $k = $nom = $this->normalitzar($key);
+        $nom = l($key, FALSE);
+        
+      $nom = ucfirst(strtolower($nom));
+      
+       $obreSeccio = "[ms_tab title='$nom' icon='xfa-leaf']" . PHP_EOL;
+      $obreSeccio .= '<p><b>'.$nom.'</b></p>' . PHP_EOL;
+      $seccio = $this->seccioCartaWeb($arCarta, $key, $class);
+      $tancaSeccio = '[/ms_tab]' . PHP_EOL . PHP_EOL;
+
+      $carta.=$obreSeccio . PHP_EOL . $seccio . PHP_EOL . $tancaSeccio;
+    }
+
+    //print_r($arCarta);
+    return $obreLlista . $carta. $tancaLlista;
+  }
+
+  /*   * ******************************************************************************************************* */
+
+  public function seccioCartaWeb($ar, $k, $class) {
+    $obreTaula = '<ul class="carta">' . PHP_EOL;
+    
+    $tr = '';
+    foreach ($ar[$k] as $key => $val) {
+      $menuEspecial = $this->menuEspecial($val['id']) ? " menu-especial" : "";
+      if (!calsoton && ($val['id'] == 2010 || $val['nom'] == "MENU CALÇOTADA" || $val['nom'] == "MENÚ CALÇOTADA"))
+        continue;
+
+      /**  IVA  * */
+      $preu = round($val['preu'] + $val['preu'] * IVA / 100, 2);
+      $preu = number_format($preu, 2, '.', '');
+      
+      $nom = $val['nom'];
+      
+     // echo "****************** $noms";
+      $nom = l($nom, FALSE);
+      $nom = ucfirst(strtolower($nom));
+      
+      $tr.='<li producte_id="' . $val['id'] . '" class="item-carta '  . $menuEspecial . '">';
+      $tr.=$nom.'<span class="fr">'.$preu.'</span>';
+     // $tr.= '<div><div class="dt">'.$val['nom'].'</div><div class="dd">'.$preu."</div></div>";
+      $tr.='</li>'. PHP_EOL;
+    }
+
+    $tancaTaula = '</ul>' . PHP_EOL . PHP_EOL;
+
+    return $obreTaula . $tr . $tancaTaula;
+  }
+  
+  
+  
 
 }
 

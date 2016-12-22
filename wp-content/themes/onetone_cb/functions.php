@@ -74,6 +74,12 @@ function canborrell_enqueue_styles() {
 
   capsaleres_geleria();
   //cho get_stylesheet_directory_uri() .'/js/galeria.js';die();
+ 
+  //echo is_page('carta-alergogens'); echo the_slug();die();
+   //   global $post;
+   // $post_slug=$post->post_name;echo $post_slug;
+  // die();
+   wp_enqueue_script('alergogens', get_stylesheet_directory_uri() . '/js/alergogens.js', array('jquery'), '1.0', true);
 }
 
 add_action('wp_enqueue_scripts', 'canborrell_enqueue_styles');

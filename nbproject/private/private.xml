@@ -1,11 +1,24 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project-private xmlns="http://www.netbeans.org/ns/project-private/1">
-    <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
+    <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="1">
+        <file>
+            <url>cb-reserves/taules/gestor_reserves.php</url>
+            <bookmark id="1">
+                <name/>
+                <line>2963</line>
+                <key/>
+            </bookmark>
+        </file>
+    </editor-bookmarks>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/var/www/canborrell-wp/wp-content/themes/onetone_cb/style.css</file>
-            <file>file:/var/www/canborrell-wp/cb-reserves/taules/gestor_reserves.php</file>
-            <file>file:/var/www/canborrell-wp/cb-reserves/reservar/css/form_reserves_mob.css</file>
+            <file>file:/var/www/canborrell-wp/wp-content/themes/onetone_cb/single-menus-cartaweb.php</file>
+            <file>file:/var/www/canborrell-wp/wp-content/themes/onetone_cb/functions.php</file>
+            <file>file:/var/www/canborrell-wp/cb-reserves/reservar/alergogens.php</file>
+            <file>file:/var/www/canborrell-wp/cb-reserves/reservar/Gestor_form.php</file>
+            <file>file:/var/www/canborrell-wp/cb-reserves/reservar/translate_carta_es.php</file>
+            <file>file:/var/www/canborrell-wp/cb-reserves/reservar/translate_carta_en.php</file>
+            <file>file:/var/www/canborrell-wp/cb-reserves/reservar/translate_carta_ca.php</file>
         </group>
     </open-files>
 </project-private>

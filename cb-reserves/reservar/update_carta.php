@@ -1,7 +1,15 @@
 
     <link rel="shortcut icon" type="image/ico" href="/gear-favicon.ico" />
+    
+  
 
 <?php
+  //echo "UPDATE";die();
+/***
+ * CAPITALIZE
+ * UPDATE carta_subfamilia SET `carta_subfamilia_nom_ca` = CONCAT(UCASE(LEFT(`carta_subfamilia_nom_ca`, 1)), SUBSTRING(LCASE(`carta_subfamilia_nom_ca`), 2))
+ */
+
     if (!isset($_GET['confirm'])) {
       echo "<a href='?confirm=1'>Confirma importació</a><br><br><br>";
       echo "<a href='../panel/'>Cancel·la importació</a>";

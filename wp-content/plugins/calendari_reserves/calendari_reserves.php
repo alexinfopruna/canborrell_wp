@@ -53,9 +53,10 @@ function reserves_bootstrap() {
     require_once (ROOT . "gestor_reserves.php");
 
     $lang = gestor_reserves::getLanguage();
-    
-    
-    require_once("cb-reserves/translate_web_$lang.php");
+
+       //echo $lang;
+    require("cb-reserves/translate_web_$lang.php");
+   
   }
 
   echo "         <script> ";
