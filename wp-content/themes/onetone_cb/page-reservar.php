@@ -416,6 +416,28 @@ if ($padding_bottom)
 <!-- <?php echo $gestorf->configVars("url_base"); ?> -->
 <!-- <?php echo $gestorf->configVars("INC_FILE_PATH"); ?> -->
 
+ <!-- NO_INTERNET -->
+                                                                      <div class="alert alert-danger">
+                                          <span class="glyphicon glyphicon-alert" style="font-size:1.8em"></span> 
+                                          <p> DEGUT A UNA INCIDÈNCIA AMB EL NOSTRE PROVEÏDOR D'INTERNET, 
+                                              EL SISTEMA DE RESERVES <b>NO POT GESTIONAR MODIFICACIONS SOBRE LES RESERVES EXISTENTS.</b></p><br>
+<p>SI NECESSITA COMUNICAR-NOS QUALSEVOL VARIACIÓ DE LA SEVA RESERVA FACI'NS ARRIBAR UN EMAIL A <a target="_blank" href="mailto:restaurant@can-borrell.com">restaurant@can-borrell.com</a>
+<p>   Disculpin les molèsties, agraïm la seva comprensió</p>
+<hr>
+                                         <p>DEBIDO A UNA INCIDENCIA CON NUESTRO PROVEEDOR DE INTERNET, EL SISTEMA DE RESERVAS <b>NO PUEDE GESTIONAR MODIFICACIONES SOBRE LAS RESERVAS EXISTENTES.</b></p><br>
+<p>SI NECESITA COMUNICARNOS CUALQUIER VARIACIÓN DE SU RESERVA HÁGANOS LLEGAR UN EMAIL A <a target="_blank" href="mailto:restaurant@can-borrell.com">restaurant@can-borrell.com</a>
+<p>   Disculpen las molestias, agradecemos su comprensión
+</p>
+<br>
+<hr>
+
+<p>BECAUSE AN IMPACT WITH OUR ISP, reservation system can not handle modifications to existing reserves.</p>
+
+<p>IF YOU NEED TO COMMUNICATE any change of your reservation please send us an email to <a target="_blank" href="mailto:restaurant@can-borrell.com">restaurant@can-borrell.com</a>
+</p><p>Sorry for the inconvenience, thank you for your understanding</p>
+
+
+                                      </div>
 <article id="post-<?php the_ID(); ?>" <?php post_class(); ?>>
     <?php if ($display_breadcrumb == 'yes'): ?>
 
@@ -455,7 +477,10 @@ if ($padding_bottom)
               else {
                 $prefix = ($lang != 'ca') ? "/$lang" : '';
                 ?>
+              
+              <!--
                 <a href="<?php echo $prefix ?>/reservar/localitza-reserva/?a=edit" class="btn btn-success" >     <?php l('Edita una reserva existent'); ?></a>
+-->
 
 
                 <a href="#" class="btn btn-warning  ecp-trigger" data-modal="modal" >     <?php l('Tens algun dubte?'); ?></a>
@@ -1026,7 +1051,36 @@ if ($padding_bottom)
                                                       <div id="osx-modal-title"><?php l("Necessites ajuda?") ?></div>
                                                       <div class="close"><a href="#" class="simplemodal-close">x</a></div>
                                                       <div id="osx-modal-data">
-                                                          <div id="pp-content"><?php l('ALERTA_INFO_INICIAL'); ?></div>
+                                                          
+                                                          <?php
+                                                          //NO_INTERNET
+                                                        $no_internet = '                                                                      <div class="alert alert-danger">
+                                          <span class="glyphicon glyphicon-alert" style="font-size:1.8em"></span> 
+                                          <p> DEGUT A UNA INCIDÈNCIA AMB EL NOSTRE PROVEÏDOR D`INTERNET, 
+                                              EL SISTEMA DE RESERVES <b>NO POT GESTIONAR MODIFICACIONS SOBRE LES RESERVES EXISTENTS.</b></p><br>
+<p>SI NECESSITA COMUNICAR-NOS QUALSEVOL VARIACIÓ DE LA SEVA RESERVA FACI`NS ARRIBAR UN EMAIL A <a target="_blank" href="mailto:restaurant@can-borrell.com">restaurant@can-borrell.com</a>
+<p>   Disculpin les molèsties, agraïm la seva comprensió</p>
+<hr><hr>
+                                         <p>DEBIDO A UNA INCIDENCIA CON NUESTRO PROVEEDOR DE INTERNET, EL SISTEMA DE RESERVAS <b>NO PUEDE GESTIONAR MODIFICACIONES SOBRE LAS RESERVAS EXISTENTES.</b></p><br>
+<p>SI NECESITA COMUNICARNOS CUALQUIER VARIACIÓN DE SU RESERVA HÁGANOS LLEGAR UN EMAIL A <a target="_blank" href="mailto:restaurant@can-borrell.com">restaurant@can-borrell.com</a>
+<p>   Disculpen las molestias, agradecemos su comprensión
+</p>
+<br>
+<hr>
+
+<p>BECAUSE AN IMPACT WITH OUR ISP, reservation system can not handle modifications to existing reserves.</p>
+
+<p>IF YOU NEED TO COMMUNICATE any change of your reservation please send us an email to <a target="_blank" href="mailto:restaurant@can-borrell.com">restaurant@can-borrell.com</a>
+</p><p>Sorry for the inconvenience, thank you for your understanding</p>
+
+
+                                      </div>';
+                                                          
+                                                          ?>
+                                                          
+                                                          
+                                                        <!--  <div id="pp-content"><?php // //NO_INTERNET l('ALERTA_INFO_INICIAL'); ?></div>-->
+                                                          <div id="pp-content"><?php echo $no_internet;l('ALERTA_INFO_INICIAL'); ?></div>
                                                           <p><button class="simplemodal-close"><?php l("Tanca") ?></button></p>
                                                       </div>
                                                   </div>                                                    

@@ -12,13 +12,10 @@
     </editor-bookmarks>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/var/www/canborrell-wp/wp-content/themes/onetone_cb/single-menus-cartaweb.php</file>
-            <file>file:/var/www/canborrell-wp/wp-content/themes/onetone_cb/functions.php</file>
-            <file>file:/var/www/canborrell-wp/cb-reserves/reservar/alergogens.php</file>
+            <file>file:/var/www/canborrell-wp/cb-reserves/reservar/hores_nens.php</file>
             <file>file:/var/www/canborrell-wp/cb-reserves/reservar/Gestor_form.php</file>
-            <file>file:/var/www/canborrell-wp/cb-reserves/reservar/translate_carta_es.php</file>
-            <file>file:/var/www/canborrell-wp/cb-reserves/reservar/translate_carta_en.php</file>
-            <file>file:/var/www/canborrell-wp/cb-reserves/reservar/translate_carta_ca.php</file>
+            <file>file:/var/www/canborrell-wp/wp-content/themes/onetone_cb/style.css</file>
+            <file>file:/var/www/canborrell-wp/cb-reserves/reservar/js/form_reserves_mob.js</file>
         </group>
     </open-files>
 </project-private>
