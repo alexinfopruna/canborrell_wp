@@ -198,27 +198,24 @@ $title = __($action_title[$_GET['a']], 'canborrell');
                                        //NO_INTERNET
                                       ?>
                                       
-                                                                      <div class="alert alert-danger">
-                                          <span class="glyphicon glyphicon-alert" style="font-size:1.8em"></span> 
+                                <div class="alert alert-danger" style="font-size:15px;">
+                                         
                                           <p> DEGUT A UNA INCIDÈNCIA AMB EL NOSTRE PROVEÏDOR D'INTERNET, 
                                               EL SISTEMA DE RESERVES <b>NO POT GESTIONAR MODIFICACIONS SOBRE LES RESERVES EXISTENTS.</b></p><br>
 <p>SI NECESSITA COMUNICAR-NOS QUALSEVOL VARIACIÓ DE LA SEVA RESERVA FACI'NS ARRIBAR UN EMAIL A <a target="_blank" href="mailto:restaurant@can-borrell.com">restaurant@can-borrell.com</a>
 <p>   Disculpin les molèsties, agraïm la seva comprensió</p>
-<hr><hr>
+<div style="border-bottom:#ccc solid 1px;"> <br><br></div><br><br>
                                          <p>DEBIDO A UNA INCIDENCIA CON NUESTRO PROVEEDOR DE INTERNET, EL SISTEMA DE RESERVAS <b>NO PUEDE GESTIONAR MODIFICACIONES SOBRE LAS RESERVAS EXISTENTES.</b></p><br>
 <p>SI NECESITA COMUNICARNOS CUALQUIER VARIACIÓN DE SU RESERVA HÁGANOS LLEGAR UN EMAIL A <a target="_blank" href="mailto:restaurant@can-borrell.com">restaurant@can-borrell.com</a>
 <p>   Disculpen las molestias, agradecemos su comprensión
 </p>
-<br>
-<hr>
-
+<div style="border-bottom:#ccc solid 1px;"> <br><br></div><br><br>
 <p>BECAUSE AN IMPACT WITH OUR ISP, reservation system can not handle modifications to existing reserves.</p>
 
 <p>IF YOU NEED TO COMMUNICATE any change of your reservation please send us an email to <a target="_blank" href="mailto:restaurant@can-borrell.com">restaurant@can-borrell.com</a>
 </p><p>Sorry for the inconvenience, thank you for your understanding</p>
-
-
-                                      </div>
+</div>  
+                                      
 <!--
                                       <form id="input-reserva" method="post" >
                                           <label for="rid"><?php echo $id ?></label>
