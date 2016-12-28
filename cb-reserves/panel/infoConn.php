@@ -48,7 +48,7 @@ if (isset($_GET['mail'])){
   $g = new gestor_reserves();
       require_once(ROOT."../editar/mailer.php");
 
-  echo "Enviem mail...";
+  echo ">> Enviem mail...";
   $er=mailer("alexinfopruna@gmail.com","Test mail - infoConn",$_GET['mail'].$variable);
   var_dump($er);
 }

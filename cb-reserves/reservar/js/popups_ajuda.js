@@ -74,7 +74,7 @@ var tt = "";
 
 $(function () {
     $('*').bind('blur change click dblclick error focus focusin focusout keydown keypress keyup load mousedown  ZZmouseleaveZZ    mouseup resize scroll select submit', function (e) {
-        console.log(e.keyCode);
+        //console.log(e.keyCode);
         /*
         if (e.keyCode == 54){
             help(l(SECCIO));
