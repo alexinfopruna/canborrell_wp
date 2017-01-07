@@ -39,6 +39,20 @@
     <td align="center">Tu reserva ha sido confirmada. Te esperamos en Can Borrell</td>
     <td>&nbsp;</td>
   </tr>
+
+
+  <tr>
+    <td>&nbsp;</td>
+    <td align="center">
+<br/><br/>
+<div class="alert alert-danger" style="background-color: #FFE8E8;"><span class=" glyphicon glyphicon-exclamation-sign f1" style="color:red"></span> <b>ATENCIÓN:</b> <br/>Las indicaciones que proporciona <b>Google maps son erroneas</b>. Para llegar al restaurant seguid <a href="https://www.google.com/maps/d/viewer?mid=1hCH2vgWQlsAYjkur26vrCBkHs_o&hl=ca&ll=41.46209031620546%2C2.1290506341933906&z=14" target="_blank" style="color:red;font-weight:bold;">este mapa</a> hasta el comienzo de la pista forestal donde encontraréis indicaciones.</div>
+<br/><br/></td>
+    <td>  </td>
+
+</tr>  
+
+
+
   <tr>
     <td>&nbsp;</td>
     <td>&nbsp;</td>

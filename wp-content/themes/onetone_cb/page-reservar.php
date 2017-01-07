@@ -1039,8 +1039,7 @@ if ($padding_bottom)
                                                           ?>
                                                           
                                                           
-                                                        <!--  <div id="pp-content"><?php // //NO_INTERNET l('ALERTA_INFO_INICIAL'); ?></div>-->
-                                                          <div id="pp-content"><?php l('ALERTA_INFO_INICIAL'); ?></div>
+                                                         <div id="pp-content"><?php l('ALERTA_INFO_INICIAL'); ?></div>
                                                           <p><button class="simplemodal-close"><?php l("Tanca") ?></button></p>
                                                       </div>
                                                   </div>                                                    

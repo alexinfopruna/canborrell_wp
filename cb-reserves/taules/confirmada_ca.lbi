@@ -179,6 +179,20 @@ UL {
     <td>&nbsp;</td>
     <td align="center">La seva reserva ha estat confirmada. L'esperem a Can Borrell</td>
     <td>  </tr>
+
+
+  <tr>
+    <td>&nbsp;</td>
+    <td align="center">
+<br/><br/>
+<div class="alert alert-danger" style="background-color: #FFE8E8;"><span class=" glyphicon glyphicon-exclamation-sign f1" style="color:red"></span> <b>ATENCIÓ:</b> <br/>Les indicacions que proporciona <b>Google maps són errònies</b>. Per arribar al restaurant seguiu <a href="https://www.google.com/maps/d/viewer?mid=1hCH2vgWQlsAYjkur26vrCBkHs_o&hl=ca&ll=41.46209031620546%2C2.1290506341933906&z=14" target="_blank" style="color:red;font-weight:bold;">aquest mapa</a> fins a l\'inici de la pista forestal on trobareu indicacions.</div>
+
+<br/><br/></td>
+    <td>  </td>
+
+</tr>  
+
+
   <tr>
     <td>&nbsp;</td>
     <td>&nbsp;</td>
