@@ -137,7 +137,7 @@ Be sure to give the correct date changing month, if necessary, with the arrows o
 Remember that, excluding some holidays, the restaurant is closed on mondays and tuesdays.<br/> <br/> 
 If there is an unavailable day it could be because there are no tables free. <br/> <br/> ';
 
-$translate['google_maps']='<div class="alert alert-danger"><span class=" glyphicon glyphicon-exclamation-sign f1" style="color:red"></span> <b>ATTENTION:</b> <br/>The indications provided by <b> Google maps are wrong </ b>. To get to the restaurant, follow <a href="https://www.google.com/maps/d/viewer?mid=1hCH2vgWQlsAYjkur26vrCBkHs_o&hl=ca&ll=41.46209031620546%2C2.1290506341933906&z=14" target="_blank" style="color:red;font-weight:bold;">this map</a>  to the beginning of the forest trail where you will find indications. </div>';
+$translate['google_maps']='<div class="alert alert-danger"><span class=" glyphicon glyphicon-exclamation-sign f1" style="color:red"></span> <b>ATTENTION:</b> <br/>The indications provided by <b> Google maps are wrong </ b>. To get to the restaurant, follow <a href="https://www.google.com/maps/d/viewer?mid=1hCH2vgWQlsAYjkur26vrCBkHs_o&hl=ca&ll=41.46209031620546%2C2.1290506341933906&z=14" target="_blank" style="color:red;font-weight:bold;">this map</a>  to the beginning of the forest. </div>';
 
 $translate['ALERTA_INFO'] = '<b> The Reservation has been CONFIRMED. </b>. <br/> <br/>
 We have sent a confirmation text message to the mobile phone number you’ve given. <br/> <br/>'.$translate['google_maps'].'

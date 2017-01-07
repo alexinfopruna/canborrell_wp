@@ -118,7 +118,7 @@ Podeu exercir els vostres drets d\'accés, rectificació, cancel·lació i oposi
 			</p>
                                                                                     <p  class="alert alert-warning "><span class=" glyphicon glyphicon-exclamation-sign f1"></span>  
 <b>Cap sol·licitud de reserva tindrà validesa si no s\'ha fet el pagament</b> abans de la data que us indicarem.</p>';
-$translate['google_maps']='<div class="alert alert-danger"><span class=" glyphicon glyphicon-exclamation-sign f1" style="color:red"></span> <b>ATENCIÓ:</b> <br/>Les indicacions que proporciona <b>Google maps són errònies</b>. Per arribar al restaurant seguiu <a href="https://www.google.com/maps/d/viewer?mid=1hCH2vgWQlsAYjkur26vrCBkHs_o&hl=ca&ll=41.46209031620546%2C2.1290506341933906&z=14" target="_blank" style="color:red;font-weight:bold;">aquest mapa</a> fins a l\'inici de la pista forestal on trobareu indicacions.</div>';
+$translate['google_maps']='<div class="alert alert-danger"><span class=" glyphicon glyphicon-exclamation-sign f1" style="color:red"></span> <b>ATENCIÓ:</b> <br/>Les indicacions que proporciona <b>Google maps són errònies</b>. Per arribar al restaurant seguiu <a href="https://www.google.com/maps/d/viewer?mid=1hCH2vgWQlsAYjkur26vrCBkHs_o&hl=ca&ll=41.46209031620546%2C2.1290506341933906&z=14" target="_blank" style="color:red;font-weight:bold;">aquest mapa</a> fins a l\'inici de la pista forestal.</div>';
 
                             $translate['ALERTA_INFO_INICIAL']='<p  class="alert alert-info "><span class=" glyphicon glyphicon-info-sign f1"></span> Omplint i enviant aquest formulari 
 			<b>realitzaràs una reserva formal al restaurant, per un dia i hora concrets</b>. 
