@@ -29,6 +29,8 @@
     <td align="center">La seva reserva ha estat confirmada. L'esperem a Can Borrell<br/><br/></td>
     <td>  </td>
   </tr>
+
+<!--
   <tr>
     <td>&nbsp;</td>
     <td align="center">
@@ -38,7 +40,10 @@
 <br/><br/></td>
     <td>  </td>
 
-</tr>  
+</tr>
+-->
+
+  
   <tr>
     <td>&nbsp;</td>
     <td align="center"><span class="titol" style="color:#FF0000">Pots imprimir aquest comprovant i presentar-lo al restaurant a al moment de pagar per tal que sigui descomptat l'import de la paga i senyal.</span></td>

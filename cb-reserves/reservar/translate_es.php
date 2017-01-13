@@ -126,7 +126,8 @@ Asegúrate de poner la fecha correcta cambiando el mes, si es necesario, con las
 Recuerda que, salvo algunos festivos, el restaurante permanece cerrado los lunes y martes <br/> <br/>
 Si un día está desactivado puede que no queden mesas libres. <br/> <br/> ';
 
-$translate['google_maps']='<div class="alert alert-danger"><span class=" glyphicon glyphicon-exclamation-sign f1" style="color:red"></span> <b>ATENCIÓN:</b> <br/>Las indicaciones que proporciona <b>Google maps son erroneas</b>. Para llegar al restaurant seguid <a href="https://www.google.com/maps/d/viewer?mid=1hCH2vgWQlsAYjkur26vrCBkHs_o&hl=ca&ll=41.46209031620546%2C2.1290506341933906&z=14" target="_blank" style="color:red;font-weight:bold;">este mapa</a> hasta el comienzo de la pista forestal.</div>';
+//$translate['google_maps']='<div class="alert alert-danger"><span class=" glyphicon glyphicon-exclamation-sign f1" style="color:red"></span> <b>ATENCIÓN:</b> <br/>Las indicaciones que proporciona <b>Google maps son erroneas</b>. Para llegar al restaurant seguid <a href="https://www.google.com/maps/d/viewer?mid=1hCH2vgWQlsAYjkur26vrCBkHs_o&hl=ca&ll=41.46209031620546%2C2.1290506341933906&z=14" target="_blank" style="color:red;font-weight:bold;">este mapa</a> hasta el comienzo de la pista forestal.</div>';
+$translate['google_maps']='';
 $translate['ALERTA_INFO']='<b> La Reserva ha sido CONFIRMADA </b>. <br/> <br/>'.$translate['google_maps'].'
 Te hemos enviado un SMS recordatorio al número de móvil que nos has indicado. <br/> <br/>
 
