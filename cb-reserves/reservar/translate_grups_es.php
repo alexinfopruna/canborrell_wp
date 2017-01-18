@@ -40,8 +40,18 @@ Tenemos que verificar la disponibilidad de mesa para el dia que has solicitado.
 En breve recibirás un correo electrónico en el que te informaremos de si, finalmente, hemos podido reservar mesa para vosotros y cómo continuar el proceso para confirmar la reserva<br/> <br/>
 Revisa tu correo en las próximas horas y ten presente que <b>TODAVIA NO ESTÁ CONFIRMADA LA RESERVA</b>
 
+
+
+
 <br/><br/>
-<b style="font-size:1.2em">
+
+<div class="alert alert-danger">
+Si tenéis que <b>modificar</b> el número de cubiertos, nos lo debéis comunicar, como mínimo, <b>3 días antes de la reserva </b> al email restaurant@can-borrell.com o llamando al 936929723 / 936910605 
+</div>
+
+<br/> <br/>
+
+
 Siempre contestamos las solicitudes en un plazo de un día.
 Si pasadas 24 horas no has recibido respuesta puede tratarse de un problema con el correo electrónico.
 Comprueba la carpeta de spam y, si no localizas el mail del restaurante,
@@ -60,7 +70,7 @@ La fecha para la que pides la reserva
 El número de comensales
 </li>
 </ul>
-</b>
+
 <br/><br/>
 El importe de la paga y señal será descontado del precio final, de manera que no representará un gasto extra, 
 ni en el caso de que modifiquéis el número de comensales al confirmar la reserva.'						

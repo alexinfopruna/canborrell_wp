@@ -956,7 +956,7 @@ if ($padding_bottom)
                                                                   </div>
 
                                                                   <div class="flex"></div>
-                                                                  <div class="ui-corner-all info-submit caixa dere">
+                                                                  <div class="ui-corner-all info-submit caixaXX dere alert alert-danger ">
                                                                       <?php l('INFO_NO_CONFIRMADA'); ?>:
 
                                                                   </div>

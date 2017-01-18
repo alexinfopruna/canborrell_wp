@@ -28,9 +28,15 @@ $translate['ALERTA_INFO_GRUPS']='La <b>sol·licitud</b> de reserva ha estat envi
 Hem de verificar la diponibilitat de taula pel dia que has demanat.
 En breu rebràs un correu electrònic en el que t\'informarem de si, finalment, hem pogut reservar taula per vosaltres i de com continuar el procès per confirmar la reserva.
 <br/> <br/>
+<div class="alert alert-danger">
+Si heu de <b>modificar</b> el nombre de coberts ens heu d\'avisar,com a mínim, <b>3 dies abans de la data de la reserva</b> per email a restaurant@can-borrell.com o trucant al 936929723 / 936910605 
+</div>
+
+<br/> <br/>
+
 Revisa el teu correu en les properes hores i tingues present que <b>ENCARA NO ESTÀ CONFIRMADA LA RESERVA</b>
 <br/><br/>
-<b style="font-size:1.2em">
+
 Sempre contestem les sol·licituds en un plaç d´un dia. 
 		Si passades 24h no has rebut resposta pot tractar-se d´algun problema amb el correu electrònic. 
 		Comprova la carpeta d´spam i, si no localitzes el mail del restaurant, 
@@ -49,7 +55,7 @@ Sempre contestem les sol·licituds en un plaç d´un dia.
 		El nombre de comensals
 </li>
 </ul>		
-</b> 		
+		
 		
 <br/><br/>
 L\'import de la paga senyal serà descomptat del preu final, de manera que no representarà cap despesa extra, 

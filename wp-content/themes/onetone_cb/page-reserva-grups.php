@@ -627,7 +627,7 @@ function reservar_enqueue_styles() {
                                                                   ?> </b>  -->
                                                                   <?php l('Comanda'); ?>: <b id="resum-comanda"><?php l('Sense'); ?> </b> <?php l('plats'); ?> (<b id="resum-preu"></b> €)
                                                               </div>
-                                                              <div class="ui-corner-all info-submit caixa dere">
+                                                              <div class="ui-corner-all info-submit caixa dere alert alert-danger">
   <?php l('INFO_NO_CONFIRMADA'); ?>:
 
                                                               </div>
@@ -776,7 +776,7 @@ function reservar_enqueue_styles() {
   <?php get_sidebar('pageleft'); ?>
                           </div>
                       </aside>
-                  </div>
+             o     </div>
                     <?php endif; ?>
                     <?php if ($sidebar == 'right' || $sidebar == 'both'): ?>
                   <div class="col-aside-right">

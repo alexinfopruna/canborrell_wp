@@ -39,10 +39,18 @@ $translate['ALERTA_INFO_GRUPS']='The reservation <b>request</b> has been sent.
 We have to verify the availability of a table for the date you have requested.  
 hortly you will receive an email informing you if we have been able to reserve a table for you and how to continue 
 the process to confirm the reservation 
+<br/><br/>
+
+<div class="alert alert-danger">
+If you have <b>to modify </b> the number of people, you must notice, at least <b> 3 days before the booking date </b> to the mail restaurant@can-borrell.com or call 936929723 / 936910605 
+</div>
+
+<br/> <br/>
+
 Check your emails in the following two or three hours and be aware that the <b>RESERVATION IS NOT YET CONFIRMED</b>
 
 <br/><br/>
-<b style="font-size:1.2em">
+
 we always respond to requests within one day. If in twenty four hours you haven’t 
 received a response it could be due to a problem with the email. 
 Check your spam folder, if you cannot find the restaurants email message contact us by sending an email giving us: 
@@ -60,7 +68,7 @@ The date of the reservation request
 The number of diners 
 </li>
 </ul>
-</b>
+
 <br/><br/>
 The price of the deposit is discounted from your bill, therefore there is no added expense, 
 this applies even if you change the number of diners when confirming the reservation.'					
