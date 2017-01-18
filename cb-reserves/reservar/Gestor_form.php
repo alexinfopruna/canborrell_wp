@@ -931,7 +931,6 @@ FROM client
     $mensa = gestor_reserves::SMS_language($mensa, $lang, $args);
 
     $this->enviaSMS($idr, $mensa);
-
 //envia MAIL
     $extres['subject'] = "Can-Borrell: MODIFICACIÓ RESERVA ONLINE " . $_POST['id_reserva'];
     if ($_POST['client_email'])
