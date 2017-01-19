@@ -192,9 +192,11 @@ if ( !headers_sent() ) {
     switch ($compresion) {
     case "file":
 			$f=fopen(RUTA_DB_BACKUP.$nombre,"w");
-			fwrite($f, $dump);
+			$res=fwrite($f, $dump);
 			fclose($f);
-                                                                                    
+                                                                                    //echo RUTA_DB_BACKUP.$nombre;
+                                                                                    //echo "$res die(); $f";die();
+                                                                                    if ($res === FALSE) die( "error");
                                                                                     //echo $nombre  ;
 			die( "backup");
         break;

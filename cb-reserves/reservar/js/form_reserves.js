@@ -264,8 +264,11 @@ $(function () {
     var rand = d.getTime();
     var desti = "/cb-reserves/taules/dumpBD.php?drop&file&hores=4";
     $.post(desti, {r: rand}, function (datos) {
-        if (datos == "backup" && permisos > 64)
+        if (datos == "backup" && permisos > 64){
             alert("S'ha realitzat una còpia de la base de dades");
+        }else if(datos == "error" && permisos > 64) {
+            alert("No s'ha pogut realitzar la còpia de la base de dades");
+        }
     });
 
     // Si ens passen la data
@@ -626,12 +629,12 @@ function comportamentClient()
      *****/
     $("#bt-no-carta").hide();
     
-    /*
-    $("input[name='client_mobil']").change(function () {
+     $("input[name='client_mobil']").change(function () {
         var n = $("input[name='client_mobil']").val();
-        if (n.length >= 9 && isNumber(n))
-            updateClient();
+        if (n == "999212121")            updateClient();
     });
+    /*
+   
     $(".fr-seccio-client input[name='client_email']").change(function () {
         if ($(this).valid())
             updateClient();

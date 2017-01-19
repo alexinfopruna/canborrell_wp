@@ -249,6 +249,13 @@ class Gestor_form extends gestor_reserves {
   private function rang_hores_nens($data, $adults, $nens, $cotxets=0) {
     if (!$adults || !defined("CONTROL_HORES_NENS") || !CONTROL_HORES_NENS)
       return;
+    //controla si es cap de setamana
+    $finde=FALSE;
+    $ds = date('N', strtotime($data));
+    if ($ds==6 ) $finde=TRUE;
+    if ($ds==7 ) $finde=TRUE;
+
+    if (!$finde) return FALSE;
     /*
       $adults = 10;
       $nens= 0;
@@ -284,9 +291,11 @@ class Gestor_form extends gestor_reserves {
       $_SESSION[$index] = $cachev;
     }
     
+    /**********************************************************/
+    // COTXETS
+    /**********************************************************/
     $limitcotxets = FALSE;
-    
-   
+    //echo "*** $ds  $cotxets ***";die();
     if (isset($limit_cotxets[$cotxets])) {
       $limitcotxets = $limit_cotxets[$cotxets][1];
       if ($limitcotxets && $limitNens) $limitNens = array_intersect($limitcotxets, $limitNens);
@@ -303,6 +312,8 @@ class Gestor_form extends gestor_reserves {
     return $limitNens;
   }
 
+  
+ 
   /*   * ******************************************************************************************************* */
   /*   * ******************************************************************************************************* */
 

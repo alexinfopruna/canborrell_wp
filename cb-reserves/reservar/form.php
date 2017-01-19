@@ -746,7 +746,7 @@ $chek = ($gestor->flagBit($row['reserva_info'], 7) ? 'checked="checked"' : '');
                                                                 <div class="ui-corner-all caixa resum">
                                                                     <b><?php l('Resum reserva'); ?>:</b><br/><br/>
 <?php l('Data'); ?>: <b id="resum-data">-</b> | <?php l('Hora'); ?>: <b id="resum-hora">-</b><br/>
-<?php l('Adults'); ?>: <b id="resum-adults">-</b> | <?php l('Juniors'); ?>: <b id="resum-juniors">-</b> | <?php l('Nens'); ?>: <b id="resum-nens">-</b> | <?php l('Cotxets'); ?>: <b id="resum-cotxets">-</b><br/>
+<?php l('Adults'); ?> <b id="resum-adults">-</b> | <?php l('Juniors'); ?>: <b id="resum-juniors">-</b> | <?php l('Nens'); ?>: <b id="resum-nens">-</b> | <?php l('Cotxets'); ?>: <b id="resum-cotxets">-</b><br/>
 <?php l('Comanda'); ?>: <b id="resum-comanda"><?php l('Sense'); ?> </b> <?php l('plats'); ?> (<b id="resum-preu"></b> €)
                                                                 </div>
                                                                 <div class="ui-corner-all info-submit caixa dere">

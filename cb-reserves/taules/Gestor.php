@@ -1032,6 +1032,12 @@ class Gestor {
   }
 
   /** ***************************************************************************************************
+    ES FINDE?
+  */
+  private  function isWeekend($date) {
+    return (date('N', strtotime($date)) >= 6);
+}
+  /** ***************************************************************************************************
     Recupera idioma
   */
   public static function getLanguage() {
@@ -1062,7 +1068,7 @@ class Gestor {
     treu el codi html per carregar jquery + jquery ui del cdn de jquery
    */
 
-  public static function loadJQuery($jqversion = "2.0.3", $uiversion = "1.10.3", $cdn = TRUE) {
+  public static function loadJQuery($jqversion = "2.0.3", $uiversion = "1.10.4", $cdn = TRUE) {
 
     $ROOT = ROOT;
     if (!$cdn){

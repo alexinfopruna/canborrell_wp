@@ -1289,9 +1289,12 @@ function comprova_backup()
     var rand = d.getTime();
     var desti = "dumpBD.php?drop&file";
     $.post(desti, {r: rand}, function (datos) {
-        if (datos == "backup" && permisos > 64)
+        if (datos == "backup" && permisos > 64){
             alert("S'ha realitzat una còpia de la base de dades");
-
+        }
+        else if(datos == "error" && permisos > 64) {
+            alert("No s'ha pogut realitzar la còpia de la base de dades");
+        }
     });
 
 }
