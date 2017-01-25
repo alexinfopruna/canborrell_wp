@@ -80,7 +80,7 @@ $sitepress->switch_lang($lang);
 
 
 <article id="post-<?php the_ID(); ?>" <?php post_class(); ?>>
-<section class="page-title-bar title-left no-subtitle" style="">
+<section class="page-title-bar title-left no-subtitle cartaweb" style="">
             <div class="container">
                 <?php onetone_get_breadcrumb(array("before"=>"<div class=''>","after"=>"</div>","show_browse"=>false,"separator"=>'','container'=>'div'));?> 
                 <hgroup class="page-title">
