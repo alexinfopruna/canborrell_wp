@@ -246,7 +246,8 @@ class Gestor_form extends gestor_reserves {
     //////////////////////////////////					
   }
 
-  private function rang_hores_nens($data, $adults, $nens, $cotxets=0) {
+  private function rang_hores_nens($data, $adults, $nens=0, $cotxets=0) {
+    
     if (!$adults || !defined("CONTROL_HORES_NENS") || !CONTROL_HORES_NENS)
       return;
     //controla si es cap de setamana
@@ -259,7 +260,9 @@ class Gestor_form extends gestor_reserves {
     /*
       $adults = 10;
       $nens= 0;
-     */
+     */if ($nens=="undefined") $nens=0;
+    //echo " .. $nens ..";die();
+   
     /*     * *************************** */
     require("hores_nens.php");
     /*     * **************************** */
@@ -267,12 +270,11 @@ class Gestor_form extends gestor_reserves {
     $limit = FALSE;
     if (isset($limits[$adults][$nens]))
       $limit = $limits[$adults][$nens];
-      
     //CACHEEEEEEE
     $index = 'cacheNens' . $data . "-" . ($adults + $nens);
 
     $time = time();
-    
+     
     //   $time += CB_CHILD_CACHE_MAX_TIME + 1000;
     $cache = FALSE;
     if (isset($_SESSION[$index]) && count($_SESSION[$index]['hores']) && $_SESSION[$index]['timestamp'] > $time) {

@@ -1,4 +1,5 @@
 <?php
+
 if (!defined('ROOT'))
   define('ROOT', "");
 
@@ -136,8 +137,8 @@ class gestor_reserves extends Gestor {
     VALUES (%s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s)", $this->SQLVal($mydata, "text"), $this->SQLVal($row['estat_taula_nom'], "text"), $this->SQLVal($torn, "text"), $this->SQLVal($taula_id, "text"), $this->SQLVal($row['reserva_id'], "text"), $this->SQLVal($row['estat_taula_x'], "text"), $this->SQLVal($row['estat_taula_y'], "zero"), $this->SQLVal($row['estat_taula_persones'], "zero"), $this->SQLVal($row['estat_taula_cotxets'], "zero"), $this->SQLVal($row['estat_taula_grup'], "text"), $this->SQLVal($row['estat_taula_plena'], "text"), $lock, $sess);
 
     $this->qry_result = mysqli_query($this->connexioDB, $sql) or die(((is_object($GLOBALS["___mysqli_ston"])) ? mysqli_error($GLOBALS["___mysqli_ston"]) : (($___mysqli_res = mysqli_connect_error()) ? $___mysqli_res : false)));
-    
-    
+
+
     return mysqli_affected_rows($this->connexioDB) ? "ok$unlock" : "ko$unlock";
   }
 
@@ -192,7 +193,7 @@ class gestor_reserves extends Gestor {
     $lang = $row['lang'];
 
     $mensa = "Restaurant Can Borrell: Su reserva para el $dataSMS a las $hora HA SIDO ANULADA. Si desea contactar con nosotros: 936929723 - 936910605. Gracias.(ID$id_reserva)";
-    if ($lang=='en'){
+    if ($lang == 'en') {
       $mensa = "Restaurant Can Borrell: Your reservation for the $dataSMS at $hora HAS BEEN CANCELLED. If you wish to contact us: 936929723 – 936910605. Thank you.(ID$id_reserva)";
     }
 
@@ -329,15 +330,16 @@ class gestor_reserves extends Gestor {
     $_POST['reserva_info'] = $this->flagBit($_POST['reserva_info'], 9, $selectorAccesible);
 
     /*
-      
-print_r($_SESSION['admin_id']);
-print_r($_SESSION['uSer']);
-print_r($_REQUEST);die();
-     
+
+      print_r($_SESSION['admin_id']);
+      print_r($_SESSION['uSer']);
+      print_r($_REQUEST);die();
+
      */
     $editor_id = $this->SQLVal($_SESSION['uSer']->id, "text");
-    if (isset($_REQUEST['editor_id']) && $_REQUEST['editor_id']) $editor_id = $_REQUEST['editor_id'];
-    
+    if (isset($_REQUEST['editor_id']) && $_REQUEST['editor_id'])
+      $editor_id = $_REQUEST['editor_id'];
+
     $estat = 100; // !!!!!!!!!! SEMPRE  ??????
     $insertSQL = sprintf("INSERT INTO " . T_RESERVES . " ( id_reserva, client_id, data, hora, adults, 
       nens4_9, nens10_14, cotxets, reserva_pastis, reserva_info_pastis, observacions, resposta, estat, usuari_creacio, reserva_navegador, reserva_info) 
@@ -399,12 +401,12 @@ print_r($_REQUEST);die();
       if ($_POST['cotxets'] > 1)
         $coberts.="s";
       //$mensa = "Recuerde: reserva en Restaurant Can Borrell. $dataSMS $hora ($coberts).Rogamos comunique cualquier cambio: 936929723/936910605.Gracias.(ID$idr)";
-        
-      $args[]=$dataSMS;
-      $args[]=$hora;
-      $args[]=$coberts;
-      $args[]=$idr;
-      $lang=$this->getLanguage();
+
+      $args[] = $dataSMS;
+      $args[] = $hora;
+      $args[] = $coberts;
+      $args[] = $idr;
+      $lang = $this->getLanguage();
       $mensa = "Recordi: reserva al Restaurant Can Borrell. %s %s (%s).Preguem comuniqui qualsevol canvi: 936929723/936910605.Gràcies.(ID%s)";
       $mensa = gestor_reserves::SMS_language($mensa, $lang, $args);
 
@@ -435,7 +437,7 @@ print_r($_REQUEST);die();
     if ($_SESSION['permisos'] < 16)
       return "error:sin permisos";
 
-      
+
     $this->reg_log("update_reserva <span class='idr'>" . $_POST['id_reserva'] . '</span>');
     if (!$this->valida_reserva($_POST['estat_taula_taula_id'], $this->cambiaf_a_mysql($_POST['data'])))
       return "DATA ANOMALA update_reserva";
@@ -447,12 +449,12 @@ print_r($_REQUEST);die();
 
     $this->estat_anterior($_POST['id_reserva']);
 //$this->gr
-    
-     $updateSQL = "UPDATE " . ESTAT_TAULES . " SET estat_taula_usuari_modificacio=" . $_SESSION['admin_id'] . ", reserva_id='" . $_POST['id_reserva'] . "',estat_taula_data=" . $this->SQLVal($_POST['data'], 'datePHP') . ", estat_taula_torn='" . $torn . "', estat_taules_timestamp=CURRENT_TIMESTAMP WHERE reserva_id=" . $_POST['id_reserva'];
-     //echo "$updateSQL EEEE";die();
 
-     
-     $result = $this->log_mysql_query($updateSQL, $this->connexioDB) or die(((is_object($GLOBALS["___mysqli_ston"])) ? mysqli_error($GLOBALS["___mysqli_ston"]) : (($___mysqli_res = mysqli_connect_error()) ? $___mysqli_res : false)));
+    $updateSQL = "UPDATE " . ESTAT_TAULES . " SET estat_taula_usuari_modificacio=" . $_SESSION['admin_id'] . ", reserva_id='" . $_POST['id_reserva'] . "',estat_taula_data=" . $this->SQLVal($_POST['data'], 'datePHP') . ", estat_taula_torn='" . $torn . "', estat_taules_timestamp=CURRENT_TIMESTAMP WHERE reserva_id=" . $_POST['id_reserva'];
+    //echo "$updateSQL EEEE";die();
+
+
+    $result = $this->log_mysql_query($updateSQL, $this->connexioDB) or die(((is_object($GLOBALS["___mysqli_ston"])) ? mysqli_error($GLOBALS["___mysqli_ston"]) : (($___mysqli_res = mysqli_connect_error()) ? $___mysqli_res : false)));
 
     /*
      * reserva_info
@@ -470,7 +472,7 @@ print_r($_REQUEST);die();
      * 
      */
     $updateSQL = sprintf("UPDATE " . T_RESERVES . " SET  id_reserva=%s, client_id=%s, data=%s, hora=%s, adults=%s,nens4_9=%s, 
-      nens10_14 = %s, cotxets = % s, reserva_pastis= %s, reserva_info_pastis = %s, observacions = %s, resposta = %s,  reserva_info=%s WHERE id_reserva=%s", $this->SQLVal($_POST['id_reserva'], "text"), $this->SQLVal($_POST['client_id'], "text"), $this->SQLVal($_POST['data'], "datePHP"), $this->SQLVal($_POST['hora'], "text"), $this->SQLVal($_POST['adults'], "text"), $this->SQLVal($_POST['nens4_9'], "text"), $this->SQLVal($_POST['nens10_14'], "text"), $this->SQLVal($_POST['cotxets'], "text"), $this->SQLVal($_POST['RESERVA_PASTIS'] == 'on' ? 1 : 0, "zero"), $this->SQLVal($_POST['INFO_PASTIS'], "text"), $this->SQLVal($_POST['observacions'], "text"), $this->SQLVal($_POST['resposta'], "text"),  $this->SQLVal($_POST['reserva_info'], "int"), $this->SQLVal($_POST['id_reserva'], "text"));
+      nens10_14 = %s, cotxets = % s, reserva_pastis= %s, reserva_info_pastis = %s, observacions = %s, resposta = %s,  reserva_info=%s WHERE id_reserva=%s", $this->SQLVal($_POST['id_reserva'], "text"), $this->SQLVal($_POST['client_id'], "text"), $this->SQLVal($_POST['data'], "datePHP"), $this->SQLVal($_POST['hora'], "text"), $this->SQLVal($_POST['adults'], "text"), $this->SQLVal($_POST['nens4_9'], "text"), $this->SQLVal($_POST['nens10_14'], "text"), $this->SQLVal($_POST['cotxets'], "text"), $this->SQLVal($_POST['RESERVA_PASTIS'] == 'on' ? 1 : 0, "zero"), $this->SQLVal($_POST['INFO_PASTIS'], "text"), $this->SQLVal($_POST['observacions'], "text"), $this->SQLVal($_POST['resposta'], "text"), $this->SQLVal($_POST['reserva_info'], "int"), $this->SQLVal($_POST['id_reserva'], "text"));
 
     $result = $this->log_mysql_query($updateSQL, $this->connexioDB) or die(((is_object($GLOBALS["___mysqli_ston"])) ? mysqli_error($GLOBALS["___mysqli_ston"]) : (($___mysqli_res = mysqli_connect_error()) ? $___mysqli_res : false)));
 
@@ -1139,7 +1141,7 @@ print_r($_REQUEST);die();
       $superinfo = "";
 //$superinfo = $this->superInfoReserva($row);
       $online = $row['reserva_info'] & 1 ? '<div class="online" title="Reserva ONLINE">' . $sobret . '</div>' : '';
-      $pastis = $row['reserva_pastis']==1? '<div class="pastis" title="Demana pastís"></div>' : '';
+      $pastis = $row['reserva_pastis'] == 1 ? '<div class="pastis" title="Demana pastís"></div>' : '';
       if ($row['client_nom'] == "SENSE_NOM")
         $row['client_nom'] = "";
       $nom = '<div class="acn">' . substr($row['client_cognoms'] . ", " . $row['client_nom'], 0, 30) . '</div>';
@@ -1879,8 +1881,8 @@ EOHTML;
 
   public function autocomplete_clients($q, $p) {
 //if (is_numeric($q) && $q>2000 && $q<99999) $q="ID".$q;
-$GARJOLA = "";
-$r=FALSE;
+    $GARJOLA = "";
+    $r = FALSE;
 
     switch ($_SESSION['modo']) {
       case 1:
@@ -1923,92 +1925,91 @@ $r=FALSE;
 // echo $query;
     $this->qry_result = mysqli_query($this->connexioDB, $query) or die(((is_object($GLOBALS["___mysqli_ston"])) ? mysqli_error($GLOBALS["___mysqli_ston"]) : (($___mysqli_res = mysqli_connect_error()) ? $___mysqli_res : false)));
     $this->total_rows = mysqli_num_rows($this->qry_result);
-    
+
     /*
-        $query = "SELECT * FROM llista_negra WHERE llista_negra_mobil LIKE '$q%'";
-    $qry_result = mysqli_query($this->connexioDB, $query) or die(((is_object($GLOBALS["___mysqli_ston"])) ? mysqli_error($GLOBALS["___mysqli_ston"]) : (($___mysqli_res = mysqli_connect_error()) ? $___mysqli_res : false)));
-    $r = mysqli_num_rows($this->qry_result);
-    $GARJOLA = $r?'GARJOLA!!!':"";
-*/
-    if (!$this->total_rows){
+      $query = "SELECT * FROM llista_negra WHERE llista_negra_mobil LIKE '$q%'";
+      $qry_result = mysqli_query($this->connexioDB, $query) or die(((is_object($GLOBALS["___mysqli_ston"])) ? mysqli_error($GLOBALS["___mysqli_ston"]) : (($___mysqli_res = mysqli_connect_error()) ? $___mysqli_res : false)));
+      $r = mysqli_num_rows($this->qry_result);
+      $GARJOLA = $r?'GARJOLA!!!':"";
+     */
+    if (!$this->total_rows) {
       $row['client_id'] = "";
       $row['client_email'] = "";
       $row['client_nom'] = "";
       $row['client_cognoms'] = "";
       $row['client_mobil'] = "";
       $row['client_conflictes'] = $GARJOLA;
-      
     }
-    
+
     /* */
 
-   
-      $clients0['label'] = "+++ Nou client (" . strtoupper($q) . ")|$q\n";
-      $clients0['client_cognoms'] = is_numeric($q) ? "" : $q;
-      $clients0['client_mobil'] = is_numeric($q) ? $q : "";
-      $clients0['client_email'] = "";
-     // $clients0['client_conflictes'] = $r?$GARJOLA:"";;
-      $clients0['value'] = is_numeric($q) ? $q : "";
-    
+
+    $clients0['label'] = "+++ Nou client (" . strtoupper($q) . ")|$q\n";
+    $clients0['client_cognoms'] = is_numeric($q) ? "" : $q;
+    $clients0['client_mobil'] = is_numeric($q) ? $q : "";
+    $clients0['client_email'] = "";
+    // $clients0['client_conflictes'] = $r?$GARJOLA:"";;
+    $clients0['value'] = is_numeric($q) ? $q : "";
+
     while ($row = mysqli_fetch_assoc($this->qry_result)) {
       $br = array("<br>", "<br/>", "\n", "\r");
-      
-      
+
+
       $row['client_conflictes'] = str_replace($br, "", $row['client_conflictes']);
-      
-       // $query = "SELECT * FROM llista_negra WHERE llista_negra_mobil LIKE '$q%'";
-        $query = "SELECT * FROM llista_negra WHERE llista_negra_mobil = '".$row['client_mobil']."'";
-    $result = mysqli_query($this->connexioDB, $query) or die(((is_object($GLOBALS["___mysqli_ston"])) ? mysqli_error($GLOBALS["___mysqli_ston"]) : (($___mysqli_res = mysqli_connect_error()) ? $___mysqli_res : false)));
-   $row['client_conflictes'] = mysqli_num_rows($result)?"GARJOLA!!!":"";
-      
-      
+
+      // $query = "SELECT * FROM llista_negra WHERE llista_negra_mobil LIKE '$q%'";
+      $query = "SELECT * FROM llista_negra WHERE llista_negra_mobil = '" . $row['client_mobil'] . "'";
+      $result = mysqli_query($this->connexioDB, $query) or die(((is_object($GLOBALS["___mysqli_ston"])) ? mysqli_error($GLOBALS["___mysqli_ston"]) : (($___mysqli_res = mysqli_connect_error()) ? $___mysqli_res : false)));
+      $row['client_conflictes'] = mysqli_num_rows($result) ? "GARJOLA!!!" : "";
+
+
       if (!empty($row['client_conflictes']))
         $conflictes = '***[' . $row['client_conflictes'] . ']*** ';
       else
         $conflictes = "";
-      
-      
-/*   */
-    
-    
+
+
+      /*   */
+
+
       $key = "(" . $row['client_id'] . ") " . $conflictes . $row['client_nom'] . " " . $row['client_cognoms'] . " tel:" . $row['client_mobil'];
 
 
-      if (empty($row['client_email']))        $row['client_email'] = "";
+      if (empty($row['client_email']))
+        $row['client_email'] = "";
       $row['label'] = $key;
       $row['value'] = $q;
       if ($p != "modo")
         $row['value'] = $row['client_mobil'];
       $clients[] = $row;
     }
-    if (empty($clients) && $p != "modo"){
+    if (empty($clients) && $p != "modo") {
       $clients[] = $clients0;
-      
-              $query = "SELECT * FROM llista_negra WHERE llista_negra_mobil LIKE '$q%'";
-    $this->qry_result = mysqli_query($this->connexioDB, $query) or die(((is_object($GLOBALS["___mysqli_ston"])) ? mysqli_error($GLOBALS["___mysqli_ston"]) : (($___mysqli_res = mysqli_connect_error()) ? $___mysqli_res : false)));
-    $r = mysqli_num_rows($this->qry_result);
-    
-    if ($r){
-  $row = mysqli_fetch_assoc($this->qry_result);
-  $row['client_conflictes'] = "GARJOLA!!!";
-     
-      
-    $clients1['label'] = $row['llista_negra_mobil']." >>> GARJOLA!!!";
-    $clients1['client_cognoms'] = $row['llista_negra_mobil'];
-    $clients1['client_mobil'] = $row['llista_negra_mobil'];
-    $clients1['client_email'] = $row['llista_negra_mail'];
-    $clients1['client_conflictes'] = $GARJOLA;
-    $clients1['value'] = is_numeric($q) ? $q : "";
-      
-      
-      
-       $clients[] = $clients1;
-    }
-      
+
+      $query = "SELECT * FROM llista_negra WHERE llista_negra_mobil LIKE '$q%'";
+      $this->qry_result = mysqli_query($this->connexioDB, $query) or die(((is_object($GLOBALS["___mysqli_ston"])) ? mysqli_error($GLOBALS["___mysqli_ston"]) : (($___mysqli_res = mysqli_connect_error()) ? $___mysqli_res : false)));
+      $r = mysqli_num_rows($this->qry_result);
+
+      if ($r) {
+        $row = mysqli_fetch_assoc($this->qry_result);
+        $row['client_conflictes'] = "GARJOLA!!!";
+
+
+        $clients1['label'] = $row['llista_negra_mobil'] . " >>> GARJOLA!!!";
+        $clients1['client_cognoms'] = $row['llista_negra_mobil'];
+        $clients1['client_mobil'] = $row['llista_negra_mobil'];
+        $clients1['client_email'] = $row['llista_negra_mail'];
+        $clients1['client_conflictes'] = $GARJOLA;
+        $clients1['value'] = is_numeric($q) ? $q : "";
+
+
+
+        $clients[] = $clients1;
+      }
     }
 //return $clients;
 
-    
+
     return json_encode($clients);
   }
 
@@ -2046,7 +2047,7 @@ $r=FALSE;
 
 // ENVIA UN
   function recordatori_petites_3dies() {
-   
+
 
     $html = " ... ";
     $query = "SELECT * FROM " . T_RESERVES . " WHERE (adults + nens10_14 + nens4_9)>=6 AND estat=100 AND  data <= ADDDATE(CURDATE(), INTERVAL 35 DAY) AND data>=CURDATE() AND  num_1=0";
@@ -2075,16 +2076,16 @@ $r=FALSE;
       $lang = $row['lang'];
 
       //$missatge = "Recuerde: reserva $id_reserva, el $data - $hora para $persones personas.Es IMPRESCINDIBLE que nos comunique cualquier cambio antes de las 11:00h: 936929723 - 936910605";
-      
-      $args[0]=$id_reserva;
-      $args[1]=$data;
-      $args[2]=$hora;
-      $args[3]=$persones;
+
+      $args[0] = $id_reserva;
+      $args[1] = $data;
+      $args[2] = $hora;
+      $args[3] = $persones;
       $missatge = "Recordi: reserva %s, el %s - %s per a %s personas.Es IMPRESCINDIBLE que ens comuniqui qualsevol canvi abans de les 11:00h: 936929723 - 936910605";
       $missatge = gestor_reserves::SMS_language($missatge, $lang, $args);
 
       $this->enviaSMS($id_reserva, $missatge);
- //echo "<br/>ENVIAT: ".$missatge;
+      //echo "<br/>ENVIAT: ".$missatge;
 
       $query_reserves = "UPDATE " . T_RESERVES . " SET num_1=1 WHERE id_reserva=" . $row["id_reserva"];
       $update = mysqli_query($this->connexioDB, $query_reserves) or die(((is_object($GLOBALS["___mysqli_ston"])) ? mysqli_error($GLOBALS["___mysqli_ston"]) : (($___mysqli_res = mysqli_connect_error()) ? $___mysqli_res : false)));
@@ -2562,12 +2563,13 @@ ORDER BY `estat_hores_data` DESC";
     $this->xgreg_log(">>>> ENVIA EMAIL >>>> enviaMail(<span class='idr'>$idr</span>, $plantilla, $destinatari )", 0, '/log/logMAILSMS.txt');
     if (!ENVIA_MAILS) {
       $this->reg_log("ENVIA_MAILS DESACTIVAT", 1);
-      echo time()." EddEExxE  $mail";die();
+      echo time() . " EddEExxE  $mail";
+      die();
 //$this->testMail($idr, $plantilla = "confirmada_", $destinatari = null, $extres = null);
 //return "ENVIAMENT MAIL DESACTIVAT";
     }
 
-    require_once(ROOT."../editar/mailer.php");
+    require_once(ROOT . "../editar/mailer.php");
     require_once(ROOT . INC_FILE_PATH . "template.inc");
 
     $taula = (floor($idr) > SEPARADOR_ID_RESERVES) ? T_RESERVES : 'reserves';
@@ -2588,7 +2590,7 @@ ORDER BY `estat_hores_data` DESC";
 //Gestor::printr($row);
     $avui = date("d/m/Y");
     $ara = date("H:i");
-    $file = ROOT.$plantilla . $this->lng . ".lbi";
+    $file = ROOT . $plantilla . $this->lng . ".lbi";
     //echo $file."  ".__FILE__;die();
     $t = new Template('.', 'comment');
     if (is_array($extres)) {
@@ -2755,15 +2757,16 @@ ORDER BY `estat_hores_data` DESC";
     return true;
   }
 
-  public static function SMS_language($mensa, $lang='ca', $args = NULL) {
-    
+  public static function SMS_language($mensa, $lang = 'ca', $args = NULL) {
+
     $lang_r = Gestor::codelang($lang);
     include(ROOT . "../editar/translate_editar_$lang_r.php");
 
     $mensa = Gestor::lv($mensa);
-    if (is_array($args)) $mensa = vsprintf($mensa, $args);
-    
-    
+    if (is_array($args))
+      $mensa = vsprintf($mensa, $args);
+
+
     return $mensa;
   }
 
@@ -2831,7 +2834,7 @@ ORDER BY `estat_hores_data` DESC";
   /*   * ********************************************************************************************************************* */
 
   public function cerca_taula($persones = null, $cotxets = 0, $findes = null) {
-    $BLOC = $BLOC2 = $t ="";
+    $BLOC = $BLOC2 = $t = "";
     $ntaules = 0;
     $persones = $persones == "undefined" ? 0 : $persones;
     $cotxets = $cotxets == "undefined" ? 0 : $cotxets;
@@ -3201,6 +3204,34 @@ ORDER BY `estat_hores_data` DESC";
     provovaError();
     provovaError2();
     provovaError3();
+  }
+
+  public function restriccions($data = "2011-01-01", $adults = null, $nens = null, $cotxets = null) {
+    $where = " where TRUE ";
+$rcotxets= ", `restriccions_cotxets` ";
+$rcotxets= " ";
+
+    $where .= (empty($adults)) ? "" : ' AND restriccions_adults=' . $adults;
+    $where .= (empty($nens)) ? "" : ' AND restriccions_nens=' . $nens;
+    $where .= (empty($cotxets)) ? "" : ' AND restriccions_cotxets=' . $cotxets;
+
+    $query = "SELECT * FROM
+(
+  SELECT `restriccions_adults`,`restriccions_nens`, restriccions_cotxets,`restriccions_data`,`restriccions_hora`  FROM restriccions where `restriccions_data`='$data'
+  UNION 
+  SELECT   `restriccions_adults`,`restriccions_nens`, restriccions_cotxets,`restriccions_data`,`restriccions_hora`  FROM restriccions where `restriccions_data`='2011-01-01'
+  order by restriccions_data DESC
+) R
+     $where    
+    group by `restriccions_adults`,`restriccions_nens` $rcotxets ";
+    header("Location: " . $redir);
+    $Result1 = mysqli_query($this->connexioDB, $query) or die(((is_object($GLOBALS["___mysqli_ston"])) ? mysqli_error($GLOBALS["___mysqli_ston"]) : (($___mysqli_res = mysqli_connect_error()) ? $___mysqli_res : false)));
+    //application/javascript
+    header("Content-Type: application/javascript");
+    $json = mysqli_fetch_all($Result1, MYSQLI_ASSOC);
+    $json = json_encode($json);
+
+    return $json;
   }
 
   /*   * ********************************************************************************************************************* */
