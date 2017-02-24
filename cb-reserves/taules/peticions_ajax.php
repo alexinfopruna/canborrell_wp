@@ -7,7 +7,7 @@ function out($t)
 if (isset($_REQUEST['a']) && !empty($_REQUEST['a']))
 {
 	$gestor=new gestor_reserves();
-	if (!$gestor->valida_sessio(1))  header("Location: index.php");
+    if (!$gestor->valida_sessio(1))  header("Location: index.php");
 
 	$logables=array('update_client','esborra_client','inserta_reserva','update_reserva','esborra_reserva','enviaSMS','permuta','permuta_reserva');
 	$log=in_array($_REQUEST['a'], $logables);

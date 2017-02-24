@@ -12,13 +12,17 @@ class Menjador {
     /**
     * Constructor with default values
     */
-    function Menjador($name, $x, $y, $x2, $y2,$punts=0) {
+    function __construct($name, $x, $y, $x2, $y2,$punts=0) {
         $this->name = $name;
         $this->x = $x;
         $this->y= $y;
         $this->x2 = $x2;      
 		$this->y2 = $y2;
 		$this->ordrePunts=$punts;
+   }
+   
+   function Menjador($name, $x, $y, $x2, $y2,$punts=0) {
+     self::__construct($name, $x, $y, $x2, $y2,$punts);
    }
     /**
     * Load person data from a textfile

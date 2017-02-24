@@ -3206,34 +3206,7 @@ ORDER BY `estat_hores_data` DESC";
     provovaError3();
   }
 
-  public function restriccions($data = "2011-01-01", $adults = null, $nens = null, $cotxets = null) {
-    $where = " where TRUE ";
-$rcotxets= ", `restriccions_cotxets` ";
-$rcotxets= " ";
-
-    $where .= (empty($adults)) ? "" : ' AND restriccions_adults=' . $adults;
-    $where .= (empty($nens)) ? "" : ' AND restriccions_nens=' . $nens;
-    $where .= (empty($cotxets)) ? "" : ' AND restriccions_cotxets=' . $cotxets;
-
-    $query = "SELECT * FROM
-(
-  SELECT `restriccions_adults`,`restriccions_nens`, restriccions_cotxets,`restriccions_data`,`restriccions_hora`  FROM restriccions where `restriccions_data`='$data'
-  UNION 
-  SELECT   `restriccions_adults`,`restriccions_nens`, restriccions_cotxets,`restriccions_data`,`restriccions_hora`  FROM restriccions where `restriccions_data`='2011-01-01'
-  order by restriccions_data DESC
-) R
-     $where    
-    group by `restriccions_adults`,`restriccions_nens` $rcotxets ";
-    header("Location: " . $redir);
-    $Result1 = mysqli_query($this->connexioDB, $query) or die(((is_object($GLOBALS["___mysqli_ston"])) ? mysqli_error($GLOBALS["___mysqli_ston"]) : (($___mysqli_res = mysqli_connect_error()) ? $___mysqli_res : false)));
-    //application/javascript
-    header("Content-Type: application/javascript");
-    $json = mysqli_fetch_all($Result1, MYSQLI_ASSOC);
-    $json = json_encode($json);
-
-    return $json;
-  }
-
+ 
   /*   * ********************************************************************************************************************* */
 }
 

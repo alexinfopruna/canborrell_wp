@@ -95,9 +95,21 @@ function load_calendari_reserves() {
   
   require_once(ROOT . INC_FILE_PATH . 'alex.inc');
   require_once (ROOT . INC_FILE_PATH . "llista_dies_taules.php");
+  
+  $llistan=LLISTA_DIES_NEGRA;
 
-  $llista_negra = llegir_dies( LLISTA_DIES_NEGRA);
+
+    $url =get_permalink();
+  if (strpos($url, "reserva-grup"))  $llistan=LLISTA_DIES_NEGRA;
+  else  $llistan=ROOT . INC_FILE_PATH . "llista_dies_negra_online.txt";
+ 
+  $llista_negra = llegir_dies($llistan );
   print crea_llista_js($llista_negra, "LLISTA_NEGRA");
+  //echo $llistan;die();
+  //echo LLISTA_DIES_NEGRA;die();
+  //echo get_permalink();die();
+
+  
   print "\n////////////1\n";
 
   $llista_blanca = llegir_dies( LLISTA_DIES_BLANCA);

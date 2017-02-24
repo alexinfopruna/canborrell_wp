@@ -4,6 +4,8 @@ if ($_SERVER['REQUEST_URI'] == '/reservar/') {
   header('Location: ' . $newURL);
   exit();
 }
+
+
 /*
   Template Name: Reserves
  */

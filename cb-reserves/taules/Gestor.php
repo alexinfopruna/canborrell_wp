@@ -33,6 +33,7 @@ date_default_timezone_set('Europe/Madrid');
 setlocale(LC_TIME, "ca_ES.utf8");
 
 if (defined('MOSTRA_ERRORS') && MOSTRA_ERRORS == TRUE) {
+ 
   /* ERRORS ON */
 //set_error_handler("var_dump");
   ini_set('error_reporting', E_ALL ^  ~E_DEPRECATED);
