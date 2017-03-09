@@ -88,6 +88,7 @@ class TaulesDisponibles extends Gestor {
     /////////////////////////////////////////////////////
     //RECULL LES TAULES x DIA/TORN/PERSONES/COTXETS
     $this->qryTaules(); /*     * ****************************************** */
+    
     /////////////////////////////////////////////////
     //CONTROLA SI ES SUPERA EL VALOR MAXIM PER TORN agafa els valors del control taules, ignora valor online (taules _form)
     if (!$this->controlMaxTorn())
@@ -510,6 +511,7 @@ class TaulesDisponibles extends Gestor {
     $contaPersones = $persones = $this->persones;
     $taules = $this->taules();
     $cotxets = $this->cotxets;
+    
     ////////////////////////////////////////////////////////////////////////////
     // Busca les hores disponibles per un dia/torn. HI HA 3 CASOS	
     ////////////////////////////////////////////////////////////////////////////
@@ -524,7 +526,7 @@ class TaulesDisponibles extends Gestor {
     if ($this->reserva_id && $this->data == $this->reserva->data && $this->torn == $this->reserva->torn && ($this->reserva->persones == $persones || ($this->reserva->taula->persones > $persones && $this->reserva->taula->plena == false && $this->taulesGrans)) && ($this->reserva->cotxets == $cotxets || ($this->reserva->taula->cotxets > $cotxets && $this->reserva->taula->plena == false && $this->cotxetsGrans))) {
       $this->hora = $this->reserva->hora;
       $contaPersones = 0;
-    }
+    }  
     ////////////////////////////////////////////////////////////////////////////
     // SI NO MIREM SI TROBEM ALGUNA TAULA EN AQUEST TORN
     ////////////////////////////////////////////////////////////////////////////
@@ -534,7 +536,7 @@ class TaulesDisponibles extends Gestor {
     //		Cal mirar hores bloq. (base+torn a la taula que toqui)
     ////////////////////////////////////////////////////////////////////////////
     elseif (!$taules || !sizeof($taules))
-      return $this->addError(29); //NO TROBA TAULA return "Ple o tancat";
+       return $this->addError(29); //NO TROBA TAULA return "Ple o tancat";
       
 ////////////////////////////////////////////////////////////////////////////
     // SI ENS DEMANEN UNA TAULA EN CONCRET, MIREM SI ESTÀ ENTRE LES TAULES DISPONIBLES		
@@ -554,7 +556,6 @@ class TaulesDisponibles extends Gestor {
 
     // TABLE PELS MAXIMS SEMPRE ES ESTAT HORES
     $table = $this->tableHores;
-
 
     ////////////////////////////////////////////////////////////////////////////
     // MIREM SI HI HA UNA RESERVA. SI ÉS AIXÍ, L'HORA DE LA RESERVA ES BONA
@@ -610,7 +611,7 @@ AND (
 estat_hores_actiu =1 $OR_HORA_RESERVA  ) 
 ORDER BY  `estat_hores_hora` ASC ";
     }
-   // echo "************************* $torn ***************".$query;
+    //echo "************************* $torn ***************".$query;
     $Result1 = mysqli_query($this->connexioDB, $query); //or die(mysql_error());
     //
 		///////////////////////////////////////////////////////////////////////////////////////////////	
@@ -652,7 +653,7 @@ ORDER BY  `estat_hores_hora` ASC ";
       if (!empty($disabled) && !$mostraDisableds)
         continue;
       // NENS A ULTIMA HORA
-      
+      /**/
       //print_r( $this->rang_hores_nens);die();
       if ($torn < 3 && is_array($this->rang_hores_nens) && count($this->rang_hores_nens) && !in_array($row['estat_hores_hora'], $this->rang_hores_nens))
         continue;
