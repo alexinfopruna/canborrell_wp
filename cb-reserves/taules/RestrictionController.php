@@ -46,7 +46,13 @@ $order
 if ($sqlquery) return "$data >>> $adults | $nens | $cotxets >>>>>>>>>>>>> ".  $query;
    $Result1 = mysqli_query($this->connexioDB, $query) or die(((is_object($GLOBALS["___mysqli_ston"])) ? mysqli_error($GLOBALS["___mysqli_ston"]) : (($___mysqli_res = mysqli_connect_error()) ? $___mysqli_res : false)));
 if (isset($_REQUEST['test'])) echo "---------------------- $data, $adults, $nens, $cotxets -----------------------------<br><br><br>";
-$rules = mysqli_fetch_all ($Result1, MYSQLI_ASSOC);
+//$rules = mysqli_fetch_all ($Result1, MYSQLI_ASSOC);
+
+$rules = [];
+while ($row = $Result1->fetch_assoc()) {
+    $rules[] = $row;
+}
+
 
 if (isset($_REQUEST['test'])) echo ">>> $query <br><br>";
 	while ($row= mysqli_fetch_row($Result1)){

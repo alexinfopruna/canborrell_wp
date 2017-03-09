@@ -147,15 +147,20 @@ $where .= $were_data;
        
       $group
         
-ORDER BY  restriccions_data DESC, restriccions_adults, restriccions_nens  DESC
+ORDER BY  restriccions_active DESC, restriccions_data DESC, restriccions_adults, restriccions_nens  DESC
         ";
          $plin = "{'data':\"$query\"}";
    //  $this->pliiin($plin);
 //echo "{'data':$query}";
     $Result1 = mysqli_query($this->connexioDB, $query) or die(((is_object($GLOBALS["___mysqli_ston"])) ? mysqli_error($GLOBALS["___mysqli_ston"]) : (($___mysqli_res = mysqli_connect_error()) ? $___mysqli_res : false)));
 //echo "{'data':'aaa'}";
-    $json = mysqli_fetch_all($Result1, MYSQLI_ASSOC);
-   
+    //$json = mysqli_fetch_all($Result1, MYSQLI_ASSOC);
+   $json = [];
+while ($row = $Result1->fetch_assoc()) {
+    $json[] = $row;
+}
+    
+    
     return $this->resposta_json($json, $where);
   }
 

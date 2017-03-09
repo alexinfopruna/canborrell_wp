@@ -1,14 +1,14 @@
  ---> {'data':"UPDATE  restriccions 
  
       SET restriccions_active= '1',
-          restriccions_data =   '2011-01-01T00:00:00.000Z', 
-          restriccions_datafi = '2011-01-01T00:00:00.000Z',
+          restriccions_data =   '2011-01-01', 
+          restriccions_datafi = '2011-01-01',
           restriccions_dies = '3',
-          restriccions_adults = '>12', 
-          restriccions_nens = '>4', 
-          restriccions_cotxets = '0',
+          restriccions_adults = '5', 
+          restriccions_nens = '>2', 
+          restriccions_cotxets = 'Tot',
           restriccions_hora = '16:00',
           restriccions_description = ''
             
-          WHERE restriccions_id = '72'
+          WHERE restriccions_id = '64'
        "}
