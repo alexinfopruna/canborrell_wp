@@ -505,7 +505,7 @@ class TaulesDisponibles extends Gestor {
 // TIRA HORES
   /*   * ********************************************************************************************************************* */
   /*   * ********************************************************************************************************************* */
-  public function recupera_hores($mostraDisableds = false) {
+  public function recupera_hores($mostraDisableds = false, $raw = false) {
     $this->reset();
     $contaPersones = $persones = $this->persones;
     $taules = $this->taules();
@@ -610,7 +610,7 @@ AND (
 estat_hores_actiu =1 $OR_HORA_RESERVA  ) 
 ORDER BY  `estat_hores_hora` ASC ";
     }
-  //  echo $query;
+   // echo "************************* $torn ***************".$query;
     $Result1 = mysqli_query($this->connexioDB, $query); //or die(mysql_error());
     //
 		///////////////////////////////////////////////////////////////////////////////////////////////	
@@ -623,6 +623,7 @@ ORDER BY  `estat_hores_hora` ASC ";
     $mensa = '';
     $info = '';
     $radio = '';
+    $arrraw = array();
     while ($row = mysqli_fetch_array($Result1)) {
       if ($hora == $row['estat_hores_hora']) {
         continue; // REGISTRES REPETITS ///////////////////////////////////
@@ -666,10 +667,12 @@ ORDER BY  `estat_hores_hora` ASC ";
 			<label for="' . $id . '"  title="' . $row['estat_hores_hora'] . '= Comensals reservats: ' . $comensals . ($disabled ? ' + ' . $persones . ' > superat max/hora (' . $row['estat_hores_max'] . ')' : '') . '">' . $row['estat_hores_hora'] . $info . '</label>';
       $req = "";
       $radio.=$preradio;
+      $arrraw[]=$row['estat_hores_hora'];
     }
     //
     //////////////////////////////////////////////////////
-
+    //var_dump( $arrraw);die();
+    if ($raw) return $arrraw;
     return $radio;
   }
 

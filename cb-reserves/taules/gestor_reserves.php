@@ -2242,7 +2242,8 @@ EOHTML;
       $taulaT1 = is_object($taules[0]) ? $taules[0]->id : 0;
       if (!$dinar)
         $dinar = "";
-
+    }
+ if ($torn == 1 || $torn == 2) {
 //TORN2
       $this->taulesDisponibles->torn = 2;
       $dinarT2 = $this->taulesDisponibles->recupera_hores(true);

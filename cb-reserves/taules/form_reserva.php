@@ -199,8 +199,6 @@ echo $d;
                       <div id="<?php echo trim($class); ?>_radio" class="radio_hores">
                           <?php
                           $horaTorn = $row_reserva['hora'];
-
-
                           $persones = $row_reserva['adults'] + $row_reserva['nens10_14'] + $row_reserva['nens4_9'];
                           $cotxets = $row_reserva['cotxets'];
 
@@ -208,6 +206,7 @@ echo $d;
                             $horaTorn = "";
                           if (isset($_REQUEST['hora']))
                             $horaTorn = $_REQUEST['hora'];
+                         
                           if ($id) {
                             $json = $gestor->recupera_hores($id);
                             $hores = json_decode($json);

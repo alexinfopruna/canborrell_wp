@@ -34,6 +34,13 @@ require_once(ROOT . "Menjador.php");
 require_once(ROOT . "EstatTaula.php");
 
 require_once(ROOT . "TaulesDisponibles.php");
+/*
+ini_set('error_reporting', E_ALL ^ E_DEPRECATED);
+error_reporting(E_ALL ^ E_DEPRECATED);
+ini_set("display_errors", 1);
+ini_set("track_errors", 1);
+ini_set("html_errors", 1);*/
+require_once(ROOT. "RestrictionController.php");
 /* * ******************************************************************************************************* */
 
 class Gestor_form extends gestor_reserves {
@@ -174,6 +181,8 @@ class Gestor_form extends gestor_reserves {
   }
 
   /*   * ******************************************************************************************************* */
+	
+
 
   public function horesDisponibles($data, $coberts, $cotxets = 0, $accesible = 0, $idr = 0, $nens = null) {
 //echo $cotxets;die();
@@ -201,12 +210,17 @@ class Gestor_form extends gestor_reserves {
     $cacheNens = $nens;
     $cacheAdults = $coberts - $nens;
 
-    //$this->comprovaCacheNens($mydata, $cacheAdults, $cacheNens);
+    // $this->comprovaCacheNens($mydata, $cacheAdults, $cacheNens);
+    
+      $rc=new RestrictionController();
+      $this->taulesDisponibles->rang_hores_nens = $rc->getHores($mydata, $cacheAdults, $cacheNens, $cotxets);    
+   // $this->taulesDisponibles->rang_hores_nens = $this->rang_hores_nens($mydata, $cacheAdults, $cacheNens, $cotxets);
 
-    $this->taulesDisponibles->rang_hores_nens = $this->rang_hores_nens($mydata, $cacheAdults, $cacheNens, $cotxets);
-
-
-
+//return $rrr="{'dara':".json_encode($rules)."}";
+//echo "<h1>RULES</h1>";
+//foreach ($rules as $row){ echo "<li><pre>";print_r($row);echo "</pre></li>";}
+//return $rrr="{'dasra':".json_encode($this->taulesDisponibles->rang_hores_nens)."}";
+//die();
     /* 	 */
     //TORN1
     $this->taulesDisponibles->torn = 1;
