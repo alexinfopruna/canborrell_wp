@@ -213,8 +213,8 @@ class Gestor_form extends gestor_reserves {
     // $this->comprovaCacheNens($mydata, $cacheAdults, $cacheNens);
  
       $rc=new RestrictionController();
-      $this->taulesDisponibles->rang_hores_nens = $rc->getHores($mydata, $cacheAdults, $cacheNens, $cotxets);    
-   // $this->taulesDisponibles->rang_hores_nens = $this->rang_hores_nens($mydata, $cacheAdults, $cacheNens, $cotxets);
+   //   $this->taulesDisponibles->rang_hores_nens = $rc->getHores($mydata, $cacheAdults, $cacheNens, $cotxets);    
+    $this->taulesDisponibles->rang_hores_nens = $this->rang_hores_nens($mydata, $cacheAdults, $cacheNens, $cotxets);
 
     /* 	 */
     //TORN1
