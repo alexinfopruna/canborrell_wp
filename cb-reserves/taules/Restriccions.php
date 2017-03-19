@@ -46,9 +46,7 @@ class Restriccions extends gestor_reserves {
 
 
 private function dies2dec($binArray){
- 
     $strBin = implode($binArray);
-    
     return $num = bindec($strBin);
 }
 
@@ -57,19 +55,17 @@ private function dies2bin($decNum){
      $strbin = substr("00000000" . decbin ( $decNum ),-8);
      $arrayBib =  str_split( $strbin);
      $integerIDs = array_map('intval', $arrayBib);
-
      return $integerIDs;
 }
 
 
  private function resposta_json($json, $ret2="ok") {
+  // echo "EEEEEEEEEEEEEEEEEEEEEEEE";die();
     if (!is_array($json))
       $json = array("resposta" => $json);
 
     $json = array_map(array($this, 'booleanize'), $json);
     $ret = json_encode($json);
-
-    //$ret2 = "OK";
     $ret = "{\"data\":$ret,\"extra\":\"$ret2\"}";
     return $ret;
   }
@@ -90,13 +86,11 @@ private function dies2bin($decNum){
     $filtre->restriccions_data = $this->cambiaf_a_mysql(substr($filtre->restriccions_data,0,10));
     $filtre->restriccions_datafi = $this->cambiaf_a_mysql(substr($filtre->restriccions_datafi,0,10));
 
-
     $filtre->restriccions_data = ">='{$filtre->restriccions_data}'";
     $filtre->restriccions_datafi = "<='{$filtre->restriccions_datafi}'";
 
     if (!isset($filtre->restriccions_adults) || $filtre->restriccions_adults=="Tot") $filtre->restriccions_adults = '>=0';
-    //if ( $filtre->restriccions_adults=="Total Parells")  $filtre->restriccions_adults=">0 AND ((restriccions_adults + restriccions_nens) % 2 = 0) ";
-    $filtre->restriccions_adults = is_numeric($filtre->restriccions_adults)?'='.$filtre->restriccions_adults:$filtre->restriccions_adults;
+     $filtre->restriccions_adults = is_numeric($filtre->restriccions_adults)?'='.$filtre->restriccions_adults:$filtre->restriccions_adults;
 
     if (!isset($filtre->restriccions_nens) || $filtre->restriccions_nens=="Tot") $filtre->restriccions_nens = '>=0';
     $filtre->restriccions_nens = is_numeric($filtre->restriccions_nens)?'='.$filtre->restriccions_nens:$filtre->restriccions_nens;
@@ -112,9 +106,6 @@ private function dies2bin($decNum){
 /***************************************************************************************************************/
 
   public function getRestriccions($id = null, $data = ">=2000-01-01", $datafi = "<=3011-01-01", $adults = null, $nens = null, $cotxets = null) {
-
-  //  $data = '2017-01-24';
-  //  $datafi = '2017-01-24';
     $where = " where TRUE ";
     $rcotxets = ", `restriccions_cotxets` ";
     $rcotxets = " ";
@@ -132,7 +123,8 @@ $were_data = " AND (restriccions_data $data AND restriccions_datafi $datafi)  ";
 $where .= $were_data;
 
     $group = "";
-
+        //$order =" ORDER BY  restriccions_active DESC, restriccions_data DESC, restriccions_adults, restriccions_nens  DESC ";
+        $order =" ORDER BY  restriccions_active, restriccions_id ";
 
   
     $query = "SELECT * FROM
@@ -147,7 +139,7 @@ $where .= $were_data;
        
       $group
         
-ORDER BY  restriccions_active DESC, restriccions_data DESC, restriccions_adults, restriccions_nens  DESC
+$order
         ";
          $plin = "{'data':\"$query\"}";
    //  $this->pliiin($plin);
