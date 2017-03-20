@@ -1,0 +1,11 @@
+ErrorDocument 404 /cb-reserves/restriccions/error404.html 
+#Options +FollowSymLinks
+
+
+RewriteEngine On
+#RewriteBase /
+
+#RewriteCond %{REQUEST_FILENAME} !-f
+#RewriteRule .* /cb-reserves/restriccions/error404.html 
+
+
