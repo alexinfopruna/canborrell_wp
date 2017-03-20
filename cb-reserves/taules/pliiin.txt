@@ -3,7 +3,7 @@
       SET restriccions_active= '1',
           restriccions_data =   '2011-01-01', 
           restriccions_datafi = '2011-01-01',
-          restriccions_dies = '3',
+          restriccions_dies = '7',
           restriccions_adults = '5', 
           restriccions_nens = '>2', 
           restriccions_cotxets = 'Tot',
