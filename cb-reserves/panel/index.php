@@ -152,6 +152,8 @@ $(function(){$("#panel").accordion({collapsible:true,active:false,heightStyle: "
 		<!-- -->
 		<a target="_blank" href="../reservar/filtre_carta.php" class=" bt ui-button ui-widget ui-state-default ui-corner-all ui-button-text-only">CARTA: Gestionar plats publicats</a>
 		<!-- -->
+		<a target="_blank" href="../restriccions" class=" bt ui-button ui-widget ui-state-default ui-corner-all ui-button-text-only">Gestionar restriccions d'horaris</a>
+		<!-- -->
 </div>
 
 <?php if (ADMIN){?>
