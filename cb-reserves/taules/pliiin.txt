@@ -7,7 +7,7 @@
           restriccions_adults = '5', 
           restriccions_nens = '>2', 
           restriccions_cotxets = 'Tot',
-          restriccions_hora = '16:00',
+          restriccions_hora = '13:30',
           restriccions_description = ''
             
           WHERE restriccions_id = '64'
