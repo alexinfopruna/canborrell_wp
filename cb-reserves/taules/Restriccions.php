@@ -349,11 +349,17 @@ if ($params){
 $accio = $params->accio;
 $id = isset($params->data->restriccions_id)?$params->data->restriccions_id:0;
 $restriccio = $params->data;
-
-//var_dump($restriccio);
 }
 
-
+/*
+echo " zzzzzzzzz ";
+print_r($_REQUEST);
+echo " ********* ";
+$stparams = file_get_contents('php://input');
+print_r($stparams);
+echo " ********* "; 
+echo $accio; die(); 
+*/
 
 switch ($accio) {
   case 'deleterestriccio':

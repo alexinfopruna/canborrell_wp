@@ -14,8 +14,10 @@
         <group>
             <file>file:/var/www/canborrell-wp/cb-reserves/taules/Restriccions.php</file>
             <file>file:/var/www/canborrell-wp/cb-reserves/reservar/Gestor_form.php</file>
+            <file>file:/var/www/canborrell-wp/cb-reserves/panel/index.php</file>
             <file>file:/var/www/canborrell-wp/cb-reserves/taules/RestrictionController.php</file>
             <file>file:/var/www/canborrell-wp/cb-reserves/taules/TaulesDisponibles.php</file>
+            <file>file:/var/www/canborrell-wp/cb-reserves/taules/taules.php</file>
         </group>
     </open-files>
 </project-private>
