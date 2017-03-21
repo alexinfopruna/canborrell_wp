@@ -34,7 +34,8 @@ require_once(ROOT. "RestrictionController.php");
 /* * ************************************************* */
 
 class Restriccions extends gestor_reserves {
-  public function __construct($usuari_minim = 64) {
+  public function __construct($usuari_minim = 16) {
+    if ($_SESSION['permisos'] < 16)      return "error:sin permisos";
     parent::__construct(DB_CONNECTION_FILE, $usuari_minim);
   }
 
