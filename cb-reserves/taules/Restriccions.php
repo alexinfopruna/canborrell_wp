@@ -35,11 +35,12 @@ require_once(ROOT. "RestrictionController.php");
 
 class Restriccions extends gestor_reserves {
   public function __construct($usuari_minim = 16) {
-    if ($_SESSION['permisos'] < 16)      return "error:sin permisos";
+   // session_start();
+  //  if ($_SESSION['permisos'] < 16)      return "{error:'Cal logar-se'}";
     parent::__construct(DB_CONNECTION_FILE, $usuari_minim);
   }
 
-  public function pliiin($txt, $reset = TRUE) {
+  public function pliiin($txt, $reset = FALSE) {
     $f = fopen("pliiin.txt", $reset ? "w" : "a");
     fwrite($f, " ---> " . $txt);
     fclose($f);
@@ -54,6 +55,13 @@ private function dies2dec($binArray){
 
 private function dies2bin($decNum){
      $strbin = substr("00000000" . decbin ( $decNum ),-8);
+     $arrayBib =  str_split( $strbin);
+     $integerIDs = array_map('intval', $arrayBib);
+     return $integerIDs;
+}
+
+private function hores2bin($decNum){
+     $strbin = substr("00000000000000000000000000000000" . decbin ( $decNum ),-26);
      $arrayBib =  str_split( $strbin);
      $integerIDs = array_map('intval', $arrayBib);
      return $integerIDs;
@@ -76,6 +84,7 @@ private function dies2bin($decNum){
     {
          $n['restriccions_active'] = (bool) $n['restriccions_active'] ? 1 : 0;
     $n['restriccions_dies'] = $this->dies2bin( $n['restriccions_dies']);
+    $n['restriccions_hores'] = $this->hores2bin( $n['restriccions_hores']);
     }
     return $n;
   }
@@ -125,14 +134,14 @@ $where .= $were_data;
 
     $group = "";
         //$order =" ORDER BY  restriccions_active DESC, restriccions_data DESC, restriccions_adults, restriccions_nens  DESC ";
-        $order =" ORDER BY  restriccions_active, restriccions_id ";
+        $order =" ORDER BY   restriccions_id DESC";
 
   
     $query = "SELECT * FROM
 (
-  SELECT `restriccions_active`,`restriccions_id`,`restriccions_description`,`restriccions_adults`,`restriccions_nens`, restriccions_cotxets,`restriccions_data`, `restriccions_datafi`, `restriccions_dies`,`restriccions_hora`  FROM restriccions where TRUE $were_data
+  SELECT `restriccions_active`,`restriccions_id`,`restriccions_description`,`restriccions_adults`,`restriccions_nens`, restriccions_cotxets,`restriccions_data`, `restriccions_datafi`, `restriccions_dies`,`restriccions_hora`, `restriccions_hores`  FROM restriccions where TRUE $were_data
   UNION 
-  SELECT `restriccions_active`,`restriccions_id`,`restriccions_description`,`restriccions_adults`,`restriccions_nens`, restriccions_cotxets,`restriccions_data`, `restriccions_datafi`, `restriccions_dies`,`restriccions_hora`  FROM restriccions where `restriccions_data`='2011-01-01'
+  SELECT `restriccions_active`,`restriccions_id`,`restriccions_description`,`restriccions_adults`,`restriccions_nens`, restriccions_cotxets,`restriccions_data`, `restriccions_datafi`, `restriccions_dies`,`restriccions_hora`, `restriccions_hores`  FROM restriccions where `restriccions_data`='2011-01-01'
   order by restriccions_data DESC
 ) R
      $where    
@@ -150,6 +159,7 @@ $order
     //$json = mysqli_fetch_all($Result1, MYSQLI_ASSOC);
    $json = [];
 while ($row = $Result1->fetch_assoc()) {
+//  $row["restriccions_hores"]=array(0,0,0,0,0,0,0,1,0,1,0,1,0,1,0,1,0,1,0,1,0,1,0,1,1,1);
     $json[] = $row;
 }
     
@@ -169,6 +179,7 @@ while ($row = $Result1->fetch_assoc()) {
   public function insertRestriccio($restriccio) {
     if ($restriccio->restriccions_datafi<$restriccio->restriccions_data) $restriccio->restriccions_datafi=$restriccio->restriccions_data;
 $restriccio->restriccions_dies = $this->dies2dec($restriccio->restriccions_dies);
+//$restriccio->restriccions_hores = $this->die2dec($restriccio->restriccions_hores);
 //$dd=json_encode($restriccio->restriccions_dies);
 //echo "{'sss':$dd}";die();
 
@@ -193,12 +204,20 @@ $this->pliiin($query);
   }
 
   public function updateRestriccio($restriccio) {
+//$plin = print_r($restriccio->restriccions_hores,1);
+
+//$restriccio->restriccions_dies = $this->dies2dec($restriccio->restriccions_dies); 
+ //    $this->pliiin($plin." -- ".$restriccio->restriccions_dies );
+
+
     $restriccio->restriccions_dies = $this->dies2dec($restriccio->restriccions_dies); 
+    $restriccio->restriccions_hores = $this->dies2dec($restriccio->restriccions_hores); 
     if ($restriccio->restriccions_datafi<$restriccio->restriccions_data) $restriccio->restriccions_datafi=$restriccio->restriccions_data;
     if ($restriccio->restriccions_adults == "Parell") $restriccio->restriccions_nens="Tot";
     if ($restriccio->restriccions_adults == "Senar") $restriccio->restriccions_nens="Tot";
 
-
+$plin = $restriccio->restriccions_hores;
+     $this->pliiin($plin);
     $query = "UPDATE  restriccions 
  
       SET restriccions_active= '$restriccio->restriccions_active',
@@ -209,6 +228,7 @@ $this->pliiin($query);
           restriccions_nens = '$restriccio->restriccions_nens', 
           restriccions_cotxets = '$restriccio->restriccions_cotxets',
           restriccions_hora = '$restriccio->restriccions_hora',
+          restriccions_hores = '$restriccio->restriccions_hores',
           restriccions_description = '$restriccio->restriccions_description'
             
           WHERE restriccions_id = '$restriccio->restriccions_id'
@@ -219,8 +239,8 @@ $this->pliiin($query);
     $Result1 = mysqli_query($this->connexioDB, $query) or die(((is_object($GLOBALS["___mysqli_ston"])) ? mysqli_error($GLOBALS["___mysqli_ston"]) : (($___mysqli_res = mysqli_connect_error()) ? $___mysqli_res : false)));
    // $ar= mysqli_affected_rows($this->connexioDB) ;
    //return $plin;
-  $plin = "{'data':\"$query\"}";
-     $this->pliiin($plin);
+ // $plin = "{'data':\"$query\"}";
+  //   $this->pliiin($plin);
           
      return $this->getRestriccions();
          
@@ -239,13 +259,12 @@ $this->pliiin($query);
 
 
  public function horesDisponibles($restriccio) {
-$data=$restriccio->data;
-
-$cotxets=$restriccio->cotxets;
- $accesible=0;
- $nens=$restriccio->nens;
-$adults = $restriccio->adults;
-$coberts=$adults + $nens;
+    $data=$restriccio->data;
+    $cotxets=$restriccio->cotxets;
+    $accesible=0;
+    $nens=$restriccio->nens;
+    $adults = $restriccio->adults;
+    $coberts=$adults + $nens;
 
 
     $mydata = $this->cambiaf_a_mysql(substr($data,0,10));

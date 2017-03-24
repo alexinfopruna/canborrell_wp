@@ -68,7 +68,9 @@ public function getHores($data=0, $adults=0, $nens=0, $cotxets=0){
 //echo "{dd:$data, vv:$adults, bb:$nens, nn:$jsonrules}";die();
   if (!$rules) return false;
   //if (!$rules) return array($data, $adults, $nens, $cotxets);
-  $hores = $this->subArrayHores($rules[0]['restriccions_hora']);
+//  $hores = $this->subArrayHores($rules[0]['restriccions_hora']);
+//echo $rules[0]['restriccions_hores'];die();
+$hores = $this->subArrayHoresb($rules[0]['restriccions_hores']);
  // $r['rules']=$rules;
  // $r['hores']=$hores;
   return $hores;
@@ -76,14 +78,14 @@ public function getHores($data=0, $adults=0, $nens=0, $cotxets=0){
 
 public function getHoresRules($data=0, $adults=0, $nens=0, $cotxets=0){
  
- $query = $this->getActiveRules($data,$adults,$nens,$cotxets,true);
+  $query = $this->getActiveRules($data,$adults,$nens,$cotxets,true);
   $rules = $this->getActiveRules($data,$adults,$nens,$cotxets);
   
   $jsonrules=json_encode($rules);
 //echo "{dd:$data, vv:$adults, bb:$nens, nn:$jsonrules}";die();
   if (!$rules)   $rules[0]['restriccions_hora'] = '00:00';//$hores = $this->subArrayHores("***");
-  $hores = $this->subArrayHores($rules[0]['restriccions_hora']);
-  
+  //$hores = $this->subArrayHores($rules[0]['restriccions_hora']);
+  $hores = $this->subArrayHoresb($rules[0]['restriccions_hores']);
   //foreach ($rules as $rule) $rule['restriccions_dies'] = "ccccccccccc";//$this->dies2bin($rule['restriccions_dies']);
   $r['rules']=$rules;
   $r['hores']=$hores;
@@ -93,6 +95,29 @@ public function getHoresRules($data=0, $adults=0, $nens=0, $cotxets=0){
 
 
 
+private function subArrayHoresb($decNum){
+//$decNum=8589934591;
+     $strbin = substr("00000000000000000000000000000000" . decbin ( $decNum ),-26);
+     $arrayBib =  str_split( $strbin);
+     $binHores = array_map('intval', $arrayBib);
+
+//print_r( $binHores);
+  $hores =  array("","11:00", "11:15", "11:30", "11:45", 
+    "12:00", "12:15", "12:30", "12:45", 
+    "13:00", "13:15", "13:30",  "13:45", 
+    "14:00", "14:15", "14:30",  "14:45", 
+    "15:00", "15:15", "15:30",  "15:45", 
+    "16:00", "16:15", "16:30", "16:45", 
+    "17:00");
+ 
+//$result = array(1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1);
+foreach ($binHores as $k => $v){
+    if ($v) $result[] = $hores[$k];                   
+}
+return $result;
+}
+
+/*
 private function subArrayHores($hora){
   $hores =  array("11:00", "11:15", "11:30", "11:45", 
     "12:00", "12:15", "12:30", "12:45", 
@@ -105,6 +130,9 @@ private function subArrayHores($hora){
   //echo "{'offset':'$hora'}";
   return $ar = array_slice($hores, $offset);
 }
+*/
+
+
 
 private function dies2bin($decNum){
      $strbin = substr("00000000" . decbin ( $decNum ),-7);

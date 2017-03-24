@@ -147,50 +147,50 @@ echo crea_llista_js($dies);
 ?>
 
 
-						
-						
-						  function dateChanged(calendar) {
-							if (calendar.dateClicked) {
-							
-						      var y = calendar.date.getFullYear();
-						      var m = calendar.date.getMonth();     // integer, 0..11
-						      var d = calendar.date.getDate();      // integer, 1..31
-						      document.getElementById('DATA').value = calendar.date;
-								//alert(y+" "+m+" "+d);
-							  if (dateIsSpecial(y, m, d))
-							  {							  
- 							      document.getElementById("desbloq").style.display = "";
-								  document.getElementById("bloq").style.display = "none";
-							  }
-							  else
-							  {
-								  document.getElementById("desbloq").style.display = "none";
-								  document.getElementById("bloq").style.display = "";							  
-							  }
-							  
-							  ara = new Date();
-							  calend = new Date(y,m,d+1);
-							  
-							  if (calend<ara)
-							  {
-							 // alert("VA!");
-								  document.getElementById("desbloq").style.display = "none";
-								  document.getElementById("bloq").style.display = "none";						  
-							  }
+
+
+function dateChanged(calendar) {
+                          if (calendar.dateClicked) {
+
+    var y = calendar.date.getFullYear();
+    var m = calendar.date.getMonth();     // integer, 0..11
+    var d = calendar.date.getDate();      // integer, 1..31
+    document.getElementById('DATA').value = calendar.date;
+                                                      //alert(y+" "+m+" "+d);
+                            if (dateIsSpecial(y, m, d))
+                            {							  
+                                document.getElementById("desbloq").style.display = "";
+                                                        document.getElementById("bloq").style.display = "none";
+                            }
+                            else
+                            {
+                                                        document.getElementById("desbloq").style.display = "none";
+                                                        document.getElementById("bloq").style.display = "";							  
+                            }
+
+                            ara = new Date();
+                            calend = new Date(y,m,d+1);
+
+                            if (calend<ara)
+                            {
+                           // alert("VA!");
+                                                        document.getElementById("desbloq").style.display = "none";
+                                                        document.getElementById("bloq").style.display = "none";						  
+                            }
 
 
 
-							  document.getElementById('datab').value=d+"-"+m+"-"+y;
-							  
-							  var d = new Date();
-							  d = calendar.date;
-							  document.getElementById('DATA').value = Setmana[d.getDay()]+", "+calendar.date.getDate()+" "+Mesos[calendar.date.getMonth()]+ " de "+calendar.date.getFullYear();
-							  
-							  
-							  
-						    }
-						  };
-						  
+                            document.getElementById('datab').value=d+"-"+m+"-"+y;
+
+                            var d = new Date();
+                            d = calendar.date;
+                            document.getElementById('DATA').value = Setmana[d.getDay()]+", "+calendar.date.getDate()+" "+Mesos[calendar.date.getMonth()]+ " de "+calendar.date.getFullYear();
+
+
+
+  }
+};
+
 ///// ALEX						  
 function dateIsSpecial(year, month, day) {
 var m = SPECIAL_DAYS[month];
@@ -222,19 +222,19 @@ else
 {return false; }// other dates are enabled
 // return true if you want to disable other dates
 };
-				  
 
-						  Calendar.setup(
-						    {
-								firstDay:1,
-								weekNumbers: false,
-						      flat         : "calendar-container", // ID of the parent element
-						      flatCallback : dateChanged,          // our callback function
-							  dateStatusFunc : ourDateStatusFunc
-						    });
-						  
-						  
-						  
+
+Calendar.setup(
+  {
+                                                      firstDay:1,
+                                                      weekNumbers: false,
+    flat         : "calendar-container", // ID of the parent element
+    flatCallback : dateChanged,          // our callback function
+                            dateStatusFunc : ourDateStatusFunc
+  });
+
+
+
 						</script>
                         </div></td>
     <td>&nbsp;</td>
