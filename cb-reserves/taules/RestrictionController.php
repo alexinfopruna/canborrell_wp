@@ -36,7 +36,7 @@ $where = $where_data . $where_adults .  $where_nens . $where_cotxets;
 //$where = $where_data . $where_adults . " AND (restriccions_adults='Parell' OR restriccions_adults='Senar' OR TRUE $where_nens)" . $where_cotxets;
 //$order = "ORDER BY restriccions_data DESC, restriccions_data = restriccions_datafi";
 //$order = " ORDER BY restriccions_data DESC, restriccions_hora  ";
-$order = " ORDER BY restriccions_data = '2011-01-01'";
+$order = " ORDER BY restriccions_data = '2011-01-01', restriccions_aduts ";
 	$query ="SELECT * 
 FROM restriccions 
 WHERE restriccions_active = TRUE $where
