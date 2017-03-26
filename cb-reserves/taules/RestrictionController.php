@@ -36,7 +36,7 @@ $where = $where_data . $where_adults .  $where_nens . $where_cotxets;
 //$where = $where_data . $where_adults . " AND (restriccions_adults='Parell' OR restriccions_adults='Senar' OR TRUE $where_nens)" . $where_cotxets;
 //$order = "ORDER BY restriccions_data DESC, restriccions_data = restriccions_datafi";
 //$order = " ORDER BY restriccions_data DESC, restriccions_hora  ";
-$order = " ORDER BY restriccions_data = '2011-01-01', restriccions_hora DESC";
+$order = " ORDER BY restriccions_data = '2011-01-01'";
 	$query ="SELECT * 
 FROM restriccions 
 WHERE restriccions_active = TRUE $where
@@ -65,14 +65,11 @@ public function getHores($data=0, $adults=0, $nens=0, $cotxets=0){
   $rules = $this->getActiveRules($data,$adults,$nens,$cotxets);
   
   $jsonrules=json_encode($rules);
-//echo "{dd:$data, vv:$adults, bb:$nens, nn:$jsonrules}";die();
   if (!$rules) return false;
-  //if (!$rules) return array($data, $adults, $nens, $cotxets);
-//  $hores = $this->subArrayHores($rules[0]['restriccions_hora']);
-//echo $rules[0]['restriccions_hores'];die();
-$hores = $this->subArrayHoresb($rules[0]['restriccions_hores']);
- // $r['rules']=$rules;
- // $r['hores']=$hores;
+
+//$hores = $this->subArrayHoresb($rules[0]['restriccions_hores']);
+$hores = $this->interseccio_hores($rules);
+
   return $hores;
 }
 
@@ -81,19 +78,54 @@ public function getHoresRules($data=0, $adults=0, $nens=0, $cotxets=0){
   $query = $this->getActiveRules($data,$adults,$nens,$cotxets,true);
   $rules = $this->getActiveRules($data,$adults,$nens,$cotxets);
   
+  $rules2=array();
+  foreach($rules as $k => $rule){                
+    $rule['restriccions_hores'] = $this->subArrayHoresb($rule['restriccions_hores']);
+  
+    $rules2[]=$rule;
+  }
+//print_r($rules2);die();
   $jsonrules=json_encode($rules);
 //echo "{dd:$data, vv:$adults, bb:$nens, nn:$jsonrules}";die();
-  if (!$rules)   $rules[0]['restriccions_hora'] = '00:00';//$hores = $this->subArrayHores("***");
-  //$hores = $this->subArrayHores($rules[0]['restriccions_hora']);
-  $hores = $this->subArrayHoresb($rules[0]['restriccions_hores']);
-  //foreach ($rules as $rule) $rule['restriccions_dies'] = "ccccccccccc";//$this->dies2bin($rule['restriccions_dies']);
-  $r['rules']=$rules;
+  if (!$rules)  { 
+    $rules[0]['restriccions_hora'] = '00:00';
+    $rules[0]['restriccions_hores'] = '8589934591';
+  }
+  
+  //$hores = $this->subArrayHoresb($rules[0]['restriccions_hores']);
+  $hores = $this->interseccio_hores($rules);
+  
+  $r['rules']=$rules2;
   $r['hores']=$hores;
   $r['query']=$query;
   return $r;
 }
 
+/** LA REGLA MES MODERNA **/
+private function interseccio_hores($rules){
+    if (!sizeof($rules)) return false;
 
+$rule = $rules[0];
+  return $this->subArrayHoresb($rule['restriccions_hores']);
+}
+
+/** INTERSECCIO RESTRICTIVA **/
+private function interseccio_horesxxx($rules){
+   $inter =  array("","11:00", "11:15", "11:30", "11:45", 
+    "12:00", "12:15", "12:30", "12:45", 
+    "13:00", "13:15", "13:30",  "13:45", 
+    "14:00", "14:15", "14:30",  "14:45", 
+    "15:00", "15:15", "15:30",  "15:45", 
+    "16:00", "16:15", "16:30", "16:45", 
+    "17:00");
+  
+  foreach ($rules as $k => $rule){
+    $hores = $this->subArrayHoresb($rule['restriccions_hores']);
+    $inter=array_intersect($inter, $hores);
+  }
+  //echo $inter;die();
+  return  array_values($inter); 
+}
 
 private function subArrayHoresb($decNum){
 //$decNum=8589934591;

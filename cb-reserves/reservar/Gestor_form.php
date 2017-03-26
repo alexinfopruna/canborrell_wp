@@ -212,28 +212,17 @@ class Gestor_form extends gestor_reserves {
 
     // $this->comprovaCacheNens($mydata, $cacheAdults, $cacheNens);
  
-      //$rc=new RestrictionController();
-      //$this->taulesDisponibles->rang_hores_nens = $rc->getHores($mydata, $cacheAdults, $cacheNens, $cotxets);    
+      $rc=new RestrictionController();
+      $this->taulesDisponibles->rang_hores_nens = $rc->getHores($mydata, $cacheAdults, $cacheNens, $cotxets);    
  
 //SISTEMA ESTÀTIC >> hores_nens.php
-    $this->taulesDisponibles->rang_hores_nens = $this->rang_hores_nens($mydata, $cacheAdults, $cacheNens, $cotxets);
+ //   $this->taulesDisponibles->rang_hores_nens = $this->rang_hores_nens($mydata, $cacheAdults, $cacheNens, $cotxets);
 
-    /* 	 */
     //TORN1
     $this->taulesDisponibles->torn = 1;
     $dinar = $this->taulesDisponibles->recupera_hores();
-
     $taules = $this->taulesDisponibles->taulesDisponibles();
-    //echo "<pre>";print_r($dinar);echo "</pre>";
-    //    echo "Gestor form 226 EEEEEE";die();  
- /*
-    if (!$taules) {
-      $json = array('dinar' => '', 'dinarT2' => '', 'sopar' => '', 'taulaT1' => 0, 'taulaT2' => 0, 'taulaT3' => 0, 'error' => 3);
-      return json_encode($json);
-    }
- */   
 
-/**/
     $taulaT1 = 0;
     if ($taules) $taulaT1 = $taules[0]->id;
     if (!$dinar)   $dinar = "";
@@ -247,7 +236,6 @@ class Gestor_form extends gestor_reserves {
      $taulaT2 = 0;
     if ($taules) $taulaT2 = $taules[0]->id;   
     
-   // $taulaT2 = $taules[0]->id;
     if (!$dinarT2)
       $dinarT2 = "";
 

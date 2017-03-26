@@ -35,8 +35,15 @@ require_once(ROOT. "RestrictionController.php");
 
 class Restriccions extends gestor_reserves {
   public function __construct($usuari_minim = 16) {
-   // session_start();
-  //  if ($_SESSION['permisos'] < 16)      return "{error:'Cal logar-se'}";
+    $debug = (strstr($_SERVER['HTTP_REFERER'],'4200'));
+
+    if ( !$debug && $_SESSION['permisos'] < 16) {
+      header("Content-Type: application/json");
+      $err=array('error',0);
+      echo "ERROR";
+      echo json_encode($err);
+      die();
+    } 
     parent::__construct(DB_CONNECTION_FILE, $usuari_minim);
   }
 
@@ -239,8 +246,8 @@ $plin = $restriccio->restriccions_hores;
     $Result1 = mysqli_query($this->connexioDB, $query) or die(((is_object($GLOBALS["___mysqli_ston"])) ? mysqli_error($GLOBALS["___mysqli_ston"]) : (($___mysqli_res = mysqli_connect_error()) ? $___mysqli_res : false)));
    // $ar= mysqli_affected_rows($this->connexioDB) ;
    //return $plin;
- // $plin = "{'data':\"$query\"}";
-  //   $this->pliiin($plin);
+  $plin = "{'data':\"$query\"}";
+     $this->pliiin($plin);
           
      return $this->getRestriccions();
          
