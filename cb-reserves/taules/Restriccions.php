@@ -44,6 +44,7 @@ class Restriccions extends gestor_reserves {
       echo json_encode($err);
       die();
     } 
+    
     parent::__construct(DB_CONNECTION_FILE, $usuari_minim);
   }
 
@@ -146,9 +147,9 @@ $where .= $were_data;
   
     $query = "SELECT * FROM
 (
-  SELECT `restriccions_active`,`restriccions_id`,`restriccions_description`,`restriccions_adults`,`restriccions_nens`, restriccions_cotxets,`restriccions_data`, `restriccions_datafi`, `restriccions_dies`,`restriccions_hora`, `restriccions_hores`  FROM restriccions where TRUE $were_data
+  SELECT `restriccions_active`,`restriccions_id`,`restriccions_description`,`restriccions_adults`,`restriccions_nens`, restriccions_cotxets,`restriccions_data`, `restriccions_datafi`, `restriccions_dies`,`restriccions_hora`, `restriccions_hores` FROM restriccions where TRUE $were_data
   UNION 
-  SELECT `restriccions_active`,`restriccions_id`,`restriccions_description`,`restriccions_adults`,`restriccions_nens`, restriccions_cotxets,`restriccions_data`, `restriccions_datafi`, `restriccions_dies`,`restriccions_hora`, `restriccions_hores`  FROM restriccions where `restriccions_data`='2011-01-01'
+  SELECT `restriccions_active`,`restriccions_id`,`restriccions_description`,`restriccions_adults`,`restriccions_nens`, restriccions_cotxets,`restriccions_data`, `restriccions_datafi`, `restriccions_dies`,`restriccions_hora`, `restriccions_hores`   FROM restriccions where `restriccions_data`='2011-01-01'
   order by restriccions_data DESC
 ) R
      $where    
@@ -288,30 +289,38 @@ $plin = $restriccio->restriccions_hores;
     $this->taulesDisponibles->llista_nits_negra = LLISTA_DIES_NEGRA_RES_PETITES;
     $this->taulesDisponibles->llista_dies_blanca = LLISTA_DIES_BLANCA;
 
-
- //   $this->taulesDisponibles->rang_hores_nens = $this->rang_hores_nens($mydata, $adults, $nens, $cotxets);
-   $rc=new RestrictionController();
-   
-    $this->taulesDisponibles->rang_hores_nens = $rc->getHoresRules($mydata, $adults, $nens, $cotxets);    
-//return $rrr="{'dasra':".json_encode($this->taulesDisponibles->rang_hores_nens)."}";
-/* */
-return json_encode($this->taulesDisponibles->rang_hores_nens);
-
+    $rc=new RestrictionController();
+    $rules = $rc->getHoresRules($mydata, $adults, $nens, $cotxets);    
+    $this->taulesDisponibles->rang_hores_nens = array_values ($rules['hores'] );
+    
     $this->taulesDisponibles->torn = 1;
     $dinar = $this->taulesDisponibles->recupera_hores(false, true);
-    $taules = $this->taulesDisponibles->taulesDisponibles();
-    $arrjson = array();
-
-    if (!$taules) {
-      $arrjson = array('dinar' => '', 'taulaT1' => 0, 'error' => 3);
-      return json_encode($arrjson);
-    }
-    $taulaT1 = $taules[0]->id;
-    if (!$dinar) $dinar = array();
-   
-    foreach($dinar as $t) $arrjson[] = $t;
+     
+    $this->taulesDisponibles->torn = 2;
+    $dinarT2 = $this->taulesDisponibles->recupera_hores(false, true); 
     
-    return $this->resposta_json($arrjson, "beee");
+
+    if (!$dinar) $dinar = array();
+    if (!$dinarT2) $dinarT2 = array();
+    
+    $rules['horesReals'] = array_merge($dinar, $dinarT2);
+    
+    $this->taulesDisponibles->rang_hores_nens = array();
+    $this->taulesDisponibles->data = "2011-01-01";
+      $this->taulesDisponibles->torn = 1;
+    $dinar = $this->taulesDisponibles->recupera_hores(false, true);
+     
+    $this->taulesDisponibles->torn = 2;
+    $dinarT2 = $this->taulesDisponibles->recupera_hores(false, true);   
+
+
+    if (!$dinar) $dinar = array();
+    if (!$dinarT2) $dinarT2 = array();
+    $rules['hores'] = array_merge($dinar, $dinarT2);
+    
+    
+    
+     return json_encode($rules);
     //////////////////////////////////					
   }
 

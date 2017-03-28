@@ -511,7 +511,7 @@ class TaulesDisponibles extends Gestor {
     $contaPersones = $persones = $this->persones;
     $taules = $this->taules();
     $cotxets = $this->cotxets;
-    
+      
     ////////////////////////////////////////////////////////////////////////////
     // Busca les hores disponibles per un dia/torn. HI HA 3 CASOS	
     ////////////////////////////////////////////////////////////////////////////
@@ -638,7 +638,7 @@ ORDER BY  `estat_hores_hora` ASC ";
           continue;
         $checked = null;
       }
-
+ 
       /////////////////////////////////////////////////////
       // CONTROLA MAX PER HORA
       //
@@ -654,7 +654,10 @@ ORDER BY  `estat_hores_hora` ASC ";
         continue;
       // NENS A ULTIMA HORA
       /**/
-      //print_r( $this->rang_hores_nens);die();
+      
+     // print_r( $this->rang_hores_nens);
+  //   echo "<br>---------- ".$row['estat_hores_hora']."  ". (in_array($row['estat_hores_hora'], $this->rang_hores_nens)?"SI":"NO");
+      
       if ($torn < 3 && is_array($this->rang_hores_nens) && count($this->rang_hores_nens) && !in_array($row['estat_hores_hora'], $this->rang_hores_nens))
         continue;
 
@@ -670,6 +673,8 @@ ORDER BY  `estat_hores_hora` ASC ";
       $radio.=$preradio;
       $arrraw[]=$row['estat_hores_hora'];
     }
+    
+
     //
     //////////////////////////////////////////////////////
     //var_dump( $arrraw);die();

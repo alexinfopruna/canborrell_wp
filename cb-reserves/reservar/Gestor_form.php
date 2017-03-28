@@ -186,6 +186,7 @@ class Gestor_form extends gestor_reserves {
 
   public function horesDisponibles($data, $coberts, $cotxets = 0, $accesible = 0, $idr = 0, $nens = null) {
 //echo $cotxets;die();
+    if ($cotxets == 'undefined') $cotxets=0;
     $mydata = $this->cambiaf_a_mysql($data);
 
     //$this->taulesDisponibles->tableHores="estat_hores_form";
@@ -214,7 +215,7 @@ class Gestor_form extends gestor_reserves {
  
       $rc=new RestrictionController();
       $this->taulesDisponibles->rang_hores_nens = $rc->getHores($mydata, $cacheAdults, $cacheNens, $cotxets);    
- 
+ $rules = $rc->getActiveRules($mydata, $cacheAdults, $cacheNens, $cotxets);    
 //SISTEMA ESTÀTIC >> hores_nens.php
  //   $this->taulesDisponibles->rang_hores_nens = $this->rang_hores_nens($mydata, $cacheAdults, $cacheNens, $cotxets);
 
@@ -251,6 +252,9 @@ class Gestor_form extends gestor_reserves {
       $sopar = "";
 
     $json = array('dinar' => $dinar, 'dinarT2' => $dinarT2, 'sopar' => $sopar, 'taulaT1' => $taulaT1, 'taulaT2' => $taulaT2, 'taulaT3' => $taulaT3);
+    
+    $json['rules']=array_column($rules,'restriccions_id');
+    $json['params']="$mydata, $cacheAdults, $cacheNens, $cotxets";
     return json_encode($json);
     //////////////////////////////////					
   }

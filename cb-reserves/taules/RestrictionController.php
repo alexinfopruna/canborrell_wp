@@ -57,6 +57,8 @@ while ($row = $Result1->fetch_assoc()) {
 if (isset($_REQUEST['test'])) echo ">>> $query <br><br>";
 	while ($row= mysqli_fetch_row($Result1)){
 }
+
+
 return $rules;
 }
 /***************************************************************************/

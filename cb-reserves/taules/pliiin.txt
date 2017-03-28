@@ -5531,4 +5531,154 @@
           restriccions_description = ''
             
           WHERE restriccions_id = '97'
+       "} ---> Array
+(
+    [0] => 0
+    [1] => 0
+    [2] => 0
+    [3] => 0
+    [4] => 0
+    [5] => 0
+    [6] => 1
+    [7] => 1
+)
+ ---> 30 ---> {'data':"UPDATE  restriccions 
+ 
+      SET restriccions_active= '1',
+          restriccions_data =   '2011-01-01', 
+          restriccions_datafi = '2011-01-01',
+          restriccions_dies = '3',
+          restriccions_adults = 'Tot', 
+          restriccions_nens = 'Tot', 
+          restriccions_cotxets = '1',
+          restriccions_hora = '15:45',
+          restriccions_hores = '30',
+          restriccions_description = 'COTXETSz'
+            
+          WHERE restriccions_id = '86'
+       "} ---> Array
+(
+    [0] => 0
+    [1] => 0
+    [2] => 0
+    [3] => 0
+    [4] => 0
+    [5] => 0
+    [6] => 1
+    [7] => 1
+)
+ ---> 127 ---> {'data':"UPDATE  restriccions 
+ 
+      SET restriccions_active= '1',
+          restriccions_data =   '2017-03-27T14:15:39.346Z', 
+          restriccions_datafi = '2017-03-27T14:15:39.346Z',
+          restriccions_dies = '3',
+          restriccions_adults = 'Senar', 
+          restriccions_nens = 'Tot', 
+          restriccions_cotxets = '0',
+          restriccions_hora = '15:30',
+          restriccions_hores = '127',
+          restriccions_description = 'Senars'
+            
+          WHERE restriccions_id = '83'
+       "} ---> Array
+(
+    [0] => 0
+    [1] => 0
+    [2] => 0
+    [3] => 0
+    [4] => 0
+    [5] => 0
+    [6] => 1
+    [7] => 1
+)
+ ---> 127 ---> {'data':"UPDATE  restriccions 
+ 
+      SET restriccions_active= '1',
+          restriccions_data =   '2011-01-01T00:00:00.000Z', 
+          restriccions_datafi = '2011-01-01T00:00:00.000Z',
+          restriccions_dies = '3',
+          restriccions_adults = 'Senar', 
+          restriccions_nens = 'Tot', 
+          restriccions_cotxets = '0',
+          restriccions_hora = '15:30',
+          restriccions_hores = '127',
+          restriccions_description = 'Senars'
+            
+          WHERE restriccions_id = '83'
+       "} ---> Array
+(
+    [0] => 0
+    [1] => 0
+    [2] => 0
+    [3] => 0
+    [4] => 0
+    [5] => 0
+    [6] => 1
+    [7] => 1
+)
+ ---> 1055 ---> {'data':"UPDATE  restriccions 
+ 
+      SET restriccions_active= '1',
+          restriccions_data =   '2011-01-01', 
+          restriccions_datafi = '2011-01-01',
+          restriccions_dies = '3',
+          restriccions_adults = '6', 
+          restriccions_nens = '>2', 
+          restriccions_cotxets = '0',
+          restriccions_hora = '16:00',
+          restriccions_hores = '1055',
+          restriccions_description = ''
+            
+          WHERE restriccions_id = '65'
+       "} ---> Array
+(
+    [0] => 0
+    [1] => 0
+    [2] => 0
+    [3] => 0
+    [4] => 0
+    [5] => 0
+    [6] => 1
+    [7] => 1
+)
+ ---> 1567 ---> {'data':"UPDATE  restriccions 
+ 
+      SET restriccions_active= '1',
+          restriccions_data =   '2011-01-01', 
+          restriccions_datafi = '2011-01-01',
+          restriccions_dies = '3',
+          restriccions_adults = '6', 
+          restriccions_nens = '>2', 
+          restriccions_cotxets = '0',
+          restriccions_hora = '16:00',
+          restriccions_hores = '1567',
+          restriccions_description = ''
+            
+          WHERE restriccions_id = '65'
+       "} ---> Array
+(
+    [0] => 0
+    [1] => 0
+    [2] => 0
+    [3] => 0
+    [4] => 0
+    [5] => 0
+    [6] => 1
+    [7] => 1
+)
+ ---> 1823 ---> {'data':"UPDATE  restriccions 
+ 
+      SET restriccions_active= '1',
+          restriccions_data =   '2011-01-01', 
+          restriccions_datafi = '2011-01-01',
+          restriccions_dies = '3',
+          restriccions_adults = '6', 
+          restriccions_nens = '>2', 
+          restriccions_cotxets = '0',
+          restriccions_hora = '16:00',
+          restriccions_hores = '1823',
+          restriccions_description = ''
+            
+          WHERE restriccions_id = '65'
        "}
