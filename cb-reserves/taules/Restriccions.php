@@ -306,7 +306,7 @@ $plin = $restriccio->restriccions_hores;
     $rules['horesReals'] = array_merge($dinar, $dinarT2);
     
     $this->taulesDisponibles->rang_hores_nens = array();
-    $this->taulesDisponibles->data = "2011-01-01";
+    //$this->taulesDisponibles->data = "2011-01-01";
       $this->taulesDisponibles->torn = 1;
     $dinar = $this->taulesDisponibles->recupera_hores(false, true);
      
