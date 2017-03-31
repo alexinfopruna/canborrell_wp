@@ -33,7 +33,7 @@ if (!$gestor->valida_sessio(64))
 $lang=$gestor->idioma(isset($_REQUEST["lang"])?$_REQUEST["lang"]:"");
 $l=$gestor->lng;
 ?>
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"	"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"	"//www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <HTML>
 <HEAD>
     <link rel="shortcut icon" type="image/ico" href="/gear-favicon.ico" />

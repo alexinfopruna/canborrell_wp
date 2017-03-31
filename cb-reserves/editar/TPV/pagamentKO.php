@@ -8,8 +8,8 @@ $titol['cat']="S'HA PRODUÏT UN ERROR EN EL PAGAMENT<br><br>Gràcies per utilitz
 $titol['esp']="SE HA PRODUCIDO UN ERROR EN EL PAGO.<br><br>Gracias por utilizar este servicio";
 $titol['en']="THERE HAS BEEN A PAYMENT ERROR.<br><br>Thank you for using this Service";
 ?>
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-<html xmlns="http://www.w3.org/1999/xhtml">
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "//www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="//www.w3.org/1999/xhtml">
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <title>Error de pagament</title>

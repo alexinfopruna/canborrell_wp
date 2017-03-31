@@ -1,5 +1,5 @@
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-<html xmlns="http://www.w3.org/1999/xhtml">
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "//www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="//www.w3.org/1999/xhtml">
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <title>Recepció reserva</title>
@@ -323,7 +323,7 @@ font-size: 14px}
 <!-- mail-cli -->		
 <table width="775" border="0" align="center" cellpadding="0" cellspacing="0" bgcolor="#F8F8F0">
   <tr>
-    <td width="775" colspan="2" align="right" background="http://www.can-borrell.com/img/fons_9a.jpg"><a href="http://www.can-borrell.com/index.html"><img src="http://www.can-borrell.com/img/lg_sup.png" alt="img" width="303" height="114" border="0" title="INICI" /></a></td>
+    <td width="775" colspan="2" align="right" background="https://www.can-borrell.com/img/fons_9a.jpg"><a href="https://www.can-borrell.com/index.html"><img src="https://www.can-borrell.com/img/lg_sup.png" alt="img" width="303" height="114" border="0" title="INICI" /></a></td>
   </tr>
   <tr>
     <td bgcolor="#570600" colspan="2" align="center">&nbsp;</td>
@@ -439,12 +439,12 @@ font-size: 14px}
     </tr>
     <tr>
       <td>&nbsp;</td>
-      <td class="Estilo5"><div align="center"><a href="http://www.can-borrell.com/editar/confirma.php?id={confirlink}" class="dins">{confirma}</a></div></td>
+      <td class="Estilo5"><div align="center"><a href="https://www.can-borrell.com/editar/confirma.php?id={confirlink}" class="dins">{confirma}</a></div></td>
       <td>&nbsp;</td>
     </tr>
     <tr>
       <td>&nbsp;</td>
-      <td class="Estilo5"><div align="center" ><a href="http://www.can-borrell.com/editar/cancela.php?id={cancelink}" class="dins">{cancela}</a></div></td>
+      <td class="Estilo5"><div align="center" ><a href="https://www.can-borrell.com/editar/cancela.php?id={cancelink}" class="dins">{cancela}</a></div></td>
       <td>&nbsp;</td>
     </tr>
     <tr>

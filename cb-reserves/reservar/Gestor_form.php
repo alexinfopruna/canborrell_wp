@@ -215,9 +215,9 @@ class Gestor_form extends gestor_reserves {
  
       $rc=new RestrictionController();
       $this->taulesDisponibles->rang_hores_nens = $rc->getHores($mydata, $cacheAdults, $cacheNens, $cotxets);    
- $rules = $rc->getActiveRules($mydata, $cacheAdults, $cacheNens, $cotxets);    
-//SISTEMA ESTÀTIC >> hores_nens.php
- //   $this->taulesDisponibles->rang_hores_nens = $this->rang_hores_nens($mydata, $cacheAdults, $cacheNens, $cotxets);
+      $rules = $rc->getActiveRules($mydata, $cacheAdults, $cacheNens, $cotxets);    
+    //SISTEMA ESTÀTIC >> hores_nens.php
+    //$this->taulesDisponibles->rang_hores_nens = $this->rang_hores_nens($mydata, $cacheAdults, $cacheNens, $cotxets);
 
     //TORN1
     $this->taulesDisponibles->torn = 1;

@@ -12,14 +12,12 @@
     </editor-bookmarks>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/var/www/canborrell-wp/cb-reserves/taules/Restriccions.php</file>
-            <file>file:/var/www/canborrell-wp/cb-reserves/reservar/Gestor_form.php</file>
+            <file>file:/var/www/canborrell-wp/cb-reserves/reservar/css/form_reserves.css</file>
             <file>file:/var/www/canborrell-wp/cb-reserves/reservar/form.php</file>
-            <file>file:/var/www/canborrell-wp/cb-reserves/taules/gestor_reserves.php</file>
-            <file>file:/var/www/canborrell-wp/cb-reserves/restriccions/index.html</file>
+            <file>file:/var/www/canborrell-wp/cb-reserves/reservar/js/popups_ajuda.js</file>
             <file>file:/var/www/canborrell-wp/cb-reserves/reservar/js/form_reserves.js</file>
+            <file>file:/var/www/canborrell-wp/cb-reserves/reservar/css/form_reserves_mob.css</file>
             <file>file:/var/www/canborrell-wp/cb-reserves/taules/RestrictionController.php</file>
-            <file>file:/var/www/canborrell-wp/cb-reserves/taules/TaulesDisponibles.php</file>
         </group>
     </open-files>
 </project-private>

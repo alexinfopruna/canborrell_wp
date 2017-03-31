@@ -41,7 +41,7 @@ define("PERSONES_GRUP",$PERSONES_GRUP);
 $max_nens=$gestor->configVars("max_nens");
 $max_juniors=$gestor->configVars("max_juniors");
 ?>
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"	"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"	"//www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <HTML>
 <HEAD>
     <link rel="shortcut icon" type="image/ico" href="/gear-favicon.ico" />

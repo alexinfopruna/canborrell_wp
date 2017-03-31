@@ -60,7 +60,7 @@ $paga_i_senyal = $PERSONES_GRUP >= persones_paga_i_senyal;
 
 
 ?>
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "//www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html>
     <head>
         <title> Masia Can Borrell </title>
@@ -97,35 +97,6 @@ $paga_i_senyal = $PERSONES_GRUP >= persones_paga_i_senyal;
                 <!--<script src="/js/bootstrap.min.js"></script>-->
                 <meta name="viewport" content="width=device-width, initial-scale=1">
 
-
-
-                    <!--
-                   <link rel="stylesheet" href="http://code.jquery.com/mobile/1.4.1/jquery.mobile-1.4.1.min.css">
-                   <script src="http://code.jquery.com/mobile/1.4.1/jquery.mobile-1.4.1.min.js"></script>                
-                    -->           
-                    <!--[if lt IE 7]>
-                         <script src="http://ie7-js.googlecode.com/svn/version/2.0(beta3)/IE7.js" type="text/javascript"></script>
-                    <![endif]-->		
-                    <!--
-                    !
-                    !
-                    !
-                    !
-                    !
-                    !
-                    !
-                    !
-                    !
-                    !
-                    !
-                    !
-                    !
-                    !
-                    !
-                    !
-                    !
-                    !
-                    -->
                     <?php
                     
                     

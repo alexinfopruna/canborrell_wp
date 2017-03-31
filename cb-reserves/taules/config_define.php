@@ -66,8 +66,8 @@ defined("DEBUG") or define("DEBUG", false);
 $DB_defines["DEBUG"]=false;
 /*** url_base ***/ 
 
-defined("url_base") or define("url_base", "http://cbdev.localhost/taules/");
-$DB_defines["url_base"]="http://cbdev.localhost/taules/";
+defined("url_base") or define("url_base", "//cbdev.localhost/taules/");
+$DB_defines["url_base"]="//cbdev.localhost/taules/";
 /*** INC_FILE_PATH ***/ 
 
 defined("INC_FILE_PATH") or define("INC_FILE_PATH", "../../canBorrell_inc_LOCAL/");

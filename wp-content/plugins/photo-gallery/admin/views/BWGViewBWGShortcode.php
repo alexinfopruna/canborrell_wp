@@ -63,7 +63,7 @@ class BWGViewBWGShortcode {
     );
     if (!$from_menu) {
     ?>
-    <html xmlns="http://www.w3.org/1999/xhtml">
+    <html xmlns="//www.w3.org/1999/xhtml">
       <head>
         <title><?php _e("Photo Gallery", 'bwg_back'); ?></title>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">

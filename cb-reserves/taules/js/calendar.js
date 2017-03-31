@@ -210,7 +210,7 @@ Calendar.createElement = function(type, parent) {
 	if (document.createElementNS) {
 		// use the XHTML namespace; IE won't normally get here unless
 		// _they_ "fix" the DOM2 implementation.
-		el = document.createElementNS("http://www.w3.org/1999/xhtml", type);
+		el = document.createElementNS("//www.w3.org/1999/xhtml", type);
 	} else {
 		el = document.createElement(type);
 	}

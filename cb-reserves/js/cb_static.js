@@ -35,6 +35,13 @@ $(function() {
 
 function monta_calendari(selector)
 {
+    
+if (typeof MARGE_DIES_RESERVA_ONLINE === 'undefined') {
+    MARGE_DIES_RESERVA_ONLINE = 1;
+}
+    
+    
+    
     limit_passat = MARGE_DIES_RESERVA_ONLINE;
 
     if (!MARGE_DIES_RESERVA_ONLINE)

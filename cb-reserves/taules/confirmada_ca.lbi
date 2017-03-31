@@ -1,10 +1,10 @@
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-<html xmlns="http://www.w3.org/1999/xhtml">
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "//www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="//www.w3.org/1999/xhtml">
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <title>Recepció reserva</title>
-<link href="http://www.can-borrell.com/editar/reserves.css" rel="stylesheet" type="text/css" />
-<link href="http://www.can-borrell.com/estils.css" rel="stylesheet" type="text/css" />
+<link href="//www.can-borrell.com/editar/reserves.css" rel="stylesheet" type="text/css" />
+<link href="//www.can-borrell.com/estils.css" rel="stylesheet" type="text/css" />
 <style type="text/css">
 <!--
 	FONT-SIZE: 18px
@@ -155,7 +155,7 @@ UL {
 		
 <table width="775" border="0" align="center" cellpadding="0" cellspacing="0" bgcolor="#F8F8F0">
   <tr>
-    <td width="775" colspan="2" align="right" background="http://www.can-borrell.com/img/fons_9a.jpg"><a href="http://www.can-borrell.com/index.html"><img src="http://www.can-borrell.com/img/lg_sup.png" alt="img" width="303" height="114" border="0" title="INICI" /></a></td>
+    <td width="775" colspan="2" align="right" background="//www.can-borrell.com/img/fons_9a.jpg"><a href="//www.can-borrell.com/index.html"><img src="//www.can-borrell.com/img/lg_sup.png" alt="img" width="303" height="114" border="0" title="INICI" /></a></td>
   </tr>
   <tr>
     <td bgcolor="#570600" colspan="2" align="center">&nbsp;</td>
@@ -261,7 +261,7 @@ UL {
     <td>&nbsp;</td>
     <td>
 	<div align="center">
-		Fins el dia abans, pot modificar la reserva o cancel·lar-la a <a href="http://www.can-borrell.com/reservar">http://www.can-borrell.com/reservar</a>
+		Fins el dia abans, pot modificar la reserva o cancel·lar-la a <a href="//www.can-borrell.com/reservar">www.can-borrell.com/reservar</a>
 		<br/><br/>
 		Per accedir cal que conservi l'ID de reserva: <b>{id_reserva}</b> 
 		

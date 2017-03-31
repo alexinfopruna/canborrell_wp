@@ -286,6 +286,9 @@ $(function () {
         //updateCalendari();   
     }
     document.body.scrollTop = document.documentElement.scrollTop = 0;
+    
+    
+       
 }); //ONLOAD, PRESENTACIO UI
 //***********************************************************************************************************/
 /************************************************************************************************************/
@@ -354,7 +357,7 @@ function comportamentQuantsSou()
     $("input[name=selectorNens]").change(function () {
         NENS = $("input[name='selectorNens']:checked").val();
         ADULTS = $("input[name='selectorComensals']:checked").val();
-        console.log(ADULTS);
+       
 
         $("input[name='nens4_9']").val(NENS);
 
@@ -385,7 +388,6 @@ function totalPersones()
     var total = na + nj + nn;
 
     $("input[name='totalComensals']").val(total);
-
 
 
     var cotxets = $("input[name='selectorCotxets']:checked").val() ? $("input[name='selectorCotxets']:checked").val() : '0';

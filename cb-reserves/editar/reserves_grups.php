@@ -47,7 +47,7 @@ header('Content-Type: text/html; charset=utf-8');
 // CONVERTEIX VARIABLES NOVES EN LES ANTIGUES PER FER SERVIR EL MATEIX PROCÈS
 /****************************************************************************************/
 
-	$_POST['redirect']="=http://www.can-borrell.com/cat/gracies.html";
+	$_POST['redirect']="=https://www.can-borrell.com/cat/gracies.html";
 	$_POST['subject']="Sol·licitud de reserva per a grups";
 	$_POST['recipient']=MAIL_RESTAURANT;
 	

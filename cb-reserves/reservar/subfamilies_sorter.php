@@ -39,9 +39,9 @@ $l=$gestor->lng;
 
     <meta charset="utf-8" />
     <title>jQuery UI Sortable - Default functionality</title>
-    <link rel="stylesheet" href="http://code.jquery.com/ui/1.9.0/themes/base/jquery-ui.css" />
-    <script src="http://code.jquery.com/jquery-1.8.2.js"></script>
-    <script src="http://code.jquery.com/ui/1.9.0/jquery-ui.js"></script>
+    <link rel="stylesheet" href="//code.jquery.com/ui/1.9.0/themes/base/jquery-ui.css" />
+    <script src="//code.jquery.com/jquery-1.8.2.js"></script>
+    <script src="//code.jquery.com/ui/1.9.0/jquery-ui.js"></script>
     <link rel="stylesheet" href="/resources/demos/style.css" />
     <style>
     #sortable { list-style-type: none; margin: 0; padding: 0; width: 60%; }

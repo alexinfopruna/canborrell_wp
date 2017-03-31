@@ -73,7 +73,7 @@ function valida_psw($psw_form)
   */
 valida_admin('login.php') ;  
 ?>
-<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN" "//www.w3.org/TR/html4/strict.dtd">
 <HTML>
 <HEAD>
     <link rel="shortcut icon" type="image/ico" href="/gear-favicon.ico" />

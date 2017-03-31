@@ -2,7 +2,7 @@
 require_once("gestor_reserves.php");
 $gestor=new gestor_reserves();   
 ?>
-<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="es" lang="es">
+<html xmlns="//www.w3.org/1999/xhtml" xml:lang="es" lang="es">
 <head>
     <link rel="shortcut icon" type="image/ico" href="/gear-favicon.ico" />
 

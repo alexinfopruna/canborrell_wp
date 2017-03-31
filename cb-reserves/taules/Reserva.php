@@ -21,7 +21,7 @@ class Reserva extends Gestor {
   public $estat;
   private $data_BASE = "2011-01-01";
 
-  public function Reserva($id = null, $data = null, $hora = null, $adults = null, $juniors = null, $nens = null, $cotxets = null, $client = null) {
+  function __construct($id = null, $data = null, $hora = null, $adults = null, $juniors = null, $nens = null, $cotxets = null, $client = null) {
     $usuari_minim = NULL;
     $db_connection_file = NULL;
     $torn = 0;
@@ -62,6 +62,13 @@ class Reserva extends Gestor {
       //$this->last_row=array();
     }
   }
+  
+ 
+      function  Reserva($id = null, $data = null, $hora = null, $adults = null, $juniors = null, $nens = null, $cotxets = null, $client = null) {
+     self::__construct($id = null, $data = null, $hora = null, $adults = null, $juniors = null, $nens = null, $cotxets = null, $client = null) ;
+   }
+
+
 
   /*   * ************************************* */
   /*   * ************************************* */

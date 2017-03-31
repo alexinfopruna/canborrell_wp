@@ -5681,4 +5681,600 @@
           restriccions_description = ''
             
           WHERE restriccions_id = '65'
+       "} ---> Array
+(
+    [0] => 0
+    [1] => 0
+    [2] => 0
+    [3] => 0
+    [4] => 0
+    [5] => 0
+    [6] => 1
+    [7] => 1
+)
+ ---> 8388623 ---> {'data':"UPDATE  restriccions 
+ 
+      SET restriccions_active= '1',
+          restriccions_data =   '2011-01-01', 
+          restriccions_datafi = '2011-01-01',
+          restriccions_dies = '3',
+          restriccions_adults = '15', 
+          restriccions_nens = '>4', 
+          restriccions_cotxets = '0',
+          restriccions_hora = '11:00',
+          restriccions_hores = '8388623',
+          restriccions_description = 'ffff'
+            
+          WHERE restriccions_id = '99'
+       "} ---> Array
+(
+    [0] => 0
+    [1] => 0
+    [2] => 0
+    [3] => 0
+    [4] => 0
+    [5] => 0
+    [6] => 1
+    [7] => 1
+)
+ ---> 15 ---> {'data':"UPDATE  restriccions 
+ 
+      SET restriccions_active= '1',
+          restriccions_data =   '2011-01-01', 
+          restriccions_datafi = '2011-01-01',
+          restriccions_dies = '3',
+          restriccions_adults = '15', 
+          restriccions_nens = '>4', 
+          restriccions_cotxets = '0',
+          restriccions_hora = '11:00',
+          restriccions_hores = '15',
+          restriccions_description = 'ffff'
+            
+          WHERE restriccions_id = '99'
+       "} ---> Array
+(
+    [0] => 0
+    [1] => 0
+    [2] => 0
+    [3] => 0
+    [4] => 0
+    [5] => 0
+    [6] => 1
+    [7] => 1
+)
+ ---> 15 ---> {'data':"UPDATE  restriccions 
+ 
+      SET restriccions_active= '1',
+          restriccions_data =   '2011-01-01', 
+          restriccions_datafi = '2011-01-01',
+          restriccions_suma = '9',
+          restriccions_dies = '3',
+          restriccions_adults = '15', 
+          restriccions_nens = '>4', 
+          restriccions_cotxets = '0',
+          restriccions_hora = '11:00',
+          restriccions_hores = '15',
+          restriccions_description = 'ffff'
+            
+          WHERE restriccions_id = '99'
+       "} ---> Array
+(
+    [0] => 0
+    [1] => 0
+    [2] => 0
+    [3] => 0
+    [4] => 0
+    [5] => 0
+    [6] => 1
+    [7] => 1
+)
+ ---> 15 ---> {'data':"UPDATE  restriccions 
+ 
+      SET restriccions_active= '1',
+          restriccions_data =   '2011-01-01', 
+          restriccions_datafi = '2011-01-01',
+          restriccions_suma = '4',
+          restriccions_dies = '3',
+          restriccions_adults = '15', 
+          restriccions_nens = '>4', 
+          restriccions_cotxets = '0',
+          restriccions_hora = '11:00',
+          restriccions_hores = '15',
+          restriccions_description = 'ffff'
+            
+          WHERE restriccions_id = '99'
+       "} ---> Array
+(
+    [0] => 0
+    [1] => 0
+    [2] => 0
+    [3] => 0
+    [4] => 0
+    [5] => 0
+    [6] => 1
+    [7] => 1
+)
+ ---> 15 ---> {'data':"UPDATE  restriccions 
+ 
+      SET restriccions_active= '1',
+          restriccions_data =   '2011-01-01', 
+          restriccions_datafi = '2011-01-01',
+          restriccions_suma = '6',
+          restriccions_dies = '3',
+          restriccions_adults = '15', 
+          restriccions_nens = '>4', 
+          restriccions_cotxets = '0',
+          restriccions_hora = '11:00',
+          restriccions_hores = '15',
+          restriccions_description = 'ffff'
+            
+          WHERE restriccions_id = '99'
+       "} ---> Array
+(
+    [0] => 0
+    [1] => 0
+    [2] => 0
+    [3] => 0
+    [4] => 0
+    [5] => 0
+    [6] => 1
+    [7] => 1
+)
+ ---> 15 ---> {'data':"UPDATE  restriccions 
+ 
+      SET restriccions_active= '1',
+          restriccions_data =   '2011-01-01', 
+          restriccions_datafi = '2011-01-01',
+          restriccions_suma = '1',
+          restriccions_dies = '3',
+          restriccions_adults = '15', 
+          restriccions_nens = '>4', 
+          restriccions_cotxets = '0',
+          restriccions_hora = '11:00',
+          restriccions_hores = '15',
+          restriccions_description = 'ffff'
+            
+          WHERE restriccions_id = '99'
+       "} ---> Array
+(
+    [0] => 0
+    [1] => 0
+    [2] => 0
+    [3] => 0
+    [4] => 0
+    [5] => 0
+    [6] => 1
+    [7] => 1
+)
+ ---> 15 ---> {'data':"UPDATE  restriccions 
+ 
+      SET restriccions_active= '1',
+          restriccions_data =   '2011-01-01', 
+          restriccions_datafi = '2011-01-01',
+          restriccions_suma = '3',
+          restriccions_dies = '3',
+          restriccions_adults = '15', 
+          restriccions_nens = '>4', 
+          restriccions_cotxets = '0',
+          restriccions_hora = '11:00',
+          restriccions_hores = '15',
+          restriccions_description = 'ffff'
+            
+          WHERE restriccions_id = '99'
+       "} ---> Array
+(
+    [0] => 0
+    [1] => 0
+    [2] => 0
+    [3] => 0
+    [4] => 0
+    [5] => 0
+    [6] => 1
+    [7] => 1
+)
+ ---> 15 ---> {'data':"UPDATE  restriccions 
+ 
+      SET restriccions_active= '1',
+          restriccions_data =   '2011-01-01', 
+          restriccions_datafi = '2011-01-01',
+          restriccions_suma = '8',
+          restriccions_dies = '3',
+          restriccions_adults = '15', 
+          restriccions_nens = '>4', 
+          restriccions_cotxets = '0',
+          restriccions_hora = '11:00',
+          restriccions_hores = '15',
+          restriccions_description = 'ffff'
+            
+          WHERE restriccions_id = '99'
+       "} ---> Array
+(
+    [0] => 0
+    [1] => 0
+    [2] => 0
+    [3] => 0
+    [4] => 0
+    [5] => 0
+    [6] => 1
+    [7] => 1
+)
+ ---> 15 ---> {'data':"UPDATE  restriccions 
+ 
+      SET restriccions_active= '1',
+          restriccions_data =   '2011-01-01', 
+          restriccions_datafi = '2011-01-01',
+          restriccions_suma = '0',
+          restriccions_dies = '3',
+          restriccions_adults = '15', 
+          restriccions_nens = '>4', 
+          restriccions_cotxets = '0',
+          restriccions_hora = '11:00',
+          restriccions_hores = '15',
+          restriccions_description = 'ffff'
+            
+          WHERE restriccions_id = '99'
+       "} ---> Array
+(
+    [0] => 0
+    [1] => 0
+    [2] => 0
+    [3] => 0
+    [4] => 0
+    [5] => 0
+    [6] => 1
+    [7] => 1
+)
+ ---> 15 ---> {'data':"UPDATE  restriccions 
+ 
+      SET restriccions_active= '1',
+          restriccions_data =   '2011-01-01', 
+          restriccions_datafi = '2011-01-01',
+          restriccions_suma = '4',
+          restriccions_dies = '3',
+          restriccions_adults = '15', 
+          restriccions_nens = '>4', 
+          restriccions_cotxets = '0',
+          restriccions_hora = '11:00',
+          restriccions_hores = '15',
+          restriccions_description = 'ffff'
+            
+          WHERE restriccions_id = '99'
+       "} ---> Array
+(
+    [0] => 0
+    [1] => 0
+    [2] => 0
+    [3] => 0
+    [4] => 0
+    [5] => 0
+    [6] => 1
+    [7] => 1
+)
+ ---> 15 ---> {'data':"UPDATE  restriccions 
+ 
+      SET restriccions_active= '1',
+          restriccions_data =   '2011-01-01', 
+          restriccions_datafi = '2011-01-01',
+          restriccions_suma = '4',
+          restriccions_dies = '3',
+          restriccions_adults = '15', 
+          restriccions_nens = '>2', 
+          restriccions_cotxets = '0',
+          restriccions_hora = '11:00',
+          restriccions_hores = '15',
+          restriccions_description = 'ffff'
+            
+          WHERE restriccions_id = '99'
+       "} ---> Array
+(
+    [0] => 0
+    [1] => 0
+    [2] => 0
+    [3] => 0
+    [4] => 0
+    [5] => 0
+    [6] => 1
+    [7] => 1
+)
+ ---> 15 ---> {'data':"UPDATE  restriccions 
+ 
+      SET restriccions_active= '1',
+          restriccions_data =   '2011-01-01', 
+          restriccions_datafi = '2011-01-01',
+          restriccions_suma = '0',
+          restriccions_dies = '3',
+          restriccions_adults = '14', 
+          restriccions_nens = '>2', 
+          restriccions_cotxets = '0',
+          restriccions_hora = '11:00',
+          restriccions_hores = '15',
+          restriccions_description = ''
+            
+          WHERE restriccions_id = '98'
+       "} ---> Array
+(
+    [0] => 0
+    [1] => 0
+    [2] => 0
+    [3] => 0
+    [4] => 0
+    [5] => 0
+    [6] => 1
+    [7] => 1
+)
+ ---> 15 ---> {'data':"UPDATE  restriccions 
+ 
+      SET restriccions_active= '1',
+          restriccions_data =   '2011-01-01', 
+          restriccions_datafi = '2011-01-01',
+          restriccions_suma = '0',
+          restriccions_dies = '3',
+          restriccions_adults = '13', 
+          restriccions_nens = '>2', 
+          restriccions_cotxets = '0',
+          restriccions_hora = '11:00',
+          restriccions_hores = '15',
+          restriccions_description = ''
+            
+          WHERE restriccions_id = '97'
+       "} ---> Array
+(
+    [0] => 0
+    [1] => 0
+    [2] => 0
+    [3] => 0
+    [4] => 0
+    [5] => 0
+    [6] => 1
+    [7] => 1
+)
+ ---> 31 ---> {'data':"UPDATE  restriccions 
+ 
+      SET restriccions_active= '1',
+          restriccions_data =   '2011-01-01', 
+          restriccions_datafi = '2011-01-01',
+          restriccions_suma = '0',
+          restriccions_dies = '3',
+          restriccions_adults = '4', 
+          restriccions_nens = '>1', 
+          restriccions_cotxets = '0',
+          restriccions_hora = '11:00',
+          restriccions_hores = '31',
+          restriccions_description = ''
+            
+          WHERE restriccions_id = '96'
+       "} ---> Array
+(
+    [0] => 0
+    [1] => 0
+    [2] => 0
+    [3] => 0
+    [4] => 0
+    [5] => 0
+    [6] => 1
+    [7] => 1
+)
+ ---> 127 ---> {'data':"UPDATE  restriccions 
+ 
+      SET restriccions_active= '1',
+          restriccions_data =   '2011-01-01', 
+          restriccions_datafi = '2011-01-01',
+          restriccions_suma = '0',
+          restriccions_dies = '3',
+          restriccions_adults = 'Senar', 
+          restriccions_nens = 'Tot', 
+          restriccions_cotxets = 'Tot',
+          restriccions_hora = '15:30',
+          restriccions_hores = '127',
+          restriccions_description = 'Senars'
+            
+          WHERE restriccions_id = '83'
+       "} ---> Array
+(
+    [0] => 0
+    [1] => 0
+    [2] => 0
+    [3] => 0
+    [4] => 0
+    [5] => 0
+    [6] => 1
+    [7] => 1
+)
+ ---> 31 ---> {'data':"UPDATE  restriccions 
+ 
+      SET restriccions_active= '1',
+          restriccions_data =   '2011-01-01', 
+          restriccions_datafi = '2011-01-01',
+          restriccions_suma = '0',
+          restriccions_dies = '3',
+          restriccions_adults = '12', 
+          restriccions_nens = '>1', 
+          restriccions_cotxets = '0',
+          restriccions_hora = '16:00',
+          restriccions_hores = '31',
+          restriccions_description = ''
+            
+          WHERE restriccions_id = '71'
+       "} ---> Array
+(
+    [0] => 0
+    [1] => 0
+    [2] => 0
+    [3] => 0
+    [4] => 0
+    [5] => 0
+    [6] => 1
+    [7] => 1
+)
+ ---> 31 ---> {'data':"UPDATE  restriccions 
+ 
+      SET restriccions_active= '1',
+          restriccions_data =   '2011-01-01', 
+          restriccions_datafi = '2011-01-01',
+          restriccions_suma = '0',
+          restriccions_dies = '3',
+          restriccions_adults = '11', 
+          restriccions_nens = '>1', 
+          restriccions_cotxets = '0',
+          restriccions_hora = '15:45',
+          restriccions_hores = '31',
+          restriccions_description = ''
+            
+          WHERE restriccions_id = '70'
+       "} ---> Array
+(
+    [0] => 0
+    [1] => 0
+    [2] => 0
+    [3] => 0
+    [4] => 0
+    [5] => 0
+    [6] => 1
+    [7] => 1
+)
+ ---> 31 ---> {'data':"UPDATE  restriccions 
+ 
+      SET restriccions_active= '1',
+          restriccions_data =   '2011-01-01', 
+          restriccions_datafi = '2011-01-01',
+          restriccions_suma = '0',
+          restriccions_dies = '3',
+          restriccions_adults = '10', 
+          restriccions_nens = '>1', 
+          restriccions_cotxets = '1',
+          restriccions_hora = '16:00',
+          restriccions_hores = '31',
+          restriccions_description = ''
+            
+          WHERE restriccions_id = '69'
+       "} ---> Array
+(
+    [0] => 0
+    [1] => 0
+    [2] => 0
+    [3] => 0
+    [4] => 0
+    [5] => 0
+    [6] => 1
+    [7] => 1
+)
+ ---> 31 ---> {'data':"UPDATE  restriccions 
+ 
+      SET restriccions_active= '1',
+          restriccions_data =   '2011-01-01', 
+          restriccions_datafi = '2011-01-01',
+          restriccions_suma = '0',
+          restriccions_dies = '3',
+          restriccions_adults = '9', 
+          restriccions_nens = '1', 
+          restriccions_cotxets = '0',
+          restriccions_hora = '16:00',
+          restriccions_hores = '31',
+          restriccions_description = ''
+            
+          WHERE restriccions_id = '68'
+       "} ---> Array
+(
+    [0] => 0
+    [1] => 0
+    [2] => 0
+    [3] => 0
+    [4] => 0
+    [5] => 0
+    [6] => 1
+    [7] => 1
+)
+ ---> 31 ---> {'data':"UPDATE  restriccions 
+ 
+      SET restriccions_active= '1',
+          restriccions_data =   '2011-01-01', 
+          restriccions_datafi = '2011-01-01',
+          restriccions_suma = '0',
+          restriccions_dies = '3',
+          restriccions_adults = '9', 
+          restriccions_nens = '>1', 
+          restriccions_cotxets = '0',
+          restriccions_hora = '16:00',
+          restriccions_hores = '31',
+          restriccions_description = ''
+            
+          WHERE restriccions_id = '68'
+       "} ---> Array
+(
+    [0] => 0
+    [1] => 0
+    [2] => 0
+    [3] => 0
+    [4] => 0
+    [5] => 0
+    [6] => 1
+    [7] => 1
+)
+ ---> 31 ---> {'data':"UPDATE  restriccions 
+ 
+      SET restriccions_active= '1',
+          restriccions_data =   '2011-01-01', 
+          restriccions_datafi = '2011-01-01',
+          restriccions_suma = '0',
+          restriccions_dies = '3',
+          restriccions_adults = '8', 
+          restriccions_nens = '>1', 
+          restriccions_cotxets = '1',
+          restriccions_hora = '16:00',
+          restriccions_hores = '31',
+          restriccions_description = ''
+            
+          WHERE restriccions_id = '67'
+       "} ---> Array
+(
+    [0] => 0
+    [1] => 0
+    [2] => 0
+    [3] => 0
+    [4] => 0
+    [5] => 0
+    [6] => 1
+    [7] => 1
+)
+ ---> 30 ---> {'data':"UPDATE  restriccions 
+ 
+      SET restriccions_active= '1',
+          restriccions_data =   '2011-01-01', 
+          restriccions_datafi = '2011-01-01',
+          restriccions_suma = '0',
+          restriccions_dies = '3',
+          restriccions_adults = '5', 
+          restriccions_nens = '>1', 
+          restriccions_cotxets = 'Tot',
+          restriccions_hora = '16:00',
+          restriccions_hores = '30',
+          restriccions_description = ''
+            
+          WHERE restriccions_id = '64'
+       "} ---> Array
+(
+    [0] => 0
+    [1] => 0
+    [2] => 0
+    [3] => 0
+    [4] => 0
+    [5] => 0
+    [6] => 1
+    [7] => 1
+)
+ ---> 1823 ---> {'data':"UPDATE  restriccions 
+ 
+      SET restriccions_active= '1',
+          restriccions_data =   '2011-01-01', 
+          restriccions_datafi = '2011-01-01',
+          restriccions_suma = '0',
+          restriccions_dies = '3',
+          restriccions_adults = '6', 
+          restriccions_nens = '>1', 
+          restriccions_cotxets = '0',
+          restriccions_hora = '16:00',
+          restriccions_hores = '1823',
+          restriccions_description = ''
+            
+          WHERE restriccions_id = '65'
        "}

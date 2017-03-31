@@ -86,11 +86,11 @@ $signature = $miObj->createMerchantSignatureNotif($clave256, $params);
 // ACCIONS
 // ACCIONS
 if (isset($_REQUEST['reset_estat']) && $_REQUEST['reset_estat'] == 'reset_estat') {
-  $dest = 'http://' . $_SERVER['HTTP_HOST'] . "/cb-reserves/reservar/Gestor_form.php?a=reset_estat&b=$id_reserva";
+  $dest = '//' . $_SERVER['HTTP_HOST'] . "/cb-reserves/reservar/Gestor_form.php?a=reset_estat&b=$id_reserva";
   header("Location: $dest ");
 }
 
-$href = 'http://' . $_SERVER['HTTP_HOST'] . "/cb-reserves/reservar/testTPV256.php"
+$href = '//' . $_SERVER['HTTP_HOST'] . "/cb-reserves/reservar/testTPV256.php"
     . "?pidr=$id_reserva&pamount=$amount&presponse=$response&pcallback=$callback&"
     . "=$tpv_config_file&init=1";
 $HTML = '<a href="' . $href . '">' . $href . '</a>';

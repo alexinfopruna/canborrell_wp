@@ -1090,7 +1090,7 @@ class Gestor {
 <!-- ************************************************* -->            
 <!-- ************************************************* --> 
 EOHTML;
- 
+
  return $html;
     }
 
@@ -1101,10 +1101,10 @@ EOHTML;
 <!-- *********      GESTOR::loadJQuery      ********** -->            
 <!-- ************************************************* -->            
 <!-- ************************************************* -->            
-<script  type="text/javascript" src="http://code.jquery.com/jquery-{$jqversion}.min.js"></script>
+<script  type="text/javascript" src="//code.jquery.com/jquery-{$jqversion}.min.js"></script>
 
 <script  type="text/javascript">window.jQuery || document.write('<script  type="text/javascript" src="{$ROOT}js/jquery-{$jqversion}.min.js"><script>')</script>
-<script  type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jqueryui/{$uiversion}/jquery-ui.min.js"></script>    
+<script  type="text/javascript" src="//ajax.googleapis.com/ajax/libs/jqueryui/{$uiversion}/jquery-ui.min.js"></script>    
 <script type="text/javascript">
     if (typeof jQuery.ui == 'undefined') {
         document.write(unescape("%3Cscript  type='text/javascript' src='{$ROOT}js/jquery-ui-{$uiversion}.custom/js/jquery-ui-{$uiversion}.custom.min.js' type='text/javascript'%3E%3C/script%3E"));

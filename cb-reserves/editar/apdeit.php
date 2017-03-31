@@ -181,10 +181,8 @@ function mail_SMS_cli($id=false,$SMS=null)
                                                         $lng = Gestor::newlang($lang_cli);
             
             
-		//$aki="<a href='http://www.can-borrell.com/editar/pagament256.php?id=".$fila["id_reserva"]."&lang=$lang_cli' class='dins'>AQUI</a>";
                                                         $b64=base64_encode($fila["id_reserva"]."&".$fila['tel']."&".$lng);
-                                                        //var_dump(base64_decode($b64));die();
-                                                        $aki="<a href='http://www.can-borrell.com/reservar/pagament?rid=$b64&lang=$lng' class='dins'>AQUI</a>";
+                                                        $aki="<a href='/reservar/pagament?rid=$b64&lang=$lng' class='dins'>AQUI</a>";
                                                         
         $copia="Reserva Grups CONFIRMADA";
         $subject="Can-Borrell: RESERVA CONFIRMADA";
@@ -214,7 +212,7 @@ function mail_SMS_cli($id=false,$SMS=null)
 	
           case 4: // RESERVA DENEGADA
 		$v=30;
-		$aki="<a href='http://www.can-borrell.com/cat/contactar.php?id=".$fila["id_reserva"]."&lang=$lang_cli' class='dins'>AQUÍ</a>";
+		$aki="<a href='/#contact?id=".$fila["id_reserva"]."&lang=$lang_cli' class='dins'>AQUÍ</a>";
         $altbdy="Lamentamos informarle que la reserva que solicitó para el restaurante Can Borrell ha sido denegada por encontrarse el comedor lleno.\n\n Para más información, por favor, póngase en contacto con el restaurante llamando al 936 929 723 o al 936 910 605. \n\nDisculpe las molestias";
     $copia="Reserva Grups DENEGADA";
     $subject="Can-Borrell: RESERVA DENEGADA";

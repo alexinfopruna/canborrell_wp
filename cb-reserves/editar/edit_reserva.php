@@ -92,8 +92,8 @@ if (isset($_GET['totalRows_reserves'])) {
   $totalRows_reserves = mysqli_num_rows($all_reserves);
 }
 ?>
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-<html xmlns="http://www.w3.org/1999/xhtml">
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "//www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="//www.w3.org/1999/xhtml">
 <head>
     <link rel="shortcut icon" type="image/ico" href="/gear-favicon.ico" />
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
