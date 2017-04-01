@@ -347,6 +347,7 @@ function bwg_gallery_type(gallery_type) {
   jQuery("#tr_slideshow_description_position").css('display', 'none');
   jQuery("#tr_enable_slideshow_music").css('display', 'none');
   jQuery("#tr_slideshow_music_url").css('display', 'none');
+  jQuery("#tr_slideshow_effect_duration").css('display', 'none');
 
   // Popup.
   jQuery("#tbody_popup_other").css('display', 'none');
@@ -498,6 +499,7 @@ function bwg_gallery_type(gallery_type) {
 			jQuery("#tr_show_sort_images").css('display', 'none');
       jQuery("#tr_show_tag_box").css('display', 'none');
       jQuery("#tr_tag").css('display', '');
+      jQuery("#tr_slideshow_effect_duration").css('display', '')
       if (jQuery("input[name=enable_slideshow_filmstrip]:checked").val() == 1) {
         bwg_enable_disable('', 'tr_slideshow_filmstrip_height', 'slideshow_filmstrip_yes');
       }
@@ -663,7 +665,7 @@ function bwg_gallery_type(gallery_type) {
 		}
 			
   }
-  if (gallery_type != 'slideshow' && gallery_type != 'carousel') {
+  
     jQuery("#tbody_popup_other").css('display', '');
     jQuery("#tbody_popup").css('display', '');
     jQuery("#tr_popup_width_height").css('display', '');
@@ -696,7 +698,6 @@ function bwg_gallery_type(gallery_type) {
     jQuery("#tr_popup_info_always_show").css('display', '');
     bwg_popup_fullscreen();
     bwg_thumb_click_action();
-  }
   bwg_loadmore();
 }
 

@@ -248,7 +248,7 @@
   background-repeat: no-repeat;
   border: none;
   float: left;
-  height: 31px;
+  height: 36px;
   margin: 7px 8px 0 0;
   width: 36px;
 }
@@ -1036,6 +1036,12 @@ textarea.bwg_popup_input {
     height: 200px !important;
   }
   @media screen and (max-width: 420px) {
+    #bwg_standart {
+      top: -3px !important;
+    }
+    #bwg_default {
+      top: 2px !important;
+    }
     .default_tab_button_wrap {
       margin-top: -10px;
     }

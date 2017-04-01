@@ -19,7 +19,7 @@ class FilemanagerModel {
     // Variables                                                                          //
     ////////////////////////////////////////////////////////////////////////////////////////
     private $controller;
-
+    private $element_load_count = 100;
     ////////////////////////////////////////////////////////////////////////////////////////
     // Constructor & Destructor                                                           //
     ////////////////////////////////////////////////////////////////////////////////////////
@@ -31,6 +31,7 @@ class FilemanagerModel {
     // Public Methods                                                                     //
     ////////////////////////////////////////////////////////////////////////////////////////
     public function get_file_manager_data() {
+      global $wd_bwg_options;
       $session_data = array();
       $session_data['sort_by'] = $this->get_from_session('sort_by', 'date_modified');
       $session_data['sort_order'] = $this->get_from_session('sort_order', 'desc');
@@ -44,11 +45,24 @@ class FilemanagerModel {
       $data['session_data'] = $session_data;
       $data['path_components'] = $this->get_path_components();
       $data['dir'] = $this->controller->get_uploads_dir() . (isset($_REQUEST['dir']) ? esc_html($_REQUEST['dir']) : '');
-      $data['files'] = $this->get_files($session_data['sort_by'], $session_data['sort_order']);
-      $data['media_library_files'] = ($this->controller->get_options_data()->enable_ML_import ? $this->get_media_library_files($session_data['sort_by'], $session_data['sort_order']) : array());
+      $get_files_data =  $this->get_files($session_data['sort_by'], $session_data['sort_order']);
+      $data['files'] = $get_files_data['files'];
+      $data['files_count'] = $get_files_data['files_count'];
+      $data['all_files'] = $get_files_data['all_files'];
+      $data['element_load_count'] = $this->element_load_count;
+      $media_library_files = ($wd_bwg_options->enable_ML_import ? $this->get_media_library_files($session_data['sort_by'], $session_data['sort_order']) : array());
+      if ( !empty($media_library_files) ) {
+        $data['media_library_files'] = $media_library_files["files"];
+        $data['importer_files_count'] = $media_library_files["importer_files_count"];
+        $data['media_library_files_all'] = $media_library_files["media_library_files_all"];
+      }
+      else {
+        $data['media_library_files'] = array();
+        $data['importer_files_count'] = array();
+        $data['media_library_files_all'] = array();
+      }
       $data['extensions'] = (isset($_REQUEST['extensions']) ? esc_html($_REQUEST['extensions']) : '');
       $data['callback'] = (isset($_REQUEST['callback']) ? esc_html($_REQUEST['callback']) : '');
-
       return $data;
     }
 
@@ -59,20 +73,13 @@ class FilemanagerModel {
     // Private Methods                                                                    //
     ////////////////////////////////////////////////////////////////////////////////////////
     private function get_from_session($key, $default) {
-      // if (isset($_SESSION[$key])) {
-      // if (isset($_REQUEST[$key])) {
-        if (isset($_REQUEST[$key])) {
-          // $_SESSION[$key] = $_REQUEST[$key];
-          $_REQUEST[$key] = stripslashes($_REQUEST[$key]);
-        }
-        else {
-          // $_SESSION[$key] = $default;
-          $_REQUEST[$key] = stripslashes($default);
-        }
-        // return $_SESSION[$key];
-        return esc_html(stripslashes($_REQUEST[$key]));
-      // }
-      // return '';
+      if (isset($_REQUEST[$key])) {
+        $_REQUEST[$key] = stripslashes($_REQUEST[$key]);
+      }
+      else {
+        $_REQUEST[$key] = stripslashes($default);
+      }
+      return esc_html(stripslashes($_REQUEST[$key]));
     }
 
     public function get_path_components() {
@@ -166,7 +173,10 @@ class FilemanagerModel {
 
       // $result = $sort_order == 'asc' ? array_merge($dirs, $files) : array_merge($files, $dirs);
       $result = array_merge($dirs, $files);
-      return $result;
+      $files_count = count($result);
+      $all_files = $result;
+      $result = array_slice($result, 0, $this->element_load_count, true);
+      return array("files" => $result, "all_files"=>$all_files, "files_count" => $files_count);
     }
 
     function get_media_library_files($sort_by, $sort_order) {
@@ -227,7 +237,10 @@ class FilemanagerModel {
           $files[] = $file;
         }
       }
-      return $files;
+      $files_count = count($files);
+      $all_files = $files;
+      $files = array_slice($files, 0, $this->element_load_count, true);
+      return array("files" => $files, 'media_library_files_all' => $all_files, "importer_files_count" => $files_count);
     }
 
     private function bwg_wp_read_image_metadata( $file ) {

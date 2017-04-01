@@ -275,6 +275,7 @@ class BWGControllerThemes_bwg {
     $image_browser_full_border_color = (isset($_POST['image_browser_full_border_color']) ? esc_html(stripslashes( $_POST['image_browser_full_border_color'])) : '000000');
     $image_browser_full_bg_color = (isset($_POST['image_browser_full_bg_color']) ? esc_html(stripslashes( $_POST['image_browser_full_bg_color'])) : 'FFFFFF');	
     $image_browser_full_transparent = (isset($_POST['image_browser_full_transparent']) ? (int) esc_html(stripslashes( $_POST['image_browser_full_transparent'])) : 0);
+    $image_browser_image_title_align = (isset($_POST['image_browser_image_title_align']) ? esc_html(stripslashes( $_POST['image_browser_image_title_align'])) : 'top');
 
     $album_compact_title_margin = (isset($_POST['album_compact_title_margin']) ? esc_html(stripslashes( $_POST['album_compact_title_margin'])) : '');
     $album_compact_title_font_style = (isset($_POST['album_compact_title_font_style']) ? esc_html(stripslashes( $_POST['album_compact_title_font_style'])) : 'inherit');
@@ -726,7 +727,7 @@ class BWGControllerThemes_bwg {
       'image_browser_full_border_color' => $image_browser_full_border_color,
       'image_browser_full_bg_color' => $image_browser_full_bg_color,
       'image_browser_full_transparent' => $image_browser_full_transparent,
-
+      'image_browser_image_title_align' => $image_browser_image_title_align,	
       'album_compact_title_margin' => $album_compact_title_margin, 
       'album_compact_thumb_margin' => $album_compact_thumb_margin,
       'album_compact_back_padding' => $album_compact_back_padding, 

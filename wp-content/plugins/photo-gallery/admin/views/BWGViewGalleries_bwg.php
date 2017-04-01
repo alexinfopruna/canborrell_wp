@@ -40,25 +40,16 @@ class BWGViewGalleries_bwg {
       'delete_all' => __('Delete', 'bwg_back')
     );
     ?>
-    <div style="clear: both; float: left; width: 99%;">
-      <div style="float:left; font-size: 14px; font-weight: bold;">
-        <?php _e("This section allows you to create, edit and delete galleries.", 'bwg_back'); ?>
-        <a style="color: blue; text-decoration: none;" target="_blank" href="https://web-dorado.com/wordpress-gallery/creating-editing-galleries.html"><?php _e("Read More in User Manual", 'bwg_back'); ?></a>
-      </div>
-      <div style="float: right; text-align: right;">
-        <a style="text-decoration: none;" target="_blank" href="https://web-dorado.com/files/fromPhotoGallery.php">
-          <img width="215" border="0" alt="web-dorado.com" src="<?php echo WD_BWG_URL . '/images/logo.png'; ?>" />
-        </a>
-      </div>
-    </div>
-    <form class="wrap bwg_form" id="galleries_form" method="post" action="admin.php?page=galleries_bwg" style="float: left; width: 99%;">
+    <form class="wrap bwg_form" id="galleries_form" method="post" action="admin.php?page=galleries_bwg" style="float: left; width: 98%;">
       <?php wp_nonce_field( 'galleries_bwg', 'bwg_nonce' ); ?>
-      <span class="gallery-icon"></span>
-      <h2>
-        <?php _e("Galleries", 'bwg_back'); ?>
-        <a href="" id="galleries_id" class="add-new-h2" onclick="spider_set_input_value('task', 'add');
-                                               spider_form_submit(event, 'galleries_form')"><?php _e("Add new", 'bwg_back'); ?></a>
-      </h2>
+      <div>
+        <span class="gallery-icon"></span>
+        <h2>
+          <?php _e("Galleries", 'bwg_back'); ?>
+          <a href="" id="galleries_id" class="add-new-h2" onclick="spider_set_input_value('task', 'add');
+                                                 spider_form_submit(event, 'galleries_form')"><?php _e("Add new", 'bwg_back'); ?></a>
+        </h2>
+      </div>
       <div id="draganddrop" class="wd_updated" style="display:none;"><strong><p><?php _e("Changes made in this table should be saved.", 'bwg_back'); ?></p></strong></div>
       <?php  WDWLibrary::search(__('Name','bwg_back'), $search_value, 'galleries_form', '');?>
       <div class="tablenav top buttons_div" >
@@ -217,24 +208,12 @@ class BWGViewGalleries_bwg {
 
   public function edit($id) {
     global $WD_BWG_UPLOAD_DIR;
+    global $wd_bwg_options;
     $row = $this->model->get_row_data($id);
-    $option_row = WDWLibrary::get_options_row_data();
     $page_title = (($id != 0) ? __('Edit gallery','bwg_back') . $row->name : __('Create new gallery','bwg_back'));
     $per_page = $this->model->per_page();
     $images_count = $this->model->get_images_count($id);
     ?>
-    <div style="clear: both; float: left; width: 99%;">
-      <div id="message_div" class="wd_updated" style="display: none;"></div>
-      <div style="float:left; font-size: 14px; font-weight: bold;">
-        <?php _e("This section allows you to add/edit gallery.", 'bwg_back'); ?>
-        <a style="color: blue; text-decoration: none;" target="_blank" href="https://web-dorado.com/wordpress-gallery/creating-editing-galleries.html"><?php _e("Read More in User Manual", 'bwg_back'); ?></a>
-      </div>
-      <div style="float: right; text-align: right;">
-        <a style="text-decoration: none;" target="_blank" href="https://web-dorado.com/files/fromPhotoGallery.php">
-          <img width="215" border="0" alt="web-dorado.com" src="<?php echo WD_BWG_URL . '/images/logo.png'; ?>" />
-        </a>
-      </div>
-    </div>
     <script>
       function spider_set_href(a, number, type) {
         var image_url = document.getElementById("image_url_" + number).value;
@@ -441,7 +420,7 @@ class BWGViewGalleries_bwg {
           }
           td_alt.appendChild(input_alt);
 
-          <?php if ($option_row->thumb_click_action != 'open_lightbox') { ?>
+          <?php if ($wd_bwg_options->thumb_click_action != 'open_lightbox') { ?>
           //Redirect url
           input_alt = document.createElement('input');
           input_alt.setAttribute('id', "redirect_url_" + bwg_j);
@@ -462,7 +441,7 @@ class BWGViewGalleries_bwg {
           if (is_embed && !is_direct_url) {
             textarea_desc.innerHTML = files[i]['description'];
           }
-          else if (<?php echo $option_row->read_metadata; ?>) {
+          else if (<?php echo $wd_bwg_options->read_metadata; ?>) {
             textarea_desc.innerHTML = files[i]['credit'] ? 'Author: ' + files[i]['credit'] + '\n' : '';
             textarea_desc.innerHTML += ((files[i]['aperture'] != 0 && files[i]['aperture'] != '') ? 'Aperture: ' + files[i]['aperture'] + '\n' : '');
             textarea_desc.innerHTML += ((files[i]['camera'] != 0 && files[i]['camera'] != '') ? 'Camera: ' + files[i]['camera'] + '\n' : '');
@@ -535,10 +514,12 @@ class BWGViewGalleries_bwg {
       }
     </script>
     <script language="javascript" type="text/javascript" src="<?php echo WD_BWG_URL . '/js/bwg_embed.js?ver='; ?><?php echo get_option("wd_bwg_version"); ?>"></script>
-    <form class="wrap bwg_form" method="post" id="galleries_form" action="admin.php?page=galleries_bwg" style="float: left; width: 99%;">
+    <form class="wrap bwg_form" method="post" id="galleries_form" action="admin.php?page=galleries_bwg" style="float: left; width: 98%;">
       <?php wp_nonce_field( 'galleries_bwg', 'bwg_nonce' ); ?>
-      <span class="gallery-icon"></span>
-      <h2><?php echo $page_title; ?></h2>
+      <div>
+        <span class="gallery-icon"></span>
+        <h2><?php echo $page_title; ?></h2>
+      </div>
       <div style="float:right;">
         <input class="wd-btn wd-btn-primary wd-btn-icon wd-btn-save" id='save_gall' type="button" onclick="if (spider_check_required('name', 'Name')) {return false;};
                                                      spider_set_input_value('page_number', '1');
@@ -660,20 +641,14 @@ class BWGViewGalleries_bwg {
               <input type="hidden" id="preview_image" name="preview_image" value="<?php echo $row->preview_image; ?>" style="display:inline-block;"/>
               <img id="img_preview_image"
                    style="max-height:90px; max-width:120px; vertical-align:middle;"
-                   src="<?php echo site_url() . '/' . $WD_BWG_UPLOAD_DIR . $row->preview_image; ?>">
+                   src="<?php echo $row->preview_image ? (site_url() . '/' . $WD_BWG_UPLOAD_DIR . $row->preview_image) : ''; ?>" />
               <span id="delete_preview_image" class="spider_delete_img"
                     onclick="spider_remove_url('button_preview_image', 'preview_image', 'delete_preview_image', 'img_preview_image')"></span>
             </td>
           </tr>
-          <tr>
-            <td colspan=2>
-              <?php
-              echo $this->image_display($id);
-              ?>
-            </td>
-          </tr>
         </tbody>
       </table>
+      <?php echo $this->image_display($id); ?>
       <input id="task" name="task" type="hidden" value="" />
       <input id="current_id" name="current_id" type="hidden" value="<?php echo $row->id; ?>" />
       <script>
@@ -692,12 +667,12 @@ class BWGViewGalleries_bwg {
     </form>
     <?php
   }
-  
+
   public function image_display($id) {
     global $WD_BWG_UPLOAD_DIR;
+    global $wd_bwg_options;
     $rows_data = $this->model->get_image_rows_data($id);
     $page_nav = $this->model->image_page_nav($id);
-    $option_row = WDWLibrary::get_options_row_data();
     $search_value = ((isset($_POST['search_value'])) ? esc_html(stripslashes($_POST['search_value'])) : '');
     $image_asc_or_desc = ((isset($_POST['image_asc_or_desc'])) ? esc_html(stripslashes($_POST['image_asc_or_desc'])) : ((isset($_COOKIE['bwg_image_asc_or_desc'])) ? esc_html(stripslashes($_COOKIE['bwg_image_asc_or_desc'])) : 'asc'));
     $image_order_by = ((isset($_POST['image_order_by'])) ? esc_html(stripslashes($_POST['image_order_by'])) : ((isset($_COOKIE['bwg_image_order_by'])) ? esc_html(stripslashes($_COOKIE['bwg_image_order_by'])) : 'order'));
@@ -831,7 +806,7 @@ class BWGViewGalleries_bwg {
           <input class="wd-btn wd-btn-primary wd-btn-icon wd-btn-add" type="button" onclick="if (window.parent.bwg_add_title_desc()) {jQuery('.opacity_image_desc').hide();} return false;" value="<?php echo __('Update', 'bwg_back'); ?>" />
           <input class="wd-btn wd-btn-primary wd-btn-icon wd-btn-cancel" type="button" onclick="jQuery('.opacity_image_desc').hide(); return false;" value="<?php echo __('Cancel', 'bwg_back'); ?>" />
         </div>
-        <?php if ($option_row->thumb_click_action != 'open_lightbox') { ?>
+        <?php if ($wd_bwg_options->thumb_click_action != 'open_lightbox') { ?>
         <div>
           <span class="bwg_popup_label">
             <?php _e('Redirect URL: ', 'bwg_back'); ?>
@@ -876,7 +851,7 @@ class BWGViewGalleries_bwg {
                         spider_set_input_value('image_order_by', 'alt');
                         spider_set_input_value('image_asc_or_desc', '<?php echo ($image_order_by == 'alt' && $image_asc_or_desc == 'asc') ? 'desc' : 'asc'; ?>');
                         spider_ajax_save('galleries_form');">
-              <span><?php _e('Alt/Title', 'bwg_back'); ?><?php if ($option_row->thumb_click_action != 'open_lightbox') { ?><br /><?php echo __('Redirect', 'bwg_back'); ?> URL<?php } ?></span><span class="sorting-indicator"></span>
+              <span><?php _e('Alt/Title', 'bwg_back'); ?><?php if ($wd_bwg_options->thumb_click_action != 'open_lightbox') { ?><br /><?php echo __('Redirect', 'bwg_back'); ?> URL<?php } ?></span><span class="sorting-indicator"></span>
             </a>
           </th>
           <th class="sortable table_extra_large_col <?php if ($image_order_by == 'description') {echo $order_class;} ?>">
@@ -985,7 +960,7 @@ class BWGViewGalleries_bwg {
                 </td>
                 <td class="table_extra_large_col">
                   <textarea rows="2" id="image_alt_text_<?php echo $row_data->id; ?>" name="image_alt_text_<?php echo $row_data->id; ?>" style="resize:vertical;"><?php echo $row_data->alt; ?></textarea>
-                  <?php if ($option_row->thumb_click_action != 'open_lightbox') { ?>
+                  <?php if ($wd_bwg_options->thumb_click_action != 'open_lightbox') { ?>
                   <input size="24" type="text" id="redirect_url_<?php echo $row_data->id; ?>" name="redirect_url_<?php echo $row_data->id; ?>" value="<?php echo $row_data->redirect_url; ?>" />
                   <?php } ?>
                 </td>

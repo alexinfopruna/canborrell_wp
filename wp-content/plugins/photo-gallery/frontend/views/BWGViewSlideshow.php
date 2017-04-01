@@ -3,10 +3,10 @@ class BWGViewSlideshow {
   public function display($params, $from_shortcode = 0, $bwg = 0) {
     require_once(WD_BWG_DIR . '/framework/WDWLibrary.php');
     require_once(WD_BWG_DIR . '/framework/WDWLibraryEmbed.php');
-
+    $current_url = (is_ssl() ? 'https://' : 'http://') . $_SERVER['HTTP_HOST'] . $_SERVER['REQUEST_URI'];
     global $WD_BWG_UPLOAD_DIR;
     $from = (isset($params['from']) ? esc_html($params['from']) : 0);
-    $options_row = WDWLibrary::get_options_row_data();
+    global $wd_bwg_options;
     if (!isset($params['order_by'])) {
       $order_by = 'asc'; 
     }
@@ -19,7 +19,127 @@ class BWGViewSlideshow {
     if (!isset($params['tag'])) {
       $params['tag'] = 0;
     }
-    $image_right_click = $options_row->image_right_click;
+    if (!isset($params['popup_enable_pinterest'])) {
+      $params['popup_enable_pinterest'] = 0;
+    }
+    if (!isset($params['popup_enable_tumblr'])) {
+      $params['popup_enable_tumblr'] = 0;
+    }
+    if (!isset($params['show_search_box'])) {
+      $params['show_search_box'] = 0;
+    }
+    if (!isset($params['search_box_width'])) {
+      $params['search_box_width'] = 180;
+    }
+    if (!isset($params['popup_enable_info'])) {
+      $params['popup_enable_info'] = 1;
+    }
+    if (!isset($params['popup_info_always_show'])) {
+      $params['popup_info_always_show'] = 0;
+    }
+    if (!isset($params['popup_info_full_width'])) {
+      $params['popup_info_full_width'] = 0;
+    }
+    if (!isset($params['popup_enable_rate'])) {
+      $params['popup_enable_rate'] = 0;
+    }
+    if (!isset($params['thumb_click_action']) || $params['thumb_click_action'] == 'undefined') {
+      $params['thumb_click_action'] = 'do_nothing';
+    }
+    if (!isset($params['thumb_link_target'])) {
+      $params['thumb_link_target'] = 1;
+    }
+    if (!isset($params['popup_hit_counter'])) {
+      $params['popup_hit_counter'] = 0;
+    }
+    if (!isset($params['popup_fullscreen'])) {
+      $params['popup_fullscreen'] = $wd_bwg_options->popup_fullscreen;
+    }
+    if (!isset($params['popup_enable_google'])) {
+      $params['popup_enable_google'] = $wd_bwg_options->popup_enable_google;
+    }
+    if(!isset($params['popup_enable_twitter'])) {
+      $params['popup_enable_twitter'] = $wd_bwg_options->popup_enable_twitter;
+    }
+    if (!isset($params['popup_enable_facebook'])) {
+      $params['popup_enable_facebook'] = $wd_bwg_options->popup_enable_facebook;
+    }
+    if (!isset($params['popup_interval'])) {
+      $params['popup_interval'] = $wd_bwg_options->popup_interval;
+    }
+    if (!isset($params['popup_enable_comment'])) {
+      $params['popup_enable_comment'] = $wd_bwg_options->popup_enable_comment;
+    }
+    if (!isset($params['popup_enable_filmstrip'])) {
+      $params['popup_enable_filmstrip'] = $wd_bwg_options->popup_enable_filmstrip;
+    }
+    if (!isset($params['popup_filmstrip_height'])) {
+      $params['popup_filmstrip_height'] = $wd_bwg_options->popup_filmstrip_height;
+    }
+    if (!isset($params['popup_enable_ctrl_btn'])) {
+      $params['popup_enable_ctrl_btn'] = $wd_bwg_options->popup_enable_ctrl_btn;
+    }
+    if (!isset($params['popup_enable_fullscreen'])) {
+      $params['popup_enable_fullscreen'] = $wd_bwg_options->popup_enable_fullscreen;
+    }
+    if (!isset($params['popup_enable_info'])) {
+      $params['popup_enable_info'] = $wd_bwg_options->popup_enable_info;
+    }
+    if (!isset($params['popup_info_always_show'])) {
+      $params['popup_info_always_show'] = $wd_bwg_options->popup_info_always_show;
+    }
+    if (!isset($params['popup_hit_counter'])) {
+      $params['popup_hit_counter'] = $wd_bwg_options->popup_hit_counter;
+    }
+    if (!isset($params['popup_enable_rate'])) {
+      $params['popup_enable_rate'] = $wd_bwg_options->popup_enable_rate;
+    }
+    if (!isset($params['popup_effect'])) {
+      $params['popup_effect'] = $wd_bwg_options->popup_type;
+    }
+    if (!isset($params['popup_width'])) {
+      $params['popup_width'] = $wd_bwg_options->popup_width;
+    }
+    if (!isset($params['popup_height'])) {
+      $params['popup_height'] = $wd_bwg_options->popup_height;
+    }
+    if (!isset($params['popup_autoplay'])) {
+      $params['popup_autoplay'] = $wd_bwg_options->popup_autoplay;
+    }
+    if (!isset($params['watermark_type'])) {
+      $params['watermark_type'] = $wd_bwg_options->watermark_type;
+    }
+    if (!isset($params['watermark_link'])) {
+      $params['watermark_link'] = urlencode($wd_bwg_options->watermark_link);
+    }
+    if (!isset($params['watermark_opacity'])) {
+      $params['watermark_opacity'] = $wd_bwg_options->watermark_opacity;
+    }
+    if (!isset($params['watermark_position'])) {
+      $params['watermark_position'] = $wd_bwg_options->watermark_position;
+    }
+    if (!isset($params['watermark_url'])) {
+      $params['watermark_url'] = urlencode($wd_bwg_options->watermark_url);
+    }
+    if (!isset($params['watermark_width'])) {
+      $params['watermark_width'] = $wd_bwg_options->watermark_width;
+    }
+    if (!isset($params['watermark_height'])) {
+      $params['watermark_height'] = $wd_bwg_options->watermark_height;
+    }
+    if (!isset($params['watermark_text'])) {
+      $params['watermark_text'] = urlencode($wd_bwg_options->watermark_text);
+    }
+    if (!isset($params['watermark_font_size'])) {
+      $params['watermark_font_size'] = $wd_bwg_options->watermark_font_size;
+    }
+    if (!isset($params['watermark_font'])) {
+      $params['watermark_font'] = $wd_bwg_options->watermark_font;
+    }
+    if (!isset($params['watermark_color'])) {
+      $params['watermark_color'] = $wd_bwg_options->watermark_color;
+    }
+    $image_right_click = $wd_bwg_options->image_right_click;
     if (!$from) {
       $theme_id = (isset($params['theme_id']) ? esc_html($params['theme_id']) : 1);
       $theme_row = WDWLibrary::get_theme_row_data($theme_id);
@@ -71,36 +191,36 @@ class BWGViewSlideshow {
       $gallery_id = (isset($params['gallery_id']) ? esc_html($params['gallery_id']) : 0);
       $sort_by = 'order';
       $slideshow_effect = (isset($params['effect']) ? esc_html($params['effect']) : 'fade');
-      $enable_slideshow_autoplay = (isset($params['enable_autoplay']) ? esc_html($params['enable_autoplay']) : $options_row->slideshow_enable_autoplay);
+      $enable_slideshow_autoplay = (isset($params['enable_autoplay']) ? esc_html($params['enable_autoplay']) : $wd_bwg_options->slideshow_enable_autoplay);
       $enable_slideshow_shuffle = (isset($params['shuffle']) ? esc_html($params['shuffle']) : 0);
-      $enable_slideshow_ctrl = (isset($params['enable_ctrl_btn']) ? esc_html($params['enable_ctrl_btn']) : $options_row->slideshow_enable_ctrl);
+      $enable_slideshow_ctrl = (isset($params['enable_ctrl_btn']) ? esc_html($params['enable_ctrl_btn']) : $wd_bwg_options->slideshow_enable_ctrl);
       $enable_slideshow_filmstrip = FALSE;
       $slideshow_filmstrip_height = 0;
       $slideshow_filmstrip_width = 0;
 
-      $enable_image_title = $options_row->slideshow_enable_title;
-      $slideshow_title_position = explode('-', $options_row->slideshow_title_position);
-      $enable_image_description = $options_row->slideshow_enable_description;
-      $slideshow_description_position = explode('-', $options_row->slideshow_description_position);
-      $enable_slideshow_music = $options_row->slideshow_enable_music;
-      $slideshow_music_url = $options_row->slideshow_audio_url;
-      $slideshow_effect_duration = isset($options_row->slideshow_effect_duration) ? $options_row->slideshow_effect_duration : 1;
+      $enable_image_title = $wd_bwg_options->slideshow_enable_title;
+      $slideshow_title_position = explode('-', $wd_bwg_options->slideshow_title_position);
+      $enable_image_description = $wd_bwg_options->slideshow_enable_description;
+      $slideshow_description_position = explode('-', $wd_bwg_options->slideshow_description_position);
+      $enable_slideshow_music = $wd_bwg_options->slideshow_enable_music;
+      $slideshow_music_url = $wd_bwg_options->slideshow_audio_url;
+      $slideshow_effect_duration = isset($wd_bwg_options->slideshow_effect_duration) ? $wd_bwg_options->slideshow_effect_duration : 1;
 
       $image_width = (isset($params['width']) ? esc_html($params['width']) : '800');
       $image_height = (isset($params['height']) ? esc_html($params['height']) : '600');
       $slideshow_interval = (isset($params['interval']) ? esc_html($params['interval']) : 5);
-
-      $watermark_type = $options_row->watermark_type;
-      $watermark_text = $options_row->watermark_text;
-      $watermark_font_size = $options_row->watermark_font_size;
-      $watermark_font = $options_row->watermark_font;
-      $watermark_color = $options_row->watermark_color;
-      $watermark_opacity = $options_row->watermark_opacity;
-      $watermark_position = explode('-', $options_row->watermark_position);
-      $watermark_link = urlencode($options_row->watermark_link);
-      $watermark_url = urlencode($options_row->watermark_url);
-      $watermark_width = $options_row->watermark_width;
-      $watermark_height = $options_row->watermark_height;
+     
+      $watermark_type = $wd_bwg_options->watermark_type;
+      $watermark_text = $wd_bwg_options->watermark_text;
+      $watermark_font_size = $wd_bwg_options->watermark_font_size;
+      $watermark_font = $wd_bwg_options->watermark_font;
+      $watermark_color = $wd_bwg_options->watermark_color;
+      $watermark_opacity = $wd_bwg_options->watermark_opacity;
+      $watermark_position = explode('-', $wd_bwg_options->watermark_position);
+      $watermark_link = urlencode($wd_bwg_options->watermark_link);
+      $watermark_url = urlencode($wd_bwg_options->watermark_url);
+      $watermark_width = $wd_bwg_options->watermark_width;
+      $watermark_height = $wd_bwg_options->watermark_height;
     }
     $gallery_row = WDWLibrary::get_gallery_row_data($gallery_id);
     if (!$gallery_row && $params["tag"] == 0) {
@@ -137,461 +257,36 @@ class BWGViewSlideshow {
       $filmstrip_thumb_margin_left = $filmstrip_thumb_margin_right;
     }
     $filmstrip_thumb_margin_hor = $filmstrip_thumb_margin_right + $filmstrip_thumb_margin_left;
+    $inline_style = $this->inline_styles($bwg, $theme_row, $params, $image_width, $image_height, $slideshow_filmstrip_height, $wd_bwg_options, $filmstrip_thumb_margin_hor, $slideshow_filmstrip_width, $image_rows, $watermark_position, $slideshow_title_position, $slideshow_description_position, $watermark_height, $watermark_width, $watermark_opacity, $watermark_font_size, $watermark_font, $watermark_color, $enable_slideshow_filmstrip);
+    if ($wd_bwg_options->use_inline_stiles_and_scripts) {
+      wp_enqueue_style('bwg_frontend');
+      wp_add_inline_style('bwg_frontend', $inline_style);
+      wp_enqueue_style('bwg_font-awesome');
+      wp_enqueue_style('bwg_mCustomScrollbar');
+      $google_fonts = WDWLibrary::get_google_fonts();
+      wp_enqueue_style('bwg_googlefonts');
+      if ($params['thumb_click_action'] == 'open_lightbox') {
+        if (!wp_script_is('bwg_mCustomScrollbar', 'done')) {
+          wp_print_scripts('bwg_mCustomScrollbar');
+        }
+        if (!wp_script_is('jquery-fullscreen', 'done')) {
+          wp_print_scripts('jquery-fullscreen');
+        }
+        if (!wp_script_is('bwg_gallery_box', 'done')) {
+          wp_print_scripts('bwg_gallery_box');
+        }
+      }
+      if (!wp_script_is('bwg_frontend', 'done')) {
+        wp_print_scripts('bwg_frontend');
+      }
+      if (!wp_script_is('bwg_jquery_mobile', 'done')) {
+        wp_print_scripts('bwg_jquery_mobile');
+      }
+    }
+    else {
+      echo '<style>' . $inline_style . '</style>';
+    }
     ?>
-    <style>
-      #bwg_container1_<?php echo $bwg; ?> {
-        visibility: hidden;
-      }
-      #bwg_container1_<?php echo $bwg; ?> * {
-        -moz-user-select: none;
-        -khtml-user-select: none;
-        -webkit-user-select: none;
-        -ms-user-select: none;
-        user-select: none;
-      }
-      #bwg_container1_<?php echo $bwg; ?> #bwg_container2_<?php echo $bwg; ?> .bwg_slideshow_image_wrap_<?php echo $bwg; ?> * {
-        box-sizing: border-box;
-        -moz-box-sizing: border-box;
-        -webkit-box-sizing: border-box;
-        /*backface-visibility: hidden;
-        -webkit-backface-visibility: hidden;
-        -moz-backface-visibility: hidden;
-        -ms-backface-visibility: hidden;*/
-      }
-      #bwg_container1_<?php echo $bwg; ?> #bwg_container2_<?php echo $bwg; ?> .bwg_slideshow_image_wrap_<?php echo $bwg; ?> {
-        background-color: #<?php echo $theme_row->slideshow_cont_bg_color; ?>;
-        border-collapse: collapse;
-        display: table;
-        position: relative;
-        text-align: center;
-        width: <?php echo $image_width; ?>px;
-        height: <?php echo $image_height; ?>px;
-      }
-      #bwg_container1_<?php echo $bwg; ?> #bwg_container2_<?php echo $bwg; ?> .bwg_slideshow_image_<?php echo $bwg; ?> {
-        padding: 0 !important;
-        margin: 0 !important;
-        float: none !important;
-        max-width: <?php echo $image_width; ?>px;
-        max-height: <?php echo $image_height - $slideshow_filmstrip_height; ?>px;
-        vertical-align: middle;
-      }
-      #bwg_container1_<?php echo $bwg; ?> #bwg_container2_<?php echo $bwg; ?> .bwg_slideshow_embed_<?php echo $bwg; ?> {
-        padding: 0 !important;
-        margin: 0 !important;
-        float: none !important;
-        width: <?php echo $image_width; ?>px;
-        height: <?php echo $image_height - $slideshow_filmstrip_height; ?>px;
-        vertical-align: middle;
-        display: inline-block;
-        text-align: center;
-      }
-      #bwg_container1_<?php echo $bwg; ?> #bwg_container2_<?php echo $bwg; ?> .bwg_slideshow_watermark_<?php echo $bwg; ?> {
-        position: relative;
-        z-index: 15;
-      }
-      #bwg_container1_<?php echo $bwg; ?> #bwg_container2_<?php echo $bwg; ?> #bwg_slideshow_play_pause_<?php echo $bwg; ?> {
-        background: transparent url("<?php echo WD_BWG_URL . '/images/blank.gif'; ?>") repeat scroll 0 0;
-        bottom: 0;
-        cursor: pointer;
-        display: table;
-        height: inherit;
-        outline: medium none;
-        position: absolute;
-        width: 30%;
-        left: 35%;
-        z-index: 13;
-      }
-      #bwg_container1_<?php echo $bwg; ?> #bwg_container2_<?php echo $bwg; ?> #bwg_slideshow_play_pause_<?php echo $bwg; ?>:hover #bwg_slideshow_play_pause-ico_<?php echo $bwg; ?> {
-        display: inline-block !important;
-      }
-      #bwg_container1_<?php echo $bwg; ?> #bwg_container2_<?php echo $bwg; ?> #bwg_slideshow_play_pause_<?php echo $bwg; ?>:hover span {
-        position: relative;
-        z-index: 13;
-      }
-      #bwg_container1_<?php echo $bwg; ?> #bwg_container2_<?php echo $bwg; ?> #bwg_slideshow_play_pause_<?php echo $bwg; ?> span {
-        display: table-cell;
-        text-align: center;
-        vertical-align: middle;
-      }
-      #bwg_container1_<?php echo $bwg; ?> #bwg_container2_<?php echo $bwg; ?> #bwg_slideshow_play_pause-ico_<?php echo $bwg; ?> {  
-        display: none !important;
-        color: #<?php echo $theme_row->slideshow_rl_btn_color; ?>;        
-        font-size: <?php echo $theme_row->slideshow_play_pause_btn_size; ?>px;
-        cursor: pointer;
-        position: relative;
-        z-index: 13;
-      }
-      #bwg_container1_<?php echo $bwg; ?> #bwg_container2_<?php echo $bwg; ?> #bwg_slideshow_play_pause-ico_<?php echo $bwg; ?>:hover {  
-        color: #<?php echo $theme_row->slideshow_close_rl_btn_hover_color; ?>;
-        display: inline-block;
-        position: relative;
-        z-index: 13;
-      }
-      #bwg_container1_<?php echo $bwg; ?> #bwg_container2_<?php echo $bwg; ?> #spider_slideshow_left_<?php echo $bwg; ?>,
-      #bwg_container1_<?php echo $bwg; ?> #bwg_container2_<?php echo $bwg; ?> #spider_slideshow_right_<?php echo $bwg; ?> {
-        background: transparent url("<?php echo WD_BWG_URL . '/images/blank.gif'; ?>") repeat scroll 0 0;
-        bottom: 35%;
-        cursor: pointer;
-        display: inline;
-        height: 30%;
-        outline: medium none;
-        position: absolute;
-        width: 35%;
-        /*z-index: 10130;*/
-        z-index: 13;
-      }
-      #bwg_container1_<?php echo $bwg; ?> #bwg_container2_<?php echo $bwg; ?> #spider_slideshow_left_<?php echo $bwg; ?> {
-        left: 0;
-      }
-      #bwg_container1_<?php echo $bwg; ?> #bwg_container2_<?php echo $bwg; ?> #spider_slideshow_right_<?php echo $bwg; ?> {
-        right: 0;
-      }
-      #bwg_container1_<?php echo $bwg; ?> #bwg_container2_<?php echo $bwg; ?> #spider_slideshow_left_<?php echo $bwg; ?>:hover,
-      #bwg_container1_<?php echo $bwg; ?> #bwg_container2_<?php echo $bwg; ?> #spider_slideshow_right_<?php echo $bwg; ?>:hover {
-        visibility: visible;
-      }
-      #bwg_container1_<?php echo $bwg; ?> #bwg_container2_<?php echo $bwg; ?> #spider_slideshow_left_<?php echo $bwg; ?>:hover span {
-        left: 20px;
-      }
-      #bwg_container1_<?php echo $bwg; ?> #bwg_container2_<?php echo $bwg; ?> #spider_slideshow_right_<?php echo $bwg; ?>:hover span {
-        left: auto;
-        right: 20px;
-      }
-      #bwg_container1_<?php echo $bwg; ?> #bwg_container2_<?php echo $bwg; ?> #spider_slideshow_left-ico_<?php echo $bwg; ?> span,
-      #bwg_container1_<?php echo $bwg; ?> #bwg_container2_<?php echo $bwg; ?> #spider_slideshow_right-ico_<?php echo $bwg; ?> span {
-        display: table-cell;
-        text-align: center;
-        vertical-align: middle;
-        z-index: 13;
-      }
-      #bwg_container1_<?php echo $bwg; ?> #bwg_container2_<?php echo $bwg; ?> #spider_slideshow_left-ico_<?php echo $bwg; ?>,
-      #bwg_container1_<?php echo $bwg; ?> #bwg_container2_<?php echo $bwg; ?> #spider_slideshow_right-ico_<?php echo $bwg; ?> {
-        background-color: #<?php echo $theme_row->slideshow_rl_btn_bg_color; ?>;
-        border-radius: <?php echo $theme_row->slideshow_rl_btn_border_radius; ?>;
-        border: <?php echo $theme_row->slideshow_rl_btn_border_width; ?>px <?php echo $theme_row->slideshow_rl_btn_border_style; ?> #<?php echo $theme_row->slideshow_rl_btn_border_color; ?>;
-        box-shadow: <?php echo $theme_row->slideshow_rl_btn_box_shadow; ?>;
-        color: #<?php echo $theme_row->slideshow_rl_btn_color; ?>;
-        height: <?php echo $theme_row->slideshow_rl_btn_height; ?>px;
-        font-size: <?php echo $theme_row->slideshow_rl_btn_size; ?>px;
-        width: <?php echo $theme_row->slideshow_rl_btn_width; ?>px;
-        z-index: 13;
-        -moz-box-sizing: content-box;
-        box-sizing: content-box;
-        cursor: pointer;
-        display: table;
-        line-height: 0;
-        margin-top: -15px;
-        position: absolute;
-        top: 50%;
-        /*z-index: 10135;*/
-        opacity: <?php echo number_format($theme_row->slideshow_close_btn_transparent / 100, 2, ".", ""); ?>;
-        filter: Alpha(opacity=<?php echo $theme_row->slideshow_close_btn_transparent; ?>);
-      }
-      #bwg_container1_<?php echo $bwg; ?> #bwg_container2_<?php echo $bwg; ?> #spider_slideshow_left-ico_<?php echo $bwg; ?>:hover,
-      #bwg_container1_<?php echo $bwg; ?> #bwg_container2_<?php echo $bwg; ?> #spider_slideshow_right-ico_<?php echo $bwg; ?>:hover {
-        color: #<?php echo $theme_row->slideshow_close_rl_btn_hover_color; ?>;
-        cursor: pointer;
-      }
-      <?php
-	  if($options_row->autohide_slideshow_navigation){?>
-	  #spider_slideshow_left-ico_<?php echo $bwg; ?>{
-		   left: -9999px;
-	  }
-	#spider_slideshow_right-ico_<?php echo $bwg; ?>{
-		left: -9999px;
-	 }
-		
- <?php }
-       else{ ?>
-	    #spider_slideshow_left-ico_<?php echo $bwg; ?>{
-		   left: 20px;
-		}
-	   #spider_slideshow_right-ico_<?php echo $bwg; ?>{
-		   left: auto;
-           right: 20px;
-		}
-	  <?php } ?>
-      #bwg_container1_<?php echo $bwg; ?> #bwg_container2_<?php echo $bwg; ?> .bwg_slideshow_image_container_<?php echo $bwg; ?> {
-        display: table;
-        position: absolute;
-        text-align: center;
-        <?php echo $theme_row->slideshow_filmstrip_pos; ?>: <?php echo $slideshow_filmstrip_height; ?>px;
-        vertical-align: middle;
-        width: <?php echo $image_width; ?>px;
-        height: <?php echo $image_height; ?>px;
-      }
-      #bwg_container1_<?php echo $bwg; ?> #bwg_container2_<?php echo $bwg; ?> .bwg_slideshow_filmstrip_container_<?php echo $bwg; ?> {
-        display: table;
-        height: <?php echo $slideshow_filmstrip_height; ?>px;
-        position: absolute;
-        width: <?php echo $image_width; ?>px;
-        /*z-index: 10105;*/
-        <?php echo $theme_row->slideshow_filmstrip_pos; ?>: 0;
-      }
-      #bwg_container1_<?php echo $bwg; ?> #bwg_container2_<?php echo $bwg; ?> .bwg_slideshow_filmstrip_<?php echo $bwg; ?> {
-        left: 20px;
-        overflow: hidden;
-        position: absolute;
-        width: <?php echo $image_width - 40; ?>px;
-        /*z-index: 10106;*/
-      }
-      #bwg_container1_<?php echo $bwg; ?> #bwg_container2_<?php echo $bwg; ?> .bwg_slideshow_filmstrip_thumbnails_<?php echo $bwg; ?> {
-        height: <?php echo $slideshow_filmstrip_height; ?>px;
-        left: 0px;
-        margin: 0 auto;
-        overflow: hidden;
-        position: relative;
-        width: <?php echo ($slideshow_filmstrip_width + $filmstrip_thumb_margin_hor) * count($image_rows); ?>px;
-      }
-      #bwg_container1_<?php echo $bwg; ?> #bwg_container2_<?php echo $bwg; ?> .bwg_slideshow_filmstrip_thumbnail_<?php echo $bwg; ?> {
-        position: relative;
-        background: none;
-        border: <?php echo $theme_row->slideshow_filmstrip_thumb_border_width; ?>px <?php echo $theme_row->slideshow_filmstrip_thumb_border_style; ?> #<?php echo $theme_row->slideshow_filmstrip_thumb_border_color; ?>;
-        border-radius: <?php echo $theme_row->slideshow_filmstrip_thumb_border_radius; ?>;
-        cursor: pointer;
-        float: left;
-        height: <?php echo $slideshow_filmstrip_height; ?>px;
-        margin: <?php echo $theme_row->slideshow_filmstrip_thumb_margin; ?>;
-        width: <?php echo $slideshow_filmstrip_width; ?>px;
-        overflow: hidden;
-      }
-      #bwg_container1_<?php echo $bwg; ?> #bwg_container2_<?php echo $bwg; ?> .bwg_slideshow_thumb_active_<?php echo $bwg; ?> {
-        opacity: 1;
-        filter: Alpha(opacity=100);
-        border: <?php echo $theme_row->slideshow_filmstrip_thumb_active_border_width; ?>px solid #<?php echo $theme_row->slideshow_filmstrip_thumb_active_border_color; ?>;
-      }
-      #bwg_container1_<?php echo $bwg; ?> #bwg_container2_<?php echo $bwg; ?> .bwg_slideshow_thumb_deactive_<?php echo $bwg; ?> {
-        opacity: <?php echo number_format($theme_row->slideshow_filmstrip_thumb_deactive_transparent / 100, 2, ".", ""); ?>;
-        filter: Alpha(opacity=<?php echo $theme_row->slideshow_filmstrip_thumb_deactive_transparent; ?>);
-      }
-      #bwg_container1_<?php echo $bwg; ?> #bwg_container2_<?php echo $bwg; ?> .bwg_slideshow_filmstrip_thumbnail_img_<?php echo $bwg; ?> {
-        display: block;
-        opacity: 1;
-        filter: Alpha(opacity=100);
-        padding: 0 !important;
-      }
-      #bwg_container1_<?php echo $bwg; ?> #bwg_container2_<?php echo $bwg; ?> .bwg_slideshow_filmstrip_left_<?php echo $bwg; ?> {
-        background-color: #<?php echo $theme_row->slideshow_filmstrip_rl_bg_color; ?>;
-        cursor: pointer;
-        display: table-cell;
-        vertical-align: middle;
-        width: 20px;
-        /*z-index: 10106;*/
-        left: 0;
-      }
-      #bwg_container1_<?php echo $bwg; ?> #bwg_container2_<?php echo $bwg; ?> .bwg_slideshow_filmstrip_right_<?php echo $bwg; ?> {
-        background-color: #<?php echo $theme_row->slideshow_filmstrip_rl_bg_color; ?>;
-        cursor: pointer;
-        right: 0;
-        width: 20px;
-        display: table-cell;
-        vertical-align: middle;
-        /*z-index: 10106;*/
-      }
-      #bwg_container1_<?php echo $bwg; ?> #bwg_container2_<?php echo $bwg; ?> .bwg_slideshow_filmstrip_left_<?php echo $bwg; ?> i,
-      #bwg_container1_<?php echo $bwg; ?> #bwg_container2_<?php echo $bwg; ?> .bwg_slideshow_filmstrip_right_<?php echo $bwg; ?> i {
-        color: #<?php echo $theme_row->slideshow_filmstrip_rl_btn_color; ?>;
-        font-size: <?php echo $theme_row->slideshow_filmstrip_rl_btn_size; ?>px;
-      }
-      #bwg_container1_<?php echo $bwg; ?> #bwg_container2_<?php echo $bwg; ?> .bwg_none_selectable_<?php echo $bwg; ?> {
-        -webkit-touch-callout: none;
-        -webkit-user-select: none;
-        -khtml-user-select: none;
-        -moz-user-select: none;
-        -ms-user-select: none;
-        user-select: none;
-      }
-      #bwg_container1_<?php echo $bwg; ?> #bwg_container2_<?php echo $bwg; ?> .bwg_slideshow_watermark_container_<?php echo $bwg; ?> {
-        display: table-cell;
-        margin: 0 auto;
-        position: relative;
-        vertical-align: middle;
-      }
-      #bwg_container1_<?php echo $bwg; ?> #bwg_container2_<?php echo $bwg; ?> .bwg_slideshow_watermark_spun_<?php echo $bwg; ?> {
-        display: table-cell;
-        overflow: hidden;
-        position: relative;
-        text-align: <?php echo $watermark_position[1]; ?>;
-        vertical-align: <?php echo $watermark_position[0]; ?>;
-      }
-      #bwg_container1_<?php echo $bwg; ?> #bwg_container2_<?php echo $bwg; ?> .bwg_slideshow_title_spun_<?php echo $bwg; ?> {
-        display: table-cell;
-        overflow: hidden;
-        position: relative;
-        text-align: <?php echo $slideshow_title_position[1]; ?>;
-        vertical-align: <?php echo $slideshow_title_position[0]; ?>;
-      }
-      #bwg_container1_<?php echo $bwg; ?> #bwg_container2_<?php echo $bwg; ?> .bwg_slideshow_description_spun_<?php echo $bwg; ?> {
-        display: table-cell;
-        overflow: hidden;
-        position: relative;
-        text-align: <?php echo $slideshow_description_position[1]; ?>;
-        vertical-align: <?php echo $slideshow_description_position[0]; ?>;
-      }
-      #bwg_container1_<?php echo $bwg; ?> #bwg_container2_<?php echo $bwg; ?> .bwg_slideshow_watermark_image_<?php echo $bwg; ?> {
-        padding: 0 !important;
-        float: none !important;
-        margin: 4px !important;
-        max-height: <?php echo $watermark_height; ?>px;
-        max-width: <?php echo $watermark_width; ?>px;
-        opacity: <?php echo number_format($watermark_opacity / 100, 2, ".", ""); ?>;
-        filter: Alpha(opacity=<?php echo $watermark_opacity; ?>);
-        position: relative;
-        z-index: 15;
-      }
-      #bwg_container1_<?php echo $bwg; ?> #bwg_container2_<?php echo $bwg; ?> .bwg_slideshow_watermark_text_<?php echo $bwg; ?>,
-      #bwg_container1_<?php echo $bwg; ?> #bwg_container2_<?php echo $bwg; ?> .bwg_slideshow_watermark_text_<?php echo $bwg; ?>:hover {
-        text-decoration: none;
-        margin: 4px;
-        font-size: <?php echo $watermark_font_size; ?>px;
-        font-family: <?php echo $watermark_font; ?>;
-        color: #<?php echo $watermark_color; ?> !important;
-        opacity: <?php echo number_format($watermark_opacity / 100, 2, ".", ""); ?>;
-        filter: Alpha(opacity=<?php echo $watermark_opacity; ?>);
-        position: relative;
-        z-index: 15;
-      }
-      #bwg_container1_<?php echo $bwg; ?> #bwg_container2_<?php echo $bwg; ?> .bwg_slideshow_title_text_<?php echo $bwg; ?> {
-        text-decoration: none;
-        font-size: <?php echo $theme_row->slideshow_title_font_size; ?>px;
-        font-family: <?php echo $theme_row->slideshow_title_font; ?>;
-        color: #<?php echo $theme_row->slideshow_title_color; ?> !important;
-        opacity: <?php echo number_format($theme_row->slideshow_title_opacity / 100, 2, ".", ""); ?>;
-        filter: Alpha(opacity=<?php echo $theme_row->slideshow_title_opacity; ?>);
-        position: relative;
-        z-index: 11;
-        border-radius: <?php echo $theme_row->slideshow_title_border_radius; ?>;
-        background-color: #<?php echo $theme_row->slideshow_title_background_color; ?>;
-        padding: <?php echo $theme_row->slideshow_title_padding; ?>;
-        <?php if($params['slideshow_title_full_width']) { ?>
-        width: 100%;
-        <?php } else { ?>
-        margin: 5px;
-        <?php } ?>
-        display: inline-block;
-        word-wrap: break-word;
-        word-break: break-word;
-        <?php if (!$enable_slideshow_filmstrip && $slideshow_title_position[0] == $theme_row->slideshow_filmstrip_pos) echo $theme_row->slideshow_filmstrip_pos . ':' . ($theme_row->slideshow_dots_height + 4) . 'px;'; ?>
-      }
-      #bwg_container1_<?php echo $bwg; ?> #bwg_container2_<?php echo $bwg; ?> .bwg_slideshow_description_text_<?php echo $bwg; ?> {
-        text-decoration: none;
-        font-size: <?php echo $theme_row->slideshow_description_font_size; ?>px;
-        font-family: <?php echo $theme_row->slideshow_description_font; ?>;
-        color: #<?php echo $theme_row->slideshow_description_color; ?> !important;
-        opacity: <?php echo number_format($theme_row->slideshow_description_opacity / 100, 2, ".", ""); ?>;
-        filter: Alpha(opacity=<?php echo $theme_row->slideshow_description_opacity; ?>);
-        position: relative;
-        z-index: 15;
-        border-radius: <?php echo $theme_row->slideshow_description_border_radius; ?>;
-        background-color: #<?php echo $theme_row->slideshow_description_background_color; ?>;
-        padding: <?php echo $theme_row->slideshow_description_padding; ?>;
-        margin: 5px;
-        display: inline-block;
-        word-wrap: break-word;
-        word-break: break-word;
-        <?php if (!$enable_slideshow_filmstrip && $slideshow_description_position[0] == $theme_row->slideshow_filmstrip_pos) echo $theme_row->slideshow_filmstrip_pos . ':' . ($theme_row->slideshow_dots_height + 4) . 'px;'; ?>        
-      }
-      #bwg_container1_<?php echo $bwg; ?> #bwg_container2_<?php echo $bwg; ?> .bwg_slideshow_description_text_<?php echo $bwg; ?> * {
-        text-decoration: none;
-        color: #<?php echo $theme_row->slideshow_description_color; ?> !important;                
-      }
-      #bwg_container1_<?php echo $bwg; ?> #bwg_container2_<?php echo $bwg; ?> .bwg_slide_container_<?php echo $bwg; ?> {
-        display: table-cell;
-        margin: 0 auto;
-        position: absolute;
-        vertical-align: middle;
-        width: 100%;
-        height: 100%;
-      }
-      #bwg_container1_<?php echo $bwg; ?> #bwg_container2_<?php echo $bwg; ?> .bwg_slide_bg_<?php echo $bwg; ?> {
-        margin: 0 auto;
-        width: inherit;
-        height: inherit;
-      }
-      #bwg_container1_<?php echo $bwg; ?> #bwg_container2_<?php echo $bwg; ?> .bwg_slider_<?php echo $bwg; ?> {
-        height: inherit;
-        width: inherit;
-      }
-      #bwg_container1_<?php echo $bwg; ?> #bwg_container2_<?php echo $bwg; ?> .bwg_slideshow_image_spun_<?php echo $bwg; ?> {
-        width: inherit;
-        height: inherit;
-        display: table-cell;
-        filter: Alpha(opacity=100);
-        opacity: 1;
-        position: absolute;
-        vertical-align: middle;
-        z-index: 2;
-      }
-      #bwg_container1_<?php echo $bwg; ?> #bwg_container2_<?php echo $bwg; ?> .bwg_slideshow_image_second_spun_<?php echo $bwg; ?> {
-        width: inherit;
-        height: inherit;
-        display: table-cell;
-        filter: Alpha(opacity=0);
-        opacity: 0;
-        position: absolute;
-        vertical-align: middle;
-        z-index: 1;
-      }
-      #bwg_container1_<?php echo $bwg; ?> #bwg_container2_<?php echo $bwg; ?> .bwg_grid_<?php echo $bwg; ?> {
-        display: none;
-        height: 100%;
-        overflow: hidden;
-        position: absolute;
-        width: 100%;
-      }
-      #bwg_container1_<?php echo $bwg; ?> #bwg_container2_<?php echo $bwg; ?> .bwg_gridlet_<?php echo $bwg; ?> {
-        opacity: 1;
-        filter: Alpha(opacity=100);
-        position: absolute;
-      }
-      #bwg_container1_<?php echo $bwg; ?> #bwg_container2_<?php echo $bwg; ?> .bwg_slideshow_dots_<?php echo $bwg; ?> {
-        display: inline-block;
-        position: relative;
-        width: <?php echo $theme_row->slideshow_dots_width; ?>px;
-        height: <?php echo $theme_row->slideshow_dots_height; ?>px;
-        border-radius: <?php echo $theme_row->slideshow_dots_border_radius; ?>;
-        background: #<?php echo $theme_row->slideshow_dots_background_color; ?>;
-        margin: <?php echo $theme_row->slideshow_dots_margin; ?>px;
-        cursor: pointer;
-        overflow: hidden;
-        z-index: 17;
-      }
-      #bwg_container1_<?php echo $bwg; ?> #bwg_container2_<?php echo $bwg; ?> .bwg_slideshow_dots_container_<?php echo $bwg; ?> {
-        display: block;
-        overflow: hidden;
-        position: absolute;
-        width: <?php echo $image_width; ?>px;
-        <?php echo $theme_row->slideshow_filmstrip_pos; ?>: 0;
-        z-index: 17;
-      }
-      #bwg_container1_<?php echo $bwg; ?> #bwg_container2_<?php echo $bwg; ?> .bwg_slideshow_dots_thumbnails_<?php echo $bwg; ?> {
-        left: 0px;
-        font-size: 0;
-        margin: 0 auto;
-        overflow: hidden;
-        position: relative;
-        height: <?php echo ($theme_row->slideshow_dots_height + $theme_row->slideshow_dots_margin * 2); ?>px;
-        width: <?php echo ($theme_row->slideshow_dots_width + $theme_row->slideshow_dots_margin * 2) * count($image_rows); ?>px;
-      }
-      #bwg_container1_<?php echo $bwg; ?> #bwg_container2_<?php echo $bwg; ?> .bwg_slideshow_dots_active_<?php echo $bwg; ?> {
-        background: #<?php echo $theme_row->slideshow_dots_active_background_color; ?>;
-        opacity: 1;
-        filter: Alpha(opacity=100);
-        border: <?php echo $theme_row->slideshow_dots_active_border_width; ?>px solid #<?php echo $theme_row->slideshow_dots_active_border_color; ?>;
-      }
-      #bwg_container1_<?php echo $bwg; ?> #bwg_container2_<?php echo $bwg; ?> .bwg_slideshow_dots_deactive_<?php echo $bwg; ?> {
-      }
-      #bwg_container1_<?php echo $bwg; ?> #bwg_container2_<?php echo $bwg; ?> .bwg_slideshow_image_spun1_<?php echo $bwg; ?> {
-        display: table; 
-        width: inherit; 
-        height: inherit;
-      }
-      #bwg_container1_<?php echo $bwg; ?> #bwg_container2_<?php echo $bwg; ?> .bwg_slideshow_image_spun2_<?php echo $bwg; ?> {
-        display: table-cell; 
-        vertical-align: middle; 
-        text-align: center;
-      }
-    </style>
     <script>
       var data_<?php echo $bwg; ?> = [];
       var event_stack_<?php echo $bwg; ?> = [];
@@ -606,6 +301,8 @@ class BWGViewSlideshow {
         data_<?php echo $bwg; ?>["<?php echo $key; ?>"]["id"] = "<?php echo $image_row->id; ?>";
         data_<?php echo $bwg; ?>["<?php echo $key; ?>"]["alt"] = "<?php echo $image_row->alt; ?>";
         data_<?php echo $bwg; ?>["<?php echo $key; ?>"]["description"] = "<?php echo str_replace(array("\r\n", "\n", "\r"), esc_html('<br />'), $image_row->description); ?>";
+        data_<?php echo $bwg; ?>["<?php echo $key; ?>"]["filetype"] = "<?php echo $image_row->filetype; ?>";
+        data_<?php echo $bwg; ?>["<?php echo $key; ?>"]["filename"] = "<?php echo $image_row->filename; ?>";
         data_<?php echo $bwg; ?>["<?php echo $key; ?>"]["image_url"] = "<?php echo $image_row->image_url; ?>";
         data_<?php echo $bwg; ?>["<?php echo $key; ?>"]["thumb_url"] = "<?php echo $image_row->thumb_url; ?>";
         data_<?php echo $bwg; ?>["<?php echo $key; ?>"]["date"] = "<?php echo $image_row->date; ?>";
@@ -618,6 +315,9 @@ class BWGViewSlideshow {
     <div id="bwg_container1_<?php echo $bwg; ?>">
       <div id="bwg_container2_<?php echo $bwg; ?>">
         <div class="bwg_slideshow_image_wrap_<?php echo $bwg; ?>">
+          <div id="ajax_loading_<?php echo $bwg; ?>" style="text-align: center; top: 0; left: 0; width: 100%; height: 100%; z-index: 99999;">
+            <img src="<?php echo WD_BWG_URL . '/images/ajax_loader.gif'; ?>" style="width: 30px; border: medium none; visibility: visible;">
+          </div>
           <?php
           $current_pos = 0;
           if (!$enable_slideshow_filmstrip) {
@@ -658,8 +358,10 @@ class BWGViewSlideshow {
                         <span class="bwg_slideshow_image_spun2_<?php echo $bwg; ?>">
                           <?php 
                             if (!$is_embed) {
-                            ?>
+                          ?>
+                            <a <?php echo ($params['thumb_click_action'] == 'open_lightbox' ? (' class="bwg_lightbox_' . $bwg . '"' . ($wd_bwg_options->enable_seo ? ' href="' . ($is_embed ? $image_row->thumb_url : site_url() . '/' . $WD_BWG_UPLOAD_DIR . $image_row->image_url) . '"' : '') . ' data-image-id="' . $image_row->id . '"') : ($params['thumb_click_action'] == 'redirect_to_url' && $image_row->redirect_url ? 'href="' . $image_row->redirect_url . '" target="' .  ($params['thumb_link_target'] ? '_blank' : '')  . '"' : '')) ?>>
                             <img id="bwg_slideshow_image_<?php echo $bwg; ?>" class="bwg_slideshow_image_<?php echo $bwg; ?>" src="<?php echo site_url() . '/' . $WD_BWG_UPLOAD_DIR . $image_row->image_url; ?>" image_id="<?php echo $image_row->id; ?>" alt="<?php echo $image_row->alt; ?>"/>
+                            </a>
                             <?php 
                             }
                             else{  /*$is_embed*/?>
@@ -697,8 +399,11 @@ class BWGViewSlideshow {
                         </span>
                       </span>
                     </span>
+                    <span class="bwg_slideshow_image_second_spun_<?php echo $bwg; ?>">
+                    </span>
                     <input type="hidden" id="bwg_current_image_key_<?php echo $bwg; ?>" value="<?php echo $key; ?>" />
                     <?php
+                    break;
                   }
                   else {
                     ?>
@@ -706,10 +411,12 @@ class BWGViewSlideshow {
                       <span class="bwg_slideshow_image_spun1_<?php echo $bwg; ?>">
                         <span class="bwg_slideshow_image_spun2_<?php echo $bwg; ?>">
                           <?php 
-                            if (! $is_embed) {
+                            if (!$is_embed) {
                             ?>
+                            <a <?php echo ($params['thumb_click_action'] == 'open_lightbox' ? (' class="bwg_lightbox_' . $bwg . '"' . ($wd_bwg_options->enable_seo ? ' href="' . ($is_embed ? $image_row->thumb_url : site_url() . '/' . $WD_BWG_UPLOAD_DIR . $image_row->image_url) . '"' : '') . ' data-image-id="' . $image_row->id . '"') : ($params['thumb_click_action'] == 'redirect_to_url' && $image_row->redirect_url ? 'href="' . $image_row->redirect_url . '" target="' .  ($params['thumb_link_target'] ? '_blank' : '')  . '"' : '')) ?>>
                             <img class="bwg_slideshow_image_<?php echo $bwg; ?>" src="<?php echo site_url() . '/' . $WD_BWG_UPLOAD_DIR . $image_row->image_url; ?>" alt="<?php echo $image_row->alt; ?>"/>
-                          <?php 
+                            </a>
+                          <?php
                             }
                             else {   /*$is_embed*/ ?>
                             <span class="bwg_slideshow_embed_<?php echo $bwg; ?>">
@@ -827,10 +534,63 @@ class BWGViewSlideshow {
           }
           ?>
         </div>
+        <div id="bwg_spider_popup_loading_<?php echo $bwg; ?>" class="bwg_spider_popup_loading"></div>
+        <div id="spider_popup_overlay_<?php echo $bwg; ?>" class="spider_popup_overlay" onclick="spider_destroypopup(1000)"></div>
       </div>
     </div>
-
+    <script language="javascript" type="text/javascript" src="<?php echo WD_BWG_URL . '/js/bwg_embed.js?ver=' . wd_bwg_version(); ?>"></script>
     <script>
+    <?php
+    $params_array = array(
+      'action' => 'GalleryBox',
+      'current_view' => $bwg,
+      'gallery_id' => $params['gallery_id'],
+      'theme_id' => $params['theme_id'],
+      'open_with_fullscreen' => $params['popup_fullscreen'],
+      'open_with_autoplay' => $params['popup_autoplay'],
+      'image_width' => $params['popup_width'],
+      'image_height' => $params['popup_height'],
+      'image_effect' => $params['popup_effect'],
+      'wd_sor' => $sort_by,
+      'wd_ord' => $order_by,
+      'enable_image_filmstrip' => $params['popup_enable_filmstrip'],
+      'image_filmstrip_height' => $params['popup_filmstrip_height'],
+      'enable_image_ctrl_btn' => $params['popup_enable_ctrl_btn'],
+      'enable_image_fullscreen' => $params['popup_enable_fullscreen'],
+      'popup_enable_info' => $params['popup_enable_info'],
+      'popup_info_always_show' => $params['popup_info_always_show'],
+      'popup_info_full_width' => $params['popup_info_full_width'],
+      'popup_hit_counter' => $params['popup_hit_counter'],
+      'popup_enable_rate' => $params['popup_enable_rate'],
+      'slideshow_interval' => $params['popup_interval'],
+      'enable_comment_social' => $params['popup_enable_comment'],
+      'enable_image_facebook' => $params['popup_enable_facebook'],
+      'enable_image_twitter' => $params['popup_enable_twitter'],
+      'enable_image_google' => $params['popup_enable_google'],
+      'enable_image_pinterest' => $params['popup_enable_pinterest'],
+      'enable_image_tumblr' => $params['popup_enable_tumblr'],
+      'watermark_type' => $params['watermark_type'],
+      'slideshow_effect_duration' => isset($params['popup_effect_duration']) ? $params['popup_effect_duration'] : 1,
+      'tag' => (isset($params['tag']) ? $params['tag'] : 0),
+      'current_url' => urlencode($current_url)
+    );
+        if ($params['watermark_type'] != 'none') {
+          $params_array['watermark_link'] = urlencode($params['watermark_link']);
+          $params_array['watermark_opacity'] = $params['watermark_opacity'];
+          $params_array['watermark_position'] = $params['watermark_position'];
+        }
+        if ($params['watermark_type'] == 'text') {
+          $params_array['watermark_text'] = urlencode($params['watermark_text']);
+          $params_array['watermark_font_size'] = $params['watermark_font_size'];
+          $params_array['watermark_font'] = $params['watermark_font'];
+          $params_array['watermark_color'] = $params['watermark_color'];
+        }
+        elseif ($params['watermark_type'] == 'image') {
+          $params_array['watermark_url'] = urlencode($params['watermark_url']);
+          $params_array['watermark_width'] = $params['watermark_width'];
+          $params_array['watermark_height'] = $params['watermark_height'];
+        }
+   ?>
       var bwg_trans_in_progress_<?php echo $bwg; ?> = false;
       var bwg_transition_duration_<?php echo $bwg; ?> = <?php echo (($slideshow_interval < 4) && ($slideshow_interval != 0)) ? ($slideshow_interval * 1000) / 4 : ($slideshow_effect_duration * 1000); ?>;
       var bwg_playInterval_<?php echo $bwg; ?>;
@@ -1226,6 +986,7 @@ class BWGViewSlideshow {
         }
         return iterator;
       }
+      
       function bwg_change_image_<?php echo $bwg; ?>(current_key, key, data_<?php echo $bwg; ?>, from_effect) {
         /* Pause videos.*/
         jQuery("#bwg_slideshow_image_container_<?php echo $bwg; ?>").find("iframe").each(function () {
@@ -1268,8 +1029,57 @@ class BWGViewSlideshow {
           jQuery("#bwg_slideshow_image_<?php echo $bwg; ?>").attr('image_id', data_<?php echo $bwg; ?>[key]["id"]);
           jQuery(".bwg_slideshow_title_text_<?php echo $bwg; ?>").html(jQuery('<span style="display: block;" />').html(data_<?php echo $bwg; ?>[key]["alt"]).text());
           jQuery(".bwg_slideshow_description_text_<?php echo $bwg; ?>").html(jQuery('<span style="display: block;" />').html(data_<?php echo $bwg; ?>[key]["description"]).text());
-          var current_image_class = "#image_id_<?php echo $bwg; ?>_" + data_<?php echo $bwg; ?>[current_key]["id"];
-          var next_image_class = "#image_id_<?php echo $bwg; ?>_" + data_<?php echo $bwg; ?>[key]["id"];
+          /*var current_image_class = "#image_id_<?php echo $bwg; ?>_" + data_<?php echo $bwg; ?>[current_key]["id"];
+          var next_image_class = "#image_id_<?php echo $bwg; ?>_" + data_<?php echo $bwg; ?>[key]["id"];*/
+          var current_image_class = jQuery(".bwg_slideshow_image_spun_<?php echo $bwg; ?>").css("zIndex") == 2 ? ".bwg_slideshow_image_spun_<?php echo $bwg; ?>" : ".bwg_slideshow_image_second_spun_<?php echo $bwg; ?>";
+          var next_image_class = current_image_class == ".bwg_slideshow_image_second_spun_<?php echo $bwg; ?>" ? ".bwg_slideshow_image_spun_<?php echo $bwg; ?>" : ".bwg_slideshow_image_second_spun_<?php echo $bwg; ?>";
+
+          var is_embed = data_<?php echo $bwg; ?>[key]['filetype'].indexOf("EMBED_") > -1 ? true : false;
+          var is_embed_instagram_post = data_<?php echo $bwg; ?>[key]['filetype'].indexOf('INSTAGRAM_POST') > -1 ? true :false;
+          var cur_height = jQuery(current_image_class).height();
+          var cur_width = jQuery(current_image_class).width();
+          var innhtml = '<span class="bwg_slideshow_image_spun1_<?php echo $bwg; ?>"><span class="bwg_slideshow_image_spun2_<?php echo $bwg; ?>" style="display:table-cell;">';
+          if (!is_embed) {
+            <?php
+              if ($params['thumb_click_action'] != 'do_nothing' ) {
+            ?>
+                innhtml += '<a' + <?php if ($params['thumb_click_action'] == 'open_lightbox') { echo '\' class="bwg_lightbox_' . $bwg . '" data-image-id="\' + data_' . $bwg . '[key][\'id\'] + \'"'; }  else { echo ($params['thumb_click_action'] == 'redirect_to_url' && 'data_' . $bwg . '[key][\'redirect_url\']') ? '\' href="\'+ data_' . $bwg . '[key][\'redirect_url\']+\'" target="' . ($params['thumb_link_target'] ? '_blank' : '')  . '"' : '';} ?> '+'>';
+            <?php    
+              }
+            ?>
+              innhtml += '<img style="max-height: ' + cur_height + 'px !important; max-width: ' + cur_width + 'px !important; display:inline-block;" class="bwg_slideshow_image_<?php echo $bwg; ?>" id="bwg_slideshow_image_<?php echo $bwg; ?>" src="<?php echo site_url() . '/' . $WD_BWG_UPLOAD_DIR; ?>' + jQuery('<span style="display: block;" />').html(data_<?php echo $bwg; ?>[key]["image_url"]).text() + '" alt="' + data_<?php echo $bwg; ?>[key]["alt"] + '" image_id="' + data_<?php echo $bwg; ?>[key]["id"] + '" />';
+          }
+          else { /*is_embed*/
+            innhtml += '<span style="height: ' + cur_height + 'px; width: ' + cur_width + 'px;" class="bwg_popup_embed bwg_popup_watermark">';
+            if (is_embed_instagram_post) {
+              var post_width = 0;
+              var post_height = 0;
+              if (cur_height < cur_width + 88) {
+                post_height = cur_height;
+                post_width = post_height - 88;
+              }
+              else {
+                post_width = cur_width;
+                post_height = post_width + 88;
+              }
+              innhtml += spider_display_embed(data_<?php echo $bwg; ?>[key]['filetype'], data_<?php echo $bwg; ?>[key]['filename'], {class:"bwg_embed_frame", 'data-width': data_<?php echo $bwg; ?>[key]['image_width'], 'data-height': data_<?php echo $bwg; ?>[key]['image_height'], frameborder: "0", allowfullscreen: "allowfullscreen", style: "width:" + post_width + "px; height:" + post_height + "px; vertical-align:middle; display:inline-block; position:relative;"});
+              
+            }
+            else {
+              innhtml += spider_display_embed(data_<?php echo $bwg; ?>[key]['filetype'], data_<?php echo $bwg; ?>[key]['filename'], {class:"bwg_embed_frame", frameborder:"0", allowfullscreen:"allowfullscreen", style:"width:inherit; height:inherit; vertical-align:middle; display:table-cell;" });
+            }
+            innhtml += "</span>";
+          }
+          innhtml += '</span></span>';
+          jQuery(next_image_class).html(innhtml);
+          if ('<?php echo $params['thumb_click_action']; ?>' == 'open_lightbox' || <?php echo $image_right_click; ?>) {
+            bwg_document_ready_<?php echo $bwg; ?>();
+          }
+          <?php
+          if ($wd_bwg_options->preload_images) {
+            echo "bwg_preload_images_" .  $bwg . "(key);";
+          }
+          ?>
           bwg_<?php echo $slideshow_effect; ?>_<?php echo $bwg; ?>(current_image_class, next_image_class, direction);
           <?php
           if ($enable_slideshow_filmstrip) {
@@ -1290,6 +1100,35 @@ class BWGViewSlideshow {
             jQuery("#bwg_slideshow_play_pause_<?php echo $bwg; ?>").css({display: ''});            
           }
         }
+      }
+      function bwg_preload_images_<?php echo $bwg; ?>(key) {
+        count = <?php echo (int) $wd_bwg_options->preload_images_count / 2; ?>;
+        var count_all = data_<?php echo $bwg; ?>.length;
+        if (count_all < <?php echo $wd_bwg_options->preload_images_count; ?>) {
+          count = 0;
+        }
+        if (count != 0) {
+          for (var i = key - count; i < key + count; i++) {
+            var index = parseInt((i + count_all) % count_all);
+            var is_embed = data_<?php echo $bwg; ?>[index]['filetype'].indexOf("EMBED_") > -1 ? true : false;
+            if (typeof data_<?php echo $bwg; ?>[index] != "undefined") {
+              if (!is_embed) {
+                jQuery("<img/>").attr("src", '<?php echo site_url() . '/' . $WD_BWG_UPLOAD_DIR; ?>' + jQuery('<span style="display: block;" />').html(data_<?php echo $bwg; ?>[index]["image_url"]).text());
+              }
+            }
+          }
+        }
+        else {
+          for (var i = 0; i < data_<?php echo $bwg; ?>.length; i++) {
+            var is_embed = data_<?php echo $bwg; ?>[i]['filetype'].indexOf("EMBED_") > -1 ? true : false;
+            if (typeof data_<?php echo $bwg; ?>[i] != "undefined") {
+              if (!is_embed) {
+                jQuery("<img/>").attr("src", '<?php echo site_url() . '/' . $WD_BWG_UPLOAD_DIR; ?>' + jQuery('<span style="display: block;" />').html(data_<?php echo $bwg; ?>[i]["image_url"]).text());
+              }
+            }
+          }
+        }
+        
       }
       function bwg_popup_resize_<?php echo $bwg; ?>() {
         var parent_width = jQuery(".bwg_slideshow_image_wrap_<?php echo $bwg; ?>").parent().width();
@@ -1338,12 +1177,20 @@ class BWGViewSlideshow {
           jQuery(".bwg_slideshow_watermark_text_<?php echo $bwg; ?>, .bwg_slideshow_watermark_text_<?php echo $bwg; ?>:hover").css({fontSize: ((parent_width) * <?php echo $watermark_font_size / $image_width; ?>)});
           jQuery(".bwg_slideshow_title_text_<?php echo $bwg; ?>").css({fontSize: ((parent_width) * <?php echo 2 * $theme_row->slideshow_title_font_size / $image_width; ?>)});
           jQuery(".bwg_slideshow_description_text_<?php echo $bwg; ?>").css({fontSize: ((parent_width) * <?php echo 2 * $theme_row->slideshow_description_font_size / $image_width; ?>)});
+          jQuery(".bwg_slideshow_image_<?php echo $bwg; ?>").css({'display':'inline-block'});
+        }
+        if (data_<?php echo $bwg; ?>[parseInt(jQuery("#bwg_current_image_key_<?php echo $bwg; ?>").val())]["is_embed_video"]) {
+          jQuery("#bwg_slideshow_play_pause_<?php echo $bwg; ?>").css({display: 'none'});
+        }
+        else {
+          jQuery("#bwg_slideshow_play_pause_<?php echo $bwg; ?>").css({display: ''});            
         }
       }
-      jQuery(window).resize(function() {
+      jQuery(document).ready(function() {
         bwg_popup_resize_<?php echo $bwg; ?>();
       });
-      jQuery(window).load(function () {
+      jQuery(document).ready(function () {
+        jQuery('#ajax_loading_<?php echo $bwg; ?>').hide();
       	<?php
         if ($image_right_click) {
           ?>
@@ -1399,7 +1246,7 @@ class BWGViewSlideshow {
           }
           return false;
         });
-        jQuery(".bwg_slideshow_filmstrip_right_<?php echo $bwg; ?>").on(bwg_click, function () {
+        jQuery(".bwg_slideshow_filmstrip_right_<?php echo $bwg; ?>").click(function () {
           jQuery( ".bwg_slideshow_filmstrip_thumbnails_<?php echo $bwg; ?>" ).stop(true, false);
           if (jQuery(".bwg_slideshow_filmstrip_thumbnails_<?php echo $bwg; ?>").position().left >= -(jQuery(".bwg_slideshow_filmstrip_thumbnails_<?php echo $bwg; ?>").width() - jQuery(".bwg_slideshow_filmstrip_<?php echo $bwg; ?>").width())) {
             jQuery(".bwg_slideshow_filmstrip_left_<?php echo $bwg; ?>").css({opacity: 1, filter: "Alpha(opacity=100)"});
@@ -1417,7 +1264,7 @@ class BWGViewSlideshow {
             }
           }, 500);
         });
-        jQuery(".bwg_slideshow_filmstrip_left_<?php echo $bwg; ?>").on(bwg_click, function () {
+        jQuery(".bwg_slideshow_filmstrip_left_<?php echo $bwg; ?>").click(function () {
           jQuery( ".bwg_slideshow_filmstrip_thumbnails_<?php echo $bwg; ?>" ).stop(true, false);
           if (jQuery(".bwg_slideshow_filmstrip_thumbnails_<?php echo $bwg; ?>").position().left < 0) {
             jQuery(".bwg_slideshow_filmstrip_right_<?php echo $bwg; ?>").css({opacity: 1, filter: "Alpha(opacity=100)"});
@@ -1438,7 +1285,7 @@ class BWGViewSlideshow {
         /* Set filmstrip initial position.*/
         bwg_set_filmstrip_pos_<?php echo $bwg; ?>(jQuery(".bwg_slideshow_filmstrip_<?php echo $bwg; ?>").width());
         /* Play/pause.*/
-        jQuery("#bwg_slideshow_play_pause_<?php echo $bwg; ?>").on(bwg_click, function () {
+        jQuery("#bwg_slideshow_play_pause_<?php echo $bwg; ?>").click(function () {
           if (jQuery(".bwg_ctrl_btn_<?php echo $bwg; ?>").hasClass("fa-play")) {
             bwg_play_<?php echo $bwg; ?>();
             jQuery(".bwg_slideshow_play_pause_<?php echo $bwg; ?>").attr("title", "<?php echo __('Pause', 'bwg'); ?>");
@@ -1465,6 +1312,11 @@ class BWGViewSlideshow {
             document.getElementById("bwg_audio_<?php echo $bwg; ?>").play();
           }
         }
+        <?php
+        if ($wd_bwg_options->preload_images) {
+          echo "bwg_preload_images_" .  $bwg . "(parseInt(jQuery('#bwg_current_image_key_" . $bwg . "').val()));";
+        }
+        ?>
         jQuery(".bwg_slideshow_image_<?php echo $bwg; ?>").removeAttr("width");
         jQuery(".bwg_slideshow_image_<?php echo $bwg; ?>").removeAttr("height");
       });
@@ -1514,6 +1366,52 @@ class BWGViewSlideshow {
         event_stack_<?php echo $bwg; ?> = [];
         window.clearInterval(bwg_playInterval_<?php echo $bwg; ?>);
       });
+      function bwg_gallery_box_<?php echo $bwg; ?>(image_id, openEcommerce) {
+        if(typeof openEcommerce == undefined){
+          openEcommerce = false;
+        }
+        var ecommerce = openEcommerce == true ? "&open_ecommerce=1" : "";
+        var filterTags = jQuery("#bwg_tags_id_bwg_standart_thumbnails_<?php echo $bwg; ?>" ).val() ? jQuery("#bwg_tags_id_bwg_standart_thumbnails_<?php echo $bwg; ?>" ).val() : 0;
+        var filtersearchname = jQuery("#bwg_search_input_<?php echo $bwg; ?>" ).val() ? jQuery("#bwg_search_input_<?php echo $bwg; ?>" ).val() : '';
+        spider_createpopup('<?php echo addslashes(add_query_arg($params_array, admin_url('admin-ajax.php'))); ?>&image_id=' + image_id + "&filter_tag_<?php echo $bwg; ?>=" +  filterTags + ecommerce + "&filter_search_name_<?php echo $bwg; ?>=" +  filtersearchname, '<?php echo $bwg; ?>', '<?php echo $params['popup_width']; ?>', '<?php echo $params['popup_height']; ?>', 1, 'testpopup', 5, "<?php echo $theme_row->lightbox_ctrl_btn_pos ;?>");
+      }
+       function bwg_document_ready_<?php echo $bwg; ?>() {
+         
+        var bwg_touch_flag = false;
+        jQuery(".bwg_lightbox_<?php echo $bwg; ?>").on("click", function () {
+          if (!bwg_touch_flag) {
+            bwg_touch_flag = true;
+            setTimeout(function(){ bwg_touch_flag = false; }, 100);
+            bwg_gallery_box_<?php echo $bwg; ?>(jQuery(this).attr("data-image-id"));
+            return false;
+          }
+        });
+        
+        jQuery(".bwg_lightbox_<?php echo $bwg; ?> .bwg_ecommerce").on("click", function (event) {
+          event.stopPropagation();
+          if (!bwg_touch_flag) {
+            bwg_touch_flag = true;
+            setTimeout(function(){ bwg_touch_flag = false; }, 100);
+			      var image_id = jQuery(this).closest(".bwg_lightbox_<?php echo $bwg; ?>").attr("data-image-id");
+            bwg_gallery_box_<?php echo $bwg; ?>(image_id, true);
+            return false;
+          }
+        });       
+        <?php 
+        if ($image_right_click) {
+          ?>
+          /* Disable right click.*/
+          jQuery('div[id^="bwg_container"]').bind("contextmenu", function () {
+            return false;
+          });
+          jQuery('div[id^="bwg_container"]').css('webkitTouchCallout','none');
+          <?php
+        }
+        ?>
+      }
+      jQuery(document).ready(function () {
+        bwg_document_ready_<?php echo $bwg; ?>();
+      });
     </script>
     <?php
     if ($from_shortcode) {
@@ -1522,5 +1420,469 @@ class BWGViewSlideshow {
     else {
       die();
     }
+  }
+
+  private function inline_styles($bwg, $theme_row, $params, $image_width, $image_height, $slideshow_filmstrip_height, $wd_bwg_options, $filmstrip_thumb_margin_hor, $slideshow_filmstrip_width, $image_rows, $watermark_position, $slideshow_title_position, $slideshow_description_position, $watermark_height, $watermark_width, $watermark_opacity, $watermark_font_size, $watermark_font, $watermark_color, $enable_slideshow_filmstrip) {
+    ob_start();
+    ?>
+    #bwg_container1_<?php echo $bwg; ?> {
+        visibility: hidden;
+      }
+      #bwg_container1_<?php echo $bwg; ?> * {
+        -moz-user-select: none;
+        -khtml-user-select: none;
+        -webkit-user-select: none;
+        -ms-user-select: none;
+        user-select: none;
+      }
+      #bwg_container1_<?php echo $bwg; ?> #bwg_container2_<?php echo $bwg; ?> .bwg_slideshow_image_wrap_<?php echo $bwg; ?> * {
+        box-sizing: border-box;
+        -moz-box-sizing: border-box;
+        -webkit-box-sizing: border-box;
+        /*backface-visibility: hidden;
+        -webkit-backface-visibility: hidden;
+        -moz-backface-visibility: hidden;
+        -ms-backface-visibility: hidden;*/
+      }
+      #bwg_container1_<?php echo $bwg; ?> #bwg_container2_<?php echo $bwg; ?> .bwg_slideshow_image_wrap_<?php echo $bwg; ?> {
+        background-color: #<?php echo $theme_row->slideshow_cont_bg_color; ?>;
+        border-collapse: collapse;
+        display: table;
+        position: relative;
+        text-align: center;
+        width: <?php echo $image_width; ?>px;
+        height: <?php echo $image_height; ?>px;
+      }
+      #bwg_container1_<?php echo $bwg; ?> #bwg_container2_<?php echo $bwg; ?> .bwg_slideshow_image_<?php echo $bwg; ?> {
+        padding: 0 !important;
+        margin: 0 !important;
+        float: none !important;
+        max-width: <?php echo $image_width; ?>px;
+        max-height: <?php echo $image_height - $slideshow_filmstrip_height; ?>px;
+        vertical-align: middle;
+      }
+      #bwg_container1_<?php echo $bwg; ?> #bwg_container2_<?php echo $bwg; ?> .bwg_slideshow_embed_<?php echo $bwg; ?> {
+        padding: 0 !important;
+        margin: 0 !important;
+        float: none !important;
+        width: <?php echo $image_width; ?>px;
+        height: <?php echo $image_height - $slideshow_filmstrip_height; ?>px;
+        vertical-align: middle;
+        display: inline-block;
+        text-align: center;
+      }
+      #bwg_container1_<?php echo $bwg; ?> #bwg_container2_<?php echo $bwg; ?> .bwg_slideshow_watermark_<?php echo $bwg; ?> {
+        position: relative;
+        z-index: 15;
+      }
+      #bwg_container1_<?php echo $bwg; ?> #bwg_container2_<?php echo $bwg; ?> #bwg_slideshow_play_pause_<?php echo $bwg; ?> {
+        background: transparent url("<?php echo WD_BWG_URL . '/images/blank.gif'; ?>") repeat scroll 0 0;
+        bottom: 0;
+        cursor: pointer;
+        display: table;
+        height: inherit;
+        outline: medium none;
+        position: absolute;
+        width: 30%;
+        left: 35%;
+        z-index: 13;
+      }
+      #bwg_container1_<?php echo $bwg; ?> #bwg_container2_<?php echo $bwg; ?> #bwg_slideshow_play_pause_<?php echo $bwg; ?>:hover #bwg_slideshow_play_pause-ico_<?php echo $bwg; ?> {
+        display: inline-block !important;
+      }
+      #bwg_container1_<?php echo $bwg; ?> #bwg_container2_<?php echo $bwg; ?> #bwg_slideshow_play_pause_<?php echo $bwg; ?>:hover span {
+        position: relative;
+        z-index: 13;
+      }
+      #bwg_container1_<?php echo $bwg; ?> #bwg_container2_<?php echo $bwg; ?> #bwg_slideshow_play_pause_<?php echo $bwg; ?> span {
+        display: table-cell;
+        text-align: center;
+        vertical-align: middle;
+      }
+      #bwg_container1_<?php echo $bwg; ?> #bwg_container2_<?php echo $bwg; ?> #bwg_slideshow_play_pause-ico_<?php echo $bwg; ?> {  
+        display: none !important;
+        color: #<?php echo $theme_row->slideshow_rl_btn_color; ?>;        
+        font-size: <?php echo $theme_row->slideshow_play_pause_btn_size; ?>px;
+        cursor: pointer;
+        position: relative;
+        z-index: 13;
+      }
+      #bwg_container1_<?php echo $bwg; ?> #bwg_container2_<?php echo $bwg; ?> #bwg_slideshow_play_pause-ico_<?php echo $bwg; ?>:hover {  
+        color: #<?php echo $theme_row->slideshow_close_rl_btn_hover_color; ?>;
+        display: inline-block;
+        position: relative;
+        z-index: 13;
+      }
+      #bwg_container1_<?php echo $bwg; ?> #bwg_container2_<?php echo $bwg; ?> #spider_slideshow_left_<?php echo $bwg; ?>,
+      #bwg_container1_<?php echo $bwg; ?> #bwg_container2_<?php echo $bwg; ?> #spider_slideshow_right_<?php echo $bwg; ?> {
+        background: transparent url("<?php echo WD_BWG_URL . '/images/blank.gif'; ?>") repeat scroll 0 0;
+        bottom: 35%;
+        cursor: pointer;
+        display: inline;
+        height: 30%;
+        outline: medium none;
+        position: absolute;
+        width: 35%;
+        /*z-index: 10130;*/
+        z-index: 13;
+      }
+      #bwg_container1_<?php echo $bwg; ?> #bwg_container2_<?php echo $bwg; ?> #spider_slideshow_left_<?php echo $bwg; ?> {
+        left: 0;
+      }
+      #bwg_container1_<?php echo $bwg; ?> #bwg_container2_<?php echo $bwg; ?> #spider_slideshow_right_<?php echo $bwg; ?> {
+        right: 0;
+      }
+      #bwg_container1_<?php echo $bwg; ?> #bwg_container2_<?php echo $bwg; ?> #spider_slideshow_left_<?php echo $bwg; ?>:hover,
+      #bwg_container1_<?php echo $bwg; ?> #bwg_container2_<?php echo $bwg; ?> #spider_slideshow_right_<?php echo $bwg; ?>:hover {
+        visibility: visible;
+      }
+      #bwg_container1_<?php echo $bwg; ?> #bwg_container2_<?php echo $bwg; ?> #spider_slideshow_left_<?php echo $bwg; ?>:hover span {
+        left: 20px;
+      }
+      #bwg_container1_<?php echo $bwg; ?> #bwg_container2_<?php echo $bwg; ?> #spider_slideshow_right_<?php echo $bwg; ?>:hover span {
+        left: auto;
+        right: 20px;
+      }
+      #bwg_container1_<?php echo $bwg; ?> #bwg_container2_<?php echo $bwg; ?> #spider_slideshow_left-ico_<?php echo $bwg; ?> span,
+      #bwg_container1_<?php echo $bwg; ?> #bwg_container2_<?php echo $bwg; ?> #spider_slideshow_right-ico_<?php echo $bwg; ?> span {
+        display: table-cell;
+        text-align: center;
+        vertical-align: middle;
+        z-index: 13;
+      }
+      #bwg_container1_<?php echo $bwg; ?> #bwg_container2_<?php echo $bwg; ?> #spider_slideshow_left-ico_<?php echo $bwg; ?>,
+      #bwg_container1_<?php echo $bwg; ?> #bwg_container2_<?php echo $bwg; ?> #spider_slideshow_right-ico_<?php echo $bwg; ?> {
+        background-color: #<?php echo $theme_row->slideshow_rl_btn_bg_color; ?>;
+        border-radius: <?php echo $theme_row->slideshow_rl_btn_border_radius; ?>;
+        border: <?php echo $theme_row->slideshow_rl_btn_border_width; ?>px <?php echo $theme_row->slideshow_rl_btn_border_style; ?> #<?php echo $theme_row->slideshow_rl_btn_border_color; ?>;
+        box-shadow: <?php echo $theme_row->slideshow_rl_btn_box_shadow; ?>;
+        color: #<?php echo $theme_row->slideshow_rl_btn_color; ?>;
+        height: <?php echo $theme_row->slideshow_rl_btn_height; ?>px;
+        font-size: <?php echo $theme_row->slideshow_rl_btn_size; ?>px;
+        width: <?php echo $theme_row->slideshow_rl_btn_width; ?>px;
+        z-index: 13;
+        -moz-box-sizing: content-box;
+        box-sizing: content-box;
+        cursor: pointer;
+        display: table;
+        line-height: 0;
+        margin-top: -15px;
+        position: absolute;
+        top: 50%;
+        /*z-index: 10135;*/
+        opacity: <?php echo number_format($theme_row->slideshow_close_btn_transparent / 100, 2, ".", ""); ?>;
+        filter: Alpha(opacity=<?php echo $theme_row->slideshow_close_btn_transparent; ?>);
+      }
+      #bwg_container1_<?php echo $bwg; ?> #bwg_container2_<?php echo $bwg; ?> #spider_slideshow_left-ico_<?php echo $bwg; ?>:hover,
+      #bwg_container1_<?php echo $bwg; ?> #bwg_container2_<?php echo $bwg; ?> #spider_slideshow_right-ico_<?php echo $bwg; ?>:hover {
+        color: #<?php echo $theme_row->slideshow_close_rl_btn_hover_color; ?>;
+        cursor: pointer;
+      }
+      <?php
+  if($wd_bwg_options->autohide_slideshow_navigation){?>
+	  #spider_slideshow_left-ico_<?php echo $bwg; ?>{
+		   left: -9999px;
+	  }
+	#spider_slideshow_right-ico_<?php echo $bwg; ?>{
+		left: -9999px;
+	 }
+		
+ <?php }
+       else{ ?>
+	    #spider_slideshow_left-ico_<?php echo $bwg; ?>{
+		   left: 20px;
+		}
+	   #spider_slideshow_right-ico_<?php echo $bwg; ?>{
+		   left: auto;
+           right: 20px;
+		}
+	  <?php } ?>
+      #bwg_container1_<?php echo $bwg; ?> #bwg_container2_<?php echo $bwg; ?> .bwg_slideshow_image_container_<?php echo $bwg; ?> {
+        display: table;
+        position: absolute;
+        text-align: center;
+        <?php echo $theme_row->slideshow_filmstrip_pos; ?>: <?php echo $slideshow_filmstrip_height; ?>px;
+        vertical-align: middle;
+        width: <?php echo $image_width; ?>px;
+        height: <?php echo $image_height; ?>px;
+      }
+      #bwg_container1_<?php echo $bwg; ?> #bwg_container2_<?php echo $bwg; ?> .bwg_slideshow_filmstrip_container_<?php echo $bwg; ?> {
+        display: table;
+        height: <?php echo $slideshow_filmstrip_height; ?>px;
+        position: absolute;
+        width: <?php echo $image_width; ?>px;
+        /*z-index: 10105;*/
+        <?php echo $theme_row->slideshow_filmstrip_pos; ?>: 0;
+      }
+      #bwg_container1_<?php echo $bwg; ?> #bwg_container2_<?php echo $bwg; ?> .bwg_slideshow_filmstrip_<?php echo $bwg; ?> {
+        left: 20px;
+        overflow: hidden;
+        position: absolute;
+        width: <?php echo $image_width - 40; ?>px;
+        /*z-index: 10106;*/
+      }
+      #bwg_container1_<?php echo $bwg; ?> #bwg_container2_<?php echo $bwg; ?> .bwg_slideshow_filmstrip_thumbnails_<?php echo $bwg; ?> {
+        height: <?php echo $slideshow_filmstrip_height; ?>px;
+        left: 0px;
+        margin: 0 auto;
+        overflow: hidden;
+        position: relative;
+        width: <?php echo ($slideshow_filmstrip_width + $filmstrip_thumb_margin_hor) * count($image_rows); ?>px;
+      }
+      #bwg_container1_<?php echo $bwg; ?> #bwg_container2_<?php echo $bwg; ?> .bwg_slideshow_filmstrip_thumbnail_<?php echo $bwg; ?> {
+        position: relative;
+        background: none;
+        border: <?php echo $theme_row->slideshow_filmstrip_thumb_border_width; ?>px <?php echo $theme_row->slideshow_filmstrip_thumb_border_style; ?> #<?php echo $theme_row->slideshow_filmstrip_thumb_border_color; ?>;
+        border-radius: <?php echo $theme_row->slideshow_filmstrip_thumb_border_radius; ?>;
+        cursor: pointer;
+        float: left;
+        height: <?php echo $slideshow_filmstrip_height; ?>px;
+        margin: <?php echo $theme_row->slideshow_filmstrip_thumb_margin; ?>;
+        width: <?php echo $slideshow_filmstrip_width; ?>px;
+        overflow: hidden;
+      }
+      #bwg_container1_<?php echo $bwg; ?> #bwg_container2_<?php echo $bwg; ?> .bwg_slideshow_thumb_active_<?php echo $bwg; ?> {
+        opacity: 1;
+        filter: Alpha(opacity=100);
+        border: <?php echo $theme_row->slideshow_filmstrip_thumb_active_border_width; ?>px solid #<?php echo $theme_row->slideshow_filmstrip_thumb_active_border_color; ?>;
+      }
+      #bwg_container1_<?php echo $bwg; ?> #bwg_container2_<?php echo $bwg; ?> .bwg_slideshow_thumb_deactive_<?php echo $bwg; ?> {
+        opacity: <?php echo number_format($theme_row->slideshow_filmstrip_thumb_deactive_transparent / 100, 2, ".", ""); ?>;
+        filter: Alpha(opacity=<?php echo $theme_row->slideshow_filmstrip_thumb_deactive_transparent; ?>);
+      }
+      #bwg_container1_<?php echo $bwg; ?> #bwg_container2_<?php echo $bwg; ?> .bwg_slideshow_filmstrip_thumbnail_img_<?php echo $bwg; ?> {
+        display: block;
+        opacity: 1;
+        filter: Alpha(opacity=100);
+        padding: 0 !important;
+      }
+      #bwg_container1_<?php echo $bwg; ?> #bwg_container2_<?php echo $bwg; ?> .bwg_slideshow_filmstrip_left_<?php echo $bwg; ?> {
+        background-color: #<?php echo $theme_row->slideshow_filmstrip_rl_bg_color; ?>;
+        cursor: pointer;
+        display: table-cell;
+        vertical-align: middle;
+        width: 20px;
+        /*z-index: 10106;*/
+        left: 0;
+      }
+      #bwg_container1_<?php echo $bwg; ?> #bwg_container2_<?php echo $bwg; ?> .bwg_slideshow_filmstrip_right_<?php echo $bwg; ?> {
+        background-color: #<?php echo $theme_row->slideshow_filmstrip_rl_bg_color; ?>;
+        cursor: pointer;
+        right: 0;
+        width: 20px;
+        display: table-cell;
+        vertical-align: middle;
+        /*z-index: 10106;*/
+      }
+      #bwg_container1_<?php echo $bwg; ?> #bwg_container2_<?php echo $bwg; ?> .bwg_slideshow_filmstrip_left_<?php echo $bwg; ?> i,
+      #bwg_container1_<?php echo $bwg; ?> #bwg_container2_<?php echo $bwg; ?> .bwg_slideshow_filmstrip_right_<?php echo $bwg; ?> i {
+        color: #<?php echo $theme_row->slideshow_filmstrip_rl_btn_color; ?>;
+        font-size: <?php echo $theme_row->slideshow_filmstrip_rl_btn_size; ?>px;
+      }
+      #bwg_container1_<?php echo $bwg; ?> #bwg_container2_<?php echo $bwg; ?> .bwg_none_selectable_<?php echo $bwg; ?> {
+        -webkit-touch-callout: none;
+        -webkit-user-select: none;
+        -khtml-user-select: none;
+        -moz-user-select: none;
+        -ms-user-select: none;
+        user-select: none;
+      }
+      #bwg_container1_<?php echo $bwg; ?> #bwg_container2_<?php echo $bwg; ?> .bwg_slideshow_watermark_container_<?php echo $bwg; ?> {
+        display: table-cell;
+        margin: 0 auto;
+        position: relative;
+        vertical-align: middle;
+      }
+      #bwg_container1_<?php echo $bwg; ?> #bwg_container2_<?php echo $bwg; ?> .bwg_slideshow_watermark_spun_<?php echo $bwg; ?> {
+        display: table-cell;
+        overflow: hidden;
+        position: relative;
+        text-align: <?php echo $watermark_position[1]; ?>;
+        vertical-align: <?php echo $watermark_position[0]; ?>;
+      }
+      #bwg_container1_<?php echo $bwg; ?> #bwg_container2_<?php echo $bwg; ?> .bwg_slideshow_title_spun_<?php echo $bwg; ?> {
+        display: table-cell;
+        overflow: hidden;
+        position: relative;
+        text-align: <?php echo $slideshow_title_position[1]; ?>;
+        vertical-align: <?php echo $slideshow_title_position[0]; ?>;
+      }
+      #bwg_container1_<?php echo $bwg; ?> #bwg_container2_<?php echo $bwg; ?> .bwg_slideshow_description_spun_<?php echo $bwg; ?> {
+        display: table-cell;
+        overflow: hidden;
+        position: relative;
+        text-align: <?php echo $slideshow_description_position[1]; ?>;
+        vertical-align: <?php echo $slideshow_description_position[0]; ?>;
+      }
+      #bwg_container1_<?php echo $bwg; ?> #bwg_container2_<?php echo $bwg; ?> .bwg_slideshow_watermark_image_<?php echo $bwg; ?> {
+        padding: 0 !important;
+        float: none !important;
+        margin: 4px !important;
+        max-height: <?php echo $watermark_height; ?>px;
+        max-width: <?php echo $watermark_width; ?>px;
+        opacity: <?php echo number_format($watermark_opacity / 100, 2, ".", ""); ?>;
+        filter: Alpha(opacity=<?php echo $watermark_opacity; ?>);
+        position: relative;
+        z-index: 15;
+      }
+      #bwg_container1_<?php echo $bwg; ?> #bwg_container2_<?php echo $bwg; ?> .bwg_slideshow_watermark_text_<?php echo $bwg; ?>,
+      #bwg_container1_<?php echo $bwg; ?> #bwg_container2_<?php echo $bwg; ?> .bwg_slideshow_watermark_text_<?php echo $bwg; ?>:hover {
+        text-decoration: none;
+        margin: 4px;
+        font-size: <?php echo $watermark_font_size; ?>px;
+        font-family: <?php echo $watermark_font; ?>;
+        color: #<?php echo $watermark_color; ?> !important;
+        opacity: <?php echo number_format($watermark_opacity / 100, 2, ".", ""); ?>;
+        filter: Alpha(opacity=<?php echo $watermark_opacity; ?>);
+        position: relative;
+        z-index: 15;
+      }
+      #bwg_container1_<?php echo $bwg; ?> #bwg_container2_<?php echo $bwg; ?> .bwg_slideshow_title_text_<?php echo $bwg; ?> {
+        text-decoration: none;
+        font-size: <?php echo $theme_row->slideshow_title_font_size; ?>px;
+        font-family: <?php echo $theme_row->slideshow_title_font; ?>;
+        color: #<?php echo $theme_row->slideshow_title_color; ?> !important;
+        opacity: <?php echo number_format($theme_row->slideshow_title_opacity / 100, 2, ".", ""); ?>;
+        filter: Alpha(opacity=<?php echo $theme_row->slideshow_title_opacity; ?>);
+        position: relative;
+        z-index: 11;
+        border-radius: <?php echo $theme_row->slideshow_title_border_radius; ?>;
+        background-color: #<?php echo $theme_row->slideshow_title_background_color; ?>;
+        padding: <?php echo $theme_row->slideshow_title_padding; ?>;
+        <?php if($params['slideshow_title_full_width']) { ?>
+        width: 100%;
+        <?php } else { ?>
+        margin: 5px;
+        <?php } ?>
+        display: inline-block;
+        word-wrap: break-word;
+        word-break: break-word;
+        <?php if (!$enable_slideshow_filmstrip && $slideshow_title_position[0] == $theme_row->slideshow_filmstrip_pos) echo $theme_row->slideshow_filmstrip_pos . ':' . ($theme_row->slideshow_dots_height + 4) . 'px;'; ?>
+      }
+      #bwg_container1_<?php echo $bwg; ?> #bwg_container2_<?php echo $bwg; ?> .bwg_slideshow_description_text_<?php echo $bwg; ?> {
+        text-decoration: none;
+        font-size: <?php echo $theme_row->slideshow_description_font_size; ?>px;
+        font-family: <?php echo $theme_row->slideshow_description_font; ?>;
+        color: #<?php echo $theme_row->slideshow_description_color; ?> !important;
+        opacity: <?php echo number_format($theme_row->slideshow_description_opacity / 100, 2, ".", ""); ?>;
+        filter: Alpha(opacity=<?php echo $theme_row->slideshow_description_opacity; ?>);
+        position: relative;
+        z-index: 15;
+        border-radius: <?php echo $theme_row->slideshow_description_border_radius; ?>;
+        background-color: #<?php echo $theme_row->slideshow_description_background_color; ?>;
+        padding: <?php echo $theme_row->slideshow_description_padding; ?>;
+        margin: 5px;
+        display: inline-block;
+        word-wrap: break-word;
+        word-break: break-word;
+        <?php if (!$enable_slideshow_filmstrip && $slideshow_description_position[0] == $theme_row->slideshow_filmstrip_pos) echo $theme_row->slideshow_filmstrip_pos . ':' . ($theme_row->slideshow_dots_height + 4) . 'px;'; ?>        
+      }
+      #bwg_container1_<?php echo $bwg; ?> #bwg_container2_<?php echo $bwg; ?> .bwg_slideshow_description_text_<?php echo $bwg; ?> * {
+        text-decoration: none;
+        color: #<?php echo $theme_row->slideshow_description_color; ?> !important;                
+      }
+      #bwg_container1_<?php echo $bwg; ?> #bwg_container2_<?php echo $bwg; ?> .bwg_slide_container_<?php echo $bwg; ?> {
+        display: table-cell;
+        margin: 0 auto;
+        position: absolute;
+        vertical-align: middle;
+        width: 100%;
+        height: 100%;
+      }
+      #bwg_container1_<?php echo $bwg; ?> #bwg_container2_<?php echo $bwg; ?> .bwg_slide_bg_<?php echo $bwg; ?> {
+        margin: 0 auto;
+        width: inherit;
+        height: inherit;
+      }
+      #bwg_container1_<?php echo $bwg; ?> #bwg_container2_<?php echo $bwg; ?> .bwg_slider_<?php echo $bwg; ?> {
+        height: inherit;
+        width: inherit;
+      }
+      #bwg_container1_<?php echo $bwg; ?> #bwg_container2_<?php echo $bwg; ?> .bwg_slideshow_image_spun_<?php echo $bwg; ?> {
+        width: inherit;
+        height: inherit;
+        display: table-cell;
+        filter: Alpha(opacity=100);
+        opacity: 1;
+        position: absolute;
+        vertical-align: middle;
+        z-index: 2;
+      }
+      #bwg_container1_<?php echo $bwg; ?> #bwg_container2_<?php echo $bwg; ?> .bwg_slideshow_image_second_spun_<?php echo $bwg; ?> {
+        width: inherit;
+        height: inherit;
+        display: table-cell;
+        filter: Alpha(opacity=0);
+        opacity: 0;
+        position: absolute;
+        vertical-align: middle;
+        z-index: 1;
+      }
+      #bwg_container1_<?php echo $bwg; ?> #bwg_container2_<?php echo $bwg; ?> .bwg_grid_<?php echo $bwg; ?> {
+        display: none;
+        height: 100%;
+        overflow: hidden;
+        position: absolute;
+        width: 100%;
+      }
+      #bwg_container1_<?php echo $bwg; ?> #bwg_container2_<?php echo $bwg; ?> .bwg_gridlet_<?php echo $bwg; ?> {
+        opacity: 1;
+        filter: Alpha(opacity=100);
+        position: absolute;
+      }
+      #bwg_container1_<?php echo $bwg; ?> #bwg_container2_<?php echo $bwg; ?> .bwg_slideshow_dots_<?php echo $bwg; ?> {
+        display: inline-block;
+        position: relative;
+        width: <?php echo $theme_row->slideshow_dots_width; ?>px;
+        height: <?php echo $theme_row->slideshow_dots_height; ?>px;
+        border-radius: <?php echo $theme_row->slideshow_dots_border_radius; ?>;
+        background: #<?php echo $theme_row->slideshow_dots_background_color; ?>;
+        margin: <?php echo $theme_row->slideshow_dots_margin; ?>px;
+        cursor: pointer;
+        overflow: hidden;
+        z-index: 17;
+      }
+      #bwg_container1_<?php echo $bwg; ?> #bwg_container2_<?php echo $bwg; ?> .bwg_slideshow_dots_container_<?php echo $bwg; ?> {
+        display: block;
+        overflow: hidden;
+        position: absolute;
+        width: <?php echo $image_width; ?>px;
+        <?php echo $theme_row->slideshow_filmstrip_pos; ?>: 0;
+        z-index: 17;
+      }
+      #bwg_container1_<?php echo $bwg; ?> #bwg_container2_<?php echo $bwg; ?> .bwg_slideshow_dots_thumbnails_<?php echo $bwg; ?> {
+        left: 0px;
+        font-size: 0;
+        margin: 0 auto;
+        overflow: hidden;
+        position: relative;
+        height: <?php echo ($theme_row->slideshow_dots_height + $theme_row->slideshow_dots_margin * 2); ?>px;
+        width: <?php echo ($theme_row->slideshow_dots_width + $theme_row->slideshow_dots_margin * 2) * count($image_rows); ?>px;
+      }
+      #bwg_container1_<?php echo $bwg; ?> #bwg_container2_<?php echo $bwg; ?> .bwg_slideshow_dots_active_<?php echo $bwg; ?> {
+        background: #<?php echo $theme_row->slideshow_dots_active_background_color; ?>;
+        opacity: 1;
+        filter: Alpha(opacity=100);
+        border: <?php echo $theme_row->slideshow_dots_active_border_width; ?>px solid #<?php echo $theme_row->slideshow_dots_active_border_color; ?>;
+      }
+      #bwg_container1_<?php echo $bwg; ?> #bwg_container2_<?php echo $bwg; ?> .bwg_slideshow_dots_deactive_<?php echo $bwg; ?> {
+      }
+      #bwg_container1_<?php echo $bwg; ?> #bwg_container2_<?php echo $bwg; ?> .bwg_slideshow_image_spun1_<?php echo $bwg; ?> {
+        display: table; 
+        width: inherit; 
+        height: inherit;
+      }
+      #bwg_container1_<?php echo $bwg; ?> #bwg_container2_<?php echo $bwg; ?> .bwg_slideshow_image_spun2_<?php echo $bwg; ?> {
+        display: table-cell; 
+        vertical-align: middle; 
+        text-align: center;
+      }
+      #bwg_container1_<?php echo $bwg; ?> #bwg_container2_<?php echo $bwg; ?> #spider_popup_overlay_<?php echo $bwg; ?> {
+        background-color: #<?php echo $theme_row->lightbox_overlay_bg_color; ?>;
+        opacity: <?php echo number_format($theme_row->lightbox_overlay_bg_transparent / 100, 2, ".", ""); ?>;
+        filter: Alpha(opacity=<?php echo $theme_row->lightbox_overlay_bg_transparent; ?>);
+      }
+    <?php
+    return ob_get_clean();
   }
 }

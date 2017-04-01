@@ -57,6 +57,9 @@ class BWGModelThemes_bwg {
       if (!isset($row->lightbox_bg_transparent)) {
         $row->lightbox_bg_transparent = 100;
       }
+      if (!isset($row->image_browser_image_title_align)) {
+        $row->image_browser_image_title_align = 'top';
+      }
       if ($reset) {
         if (!$row->default_theme) {
           $row_id = $row->id;
@@ -71,6 +74,9 @@ class BWGModelThemes_bwg {
           }
           if (!isset($row->lightbox_bg_transparent)) {
             $row->lightbox_bg_transparent = 100;
+          }
+          if (!isset($row->image_browser_image_title_align)) {
+            $row->image_browser_image_title_align = 'top';
           }
         }
         else {
@@ -450,6 +456,7 @@ class BWGModelThemes_bwg {
           $row->image_browser_full_border_color = 'F7F7F7';
           $row->image_browser_full_bg_color = 'F5F5F5';
           $row->image_browser_full_transparent = 90;
+          $row->image_browser_image_title_align = 'top';
           $row->lightbox_info_pos = 'top';
           $row->lightbox_info_align = 'right';
           $row->lightbox_info_bg_color = '000000';
@@ -539,6 +546,9 @@ class BWGModelThemes_bwg {
       }
       if (!isset($row->lightbox_bg_transparent)) {
         $row->lightbox_bg_transparent = 100;
+      }
+      if (!isset($row->image_browser_image_title_align)) {
+        $row->image_browser_image_title_align = 'top';
       }
     }
     return $row;

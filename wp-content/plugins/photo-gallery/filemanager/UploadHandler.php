@@ -11,7 +11,8 @@
  */
  
 if (function_exists('current_user_can')) {
-  if (!current_user_can('manage_options')) {
+  global $wd_bwg_options;
+  if (!current_user_can($wd_bwg_options->permissions)) {
     die('Access Denied');
   }
 }
@@ -24,7 +25,7 @@ $controller = new FilemanagerController();
 
 $upload_handler = new bwg_UploadHandler(array(
   'upload_dir' => $controller->uploads_dir . (isset($_GET['dir']) ? str_replace('\\', '', ($_GET['dir'])) : ''),
-  'accept_file_types' => '/\.(gif|jpe?g|png|bmp|mp4|flv|webm|ogg|mp3|wav|pdf|zip)$/i'
+  'accept_file_types' => '/\.(gif|jpe?g|png|aac|m4a|f4a|oga|ogg|mp3|zip)$/i'
 ));
 
 class bwg_UploadHandler {
@@ -105,9 +106,6 @@ class bwg_UploadHandler {
       }
       $this->options += array(
         'image_versions' => array(
-          // Uncomment the following version to restrict the size of
-          // uploaded images:
-          
           // Uncomment the following to create medium sized images:
           /*
           'medium' => array(
@@ -510,7 +508,7 @@ class bwg_UploadHandler {
       // into different directories or replacing hidden system files.
       // Also remove control characters and spaces (\x00..\x20) around the filename:
       $name = trim(stripslashes($name), ".\x00..\x20");
-      $name = str_replace(" ", "_", $name);
+      $name = str_replace(array(" ",'%'), array("_",''), $name);
       // Use a timestamp for empty filenames:
       if (!$name) {
         $name = str_replace('.', '-', microtime(true));
@@ -605,35 +603,37 @@ class bwg_UploadHandler {
     }
 
     protected function handle_zip_file($file_path, $file) {
-     $zip = new ZipArchive;
-     $res = $zip->open($file_path);
-     if ($res === TRUE) {
-       $allow_extract = true;
-       for($i = 0; $i < $zip->numFiles; $i++) {
-         $OnlyFileName = $zip->getNameIndex($i);
-         $FullFileName = $zip->statIndex($i);
-         if (!($FullFileName['name'][strlen($FullFileName['name'])-1] =="/")) {
-           if (!preg_match('#\.(gif|jpe?g|png|bmp|mp4|flv|webm|ogg|mp3|wav|pdf|ini|txt)$#i', $OnlyFileName)) {
-             $allow_extract = false;
-           }
-         }
-       }
-       if ($allow_extract) {
-         $target_dir = substr($file_path, 0, strlen($file_path) - 4);
-         if (!is_dir($target_dir)) {
-           mkdir($target_dir, 0777);
-         }
-         $zip->extractTo($target_dir);
-       }
-       else {
-         $file->error = 'Zip file should contain only image files.';
-       }
-       $zip->close();
-       if ($allow_extract) {
-         $this->handle_directory($target_dir);
-       }
-     }
-   }
+      $zip = new ZipArchive;
+      $res = $zip->open($file_path);
+      if ($res === TRUE) {
+        $allow_extract = true;
+        for($i = 0; $i < $zip->numFiles; $i++) {
+          $OnlyFileName = $zip->getNameIndex($i);
+          $FullFileName = $zip->statIndex($i);
+          if (!($FullFileName['name'][strlen($FullFileName['name']) - 1] == "/")) {
+            if (!preg_match('#\.(gif|jpe?g|png|bmp|mp4|flv|webm|ogg|mp3|wav|pdf|ini|txt)$#i', $OnlyFileName)) {
+              $allow_extract = false;
+            }
+          }
+        }
+        if ($allow_extract) {
+          $target_dir = substr($file_path, 0, strlen($file_path) - 4);
+          if (!is_dir($target_dir)) {
+            mkdir($target_dir, 0777);
+          }
+          $zip->extractTo($target_dir);
+        }
+        else {
+          $file->error = 'Zip file should contain only image files.';
+        }
+        $zip->close();
+        if ($allow_extract) {
+          $this->handle_directory($target_dir);
+        }
+      }
+      unlink($file_path);
+      return $file->error;
+    }
 
     protected function handle_directory($target_dir) {
       $extracted_files = scandir($target_dir);
@@ -643,6 +643,8 @@ class bwg_UploadHandler {
         foreach ($extracted_files as $ex_file) {
           if ($ex_file != '.' && $ex_file != '..') {
             $ex_file = $target_dir . '/' . $ex_file;
+            rename($ex_file, str_replace(array( " ", "%" ), array( "_", "" ), $ex_file));
+            $ex_file = str_replace(array( " ", "%" ), array( "_", "" ), $ex_file);
             if (is_file($ex_file)) {
               $type = filetype($ex_file);
               $name = basename($ex_file);
@@ -655,12 +657,10 @@ class bwg_UploadHandler {
               $file->type = $type;
               $file->url = $this->get_download_url($file->name);
               list($img_width, $img_height) = @getimagesize(htmlspecialchars_decode($ex_file, ENT_COMPAT | ENT_QUOTES));
-
               if ($this->options['max_width'] && $this->options['max_height']) {
                 // Zip Upload.
                 $this->create_scaled_image($file->name, 'main', $this->options);
               }
-
               if (is_int($img_width)) {
                 $this->handle_image_file($ex_file, $file);
               }
@@ -753,7 +753,7 @@ class bwg_UploadHandler {
             $this->handle_image_file($file_path, $file);
           }
           else {
-            $this->handle_zip_file($file_path, $file);
+            $file->error = $this->handle_zip_file($file_path, $file);
           }
         }
         else {

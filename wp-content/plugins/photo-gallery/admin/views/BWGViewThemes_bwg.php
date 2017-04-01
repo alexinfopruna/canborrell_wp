@@ -32,27 +32,8 @@ class  BWGViewThemes_bwg {
     $order_class = 'manage-column column-title sorted ' . $asc_or_desc;
     $ids_string = '';
     $per_page = $this->model->per_page();
-	$pager = 0;
+    $pager = 0;
     ?>
-    <div style="clear: both; float: left; width: 99%;">
-      <div style="float:left; font-size: 14px; font-weight: bold;">
-        <?php _e("This section allows you to create, edit and delete themes.", 'bwg_back'); ?>
-        <a style="color: blue; text-decoration: none;" target="_blank" href="https://web-dorado.com/wordpress-gallery/editing-themes/thumbnails.html"><?php _e("Read More in User Manual", 'bwg_back'); ?></a>
-        <?php
-        if (get_option("wd_bwg_theme_version")) {
-          ?>
-          <br />
-          <?php _e("This feature is disabled for the non-commercial version.", 'bwg_back'); ?>
-          <?php
-        }
-        ?>
-      </div>
-      <div style="float: right; text-align: right;">
-        <a style="text-decoration: none;" target="_blank" href="https://web-dorado.com/files/fromPhotoGallery.php">
-          <img width="215" border="0" alt="web-dorado.com" src="<?php echo WD_BWG_URL . '/images/logo.png'; ?>" />
-        </a>
-      </div>
-    </div>
     <?php
     if (get_option("wd_bwg_theme_version")) {
       ?>
@@ -74,14 +55,16 @@ class  BWGViewThemes_bwg {
       die();
     }
     ?>
-    <form class="wrap bwg_form" id="themes_form" method="post" action="admin.php?page=themes_bwg" style="float: left; width: 99%;">
+    <form class="wrap bwg_form" id="themes_form" method="post" action="admin.php?page=themes_bwg" style="float: left; width: 98%;">
       <?php wp_nonce_field( 'themes_bwg', 'bwg_nonce' ); ?>
       <span class="theme_icon"></span>
-      <h2>
-        <?php _e("Themes", 'bwg_back'); ?>
-        <a href="" class="add-new-h2" onclick="spider_set_input_value('task', 'add');
-                                               spider_form_submit(event, 'themes_form')"><?php _e("Add new", 'bwg_back'); ?></a>
-      </h2>
+      <div>
+        <h2>
+          <?php _e("Themes", 'bwg_back'); ?>
+          <a href="" class="add-new-h2" onclick="spider_set_input_value('task', 'add');
+                                                 spider_form_submit(event, 'themes_form')"><?php _e("Add new", 'bwg_back'); ?></a>
+        </h2>
+      </div>
       <div class="buttons_div">
         <input class="button-secondary" type="submit" onclick="if (confirm('<?php echo addslashes(__('Do you want to delete selected items?', 'bwg_back')); ?>')) {
                                                        spider_set_input_value('task', 'delete_all');
@@ -91,7 +74,7 @@ class  BWGViewThemes_bwg {
       </div>
       <div class="tablenav top">
         <?php
-        WDWLibrary::search(__('Title','bwg_back'), $search_value, 'themes_form');
+        WDWLibrary::search(__('Title','bwg_back'), $search_value, 'themes_form', 'position_search');
         WDWLibrary::html_page_nav($page_nav['total'], $pager++, $page_nav['limit'], 'themes_form', $per_page);
         ?>
       </div>
@@ -249,21 +232,12 @@ class  BWGViewThemes_bwg {
       'square' => __('Square', 'bwg_back'),
     );
     ?>
-   <div style="clear: both; float: left; width: 99%;">
-      <div style="float:left; font-size: 14px; font-weight: bold;">
-        <?php _e("This section allows you to add/edit theme.", 'bwg_back'); ?>
-        <a style="color: blue; text-decoration: none;" target="_blank" href="https://web-dorado.com/wordpress-gallery/editing-themes/thumbnails.html"><?php _e("Read More in User Manual", 'bwg_back'); ?></a>
-      </div>
-      <div style="float: right; text-align: right;">
-        <a style="text-decoration: none;" target="_blank" href="https://web-dorado.com/files/fromPhotoGallery.php">
-          <img width="215" border="0" alt="web-dorado.com" src="<?php echo WD_BWG_URL . '/images/logo.png'; ?>" />
-        </a>
-      </div>
-    </div>
-    <form class="wrap bwg_form" method="post" action="admin.php?page=themes_bwg" style="float: left; width: 99%;">
+    <form class="wrap bwg_form" method="post" action="admin.php?page=themes_bwg" style="float: left; width: 98%;">
       <?php wp_nonce_field( 'themes_bwg', 'bwg_nonce' ); ?>
-      <span class="theme_icon"></span>
-      <h2><?php echo $page_title; ?></h2>
+      <div>
+        <span class="theme_icon"></span>
+        <h2><?php echo $page_title; ?></h2>
+      </div>
       <div style="float: right; margin: 0 5px 0 0;">
         <input class="button-secondary" type="submit" onclick="if (spider_check_required('name', 'Name')) {return false;}; spider_set_input_value('task', 'save')" value="<?php _e("Save", 'bwg_back'); ?>"/>
         <?php if ($id) { ?>
@@ -1211,7 +1185,16 @@ class  BWGViewThemes_bwg {
             <table style="clear:both;">
               <tbody>
                 <tr>
-                  <td class="spider_label"><label for="image_browser_image_description_align0"><?php _e("Title alignment:", 'bwg_back'); ?> </label></td>
+                  <td class="spider_label"><label><?php _e('Title position:', 'bwg_back'); ?> </label></td>
+                  <td>
+                    <input type="radio" name="image_browser_image_title_align" id="image_browser_image_title_align1" value="top" <?php if ($row->image_browser_image_title_align == "top") echo 'checked="checked"'; ?> />
+                    <label for="image_browser_image_title_align1" id="image_browser_image_title_align1_lbl"><?php _e('Top', 'bwg_back'); ?></label>
+                    <input type="radio" name="image_browser_image_title_align" id="image_browser_image_title_align0" value="bottom" <?php if ($row->image_browser_image_title_align == "bottom") echo 'checked="checked"'; ?> />
+                    <label for="image_browser_image_title_align0" id="image_browser_image_title_align0_lbl"><?php _e('Bottom', 'bwg_back'); ?></label>
+                  </td>
+                </tr>
+                <tr>
+                  <td class="spider_label"><label for="image_browser_image_description_align0"><?php echo __('Title alignment:', 'bwg_back'); ?> </label></td>
                   <td>
                     <select name="image_browser_image_description_align" id="image_browser_image_description_align">
                       <?php
