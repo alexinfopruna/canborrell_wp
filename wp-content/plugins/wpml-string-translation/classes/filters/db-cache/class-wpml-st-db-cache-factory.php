@@ -57,9 +57,13 @@ class WPML_ST_DB_Cache_Factory {
 	}
 
 	/**
-	 * @return WPML_ST_Page_Translations_Persist
+	 * @return IWPML_ST_Page_Translations_Persist
 	 */
 	public function create_persist() {
-		return new WPML_ST_Page_Translations_Persist( $this->wpdb );
+		$db_persist = new WPML_ST_Page_Translations_Persist( $this->wpdb );
+		$cache = new WPML_WP_Cache( WPML_ST_Page_Translations_Cached_Persist::CACHE_GROUP );
+		$cached_persist = new WPML_ST_Page_Translations_Cached_Persist( $db_persist, $cache );
+
+		return $cached_persist;
 	}
 }

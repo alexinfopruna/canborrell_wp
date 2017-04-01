@@ -59,7 +59,7 @@ class Options_Framework_Admin {
 	    $name = $options_framework->get_option_name();
 
 		// Registers the settings fields and callback
-		register_setting( 'optionsframework', $name, array ( $this, 'validate_options' ) );
+	//	register_setting( 'optionsframework', $name, array ( $this, 'validate_options' ) );
 
 		// Displays notice after options save
 		add_action( 'optionsframework_after_validate', array( $this, 'save_options_notice' ) );
@@ -201,7 +201,7 @@ class Options_Framework_Admin {
 				<?php Options_Framework_Interface::optionsframework_fields(); /* Settings */ ?>
 				<div id="optionsframework-submit">
 					<input type="submit" class="button-primary" name="update" value="<?php esc_attr_e( 'Save Options', 'onetone' ); ?>" />
-					<input type="submit" class="reset-button button-secondary" name="reset" value="<?php esc_attr_e( 'Restore Defaults', 'onetone' ); ?>" onclick="return confirm( '<?php print esc_js( __( 'Click OK to reset. Any theme settings will be lost!', 'onetone' ) ); ?>' );" />
+					
 					<div class="clear"></div>
 				</div>
 				</form>
@@ -222,7 +222,7 @@ class Options_Framework_Admin {
 	 * @uses $_POST['reset'] to restore default options
 	 */
 	function validate_options( $input ) {
-
+		
 		/*
 		 * Restore Defaults.
 		 *
@@ -230,7 +230,6 @@ class Options_Framework_Admin {
 		 * button, the options defined in the theme's options.php
 		 * file will be added to the option for the active theme.
 		 */
-
 		if ( isset( $_POST['reset'] ) ) {
 			add_settings_error( 'options-framework', 'restore_defaults', __( 'Default options restored.', 'onetone' ), 'updated fade' );
 			return $this->get_default_values();
@@ -269,6 +268,11 @@ class Options_Framework_Admin {
 					$input[$id][$key] = false;
 				}
 			}
+			
+			if ( ! isset( $input[$id] ) ) {
+				$input[$id] = false;
+			}
+
 
 			// For a value to be submitted to database it must pass through a sanitization filter
 			if ( has_filter( 'of_sanitize_' . $option['type'] ) ) {
@@ -306,8 +310,7 @@ class Options_Framework_Admin {
 	 *
 	 */
 	function get_default_values() {
-		global $onetone_restore;
-		$output          = array();
+		$output = array();
 		$config = & Options_Framework::_optionsframework_options();
 		foreach ( (array) $config as $option ) {
 			if ( ! isset( $option['id'] ) ) {
@@ -319,7 +322,7 @@ class Options_Framework_Admin {
 			if ( ! isset( $option['type'] ) ) {
 				continue;
 			}
-			if ( has_filter( 'of_sanitize_' . $option['type'] ) ) {
+			if ( has_filter( 'of_sanitize_' . $option['type'] ) ) {				
 				$output[$option['id']] = apply_filters( 'of_sanitize_' . $option['type'], $option['std'], $option );
 			}
 		}

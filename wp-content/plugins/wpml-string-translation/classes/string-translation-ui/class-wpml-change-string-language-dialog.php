@@ -1,10 +1,25 @@
 <?php
 
-class WPML_Change_String_Language_Dialog extends WPML_WPDB_And_SP_User {
+class WPML_Change_String_Language_Dialog {
+	/**
+	 * @var wpdb
+	 */
+	private $wpdb;
 
-	public function __construct( &$wpdb, &$sitepress) {
-		parent::__construct( $wpdb, $sitepress );
+	/**
+	 * @var SitePress
+	 */
+	private $sitepress;
+
+	/**
+	 * @param wpdb $wpdb
+	 * @param SitePress $sitepress
+	 */
+	public function __construct( wpdb $wpdb, SitePress $sitepress ) {
+		$this->wpdb      = $wpdb;
+		$this->sitepress = $sitepress;
 	}
+
 
 	public function render( ) {
 		$all_languages = $this->sitepress->get_languages();

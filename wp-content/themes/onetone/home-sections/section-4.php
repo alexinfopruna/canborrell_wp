@@ -1,6 +1,7 @@
 <?php
 global $onetone_animated;
  $i                   = 3 ;
+ $detect              = new Mobile_Detect;
  $section_title       = onetone_option( 'section_title_'.$i );
  $section_menu        = onetone_option( 'menu_title_'.$i );
  $parallax_scrolling  = onetone_option( 'parallax_scrolling_'.$i );
@@ -11,6 +12,7 @@ global $onetone_animated;
  $content_model       = onetone_option( 'section_content_model_'.$i,1);
  $section_subtitle    = onetone_option( 'section_subtitle_'.$i );
  $color               = onetone_option( 'section_color_'.$i );
+
  
   if( !isset($section_content) || $section_content=="" ) 
   $section_content = onetone_option( 'sction_content_'.$i );
@@ -26,34 +28,30 @@ global $onetone_animated;
   $container_class = "";
   }
   
-  if( $parallax_scrolling == "yes" || $parallax_scrolling == "1" ){
+  if( ($parallax_scrolling == "yes" || $parallax_scrolling == "1" || $parallax_scrolling == "on") && !$detect->isIOS() ){
 	 $section_css_class  .= ' onetone-parallax';
   }
   
 ?>
+
 <section id="<?php echo $section_id; ?>" class="home-section-<?php echo ($i+1); ?> <?php echo $section_css_class;?>">
     	<div class="home-container <?php echo $container_class; ?> page_container">
          <?php
-		if( $content_model == '0' ):
+		if( $content_model == '0' || $content_model == ''  ):
 		?>
-        <div style="color:<?php echo $color; ?>;">
+        
          <?php if( $section_title != '' ):?>
        <?php  
-
 		   $section_title_class = '';
-
 		   if( $section_subtitle == '' )
-
 		   $section_title_class = 'no-subtitle';
-
 		?>
-
        <h1 class="section-title <?php echo $section_title_class; ?>"><?php echo $section_title; ?></h1>
         <?php endif;?>
         <?php if( $section_subtitle != '' ):?>
         <div class="section-subtitle"><?php echo do_shortcode($section_subtitle);?></div>
          <?php endif;?>
-         
+         <div class="home-section-content" style="color:<?php echo $color;?>;">
 		 <?php
 		$items = '';
 		$item  = '';
@@ -64,7 +62,7 @@ global $onetone_animated;
 	     $target =  esc_attr(onetone_option("section_target_".$i."_".$c));
 		 $animationtype = array('fadeInLeft','fadeInDown','fadeInRight','fadeInLeft','fadeInUp','fadeInRight','fadeInDown','fadeInDown');
 		 if( $link == "" )
-	     $img_wrap = '<a href="'.$image.'" rel="portfolio-image"><img src="'.$image.'" alt="" class="feature-img "><div class="img-overlay dark">
+	     $img_wrap = '<a href="'.$image.'" rel="portfolio-image"><img src="'.$image.'" alt=""  class="feature-img "><div class="img-overlay dark">
 																			<div class="img-overlay-container">
 																				<div class="img-overlay-content">
 																					<i class="fa fa-search"></i>
@@ -83,9 +81,9 @@ global $onetone_animated;
 		
 			
 	$item .= '<div class="col-md-4">
-	<div class="'.$onetone_animated.'" data-animationduration="0.9" data-animationtype="'.$animationtype[$c].'" data-imageanimation="no" id="">
-  <div class="magee-feature-box style1" id="" data-os-animation="fadeOut">
-    <div class="img-frames"><div class="img-box figcaption-middle text-center fade-in">'.$img_wrap.'</div></div>
+	<div class="'.$onetone_animated.'" data-animationduration="0.9" data-animationtype="'.$animationtype[$c].'" data-imageanimation="no">
+  <div class="magee-feature-box style1" data-os-animation="fadeOut">
+    <div class="img-frame"><div class="img-box figcaption-middle text-center fade-in">'.$img_wrap.'</div></div>
 </div></div></div>';
      if( ($c+1) % 3 == 0){
 		 $items .= '<div class="row no-padding no-margin">'.$item.'</div>';
@@ -99,9 +97,10 @@ global $onetone_animated;
          <?php
 		else:
 		?>
-            <?php if( $section_title != '' ):?>
+        <?php if( $section_title != '' ):?>
         <div class="section-title"><?php echo do_shortcode($section_title);?></div>
         <?php endif;?>
+          
             <div class="home-section-content">
             <?php 
 			if(function_exists('Form_maker_fornt_end_main'))

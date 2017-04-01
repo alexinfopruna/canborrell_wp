@@ -89,69 +89,68 @@ class WPML_ST_MO_Downloader{
 		return $updates;
 
 	}
-    
-    function show_updates(){
-        global $sitepress;
-        
-        $html = '';
-        
-        try{
-            $updates = $this->updates_check();
-            
-            // filter only core( & admin)
-            $updates_core = array();
-            foreach($updates['languages'] as $k => $v){
-                if(!empty($v['core'])){
-                    $updates_core['languages'][$k]['core']  = $v['core'];                        
-                }                
-                if(!empty($v['admin'])){
-                    $updates_core['languages'][$k]['admin']  = $v['admin'];                        
-                }                                
-            }
-            $updates = $updates_core;            
-                        
-            if(!empty($updates)){
-                $html .= '<table>';
-            
-            
-                foreach($updates['languages'] as $language => $projects){
-                    $l = $sitepress->get_language_details($language);
-                    
-                    if(!empty($projects['core']) || !empty($projects['admin'])){
-                        
-                        $vkeys = array();
-                        foreach($projects as $key => $value){
-                            $vkeys[] = $key . '|' . $value;
-                        }
-                        $version_key = join(';', $vkeys);
-                        
-                        
-                        $html .= '<tr>';
-                        $html .= '<td>' . sprintf(__("Updated %s translation is available", 'wpml-string-translation'), 
-                            '<strong>' . $l['display_name'] . '</strong>') . '</td>';
-                        $html .= '<td align="right">';
-                        $html .= '<a href="' . admin_url('admin.php?page=' . WPML_ST_FOLDER . '/menu/string-translation.php&amp;download_mo=' . $language . '&amp;version=' . $version_key) . '" class="button-secondary">' .  __('Review changes and update', 'wpml-string-translation') . '</a>'; 
-                        $html .= '</td>';
-                        $html .= '<tr>';
-                        $html .= '</tr>';
-                    }
-                    
-                }
 
-            
-                $html .= '</table>';
-            }else{
-                $html .= __('No updates found.', 'wpml-string-translation');    
-            }
-            
-        }catch(Exception $error){
-            $html .= '<span style="color:#f00" >' . $error->getMessage() . '</span>';    
-        }
-        
-        echo json_encode(array('html' => $html));
-        exit;
-        
-    }
+	function show_updates() {
+		global $sitepress;
+
+		$html = '';
+
+		try {
+			$updates = $this->updates_check();
+			// filter only core( & admin)
+			$updates_core = array();
+			if ( array_key_exists( 'languages', $updates ) && ! empty( $updates['languages'] ) ) {
+				foreach ( $updates['languages'] as $k => $v ) {
+					if ( ! empty( $v['core'] ) ) {
+						$updates_core['languages'][ $k ]['core'] = $v['core'];
+					}
+					if ( ! empty( $v['admin'] ) ) {
+						$updates_core['languages'][ $k ]['admin'] = $v['admin'];
+					}
+				}
+			}
+			$updates = $updates_core;
+			if ( ! empty( $updates ) ) {
+				$html .= '<table>';
+
+
+				foreach ( $updates['languages'] as $language => $projects ) {
+					$l = $sitepress->get_language_details( $language );
+
+					if ( ! empty( $projects['core'] ) || ! empty( $projects['admin'] ) ) {
+
+						$vkeys = array();
+						foreach ( $projects as $key => $value ) {
+							$vkeys[] = $key . '|' . $value;
+						}
+						$version_key = join( ';', $vkeys );
+
+
+						$html .= '<tr>';
+						$html .= '<td>' . sprintf( __( "Updated %s translation is available", 'wpml-string-translation' ),
+								'<strong>' . $l['display_name'] . '</strong>' ) . '</td>';
+						$html .= '<td align="right">';
+						$html .= '<a href="' . admin_url( 'admin.php?page=' . WPML_ST_FOLDER . '/menu/string-translation.php&amp;download_mo=' . $language . '&amp;version=' . $version_key ) . '" class="button-secondary">' . __( 'Review changes and update', 'wpml-string-translation' ) . '</a>';
+						$html .= '</td>';
+						$html .= '<tr>';
+						$html .= '</tr>';
+					}
+
+				}
+
+
+				$html .= '</table>';
+			} else {
+				$html .= __( 'No updates found.', 'wpml-string-translation' );
+			}
+
+		} catch ( Exception $error ) {
+			$html .= '<span style="color:#f00" >' . $error->getMessage() . '</span>';
+		}
+
+		echo json_encode( array( 'html' => $html ) );
+		exit;
+	}
     
     function save_preferences(){
         global $sitepress;

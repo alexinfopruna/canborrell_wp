@@ -157,13 +157,21 @@ class WPML_ST_Page_Translations_Persist implements IWPML_ST_Page_Translations_Pe
 	}
 
 	public function clear_cache() {
-		$sql = "TRUNCATE `{$this->wpdb->prefix}icl_string_pages`";
-		$this->wpdb->query( $sql );
 
-		$sql = "TRUNCATE `{$this->wpdb->prefix}icl_string_urls`";
-		$this->wpdb->query( $sql );
+		if ( $this->table_exists( $this->wpdb->prefix . 'icl_string_pages' ) ) {
+			$sql = "TRUNCATE `{$this->wpdb->prefix}icl_string_pages`";
+			$this->wpdb->query( $sql );
+		}
+
+		if ( $this->table_exists( $this->wpdb->prefix . 'icl_string_urls' ) ) {
+			$sql = "TRUNCATE `{$this->wpdb->prefix}icl_string_urls`";
+			$this->wpdb->query( $sql );
+		}
 	}
 
+	private function table_exists( $table ) {
+		return $this->wpdb->get_var( $this->wpdb->prepare( 'SHOW TABLES LIKE %s', $table ) );
+	}
 
 	/**
 	 * @param $language

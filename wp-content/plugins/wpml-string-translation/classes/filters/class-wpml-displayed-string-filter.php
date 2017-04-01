@@ -78,13 +78,7 @@ class WPML_Displayed_String_Filter extends WPML_WPDB_And_SP_User {
 	 * @return array
 	 */
 	protected function transform_parameters( $name, $context ) {
-		if ( is_array( $context ) ) {
-			$domain          = isset( $context['domain'] ) ? $context['domain'] : '';
-			$gettext_context = isset( $context['context'] ) ? $context['context'] : '';
-		} else {
-			$domain          = $context;
-			$gettext_context = '';
-		}
+		list ( $domain, $gettext_context ) = wpml_st_extract_context_parameters( $context );
 
 		list( $name, $domain ) = array_map( array( $this, 'truncate_long_string' ), array( $name, $domain ) );
 

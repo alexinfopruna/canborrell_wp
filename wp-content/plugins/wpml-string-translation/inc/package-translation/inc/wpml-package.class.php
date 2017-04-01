@@ -13,6 +13,7 @@ class WPML_Package {
 	public  $trid;
 	public  $name;
 	public  $translation_element_type;
+	public  $post_id;
 
 	private $element_type_prefix;
 
@@ -23,6 +24,7 @@ class WPML_Package {
 		$this->element_type_prefix = 'package';
 		$this->view_link           = '';
 		$this->edit_link           = '';
+		$this->post_id             = null;
 		if ( $data_item ) {
 			if ( is_object( $data_item ) ) {
 				$data_item = get_object_vars( $data_item );
@@ -140,7 +142,7 @@ class WPML_Package {
 		$package_id = $this->ID;
 		$results    = false;
 		if ( $package_id ) {
-			$results_query   = "SELECT id, name, value FROM {$wpdb->prefix}icl_strings WHERE string_package_id=%d";
+			$results_query   = "SELECT id, name, value, type FROM {$wpdb->prefix}icl_strings WHERE string_package_id=%d";
 			$results_prepare = $wpdb->prepare( $results_query, $package_id );
 			$results         = $wpdb->get_results( $results_prepare );
 		}
@@ -198,6 +200,7 @@ class WPML_Package {
 				'title'     => $this->title,
 				'edit_link' => $this->edit_link,
 				'view_link' => $this->view_link,
+				'post_id'   => $this->post_id,
 			);
 			$wpdb->insert( $wpdb->prefix . 'icl_string_packages', $data );
 			$package_id = $wpdb->insert_id;
@@ -470,9 +473,14 @@ class WPML_Package {
 	
 	public function get_package_language() {
 		global $sitepress;
-		
-		$element_type    = $this->get_package_element_type();
-		$details         = $sitepress->get_element_language_details( $this->ID, $element_type );
+
+		if ( $this->post_id ) {
+			$post = get_post( $this->post_id );
+			$details = $sitepress->get_element_language_details( $this->post_id, 'post_' . $post->post_type );
+		} else {
+			$element_type = $this->get_package_element_type();
+			$details      = $sitepress->get_element_language_details( $this->ID, $element_type );
+		}
 		
 		if ( $details ) {
 			return $details->language_code;

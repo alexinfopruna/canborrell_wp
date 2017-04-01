@@ -63,6 +63,7 @@
     z-index: 9999;
 }
 
+
 #optionsframework-wrap .group .section {
     margin-bottom: 0;
     padding-top: 10px;
@@ -74,7 +75,6 @@
     padding-top: 5px;
     margin-bottom: 0;
 }
-
 
 #optionsframework-wrap .group .section.section-content-model {
     border-bottom: 0;
@@ -144,3 +144,4 @@
     border: 1px solid #ccc;
     border-width: 1px 0 0 1px;
 }
+

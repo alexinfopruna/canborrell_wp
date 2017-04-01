@@ -27,13 +27,6 @@ class WPML_ST_WP_Loaded_Action extends WPML_SP_User {
 				? $string_settings['sw'] : array();
 			$this->sitepress->set_setting( 'st', $string_settings, true );
 			$this->st_instance->initialize_wp_and_widget_strings();
-
-			if (
-				1 === $this->sitepress->get_setting( 'theme_localization_type', null ) &&
-				true !== $this->sitepress->get_wp_api()->constant( 'WPML_DISABLE_AUTOMATIC_THEME_SCANNING' )
-			) {
-				$this->st_instance->scan_theme_for_strings( true );
-			}
 		}
 	}
 }

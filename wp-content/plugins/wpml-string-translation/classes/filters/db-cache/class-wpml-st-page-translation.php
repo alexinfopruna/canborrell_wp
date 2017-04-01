@@ -103,7 +103,7 @@ class WPML_ST_Page_Translation {
 			throw new InvalidArgumentException( 'String id cannot be empty' );
 		}
 
-		if ( empty( $name ) ) {
+		if ( $name === '' ) {
 			throw new InvalidArgumentException( 'Translation name cannot be empty' );
 		}
 	}

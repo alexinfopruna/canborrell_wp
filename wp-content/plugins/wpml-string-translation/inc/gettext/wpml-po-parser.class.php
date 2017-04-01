@@ -38,10 +38,10 @@ class WPML_PO_Parser {
 			$ids[ ] = $s[ 'string_id' ];
 		}
 		if ( ! empty( $ids ) ) {
-			$res = $wpdb->get_results( "
-	            SELECT string_id, position_in_page 
-	            FROM {$wpdb->prefix}icl_string_positions 
-	            WHERE kind = " . ICL_STRING_TRANSLATION_STRING_TRACKING_TYPE_SOURCE . " AND string_id IN(" . join( ',', $ids ) . ")" );
+			$sql_prepared = $wpdb->prepare( "SELECT string_id, position_in_page 
+	            			 				 FROM {$wpdb->prefix}icl_string_positions 
+	            			 				 WHERE kind=%d AND string_id IN(%s)", ICL_STRING_TRANSLATION_STRING_TRACKING_TYPE_SOURCE, implode( ',', $ids ));
+			$res = $wpdb->get_results( $sql_prepared );
 			foreach ( $res as $row ) {
 				$positions[ $row->string_id ] = $row->position_in_page;
 			}

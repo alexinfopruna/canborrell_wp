@@ -220,13 +220,17 @@ class WPML_Package_TM extends WPML_Package_TM_Jobs {
 			}
 		}
 
+		$select_one_lang_message = __( 'Please select at least one language to translate into.', 'sitepress' );
+
 		if ( ! $translation_action ) {
 			TranslationProxy_Basket::add_message( array(
-				                                      'type' => 'error',
-				                                      'text' => __( 'Please select at least one language to translate into.', 'sitepress' )
-			                                      ) );
+				'type' => 'error',
+				'text' => $select_one_lang_message,
+			) );
 
 			$package_is_valid = false;
+		} else {
+			TranslationProxy_Basket::remove_message( $select_one_lang_message );
 		}
 
 		if ( ! $package_id ) {

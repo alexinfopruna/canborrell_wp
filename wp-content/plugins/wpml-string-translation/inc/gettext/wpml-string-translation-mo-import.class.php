@@ -296,10 +296,10 @@ class WPML_String_Translation_MO_Import {
 		$translations_add = array();
 
 		foreach ( $new_translations as $tr ) {
-			$translations_add[ ] = array(
-				'string'      => $tr[ 'string' ],
-				'translation' => $tr[ 'new' ],
-				'name'        => $tr[ 'name' ]
+			$translations_add[] = array(
+				'string'      => filter_var( $tr['string'], FILTER_SANITIZE_STRING ),
+				'translation' => filter_var( $tr['new'], FILTER_SANITIZE_STRING ),
+				'name'        => filter_var( $tr['name'], FILTER_SANITIZE_STRING ),
 			);
 		}
 
@@ -343,10 +343,10 @@ class WPML_String_Translation_MO_Import {
 		$translations_updated = 0;
 		foreach ( $encoded_array as $idx => $v ) {
 			if ( ! empty( $v ) ) {
-				$translations_add[ ] = array(
-					'string'      => base64_decode( $_POST[ 'string' ][ $idx ] ),
-					'translation' => base64_decode( $_POST[ 'translation' ][ $idx ] ),
-					'name'        => base64_decode( $_POST[ 'name' ][ $idx ] )
+				$translations_add[] = array(
+					'string'      => filter_var( base64_decode( $_POST['string'][ $idx ] ), FILTER_SANITIZE_STRING ),
+					'translation' => filter_var( base64_decode( $_POST['translation'][ $idx ] ), FILTER_SANITIZE_STRING ),
+					'name'        => filter_var( base64_decode( $_POST['name'][ $idx ] ), FILTER_SANITIZE_STRING ),
 				);
 				$translations_updated ++;
 			}

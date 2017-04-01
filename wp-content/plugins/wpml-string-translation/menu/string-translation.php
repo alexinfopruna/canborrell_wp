@@ -31,6 +31,7 @@ if ( preg_match(
 }
 //$status_filter  = $status_filter !== false ? (int) $status_filter : null;
 $context_filter = filter_input( INPUT_GET, 'context', FILTER_SANITIZE_FULL_SPECIAL_CHARS );
+
 $search_filter  = filter_input( INPUT_GET, 'search', FILTER_SANITIZE_FULL_SPECIAL_CHARS );
 $exact_match    = filter_input( INPUT_GET, 'em', FILTER_VALIDATE_BOOLEAN );
 
@@ -68,6 +69,8 @@ function _icl_string_translation_rtl_textarea($language) {
     }
 }
 
+$po_importer = apply_filters( 'wpml_st_get_po_importer', null );
+
 ?>
 <div class="wrap">
 
@@ -80,7 +83,8 @@ function _icl_string_translation_rtl_textarea($language) {
     <?php if( isset( $po_importer ) && $po_importer->has_strings() ): ?>
 
         <p><?php printf(__("These are the strings that we found in your .po file. Please carefully review them. Then, click on the 'add' or 'cancel' buttons at the %sbottom of this screen%s. You can exclude individual strings by clearing the check boxes next to them.", 'wpml-string-translation'), '<a href="#add_po_strings_confirm">', '</a>'); ?></p>
-        <form method="post" action="<?php echo admin_url("admin.php?page=" . WPML_ST_FOLDER . "/menu/string-translation.php");?>">
+        <form method="post" id="wpml_add_strings" action="<?php echo admin_url("admin.php?page=" . WPML_ST_FOLDER . "/menu/string-translation.php");?>">
+	    <input type="hidden" id="strings_json" name="strings_json">
         <?php wp_nonce_field('add_po_strings') ?>
         <?php $use_po_translations = filter_input(INPUT_POST, 'icl_st_po_translations', FILTER_VALIDATE_BOOLEAN); ?>
         <?php if ( $use_po_translations == true ): ?>
@@ -137,8 +141,8 @@ function _icl_string_translation_rtl_textarea($language) {
         </table>
         <a name="add_po_strings_confirm"></a>
 
-	        <p><input class="button" type="button" value="<?php echo __( 'Cancel', 'wpml-string-translation' ); ?>" onclick="location.href='admin.php?page=<?php echo htmlspecialchars( $_GET['page'], ENT_QUOTES ) ?>'"/>
-        &nbsp; <input class="button-primary" type="submit" value="<?php echo __('Add selected strings', 'wpml-string-translation'); ?>" />
+	        <p><span style="float: left"><input class="js-wpml-btn-cancel button" type="button" value="<?php echo __( 'Cancel', 'wpml-string-translation' ); ?>" onclick="location.href='admin.php?page=<?php echo htmlspecialchars( $_GET['page'], ENT_QUOTES ) ?>'"/>
+        &nbsp;<input class="js-wpml-btn-add-strings button-primary" type="submit" value="<?php echo __('Add selected strings', 'wpml-string-translation'); ?>" /></span><span class="spinner" style="float: left"></span>
         </p>
         </form>
 
@@ -203,6 +207,11 @@ function _icl_string_translation_rtl_textarea($language) {
                         <option value=""
                                 <?php if ( $context_filter === false ): ?>selected="selected"<?php endif; ?>><?php echo __( 'All domains', 'wpml-string-translation' ) ?></option>
                         <?php foreach ( $icl_contexts as $v ): ?>
+	                        <?php
+	                            if ( ! $v->context ) {
+		                            $v->context = WPML_ST_Strings::EMPTY_CONTEXT_LABEL;
+	                            }
+	                        ?>
                             <option value="<?php echo esc_attr( $v->context ) ?>"
                                     data-unfiltered-count="<?php echo( isset( $unfiltered_contexts[ $v->context ] ) ? $unfiltered_contexts[ $v->context ] : 0 ) ?>"
                                     <?php if ( $context_filter == filter_var( $v->context, FILTER_SANITIZE_FULL_SPECIAL_CHARS ) ): ?>selected="selected"<?php endif; ?>><?php echo  esc_html( $v->context ) . ' (' . $v->c . ')'; ?></option>
@@ -326,11 +335,19 @@ function _icl_string_translation_rtl_textarea($language) {
                             echo ' selected="selected"';
                         } ?>>100
                         </option>
-                    </select>&nbsp;<a href="admin.php?page=<?php echo htmlspecialchars( $_GET['page'], ENT_QUOTES ) ?>&amp;show_results=all<?php if ( isset( $_GET['context'] ) ) {
-		                echo '&amp;context=' . htmlspecialchars( $_GET['context'], ENT_QUOTES );
-                    } ?><?php if ( isset( $_GET[ 'status' ] ) ) {
-		                echo '&amp;status=' . htmlspecialchars( $_GET['status'], ENT_QUOTES );
-                    } ?>"><?php echo __( 'Display all results', 'wpml-string-translation' ); ?></a>
+                    </select>&nbsp;
+                    <?php
+                        $url = 'admin.php?page=' . $_GET['page'] . '&amp;show_results=all';
+                        if (isset( $_GET['context'] )) {
+                            $url .= '&amp;context=' . $_GET['context'];
+                        }
+                        if ( isset( $_GET[ 'status' ] ) ) {
+                            $url .= '&amp;status=' . $_GET['status'];
+                        }
+
+                        $url = esc_url( $url );
+                    ?>
+                    <a href="<?php echo $url; ?>"><?php echo __( 'Display all results', 'wpml-string-translation' ); ?></a>
                 <?php endif; ?>
             </div>
 

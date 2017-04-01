@@ -1,14 +1,14 @@
 <?php
- $enable_footer_widget_area = esc_attr(onetone_option('enable_footer_widget_area'));
+ $display_footer_widgets    = onetone_option('enable_footer_widget_area'); 
  $footer_columns            = onetone_option('footer_columns','4'); 
  $copyright_text            = onetone_option('copyright',''); 
  $display_copyright_bar     = onetone_option('display_copyright_bar','yes'); 
-
+ 
 ?>
 <!--Footer-->
 		<footer>
-        <?php if( $enable_footer_widget_area == '1' ):?>
-			<div class="footer-widget-area">
+        <?php if( $display_footer_widgets == '1' ):?>
+            <div class="footer-widget-area">
                 <div class="container">
                     <div class="row">
                     <?php 
@@ -26,29 +26,37 @@
                     </div>
                 </div>
             </div>
-            <?php endif;?>
-			<div class="footer-info-area">
+            <?php endif; ?>
+			<div class="footer-info-area" role="contentinfo">
 				<div class="container">	
+                
 					<div class="site-info pull-left">
-					  <?php
+                    
+                    <?php 
+							echo do_shortcode($copyright_text);
+							?>
+                            
+                            &nbsp;&nbsp; &nbsp;&nbsp;
+
+  <?php
                       if( is_home() || is_front_page()){
-                        printf(__('Designed by <a href="%s">MageeWP Themes</a>.','onetone'),esc_url('http://www.mageewp.com/'));
+                        printf(__('Designed by <a href="%s">MageeWP Themes</a>.','onetone'),esc_url('https://www.mageewp.com/'));
                       }else{
 						 printf(__('Designed by MageeWP Themes.','onetone')); 
 						  }
 						  ?>
-                          &nbsp;&nbsp;
-                     <?php
-							echo do_shortcode($copyright_text);
-                      ?>
+                          
+					  
 					</div>
                      <div class="site-social pull-right">
                       <?php 
 							echo onetone_get_social( 'footer', '','top','_blank');
 							?>
                        </div>
+                    
+                     
 				</div>
-			</div>			
+			</div>	
 		</footer>
 	</div>
     <?php wp_footer();?>	

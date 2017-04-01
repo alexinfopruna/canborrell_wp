@@ -84,7 +84,6 @@ class onetone_metaboxClass {
 			return $post_id;
 			
 			
-
 		// If this is an autosave, our form has not been submitted,
                 //     so we don't want to do anything.
 		if ( defined( 'DOING_AUTOSAVE' ) && DOING_AUTOSAVE ) 
@@ -111,12 +110,12 @@ class onetone_metaboxClass {
 
 		if( isset($_POST) && $_POST ){
 			
-		$post_metas                      = array();
-		$post_metas['header_position']   =  isset($_POST['header_position'])?$_POST['header_position']:'top';
+		$post_metas                      = array();		
+		$post_metas['nav_menu']          =  isset($_POST['nav_menu'])?$_POST['nav_menu']:'';
 		$post_metas['full_width']        =  isset($_POST['full_width'])?$_POST['full_width']:'no';
 		$post_metas['padding_top']       =  isset($_POST['padding_top'])?$_POST['padding_top']:'';
 		$post_metas['padding_bottom']    =  isset($_POST['padding_bottom'])?$_POST['padding_bottom']:'';
-		$post_metas['display_breadcrumb'] =  isset($_POST['display_breadcrumb'])?$_POST['display_breadcrumb']:'yes';
+		$post_metas['display_breadcrumb'] =  isset($_POST['display_breadcrumb'])?$_POST['display_breadcrumb']:'';
 		$post_metas['nav_menu']          =  isset($_POST['nav_menu'])?$_POST['nav_menu']:'';
 		$post_metas['page_layout']       =  isset($_POST['page_layout'])?$_POST['page_layout']:'none';
 		$post_metas['left_sidebar']      =  isset($_POST['left_sidebar'])?$_POST['left_sidebar']:'';
@@ -125,7 +124,6 @@ class onetone_metaboxClass {
 		$post_metas['banner_position']   =  isset($_POST['banner_position'])?$_POST['banner_position']:'1';
 		$post_metas['magee_slider']      =  isset($_POST['magee_slider'])?$_POST['magee_slider']:'';
 		$post_metas['display_title']     =  isset($_POST['display_title'])?$_POST['display_title']:'yes';
-			 
 		$onetone_post_meta = json_encode( $post_metas );
 		// Update the meta field.
 		update_post_meta( $post_id, '_onetone_post_meta', $onetone_post_meta );
@@ -186,15 +184,25 @@ class onetone_metaboxClass {
 		  }
 		  
 		// Display the form, using the current value.
+		$nav_menu           = isset( $nav_menu )? $nav_menu:''; 
 		$full_width         = isset( $full_width )? $full_width:'no'; 
 		$page_layout        = isset( $page_layout )? $page_layout:'none'; 
 		$left_sidebar       = isset( $left_sidebar )? $left_sidebar:''; 
 		$right_sidebar      = isset( $right_sidebar )? $right_sidebar:''; 
-		$display_breadcrumb = isset( $display_breadcrumb )? $display_breadcrumb:'yes'; 
+		$display_breadcrumb = isset( $display_breadcrumb )? $display_breadcrumb:''; 
 		$display_title      = isset( $display_title )? $display_title:'yes'; 
 		
 		$padding_top         = isset( $padding_top )? $padding_top:'50px';
 		$padding_bottom      = isset( $padding_bottom )? $padding_bottom:'50px';
+		
+		echo '<p class="meta-options"><label for="left_sidebar"  style="display: inline-block;width: 150px;">';
+		_e( 'Custom Menu', 'onetone' );
+		echo '</label> ';
+		echo '<select name="nav_menu" id="nav_menu">';
+		foreach( $nav_menus as $nav){
+		echo '<option '.selected($nav_menu,$nav['value'],false).' value="'.$nav['value'].'">'.$nav['label'].'</option>';
+		}
+		echo '</select></p>';
 		
 		echo '<p class="meta-options"><label for="full_width"  style="display: inline-block;width: 150px;">';
 		_e( 'Content Full Width', 'onetone' );
@@ -202,15 +210,6 @@ class onetone_metaboxClass {
 		echo '<select name="full_width" id="full_width">
 		<option '.selected($full_width,'no',false).' value="no">'.__("No","onetone").'</option>
 		<option '.selected($full_width,'yes',false).' value="yes">'.__("Yes","onetone").'</option>
-		</select></p>';
-		
-		
-		echo '<p class="meta-options"><label for="display_breadcrumb"  style="display: inline-block;width: 150px;">';
-		_e( 'Display Breadcrumb', 'onetone' );
-		echo '</label> ';
-		echo '<select name="display_breadcrumb" id="display_breadcrumb">
-		<option '.selected($display_breadcrumb,'yes',false).' value="yes">'.__("Yes","onetone").'</option>
-		<option '.selected($display_breadcrumb,'no',false).' value="no">'.__("No","onetone").'</option>
 		</select></p>';
 		
 		echo '<p class="meta-options"><label for="padding_top"  style="display: inline-block;width: 150px;">';
@@ -223,7 +222,19 @@ class onetone_metaboxClass {
 		_e( 'Padding Bottom', 'onetone' );
 		echo '</label> ';
 		echo '<input name="padding_bottom" type="text" value="'.$padding_bottom.'" />';
-		echo '</p>';	
+		echo '</p>';
+		
+		
+		echo '<p class="meta-options"><label for="display_breadcrumb"  style="display: inline-block;width: 150px;">';
+		_e( 'Display Breadcrumb', 'onetone' );
+		echo '</label> ';
+		echo '<select name="display_breadcrumb" id="display_breadcrumb">
+		<option '.selected( $display_breadcrumb,'',false ).' value="">'.__("Default","onetone").'</option>
+		<option '.selected( $display_breadcrumb,'yes',false ).' value="yes">'.__("Yes","onetone").'</option>
+		<option '.selected( $display_breadcrumb,'no',false ).' value="no">'.__("No","onetone").'</option>
+		</select></p>';
+		
+				
 		
 		echo '<p class="meta-options"><label for="page_layout"  style="display: inline-block;width: 150px;">';
 		_e( 'Page Layout', 'onetone' );
@@ -252,6 +263,8 @@ class onetone_metaboxClass {
 		echo '<option '.selected($right_sidebar,$sidebar['value'],false).' value="'.$sidebar['value'].'">'.$sidebar['label'].'</option>';
 		}
 		echo '</select></p>';
-				
+		
+		
+		
 	}
 }

@@ -1,6 +1,12 @@
 <?php
 
-class WPML_ST_DB_Translation_Retrieve extends WPML_WPDB_User {
+class WPML_ST_DB_Translation_Retrieve {
+
+	/**
+	 * @var WPDB $wpdb
+	 */
+	public $wpdb;
+
 	/**
 	 * @var array
 	 */
@@ -25,7 +31,7 @@ class WPML_ST_DB_Translation_Retrieve extends WPML_WPDB_User {
 	 * @param WPDB $wpdb
 	 */
 	public function __construct( WPDB $wpdb ) {
-		parent::__construct( $wpdb );
+		$this->wpdb = $wpdb;
 		$this->domain_fallback = new WPML_ST_Domain_Fallback();
 		$this->chunk_retrieve = new WPML_DB_Chunk( $wpdb );
 	}

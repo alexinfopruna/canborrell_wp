@@ -59,7 +59,9 @@ class WPML_ST_DB_Cache {
 	}
 
 	public function shutdown() {
-		if ( $this->is_404() ) {
+		$is_reseting_wpml_single = ( array_key_exists( 'icl-reset-all', $_POST ) && $_POST['icl-reset-all'] === 'on' );
+		$is_reseting_wpml_multi = ( array_key_exists( 'action', $_GET ) && $_GET['action'] === 'resetwpml' );
+		if ( $this->is_404() || $is_reseting_wpml_single || $is_reseting_wpml_multi ) {
 			return;
 		}
 

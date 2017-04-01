@@ -1,6 +1,9 @@
 <?php
 
-class WPML_ST_Upgrade_Db_Cache_Command extends WPML_WPDB_User implements IWPML_St_Upgrade_Command {
+class WPML_ST_Upgrade_Db_Cache_Command implements IWPML_St_Upgrade_Command {
+	/** @var WPDB $wpdb */
+	private $wpdb;
+
 	/**
 	 * @var string
 	 */
@@ -26,6 +29,14 @@ class WPML_ST_Upgrade_Db_Cache_Command extends WPML_WPDB_User implements IWPML_S
 	  UNIQUE KEY `string_string_lang_url` (`language`,`url`(191))
 	)
 	';
+
+	/**
+	 * @param WPDB $wpdb
+	 */
+	public function __construct( $wpdb ) {
+		$this->wpdb = $wpdb;
+	}
+
 
 	public function run() {
 		$this->wpdb->query( "DROP TABLE IF EXISTS `{$this->wpdb->prefix}icl_string_pages`" );

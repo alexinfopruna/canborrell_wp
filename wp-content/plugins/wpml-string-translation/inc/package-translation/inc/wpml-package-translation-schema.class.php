@@ -28,16 +28,6 @@ class WPML_Package_Translation_Schema {
 			update_option( 'wpml-package-translation-db-updates-run', $updates_run );
 		}
 
-		if ( ! in_array( 'fix_string_names_with_package_id', $updates_run ) ) {
-			//TODO: [WPML 3.3] delete this in 3.3.
-			// It's only needed for very early users of Layouts
-			
-			self::fix_string_names_with_package_id();
-			
-			$updates_run[ ] = 'fix_string_names_with_package_id';
-
-			update_option( 'wpml-package-translation-db-updates-run', $updates_run );
-		}
 	}
 
 	private static function current_table_has_column( $column ) {
@@ -133,7 +123,7 @@ class WPML_Package_Translation_Schema {
 
 	private static function add_view_link_to_icl_string_packages() {
 		global $wpdb;
-		$sql = "ALTER TABLE `" . self::$table_name . "` ADD `view_link` TEXT DEFAULT '' NOT NULL AFTER `edit_link`";
+		$sql = "ALTER TABLE `" . self::$table_name . "` ADD `view_link` TEXT NOT NULL AFTER `edit_link`";
 
 		return $wpdb->query( $sql );
 	}
@@ -160,8 +150,9 @@ class WPML_Package_Translation_Schema {
                   `kind` varchar(160) NOT NULL,
                   `name` varchar(160) NOT NULL,
                   `title` varchar(160) NOT NULL,
-                  `edit_link` TEXT DEFAULT '' NOT NULL,
-                  `view_link` TEXT DEFAULT '' NOT NULL,
+                  `edit_link` TEXT NOT NULL,
+                  `view_link` TEXT NOT NULL,
+                  `post_id` INTEGER DEFAULT NULL,
                   PRIMARY KEY  (`ID`)
                 ) " . $charset_collate . "";
 		if ( $wpdb->query( $sql ) === false ) {
@@ -221,46 +212,4 @@ class WPML_Package_Translation_Schema {
 		return $result;
 	}
 	
-	//TODO: [WPML 3.3] delete this in 3.3.
-	// It's only needed for very early users of Layouts
-	private static function fix_string_names_with_package_id( ) {
-		global $wpdb;
-		
-		$packages = $wpdb->get_col( "SELECT ID FROM {$wpdb->prefix}icl_string_packages WHERE ID>0" );
-
-		foreach ( $packages as $package_id ) {
-
-			$package_id_string = strval( $package_id );
-			$package_id_string .= '_';
-			$package_id_len = strlen( $package_id_string );
-			
-			$strings_query   = "SELECT id, name FROM {$wpdb->prefix}icl_strings WHERE string_package_id=%d";
-			$strings_prepare = $wpdb->prepare( $strings_query, $package_id );
-			$strings         = $wpdb->get_results( $strings_prepare );
-			
-			$needs_fixing = true;
-			
-			foreach ( $strings as $string ) {
-				if ( substr( $string->name, 0, $package_id_len ) != $package_id_string ) {
-					
-					// All strings need to start with the package_id as the prefix.
-					$needs_fixing = false;
-				}
-				
-			}
-			
-			if ( $needs_fixing ) {
-				
-				foreach ( $strings as $string ) {
-					
-					$new_name = substr( $string->name, $package_id_len );
-					
-					$wpdb->update( $wpdb->prefix . 'icl_strings', array( 'name' => $new_name ), array( 'id' => $string->id ) );
-					
-				}
-				
-			}
-		}
-		
-	}
 }

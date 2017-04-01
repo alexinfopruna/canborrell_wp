@@ -6,12 +6,14 @@
  */
 
 get_header(); 
+$display_breadcrumb = 'yes';
+
 
 $sidebar                   = isset($page_meta['page_layout'])?$page_meta['page_layout']:'none';
 $left_sidebar              = isset($page_meta['left_sidebar'])?$page_meta['left_sidebar']:'';
 $right_sidebar             = isset($page_meta['right_sidebar'])?$page_meta['right_sidebar']:'';
 $full_width                = isset($page_meta['full_width'])?$page_meta['full_width']:'no';
-$display_breadcrumb        = isset($page_meta['display_breadcrumb'])?$page_meta['display_breadcrumb']:'yes';
+$display_breadcrumb        = isset($page_meta['display_breadcrumb'])?$page_meta['display_breadcrumb']:$display_breadcrumb;
 $display_title             = isset($page_meta['display_title'])?$page_meta['display_title']:'yes';
 $padding_top               = isset($page_meta['padding_top'])?$page_meta['padding_top']:'';
 $padding_bottom            = isset($page_meta['padding_bottom'])?$page_meta['padding_bottom']:'';
@@ -36,9 +38,11 @@ if( $padding_bottom )
 $container_css .= 'padding-bottom:'.$padding_bottom.';';
 
 ?>
-<article id="post-<?php the_ID(); ?>" <?php post_class(); ?>>
-  <?php if (  $display_breadcrumb == 'yes' ): ?>
-  
+<article id="post-<?php the_ID(); ?>" <?php post_class(); ?> role="article">
+
+ <?php if (  $display_breadcrumb == 'yes' ): ?>
+
+
   <section class="page-title-bar title-left no-subtitle" style="">
     <div class="container">
       <hgroup class="page-title">
@@ -46,18 +50,23 @@ $container_css .= 'padding-bottom:'.$padding_bottom.';';
           <?php the_title();?>
         </h1>
       </hgroup>
-      <?php onetone_get_breadcrumb(array("before"=>"<div class=''>","after"=>"</div>","show_browse"=>false,"separator"=>'','container'=>'div'));?>
+
+
+   <?php onetone_get_breadcrumb(array("before"=>"<div class=''>","after"=>"</div>","show_browse"=>false,"separator"=>'','container'=>'div'));?>
+
       <div class="clearfix"></div>
     </div>
   </section>
+ 
   <?php endif;?>
+  
   <div class="post-wrap">
     <div class="<?php echo $container;?>">
       <div class="post-inner row <?php echo $aside; ?>" style=" <?php echo $container_css;?>">
         <div class="col-main">
           <section class="post-main" role="main" id="content">
             <?php while ( have_posts() ) : the_post(); ?>
-            <article class="post type-post" id="">
+            <article class="post type-post" role="article">
               <?php if (  has_post_thumbnail() ): ?>
               <div class="feature-img-box">
                 <div class="img-box">

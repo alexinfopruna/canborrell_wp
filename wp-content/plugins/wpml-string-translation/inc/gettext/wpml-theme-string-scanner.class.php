@@ -18,7 +18,7 @@ class WPML_Theme_String_Scanner extends WPML_String_Scanner {
 
 		$this->scan_starting( 'theme ' );
 
-		$this->current_path = TEMPLATEPATH;
+		$this->current_path = $this->get_wpml_file()->fix_dir_separator( realpath( TEMPLATEPATH ) );
 
 		$theme_info  = wp_get_theme();
 		$text_domain = $theme_info->get( 'TextDomain' );
@@ -50,6 +50,9 @@ class WPML_Theme_String_Scanner extends WPML_String_Scanner {
 		require_once WPML_ST_PATH . '/inc/potx.php';
 		global $sitepress, $sitepress_settings;
 
+		$parent_theme_path = $this->get_wpml_file()->fix_dir_separator( TEMPLATEPATH );
+		$child_theme_path  = $this->get_wpml_file()->fix_dir_separator( STYLESHEETPATH );
+
 		if ( $dir_or_file === false ) {
 			$dir_or_file = $this->current_path;
 		}
@@ -76,8 +79,8 @@ class WPML_Theme_String_Scanner extends WPML_String_Scanner {
 			}
 		}
 
-		if ( $dir_or_file == TEMPLATEPATH && TEMPLATEPATH != STYLESHEETPATH ) {
-			$this->scan_theme_files( STYLESHEETPATH );
+		if ( $dir_or_file === $parent_theme_path && $parent_theme_path !== $child_theme_path ) {
+			$this->scan_theme_files( $child_theme_path );
 			$double_scan = false;
 		}
 
@@ -101,4 +104,6 @@ class WPML_Theme_String_Scanner extends WPML_String_Scanner {
 			$this->add_stat( '</textarea>' );
 		}
 	}
+
+
 }

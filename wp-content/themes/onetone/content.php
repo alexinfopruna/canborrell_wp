@@ -1,9 +1,10 @@
 <?php
 $format = get_post_format();
 $formats = get_theme_support( 'post-formats' );
+$archive_content   = onetone_option('archive_content','content');
 ?>
 <div class="entry-box-wrap" id="post-<?php the_ID(); ?>">
-                                        <article <?php post_class("entry-box"); ?>>
+                                        <article <?php post_class("entry-box"); ?> role="article">
                                         <?php if (  has_post_thumbnail() ): ?>
                                             <div class="feature-img-box">
                                                 <div class="img-box figcaption-middle text-center from-top fade-in">
@@ -22,7 +23,7 @@ $formats = get_theme_support( 'post-formats' );
                                             <?php endif;?>
                                             <div class="entry-main">
                                                 <div class="entry-header">
-                                                    <a href="<?php the_permalink();?>"><h1 class="entry-title"><?php the_title();?></h1></a>
+                                                    <h1 class="entry-title"><a href="<?php the_permalink();?>"><?php the_title();?></a></h1>
                                                     <ul class="entry-meta">
                                                         <li class="entry-date"><i class="fa fa-calendar"></i><a href="<?php echo get_month_link(get_the_time('Y'), get_the_time('m'));?>"><?php echo get_the_date("M d, Y");?></a></li>
                                                         <li class="entry-author"><i class="fa fa-user"></i><?php echo get_the_author_link();?></li>
@@ -34,9 +35,12 @@ $formats = get_theme_support( 'post-formats' );
                                                 <div class="entry-summary">
                                                     <?php the_excerpt(); ?>
                                                 </div><!-- .entry-summary -->
+                                               
                                                 <?php else : ?>
                                                 <div class="entry-content">
-                                                    <?php the_content( ); ?>
+
+                                                    <?php echo onetone_get_summary(); ?>
+
                                                     <?php wp_link_pages( array( 'before' => '<div class="page-links">', 'after' => '</div>', 'link_before' => '<span class="active-link">', 'link_after' => '</span>' ) ); ?>
                                                 </div><!-- .entry-content -->
                                                 <?php endif; ?>

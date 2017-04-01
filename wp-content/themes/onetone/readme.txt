@@ -12,7 +12,7 @@ The theme itself is nothing but 100% GPL v2 or later.
 Icon
  * License: The icons are free for personal use and also free for commercial use.
 All icons are under GPL v3 have been created by our team.
- * Copyright: Mageewp.com, http://www.mageewp.com
+ * Copyright: Mageewp.com, https://www.mageewp.com
 
 --------------------------------------------------------------------------------------------
 
@@ -53,7 +53,7 @@ jQuery OwlCarousel v1.3.3
 
 onetone.js
  * License: GPLv3
- * Copyright: MageeWp, http://www.mageewp.com
+ * Copyright: MageeWp, https://www.mageewp.com
 
 jquery.tubular.1.0.js
  * License: licensed under the MIT License

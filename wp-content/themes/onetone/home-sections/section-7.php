@@ -1,6 +1,7 @@
 <?php
 global $onetone_animated;
  $i                   = 6 ;
+ $detect              = new Mobile_Detect;
  $section_title       = onetone_option( 'section_title_'.$i );
  $section_menu        = onetone_option( 'menu_title_'.$i );
  $parallax_scrolling  = onetone_option( 'parallax_scrolling_'.$i );
@@ -11,7 +12,7 @@ global $onetone_animated;
  $content_model       = onetone_option( 'section_content_model_'.$i,1);
  $section_subtitle    = onetone_option( 'section_subtitle_'.$i );
  $color               = onetone_option( 'section_color_'.$i );
-	
+
   if( !isset($section_content) || $section_content=="" ) 
   $section_content = onetone_option( 'sction_content_'.$i );
   
@@ -26,35 +27,32 @@ global $onetone_animated;
   $container_class = "";
   }
   
-  if( $parallax_scrolling == "yes" || $parallax_scrolling == "1" ){
+  if( ($parallax_scrolling == "yes" || $parallax_scrolling == "1" || $parallax_scrolling == "on") && !$detect->isIOS() ){
 	 $section_css_class  .= ' onetone-parallax';
   }
   
 ?>
+
 <section id="<?php echo $section_id; ?>" class="home-section-<?php echo ($i+1); ?> <?php echo $section_css_class;?>">
+
     	<div class="home-container <?php echo $container_class; ?> page_container">
 		<?php
-		if( $content_model == '0' ):
+		if( $content_model == '0' || $content_model == ''  ):
 		?>
-        <div style="color:<?php echo $color; ?>;">
+        
          <?php if( $section_title != '' ):?>
        <?php  
-
 		   $section_title_class = '';
-
 		   if( $section_subtitle == '' )
-
 		   $section_title_class = 'no-subtitle';
-
 		?>
-
        <h1 class="section-title <?php echo $section_title_class; ?>"><?php echo $section_title; ?></h1>
         <?php endif;?>
         <?php if( $section_subtitle != '' ):?>
         <div class="section-subtitle"><?php echo do_shortcode($section_subtitle);?></div>
          <?php endif;?>
-         
-         <div class="home-section-content">
+         <div class="home-section-content" style="color:<?php echo $color;?>;">
+  
   <?php
   $counters = '';
   for($c=1;$c<=4;$c++){
@@ -65,7 +63,7 @@ global $onetone_animated;
 		   $counters .= '<div class="col-md-3">
 			  <div class="magee-counter-box">
 				<div class="counter"><span class="counter-num">'.absint($number).'</span></div>
-				<h3 class="counter-bottom_title" style="color:'.$color.'">'.esc_attr($title).'</h3>
+				<h3 class="counter-bottom_title"  style="color:'.$color.'">'.esc_attr($title).'</h3>
 			  </div>
 			</div>';
 	
@@ -74,15 +72,15 @@ global $onetone_animated;
 	   echo '<div class="row">'.$counters.'</div>';
 	 
 	 ?>
+      
 </div>
-         
-    </div>
             <?php
 		else:
 		?>
-            <?php if( $section_title != '' ):?>
+        <?php if( $section_title != '' ):?>
         <div class="section-title"><?php echo do_shortcode($section_title);?></div>
         <?php endif;?>
+           
             <div class="home-section-content">
             <?php 
 			if(function_exists('Form_maker_fornt_end_main'))

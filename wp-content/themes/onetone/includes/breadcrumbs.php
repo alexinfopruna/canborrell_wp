@@ -31,11 +31,11 @@
 * @return void
 */
 function onetone_breadcrumb_trail( $args = array() ) {
-if ( function_exists( 'is_bbpress' ) && is_bbpress() )
-$breadcrumb = new onetone_bbPress_Breadcrumb_Trail( $args );
-else
-$breadcrumb = new onetone_Breadcrumb_Trail( $args );
-return $breadcrumb->trail();
+	if ( function_exists( 'is_bbpress' ) && is_bbpress() )
+	  $breadcrumb = new onetone_bbPress_Breadcrumb_Trail( $args );
+	else
+	$breadcrumb = new onetone_Breadcrumb_Trail( $args );
+	  return $breadcrumb->trail();
 }
 /**
 * Creates a breadcrumbs menu for the site based on the current page that's being viewed by the user.
@@ -68,31 +68,31 @@ public $args = array();
 * @return void
 */
 public function __construct( $args = array() ) {
-/* Remove the bbPress breadcrumbs. */
-add_filter( 'bbp_get_breadcrumb', '__return_false' );
-$defaults = array(
-'container' => 'div',
-'separator' => '&#47;',
-'before' => '',
-'after' => '',
-'show_on_front' => true,
-'network' => false,
-//'show_edit_link' => false,
-'show_title' => true,
-'show_browse' => true,
-'echo' => true,
-/* Post taxonomy (examples follow). */
-'post_taxonomy' => array(
-  'portfolio' => 'portfolio_category',
-// 'book' => 'genre',
-),
-/* Labels for text used (see Breadcrumb_Trail::default_labels). */
-'labels' => array()
-);
-$this->args = apply_filters( 'breadcrumb_trail_args', wp_parse_args( $args, $defaults ) );
-/* Merge the user-added labels with the defaults. */
-$this->args['labels'] = wp_parse_args( $this->args['labels'], $this->default_labels() );
-$this->do_trail_items();
+	/* Remove the bbPress breadcrumbs. */
+	add_filter( 'bbp_get_breadcrumb', '__return_false' );
+	$defaults = array(
+	'container' => 'div',
+	'separator' => '&#47;',
+	'before' => '',
+	'after' => '',
+	'show_on_front' => true,
+	'network' => false,
+	//'show_edit_link' => false,
+	'show_title' => true,
+	'show_browse' => true,
+	'echo' => true,
+	/* Post taxonomy (examples follow). */
+	'post_taxonomy' => array(
+	  'portfolio' => 'portfolio-category',
+	// 'book' => 'genre',
+	),
+	/* Labels for text used (see Breadcrumb_Trail::default_labels). */
+	'labels' => array()
+	);
+	$this->args = apply_filters( 'breadcrumb_trail_args', wp_parse_args( $args, $defaults ) );
+	/* Merge the user-added labels with the defaults. */
+	$this->args['labels'] = wp_parse_args( $this->args['labels'], $this->default_labels() );
+	$this->do_trail_items();
 }
 /**
 * Formats and outputs the breadcrumb trail.
@@ -102,38 +102,38 @@ $this->do_trail_items();
 * @return string
 */
 public function trail() {
-$breadcrumb = '';
-/* Connect the breadcrumb trail if there are items in the trail. */
-if ( !empty( $this->items ) && is_array( $this->items ) ) {
-/* Make sure we have a unique array of items. */
-$this->items = array_unique( $this->items );
-/* Open the breadcrumb trail containers. */
-$breadcrumb = "\n\t\t" . '<' . tag_escape( $this->args['container'] ) . ' class="breadcrumb-nav breadcrumbs" itemprop="breadcrumb">';
-/* If $before was set, wrap it in a container. */
-$breadcrumb .= ( !empty( $this->args['before'] ) ? "\n\t\t\t" . '<span class="trail-before">' . $this->args['before'] . '</span> ' . "\n\t\t\t" : '' );
-/* Add 'browse' label if it should be shown. */
-if ( true === $this->args['show_browse'] )
-$breadcrumb .= "\n\t\t\t" . '<span class="trail-browse">' . $this->args['labels']['browse'] . '</span> ';
-/* Adds the 'trail-begin' class around first item if there's more than one item. */
-if ( 1 < count( $this->items ) )
-array_unshift( $this->items, '<span class="trail-begin">' . array_shift( $this->items ) . '</span>' );
-/* Adds the 'trail-end' class around last item. */
-array_push( $this->items, '<span class="trail-end">' . array_pop( $this->items ) . '</span>' );
-/* Format the separator. */
-$separator = ( !empty( $this->args['separator'] ) ? '<span class="sep">' . $this->args['separator'] . '</span>' : '<span class="sep">/</span>' );
-/* Join the individual trail items into a single string. */
-$breadcrumb .= join( "\n\t\t\t {$separator} ", $this->items );
-/* If $after was set, wrap it in a container. */
-$breadcrumb .= ( !empty( $this->args['after'] ) ? "\n\t\t\t" . ' <span class="trail-after">' . $this->args['after'] . '</span>' : '' );
-/* Close the breadcrumb trail containers. */
-$breadcrumb .= "\n\t\t" . '</' . tag_escape( $this->args['container'] ) . '>';
-}
-/* Allow developers to filter the breadcrumb trail HTML. */
-$breadcrumb = apply_filters( 'breadcrumb_trail', $breadcrumb, $this->args );
-if ( true === $this->args['echo'] )
-echo $breadcrumb;
-else
-return $breadcrumb;
+	$breadcrumb = '';
+	/* Connect the breadcrumb trail if there are items in the trail. */
+	if ( !empty( $this->items ) && is_array( $this->items ) ) {
+	/* Make sure we have a unique array of items. */
+	$this->items = array_unique( $this->items );
+	/* Open the breadcrumb trail containers. */
+	$breadcrumb = "\n\t\t" . '<' . tag_escape( $this->args['container'] ) . ' class="breadcrumb-nav breadcrumbs" itemprop="breadcrumb">';
+	/* If $before was set, wrap it in a container. */
+	$breadcrumb .= ( !empty( $this->args['before'] ) ? "\n\t\t\t" . '<span class="trail-before">' . $this->args['before'] . '</span> ' . "\n\t\t\t" : '' );
+	/* Add 'browse' label if it should be shown. */
+	if ( true === $this->args['show_browse'] )
+	$breadcrumb .= "\n\t\t\t" . '<span class="trail-browse">' . $this->args['labels']['browse'] . '</span> ';
+	/* Adds the 'trail-begin' class around first item if there's more than one item. */
+	if ( 1 < count( $this->items ) )
+	array_unshift( $this->items, '<span class="trail-begin">' . array_shift( $this->items ) . '</span>' );
+	/* Adds the 'trail-end' class around last item. */
+	array_push( $this->items, '<span class="trail-end">' . array_pop( $this->items ) . '</span>' );
+	/* Format the separator. */
+	$separator = ( !empty( $this->args['separator'] ) ? '<span class="sep">' . $this->args['separator'] . '</span>' : '<span class="sep">/</span>' );
+	/* Join the individual trail items into a single string. */
+	$breadcrumb .= join( "\n\t\t\t {$separator} ", $this->items );
+	/* If $after was set, wrap it in a container. */
+	$breadcrumb .= ( !empty( $this->args['after'] ) ? "\n\t\t\t" . ' <span class="trail-after">' . $this->args['after'] . '</span>' : '' );
+	/* Close the breadcrumb trail containers. */
+	$breadcrumb .= "\n\t\t" . '</' . tag_escape( $this->args['container'] ) . '>';
+	}
+	/* Allow developers to filter the breadcrumb trail HTML. */
+	$breadcrumb = apply_filters( 'breadcrumb_trail', $breadcrumb, $this->args );
+	if ( true === $this->args['echo'] )
+	echo $breadcrumb;
+	else
+	return $breadcrumb;
 }
 /**
 * Returns an array of the default labels.
@@ -143,27 +143,27 @@ return $breadcrumb;
 * @return array
 */
 public function default_labels() {
-$labels = array(
-'browse' => __( 'Browse:', 'onetone' ),
-'home' => __( 'Home', 'onetone' ),
-'error_404' => __( '404 Not Found', 'onetone' ),
-'archives' => __( 'Archives', 'onetone' ),
-/* Translators: %s is the search query. The HTML entities are opening and closing curly quotes. */
-'search' => __( 'Search results for &#8220;%s&#8221;', 'onetone' ),
-/* Translators: %s is the page number. */
-'paged' => __( 'Page %s', 'onetone' ),
-/* Translators: Minute archive title. %s is the minute time format. */
-'archive_minute' => __( 'Minute %s', 'onetone' ),
-/* Translators: Weekly archive title. %s is the week date format. */
-'archive_week' => __( 'Week %s', 'onetone' ),
-/* "%s" is replaced with the translated date/time format. */
-'archive_minute_hour' => '%s',
-'archive_hour' => '%s',
-'archive_day' => '%s',
-'archive_month' => '%s',
-'archive_year' => '%s',
-);
-return $labels;
+	$labels = array(
+	'browse' => __( 'Browse:', 'onetone' ),
+	'home' => __( 'Home', 'onetone' ),
+	'error_404' => __( '404 Not Found', 'onetone' ),
+	'archives' => __( 'Archives', 'onetone' ),
+	/* Translators: %s is the search query. The HTML entities are opening and closing curly quotes. */
+	'search' => __( 'Search results for &#8220;%s&#8221;', 'onetone' ),
+	/* Translators: %s is the page number. */
+	'paged' => __( 'Page %s', 'onetone' ),
+	/* Translators: Minute archive title. %s is the minute time format. */
+	'archive_minute' => __( 'Minute %s', 'onetone' ),
+	/* Translators: Weekly archive title. %s is the week date format. */
+	'archive_week' => __( 'Week %s', 'onetone' ),
+	/* "%s" is replaced with the translated date/time format. */
+	'archive_minute_hour' => '%s',
+	'archive_hour' => '%s',
+	'archive_day' => '%s',
+	'archive_month' => '%s',
+	'archive_year' => '%s',
+	);
+	return $labels;
 }
 /**
 * Runs through the various WordPress conditional tags to check the current page being viewed. Once
@@ -536,8 +536,12 @@ $this->do_path_parents( $post_type_object->rewrite['slug'] );
 /* Add the post type [plural] name to the trail end. */
 if ( is_paged() )
 $this->items[] = '<a href="' . esc_url( get_post_type_archive_link( $post_type_object->name ) ) . '" title="' . esc_attr( post_type_archive_title( '', false ) ) . '">' . post_type_archive_title( '', false ) . '</a>';
-elseif ( true === $this->args['show_title'] )
-$this->items[] = post_type_archive_title( '', false );
+elseif ( true === $this->args['show_title'] ){
+	if( function_exists('is_shop') && function_exists('woocommerce_page_title') && is_shop())
+     $this->items[] =  woocommerce_page_title(false);
+	else
+    $this->items[] = post_type_archive_title( '', false );
+}
 }
 /**
 * Adds the items to the trail items array for user (author) archives.

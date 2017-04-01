@@ -1,5 +1,4 @@
     <br />
-    <?php ICL_WP_Pointers::add(array('ICL_WP_Pointers', 'pointer_mo_auto_download_260')); ?>
     <form id="icl_auto_download_mo" name="icl_auto_download_mo" method="post" action="">
     <input type="hidden" name="action" value="icl_adm_save_preferences" />
     <h3><?php _e('Select how to get translations for WordPress core', 'wpml-string-translation') ?></h3>

@@ -1,6 +1,7 @@
 <?php
 global $onetone_animated;
  $i                   = 8 ;
+ $detect              = new Mobile_Detect;
  $section_title       = onetone_option( 'section_title_'.$i );
  $section_menu        = onetone_option( 'menu_title_'.$i );
  $parallax_scrolling  = onetone_option( 'parallax_scrolling_'.$i );
@@ -20,6 +21,7 @@ global $onetone_animated;
   $section_id      = sanitize_title( onetone_option( 'menu_slug_'.$i ,'section-'.($i+1) ) );
   if( $section_id == '' )
    $section_id = 'section-'.($i+1);
+   
    $section_id  = strtolower( $section_id );
   
   $container_class = "container";
@@ -27,37 +29,34 @@ global $onetone_animated;
   $container_class = "";
   }
   
-  if( $parallax_scrolling == "yes" || $parallax_scrolling == "1" ){
+  if( ($parallax_scrolling == "yes" || $parallax_scrolling == "1" || $parallax_scrolling == "on") && !$detect->isIOS() ){
 	 $section_css_class  .= ' onetone-parallax';
   }
   
 ?>
+
 <section id="<?php echo $section_id; ?>" class="home-section-<?php echo ($i+1); ?> <?php echo $section_css_class;?>">
+
     	<div class="home-container <?php echo $container_class; ?> page_container">
 		<?php
-		if( $content_model == '0' ):
+		if( $content_model == '0' || $content_model == ''  ):
 		?>
-        <div style="color:<?php echo $color; ?>;">
+        
          <?php if( $section_title != '' ):?>
        <?php  
-
 		   $section_title_class = '';
-
 		   if( $section_subtitle == '' )
-
 		   $section_title_class = 'no-subtitle';
-
 		?>
-
        <h1 class="section-title <?php echo $section_title_class; ?>"><?php echo $section_title; ?></h1>
         <?php endif;?>
         <?php if( $section_subtitle != '' ):?>
         <div class="section-subtitle"><?php echo do_shortcode($section_subtitle);?></div>
          <?php endif;?>
-         
+         <div class="home-section-content" style="color:<?php echo $color;?>;">
          <div class="<?php echo $onetone_animated;?>" data-animationduration="0.9" data-animationtype="fadeIn" data-imageanimation="no">
          <div class="contact-area">
-           <form class="contact-form" action="" method="post">
+<form class="contact-form" action="" method="post">
             <input id="name" tabindex="1" name="name" size="22" type="text" value="" placeholder="<?php _e('Name', 'onetone')?>" />
             <input id="email" tabindex="2" name="email" size="22" type="text" value="" placeholder="<?php _e('Email', 'onetone')?>" />
             <textarea id="message" tabindex="4" cols="39" name="x-message" rows="7" placeholder="<?php _e('Message', 'onetone')?>"></textarea>
@@ -70,9 +69,10 @@ global $onetone_animated;
             <?php
 		else:
 		?>
-            <?php if( $section_title != '' ):?>
+        <?php if( $section_title != '' ):?>
         <div class="section-title"><?php echo do_shortcode($section_title);?></div>
         <?php endif;?>
+           
             <div class="home-section-content">
             <?php 
 			if(function_exists('Form_maker_fornt_end_main'))

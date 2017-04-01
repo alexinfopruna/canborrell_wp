@@ -6,10 +6,11 @@
  */
 
 get_header(); 
-$left_sidebar   = onetone_option('left_sidebar_blog_posts','');
-$right_sidebar  = onetone_option('right_sidebar_blog_posts','');
+$left_sidebar           = onetone_option('left_sidebar_blog_posts');
+$right_sidebar          = onetone_option('right_sidebar_blog_posts');
 $display_author_info    = onetone_option('display_author_info',1 );
 $display_related_posts  = onetone_option('display_related_posts',1 );
+
 $aside          = 'no-aside';
 if( $left_sidebar !='' )
 $aside          = 'left-aside';
@@ -19,7 +20,9 @@ if(  $left_sidebar !='' && $right_sidebar !='' )
 $aside          = 'both-aside';
 
 ?>
-<article id="post-<?php the_ID(); ?>" <?php post_class(); ?>>
+<article id="post-<?php the_ID(); ?>" <?php post_class(); ?> role="article">
+
+
 <section class="page-title-bar title-left no-subtitle" style="">
             <div class="container">
                 <hgroup class="page-title">
@@ -35,8 +38,9 @@ $aside          = 'both-aside';
                 <div class="post-inner row <?php echo $aside; ?>">
                     <div class="col-main">
                         <section class="post-main" role="main" id="content">
+                         <?php if ( have_posts() ) : ?>
                         <?php while ( have_posts() ) : the_post(); ?>
-                            <article class="post type-post" id="">
+                            <article class="post type-post">
                             <?php if (  has_post_thumbnail() ): ?>
                                 <div class="feature-img-box">
                                     <div class="img-box">
@@ -57,10 +61,10 @@ $aside          = 'both-aside';
                                         </ul>
                                     </div>
                                     <div class="entry-content">                                        
-                                        <?php the_content();?>   
+                                        <?php the_content();?>      
                                         <?php
 				wp_link_pages( array( 'before' => '<div class="page-links"><span class="page-links-title">' . __( 'Pages:', 'onetone' ) . '</span>', 'after' => '</div>', 'link_before' => '<span>', 'link_after' => '</span>' ) );
-				?>    
+				?>
                                     </div>
                                     <div class="entry-footer">
                                         <?php
@@ -73,9 +77,10 @@ $aside          = 'both-aside';
                                     </div>
                                 </div>
                             </article>
-
+<?php endwhile; // end of the loop. ?>
+<?php endif;?>
                             <div class="post-attributes">
-                            <?php if( $display_author_info == 1 ):?>
+							<?php if( $display_author_info == 1 ):?>
                                 <!--About Author-->
                                 <div class="about-author">
                                     <h3><?php _e("About the author","onetone");?>: <?php the_author_link(); ?></h3>
@@ -85,29 +90,29 @@ $aside          = 'both-aside';
                                     <div class="author-description">
                                         <?php the_author_meta('description');?>
                                     </div>
-                                </div>
-                                 <!--About Author End-->
+                                </div><!--About Author End-->
                                 <?php endif;?>
                                 
                                  <?php if( $display_related_posts == 1 ):?>
                                 <?php 
+								
 									$related_number = onetone_option('related_number',8);
 									$related        = onetone_get_related_posts($post->ID, $related_number,'post'); 
 									
 									?>
 			                        <?php if($related->have_posts()): 
-									        $date_format = onetone_option('date_format','M d, Y');
 									?>
-                                
+                               
                                 <!--Related Posts-->
                                 <div class="related-posts">
                                         <h3><?php _e( 'Related Posts', 'onetone' );?></h3>
                                         <div class="multi-carousel onetone-related-posts owl-carousel owl-theme">
                                         
-                                            <?php while($related->have_posts()): $related->the_post(); ?>
+                            <?php while($related->have_posts()): $related->the_post(); ?>
 							<?php if(has_post_thumbnail()): ?>
-                            <?php //$full_image  = wp_get_attachment_image_src(get_post_thumbnail_id($post->ID), 'full'); 
+                            <?php
 							       $thumb_image = wp_get_attachment_image_src(get_post_thumbnail_id($post->ID), 'related-post');
+								   if( $thumb_image[0] != '' ):
 							?>
                                             <div class="owl-item">
                                             <div class="post-grid-box">
@@ -126,18 +131,18 @@ $aside          = 'both-aside';
                                                                 <div class="img-caption">
                                                                     <a href="<?php the_permalink(); ?>"><h4><?php the_title(); ?></h4></a>
                                                                     <ul class="entry-meta">
-                                                                        <li class="entry-date"><i class="fa fa-calendar"></i><?php echo get_the_date( $date_format );?></li>
+                                                                        <li class="entry-date"><i class="fa fa-calendar"></i><?php echo get_the_date( );?></li>
                                                                         <li class="entry-author"><i class="fa fa-user"></i><?php echo get_the_author_link();?></li>
                                                                     </ul>
                                                                 </div>
                                                             </div>
                                                             </div>
-                                            <?php endif; endwhile; ?>
+                                            <?php endif; endif; endwhile; ?>
                                         </div>
                                     </div>
                                 <!--Related Posts End-->
                                 <?php wp_reset_postdata(); endif; ?>
-                                 <?php endif; ?>
+                                <?php endif; ?>
                                 <!--Comments Area-->                                
                                 <div class="comments-area text-left">
                                      <?php
@@ -148,10 +153,9 @@ $aside          = 'both-aside';
 										?>
                                 </div>
                                 <!--Comments End-->
-                                  <?php echo onetone_post_nav();?>
                                       </div>
                             
-                            <?php endwhile; // end of the loop. ?>
+                            
                         </section>
                     </div>
                     <?php if( $left_sidebar !='' ):?>

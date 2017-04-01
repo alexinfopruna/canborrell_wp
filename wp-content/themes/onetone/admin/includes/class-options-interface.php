@@ -15,10 +15,8 @@ class Options_Framework_Interface {
 	static function optionsframework_tabs() {
 		$counter = 0;
 		$options = & Options_Framework::_optionsframework_options();
-		$menu = '';
+		$menu    = '';
 		
-		
-
 		foreach ( $options as $value ) {
 			// Heading for Navigation
 			
@@ -44,13 +42,15 @@ class Options_Framework_Interface {
 	/**
 	 * Generates the options fields that are used in the form.
 	 */
-	static function optionsframework_fields() {
+	static function optionsframework_fields( $options = null ) {
 
 		 global $allowedposttags, $allowedtags;
 
 		$options_framework = new Options_Framework;
 		$option_name = $options_framework->get_option_name();
 		$settings = get_option( $option_name );
+		
+		if( $options == null )
 		$options = & Options_Framework::_optionsframework_options();
 
 		$counter = 0;
@@ -131,7 +131,6 @@ class Options_Framework_Interface {
 				if( $value['id'] == 'section_num')
 				$output .= '<input type="submit" class="save-section-num button-primary" value="'.__('Save','onetone').'">';
 				break;
-				break;
 
 			// Password input
 			case 'password':
@@ -170,6 +169,7 @@ class Options_Framework_Interface {
 				$name = $option_name .'['. $value['id'] .']';
 				foreach ($value['options'] as $key => $option) {
 					$id = $option_name . '-' . $value['id'] .'-'. $key;
+			
 					$output .= '<input class="of-input of-radio" type="radio" name="' . esc_attr( $name ) . '" id="' . esc_attr( $id ) . '" value="'. esc_attr( $key ) . '" '. checked( $val, $key, false) .' /><label for="' . esc_attr( $id ) . '">' . esc_html( $option ) . '</label>';
 				}
 				break;
@@ -191,7 +191,8 @@ class Options_Framework_Interface {
 
 			// Checkbox
 			case "checkbox":
-				$output .= '<input id="' . esc_attr( $value['id'] ) . '" class="checkbox of-input" type="checkbox" name="' . esc_attr( $option_name . '[' . $value['id'] . ']' ) . '" '. checked( $val, 1, false) .' />';
+			if( $val == 'on' ||  $val == 'yes' ) $val = 1;
+				$output .= '<input id="' . esc_attr( $value['id'] ) . '" class="checkbox of-input of-checkbox" type="checkbox" name="' . esc_attr( $option_name . '[' . $value['id'] . ']' ) . '" '. checked( $val, 1, false) .' />';
 				$output .= '<label class="explain" for="' . esc_attr( $value['id'] ) . '">' . wp_kses( $explain_value, $allowedtags) . '</label>';
 				break;
 
@@ -463,16 +464,18 @@ class Options_Framework_Interface {
 			 case "start_group":
 				$class = '';
 				$class = ! empty( $value['id'] ) ? $value['id'] : $value['name'];
-				$output .= '<div class="tab_item_group ' . $class . '">';
+				$output .= '<div id="' . esc_attr( $value['id'] ) . '" class="tab_item_group ' . esc_attr( $value['class'] ) . '">';
 				break;
-			  case "end_group":
-			  $output .= '</div>';
-			  break;
-			  
+				
+			 case "end_group":
+				$output .= '</div>';
+				break;
+				
 			  case "wrapper_start":
 			  $class = ! empty( $value['id'] ) ? $value['id'] : $value['name'];
-			  $output .= '<div class="section_wrapper ' . $class . '">';
+			  $output .= '<div id="' . esc_attr( $value['id'] ) . '" class="section_wrapper ' . esc_attr( $value['class'] ) . '">';
 			  break;
+			  
 			  case "wrapper_end":
 			  $output .= '</div>';
 			  break;
@@ -481,7 +484,7 @@ class Options_Framework_Interface {
 				
 			}
 
-			if ( ( $value['type'] != "heading" ) && ( $value['type'] != "info" )  && ( $value['type'] != "wrapper_start" )   && ( $value['type'] != "wrapper_end" )  ) {
+			if ( ( $value['type'] != "heading" ) && ( $value['type'] != "info" ) && ( $value['type'] != "wrapper_start" )   && ( $value['type'] != "wrapper_end" ) ) {
 				$output .= '</div>';
 				if ( ( $value['type'] != "checkbox" ) && ( $value['type'] != "editor" ) ) {
 					$output .= '<div class="explain">' . wp_kses( $explain_value, $allowedtags) . '</div>'."\n";

@@ -1,3 +1,50 @@
+# 2.5.2
+
+## Fixes
+* [wpmltm-1602] Fixed the query which list items in the Translation Management dashboard
+* [wpmlst-1047] Fixed exporting in po files duplicated strings with different contexts
+* [wpmlst-1117] Removed feature for page builders that updates the translated post when the original post is updated
+* [wpmlst-1009] Fixed the display of string tracking in source
+
+## Features
+* [wpmlst-1044] Grouped strings registered without context / domain
+
+# 2.5.1
+
+## Fixes
+* [wpmlst-1014] Raised the order of calling the `wpml_translatable_user_meta_fields` filter to allow displaying translated user meta on the front-end
+ 
+## API
+* [wpmlst-1032] Add actions for cleaning up unused package strings `wpml_start_string_package_registration` and `wpml_delete_unused_package_strings`
+
+# 2.5.0
+
+## Fixes
+* [wpmlst-907] Fixed an issue when trying to register a string with `0` as name
+* [wpmlst-920] Fixed an issue in double registering of Multilingual Widget content
+* [wpmlcore-3333] Fixed an issue that was happening when you try to scan strings before completing the wizard. Now it is not allowed
+* [wpmlst-954] Fixed database error when running WPML reset
+* [wpmlst-937] Fixed an issue when importing large `.po` files
+* [wpmlst-988] Fixed issue with DEFAULT in Text fields for compatibility with MySQL 5.7
+* [wpmlcore-3505] Add troubleshooting option `Recreate ST DB Cache tables` to re-run ST upgrade
+* [wpmlst-996] Fix 'Create PO file' functionality so it includes the msgctxt when required
+* [wpmlst-1028] Fix wrong table prefix when resetting WPML in multisite
+
+## API
+* [wpmlcore-3372] Added more API hooks including `wpml_add_string_translation`
+
+## Performances
+* [wpmlst-925] Improved usage of server's resources when scanning themes or plugins for strings
+* [wpmlst-831] Improved page loading and memory consumption in Theme's and Plugin's localization page
+
+## Features
+* [wpmlst-955] Add support to translate shortcode strings used by page builders.
+
+# 2.4.3
+
+## Features
+* [wpmlst-929] Updated package registration API to give option to connect package to post.   
+
 # 2.4.2.1
 
 ## Fixes

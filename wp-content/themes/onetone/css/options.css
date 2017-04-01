@@ -81,7 +81,7 @@ div#optionsframework-metabox {
     padding-top: 0;
 }
 
-.postbox {
+#optionsframework-wrap .postbox {
     border: 0;
     margin-bottom: 0;
     border-left: 1px solid #ccc;
@@ -273,7 +273,6 @@ ul.options-links li.pro a:hover {
 .section .section_wrapper {
     display: none;
 }
-
 #optionsframework-wrap .group .section.section-start_group,
 #optionsframework-wrap .group .section.section-end_group {
     padding: 0;
@@ -490,6 +489,9 @@ h2 .nav-tab {
 
 #optionsframework .controls .of-background-attachment {
     width: 120px;
+}
+#optionsframework-wrap .group .section h4 {
+    text-align: left;
 }
 
 #onetone-backup-lists {

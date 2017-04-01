@@ -17,18 +17,31 @@ $aside          = 'both-aside';
 
 ?>
 
+  <section class="page-title-bar title-left no-subtitle">
+    <div class="container">
+      <hgroup class="page-title">
+        <h1>
+        <?php single_cat_title();?>
+        </h1>
+      </hgroup>
+ <?php onetone_get_breadcrumb(array("before"=>"<div class=''>","after"=>"</div>","show_browse"=>false,"separator"=>'','container'=>'div'));?>
+
+      <div class="clearfix"></div>
+    </div>
+  </section>
+
 <div class="post-wrap">
             <div class="container">
                 <div class="post-inner row <?php echo $aside; ?>">
                     <div class="col-main">
                         <section class="post-main" role="main" id="content">                        
-                            <article class="page type-page" id="">
+                            <article class="page type-page" role="article">
                             <?php if (have_posts()) :?>
                                 <!--blog list begin-->
                                 <div class="blog-list-wrap">
                                 
                                 <?php while ( have_posts() ) : the_post();?>
-                                <?php get_template_part("content",get_post_format() ); ?>
+                                <?php get_template_part("content",get_post_format()); ?>
                                 <?php endwhile;?>
                                 </div>
                                 <?php endif;?>

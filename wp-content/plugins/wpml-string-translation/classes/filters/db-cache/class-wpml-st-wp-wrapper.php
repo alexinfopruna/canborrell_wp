@@ -22,7 +22,12 @@ class WPML_ST_WP_Wrapper {
 		global $wp_filter;
 
 		$tmp_wp_filter = $wp_filter;
-		$GLOBALS['wp_filter'] = array( 'sanitize_title' => $tmp_wp_filter['sanitize_title'] );
+
+		$filters = array();
+		if ( isset( $tmp_wp_filter['sanitize_title'] ) ) {
+			$filters['sanitize_title'] = $tmp_wp_filter['sanitize_title'];
+		}
+		$GLOBALS['wp_filter'] = $filters;
 
 		$result = $path;
 

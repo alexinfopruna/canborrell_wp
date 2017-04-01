@@ -210,13 +210,7 @@ class WPML_Register_String_Filter extends WPML_Displayed_String_Filter {
 	 * @return string[]
 	 */
 	protected function initialize_current_string( $name, $context ) {
-		if ( is_array( $context ) ) {
-			$this->domain          = isset ( $context[ 'domain' ] ) ? $context[ 'domain' ] : '';
-			$this->gettext_context = isset ( $context[ 'context' ] ) ? $context[ 'context' ] : '';
-		} else {
-			$this->domain = $context;
-			$this->gettext_context = '';
-		}
+		list ( $this->domain, $this->gettext_context ) = wpml_st_extract_context_parameters( $context );
 
 		list( $this->name, $this->domain ) = array_map( array(
 			$this,

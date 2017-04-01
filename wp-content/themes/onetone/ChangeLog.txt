@@ -2,6 +2,57 @@
 
 == CHANGE LOG == 
 
+= Version 2.0.8 = = 27/03/2017
+* Fix - Fixed contact form issue
+
+= Version 2.0.7 = = 23/03/2017
+* Fix - Fixed Hide Section option issue
+
+= Version 2.0.6 = = 22/03/2017
+* Remove - Removed Slideshow -> Full Height option on mobile devices.
+* Improved banner performance
+* Compatible with Mageewp Page Layout
+* Moved theme options to customise 
+
+= Version 2.0.5 = = 22/02/2017
+* Fix - Fixed responsive issue of section 1       
+* Fix - Fixed overlay logo issue
+* Fix - Fixed menu issue in section 1 on mobile devices
+* Fix - Fixed slider issue for rtl
+* Compatible with plugin "Clef Two-Factor Authentication"
+
+= Version 2.0.4 = = 03/02/2017
+* Fix - Fixed child theme 'Save Options' issue
+
+= Version 2.0.3 = = 19/01/2017
+* Add - Added subtitle typography for home page section
+* Remove - Removed 'font color' option of home page section
+* Fix - Fixed "Parallax Scrolling Background Image" option issue on IOS
+* Fix - Fixed related post issue on mobile devices
+
+= Version 2.0.2 = = 03/01/2017
+* Fix - Fixed 'Save Options' issue
+
+= Version 2.0.1 = = 19/12/2016
+* Add - Added style( Normal/Carousel ) option for section team 
+* Add - Added style( Normal/Carousel ) option for section testimonial
+* Fix - Fixed team & testimonial columns issue
+
+= Version 2.0.0 = = 16/12/2016
+* Add - Added vimeo video background 
+* Add - Added side navigation for home page
+* Fix - Fixed animation issue of home page
+* Fix - Fixed 'No Video Background' issue
+* Fix - Fixed 'Enable Sticky Header on Mobiles' option issue
+* Fix - Fixed social icons center issue of home page section one
+* Improved performance on mobile devices
+
+= Version 1.9.5 = 12/12/2016
+* Fix - Fixed animation issue on mobile devices
+
+= Version 1.9.4 = 09/12/2016
+* Fix - Fixed home page animation issue
+
 = Version 1.9.3 = 25/11/2016
 * Add - Added button options for home page slider
 * Add - Added background image for background video loading

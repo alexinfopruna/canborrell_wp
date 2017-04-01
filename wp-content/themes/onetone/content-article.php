@@ -1,5 +1,5 @@
 <div class="entry-box-wrap" id="post-<?php the_ID(); ?>">
-                                        <article class="entry-box">
+                                        <article class="entry-box" role="article">
                                         <?php if (  has_post_thumbnail() ): ?>
                                             <div class="feature-img-box">
                                                 <div class="img-box figcaption-middle text-center from-top fade-in">
@@ -18,7 +18,7 @@
                                             <?php endif;?>
                                             <div class="entry-main">
                                                 <div class="entry-header">
-                                                    <a href="<?php the_permalink();?>"><h1 class="entry-title"><?php the_title();?></h1></a>
+                                                    <h1 class="entry-title"><a href="<?php the_permalink();?>"><?php the_title();?></a></h1>
                                                     <ul class="entry-meta">
                                                         <li class="entry-date"><i class="fa fa-calendar"></i><a href="<?php echo get_month_link(get_the_time('Y'), get_the_time('m'));?>"><?php echo get_the_date("M d, Y");?></a></li>
                                                         <li class="entry-author"><i class="fa fa-user"></i><?php echo get_the_author_link();?></li>
@@ -27,7 +27,7 @@
                                                     </ul>
                                                 </div>
                                                 <div class="entry-summary">
-                                                   <?php the_excerpt();?>
+                                                   <?php echo onetone_get_summary(); ?>
                                                 </div>
                                                 <div class="entry-footer">
                                                     <a href="<?php the_permalink();?>" class="entry-more pull-right"><?php _e("Read More","onetone");?> &gt;&gt;</a>

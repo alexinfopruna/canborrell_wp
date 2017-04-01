@@ -31,6 +31,8 @@
 		this.$doc = $(document);
 		this.docHeight = this.$doc.height();
 	};
+	
+	var firstItem = true;
 
 	// the plugin prototype
 	OnePageNav.prototype = {
@@ -75,8 +77,28 @@
 		},
 
 		adjustNav: function(self, $parent) {
+			
+			$('.main-nav li').removeClass(self.config.currentClass);
 			self.$elem.find('.' + self.config.currentClass).removeClass(self.config.currentClass);
+			
 			$parent.addClass(self.config.currentClass);
+			var sectionLoc = $parent.find('a').attr('href');
+			if( typeof sectionLoc !='undefined' && sectionLoc !='' ){
+			
+			var menuColor  = $(sectionLoc).data('menucolor');
+			if( menuColor =='' ){
+				menuColor  = $('article.homepage').data('menucolor');
+				   if( typeof menuColor =='undefined' || sectionLoc =='' ){
+					    menuColor = '#ffffff';
+					   }
+				}
+
+
+			$('ul.onetone-dots li a').css({'border':'2px solid '+menuColor});
+			$('ul.onetone-dots li.'+self.config.currentClass+' a,ul.onetone-dots li.'+self.config.currentClass+' a:hover').css({'background-color':menuColor,'color':menuColor});
+			
+			}
+			
 		},
 
 		bindInterval: function() {
@@ -143,10 +165,14 @@
 			var $link = $(e.currentTarget);
 			var $parent = $link.parent();
 			var newLoc = '#' + self.getHash($link);
+			
+			if( $("header").hasClass("fixed-header")){
+				 firstItem = false;
+				}
             ////
 			var windowWidth = jQuery(window).width(); 
 			if(windowWidth < 919)
-			jQuery(".top-nav").toggle();
+			$(".top-nav").toggle();
 			
 			if(!$parent.hasClass(self.config.currentClass)) {
 				//Start callback
@@ -155,8 +181,10 @@
 				}
 
 				//Change the highlighted nav item
+				
+                $parent = $('a[href$="'+ newLoc + '"]').parent();
 				self.adjustNav(self, $parent);
-
+				
 				//Removing the auto-adjust on scroll
 				self.unbindInterval();
 
@@ -184,7 +212,9 @@
 			var windowTop = this.$win.scrollTop();
 			var position = this.getSection(windowTop);
 			var $parent;
-
+			
+			$('.main-nav li').removeClass(this.config.currentClass);
+			
 			//If the position is set
 			if(position !== null) {
 				$parent = this.$elem.find('a[href$="#' + position + '"]').parent();
@@ -192,6 +222,7 @@
 				//If it's not already the current section
 				if(!$parent.hasClass(this.config.currentClass)) {
 					//Change the highlighted nav item
+					$parent = $('a[href$="#' + position + '"]').parent();
 					this.adjustNav(this, $parent);
 
 					//If there is a scrollChange callback
@@ -203,7 +234,7 @@
 		},
 
 		scrollTo: function(target, callback) {
-			
+		
 			if( typeof $(target).offset() !== "undefined" ){
 			var offset = $(target).offset().top;
 
@@ -213,33 +244,25 @@
 			//	var offset =  $('section.'+ id).offset().top -selectorHeight;
 			var selectorHeight = $('.fxd-header').height(); 
 			
-				if( jQuery("body.admin-bar").length ){
-		if(jQuery(window).width() < 765) {
-				stickyTop = 46;
+			if( $("body.admin-bar").length ){
+				if(jQuery(window).width() < 765) {
+					stickyTop = 46;
 				
-			} else {
-				stickyTop = 32;
-			}
-	  }
-	  else{
-		  stickyTop = 0;
-		  }
-		if($(window).width() <= 919) {
-					$(".site-nav").hide();
-					}
-						
+				} else {
+					stickyTop = 32;
+				}
+			}else{
+					stickyTop = 0;
+				}
+		  			
 		  selectorHeight = selectorHeight + stickyTop - 1;
 		  
-	        if( jQuery("header").hasClass("fxd")){
-			    offset = offset - selectorHeight;	
-			}else{
-				if( jQuery("header").css("position") === "static")
-				offset = offset - 2*selectorHeight;
-				else
-				 offset = offset - selectorHeight;	
-			
-				}
-			
+		 		  
+		if($(window).width() <= 919) {
+			$(".site-nav").hide();
+		}
+					
+	        offset = offset - selectorHeight;
 
 			$('html, body').animate({
 				scrollTop: offset

@@ -148,12 +148,12 @@ class WPML_ST_Themes_And_Plugins_Updates {
 
 			$themes_and_plugins_settings = new WPML_ST_Themes_And_Plugins_Settings();
 
-			$notice = new WPML_Notice( $plugin_or_theme, '<strong>' . $plugin_or_theme . '</strong>&nbsp;&mdash;&nbsp;' . $message, $themes_and_plugins_settings->get_notices_group() );
+			$notice = $this->admin_notices->get_new_notice( $plugin_or_theme, '<strong>' . $plugin_or_theme . '</strong>&nbsp;&mdash;&nbsp;' . $message, $themes_and_plugins_settings->get_notices_group() );
 			$notice->set_css_class_types( 'info' );
 			$notice->set_exclude_from_pages( array( $string_scan_page ) );
-			$notice->add_action( new WPML_Notice_Action( __( 'Scan now', 'wpml-string-translation' ), $url, false, false, true ) );
-			$notice->add_action( new WPML_Notice_Action( __( 'Skip', 'wpml-string-translation' ), '#', false, true ) );
-			$dismiss_all_action = new WPML_Notice_Action( __( 'Dismiss all these notices', 'wpml-string-translation' ), '#', false, false, false );
+			$notice->add_action( $this->admin_notices->get_new_notice_action( __( 'Scan now', 'wpml-string-translation' ), $url, false, false, true ) );
+			$notice->add_action( $this->admin_notices->get_new_notice_action( __( 'Skip', 'wpml-string-translation' ), '#', false, true ) );
+			$dismiss_all_action = $this->admin_notices->get_new_notice_action( __( 'Dismiss all these notices', 'wpml-string-translation' ), '#', false, false, false );
 			$dismiss_all_action->set_group_to_dismiss( $this->settings->get_notices_group() );
 			$dismiss_all_action->set_js_callback( 'wpml_st_hide_strings_scan_notices' );
 			$notice->add_action( $dismiss_all_action );

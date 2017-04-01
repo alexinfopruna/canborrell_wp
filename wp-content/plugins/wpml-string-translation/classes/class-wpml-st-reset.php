@@ -32,10 +32,34 @@ class WPML_ST_Reset {
 	}
 
 	public function remove_db_tables() {
+		$blog_id = $this->retrieve_current_blog_id();
+
+		$is_multisite_reset = $blog_id && function_exists( 'is_multisite' ) && is_multisite();
+		if ( $is_multisite_reset ) {
+			switch_to_blog( $blog_id );
+		}
+
 		$table = $this->wpdb->prefix . 'icl_string_pages';
 		$this->wpdb->query( 'DROP TABLE IF EXISTS ' . $table );
 
 		$table = $this->wpdb->prefix . 'icl_string_urls';
 		$this->wpdb->query( 'DROP TABLE IF EXISTS ' . $table );
+
+		if ( $is_multisite_reset ) {
+			restore_current_blog();
+		}
+	}
+
+	/**
+	 * @return int
+	 */
+	private function retrieve_current_blog_id() {
+		$filtered_id = array_key_exists( 'id', $_POST )
+			? filter_var( $_POST['id'], FILTER_SANITIZE_NUMBER_INT ) : false;
+		$filtered_id = array_key_exists( 'id', $_GET ) && ! $filtered_id ?
+			filter_var( $_GET['id'], FILTER_SANITIZE_NUMBER_INT ) : $filtered_id;
+		$blog_id = false !== $filtered_id ? $filtered_id : $this->wpdb->blogid;
+
+		return $blog_id;
 	}
 }

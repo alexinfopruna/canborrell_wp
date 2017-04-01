@@ -1,6 +1,16 @@
 <?php
 
-class WPML_ST_String_Factory extends WPML_WPDB_User {
+class WPML_ST_String_Factory {
+	private $wpdb;
+
+	/**
+	 * WPML_ST_String_Factory constructor.
+	 *
+	 * @param WPDB $wpdb
+	 */
+	public function __construct( WPDB $wpdb ) {
+		$this->wpdb = $wpdb;
+	}
 
 	/** @var int[] $string_id_cache */
 	private $string_id_cache = array();

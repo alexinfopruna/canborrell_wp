@@ -36,3 +36,6 @@ section.fullheight .section-content {
 .home-container .row.no-margin > [class*="col-md"] {
     margin: 0!important;
 }
+.img-box .img-overlay-icons i{
+	color:#ffffff;
+	}

@@ -1,6 +1,16 @@
 <?php
 
-class WPML_ST_String_Update extends WPML_WPDB_User {
+class WPML_ST_String_Update {
+	private $wpdb;
+
+	/**
+	 * WPML_ST_String_Update constructor.
+	 *
+	 * @param WPDB $wpdb
+	 */
+	public function __construct( WPDB $wpdb ) {
+		$this->wpdb = $wpdb;
+	}
 
 	/**
 	 * Updates an original string without changing its id or its translations
@@ -30,7 +40,7 @@ class WPML_ST_String_Update extends WPML_WPDB_User {
 	}
 
 	/**
-	 * @param string $string 
+	 * @param string $string
 	 * @return string
 	 */
 	function sanitize_string( $string ) {

@@ -300,10 +300,12 @@ li.info-email:before {
 li.info-website:before {
     content: "\f109";
 }
+
+/**/
 .homepage section{
 	position:relative;
 	}
-
+	
 .homepage .col-main {background-color: transparent;}
 .magee-contact-form .magee-btn-normal {
     color: #666;
@@ -315,7 +317,6 @@ li.info-website:before {
 .magee-contact-form .magee-btn-normal:hover {
     background-color: transparent;
 }
-	
 #optionsframework-wrap .group .section h4 {
     text-align: left;
 }
@@ -340,4 +341,21 @@ left: 0;
 width: 100%;
 height: 100%;
 position: absolute;
+}
+.contact-form input::-moz-placeholder,
+.contact-form textarea::-moz-placeholder {
+    color: inherit;
+    opacity: .5;
+}
+
+.contact-form input:-ms-input-placeholder,
+.contact-form textarea::-ms-input-placeholder {
+    color: inherit;
+    opacity: .5;
+}
+
+.contact-form input::-webkit-input-placeholder,
+.contact-form textarea::-webkit-input-placeholder {
+    color: inherit;
+    opacity: .5;
 }

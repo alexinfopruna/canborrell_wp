@@ -172,7 +172,7 @@ function of_sanitize_allowedposttags( $input ) {
  */
 function of_sanitize_enum( $input, $option ) {
 	$output = '';
-	if ( array_key_exists( $input, $option['options'] ) ) {
+	if ( $input && array_key_exists( $input, $option['options'] ) ) {
 		$output = $input;
 	}
 	return $output;
@@ -385,7 +385,7 @@ add_filter( 'of_sanitize_color', 'of_sanitize_hex' );
  */
 
 function of_recognized_font_sizes() {
-	$sizes = range( 9, 150 );
+	$sizes = range( 9, 71 );
 	$sizes = apply_filters( 'of_recognized_font_sizes', $sizes );
 	$sizes = array_map( 'absint', $sizes );
 	return $sizes;

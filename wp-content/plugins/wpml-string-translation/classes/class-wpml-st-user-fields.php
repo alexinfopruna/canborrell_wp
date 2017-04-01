@@ -1,6 +1,6 @@
 <?php
 
-Class WPML_ST_User_Fields extends WPML_SP_User {
+Class WPML_ST_User_Fields {
 
 	/**
 	 * @var string
@@ -12,22 +12,26 @@ Class WPML_ST_User_Fields extends WPML_SP_User {
 	 */
 	private $authordata;
 
-	public function __construct( SitePress &$sitepress, &$authordata ) {
+	public function __construct( SitePress $sitepress, &$authordata ) {
 		$this->authordata = &$authordata;
-		parent::__construct( $sitepress );
+		$this->sitepress  = $sitepress;
 	}
 
 	public function init_hooks() {
 		if ( ! is_admin() ) {
-			$translatable_fields = $this->get_translatable_meta_fields();
-			foreach ( $translatable_fields as $field ) {
-				add_filter( "get_the_author_{$field}", array( $this, 'get_the_author_field_filter' ), 10, 2 );
-			}
+			add_action( 'init', array( $this, 'add_get_the_author_field_filters' ) );
 			add_filter( 'the_author', array( $this, 'the_author_filter' ), 10, 2 );
 		}
 
 		add_action( 'profile_update', array( $this, 'profile_update_action' ), 10 );
 		add_action( 'user_register',  array( $this, 'profile_update_action' ), 10 );
+	}
+
+	public function add_get_the_author_field_filters() {
+		$translatable_fields = $this->get_translatable_meta_fields();
+		foreach ( $translatable_fields as $field ) {
+			add_filter( "get_the_author_{$field}", array( $this, 'get_the_author_field_filter' ), 10, 2 );
+		}
 	}
 
 	/**
