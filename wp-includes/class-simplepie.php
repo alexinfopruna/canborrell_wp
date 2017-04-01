@@ -400,7 +400,7 @@ define('SIMPLEPIE_NAMESPACE_ITUNES', 'http://www.itunes.com/dtds/podcast-1.0.dtd
 /**
  * XHTML Namespace
  */
-define('SIMPLEPIE_NAMESPACE_XHTML', '//www.w3.org/1999/xhtml');
+define('SIMPLEPIE_NAMESPACE_XHTML', 'http://www.w3.org/1999/xhtml');
 
 /**
  * IANA Link Relations Registry

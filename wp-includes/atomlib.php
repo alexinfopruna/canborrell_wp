@@ -317,7 +317,7 @@ class AtomParser {
 
 
     function ns_to_prefix($qname, $attr=false) {
-        # split '//www.w3.org/1999/xhtml:div' into ('http','//www.w3.org/1999/xhtml','div')
+        # split 'http://www.w3.org/1999/xhtml:div' into ('http','//www.w3.org/1999/xhtml','div')
         $components = explode(":", $qname);
 
         # grab the last one (e.g 'div')
