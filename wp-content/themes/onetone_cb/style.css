@@ -1267,6 +1267,18 @@ section.home-section-1 .home-section-content, section.home-section-1 p{
 }
 
 
+section.home-section-1 .section-subtitle {
+    font-size: 21px;
+
+}
+
+
+.site-tagline{font-size: 19px;}
+
+.home-section-1 .magee-btn-normal{
+	padding:.5em;
+}
+
 
 
 .alergogens{
