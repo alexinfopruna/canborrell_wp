@@ -181,20 +181,65 @@ while ($row = $Result1->fetch_assoc()) {
     return $this->getRestriccions($id);
   }
 
+  
+  private function  desglose_coberts($val,$MAX=20){
+    $tot=array(0,1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22);
+    
+    if ($val == "Parell") return array(111,2,4,6,8,10,12,14,16,18,20);
+    if ($val == "Senar") return array(1,3,5,7,9,11,13,15,17,19);
+    if ($val == "Tot") return array(1,3,5,7,9,11,13,15,17,19); 
+    
+    $op=FALSE;
+    if (!is_numeric(substr($val,0,1))) {
+      $op=substr($val, 0, 1) ;
+      $k=intval(substr($val, 1));
+    }
+    
+    if (!$op) return array($val);
+    //return array($k, $MAX);
+    if ($op==">") return array_slice($tot,$k+1,$MAX-$k);
+    if ($op=="<") return array_slice($tot,0,$k);
+    
+    return FALSE;
+  }
+  
+  
+public function desglose($restriccio){
+$adults = $this->desglose_coberts($restriccio->restriccions_adults,20);
+$nens = $this->desglose_coberts($restriccio->restriccions_nens,6);
+  
+$desglose=$adults;
+$desglose = array_fill_keys($desglose,$nens);
+
+$rest=$restriccio;
+
+var_dump($desglose);
+ foreach($desglose as $k => $a){
+    foreach($a as $k2 => $n){
+      
+      $restriccio->restriccions_adults = $k;
+      $restriccio->restriccions_nens = $n;
+      echo " $k ----> $n <br>";
+      $this->insertRestriccio($rest);
+    }
+ }
+
+  
+}
 
 
 
   public function insertRestriccio($restriccio) {
     if ($restriccio->restriccions_datafi<$restriccio->restriccions_data) $restriccio->restriccions_datafi=$restriccio->restriccions_data;
-$restriccio->restriccions_dies = $this->dies2dec($restriccio->restriccions_dies);
-//$restriccio->restriccions_hores = $this->die2dec($restriccio->restriccions_hores);
-//$dd=json_encode($restriccio->restriccions_dies);
-//echo "{'sss':$dd}";die();
 
+    if ($restriccio->restriccions_dies == "") $restriccio->restriccions_dies=array();
+    $restriccio->restriccions_dies = $this->dies2dec($restriccio->restriccions_dies);
+
+    //if ($restriccio->restriccions_hora == "") $restriccio->restriccions_hora=array();
     if ($restriccio->restriccions_adults == "Parell") $restriccio->restriccions_nens="Tot";
     if ($restriccio->restriccions_adults == "Senar") $restriccio->restriccions_nens="Tot";
 
-    $query = "INSERT INTO restriccions 
+    $query = "REPLACE INTO restriccions 
       (restriccions_active, restriccions_data, restriccions_datafi, restriccions_suma, restriccions_dies, restriccions_adults, restriccions_nens, restriccions_cotxets, restriccions_hora, restriccions_description)
 
       VALUES ('{$restriccio->restriccions_active}',
@@ -207,18 +252,13 @@ $restriccio->restriccions_dies = $this->dies2dec($restriccio->restriccions_dies)
              '{$restriccio->restriccions_cotxets}',
              '{$restriccio->restriccions_hora}',
              '{$restriccio->restriccions_description}')";
-$this->pliiin($query);
+             
+          
     $Result1 = mysqli_query($this->connexioDB, $query) or die(((is_object($GLOBALS["___mysqli_ston"])) ? mysqli_error($GLOBALS["___mysqli_ston"]) : (($___mysqli_res = mysqli_connect_error()) ? $___mysqli_res : false)));
     return $this->getRestriccions();
   }
 
   public function updateRestriccio($restriccio) {
-//$plin = print_r($restriccio->restriccions_hores,1);
-
-//$restriccio->restriccions_dies = $this->dies2dec($restriccio->restriccions_dies); 
- //    $this->pliiin($plin." -- ".$restriccio->restriccions_dies );
-
-
     $restriccio->restriccions_dies = $this->dies2dec($restriccio->restriccions_dies); 
     $restriccio->restriccions_hores = $this->dies2dec($restriccio->restriccions_hores); 
     if ($restriccio->restriccions_datafi<$restriccio->restriccions_data) $restriccio->restriccions_datafi=$restriccio->restriccions_data;
@@ -405,7 +445,8 @@ switch ($accio) {
     break;
 
   case 'insertrestriccio':
-    echo $r->insertRestriccio($restriccio);
+   // echo $r->insertRestriccio($restriccio);
+    echo $r->desglose($restriccio);
     break;
  
   case 'horesdisponibles':
