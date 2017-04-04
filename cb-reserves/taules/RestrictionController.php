@@ -235,13 +235,14 @@ foreach ($rules as $row){ echo "<li><pre>";print_r($row);echo "</pre></li>";}
 if (isset($_REQUEST['json'])) $stparams=$_REQUEST['json'];
 else $stparams = file_get_contents('php://input');
 $params = json_decode($stparams);
-
+//var_dump($stparams);die();
+//echo "EEEE";
 if ($params){
 $accio = $params->accio;
 $id = isset($params->data->restriccions_id)?$params->data->restriccions_id:0;
 $restriccio = $params->data;
 
-//var_dump($restriccio);
+
 }
 
 

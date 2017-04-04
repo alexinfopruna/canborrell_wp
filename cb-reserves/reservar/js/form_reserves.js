@@ -23,6 +23,7 @@ var resub = false;
 var SECCIO_INICIAL = "fr-seccio-quants";
 var AVIS_MODIFICACIONS = false;
 
+var popup = "";
 var dlg = {
     autoOpen: false,
     modal: true,
@@ -80,8 +81,6 @@ if (!Array.prototype.indexOf)
 }
 
 $(function () {
-
-
     $(window).on('resize', function () {
         jQuery("#container").css("margin-top", jQuery(".navbar-header").height());
     }).resize();
@@ -286,9 +285,6 @@ $(function () {
         //updateCalendari();   
     }
     document.body.scrollTop = document.documentElement.scrollTop = 0;
-    
-    
-       
 }); //ONLOAD, PRESENTACIO UI
 //***********************************************************************************************************/
 /************************************************************************************************************/
@@ -512,6 +508,8 @@ function recargaHores()
         {
             $("#popup").html(l("CAP_TAULA"));
             $("#popup").dialog("open");
+            
+            popup = "#popup";
         }
 
         if (!$("input[value='" + hora + "']"))
@@ -1176,8 +1174,12 @@ function seccio(selector_seccio) {
     if (!selector_seccio)
         return;
 
-    $.scrollTo("." + selector_seccio, 800, {offset: -100});
+   /// $.scrollTo("." + selector_seccio, 800, {offset: -100, onAfter: function(){if (popup != "") $(popup).dialog("open");popup="";}});
     SECCIO = selector_seccio;
+    
+    
+    
+    
 }
 
 

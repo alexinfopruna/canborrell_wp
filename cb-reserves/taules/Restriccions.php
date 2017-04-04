@@ -116,6 +116,10 @@ private function hores2bin($decNum){
     if (!isset($filtre->restriccions_cotxets) || $filtre->restriccions_cotxets=="Tot") $filtre->restriccions_cotxets = '>=0';
     $filtre->restriccions_cotxets = is_numeric($filtre->restriccions_cotxets)?'='.$filtre->restriccions_cotxets:$filtre->restriccions_cotxets;
 
+    if (!isset($filtre->restriccions_suma) || $filtre->restriccions_suma=="Tot") $filtre->restriccions_suma = '>=0';
+    $filtre->restriccions_suma = is_numeric($filtre->restriccions_suma)?'='.$filtre->restriccions_suma:$filtre->restriccions_suma;
+
+    
     return $filtre;
   }
 
@@ -123,7 +127,7 @@ private function hores2bin($decNum){
 /***************************************************************************************************************/
 /***************************************************************************************************************/
 
-  public function getRestriccions($id = null, $data = ">=2000-01-01", $datafi = "<=3011-01-01", $adults = null, $nens = null, $cotxets = null) {
+  public function getRestriccions($id = null, $data = ">=2000-01-01", $datafi = "<=3011-01-01", $adults = null, $nens = null, $cotxets = null, $suma= null) {
     $where = " where TRUE ";
     $rcotxets = ", `restriccions_cotxets` ";
     $rcotxets = " ";
@@ -135,6 +139,7 @@ private function hores2bin($decNum){
     $where .= (empty($adults)) ? "" : ' AND restriccions_adults' . $adults;
     $where .= (empty($nens)) ? "" : ' AND restriccions_nens' . $nens;
     $where .= (empty($cotxets)) ? "" : ' AND restriccions_cotxets' . $cotxets;
+    $where .= (empty($suma)) ? "" : ' AND restriccions_nens + restriccions_adults '.$suma;
 
 $were_data = " AND (restriccions_data $data AND restriccions_datafi $datafi)  ";
 
@@ -161,7 +166,7 @@ $order
         ";
          $plin = "{'data':\"$query\"}";
    //  $this->pliiin($plin);
-//echo "{'data':$query}";
+//echo "{'data':$query}";die();
     $Result1 = mysqli_query($this->connexioDB, $query) or die(((is_object($GLOBALS["___mysqli_ston"])) ? mysqli_error($GLOBALS["___mysqli_ston"]) : (($___mysqli_res = mysqli_connect_error()) ? $___mysqli_res : false)));
 //echo "{'data':'aaa'}";
     //$json = mysqli_fetch_all($Result1, MYSQLI_ASSOC);
@@ -185,9 +190,9 @@ while ($row = $Result1->fetch_assoc()) {
   private function  desglose_coberts($val,$MAX=20){
     $tot=array(0,1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22);
     
-    if ($val == "Parell") return array(111,2,4,6,8,10,12,14,16,18,20);
+    if ($val == "Parell") return array(0,2,4,6,8,10,12,14,16,18,20);
     if ($val == "Senar") return array(1,3,5,7,9,11,13,15,17,19);
-    if ($val == "Tot") return array(1,3,5,7,9,11,13,15,17,19); 
+    if ($val == "Tot") return array_slice(array(0,1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20),0,$MAX);
     
     $op=FALSE;
     if (!is_numeric(substr($val,0,1))) {
@@ -205,21 +210,26 @@ while ($row = $Result1->fetch_assoc()) {
   
   
 public function desglose($restriccio){
+  
+//$restriccio->restriccions_adults=">0";  
+//$restriccio->restriccions_nens=">0";  
+//$restriccio->restriccions_cotxets="1";  
+  
 $adults = $this->desglose_coberts($restriccio->restriccions_adults,20);
 $nens = $this->desglose_coberts($restriccio->restriccions_nens,6);
-  
+  //var_dump($restriccio->restriccions_adults);die();
 $desglose=$adults;
 $desglose = array_fill_keys($desglose,$nens);
 
 $rest=$restriccio;
 
-var_dump($desglose);
+//var_dump($desglose);
  foreach($desglose as $k => $a){
     foreach($a as $k2 => $n){
       
       $restriccio->restriccions_adults = $k;
       $restriccio->restriccions_nens = $n;
-      echo " $k ----> $n <br>";
+      //echo " $k ----> $n <br>";
       $this->insertRestriccio($rest);
     }
  }
@@ -446,7 +456,9 @@ switch ($accio) {
 
   case 'insertrestriccio':
    // echo $r->insertRestriccio($restriccio);
-    echo $r->desglose($restriccio);
+    
+    
+ //   echo $r->desglose($restriccio);
     break;
  
   case 'horesdisponibles':
@@ -465,13 +477,15 @@ switch ($accio) {
 
 
    $filtre = $r->parseFiltre($filtre);
-
+//var_dump($filtre);die();
     echo $r->getRestriccions(null, 
     $filtre->restriccions_data, 
     $filtre->restriccions_datafi,
     $filtre->restriccions_adults,
     $filtre->restriccions_nens,
-    $filtre->restriccions_cotxets);
+    $filtre->restriccions_cotxets,
+        $filtre->restriccions_suma
+        );
     break;
 }
 

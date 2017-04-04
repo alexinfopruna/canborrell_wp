@@ -467,36 +467,31 @@ h4{padding-top: 15px;}
 
 html, body
 {
-position:relative;
+    position:relative;
 }
+
 .ui-dialog { position: fixed; padding: .2em; width: 300px; overflow: hidden; }
 @media screen and (-webkit-min-device-pixel-ratio:0) { /* chrome */
+    html{
+      position: relative;
+    }
+} 
 
-html{
+@-moz-document url-prefix() { /* firefox */
+    body{
+    position: relative; overflow: auto;
+    }
+} 
 
-position: relative;
-
+@media all and (-ms-high-contrast: none), (-ms-high-contrast: active) { /* ie10+ */
+    body{
+        position: relative; overflow: auto;
+    }
 }
-
-} @-moz-document url-prefix() { /* firefox */
-
-body{
-
-position: relative; overflow: auto;
-
-}
-
-} @media all and (-ms-high-contrast: none), (-ms-high-contrast: active) { /* ie10+ */
-
-body{
-
-position: relative; overflow: auto;
-
-}
-
-}
-
+/*
 .ui-dialog {
-    position:fixed !important;
+    position:absolute !important;
+
     top:40px !important;
 }
+*/

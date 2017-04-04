@@ -1,6 +1,7 @@
 /* 
  * To change this license header, choose License Headers in Project Properties.
  * To change this template file, choose Tools | Templates
+ * 
  * and open the template in the editor.
  */
 //var ajaxgaleria = {"ajaxurl": "http:\/\/wordpress.local\/wp-admin\/admin-ajax.php"};
@@ -40,8 +41,6 @@ jQuery(document).ready(function ($) {
         e.preventDefault();
         return false;
     }
-
-/**/
     $(".publi").magnificPopup({
         type: 'ajax'
     });
@@ -50,6 +49,7 @@ jQuery(document).ready(function ($) {
         type: 'ajax'
     });
 
-
     $("#mbYTP_onetone-youtube-video").css("background", "black");
+    if(document.location.hostname == 'cbwp-localhost')   setTimeout(function () {jQuery("#wrapper_mbYTP_onetone-youtube-video").remove();}, 500);
+ 
 })

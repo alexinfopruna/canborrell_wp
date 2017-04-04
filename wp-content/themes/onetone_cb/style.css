@@ -38,6 +38,11 @@ i{color:#666;}
     margin-right: auto 
 }
 
+
+.header-wrap {
+    z-index: 1999;
+}
+
 .nota{font-size:12px;}
 /************* BOOTSTRAP *************/
 .panel-default>.panel-heading {
@@ -1279,6 +1284,15 @@ section.home-section-1 .section-subtitle {
 	padding:.5em;
 }
 
+input.wpcf7-submit{
+    color:#dd8500;
+     background-color:#fff5cf; 
+}
+
+.ecp-modal.ecp-effect-1{
+    width:60%;
+    top:500px;
+}
 
 
 .alergogens{
