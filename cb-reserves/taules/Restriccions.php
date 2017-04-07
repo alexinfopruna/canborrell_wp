@@ -149,7 +149,7 @@ $where .= $were_data;
     $group = "";
         //$order =" ORDER BY  restriccions_active DESC, restriccions_data DESC, restriccions_adults, restriccions_nens  DESC ";
      //   $order =" ORDER BY   restriccions_id DESC";
-$order = " order by  restriccions_cotxets , restriccions_adults , restriccions_nens ";
+$order = " order by  restriccions_cotxets , restriccions_adults , restriccions_nens DESC ";
   
     $query = "SELECT * FROM
 (
@@ -287,11 +287,9 @@ $plin = $restriccio->restriccions_hores;
           restriccions_data =   '$restriccio->restriccions_data', 
           restriccions_datafi = '$restriccio->restriccions_datafi',
           restriccions_suma = '$restriccio->restriccions_suma',
-          restriccions_dies = '$restriccio->rest
-riccions_dies',
+          restriccions_dies = '$restriccio->restriccions_dies',
           restriccions_adults = '$restriccio->restriccions_adults', 
-          restriccions_nens = '$restriccio->restriccio
-ns_nens', 
+          restriccions_nens = '$restriccio->restriccions_nens', 
           restriccions_cotxets = '$restriccio->restriccions_cotxets',
           restriccions_hora = '$restriccio->restriccions_hora',
           restriccions_hores = '$restriccio->restriccions_hores',
@@ -301,7 +299,7 @@ ns_nens',
        ";
     
    
-   
+   //echo $query;die();
     $Result1 = mysqli_query($this->connexioDB, $query) or die(((is_object($GLOBALS["___mysqli_ston"])) ? mysqli_error($GLOBALS["___mysqli_ston"]) : (($___mysqli_res = mysqli_connect_error()) ? $___mysqli_res : false)));
    // $ar= mysqli_affected_rows($this->connexioDB) ;
    //return $plin;
