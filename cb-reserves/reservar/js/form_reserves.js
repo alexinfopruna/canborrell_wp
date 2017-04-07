@@ -1174,7 +1174,8 @@ function seccio(selector_seccio) {
     if (!selector_seccio)
         return;
 
-    $.scrollTo("." + selector_seccio, 800, {offset: -100, onAfter: function(){if (popup != "") $(popup).dialog("open");popup="";}});
+    //$.scrollTo("." + selector_seccio, 800, {offset: -100, onAfter: function(){if (popup != "") $(popup).dialog("open");popup="";}});
+        $.scrollTo("." + selector_seccio, 800, {offset: -100});
     SECCIO = selector_seccio;
     
     
