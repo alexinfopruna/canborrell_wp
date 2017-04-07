@@ -35,7 +35,8 @@ require_once(ROOT. "RestrictionController.php");
 
 class Restriccions extends gestor_reserves {
   public function __construct($usuari_minim = 16) {
-    $debug = (strstr($_SERVER['HTTP_REFERER'],'4200'));
+    $debug=FALSE;
+    if (isset($_SERVER['HTTP_REFERER'])) $debug = (strstr($_SERVER['HTTP_REFERER'],'4200'));
 
     if ( !$debug && $_SESSION['permisos'] < 16) {
       header("Content-Type: application/json");
@@ -202,7 +203,7 @@ while ($row = $Result1->fetch_assoc()) {
     
     if (!$op) return array($val);
     //return array($k, $MAX);
-    if ($op==">") return array_slice($tot,$k+1,$MAX-$k);
+    if ($op==">") return array_slice($tot,$k,$MAX-$k);
     if ($op=="<") return array_slice($tot,0,$k);
     
     return FALSE;
@@ -211,15 +212,16 @@ while ($row = $Result1->fetch_assoc()) {
   
 public function desglose($restriccio){
   
-//$restriccio->restriccions_adults=">0";  
-//$restriccio->restriccions_nens=">0";  
-//$restriccio->restriccions_cotxets="1";  
+$restriccio->restriccions_adults=">1";  
+$restriccio->restriccions_nens=">0";  
+$restriccio->restriccions_cotxets="1";  
   
-$adults = $this->desglose_coberts($restriccio->restriccions_adults,20);
-$nens = $this->desglose_coberts($restriccio->restriccions_nens,6);
+$adults = $this->desglose_coberts($restriccio->restriccions_adults,21);
+$nens = $this->desglose_coberts($restriccio->restriccions_nens,7);
   //var_dump($restriccio->restriccions_adults);die();
 $desglose=$adults;
 $desglose = array_fill_keys($desglose,$nens);
+
 
 $rest=$restriccio;
 
@@ -229,7 +231,7 @@ $rest=$restriccio;
       
       $restriccio->restriccions_adults = $k;
       $restriccio->restriccions_nens = $n;
-      //echo " $k ----> $n <br>";
+      echo " $k ----> $n <br>";
       $this->insertRestriccio($rest);
     }
  }
@@ -279,13 +281,17 @@ $plin = $restriccio->restriccions_hores;
      $this->pliiin($plin);
     $query = "UPDATE  restriccions 
  
+
+
       SET restriccions_active= '$restriccio->restriccions_active',
           restriccions_data =   '$restriccio->restriccions_data', 
           restriccions_datafi = '$restriccio->restriccions_datafi',
           restriccions_suma = '$restriccio->restriccions_suma',
-          restriccions_dies = '$restriccio->restriccions_dies',
+          restriccions_dies = '$restriccio->rest
+riccions_dies',
           restriccions_adults = '$restriccio->restriccions_adults', 
-          restriccions_nens = '$restriccio->restriccions_nens', 
+          restriccions_nens = '$restriccio->restriccio
+ns_nens', 
           restriccions_cotxets = '$restriccio->restriccions_cotxets',
           restriccions_hora = '$restriccio->restriccions_hora',
           restriccions_hores = '$restriccio->restriccions_hores',
@@ -322,7 +328,8 @@ $plin = $restriccio->restriccions_hores;
   }
 
   public function deleteRestriccio($id) {
-    $query = "DELETE FROM restriccions WHERE restriccions_id=$id";
+    $query = "DELETE FROM restriccions WHERE
+ restriccions_id=$id";
 
     $Result1 = mysqli_query($this->connexioDB, $query) or die(((is_object($GLOBALS["___mysqli_ston"])) ? mysqli_error($GLOBALS["___mysqli_ston"]) : (($___mysqli_res = mysqli_connect_error()) ? $___mysqli_res : false)));
 //return $this->resposta_json("ESBORRAT id=$id");
@@ -437,6 +444,7 @@ header("Content-Type: application/json");
 $r = new Restriccions();
 $accio = "getrestriccions";
 
+if (isset($_REQUEST['a'])) $accio=$_REQUEST['a'];
 if (isset($_REQUEST['json'])) $stparams=$_REQUEST['json'];
 else $stparams = file_get_contents('php://input');
 
@@ -461,6 +469,20 @@ echo $accio; die();
 switch ($accio) {
   case 'deleterestriccio':
     echo $r->deleteRestriccio($id);
+  break;
+
+  case 'desglose':
+    echo "DESGLOSE";
+    //http://cbwp-localhost/cb-reserves/taules/Restriccions.php?json={%22accio%22:%22desglose%22,%22data%22:{%22data%22:%222017-10-01%22,%22adults%22:5,%22nens%22:3,%22cotxets%22:0}}
+    $restriccio->restriccions_data = "2011-01-01";
+    $restriccio->restriccions_datafi = "2011-01-01";
+    $restriccio->restriccions_dies = array(0,0,0,0,0,1,1);
+    $restriccio->restriccions_active = 1;
+    $restriccio->restriccions_hora = "14:00";
+    $restriccio->restriccions_description = "Desglose generated";
+    $restriccio->restriccions_suma = "Tot";
+    
+    echo $r->desglose($restriccio);
   break;
 
   case 'updaterestriccio':
