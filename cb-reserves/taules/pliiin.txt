@@ -25615,4 +25615,88 @@ ns_nens',
           restriccions_description = 'Desglose generated'
             
           WHERE restriccions_id = '11'
+       "} ---> Array
+(
+    [0] => 0
+    [1] => 0
+    [2] => 0
+    [3] => 0
+    [4] => 0
+    [5] => 0
+    [6] => 1
+    [7] => 1
+)
+ ---> 114719 ---> {'data':"UPDATE  restriccions 
+ 
+
+
+      SET restriccions_active= '1',
+          restriccions_data =   '2011-01-01', 
+          restriccions_datafi = '2011-01-01',
+          restriccions_suma = '0',
+          restriccions_dies = '3',
+          restriccions_adults = '5', 
+          restriccions_nens = '0', 
+          restriccions_cotxets = '0',
+          restriccions_hora = '14:00',
+          restriccions_hores = '114719',
+          restriccions_description = 'Desglose generated'
+            
+          WHERE restriccions_id = '29'
+       "} ---> Array
+(
+    [0] => 0
+    [1] => 0
+    [2] => 0
+    [3] => 0
+    [4] => 0
+    [5] => 0
+    [6] => 1
+    [7] => 1
+)
+ ---> 114751 ---> {'data':"UPDATE  restriccions 
+ 
+
+
+      SET restriccions_active= '1',
+          restriccions_data =   '2011-01-01', 
+          restriccions_datafi = '2011-01-01',
+          restriccions_suma = '0',
+          restriccions_dies = '3',
+          restriccions_adults = '5', 
+          restriccions_nens = '0', 
+          restriccions_cotxets = '0',
+          restriccions_hora = '14:00',
+          restriccions_hores = '114751',
+          restriccions_description = 'Desglose generated'
+            
+          WHERE restriccions_id = '29'
+       "} ---> Array
+(
+    [0] => 0
+    [1] => 0
+    [2] => 0
+    [3] => 0
+    [4] => 0
+    [5] => 0
+    [6] => 1
+    [7] => 1
+)
+ ---> 114815 ---> {'data':"UPDATE  restriccions 
+ 
+
+
+      SET restriccions_active= '1',
+          restriccions_data =   '2011-01-01', 
+          restriccions_datafi = '2011-01-01',
+          restriccions_suma = '0',
+          restriccions_dies = '3',
+          restriccions_adults = '5', 
+          restriccions_nens = '0', 
+          restriccions_cotxets = '0',
+          restriccions_hora = '14:00',
+          restriccions_hores = '114815',
+          restriccions_description = 'Desglose generated'
+            
+          WHERE restriccions_id = '29'
        "}
