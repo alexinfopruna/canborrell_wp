@@ -45,7 +45,7 @@ FROM restriccions
 WHERE restriccions_active = TRUE $where
 $order
 ";
-// echo "$query";die();
+ //echo "$query";die();
 if ($sqlquery) return "$data >>> $adults | $nens | $cotxets >>>>>>>>>>>>> ".  $query;
    $Result1 = mysqli_query($this->connexioDB, $query) or die(((is_object($GLOBALS["___mysqli_ston"])) ? mysqli_error($GLOBALS["___mysqli_ston"]) : (($___mysqli_res = mysqli_connect_error()) ? $___mysqli_res : false)));
 if (isset($_REQUEST['test'])) echo "---------------------- $data, $adults, $nens, $cotxets -----------------------------<br><br><br>";
@@ -80,7 +80,7 @@ public function getHores($data=0, $adults=0, $nens=0, $cotxets=0){
     }
     
   $rules = $this->getActiveRules($data,$adults,$nens,$cotxets);
-  
+   
   $jsonrules=json_encode($rules);
   if (!$rules) return false;
 
@@ -154,6 +154,8 @@ private function interseccio_horesxxx($rules){
 
 private function subArrayHoresb($decNum){
 //$decNum=8589934591;
+  
+  
      $strbin = substr("00000000000000000000000000000000" . decbin ( $decNum ),-26);
     // $strbin = substr("000000000000000000000000" . decbin ( $decNum ),-26);
      $arrayBib =  str_split( $strbin);
@@ -168,27 +170,12 @@ private function subArrayHoresb($decNum){
     "17:00");
  
 //$result = array(1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1);
+  $result=array();
 foreach ($binHores as $k => $v){
     if ($v) $result[] = $hores[$k];                   
 }
 return $result;
 }
-
-/*
-private function subArrayHores($hora){
-  $hores =  array("11:00", "11:15", "11:30", "11:45", 
-    "12:00", "12:15", "12:30", "12:45", 
-    "13:00", "13:15", "13:30",  "13:45", 
-    "14:00", "14:15", "14:30",  "14:45", 
-    "15:00", "15:15", "15:30",  "15:45", 
-    "16:00", "16:15", "16:30", "16:45", 
-    "17:00");
-  $offset = array_search($hora, $hores);
-  //echo "{'offset':'$hora'}";
-  return $ar = array_slice($hores, $offset);
-}
-*/
-
 
 
 private function dies2bin($decNum){
@@ -220,7 +207,7 @@ private function mountWhereDate($data){
 
 
 $r=json_encode($diaBin);
-	$where .= " AND ((restriccions_data <> '2011-01-01' AND restriccions_data = restriccions_datafi) OR (restriccions_dies & $diaBin > 0) ) $whereindates";
+	$where .= " AND ((restriccions_data <> '2011-01-01' AND restriccions_data = restriccions_datafi) OR (restriccions_dies & $diaBin > 0) $whereindates  ) ";
 	
 return $where;
 }

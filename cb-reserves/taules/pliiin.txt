@@ -25419,4 +25419,200 @@ ns_nens',
           restriccions_description = 'Desglose generated'
             
           WHERE restriccions_id = '142'
+       "} ---> Array
+(
+    [0] => 0
+    [1] => 0
+    [2] => 0
+    [3] => 0
+    [4] => 0
+    [5] => 0
+    [6] => 0
+    [7] => 0
+)
+ ---> 65567 ---> {'data':"UPDATE  restriccions 
+ 
+
+
+      SET restriccions_active= '1',
+          restriccions_data =   '2011-01-01', 
+          restriccions_datafi = '2011-01-01',
+          restriccions_suma = '0',
+          restriccions_dies = '0',
+          restriccions_adults = '5', 
+          restriccions_nens = '0', 
+          restriccions_cotxets = '0',
+          restriccions_hora = '14:00',
+          restriccions_hores = '65567',
+          restriccions_description = 'Desglose generated'
+            
+          WHERE restriccions_id = '29'
+       "} ---> Array
+(
+    [0] => 0
+    [1] => 0
+    [2] => 0
+    [3] => 0
+    [4] => 0
+    [5] => 0
+    [6] => 1
+    [7] => 1
+)
+ ---> 98335 ---> {'data':"UPDATE  restriccions 
+ 
+
+
+      SET restriccions_active= '1',
+          restriccions_data =   '2011-01-01', 
+          restriccions_datafi = '2011-01-01',
+          restriccions_suma = '0',
+          restriccions_dies = '3',
+          restriccions_adults = '5', 
+          restriccions_nens = '0', 
+          restriccions_cotxets = '0',
+          restriccions_hora = '14:00',
+          restriccions_hores = '98335',
+          restriccions_description = 'Desglose generated'
+            
+          WHERE restriccions_id = '29'
+       "} ---> Array
+(
+    [0] => 0
+    [1] => 0
+    [2] => 0
+    [3] => 0
+    [4] => 0
+    [5] => 0
+    [6] => 1
+    [7] => 1
+)
+ ---> 114719 ---> {'data':"UPDATE  restriccions 
+ 
+
+
+      SET restriccions_active= '1',
+          restriccions_data =   '2011-01-01', 
+          restriccions_datafi = '2011-01-01',
+          restriccions_suma = '0',
+          restriccions_dies = '3',
+          restriccions_adults = '5', 
+          restriccions_nens = '0', 
+          restriccions_cotxets = '0',
+          restriccions_hora = '14:00',
+          restriccions_hores = '114719',
+          restriccions_description = 'Desglose generated'
+            
+          WHERE restriccions_id = '29'
+       "} ---> Array
+(
+    [0] => 0
+    [1] => 0
+    [2] => 0
+    [3] => 0
+    [4] => 0
+    [5] => 0
+    [6] => 1
+    [7] => 1
+)
+ ---> 98335 ---> {'data':"UPDATE  restriccions 
+ 
+
+
+      SET restriccions_active= '1',
+          restriccions_data =   '2011-01-01', 
+          restriccions_datafi = '2011-01-01',
+          restriccions_suma = '0',
+          restriccions_dies = '3',
+          restriccions_adults = '5', 
+          restriccions_nens = '0', 
+          restriccions_cotxets = '0',
+          restriccions_hora = '14:00',
+          restriccions_hores = '98335',
+          restriccions_description = 'Desglose generated'
+            
+          WHERE restriccions_id = '29'
+       "} ---> Array
+(
+    [0] => 0
+    [1] => 0
+    [2] => 0
+    [3] => 0
+    [4] => 0
+    [5] => 0
+    [6] => 1
+    [7] => 1
+)
+ ---> 65551 ---> {'data':"UPDATE  restriccions 
+ 
+
+
+      SET restriccions_active= '1',
+          restriccions_data =   '2011-01-01', 
+          restriccions_datafi = '2011-01-01',
+          restriccions_suma = '0',
+          restriccions_dies = '3',
+          restriccions_adults = '2', 
+          restriccions_nens = '3', 
+          restriccions_cotxets = '0',
+          restriccions_hora = '14:00',
+          restriccions_hores = '65551',
+          restriccions_description = 'Desglose generated'
+            
+          WHERE restriccions_id = '11'
+       "} ---> Array
+(
+    [0] => 0
+    [1] => 0
+    [2] => 0
+    [3] => 0
+    [4] => 0
+    [5] => 0
+    [6] => 1
+    [7] => 1
+)
+ ---> 65567 ---> {'data':"UPDATE  restriccions 
+ 
+
+
+      SET restriccions_active= '1',
+          restriccions_data =   '2011-01-01', 
+          restriccions_datafi = '2011-01-01',
+          restriccions_suma = '0',
+          restriccions_dies = '3',
+          restriccions_adults = '2', 
+          restriccions_nens = '3', 
+          restriccions_cotxets = '0',
+          restriccions_hora = '14:00',
+          restriccions_hores = '65567',
+          restriccions_description = 'Desglose generated'
+            
+          WHERE restriccions_id = '11'
+       "} ---> Array
+(
+    [0] => 0
+    [1] => 0
+    [2] => 0
+    [3] => 0
+    [4] => 0
+    [5] => 0
+    [6] => 1
+    [7] => 1
+)
+ ---> 98335 ---> {'data':"UPDATE  restriccions 
+ 
+
+
+      SET restriccions_active= '1',
+          restriccions_data =   '2011-01-01', 
+          restriccions_datafi = '2011-01-01',
+          restriccions_suma = '0',
+          restriccions_dies = '3',
+          restriccions_adults = '2', 
+          restriccions_nens = '3', 
+          restriccions_cotxets = '0',
+          restriccions_hora = '14:00',
+          restriccions_hores = '98335',
+          restriccions_description = 'Desglose generated'
+            
+          WHERE restriccions_id = '11'
        "}

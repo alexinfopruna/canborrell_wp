@@ -384,7 +384,7 @@ $plin = $restriccio->restriccions_hores;
     if (!$dinar) $dinar = array();
     if (!$dinarT2) $dinarT2 = array();
     $rules['hores'] = array_merge($dinar, $dinarT2);
-    
+   
      return json_encode($rules);
     //////////////////////////////////					
   }
