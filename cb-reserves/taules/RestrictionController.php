@@ -71,13 +71,14 @@ public function getHores($data=0, $adults=0, $nens=0, $cotxets=0){
   
     if ($nens=="undefined") $nens=0;
   
-   $index = 'cacheNens' . $data . "-" . ($adults + $nens);
-    $time = time();    
-    
-   $cache = FALSE;
+    $index = 'cacheNens' . $data . "-" . ($adults + $nens);
+    $time = time();  
+    $cache = FALSE;
     if (isset($_SESSION[$index]) && count($_SESSION[$index]['hores']) && $_SESSION[$index]['timestamp'] > $time) {
       $cache = $_SESSION[$index]['hores'];
     }
+   
+
     
   $rules = $this->getActiveRules($data,$adults,$nens,$cotxets);
    
@@ -85,15 +86,16 @@ public function getHores($data=0, $adults=0, $nens=0, $cotxets=0){
   if (!$rules) return false;
 
 //$hores = $this->subArrayHoresb($rules[0]['restriccions_hores']);
-$hores = $this->interseccio_hores($rules);
-/*
-    if (count($rules)) {
+$hores = $cache?$cache :$this->interseccio_hores($rules);
+//$hores = $this->interseccio_hores($rules);
+/**/
+    //if (count($rules)) {
       $cachev = array();
       $cachev['timestamp'] = time() + CB_CHILD_CACHE_MAX_TIME;
-      $cachev['hores'] = $limitNens;
+      $cachev['hores'] = $hores;
       $_SESSION[$index] = $cachev;
-    } 
-*/
+ //   } 
+
 
   return $hores;
 }
