@@ -4,6 +4,7 @@ if (!defined('ROOT'))
 
 
 require_once (ROOT."./gestor_reserves.php");
+require(ROOT . INC_FILE_PATH."llista_dies_taules.php");
 
 ini_set('error_reporting', E_ALL ^ E_DEPRECATED);
 error_reporting(E_ALL ^ E_DEPRECATED);
@@ -44,7 +45,7 @@ FROM restriccions
 WHERE restriccions_active = TRUE $where
 $order
 ";
-
+// echo "$query";die();
 if ($sqlquery) return "$data >>> $adults | $nens | $cotxets >>>>>>>>>>>>> ".  $query;
    $Result1 = mysqli_query($this->connexioDB, $query) or die(((is_object($GLOBALS["___mysqli_ston"])) ? mysqli_error($GLOBALS["___mysqli_ston"]) : (($___mysqli_res = mysqli_connect_error()) ? $___mysqli_res : false)));
 if (isset($_REQUEST['test'])) echo "---------------------- $data, $adults, $nens, $cotxets -----------------------------<br><br><br>";
@@ -65,7 +66,19 @@ return $rules;
 }
 /***************************************************************************/
 public function getHores($data=0, $adults=0, $nens=0, $cotxets=0){
+    if (!$adults || !defined("CONTROL_HORES_NENS") || !CONTROL_HORES_NENS)
+      return;  
   
+    if ($nens=="undefined") $nens=0;
+  
+   $index = 'cacheNens' . $data . "-" . ($adults + $nens);
+    $time = time();    
+    
+   $cache = FALSE;
+    if (isset($_SESSION[$index]) && count($_SESSION[$index]['hores']) && $_SESSION[$index]['timestamp'] > $time) {
+      $cache = $_SESSION[$index]['hores'];
+    }
+    
   $rules = $this->getActiveRules($data,$adults,$nens,$cotxets);
   
   $jsonrules=json_encode($rules);
@@ -73,6 +86,14 @@ public function getHores($data=0, $adults=0, $nens=0, $cotxets=0){
 
 //$hores = $this->subArrayHoresb($rules[0]['restriccions_hores']);
 $hores = $this->interseccio_hores($rules);
+/*
+    if (count($rules)) {
+      $cachev = array();
+      $cachev['timestamp'] = time() + CB_CHILD_CACHE_MAX_TIME;
+      $cachev['hores'] = $limitNens;
+      $_SESSION[$index] = $cachev;
+    } 
+*/
 
   return $hores;
 }
@@ -134,10 +155,10 @@ private function interseccio_horesxxx($rules){
 private function subArrayHoresb($decNum){
 //$decNum=8589934591;
      $strbin = substr("00000000000000000000000000000000" . decbin ( $decNum ),-26);
+    // $strbin = substr("000000000000000000000000" . decbin ( $decNum ),-26);
      $arrayBib =  str_split( $strbin);
      $binHores = array_map('intval', $arrayBib);
 
-//print_r( $binHores);
   $hores =  array("","11:00", "11:15", "11:30", "11:45", 
     "12:00", "12:15", "12:30", "12:45", 
     "13:00", "13:15", "13:30",  "13:45", 
@@ -181,16 +202,26 @@ private function dies2bin($decNum){
 
 /***************************************************************************/
 private function mountWhereDate($data){
-	$where=" AND (restriccions_data ='2011-01-01' OR (restriccions_data <= '$data' AND restriccions_datafi >= '$data')) ";
-	
+                             // $dates=llegir_dies(LLISTA_DIES_BLANCA);
+                             // echo LLISTA_DIES_BLANCA;
+ $dates =  file(LLISTA_DIES_BLANCA);
+ foreach ($dates as $k => $value) { $dates[$k]="'".Gestor::cambiaf_a_mysql($value)."'"; }
+   $indates = implode(", ", $dates);
+   $whereindates = " OR '$data' IN ($indates) ";
+                      //      print_r($indates);die();
+  
+  
+	$where=" AND (restriccions_data ='2011-01-01' OR (restriccions_data <= '$data' "
+                                . "AND restriccions_datafi >= '$data') ) ";
                             
                             $diesBin = array(64,32,16,8,4,2,1);
 	$ds = date('N', strtotime($data));
 	$diaBin=$diesBin[$ds-1];
 
-$r=json_encode(	$diaBin);
-	$where .= " AND ((restriccions_data <> '2011-01-01' AND restriccions_data = restriccions_datafi) OR (restriccions_dies & $diaBin > 0)) ";
-//	echo "{'ddd':$where}";
+
+$r=json_encode($diaBin);
+	$where .= " AND ((restriccions_data <> '2011-01-01' AND restriccions_data = restriccions_datafi) OR (restriccions_dies & $diaBin > 0) ) $whereindates";
+	
 return $where;
 }
 	

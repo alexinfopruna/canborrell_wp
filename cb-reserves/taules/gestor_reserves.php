@@ -839,11 +839,10 @@ class gestor_reserves extends Gestor {
     if ($num)
       $this->reg_log("TROBADES $num RESERVES ORFANES!!"); //echo $query;
 
-    if (isset($_REQUEST['p']))
-      echo $num ? '<span style="color:red">TROBADES ' . $num . ' RESERVES ORFANES!!</span>' : '<span style="color:green">NO S\'HAN ORFANES!!</span>';
-    if (!$num)
-      return FALSE;
-    ;
+    if (isset($_REQUEST['p']))    echo $num ? '<span style="color:red">TROBADES ' . $num . ' RESERVES ORFANES!!</span>' : '<span style="color:green">NO S\'HAN TROBAT  ORFANES!!</span>';
+    
+    if (!$num)      return FALSE;
+    
 
     $html = "<!--ORFANES-->
       <table>

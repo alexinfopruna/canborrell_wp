@@ -147,15 +147,15 @@ $where .= $were_data;
 
     $group = "";
         //$order =" ORDER BY  restriccions_active DESC, restriccions_data DESC, restriccions_adults, restriccions_nens  DESC ";
-        $order =" ORDER BY   restriccions_id DESC";
-
+     //   $order =" ORDER BY   restriccions_id DESC";
+$order = " order by  restriccions_cotxets , restriccions_adults , restriccions_nens ";
   
     $query = "SELECT * FROM
 (
   SELECT `restriccions_active`,`restriccions_id`,`restriccions_description`,`restriccions_suma`,`restriccions_adults`,`restriccions_nens`, restriccions_cotxets,`restriccions_data`, `restriccions_datafi`, `restriccions_dies`,`restriccions_hora`, `restriccions_hores` FROM restriccions where TRUE $were_data
   UNION 
   SELECT `restriccions_active`,`restriccions_id`,`restriccions_description`,`restriccions_suma`,`restriccions_adults`,`restriccions_nens`, restriccions_cotxets,`restriccions_data`, `restriccions_datafi`, `restriccions_dies`,`restriccions_hora`, `restriccions_hores`   FROM restriccions where `restriccions_data`='2011-01-01'
-  order by restriccions_data DESC
+  
 ) R
      $where    
        
@@ -305,6 +305,21 @@ $plin = $restriccio->restriccions_hores;
      return $this->getRestriccions();
          
   }
+  
+  public function saveHores($ides, $hores) {
+    $dechores= $this->dies2dec($hores);
+    $arides = implode(", ",$ides);
+    
+    $query = "UPDATE  restriccions 
+ 
+      SET restriccions_hores= $dechores
+        WHERE restriccions_id IN ($arides) ";
+    
+    
+  //  echo $query;die();
+        $Result1 = mysqli_query($this->connexioDB, $query) or die(((is_object($GLOBALS["___mysqli_ston"])) ? mysqli_error($GLOBALS["___mysqli_ston"]) : (($___mysqli_res = mysqli_connect_error()) ? $___mysqli_res : false)));
+        return $this->getRestriccions();
+  }
 
   public function deleteRestriccio($id) {
     $query = "DELETE FROM restriccions WHERE restriccions_id=$id";
@@ -424,12 +439,13 @@ $accio = "getrestriccions";
 
 if (isset($_REQUEST['json'])) $stparams=$_REQUEST['json'];
 else $stparams = file_get_contents('php://input');
+
 $params = json_decode($stparams);
 
 if ($params){
-$accio = $params->accio;
-$id = isset($params->data->restriccions_id)?$params->data->restriccions_id:0;
-$restriccio = $params->data;
+    $accio = $params->accio;
+    $id = isset($params->data->restriccions_id)?$params->data->restriccions_id:0;
+    $restriccio = $params->data;
 }
 
 /*
@@ -445,39 +461,37 @@ echo $accio; die();
 switch ($accio) {
   case 'deleterestriccio':
     echo $r->deleteRestriccio($id);
-    break;
+  break;
 
   case 'updaterestriccio':
- $plin = print_r($restriccio->restriccions_dies,true);
-   $r->pliiin($plin );
-   echo $r->updateRestriccio($restriccio);
-   
-    break;
+    $plin = print_r($restriccio->restriccions_dies,true);
+    $r->pliiin($plin );
+    echo $r->updateRestriccio($restriccio);
+  break;
 
   case 'insertrestriccio':
-   // echo $r->insertRestriccio($restriccio);
-    
-    
- //   echo $r->desglose($restriccio);
-    break;
+    echo $r->insertRestriccio($restriccio);
+  break;
  
   case 'horesdisponibles':
     echo $r->horesDisponibles($restriccio);
-    break;
+  break;
 
   case 'horesdisponibles2':
     echo $r->horesDisponibles2($restriccio);
-    break;
+  break;
+
+  case 'savehores':
+    $ides = $params->ides;    
+    $r->saveHores($ides,$restriccio);
+  break;
 
   case 'getrestriccions':
-  default:
-    
+  default: 
     $filtre = new stdClass();
     if ($params) $filtre = $restriccio;
 
-
-   $filtre = $r->parseFiltre($filtre);
-//var_dump($filtre);die();
+    $filtre = $r->parseFiltre($filtre);
     echo $r->getRestriccions(null, 
     $filtre->restriccions_data, 
     $filtre->restriccions_datafi,
