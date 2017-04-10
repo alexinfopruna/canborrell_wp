@@ -285,6 +285,9 @@ $(function () {
         //updateCalendari();   
     }
     document.body.scrollTop = document.documentElement.scrollTop = 0;
+    
+   // $(".fr-seccio-dia").show();
+  //  monta_calendari("#calendari");
 }); //ONLOAD, PRESENTACIO UI
 //***********************************************************************************************************/
 /************************************************************************************************************/
@@ -815,15 +818,18 @@ function monta_calendari(selector)
     {
         var currentTime = new Date();
         var hours = currentTime.getHours();
-        hours = hours + ":00";
-        var entraAvui = ((hours < MAX_HORA_RESERVA_ONLINE) ? 0 : 1);
+        hours = "01/01/01 "+hours + ":00";
+        var max = "01/01/01 "+MAX_HORA_RESERVA_ONLINE+":00";
+        //var entraAvui = ((hours < MAX_HORA_RESERVA_ONLINE) ? 0 : 1);
+       
+        var entraAvui = Date.parse(hours) >= Date.parse(max)? 1: 0;
         limit_passat = entraAvui;
     }
 
 
 
     var defData = new Date();
-    ;
+    
     if (RDATA != "") {
 
         //   var msec = Date.parse('10-26-2016');
@@ -834,6 +840,7 @@ function monta_calendari(selector)
     $(selector).datepicker({
         beforeShowDay: function (date, inst) {
             var r = new Array(3);
+            
             if ((date.getDay() == 1 || date.getDay() == 2 || llistanegra(date)) && (!llistablanca(date)) || !taulaDisponible(date))
             {
                 r[0] = false;
