@@ -126,11 +126,14 @@ else
     </head>
     <body>
         <?php
+        /*
         echo "Llegim fitxer: <b>$file</b><br/><br/>
         <i>Params: (linies ex:) &l=500  (tot) &l=ALL</b><br/><br/></i>
         <div>";
-        $lins = (isset($_GET['l'])?$_GET['l']:"ALL");
-        
+         * */
+         
+       // ANULAT: no funciona passthru >>> $lins = (isset($_GET['l'])?$_GET['l']:"ALL");
+        $lins="ALL";
         echo tailShell($file,$lins);
  /*
  

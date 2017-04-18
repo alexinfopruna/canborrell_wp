@@ -2,7 +2,7 @@
 define("ROOT", "../taules/");
 define("READER_SCRIPT", "read.php?f=");
 define("LOG_LIST", "listlogs.php");
-define("LINS", "&l=200");
+define("LINS", "&l=ALL");
 require_once(ROOT."gestor_reserves.php");
 $gestor=new gestor_reserves();   
 

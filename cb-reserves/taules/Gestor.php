@@ -915,7 +915,7 @@ class Gestor {
   /*   * ******************************************************************************************************* */
 
   public function generaFormTpvSHA256($id_reserva, $import, $nom, $tpv_ok_callback_alter = NULL) {
-    $this->xgreg_log("generaFormTpvSHA256 $id_reserva $import $nom", 0, "/log/log_TPV.txt", TRUE);
+    $this->xgreg_log("generaFormTpvSHA256 $id_reserva $import $nom", 0, LOG_FILE_TPVPK, TRUE);
 
     $id = $order = substr(time(), -4, 3) . $id_reserva;
 

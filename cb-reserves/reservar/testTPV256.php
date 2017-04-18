@@ -16,21 +16,16 @@ if (!isset($_SESSION['permisos']))
 if ($_SESSION['permisos'] < 200)
   die("error:sin permisos"); /*   * ********* */
 /* * ************** PERMISOS ADMIN *************************************** */
-
-
 $id = $lang = "not set";
 $tpv_config_file = isset($_REQUEST['tpv_config_file']) ? $_REQUEST['tpv_config_file'] : TPV_CONFIG_FILE;
 
 include(ROOT . INC_FILE_PATH . $tpv_config_file); //NECESSITO TENIR A PUNT 4id i $lang
 include ROOT . INC_FILE_PATH . 'API_PHP/redsysHMAC256_API_PHP_5.2.0/apiRedsys.php';
 
-
-
-
-
 $miObj = new RedsysAPI;
 $conecta = ROOT."../reservar/Gestor_form.php?a=respostaTPV_SHA256";
-$conecta = "http://www.can-borrell.com/reservar/Gestor_form.php?a=respostaTPV_SHA256";
+$conecta = "http://www.can-borrell.com/cb-reserves/reservar/Gestor_form.php?a=respostaTPV_SHA256";
+//$conecta = "http://cbwp-localhost/cb-reserves/reservar/Gestor_form.php?a=respostaTPV_SHA256";
 
 
 //$url = isset($_REQUEST['purl']) ? $_REQUEST['purl'] : "http://sis-d.redsys.es/sis/realizarPago";
