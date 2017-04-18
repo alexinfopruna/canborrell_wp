@@ -30,6 +30,9 @@ include ROOT . INC_FILE_PATH . 'API_PHP/redsysHMAC256_API_PHP_5.2.0/apiRedsys.ph
 
 $miObj = new RedsysAPI;
 $conecta = ROOT."../reservar/Gestor_form.php?a=respostaTPV_SHA256";
+$conecta = "http://www.can-borrell.com/reservar/Gestor_form.php?a=respostaTPV_SHA256";
+
+
 //$url = isset($_REQUEST['purl']) ? $_REQUEST['purl'] : "http://sis-d.redsys.es/sis/realizarPago";
 $id_reserva = isset($_REQUEST['pidr']) ? $_REQUEST['pidr'] : '****';
 $lidr = $order = substr(time(), -4, 3) . $id_reserva;

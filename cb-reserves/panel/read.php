@@ -129,7 +129,7 @@ else
         echo "Llegim fitxer: <b>$file</b><br/><br/>
         <i>Params: (linies ex:) &l=500  (tot) &l=ALL</b><br/><br/></i>
         <div>";
-        $lins = (isset($_GET['l'])?$_GET['l']:100);
+        $lins = (isset($_GET['l'])?$_GET['l']:"ALL");
         
         echo tailShell($file,$lins);
  /*
