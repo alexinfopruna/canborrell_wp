@@ -1274,6 +1274,10 @@ WHERE  `client`.`client_id` =$idc;
       $query = "UPDATE " . T_RESERVES . " SET estat=100, preu_reserva='$import', resposta='$resposta' WHERE id_reserva=$idr";
       $res = $this->log_mysql_query($query, $this->connexioDB) or die(((is_object($GLOBALS["___mysqli_ston"])) ? mysqli_error($GLOBALS["___mysqli_ston"]) : (($___mysqli_res = mysqli_connect_error()) ? $___mysqli_res : false)));
       $result = print_r($res, TRUE);
+      
+      $query="UPDATE estat_taules SET estat_taules_timestamp=NOW() WHERE reserva_id=$idr";
+            $res = $this->log_mysql_query($query, $this->connexioDB) or die(((is_object($GLOBALS["___mysqli_ston"])) ? mysqli_error($GLOBALS["___mysqli_ston"]) : (($___mysqli_res = mysqli_connect_error()) ? $___mysqli_res : false)));
+
       //$result = $res?"!!!SUCCESS!!!":"***ERROR***";
     }
 //$result = "ANULAT";    

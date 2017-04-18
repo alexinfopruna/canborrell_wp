@@ -24,8 +24,8 @@ include ROOT . INC_FILE_PATH . 'API_PHP/redsysHMAC256_API_PHP_5.2.0/apiRedsys.ph
 
 $miObj = new RedsysAPI;
 $conecta = ROOT."../reservar/Gestor_form.php?a=respostaTPV_SHA256";
-$conecta = "http://www.can-borrell.com/cb-reserves/reservar/Gestor_form.php?a=respostaTPV_SHA256";
-//$conecta = "http://cbwp-localhost/cb-reserves/reservar/Gestor_form.php?a=respostaTPV_SHA256";
+//$conecta = "http://www.can-borrell.com/cb-reserves/reservar/Gestor_form.php?a=respostaTPV_SHA256";
+$conecta = "http://cbwp-localhost/cb-reserves/reservar/Gestor_form.php?a=respostaTPV_SHA256";
 
 
 //$url = isset($_REQUEST['purl']) ? $_REQUEST['purl'] : "http://sis-d.redsys.es/sis/realizarPago";
@@ -170,3 +170,10 @@ input[type=text], .ds_input {
       <input type="submit" value="Enviar" >
   </form>
 <?php endif; ?>
+
+<?php
+RewriteEngine On
+RewriteCond %{ENV:HTTPS} !on [NC]
+RewriteCond %{QUERY_STRING} !a=respostaTPV_SHA256 [NC]
+RewriteRule ^(.*)$ https://%{HTTP_HOST}%{REQUEST_URI} [R=301,L,NE]
+?>
