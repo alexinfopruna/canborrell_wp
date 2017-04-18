@@ -1067,7 +1067,7 @@ body.home{
     border-radius: 3px;
 }
 
-section.home-section-6 .row p {
+ºº .row p {
     font-size: 16px;
 }
 
@@ -1265,6 +1265,15 @@ label.ptpv:hover {
 .caixa{
     color: #555;
     font-size: 12px;
+}
+
+
+section.home-section-6 .home-section-content .alert-warning a{
+    color:#444;
+}
+
+section.home-section-6 .home-section-content .alert-warning h3{
+    color:#444;
 }
 
 section.home-section-1 .home-section-content, section.home-section-1 p{
