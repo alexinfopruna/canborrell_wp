@@ -29,7 +29,7 @@ if (!isset($_SESSION['uSer']))
 require ("Gestor_form.php");
 $gestor = new Gestor_form();
 require_once(ROOT . INC_FILE_PATH . 'alex.inc');
-require(ROOT . INC_FILE_PATH . "llista_dies_taules.php");
+require_once(ROOT . INC_FILE_PATH . "llista_dies_taules.php");
 
 //PERSONES PARAM
 $na = isset($_REQUEST['b']) ? $_REQUEST['b'] : 0;

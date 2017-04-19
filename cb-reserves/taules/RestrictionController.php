@@ -4,7 +4,7 @@ if (!defined('ROOT'))
 
 
 require_once (ROOT."./gestor_reserves.php");
-require(ROOT . INC_FILE_PATH."llista_dies_taules.php");
+require_once(ROOT . INC_FILE_PATH."llista_dies_taules.php");
 
 ini_set('error_reporting', E_ALL ^ E_DEPRECATED);
 error_reporting(E_ALL ^ E_DEPRECATED);

@@ -8,7 +8,7 @@ if (!$gestor->valida_sessio())  header("Location: index.php");
 $showBlancs=true;
 if (isset($_GET['hideBlancs'])) $showBlancs=false;
 
-require(ROOT . INC_FILE_PATH."llista_dies_taules.php");
+require_once(ROOT . INC_FILE_PATH."llista_dies_taules.php");
 $fitxer=ROOT . INC_FILE_PATH."llista_dies_negra.txt";
 //if (!empty($_REQUEST['f'])) $fitxer=INC_FILE_PATH."llista_dies_negra.txt";
 

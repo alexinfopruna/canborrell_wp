@@ -2,13 +2,15 @@ var SELF = window.location.pathname.substring(window.location.pathname.lastIndex
 
 
 $(function(){				
-
 	if (EDITABLE)
 	{
 	  var t = $('#grid')
 	  var options = {editDone:onEdit,"iDisplayLength": 50}
 	  //$.uiTableEdit( t, options ) // returns t
-            $("td.no-bool").editInPlace({
+            //
+                    
+             // $("td[tipus=TIPUS]")
+                      $("td.no-bool").editInPlace({
                url: EDITABLE,
                show_buttons: true,
                saving_image: "../css/loading.gif"
@@ -22,6 +24,16 @@ $(function(){
 		select_options: "true, false"
 
            });	
+           /*
+            $("td.calend").editInPlace({
+               url: EDITABLE,
+               show_buttons: true,
+               saving_image: "../css/loading.gif",
+		field_type: "select",
+		select_options: "true, false"
+
+           });	           
+           */
         }
 
 	$('#edit').dialog({
@@ -91,33 +103,6 @@ function addTableListeners()
 
 }
 
-function cccaddTableListeners()
-{
-	$("#grid td[col=idR], #grid td[tipus=ext_]").click(function(e){	
-		e.preventDefault();
-		var id=$(this).attr("idR");
-		var col=$(this).attr("col");
-
-		if (col=="ui_icon_trash" && !confirm("Segur que vols eliminar el registre ID="+id+"?\n\nAquesta acci� �s irreversible")) return false;
-		
-		// DETALL REGISTRE PROPI
-		if (col=="idR") SELF="form_"+TABLE+".php";//TODO
-		var desti=SELF+"?"+col+"="+id;
-		
-		//DETALL REG. TAULA EXTERNA
-		if (col.substring(0,4)=="ext_") 
-		{
-			//var a=$(this).find("a").attr("ext");
-			var desti=$(this).find("a").attr("href");
-			
-		}
-		
-		
-		$.ajax({url:desti,success:procesaRespostaAjax});
-							
-		return false;
-	});
-}
 
 function procesaRespostaAjax(resposta)
 {
@@ -132,7 +117,7 @@ function procesaRespostaAjax(resposta)
 
 		if (resp.resultat=="ko") 
 		{
-			popup("No s'ha pogut completar l'acci�:<br/><br/>Error "+resp.n_error+"\n\n"+resp.m_error);
+			popup("No s'ha pogut completar l'acció:<br/><br/>Error "+resp.n_error+"\n\n"+resp.m_error);
 		}	
 		else if (resp.dialog) 
 		{
