@@ -182,7 +182,7 @@ function mail_SMS_cli($id=false,$SMS=null)
             
             
                                                         $b64=base64_encode($fila["id_reserva"]."&".$fila['tel']."&".$lng);
-                                                        $aki="<a href='/reservar/pagament?rid=$b64&lang=$lng' class='dins'>AQUI</a>";
+                                                        $aki="<a href='//".$_SERVER['HTTP_HOST']."/reservar/pagament?rid=$b64&lang=$lng' class='dins'>AQUI</a>";
                                                         
         $copia="Reserva Grups CONFIRMADA";
         $subject="Can-Borrell: RESERVA CONFIRMADA";
