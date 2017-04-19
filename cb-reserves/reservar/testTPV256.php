@@ -172,8 +172,11 @@ input[type=text], .ds_input {
 <?php endif; ?>
 
 <?php
+/*
 RewriteEngine On
 RewriteCond %{ENV:HTTPS} !on [NC]
 RewriteCond %{QUERY_STRING} !a=respostaTPV_SHA256 [NC]
 RewriteRule ^(.*)$ https://%{HTTP_HOST}%{REQUEST_URI} [R=301,L,NE]
+ * */
+
 ?>

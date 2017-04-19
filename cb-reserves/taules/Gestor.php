@@ -170,7 +170,7 @@ class Gestor {
 
     if (!property_exists ( $sessuser , 'id' )) return FALSE;
     $c = $sessuser->id;
-    
+ 
     if (!isset($_COOKIE['tok']))
       $_COOKIE['tok'] = FALSE; //lxlx
     if (!isset($sessuser->tok))   $sessuser->tok = FALSE; //lxlx
@@ -982,9 +982,104 @@ class Gestor {
     return $form;
   }
 
-  public function generaTESTTpvSHA256($id_reserva, $import, $nom, $responaseok_callback_alter, $response = -1) {
-    if (!$this->valida_sessio(200))
-      die("Sense permisos");
+  
+  /***
+   * ATENCIO:
+   * 
+   * Connexió a redsys en entorn de proves TPV256_test.php
+   */
+public function generaTESTTpvSHA256($id_reserva, $import, $nom, $tpv_ok_callback_alter = NULL) {
+    if ($_SESSION['permisos']<200)       die("Sense permisos");
+  
+  //$_LOG_FILE_TPVPK = LOG_FILE_TPVPK;
+  $_LOG_FILE_TPVPK = "TPV256_test.php";
+  
+  
+    $this->xgreg_log("generaFormTpvSHA256 $id_reserva $import $nom", 0, $_LOG_FILE_TPVPK, TRUE);
+
+    $id = $order = substr(time(), -4, 3) . $id_reserva;
+
+    $titular = $nom;
+    $lang = $this->lang;
+    $idioma = ($lang == "cat") ? "003" : "001";
+    $amount = $import * 100;
+
+    //include(ROOT . INC_FILE_PATH . TPV_CONFIG_FILE); //NECESSITO TENIR A PUNT 4id i $lang
+    include(ROOT . INC_FILE_PATH . $_LOG_FILE_TPVPK); //NECESSITO TENIR A PUNT 4id i $lang
+    ///* MODIFICA PARAMS */
+    if (isset($tpv_ok_callback_alter))
+      $tpv_ok_callback = $tpv_ok_callback_alter;
+    // Valores de entrada del ejemplo de redsy
+    //$fuc="999008881";$terminal="871";$moneda="978";$trans="0";//$url="";$urlMerchant="";$urlOKKO="";$urlKO="";$urlOK="";$id=time();$amount="145";
+    // Se incluye la librería
+    include ROOT.INC_FILE_PATH . 'API_PHP/redsysHMAC256_API_PHP_5.2.0/apiRedsys.php';
+    // Se crea Objeto
+    $miObj = new RedsysAPI;
+    // Se Rellenan los campos
+    $miObj->setParameter("DS_MERCHANT_AMOUNT", $amount);
+    $miObj->setParameter("DS_MERCHANT_ORDER", strval($id));
+    $miObj->setParameter("DS_MERCHANT_MERCHANTCODE", $fuc);
+    $miObj->setParameter("DS_MERCHANT_CURRENCY", $moneda);
+    $miObj->setParameter("DS_MERCHANT_TRANSACTIONTYPE", $trans);
+    $miObj->setParameter("DS_MERCHANT_TERMINAL", $terminal);
+
+    $miObj->setParameter("DS_MERCHANT_MERCHANTURL", $urlMerchant);
+    $miObj->setParameter("DS_MERCHANT_URLOK", $urlOK);
+    $miObj->setParameter("DS_MERCHANT_URLKO", $urlKO);
+
+    $miObj->setParameter("Ds_Merchant_ProductDescription", $producte);
+    $miObj->setParameter("Ds_Merchant_MerchantName ", $merchantName);
+    $miObj->setParameter("Ds_Merchant_Titular", $titular);
+    $miObj->setParameter("Ds_Merchant_ConsumerLanguage", $idioma);
+    $miObj->setParameter("Ds_Merchant_PayMethods", $paymethods);
+    $miObj->setParameter("Ds_Merchant_MerchantData", $tpv_ok_callback);
+
+
+
+    // Se generan los parámetros de la petición
+    $request = "";
+    $params = $miObj->createMerchantParameters();
+    $signature = $miObj->createMerchantSignature($clave256);
+
+    /*
+      echo   'amount: '.     $amount.'<br>';
+      echo   'order: '.     strval($id).'<br>';
+      echo   'fuc: '.     $fuc.'<br>';
+      echo   'url: '.     $url.'<br>';
+      echo   '$producte: '.     $producte.'<br>';
+      echo   '$urlMerchant: '.     $urlMerchant.'<br>';
+      echo   '$urlMerchant: '.     $tpv_ok_callback.'<br>';
+      echo '<br><br>';
+     */
+    $form = '<form id="compra" name="compra" action="' . $url . '" method="post" target2="_blank" target="frame-tpv"  style="display:nonexxx">
+              <div class="ds_input">Ds_Merchant_SignatureVersion <input type="text" name="Ds_SignatureVersion" value="' . $version . '"/></div>
+              <div class="ds_input">Ds_Merchant_MerchantParameters <input type="text" name="Ds_MerchantParameters" value="' . $params . '"/></div>
+              <div class="ds_input">Ds_Merchant_Signature <input type="text" name="Ds_Signature" value="' . $signature . '"/></div>
+              <!--<input id="boto" type="submit" name="Submit" value="' . $this->l('Realizar Pago', false) . '" onclickxx="javascript:calc();" />-->
+                <button id="boto" type="submit" name="Submit" value="' . $this->l('Realizar Pago', false) . '" class="btn btn-success">' . $this->l('Realizar Pago', false) . '</button>
+</form>';
+echo "Entorn de proves >>>>>> 4548812049400004  12/20   123  123456 ";
+    return $form;
+  }
+  
+  
+  
+  
+  /**
+   * 
+   * @param type $id_reserva
+   * @param type $import
+   * @param type $nom
+   * @param type $responaseok_callback_alter
+   * @param type $response
+   * @return type
+   * 
+   * ABANS SIMULAVA LA NOTIFICACIO EN LOCAL, ARA UTILITZO L'ENTORN DE REDSYS DE PROVES
+   */
+  
+  public function ANULATgeneraTESTTpvSHA256($id_reserva, $import, $nom, $responaseok_callback_alter, $response = -1) {
+    //if (!$this->valida_sessio(200))
+    if ($_SESSION['permisos']<200)       die("Sense permisos");
 
     $this->xgreg_log("TEST >>> generaTESTTpvSHA256 $id_reserva $import $nom", 0, "/log/log_TPV.txt", TRUE);
 
@@ -997,11 +1092,16 @@ class Gestor {
     $_REQUEST['init'] = $_GET['init'] = 1;
 
     $filename = ROOT . "../reservar/testTPV256.php";
+
     //require $filename;
     ob_start();
     include $filename;
     $contents = ob_get_contents();
     ob_end_clean();
+    
+    
+    
+    
     return $contents;
   }
 
