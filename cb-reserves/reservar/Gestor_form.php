@@ -1153,9 +1153,8 @@ WHERE  `client`.`client_id` =$idc;
       $params = $miObj->decodeMerchantParameters($datos);
       $param = json_decode($params, TRUE);
       
-      $_REQUEST['tpv'] = $param;
       
-          $this->xgreg_log("RESPOSTA TPV256 >>>>>>>>> <span class='idr'>" . $_POST["Ds_MerchantData"] . "</span>", 0, LOG_FILE_TPVPK, TRUE);
+      
   
       $TPV_CONFIG_FILE = TPV_CONFIG_FILE;
       if (substr($callback,0,5)=="TEST_"){
@@ -1164,6 +1163,9 @@ WHERE  `client`.`client_id` =$idc;
       } 
       
       $callback = $param["Ds_MerchantData"];
+      $_REQUEST['tpv'] = $param;
+      $_REQUEST['TPV_CONFIG_FILE'] = $TPV_CONFIG_FILE;
+          $this->xgreg_log("RESPOSTA TPV256 >>>>>>>>> <span class='idr'>" . $_POST["Ds_MerchantData"] . "</span>", 0, LOG_FILE_TPVPK, TRUE);
   
       include(ROOT . INC_FILE_PATH . $TPV_CONFIG_FILE); //NECESSITO TENIR A PUNT $id i $lang
       $signatureEsperada = $miObj->createMerchantSignatureNotif($clave256, $datos);
