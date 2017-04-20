@@ -1153,7 +1153,9 @@ WHERE  `client`.`client_id` =$idc;
       $params = $miObj->decodeMerchantParameters($datos);
       $param = json_decode($params, TRUE);
       
-          $this->xgreg_log("RESPOSTA TPV256 >>>>>>>>> <span class='idr'>" . $_POST["Ds_MerchantParameters"] . "</span>", 0, LOG_FILE_TPVPK, TRUE);
+      $_REQUEST['tpv'] = $param;
+      
+          $this->xgreg_log("RESPOSTA TPV256 >>>>>>>>> <span class='idr'>" . $_POST["Ds_MerchantData"] . "</span>", 0, LOG_FILE_TPVPK, TRUE);
   
       $TPV_CONFIG_FILE = TPV_CONFIG_FILE;
       if (substr($callback,0,5)=="TEST_"){
