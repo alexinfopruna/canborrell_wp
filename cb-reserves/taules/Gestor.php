@@ -1047,7 +1047,7 @@ public function generaTESTTpvSHA256($id_reserva, $import, $nom, $tpv_ok_callback
               <!--<input id="boto" type="submit" name="Submit" value="' . $this->l('Realizar Pago', false) . '" onclickxx="javascript:calc();" />-->
                 <button id="boto" type="submit" name="Submit" value="' . $this->l('Realizar Pago', false) . '" class="btn btn-success">' . $this->l('Realizar Pago', false) . '</button>
 </form>';
-echo "Entorn de proves $_LOG_FILE_TPVPK >>>>>> 4548812049400004  12/20   123  123456 >>>> ".$tpv_ok_callback. " <<<<<<<<<<";
+//echo "Entorn de proves $_LOG_FILE_TPVPK >>>>>> 4548812049400004  12/20   123  123456 >>>> ".$tpv_ok_callback. " <<<<<<<<<<";
     return $form;
   }
   
