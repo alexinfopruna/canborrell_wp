@@ -26,9 +26,9 @@ include(ROOT . INC_FILE_PATH . $tpv_config_file); //NECESSITO TENIR A PUNT 4id i
 include ROOT . INC_FILE_PATH . 'API_PHP/redsysHMAC256_API_PHP_5.2.0/apiRedsys.php';
 
 $miObj = new RedsysAPI;
-$conecta = ROOT."../reservar/Gestor_form.php?a=respostaTPV_SHA256";
-//$conecta = "http://www.can-borrell.com/cb-reserves/reservar/Gestor_form.php?a=respostaTPV_SHA256";
-$conecta = "http://cbwp-localhost/cb-reserves/reservar/Gestor_form.php?a=respostaTPV_SHA256";
+//$conecta = ROOT."../reservar/Gestor_form.php?a=respostaTPV_SHA256";
+$conecta = "http://".$_SERVER['HTTP_HOST'] ."/cb-reserves/reservar/Gestor_form.php?a=respostaTPV_SHA256";
+//$conecta = "http://cbwp-localhost/cb-reserves/reservar/Gestor_form.php?a=respostaTPV_SHA256";
 
 
 //$url = isset($_REQUEST['purl']) ? $_REQUEST['purl'] : "http://sis-d.redsys.es/sis/realizarPago";

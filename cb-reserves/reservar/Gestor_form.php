@@ -1136,7 +1136,6 @@ WHERE  `client`.`client_id` =$idc;
     echo "RESPOSTA TPV >>> ";
     
     //$post=print_r($_POST["Ds_SignatureVersion"],TRUE);
-$this->xgreg_log("RESPOSTA TPV256 >>>>>>>>> <span class='idr'>" . $_POST["Ds_MerchantParameters"] . "</span>", 0, LOG_FILE_TPVPK, TRUE);
     $id = $lang = "not set";
     
     require_once ROOT . INC_FILE_PATH . 'API_PHP/redsysHMAC256_API_PHP_5.2.0/apiRedsys.php';
@@ -1154,7 +1153,8 @@ $this->xgreg_log("RESPOSTA TPV256 >>>>>>>>> <span class='idr'>" . $_POST["Ds_Mer
       $params = $miObj->decodeMerchantParameters($datos);
       $param = json_decode($params, TRUE);
       
-      
+          $this->xgreg_log("RESPOSTA TPV256 >>>>>>>>> <span class='idr'>" . $_POST["Ds_MerchantParameters"] . "</span>", 0, LOG_FILE_TPVPK, TRUE);
+  
       $TPV_CONFIG_FILE = TPV_CONFIG_FILE;
       if (substr($callback,0,5)=="TEST_"){
         $param["Ds_MerchantData"] = substr($callback,5);
@@ -1162,6 +1162,7 @@ $this->xgreg_log("RESPOSTA TPV256 >>>>>>>>> <span class='idr'>" . $_POST["Ds_Mer
       } 
       
       $callback = $param["Ds_MerchantData"];
+  
       include(ROOT . INC_FILE_PATH . $TPV_CONFIG_FILE); //NECESSITO TENIR A PUNT $id i $lang
       $signatureEsperada = $miObj->createMerchantSignatureNotif($clave256, $datos);
      
