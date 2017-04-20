@@ -10,6 +10,8 @@ if (!defined('ROOT'))
   define('ROOT', "../taules/");
 require_once (ROOT . "Gestor.php");
 
+
+
 /* * ************** PERMISOS ADMIN *************************************** */
 if (!isset($_SESSION['permisos']))
   die("error:sin permisos"); /*   * ******* */
@@ -18,8 +20,9 @@ if ($_SESSION['permisos'] < 200)
 /* * ************** PERMISOS ADMIN *************************************** */
 $id = $lang = "not set";
 $tpv_config_file = isset($_REQUEST['tpv_config_file']) ? $_REQUEST['tpv_config_file'] : TPV_CONFIG_FILE;
-
+//echo ROOT . INC_FILE_PATH . $tpv_config_file;die();
 include(ROOT . INC_FILE_PATH . $tpv_config_file); //NECESSITO TENIR A PUNT 4id i $lang
+
 include ROOT . INC_FILE_PATH . 'API_PHP/redsysHMAC256_API_PHP_5.2.0/apiRedsys.php';
 
 $miObj = new RedsysAPI;
