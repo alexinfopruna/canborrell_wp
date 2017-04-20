@@ -1138,18 +1138,40 @@ WHERE  `client`.`client_id` =$idc;
     //$post=print_r($_POST["Ds_SignatureVersion"],TRUE);
 $this->xgreg_log("RESPOSTA TPV256 >>>>>>>>> <span class='idr'>" . $_POST["Ds_MerchantParameters"] . "</span>", 0, LOG_FILE_TPVPK, TRUE);
     $id = $lang = "not set";
-    include(ROOT . INC_FILE_PATH . TPV_CONFIG_FILE); //NECESSITO TENIR A PUNT $id i $lang
+    
     require_once ROOT . INC_FILE_PATH . 'API_PHP/redsysHMAC256_API_PHP_5.2.0/apiRedsys.php';
-    // Se crea Objeto
     $miObj = new RedsysAPI;
+    
+    
+    
+    // Se crea Objeto
+    
     if (!empty($_POST)) {//URL DE RESP. ONLINE
       $version = $_POST["Ds_SignatureVersion"];
       $datos = $_POST["Ds_MerchantParameters"];
       $signatureRecibida = $_POST["Ds_Signature"];
 
       $params = $miObj->decodeMerchantParameters($datos);
-      $signatureEsperada = $miObj->createMerchantSignatureNotif($clave256, $datos);
       $param = json_decode($params, TRUE);
+      
+      
+      $TPV_CONFIG_FILE = TPV_CONFIG_FILE;
+      if (substr($callback,0,5)=="TEST_"){
+        $param["Ds_MerchantData"] = substr($callback,5);
+        $TPV_CONFIG_FILE = "TPV256_test.php";
+      } 
+      
+      $callback = $param["Ds_MerchantData"];
+      include(ROOT . INC_FILE_PATH . $TPV_CONFIG_FILE); //NECESSITO TENIR A PUNT $id i $lang
+      $signatureEsperada = $miObj->createMerchantSignatureNotif($clave256, $datos);
+     
+      
+      
+      
+      
+      
+      
+      
 
       $this->xgreg_log("RESPOSTA TPV256 >>>>>>>>> <span class='idr'>" . $param['Ds_Order'] . "</span>", 0, LOG_FILE_TPVPK, FALSE);
       $p = print_r($param, TRUE);

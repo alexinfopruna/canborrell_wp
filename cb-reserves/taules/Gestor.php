@@ -1030,7 +1030,7 @@ public function generaTESTTpvSHA256($id_reserva, $import, $nom, $tpv_ok_callback
     $miObj->setParameter("Ds_Merchant_Titular", $titular);
     $miObj->setParameter("Ds_Merchant_ConsumerLanguage", $idioma);
     $miObj->setParameter("Ds_Merchant_PayMethods", $paymethods);
-    $miObj->setParameter("Ds_Merchant_MerchantData", $tpv_ok_callback);
+    $miObj->setParameter("Ds_Merchant_MerchantData", "TEST_".$tpv_ok_callback);
 
 
 
