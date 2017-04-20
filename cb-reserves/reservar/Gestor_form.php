@@ -1134,15 +1134,12 @@ WHERE  `client`.`client_id` =$idc;
   /*   * ************************************************ */
   public function respostaTPV_SHA256() {
     echo "RESPOSTA TPV >>> ";
-    
-    //$post=print_r($_POST["Ds_SignatureVersion"],TRUE);
     $id = $lang = "not set";
     
     require_once ROOT . INC_FILE_PATH . 'API_PHP/redsysHMAC256_API_PHP_5.2.0/apiRedsys.php';
     $miObj = new RedsysAPI;
     
-    
-    
+
     // Se crea Objeto
     
     if (!empty($_POST)) {//URL DE RESP. ONLINE
@@ -1156,10 +1153,10 @@ WHERE  `client`.`client_id` =$idc;
       
       
   
-      $TPV_CONFIG_FILE = TPV_CONFIG_FILE;
-      if (substr($callback,0,5)=="TEST_"){
+      $tpv_config_file = TPV_CONFIG_FILE;
+      if (substr($param["Ds_MerchantData"],0,5)=="TEST_"){
         $param["Ds_MerchantData"] = substr($callback,5);
-        $TPV_CONFIG_FILE = "TPV256_test.php";
+        $tpv_config_file = "TPV256_test.php";
       } 
       
       $callback = $param["Ds_MerchantData"];
