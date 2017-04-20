@@ -4,8 +4,7 @@ require_once (ROOT . INC_FILE_PATH . "PHPMailer-master/PHPMailerAutoload.php");
 require_once(ROOT . INC_FILE_PATH . 'alex.inc');
 
 if (!defined('CONFIG')) {
-  if (!defined('ROOT'))
-    define('ROOT', "../taules/");
+  if (!defined('ROOT'))    define('ROOT', "../taules/");
   require_once(ROOT . "php/Configuracio.php");
   $conf = new Configuracio();
 }
@@ -15,7 +14,6 @@ function mailer_reserva($idr, $template, $addr, $subject, $body, $altbody, $atta
       . "VALUES (  '$idr', '$addr', '$subject', '" . base64_encode($body) . "' , '0',  '$template');";
   $qry_result = mysqli_query($GLOBALS["___mysqli_ston"], $query) or die(((is_object($GLOBALS["___mysqli_ston"])) ? mysqli_error($GLOBALS["___mysqli_ston"]) : (($___mysqli_res = mysqli_connect_error()) ? $___mysqli_res : false)));
   $idt = mysqli_insert_id($GLOBALS["___mysqli_ston"]);
-
 
   $res = mailer($addr, $subject, $body, $altbody, $attach, $test, $cco);
   $resultat = $res ? '1' : '0';

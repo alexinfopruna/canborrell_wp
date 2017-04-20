@@ -5,7 +5,7 @@
 defined('ROOT') or define('ROOT', 'cb-reserves/taules/');
 require_once (ROOT . "Gestor.php");
 
-if (defined("CB_FORA_DE_SERVEI") && CB_FORA_DE_SERVEI === true)
+if (defined("CB_FORA_DE_SERVEI") && CB_FORA_DE_SERVEI === true && $_SESSION['permisos']<200)
   header("Location:/cb-reserves/reservar/fora_de_servei.html");
 
 define("LLISTA_DIES_NEGRA", ROOT . INC_FILE_PATH . "bloq.txt");

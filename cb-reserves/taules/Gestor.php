@@ -1009,9 +1009,7 @@ public function generaTESTTpvSHA256($id_reserva, $import, $nom, $tpv_ok_callback
     ///* MODIFICA PARAMS */
     if (isset($tpv_ok_callback_alter))
       $tpv_ok_callback = $tpv_ok_callback_alter;
-    // Valores de entrada del ejemplo de redsy
-    //$fuc="999008881";$terminal="871";$moneda="978";$trans="0";//$url="";$urlMerchant="";$urlOKKO="";$urlKO="";$urlOK="";$id=time();$amount="145";
-    // Se incluye la librería
+
     include ROOT.INC_FILE_PATH . 'API_PHP/redsysHMAC256_API_PHP_5.2.0/apiRedsys.php';
     // Se crea Objeto
     $miObj = new RedsysAPI;
@@ -1041,16 +1039,7 @@ public function generaTESTTpvSHA256($id_reserva, $import, $nom, $tpv_ok_callback
     $params = $miObj->createMerchantParameters();
     $signature = $miObj->createMerchantSignature($clave256);
 
-    /*
-      echo   'amount: '.     $amount.'<br>';
-      echo   'order: '.     strval($id).'<br>';
-      echo   'fuc: '.     $fuc.'<br>';
-      echo   'url: '.     $url.'<br>';
-      echo   '$producte: '.     $producte.'<br>';
-      echo   '$urlMerchant: '.     $urlMerchant.'<br>';
-      echo   '$urlMerchant: '.     $tpv_ok_callback.'<br>';
-      echo '<br><br>';
-     */
+
     $form = '<form id="compra" name="compra" action="' . $url . '" method="post" target2="_blank" target="frame-tpv"  style="display:nonexxx">
               <div class="ds_input">Ds_Merchant_SignatureVersion <input type="text" name="Ds_SignatureVersion" value="' . $version . '"/></div>
               <div class="ds_input">Ds_Merchant_MerchantParameters <input type="text" name="Ds_MerchantParameters" value="' . $params . '"/></div>
@@ -1058,12 +1047,9 @@ public function generaTESTTpvSHA256($id_reserva, $import, $nom, $tpv_ok_callback
               <!--<input id="boto" type="submit" name="Submit" value="' . $this->l('Realizar Pago', false) . '" onclickxx="javascript:calc();" />-->
                 <button id="boto" type="submit" name="Submit" value="' . $this->l('Realizar Pago', false) . '" class="btn btn-success">' . $this->l('Realizar Pago', false) . '</button>
 </form>';
-echo "Entorn de proves >>>>>> 4548812049400004  12/20   123  123456 ";
+echo "Entorn de proves >>>>>> 4548812049400004  12/20   123  123456 >>>> ".$tpv_ok_callback;
     return $form;
   }
-  
-  
-  
   
   /**
    * 
