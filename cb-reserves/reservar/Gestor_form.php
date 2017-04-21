@@ -781,8 +781,8 @@ FROM client
     if ($TPV) {
       $nom = $_POST['client_nom'] . ' ' . $_POST['client_cognoms'];
 
-      if (isset($_REQUEST["testTPV"]) && $_REQUEST["testTPV"] == 'testTPV')
-        $resposta['form_tpv'] = $this->generaTESTTpvSHA256($idr, import_paga_i_senyal, $nom, 'reserva_pk_tpv_ok_callback', '99');
+      if (isset($_REQUEST["testTPV"])  && $_SESSION['permisos']>200)
+        $resposta['form_tpv'] = $this->generaTESTTpvSHA256($idr, import_paga_i_senyal, $nom);
       else
         $resposta['form_tpv'] = $this->generaFormTpvSHA256($idr, import_paga_i_senyal, $nom);
     }

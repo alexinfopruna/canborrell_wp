@@ -989,10 +989,16 @@ class Gestor {
    * Connexió a redsys en entorn de proves TPV256_test.php
    */
 public function generaTESTTpvSHA256($id_reserva, $import, $nom, $tpv_ok_callback_alter = NULL) {
+  
+  return $this->generaFormTpvSHA256($id_reserva, $import, $nom, $tpv_ok_callback_alter);
+  
+  die();
+  
     if ($_SESSION['permisos']<200)       die("Sense permisos");
   
-  //$_LOG_FILE_TPVPK = LOG_FILE_TPVPK;
+ 
   $_LOG_FILE_TPVPK = "TPV256_test.php";
+  $_LOG_FILE_TPVPK = "TPV256.php";
   
   
     $this->xgreg_log("generaFormTpvSHA256 $id_reserva $import $nom", 0, LOG_FILE_TPVPK, TRUE);
@@ -1044,10 +1050,11 @@ public function generaTESTTpvSHA256($id_reserva, $import, $nom, $tpv_ok_callback
               <div class="ds_input">Ds_Merchant_SignatureVersion <input type="text" name="Ds_SignatureVersion" value="' . $version . '"/></div>
               <div class="ds_input">Ds_Merchant_MerchantParameters <input type="text" name="Ds_MerchantParameters" value="' . $params . '"/></div>
               <div class="ds_input">Ds_Merchant_Signature <input type="text" name="Ds_Signature" value="' . $signature . '"/></div>
-              <!--<input id="boto" type="submit" name="Submit" value="' . $this->l('Realizar Pago', false) . '" onclickxx="javascript:calc();" />-->
+              
                 <button id="boto" type="submit" name="Submit" value="' . $this->l('Realizar Pago', false) . '" class="btn btn-success">' . $this->l('Realizar Pago', false) . '</button>
 </form>';
-//echo "Entorn de proves $_LOG_FILE_TPVPK >>>>>> 4548812049400004  12/20   123  123456 >>>> ".$tpv_ok_callback. " <<<<<<<<<<";
+    
+    $form="HOLAAAA";
     return $form;
   }
   
