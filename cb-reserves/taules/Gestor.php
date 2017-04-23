@@ -989,16 +989,11 @@ class Gestor {
    * Connexió a redsys en entorn de proves TPV256_test.php
    */
 public function generaTESTTpvSHA256($id_reserva, $import, $nom, $tpv_ok_callback_alter = NULL) {
-  
-  return $this->generaFormTpvSHA256($id_reserva, $import, $nom, $tpv_ok_callback_alter);
-  
-  die();
-  
     if ($_SESSION['permisos']<200)       die("Sense permisos");
   
  
   $_LOG_FILE_TPVPK = "TPV256_test.php";
-  $_LOG_FILE_TPVPK = "TPV256.php";
+  //$_LOG_FILE_TPVPK = "TPV256.php";
   
   
     $this->xgreg_log("generaFormTpvSHA256 $id_reserva $import $nom", 0, LOG_FILE_TPVPK, TRUE);
@@ -1053,8 +1048,6 @@ public function generaTESTTpvSHA256($id_reserva, $import, $nom, $tpv_ok_callback
               
                 <button id="boto" type="submit" name="Submit" value="' . $this->l('Realizar Pago', false) . '" class="btn btn-success">' . $this->l('Realizar Pago', false) . '</button>
 </form>';
-    
-    $form="HOLAAAA";
     return $form;
   }
   

@@ -281,7 +281,7 @@ if (!$paga_i_senyal)
                     </head>
                     <body class="amagat front <?php echo DEV ? " dev " : "";
                         echo LOCAL ? " local " : "" ?>"  >
-
+<?php  if (isset($_REQUEST["testTPV"])  && $_SESSION['permisos']>200) echo "*******testTPV**********"; ?>
                         <div id="container">
                             <div class="row row-offcanvas row-offcanvas-left">
 

@@ -101,7 +101,9 @@ h6.infantil{font-size:13px;}
 }
 
 .site-tagline{
-    font-size: 16px;
+  //  font-size: 16px;
+  //    position: relative;
+  //  top: -8px;
 }
 
 .logo-left .logo-box {
@@ -1287,7 +1289,7 @@ section.home-section-1 .section-subtitle {
 }
 
 
-.site-tagline{font-size: 19px;}
+/*.site-tagline{font-size: 19px;}*/
 
 .home-section-1 .magee-btn-normal{
 	padding:.5em;

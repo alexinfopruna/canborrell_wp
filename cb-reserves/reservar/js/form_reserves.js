@@ -80,6 +80,9 @@ if (!Array.prototype.indexOf)
     };
 }
 
+
+$(".container").hide();
+$("body").hide();
 $(function () {
     $(window).on('resize', function () {
         jQuery("#container").css("margin-top", jQuery(".navbar-header").height());
@@ -129,7 +132,7 @@ $(function () {
 
     $("#flogin").hide();
     $(".cb-contacte").click(function () {
-        $.scrollTo("#table_menu", 600, {offset: -100});
+        ///// $.scrollTo("#table_menu", 600, {offset: -100});
         $("#a_consulta_online.r-petita").trigger("click")
     });
     $("#a_editar_reserva").click(function () {
@@ -239,15 +242,14 @@ $(function () {
     /**************************/
     comportamentQuantsSou();
     controlSubmit();
-    $("body").fadeIn("slow");
+    //$("body").fadeIn("slow");
     /*********** HEEELP *************/
-    // $("#help").dialog(dlg);
+
     help();
 
     $(".info-ico").click(function (e) {
 
         id = $(this).attr("id");
-        // $( "#help" ).dialog( "option", "position", { my: "center bottom", at: "center bottom",of: e} );
         help($("." + id).html());
         e.preventDefault();
     });
@@ -286,8 +288,24 @@ $(function () {
     }
     document.body.scrollTop = document.documentElement.scrollTop = 0;
     
+    
+        $('#unpopup').dialog({
+        autoOpen: false,
+        modal: true,
+        width: 300});
+    
+    
+    if ('scrollRestoration' in history) {
+  history.scrollRestoration = 'manual';
+}
+    
+
+    
    // $(".fr-seccio-dia").show();
   //  monta_calendari("#calendari");
+  
+  //$(".container").fadeIn("slow");
+  //$("body").on("click",function(){alert("www2");$('#unpopup').dialog("open");})
 }); //ONLOAD, PRESENTACIO UI
 //***********************************************************************************************************/
 /************************************************************************************************************/
@@ -344,14 +362,7 @@ function comportamentQuantsSou()
         avis_modificacions(e);
     });
 
-    //JUNIORS
-    /*
-     $("input[name=selectorJuniors]").change(function () {
-     JUNIORS = $("input[name='selectorJuniors']:checked").val();
-     $("input[name='nens10_14']").val(JUNIORS)
-     $.scrollTo("#titol_SelectorNens", 600, {offset:-100 });
-     });
-     /*/
+
     //NENS
     $("input[name=selectorNens]").change(function () {
         NENS = $("input[name='selectorNens']:checked").val();
@@ -360,10 +371,10 @@ function comportamentQuantsSou()
 
         $("input[name='nens4_9']").val(NENS);
 
-        if (!ADULTS)
-            $.scrollTo("#titol_SelectorComensals", 600, {offset: -100});
-        else
-            $.scrollTo("#titol_SelectorCotxets", 600, {offset: -100});
+       //if (!ADULTS)
+           ///// ///// $.scrollTo("#titol_SelectorComensals", 600, {offset: -100});
+       // else
+            ///// $.scrollTo("#titol_SelectorCotxets", 600, {offset: -100});
     });
 
     //COTXETS
@@ -682,7 +693,7 @@ function validaDadesClient() {
             $(".fr-seccio-submit").css("display", "block");
             $(".fr-seccio-submit").css("visibility", "visible");
 
-            $.scrollTo("#scroll-seccio-submit", 800, {offset: -100});
+            ///// $.scrollTo("#scroll-seccio-submit", 800, {offset: -100});
         }
 
     }
@@ -1181,8 +1192,7 @@ function seccio(selector_seccio) {
     if (!selector_seccio)
         return;
 
-    //$.scrollTo("." + selector_seccio, 800, {offset: -100, onAfter: function(){if (popup != "") $(popup).dialog("open");popup="";}});
-        $.scrollTo("." + selector_seccio, 800, {offset: -100});
+        ///// $.scrollTo("." + selector_seccio, 800, {offset: -100});
     SECCIO = selector_seccio;
     
     
@@ -1230,13 +1240,7 @@ function avis_modificacions(e) {
 
 
     var adults = $("input[name='selectorComensals']:checked").val()
-    /*
-     
-     if (adults < 6) {
-     $.scrollTo("#titol_SelectorNens", 600, {offset:-100 });
-     return false;
-     }
-     */
+
     help($("#avis-modificacions").html());
 
     if ($(".fr-seccio-dia").is(":hidden"))
@@ -1253,11 +1257,11 @@ function avis_modificacions(e) {
         comportamentDia();
         recargaHores();
         $(".fr-seccio-hora").show();
-        $.scrollTo("#titol_SelectorNens", 600, {offset: -100});
+        ///// $.scrollTo("#titol_SelectorNens", 600, {offset: -100});
         //$("#calendari").change();
     }
     else {
-        $.scrollTo("#titol_SelectorNens", 600, {offset: -100});
+        ///// $.scrollTo("#titol_SelectorNens", 600, {offset: -100});
         SECCIO = 'fr-seccio-dia';
 
 
@@ -1290,7 +1294,7 @@ function setCalendDate(date) {
     updateCalendari();
     $('#calendari').datepicker("setDate", dt);
     comportamentQuantsSou();
-    //$.scrollTo("#table_menu", 600);
+
     window.scrollTo(0, 0);
     // comportamentDia();
 

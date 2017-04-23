@@ -1581,7 +1581,10 @@ function validationRules() {
         rules: {
             client_cognoms: "required",
             client_nom: "required",
-            client_email: "email",
+            client_email: {
+                email: true,
+                remote: "verify_email.php"
+            },
             client_mobil:
                     {
                         required: true,
