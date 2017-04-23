@@ -83,7 +83,7 @@ if (!Array.prototype.indexOf)
 
 $(".container").hide();
 $("body").hide();
-$(function () {
+$(function (){
     $(window).on('resize', function () {
         jQuery("#container").css("margin-top", jQuery(".navbar-header").height());
     }).resize();
@@ -298,12 +298,6 @@ $(function () {
 }
     
 
-    
-   // $(".fr-seccio-dia").show();
-  //  monta_calendari("#calendari");
-  
-  //$(".container").fadeIn("slow");
-  //$("body").on("click",function(){alert("www2");$('#unpopup').dialog("open");})
 }); //ONLOAD, PRESENTACIO UI
 //***********************************************************************************************************/
 /************************************************************************************************************/

@@ -8,7 +8,8 @@
 var ajaxgaleria = {"ajaxurl": "http:\/\/cbwp-localhost\/wp-admin\/admin-ajax.php"};
 
 jQuery(document).ready(function ($) {
-    $("#gallery .img-frames a").click(load_galeria);
+   
+    $("#gallery .img-frame a").click(load_galeria);
 
     $("#galeria-ajax").hide("slow");
     function load_galeria(e) {

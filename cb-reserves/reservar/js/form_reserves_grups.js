@@ -155,9 +155,6 @@ $(function () {
             }
         }
     });    
-
-
-
 help();
 
     $("#info_reserves").click(function () {
@@ -166,8 +163,6 @@ help();
         $("#popup").dialog("open");
         return false;
     });
-
-
     validacio();
 
     /********  AMAGA PANELLS ********/
@@ -207,8 +202,6 @@ help();
     //RESETEJA EL TIMER D'AJUDA SI TECA LA PANTALLA
     /***$(document).change(function(e) {clearTimeout(th);	if (SECCIO) th=setTimeout('timer_help("'+l(SECCIO)+'")',TIMER_HELP_INTERVAL);});
      */
-
-    
 
     $("#flogin").hide();
     $("body").fadeIn("slow");

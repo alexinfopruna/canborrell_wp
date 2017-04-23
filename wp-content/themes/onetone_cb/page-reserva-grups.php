@@ -178,6 +178,7 @@ function reservar_enqueue_styles() {
 
   <style>
       #carta{width:100%}
+      .ccarta td{    padding: 0px 4px;}
       #data{width:100%}
       .fr-seccio-hora .ui-button .ui-button-text{
           padding: .4em .9em;
@@ -205,7 +206,7 @@ function reservar_enqueue_styles() {
           flex-wrap:wrap;
       }          
 
-      .titol{width: 100%;}
+      /*.titol{width: 100%;}*/
       @media (max-width: 770px){ 
           .ui-button-text {
               padding: 5px 15px !important;
@@ -640,33 +641,8 @@ function reservar_enqueue_styles() {
                                                       </div>
 
                                                   </form>	
-
-
-                                                  <!--
-                                                                              
-                                                  -->
-                                                  <!--	
-                                                  <div id="peu" style="margin-top:50px;	text-align:center;padding:15px;background:#FFFFFF" ><b>Restaurant CAN BORRELL:</b> <span class="dins cb-contacte" style="text-align:right">93 692 97 23 / 93 691 06 05 </span>  /  <a href="mailto:<?php echo MAIL_RESTAURANT; ?>" class="dins"><?php echo MAIL_RESTAURANT; ?></a>
-                                                  </div>
-                                                 
-                                                  <div id="peu" style="margin-top:50px;	text-align:center;padding:15px;background:#FFFFFF" ><b>Restaurant CAN BORRELL:</b> <button class="dins cb-contacte" style="text-align:right">Contactar amb el restaurant </button>  /  <a href="mailto:<?php echo MAIL_RESTAURANT; ?>" target="_blank" class="dins"><?php echo MAIL_RESTAURANT; ?></a>
-                                                  </div>
-                                                  -->	
-
-
-
-                                                  <!-- ******************* CARTA *********************** -->
-                                                  <!-- ******************* CARTA *********************** -->
-                                                  <!-- ******************* CARTA *********************** 
-                                                  <div id="fr-cartaw-popup" title="<?php l("La nostra carta") ?>" class="carta-menu" style="height:300px">
-                                                  <div id="fr-carta-tabs" >
-  <?php //echo $gestor->recuperaCarta($row['id_reserva'])    ?>
-                                                  </div>	
-                                                  </div>	-->
-                                                  <!-- ******************* CARTA-MENU *********************** -->
-                                                  <!-- ******************* CARTA-MENU *********************** -->
-                                                  <!-- ******************* CARTA-MENU *********************** -->
-
+              
+                                                  
                                                   <div id="fr-menu-popup" title="<?php l("Els nostres menús") ?>" class="carta-menu">
                                                       <div id="fr-menu-tabs" >
   <?php echo $gestor->recuperaCarta($row['id_reserva'], true) ?>
