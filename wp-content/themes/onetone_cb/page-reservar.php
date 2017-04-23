@@ -161,12 +161,12 @@ function reservar_enqueue_styles() {
   <script type="text/javascript" src="/cb-reserves/taules/js/jquery.validate.min.js"></script>
   <script type="text/javascript" src="/cb-reserves/taules/js/jquery.timers.js"></script>
   <script type="text/javascript" src="/cb-reserves/taules/js/jquery.form.js"></script>
-  <script type="text/javascript" src="/cb-reserves/taules/js/jquery.scrollTo.min.js"></script>
+ <!-- <script type="text/javascript" src="/cb-reserves/taules/js/jquery.scrollTo.min.js"></script>
   <script type="text/javascript" src="/cb-reserves/taules/js/jquery.browser.js"></script>
   <script type="text/javascript" src="/cb-reserves/reservar/js/json2.js"></script>
-  <!-- ANULAT dynmenu.js -->
+   ANULAT dynmenu.js 
   <script type="text/javascript" src="/cb-reserves/reservar/js/jquery.amaga.js"></script>
-  <script type="text/javascript" src="/cb-reserves/reservar/js/jquery.tooltip.js"></script>
+  <script type="text/javascript" src="/cb-reserves/reservar/js/jquery.tooltip.js"></script>-->
 
 
   <style>

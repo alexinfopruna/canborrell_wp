@@ -132,7 +132,7 @@ $(function () {
 
     $("#flogin").hide();
     $(".cb-contacte").click(function () {
-        ///// $.scrollTo("#table_menu", 600, {offset: -100});
+        $.scrollTo("#table_menu", 600, {offset: -100});
         $("#a_consulta_online.r-petita").trigger("click")
     });
     $("#a_editar_reserva").click(function () {
@@ -276,7 +276,6 @@ $(function () {
     // if (typeof rdata != 'undefined')  setCalendDate(rdata);
     if (typeof obre_contacte != 'undefined') {
         $("#a_consulta_online.r-petita").click();
-        // $("#caixa_reserva_consulta_online").css("background-color",'yellow').delay(3).css("background-color",'gold');
         $("#caixa_reserva_consulta_online").dialog({modal: true});
     }//click();
 
@@ -284,7 +283,6 @@ $(function () {
         monta_calendari("#calendari");
         $(".fr-seccio-dia").show();
         SECCIO = "fr-seccio-dia";
-        //updateCalendari();   
     }
     document.body.scrollTop = document.documentElement.scrollTop = 0;
     
@@ -371,10 +369,10 @@ function comportamentQuantsSou()
 
         $("input[name='nens4_9']").val(NENS);
 
-       //if (!ADULTS)
-           ///// ///// $.scrollTo("#titol_SelectorComensals", 600, {offset: -100});
-       // else
-            ///// $.scrollTo("#titol_SelectorCotxets", 600, {offset: -100});
+      if (!ADULTS)
+            $.scrollTo("#titol_SelectorComensals", 600, {offset: -100});
+        else
+            $.scrollTo("#titol_SelectorCotxets", 600, {offset: -100});
     });
 
     //COTXETS
@@ -693,7 +691,7 @@ function validaDadesClient() {
             $(".fr-seccio-submit").css("display", "block");
             $(".fr-seccio-submit").css("visibility", "visible");
 
-            ///// $.scrollTo("#scroll-seccio-submit", 800, {offset: -100});
+             $.scrollTo("#scroll-seccio-submit", 800, {offset: -100});
         }
 
     }
@@ -1192,7 +1190,7 @@ function seccio(selector_seccio) {
     if (!selector_seccio)
         return;
 
-        ///// $.scrollTo("." + selector_seccio, 800, {offset: -100});
+         $.scrollTo("." + selector_seccio, 800, {offset: -100});
     SECCIO = selector_seccio;
     
     
@@ -1257,11 +1255,11 @@ function avis_modificacions(e) {
         comportamentDia();
         recargaHores();
         $(".fr-seccio-hora").show();
-        ///// $.scrollTo("#titol_SelectorNens", 600, {offset: -100});
+         $.scrollTo("#titol_SelectorNens", 600, {offset: -100});
         //$("#calendari").change();
     }
     else {
-        ///// $.scrollTo("#titol_SelectorNens", 600, {offset: -100});
+         $.scrollTo("#titol_SelectorNens", 600, {offset: -100});
         SECCIO = 'fr-seccio-dia';
 
 
