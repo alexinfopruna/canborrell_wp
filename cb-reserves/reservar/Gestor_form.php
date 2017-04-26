@@ -185,11 +185,9 @@ class Gestor_form extends gestor_reserves {
 
 
   public function horesDisponibles($data, $coberts, $cotxets = 0, $accesible = 0, $idr = 0, $nens = null) {
-//echo $cotxets;die();
     if ($cotxets == 'undefined') $cotxets=0;
     $mydata = $this->cambiaf_a_mysql($data);
 
-    //$this->taulesDisponibles->tableHores="estat_hores_form";
     $this->taulesDisponibles->tableHores = "estat_hores";   //ANULAT GESTOR HORES FORM. Tot es gestiona igual, des d'estat hores
     if ($idr) {
       if (!$this->taulesDisponibles->loadReserva($idr)) {
@@ -202,7 +200,6 @@ class Gestor_form extends gestor_reserves {
     $this->taulesDisponibles->persones = $coberts;
     $this->taulesDisponibles->cotxets = $cotxets;
     $this->taulesDisponibles->accesible = $accesible;
-    //$this->taulesDisponibles->tableHores="estat_hores_form";		
     $this->taulesDisponibles->tableHores = "estat_hores";  //ANULAT GESTOR HORES FORM. Toto es gestiona igual, des de estat hores
 
     $this->taulesDisponibles->llista_dies_negra = LLISTA_DIES_NEGRA_RES_PETITES;
@@ -211,13 +208,11 @@ class Gestor_form extends gestor_reserves {
     $cacheNens = $nens;
     $cacheAdults = $coberts - $nens;
 
-    // $this->comprovaCacheNens($mydata, $cacheAdults, $cacheNens);
  
       $rc=new RestrictionController();
       $this->taulesDisponibles->rang_hores_nens = $rc->getHores($mydata, $cacheAdults, $cacheNens, $cotxets);    
       $rules = $rc->getActiveRules($mydata, $cacheAdults, $cacheNens, $cotxets);    
     //SISTEMA ESTÀTIC >> hores_nens.php
-    //$this->taulesDisponibles->rang_hores_nens = $this->rang_hores_nens($mydata, $cacheAdults, $cacheNens, $cotxets);
 
     //TORN1
     $this->taulesDisponibles->torn = 1;
@@ -232,7 +227,6 @@ class Gestor_form extends gestor_reserves {
     $this->taulesDisponibles->torn = 2;
     $dinarT2 = $this->taulesDisponibles->recupera_hores();
     $taules = $this->taulesDisponibles->taulesDisponibles();
-    //$this->printr($taules);
     
      $taulaT2 = 0;
     if ($taules) $taulaT2 = $taules[0]->id;   
@@ -270,11 +264,6 @@ class Gestor_form extends gestor_reserves {
     if ($ds==7 ) $finde=TRUE;
 
     if (!$finde) return FALSE;
-    /*
-      $adults = 10;
-      $nens= 0;
-     */if ($nens=="undefined") $nens=0;
-    //echo " .. $nens ..";die();
    
     /*     * *************************** */
     require("hores_nens.php");
@@ -288,7 +277,6 @@ class Gestor_form extends gestor_reserves {
 
     $time = time();
      
-    //   $time += CB_CHILD_CACHE_MAX_TIME + 1000;
     $cache = FALSE;
     if (isset($_SESSION[$index]) && count($_SESSION[$index]['hores']) && $_SESSION[$index]['timestamp'] > $time) {
       $cache = $_SESSION[$index]['hores'];
@@ -310,20 +298,13 @@ class Gestor_form extends gestor_reserves {
     // COTXETS
     /**********************************************************/
     $limitcotxets = FALSE;
-    //echo "*** $ds  $cotxets ***";die();
     if (isset($limit_cotxets[$cotxets])) {
       $limitcotxets = $limit_cotxets[$cotxets][1];
       if ($limitcotxets && $limitNens) $limitNens = array_intersect($limitcotxets, $limitNens);
       else $limitNens = $limitcotxets;
       
     }
-   // var_dump($cotxets) ;
-   // var_dump($limitNens) ;die();
-    
-    /*
-    echo "CACHE ";print_r($cache);
-    echo "limit ";print_r($limit);
-    echo "limitNens ";print_r($limitNens);*/
+
     return $limitNens;
   }
 
@@ -362,13 +343,13 @@ $CONTROLA_ARTICLES_ACTIUS
 
 WHERE $were
 ORDER BY carta_subfamilia_order,carta_plats_nom_es , carta_plats_nom_ca";
-//ORDER BY (carta_subfamilia_id=2),carta_subfamilia_id";
-//echo $query;
     $Result1 = mysqli_query($this->connexioDB, $query) or die(((is_object($GLOBALS["___mysqli_ston"])) ? mysqli_error($GLOBALS["___mysqli_ston"]) : (($___mysqli_res = mysqli_connect_error()) ? $___mysqli_res : false)));
 
     while ($row = mysqli_fetch_array($Result1)) {
-      if (empty($row['carta_plats_nom_ca']))
-        $row['carta_plats_nom_ca'] = $row['carta_plats_nom_en'] = $row['carta_plats_nom_es'];
+      if (empty($row['carta_plats_nom_ca']))   $row['carta_plats_nom_ca'] = $row['carta_plats_nom_es'];
+      if (empty($row['carta_plats_nom_en']))   $row['carta_plats_nom_en'] = $row['carta_plats_nom_es'];
+        //ucfirst
+       if ($_SESSION["lang"]!='es')  $row['carta_plats_nom_'.$lng]= ucfirst(mb_strtolower($row['carta_plats_nom_'.$lng]));
       $plat = array('id' => $row['carta_plats_id'], 'nom' => $row['carta_plats_nom_' . $lng], 'preu' => $row['carta_plats_preu'], 'quantitat' => $row['comanda_plat_quantitat']);
       $arCarta[$row['carta_subfamilia_nom_' . $lng]][] = $plat;
     }
@@ -394,7 +375,6 @@ ORDER BY carta_subfamilia_order,carta_plats_nom_es , carta_plats_nom_ca";
       $carta.=$obreSeccio . PHP_EOL . $seccio . PHP_EOL . $tancaSeccio;
     }
 
-    //print_r($arCarta);
     return $carta;
   }
 

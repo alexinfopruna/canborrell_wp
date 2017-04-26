@@ -28,7 +28,7 @@ class Gestor_filtre_carta extends Gestor_form
     if ($es_menu) $were=' carta_plats.carta_plats_subfamilia_id=20 ';
     else $were=' carta_plats.carta_plats_subfamilia_id<>20 ';
 
-    $query="select `carta_plats_id`,`carta_plats_nom_es`,`carta_plats_nom_ca`,`carta_plats_preu`,carta_subfamilia.carta_subfamilia_id AS subfamilia_id,`carta_subfamilia_nom_$lng`, comanda_client.comanda_plat_quantitat, carta_publicat
+    $query="select `carta_plats_id`,`carta_plats_nom_es`,`carta_plats_nom_ca`,`carta_plats_nom_en`,`carta_plats_preu`,carta_subfamilia.carta_subfamilia_id AS subfamilia_id,`carta_subfamilia_nom_$lng`, comanda_client.comanda_plat_quantitat, carta_publicat
     FROM carta_plats
     LEFT JOIN carta_publicat ON carta_plats_id=carta_publicat_plat_id
     LEFT JOIN carta_subfamilia ON carta_subfamilia.carta_subfamilia_id=carta_plats_subfamilia_id
@@ -45,8 +45,12 @@ class Gestor_filtre_carta extends Gestor_form
     while ($row = mysqli_fetch_array($Result1))
     {
       if (empty($row['carta_plats_nom_ca'])) $row['carta_plats_nom_ca']=$row['carta_plats_nom_es'];
+      if (empty($row['carta_plats_nom_en'])) $row['carta_plats_nom_en']=$row['carta_plats_nom_es'];
+      
+      $row['carta_plats_nom_'.$lng]= ucfirst(mb_strtolower($row['carta_plats_nom_'.$lng]));
       $plat=array('id'=>$row['carta_plats_id'],'nom'=>$row['carta_plats_nom_'.$lng],'preu'=>$row['carta_plats_preu'],'quantitat'=>$row['comanda_plat_quantitat'],'publicat'=>$row['carta_publicat']);
-      $arCarta[$row['carta_subfamilia_nom_'.$lng]][]=$plat;
+    //  $plat=array('id'=>$row['carta_plats_id'],'nom'=>$row['carta_plats_id'] ." - ".$row['carta_plats_nom_'.$lng],'preu'=>$row['carta_plats_preu'],'quantitat'=>$row['comanda_plat_quantitat'],'publicat'=>$row['carta_publicat']);
+      $arCarta[$row['carta_subfamilia_nom_'.$lng]][]=   $plat;
     }
 
     /**********************************************************************************************************/

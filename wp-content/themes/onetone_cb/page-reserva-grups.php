@@ -177,8 +177,15 @@ function reservar_enqueue_styles() {
   <script type="text/javascript" src="/cb-reserves/reservar/js/popups_ajuda.js<?php //echo '?'.time();      ?>"></script>		
 
   <style>
+      
+           #divTooltip{
+          font-size: 0.7em;
+    line-height: 1.1;
+      }
+      
       #carta{width:100%}
       .ccarta td{    padding: 0px 4px;}
+        .ccarta  td, tr.item-carta, tr.item-carta td{    padding: 0px 4px;}
       #data{width:100%}
       .fr-seccio-hora .ui-button .ui-button-text{
           padding: .4em .9em;

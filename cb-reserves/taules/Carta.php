@@ -65,15 +65,17 @@ class Carta extends Gestor
 		
 		// CARREGUEM TRADUCCIONS DELS MENUS
 		$this->idioma();
-		//require_once(ROOT."../reservar/translate_grups_".$this->lng.".php");
-		include(ROOT."../reservar/translate_grups_".$this->lng.".php");
-		include(ROOT."../reservar/translate_grups_".$this->lng.".php");
+global $translate;		
+include(ROOT."../reservar/translate_grups_".$this->lng.".php");
 
+
+                                                                                    
 		// CARREGUEM LA TAULA DE PLATS
 		
 		$query="SELECT * FROM carta_plats";
 		$this->qry_result = mysqli_query( $this->connexioDB, $query) or die(((is_object($GLOBALS["___mysqli_ston"])) ? mysqli_error($GLOBALS["___mysqli_ston"]) : (($___mysqli_res = mysqli_connect_error()) ? $___mysqli_res : false)));
 		$nr=mysqli_num_rows($this->qry_result);
+                                                        $q=0;
 		while ($row= mysqli_fetch_assoc($this->qry_result))
 		{
 			$id=$row['carta_plats_id'];
@@ -88,9 +90,15 @@ class Carta extends Gestor
 				else $nom=$row['carta_plats_nom_'.$this->lng_default];			  
 			}
 			
-			$descripcio=l("menu_" . $id,false);
+                                                                                    $q++;
+                                                                                    //$translate['menu_2018']="HOLAAAAA";
+                                                                                    
+			$descripcio= l("menu_" . $id,false);
+			//$descripcio=  l("menu_2018" ,false);
+                                                                                   
+                                                                                    
 			
-			if ($descripcio=="menu_" . $id) $descripcio="";
+			if ($descripcio == "menu_" . $id) $descripcio="";
 			
 			$this->plats[$id]=new Plat($id, $nom, $row['carta_plats_familia_id'], $preuIVA, $descripcio);
 		}
@@ -160,7 +168,8 @@ class Carta extends Gestor
 		$descripcio=$this->plats[$id]->descripcio;
 		$descripcio=str_replace($this->arLabelID,$this->arPreusIVA,$descripcio);
 
-		return "<h1>".$this->plats[$id]->nom.'</h1>'.$descripcio;
+                                                        //return "HOLA";
+		return "<h5>".$this->plats[$id]->nom.'</h5>'.$descripcio;
 	}
 	
 /*************************************************************************************/

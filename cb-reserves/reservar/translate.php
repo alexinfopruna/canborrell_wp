@@ -20,7 +20,7 @@ else define('TRANSLATE_NO_TRANS','');
 var translateKey=new Array("test translate: ERROR");
 //var translateJS=new Array("<span class=\'js-translated\'>Test translate: OK</span>");
 var translateJS=new Array("<span class=\'js-translated\'>Test translate: OK</span>");
-var TRANSLATE_DEBUG=<?php echo TRANSLATE_DEBUG?"true":"false";?>;
+var TRANSLATE_DEBUG=false;//<?php echo TRANSLATE_DEBUG?"true":"false";?>;
 var lang="<?php echo $lang;?>";
 
 
@@ -31,7 +31,7 @@ if (TRANSLATE_DEBUG)
 		
 		alert("TRADUCTOR DEBUG: "+lang);
 }
-<?php 
+<?php  
 	//TRANSLATES
 if (!isset($translateJS)) $translateJS=array();
 if (!isset($translateDirectJS)) $translateDirectJS=array();

@@ -1,11 +1,16 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project-private xmlns="http://www.netbeans.org/ns/project-private/1">
-    <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="4">
+    <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="5">
         <file>
             <url>cb-reserves/reservar/Gestor_form.php</url>
             <bookmark id="4">
                 <name/>
-                <line>261</line>
+                <line>255</line>
+                <key/>
+            </bookmark>
+            <bookmark id="5">
+                <name/>
+                <line>1139</line>
                 <key/>
             </bookmark>
         </file>
@@ -21,14 +26,18 @@
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
             <file>file:/var/www/canborrell-wp/cb-reserves/taules/Gestor.php</file>
-            <file>file:/var/www/canborrell-wp/cb-reserves/taules/DBTable/DBTable.php</file>
-            <file>file:/var/www/canborrell-wp/wp-content/themes/onetone_cb/page-pagament.php</file>
-            <file>file:/var/www/canborrell-wp/cb-reserves/taules/DBTable/js/DBTable.js</file>
+            <file>file:/var/www/canborrell-wp/cb-reserves/taules/Carta.php</file>
+            <file>file:/var/www/canborrell-wp/cb-reserves/reservar/filtre_carta.php</file>
+            <file>file:/var/www/canborrell-wp/cb-reserves/reservar/js/form_reserves.js</file>
+            <file>file:/var/www/canborrell-wp/wp-content/themes/onetone_cb/page-reserva-grups.php</file>
+            <file>file:/var/www/canborrell-wp/cb-reserves/reservar/translate_grups_ca.php</file>
+            <file>file:/var/www/canborrell-wp/cb-reserves/reservar/Gestor_filtre_carta.php</file>
+            <file>file:/var/www/canborrell-wp/cb-reserves/reservar/translate.php</file>
             <file>file:/var/www/canborrell-wp/cb-reserves/reservar/Gestor_form.php</file>
-            <file>file:/var/www/canborrell-wp/cb-reserves/taules/gestor_reserves.php</file>
-            <file>file:/var/www/canborrell-wp/cb-reserves/taules/DBTable/Llistat.php</file>
-            <file>file:/var/www/canborrell-wp/cb-reserves/reservar/testTPV256.php</file>
-            <file>file:/var/www/canborrell-wp/cb-reserves/taules/DBTable/FormConfigAdmin.php</file>
+            <file>file:/var/www/canborrell-wp/wp-content/themes/onetone_cb/js/galeria.js</file>
+            <file>file:/var/www/canborrell-wp/wp-content/themes/onetone_cb/page-reservar.php</file>
+            <file>file:/var/www/canborrell-wp/cb-reserves/taules/form_reserva.php</file>
+            <file>file:/var/www/canborrell-wp/cb-reserves/reservar/js/popups_ajuda.js</file>
         </group>
     </open-files>
 </project-private>

@@ -1365,6 +1365,12 @@ input.wpcf7-submit{
 .alergogens-mol{background-position: -180px -90px;}
 */
 
+
+#carta-seccions li.ui-tabs-active{
+    background-color: #F1F1F1;
+}
+
+
 @media (max-width: 450px){
 section.home-section-1 .home-section-content, section.home-section-1 p{
     font-size: 12px !important;
