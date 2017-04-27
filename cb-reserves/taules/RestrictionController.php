@@ -121,7 +121,6 @@ public function getHoresRules($data=0, $adults=0, $nens=0, $cotxets=0){
   
   //$hores = $this->subArrayHoresb($rules[0]['restriccions_hores']);
   $hores = $this->interseccio_hores($rules);
-  
   $r['rules']=$rules2;
   $r['hores']=$hores;
   $r['query']=$query;
@@ -155,10 +154,9 @@ private function interseccio_horesxxx($rules){
 }
 
 private function subArrayHoresb($decNum){
-//$decNum=8589934591;
-  
-  
      $strbin = substr("00000000000000000000000000000000" . decbin ( $decNum ),-26);
+     
+     
     // $strbin = substr("000000000000000000000000" . decbin ( $decNum ),-26);
      $arrayBib =  str_split( $strbin);
      $binHores = array_map('intval', $arrayBib);
@@ -171,11 +169,14 @@ private function subArrayHoresb($decNum){
     "16:00", "16:15", "16:30", "16:45", 
     "17:00");
  
-//$result = array(1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1);
+  //NO POT QUEDAR BUIDA
   $result=array();
+  //$result=array('99:99');
 foreach ($binHores as $k => $v){
     if ($v) $result[] = $hores[$k];                   
 }
+
+if (!count($result)) $result=array('99:99');
 return $result;
 }
 

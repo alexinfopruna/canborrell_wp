@@ -251,6 +251,15 @@ $rest=$restriccio;
     if ($restriccio->restriccions_adults == "Parell") $restriccio->restriccions_nens="Tot";
     if ($restriccio->restriccions_adults == "Senar") $restriccio->restriccions_nens="Tot";
 
+    
+        // APAREIX UN INTRO SORPRESA... EL TREIEM
+     $restriccio->restriccions_suma = is_numeric($restriccio->restriccions_suma)?intval($restriccio->restriccions_suma):$s;
+     $restriccio->restriccions_nens = is_numeric($restriccio->restriccions_nens)?intval($restriccio->restriccions_nens):$s;
+     $restriccio->restriccions_adults = is_numeric($restriccio->restriccions_adults)?intval($restriccio->restriccions_adults):$s;
+     $restriccio->restriccions_cotxets = is_numeric($restriccio->restriccions_cotxets)?intval($restriccio->restriccions_cotxets):$s;
+     
+
+    
     $query = "REPLACE INTO restriccions 
       (restriccions_active, restriccions_data, restriccions_datafi, restriccions_suma, restriccions_dies, restriccions_adults, restriccions_nens, restriccions_cotxets, restriccions_hora, restriccions_description)
 
@@ -279,6 +288,13 @@ $rest=$restriccio;
 
 $plin = $restriccio->restriccions_hores;
      $this->pliiin($plin);
+     
+     // APAREIX UN INTRO SORPRESA... EL TREIEM
+     $restriccio->restriccions_suma = is_numeric($restriccio->restriccions_suma)?intval($restriccio->restriccions_suma):$s;
+     $restriccio->restriccions_nens = is_numeric($restriccio->restriccions_nens)?intval($restriccio->restriccions_nens):$s;
+     $restriccio->restriccions_adults = is_numeric($restriccio->restriccions_adults)?intval($restriccio->restriccions_adults):$s;
+     $restriccio->restriccions_cotxets = is_numeric($restriccio->restriccions_cotxets)?intval($restriccio->restriccions_cotxets):$s;
+     
     $query = "UPDATE  restriccions 
  
 
