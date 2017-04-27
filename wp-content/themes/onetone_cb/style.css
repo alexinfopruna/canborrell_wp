@@ -1302,8 +1302,8 @@ input.wpcf7-submit{
 }
 
 .ecp-modal.ecp-effect-1{
-    width:60%;
-    top:500px;
+    width:initial;
+    top:450px;
 }
 
 
@@ -1369,6 +1369,10 @@ input.wpcf7-submit{
 #carta-seccions li.ui-tabs-active{
     background-color: #F1F1F1;
 }
+
+.magee-tab-box.tab-line ul > li > a {
+    padding: 10px 10px;
+};
 
 
 @media (max-width: 450px){
