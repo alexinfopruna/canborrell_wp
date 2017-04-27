@@ -49,7 +49,9 @@ $(function(){
 		$( "#fr-menu-tabs" ).tabs( "option", "selected", 0 );
 		return false;
 	});
-    $("#carta_MENUS .resum-carta-nom").tooltip({cssClass:"tooltip-red",delay : 100});
+ //  $("#carta_MENUS .resum-carta-nom").tooltip({cssClass:"tooltip-red",delay : 100});
+    $(".llistat_menus .resum-carta-nom").tooltip({cssClass:"tooltip-red",delay : 100});
+        
         
        
 //CONTROL CARTA	
@@ -108,7 +110,10 @@ $(function(){
 	$("#fr-menu-tabs").tabs();
      	updateCarta("inici");
 
-
+    
+    if ('scrollRestoration' in history) {
+  history.scrollRestoration = 'manual';
+}
 });
 
 
@@ -162,8 +167,8 @@ function updateCarta(menu)
 	if (total==0) taula+='<tr><td class="resum-carta-nom">'+l("No hi ha cap plat seleccionat")+'</td><td class="resum-carta-preu"></td><td></td></tr>';
 	else
 	{
-		taula+='<tr ><td resum-carta-nom></td><td class="resum-carta-preu" style="text-alig:right"></td><td></td></tr>';
-		taula+='<tr style="background:#eee;"><td class="resum-carta-nom"><h3 id="resum-total" style="display:inline">TOTAL</h3></td><td class="resum-carta-preu" style="text-alig:right"><h3>'+total+'€ <br/>(IVA '+l("inclòs")+')</h3></td><td></td></tr>';
+		taula+='<tr ><td resum-carta-nom></td><td class="resum-carta-iva" style="text-alig:right"></td><td></td></tr>';
+		taula+='<tr style="background:#eee;"><td class="resum-carta-nom"><h3 id="resum-total" style="display:inline">TOTAL</h3></td><td class="resum-carta-preu" style="text-alig:right"><h3>'+total+'€ <br/><span class="resum-carta-iva">(IVA '+l("inclòs")+')</span></h3></td><td></td></tr>';
 	}
 	$("#caixa-carta").html(taula);
 	

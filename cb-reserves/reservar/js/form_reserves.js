@@ -81,8 +81,8 @@ if (!Array.prototype.indexOf)
 }
 
 
-$(".container").hide();
-$("body").hide();
+//$(".container").hide();
+//$("body").hide();
 $(function (){
     $(window).on('resize', function () {
         jQuery("#container").css("margin-top", jQuery(".navbar-header").height());
@@ -213,7 +213,6 @@ $(function (){
     validacio();
 
     /********  AMAGA PANELLS ********/
-
     if (!IDR && !DEBUG)
     {
         /**/
@@ -296,7 +295,7 @@ $(function (){
     if ('scrollRestoration' in history) {
   history.scrollRestoration = 'manual';
 }
-    
+    $(".loader").removeClass("loader");
 
 }); //ONLOAD, PRESENTACIO UI
 //***********************************************************************************************************/
@@ -487,12 +486,13 @@ function recargaHores()
     accesibilidad += $("input[name='selectorAccesible']:checked").length;
 
     $.post(GESTOR + "?a=horesDisponibles&b=" + $("#calendari").val() + "&c=" + comensals + "&d=" + $("input[name='selectorCotxets']:checked").val() + "&e=" + accesibilidad + "&f=" + IDR + "&g=" + NENS, function (dades) {
-        var obj = JSON.parse(dades);
-
-        //ANULAT var obj = ControlLocal($("#calendari").val(), comensals, obj);
+         if (dades.substr(0,3)=="err"){
+            
+            window.location = "/";
+                    alert("La sessió ha caducat");
+        }
         
-
-
+        var obj = JSON.parse(dades);
         var txt = "";
         if ((obj.dinar + obj.dinarT2) == "")
             txt = l("Cap taula o restaurant tancat");

@@ -342,8 +342,7 @@ class Gestor {
       //if (substr($query,0,26)=='INSERT INTO reservestaules') die($query);
     }
 
-    if ($charset)
-      $query = gestor_reserves::charset($query);
+    if ($charset)      $query = gestor_reserves::charset($query);
 //echo "$query······3333";die();
     $r = mysqli_query($conn, $query);
     if (Gestor::stringMultiSearch($query, LOG_QUERYS) && DEBUG === false) {
@@ -368,6 +367,8 @@ class Gestor {
 
     switch ($theType) {
       case "text":
+         $theValue = htmlspecialchars($theValue,ENT_QUOTES);
+        // $theValue = htmlentities($theValue,ENT_QUOTES);
         $theValue = ($theValue != "") ? "'" . $theValue . "'" : "NULL";
         break;
       case "long":

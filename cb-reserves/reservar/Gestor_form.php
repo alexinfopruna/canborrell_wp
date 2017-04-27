@@ -368,7 +368,7 @@ ORDER BY carta_subfamilia_order,carta_plats_nom_es , carta_plats_nom_ca";
 
     foreach ($arCarta as $key => $val) {
       $k = $this->normalitzar($key);
-      $obreSeccio = '<div id="carta_' . $k . '" class="' . $class . '">' . PHP_EOL;
+      $obreSeccio = '<div id="carta_' . $k . '" class="llistat_menus ' . $class . '">' . PHP_EOL;
       $seccio = $this->seccioCarta($arCarta, $key, $class);
       $tancaSeccio = '</div>' . PHP_EOL . PHP_EOL;
 
@@ -672,6 +672,8 @@ FROM client
     $estat = $this->paga_i_senyal($coberts) ? 2 : 100;
     //$import_reserva=$this->configVars("import_paga_i_senyal");
     $import_reserva = 0;
+    
+;
     $insertSQL = sprintf("INSERT INTO " . T_RESERVES . " ( id_reserva, client_id, data, hora, adults, 
 		  nens4_9, nens10_14, cotxets,lang,observacions, reserva_pastis, reserva_info_pastis,
                   resposta, estat, preu_reserva, usuari_creacio, 
@@ -992,16 +994,17 @@ FROM client
       $idc = $row['client_id'];
 
       $query = "UPDATE  `client` SET  
-`client_nom` =  '" . $_POST['client_nom'] . "',
-`client_cognoms` =  '" . $_POST['client_cognoms'] . "',
-`client_telefon` =  '" . $_POST['client_telefon'] . "',
-`client_email` =  '" . $_POST['client_email'] . "'
+`client_nom` =  " . $this->SQLVal($_POST['client_nom']) . ",
+`client_cognoms` =  " . $this->SQLVal($_POST['client_cognoms']) . ",
+`client_telefon` =  " . $this->SQLVal($_POST['client_telefon']) . ",
+`client_email` =  " . $this->SQLVal($_POST['client_email']) . "
 WHERE  `client`.`client_id` =$idc;
 ";
+
       $Result1 = $this->log_mysql_query($query, $this->connexioDB) or die(((is_object($GLOBALS["___mysqli_ston"])) ? mysqli_error($GLOBALS["___mysqli_ston"]) : (($___mysqli_res = mysqli_connect_error()) ? $___mysqli_res : false)));
     }
     else { //NO TROBAT, FEM INSERT
-      $query = "INSERT INTO `client` (`client_id`, `client_nom`, `client_cognoms`, `client_adresa`, `client_localitat`, `client_cp`, `client_dni`, `client_telefon`, `client_mobil`, `client_email`, `client_conflictes`) VALUES (NULL, '" . $_POST['client_nom'] . "', '" . $_POST['client_cognoms'] . "', '" . $_POST['client_adresa'] . "', '" . $_POST['client_localitat'] . "', '" . $_POST['client_cp'] . "', '" . $_POST['client_dni'] . "', '" . $_POST['client_telefon'] . "', '" . $_POST['client_mobil'] . "', '" . $_POST['client_email'] . "', NULL);";
+      $query = "INSERT INTO `client` (`client_id`, `client_nom`, `client_cognoms`, `client_adresa`, `client_localitat`, `client_cp`, `client_dni`, `client_telefon`, `client_mobil`, `client_email`, `client_conflictes`) VALUES (NULL, " . $this->SQLVal($_POST['client_nom']) . ", " . $this->SQLVal($_POST['client_cognoms']) . ", " . $this->SQLVal($_POST['client_adresa']) . ", " . $this->SQLVal($_POST['client_localitat']) . ", " . $this->SQLVal($_POST['client_cp']) . ", " . $this->SQLVal($_POST['client_dni']) . ", " . $_POST['client_telefon'] . ", " . $this->SQLVal($_POST['client_mobil']) . ", " . $this->SQLVal($_POST['client_email']) . ", NULL);";
       $Result1 = $this->log_mysql_query($query, $this->connexioDB) or die(((is_object($GLOBALS["___mysqli_ston"])) ? mysqli_error($GLOBALS["___mysqli_ston"]) : (($___mysqli_res = mysqli_connect_error()) ? $___mysqli_res : false)));
       $idc = ((is_null($___mysqli_res = mysqli_insert_id($this->connexioDB))) ? false : $___mysqli_res);
     }
@@ -1746,11 +1749,16 @@ if (isset($accio) && !empty($accio)) {
     $logables = array('cancelReserva', 'insertUpdateClient', 'salvaUpdate', 'submit', 'update_client', 'esborra_client', 'inserta_reserva', 'update_reserva', 'esborra_reserva', 'enviaSMS', 'permuta', 'permuta_reserva', '', '', '', '', '', '', '', '', '', '', '');
     $log = in_array($accio, $logables);
     $ip = isset($ips[$_SERVER['REMOTE_ADDR']]) ? $ips[$_SERVER['REMOTE_ADDR']] : $_SERVER['REMOTE_ADDR'];
-    $sessuser = $_SESSION['uSer'];
-
-    if (isset($sessuser))
+    
+    if (isset($_SESSION['uSer'])) $sessuser = $_SESSION['uSer'];
+    if (isset($sessuser)){
       $user = $sessuser->id;
-
+    }else{
+      echo "err100";
+      die();
+    }
+    
+    
     if ($log) {
       $req = '<pre>' . print_r($_REQUEST, true) . '</pre>';
       $gestor->xgreg_log("Petició Gestor FORM: " . $accio . "  user:$user ($ip) (b=" . $_REQUEST['b'] . ", c=" . $_REQUEST['c'] . ", d=" . $_REQUEST['d'] . " ---- p=" . $_REQUEST['p'] . ", q=" . $_REQUEST['q'] . ", r=" . $_REQUEST['r'] . ", c=" . $_REQUEST['c'] . ", d=" . $_REQUEST['d'] . ", e=" . $_REQUEST['e'] . ") > " . $req . EOL, 1);

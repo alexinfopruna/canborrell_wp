@@ -33,7 +33,10 @@ function GetSQLValueString($theValue, $theType, $theDefinedValue = "", $theNotDe
 
   switch ($theType) {
     case "text":
+      $theValue = htmlspecialchars($theValue,ENT_QUOTES);
+      //$theValue = htmlentities($theValue,ENT_QUOTES);
       $theValue = ($theValue != "") ? "'" . $theValue . "'" : "NULL";
+      
       break;    
     case "long":
     case "int":
@@ -96,6 +99,8 @@ $query = sprintf("INSERT INTO reserves (id_reserva, `data`, client_id, nom, tel,
                        GetSQLValueString($_POST['reserva_info'], "text"));
 	
 	/******************************************************************************/	
+
+//echo $query;die();
 	$Result1 = $gestor->log_mysql_query($query, $canborrell) or die(((is_object($GLOBALS["___mysqli_ston"])) ? mysqli_error($GLOBALS["___mysqli_ston"]) : (($___mysqli_res = mysqli_connect_error()) ? $___mysqli_res : false)));
         $idr=$id=((is_null($___mysqli_res = mysqli_insert_id($canborrell))) ? false : $___mysqli_res);
         //print_log("Recepció de reserva: ".$_POST['id_reserva'].": ".$_POST['client_nom']." ".$_POST['client_cognoms']);

@@ -90,17 +90,8 @@ header('Content-Type: text/html; charset=utf-8');
 		if ($selectorCadiraRodes){
 			$_POST['observacions']='Portem cadira de rodes '.$_POST['observacions'];
 		}
-				
-	//BROWSER INFO --- ERROR AMB get_browser();
-	//try{$browser = get_browser(null, true);}catch (Exception $e){$nothing=true;}
-	//if (!isset($browser['parent'])) $browser['parent']='';
-	//$reserva_navegador=$_SERVER['HTTP_USER_AGENT']." *** ".$browser['browser_name_pattern']." /// ".$browser['parent']." /// ".$browser['platform']." /// ".$browser['browser']." /// ".$browser['version']." /// ".$browser['cookies'];
 	$reserva_navegador=$_SERVER['HTTP_USER_AGENT'];
 	$_POST['reserva_navegador']=$reserva_navegador;
 	
-	//foreach($_POST as $k=>$v) $_POST[$k]=utf8_decode($v);
 	include ("reserves.php");
-	
-	
-
 ?>
