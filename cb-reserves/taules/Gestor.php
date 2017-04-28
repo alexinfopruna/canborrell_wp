@@ -366,6 +366,15 @@ class Gestor {
     $theValue = (!get_magic_quotes_gpc()) ? addslashes($theValue) : $theValue;
 
     switch ($theType) {
+           case "no_quotes":
+         $theValue = str_replace("'","ʻ",$theValue);
+         $theValue = str_replace('"',"ʺ",$theValue);
+          $theValue = ($theValue != "") ? "'" . $theValue . "'" : "NULL";
+        // $theValue = htmlentities($theValue,ENT_QUOTES);
+        
+        break;
+
+      
       case "text":
          $theValue = htmlspecialchars($theValue,ENT_QUOTES);
         // $theValue = htmlentities($theValue,ENT_QUOTES);

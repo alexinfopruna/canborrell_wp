@@ -12,6 +12,7 @@ if (isset($_REQUEST['id'])) {
   if (!$gestor->valida_sessio())
     header("Location: index.php");
   $row_reserva = $gestor->load_reserva($id);
+
   $class = " updata_res";
   $nomhora = "uhora";
   $editFormAction = "gestor_reserves.php?a=update_reserva&p=" . $id;
@@ -97,7 +98,7 @@ else {
 
   $comanda = null;
 }
-
+  
 //echo $_SESSION['admin_id'];die();
 ?><form class="form_edit <?php echo $class; ?>" method="post" name="frmEditReserva" action="<?php echo $editFormAction; ?>" >
     <div class="missatge_dia"></div>

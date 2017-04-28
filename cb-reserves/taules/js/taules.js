@@ -1023,6 +1023,7 @@ function obreDetallReserva(e)
         $('#calendari').datepicker("setDate", data);
     $.ajax({url: desti, success: function (datos) {
             $("#edit").html(decodeURIComponent(datos));
+            //$("#edit").html((datos));
             recargaAccordioReserves();
             addHandlersEditReserva();
             $.post("gestor_reserves.php?a=recupera_torn", function (d) {

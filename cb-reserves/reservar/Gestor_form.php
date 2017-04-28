@@ -994,8 +994,8 @@ FROM client
       $idc = $row['client_id'];
 
       $query = "UPDATE  `client` SET  
-`client_nom` =  " . $this->SQLVal($_POST['client_nom']) . ",
-`client_cognoms` =  " . $this->SQLVal($_POST['client_cognoms']) . ",
+`client_nom` =  " . $this->SQLVal($_POST['client_nom'],"no_quotes") . ",
+`client_cognoms` =  " . $this->SQLVal($_POST['client_cognoms'],"no_quotes") . ",
 `client_telefon` =  " . $this->SQLVal($_POST['client_telefon']) . ",
 `client_email` =  " . $this->SQLVal($_POST['client_email']) . "
 WHERE  `client`.`client_id` =$idc;
@@ -1004,7 +1004,14 @@ WHERE  `client`.`client_id` =$idc;
       $Result1 = $this->log_mysql_query($query, $this->connexioDB) or die(((is_object($GLOBALS["___mysqli_ston"])) ? mysqli_error($GLOBALS["___mysqli_ston"]) : (($___mysqli_res = mysqli_connect_error()) ? $___mysqli_res : false)));
     }
     else { //NO TROBAT, FEM INSERT
-      $query = "INSERT INTO `client` (`client_id`, `client_nom`, `client_cognoms`, `client_adresa`, `client_localitat`, `client_cp`, `client_dni`, `client_telefon`, `client_mobil`, `client_email`, `client_conflictes`) VALUES (NULL, " . $this->SQLVal($_POST['client_nom']) . ", " . $this->SQLVal($_POST['client_cognoms']) . ", " . $this->SQLVal($_POST['client_adresa']) . ", " . $this->SQLVal($_POST['client_localitat']) . ", " . $this->SQLVal($_POST['client_cp']) . ", " . $this->SQLVal($_POST['client_dni']) . ", " . $_POST['client_telefon'] . ", " . $this->SQLVal($_POST['client_mobil']) . ", " . $this->SQLVal($_POST['client_email']) . ", NULL);";
+      if (!isset($_POST['client_adresa'])) $_POST['client_adresa']="";
+      if (!isset($_POST['client_localitat'])) $_POST['client_localitat']="";
+      if (!isset($_POST['client_cp'])) $_POST['client_cp']="";
+      if (!isset($_POST['client_dni'])) $_POST['client_dni']="";
+      
+      
+      $query = "INSERT INTO `client` (`client_id`, `client_nom`, `client_cognoms`, `client_adresa`, `client_localitat`, `client_cp`, `client_dni`, `client_telefon`, `client_mobil`, `client_email`, `client_conflictes`) VALUES (NULL, " . $this->SQLVal($_POST['client_nom'],"no_quotes") . ", " . $this->SQLVal($_POST['client_cognoms'],"no_quotes") . ", " . $this->SQLVal($_POST['client_adresa']) . ", " . $this->SQLVal($_POST['client_localitat']) . ", " . $this->SQLVal($_POST['client_cp']) . ", " . $this->SQLVal($_POST['client_dni']) . ", " .  $this->SQLVal($_POST['client_telefon']) . ", " . $this->SQLVal($_POST['client_mobil']) . ", " . $this->SQLVal($_POST['client_email']) . ", NULL);";
+     //echo "   $query  ";die();
       $Result1 = $this->log_mysql_query($query, $this->connexioDB) or die(((is_object($GLOBALS["___mysqli_ston"])) ? mysqli_error($GLOBALS["___mysqli_ston"]) : (($___mysqli_res = mysqli_connect_error()) ? $___mysqli_res : false)));
       $idc = ((is_null($___mysqli_res = mysqli_insert_id($this->connexioDB))) ? false : $___mysqli_res);
     }
