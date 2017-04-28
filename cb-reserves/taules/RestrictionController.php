@@ -171,7 +171,7 @@ private function subArrayHoresb($decNum){
  
   //NO POT QUEDAR BUIDA
   $result=array();
-  //$result=array('99:99');
+  $result=array('99:99');
 foreach ($binHores as $k => $v){
     if ($v) $result[] = $hores[$k];                   
 }
