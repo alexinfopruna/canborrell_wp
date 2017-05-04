@@ -1,0 +1,23 @@
+    body{
+        font-family:Comic Sans MS , Verdana, Arial, Helvetica, sans-serif;
+        font-size:18px;
+        color:#666; 
+        background-color: #efefef;
+        margin: 0;
+    }
+   
+    .franja,body > table:first-child tr:nth-child(2){background-color: #3354ff  ;}
+    b{background-color: #3354ff;color:white;padding:7px;}
+    td.Estilo2, td.fila-cap{background-color: #3354ff  ;color:white;}
+    td.fila-cont, .llista{background-color: #d6ddff  ;}
+    
+    
+    .titol, .titol2{color:#444; font-size: 18px;}
+    a{color: #666    }
+    a:hover{color: #444}
+    
+    tr{height: 10px;}    
+    table:first-child tr:first-child{background-color: white;}
+    
+    body > table{max-width: 700px;background-color: white;width:100%;max-width: 700px;box-shadow: 0px 0px 20px #888888;}  
+    .marge-footer{height:70px;}

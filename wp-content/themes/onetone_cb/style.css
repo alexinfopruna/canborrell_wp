@@ -1172,12 +1172,14 @@ body.page-template-page-reserva-grups #calendari_reserves-2{
     display:none;
 }
 
+ .fr-seccio-client em,
 body.page-template-page-reservar em,
 body.page-template-page-reserva-grups em{
     color:#888;
     font-size:12px;
 }
 
+ .fr-seccio-client .label,
 body.page-template-page-reservar .label,
 body.page-template-page-reserva-grups .label{
     color:#333;

@@ -234,7 +234,7 @@ class gestor_reserves extends Gestor {
 
   public function paperera_reserves($id_reserva) {
     $this->xgreg_log("paperera_reserves($id_reserva)", 1);
-    if ($_SESSION['permisos'] < 16)
+    if (!isset($_SESSION['permisos']) || $_SESSION['permisos'] < 16)
       return "error:sin permisos";
 
     if (!defined("DB_CONNECTION_FILE_DEL"))
@@ -521,9 +521,9 @@ class gestor_reserves extends Gestor {
     $nens10_14 = $_POST['nens10_14'];
     $nens4_9 = $_POST['nens4_9'];
     $persones = $adults + $nens10_14 + $nens4_9;
-    $observacions = Gestor::SQLVal($_POST['observacions']);
-    $info_pastis = $_POST['INFO_PASTIS'];
-    $resposta = $_POST['resposta'];
+    $observacions = Gestor::SQLVal($_POST['observacions'],"no_quotes");
+    $info_pastis = Gestor::SQLVal($_POST['INFO_PASTIS'],"no_quotes");
+    $resposta = Gestor::SQLVal($_POST['resposta'],"no_quotes");
 
     $this->xgreg_log(">>> INICIEM PERMUTA2 <span class='idr'>$reserva</span> >> TAULA DESTI >> {$_POST['estat_taula_taula_id']}");
     $this->estat_anterior($reserva);
@@ -581,11 +581,13 @@ class gestor_reserves extends Gestor {
                 nens4_9={$nens4_9},
                 cotxets={$cotxets},
                 reserva_pastis={$pastis},
-                reserva_info_pastis='{$info_pastis}',
+                reserva_info_pastis={$info_pastis},
 
                 observacions={$observacions},      
-                resposta='{$resposta}'      
+                resposta={$resposta}      
                 WHERE id_reserva=$reserva";
+                
+         //echo     $update_reserva;die();   
       $r = mysqli_query($GLOBALS["___mysqli_ston"], $update_reserva);
       $affected = mysqli_affected_rows($GLOBALS["___mysqli_ston"]);
       $update_err = (!$r || $affected < 0);
@@ -620,6 +622,8 @@ class gestor_reserves extends Gestor {
       mysqli_rollback($GLOBALS["___mysqli_ston"]);
       $rollback = "ERROR PERMUTA";
       mysqli_autocommit($GLOBALS["___mysqli_ston"], TRUE);
+      
+      $_POST['id_reserva'] = $reserva;
     }
     /**
      * COMMIT
@@ -2658,7 +2662,7 @@ ORDER BY `estat_hores_data` DESC";
     $this->xgreg_log(">>> ENVIA SMS <span class='idr'>$res</span> > $numMobil  ", 1, '/log/logMAILSMS.txt');
     $this->xgreg_log('<br><a href="' . $file . '">log mail</a>', 1, '/log/logMAILSMS.txt');
 
-    if ($_SESSION['permisos'] < 1) {
+    if (!isset($_SESSION['permisos']) || $_SESSION['permisos'] < 1) {
       $this->xgreg_log(">>> ENVIA SMS: SIN PERMISOS!!!", 1);
       $this->xgreg_log(">>> ENVIA SMS: SIN PERMISOS!!!", 1, '/log/logMAILSMS.txt');
     }
@@ -2942,6 +2946,19 @@ ORDER BY `estat_hores_data` DESC";
     return $_SESSION['torn'];
   }
 
+  /*   * ********************************************************************************************************************* */
+
+  public function estat_reserva_grup($idr) {
+      if (!$idr)
+      return "No s'ha rebut ID";
+
+    $query = "SELECT estat  FROM reserves  WHERE id_reserva=$idr";
+
+    $Result1 = mysqli_query($this->connexioDB, $query) or die(((is_object($GLOBALS["___mysqli_ston"])) ? mysqli_error($GLOBALS["___mysqli_ston"]) : (($___mysqli_res = mysqli_connect_error()) ? $___mysqli_res : false)));
+    $row = mysqli_fetch_array($Result1, MYSQLI_ASSOC);
+    return $row['estat'];
+  }
+  
   /*   * ********************************************************************************************************************* */
 
   public function plats_comanda($idr) {

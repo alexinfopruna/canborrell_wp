@@ -47,7 +47,7 @@ else {
 
 $gestorf->lng = $lang = Gestor::getLanguage();
 $l = $gestorf->lng;
-
+require(ROOT . '../reservar/translate_' . $gestorf->lng . '.php');
 
 
 /* * ******************************************************************************** */
@@ -166,7 +166,7 @@ if ($padding_bottom)
   $container_css .= 'padding-bottom:' . $padding_bottom . ';';
 
 
-require(ROOT . '../reservar/translate_' . $gestorf->lng . '.php');
+
 
 /* * *********************************************************** */
 /* * *********************************************************** */
@@ -210,6 +210,8 @@ function reservar_enqueue_styles() {
       @media (max-width: 768px){
           .row{margin:0}
       }
+      
+     
 
 
       .resum-carta-iva{
@@ -344,6 +346,8 @@ function reservar_enqueue_styles() {
           display:flex;justify-content:center;width:100%;
       }
 
+      #compra button#boto{display:none}
+      
       @media (max-width: 770px){ 
           .ui-button-text {
               padding: 5px 15px !important;

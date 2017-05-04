@@ -295,7 +295,8 @@ $(function (){
     if ('scrollRestoration' in history) {
   history.scrollRestoration = 'manual';
 }
-    $(".loader").removeClass("loader");
+    $(".page").hide();
+    $(".loader").fadeOut("slow",function(){$(".loader").removeClass("loader");$(".page").fadeIn(1000);})
 
 }); //ONLOAD, PRESENTACIO UI
 //***********************************************************************************************************/
@@ -1007,6 +1008,7 @@ function validacio()
 /********************************************************************************************************************/
 function controlSubmit()
 {
+    var loading = '<div style="height:320px"><img src="/cb-reserves/reservar/css/loading.gif"/></div>';
     if (browser_malo)
         $('#submit').click(function () {
             $('#form-reserves').submit();
@@ -1020,13 +1022,13 @@ function controlSubmit()
         }, 15000);
 
 
-        if ($("#popup").is(':visible'))
+        if ($("#popup").is(':visible')){
             SUBMIT_OK = SUBMIT_OK;
-        else {
-            $("#popup").html('<div style="height:320px"><img src="/cb-reserves/reservar/css/loading.gif"/></div>');
+        }else {
+            $("#popup").html(loading);
             $("#popup").dialog('open');
         }
-
+ 
         $('#submit').hide();
 
         $('#form-reserves').ajaxSubmit(function (dades) {
@@ -1042,6 +1044,7 @@ function controlSubmit()
                 $("#popup").bind("dialogclose", function (event, ui) {
                     $.post(GESTOR + "?a=cancelPagaISenyal&b=" + obj.idr);
                     window.location.href = "/#about";
+                    $('#submit').show();
                 });
 
                 SUBMIT_OK = true;
@@ -1063,9 +1066,9 @@ function controlSubmit()
 
                     var info = l('PAGA_I_SENYAL');
                     $("#popup").html(info + '<iframe id="frame-tpv" name="frame-tpv" style="width:100%;height:500px"></iframe>');
-
                     $("#bt-continuar .ui-button-text").html("Tanca");
-
+                    var doc = document.getElementById('frame-tpv').contentWindow.document;
+doc.write('<html><head><title></title><style>body{background:url(//www.can-borrell.com/cb-reserves/reservar/css/loading.gif) center center no-repeat;}</style></head><body>Loading TPV...</body></html>');
                     /** 
                      * TIMER TEMPS MAXIM
                      */

@@ -3,35 +3,11 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <title>Recepció reserva</title>
-<style>
-    body{
-        font-family:Comic Sans MS , Verdana, Arial, Helvetica, sans-serif;
-        font-size:18px;
-        color:#666; 
-        background-color: #efefef;
-        margin: 0;
-    }
-   
-    .franja, table:first-child tr:nth-child(2){background-color: #FF8033  ;}
-    b{background-color: #FF8033;color:white;padding:7px;}
-    td.Estilo2, td.fila-cap{background-color: #FF8033  ;color:white;}
-    td.fila-cont, .llista{background-color: #FFECD6  ;}
-    
-    
-    .titol, .titol2{color:#444; font-size: 18px;}
-    a{color: #666    }
-    a:hover{color: #444}
-    
-    tr{height: 10px;}    
-    table:first-child tr:first-child{background-color: white;}
-    
-    table{max-width: 600px;background-color: white;}
-    body > table{width:100%;max-width: 600px;}  
-    .marge-footer{height:70px;}
-</style>
+
+        <link type="text/css" href="/cb-reserves/css/taronja.css" rel="stylesheet"/>
 </head>
 
-<body>
+<body><!-- templates/{self}  -->
 		
 <table  border="0" align="center" cellpadding="0" cellspacing="0" >
   <tr>
@@ -46,24 +22,25 @@
 
 
 
+
   <table  border="0" align="center" cellpadding="0" cellspacing="0" bgcolor="#FFFFFF">
     <tr>
       <td></td>
-      <td width="748">{avui}</td>
+      <td >{avui}</td>
       <td></td>
     </tr>
     <tr>
       <td></td>
       <td align="center"><h1><span class="titol">{titol}</span></h1></td>
-      <td width="12">  </td></tr>
+      <td width="12"></td>  </tr>
     <tr>
       <td></td>
       <td></td>
-     </tr>
+    <td></td> </tr>
     <tr>
       <td></td>
       <td align="center">{text1}{import}{text2}{aki}{datat}</td>
-      <td>  </td> </tr>
+      <td> </td> </tr>
     <tr>
       <td></td>
       <td></td>
@@ -73,9 +50,9 @@
       <td width="13"></td>
       <td><table border="0" align="center" cellpadding="3" cellspacing="3">
         <tr>
-          <td  class="fila-cap" align="right" style="color:white">id_reserva</td>
-           <td width="320" align="right" class="llista "><div align="left" class="titol2"><span class="Estilo4">{id_reserva}</span></div></td>
-        </tr>
+          <td class="fila-cap" align="right" style="color:white">id_reserva</td>
+          <td width="320" align="right" class="llista "><div align="left" class="titol2"><span class="Estilo4">{id_reserva}</span></div></td>
+       </tr>
         
         <tr>
           <td class="fila-cap" align="right" style="color:white">{cdata_reserva}</td>
@@ -90,11 +67,11 @@
           <td width="320"  class="llista"><div align="left"><span class="Estilo4">{nom}</span></div></td>
         </tr>
         <tr>
-          <td   class="fila-cap" align="right" style="color:white">tel</td>
+          <td class="fila-cap" align="right" style="color:white">tel</td>
           <td width="320" align="right"  class="llista"><div align="left"><span class="Estilo4">{tel}</span></div></td>
         </tr>
         <tr>
-          <td class="fila-cap"  align="right" style="color:white">fax</td>
+          <td class="fila-cap" align="right" style="color:white">fax</td>
           <td width="320" align="right"  class="llista"><div align="left"><span class="Estilo4">{fax}</span></div></td>
         </tr>
         <tr>
@@ -126,11 +103,11 @@
           <td width="320"  class="llista"><span class="Estilo4">{observacions}</span></td>
         </tr>
         <tr>
-          <td class="fila-cap" align="right" bgcolor="#660000" style="color:white">{cresposta}</td>
-          <td align="right" class="llista"><div align="left">{resposta}</div></td>
+          <td align="right" class="fila-cap"  style="color:white">{cresposta}</td>
+          <td align="right"  class="llista"><div align="left">{resposta}</div></td>
         </tr>
         <tr>
-          <td class="fila-cap" align="right" style="color:white">{cpreu_reserva}</td>
+          <td  class="fila-cap" align="right" style="color:white">{cpreu_reserva}</td>
           <td width="320" align="right" class="llista"><div align="left" class="estat">
             <div align="right" class="Estilo4">{preu_reserva}&euro;</div>
           </div></td>
@@ -184,7 +161,6 @@
       <td></td>
     </tr>
       
-      
           
         <tr  class="marge-footer">
     <td> </td>
@@ -198,5 +174,6 @@
     <td> </td>
   </tr>
   </table>
+
 </body>
 </html>

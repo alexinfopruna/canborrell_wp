@@ -3,35 +3,11 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <title>Recepció reserva</title>
-<style>
-    body{
-        font-family:Comic Sans MS , Verdana, Arial, Helvetica, sans-serif;
-        font-size:18px;
-        color:#666; 
-        background-color: #efefef;
-        margin: 0;
-    }
-   
-    .franja, table:first-child tr:nth-child(2){background-color: #FF8033  ;}
-    b{background-color: #FF8033;color:white;padding:7px;}
-    td.Estilo2, td.fila-cap{background-color: #FF8033  ;color:white;}
-    td.fila-cont, .llista{background-color: #FFECD6  ;}
-    
-    
-    .titol, .titol2{color:#444; font-size: 18px;}
-    a{color: #666    }
-    a:hover{color: #444}
-    
-    tr{height: 10px;}    
-    table:first-child tr:first-child{background-color: white;}
-    
-    table{max-width: 600px;background-color: white;}
-    body > table{width:100%;max-width: 600px;}  
-    .marge-footer{height:70px;}
-</style>
+
+        <link type="text/css" href="/cb-reserves/css/taronja.css" rel="stylesheet"/>
 </head>
 
-<body>
+<body><!-- templates/{self}  -->
 		
 <table  border="0" align="center" cellpadding="0" cellspacing="0" >
   <tr>

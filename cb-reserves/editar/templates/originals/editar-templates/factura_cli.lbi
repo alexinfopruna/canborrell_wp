@@ -1,6 +1,11 @@
 <html>
 <head>
-<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1" />
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+
+        <link type="text/css" href="https://www.can-borrell.com/cb-reserves/css/blau.css" rel="stylesheet"/>
+        
+
+
 <style>
 	.titol2{font-size:1em;}
 	.Estilo21{font-size:1em;}
@@ -10,7 +15,7 @@
 	.Estilo4{font-size:1em;}
 </style>
 </head>
-<body>
+<body><!-- templates/{self}  -->
 <!-- factura-cli -->
 <table width="650" border="0" align="center" cellpadding="0" cellspacing="0" bgcolor="#F7F9FB">
   <tr>
@@ -52,7 +57,7 @@
   </tr>
   <tr>
     <td align="right" bgcolor="#CFDBE7" style="color:white">{cadults}</td>
-    <td width="320" align="right" bgcolor="#E6ECF2" ><div align="right">{adults}</span></span>&nbsp;x {menu} = {totadults}&euro;</div></td>
+    <td width="320" align="right" bgcolor="#E6ECF2" ><div align="right">{adults}&nbsp;x {menu} = {totadults}&euro;</div></td>
   </tr>
   <tr>
     <td align="right" bgcolor="#CFDBE7" style="color:white">{cnens10_14}</td>

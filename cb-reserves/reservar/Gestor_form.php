@@ -545,6 +545,7 @@ FROM client
       return $this->jsonErr($result->{'err'}, $resposta);
     }
 
+
     $_POST['lang'] = $_SESSION["lang"];
     $_POST['observacions'] = $_POST['observacions']; //????
     $_POST['reserva_info'] = 1;
@@ -586,7 +587,6 @@ FROM client
     //COMPROVEM HORA LIMIT
     if (!$this->reserva_entra_avui($data, $hora))
       return $this->jsonErr(11, $resposta); // "err7 adults";
-
 
 
 
@@ -673,7 +673,6 @@ FROM client
     //$import_reserva=$this->configVars("import_paga_i_senyal");
     $import_reserva = 0;
     
-;
     $insertSQL = sprintf("INSERT INTO " . T_RESERVES . " ( id_reserva, client_id, data, hora, adults, 
 		  nens4_9, nens10_14, cotxets,lang,observacions, reserva_pastis, reserva_info_pastis,
                   resposta, estat, preu_reserva, usuari_creacio, 
@@ -902,12 +901,16 @@ FROM client
     $perm = $_SESSION['permisos'];
     $_SESSION['permisos'] = Gestor::$PERMISOS; //LI DONO PERMISOS PER FER LA PERMUTA	
     $this->permuta_reserva();
+    
     $_SESSION['permisos'] = $perm; //LI RETIRO ELS PERMISOS
 
     $extra = 'INFO: ' . $_POST['reserva_info'];
     /*     * ****************************************************************************************************************** */
 //INSERT INTO COMANDES
+    
+    
     $deleteSQL = "DELETE FROM comanda WHERE comanda_reserva_id=" . $_POST['id_reserva'];
+    
     $this->qry_result = $this->log_mysql_query($deleteSQL, $this->connexioDB) or die(((is_object($GLOBALS["___mysqli_ston"])) ? mysqli_error($GLOBALS["___mysqli_ston"]) : (($___mysqli_res = mysqli_connect_error()) ? $___mysqli_res : false)));
     for ($i = 1; isset($_POST['plat_id_' . $i]); $i++) {
       $insertSQL = sprintf("INSERT INTO comanda ( comanda_reserva_id, comanda_plat_id, comanda_plat_quantitat) 
@@ -1011,7 +1014,7 @@ WHERE  `client`.`client_id` =$idc;
       
       
       $query = "INSERT INTO `client` (`client_id`, `client_nom`, `client_cognoms`, `client_adresa`, `client_localitat`, `client_cp`, `client_dni`, `client_telefon`, `client_mobil`, `client_email`, `client_conflictes`) VALUES (NULL, " . $this->SQLVal($_POST['client_nom'],"no_quotes") . ", " . $this->SQLVal($_POST['client_cognoms'],"no_quotes") . ", " . $this->SQLVal($_POST['client_adresa']) . ", " . $this->SQLVal($_POST['client_localitat']) . ", " . $this->SQLVal($_POST['client_cp']) . ", " . $this->SQLVal($_POST['client_dni']) . ", " .  $this->SQLVal($_POST['client_telefon']) . ", " . $this->SQLVal($_POST['client_mobil']) . ", " . $this->SQLVal($_POST['client_email']) . ", NULL);";
-     //echo "   $query  ";die();
+     
       $Result1 = $this->log_mysql_query($query, $this->connexioDB) or die(((is_object($GLOBALS["___mysqli_ston"])) ? mysqli_error($GLOBALS["___mysqli_ston"]) : (($___mysqli_res = mysqli_connect_error()) ? $___mysqli_res : false)));
       $idc = ((is_null($___mysqli_res = mysqli_insert_id($this->connexioDB))) ? false : $___mysqli_res);
     }

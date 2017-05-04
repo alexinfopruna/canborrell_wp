@@ -1,5 +1,4 @@
 <?php
-
 if (!isset($lang))
   $lang = 'cat';
 if (!isset($PERSONES_GRUP))
@@ -265,7 +264,7 @@ $translate["MAIL_GRUPS_PAGAT_titol"] = "CONFIRMATION OF RESERVATION PAYMENT";
 
 
 $translate["MAIL_GRUPS_PAGAT_text1"] = "We are happy to inform you that we have correctly received your payment of ";
-$translate['MAIL_GRUPS_PAGAT_text2'] = "€. Your reservation has been registeredWe look forward to seeing you on ";
+$translate['MAIL_GRUPS_PAGAT_text2'] = "€. Your reservation has been registered. See you in Can Borrell ";
 $translate['MAIL_GRUPS_PAGAT_contacti'] = "If you have any questions you can contact us on <a href='mailto: " . MAIL_RESTAURANT . "' class='dins'>" . MAIL_RESTAURANT . "</a> ";
 $translate["nom"] = "name";
 $translate["adults"] = "adults";
