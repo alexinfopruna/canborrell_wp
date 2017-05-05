@@ -13,7 +13,7 @@
 				  <td width="7">&nbsp;</td>
 				  <td><input type="text" name="client_email" /></td>
 				</tr>
-				<tr height="2 0px">
+				<tr height="20px">
 				  <td  colspan="3" class="" style="color:#999;"><br/><br/><?php l('INFO_CONTACTE');?></td>
 				</tr>
 				<tr>

@@ -18,8 +18,8 @@ function mailer_reserva($idr, $template, $addr, $subject, $body, $altbody, $atta
   $res = mailer($addr, $subject, $body, $altbody, $attach, $test, $cco);
   $resultat = $res ? '1' : '0';
 
-  if ($test || ENVIA_MAILS === false)
-    $resultat = '2';
+  if ($test || ENVIA_MAILS === false)    $resultat = '2';
+  
   $query = "UPDATE email SET email_resultat = $resultat WHERE email_id = $idt";
   $qry_result = mysqli_query($GLOBALS["___mysqli_ston"], $query) or die(((is_object($GLOBALS["___mysqli_ston"])) ? mysqli_error($GLOBALS["___mysqli_ston"]) : (($___mysqli_res = mysqli_connect_error()) ? $___mysqli_res : false)));
 

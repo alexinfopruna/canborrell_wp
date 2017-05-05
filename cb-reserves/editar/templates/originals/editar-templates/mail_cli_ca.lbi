@@ -1,10 +1,11 @@
+
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "//www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="//www.w3.org/1999/xhtml">
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <title>Recepció reserva</title>
 
-        <link type="text/css" href="/cb-reserves/css/taronja.css" rel="stylesheet"/>
+        <link type="text/css" href="https://www.can-borrell.com/cb-reserves/css/taronja.css" rel="stylesheet"/>
 </head>
 
 <body><!-- templates/{self}  -->
@@ -22,32 +23,32 @@
 
 
 
-<div align="center">
-  <table  border="0" align="center" cellpadding="0" cellspacing="0" bgcolor="#FFFFFF">
+
+  <table width="773" border="0" align="center" cellpadding="0" cellspacing="0" bgcolor="#FFFFFF">
     <tr>
-      <td></td>
+      <td>&nbsp;</td>
       <td width="748">{avui}</td>
-      <td></td>
+      <td>&nbsp;</td>
     </tr>
     <tr>
-      <td></td>
-      <td align="center"><h1><span class="titol">{titol}</span></h1></td>
-      <td width="12"></td>  </tr>
+      <td>&nbsp;</td>
+      <td align="center"><span class="titol">{titol}</span></td>
+      <td width="12"> </td> </tr>
     <tr>
-      <td></td>
-      <td></td>
-    <td> </td> </tr>
+      <td>&nbsp;</td>
+      <td>&nbsp;</td>
+    <td>  </td></tr>
     <tr>
-      <td></td>
+      <td>&nbsp;</td>
       <td align="center">{text1}{import}{text2}{aki}{datat}</td>
       <td> </td> </tr>
     <tr>
-      <td></td>
-      <td></td>
+      <td>&nbsp;</td>
+      <td>&nbsp;</td>
     <td align="center" class="estat"> </td> </tr>
     
     <tr>
-      <td width="13"></td>
+      <td width="13">&nbsp;</td>
       <td><table border="0" align="center" cellpadding="3" cellspacing="3">
         <tr>
           <td class="fila-cap" align="right" style="color:white">id_reserva</td>
@@ -55,113 +56,113 @@
         </tr>
         
         <tr>
-          <td class="fila-cap"  align="right" style="color:white">{cdata_reserva}</td>
-          <td width="320" align="right"  class="llista"><div align="left" class="estat"><span class="Estilo4">{data}</span></div></td>
+          <td class="fila-cap"  align="right" style="color:white">&nbsp;{cdata_reserva}</td>
+          <td width="320" align="right" bgcolor="#CCCCCC" class="llista"><div align="left" class="estat"><span class="Estilo4">&nbsp;{data}</span></div></td>
         </tr>
         <tr>
           <td class="fila-cap"  align="right" style="color:white">hora</td>
-          <td width="320" align="right"  class="llista"><div align="left" class="estat"><span class="Estilo4">{hora}</span></div></td>
+          <td width="320" align="right" bgcolor="#CCCCCC" class="llista"><div align="left" class="estat"><span class="Estilo4">&nbsp;{hora}</span></div></td>
         </tr>
         <tr>
-          <td  class="fila-cap" align="right" style="color:white">{cnom}</td>
-          <td width="320"  class="llista"><div align="left"><span class="Estilo4">{nom}</span></div></td>
+          <td  class="fila-cap" align="right" style="color:white">&nbsp;{cnom}</td>
+          <td width="320" bgcolor="#CCCCCC" class="llista"><div align="left"><span class="Estilo4">&nbsp;{nom}</span></div></td>
         </tr>
         <tr>
-          <td  class="fila-cap" align="right" style="color:white">tel</td>
-          <td width="320" align="right"  class="llista"><div align="left"><span class="Estilo4">{tel}</span></div></td>
+          <td class="fila-cap"  align="right" style="color:white">tel</td>
+          <td width="320" align="right" bgcolor="#CCCCCC" class="llista"><div align="left"><span class="Estilo4">&nbsp;{tel}</span></div></td>
         </tr>
         <tr>
           <td  class="fila-cap" align="right" style="color:white">fax</td>
-          <td width="320" align="right"  class="llista"><div align="left"><span class="Estilo4">{fax}</span></div></td>
+          <td width="320" align="right" bgcolor="#CCCCCC" class="llista"><div align="left"><span class="Estilo4">&nbsp;{fax}</span></div></td>
         </tr>
         <tr>
-          <td  class="fila-cap" align="right" style="color:white">email</td>
-          <td width="320"  class="llista"><div align="left"><span class="Estilo4">{email}</span></div></td>
+          <td class="fila-cap"  align="right" style="color:white">email</td>
+          <td width="320" bgcolor="#CCCCCC" class="llista"><div align="left"><span class="Estilo4">&nbsp;{email}</span></div></td>
         </tr>
         <tr>
           <td  class="fila-cap" align="right" style="color:white">men&uacute;</td>
-          <td width="320"  class="llista"><div align="left"><span class="Estilo4">{menu}</span></div></td>
+          <td width="320" bgcolor="#CCCCCC" class="llista"><div align="left"><span class="Estilo4">&nbsp;{menu}</span></div></td>
         </tr>
         <tr>
-          <td  class="fila-cap" align="right" style="color:white">{cadults}</td>
-          <td width="320" align="right"  class="llista"><div align="left"><span class="Estilo4">{adults}</span></div></td>
+          <td class="fila-cap"  align="right" style="color:white">{cadults}</td>
+          <td width="320" align="right" bgcolor="#CCCCCC" class="llista"><div align="left"><span class="Estilo4">&nbsp;{adults}</span></div></td>
         </tr>
         <tr>
-          <td  class="fila-cap" align="right" style="color:white">{cnens10_14}</td>
-          <td width="320" align="right"  class="llista"><div align="left"><span class="Estilo4">{nens10_14}</span>  {txt_1} </div></td>
+          <td class="fila-cap"  align="right" style="color:white">{cnens10_14}</td>
+          <td width="320" align="right" bgcolor="#CCCCCC" class="llista"><div align="left"><span class="Estilo4">&nbsp;{nens10_14}</span>  {txt_1} </div></td>
         </tr>
         <tr>
-          <td  class="fila-cap" align="right" style="color:white">{cnens4_9}</td>
-          <td width="320" align="right"  class="llista"><div align="left"><span class="Estilo4">{nens4_9}</span>  {txt_2} </div></td>
+          <td class="fila-cap"  align="right" style="color:white">{cnens4_9}</td>
+          <td width="320" align="right" bgcolor="#CCCCCC" class="llista"><div align="left"><span class="Estilo4">&nbsp;{nens4_9}</span>  {txt_2} </div></td>
         </tr>
         <tr>
           <td  class="fila-cap" align="right" style="color:white">{ccotxets} </td>
-          <td width="320" align="right"  class="llista"><div align="left"><span class="Estilo4">{cotxets}</span></div></td>
+          <td width="320" align="right" bgcolor="#CCCCCC" class="llista"><div align="left"><span class="Estilo4">&nbsp;{cotxets}</span></div></td>
         </tr>
         <tr>
-          <td  class="fila-cap" align="right" style="color:white">{cobservacions}</td>
-          <td width="320"  class="llista"><span class="Estilo4">{observacions}</span></td>
+          <td class="fila-cap"  align="right" style="color:white">{cobservacions}</td>
+          <td width="320" bgcolor="#CCCCCC" class="llista"><span class="Estilo4">&nbsp;{observacions}</span></td>
         </tr>
         <tr>
-          <td align="right"  class="fila-cap" style="color:white">{cresposta}</td>
-          <td align="right"  class="llista"><div align="left">{resposta}</div></td>
+          <td class="fila-cap"  align="right" bgcolor="#660000" style="color:white">{cresposta}</td>
+          <td align="right" bgcolor="#FFD7D7" class="llista"><div align="left">{resposta}</div></td>
         </tr>
         <tr>
-          <td  class="fila-cap" lign="right" style="color:white">{cpreu_reserva}</td>
+          <td class="fila-cap"  align="right" style="color:white">&nbsp;{cpreu_reserva}</td>
           <td width="320" align="right" class="llista"><div align="left" class="estat">
-            <div align="right" class="Estilo4">{preu_reserva}&euro;</div>
+            <div align="right" class="Estilo4">&nbsp;{preu_reserva}&euro;</div>
           </div></td>
         </tr>
       </table></td>
       <td></td>
     </tr>
     <tr>
-      <td></td>
+      <td>&nbsp;</td>
       <td><div align="center">{data_limit} </div></td>
-      <td></td>
+      <td>&nbsp;</td>
     </tr>
     <tr>
-      <td></td>
-      <td></td>
-      <td></td>
+      <td>&nbsp;</td>
+      <td>&nbsp;</td>
+      <td>&nbsp;</td>
     </tr>
     <tr>
-      <td></td>
+      <td>&nbsp;</td>
       <td class="Estilo5"><div align="center" class="Estilo10">{ident}</div></td>
-      <td></td>
+      <td>&nbsp;</td>
     </tr>
     <tr>
-      <td></td>
+      <td>&nbsp;</td>
       <td class="Estilo5"><div align="center"><a href="https://www.can-borrell.com/editar/confirma.php?id={confirlink}" class="dins">{confirma}</a></div></td>
-      <td></td>
+      <td>&nbsp;</td>
     </tr>
     <tr>
-      <td></td>
+      <td>&nbsp;</td>
       <td class="Estilo5"><div align="center" ><a href="https://www.can-borrell.com/editar/cancela.php?id={cancelink}" class="dins">{cancela}</a></div></td>
-      <td></td>
+      <td>&nbsp;</td>
     </tr>
     <tr>
-      <td></td>
+      <td>&nbsp;</td>
       <td class="Estilo5"><p align="center" >{advertencia}</p></td>
-      <td></td>
+      <td>&nbsp;</td>
     </tr>
     <tr>
-      <td></td>
-      <td></td>
-      <td></td>
+      <td>&nbsp;</td>
+      <td>&nbsp;</td>
+      <td>&nbsp;</td>
     </tr>
     <tr>
-      <td></td>
+      <td>&nbsp;</td>
       <td><div align="center">{contacti}</div></td>
-      <td></td>
+      <td>&nbsp;</td>
     </tr>
     <tr>
-      <td></td>
-      <td></td>
-      <td></td>
+      <td>&nbsp;</td>
+      <td>&nbsp;</td>
+      <td>&nbsp;</td>
     </tr>
       
-          
+    
         <tr  class="marge-footer">
     <td> </td>
     <td> </td>
@@ -172,8 +173,8 @@
 <td> </td>
     <td> </td>
     <td> </td>
-  </tr>
+  </tr>      
+      
   </table>
-</div>
-</body>
+º</body>
 </html>

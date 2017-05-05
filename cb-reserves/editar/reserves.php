@@ -159,6 +159,8 @@ function mail_plantilla($id = false) {
   $t->set_file("page", $file);
 
   ///////////// TEXTES
+  			$t->set_var('self',$file);
+
   $t->set_var('avui', $avui);
   $t->set_var('titol', $txt[10][$lang]);
   $t->set_var('text1', $txt[11][$lang]);

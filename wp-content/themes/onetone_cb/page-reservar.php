@@ -47,7 +47,7 @@ else {
 
 $gestorf->lng = $lang = Gestor::getLanguage();
 $l = $gestorf->lng;
-require(ROOT . '../reservar/translate_' . $gestorf->lng . '.php');
+
 
 
 /* * ******************************************************************************** */
@@ -63,7 +63,11 @@ $max_juniors = $gestorf->configVars("max_juniors");
 $gestorf->netejaImpagatsTpv(); // TPV I IMPAGATS
 $paga_i_senyal = $PERSONES_GRUP >= persones_paga_i_senyal;
 
-
+$g = $gestorf;
+add_action('wp_enqueue_scripts', 'reservar_enqueue_styles');
+get_header();
+require_once(ROOT . '../reservar/translate_' . $gestorf->lng . '.php');
+$gestorf = $g;
 
 
 //RECUPERA RESERVA UPDATE
@@ -130,10 +134,8 @@ if (isset($_POST['cancel_reserva']) && $_POST['cancel_reserva'] == "Eliminar res
 
 
 
-$g = $gestorf;
-add_action('wp_enqueue_scripts', 'reservar_enqueue_styles');
-get_header();
-$gestorf = $g;
+
+
 
 $sidebar = isset($page_meta['page_layout']) ? $page_meta['page_layout'] : 'none';
 

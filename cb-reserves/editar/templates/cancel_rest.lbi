@@ -1,181 +1,143 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "//www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="//www.w3.org/1999/xhtml">
 <head>
-<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
 <title>Recepció reserva</title>
-<style>
-    body{
-        font-family:Comic Sans MS , Verdana, Arial, Helvetica, sans-serif;
+<link type="text/css" href="https://www.can-borrell.comhttps://www.can-borrell.com/cb-reserves/css/blau.css" rel="stylesheet">
+</head>
+<body style="font-family:Comic Sans MS , Verdana, Arial, Helvetica, sans-serif;
         font-size:18px;
         color:#666; 
         background-color: #efefef;
-        margin: 0;
-    }
-   
-    .franja,body > table:first-child tr:nth-child(2){background-color: #3354ff  ;}
-    b{background-color: #3354ff;color:white;padding:7px;}
-    td.Estilo2, td.fila-cap{background-color: #3354ff  ;color:white;}
-    td.fila-cont, .llista{background-color: #d6ddff  ;}
-    
-    
-    .titol, .titol2{color:#444; font-size: 18px;}
-    a{color: #666    }
-    a:hover{color: #444}
-    
-    tr{height: 10px;}    
-    table:first-child tr:first-child{background-color: white;}
-    
-    table{max-width: 700px;background-color: white;}
-    body > table{width:100%;max-width: 700px;}  
-    .marge-footer{height:70px;}
-</style>
-
-</head>
-
-<body>
-		
-<table  border="0" align="center" cellpadding="0" cellspacing="0" >
-  <tr>
-    <td  colspan="2" align="right" background="https://www.can-borrell.com/img/fons_9a.jpg"><a href="https://www.can-borrell.com/index.html"><img src="https://www.can-borrell.com/img/lg_sup.png" alt="img" width="303" height="114" border="0" title="INICI" /></a></td>
+        margin: 0;">
+<!-- templates/{self}  -->
+ 
+<table border="0" align="center" cellpadding="0" cellspacing="0" style="max-width: 700px;background-color: white;width:100%;max-width: 700px;box-shadow: 0px 0px 20px #888888;">
+<tr style="height: 10px;">
+<td colspan="2" align="right" background="https://www.can-borrell.com/img/fons_9a.jpg"><a href="https://www.can-borrell.com/index.html" style="color: #666"><img src="https://www.can-borrell.com/img/lg_sup.png" alt="img" width="303" height="114" border="0" title="INICI"></a></td>
   </tr>
-  <tr>
-    <td class="franja" colspan="2" align="center"></td>
+<tr style="height:10px;background-color:#3354ff;">
+<td class="franja" colspan="2" align="center" style="background-color: #3354ff  ;"></td>
   </tr>
 </table>
-
-
-
-
-
-
-
-
-
-	<!-- cancel-cli -->	
-
-<table  border="0" align="center" cellpadding="0" cellspacing="0" bgcolor="#FFFFFF">
-  <tr>
-    <td></td>
+<!-- cancel-cli --><table border="0" align="center" cellpadding="0" cellspacing="0" bgcolor="#FFFFFF" style="max-width: 700px;background-color: white;width:100%;max-width: 700px;box-shadow: 0px 0px 20px #888888;">
+<tr style="height: 10px;">
+<td></td>
     <td>{avui}</td>
     <td></td>
   </tr>
-  <tr>
-    <td></td>
-    <td align="center"><h1><span class="titol"> RESERVA CANCEL·LADA PEL CLIENT </span></h1></td>
-    <td width="12">  </td></tr>
-  <tr>
-    <td></td>
+<tr style="height: 10px;">
+<td></td>
+    <td align="center"><h1><span class="titol" style="color:#444; font-size: 18px;"> RESERVA CANCEL·LADA PEL CLIENT </span></h1></td>
+    <td width="12">  </td>
+</tr>
+<tr style="height: 10px;">
+<td></td>
     <td></td>
   <td> </td> </tr>
-  <tr>
-    <td></td>
-    <td align="center">LA SEG&Uuml;ENT RESERVA HA ESTAT CANCELADA DES DE E-MAIL </td>
+<tr style="height: 10px;">
+<td></td>
+    <td align="center">LA SEGÜENT RESERVA HA ESTAT CANCELADA DES DE E-MAIL </td>
     <td></td>  </tr>
-  <tr>
-    <td></td>
+<tr style="height: 10px;">
+<td></td>
     <td></td>
   <td align="center" class="estat"> </td> </tr>
-  
-  <tr>
-    <td width="12"></td>
+<tr style="height: 10px;">
+<td width="12"></td>
     <td><table border="0" align="center" cellpadding="3" cellspacing="3">
-      <tr>
-        <td align="right" class="fila-cap" fila-capstyle="color:white">id_reserva</td>
-        <td width="250" align="right"  class="llista"><div align="left" class="titol2"><span class="Estilo4">{id_reserva}</span></div></td>
+<tr style="height: 10px;">
+<td align="right" class="fila-cap" fila-capstyle="color:white" style="background-color: #3354ff  ;color:white;">id_reserva</td>
+        <td width="250" align="right" class="llista" style="background-color: #d6ddff  ;"><div align="left" class="titol2" style="color:#444; font-size: 18px;"><span class="Estilo4">{id_reserva}</span></div></td>
       </tr>
-
-      <tr>
-        <td align="right" class="fila-cap" style="color:white">data_reserva</td>
-        <td width="250" align="right"  class="llista"><div align="left" class="estat"><span class="Estilo4">{data}</span></div></td>
+<tr style="height: 10px;">
+<td align="right" class="fila-cap" style="color:white;background-color:#3354ff;">data_reserva</td>
+        <td width="250" align="right" class="llista" style="background-color: #d6ddff  ;"><div align="left" class="estat"><span class="Estilo4">{data}</span></div></td>
       </tr>
-      <tr>
-        <td align="right" class="fila-cap" style="color:white">hora</td>
-        <td width="250" align="right"  class="llista"><div align="left" class="estat"><span class="Estilo4">{hora}</span></div></td>
+<tr style="height: 10px;">
+<td align="right" class="fila-cap" style="color:white;background-color:#3354ff;">hora</td>
+        <td width="250" align="right" class="llista" style="background-color: #d6ddff  ;"><div align="left" class="estat"><span class="Estilo4">{hora}</span></div></td>
       </tr>
-      <tr>
-        <td align="right" class="fila-cap" style="color:white">nom</td>
-        <td width="250"  class="llista"><div align="left"><span class="Estilo4">{nom}</span></div></td>
+<tr style="height: 10px;">
+<td align="right" class="fila-cap" style="color:white;background-color:#3354ff;">nom</td>
+        <td width="250" class="llista" style="background-color: #d6ddff  ;"><div align="left"><span class="Estilo4">{nom}</span></div></td>
       </tr>
-      <tr>
-        <td align="right" class="fila-cap" style="color:white">tel</td>
-        <td width="250" align="right"  class="llista"><div align="left"><span class="Estilo4">{tel}</span></div></td>
+<tr style="height: 10px;">
+<td align="right" class="fila-cap" style="color:white;background-color:#3354ff;">tel</td>
+        <td width="250" align="right" class="llista" style="background-color: #d6ddff  ;"><div align="left"><span class="Estilo4">{tel}</span></div></td>
       </tr>
-      <tr>
-        <td align="right" class="fila-cap" style="color:white">fax</td>
-        <td width="250" align="right"  class="llista"><div align="left"><span class="Estilo4">{fax}</span></div></td>
+<tr style="height: 10px;">
+<td align="right" class="fila-cap" style="color:white;background-color:#3354ff;">fax</td>
+        <td width="250" align="right" class="llista" style="background-color: #d6ddff  ;"><div align="left"><span class="Estilo4">{fax}</span></div></td>
       </tr>
-      <tr>
-        <td align="right" class="fila-cap" style="color:white">email</td>
-        <td width="250"  class="llista"><a href="mailto: {email}" class="Estilo4">{email}</a></td>
+<tr style="height: 10px;">
+<td align="right" class="fila-cap" style="color:white;background-color:#3354ff;">email</td>
+        <td width="250" class="llista" style="background-color: #d6ddff  ;"><a href="mailto:%20%7Bemail%7D" class="Estilo4" style="color: #666">{email}</a></td>
       </tr>
-      <tr>
-        <td align="right" class="fila-cap" style="color:white">menu</td>
-        <td width="250"  class="llista"><div align="left"><span class="Estilo4">{menu}</span></div></td>
+<tr style="height: 10px;">
+<td align="right" class="fila-cap" style="color:white;background-color:#3354ff;">menu</td>
+        <td width="250" class="llista" style="background-color: #d6ddff  ;"><div align="left"><span class="Estilo4">{menu}</span></div></td>
       </tr>
-      <tr>
-        <td align="right" class="fila-cap" style="color:white">adults</td>
-        <td width="250" align="right"  class="llista"><div align="left"><span class="Estilo4">{adults}</span></div></td>
+<tr style="height: 10px;">
+<td align="right" class="fila-cap" style="color:white;background-color:#3354ff;">adults</td>
+        <td width="250" align="right" class="llista" style="background-color: #d6ddff  ;"><div align="left"><span class="Estilo4">{adults}</span></div></td>
       </tr>
-      <tr>
-        <td align="right" class="fila-cap" style="color:white">nens 10 a 14 anys </td>
-        <td width="250" align="right"  class="llista"><div align="left"><span class="Estilo4">{nens10_14}</span>  {txt_1} </div></td>
+<tr style="height: 10px;">
+<td align="right" class="fila-cap" style="color:white;background-color:#3354ff;">nens 10 a 14 anys </td>
+        <td width="250" align="right" class="llista" style="background-color: #d6ddff  ;"><div align="left">
+<span class="Estilo4">{nens10_14}</span>  {txt_1} </div></td>
       </tr>
-      <tr>
-        <td align="right" class="fila-cap" style="color:white">nens 4 a 9 anys </td>
-        <td width="250" align="right"  class="llista"><div align="left"><span class="Estilo4">{nens4_9}</span>  {txt_2} </div></td>
+<tr style="height: 10px;">
+<td align="right" class="fila-cap" style="color:white;background-color:#3354ff;">nens 4 a 9 anys </td>
+        <td width="250" align="right" class="llista" style="background-color: #d6ddff  ;"><div align="left">
+<span class="Estilo4">{nens4_9}</span>  {txt_2} </div></td>
       </tr>
-      <tr>
-        <td align="right" class="fila-cap" style="color:white">cotxets de nadons </td>
-        <td width="250" align="right"  class="llista"><div align="left"><span class="Estilo4">{cotxets}</span></div></td>
+<tr style="height: 10px;">
+<td align="right" class="fila-cap" style="color:white;background-color:#3354ff;">cotxets de nadons </td>
+        <td width="250" align="right" class="llista" style="background-color: #d6ddff  ;"><div align="left"><span class="Estilo4">{cotxets}</span></div></td>
       </tr>
-      <tr>
-        <td align="right" class="fila-cap" style="color:white">observacions</td>
-        <td width="250"  class="llista"><span class="Estilo4">{observacions}</span></td>
+<tr style="height: 10px;">
+<td align="right" class="fila-cap" style="color:white;background-color:#3354ff;">observacions</td>
+        <td width="250" class="llista" style="background-color: #d6ddff  ;"><span class="Estilo4">{observacions}</span></td>
       </tr>
-	 <tr>
-          <td align="right" class="fila-cap"  style="color:white"><span class="Estilo5" style="color:white">RESPOSTA</span></td>
-          <td align="right" bgcolor="#FFD7D7" class="llista"><div align="left">{resposta}</div></td>
-    </tr>      
-      <tr>
-        <td align="right" class="fila-cap" style="color:white">preu_reserva</td>
-        <td width="250" align="right" class="llista"><div align="left" class="estat">
-                <div align="right" class="Estilo4"><strong>{preu_reserva}&euro;</strong></div>
+<tr style="height: 10px;">
+<td align="right" class="fila-cap" style="color:white;background-color:#3354ff;"><span class="Estilo5" style="color:white">RESPOSTA</span></td>
+          <td align="right" bgcolor="#FFD7D7" class="llista" style="background-color: #d6ddff  ;"><div align="left">{resposta}</div></td>
+    </tr>
+<tr style="height: 10px;">
+<td align="right" class="fila-cap" style="color:white;background-color:#3354ff;">preu_reserva</td>
+        <td width="250" align="right" class="llista" style="background-color: #d6ddff  ;"><div align="left" class="estat">
+                <div align="right" class="Estilo4"><strong>{preu_reserva}€</strong></div>
         </div></td>
       </tr>
-    </table></td>
+</table></td>
     <td></td>
   </tr>
-  <tr>
-    <td></td>
-    <td></td>
-    <td></td>
-  </tr>
-  <tr>
-    <td></td>
-    <td><div align="center">Si vol accedir accedir al sistema de reserves faci click <a href="https://can-borrell.com/editar/editar.php?id={id_reserva}" class="dins">&lt;aqu&iacute;&gt;</a> </div></td>
-    <td></td>
-  </tr>
-  <tr>
-    <td></td>
+<tr style="height: 10px;">
+<td></td>
     <td></td>
     <td></td>
   </tr>
-    
-    
-  <tr  class="marge-footer">
-    <td> </td>
+<tr style="height: 10px;">
+<td></td>
+    <td><div align="center">Si vol accedir accedir al sistema de reserves faci click <a href="https://can-borrell.com/editar/editar.php?id=%7Bid_reserva%7D" class="dins" style="color: #666">&lt;aquí&gt;</a> </div></td>
+    <td></td>
+  </tr>
+<tr style="height: 10px;">
+<td></td>
+    <td></td>
+    <td></td>
+  </tr>
+<tr class="marge-footer" style="height:70px;">
+<td> </td>
     <td> </td>
     <td> </td>
   </tr>
-    
-  <tr class="franja">
+<tr class="franja" style="height:10px;background-color:#3354ff;">
+<td> </td>
     <td> </td>
     <td> </td>
-    <td> </td>
-  </tr>    
-    
-        
-    
+  </tr>
 </table>
 </body>
 </html>

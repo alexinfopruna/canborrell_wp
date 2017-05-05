@@ -3,36 +3,12 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <title>Recepció reserva</title>
-<style>
-    body{
-        font-family:Comic Sans MS , Verdana, Arial, Helvetica, sans-serif;
-        font-size:18px;
-        color:#666; 
-        background-color: #efefef;
-        margin: 0;
-    }
-   
-    .franja,body > table:first-child tr:nth-child(2){background-color: #3354ff  ;}
-    b{background-color: #3354ff;color:white;padding:7px;}
-    td.Estilo2, td.fila-cap{background-color: #3354ff  ;color:white;}
-    td.fila-cont, .llista{background-color: #d6ddff  ;}
-    
-    
-    .titol, .titol2{color:#444; font-size: 18px;}
-    a{color: #666    }
-    a:hover{color: #444}
-    
-    tr{height: 10px;}    
-    table:first-child tr:first-child{background-color: white;}
-    
-    table{max-width: 700px;background-color: white;}
-    body > table{width:100%;max-width: 700px;}  
-    .marge-footer{height:70px;}
-</style>
+
+<link type="text/css" href="https://www.can-borrell.com/cb-reserves/css/blau.css" rel="stylesheet"/>
 
 </head>
 
-<body>
+<body><!-- reservar/{self}  -->
 		
 <table  border="0" align="center" cellpadding="0" cellspacing="0" >
   <tr>

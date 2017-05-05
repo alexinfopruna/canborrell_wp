@@ -150,6 +150,8 @@ function mail_restaurant($id = false) {
   $t->set_file("page", $file);
 
   ///////////// TEXTES
+  			$t->set_var('self',$file);
+
   $t->set_var('avui', $avui);
   $t->set_var('titol', "RESERVA CANCELADA PEL PROPI CLIENT");
   $t->set_var('text1', $txt[11][$lang]);

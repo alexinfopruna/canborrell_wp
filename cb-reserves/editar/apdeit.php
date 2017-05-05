@@ -243,6 +243,7 @@ function mail_SMS_cli($id=false,$SMS=null)
             $idd=$fila['id_reserva']+100000;
             $mulink=substr($fila['email'],0,2).substr($fila['nom'],0,2).$idd."***".substr($fila['import'],0,2);
         
+			$t->set_var('self',$file);
 			$t->set_var('ident',	$txt[75][$lang]);
 			$t->set_var('confirma',$txt[76][$lang]);
 			$t->set_var('cancela',$txt[77][$lang]);
@@ -372,6 +373,7 @@ function mail_restaurant($id=false)
 			$t->set_file("page", $file);
 	
 	///////////// TEXTES
+			$t->set_var('self',$file);
 			$t->set_var('avui',$avui);
 			$t->set_var('titol',$txt[10][$lang]);
 			$t->set_var('text1',$txt[11][$lang]);

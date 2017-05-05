@@ -2603,6 +2603,7 @@ ORDER BY `estat_hores_data` DESC";
       }
     }
     $t->set_file("page", $file);
+			$t->set_var('self',$file);
     $t->set_var('avui', date("l d M Y"));
     $t->set_var('id_reserva', $idr);
     $t->set_var('data', $row['data']);

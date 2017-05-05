@@ -62,7 +62,7 @@ if (!$gestor->valida_sessio(64))
 		echo '<a href="'.ROOT.INC_FILE_PATH.'factures/'.$v.'" target="_blank" class=" bt ui-button ui-widget ui-state-default ui-corner-all ui-button-text-only">'.$v.'</a>';
 	}
 ?>
-<div>
+</div>
 
 </body>
 </html>
