@@ -133,7 +133,7 @@
 <td> </td>
     <td>
 	<div align="center">
-            Fins el dia abans, pot modificar la reserva o cancel·lar-la a <br/><a href="https://www.can-borrell.com/reservar?{rid}">//www.can-borrell.com/reservar</a>
+            Fins el dia abans, pot modificar la reserva o cancel·lar-la a <br/><a href="https://www.can-borrell.com/reservar?{rid}">www.can-borrell.com/reservar</a>
 		<br/><br/>
 		Per accedir cal que conservi l'ID de reserva: <b>{id_reserva}</b> 
  

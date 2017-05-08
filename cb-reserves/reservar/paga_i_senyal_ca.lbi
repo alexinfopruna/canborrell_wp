@@ -28,7 +28,7 @@
   </tr>
 <tr style="height: 10px;">
 <td></td>
-    <td align="center">La seva reserva ha estat confirmada. L'esperem a Can Borrell<br><br>
+    <td align="center">Hem rebut correctament el teu pagament. La seva reserva ha estat confirmada. L'esperem a Can Borrell<br><br>
 </td>
     <td>  </td>
   </tr>
@@ -45,7 +45,7 @@
 <tr style="height: 10px;">
 <td></td>
     <td align="center" style="font-size:9px;">
-<img class="qr" src="https://chart.googleapis.com/chart?chs=100x100&amp;cht=qr&amp;chl={id_reserva}:{dc}:{data}:{client_id}:{preu_reserva}&amp;choe=UTF-8"><br>{id_reserva}:{dc}:{data}:{client_id}:{preu_reserva}  </td>
+<img class="qr" src="https://chart.googleapis.com/chart?chs=200x200&amp;cht=qr&amp;chl={id_reserva}:{dc}:{data}:{client_id}:{preu_reserva}&amp;choe=UTF-8"><br>{id_reserva}:{dc}:{data}:{client_id}:{preu_reserva}  </td>
     <td width="12"></td>
   </tr>
 <tr style="height: 10px;">
@@ -118,7 +118,7 @@
 <td></td>
     <td>
 	<div align="center">
-		Fins el dia abans, pot modificar la reserva o cancel·lar-la a  <br/><a href="https://www.can-borrell.com/reservar" style="color: #666">//www.can-borrell.com/reservar</a>
+		Fins el dia abans, pot modificar la reserva o cancel·lar-la a  <br/><a href="https://www.can-borrell.com/reservar" style="color: #666">www.can-borrell.com/reservar</a>
 		<br><br>
 		Per accedir cal que conservi l'ID de reserva: <b style="background-color: #FF8033;color:white;padding:7px;">{id_reserva}</b> 
  

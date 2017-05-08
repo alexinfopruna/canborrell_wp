@@ -122,7 +122,7 @@
 <td> </td>
     <td>
 	<div align="center">
-		Hasta un día antes puedes modificar o cancelar tu reserva en  <br/><a href="https://www.can-borrell.com/reservar" style="color: #666">//www.can-borrell.com/reservar</a>
+		Hasta un día antes puedes modificar o cancelar tu reserva en  <br/><a href="https://www.can-borrell.com/reservar" style="color: #666">www.can-borrell.com/reservar</a>
 		<br><br>
 		Para acceder debes conservar la ID de reserva: <b style="background-color: #FF8033;color:white;padding:7px;">{id_reserva}</b>
 	</div>

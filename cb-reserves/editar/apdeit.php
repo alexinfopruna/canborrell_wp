@@ -331,7 +331,7 @@ echo $query ."   $database_canborrell  *** ".$lang;die();
 							
 			$t->parse("OUT", "page");
 			$html=$t->get("OUT");
-			$t->p("OUT");die();
+			//$t->p("OUT");die();
 			//
 	$recipient=$fila['email'];
     //$subject="..::Reserva Can Borrell::..";
