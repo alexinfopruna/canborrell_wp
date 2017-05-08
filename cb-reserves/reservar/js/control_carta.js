@@ -234,8 +234,8 @@ function excepcio_nadal(dat){
 			required: true,
 			min: totalComensals,
 			 messages: {
-				    required: l('err10'),
-				    min: l('err10')
+				    required: l('err56'),
+				    min: l('Número menús insuficiente')
 				  }				
 		});
 	}

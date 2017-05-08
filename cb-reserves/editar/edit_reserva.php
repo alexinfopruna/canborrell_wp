@@ -165,26 +165,27 @@ td a:hover {color:white}
 	  
 	  <!--<input name="lang" type="text" value="<?php echo $row_Recordset1['lang']; ?>" size="32" /> -->
         <select name="lang">
-			<OPTION VALUE="cat" <?php if ($row_Recordset1['lang']=="cat") echo "selected='selected'";?> >cat
-			<OPTION VALUE="esp" <?php if ($row_Recordset1['lang']=="esp") echo "selected='selected'";?>>esp
+			<OPTION VALUE="cat" <?php if (substr($row_Recordset1['lang'],0,2)=="ca") echo "selected='selected'";?>/>CA
+			<OPTION VALUE="esp" <?php if (substr($row_Recordset1['lang'],0,2)=="es") echo "selected='selected'";?>/>ES
+			<OPTION VALUE="en" <?php if (substr($row_Recordset1['lang'],0,2)=="en") echo "selected='selected'";?>/>EN
         </select>       
 	  
 	  
-	    (cat / esp) </td>
+	    (CA / ES / EN) </td>
     <tr valign="baseline">
       <td align="right" valign="top" nowrap bgcolor="#333333" class="Estilo2"><span class="Estilo8">Menu:</span></td>
       <td width="300" bgcolor="#CCCCCC" class="llista">
         <select name="menu">
-			<OPTION VALUE="0" <?php if ((int)$row_Recordset1['menu']==0) echo "selected='selected'";?>>Men&uacute; nº1
-			<OPTION VALUE="1" <?php if ((int)$row_Recordset1['menu']==1) echo "selected='selected'";?>>Men&uacute; nº1 Celebraci&oacute;
-			<OPTION VALUE="2" <?php if ((int)$row_Recordset1['menu']==2) echo "selected='selected'";?>>Men&uacute; nº2
-			<OPTION VALUE="3" <?php if ((int)$row_Recordset1['menu']==3) echo "selected='selected'";?>>Men&uacute; nº2 Celebraci&oacute;
-			<OPTION VALUE="4" <?php if ((int)$row_Recordset1['menu']==4) echo "selected='selected'";?>>Men&uacute; nº3
-			<OPTION VALUE="5" <?php if ((int)$row_Recordset1['menu']==5) echo "selected='selected'";?>>Men&uacute; Cal&ccedil;otada
-			<OPTION VALUE="6" <?php if ((int)$row_Recordset1['menu']==6) echo "selected='selected'";?>>Men&uacute; Comuni&oacute;
-			<OPTION VALUE="7" <?php if ((int)$row_Recordset1['menu']==7) echo "selected='selected'";?>>Men&uacute; Casaments
-			<OPTION VALUE="8" <?php if ((int)$row_Recordset1['menu']==8) echo "selected='selected'";?> >Carta
-			<OPTION VALUE="9" <?php if ((int)$row_Recordset1['menu']==9) echo "selected='selected'";?>>Men&uacute; nº4
+			<OPTION VALUE="0" <?php if ((int)$row_Recordset1['menu']==0) echo "selected='selected'";?>/>Men&uacute; nº1
+			<OPTION VALUE="1" <?php if ((int)$row_Recordset1['menu']==1) echo "selected='selected'";?>/>Men&uacute; nº1 Celebraci&oacute;
+			<OPTION VALUE="2" <?php if ((int)$row_Recordset1['menu']==2) echo "selected='selected'";?>/>Men&uacute; nº2
+			<OPTION VALUE="3" <?php if ((int)$row_Recordset1['menu']==3) echo "selected='selected'";?>/>Men&uacute; nº2 Celebraci&oacute;
+			<OPTION VALUE="4" <?php if ((int)$row_Recordset1['menu']==4) echo "selected='selected'";?>/>Men&uacute; nº3
+			<OPTION VALUE="5" <?php if ((int)$row_Recordset1['menu']==5) echo "selected='selected'";?>/>Men&uacute; Cal&ccedil;otada
+			<OPTION VALUE="6" <?php if ((int)$row_Recordset1['menu']==6) echo "selected='selected'";?>/>Men&uacute; Comuni&oacute;
+			<OPTION VALUE="7" <?php if ((int)$row_Recordset1['menu']==7) echo "selected='selected'";?>/>Men&uacute; Casaments
+			<OPTION VALUE="8" <?php if ((int)$row_Recordset1['menu']==8) echo "selected='selected'";?>/>Carta
+			<OPTION VALUE="9" <?php if ((int)$row_Recordset1['menu']==9) echo "selected='selected'";?>/>Men&uacute; nº4
         </select> </td>
     <tr>
     <tr valign="baseline">

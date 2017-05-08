@@ -3,6 +3,9 @@ if (!isset($lang)) $lang='cat';
 if (!isset($PERSONES_GRUP)) $PERSONES_GRUP=12;
 
 
+$translate['Realitzar pagament'] = "Realizar pago";
+
+
 $translate['INFO_COMANDA_GRUPS']="En las reservas de grupos debes escoger, como mínimo, un menú para cada comensal (contando adultos, juniors y niños";
 $translate['Escull els menús']="Elige los menús";
  $translate['Veure els menús']='Ver los menús';

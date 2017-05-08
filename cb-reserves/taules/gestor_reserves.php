@@ -2586,7 +2586,7 @@ ORDER BY `estat_hores_data` DESC";
       $row = mysqli_fetch_assoc($this->qry_result);
     }
     if (!$this->qry_result || !mysqli_num_rows($this->qry_result))
-      return "err10";
+      return "err55";
 
     $row['aixoesunarray'] = 1;
     if ($extres)
@@ -2643,7 +2643,7 @@ ORDER BY `estat_hores_data` DESC";
       $mail = "Enviament $plantilla RESERVA PETITA ONLINE($r): $idr -- $recipient";
     }
     catch (Exception $e) {
-      $mail = "err10";
+      $mail = "err55";
     }
 
     $rs = ($result['Result'] == "NO ENVIAT!!!") ? "ERROR" : "EXIT";

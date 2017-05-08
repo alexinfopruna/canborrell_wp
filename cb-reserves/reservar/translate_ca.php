@@ -179,6 +179,7 @@ $translate['AVIS_MODIFICACIONS']='<span style="color:red"><b>Atenció:</b>
 
 
 /************ MAIL CONFIRMA PAGAMENT GRUPS ****************/
+
 $translate["MAIL_GRUPS_PAGAT_subject"]="Can-Borrell: CONFIRMACIÓ DE PAGAMENT DE RESERVA PER GRUP";
 $translate["MAIL_GRUPS_PAGAT_titol"]="CONFIRMACIÓ DE PAGAMENT DE RESERVA";
 $translate["MAIL_GRUPS_PAGAT_text1"]="Ens complau informar-lo que hem rebut correctament el pagament de ";

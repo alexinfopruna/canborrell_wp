@@ -3,6 +3,7 @@ if (!isset($lang)) $lang='cat';
 if (!isset($PERSONES_GRUP)) $PERSONES_GRUP=12;
 
 
+
 $translate['INFO_COMANDA_GRUPS']="In group reservations you should choose, at least, one menu for each diner (counting adults, juniors and children)";
 $translate['Escull els menús']="Choose menus";
  $translate['Veure els menús']='See menus';

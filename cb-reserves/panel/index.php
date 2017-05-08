@@ -33,13 +33,12 @@ if (isset($_GET['exit']))
 
 <link type="text/css" href="../taules/css/blitzer/jquery-ui-1.8.9.custom.css" rel="stylesheet" />	
 <link type="text/css" href="../reservar/css/custom-theme/jquery.ui.all.css" rel="stylesheet" />	
-<link type="text/css" href="../css/estils.css" rel="stylesheet" />	
+	
 <link type="text/css" href="../reservar/css/form_reserves.css" rel="stylesheet" />	
-<xxxlink rel="stylesheet" href="//ajax.googleapis.com/ajax/libs/jqueryui/1.8.9/themes/redmond/jquery-ui.css" type="text/css" media="all" />
 
 <style>
 	.admin{display:none}
-	body{backgroun-image:none;font-size:10px;	}
+	body{backgroun-image:none;font-size:10px;    background-color: #eee;	}
 	a.bt,a.bt:link,a.bt:visited{display:block;color:#666;text-align:left;}
 	a.bt:hover{background:#570600;color:white;}
 	
@@ -57,6 +56,7 @@ if (isset($_GET['exit']))
 	#panel{width:500px;margin:0 auto;}
 	
 	iframe{width:100%;height:1000px;display:none;background:white;background-image:none;}
+                            
 </style>
 
                <?php echo Gestor::loadJQuery("2.0.3"); ?>

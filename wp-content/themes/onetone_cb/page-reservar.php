@@ -63,11 +63,7 @@ $max_juniors = $gestorf->configVars("max_juniors");
 $gestorf->netejaImpagatsTpv(); // TPV I IMPAGATS
 $paga_i_senyal = $PERSONES_GRUP >= persones_paga_i_senyal;
 
-$g = $gestorf;
-add_action('wp_enqueue_scripts', 'reservar_enqueue_styles');
-get_header();
-require_once(ROOT . '../reservar/translate_' . $gestorf->lng . '.php');
-$gestorf = $g;
+
 
 
 //RECUPERA RESERVA UPDATE
@@ -113,6 +109,13 @@ else {
 
   $comanda = null;
 }
+
+$g = $gestorf;
+add_action('wp_enqueue_scripts', 'reservar_enqueue_styles');
+get_header();
+require_once(ROOT . '../reservar/translate_' . $gestorf->lng . '.php');
+$gestorf = $g;
+
 
 if (!isset($_POST['idr']))
   $_POST['idr'] = null;

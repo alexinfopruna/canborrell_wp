@@ -65,7 +65,9 @@ class Carta extends Gestor
 		
 		// CARREGUEM TRADUCCIONS DELS MENUS
 		$this->idioma();
-global $translate;		
+global $translate;
+
+//echo ROOT."../reservar/translate_grups_".$this->lng.".php";die();
 include(ROOT."../reservar/translate_grups_".$this->lng.".php");
 
 
@@ -168,7 +170,6 @@ include(ROOT."../reservar/translate_grups_".$this->lng.".php");
 		$descripcio=$this->plats[$id]->descripcio;
 		$descripcio=str_replace($this->arLabelID,$this->arPreusIVA,$descripcio);
 
-                                                        //return "HOLA";
 		return "<h5>".$this->plats[$id]->nom.'</h5>'.$descripcio;
 	}
 	
@@ -182,15 +183,5 @@ include(ROOT."../reservar/translate_grups_".$this->lng.".php");
 
 		return $descripcio;
 	}
-	
 } //CLASS
-
-//$c=new Carta();
-//print($c->filtre_preu_mig("familia_id",20));
-//$c->printr($c->arPreusIVA);
-//$c->printr($c->plats);
-//$c->printr($c->filtra("familia_id",20));
-/*
-//$c->filtra("familia_id",20);
-*/
 ?>

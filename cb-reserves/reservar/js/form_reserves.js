@@ -1103,10 +1103,9 @@ doc.write('<html><head><title></title><style>body{background:url(//www.can-borre
             else
             {
                 var err = "Error de servidor";
-                if (obj && obj.error)
-                    err = obj.error + "\n <br>" + l(obj.error) + " <br><br>\n\n" + l("err_contacti");
-                if (obj.error == "err10")
-                    return;//DOBLE SUBMIT?????????
+                if (obj && obj.error)    err = obj.error + "\n <br>" + l(obj.error) + " <br><br>\n\n" + l("err_contacti");
+                if (obj.error == "err10")     { alert("El servidor está tardando mucho en responder... Reintentar");return;}//DOBLE SUBMIT?????????
+                
                 $("#popup").html("ERROR: " + err);
                 $('#submit').show();
             }

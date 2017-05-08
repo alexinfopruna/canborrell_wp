@@ -1,9 +1,9 @@
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "//www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-<html xmlns="//www.w3.org/1999/xhtml">
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
 <head>
-<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <title>Recepció reserva</title>
-<link type="text/css" href="https://www.can-borrell.com/cb-reserves/css/taronja.css" rel="stylesheet">
+<link type="text/css" href="https://www.can-borrell.com/cb-reserves/css/taronja.css" rel="stylesheet" />
 </head>
 <body style="font-family:Comic Sans MS , Verdana, Arial, Helvetica, sans-serif;
         font-size:18px;
@@ -12,18 +12,18 @@
         margin: 0;">
 <!-- reservar/{self}  -->
  
-<table border="0" align="center" cellpadding="0" cellspacing="0" style="max-width: 700px;width:100%;background-color: white;box-shadow: 0px 0px 20px #888888;">
+<table border="0" align="center" cellpadding="0" cellspacing="0" style="max-width: 600px;width:100%;background-color: white;    border-left: #dedede solid 2px;    border-right: #dedede solid 2px ;box-shadow: 0px 0px 20px #888888;">
 <tr style="height: 10px;">
-<td colspan="2" align="right" background="https://www.can-borrell.com/img/fons_9a.jpg"><a href="https://www.can-borrell.com/index.html" style="color: #666"><img src="https://www.can-borrell.com/img/lg_sup.png" alt="img" width="303" height="114" border="0" title="INICI"></a></td>
+<td colspan="2" align="right" background="https://www.can-borrell.com/img/fons_9a.jpg"><a href="https://www.can-borrell.com" style="    background-repeat: no-repeat;color: #666"><img src="https://www.can-borrell.com/img/lg_sup.png" alt="img" width="303" height="114" border="0" title="INICI" /></a></td>
   </tr>
 <tr style="height:10px;background-color:#FF8033;">
 <td class="franja" colspan="2" align="center" style="background-color: #FF8033  ;"></td>
   </tr>
 </table>
-<table border="0" align="center" cellpadding="0" cellspacing="0" bgcolor="#FFFFFF" style="max-width: 700px;width:100%;background-color: white;box-shadow: 0px 0px 20px #888888;">
+<table border="0" align="center" cellpadding="0" cellspacing="0" bgcolor="#FFFFFF" style="max-width: 600px;width:100%;background-color: white;    border-left: #dedede solid 2px;    border-right: #dedede solid 2px ;box-shadow: 0px 0px 20px #888888;">
 <tr style="height: 10px;">
 <td></td>
-    <td>{avui}</td>
+    <td><span style="font-size:10px">{avui}</span></td>
     <td></td>
   </tr>
 <tr style="height: 10px;">
@@ -103,7 +103,7 @@
 <td></td>
     <td>
 	<div align="center">
-		Fins a 1 dia abans de l'event pots modificar la teva reserva <a href="//www.can-borrell.com/reservar" style="color: #666">www.can-borrell.com/reservar</a>
+		Fins a 1 dia abans de l'event pots modificar la teva reserva  <br/><a href="https://www.can-borrell.com/reservar" style="color: #666">www.can-borrell.com/reservar</a>
 		<br><br>
 		Per accedir has de conservar l'ID de reserva: <b style="background-color: #FF8033;color:white;padding:7px;">{id_reserva}</b>
 	</div>

@@ -746,11 +746,11 @@ FROM client
 
 
     $TPV = $this->paga_i_senyal($coberts);
-    $extres['subject'] = "Can-Borrell: CONFIRMACIÓ DE RESERVA ONLINE";
+    //$extres['subject'] =  "Can-Borrell: CONFIRMACIÓ DE RESERVA ONLINE";
+    $extres['subject'] = $this->l("Can-Borrell: CONFIRMACIÓ DE RESERVA ONLINE", FALSE);
 
     //envia MAIL
-    if ($_POST['client_email'] && !$TPV)
-      $mail = $this->enviaMail($idr, "confirmada_", FALSE, $extres);
+    if ($_POST['client_email'] && !$TPV)   $mail = $this->enviaMail($idr, "confirmada_", FALSE, $extres);
 
     $resposta['mail'] = isset($mail) ? $mail : FALSE;
     $resposta['virtual'] = $taulaVirtual;
@@ -943,7 +943,8 @@ FROM client
 
     $this->enviaSMS($idr, $mensa);
 //envia MAIL
-    $extres['subject'] = "Can-Borrell: MODIFICACIÓ RESERVA ONLINE " . $_POST['id_reserva'];
+    //$extres['subject'] = "Can-Borrell: MODIFICACIÓ RESERVA ONLINE " . $_POST['id_reserva'];
+    $extres['subject'] = $this->l("Can-Borrell: MODIFICACIÓ RESERVA ONLINE ", FALSE) . $_POST['id_reserva'];
     if ($_POST['client_email'])
       $mail = $this->enviaMail($_POST['id_reserva'], "../reservar/mail_res_modificada_", FALSE, $extres);
 
@@ -967,6 +968,7 @@ FROM client
       //ENVIA MAIL
       $_POST['id_reserva'] = $idr;
       $extres['subject'] = "Can-Borrell: RESERVA CANCELADA " . $_POST['id_reserva'];
+      $extres['subject'] = $this->l("Can-Borrell: RESERVA CANCELADA ", FALSE) . $_POST['id_reserva'];
       $mail = $this->enviaMail($idr, "cancelada_", FALSE, $extres);
 
       $deleteSQL = "DELETE FROM " . T_RESERVES . " WHERE id_reserva=$idr";
@@ -1068,6 +1070,7 @@ WHERE  `client`.`client_id` =$idc;
     $extres['reserva_consulta_online'] = $_POST['reserva_consulta_online'];
     $extres['client_email'] = $_POST['client_email'];
     $extres['subject'] = "Can-Borrell: GRUPS Consulta reservesonline";
+    //$extres['subject'] = $this->l("Can-Borrell: GRUPS Consulta reservesonline");
 
 
 
@@ -1301,7 +1304,7 @@ WHERE  `client`.`client_id` =$idc;
     }
 //$result = "ANULAT";    
 
-    $extres['subject'] = $this->l("Can-Borrell: RESERVA CONFIRMADA", false);
+    $extres['subject'] = $this->l("Can-Borrell: RESERVA CONFIRMADA", FALSE);
 
     if ($mail) {
       $this->enviaMail($idr, "../reservar/paga_i_senyal_", "", $extres);

@@ -1,4 +1,14 @@
 <?php
+$translate['Realitzar pagament'] = "Realizar pago";
+$translate['Can-Borrell: RESERVA CONFIRMADA'] = "Can-Borrell: RESERVA CONFIRMADA";
+$translate['Reserva Grups CONFIRMADA'] = "Reserva Grupos CONFIRMADA";
+$translate["Reserva Grups DENEGADA"] = "Reserva Grupos DENEGADA";
+$translate["Can-Borrell: RESERVA DENEGADA"] = "Can-Borrell: Reserva DENEGADA";
+$translate["Reserva Grups PAGADA"] = "Recibido el pago de la reserva";
+$translate["Can-Borrell: NOTIFICACIÓ DE PAGAMENT REBUDA"] = "Can-Borrell: Reserva DENEGADA";
+//$translate["Can-Borrell: RESERVA DENEGADA"] = "Group reservation confirmed";
+//$translate["Can-Borrell: RESERVA DENEGADA"] = "Group reservation confirmed";
+
 $translate["SI NO REPS MAIL REVISA SPAM O CANTACTAN'S: restaurant@can-borrell.com"] 
     = "SI NO RECIBES MAIL REVISA SPAM O CANTACTANOS: restaurant@can-borrell.com";
 

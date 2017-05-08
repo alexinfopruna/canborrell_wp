@@ -1,7 +1,7 @@
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "//www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-<html xmlns="//www.w3.org/1999/xhtml">
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
 <head>
-<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <title>Recepció reserva</title>
 
 <style>
@@ -34,7 +34,7 @@
  
 <table width="100%" border="0" align="center" cellpadding="0" cellspacing="0" bgcolor="#F8F8F0">
 <tr>
-<td width="100%" colspan="2" align="right" background=""><a href="//www.can-borrell.com/index.html"><img src="https://www.can-borrell.com/img/lg_sup.png" alt="img" width="303" height="114" border="0" title="INICI"/></a></td>
+<td width="100%" colspan="2" align="right" background=""><a href="//www.can-borrell.com"><img src="https://www.can-borrell.com/img/lg_sup.png" alt="img" width="303" height="114" border="0" title="INICI"/></a></td>
   </tr>
 <tr class="franja">
     
@@ -44,7 +44,7 @@
 <table width="100%" border="0" align="center" cellpadding="0" cellspacing="0" bgcolor="#FFFFFF">
 <tr>
 <td> </td>
-    <td>{avui}</td>
+    <td><span style="font-size:10px">{avui}</span></td>
     <td> </td>
   </tr>
 <tr>
@@ -133,7 +133,7 @@
 <td> </td>
     <td>
 	<div align="center">
-            Fins el dia abans, pot modificar la reserva o cancel·lar-la a <br/><a href="//www.can-borrell.com/reservar?{rid}">//www.can-borrell.com/reservar</a>
+            Fins el dia abans, pot modificar la reserva o cancel·lar-la a <br/><a href="https://www.can-borrell.com/reservar?{rid}">//www.can-borrell.com/reservar</a>
 		<br/><br/>
 		Per accedir cal que conservi l'ID de reserva: <b>{id_reserva}</b> 
  
