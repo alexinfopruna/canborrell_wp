@@ -1767,7 +1767,7 @@ if (isset($accio) && !empty($accio)) {
     if (isset($sessuser)){
       $user = $sessuser->id;
     }else{
-      echo "err100";
+      echo "err102";
       die();
     }
     
