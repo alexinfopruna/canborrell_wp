@@ -775,6 +775,7 @@ FROM client
       $TPV = FALSE; // Cas que recuperem reserva
     if ($TPV) {
       $nom = $_POST['client_nom'] . ' ' . $_POST['client_cognoms'];
+        $resposta['lx'] = $_REQUEST["testTPV"]." *** ".$_SESSION['permisos'];
 
       if (isset($_REQUEST["testTPV"]) && $_SESSION['permisos'] > 200)
         $resposta['form_tpv'] = $this->generaTESTTpvSHA256($idr, import_paga_i_senyal, $nom);
