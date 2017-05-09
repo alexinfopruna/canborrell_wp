@@ -7,7 +7,7 @@
     }
    
     .franja, table:first-child tr:nth-child(2){background-color: #FF8033  ;}
-    b{background-color: #FF8033;color:white;padding:7px;}
+    /*b{background-color: #FF8033;color:white;padding:7px;}*/
     td.Estilo2, td.fila-cap{background-color: #FF8033  ;color:white;}
     td.fila-cont, .llista{background-color: #FFECD6  ;}
     
