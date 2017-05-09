@@ -1779,7 +1779,7 @@ if (isset($accio) && !empty($accio)) {
 
     $respostes = array('respostaTPV', 'respostaTPV_SHA256');
     if (!$gestor->valida_sessio(1) && !in_array($accio, $respostes)) {
-      echo "err100";
+      echo "err101";
       die();
     }
     $gestor->out(call_user_func(array($gestor, $accio), $_REQUEST['b'], $_REQUEST['c'], $_REQUEST['d'], $_REQUEST['e'], $_REQUEST['f'], $_REQUEST['g']));
