@@ -575,6 +575,7 @@ function reservar_enqueue_styles() {
                                                   <form id="form-reserves" action="/cb-reserves/reservar/Gestor_form.php?a=submit" method="post" name="fr-reserves" accept-charset="utf-8"><!---->
                                                       <input type="hidden" name="id_reserva" value="<?php echo isset($_REQUEST['idr']) ? $_REQUEST['idr'] : ""; ?>"/>
                                                       <input type="hidden" name="reserva_info" value="<?php echo $row['reserva_info']; ?>"/>
+                                                      <input type="hidden" name="<?php echo (isset($_REQUEST['testTPV'])?"testTPV":"noTest"); ?>" value="testTPV"/>
                                                       <div id="fr-reserves" class="fr-reserves">
                                                           <!-- *******************************  QUANTS SOU ********************************************************   -->
                                                           <!-- *******************************  QUANTS SOU ********************************************************   -->
