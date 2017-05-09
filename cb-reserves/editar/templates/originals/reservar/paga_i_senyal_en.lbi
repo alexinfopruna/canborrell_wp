@@ -13,7 +13,7 @@
 		
 <table  border="0" align="center" cellpadding="0" cellspacing="0" >
   <tr>
-    <td  colspan="2" align="right" background="https://www.can-borrell.com/img/fons_9a.jpg"><a href="https://www.can-borrell.com"><img src="https://www.can-borrell.com/img/lg_sup.png" alt="img" width="303" height="114" border="0" title="INICI" /></a></td>
+    <td  colspan="2" align="right" background="https://www.can-borrell.com/img/fons_9c.jpg"><a href="https://www.can-borrell.com"><img src="https://www.can-borrell.com/img/lg_sup.png" alt="img" width="303" height="114" border="0" title="INICI" /></a></td>
   </tr>
   <tr>
     <td class="franja" colspan="2" align="center"></td>
@@ -25,6 +25,12 @@
 
 
 <table width="773" border="0" align="center" cellpadding="0" cellspacing="0" bgcolor="#FFFFFF">
+        <tr>
+    <td>&nbsp;</td>
+    <td><span style="font-size:10px">{avui}</span><br/><br/></td>
+    <td>&nbsp;</td>
+  </tr>
+    
   <tr>
     <td>&nbsp;</td>
     <td align="center"><span class="titol"><br/>ONLINE RESEVATION CONFIRMED {id_reserva}</span></td>
@@ -48,11 +54,7 @@
 
 </tr>  
 -->
-    <tr>
-    <td>&nbsp;</td>
-    <td><span style="font-size:10px">{avui}</span><br/><br/></td>
-    <td>&nbsp;</td>
-  </tr>
+
   <tr>
     <td>&nbsp;</td>
     <td align="center"><span class="titol" style="color:#222">You can print this voucher and present to the restaurant in the moment to pay in order that the amount is discounted</span></td>
