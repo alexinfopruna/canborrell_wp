@@ -1775,18 +1775,20 @@ if (isset($accio) && !empty($accio)) {
     $log = in_array($accio, $logables);
     $ip = isset($ips[$_SERVER['REMOTE_ADDR']]) ? $ips[$_SERVER['REMOTE_ADDR']] : $_SERVER['REMOTE_ADDR'];
 
-    if (isset($_SESSION['uSer']))
+    if (isset($_SESSION['uSer']))    {  
       $sessuser = $_SESSION['uSer'];
-    if (isset($sessuser)) {
-      $user = $sessuser->id;
-    }
-
-
-    if ($accio == 'respostaTPV_SHA256') {
+      
+    }elseif ($accio == 'respostaTPV_SHA256'){
+          {
       $usr = new Usuari(3, "webForm", 1);
       if (!isset($_SESSION['uSer']))
         $_SESSION['uSer'] = $usr;
     }
+    }
+    if (isset($sessuser)) {      $user = $sessuser->id;    }
+
+
+ 
     /*
       else{
       echo "err100";
