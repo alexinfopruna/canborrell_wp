@@ -35,12 +35,12 @@ require_once(ROOT . "EstatTaula.php");
 
 require_once(ROOT . "TaulesDisponibles.php");
 /*
-ini_set('error_reporting', E_ALL ^ E_DEPRECATED);
-error_reporting(E_ALL ^ E_DEPRECATED);
-ini_set("display_errors", 1);
-ini_set("track_errors", 1);
-ini_set("html_errors", 1);*/
-require_once(ROOT. "RestrictionController.php");
+  ini_set('error_reporting', E_ALL ^ E_DEPRECATED);
+  error_reporting(E_ALL ^ E_DEPRECATED);
+  ini_set("display_errors", 1);
+  ini_set("track_errors", 1);
+  ini_set("html_errors", 1); */
+require_once(ROOT . "RestrictionController.php");
 /* * ******************************************************************************************************* */
 
 class Gestor_form extends gestor_reserves {
@@ -181,11 +181,10 @@ class Gestor_form extends gestor_reserves {
   }
 
   /*   * ******************************************************************************************************* */
-	
-
 
   public function horesDisponibles($data, $coberts, $cotxets = 0, $accesible = 0, $idr = 0, $nens = null) {
-    if ($cotxets == 'undefined') $cotxets=0;
+    if ($cotxets == 'undefined')
+      $cotxets = 0;
     $mydata = $this->cambiaf_a_mysql($data);
 
     $this->taulesDisponibles->tableHores = "estat_hores";   //ANULAT GESTOR HORES FORM. Tot es gestiona igual, des d'estat hores
@@ -208,29 +207,31 @@ class Gestor_form extends gestor_reserves {
     $cacheNens = $nens;
     $cacheAdults = $coberts - $nens;
 
- 
-      $rc=new RestrictionController();
-      $this->taulesDisponibles->rang_hores_nens = $rc->getHores($mydata, $cacheAdults, $cacheNens, $cotxets);    
-      $rules = $rc->getActiveRules($mydata, $cacheAdults, $cacheNens, $cotxets);    
-    //SISTEMA ESTÀTIC >> hores_nens.php
 
+    $rc = new RestrictionController();
+    $this->taulesDisponibles->rang_hores_nens = $rc->getHores($mydata, $cacheAdults, $cacheNens, $cotxets);
+    $rules = $rc->getActiveRules($mydata, $cacheAdults, $cacheNens, $cotxets);
+    //SISTEMA ESTÀTIC >> hores_nens.php
     //TORN1
     $this->taulesDisponibles->torn = 1;
     $dinar = $this->taulesDisponibles->recupera_hores();
     $taules = $this->taulesDisponibles->taulesDisponibles();
 
     $taulaT1 = 0;
-    if ($taules) $taulaT1 = $taules[0]->id;
-    if (!$dinar)   $dinar = "";
-    
+    if ($taules)
+      $taulaT1 = $taules[0]->id;
+    if (!$dinar)
+      $dinar = "";
+
     //TORN2
     $this->taulesDisponibles->torn = 2;
     $dinarT2 = $this->taulesDisponibles->recupera_hores();
     $taules = $this->taulesDisponibles->taulesDisponibles();
-    
-     $taulaT2 = 0;
-    if ($taules) $taulaT2 = $taules[0]->id;   
-    
+
+    $taulaT2 = 0;
+    if ($taules)
+      $taulaT2 = $taules[0]->id;
+
     if (!$dinarT2)
       $dinarT2 = "";
 
@@ -246,25 +247,28 @@ class Gestor_form extends gestor_reserves {
       $sopar = "";
 
     $json = array('dinar' => $dinar, 'dinarT2' => $dinarT2, 'sopar' => $sopar, 'taulaT1' => $taulaT1, 'taulaT2' => $taulaT2, 'taulaT3' => $taulaT3);
-    
-    $json['rules']=array_column($rules,'restriccions_id');
-    $json['params']="$mydata, $cacheAdults, $cacheNens, $cotxets";
+
+    $json['rules'] = array_column($rules, 'restriccions_id');
+    $json['params'] = "$mydata, $cacheAdults, $cacheNens, $cotxets";
     return json_encode($json);
     //////////////////////////////////					
   }
 
-  private function rang_hores_nens($data, $adults, $nens=0, $cotxets=0) {
-    
+  private function rang_hores_nens($data, $adults, $nens = 0, $cotxets = 0) {
+
     if (!$adults || !defined("CONTROL_HORES_NENS") || !CONTROL_HORES_NENS)
       return;
     //controla si es cap de setamana
-    $finde=FALSE;
+    $finde = FALSE;
     $ds = date('N', strtotime($data));
-    if ($ds==6 ) $finde=TRUE;
-    if ($ds==7 ) $finde=TRUE;
+    if ($ds == 6)
+      $finde = TRUE;
+    if ($ds == 7)
+      $finde = TRUE;
 
-    if (!$finde) return FALSE;
-   
+    if (!$finde)
+      return FALSE;
+
     /*     * *************************** */
     require("hores_nens.php");
     /*     * **************************** */
@@ -276,16 +280,19 @@ class Gestor_form extends gestor_reserves {
     $index = 'cacheNens' . $data . "-" . ($adults + $nens);
 
     $time = time();
-     
+
     $cache = FALSE;
     if (isset($_SESSION[$index]) && count($_SESSION[$index]['hores']) && $_SESSION[$index]['timestamp'] > $time) {
       $cache = $_SESSION[$index]['hores'];
     }
 
     $limitNens = FALSE;
-    if ($limit) $limitNens = $limit;
-    if ($cache) $limitNens = $cache;
-    if ($limit && $cache) $limitNens = array_intersect($limit, $cache);
+    if ($limit)
+      $limitNens = $limit;
+    if ($cache)
+      $limitNens = $cache;
+    if ($limit && $cache)
+      $limitNens = array_intersect($limit, $cache);
 
     if (count($limitNens)) {
       $cachev = array();
@@ -293,23 +300,22 @@ class Gestor_form extends gestor_reserves {
       $cachev['hores'] = $limitNens;
       $_SESSION[$index] = $cachev;
     }
-    
-    /**********************************************************/
+
+    /*     * ******************************************************* */
     // COTXETS
-    /**********************************************************/
+    /*     * ******************************************************* */
     $limitcotxets = FALSE;
     if (isset($limit_cotxets[$cotxets])) {
       $limitcotxets = $limit_cotxets[$cotxets][1];
-      if ($limitcotxets && $limitNens) $limitNens = array_intersect($limitcotxets, $limitNens);
-      else $limitNens = $limitcotxets;
-      
+      if ($limitcotxets && $limitNens)
+        $limitNens = array_intersect($limitcotxets, $limitNens);
+      else
+        $limitNens = $limitcotxets;
     }
 
     return $limitNens;
   }
 
-  
- 
   /*   * ******************************************************************************************************* */
   /*   * ******************************************************************************************************* */
 
@@ -346,10 +352,13 @@ ORDER BY carta_subfamilia_order,carta_plats_nom_es , carta_plats_nom_ca";
     $Result1 = mysqli_query($this->connexioDB, $query) or die(((is_object($GLOBALS["___mysqli_ston"])) ? mysqli_error($GLOBALS["___mysqli_ston"]) : (($___mysqli_res = mysqli_connect_error()) ? $___mysqli_res : false)));
 
     while ($row = mysqli_fetch_array($Result1)) {
-      if (empty($row['carta_plats_nom_ca']))   $row['carta_plats_nom_ca'] = $row['carta_plats_nom_es'];
-      if (empty($row['carta_plats_nom_en']))   $row['carta_plats_nom_en'] = $row['carta_plats_nom_es'];
-        //ucfirst
-       if ($_SESSION["lang"]!='es')  $row['carta_plats_nom_'.$lng]= ucfirst(mb_strtolower($row['carta_plats_nom_'.$lng]));
+      if (empty($row['carta_plats_nom_ca']))
+        $row['carta_plats_nom_ca'] = $row['carta_plats_nom_es'];
+      if (empty($row['carta_plats_nom_en']))
+        $row['carta_plats_nom_en'] = $row['carta_plats_nom_es'];
+      //ucfirst
+      if ($_SESSION["lang"] != 'es')
+        $row['carta_plats_nom_' . $lng] = ucfirst(mb_strtolower($row['carta_plats_nom_' . $lng]));
       $plat = array('id' => $row['carta_plats_id'], 'nom' => $row['carta_plats_nom_' . $lng], 'preu' => $row['carta_plats_preu'], 'quantitat' => $row['comanda_plat_quantitat']);
       $arCarta[$row['carta_subfamilia_nom_' . $lng]][] = $plat;
     }
@@ -529,6 +538,7 @@ FROM client
 
 
 
+
       
 // MIREM SI ESTÀ EDITANT UNA RESERVA EXISTENT
 //MIRA SI ENS VOLEM FER UNA DUPLICADA
@@ -569,6 +579,7 @@ FROM client
 
 
 
+
       
 //ESBRINA EL TORN	
     $data = $this->cambiaf_a_mysql($_POST['selectorData']);
@@ -587,6 +598,7 @@ FROM client
     //COMPROVEM HORA LIMIT
     if (!$this->reserva_entra_avui($data, $hora))
       return $this->jsonErr(11, $resposta); // "err7 adults";
+
 
 
 
@@ -644,6 +656,7 @@ FROM client
 
 
 
+
       
 //comanda?		
     //FINS AQUI TOT HA ANAT BE, ANEM A GUARDAR LA RESERVA...
@@ -672,7 +685,7 @@ FROM client
     $estat = $this->paga_i_senyal($coberts) ? 2 : 100;
     //$import_reserva=$this->configVars("import_paga_i_senyal");
     $import_reserva = 0;
-    
+
     $insertSQL = sprintf("INSERT INTO " . T_RESERVES . " ( id_reserva, client_id, data, hora, adults, 
 		  nens4_9, nens10_14, cotxets,lang,observacions, reserva_pastis, reserva_info_pastis,
                   resposta, estat, preu_reserva, usuari_creacio, 
@@ -750,7 +763,8 @@ FROM client
     $extres['subject'] = $this->l("Can-Borrell: CONFIRMACIÓ DE RESERVA ONLINE", FALSE);
 
     //envia MAIL
-    if ($_POST['client_email'] && !$TPV)   $mail = $this->enviaMail($idr, "confirmada_", FALSE, $extres);
+    if ($_POST['client_email'] && !$TPV)
+      $mail = $this->enviaMail($idr, "confirmada_", FALSE, $extres);
 
     $resposta['mail'] = isset($mail) ? $mail : FALSE;
     $resposta['virtual'] = $taulaVirtual;
@@ -762,7 +776,7 @@ FROM client
     if ($TPV) {
       $nom = $_POST['client_nom'] . ' ' . $_POST['client_cognoms'];
 
-      if (isset($_REQUEST["testTPV"])  && $_SESSION['permisos']>200)
+      if (isset($_REQUEST["testTPV"]) && $_SESSION['permisos'] > 200)
         $resposta['form_tpv'] = $this->generaTESTTpvSHA256($idr, import_paga_i_senyal, $nom);
       else
         $resposta['form_tpv'] = $this->generaFormTpvSHA256($idr, import_paga_i_senyal, $nom);
@@ -803,6 +817,7 @@ FROM client
     $torn = $this->torn($data, $hora);
     if (!$torn)
       return $this->jsonErr(8, $resposta); // COMPROVA torn
+
 
 
 
@@ -901,16 +916,16 @@ FROM client
     $perm = $_SESSION['permisos'];
     $_SESSION['permisos'] = Gestor::$PERMISOS; //LI DONO PERMISOS PER FER LA PERMUTA	
     $this->permuta_reserva();
-    
+
     $_SESSION['permisos'] = $perm; //LI RETIRO ELS PERMISOS
 
     $extra = 'INFO: ' . $_POST['reserva_info'];
     /*     * ****************************************************************************************************************** */
 //INSERT INTO COMANDES
-    
-    
+
+
     $deleteSQL = "DELETE FROM comanda WHERE comanda_reserva_id=" . $_POST['id_reserva'];
-    
+
     $this->qry_result = $this->log_mysql_query($deleteSQL, $this->connexioDB) or die(((is_object($GLOBALS["___mysqli_ston"])) ? mysqli_error($GLOBALS["___mysqli_ston"]) : (($___mysqli_res = mysqli_connect_error()) ? $___mysqli_res : false)));
     for ($i = 1; isset($_POST['plat_id_' . $i]); $i++) {
       $insertSQL = sprintf("INSERT INTO comanda ( comanda_reserva_id, comanda_plat_id, comanda_plat_quantitat) 
@@ -999,8 +1014,8 @@ FROM client
       $idc = $row['client_id'];
 
       $query = "UPDATE  `client` SET  
-`client_nom` =  " . $this->SQLVal($_POST['client_nom'],"no_quotes") . ",
-`client_cognoms` =  " . $this->SQLVal($_POST['client_cognoms'],"no_quotes") . ",
+`client_nom` =  " . $this->SQLVal($_POST['client_nom'], "no_quotes") . ",
+`client_cognoms` =  " . $this->SQLVal($_POST['client_cognoms'], "no_quotes") . ",
 `client_telefon` =  " . $this->SQLVal($_POST['client_telefon']) . ",
 `client_email` =  " . $this->SQLVal($_POST['client_email']) . "
 WHERE  `client`.`client_id` =$idc;
@@ -1009,14 +1024,18 @@ WHERE  `client`.`client_id` =$idc;
       $Result1 = $this->log_mysql_query($query, $this->connexioDB) or die(((is_object($GLOBALS["___mysqli_ston"])) ? mysqli_error($GLOBALS["___mysqli_ston"]) : (($___mysqli_res = mysqli_connect_error()) ? $___mysqli_res : false)));
     }
     else { //NO TROBAT, FEM INSERT
-      if (!isset($_POST['client_adresa'])) $_POST['client_adresa']="";
-      if (!isset($_POST['client_localitat'])) $_POST['client_localitat']="";
-      if (!isset($_POST['client_cp'])) $_POST['client_cp']="";
-      if (!isset($_POST['client_dni'])) $_POST['client_dni']="";
-      
-      
-      $query = "INSERT INTO `client` (`client_id`, `client_nom`, `client_cognoms`, `client_adresa`, `client_localitat`, `client_cp`, `client_dni`, `client_telefon`, `client_mobil`, `client_email`, `client_conflictes`) VALUES (NULL, " . $this->SQLVal($_POST['client_nom'],"no_quotes") . ", " . $this->SQLVal($_POST['client_cognoms'],"no_quotes") . ", " . $this->SQLVal($_POST['client_adresa']) . ", " . $this->SQLVal($_POST['client_localitat']) . ", " . $this->SQLVal($_POST['client_cp']) . ", " . $this->SQLVal($_POST['client_dni']) . ", " .  $this->SQLVal($_POST['client_telefon']) . ", " . $this->SQLVal($_POST['client_mobil']) . ", " . $this->SQLVal($_POST['client_email']) . ", NULL);";
-     
+      if (!isset($_POST['client_adresa']))
+        $_POST['client_adresa'] = "";
+      if (!isset($_POST['client_localitat']))
+        $_POST['client_localitat'] = "";
+      if (!isset($_POST['client_cp']))
+        $_POST['client_cp'] = "";
+      if (!isset($_POST['client_dni']))
+        $_POST['client_dni'] = "";
+
+
+      $query = "INSERT INTO `client` (`client_id`, `client_nom`, `client_cognoms`, `client_adresa`, `client_localitat`, `client_cp`, `client_dni`, `client_telefon`, `client_mobil`, `client_email`, `client_conflictes`) VALUES (NULL, " . $this->SQLVal($_POST['client_nom'], "no_quotes") . ", " . $this->SQLVal($_POST['client_cognoms'], "no_quotes") . ", " . $this->SQLVal($_POST['client_adresa']) . ", " . $this->SQLVal($_POST['client_localitat']) . ", " . $this->SQLVal($_POST['client_cp']) . ", " . $this->SQLVal($_POST['client_dni']) . ", " . $this->SQLVal($_POST['client_telefon']) . ", " . $this->SQLVal($_POST['client_mobil']) . ", " . $this->SQLVal($_POST['client_email']) . ", NULL);";
+
       $Result1 = $this->log_mysql_query($query, $this->connexioDB) or die(((is_object($GLOBALS["___mysqli_ston"])) ? mysqli_error($GLOBALS["___mysqli_ston"]) : (($___mysqli_res = mysqli_connect_error()) ? $___mysqli_res : false)));
       $idc = ((is_null($___mysqli_res = mysqli_insert_id($this->connexioDB))) ? false : $___mysqli_res);
     }
@@ -1131,13 +1150,13 @@ WHERE  `client`.`client_id` =$idc;
   public function respostaTPV_SHA256() {
     echo "RESPOSTA TPV >>> ";
     $id = $lang = "not set";
-    
+
     require_once ROOT . INC_FILE_PATH . 'API_PHP/redsysHMAC256_API_PHP_5.2.0/apiRedsys.php';
     $miObj = new RedsysAPI;
-    
+
 
     // Se crea Objeto
-    
+
     if (!empty($_POST)) {//URL DE RESP. ONLINE
       $version = $_POST["Ds_SignatureVersion"];
       $datos = $_POST["Ds_MerchantParameters"];
@@ -1145,31 +1164,31 @@ WHERE  `client`.`client_id` =$idc;
 
       $params = $miObj->decodeMerchantParameters($datos);
       $param = json_decode($params, TRUE);
-      
-      
-      
-  
+
+
+
+
       $tpv_config_file = TPV_CONFIG_FILE;
-      if (substr($param["Ds_MerchantData"],0,5)=="TEST_"){
-        $param["Ds_MerchantData"] = substr($param["Ds_MerchantData"],5);
+      if (substr($param["Ds_MerchantData"], 0, 5) == "TEST_") {
+        $param["Ds_MerchantData"] = substr($param["Ds_MerchantData"], 5);
         $tpv_config_file = "TPV256_test.php";
-      } 
-      
+      }
+
       $callback = $param["Ds_MerchantData"];
       $_REQUEST['tpv'] = $param;
       $_REQUEST['TPV_CONFIG_FILE'] = $tpv_config_file;
-          $this->xgreg_log("RESPOSTA TPV256 >>>>>>>>> <span class='idr'>" . $callback . "</span>", 0, LOG_FILE_TPVPK, TRUE);
-  
+      $this->xgreg_log("RESPOSTA TPV256 >>>>>>>>> <span class='idr'>" . $callback . "</span>", 0, LOG_FILE_TPVPK, TRUE);
+
       include(ROOT . INC_FILE_PATH . $tpv_config_file); //NECESSITO TENIR A PUNT $id i $lang
       $signatureEsperada = $miObj->createMerchantSignatureNotif($clave256, $datos);
-     
-      
-      
-      
-      
-      
-      
-      
+
+
+
+
+
+
+
+
 
       $this->xgreg_log("RESPOSTA TPV256 >>>>>>>>> <span class='idr'>" . $param['Ds_Order'] . "</span>", 0, LOG_FILE_TPVPK, FALSE);
       $p = print_r($param, TRUE);
@@ -1296,9 +1315,9 @@ WHERE  `client`.`client_id` =$idc;
       $query = "UPDATE " . T_RESERVES . " SET estat=100, preu_reserva='$import', resposta='$resposta' WHERE id_reserva=$idr";
       $res = $this->log_mysql_query($query, $this->connexioDB) or die(((is_object($GLOBALS["___mysqli_ston"])) ? mysqli_error($GLOBALS["___mysqli_ston"]) : (($___mysqli_res = mysqli_connect_error()) ? $___mysqli_res : false)));
       $result = print_r($res, TRUE);
-      
-      $query="UPDATE estat_taules SET estat_taules_timestamp=NOW() WHERE reserva_id=$idr";
-            $res = $this->log_mysql_query($query, $this->connexioDB) or die(((is_object($GLOBALS["___mysqli_ston"])) ? mysqli_error($GLOBALS["___mysqli_ston"]) : (($___mysqli_res = mysqli_connect_error()) ? $___mysqli_res : false)));
+
+      $query = "UPDATE estat_taules SET estat_taules_timestamp=NOW() WHERE reserva_id=$idr";
+      $res = $this->log_mysql_query($query, $this->connexioDB) or die(((is_object($GLOBALS["___mysqli_ston"])) ? mysqli_error($GLOBALS["___mysqli_ston"]) : (($___mysqli_res = mysqli_connect_error()) ? $___mysqli_res : false)));
 
       //$result = $res?"!!!SUCCESS!!!":"***ERROR***";
     }
@@ -1594,25 +1613,18 @@ SQL;
 
     return $rjson;
   }
-  
-  
-  
-  
-  
-  
-  
-  
-  
-/*******************************************************************************************/  
-/*******************************************************************************************/  
-/*******************************************************************************************/  
-/*******************************************************************************************/  
-/*******************************************************************************************/  
-/*******************************************************************************************/  
-/*******************************************************************************************/  
-/*******************************************************************************************/
-    public function recuperaCartaWeb($idr=-1, $es_menu = false) {
-      
+
+  /*   * **************************************************************************************** */
+  /*   * **************************************************************************************** */
+  /*   * **************************************************************************************** */
+  /*   * **************************************************************************************** */
+  /*   * **************************************************************************************** */
+  /*   * **************************************************************************************** */
+  /*   * **************************************************************************************** */
+  /*   * **************************************************************************************** */
+
+  public function recuperaCartaWeb($idr = -1, $es_menu = false) {
+
     $lng = $leng = $this->lng;
     if ($idr < 1)
       $idr = -1;
@@ -1627,8 +1639,9 @@ SQL;
     $were.=' AND carta_plats_subfamilia_id IN (1101, 1102, 1103, 1104, 1105)';
     $were.=' AND carta_publicat = TRUE ';
 
-    if ($leng == 'en') $leng='ca';
-    
+    if ($leng == 'en')
+      $leng = 'ca';
+
     $CONTROLA_ARTICLES_ACTIUS = "";
 
     $query = "select `carta_plats_id`,`carta_plats_nom_es`,`carta_plats_nom_$leng` AS `carta_plats_nom_$lng`,`carta_plats_nom_ca`,`carta_plats_preu`,"
@@ -1645,7 +1658,7 @@ $CONTROLA_ARTICLES_ACTIUS
 
 WHERE $were
 ORDER BY carta_subfamilia_order,carta_plats_nom_es , carta_plats_nom_ca";
-    
+
     //
 //ORDER BY (carta_subfamilia_id=2),carta_subfamilia_id";
 //echo $query;
@@ -1657,7 +1670,7 @@ ORDER BY carta_subfamilia_order,carta_plats_nom_es , carta_plats_nom_ca";
       $plat = array('id' => $row['carta_plats_id'], 'nom' => $row['carta_plats_nom_' . $lng], 'preu' => $row['carta_plats_preu'], 'quantitat' => $row['comanda_plat_quantitat']);
       $arCarta[$row['carta_subfamilia_nom_' . $lng]][] = $plat;
     }
-    
+
 //    echo "<pre>";
 //print_r($arCarta);
 //    echo "</pre>";
@@ -1668,15 +1681,15 @@ ORDER BY carta_subfamilia_order,carta_plats_nom_es , carta_plats_nom_ca";
     $llista = "";
     $tancaLlista = ' [/ms_tabs]' . PHP_EOL;
     $carta = "";
-/**/
+    /**/
     foreach ($arCarta as $key => $val) {
       $k = $nom = $this->normalitzar($key);
-        $nom = l($key, FALSE);
-        
+      $nom = l($key, FALSE);
+
       $nom = ucfirst(strtolower($nom));
-      
-       $obreSeccio = "[ms_tab title='$nom' icon='xfa-leaf']" . PHP_EOL;
-      $obreSeccio .= '<p><b>'.$nom.'</b></p>' . PHP_EOL;
+
+      $obreSeccio = "[ms_tab title='$nom' icon='xfa-leaf']" . PHP_EOL;
+      $obreSeccio .= '<p><b>' . $nom . '</b></p>' . PHP_EOL;
       $seccio = $this->seccioCartaWeb($arCarta, $key, $class);
       $tancaSeccio = '[/ms_tab]' . PHP_EOL . PHP_EOL;
 
@@ -1684,14 +1697,14 @@ ORDER BY carta_subfamilia_order,carta_plats_nom_es , carta_plats_nom_ca";
     }
 
     //print_r($arCarta);
-    return $obreLlista . $carta. $tancaLlista;
+    return $obreLlista . $carta . $tancaLlista;
   }
 
   /*   * ******************************************************************************************************* */
 
   public function seccioCartaWeb($ar, $k, $class) {
     $obreTaula = '<ul class="carta">' . PHP_EOL;
-    
+
     $tr = '';
     foreach ($ar[$k] as $key => $val) {
       $menuEspecial = $this->menuEspecial($val['id']) ? " menu-especial" : "";
@@ -1701,26 +1714,23 @@ ORDER BY carta_subfamilia_order,carta_plats_nom_es , carta_plats_nom_ca";
       /**  IVA  * */
       $preu = round($val['preu'] + $val['preu'] * IVA / 100, 2);
       $preu = number_format($preu, 2, '.', '');
-      
+
       $nom = $val['nom'];
-      
-     // echo "****************** $noms";
+
+      // echo "****************** $noms";
       $nom = l($nom, FALSE);
       $nom = ucfirst(strtolower($nom));
-      
-      $tr.='<li producte_id="' . $val['id'] . '" class="item-carta '  . $menuEspecial . '">';
-      $tr.=$nom.'<span class="fr">'.$preu.'</span>';
-     // $tr.= '<div><div class="dt">'.$val['nom'].'</div><div class="dd">'.$preu."</div></div>";
-      $tr.='</li>'. PHP_EOL;
+
+      $tr.='<li producte_id="' . $val['id'] . '" class="item-carta ' . $menuEspecial . '">';
+      $tr.=$nom . '<span class="fr">' . $preu . '</span>';
+      // $tr.= '<div><div class="dt">'.$val['nom'].'</div><div class="dd">'.$preu."</div></div>";
+      $tr.='</li>' . PHP_EOL;
     }
 
     $tancaTaula = '</ul>' . PHP_EOL . PHP_EOL;
 
     return $obreTaula . $tr . $tancaTaula;
   }
-  
-  
-  
 
 }
 
@@ -1762,16 +1772,26 @@ if (isset($accio) && !empty($accio)) {
     $logables = array('cancelReserva', 'insertUpdateClient', 'salvaUpdate', 'submit', 'update_client', 'esborra_client', 'inserta_reserva', 'update_reserva', 'esborra_reserva', 'enviaSMS', 'permuta', 'permuta_reserva', '', '', '', '', '', '', '', '', '', '', '');
     $log = in_array($accio, $logables);
     $ip = isset($ips[$_SERVER['REMOTE_ADDR']]) ? $ips[$_SERVER['REMOTE_ADDR']] : $_SERVER['REMOTE_ADDR'];
-    
-    if (isset($_SESSION['uSer'])) $sessuser = $_SESSION['uSer'];
-    if (isset($sessuser)){
+
+    if (isset($_SESSION['uSer']))
+      $sessuser = $_SESSION['uSer'];
+    if (isset($sessuser)) {
       $user = $sessuser->id;
-    }else{
-      echo "err102";
-      die();
     }
-    
-    
+
+
+    if ($accio == 'respostaTPV_SHA256') {
+      $usr = new Usuari(3, "webForm", 1);
+      if (!isset($_SESSION['uSer']))
+        $_SESSION['uSer'] = $usr;
+    }
+    /*
+      else{
+      echo "err100";
+      die();
+      }
+     */
+
     if ($log) {
       $req = '<pre>' . print_r($_REQUEST, true) . '</pre>';
       $gestor->xgreg_log("Petició Gestor FORM: " . $accio . "  user:$user ($ip) (b=" . $_REQUEST['b'] . ", c=" . $_REQUEST['c'] . ", d=" . $_REQUEST['d'] . " ---- p=" . $_REQUEST['p'] . ", q=" . $_REQUEST['q'] . ", r=" . $_REQUEST['r'] . ", c=" . $_REQUEST['c'] . ", d=" . $_REQUEST['d'] . ", e=" . $_REQUEST['e'] . ") > " . $req . EOL, 1);
@@ -1779,7 +1799,7 @@ if (isset($accio) && !empty($accio)) {
 
     $respostes = array('respostaTPV', 'respostaTPV_SHA256');
     if (!$gestor->valida_sessio(1) && !in_array($accio, $respostes)) {
-      echo "err101";
+      echo "err100";
       die();
     }
     $gestor->out(call_user_func(array($gestor, $accio), $_REQUEST['b'], $_REQUEST['c'], $_REQUEST['d'], $_REQUEST['e'], $_REQUEST['f'], $_REQUEST['g']));

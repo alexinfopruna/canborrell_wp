@@ -527,6 +527,8 @@ class Gestor {
       $req = '<pre>' . print_r($_REQUEST, true) . '</pre>';
     }
     $ip = isset($ips[$_SERVER['REMOTE_ADDR']]) ? $ips[$_SERVER['REMOTE_ADDR']] : $_SERVER['REMOTE_ADDR'];
+    
+    
     $sessuser = $_SESSION['uSer'];
 
     if (isset($sessuser))
