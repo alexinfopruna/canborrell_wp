@@ -205,7 +205,7 @@ echo $query ."   $database_canborrell  *** ".$lang;die();
                                                         
                                                         
         $copia=Gestor::lv("Reserva Grups CONFIRMADA");
-        $subject=Gestor::lv("Can-Borrell: RESERVA CONFIRMADA");
+        $subject=Gestor::lv("Can-Borrell: RESERVA CONFIRMADA")." ".$fila['id_reserva'];
         $altbdy="Su reserva para el Restaurante Can Borrel ha sido confirmada. \n\nDebido a que su cliente de correo no puede interpretar correctamente este mensaje no es posible automatizar el proceso de pago.\n\n Por favor, póngase en contacto con el restaurante llamando al 936 929 723 o al 936 910 605. \n\nDisculpe las molestias";
  	  break;
 	
@@ -214,7 +214,7 @@ echo $query ."   $database_canborrell  *** ".$lang;die();
 		$preu=$fila['preu_reserva'];
 		$datat=data_llarga($fila['data'],$lang).", ".$fila['hora']."h";
         $copia=Gestor::lv("Reserva Grups PAGADA");
-        $subject=Gestor::lv("Can-Borrell: NOTIFICACIÓ DE PAGAMENT REBUDA");
+        $subject=Gestor::lv("Can-Borrell: NOTIFICACIÓ DE PAGAMENT REBUDA")." ".$fila['id_reserva'];
 		if ($fila['factura']) 
 		{
 			$attach=factura($fila,"../",false);
@@ -236,7 +236,7 @@ echo $query ."   $database_canborrell  *** ".$lang;die();
         $altbdy="Lamentamos informarle que la reserva que solicitó para el restaurante Can Borrell ha sido denegada por encontrarse el comedor lleno.\n\n Para más información, por favor, póngase en contacto con el restaurante llamando al 936 929 723 o al 936 910 605. \n\nDisculpe las molestias";
     $copia=Gestor::lv("Reserva Grups DENEGADA");*/
             $aki ="";
-    $subject=Gestor::lv("Can-Borrell: RESERVA DENEGADA");
+    $subject=Gestor::lv("Can-Borrell: RESERVA DENEGADA")." ".$fila['id_reserva'];
 	  break;
 	  
 	  default:

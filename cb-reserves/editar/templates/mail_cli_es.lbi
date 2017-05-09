@@ -37,7 +37,7 @@
     
 <tr style="height: 10px;">
 <td></td>
-      <td align="center"><h1><span class="titol" style="color:#444; font-size: 18px;">{titol}</span></h1></td>
+      <td align="center"><h1><span class="titol" style="color:#444; font-size: 18px;">{titol} {id_reserva}</span></h1></td>
       <td width="12"></td>  </tr>
 <tr style="height: 10px;">
 <td></td>

@@ -273,7 +273,7 @@ function mail_cli($id=false, $plantilla="templates/recordatori_cli.lbi")
 			
             //$t->p("OUT");
 	$recipient=$fila['email'];
-    $subject="..::Reserva Can Borrell: Recordatori reserva";
+    $subject="..::Reserva Can Borrell: Recordatori reserva"." ".$fila['id_reserva'];
     
     if (SMS_ACTIVAT)    $r=  mailer_reserva($id, $plantilla, $recipient, $subject , $html, $altbdy, null, false, MAIL_CCO);
     else {

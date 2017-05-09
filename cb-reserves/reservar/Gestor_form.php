@@ -760,7 +760,7 @@ FROM client
 
     $TPV = $this->paga_i_senyal($coberts);
     //$extres['subject'] =  "Can-Borrell: CONFIRMACIÓ DE RESERVA ONLINE";
-    $extres['subject'] = $this->l("Can-Borrell: CONFIRMACIÓ DE RESERVA ONLINE", FALSE);
+    $extres['subject'] = $this->l("Can-Borrell: CONFIRMACIÓ DE RESERVA ONLINE", FALSE)." ".$idr;
 
     //envia MAIL
     if ($_POST['client_email'] && !$TPV)
@@ -984,7 +984,7 @@ FROM client
 
       //ENVIA MAIL
       $_POST['id_reserva'] = $idr;
-      $extres['subject'] = "Can-Borrell: RESERVA CANCELADA " . $_POST['id_reserva'];
+      //$extres['subject'] = "Can-Borrell: RESERVA CANCELADA " . $_POST['id_reserva'];
       $extres['subject'] = $this->l("Can-Borrell: RESERVA CANCELADA ", FALSE) . $_POST['id_reserva'];
       $mail = $this->enviaMail($idr, "cancelada_", FALSE, $extres);
 
@@ -1058,7 +1058,7 @@ WHERE  `client`.`client_id` =$idc;
     //$dest="alex@infopruna.net";
     $extres['reserva_consulta_online'] = $_POST['reserva_consulta_online'];
     $extres['client_email'] = $_POST['client_email'];
-    $extres['subject'] = "Can-Borrell: Consulta reserves petites online";
+    $extres['subject'] = "Can-Borrell: Consulta reserves petites online"." ".$idr;
 
     if (!empty($post['idr']) && floor($post['idr']) < 1000)
       return false;
@@ -1090,7 +1090,7 @@ WHERE  `client`.`client_id` =$idc;
     $dest = MAIL_RESTAURANT;
     $extres['reserva_consulta_online'] = $_POST['reserva_consulta_online'];
     $extres['client_email'] = $_POST['client_email'];
-    $extres['subject'] = "Can-Borrell: GRUPS Consulta reservesonline";
+    $extres['subject'] = "Can-Borrell: GRUPS Consulta reservesonline"." ".$idr;
     //$extres['subject'] = $this->l("Can-Borrell: GRUPS Consulta reservesonline");
 
 
@@ -1325,7 +1325,7 @@ WHERE  `client`.`client_id` =$idc;
     }
 //$result = "ANULAT";    
 
-    $extres['subject'] = $this->l("Can-Borrell: RESERVA CONFIRMADA", FALSE);
+    $extres['subject'] = $this->l("Can-Borrell: RESERVA CONFIRMADA", FALSE)." ".$idr;
 
     if ($mail) {
       $this->enviaMail($idr, "../reservar/paga_i_senyal_", "", $extres);
@@ -1397,7 +1397,7 @@ WHERE  `client`.`client_id` =$idc;
     include('translate_' . $this->lng . '.php');
     echo $query . " >>> " . $result;
 //
-    $extres['subject'] = $translate["MAIL_GRUPS_PAGAT_subject"];
+    $extres['subject'] = $translate["MAIL_GRUPS_PAGAT_subject"]." ".$idr;
     $extres['titol'] = $translate["MAIL_GRUPS_PAGAT_titol"];
     $extres['text1'] = $translate["MAIL_GRUPS_PAGAT_text1"] . number_format($import, 2);
     $extres['text2'] = $translate["MAIL_GRUPS_PAGAT_text2"];
