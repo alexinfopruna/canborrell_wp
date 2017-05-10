@@ -416,6 +416,9 @@ $translateJS["PAGA_I_SENYAL"] ="<div>A continuación has de realizar el pago de 
         . "<br/><br/>Te transferimos a una passarela bancaria externa a Can Borrell. El restaurant no tendrá acceso a los datos que introduzcas"
         . "<br/><br/></div>";
 
+$translateDirectJS['PAGAMENT REBUT']="Hemos recibido la notificación del pago. Tu reserva está confirmada. \\n\\nGracies por utilitzar este servicio";
+$translateDirectJS['EL PAGAMENT HA ESTAT ANULAT']="Desgraciadamente no se ha completado el proceso de pago. \\n\\nGracies por utilitzar este servici";
+
 
 
 /*******************************************************     ERRORS   ***********************************/	

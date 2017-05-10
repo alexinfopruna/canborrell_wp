@@ -22,7 +22,7 @@ var resub = false;
 
 var SECCIO_INICIAL = "fr-seccio-quants";
 var AVIS_MODIFICACIONS = false;
-
+var timer_estat;
 var popup = "";
 var dlg = {
     autoOpen: false,
@@ -1009,17 +1009,14 @@ function validacio()
 function controlSubmit()
 {
     var loading = '<div style="height:320px"><img src="/cb-reserves/reservar/css/loading.gif"/></div>';
-    if (browser_malo)
-        $('#submit').click(function () {
+    if (browser_malo)   $('#submit').click(function () {
             $('#form-reserves').submit();
         });
     $('#form-reserves').submit(function () {
-        if (!$("#form-reserves").valid())
-            return false;
+        if (!$("#form-reserves").valid())       return false;
 
-        var control = setTimeout(function () {
-            timer_submit();
-        }, 15000);
+        var control = setTimeout(function () {  timer_submit();   }, 15000);
+
 
 
         if ($("#popup").is(':visible')){
@@ -1042,15 +1039,21 @@ function controlSubmit()
             if (obj.resposta == "ok") // RESPOSTA OK
             {
                 $("#popup").bind("dialogclose", function (event, ui) {
-                    $.post(GESTOR + "?a=cancelPagaISenyal&b=" + obj.idr);
-                    window.location.href = "/#about";
+                   window.clearInterval(timer_estat); 
+                    clearTimeout(timer);
+                    clearTimeout(control);
+                   if (refresh_estat(obj.idr)!=100) $.post(GESTOR + "?a=cancelPagaISenyal&b=" + obj.idr); ;
+                   SUBMIT_OK = false;
+                    //window.location.href = "/#about";
                     $('#submit').show();
                 });
 
                 SUBMIT_OK = true;
                 SECCIO = null;
 
-                /** 
+                /********************************************************************************************************* 
+                /********************************************************************************************************* 
+                /********************************************************************************************************* 
                  * 
                  * PAGA I SENYAL */
                 /*
@@ -1058,11 +1061,6 @@ function controlSubmit()
                  */
                 if (obj.TPV == "TPV") {
                     $("#td-form-tpv").html(obj.form_tpv);
-                    if (getUrlParameter("testTPV") == "testTPV") {
-                        $(".ui-dialog").remove();
-                        $(".ui-widget-overlay").hide();
-                        return false;
-                    }
 
                     var info = l('PAGA_I_SENYAL');
                     $("#popup").html(info + '<iframe id="frame-tpv" name="frame-tpv" style="width:100%;height:500px"></iframe>');
@@ -1072,15 +1070,19 @@ doc.write('<html><head><title></title><style>body{background:url(//www.can-borre
                     /** 
                      * TIMER TEMPS MAXIM
                      */
+                    timer_estat = setInterval(function () { refresh_estat(obj.idr); },4000);
+                    
                     timer = setTimeout(function () {  // RESET 
                         clearTimeout(timer);
 
                         $.post(GESTOR + "?a=estatReserva&b=" + obj.idr, function (r) {
                             d = parseInt(r);
                             if (d != 100) {
+                                window.location.href = "/#about";
                                 alert("La sessió ha caducat");
                                 $("#popup").dialog('close');
                             } else {
+                                window.location.href = "/#about";
                                 alert("Can-Borrell: Hem registrat correctament el pagament");
                                 $("#bt-continuar .ui-button-text").html("Finalitzar");
                                 $("#popup").dialog('close');
@@ -1115,6 +1117,30 @@ doc.write('<html><head><title></title><style>body{background:url(//www.can-borre
         return false;
     });
 }
+
+function refresh_estat(idr){
+      var desti = "/cb-reserves/taules/gestor_reserves.php?a=estat_reserva_online&b=" + idr ;
+    $.post(desti, {r: 0}, function (datos) {
+        if (datos == "100"){
+             window.clearInterval(timer_estat);
+            window.location.href = "/#about";
+            
+            alert(l('PAGAMENT REBUT'));
+        }
+
+        if (datos == "0"){
+             window.clearInterval(timer_estat);
+            window.location.href = "/#about";
+            alert(l('EL PAGAMENT HA ESTAT ANULAT'));
+        }
+
+        return datos;
+    });
+    
+    
+    
+}
+
 
 function timer_submit() {
     alert(l('err0'));

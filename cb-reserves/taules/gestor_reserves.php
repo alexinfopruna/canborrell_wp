@@ -2962,6 +2962,21 @@ ORDER BY `estat_hores_data` DESC";
   
   /*   * ********************************************************************************************************************* */
 
+  public function estat_reserva_online($idr) {
+      if (!$idr)
+      return "No s'ha rebut ID";
+
+    $query = "SELECT estat  FROM reservestaules  WHERE id_reserva=$idr";
+
+    $Result1 = mysqli_query($this->connexioDB, $query) or die(((is_object($GLOBALS["___mysqli_ston"])) ? mysqli_error($GLOBALS["___mysqli_ston"]) : (($___mysqli_res = mysqli_connect_error()) ? $___mysqli_res : false)));
+    if (!mysqli_num_rows($Result1)) return 0;
+    
+    $row = mysqli_fetch_array($Result1, MYSQLI_ASSOC);
+    return $row['estat'];
+  }
+  
+  /*   * ********************************************************************************************************************* */
+
   public function plats_comanda($idr) {
     if (!$idr)
       return "No s'ha rebut ID";

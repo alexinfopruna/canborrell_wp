@@ -449,6 +449,11 @@ $translateJS['err99'] = 'Test error';
 $translateJS['err100'] = 'Net Session Error';
 $translateJS['err_contacti'] = 'contact the restaurant: 936929723 / 936910605';
 
+$translateDirectJS['PAGAMENT REBUT']="We have received notification of the payment. Your reservation is already confirmed. \\n\\nThanks to use this service";
+$translateDirectJS['EL PAGAMENT HA ESTAT ANULAT']="Unfortunately the payment process is not complete. \\n\\nThanks to use this service";
+
+
+
 $translate['err20'] = '<b>You have now made a reservation in Can Borrell!!</b><br/><br/>you can change or cancel it but. you cannot make more than one online reservation. <br/><em>(To edit or cancel use the link found above, below the navigation bar on this page)</em><br/><br/><br/>If you wish to contact us: <br/><b>936929723 / 936910605</b><br/><br/><br/>The reservation we have booked is for ';
 $translateDirectJS['err21'] = '<b>We can‘t make a reservation due to a problem with a past reservation</b><br/><br/>Please, to make a reservation contact us: 936929723 / 936910605';
 $translateDirectJS['err20'] = '<b>You have now made a reservation in Can Borrell!!</b><br/><br/>you can change or cancel it but. you cannot make more than one online reservation. <br/><em>(To edit or cancel use the link found above, below the navigation bar on this page)</em><br/><br/><br/>If you wish to contact us: <br/><b>936929723 / 936910605</b><br/><br/><br/>The reservation we have booked is for ';
