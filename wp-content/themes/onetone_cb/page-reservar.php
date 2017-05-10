@@ -15,9 +15,11 @@ define('USR_FORM_WEB', 3); //ES LA ID D'USUARI (admin) ANONIM QUE CREA RESERVA O
 // CREA USUARI ANONIM
 if (!isset($_SESSION))
   session_start();
+
+if (!isset($_SESSION['uSer'])){
 $usr = new Usuari(USR_FORM_WEB, "webForm", 1);
-if (!isset($_SESSION['uSer']))
   $_SESSION['uSer'] = $usr;
+}
 
 require (ROOT . "../reservar/Gestor_form.php");
 $gestorf = new Gestor_form();
@@ -31,6 +33,8 @@ $total = $na + $nj + $nn;
 //RECUPERA IDIOMA
 global $sitepress;
 $language_uri = substr($_SERVER['REQUEST_URI'], 0, 4);
+
+
 if ($language_uri == '/es/' || $language_uri == '/en/') {
   $lang = substr($_SERVER['REQUEST_URI'], 1, 2);
   $gestorf->idioma($lang);

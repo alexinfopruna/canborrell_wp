@@ -2586,7 +2586,7 @@ ORDER BY `estat_hores_data` DESC";
       $row = mysqli_fetch_assoc($this->qry_result);
     }
     if (!$this->qry_result || !mysqli_num_rows($this->qry_result))
-      return "err55";
+      return "err10";
 
     $row['aixoesunarray'] = 1;
     if ($extres)
@@ -2643,7 +2643,7 @@ ORDER BY `estat_hores_data` DESC";
       $mail = "Enviament $plantilla RESERVA PETITA ONLINE($r): $idr -- $recipient";
     }
     catch (Exception $e) {
-      $mail = "err55";
+      $mail = "err10";
     }
 
     $rs = ($result['Result'] == "NO ENVIAT!!!") ? "ERROR" : "EXIT";
@@ -3185,7 +3185,47 @@ ORDER BY `estat_hores_data` DESC";
   }
 
   /*   * ********************************************************************************************************************* */
+  /*   * ********************************************************************************************************************* */
+  /*   * ********************************************************************************************************************* */
+  
+  /*
+   * 
+  DELETE FROM `reservestaules` WHERE `data`<'2017-04-01';
+   * 
+  DELETE FROM `reserves` WHERE `data`<'2017-04-01'
+ 
+  SELECT * FROM `email` left join reservestaules on reservestaules.id_reserva = reserva_id left join reserves on reserves.id_reserva = reserva_id WHERE reservestaules.id_reserva is null AND reserves.id_reserva is null
+  SELECT * FROM `sms` left join reservestaules on reservestaules.id_reserva = sms_reserva_id left join reserves on reserves.id_reserva = sms_reserva_id WHERE reservestaules.id_reserva is null AND reserves.id_reserva is null
+  
+SELECT * FROM `estat_taules` left join reservestaules on reservestaules.id_reserva = reserva_id left join reserves on reserves.id_reserva = reserva_id WHERE reservestaules.id_reserva is null AND reserves.id_reserva is null
+AND `estat_taula_data`>'2011-01-01'
+AND `estat_taula_data`<'2017-04-01
+  
+ 
+  SELECT * FROM `comanda` left join reservestaules on reservestaules.id_reserva = comanda_reserva_id left join reserves on reserves.id_reserva = comanda_reserva_id WHERE reservestaules.id_reserva is  null AND reserves.id_reserva is  null
 
+  DELETE FROM `client` WHERE `client_nom` LIKE 'ESBORRAT' 
+AND client_timestamp < '2017-04-01';
+
+
+  
+  
+  
+  11
+   * 
+   * 
+   * 
+   * 
+   *  * 
+   * 
+   * 
+   */
+  
+  /*   * ********************************************************************************************************************* */
+  /*   * ********************************************************************************************************************* */
+  /*   * ********************************************************************************************************************* */
+
+  
   public function lastBackup($format = '%h') {
 // $files = scandir(ROOT . INC_FILE_PATH . "db_Backup", SCANDIR_SORT_ASCENDING);
     $files = scan_sort_dir(ROOT . INC_FILE_PATH . "db_Backup");

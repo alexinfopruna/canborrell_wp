@@ -6,12 +6,15 @@ require_once(ROOT."Gestor.php");
 require(ROOT."../Connections/".DB_CONNECTION_FILE);
 
 ?>
-
+<html>
+<head>
     <link rel="shortcut icon" type="image/ico" href="/gear-favicon.ico" />
 
 <title>
 Info sistema
 </title>
+    
+    
 <style>
 	h1{text-align:center;}
 	table{width:600px;background:#eef;border-collapse:collapse;}
@@ -21,6 +24,9 @@ Info sistema
 	tr td:first-child{background:#CCF;width:70px;font-weight:bold;}
 	.hightligh{background:#fdd !important;}
 </style>
+</head>
+<body>
+    <a href="http://cbwp-localhost/cb-reserves/panel/infoConn.php">http://cbwp-localhost/cb-reserves/panel/infoConn.php</a>
 <?php
 echo '<table id="info" style="margin:auto auto;">';
 echo '<tr><td><h1>SISTEMA DE RESERVES</h1></td></tr>';
@@ -56,3 +62,5 @@ if (isset($_GET['mail'])){
 
 echo $variable;
 ?>
+</body>
+</html>

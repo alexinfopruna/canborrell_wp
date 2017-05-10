@@ -13,69 +13,31 @@
             <url>cb-reserves/reservar/Gestor_form.php</url>
             <bookmark id="4">
                 <name/>
-                <line>255</line>
+                <line>256</line>
                 <key/>
             </bookmark>
             <bookmark id="5">
                 <name/>
-                <line>1142</line>
+                <line>1163</line>
                 <key/>
             </bookmark>
         </file>
     </editor-bookmarks>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/var/www/canborrell-wp/cb-reserves/editar/templates/recordatori_1dia_cli.lbi</file>
-            <file>file:/var/www/canborrell-wp/cb-reserves/editar/templates/originals/reservar/paga_i_senyal_es.lbi</file>
-            <file>file:/var/www/canborrell-wp/cb-reserves/editar/translate_editar_es.php</file>
-            <file>file:/var/www/canborrell-wp/cb-reserves/editar/templates/transfer_rest.lbi</file>
-            <file>file:/var/www/canborrell-wp/cb-reserves/editar/templates/originals/reservar/mail_res_modificada_en.lbi</file>
-            <file>file:/var/www/canborrell-wp/cb-reserves/editar/templates/originals/taules/confirmada_es.lbi</file>
-            <file>file:/var/www/canborrell-wp/cb-reserves/reservar/js/form_reserves.js</file>
-            <file>file:/var/www/canborrell-wp/cb-reserves/reservar/translate_ca.php</file>
-            <file>file:/var/www/canborrell-wp/cb-reserves/editar/translate_editar_ca.php</file>
-            <file>file:/var/www/canborrell-wp/cb-reserves/editar/templates/originals/taules/confirmada_ca.lbi</file>
-            <file>file:/var/www/canborrell-wp/cb-reserves/editar/templates/originals/reservar/paga_i_senyal_ca.lbi</file>
-            <file>file:/var/www/canborrell-wp/cb-reserves/editar/templates/mail_cli_es.lbi</file>
-            <file>file:/var/www/canborrell-wp/cb-reserves/editar/templates/cancel_rest.lbi</file>
-            <file>file:/var/www/canborrell-wp/cb-reserves/editar/templates/originals/reservar/mail_res_modificada_ca.lbi</file>
-            <file>file:/var/www/canborrell-wp/cb-reserves/reservar/confirmada_ca.lbi</file>
-            <file>file:/var/www/canborrell-wp/cb-reserves/reservar/translate_en.php</file>
-            <file>file:/var/www/canborrell-wp/cb-reserves/editar/templates/recordatori_cli.lbi</file>
-            <file>file:/var/www/canborrell-wp/cb-reserves/editar/templates/pagat_rest.lbi</file>
-            <file>file:/var/www/canborrell-wp/cb-reserves/reservar/paga_i_senyal_es.lbi</file>
-            <file>file:/var/www/canborrell-wp/cb-reserves/editar/templates/originals/reservar/confirmada_en.lbi</file>
-            <file>file:/var/www/canborrell-wp/cb-reserves/translate_web_ca.php</file>
-            <file>file:/var/www/canborrell-wp/cb-reserves/taules/confirmada_es.lbi</file>
-            <file>file:/var/www/canborrell-wp/cb-reserves/editar/templates/mail_cli_en.lbi</file>
-            <file>file:/var/www/canborrell-wp/cb-reserves/editar/apdeit.php</file>
-            <file>file:/var/www/canborrell-wp/wp-content/themes/onetone_cb/page-reservar.php</file>
-            <file>file:/var/www/canborrell-wp/cb-reserves/editar/templates/originals/reservar/confirmada_ca.lbi</file>
-            <file>file:/var/www/canborrell-wp/cb-reserves/reservar/confirmada_en.lbi</file>
-            <file>file:/var/www/canborrell-wp/cb-reserves/reservar/mail_res_modificada_es.lbi</file>
-            <file>file:/var/www/canborrell-wp/cb-reserves/editar/translate_editar_en.php</file>
-            <file>file:/var/www/canborrell-wp/cb-reserves/editar/templates/originals/reservar/paga_i_senyal_en.lbi</file>
-            <file>file:/var/www/canborrell-wp/cb-reserves/editar/templates/mail_cli.lbi</file>
-            <file>file:/var/www/canborrell-wp/.htaccess</file>
-            <file>file:/var/www/canborrell-wp/cb-reserves/reservar/confirmada_es.lbi</file>
-            <file>file:/var/www/canborrell-wp/cb-reserves/reservar/translate_carta_ca.php</file>
-            <file>file:/var/www/canborrell-wp/cb-reserves/editar/templates/mail_cli_ca.lbi</file>
-            <file>file:/var/www/canborrell-wp/cb-reserves/taules/gestor_reserves.php</file>
-            <file>file:/var/www/canborrell-wp/cb-reserves/editar/templates/originals/reservar/mail_res_modificada_es.lbi</file>
-            <file>file:/var/www/canborrell-wp/cb-reserves/reservar/js/control_carta.js</file>
-            <file>file:/var/www/canborrell-wp/cb-reserves/taules/confirmada_en.lbi</file>
-            <file>file:/var/www/canborrell-wp/cb-reserves/reservar/js/form_reserves_mob.js</file>
             <file>file:/var/www/canborrell-wp/cb-reserves/editar/editar.php</file>
-            <file>file:/var/www/canborrell-wp/cb-reserves/editar/templates/pre_reserva_rest.lbi</file>
-            <file>file:/var/www/canborrell-wp/cb-reserves/editar/templates/originals/reservar/confirmada_es.lbi</file>
-            <file>file:/var/www/canborrell-wp/cb-reserves/reservar/paga_i_senyal_en.lbi</file>
-            <file>file:/var/www/canborrell-wp/cb-reserves/reservar/translate_es.php</file>
-            <file>file:/var/www/canborrell-wp/cb-reserves/reservar/mail_res_modificada_en.lbi</file>
-            <file>file:/var/www/canborrell-wp/cb-reserves/taules/confirmada_ca.lbi</file>
-            <file>file:/var/www/canborrell-wp/cb-reserves/reservar/translate_grups_ca.php</file>
-            <file>file:/var/www/canborrell-wp/cb-reserves/reservar/mail_res_modificada_ca.lbi</file>
-            <file>file:/var/www/canborrell-wp/cb-reserves/editar/templates/originals/taules/confirmada_en.lbi</file>
-            <file>file:/var/www/canborrell-wp/cb-reserves/reservar/paga_i_senyal_ca.lbi</file>
+            <file>file:/var/www/canborrell-wp/.htaccess</file>
+            <file>file:/var/www/canborrell-wp/cb-reserves/editar/confirma_En.php</file>
+            <file>file:/var/www/canborrell-wp/cb-reserves/editar/edit_reserva.php</file>
+            <file>file:/var/www/canborrell-wp/cb-reserves/editar/caducades.php</file>
+            <file>file:/var/www/canborrell-wp/cb-reserves/editar/apdeit.php</file>
+            <file>file:/var/www/canborrell-wp/cb-reserves/taules/js/taules.js</file>
+            <file>file:/var/www/canborrell-wp/wp-content/themes/onetone_cb/page-pagament.php</file>
+            <file>file:/var/www/canborrell-wp/cb-reserves/editar/confirma.php</file>
+            <file>file:/var/www/canborrell-wp/cb-reserves/reservar/Gestor_form.php</file>
+            <file>file:/var/www/canborrell-wp/cb-reserves/taules/gestor_reserves.php</file>
+            <file>file:/var/www/canborrell-wp/wp-content/themes/onetone_cb/page-reservar.php</file>
+            <file>file:/var/www/canborrell-wp/cb-reserves/editar/cancela.php</file>
         </group>
     </open-files>
 </project-private>
