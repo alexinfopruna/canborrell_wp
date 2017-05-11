@@ -655,8 +655,6 @@ FROM client
 
 
 
-
-
       
 //comanda?		
     //FINS AQUI TOT HA ANAT BE, ANEM A GUARDAR LA RESERVA...
@@ -743,6 +741,7 @@ FROM client
     $this->bloqueig_taula($taula, $data, $torn, true);
 
     //envia SMS
+
     $persones = $_POST['selectorComensals'] + $_POST['selectorJuniors'] + $_POST['selectorNens'];
     $persones.='p';
     //$mensa = "Recuerde: reserva en Restaurant Can Borrell el $data a las $hora ($persones).Rogamos comunique cualquier cambio: 936929723 - 936910605.Gracias.(ID:$idr)";
@@ -759,13 +758,14 @@ FROM client
 
 
     $TPV = $this->paga_i_senyal($coberts);
-    //$extres['subject'] =  "Can-Borrell: CONFIRMACIÓ DE RESERVA ONLINE";
+    
+    global $translate;
+        ob_start();    include('translate_' . $this->lng . '.php');    ob_end_clean();
     $extres['subject'] = $this->l("Can-Borrell: CONFIRMACIÓ DE RESERVA ONLINE", FALSE)." ".$idr;
-
     //envia MAIL
-    if ($_POST['client_email'] && !$TPV)
-      $mail = $this->enviaMail($idr, "confirmada_", FALSE, $extres);
+    if ($_POST['client_email'] && !$TPV)    $mail = $this->enviaMail($idr, "confirmada_", FALSE, $extres);
 
+    
     $resposta['mail'] = isset($mail) ? $mail : FALSE;
     $resposta['virtual'] = $taulaVirtual;
     $resposta['TPV'] = $TPV ? "TPV" : "";
@@ -961,6 +961,9 @@ FROM client
     $this->enviaSMS($idr, $mensa);
 //envia MAIL
     //$extres['subject'] = "Can-Borrell: MODIFICACIÓ RESERVA ONLINE " . $_POST['id_reserva'];
+    
+           ob_start();    include('translate_' . $this->lng . '.php');    ob_end_clean();
+
     $extres['subject'] = $this->l("Can-Borrell: MODIFICACIÓ RESERVA ONLINE ", FALSE) . $_POST['id_reserva'];
     if ($_POST['client_email'])
       $mail = $this->enviaMail($_POST['id_reserva'], "../reservar/mail_res_modificada_", FALSE, $extres);
@@ -985,6 +988,7 @@ FROM client
       //ENVIA MAIL
       $_POST['id_reserva'] = $idr;
       //$extres['subject'] = "Can-Borrell: RESERVA CANCELADA " . $_POST['id_reserva'];
+      ob_start();    include('translate_' . $this->lng . '.php');    ob_end_clean();
       $extres['subject'] = $this->l("Can-Borrell: RESERVA CANCELADA ", FALSE) . $_POST['id_reserva'];
       $mail = $this->enviaMail($idr, "cancelada_", FALSE, $extres);
 
@@ -1320,10 +1324,8 @@ WHERE  `client`.`client_id` =$idc;
 
       $query = "UPDATE estat_taules SET estat_taules_timestamp=NOW() WHERE reserva_id=$idr";
       $res = $this->log_mysql_query($query, $this->connexioDB) or die(((is_object($GLOBALS["___mysqli_ston"])) ? mysqli_error($GLOBALS["___mysqli_ston"]) : (($___mysqli_res = mysqli_connect_error()) ? $___mysqli_res : false)));
-
-      //$result = $res?"!!!SUCCESS!!!":"***ERROR***";
     }
-//$result = "ANULAT";    
+  
 
     $extres['subject'] = $this->l("Can-Borrell: RESERVA CONFIRMADA", FALSE)." ".$idr;
 

@@ -24,6 +24,7 @@ var SECCIO_INICIAL = "fr-seccio-quants";
 var AVIS_MODIFICACIONS = false;
 var timer_estat;
 var popup = "";
+var prelang = (lang=="ca"?"":"/"+lang);
 var dlg = {
     autoOpen: false,
     modal: true,
@@ -1040,10 +1041,12 @@ function controlSubmit()
             {
                 $("#popup").bind("dialogclose", function (event, ui) {
                    window.clearInterval(timer_estat); 
-                    clearTimeout(timer);
-                    clearTimeout(control);
-                   if (refresh_estat(obj.idr)!=100) $.post(GESTOR + "?a=cancelPagaISenyal&b=" + obj.idr); ;
-                   SUBMIT_OK = false;
+                    if (typeof timer !== 'undefined') clearTimeout(timer);
+                    if (typeof control !== 'undefined')  clearTimeout(control);
+                   var res_estat = resultat_estat(obj.idr);
+                  // if (resultat_estat!=100) $.post(GESTOR + "?a=cancelPagaISenyal&b=" + obj.idr);
+                   
+                    SUBMIT_OK = false;
                     //window.location.href = "/#about";
                     $('#submit').show();
                 });
@@ -1070,7 +1073,7 @@ doc.write('<html><head><title></title><style>body{background:url(//www.can-borre
                     /** 
                      * TIMER TEMPS MAXIM
                      */
-                    timer_estat = setInterval(function () { refresh_estat(obj.idr); },4000);
+                    timer_estat = setInterval(function () { refresh_estat_pagament(obj.idr); },4000);
                     
                     timer = setTimeout(function () {  // RESET 
                         clearTimeout(timer);
@@ -1078,11 +1081,11 @@ doc.write('<html><head><title></title><style>body{background:url(//www.can-borre
                         $.post(GESTOR + "?a=estatReserva&b=" + obj.idr, function (r) {
                             d = parseInt(r);
                             if (d != 100) {
-                                window.location.href = "/#about";
+                                window.location.href = prelang+"/#about";
                                 alert("La sessió ha caducat");
                                 $("#popup").dialog('close');
                             } else {
-                                window.location.href = "/#about";
+                                window.location.href = prelang+"/#about";
                                 alert("Can-Borrell: Hem registrat correctament el pagament");
                                 $("#bt-continuar .ui-button-text").html("Finalitzar");
                                 $("#popup").dialog('close');
@@ -1118,27 +1121,45 @@ doc.write('<html><head><title></title><style>body{background:url(//www.can-borre
     });
 }
 
-function refresh_estat(idr){
+function resultat_estat(idr){
       var desti = "/cb-reserves/taules/gestor_reserves.php?a=estat_reserva_online&b=" + idr ;
     $.post(desti, {r: 0}, function (datos) {
         if (datos == "100"){
              window.clearInterval(timer_estat);
-            window.location.href = "/#about";
+            window.location.href = prelang+"/#about";
+            
+            //alert(l('PAGAMENT REBUT'));
+        }
+
+        if (datos == "0" || datos=="2"){
+            //alert("ELIMINA");
+             $.post(GESTOR + "?a=cancelPagaISenyal&b=" + idr);
+        }
+
+        return datos;
+    });
+    }
+    
+    function refresh_estat_pagament(idr){
+      var desti = "/cb-reserves/taules/gestor_reserves.php?a=estat_reserva_online&b=" + idr ;
+    $.post(desti, {r: 0}, function (datos) {
+        if (datos == "100"){
+             window.clearInterval(timer_estat);
+            window.location.href = prelang+"/#about";
             
             alert(l('PAGAMENT REBUT'));
         }
 
         if (datos == "0"){
+           // alert("ELIMINA");
+             $.post(GESTOR + "?a=cancelPagaISenyal&b=" + idr);
              window.clearInterval(timer_estat);
-            window.location.href = "/#about";
+            window.location.href = prelang+"/#about";
             alert(l('EL PAGAMENT HA ESTAT ANULAT'));
         }
 
         return datos;
-    });
-    
-    
-    
+    }); 
 }
 
 

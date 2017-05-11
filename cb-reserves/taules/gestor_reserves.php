@@ -207,7 +207,7 @@ class gestor_reserves extends Gestor {
       $this->enviaSMS($id_reserva, $mensa);
       $this->paperera_reserves($id_reserva);
 //ENVIA MAIL
-      $extres['subject'] = "Can-Borrell: RESERVA CANCELADA $id_reserva";
+      $extres['subject'] = $this->lv("Can-Borrell: RESERVA CANCELADA")." ".$id_reserva;
       $mail = $this->enviaMail($id_reserva, "cancelada_", FALSE, $extres);
     }
     $this->estat_anterior($id_reserva);
@@ -413,7 +413,7 @@ class gestor_reserves extends Gestor {
       $this->enviaSMS($idr, $mensa);
 //ENVIA MAIL
 
-      $extres['subject'] = "Can-Borrell: Confirmació de reserva $idr";
+      $extres['subject'] = $his->lv("Can-Borrell: Confirmació de reserva")." ".$idr;
       $mail = $this->enviaMail($idr, "confirmada_", FALSE, $extres);
     }
 
