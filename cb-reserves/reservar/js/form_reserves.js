@@ -1035,7 +1035,7 @@ function controlSubmit()
             clearInterval(control);
             if (SUBMIT_OK)
                 return;//DOBLE SUBMIT?????????
-
+/****************************************************************************************************************/
             if (obj.resposta == "ok") // RESPOSTA OK
             {
                 $("#popup").bind("dialogclose", function (event, ui) {
