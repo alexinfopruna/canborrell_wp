@@ -117,7 +117,7 @@ $(function(){$("#panel").accordion({collapsible:true,active:false,heightStyle: "
 		<!-- -->
 		<a target="_blank" href="../taules/DBTable/LlistatClient.php" class=" bt ui-button ui-widget ui-state-default ui-corner-all ui-button-text-only">TAULES: Cercador clients </a>
 		<!-- -->
-		<a target="_blank" href="../panel/gestio_calendari.php?f=<?php echo INC_FILE_PATH;?>bloq.txt" class=" bt ui-button ui-widget ui-state-default ui-corner-all ui-button-text-only">TAULES: Gestió dies bloquejats calendari TAULES</a>
+		<a target="_blank" href="../panel/gestio_calendari.php" class=" bt ui-button ui-widget ui-state-default ui-corner-all ui-button-text-only">TAULES: Gestió dies bloquejats calendari TAULES</a>
 		<!-- 
 		<a target="_blank" href="../taules/print.php?a=torn" class=" bt ui-button ui-widget ui-state-default ui-corner-all ui-button-text-only">TAULES: llistat per IMPRIMIR</a>-->
 		<!-- -->

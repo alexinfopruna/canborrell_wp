@@ -9,11 +9,15 @@
 if (!defined('ROOT'))
   define('ROOT', "");
 
+if (isset($_GET['f']))   define("LLISTA_DIES_NEGRA",  $_GET['f']);
+if (isset($_GET['fblanc']))   define("LLISTA_DIES_BLANCA",  $_GET['fblanc']);
+
+
 require_once(ROOT . "gestor_reserves.php");
 if (!defined('LLISTA_DIES_NEGRA'))
   define("LLISTA_DIES_NEGRA", ROOT . INC_FILE_PATH . "llista_dies_negra.txt");
 if (!defined('LLISTA_NITS_NEGRA'))
-  define("LLISTA_NITS_NEGRA", ROOT . INC_FILE_PATH . "llista_dies_negra.txt");
+  define("LLISTA_NITS_NEGRA", ROOT . INC_FILE_PATH . "llista_nits_negra.txt");  
 if (!defined('LLISTA_DIES_BLANCA'))
   define("LLISTA_DIES_BLANCA", ROOT . INC_FILE_PATH . "llista_dies_blanca.txt");
 

@@ -49,12 +49,35 @@ if ($handle) {
   return $blanca;
 }
 
+$path_parts = pathinfo(LLISTA_DIES_NEGRA);
+$filename = $path_parts['filename'];
+$info="";
+
+//echo $filename;die();
+ if ($filename == "llista_dies_negra"){
+   $info="ELS DIES BLOQUEJATS AFECTEN NOMÉS AL CONTROL TAULES
+<br><br>
+ELS DIES DESBLOQUEJATS HAN DE SER DILLUNS o DIMARTS. AFECTEN A TOT ARREU (control_taules, form_petites, form_grups)
+<br><br>
+Sempre té prioritat un BLOQUEIG sobre un DESBLOQUEIG. Això permet bloquejar dies pels formularis ONLINE encara que estigui DESBLOQUEJATS ";
+ }elseif($filename=="llista_dies_negra_online"){
+   $info="ELS DIES BLOQUEJATS AFECTEN NO</div>MÉS AL FORMULARI DE RESERVES PETITES";
+ }elseif($filename=="bloq"){
+   $info="ELS DIES BLOQUEJATS AFECTEN NOMÉS AL FORMULARI DE RESERVES GRUPS";
+ }else{
+   $info="AFECTA AL CONTROL TAULES";
+ }
+ 
+ 
+ $path_parts = pathinfo(LLISTA_DIES_BLANCA);
+$filenameb = $path_parts['filename'];
+$info=""
  
 ?><!DOCTYPE HTML>
 <html>
-    <head>
+    <head></div>
         <title>Gestó calendari</title>
-         
+           <link rel="stylesheet" href="/wp-content/plugins/magee-shortcodes/assets/bootstrap/css/bootstrap.min.css"> 
         <link type="text/css" href="/cb-reserves/taules/css/blitzer/jquery-ui-1.8.9.forms.css" rel="stylesheet" />	
         <?php echo Gestor::loadJQuery(); ?>
         <script type="text/javascript" src="/cb-reserves/taules/js/ui/dev/ui/i18n/jquery.ui.datepicker-ca.js"></script>
@@ -62,6 +85,7 @@ if ($handle) {
         <script type="text/javascript" src="/cb-reserves/taules/js/jquery.validate.min.js"></script>
         <!--   -->
         <style>
+            html, body{margin:10px;}
             .content{display:flex;justify-content: center;}
           .ui-state-default, .ui-widget-content .ui-state-default{font-size: 2em;}
           .ui-datepicker{width: 30em;}
@@ -95,15 +119,17 @@ if ($handle) {
     </head>
     <body style="">
         <h1>Control de dies obert / tancat</h1>
-            <div>
+            <!--<div>
                 Llista negra: <?php echo LLISTA_DIES_NEGRA ?><br>
         Llista blanca: <?php echo LLISTA_DIES_BLANCA ?>
 
-        </div>
+        </div>-->
         
-        
+        <h3 class="alert alert-warning"><?php echo $info ?></h3>
+        <div class="alert alert-info">
         <p>Fent click els dies canvies d'estat normal > obert > tancat</p>
         <p><b>Cal marcar TOTS els dies festius com a obert (encara queno sigui DL o DM) per tal que s'apliquin les restriccions!!</b><p>
+            </div>
         <div class="content">
             <div class="overlay" style="display:none">
     
@@ -111,13 +137,17 @@ if ($handle) {
         <div id="calendari" class=" ui-corner-all fr-seccio-dia"></div>
         
             <div>
+              
                     <ul id="llista_blanca">
+                          <?php echo $filenameb ?>
                   <?php echo read_llista(LLISTA_DIES_BLANCA, "blanca");?>
                 </ul>
         </div>
         
                     <div>
+                        
                     <ul id="llista-negra">
+                        <?php echo $filename ?>
                   <?php echo read_llista(LLISTA_DIES_NEGRA, "negra");?>
                 </ul>
         </div>
@@ -133,6 +163,8 @@ if ($handle) {
                             print crea_llista_js($llista_blanca,"LLISTA_BLANCA");  	
 ?>      
       var DATA=new Date("<?php echo $mydata ?>");
+      var FNEGRE="<?php echo LLISTA_DIES_NEGRA ?>";
+      var FBLANC="<?php echo LLISTA_DIES_BLANCA ?>";
               
       $(function () {
           monta_calendari("#calendari");
@@ -189,7 +221,7 @@ if ($handle) {
         if ($(".ui-datepicker-current-day").hasClass('normal')) accio="obert";
         //accio="obert";
         DATA=dateText;
-        desti="../taules/Gestor_calendari.php?a=click&b="+DATA+"&c="+accio;
+        desti="../taules/Gestor_calendari.php?a=click&b="+DATA+"&c="+accio+"&f="+FNEGRE+"&fblanc="+FBLANC;
         
         $.post(desti,dades,callback);
     },
@@ -219,7 +251,7 @@ if ($handle) {
 
       var callback = function(dades){
         $(".overlay").show();
-        window.location.href="gestio_calendari.php?data="+DATA;
+       window.location.href="gestio_calendari.php?data="+DATA+"&f="+FNEGRE+"&fblanc="+FBLANC;
       }
 
       function llistanegra(date)
