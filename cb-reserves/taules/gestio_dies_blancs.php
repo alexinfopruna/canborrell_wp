@@ -6,11 +6,6 @@ $gestor=new gestor_reserves();
 if (!$gestor->valida_sessio())  header("Location: index.php");
 
 
-
-
-
-
-
 require_once(ROOT . INC_FILE_PATH."llista_dies_taules.php");
 $fitxer=ROOT . INC_FILE_PATH."llista_dies_blanca.txt";
 

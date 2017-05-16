@@ -3132,6 +3132,59 @@ ORDER BY `estat_hores_data` DESC";
   }
 
   /*   * ********************************************************************************************************************* */
+  public function gestio_calendari($data="01/01/2001", $accio="open"){
+    echo $data." - ".$accio;
+    //$file = LLISTA_DIES_BLANCA;
+    $d= date_parse_from_format ("d/m/Y",$data );
+    $month = $d['month']-1;
+    //$mydata=$d['year'].'-'.$d['month'].'-'.$d['day'];
+    include (ROOT.'../editar/llista_dies.php');
+    
+    $dies_blancs=  llegir_dies(LLISTA_DIES_BLANCA);
+    $dies_negres=  llegir_dies(LLISTA_DIES_NEGRA);
+    $keyb = array_search($d['day'], $dies_blancs[$month]);  
+    $keyn = array_search($d['day'], $dies_negres[$month]);  
+    
+    
+    
+   print_r($dies_blancs);
+    echo $month;
+    switch($accio){
+      case "obert":
+        $dies_blancs[$month][]=$d['day'];
+        guarda_dies(LLISTA_DIES_BLANCA, $dies_blancs, $d['year']);
+        $dies_negres[$month][$keyn]=0;
+        guarda_dies(LLISTA_DIES_NEGRA, $dies_negres, $d['year']);
+        break;
+      
+      case "tancat":
+        $dies_blancs[$month][$keyb]=0;
+        guarda_dies(LLISTA_DIES_BLANCA, $dies_blancs, $d['year']);
+        $dies_negres[$month][]=$d['day'];
+        guarda_dies(LLISTA_DIES_NEGRA, $dies_negres, $d['year']);
+      
+        break;
+      
+       default:
+        $dies_blancs[$month][$keyb]=0;
+      // guarda_dies(LLISTA_DIES_BLANCA, $dies_blancs, $d['year']);
+        $dies_negres[$month][$keyn]=0;
+      //  guarda_dies(LLISTA_DIES_NEGRA, $dies_negres, $d['year']);
+ 
+        break;
+    }
+    
+    
+    print_r($dies);
+    
+    return;
+  }
+  /*
+  private afegir_a_llista($file, ){
+    
+  }
+  */
+  /*   * ********************************************************************************************************************* */
 
   public function estat_anterior($idr) {
     $res = $this->load_reserva($idr);

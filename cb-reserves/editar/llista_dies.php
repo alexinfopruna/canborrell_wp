@@ -34,6 +34,9 @@ function llegir_dies($fitxer)
 
 function guarda_dies($fitxer, $dies,$any)
 {
+  echo $fitxer;
+  
+  
 	$gestor = @fopen($fitxer, "w");
 	if ($gestor) {    
        for ($i=0;$i<12;$i++)

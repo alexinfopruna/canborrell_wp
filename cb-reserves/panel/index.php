@@ -117,7 +117,7 @@ $(function(){$("#panel").accordion({collapsible:true,active:false,heightStyle: "
 		<!-- -->
 		<a target="_blank" href="../taules/DBTable/LlistatClient.php" class=" bt ui-button ui-widget ui-state-default ui-corner-all ui-button-text-only">TAULES: Cercador clients </a>
 		<!-- -->
-		<a target="_blank" href="../taules/gestio_dies.php" class=" bt ui-button ui-widget ui-state-default ui-corner-all ui-button-text-only">TAULES: Gestió dies bloquejats calendari TAULES</a>
+		<a target="_blank" href="../panel/gestio_calendari.php?f=<?php echo INC_FILE_PATH;?>bloq.txt" class=" bt ui-button ui-widget ui-state-default ui-corner-all ui-button-text-only">TAULES: Gestió dies bloquejats calendari TAULES</a>
 		<!-- 
 		<a target="_blank" href="../taules/print.php?a=torn" class=" bt ui-button ui-widget ui-state-default ui-corner-all ui-button-text-only">TAULES: llistat per IMPRIMIR</a>-->
 		<!-- -->
@@ -140,9 +140,9 @@ $(function(){$("#panel").accordion({collapsible:true,active:false,heightStyle: "
 		<!-- -->
 		<a target="_blank" href="../reservar/form_grups.php" class=" bt ui-button ui-widget ui-state-default ui-corner-all ui-button-text-only">FORMULARI reserves GRUPS</a>
 		<!-- -->
-		<a target="_blank" href="../taules/gestio_dies.php?f=<?php echo INC_FILE_PATH;?>llista_dies_negra_online.txt&hideBlancs" class=" bt ui-button ui-widget ui-state-default ui-corner-all ui-button-text-only">ONLINE: Gestió dies bloquejats calendari FORMULARI res.petites</a>
+		<a target="_blank" href="../panel/gestio_calendari.php?f=<?php echo INC_FILE_PATH;?>llista_dies_negra_online.txt&hideBlancs" class=" bt ui-button ui-widget ui-state-default ui-corner-all ui-button-text-only">ONLINE: Gestió dies bloquejats calendari FORMULARI res.petites</a>
 		<!-- -->
-		<a target="_blank" href="../editar/gestio_dies.php" class=" bt ui-button ui-widget ui-state-default ui-corner-all ui-button-text-only">GRUPS: Gestió dies bloquejats calendari GRUPS</a>
+		<a target="_blank" href="../panel/gestio_calendari.php?f=<?php echo INC_FILE_PATH;?>bloq.txt" class=" bt ui-button ui-widget ui-state-default ui-corner-all ui-button-text-only">GRUPS: Gestió dies bloquejats calendari GRUPS</a>
 		<!--
 		<a target="_blank" href="../panel/editMenjadorsOnline_pk.php" class=" bt ui-button ui-widget ui-state-default ui-corner-all ui-button-text-only">ONLINE: Gestió menjadors OBERTS</a>
 		<!-- --><!-- --> 
@@ -167,9 +167,11 @@ $(function(){$("#panel").accordion({collapsible:true,active:false,heightStyle: "
 <h4><a href="#">Eines avançades</a></h4>
 <div id="ONLINE" class="caixa">
 		<a target="_blank" href="http://<?php echo $_SERVER['HTTP_HOST'];?>/panel/infoConn.php" class=" bt ui-button ui-widget ui-state-default ui-corner-all ui-button-text-only">INFO servidor</a>
-		<!-- -->
+		<!-- 
 		<a target="_blank" href="../taules/DBTable/FormConfigAdmin.php" class=" bt ui-button ui-widget ui-state-default ui-corner-all ui-button-text-only">CONFIGURACIO AVANÇADA DEL SISTEMA</a>
-		<!-- -->
+		-->
+		<a target="_blank" href="./config/" class=" bt ui-button ui-widget ui-state-default ui-corner-all ui-button-text-only">CONFIGURACIO AVANÇADA DEL SISTEMA</a>
+                                                        <!-- -->
 		<a target="_blank" href="../taules/dumpBD.php?drop" class=" bt ui-button ui-widget ui-state-default ui-corner-all ui-button-text-only">Còpia de seguretat de la Base de Dades (Descarrega)</a>
 		<!-- -->
 		<!-- -->
