@@ -1027,12 +1027,14 @@ function controlSubmit()
             $("#popup").dialog('open');
         }
  
+        $('.ui-dialog-buttonset').hide();
         $('#submit').hide();
 
         $('#form-reserves').ajaxSubmit(function (dades) {
             if (dades.substring(0, 11) != '{"resposta"')
                 dades = '{"resposta":"ko","error":"err0","email":false}';
             var obj = JSON.parse(dades);
+            $('.ui-dialog-buttonset').show();
             clearInterval(control);
             if (SUBMIT_OK)
                 return;//DOBLE SUBMIT?????????

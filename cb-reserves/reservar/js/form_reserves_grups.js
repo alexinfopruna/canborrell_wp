@@ -845,10 +845,12 @@ function controlSubmit()
 
         $("#popup").html('<div style="height:420px"><img src="/cb-reserves/reservar/css/loading.gif"/></div>');
         $("#popup").dialog('open');
+        $('.ui-dialog-buttonset').hide();
         $('#submit').hide();
         $('#form-reserves').ajaxSubmit(function (dades) {
             if (dades.substring(0, 11) != '{"resposta"')
                 dades = '{"resposta":"ko","error":"err0","email":false}';
+            $('.ui-dialog-buttonset').show();
             var obj = JSON.parse(dades);
 //alert(dades);
             if (obj.resposta == "ok")
