@@ -1327,7 +1327,7 @@ WHERE  `client`.`client_id` =$idc;
     }
   
 
-    $extres['subject'] = $this->l("Can-Borrell: RESERVA CONFIRMADA", FALSE)." ".$idr;
+    $extres['subject'] = $this->l("Can-Borrell: CONFIRMACIÓ PAGA I SENYAL", FALSE)." ".$idr;
 
     if ($mail) {
       $this->enviaMail($idr, "../reservar/paga_i_senyal_", "", $extres);

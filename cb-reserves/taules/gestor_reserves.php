@@ -413,7 +413,7 @@ class gestor_reserves extends Gestor {
       $this->enviaSMS($idr, $mensa);
 //ENVIA MAIL
 
-      $extres['subject'] = $his->lv("Can-Borrell: Confirmació de reserva")." ".$idr;
+      $extres['subject'] = $this->lv("Can-Borrell: Confirmació de reserva")." ".$idr;
       $mail = $this->enviaMail($idr, "confirmada_", FALSE, $extres);
     }
 

@@ -18,7 +18,7 @@
             <url>cb-reserves/taules/gestor_reserves.php</url>
             <bookmark id="1">
                 <name/>
-                <line>2968</line>
+                <line>2828</line>
                 <key/>
             </bookmark>
         </file>
@@ -26,12 +26,12 @@
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
             <file>file:/var/www/canborrell-wp/cb-reserves/taules/Gestor.php</file>
-            <file>file:/var/www/canborrell-wp/cb-reserves/panel/index.php</file>
-            <file>file:/var/www/canborrell-wp/cb-reserves/panel/config/index.php</file>
-            <file>file:/var/www/canborrell-wp/cb-reserves/panel/config/Gestor_config.php</file>
-            <file>file:/var/www/canborrell-wp/cb-reserves/taules/php/Configuracio.php</file>
-            <file>file:/var/www/canborrell-wp/cb-reserves/taules/DBTable/FormConfigAdmin.php</file>
-            <file>file:/var/www/canborrell-wp/cb-reserves/taules/DBTable/FormConfig.php</file>
+            <file>file:/var/www/canborrell-wp/cb-reserves/reservar/translate_en.php</file>
+            <file>file:/var/www/canborrell-wp/cb-reserves/reservar/translate_es.php</file>
+            <file>file:/var/www/canborrell-wp/cb-reserves/reservar/Gestor_form.php</file>
+            <file>file:/var/www/canborrell-wp/cb-reserves/taules/gestor_reserves.php</file>
+            <file>file:/var/www/canborrell-wp/cb-reserves/Connections/DBConnection_log.php</file>
+            <file>file:/var/www/canborrell-wp/cb-reserves/reservar/translate_ca.php</file>
         </group>
     </open-files>
 </project-private>

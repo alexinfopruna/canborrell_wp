@@ -21,8 +21,8 @@ class EsendexSendService extends EsendexFormPostUtilities
 	var $password;
 	var $accountReference;
 
-	function EsendexSendService( $username, $password, $accountReference, $isSecure = false, $certificate = "" )
-	{
+	//function EsendexSendService( $username, $password, $accountReference, $isSecure = false, $certificate = "" )
+                            function __construct( $username, $password, $accountReference, $isSecure = false, $certificate = "" ) {
 		parent::EsendexFormPostUtilities( $isSecure, $certificate );
 		
 		$this->username = $username;
@@ -41,6 +41,11 @@ class EsendexSendService extends EsendexFormPostUtilities
 			define( "SMS_STATUS_URL", "http://www.esendex.com/secure/messenger/formpost/QueryStatus.aspx" );
 		}
 	}
+                            
+                            
+                            function EsendexSendService( $username, $password, $accountReference, $isSecure = false, $certificate = "" ){
+                              self::__construct( $username, $password, $accountReference, $isSecure = false, $certificate = "" );                              
+                            }
 
 	function SendMessage( $recipient, $body, $type )
 	{
