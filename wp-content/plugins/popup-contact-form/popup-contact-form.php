@@ -244,7 +244,7 @@ function PopupContact_plugin_parse_request($qstring)
 							$message = $PopupContact_message;
 							
 							$headers = "MIME-Version: 1.0" . "\r\n";
-							$headers .= "Content-type:text/html;charset=iso-8859-1" . "\r\n";
+							$headers .= "Content-type:text/html;charset=UTF-8" . "\r\n";
 							$headers .= "From: \"$sender_name\" <$sender_email>\n";
 							$headers .= "Return-Path: <" . esc_sql(trim($PopupContact_email)) . ">\n";
 							$headers .= "Reply-To: \"" . esc_sql(trim($PopupContact_name)) . "\" <" . esc_sql(trim($PopupContact_email)) . ">\n";

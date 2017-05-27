@@ -1,7 +1,7 @@
 <?php
 
 if (!defined('ROOT'))
-  header('Content-Type: text/html; charset=utf-8');
+  header('Content-Type: text/html; charset=UTF-8');
 
 if (!defined('ROOT')) {
   $root = '../taules/';
@@ -18,16 +18,13 @@ if (isset($_REQUEST['a']))
 require_once(ROOT . "Gestor.php");
 
 
-if (!defined('LLISTA_DIES_NEGRA'))
-  define("LLISTA_DIES_NEGRA", ROOT . INC_FILE_PATH . "bloq.txt");
-if (!defined('LLISTA_DIES_NEGRA_RES_PETITES'))
-  define("LLISTA_DIES_NEGRA_RES_PETITES", ROOT . INC_FILE_PATH . "llista_dies_negra_online.txt");
-if (!defined('LLISTA_NITS_NEGRA'))
-  define("LLISTA_NITS_NEGRA", ROOT . INC_FILE_PATH . "bloq_nit.txt");
-if (!defined('LLISTA_DIES_BLANCA'))
-  define("LLISTA_DIES_BLANCA", ROOT . INC_FILE_PATH . "llista_dies_blanca.txt");
-if (!defined('TPV_CONFIG_FILE'))
-  define("TPV_CONFIG_FILE", "TPV256_test.php");
+//if (!defined('LLISTA_DIES_NEGRA'))  define("LLISTA_DIES_NEGRA", ROOT . INC_FILE_PATH . "bloq.txt");
+if (!defined('LLISTA_DIES_NEGRA'))  define("LLISTA_DIES_NEGRA", ROOT . INC_FILE_PATH . "llista_dies_negra.txt");
+//if (!defined('LLISTA_DIES_NEGRA_RES_PETITES'))  define("LLISTA_DIES_NEGRA_RES_PETITES", ROOT . INC_FILE_PATH . "llista_dies_negra_online.txt");
+if (!defined('LLISTA_DIES_NEGRA_RES_PETITES'))  define("LLISTA_DIES_NEGRA_RES_PETITES", ROOT . INC_FILE_PATH . "llista_dies_negra.txt");
+if (!defined('LLISTA_NITS_NEGRA'))  define("LLISTA_NITS_NEGRA", ROOT . INC_FILE_PATH . "bloq_nit.txt");
+if (!defined('LLISTA_DIES_BLANCA'))  define("LLISTA_DIES_BLANCA", ROOT . INC_FILE_PATH . "llista_dies_blanca.txt");
+if (!defined('TPV_CONFIG_FILE'))  define("TPV_CONFIG_FILE", "TPV256_test.php");
 
 require_once(ROOT . "gestor_reserves.php");
 require_once(ROOT . "Menjador.php");
@@ -1270,7 +1267,7 @@ WHERE  `client`.`client_id` =$idc;
 
   private function reserva_pk_tpv_ok_callback($idr, $amount, $pdata, $phora) {
     $this->xgreg_log("reserva_pk_tpv_ok_callback", 1, LOG_FILE_TPVPK, FALSE);
-    $query = "SELECT estat, client_email, data, hora, adults, nens10_14, nens4_9 "
+    $query = "SELECT estat, client_email, data, hora, adults, nens10_14, nens4_9, lang "
         . "FROM " . T_RESERVES . " "
         . "LEFT JOIN client ON client.client_id=" . T_RESERVES . ".client_id "
         . "WHERE id_reserva=$idr";
@@ -1296,6 +1293,7 @@ WHERE  `client`.`client_id` =$idc;
     $row = mysqli_fetch_assoc($result);
 
     $estat = $row['estat'];
+    $lang = $row['lang'];
     $mail = $row['client_email'];
     if ($estat != 2) { // NO ESTÀ CONFIRMADA PER PAGAR
       $msg = "PAGAMENT INAPROPIAT RESERVA PETITA???: " . $idr . " estat: $estat  $mail";
@@ -1325,9 +1323,16 @@ WHERE  `client`.`client_id` =$idc;
       $query = "UPDATE estat_taules SET estat_taules_timestamp=NOW() WHERE reserva_id=$idr";
       $res = $this->log_mysql_query($query, $this->connexioDB) or die(((is_object($GLOBALS["___mysqli_ston"])) ? mysqli_error($GLOBALS["___mysqli_ston"]) : (($___mysqli_res = mysqli_connect_error()) ? $___mysqli_res : false)));
     }
-  
-
-    $extres['subject'] = $this->l("Can-Borrell: CONFIRMACIÓ PAGA I SENYAL", FALSE)." ".$idr;
+    
+    global $translate;
+    require('translate_' . $lang . '.php');
+    $msg="FITXER TRANSLATE: ".'translate_' . $lang . '.php';
+   $this->xgreg_log($msg, 1, LOG_FILE_TPVPK, TRUE, 0); /* LOG */
+   $msg = $translate["Can-Borrell: CONFIRMACIÓ PAGA I SENYAL"];
+   $this->xgreg_log($msg, 1, LOG_FILE_TPVPK, TRUE, 0); /* LOG */
+   
+   $extres['subject'] = $this->l("Can-Borrell: CONFIRMACIÓ PAGA I SENYAL", FALSE)." ".$idr;
+  // $extres['subject'] = $translate["Can-Borrell: CONFIRMACIÓ PAGA I SENYAL"]." ".$idr;
 
     if ($mail) {
       $this->enviaMail($idr, "../reservar/paga_i_senyal_", "", $extres);

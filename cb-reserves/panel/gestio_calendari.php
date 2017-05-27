@@ -5,24 +5,21 @@
  * and open the template in the editor.
  */
 defined('ROOT') or define('ROOT', '../taules/');
-if (isset($_GET['f']))   define("LLISTA_DIES_NEGRA",  $_GET['f']);
-if (isset($_GET['fblanc']))   define("LLISTA_DIES_BLANCA",  $_GET['fblanc']);
-//echo LLISTA_DIES_NEGRA;die();
+//if (isset($_GET['f']))   define("LLISTA_DIES_NEGRA",  $_GET['f']);
+//if (isset($_GET['fblanc']))   define("LLISTA_DIES_BLANCA",  $_GET['fblanc']);
+
+
 require_once(ROOT . "gestor_reserves.php");
 $gestor = new gestor_reserves();
-
 if (!$gestor->valida_sessio(64)) {
   header("Location: login.php");
   die();
 }
 
+if (!defined('LLISTA_DIES_NEGRA'))  define("LLISTA_DIES_NEGRA", ROOT . INC_FILE_PATH . "llista_dies_negra.txt");
+if (!defined('LLISTA_NITS_NEGRA'))  define("LLISTA_NITS_NEGRA", ROOT . INC_FILE_PATH . "llista_dies_negra.txt");
+if (!defined('LLISTA_DIES_BLANCA'))  define("LLISTA_DIES_BLANCA", ROOT . INC_FILE_PATH . "llista_dies_blanca.txt");
 
-
-if (!defined('LLISTA_DIES_NEGRA'))
-define("LLISTA_DIES_NEGRA", ROOT . INC_FILE_PATH . "bloq.txt");
-//define("LLISTA_NITS_NEGRA", ROOT . INC_FILE_PATH . "bloq_nit.txt");
-if (!defined('LLISTA_DIES_BLANCA'))
-define("LLISTA_DIES_BLANCA", ROOT . INC_FILE_PATH . "llista_dies_blanca.txt");
 
 require_once(ROOT . INC_FILE_PATH . "llista_dies_taules.php");
 require_once(ROOT . '../reservar/translate_ca.php');
@@ -54,6 +51,8 @@ $filename = $path_parts['filename'];
 $info="";
 
 //echo $filename;die();
+
+/*
  if ($filename == "llista_dies_negra"){
    $info="ELS DIES BLOQUEJATS AFECTEN NOMÉS AL CONTROL TAULES
 <br><br>
@@ -67,7 +66,13 @@ Sempre té prioritat un BLOQUEIG sobre un DESBLOQUEIG. Això permet bloquejar di
  }else{
    $info="AFECTA AL CONTROL TAULES";
  }
- 
+ */
+ $info="ELS DIES MARCATS AL CALENDARI AFECTEN A TOTS ELS CALENDARIS DEL SISTEMA:
+   <ul>
+   <li>Calendari del control taules</li>
+   <li>Calendaris reserves online petites i grups</li>
+   <li>Calendari de nits obert</li>
+   </ul>";
  
  $path_parts = pathinfo(LLISTA_DIES_BLANCA);
 $filenameb = $path_parts['filename'];
@@ -75,7 +80,7 @@ $info=""
  
 ?><!DOCTYPE HTML>
 <html>
-    <head></div>
+    <head>
         <title>Gestó calendari</title>
            <link rel="stylesheet" href="/wp-content/plugins/magee-shortcodes/assets/bootstrap/css/bootstrap.min.css"> 
         <link type="text/css" href="/cb-reserves/taules/css/blitzer/jquery-ui-1.8.9.forms.css" rel="stylesheet" />	
@@ -152,7 +157,7 @@ $info=""
                 </ul>
         </div>
 </div>
-    </body>
+    
     <script>
       
 <?php 
@@ -294,4 +299,5 @@ $info=""
       /********************************************************************************************************************/
 
     </script>
+    </body>
 </html>

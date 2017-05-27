@@ -941,12 +941,11 @@ ORDER BY  `estat_hores_hora` ASC ";
 /* * ****************************************************************************** */
 /* * ****************************************************************************** */
 /* * ****************************************************************************** */
-if (!defined('LLISTA_DIES_NEGRA'))
-  define("LLISTA_DIES_NEGRA", ROOT . INC_FILE_PATH . "llista_dies_negra_online.txt");
-if (!defined('LLISTA_NITS_NEGRA'))
-  define("LLISTA_NITS_NEGRA", ROOT . INC_FILE_PATH . "llista_dies_negra_online.txt");
-if (!defined('LLISTA_DIES_BLANCA'))
-  define("LLISTA_DIES_BLANCA", ROOT . INC_FILE_PATH . "llista_dies_blanca.txt");
+//if (!defined('LLISTA_DIES_NEGRA'))  define("LLISTA_DIES_NEGRA", ROOT . INC_FILE_PATH . "llista_dies_negra_online.txt");
+if (!defined('LLISTA_DIES_NEGRA'))  define("LLISTA_DIES_NEGRA", ROOT . INC_FILE_PATH . "llista_dies_negra.txt");
+//if (!defined('LLISTA_NITS_NEGRA'))  define("LLISTA_NITS_NEGRA", ROOT . INC_FILE_PATH . "llista_dies_negra_online.txt");
+if (!defined('LLISTA_NITS_NEGRA'))  define("LLISTA_NITS_NEGRA", ROOT . INC_FILE_PATH . "llista_dies_negra.txt");
+if (!defined('LLISTA_DIES_BLANCA'))  define("LLISTA_DIES_BLANCA", ROOT . INC_FILE_PATH . "llista_dies_blanca.txt");
 
 
 if (!empty($_GET['d']) && !empty($_GET['t']) && !empty($_GET['p'])) { //PER FER-LI TEST

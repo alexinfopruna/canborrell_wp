@@ -36,7 +36,7 @@ $totalPages_DetailRS1 = ceil($totalRows_DetailRS1/$maxRows_DetailRS1)-1;
 <html xmlns="//www.w3.org/1999/xhtml">
 <head>
     <link rel="shortcut icon" type="image/ico" href="/gear-favicon.ico" />
-<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
 <title>Detall de reserva</title>
 <link href="reserves.css" rel="stylesheet" type="text/css" />
 <link href="../css/estils.css" rel="stylesheet" type="text/css" />
@@ -47,7 +47,7 @@ $totalPages_DetailRS1 = ceil($totalRows_DetailRS1/$maxRows_DetailRS1)-1;
 -->
 </style>
 
-  <link rel="stylesheet" type="text/css" media="all" href="../css/calendari.css">
+  <link rel="stylesheet" type="text/css" media="all" href="../css/calendari.css"/>
   <script type="text/javascript" src="../js/calendar.js"></script>
   <script type="text/javascript" src="../js/lang/calendar-ca.js"></script>
   <script type="text/javascript" src="../js/calendar-setup.js"></script>

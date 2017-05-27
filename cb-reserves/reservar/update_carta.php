@@ -16,7 +16,7 @@
      exit(); 
     }
 
-	header('Content-Type: text/html; charset=utf-8');
+	header('Content-Type: text/html; charset=UTF-8');
 	define("ROOT","../taules/");
 	define("LOG_IMPORT","log/import.txt");
 	

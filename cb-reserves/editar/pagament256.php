@@ -121,7 +121,7 @@ if (mysqli_num_rows($Result) <= 0) {
 ?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "//www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="//www.w3.org/1999/xhtml">
     <head>
-        <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
         <title>Detall de reserva</title>
         <?php echo Gestor::loadJQuery("2.0.3"); ?>
         <link href="reserves.css" rel="stylesheet" type="text/css" />

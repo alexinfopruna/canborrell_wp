@@ -127,7 +127,7 @@ function wp_check_php_mysql_versions() {
 
 		$protocol = wp_get_server_protocol();
 		header( sprintf( '%s 500 Internal Server Error', $protocol ), true, 500 );
-		header( 'Content-Type: text/html; charset=utf-8' );
+		header( 'Content-Type: text/html; charset=UTF-8' );
 		/* translators: 1: Current PHP version number, 2: WordPress version number, 3: Minimum required PHP version number */
 		die( sprintf( __( 'Your server is running PHP version %1$s but WordPress %2$s requires at least %3$s.' ), $php_version, $wp_version, $required_php_version ) );
 	}
@@ -137,7 +137,7 @@ function wp_check_php_mysql_versions() {
 
 		$protocol = wp_get_server_protocol();
 		header( sprintf( '%s 500 Internal Server Error', $protocol ), true, 500 );
-		header( 'Content-Type: text/html; charset=utf-8' );
+		header( 'Content-Type: text/html; charset=UTF-8' );
 		die( __( 'Your PHP installation appears to be missing the MySQL extension which is required by WordPress.' ) );
 	}
 }
@@ -209,13 +209,13 @@ function wp_maintenance() {
 
 	$protocol = wp_get_server_protocol();
 	header( "$protocol 503 Service Unavailable", true, 503 );
-	header( 'Content-Type: text/html; charset=utf-8' );
+	header( 'Content-Type: text/html; charset=UTF-8' );
 	header( 'Retry-After: 600' );
 ?>
 	<!DOCTYPE html>
 	<html xmlns="http://www.w3.org/1999/xhtml"<?php if ( is_rtl() ) echo ' dir="rtl"'; ?>>
 	<head>
-	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
 		<title><?php _e( 'Maintenance' ); ?></title>
 
 	</head>

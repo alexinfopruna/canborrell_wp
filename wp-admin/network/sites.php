@@ -84,7 +84,7 @@ if ( isset( $_GET['action'] ) ) {
 
 		if ( ! headers_sent() ) {
 			nocache_headers();
-			header( 'Content-Type: text/html; charset=utf-8' );
+			header( 'Content-Type: text/html; charset=UTF-8' );
 		}
 
 		if ( get_network()->site_id == $id ) {

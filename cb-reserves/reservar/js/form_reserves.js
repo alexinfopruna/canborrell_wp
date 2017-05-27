@@ -1148,7 +1148,8 @@ function resultat_estat(idr){
         if (datos == "100"){
              window.clearInterval(timer_estat);
             window.location.href = prelang+"/#about";
-            
+            if (resub) return datos;
+            resub=true;
             alert(l('PAGAMENT REBUT'));
         }
 

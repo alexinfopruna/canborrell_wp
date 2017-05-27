@@ -1,5 +1,5 @@
 <?php
-header('Content-Type: text/html; charset=utf-8');
+header('Content-Type: text/html; charset=UTF-8');
 if (!defined('EOL')) define ('EOL',"\r\n");
 require_once("Gestor.php");
 //$_REQUEST['s']="josep";

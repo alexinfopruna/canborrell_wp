@@ -6,7 +6,7 @@ $gestor=new gestor_reserves();
 <head>
     <link rel="shortcut icon" type="image/ico" href="/gear-favicon.ico" />
 
-<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
 <title>MenjadorEditor</title>
 		<link type="text/css" href="css/blitzer/jquery-ui-1.8.9.custom.css" rel="stylesheet" />	
 		<link type="text/css" href="css/taules.css" rel="stylesheet" />	

@@ -1303,7 +1303,7 @@ function do_feed_atom( $for_comments ) {
  * @since 2.1.0
  */
 function do_robots() {
-	header( 'Content-Type: text/plain; charset=utf-8' );
+	header( 'Content-Type: text/plain; charset=UTF-8' );
 
 	/**
 	 * Fires when displaying the robots.txt file.
@@ -2730,7 +2730,7 @@ function _default_wp_die_handler( $message, $title = '', $args = array() ) {
 		if ( !headers_sent() ) {
 			status_header( $r['response'] );
 			nocache_headers();
-			header( 'Content-Type: text/html; charset=utf-8' );
+			header( 'Content-Type: text/html; charset=UTF-8' );
 		}
 
 		if ( empty($title) )
@@ -2747,7 +2747,7 @@ function _default_wp_die_handler( $message, $title = '', $args = array() ) {
 -->
 <html xmlns="http://www.w3.org/1999/xhtml" <?php if ( function_exists( 'language_attributes' ) && function_exists( 'is_rtl' ) ) language_attributes(); else echo "dir='$text_direction'"; ?>>
 <head>
-	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
 	<meta name="viewport" content="width=device-width">
 	<?php
 	if ( function_exists( 'wp_no_robots' ) ) {
@@ -3755,12 +3755,12 @@ function dead_db() {
 	// Otherwise, be terse.
 	status_header( 500 );
 	nocache_headers();
-	header( 'Content-Type: text/html; charset=utf-8' );
+	header( 'Content-Type: text/html; charset=UTF-8' );
 ?>
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml"<?php if ( is_rtl() ) echo ' dir="rtl"'; ?>>
 <head>
-<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
 	<title><?php _e( 'Database Error' ); ?></title>
 
 </head>

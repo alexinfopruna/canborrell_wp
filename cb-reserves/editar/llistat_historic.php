@@ -69,7 +69,7 @@ $totalPages_reserves = ceil($totalRows_reserves/$maxRows_reserves)-1;
 <head>
     <link rel="shortcut icon" type="image/ico" href="/gear-favicon.ico" />
 
-<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
 <title>Gestió de reserves</title>
 <link href="reserves.css" rel="stylesheet" type="text/css" />
 <link href="../css/estils.css" rel="stylesheet" type="text/css" />

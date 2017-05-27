@@ -1,6 +1,6 @@
 <?php
 if (!headers_sent())
-  header('Content-Type: text/html; charset=utf-8');
+  header('Content-Type: text/html; charset=UTF-8');
 
 require_once("gestor_reserves.php");
 if (!isset($_SESSION))

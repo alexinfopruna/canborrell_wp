@@ -22,7 +22,7 @@ $path_parts = pathinfo($file);
 if (strtolower($path_parts['extension'] == 'pdf'))
   header('Content-type: application/pdf');
 else
-  header('Content-Type: text/html; charset=utf-8');
+  header('Content-Type: text/html; charset=UTF-8');
 
 
 

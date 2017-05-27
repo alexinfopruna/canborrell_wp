@@ -429,7 +429,7 @@ echo '</textarea>';
 
 			jQuery.ajax({
 				type: 'POST',
-				contentType: "application/json; charset=utf-8",
+				contentType: "application/json; charset=UTF-8",
 				url: location.href + '&debug_action=fix_languages&nonce=<?php echo wp_create_nonce('fix_languages'); ?>',
 				timeout: 60000,
 				success: function () {
@@ -491,7 +491,7 @@ echo '</textarea>';
 
 			jQuery.ajax({
 				type: 'POST',
-				contentType: "application/json; charset=utf-8",
+				contentType: "application/json; charset=UTF-8",
 				url: location.href + '&debug_action=assign_translation_status_to_duplicates&nonce=<?php echo wp_create_nonce('assign_translation_status_to_duplicates'); ?>',
 				dataType: 'json',
 				success: function (msg) {

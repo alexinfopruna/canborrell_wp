@@ -1,5 +1,5 @@
 <?php 
-//header('Content-Type: text/html; charset=utf-8');//UTF-8 IMPORTANT!!!!!
+//header('Content-Type: text/html; charset=UTF-8');//UTF-8 IMPORTANT!!!!!
 
 /****** CONFIG *******/
 //$CONFIG="config.xml";

@@ -161,7 +161,7 @@ function parse_type_int($type, $val, $label, $descripcio) {
     <head>
         <link rel="shortcut icon" type="image/ico" href="/gear-favicon.ico" />
 
-        <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
         <title> Configuració del sistema de reserves </title>
 
         <script src="bower_components/webcomponentsjs/webcomponents-lite.js"></script>

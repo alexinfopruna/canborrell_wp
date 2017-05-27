@@ -28,7 +28,7 @@ if (isset($_GET['exit']))
 <HEAD>
     <link rel="shortcut icon" type="image/ico" href="/gear-favicon.ico" />
 
-<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
 <TITLE> PANEL DE CONTROL Masia Can Borrell </TITLE>
 
 <link type="text/css" href="../taules/css/blitzer/jquery-ui-1.8.9.custom.css" rel="stylesheet" />	
@@ -184,6 +184,7 @@ $(function(){$("#panel").accordion({collapsible:true,active:false,heightStyle: "
 		<a target="_blank" href="../taules/TaulesDisponibles.php?d=2012-02-29&t=1&p=7&c=0" class=" bt ui-button ui-widget ui-state-default ui-corner-all ui-button-text-only">Test TaulesDisponibles</a>
 		<a target="_blank" href="../reservar/testTPV256.php" class=" bt ui-button ui-widget ui-state-default ui-corner-all ui-button-text-only">Test TPV</a>
 		<a target="_blank" href="../taules/gestor_reserves.php?a=testPHPerror" class=" bt ui-button ui-widget ui-state-default ui-corner-all ui-button-text-only">Genera error de PHP</a>
+		<a target="_blank" href="./config/test_mail.php" class=" bt ui-button ui-widget ui-state-default ui-corner-all ui-button-text-only">Envia email</a>
 
                                                           
                                                           <?php }?>		

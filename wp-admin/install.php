@@ -12,7 +12,7 @@ if ( false ) {
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
-	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
 	<title>Error: PHP is not running</title>
 </head>
 <body class="wp-core-ui">
@@ -56,7 +56,7 @@ $step = isset( $_GET['step'] ) ? (int) $_GET['step'] : 0;
  * @param string $body_classes
  */
 function display_header( $body_classes = '' ) {
-	header( 'Content-Type: text/html; charset=utf-8' );
+	header( 'Content-Type: text/html; charset=UTF-8' );
 	if ( is_rtl() ) {
 		$body_classes .= 'rtl';
 	}
@@ -68,7 +68,7 @@ function display_header( $body_classes = '' ) {
 <html xmlns="http://www.w3.org/1999/xhtml" <?php language_attributes(); ?>>
 <head>
 	<meta name="viewport" content="width=device-width" />
-	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
 	<meta name="robots" content="noindex,nofollow" />
 	<title><?php _e( 'WordPress &rsaquo; Installation' ); ?></title>
 	<?php

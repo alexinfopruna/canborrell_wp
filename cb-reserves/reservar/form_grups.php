@@ -1,6 +1,6 @@
 <?php
 header('Location: /reservar/reserva-grup');exit();
-header('Content-Type: text/html; charset=utf-8');
+header('Content-Type: text/html; charset=UTF-8');
 
 defined('ROOT') or define('ROOT', '/cb-reserves/taules/');
 require_once (ROOT . "Gestor.php");
@@ -8,7 +8,8 @@ require_once (ROOT . "Gestor.php");
 if (defined("CB_FORA_DE_SERVEI") && CB_FORA_DE_SERVEI === true)
   header("Location:/cb-reserves/reservar/fora_de_servei.html");
 
-define("LLISTA_DIES_NEGRA", ROOT . INC_FILE_PATH . "bloq.txt");
+//define("LLISTA_DIES_NEGRA", ROOT . INC_FILE_PATH . "bloq.txt");
+define("LLISTA_DIES_NEGRA", ROOT . INC_FILE_PATH . "llista_dies_negra.txt");
 define("LLISTA_NITS_NEGRA", ROOT . INC_FILE_PATH . "bloq_nit.txt");
 define("LLISTA_DIES_BLANCA", ROOT . INC_FILE_PATH . "llista_dies_blanca.txt");
 define('USR_FORM_WEB', 3); //ES LA ID D'USUARI (admin) ANONIM QUE CREA RESERVA ONLINE
@@ -75,7 +76,7 @@ $row['observacions'] = null;
 <!DOCTYPE HTML>
 <html>
     <head>
-        <meta http-equiv="Content-Type" content="text/html; charset=utf-8" pageEncoding="UTF-8"/>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" pageEncoding="UTF-8"/>
         <meta name="viewport" content="width=device-width, initial-scale=1">
 
         <title> Masia Can Borrell </title>

@@ -260,7 +260,6 @@ $translate["Can-Borrell: Confirmació de reserva"] = "Can Borrell: Reservation C
 $translate["Can-Borrell: CONFIRMACIÓ DE RESERVA ONLINE"] = "Can Borrell: Online Reservation Confirmed";
 $translate["Can-Borrell: MODIFICACIÓ RESERVA ONLINE "] = "Can Borrell: ONLINE RESERVATION MODIFIED: ";
 $translate["Can-Borrell: RESERVA CANCELADA "] = "Can-Borrell: RESEVATION CANCELED ";
-
 $translate["MAIL_GRUPS_PAGAT_subject"] = "Can Borrell: CONFIRMATION OF GROUP RESERVATION PAYMENT";
 $translate["MAIL_GRUPS_PAGAT_titol"] = "CONFIRMATION OF RESERVATION PAYMENT";
 

@@ -400,7 +400,7 @@ class WPML_String_Translation
 			$po .= '# https://wpml.org' . PHP_EOL;
 			$po .= 'msgid ""' . PHP_EOL;
 			$po .= 'msgstr ""' . PHP_EOL;
-			$po .= '"Content-Type: text/plain; charset=utf-8\n"' . PHP_EOL;
+			$po .= '"Content-Type: text/plain; charset=UTF-8\n"' . PHP_EOL;
 			$po .= '"Content-Transfer-Encoding: 8bit\n"' . PHP_EOL;
 			$po_title = 'WPML_EXPORT';
 			if ( isset( $_GET[ 'context' ] ) ) {

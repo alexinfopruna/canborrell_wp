@@ -14,7 +14,7 @@ if (!defined('LLISTA_DIES_BLANCA'))
 require_once(ROOT . "Menjador.php");
 require_once(ROOT . "TaulesDisponibles.php");
 
-header('Content-Type: text/html; charset=utf-8');
+header('Content-Type: text/html; charset=UTF-8');
 header('Content-Encoding: bzip');
 if (!isset($_SESSION))
   session_start();
@@ -301,8 +301,6 @@ class gestor_reserves extends Gestor {
   /*   * ************************************* */
 
   public function inserta_reserva() {
-
-
     if ($_SESSION['permisos'] < 16)
       return "error:sin permisos";
 
@@ -329,13 +327,7 @@ class gestor_reserves extends Gestor {
     $selectorAccesible = (isset($_POST['selectorAccesible']) && $_POST['selectorAccesible'] == 'on');
     $_POST['reserva_info'] = $this->flagBit($_POST['reserva_info'], 9, $selectorAccesible);
 
-    /*
 
-      print_r($_SESSION['admin_id']);
-      print_r($_SESSION['uSer']);
-      print_r($_REQUEST);die();
-
-     */
     $editor_id = $this->SQLVal($_SESSION['uSer']->id, "text");
     if (isset($_REQUEST['editor_id']) && $_REQUEST['editor_id'])
       $editor_id = $_REQUEST['editor_id'];
@@ -407,18 +399,18 @@ class gestor_reserves extends Gestor {
       $args[] = $coberts;
       $args[] = $idr;
       $lang = $this->getLanguage();
+      
       $mensa = "Recordi: reserva al Restaurant Can Borrell. %s %s (%s).Preguem comuniqui qualsevol canvi: 936929723/936910605.Gràcies.(ID%s)";
       $mensa = gestor_reserves::SMS_language($mensa, $lang, $args);
 
       $this->enviaSMS($idr, $mensa);
 //ENVIA MAIL
-
-      $extres['subject'] = $this->lv("Can-Borrell: Confirmació de reserva")." ".$idr;
+      global $translate;
+      $lang = $this->lng;
+      ob_start();   require("../reservar/translate_$lang.php");    ob_end_clean();
+      echo $extres['subject'] = $this->lv("Can-Borrell: Confirmació de reserva")." ".$idr;
       $mail = $this->enviaMail($idr, "confirmada_", FALSE, $extres);
     }
-
-
-//if (!isset($_REQUEST['a'])) header("Location: ".$_SERVER['PHP_SELF']);
 
     $_POST['id_reserva'] = $idr;
 
@@ -2559,18 +2551,16 @@ ORDER BY `estat_hores_data` DESC";
   /*   * ************************************* */
   /*   * ************************************* */
 
-  public function enviaMail($idr, $plantilla = "confirmada_", $destinatari = null, $extres = null) {
+  public function enviaMail($idr, $plantilla = "confirmada_", $recipient = null, $extres = null) {
+
     $subject = isset($extres['subject']) ? $extres['subject'] : 'No subject';
     $ts = $this->insert_id();
 
-    $this->reg_log(">>>> ENVIA EMAIL >>>> enviaMail($idr, $plantilla, $destinatari )", 1);
-    $this->xgreg_log(">>>> ENVIA EMAIL >>>> enviaMail(<span class='idr'>$idr</span>, $plantilla, $destinatari )", 0, '/log/logMAILSMS.txt');
+    $this->reg_log(">>>> ENVIA EMAIL >>>> enviaMail($idr, $plantilla, $recipient )", 1);
+    $this->xgreg_log(">>>> ENVIA EMAIL >>>> enviaMail(<span class='idr'>$idr</span>, $plantilla, $recipient, $subject )", 0, '/log/logMAILSMS.txt');
     if (!ENVIA_MAILS) {
       $this->reg_log("ENVIA_MAILS DESACTIVAT", 1);
-      echo time() . " EddEExxE  $mail";
-      die();
-//$this->testMail($idr, $plantilla = "confirmada_", $destinatari = null, $extres = null);
-//return "ENVIAMENT MAIL DESACTIVAT";
+      return FALSE;
     }
 
     require_once(ROOT . "../editar/mailer.php");
@@ -2585,8 +2575,7 @@ ORDER BY `estat_hores_data` DESC";
       $this->qry_result = mysqli_query($this->connexioDB, $query) or die(((is_object($GLOBALS["___mysqli_ston"])) ? mysqli_error($GLOBALS["___mysqli_ston"]) : (($___mysqli_res = mysqli_connect_error()) ? $___mysqli_res : false)));
       $row = mysqli_fetch_assoc($this->qry_result);
     }
-    if (!$this->qry_result || !mysqli_num_rows($this->qry_result))
-      return "err10";
+    if (!$this->qry_result || !mysqli_num_rows($this->qry_result))      return "err10";
 
     $row['aixoesunarray'] = 1;
     if ($extres)
@@ -2594,6 +2583,8 @@ ORDER BY `estat_hores_data` DESC";
 //Gestor::printr($row);
     $avui = date("d/m/Y");
     $ara = date("H:i");
+    
+    
     $file = ROOT . $plantilla . $this->lng . ".lbi";
     //echo $file."  ".__FILE__;die();
     $t = new Template('.', 'comment');
@@ -2603,7 +2594,7 @@ ORDER BY `estat_hores_data` DESC";
       }
     }
     $t->set_file("page", $file);
-			$t->set_var('self',$file);
+    $t->set_var('self',$file);
     $t->set_var('avui', date("l d M Y"));
     $t->set_var('id_reserva', $idr);
     $t->set_var('data', $row['data']);
@@ -2628,16 +2619,12 @@ ORDER BY `estat_hores_data` DESC";
     $html = $t->get("OUT");
 
 
-    if ($destinatari)
-      $recipient = $destinatari;
-    else
-      $recipient = $row['client_email'];
-
-    if (isset($row['subject']))
-      $subject = $row['subject'];
-    else
-      $subject = "..::Reserva Can Borrell::..";
-
+    //if ($destinatari) $recipient = $destinatari;
+    //else $recipient = $row['client_email'];
+    if (!$recipient) $recipient = $row['client_email'];
+    
+    if (isset($row['subject']))   $subject = $row['subject'];
+    else    $subject = "..::Reserva Can Borrell::..";
     try {
       $result = $r = mailer_reserva($idr, $plantilla, $recipient, $subject, $html, $altbdy, null, false, MAIL_CCO);
       $mail = "Enviament $plantilla RESERVA PETITA ONLINE($r): $idr -- $recipient";

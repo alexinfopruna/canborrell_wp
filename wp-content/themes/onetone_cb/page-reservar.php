@@ -8,7 +8,8 @@ require_once (ROOT . "Gestor.php");
 if (defined("CB_FORA_DE_SERVEI") && CB_FORA_DE_SERVEI === true && $_SESSION['permisos'] < 200)
   header("Location:/cb-reserves/reservar/fora_de_servei.html");
 
-define("LLISTA_DIES_NEGRA", ROOT . INC_FILE_PATH . "bloq.txt");
+//define("LLISTA_DIES_NEGRA", ROOT . INC_FILE_PATH . "bloq.txt");
+define("LLISTA_DIES_NEGRA", ROOT . INC_FILE_PATH . "llista_dies_negra.txt");
 define("LLISTA_NITS_NEGRA", ROOT . INC_FILE_PATH . "bloq_nit.txt");
 define("LLISTA_DIES_BLANCA", ROOT . INC_FILE_PATH . "llista_dies_blanca.txt");
 define('USR_FORM_WEB', 3); //ES LA ID D'USUARI (admin) ANONIM QUE CREA RESERVA ONLINE
