@@ -1404,8 +1404,8 @@ WHERE  `client`.`client_id` =$idc;
     /*     * *****ATENCIO ******************** */
     /*     * *****ATENCIO ******************** */
     $query = "UPDATE reserves SET estat=7, preu_reserva='$import', resposta='$resposta' WHERE id_reserva=$idr";
-    $result = "TEEEST";
-   // $result = $this->log_mysql_query($query, $this->connexioDB) or die(((is_object($GLOBALS["___mysqli_ston"])) ? mysqli_error($GLOBALS["___mysqli_ston"]) : (($___mysqli_res = mysqli_connect_error()) ? $___mysqli_res : false)));
+    //$result = "TEEEST";
+    $result = $this->log_mysql_query($query, $this->connexioDB) or die(((is_object($GLOBALS["___mysqli_ston"])) ? mysqli_error($GLOBALS["___mysqli_ston"]) : (($___mysqli_res = mysqli_connect_error()) ? $___mysqli_res : false)));
     include('translate_' . $this->lng . '.php');
     echo $query . " >>> " . $result;
 //
