@@ -70,7 +70,6 @@ class Gestor_form extends gestor_reserves {
 		LEFT JOIN " . ESTAT_TAULES . " ON " . T_RESERVES . ".id_reserva=" . ESTAT_TAULES . ".reserva_id
 		WHERE data>= NOW() + INTERVAL 24 HOUR
 		AND " . T_RESERVES . ".id_reserva='" . $id_reserva . "' AND client_mobil='" . $mob . "'";
-
     $this->qry_result = mysqli_query($this->connexioDB, $query) or die(((is_object($GLOBALS["___mysqli_ston"])) ? mysqli_error($GLOBALS["___mysqli_ston"]) : (($___mysqli_res = mysqli_connect_error()) ? $___mysqli_res : false)));
 
     if ($this->total_rows = mysqli_num_rows($this->qry_result)) {
@@ -803,6 +802,7 @@ FROM client
   public function salvaUpdate() {
     $this->xgreg_log("Update <span class='idr'>" . $_POST['id_reserva'] . "</span>", 1);
     $resposta['request'] = "update";
+    $resposta['idr'] = $_POST['id_reserva'];
 //TODO VALIDA 
     $lang = $_POST['lang'] = $_SESSION["lang"];
     $dat = date("d/m");
@@ -958,9 +958,8 @@ FROM client
     $this->enviaSMS($idr, $mensa);
 //envia MAIL
     //$extres['subject'] = "Can-Borrell: MODIFICACIÓ RESERVA ONLINE " . $_POST['id_reserva'];
-    
-           ob_start();    include('translate_' . $this->lng . '.php');    ob_end_clean();
-
+    global $translate;
+           ob_start();    include('translate_' . $lang . '.php');    ob_end_clean();
     $extres['subject'] = $this->l("Can-Borrell: MODIFICACIÓ RESERVA ONLINE ", FALSE) . $_POST['id_reserva'];
     if ($_POST['client_email'])
       $mail = $this->enviaMail($_POST['id_reserva'], "../reservar/mail_res_modificada_", FALSE, $extres);
@@ -1371,7 +1370,7 @@ WHERE  `client`.`client_id` =$idc;
     $this->xgreg_log("reserva_grups_tpv_ok_callback", 1, LOG_FILE_TPVPK, FALSE);
 
     $idr = substr($idrl, -4);
-    $query = "SELECT estat, client_email, data, hora, lang, adults, nens10_14, nens4_9, lang "
+    $query = "SELECT estat, client_email, data, hora, lang, adults, nens10_14, nens4_9 "
         . "FROM reserves "
         . "LEFT JOIN client ON client.client_id=reserves.client_id "
         . "WHERE id_reserva=$idr";
@@ -1379,6 +1378,11 @@ WHERE  `client`.`client_id` =$idc;
     $result = mysqli_query($this->connexioDB, $query) or die(((is_object($GLOBALS["___mysqli_ston"])) ? mysqli_error($GLOBALS["___mysqli_ston"]) : (($___mysqli_res = mysqli_connect_error()) ? $___mysqli_res : false)));
     $row = mysqli_fetch_assoc($result);
 
+    $this->lng = $lang = $row['lang'];
+    $this->setLang($lang);
+    // echo "------------ $this->lng  ---- $lang ------------";
+    //print_r($row);
+    
     $estat = $row['estat'];
     $mail = $row['client_email'];
 
@@ -1400,7 +1404,8 @@ WHERE  `client`.`client_id` =$idc;
     /*     * *****ATENCIO ******************** */
     /*     * *****ATENCIO ******************** */
     $query = "UPDATE reserves SET estat=7, preu_reserva='$import', resposta='$resposta' WHERE id_reserva=$idr";
-    $result = $this->log_mysql_query($query, $this->connexioDB) or die(((is_object($GLOBALS["___mysqli_ston"])) ? mysqli_error($GLOBALS["___mysqli_ston"]) : (($___mysqli_res = mysqli_connect_error()) ? $___mysqli_res : false)));
+    $result = "TEEEST";
+   // $result = $this->log_mysql_query($query, $this->connexioDB) or die(((is_object($GLOBALS["___mysqli_ston"])) ? mysqli_error($GLOBALS["___mysqli_ston"]) : (($___mysqli_res = mysqli_connect_error()) ? $___mysqli_res : false)));
     include('translate_' . $this->lng . '.php');
     echo $query . " >>> " . $result;
 //
@@ -1425,7 +1430,7 @@ WHERE  `client`.`client_id` =$idc;
     $extres['menu'] = $translate["menu"];
 
     if ($mail) {
-      $this->enviaMail($idr, "../editar/templates/mail_cli_", "", $extres);
+      $this->enviaMail($idr, "../editar/templates/mail_cli_", NULL, $extres);
     }
 
     $persones = $row['adults'] + $row['nens10_14'] + $row['nens4_9'] . 'p';

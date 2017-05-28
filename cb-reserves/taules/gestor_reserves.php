@@ -207,7 +207,10 @@ class gestor_reserves extends Gestor {
       $this->enviaSMS($id_reserva, $mensa);
       $this->paperera_reserves($id_reserva);
 //ENVIA MAIL
-      $extres['subject'] = $this->lv("Can-Borrell: RESERVA CANCELADA")." ".$id_reserva;
+      global $translate;
+      $lang = $this->lng;
+      ob_start();   require("../reservar/translate_$lang.php");    ob_end_clean();
+      $extres['subject'] = $this->lv("Can-Borrell: RESERVA CANCELADA ")." ".$id_reserva;
       $mail = $this->enviaMail($id_reserva, "cancelada_", FALSE, $extres);
     }
     $this->estat_anterior($id_reserva);
@@ -258,9 +261,7 @@ class gestor_reserves extends Gestor {
     $insertSQL = sprintf("REPLACE INTO client ( client_id, client_nom, client_cognoms, client_adresa, 
       client_localitat, client_cp, client_dni, client_telefon, client_mobil, client_email, client_conflictes) VALUES (%s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s)", $this->SQLVal($reserva['client_id'], "text"), $this->SQLVal($reserva['client_nom'], "text"), $this->SQLVal($reserva['client_cognoms'], "text"), $this->SQLVal($reserva['client_adresa'], "text"), $this->SQLVal($reserva['client_localitat'], "text"), $this->SQLVal($reserva['client_cp'], "text"), $this->SQLVal($reserva['client_dni'], "text"), $this->SQLVal($reserva['client_telefon'], "text"), $this->SQLVal($reserva['client_mobil'], "text"), $this->SQLVal($reserva['client_email'], "text"), $this->SQLVal($reserva['client_conflictes'], "text"));
 
-
     $this->qry_result = $this->log_mysql_query($insertSQL, $GLOBALS["___mysqli_stonDEL"]);
-
 
 // ESBORREM INFO CADUCADA
     if (CLEAR_DELETED_BEFORE) {
@@ -273,23 +274,6 @@ class gestor_reserves extends Gestor {
     ((is_null($___mysqli_res = mysqli_close($GLOBALS["___mysqli_stonDEL"]))) ? false : $___mysqli_res);
     ((bool) mysqli_query($this->connexioDB, "USE " . $this->database_name));
 
-//PASSO SMS
-//$insertSQL = sprintf("REPLACE INTO `$database_canborrell`.sms ( sms_id, sms_data, sms_reserva_id, sms_numero, sms_missatge) 
-//SELECT sms_id, sms_data, sms_reserva_id, sms_numero, sms_missatge FROM sms 
-//WHERE sms_reserva_id=$id_reserva");
-//$this->qry_result = $this->log_mysql_query($insertSQL, $this->connexioDB); // or die(((is_object($GLOBALS["___mysqli_ston"])) ? mysqli_error($GLOBALS["___mysqli_ston"]) : (($___mysqli_res = mysqli_connect_error()) ? $___mysqli_res : false)));
-//DELETE
-//$deleteSQL = "DELETE FROM sms WHERE sms_reserva_id=$id_reserva";
-//$this->qry_result = $this->log_mysql_query($deleteSQL, $this->connexioDB); // or die(((is_object($GLOBALS["___mysqli_ston"])) ? mysqli_error($GLOBALS["___mysqli_ston"]) : (($___mysqli_res = mysqli_connect_error()) ? $___mysqli_res : false)));
-//PASSO COMANDES
-//$insertSQL = sprintf("REPLACE INTO `$database_canborrell`.comanda ( comanda_id, comanda_reserva_id, comanda_plat_id, comanda_plat_quantitat) 
-///SELECT comanda_id, comanda_reserva_id, comanda_plat_id, comanda_plat_quantitat 
-//FROM comanda 
-//WHERE comanda_reserva_id=$id_reserva");
-//$this->qry_result = $this->log_mysql_query($insertSQL, $this->connexioDB); // or die(((is_object($GLOBALS["___mysqli_ston"])) ? mysqli_error($GLOBALS["___mysqli_ston"]) : (($___mysqli_res = mysqli_connect_error()) ? $___mysqli_res : false)));
-//DELETE
-//$deleteSQL = "DELETE FROM comanda WHERE comanda_reserva_id=$id_reserva";
-//$this->qry_result = $this->log_mysql_query($deleteSQL, $this->connexioDB); // or die(((is_object($GLOBALS["___mysqli_ston"])) ? mysqli_error($GLOBALS["___mysqli_ston"]) : (($___mysqli_res = mysqli_connect_error()) ? $___mysqli_res : false)));
 
     return true;
   }
@@ -2570,7 +2554,7 @@ ORDER BY `estat_hores_data` DESC";
     $query = "SELECT * FROM $taula
     LEFT JOIN client ON $taula.client_id=client.client_id
     WHERE id_reserva=$idr";
-
+    
     if (TRUE) {
       $this->qry_result = mysqli_query($this->connexioDB, $query) or die(((is_object($GLOBALS["___mysqli_ston"])) ? mysqli_error($GLOBALS["___mysqli_ston"]) : (($___mysqli_res = mysqli_connect_error()) ? $___mysqli_res : false)));
       $row = mysqli_fetch_assoc($this->qry_result);
@@ -2586,7 +2570,7 @@ ORDER BY `estat_hores_data` DESC";
     
     
     $file = ROOT . $plantilla . $this->lng . ".lbi";
-    //echo $file."  ".__FILE__;die();
+   // echo $file."  ".__FILE__;die();
     $t = new Template('.', 'comment');
     if (is_array($extres)) {
       foreach ($row as $k => $v) {
@@ -2622,7 +2606,6 @@ ORDER BY `estat_hores_data` DESC";
     //if ($destinatari) $recipient = $destinatari;
     //else $recipient = $row['client_email'];
     if (!$recipient) $recipient = $row['client_email'];
-    
     if (isset($row['subject']))   $subject = $row['subject'];
     else    $subject = "..::Reserva Can Borrell::..";
     try {

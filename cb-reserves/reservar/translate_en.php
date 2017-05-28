@@ -3,8 +3,7 @@ if (!isset($lang))
   $lang = 'cat';
 if (!isset($PERSONES_GRUP))
   $PERSONES_GRUP = 12;
-
-
+$tranlate['__SELF__']="reservar/translate_en.php";
 $translate['EDIT_RESERVA_FORA_DE_SERVEI'] = '<p style="color:red">This service is temporarily out of order. To cancel or inform of alterations in your reservation please call <p>
 <b>93 692 97 23</b>
 <br/>
@@ -262,10 +261,6 @@ $translate["Can-Borrell: MODIFICACIÓ RESERVA ONLINE "] = "Can Borrell: ONLINE R
 $translate["Can-Borrell: RESERVA CANCELADA "] = "Can-Borrell: RESEVATION CANCELED ";
 $translate["MAIL_GRUPS_PAGAT_subject"] = "Can Borrell: CONFIRMATION OF GROUP RESERVATION PAYMENT";
 $translate["MAIL_GRUPS_PAGAT_titol"] = "CONFIRMATION OF RESERVATION PAYMENT";
-
-
-
-
 
 
 $translate["MAIL_GRUPS_PAGAT_text1"] = "We are happy to inform you that we have correctly received your payment of ";

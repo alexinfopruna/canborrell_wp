@@ -1071,7 +1071,7 @@ function controlSubmit()
                     $("#popup").html(info + '<iframe id="frame-tpv" name="frame-tpv" style="width:100%;height:500px"></iframe>');
                     $("#bt-continuar .ui-button-text").html("Tanca");
                     var doc = document.getElementById('frame-tpv').contentWindow.document;
-                    doc.write('<html><head><title></title><style>body{background:url(//www.can-borrell.com/cb-reserves/reservar/css/loading.gif) center center no-repeat;}</style></head><body>Loading TPV...</body></html>');
+doc.write('<html><head><title></title><style>body{background:url(//www.can-borrell.com/cb-reserves/reservar/css/loading.gif) center center no-repeat;}</style></head><body>Loading TPV...</body></html>');
                     /** 
                      * TIMER TEMPS MAXIM
                      */
@@ -1148,8 +1148,7 @@ function resultat_estat(idr){
         if (datos == "100"){
              window.clearInterval(timer_estat);
             window.location.href = prelang+"/#about";
-            if (resub) return datos;
-            resub=true;
+            
             alert(l('PAGAMENT REBUT'));
         }
 

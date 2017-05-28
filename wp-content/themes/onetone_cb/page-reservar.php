@@ -84,8 +84,8 @@ if (isset($_REQUEST['rid'])) {
   if (isset($_POST['idr']) && $_POST['idr'] > SEPARADOR_ID_RESERVES) { //si es reserva de grups
     $row = $gestorf->recuperaReserva($_POST['mob'], $_POST['idr']);
     if (!$row) {
-      
-      l("ERROR_LOAD_RESERVA");
+     // $error_edit = TRUE;
+      $message = "ERROR_LOAD_RESERVA";
       $_REQUEST['idr'] = $_POST['idr'] = null;
     }
   }
@@ -121,17 +121,18 @@ get_header();
 require_once(ROOT . '../reservar/translate_' . $gestorf->lng . '.php');
 $gestorf = $g;
 
-
-if (!isset($_POST['idr']))
+if (!isset($_POST['idr'])){
   $_POST['idr'] = null;
-$EDITA_RESERVA = $_POST['idr'];
+}
 
+$EDITA_RESERVA = $_POST['idr']?$_POST['idr']:NULL;
+//$EDITA_RESERVA = $_POST['idr'];
 
 //ELIMINA RESERVA 
 if (isset($_POST['cancel_reserva']) && $_POST['cancel_reserva'] == "Eliminar reserva" && $_POST['idr'] > SEPARADOR_ID_RESERVES) {
   if ($gestorf->cancelReserva($_POST['mob'], $_POST['idr'])) {
     $message = __("Your reservation is now cancelled", 'canborrell');
-    $_REQUEST['idr'] = $_POST['idr'] = null;
+    $_REQUEST['idr'] = $_POST['idr'] = $EDITA_RESERVA = null;
   }
   else {
     //$message=__("ERROR: No s'ha pogut cancel·lar la reserva per problemes tècnics. <a href='mailto:restaurant@can-borrell.com'>Contacta amb el restaurant</a>",'canborrell');
@@ -508,7 +509,7 @@ function reservar_enqueue_styles() {
                 <div class="col-main">
                     <section class="post-main" role="main" id="content">
                             <?php while (have_posts()) : the_post(); ?>
-                          <article class="post type-post" id="">
+                          <article class="post type-post">
   <?php if (has_post_thumbnail()): ?>
                                 <div class="feature-img-box">
                                     <div class="img-box">
@@ -555,7 +556,7 @@ function reservar_enqueue_styles() {
                                                   <!-- ***************************************************************************************   -->
                                                   <?php
                                                   if (isset($message)) {
-                                                    echo '<div class="alert alert-info"><i class="fa fa-info-circle" style="font-size:28px;color:#31708f;"></i> ' . $message . '</div>';
+                                                    echo '<div class="alert alert-danger"><i class="fa fa-info-circle" style="font-size:28px;color:#31708f;"></i> ' . l($message,FALSE) . '</div>';
                                                   }
                                                   ?>
 
@@ -787,7 +788,7 @@ function reservar_enqueue_styles() {
                                                                           <div id="selectorHoraSopar" class="col_dere" >
                                                                               <img src="/cb-reserves/reservar/css/loading.gif"/>
                                                                           </div>
-                                                                      </div>
+                                                                      </div></b></b></b>
 
                                                                       <input type="hidden" name="taulaT1" value="">
                                                                       <input type="hidden" name="taulaT2" value="">
