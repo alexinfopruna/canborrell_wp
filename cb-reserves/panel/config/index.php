@@ -10,6 +10,7 @@ if (!$gestor->valida_sessio(64)) {
 }
 
 $cfg = new Configuracio();
+/*
 $were = NULL;
 if ($_SESSION['uSer']->permisos < 255){
 $were = "config_id>2 AND config_id<16 
@@ -17,11 +18,9 @@ OR config_id=35
 OR config_id=38
 OR config_id=39
 OR config_id=40";
-
-$were = " config_permisos <= ".$_SESSION['uSer']->permisos." ";
 }
-
-
+*/
+$were = "  config_permisos <= ".$_SESSION['uSer']->permisos." ";
 $rows = $cfg->array_vars($were);
 
 /* * *********************************************************************************************************************** */

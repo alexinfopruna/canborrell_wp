@@ -269,7 +269,6 @@ class Configuracio {
 ////////////////////////////////////////////////////////////////////////////////
     require(ROOT . DB_CONNECTION_FILE);
     $were = (is_null($filtre) ? "" : " WHERE $filtre ");
-
     $query = "SELECT 
               config_id AS idR , 
               config_var AS config_var,
@@ -279,7 +278,7 @@ class Configuracio {
               FROM config
               $were
               ORDER BY config_descripcio";
-    
+    //echo $query;
     
     $r = mysqli_query($GLOBALS["___mysqli_ston"], $query);
     
