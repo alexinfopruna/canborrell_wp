@@ -25,12 +25,26 @@ class Gestor_config extends Gestor {
   }
 
   public function set_value($var, $val){
-    
+    echo "set_value($var, $val)";
+     echo " <br/>";
+      echo " <br/>";
     $sql="UPDATE config SET config_val='$val' WHERE config_var='$var'";
     $this->qry_result=TRUE;
     $this->qry_result = mysqli_query($this->connexioDB, $sql) or die(((is_object($GLOBALS["___mysqli_ston"])) ? mysqli_error($GLOBALS["___mysqli_ston"]) : (($___mysqli_res = mysqli_connect_error()) ? $___mysqli_res : false)));
 
-    if (!$this->qry_result) return "ERR";
+    
+    $sql2="SELECT config_val FROM config   WHERE config_var='$var'";
+    $result = mysqli_query($this->connexioDB, $sql2) or die(((is_object($GLOBALS["___mysqli_ston"])) ? mysqli_error($GLOBALS["___mysqli_ston"]) : (($___mysqli_res = mysqli_connect_error()) ? $___mysqli_res : false)));
+    $row = mysqli_fetch_array($result);
+    $val2 = $row['config_val'];
+    
+    echo $sql;
+    echo "  ..........  ".$this->qry_result;
+    echo " <br/>";
+    echo " <br/>";
+    echo "RESULTAT: $var ---> $val2";
+    echo " <br/>";
+    echo " <br/>";
     return $sql;
 
     return true;
