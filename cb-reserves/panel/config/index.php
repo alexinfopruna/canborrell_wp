@@ -17,6 +17,8 @@ OR config_id=35
 OR config_id=38
 OR config_id=39
 OR config_id=40";
+
+$were = " config_permisos <= ".$_SESSION['uSer']->permisos." ";
 }
 
 
