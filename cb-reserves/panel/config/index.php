@@ -183,7 +183,7 @@ function parse_type_int($type, $val, $label, $descripcio) {
         <link rel="import" href="bower_components/paper-toggle-button/paper-toggle-button.html">
         <link rel="import" href="bower_components/paper-time-input/paper-time-input.html">
         <link rel="import" href="bower_components/paper-radio-group/paper-radio-group.html">
-        <link rel="import" href="bower_components/iron-ajax/iron-ajax.html">
+        <!--<link rel="import" href="bower_components/iron-ajax/iron-ajax.html">-->
         <link rel="import" href="bower_components/paper-styles/paper-styles.html">
 
         <style>
@@ -240,6 +240,7 @@ function parse_type_int($type, $val, $label, $descripcio) {
             <template is="dom-bind" id="scope">
                 <h1> Configuració del sistema de reserves </h1>
                 <div id="overlay" class="overlay" style="display:none"></div>
+                <!--
                 <iron-ajax 
                     id="dataAjax" 
                     method="get"
@@ -254,7 +255,7 @@ function parse_type_int($type, $val, $label, $descripcio) {
                     <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute
                         irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
                 </paper-dialog>
-
+-->
 
 
                 <div class="cb-llistat ui-corner-all">
@@ -282,7 +283,7 @@ function parse_type_int($type, $val, $label, $descripcio) {
         </div>
         <script>
           var tims =<?php echo $dialog; ?>
-
+/**/
           function printValue(sliderID, textbox) {
               var x = document.getElementById(textbox);
               var y = document.getElementById(sliderID);
@@ -300,19 +301,22 @@ function parse_type_int($type, $val, $label, $descripcio) {
               var label = p.getAttribute("label");
               var val = dt;
               var t = document.querySelector('#scope');
-              var ajaxRequest = t.$.dataAjax;
-              ajaxRequest.body = {label: val}
-              ajaxRequest.url = "Gestor_config.php?a=set_value&b=" + label + "&c=" + val
+              //var ajaxRequest = t.$.dataAjax;
+              //ajaxRequest.body = {label: val}
+              //ajaxRequest.url = "Gestor_config.php?a=set_value&b=" + label + "&c=" + val
+              var url = "Gestor_config.php?a=set_value&b=" + label + "&c=" + val
               //ajaxRequest.generateRequest();
-              $("#popup").html(ajaxRequest.url+"...");
-              $.post(ajaxRequest.url,respostaAjax);
+              $("#popup").html(url+"...");
+              $.post(url,respostaAjax);
 
           }
 
           (function (document) {
               'use strict';
+              
               document.addEventListener('WebComponentsReady', function () {
                   var t = document.querySelector('#scope');
+                  /*
                   var ajaxRequest = t.$.dataAjax;
                   var dialog;
                   for (dialog = 1; dialog <= tims; dialog++) {
@@ -322,9 +326,8 @@ function parse_type_int($type, $val, $label, $descripcio) {
                       //var dt = moment("11:00 PM", ["h:mm A"]).format("HH:mm");
                       //alert(dt);
                       scope["time_" + dialog] = dt;
-
                   }
-
+                  */
                   // make the iron-ajax call
                   t.postData_bool = function (a) {
                       document.getElementById("overlay").style.display = 'block';
@@ -332,11 +335,13 @@ function parse_type_int($type, $val, $label, $descripcio) {
                       var label = normalizedEvent.localTarget.getAttribute("label");
                       var val = normalizedEvent.localTarget.checked;
 
-                      ajaxRequest.body = {label: val}
-                      ajaxRequest.url = "Gestor_config.php?a=set_value&b=" + label + "&c=" + val
+                      //ajaxRequest.body = {label: val}
+                      //ajaxRequest.url = "Gestor_config.php?a=set_value&b=" + label + "&c=" + val
                       //ajaxRequest.generateRequest();
-                       $("#popup").html(ajaxRequest.url+"...");
-                      $.post(ajaxRequest.url,respostaAjax);
+                      var url = "Gestor_config.php?a=set_value&b=" + label + "&c=" + val
+                      //ajaxRequest.generateRequest();
+                      $("#popup").html(url+"...");
+                      $.post(url,respostaAjax);
                   }
 
                   t.postData_input = function (a) {
@@ -345,11 +350,13 @@ function parse_type_int($type, $val, $label, $descripcio) {
                       var label = normalizedEvent.localTarget.getAttribute("label");
                       var val = normalizedEvent.localTarget.value;
 
-                      ajaxRequest.body = {label: val}
-                      ajaxRequest.url = "Gestor_config.php?a=set_value&b=" + label + "&c=" + val
+                      //ajaxRequest.body = {label: val}
+                      //ajaxRequest.url = "Gestor_config.php?a=set_value&b=" + label + "&c=" + val
                       //ajaxRequest.generateRequest();
-                      $("#popup").html(ajaxRequest.url+"...");
-                      $.post(ajaxRequest.url,respostaAjax);
+                      var url = "Gestor_config.php?a=set_value&b=" + label + "&c=" + val
+                      //ajaxRequest.generateRequest();
+                      $("#popup").html(url+"...");
+                      $.post(url,respostaAjax);                 
                   }
 
                   t.postData_time = function (a) {
@@ -363,17 +370,21 @@ function parse_type_int($type, $val, $label, $descripcio) {
                       // var normalizedEvent = Polymer.dom(a);
                       var label = p.getAttribute("label");
                       var val = p.time;
-                      ajaxRequest.body = {label: val}
-                      ajaxRequest.url = "Gestor_config.php?a=set_value&b=" + label + "&c=" + val
+                      //ajaxRequest.body = {label: val}
+                      //ajaxRequest.url = "Gestor_config.php?a=set_value&b=" + label + "&c=" + val
                       //ajaxRequest.generateRequest();
-                      $("#popup").html(ajaxRequest.url+"...");
-                      $.post(ajaxRequest.url,respostaAjax);
+                      var url = "Gestor_config.php?a=set_value&b=" + label + "&c=" + val
+                      //ajaxRequest.generateRequest();
+                      $("#popup").html(url+"...");
+                      $.post(url,respostaAjax);                  
                   }
                   //callback on request complete
+                  /*
                   t.postComplete = function () {
                       document.getElementById("overlay").style.display = 'none';
                       // alert('whoa! request complete');
                   }
+                  */
               });
           })(document);
 
@@ -381,7 +392,6 @@ function parse_type_int($type, $val, $label, $descripcio) {
           function respostaAjax(dades){
             $("#popup").html(dades);
             document.getElementById("overlay").style.display = 'none';
-            //alert(dades);
           }
         </script>
 
