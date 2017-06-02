@@ -373,7 +373,7 @@ function parse_type_int($type, $val, $label, $descripcio) {
                       //ajaxRequest.body = {label: val}
                       //ajaxRequest.url = "Gestor_config.php?a=set_value&b=" + label + "&c=" + val
                       //ajaxRequest.generateRequest();
-                      var url = "Gestor_config.php?a=set_value&b=" + label + "&c=" + val
+                      var url = "Gestor_config.php?a=set_value&b=" + label + "&jq=1&c=" + val
                       //ajaxRequest.generateRequest();
                       $("#popup").html(url+"...");
                       $.post(url,respostaAjax);                  
