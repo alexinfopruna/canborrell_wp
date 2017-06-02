@@ -164,7 +164,11 @@ function parse_type_int($type, $val, $label, $descripcio) {
 
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
         <title> Configuració del sistema de reserves </title>
-
+ <?php echo Gestor::loadJQuery("2.0.3"); ?>
+<link type="text/css" href="../../taules/css/blitzer/jquery-ui-1.8.9.custom.css" rel="stylesheet" />	
+<link type="text/css" href="../../reservar/css/custom-theme/jquery.ui.all.css" rel="stylesheet" />	        
+        
+        
         <script src="bower_components/webcomponentsjs/webcomponents-lite.js"></script>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.18.1/moment.min.js"></script>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.18.1/locale/ca.js"></script>
@@ -222,6 +226,12 @@ function parse_type_int($type, $val, $label, $descripcio) {
                 background:url(//www.can-borrell.com/wp-content/themes/onetone/images/loading.gif) center center no-repeat;
                 background-color: white;
                 z-index: 100;
+            }
+            
+            #popup{
+                width:  100px;
+                margin:20px;
+                color:#444;
             }
         </style>
     </head>
@@ -293,8 +303,9 @@ function parse_type_int($type, $val, $label, $descripcio) {
               var ajaxRequest = t.$.dataAjax;
               ajaxRequest.body = {label: val}
               ajaxRequest.url = "Gestor_config.php?a=set_value&b=" + label + "&c=" + val
-              ajaxRequest.generateRequest();
-
+              //ajaxRequest.generateRequest();
+              $("#popup").html(ajaxRequest.url+"...");
+              $.post(ajaxRequest.url,respostaAjax);
 
           }
 
@@ -323,7 +334,9 @@ function parse_type_int($type, $val, $label, $descripcio) {
 
                       ajaxRequest.body = {label: val}
                       ajaxRequest.url = "Gestor_config.php?a=set_value&b=" + label + "&c=" + val
-                      ajaxRequest.generateRequest();
+                      //ajaxRequest.generateRequest();
+                       $("#popup").html(ajaxRequest.url+"...");
+                      $.post(ajaxRequest.url,respostaAjax);
                   }
 
                   t.postData_input = function (a) {
@@ -334,7 +347,9 @@ function parse_type_int($type, $val, $label, $descripcio) {
 
                       ajaxRequest.body = {label: val}
                       ajaxRequest.url = "Gestor_config.php?a=set_value&b=" + label + "&c=" + val
-                      ajaxRequest.generateRequest();
+                      //ajaxRequest.generateRequest();
+                      $("#popup").html(ajaxRequest.url+"...");
+                      $.post(ajaxRequest.url,respostaAjax);
                   }
 
                   t.postData_time = function (a) {
@@ -350,7 +365,9 @@ function parse_type_int($type, $val, $label, $descripcio) {
                       var val = p.time;
                       ajaxRequest.body = {label: val}
                       ajaxRequest.url = "Gestor_config.php?a=set_value&b=" + label + "&c=" + val
-                      ajaxRequest.generateRequest();
+                      //ajaxRequest.generateRequest();
+                      $("#popup").html(ajaxRequest.url+"...");
+                      $.post(ajaxRequest.url,respostaAjax);
                   }
                   //callback on request complete
                   t.postComplete = function () {
@@ -361,7 +378,14 @@ function parse_type_int($type, $val, $label, $descripcio) {
           })(document);
 
 
+          function respostaAjax(dades){
+            $("#popup").html(dades);
+            document.getElementById("overlay").style.display = 'none';
+            //alert(dades);
+          }
         </script>
 
+        
+        <div id="popup" style="clear:both">Comunicació AJAX<br><br></div>
     </body>
 </html>
