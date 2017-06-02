@@ -3,6 +3,23 @@
 if (!defined('UPPER_NO_TILDE')) define('UPPER_NO_TILDE',false);
 $TABLE = "config";
 $FILTRE = "";
+
+
+
+
+if (!defined('ROOT'))
+  define('ROOT', "../../taules/");
+require (ROOT . "gestor_reserves.php");
+$gestor = new gestor_reserves();
+
+if (!$gestor->valida_sessio(64)) {
+  header("Location: ../login.php");
+  die();
+}
+$cfg = new Configuracio();
+$were = " WHERE config_permisos <= ".$_SESSION['uSer']->permisos." ";
+
+
 ////////////////////////////////////////////////////////////////////////////////
 $query = "SELECT 
 config_id AS idR , 
@@ -10,6 +27,7 @@ config_var AS config_var,
 config_descripcio AS config_descripcio,
 config_val AS config_val
 FROM $TABLE
+ $were 
 ORDER BY config_descripcio
 ";
 ////////////////////////////////////////////////////////////////////////////////
