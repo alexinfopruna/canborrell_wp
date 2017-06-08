@@ -396,6 +396,6 @@ function parse_type_int($type, $val, $label, $descripcio) {
         </script>
 
         
-        <div id="popup" style="clear:both">Comunicació AJAX<br><br></div>
+        <div id="popup" style="display:none;clear:both">Comunicació AJAX<br><br></div>
     </body>
 </html>

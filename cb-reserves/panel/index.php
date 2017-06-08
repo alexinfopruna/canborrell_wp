@@ -167,11 +167,13 @@ $(function(){$("#panel").accordion({collapsible:true,active:false,heightStyle: "
 <h4><a href="#">Eines avançades</a></h4>
 <div id="ONLINE" class="caixa">
 		<a target="_blank" href="http://<?php echo $_SERVER['HTTP_HOST'];?>/panel/infoConn.php" class=" bt ui-button ui-widget ui-state-default ui-corner-all ui-button-text-only">INFO servidor</a>
-		<!-- -->
+		<!-- 
 		<a target="_blank" href="../taules/DBTable/FormConfigAdmin.php" class=" bt ui-button ui-widget ui-state-default ui-corner-all ui-button-text-only">CONFIGURACIO AVANÇADA DEL SISTEMA</a>
-		 <!--
+		-->
+                                                        <!-- -->
 		<a target="_blank" href="./config/" class=" bt ui-button ui-widget ui-state-default ui-corner-all ui-button-text-only">CONFIGURACIO AVANÇADA DEL SISTEMA v2</a>
-                                                        -->
+                                                       
+                                                        
 		<a target="_blank" href="../taules/dumpBD.php?drop" class=" bt ui-button ui-widget ui-state-default ui-corner-all ui-button-text-only">Còpia de seguretat de la Base de Dades (Descarrega)</a>
 		<!-- -->
 		<!-- -->
