@@ -110,12 +110,10 @@ Refresc<BR>
 </UL>
 <B>POSTRES</B>
 <UL>
-Pastís Selva trufa<BR>
-Pastís de llimona<BR>
-Pastís al whisky<BR>
-Copa sorbet llimona<BR>
-Crema catalana<BR>
-&nbsp;<BR>
+<li>Fruits secs (músic) pica-pica a la taula</li>
+<li>Crema catalana</li>
+<li>Flam casolà</li>
+<li>Copa sorbet llimona</li>
 </UL>
 <B>CAF&Egrave;S, TALLATS o CIGALONS</B><BR>
 
@@ -218,9 +216,10 @@ Refresc<BR>
 </UL>
 <B>POSTRES</B>
 <UL>
-Pastís al whisky<BR>
-Flam biscuit<BR>
-Crema catalana<BR>
+<li>Fruits secs (músic) pica-pica a la taula</li>
+<li>Crema catalana</li>
+<li>Flam casolà</li>
+<li>Copa sorbet llimona</li>
 </UL>
 <B>CAF&Egrave;S, TALLATS o CIGALONS</B><BR>
 
@@ -323,9 +322,10 @@ Refresc<BR>
 </UL>
 <B>POSTRES</B>
 <UL>
-Past&iacute;s de llimona<BR>
-Past&iacute;s Selva trufa<BR>
-&nbsp;<BR>
+<li>Fruits secs (músic) pica-pica a la taula</li>
+<li>Crema catalana</li>
+<li>Flam casolà</li>
+<li>Copa sorbet llimona</li>
 </UL>
 <B>CAF&Egrave;S, TALLATS o CIGALONS</B><BR>
 
@@ -382,12 +382,10 @@ CELLER</B>
   </UL>
 <B>POSTRES</B>
 <UL>
-  Mus de llimona<BR>
-  Past&iacute;s Selva trufa<br>
-  Terrina turr&oacute;<br>
-  Flam 
-  <BR>
-  &nbsp;<BR>
+<li>Fruits secs (músic) pica-pica a la taula</li>
+<li>Crema catalana</li>
+<li>Flam casolà</li>
+<li>Copa sorbet llimona</li>
 </UL>
 <B>CAF&Egrave;S, TALLATS o CIGALONS</B><BR>
 
@@ -550,10 +548,10 @@ Refresc<BR>
 </UL>
 <B>POSTRES</B>
 <UL>
-Pastís de crema catalana de la casa<BR>
-Past&iacute;s al whisky<BR>
-Copa sorbet llimona<BR>
-&nbsp;<BR>
+<li>Fruits secs (músic) pica-pica a la taula</li>
+<li>Crema catalana</li>
+<li>Flam casolà</li>
+<li>Copa sorbet llimona</li>
 </UL>
 <B>CAF&Egrave;S, TALLATS o CIGALONS</B><BR>
 

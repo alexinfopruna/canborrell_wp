@@ -120,12 +120,10 @@ Agua<BR>Refresco<BR>
 </UL>
 <B>POSTRES</B>
 <UL>
-Tarta Selva trufa<br/>
-Tarta de limón<br/>
-Tarta whisky<br/>
-Copa sorbete limón<br/>
-Crema catalana<br/>
-&nbsp;<br/>
+<li>Fruitos secos (músico) pica-pica en mesa</li>
+<li>Crema catalana</li>
+<li>Flan casero</li>
+<li>Copa sorbete limón</li>
 </UL>
 <B>CAF&Eacute;S, CORTADOS o CARAJILLOS</B><br/>
 
@@ -231,10 +229,10 @@ Agua<BR>Refresco<BR>
 </UL>
 <B>POSTRES</B>
 <UL>
-Tarta whisky<br/>
-Flan biscuit<br/>
-Crema catalana<br/
-&nbsp;<br/>
+<li>Fruitos secos (músico) pica-pica en mesa</li>
+<li>Crema catalana</li>
+<li>Flan casero</li>
+<li>Copa sorbete limón</li>
 </UL>
 <B>CAF&Eacute;S, CORTADOS o CARAJILLOS</B><br/>
 
@@ -334,9 +332,10 @@ Agua<BR>Refresco<BR>
 </UL>
 <B>POSTRES</B>
 <UL>
-Tarta de lim&oacute;n<br/>
-Tarta Selva trufa<br/>
-&nbsp;<br/>
+<li>Fruitos secos (músico) pica-pica en mesa</li>
+<li>Crema catalana</li>
+<li>Flan casero</li>
+<li>Copa sorbete limón</li>
 </UL>
 <B>CAF&Eacute;S, CORTADOS o CARAJILLOS</B><br/>
 
@@ -389,12 +388,10 @@ Tarta Selva trufa<br/>
 </UL>
 <B>POSTRES</B>
 <UL>
-  Mus de lim&oacute;n<br/>
-  Tarta Selva trufa<br/>
-  Vastigo Turr&oacute;n<br/>
-  Falm 
-  <br/>
-  &nbsp;<br/>
+<li>Fruitos secos (músico) pica-pica en mesa</li>
+<li>Crema catalana</li>
+<li>Flan casero</li>
+<li>Copa sorbete limón</li>
 </UL>
 <B>CAF&Eacute;S, CORTADOS </B><br/>
 
@@ -548,10 +545,10 @@ Agua<BR>Refresco<BR>
 </UL>
 <B>POSTRES</B>
 <UL>
-Pastel de crema catalana de la casa<br/>
-Tarta whisky<br/>
-Copa sorbete de limón<br/>
-&nbsp;<br/>
+<li>Fruitos secos (músico) pica-pica en mesa</li>
+<li>Crema catalana</li>
+<li>Flan casero</li>
+<li>Copa sorbete limón</li>
 </UL>
 <B>CAF&Eacute;S, CORTADOS o CARAJILLOS</B><br/>
 
