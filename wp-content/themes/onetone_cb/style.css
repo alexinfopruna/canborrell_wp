@@ -1397,7 +1397,7 @@ section.home-section-1 .home-section-content, section.home-section-1 p{
 
 /* COMPLEMENTS */
 .dots { 
-  background: url('img/dot.gif') repeat-x bottom; 
+ /* background: url('img/dot.gif') repeat-x bottom; */
 }
 .field {
   background-color: #FFFFFF;
@@ -1411,11 +1411,11 @@ float:left;
 .complements{
   font-size:0.7em;
   width:350px;
-border:#444 solid 1px;
-border-radius:5px;
-float:right;
-padding:10px;
-margin:10px;
+  border:#444 solid 1px;
+  border-radius:5px;
+  float:right;
+  padding:10px;
+  margin:10px;
 }
 
 .single-menus .post-main ul.dots{padding-top: 0}
