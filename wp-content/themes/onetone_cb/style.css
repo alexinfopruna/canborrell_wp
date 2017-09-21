@@ -1394,3 +1394,29 @@ section.home-section-1 .home-section-content, section.home-section-1 p{
 }}
 
 
+
+/* COMPLEMENTS */
+<style>
+.dots { 
+  background: url('img/dot.gif') repeat-x bottom; 
+}
+.field {
+  background-color: #FFFFFF;
+} 
+.field2 {
+ float: right;
+} 
+ul.plat1 {
+float:left;
+}
+.complements{
+  font-size:0.7em;
+  width:350px;
+border:#444 solid 1px;
+border-radius:5px;
+float:right;
+padding:10px;
+margin:10px;
+}
+</style>
+
