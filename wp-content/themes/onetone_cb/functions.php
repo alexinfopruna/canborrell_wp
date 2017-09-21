@@ -158,6 +158,7 @@ function cb_preu_plat_func($atts) {
   $carta = new Carta();
 
   $id = $atts['id'];
+  
   return '<span class="preu">' . $carta->preuPlat($id) . '</span>';
 }
 

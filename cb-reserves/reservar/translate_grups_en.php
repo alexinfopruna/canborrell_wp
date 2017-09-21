@@ -108,14 +108,14 @@ Cordero<br/>
 Conejo<br/>
 Pollo<br/>
 Butifarra<br/>
-Lomo<br/>
+Butifarra negra<br/>
 &nbsp;<br/>
 </UL>
 <B>BODEGA</B>
 <UL>
 Vino de la Casa<br/>
 Gaseosa<br/>
-Agua<br/>
+Agua<BR>Refresco<BR>
 &nbsp;<br/>
 </UL>
 <B>POSTRES</B>
@@ -128,7 +128,7 @@ Crema catalana<br/>
 &nbsp;<br/>
 </UL>
 <B>CAF&Eacute;S, CORTADOS o CARAJILLOS</B><br/>
-<B>CHUPITOS</B>
+
 <br/>
 <B>PRICE</B>
 <UL>
@@ -164,14 +164,14 @@ Cordero<br/>
 Conejo<br/>
 Pollo<br/>
 Butifarra<br/>
-Lomo<br/>
+Butifarra negra<br/>
 &nbsp;<br/>
 </UL>
 <B>BODEGA</B>
 <UL>
 Vino de la Casa<br/>
 Gaseosa<br/>
-Agua<br/>
+Agua<BR>Refresco<BR>
 &nbsp;<br/>
 </UL>
 <B>POSTRES</B>
@@ -180,7 +180,7 @@ Pastel y cava
 &nbsp;<br/>
 </UL>
 <B>CAF&Eacute;S, CORTADOS o CARAJILLOS</B><br/>
-<B>CHUPITOS</B>
+
 <br/>
 <B>PRICE</B>
 <UL>
@@ -218,7 +218,7 @@ Alcachofas a la brasa<br/>
 Cordero<br/>
 Conejo<br/>
 Pollo<br/>
-Lomo<br/>
+Butifarra negra<br/>
 Butifarra<br/>
 &nbsp;<br/>
 </UL>
@@ -226,7 +226,7 @@ Butifarra<br/>
 <UL>
 Vino de la Casa<br/>
 Gaseosa<br/>
-Agua<br/>
+Agua<BR>Refresco<BR>
 &nbsp;<br/>
 </UL>
 <B>POSTRES</B>
@@ -237,7 +237,7 @@ Crema catalana<br/
 &nbsp;<br/>
 </UL>
 <B>CAF&Eacute;S, CORTADOS o CARAJILLOS</B><br/>
-<B>CHUPITOS</B>
+
 <P>&nbsp;<br/>
 <B>PRICE</B>
 <UL>
@@ -276,7 +276,7 @@ Alcachofas a la brasa<br/>
 Cordero<br/>
 Conejo<br/>
 Pollo<br/>
-Lomo<br/>
+Butifarra negra<br/>
 Butifarra<br/>
 &nbsp;<br/>
 </UL>
@@ -284,7 +284,7 @@ Butifarra<br/>
 <UL>
 Vino de la Casa<br/>
 Gaseosa<br/>
-Agua<br/>
+Agua<BR>Refresco<BR>
 &nbsp;<br/>
 </UL>
 <B>POSTRES</B>
@@ -293,7 +293,7 @@ Pastel y cava
 &nbsp;<br/>
 </UL>
 <B>CAF&Eacute;S, CORTADOS o CARAJILLOS</B><br/>
-<B>CHUPITOS</B>
+
 <br/>
 <B>PRICE</B>
 <UL>
@@ -319,17 +319,17 @@ Alioli<br/>
 </UL>
 <B>PARRILLADA</B>
 <UL>
-Butifarra a la brasa 1/2<br/>
-Pollo a la brasa 1/4<br/>
-Lomo a la brasa 1/3<br/>
+Butifarra a la brasa<br/>
+Pollo a la brasa<br/>
+Secreto de cerdo<br/>
 Patatas fritas<br/>
 &nbsp;<br/>
 </UL>
 <B>BODEGA</B>
 <UL>
-Vino de la Casa o sangria<br/>
+Vino de la Casa<br/>
 Gaseosa<br/>
-Agua<br/>
+Agua<BR>Refresco<BR>
 &nbsp;<br/>
 </UL>
 <B>POSTRES</B>
@@ -339,7 +339,7 @@ Tarta Selva trufa<br/>
 &nbsp;<br/>
 </UL>
 <B>CAF&Eacute;S, CORTADOS o CARAJILLOS</B><br/>
-<B>CHUPITOS</B>
+
 <br/>
 <B>PRICE</B>
 <UL>
@@ -382,9 +382,9 @@ Tarta Selva trufa<br/>
 </UL>
 <B>BODEGA</B>
 <UL>
-  Vino de la Casa o sangria<br/>
+  Vino de la Casa<br/>
   Gaseosa<br/>
-  Agua<br/>
+  Agua<BR>Refresco<BR>
   &nbsp;<br/>
 </UL>
 <B>POSTRES</B>
@@ -397,7 +397,7 @@ Tarta Selva trufa<br/>
   &nbsp;<br/>
 </UL>
 <B>CAF&Eacute;S, CORTADOS </B><br/>
-<B>CHUPITOS<br/>
+
 <br/>
 </B>
 <B>PRICE</B>
@@ -435,7 +435,7 @@ Pan tostado con tomate<br/>
 <UL>
 Patatas fritas<br/>
 Cordero<br/>
-Lomo<br/>
+Butifarra negra<br/>
 Conejo<br/>
 Pollo<br/>
 Butifarra<br/>
@@ -452,7 +452,7 @@ Agua y refrescos<br/>
 &nbsp;<br/>
 </UL>
 <B>CAF&Eacute;S, CORTADOS o CARAJILLOS</B><br/>
-<B>CHUPITOS</B>
+
 <P>&nbsp;<br/>
 <B>PRICE</B>
 <UL>
@@ -489,7 +489,7 @@ Pan tostado con tomate<br/>
 <B>SEGUNDOS (Parrillada)</B>
 <UL>
 Cordero<br/>
-Lomo<br/>
+Butifarra negra<br/>
 Conejo<br/>
 Pollo<br/>
 Butifarra<br/>
@@ -506,7 +506,7 @@ Agua y refrescos<br/>
 &nbsp;<br/>
 </UL>
 <B>CAF&Eacute;S, CORTADOS o CARAJILLOS</B><br/>
-<B>CHUPITOS</B>
+
 <br/>
 <B>PRICE</B>
 <UL>
@@ -536,14 +536,14 @@ Cordero<br/>
 Conejo<br/>
 Pollo<br/>
 Butifarra<br/>
-Lomo<br/>
+Butifarra negra<br/>
 &nbsp;<br/>
 </UL>
 <B>BODEGA</B>
 <UL>
 Vino de la Casa<br/>
 Gaseosa<br/>
-Agua<br/>
+Agua<BR>Refresco<BR>
 &nbsp;<br/>
 </UL>
 <B>POSTRES</B>
@@ -554,7 +554,7 @@ Copa sorbete de limón<br/>
 &nbsp;<br/>
 </UL>
 <B>CAF&Eacute;S, CORTADOS o CARAJILLOS</B><br/>
-<B>CHUPITOS</B>
+
 &nbsp;<br/>
 <B>PRICE</B>
 <UL>

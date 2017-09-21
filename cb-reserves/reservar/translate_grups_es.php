@@ -118,7 +118,7 @@ Lomo<br/>
 <UL>
 Vino de la Casa<br/>
 Gaseosa<br/>
-Agua<br/>
+Agua<br/>Refreco<br/>
 &nbsp;<br/>
 </UL>
 <B>POSTRES</B>
@@ -131,7 +131,6 @@ Crema catalana<br/>
 &nbsp;<br/>
 </UL>
 <B>CAF&Eacute;S, CORTADOS o CARAJILLOS</B><br/>
-<B>CHUPITOS</B>
 <br/>
 <B>PRECIO</B>
 <UL>
@@ -174,7 +173,7 @@ Lomo<br/>
 <UL>
 Vino de la Casa<br/>
 Gaseosa<br/>
-Agua<br/>
+Agua<br/>Refreco<br/>
 &nbsp;<br/>
 </UL>
 <B>POSTRES</B>
@@ -183,7 +182,6 @@ Pastel y cava
 &nbsp;<br/>
 </UL>
 <B>CAF&Eacute;S, CORTADOS o CARAJILLOS</B><br/>
-<B>CHUPITOS</B>
 <br/>
 <B>PRECIO</B>
 <UL>
@@ -229,7 +227,7 @@ Butifarra<br/>
 <UL>
 Vino de la Casa<br/>
 Gaseosa<br/>
-Agua<br/>
+Agua<br/>Refreco<br/>
 &nbsp;<br/>
 </UL>
 <B>POSTRES</B>
@@ -240,7 +238,6 @@ Crema catalana<br/
 &nbsp;<br/>
 </UL>
 <B>CAF&Eacute;S, CORTADOS o CARAJILLOS</B><br/>
-<B>CHUPITOS</B>
 <P>&nbsp;<br/>
 <B>PRECIO</B>
 <UL>
@@ -287,7 +284,7 @@ Butifarra<br/>
 <UL>
 Vino de la Casa<br/>
 Gaseosa<br/>
-Agua<br/>
+Agua<br/>Refreco<br/>
 &nbsp;<br/>
 </UL>
 <B>POSTRES</B>
@@ -296,7 +293,6 @@ Pastel y cava
 &nbsp;<br/>
 </UL>
 <B>CAF&Eacute;S, CORTADOS o CARAJILLOS</B><br/>
-<B>CHUPITOS</B>
 <br/>
 <B>PRECIO</B>
 <UL>
@@ -322,17 +318,17 @@ Alioli<br/>
 </UL>
 <B>PARRILLADA</B>
 <UL>
-Butifarra a la brasa 1/2<br/>
-Pollo a la brasa 1/4<br/>
-Lomo a la brasa 1/3<br/>
+Butifarra a la brasa<br/>
+Pollo a la brasa<br/>
+Secreto de cerdo<br/>
 Patatas fritas<br/>
 &nbsp;<br/>
 </UL>
 <B>BODEGA</B>
 <UL>
-Vino de la Casa o sangria<br/>
+Vino de la Casa<br/>
 Gaseosa<br/>
-Agua<br/>
+Agua<br/>Refreco<br/>
 &nbsp;<br/>
 </UL>
 <B>POSTRES</B>
@@ -342,7 +338,6 @@ Tarta Selva trufa<br/>
 &nbsp;<br/>
 </UL>
 <B>CAF&Eacute;S, CORTADOS o CARAJILLOS</B><br/>
-<B>CHUPITOS</B>
 <br/>
 <B>PRECIO</B>
 <UL>
@@ -385,9 +380,9 @@ Tarta Selva trufa<br/>
 </UL>
 <B>BODEGA</B>
 <UL>
-  Vino de la Casa o sangria<br/>
+  Vino de la Casa<br/>
   Gaseosa<br/>
-  Agua<br/>
+  Agua<br/>Refreco<br/>
   &nbsp;<br/>
 </UL>
 <B>POSTRES</B>
@@ -400,7 +395,7 @@ Tarta Selva trufa<br/>
   &nbsp;<br/>
 </UL>
 <B>CAF&Eacute;S, CORTADOS </B><br/>
-<B>CHUPITOS<br/>
+
 <br/>
 </B>
 <B>PRECIO</B>
@@ -455,7 +450,6 @@ Agua y refrescos<br/>
 &nbsp;<br/>
 </UL>
 <B>CAF&Eacute;S, CORTADOS o CARAJILLOS</B><br/>
-<B>CHUPITOS</B>
 <P>&nbsp;<br/>
 <B>PRECIO</B>
 <UL>
@@ -509,7 +503,6 @@ Agua y refrescos<br/>
 &nbsp;<br/>
 </UL>
 <B>CAF&Eacute;S, CORTADOS o CARAJILLOS</B><br/>
-<B>CHUPITOS</B>
 <br/>
 <B>PRECIO</B>
 <UL>
@@ -546,7 +539,7 @@ Lomo<br/>
 <UL>
 Vino de la Casa<br/>
 Gaseosa<br/>
-Agua<br/>
+Agua<br/>Refreco<br/>
 &nbsp;<br/>
 </UL>
 <B>POSTRES</B>
@@ -557,7 +550,6 @@ Copa sorbete de limón<br/>
 &nbsp;<br/>
 </UL>
 <B>CAF&Eacute;S, CORTADOS o CARAJILLOS</B><br/>
-<B>CHUPITOS</B>
 &nbsp;<br/>
 <B>PRECIO</B>
 <UL>
@@ -586,7 +578,7 @@ Incluyendo los acompañamientos (judias y patatas frits allioli pan tostado con 
 <B>PRECIO</B>
 
 
-{preu_990060} Euros (IVA incluido)<BR>
+{preu_2008} Euros (IVA incluido)<BR>
 ';
 
 
