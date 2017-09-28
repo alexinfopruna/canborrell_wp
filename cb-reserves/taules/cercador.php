@@ -61,7 +61,7 @@ function controlsTaula($fila)
 	<head>
     <link rel="shortcut icon" type="image/ico" href="/gear-favicon.ico" />
 
-		<meta http-equiv="content-type" content="text/html; charset=utf-8" />
+		<meta http-equiv="content-type" content="text/html; charset=UTF-8" />
 		
 		<title>Cercador Reserves</title>
 <!--	--><link type="text/css" href="css/blitzer/jquery-ui-1.8.9.custom.css" rel="stylesheet" />

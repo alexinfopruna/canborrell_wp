@@ -60,7 +60,7 @@ if (isset($_POST["dbloq"]))
 
 <TITLE> Masia Can Borrell </TITLE>
 	<LINK rel="stylesheet" type="text/css" href="../css/estils.css">
-<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 
 <link rel="stylesheet" type="text/css" media="all" href="../css/calendari.css">
 <script type="text/javascript" src="../js/calendar.js"></script>

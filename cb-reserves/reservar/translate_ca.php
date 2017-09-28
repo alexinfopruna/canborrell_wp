@@ -179,11 +179,12 @@ $translate['AVIS_MODIFICACIONS']='<span style="color:red"><b>Atenció:</b>
 
 
 /************ MAIL CONFIRMA PAGAMENT GRUPS ****************/
+$translate["Can-Borrell: CONFIRMACIÓ PAGA I SENYAL"]="Can-Borrell: CONFIRMACIÓ DEL PAGAMENT DE RESERVA ONLINE";
 $translate["MAIL_GRUPS_PAGAT_subject"]="Can-Borrell: CONFIRMACIÓ DE PAGAMENT DE RESERVA PER GRUP";
 $translate["MAIL_GRUPS_PAGAT_titol"]="CONFIRMACIÓ DE PAGAMENT DE RESERVA";
 $translate["MAIL_GRUPS_PAGAT_text1"]="Ens complau informar-lo que hem rebut correctament el pagament de ";
 $translate['MAIL_GRUPS_PAGAT_text2']="€ La seva reserva queda registrada.<br><br>L'esperem el proper ";
-$translate['MAIL_GRUPS_PAGAT_contacti'] = "Si té qualsevol dubte posi's en contacte amb nosaltres a <a href='mailto: ".MAIL_RESTAURANT."' class='dins'>".MAIL_RESTAURANT."</a> ";
+$translate['MAIL_GRUPS_PAGAT_contacti'] = "Si té qualsevol dubte posi's en contacte amb nosaltres a <a href='mailto:".MAIL_RESTAURANT."' class='dins'>".MAIL_RESTAURANT."</a> ";
 $translate["nom"] = "nom";
 $translate["adults"] = "adults";
 $translate["nens 4 a 9"] = "nens 4 a 9";
@@ -341,6 +342,8 @@ $translate['err20'] = '<b>Ja tens una reserva feta a Can Borrell!!</b><br/><br/>
 $translateDirectJS['err21'] = '<b>No podem fer-te la reserva on-line a causa d&#39;algun problema amb una reserva anterior!!</b><br/><br/>Si us plau, per reservar contacta amb el restaurant:936929723 / 936910605 /';
 $translateDirectJS['err20'] = '<b>Ja tens una reserva feta a Can Borrell!!</b><br/><br/>Pots modificar-la o eliminar-la, però no pots crear més d&#39;una reserva online.<br/><em>(Per editar o cancel·lar utilitza l&#39;enllaç que trobarà més amunt, sota la barra de navegació d&#39;aquesta pàgina)</em><br/><br/><br/>Si ho desitges posa&#39;t en contacte amb nosaltres:<br/><b>936929723 / 936910605</b><br/><br/><br/>La reserva que ens consta es pel dia ';
 $translateDirectJS['CAP_TAULA']="No tenim cap taula disponible per la data/coberts/cotxets que ens demanes.<br/><br/>Intenta-ho per una altra data";
+$translateDirectJS['PAGAMENT REBUT']="Hem rebut la notificació del pagament. La teva reserva ja està confirmada. \\n\\nGràcies per utilitzar aquest servei";
+$translateDirectJS['EL PAGAMENT HA ESTAT ANULAT']="Malauradament no s\'ha completat el procés de pagament. \\n\\nGràcies per utilitzar aquest servei";
 //echo " ***************** ".$translate["MAIL_GRUPS_PAGAT_subject"];
 
 require_once('translate.php');

@@ -10,7 +10,7 @@
 	<head>
     <link rel="shortcut icon" type="image/ico" href="/gear-favicon.ico" />
 
-		<meta http-equiv="Content-type" content="text/html; charset=utf-8">
+		<meta http-equiv="Content-type" content="text/html; charset=UTF-8">
 		<title>DataTables unit test controller</title>
 		
 		<style type="text/css" media="screen">

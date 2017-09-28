@@ -13,11 +13,12 @@ class WD_BWG_Options {
   public $images_per_page = 30;
   public $thumb_width = 180;
   public $thumb_height = 90;
-  public $upload_thumb_width = 300;
-  public $upload_thumb_height = 300;
+  public $upload_thumb_width = 500;
+  public $upload_thumb_height = 500;
   public $image_enable_page = 1;
   public $image_title_show_hover = 'none';
   public $ecommerce_icon_show_hover = 'none';
+  public $show_gallery_description = 0;
 
   public $album_column_number = 5;
   public $albums_per_page = 30;
@@ -36,6 +37,7 @@ class WD_BWG_Options {
   public $blog_style_title_enable = 1;
   public $blog_style_images_per_page = 5;
   public $blog_style_enable_page = 1;
+  public $blog_style_description_enable = 0;
 
   public $slideshow_type = 'fade';
   public $slideshow_interval = 5;
@@ -44,7 +46,7 @@ class WD_BWG_Options {
   public $slideshow_enable_autoplay = 0;
   public $slideshow_enable_shuffle = 0;
   public $slideshow_enable_ctrl = 1;
-  public $slideshow_enable_filmstrip = 1;
+  public $slideshow_enable_filmstrip = 0;
   public $slideshow_filmstrip_height = 90;
   public $slideshow_enable_title = 0;
   public $slideshow_title_position = 'top-right';
@@ -58,7 +60,7 @@ class WD_BWG_Options {
   public $popup_height = 500;
   public $popup_type = 'fade';
   public $popup_interval = 5;
-  public $popup_enable_filmstrip = 1;
+  public $popup_enable_filmstrip = 0;
   public $popup_filmstrip_height = 70;
   public $popup_enable_ctrl_btn = 1;
   public $popup_enable_fullscreen = 1;
@@ -115,7 +117,6 @@ class WD_BWG_Options {
   public $comment_moderation = 0;
   public $popup_info_always_show = 0;
   public $popup_hit_counter = 0;
-  public $enable_ML_import = 0;
   public $showthumbs_name = 0;
   public $show_album_name = 0;
   public $show_image_counts = 0;
@@ -155,6 +156,9 @@ class WD_BWG_Options {
   public $show_hide_post_meta = 0;
   public $use_inline_stiles_and_scripts = 0;
   public $placeholder = '';
+  public $gallery_download = 0;
+  public $enable_wp_editor = 1;
+  public $image_quality = 75;
 
   public function __construct($reset = false) {
     $wd_bwg_options = get_option('wd_bwg_options');
@@ -187,6 +191,8 @@ class WD_BWG_Options {
     if ($this->permissions != 'moderate_comments' && $this->permissions != 'publish_posts' && $this->permissions != 'edit_posts') {
       $this->permissions = 'manage_options';
     }
+    $this->jpeg_quality = $this->image_quality;
+    $this->png_quality = 9 - round(9 * $this->image_quality / 100);
   }
 
   private function make_directory($upload_dir) {

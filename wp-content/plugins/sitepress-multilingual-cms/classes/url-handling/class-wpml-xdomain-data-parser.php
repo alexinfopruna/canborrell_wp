@@ -10,12 +10,20 @@ class WPML_XDomain_Data_Parser {
 	private $settings;
 
 	/**
+	 * var WPML_Data_Encrypter
+	 */
+	private $encryptor;
+
+
+	/**
 	 * WPML_XDomain_Data_Parser constructor.
 	 *
 	 * @param array $settings
+	 * @param WPML_Data_Encrypter
 	 */
-	public function __construct( &$settings ) {
+	public function __construct( &$settings, $encryptor ) {
 		$this->settings = &$settings;
+		$this->encryptor = $encryptor;
 	}
 
 	public function init_hooks() {
@@ -38,9 +46,11 @@ class WPML_XDomain_Data_Parser {
 
 			$js_xdomain_data = array(
 				'css_selector' => $ls_parameters['css_prefix'] . 'item',
+			    'ajax_url'     => admin_url( 'admin-ajax.php' ),
+			    'current_lang' => apply_filters( 'wpml_current_language', '' ),
 			);
 
-			wp_enqueue_script( self::SCRIPT_HANDLER, ICL_PLUGIN_URL . '/res/js/xdomain-data.js', array( 'jquery', 'sitepress' ), ICL_SITEPRESS_VERSION );
+			wp_enqueue_script( self::SCRIPT_HANDLER, ICL_PLUGIN_URL . '/res/js/xdomain-data.js', array( 'jquery' ), ICL_SITEPRESS_VERSION );
 			wp_localize_script( self::SCRIPT_HANDLER, 'wpml_xdomain_data', $js_xdomain_data );
 		}
 	}
@@ -52,17 +62,8 @@ class WPML_XDomain_Data_Parser {
 		$data = apply_filters( 'wpml_cross_domain_language_data', $data );
 
 		if ( ! empty( $data ) ) {
-
 			$encoded_data = json_encode( $data );
-
-			if ( function_exists( 'mcrypt_encrypt' ) && function_exists( 'mcrypt_decrypt' ) ) {
-				$key             = substr( NONCE_KEY, 0, 24 );
-				$mcrypt_iv_size  = mcrypt_get_iv_size( MCRYPT_RIJNDAEL_256, MCRYPT_MODE_ECB );
-				$mcrypt_iv       = mcrypt_create_iv( $mcrypt_iv_size, MCRYPT_RAND );
-				$encoded_data = mcrypt_encrypt( MCRYPT_RIJNDAEL_256, $key, $encoded_data, MCRYPT_MODE_ECB, $mcrypt_iv );
-				$encoded_data = preg_replace('/\x00/', '', $encoded_data); // strip padding added to match the block size
-			}
-
+			$encoded_data = $this->encryptor->encrypt( $encoded_data );
 			$base64_encoded_data = base64_encode( $encoded_data );
 			$ret['xdomain_data'] = urlencode( $base64_encoded_data );
 
@@ -97,13 +98,7 @@ class WPML_XDomain_Data_Parser {
 
 			if ( $xdomain_data_request ) {
 				$data = base64_decode( $xdomain_data_request );
-				if ( function_exists( 'mcrypt_encrypt' ) && function_exists( 'mcrypt_decrypt' ) ) {
-					$key             = substr( NONCE_KEY, 0, 24 );
-					$mcrypt_iv_size  = mcrypt_get_iv_size( MCRYPT_RIJNDAEL_256, MCRYPT_MODE_ECB );
-					$mcrypt_iv       = mcrypt_create_iv( $mcrypt_iv_size, MCRYPT_RAND );
-					$data = mcrypt_decrypt( MCRYPT_RIJNDAEL_256, $key, $data, MCRYPT_MODE_ECB, $mcrypt_iv );
-					$data = preg_replace('/\x00/', '', $data);
-				}
+				$data = $this->encryptor->decrypt( $data );
 				$xdomain_data = (array) json_decode( $data, JSON_OBJECT_AS_ARRAY );
 			}
 		}

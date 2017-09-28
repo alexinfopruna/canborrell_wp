@@ -86,8 +86,8 @@ defined("ESTAT_TAULES") or define("ESTAT_TAULES", "estat_taules");
 $DB_defines["ESTAT_TAULES"]="estat_taules";
 /*** SEPARADOR_ID_RESERVES ***/ 
 
-defined("SEPARADOR_ID_RESERVES") or define("SEPARADOR_ID_RESERVES", "3000");
-$DB_defines["SEPARADOR_ID_RESERVES"]="3000";
+defined("SEPARADOR_ID_RESERVES") or define("SEPARADOR_ID_RESERVES", "10000");
+$DB_defines["SEPARADOR_ID_RESERVES"]="10000";
 /*** CLEAR_DELETED_BEFORE ***/ 
 
 defined("CLEAR_DELETED_BEFORE") or define("CLEAR_DELETED_BEFORE", "3 Year");

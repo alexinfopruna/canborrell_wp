@@ -134,8 +134,12 @@ input[type=text], .ds_input {
         <option value='TPV256.php' <?php if ($tpv_config_file == 'TPV256.php') echo 'selected' ?>>TPV256.php</option>
         <option value="TPV256_test.php" <?php if ($tpv_config_file == 'TPV256_test.php') echo 'selected' ?>>TPV256_test.php</option>
     </select>
+        <div style="border:#666 solid 1px;padding:6px;margin:6px;">
+      <?php echo $url; ?><br/>
+      <?php echo $urlMerchant; ?><br/>
+            
+    </div>
     
-    <?php echo $url; ?><br/>
                   <!--purl2<input type="text" name="purl2" value="<?php echo $url; ?>"/></br>-->
     pidr <input type="text" name="pidr" value="<?php echo $id_reserva; ?>"/><br/>
     pamount <input type="text" name="pamount" value="<?php echo $amount; ?>"/><br/>

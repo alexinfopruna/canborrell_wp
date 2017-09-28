@@ -1,0 +1,158 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<title>Recepció reserva</title>
+
+<link type="text/css" href="https://www.can-borrell.com/cb-reserves/css/blau.css" rel="stylesheet"/>
+
+
+</head>
+
+<body><!-- templates/{self}  -->
+		
+<table  border="0" align="center" cellpadding="0" cellspacing="0" >
+  <tr>
+    <td  colspan="2" align="right" background="https://www.can-borrell.com/img/fons_9c.jpg"><a href="https://www.can-borrell.com"><img src="https://www.can-borrell.com/img/lg_sup.png" alt="img" width="303" height="114" border="0" title="INICI" /></a></td>
+  </tr>
+  <tr>
+    <td class="franja" colspan="2" align="center"></td>
+  </tr>
+</table>
+
+
+
+
+
+
+
+
+
+<!-- pre-reserva-rest -->		
+
+<table  border="0" align="center" cellpadding="0" cellspacing="0" bgcolor="#FFFFFF">
+    <tr>
+      <td></td>
+      <td width="748"><span style="font-size:10px">{avui}</span> -- CASTELLÀ --</td>
+      <td></td>
+    </tr>
+    <tr>
+      <td></td>
+      <td align="center"><h1><span class="titol">SOL·LICITUD DE RESERVA PER GRUP</span></h1></td>
+      <td width="12"></td>  
+    </tr>
+    
+
+    
+  <tr>
+    <td></td>
+    <td></td>
+  <td> </td> </tr>
+  <tr>
+    <td></td>
+    <td align="center">El sistema de reserves ha rebut la seg&uuml;ent petici&oacute;: </td>
+  <td>  </td></tr>
+  <tr>
+    <td></td>
+    <td></td>
+  <td align="center" class="estat"></td>  </tr>
+  
+  <tr>
+    <td width="12"></td>
+    <td><table border="0" align="center" cellpadding="3" cellspacing="3">
+      <tr>
+        <td align="right" class="Estilo2">id reserva</td>
+        <td width="320" align="right" class="llista"><div align="left" class="titol2"><span class="Estilo4">{id_reserva}</span></div></td>
+      </tr>
+
+      <tr>
+        <td align="right" class="Estilo2">data reserva</td>
+        <td width="320" align="right"  class="llista"><div align="left" class="Estilo5">{data}</div></td>
+      </tr>
+      <tr>
+        <td align="right" class="Estilo2">hora</td>
+        <td width="320" align="right"  class="llista"><div align="left" class="Estilo5">{hora}</div></td>
+      </tr>
+      <tr>
+        <td align="right" class="Estilo2">nom</td>
+        <td width="320"  class="llista"><div align="left" class="Estilo5">{nom}</div></td>
+      </tr>
+      <tr>
+        <td align="right" class="Estilo2">tel</td>
+        <td width="320" align="right"  class="llista"><div align="left" class="Estilo5">{tel}</div></td>
+      </tr>
+      <tr>
+        <td align="right" class="Estilo2">fax</td>
+        <td width="320" align="right"  class="llista"><div align="left" class="Estilo5">{fax}</div></td>
+      </tr>
+      <tr>
+        <td align="right" class="Estilo2">email</td>
+        <td width="320" class="llista" ><span class="Estilo5">{email}</span></td>
+      </tr>
+      <tr>
+        <td align="right" class="Estilo2">menu</td>
+        <td width="320"  class="llista"><div align="left" class="Estilo5">{menu}</div></td>
+      </tr>
+      <tr>
+        <td align="right" class="Estilo2">adults</td>
+        <td width="320" align="right"  class="llista"><div align="left" class="Estilo5">{adults}</div></td>
+      </tr>
+      <tr>
+        <td align="right" class="Estilo2">nens 10 a 14 anys </td>
+        <td width="320" align="right"  class="llista"><div align="left" class="Estilo5">{nens10_14}  {txt_1} </div></td>
+      </tr>
+      <tr>
+        <td align="right" class="Estilo2">nens 4 a 9 anys </td>
+        <td width="320" align="right"  class="llista"><div align="left" class="Estilo5">{nens4_9}  {txt_2} </div></td>
+      </tr>
+      <tr>
+        <td align="right" class="Estilo2">cotxets de nadons </td>
+        <td width="320" align="right"  class="llista"><div align="left" class="Estilo5">{cotxets}</div></td>
+      </tr>
+      <tr>
+        <td align="right" class="Estilo2">observacions</td>
+        <td width="320" class="llista"><span class="Estilo5">{observacions}</span></td>
+      </tr>
+      <tr>
+        <td align="right" class="Estilo2">preu reserva</td>
+        <td width="320" align="right" class="llista"><div align="left" class="estat Estilo5">
+                <div align="right"><strong>{preu_reserva}&euro;</strong></div>
+        </div></td>
+      </tr>
+    </table></td>
+    <td></td>
+  </tr>
+  <tr>
+    <td></td>
+    <td></td>
+    <td></td>
+  </tr>
+  <tr>
+    <td></td>
+    <td><div align="center">Per accedir al sistema i confirmar-la o denegar-la faci click <a href="https://can-borrell.com/editar/editar.php?id={id_reserva}" class="dins">&lt;aqu&iacute;&gt;</a> </div></td>
+    <td></td>
+  </tr>
+  <tr>
+    <td></td>
+    <td></td>
+    <td></td>
+  </tr>
+    
+    
+  <tr  class="marge-footer">
+    <td> </td>
+    <td> </td>
+    <td> </td>
+  </tr>
+    
+  <tr class="franja">
+    <td> </td>
+    <td> </td>
+    <td> </td>
+  </tr>    
+    
+        
+    
+</table>
+</body>
+</html>

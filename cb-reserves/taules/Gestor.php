@@ -342,9 +342,7 @@ class Gestor {
       //if (substr($query,0,26)=='INSERT INTO reservestaules') die($query);
     }
 
-    if ($charset)
-      $query = gestor_reserves::charset($query);
-//echo "$query······3333";die();
+    if ($charset)      $query = gestor_reserves::charset($query);
     $r = mysqli_query($conn, $query);
     if (Gestor::stringMultiSearch($query, LOG_QUERYS) && DEBUG === false) {
       $insert_id = ((is_null($___mysqli_res = mysqli_insert_id($conn))) ? false : $___mysqli_res);
@@ -367,7 +365,18 @@ class Gestor {
     $theValue = (!get_magic_quotes_gpc()) ? addslashes($theValue) : $theValue;
 
     switch ($theType) {
+           case "no_quotes":
+         $theValue = str_replace("'","ʻ",$theValue);
+         $theValue = str_replace('"',"ʺ",$theValue);
+          $theValue = ($theValue != "") ? "'" . $theValue . "'" : "NULL";
+        // $theValue = htmlentities($theValue,ENT_QUOTES);
+        
+        break;
+
+      
       case "text":
+         $theValue = htmlspecialchars($theValue,ENT_QUOTES);
+        // $theValue = htmlentities($theValue,ENT_QUOTES);
         $theValue = ($theValue != "") ? "'" . $theValue . "'" : "NULL";
         break;
       case "long":
@@ -517,6 +526,8 @@ class Gestor {
       $req = '<pre>' . print_r($_REQUEST, true) . '</pre>';
     }
     $ip = isset($ips[$_SERVER['REMOTE_ADDR']]) ? $ips[$_SERVER['REMOTE_ADDR']] : $_SERVER['REMOTE_ADDR'];
+    
+    
     $sessuser = $_SESSION['uSer'];
 
     if (isset($sessuser))
@@ -645,8 +656,6 @@ class Gestor {
     }
     else
       $lafecha = $mifecha[3] . "-" . str_pad($mifecha[2], 2, '0', STR_PAD_LEFT) . "-" . str_pad($mifecha[1], 2, '0', STR_PAD_LEFT);
-    //print_r($mifecha);
-//echo $fecha;die();
 
     return $lafecha;
   }
@@ -661,22 +670,20 @@ class Gestor {
 
   /*   * *************************************************************************************************** */
 
-  protected function setLang($lang) {
+  protected function setLang($lang = "cat") {
 
     if (!empty($lang))
-      $_SESSION["idioma"] = $_SESSION["lang"] = $_GET["lang"] = $lang = "cat";
+      $_SESSION["idioma"] = $_SESSION["lang"] = $_GET["lang"] = $lang;
     if (!isset($_SESSION["idioma"]))
-      $_SESSION["idioma"] = $_SESSION["lang"] = $_GET["lang"] = $lang = "cat";
+      $_SESSION["idioma"] = $_SESSION["lang"] = $_GET["lang"] = $lang;
 
-
-
+    $this->lang = $lang;
     $this->lng = substr($lang, 0, 2);
   }
 
   static function l($text, $echo = true) {
     global $translate; //	return $translate[$text];
     global $notrans;
-
     if (TRANSLATE_DEBUG === true) {
       if (isset($translate[$text]))
         if ($translate[$text] == "=")

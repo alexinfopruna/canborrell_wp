@@ -97,7 +97,7 @@ Xai<BR>
 Conill<BR>
 Pollastre<BR>
 Botifarra<BR>
-Llom<BR>
+Botifarra negra<BR>
 &nbsp;<BR>
 </UL>
 <B>CELLER</B>
@@ -105,19 +105,18 @@ Llom<BR>
 Vi de la Casa<BR>
 Gasosa<BR>
 Aigua<BR>
+Refresc<BR>
 &nbsp;<BR>
 </UL>
 <B>POSTRES</B>
 <UL>
-Pastís Selva trufa<BR>
-Pastís de llimona<BR>
-Pastís al whisky<BR>
-Copa sorbet llimona<BR>
-Crema catalana<BR>
-&nbsp;<BR>
+<li>Fruits secs (músic) pica-pica a la taula</li>
+<li>Crema catalana</li>
+<li>Flam casolà</li>
+<li>Copa sorbet llimona</li>
 </UL>
 <B>CAF&Egrave;S, TALLATS o CIGALONS</B><BR>
-<B>XARRUPS</B>
+
 <P>&nbsp;<BR>
 <B>PREU</B>
 {preu_2001} Euros/unitat adults (IVA incl&ograve;s)<BR>
@@ -148,7 +147,7 @@ Xai<BR>
 Conill<BR>
 Pollastre<BR>
 Botifarra<BR>
-Llom<BR>
+Botifarra negra<BR>
 &nbsp;<BR>
 </UL>
 <B>CELLER</B>
@@ -156,6 +155,7 @@ Llom<BR>
 Vi de la Casa<BR>
 Gasosa<BR>
 Aigua<BR>
+Refresc<BR>
 &nbsp;<BR>
 </UL>
 <B>POSTRES</B>
@@ -164,7 +164,7 @@ Pastís i cava
 &nbsp;<BR>
 </UL>
 <B>CAF&Egrave;S, TALLATS o CIGALONS</B><BR>
-<B>XARRUPS</B>
+
 <P>&nbsp;<BR>
 <B>PREU</B>
 <UL>
@@ -202,7 +202,7 @@ Carxofes a la brasa<BR>
 Xai<BR>
 Conill<BR>
 Pollastre<BR>
-Llom<BR>
+Botifarra negra<BR>
 Botifarra<BR>
 &nbsp;<BR>
 </UL>
@@ -211,16 +211,18 @@ Botifarra<BR>
 Vi de la Casa<BR>
 Gasosa<BR>
 Aigua<BR>
+Refresc<BR>
 &nbsp;<BR>
 </UL>
 <B>POSTRES</B>
 <UL>
-Pastís al whisky<BR>
-Flam biscuit<BR>
-Crema catalana<BR>
+<li>Fruits secs (músic) pica-pica a la taula</li>
+<li>Crema catalana</li>
+<li>Flam casolà</li>
+<li>Copa sorbet llimona</li>
 </UL>
 <B>CAF&Egrave;S, TALLATS o CIGALONS</B><BR>
-<B>XARRUPS</B>
+
 <P>&nbsp;<BR>
 <B>PREU</B>
 <UL>
@@ -259,7 +261,7 @@ Carxofes a la brasa<BR>
 Xai<BR>
 Conill<BR>
 Pollastre<BR>
-Llom<BR>
+Botifarra negra<BR>
 Botifarra<BR>
 &nbsp;<BR>
 </UL>
@@ -268,6 +270,7 @@ Botifarra<BR>
 Vi de la Casa<BR>
 Gasosa<BR>
 Aigua<BR>
+Refresc<BR>
 &nbsp;<BR>
 </UL>
 <B>POSTRES</B>
@@ -276,7 +279,7 @@ Pastís i cava
 &nbsp;<BR>
 </UL>
 <B>CAF&Egrave;S, TALLATS o CIGALONS</B><BR>
-<B>XARRUPS</B>
+
 <P>&nbsp;<BR>
 <B>PREU</B>
 <UL>
@@ -302,27 +305,30 @@ All i Oli<BR>
 </UL>
 <B>GRAELLADA</B>
 <UL>
-Butifarra a la brasa 1/2<BR>
-Pollastre a la brasa 1/4<BR>
-Llom a la brasa 1/3<BR>
-Patates frexides<BR>
+Butifarra a la brasa<BR>
+Pollastre a la brasa<BR>
+Secret de porc<BR>
+Patates fregides<BR>
+Mongetes amb cansalada<BR>
 &nbsp;<BR>
 </UL>
 <B>CELLER</B>
 <UL>
-Vi de la Casa o sangria<BR>
+Vi de la Casa<BR>
 Gasosa<BR>
 Aigua<BR>
+Refresc<BR>
 &nbsp;<BR>
 </UL>
 <B>POSTRES</B>
 <UL>
-Past&iacute;s de llimona<BR>
-Past&iacute;s Selva trufa<BR>
-&nbsp;<BR>
+<li>Fruits secs (músic) pica-pica a la taula</li>
+<li>Crema catalana</li>
+<li>Flam casolà</li>
+<li>Copa sorbet llimona</li>
 </UL>
 <B>CAF&Egrave;S, TALLATS o CIGALONS</B><BR>
-<B>XARRUPS</B>
+
 <P>&nbsp;<BR>
 <B>PREU</B>
 <UL>
@@ -368,23 +374,21 @@ Past&iacute;s Selva trufa<BR>
 <B><br>
 CELLER</B>
 <UL>
-  <p>Vi de la casa o Sangria <BR>
+  <p>Vi de la casa <BR>
     Gasosa<BR>
     Aigua<br>
-    Refrescs<BR>
+    Refresc<BR>
   &nbsp;</p>
   </UL>
 <B>POSTRES</B>
 <UL>
-  Mus de llimona<BR>
-  Past&iacute;s Selva trufa<br>
-  Terrina turr&oacute;<br>
-  Flam 
-  <BR>
-  &nbsp;<BR>
+<li>Fruits secs (músic) pica-pica a la taula</li>
+<li>Crema catalana</li>
+<li>Flam casolà</li>
+<li>Copa sorbet llimona</li>
 </UL>
 <B>CAF&Egrave;S, TALLATS o CIGALONS</B><BR>
-<B>XARRUPS</B>
+
 <P>&nbsp;<BR>
     <B>PREU</B>
 <UL>
@@ -421,7 +425,7 @@ Pa torrat amb tom&agrave;quet<BR>
 <UL>
 Patates fregides<BR>
 Be<BR>
-Llom<BR>
+Botifarra negra<BR>
 Conill<BR>
 Pollastre<BR>
 Botifarra<BR>
@@ -438,7 +442,7 @@ Aigua i refrescs<BR>
 &nbsp;<BR>
 </UL>
 <B>CAF&Egrave;S, TALLATS o CIGALONS</B><BR>
-<B>XARRUPS</B>
+
 <P>&nbsp;<BR>
 <B>PREU</B>
 <UL>
@@ -482,7 +486,7 @@ Pa torrat amb tom&agrave;quet<BR>
 <B>SEGONS (Graellada)</B>
 <UL>
 Xai<BR>
-Llom<BR>
+Botifarra negra<BR>
 Conill<BR>
 Pollastre<BR>
 Botifarra<BR>
@@ -499,7 +503,7 @@ Aigua i refrescs<BR>
 &nbsp;<BR>
 </UL>
 <B>CAF&Egrave;S, TALLATS o CIGALONS</B><BR>
-<B>XARRUPS</B>
+
 <P>&nbsp;<BR>
 <B>PREU</B>
 <UL>
@@ -531,7 +535,7 @@ Xai<BR>
 Conill<BR>
 Pollastre<BR>
 Botifarra<BR>
-Llom<BR>
+Botifarra negra<BR>
 &nbsp;<BR>
 </UL>
 <B>CELLER</B>
@@ -539,17 +543,18 @@ Llom<BR>
 Vi de la Casa<BR>
 Gasosa<BR>
 Aigua<BR>
+Refresc<BR>
 &nbsp;<BR>
 </UL>
 <B>POSTRES</B>
 <UL>
-Pastís de crema catalana de la casa<BR>
-Past&iacute;s al whisky<BR>
-Copa sorbet llimona<BR>
-&nbsp;<BR>
+<li>Fruits secs (músic) pica-pica a la taula</li>
+<li>Crema catalana</li>
+<li>Flam casolà</li>
+<li>Copa sorbet llimona</li>
 </UL>
 <B>CAF&Egrave;S, TALLATS o CIGALONS</B><BR>
-<B>XARRUPS</B>
+
 <P>&nbsp;<BR>
 <B>PREU</B>
 <UL>

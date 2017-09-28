@@ -77,14 +77,17 @@ i{color:#666;}
 .page-template-page-premsa .panel-body{
     padding-top:15px;
     padding-bottom:15px;
+}
 
+.owl-stage{
+    margin: auto;
 }
 
 /***************************************/
 
 .aborder{border: #e5e5e5 solid 1px;border-radius: 7px;padding:10px;}
 
-h1.magee-heading .heading-inner{
+.magee-heading .heading-inner{
     font-family: Encient German Gothic,Times New Roman;
     font-size:74px;
 }
@@ -1172,12 +1175,14 @@ body.page-template-page-reserva-grups #calendari_reserves-2{
     display:none;
 }
 
+ .fr-seccio-client em,
 body.page-template-page-reservar em,
 body.page-template-page-reserva-grups em{
     color:#888;
     font-size:12px;
 }
 
+ .fr-seccio-client .label,
 body.page-template-page-reservar .label,
 body.page-template-page-reserva-grups .label{
     color:#333;
@@ -1282,11 +1287,21 @@ section.home-section-6 .home-section-content .alert-warning h3{
 section.home-section-1 .home-section-content, section.home-section-1 p{
     font-size: 2vw !important;
 }
-
-
-section.home-section-1 .section-subtitle {
+.home-container .section-subtitle.section_subtitle_0{
     font-size: 21px;
+    font-size: 14px;
+    font: 18px  sans-serif !important;
+}
 
+.magee-btn-normal.banner-scroll.btn-lg{
+     font: 30px  sans-serif !important;;
+     padding:15px;
+}
+
+.btn-md {
+    font-size: 0.7em;
+    background-color: black;
+    color: white;
 }
 
 
@@ -1304,6 +1319,17 @@ input.wpcf7-submit{
 .ecp-modal.ecp-effect-1{
     width:initial;
     top:450px;
+}
+
+	
+.loader{
+ position: fixed;
+  left: 0px;
+  top: 0px;
+  width: 100%;
+  height: 100%;
+  z-index: 9999;
+  background: url('/cb-reserves/reservar/css/loading.gif') 50% 50% no-repeat rgb(249,249,249);
 }
 
 
@@ -1372,12 +1398,42 @@ input.wpcf7-submit{
 
 .magee-tab-box.tab-line ul > li > a {
     padding: 10px 10px;
-};
+}
 
+
+section.home-section-6{
+    padding: 0 !important;
+}
 
 @media (max-width: 450px){
 section.home-section-1 .home-section-content, section.home-section-1 p{
     font-size: 12px !important;
 }}
 
+
+
+/* COMPLEMENTS */
+.dots { 
+ /* background: url('img/dot.gif') repeat-x bottom; */
+}
+.field {
+  background-color: #FFFFFF;
+} 
+.field2 {
+ float: right;
+} 
+ul.plat1 {
+float:left;
+}
+.complements{
+  font-size:0.7em;
+  width:350px;
+  border:#444 solid 1px;
+  border-radius:5px;
+  float:right;
+  padding:10px;
+  margin:10px;
+}
+
+.single-menus .post-main ul.dots{padding-top: 0}
 

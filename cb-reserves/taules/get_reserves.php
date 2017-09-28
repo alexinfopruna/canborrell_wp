@@ -89,7 +89,7 @@ WHERE comanda_reserva_id =" . $row['id_reserva'];
 $gestor = new Gestor_chef();
 $gestor->setLang("ca");
 
-header('Content-Type: text/plain; charset=utf-8');
+header('Content-Type: text/plain; charset=UTF-8');
 
 if ($_REQUEST['u'] == 'chef')
   echo $capsalera . $gestor->llistatReserves($_REQUEST['d'], $_REQUEST['s']);

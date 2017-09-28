@@ -3,6 +3,7 @@ if (!isset($lang)) $lang='cat';
 if (!isset($PERSONES_GRUP)) $PERSONES_GRUP=12;
 
 
+
 $translate['INFO_COMANDA_GRUPS']="In group reservations you should choose, at least, one menu for each diner (counting adults, juniors and children)";
 $translate['Escull els menús']="Choose menus";
  $translate['Veure els menús']='See menus';
@@ -107,27 +108,25 @@ Cordero<br/>
 Conejo<br/>
 Pollo<br/>
 Butifarra<br/>
-Lomo<br/>
+Butifarra negra<br/>
 &nbsp;<br/>
 </UL>
 <B>BODEGA</B>
 <UL>
 Vino de la Casa<br/>
 Gaseosa<br/>
-Agua<br/>
+Agua<BR>Refresco<BR>
 &nbsp;<br/>
 </UL>
 <B>POSTRES</B>
 <UL>
-Tarta Selva trufa<br/>
-Tarta de limón<br/>
-Tarta whisky<br/>
-Copa sorbete limón<br/>
-Crema catalana<br/>
-&nbsp;<br/>
+<li>Fruitos secos (músico) pica-pica en mesa</li>
+<li>Crema catalana</li>
+<li>Flan casero</li>
+<li>Copa sorbete limón</li>
 </UL>
 <B>CAF&Eacute;S, CORTADOS o CARAJILLOS</B><br/>
-<B>CHUPITOS</B>
+
 <br/>
 <B>PRICE</B>
 <UL>
@@ -163,14 +162,14 @@ Cordero<br/>
 Conejo<br/>
 Pollo<br/>
 Butifarra<br/>
-Lomo<br/>
+Butifarra negra<br/>
 &nbsp;<br/>
 </UL>
 <B>BODEGA</B>
 <UL>
 Vino de la Casa<br/>
 Gaseosa<br/>
-Agua<br/>
+Agua<BR>Refresco<BR>
 &nbsp;<br/>
 </UL>
 <B>POSTRES</B>
@@ -179,7 +178,7 @@ Pastel y cava
 &nbsp;<br/>
 </UL>
 <B>CAF&Eacute;S, CORTADOS o CARAJILLOS</B><br/>
-<B>CHUPITOS</B>
+
 <br/>
 <B>PRICE</B>
 <UL>
@@ -217,7 +216,7 @@ Alcachofas a la brasa<br/>
 Cordero<br/>
 Conejo<br/>
 Pollo<br/>
-Lomo<br/>
+Butifarra negra<br/>
 Butifarra<br/>
 &nbsp;<br/>
 </UL>
@@ -225,18 +224,18 @@ Butifarra<br/>
 <UL>
 Vino de la Casa<br/>
 Gaseosa<br/>
-Agua<br/>
+Agua<BR>Refresco<BR>
 &nbsp;<br/>
 </UL>
 <B>POSTRES</B>
 <UL>
-Tarta whisky<br/>
-Flan biscuit<br/>
-Crema catalana<br/
-&nbsp;<br/>
+<li>Fruitos secos (músico) pica-pica en mesa</li>
+<li>Crema catalana</li>
+<li>Flan casero</li>
+<li>Copa sorbete limón</li>
 </UL>
 <B>CAF&Eacute;S, CORTADOS o CARAJILLOS</B><br/>
-<B>CHUPITOS</B>
+
 <P>&nbsp;<br/>
 <B>PRICE</B>
 <UL>
@@ -275,7 +274,7 @@ Alcachofas a la brasa<br/>
 Cordero<br/>
 Conejo<br/>
 Pollo<br/>
-Lomo<br/>
+Butifarra negra<br/>
 Butifarra<br/>
 &nbsp;<br/>
 </UL>
@@ -283,7 +282,7 @@ Butifarra<br/>
 <UL>
 Vino de la Casa<br/>
 Gaseosa<br/>
-Agua<br/>
+Agua<BR>Refresco<BR>
 &nbsp;<br/>
 </UL>
 <B>POSTRES</B>
@@ -292,7 +291,7 @@ Pastel y cava
 &nbsp;<br/>
 </UL>
 <B>CAF&Eacute;S, CORTADOS o CARAJILLOS</B><br/>
-<B>CHUPITOS</B>
+
 <br/>
 <B>PRICE</B>
 <UL>
@@ -318,27 +317,28 @@ Alioli<br/>
 </UL>
 <B>PARRILLADA</B>
 <UL>
-Butifarra a la brasa 1/2<br/>
-Pollo a la brasa 1/4<br/>
-Lomo a la brasa 1/3<br/>
+Butifarra a la brasa<br/>
+Pollo a la brasa<br/>
+Secreto de cerdo<br/>
 Patatas fritas<br/>
 &nbsp;<br/>
 </UL>
 <B>BODEGA</B>
 <UL>
-Vino de la Casa o sangria<br/>
+Vino de la Casa<br/>
 Gaseosa<br/>
-Agua<br/>
+Agua<BR>Refresco<BR>
 &nbsp;<br/>
 </UL>
 <B>POSTRES</B>
 <UL>
-Tarta de lim&oacute;n<br/>
-Tarta Selva trufa<br/>
-&nbsp;<br/>
+<li>Fruitos secos (músico) pica-pica en mesa</li>
+<li>Crema catalana</li>
+<li>Flan casero</li>
+<li>Copa sorbete limón</li>
 </UL>
 <B>CAF&Eacute;S, CORTADOS o CARAJILLOS</B><br/>
-<B>CHUPITOS</B>
+
 <br/>
 <B>PRICE</B>
 <UL>
@@ -381,22 +381,20 @@ Tarta Selva trufa<br/>
 </UL>
 <B>BODEGA</B>
 <UL>
-  Vino de la Casa o sangria<br/>
+  Vino de la Casa<br/>
   Gaseosa<br/>
-  Agua<br/>
+  Agua<BR>Refresco<BR>
   &nbsp;<br/>
 </UL>
 <B>POSTRES</B>
 <UL>
-  Mus de lim&oacute;n<br/>
-  Tarta Selva trufa<br/>
-  Vastigo Turr&oacute;n<br/>
-  Falm 
-  <br/>
-  &nbsp;<br/>
+<li>Fruitos secos (músico) pica-pica en mesa</li>
+<li>Crema catalana</li>
+<li>Flan casero</li>
+<li>Copa sorbete limón</li>
 </UL>
 <B>CAF&Eacute;S, CORTADOS </B><br/>
-<B>CHUPITOS<br/>
+
 <br/>
 </B>
 <B>PRICE</B>
@@ -434,7 +432,7 @@ Pan tostado con tomate<br/>
 <UL>
 Patatas fritas<br/>
 Cordero<br/>
-Lomo<br/>
+Butifarra negra<br/>
 Conejo<br/>
 Pollo<br/>
 Butifarra<br/>
@@ -451,7 +449,7 @@ Agua y refrescos<br/>
 &nbsp;<br/>
 </UL>
 <B>CAF&Eacute;S, CORTADOS o CARAJILLOS</B><br/>
-<B>CHUPITOS</B>
+
 <P>&nbsp;<br/>
 <B>PRICE</B>
 <UL>
@@ -488,7 +486,7 @@ Pan tostado con tomate<br/>
 <B>SEGUNDOS (Parrillada)</B>
 <UL>
 Cordero<br/>
-Lomo<br/>
+Butifarra negra<br/>
 Conejo<br/>
 Pollo<br/>
 Butifarra<br/>
@@ -505,7 +503,7 @@ Agua y refrescos<br/>
 &nbsp;<br/>
 </UL>
 <B>CAF&Eacute;S, CORTADOS o CARAJILLOS</B><br/>
-<B>CHUPITOS</B>
+
 <br/>
 <B>PRICE</B>
 <UL>
@@ -535,25 +533,25 @@ Cordero<br/>
 Conejo<br/>
 Pollo<br/>
 Butifarra<br/>
-Lomo<br/>
+Butifarra negra<br/>
 &nbsp;<br/>
 </UL>
 <B>BODEGA</B>
 <UL>
 Vino de la Casa<br/>
 Gaseosa<br/>
-Agua<br/>
+Agua<BR>Refresco<BR>
 &nbsp;<br/>
 </UL>
 <B>POSTRES</B>
 <UL>
-Pastel de crema catalana de la casa<br/>
-Tarta whisky<br/>
-Copa sorbete de limón<br/>
-&nbsp;<br/>
+<li>Fruitos secos (músico) pica-pica en mesa</li>
+<li>Crema catalana</li>
+<li>Flan casero</li>
+<li>Copa sorbete limón</li>
 </UL>
 <B>CAF&Eacute;S, CORTADOS o CARAJILLOS</B><br/>
-<B>CHUPITOS</B>
+
 &nbsp;<br/>
 <B>PRICE</B>
 <UL>

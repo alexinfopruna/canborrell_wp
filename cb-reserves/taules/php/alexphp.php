@@ -259,7 +259,7 @@ EOT;
 	/////////////////////////////////////////////////////////////////////////	
 	function enviaXML($valor)
 	{
-		header('Content-Type: text/xml; charset=utf-8');
+		header('Content-Type: text/xml; charset=UTF-8');
 		echo stripslashes($valor);
 	}
 		

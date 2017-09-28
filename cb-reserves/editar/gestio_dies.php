@@ -10,8 +10,8 @@ $showBlancs=true;
 if (isset($_GET['hideBlancs'])) $showBlancs=false;
 
 require_once(ROOT . INC_FILE_PATH."llista_dies_taules.php");
-$fitxer=ROOT . INC_FILE_PATH."bloq.txt";
-//if (!empty($_REQUEST['f'])) $fitxer=ROOT . INC_FILE_PATH."llista_dies_negra.txt";
+//$fitxer=ROOT . INC_FILE_PATH."bloq.txt";
+$fitxer=ROOT . INC_FILE_PATH."llista_dies_negra.txt";
 
 if (isset($_GET['f'])) $fitxer=$_GET['f'];
 
@@ -74,7 +74,7 @@ if (isset($_POST["dbloq"]))
 
 <TITLE> Masia Can Borrell </TITLE>
 	<LINK rel="stylesheet" type="text/css" href="../css/estils.css">
-<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 
 <link rel="stylesheet" type="text/css" media="all" href="../css/calendari.css">
 <script type="text/javascript" src="../js/calendar.js"></script>

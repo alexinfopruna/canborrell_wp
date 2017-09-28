@@ -67,8 +67,8 @@ if (isset($_POST["dbloq"]))
     <link rel="shortcut icon" type="image/ico" href="/gear-favicon.ico" />
 
 <TITLE> Masia Can Borrell </TITLE>
-	<LINK rel="stylesheet" type="text/css" href="../css/estils.css">
-<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+	<LINK rel="stylesheet" type="text/css" href="../css/estils.css" />
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 
 <link rel="stylesheet" type="text/css" media="all" href="../css/calendari.css">
 <script type="text/javascript" src="../js/calendar.js"></script>

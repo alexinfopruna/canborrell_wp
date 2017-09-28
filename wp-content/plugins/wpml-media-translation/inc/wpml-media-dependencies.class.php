@@ -24,7 +24,7 @@ class WPML_Media_Dependencies
 	function _no_wpml_warning()
 	{
 		?>
-		<div class="message error"><p><?php printf( __( 'WPML Media is enabled but not effective. It requires <a href="%s">WPML</a> in order to work.', 'wpml-translation-management' ),
+		<div class="message error wpml-media-inactive"><p><?php printf( __( 'WPML Media is enabled but not effective. It requires <a href="%s">WPML</a> in order to work.', 'wpml-media' ),
 													'https://wpml.org/' ); ?></p></div>
 	<?php
 	}

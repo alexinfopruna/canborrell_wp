@@ -1,19 +1,17 @@
 <?php
 header('Location: /reservar/realitzar-reserva');exit();
 
-if (!defined('ROOT')) header('Content-Type: text/html; charset=utf-8');
+if (!defined('ROOT')) header('Content-Type: text/html; charset=UTF-8');
 
 defined('ROOT') or define('ROOT', '/cb-reserves/taules/');
 require_once (ROOT . "Gestor.php");
 
-if (!defined('LLISTA_DIES_NEGRA'))
-  define("LLISTA_DIES_NEGRA", ROOT . INC_FILE_PATH . "bloq.txt");
-if (!defined('LLISTA_DIES_NEGRA_RES_PETITES'))
-  define("LLISTA_DIES_NEGRA_RES_PETITES", ROOT . INC_FILE_PATH . "llista_dies_negra_online.txt");
-if (!defined('LLISTA_NITS_NEGRA'))
-  define("LLISTA_NITS_NEGRA", ROOT . INC_FILE_PATH . "bloq_nit.txt");
-if (!defined('LLISTA_DIES_BLANCA'))
-  define("LLISTA_DIES_BLANCA", ROOT . INC_FILE_PATH . "llista_dies_blanca.txt");
+//if (!defined('LLISTA_DIES_NEGRA'))  define("LLISTA_DIES_NEGRA", ROOT . INC_FILE_PATH . "bloq.txt");
+if (!defined('LLISTA_DIES_NEGRA'))  define("LLISTA_DIES_NEGRA", ROOT . INC_FILE_PATH . "llista_dies_negra.txt");
+//if (!defined('LLISTA_DIES_NEGRA_RES_PETITES'))  define("LLISTA_DIES_NEGRA_RES_PETITES", ROOT . INC_FILE_PATH . "llista_dies_negra_online.txt");
+if (!defined('LLISTA_DIES_NEGRA_RES_PETITES'))  define("LLISTA_DIES_NEGRA_RES_PETITES", ROOT . INC_FILE_PATH . "llista_dies_negra.txt");
+if (!defined('LLISTA_NITS_NEGRA'))  define("LLISTA_NITS_NEGRA", ROOT . INC_FILE_PATH . "bloq_nit.txt");
+if (!defined('LLISTA_DIES_BLANCA'))  define("LLISTA_DIES_BLANCA", ROOT . INC_FILE_PATH . "llista_dies_blanca.txt");
 define('USR_FORM_WEB', 3); //ES LA ID D'USUARI (admin) ANONIM QUE CREA RESERVA ONLINE
 
 $ruta_lang = "../";

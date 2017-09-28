@@ -150,6 +150,8 @@ function mail_restaurant($id = false) {
   $t->set_file("page", $file);
 
   ///////////// TEXTES
+  			$t->set_var('self',$file);
+
   $t->set_var('avui', $avui);
   $t->set_var('titol', "RESERVA CANCELADA PEL PROPI CLIENT");
   $t->set_var('text1', $txt[11][$lang]);
@@ -225,7 +227,7 @@ function mail_restaurant($id = false) {
 ?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "//www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="//www.w3.org/1999/xhtml">
     <head>
-        <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
         <title>Confirmación de reserva</title>
         <link href="css/estils.css" rel="stylesheet" type="text/css" />
         <style type="text/css">

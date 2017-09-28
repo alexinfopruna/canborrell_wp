@@ -18,11 +18,17 @@ class EsendexFormPostUtilities
 	var $isSecure;
 	var $certificate;
 	
-	function EsendexFormPostUtilities( $isSecure = false, $certificate = "" )
+	//function EsendexFormPostUtilities( $isSecure = false, $certificate = "" )
+	function __construct( $isSecure = false, $certificate = "" )
 	{
 		$this->isSecure = $isSecure;
 		$this->certificate = $certificate;
 	}
+                            
+                            function EsendexFormPostUtilities( $isSecure = false, $certificate = "" ){
+                              self::__construct( $isSecure = false, $certificate = "" );   
+                            }
+
 
 	function FormPost( $dataStream, $url )
 	{

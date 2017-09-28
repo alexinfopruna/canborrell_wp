@@ -1,11 +1,9 @@
 <?php
-
 if (!isset($lang))
   $lang = 'cat';
 if (!isset($PERSONES_GRUP))
   $PERSONES_GRUP = 12;
-
-
+$tranlate['__SELF__']="reservar/translate_en.php";
 $translate['EDIT_RESERVA_FORA_DE_SERVEI'] = '<p style="color:red">This service is temporarily out of order. To cancel or inform of alterations in your reservation please call <p>
 <b>93 692 97 23</b>
 <br/>
@@ -256,17 +254,18 @@ $translate['AVIS_MODIFICACIONS'] = '<span style = "color: red">
 
 
 /* * ********** MAIL CONFIRMA PAGAMENT GRUPS *************** */
+$translate["Can-Borrell: CONFIRMACIÓ PAGA I SENYAL"]="Can-Borrell: RESERVATION PAYMENT CONFIRMED";
+$translate["Can-Borrell: Confirmació de reserva"] = "Can Borrell: Reservation Confirmed";
+$translate["Can-Borrell: CONFIRMACIÓ DE RESERVA ONLINE"] = "Can Borrell: Online Reservation Confirmed";
+$translate["Can-Borrell: MODIFICACIÓ RESERVA ONLINE "] = "Can Borrell: ONLINE RESERVATION MODIFIED: ";
+$translate["Can-Borrell: RESERVA CANCELADA "] = "Can-Borrell: RESEVATION CANCELED ";
 $translate["MAIL_GRUPS_PAGAT_subject"] = "Can Borrell: CONFIRMATION OF GROUP RESERVATION PAYMENT";
 $translate["MAIL_GRUPS_PAGAT_titol"] = "CONFIRMATION OF RESERVATION PAYMENT";
 
 
-
-
-
-
 $translate["MAIL_GRUPS_PAGAT_text1"] = "We are happy to inform you that we have correctly received your payment of ";
-$translate['MAIL_GRUPS_PAGAT_text2'] = "€. Your reservation has been registeredWe look forward to seeing you on ";
-$translate['MAIL_GRUPS_PAGAT_contacti'] = "If you have any questions you can contact us on <a href='mailto: " . MAIL_RESTAURANT . "' class='dins'>" . MAIL_RESTAURANT . "</a> ";
+$translate['MAIL_GRUPS_PAGAT_text2'] = "€. Your reservation has been registered. See you in Can Borrell ";
+$translate['MAIL_GRUPS_PAGAT_contacti'] = "If you have any questions you can contact us on <a href='mailto:" . MAIL_RESTAURANT . "' class='dins'>" . MAIL_RESTAURANT . "</a> ";
 $translate["nom"] = "name";
 $translate["adults"] = "adults";
 $translate["nens 4 a 9"] = "children 4 to 9";
@@ -445,6 +444,11 @@ $translateJS['err11'] = 'You can no longer make reservations for today.';
 $translateJS['err99'] = 'Test error';
 $translateJS['err100'] = 'Net Session Error';
 $translateJS['err_contacti'] = 'contact the restaurant: 936929723 / 936910605';
+
+$translateDirectJS['PAGAMENT REBUT']="We have received notification of the payment. Your reservation is already confirmed. \\n\\nThanks to use this service";
+$translateDirectJS['EL PAGAMENT HA ESTAT ANULAT']="Unfortunately the payment process is not complete. \\n\\nThanks to use this service";
+
+
 
 $translate['err20'] = '<b>You have now made a reservation in Can Borrell!!</b><br/><br/>you can change or cancel it but. you cannot make more than one online reservation. <br/><em>(To edit or cancel use the link found above, below the navigation bar on this page)</em><br/><br/><br/>If you wish to contact us: <br/><b>936929723 / 936910605</b><br/><br/><br/>The reservation we have booked is for ';
 $translateDirectJS['err21'] = '<b>We can‘t make a reservation due to a problem with a past reservation</b><br/><br/>Please, to make a reservation contact us: 936929723 / 936910605';

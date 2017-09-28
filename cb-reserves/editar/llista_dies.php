@@ -1,6 +1,7 @@
 <?php
 function llegir_dies($fitxer)
 {
+  echo $fitxer;
    for ($i=0;$i<12;$i++) $dies[$i]= array();
 
 	$gestor = @fopen($fitxer, "r");
@@ -34,6 +35,9 @@ function llegir_dies($fitxer)
 
 function guarda_dies($fitxer, $dies,$any)
 {
+  echo $fitxer;
+  
+  
 	$gestor = @fopen($fitxer, "w");
 	if ($gestor) {    
        for ($i=0;$i<12;$i++)

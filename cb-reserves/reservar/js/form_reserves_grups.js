@@ -77,7 +77,7 @@ $(function () {
     $("button, .bt").button();
 
     $("#selectorComensals input[value=grups]").click(function () {
-        window.location.href = "/reservar/realitzar-reserva/?lang="+lang;
+        window.location.href = "/reservar/realitzar-reserva/?lang=" + lang;
         return false;
     });
 
@@ -125,22 +125,22 @@ $(function () {
             }
         }
     });
-/*
-    $("#help").dialog({
-        autoOpen: false,
-        modal: true,
-        width: 400,
-        buttons: {
-            "Continuar": function () {
-                $(this).dialog("close");
-                if (!SECCIO)
-                    seccio("fr-seccio-quants");
-            }
-        },
-        close: tanca_dlg
-    }
-    );
-*/
+    /*
+     $("#help").dialog({
+     autoOpen: false,
+     modal: true,
+     width: 400,
+     buttons: {
+     "Continuar": function () {
+     $(this).dialog("close");
+     if (!SECCIO)
+     seccio("fr-seccio-quants");
+     }
+     },
+     close: tanca_dlg
+     }
+     );
+     */
 
     $("#popupGrups").dialog({
         autoOpen: false,
@@ -154,8 +154,8 @@ $(function () {
                 $(this).dialog("close");
             }
         }
-    });    
-help();
+    });
+    help();
 
     $("#info_reserves").click(function () {
         $("#popup").html($("#reserves_info").html());
@@ -183,11 +183,11 @@ help();
     {
         monta_calendari("#calendari");
     }
-    
-    
-    
+
+
+
     /**************************/
-    
+
     comportamentQuantsSou();
 
     $(".llista-menus").accordion({active: false, collapsible: true, autoHeight: false,
@@ -229,8 +229,10 @@ help();
         e.preventDefault();
     });
     totalPersones();
-    
+
     SECCIO = "grups-fr-seccio-quants";
+
+    $(".loader").removeClass("loader");
 }); //ONLOAD, PRESENTACIO UI
 /************************************************************************************************************/
 /************************************************************************************************************/
@@ -261,11 +263,11 @@ function comportamentQuantsSou()
         $("#selectorComensals").buttonset("destroy");
         $("#selectorComensals").buttonset();
         $.scrollTo("#titol_SelectorJuniors", 600);
-        
-        
+
+
         return false;
     });
-    
+
     $("input[name='adults']").change(function () {
         var val;
         val = $("input[name='adults']").val();
@@ -350,11 +352,11 @@ function totalPersones()
  */
 function comportamentDia()
 {
-    if ($(".fr-seccio-dia").is(":hidden")){
+    if ($(".fr-seccio-dia").is(":hidden")) {
         $(".fr-seccio-dia").slideDown("slow", function () {
             SECCIO = "fr-seccio-dia";
         });
-        
+
     }
 
     $("#calendari").change(function () {
@@ -395,9 +397,15 @@ function recargaHores()
     $("#selectorHoraSopar").html('<img src="/cb-reserves/reservar/css/loading.gif"/>');
     var hora = $("input[name='selectorHora']:checked").val();
     $.post(GESTOR + "?a=totesHores&b=" + $("#calendari").val(), function (dades) {
+        if (dades.substr(0, 3) == "err") {
+            window.location = "/";
+            alert("La sessió ha caducat");
+        }
 
         var obj = JSON.parse(dades);
         var txt = "";
+
+
         if ((obj.dinar + obj.dinarT2) == "")
             txt = l("Cap taula o restaurant tancat");
 
@@ -450,17 +458,17 @@ function comportamentMenus()
 function comportamentClient()
 {
     /*
-    $("input[name='client_mobil']").change(function () {
-
-        var n = $("input[name='client_mobil']").val();
-        if (n.length >= 9 && isNumber(n))
-            updateClient();
-    });
-    $(".fr-seccio-client input[name='client_email']").change(function () {
-        if ($(this).valid())
-            updateClient();
-    });
-*/
+     $("input[name='client_mobil']").change(function () {
+     
+     var n = $("input[name='client_mobil']").val();
+     if (n.length >= 9 && isNumber(n))
+     updateClient();
+     });
+     $(".fr-seccio-client input[name='client_email']").change(function () {
+     if ($(this).valid())
+     updateClient();
+     });
+     */
     if ($(".fr-seccio-client").is(":hidden"))
         $(".fr-seccio-client").slideDown("slow", function () {
             seccio("fr-seccio-client");
@@ -647,7 +655,7 @@ function monta_calendari(selector)
             var r = new Array(3);
 
             if (llistanegra(date) || (date.getDay() == 1 || date.getDay() == 2) && !llistablanca(date) || !taulaDisponible(date))
-            
+
             {
                 r[0] = false;
                 r[1] = "maldia";
@@ -686,7 +694,7 @@ function taulaDisponible(date)
 /********************************************************************************************************************/
 function llistanegra(date)
 {
-    
+
     var t;
     var ds = date.getDay();
     var bloqDia = false;
@@ -709,7 +717,7 @@ function llistanegra(date)
             if (t[i] == d)
                 bloqNit = true;
 
-bloqNit = true;
+    bloqNit = true;
 
     return (bloqDia && bloqNit);
 }
@@ -768,10 +776,7 @@ function validacio()
                         number: true,
                         minlength: 9
                     },
-            client_email: {
-                required: true,
-                email: true
-            },
+            client_email: {required: true, email: true, remote: "../../taules/verify_email.php"},
             client_nom: "required",
             client_cognoms: "required",
             te_comanda: {
@@ -840,10 +845,12 @@ function controlSubmit()
 
         $("#popup").html('<div style="height:420px"><img src="/cb-reserves/reservar/css/loading.gif"/></div>');
         $("#popup").dialog('open');
+        $('.ui-dialog-buttonset').hide();
         $('#submit').hide();
         $('#form-reserves').ajaxSubmit(function (dades) {
             if (dades.substring(0, 11) != '{"resposta"')
                 dades = '{"resposta":"ko","error":"err0","email":false}';
+            $('.ui-dialog-buttonset').show();
             var obj = JSON.parse(dades);
 //alert(dades);
             if (obj.resposta == "ok")

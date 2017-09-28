@@ -82,12 +82,11 @@ function load_calendari_reserves() {
   echo "\n      var lang = \"" . $lang . "\";\n \n \n ";
 
   //TRANSLATES
-  if (!defined("LLISTA_DIES_NEGRA"))
-    define("LLISTA_DIES_NEGRA", ROOT . INC_FILE_PATH . "llista_dies_negra_online.txt");
-  if (!defined("LLISTA_DIES_BLANCA"))
-    define("LLISTA_DIES_BLANCA", ROOT . INC_FILE_PATH . "llista_dies_blanca.txt");
-  if (!defined("LLISTA_NITS_NEGRA"))
-    define("LLISTA_NITS_NEGRA", ROOT . INC_FILE_PATH . "llista_dies_negra_online.txt");
+  //if (!defined("LLISTA_DIES_NEGRA")) define("LLISTA_DIES_NEGRA", ROOT . INC_FILE_PATH . "llista_dies_negra_online.txt");
+  if (!defined("LLISTA_DIES_NEGRA")) define("LLISTA_DIES_NEGRA", ROOT . INC_FILE_PATH . "llista_dies_negra.txt");
+  //if (!defined("LLISTA_NITS_NEGRA")) define("LLISTA_NITS_NEGRA", ROOT . INC_FILE_PATH . "llista_dies_negra_online.txt");
+  if (!defined("LLISTA_NITS_NEGRA")) define("LLISTA_NITS_NEGRA", ROOT . INC_FILE_PATH . "llista_dies_negra.txt");
+  if (!defined("LLISTA_DIES_BLANCA")) define("LLISTA_DIES_BLANCA", ROOT . INC_FILE_PATH . "llista_dies_blanca.txt");
 
     if (!defined("PREU_MIG"))
     define("PREU_MIG", $gestor->configVars("PREU_MIG"));
@@ -101,7 +100,8 @@ function load_calendari_reserves() {
 
     $url =get_permalink();
   if (strpos($url, "reserva-grup"))  $llistan=LLISTA_DIES_NEGRA;
-  else  $llistan=ROOT . INC_FILE_PATH . "llista_dies_negra_online.txt";
+//  else  $llistan=ROOT . INC_FILE_PATH . "llista_dies_negra_online.txt";
+  else  $llistan=ROOT . INC_FILE_PATH . "llista_dies_negra.txt";
  
   $llista_negra = llegir_dies($llistan );
   print crea_llista_js($llista_negra, "LLISTA_NEGRA");

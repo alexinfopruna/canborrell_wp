@@ -795,7 +795,7 @@ function controlSubmit()
 			{
 				var err="Error de servidor";
 				if (obj && obj.error) err=obj.error+"\n"+l(obj.error)+" \n\n"+l("err_contacti");
-				if (obj.error=="err10") return;//DOBLE SUBMIT?????????
+				if (obj.error=="err10")  { alert("El servidor está tardando mucho en responder (cod:002)... Reintentar");return;}//DOBLE SUBMIT?????????
 				$("#popup").html("ERROR: "+err);
 				$('#submit').show();
 			}

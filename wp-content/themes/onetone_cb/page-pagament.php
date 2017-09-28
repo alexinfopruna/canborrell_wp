@@ -186,11 +186,30 @@ $translate['COMPRA_SEGURA']['en'] = "To make a payment using this bank gateway, 
           alert("<?php echo $translate['COMPRA_SEGURA'][$lang] ?>");
           document.getElementById('boto').style.display = 'none';
           vent = window.open('', 'frame-tpv', 'width=725,height=600,scrollbars=no,resizable=yes,status=yes,menubar=no,location=no');
-          // vent.moveTo(eje_x,eje_y);
-          document.forms[0].submit();
-          //document.location ="/#";
+          
+            var idr=<?php echo $fila['id_reserva'] ?>;
+          var TIMER_INTERVAL = 5000;
+          var t = setInterval(ctimer, TIMER_INTERVAL,idr);
+  
+  
+  document.forms[0].submit();
+          
       });
-  });
+
+ 
+ 
+ });
+  
+  function ctimer(idr){
+      var desti = "/cb-reserves/taules/gestor_reserves.php?a=estat_reserva_grup&b=" + idr ;
+    $.post(desti, {r: 0}, function (datos) {
+        if (datos == "7"){
+            window.location.href = "/#about";
+            alert("PAGAMENT REBUT");
+        }
+    });
+  
+  }
 </script>
 
 <style>

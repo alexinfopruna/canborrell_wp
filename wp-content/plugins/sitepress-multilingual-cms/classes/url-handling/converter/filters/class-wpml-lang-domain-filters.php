@@ -28,6 +28,7 @@ class WPML_Lang_Domain_Filters {
 		add_filter( 'stylesheet_uri', array( $this, 'convert_url' ) );
 		add_filter( 'option_siteurl', array( $this, 'siteurl_callback' ) );
 		add_filter( 'content_url', array( $this, 'siteurl_callback' ) );
+		add_filter( 'plugins_url', array( $this, 'siteurl_callback' ) );
 		add_filter( 'login_url', array( $this, 'convert_url' ) );
 		add_filter( 'logout_url', array( $this, 'convert_logout_url' ) );
 		add_filter( 'admin_url', array( $this, 'admin_url_filter' ), 10, 2 );
@@ -61,7 +62,9 @@ class WPML_Lang_Domain_Filters {
 	 * @return string
 	 */
 	public function siteurl_callback( $url ) {
-		if ( ! $this->debug_backtrace->is_function_in_call_stack( 'get_home_path' ) ) {
+		$getting_network_site_url = $this->debug_backtrace->is_function_in_call_stack( 'get_admin_url' ) && is_multisite();
+
+		if ( ! $this->debug_backtrace->is_function_in_call_stack( 'get_home_path' ) && ! $getting_network_site_url ) {
 			$parsed_url = wpml_parse_url( $url );
 			$host       = is_array( $parsed_url ) && isset( $parsed_url['host'] );
 			if ( $host && isset( $_SERVER['HTTP_HOST'] ) && $_SERVER['HTTP_HOST'] ) {

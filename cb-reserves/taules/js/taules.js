@@ -591,7 +591,8 @@ function recargaAccordionClients(nomesClients)
                 return false;
             }
 
-            $("#clientsAc").html(decodeURIComponent(datos));
+            //$("#clientsAc").html(decodeURIComponent(datos));
+            $("#clientsAc").html(datos);
             //ACCORDION CLI ANULAT$( "#clientsAc" ).		("destroy");
             //ACCORDION CLI ANULAT$( "#clientsAc" ).accordion(acop);
             $("#clientsAc").show("fade");
@@ -1022,7 +1023,8 @@ function obreDetallReserva(e)
     if (data)
         $('#calendari').datepicker("setDate", data);
     $.ajax({url: desti, success: function (datos) {
-            $("#edit").html(decodeURIComponent(datos));
+            //$("#edit").html(decodeURIComponent(datos));
+            $("#edit").html((datos));
             recargaAccordioReserves();
             addHandlersEditReserva();
             $.post("gestor_reserves.php?a=recupera_torn", function (d) {
@@ -1053,7 +1055,8 @@ function FROM_CERCADOR_obreDetallReserva(id, data, torn)
 
             var desti = "form_reserva.php?edit=" + id + "&id=" + id;
             $.ajax({url: desti, success: function (datos) {
-                    $("#edit").html(decodeURIComponent(datos));
+                    //$("#edit").html(decodeURIComponent(datos));
+                    $("#edit").html(datos);
                     recargaAccordioReserves();
                     addHandlersEditReserva();
                     $.post("gestor_reserves.php?a=recupera_torn", function (d) {

@@ -240,11 +240,17 @@ $translate['AVIS_MODIFICACIONS']='<span style = "color: red"> <b>Atención: </b>
 
 
 /************ MAIL CONFIRMA PAGAMENT GRUPS ****************/
+$translate["Can-Borrell: CONFIRMACIÓ PAGA I SENYAL"]="Can-Borrell: CONFIRMACIÓN DEL PAGO DE RESERVA ONLINE";
+$translate["Can-Borrell: CONFIRMACIÓ DE RESERVA ONLINE"]="Can-Borrell: CONFIRMACIÓN DE RESERVA ONLINE";
+$translate["Can-Borrell: CONFIRMACIÓ DE RESERVA"]="Can-Borrell: CONFIRMACIÓN DE RESERVA";
+$translate["Can-Borrell: MODIFICACIÓ RESERVA ONLINE "]="Can-Borrell: MODIFICACIÓN DE RESERVA ONLINE";
+$translate["Can-Borrell: RESERVA CANCELADA "]="Can-Borrell: RESERVA CANCELADA ";
+
 $translate["MAIL_GRUPS_PAGAT_subject"]="Can-Borrell: CONFIRMACIÓN DE PAGO DE RESERVA PARA GRUPO";
 $translate["MAIL_GRUPS_PAGAT_titol"]="CONFIRMACIÓN DE PAGO DE RESERVA";
 $translate["MAIL_GRUPS_PAGAT_text1"]="Nos complace informarle que hemos recibido correctamente el pago de ";
 $translate['MAIL_GRUPS_PAGAT_text2']="€. Su reserva queda registrada<br>Le esperamos el próximo ";
-$translate['MAIL_GRUPS_PAGAT_contacti'] = "Si tiene cualquier duda póngase en contacto con nosotros en <a href='mailto: ".MAIL_RESTAURANT."' class='dins'>".MAIL_RESTAURANT."</a> ";
+$translate['MAIL_GRUPS_PAGAT_contacti'] = "Si tiene cualquier duda póngase en contacto con nosotros en <a href='mailto:".MAIL_RESTAURANT."' class='dins'>".MAIL_RESTAURANT."</a> ";
 $translate["nom"] = "nombre";
 $translate["adults"] = "adultos";
 $translate["nens 4 a 9"] = "niños 4 a 9";
@@ -411,6 +417,9 @@ $translateJS["PAGA_I_SENYAL"] ="<div>A continuación has de realizar el pago de 
         . '<div class = "info-paga-i-senyal"> Atención: Si no puedes venir el día de la reserva <b>puedes recuperar la paga y señal si nos avisas con 24 horas de \ antelación</b>. En caso contrario, el \ importe abonado no será devuelto </div> '
         . "<br/><br/>Te transferimos a una passarela bancaria externa a Can Borrell. El restaurant no tendrá acceso a los datos que introduzcas"
         . "<br/><br/></div>";
+
+$translateDirectJS['PAGAMENT REBUT']="Hemos recibido la notificación del pago. Tu reserva está confirmada. \\n\\nGracies por utilitzar este servicio";
+$translateDirectJS['EL PAGAMENT HA ESTAT ANULAT']="Desgraciadamente no se ha completado el proceso de pago. \\n\\nGracies por utilitzar este servici";
 
 
 

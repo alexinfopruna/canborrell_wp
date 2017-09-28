@@ -9,16 +9,13 @@ if (!defined('ROOT'))  define('ROOT', "../taules/");
 
  
 require(ROOT . "gestor_reserves.php");
-if (!defined('LLISTA_DIES_NEGRA'))
-  define("LLISTA_DIES_NEGRA", ROOT . INC_FILE_PATH . "bloq.txt");
-if (!defined('LLISTA_DIES_NEGRA_RES_PETITES'))
-  define("LLISTA_DIES_NEGRA_RES_PETITES", ROOT . INC_FILE_PATH . "llista_dies_negra_online.txt");
-if (!defined('LLISTA_NITS_NEGRA'))
-  define("LLISTA_NITS_NEGRA", ROOT . INC_FILE_PATH . "bloq_nit.txt");
-if (!defined('LLISTA_DIES_BLANCA'))
-  define("LLISTA_DIES_BLANCA", ROOT . INC_FILE_PATH . "llista_dies_blanca.txt");
-if (!defined('TPV_CONFIG_FILE'))
-  define("TPV_CONFIG_FILE", "TPV256_test.php");
+//if (!defined('LLISTA_DIES_NEGRA'))  define("LLISTA_DIES_NEGRA", ROOT . INC_FILE_PATH . "bloq.txt");
+if (!defined('LLISTA_DIES_NEGRA'))  define("LLISTA_DIES_NEGRA", ROOT . INC_FILE_PATH . "llista_dies_negra.txt");
+//if (!defined('LLISTA_DIES_NEGRA_RES_PETITES'))  define("LLISTA_DIES_NEGRA_RES_PETITES", ROOT . INC_FILE_PATH . "llista_dies_negra_online.txt");
+if (!defined('LLISTA_DIES_NEGRA_RES_PETITES'))  define("LLISTA_DIES_NEGRA_RES_PETITES", ROOT . INC_FILE_PATH . "llista_dies_negra.txt");
+if (!defined('LLISTA_NITS_NEGRA'))  define("LLISTA_NITS_NEGRA", ROOT . INC_FILE_PATH . "bloq_nit.txt");
+if (!defined('LLISTA_DIES_BLANCA'))  define("LLISTA_DIES_BLANCA", ROOT . INC_FILE_PATH . "llista_dies_blanca.txt");
+if (!defined('TPV_CONFIG_FILE'))  define("TPV_CONFIG_FILE", "TPV256_test.php");
 
  set_error_handler("var_dump");
 ini_set('error_reporting', E_ALL ^ E_DEPRECATED);

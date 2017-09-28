@@ -129,7 +129,7 @@ public function getHoresRules($data=0, $adults=0, $nens=0, $cotxets=0){
 
 /** LA REGLA MES MODERNA **/
 private function interseccio_hores($rules){
-    if (!sizeof($rules)) return false;
+  if (!sizeof($rules)) return false;
 
 $rule = $rules[0];
   return $this->subArrayHoresb($rule['restriccions_hores']);

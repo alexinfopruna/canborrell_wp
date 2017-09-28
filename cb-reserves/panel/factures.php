@@ -20,7 +20,7 @@ if (!$gestor->valida_sessio(64))
 <HEAD>
     <link rel="shortcut icon" type="image/ico" href="/gear-favicon.ico" />
 
-<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
 <TITLE> Llistat de factures Proforma </TITLE>
 <link type="text/css" href="../taules/css/blitzer/jquery-ui-1.8.9.custom.css" rel="stylesheet" />	
 <link type="text/css" href="../reservar/css/custom-theme/jquery.ui.all.css" rel="stylesheet" />	
@@ -62,7 +62,7 @@ if (!$gestor->valida_sessio(64))
 		echo '<a href="'.ROOT.INC_FILE_PATH.'factures/'.$v.'" target="_blank" class=" bt ui-button ui-widget ui-state-default ui-corner-all ui-button-text-only">'.$v.'</a>';
 	}
 ?>
-<div>
+</div>
 
 </body>
 </html>

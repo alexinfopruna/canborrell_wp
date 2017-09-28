@@ -1,0 +1,152 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<title>Recepció reserva</title>
+
+<link type="text/css" href="https://www.can-borrell.com/cb-reserves/css/taronja.css" rel="stylesheet"/>
+
+
+</head>
+
+<body><!-- reservar/{self}  -->
+		
+<table  border="0" align="center" cellpadding="0" cellspacing="0" >
+  <tr>
+    <td  colspan="2" align="right" background="https://www.can-borrell.com/img/fons_9c.jpg"><a href="https://www.can-borrell.com"><img src="https://www.can-borrell.com/img/lg_sup.png" alt="img" width="303" height="114" border="0" title="INICI" /></a></td>
+  </tr>
+  <tr>
+    <td class="franja" colspan="2" align="center"></td>
+  </tr>
+</table>
+
+
+
+
+
+<table border="0"  cellspacing="0" cellpadding="0" align="center" bgcolor="#FFFFFF">
+<tbody>
+<tr>
+<td ></td>
+<td ><span style="font-size:10px">{avui}</span></td>
+<td ></td>
+</tr>
+<tr>
+<td ></td>
+<td align="center" ><h1><span class="titol" > CANCEL RESERVATION</span></h1></td>
+<td width="12" ></td>
+</tr>
+<tr>
+<td ></td>
+<td ></td>
+<td ></td>
+</tr>
+<tr>
+<td ></td>
+<td align="center" >At your request your reservation has been . <strong>canceled</strong>.</td>
+<td ></td>
+</tr>
+<tr>
+<td ></td>
+<td ></td>
+<td class="estat" align="center" ></td>
+</tr>
+<tr>
+<td width="12" ></td>
+<td >
+<table border="0" cellspacing="3" cellpadding="3" align="center">
+<tbody>
+<tr>
+<td class="Estilo2"  >id_reserva</td>
+<td class="llista" align="right"  width="160">
+<div class="titol2" align="left" ><span class="Estilo4" style="font-size: 14px;">{id_reserva}</span></div>
+</td>
+</tr>
+<tr>
+<td class="Estilo2"  >Reservation date</td>
+<td class="llista" align="right"  width="160" >
+<div class="estat" align="left"><span class="Estilo4" style="font-size: 14px;">{data}</span></div>
+</td>
+</tr>
+<tr>
+<td class="Estilo2"  >time</td>
+<td class="llista" align="right"  width="160" >
+<div class="estat" align="left"><span class="Estilo4" style="font-size: 14px;">{hora}</span></div>
+</td>
+</tr>
+<tr>
+<td class="Estilo2"  >name</td>
+<td class="llista"  width="160" >
+<div align="left"><span class="Estilo4" style="font-size: 14px;">{nom}</span></div>
+</td>
+</tr>
+<tr>
+<td class="Estilo2"  ></td>
+<td class="llista"  width="160" ></td>
+</tr>
+<tr>
+<td class="Estilo2"  >adults</td>
+<td class="llista" align="right"  width="160" >
+<div align="left"><span class="Estilo4" style="font-size: 14px;">{adults}</span></div>
+</td>
+</tr>
+<!--
+      <tr>
+        <td align="right"  class="Estilo2" style="color:white">niños 10 a 14 años </td>
+        <td width="160" align="right"  class="llista"><div align="left"><span class="Estilo4">{nens10_14}</span></div></td>
+      </tr>
+-->
+<tr>
+<td class="Estilo2"  >Children up to 14 years old</td>
+<td class="llista" align="right"  width="160" >
+<div align="left"><span class="Estilo4" style="font-size: 14px;">{nens4_9}</span></div>
+</td>
+</tr>
+<tr>
+<td class="Estilo2"  >Children in prams or push chairs</td>
+<td class="llista" align="right"  width="160" >
+<div align="left"><span class="Estilo4" style="font-size: 14px;">{cotxets}</span></div>
+</td>
+</tr>
+<tr>
+<td class="Estilo2"  >Onservations</td>
+<td class="llista"  width="160" ><span class="Estilo4" style="font-size: 14px;">{observacions}</span></td>
+</tr>
+<tr>
+<td class="Estilo2"  >lunch</td>
+<td class="llista" align="right" bgcolor="#999999" width="160" >
+<div class="estat" align="left">
+<div class="Estilo4" align="right" style="font-size: 14px;">{comanda}</div>
+</div>
+</td>
+</tr>
+</tbody>
+</table>
+</td>
+<td ></td>
+</tr>
+<tr>
+<td ></td>
+<td ></td>
+<td ></td>
+</tr>
+<tr>
+<td ></td>
+<td ></td>
+<td ></td>
+</tr>
+    <tr  class="marge-footer">
+    <td> </td>
+    <td> </td>
+    <td> </td>
+  </tr>
+    
+    <tr class="franja">
+<td> </td>
+    <td> </td>
+    <td> </td>
+  </tr>
+</tbody>
+</table>
+</body>
+</html>

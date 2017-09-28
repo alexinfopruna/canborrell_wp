@@ -1,0 +1,155 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<title>Recepció reserva</title>
+
+<link type="text/css" href="https://www.can-borrell.com/cb-reserves/css/taronja.css" rel="stylesheet"/>
+
+
+</head>
+
+<body><!-- reservar/{self}  -->
+		
+<table  border="0" align="center" cellpadding="0" cellspacing="0" >
+  <tr>
+    <td  colspan="2" align="right" background="https://www.can-borrell.com/img/fons_9c.jpg"><a href="https://www.can-borrell.com"><img src="https://www.can-borrell.com/img/lg_sup.png" alt="img" width="303" height="114" border="0" title="INICI" /></a></td>
+  </tr>
+  <tr>
+    <td class="franja" colspan="2" align="center"></td>
+  </tr>
+</table>
+
+
+
+
+
+
+
+
+
+
+<table  border="0" align="center" cellpadding="0" cellspacing="0" bgcolor="#FFFFFF">
+  <tr>
+    <td></td>
+    <td><span style="font-size:10px">{avui}</span></td>
+    <td></td>
+  </tr>
+  <tr>
+    <td></td>
+    <td align="center"><h1><span class="titol">RESERVATION MODIFIED {id_reserva}</span></h1></td>
+    <td width="12"> </td> </tr>
+  <tr>
+    <td></td>
+    <td></td>
+  <td> </td> </tr>
+  <tr>
+    <td></td>
+    <td align="center">We have received your request of MODIFICATION of reservation. See you in Can Borrell</td>
+    <td></td>  </tr>
+  <tr>
+    <td></td>
+    <td></td>
+  <td align="center" class="estat"> </td> </tr>
+  
+  <tr>
+    <td width="12"></td>
+    <td>
+        
+        
+        <table border="0" align="center" cellpadding="3" cellspacing="3">
+      <tr>
+        <td align="right"  class="Estilo2" style="color:white">id_reserva</td>
+        <td width="160" align="right"  class="llista" style="color:white"><div align="left" class="titol2"><span class="Estilo4">{id_reserva}</span></div></td>
+      </tr>
+
+      <tr>
+        <td align="right"  class="Estilo2" style="color:white">reservation date</td>
+        <td width="160" align="right"  class="llista"><div align="left" class="estat"><span class="Estilo4">{data}</span></div></td>
+      </tr>
+      <tr>
+        <td align="right"  class="Estilo2" style="color:white">time</td>
+        <td width="160" align="right"  class="llista"><div align="left" class="estat"><span class="Estilo4">{hora}</span></div></td>
+      </tr>
+      <tr>
+        <td align="right"  class="Estilo2" style="color:white">name</td>
+        <td width="160"  class="llista"><div align="left"><span class="Estilo4">{nom}</span></div></td>
+      </tr>
+      <tr>
+        <td align="right"  class="Estilo2" style="color:white"></td>
+        <td width="160"  class="llista"><span class="Estilo4"></span></td>
+      </tr>
+      <tr>
+        <td align="right"  class="Estilo2" style="color:white">adults</td>
+        <td width="160" align="right"  class="llista"><div align="left"><span class="Estilo4">{adults}</span></div></td>
+      </tr>
+<!-- 
+      <tr>
+        <td align="right"  class="Estilo2" style="color:white">niños 10 a 14 años </td>
+        <td width="160" align="right"  class="llista"><div align="left"><span class="Estilo4">{nens10_14}</span></div></td>
+      </tr>-->
+      <tr>
+        <td align="right"  class="Estilo2" style="color:white">
+Children up to 14 years old </td>
+        <td width="160" align="right"  class="llista"><div align="left"><span class="Estilo4">{nens4_9}</span></div></td>
+      </tr>
+      <tr>
+        <td align="right"  class="Estilo2" style="color:white">Children in prams or push chairs</td>
+        <td width="160" align="right"  class="llista"><div align="left"><span class="Estilo4">{cotxets}</span></div></td>
+      </tr>
+      <tr>
+        <td align="right"  class="Estilo2" style="color:white">Other information</td>
+        <td width="160"  class="llista"><span class="Estilo4">{observacions}</span></td>
+      </tr>
+      <tr>
+        <td align="right"  class="Estilo2" style="color:white">deposit</td>
+        <td width="160"  class="llista"><span class="Estilo4">{resposta}</span></td>
+      </tr>
+      <tr>
+        <td align="right"  class="Estilo2" style="color:white">dishes</td>
+        <td width="160" align="right" bgcolor="#999999" class="llista"><div align="left" class="estat">
+            <div align="right" class="Estilo4">{comanda}</div>
+        </div></td>
+      </tr>
+    </table>
+        
+        
+        
+    </td>
+    <td></td>
+  </tr>
+  <tr>
+    <td></td>
+    <td></td>
+    <td></td>
+  </tr>
+  <tr>
+    <td></td>
+    <td>
+	<div align="center">
+		Until a day before you can modify or cancel your reservation in <a href="https://www.can-borrell.com/reservar">www.can-borrell.com/reservar</a>
+		<br/><br/>
+		To access you must keep the reservation ID: <b>{id_reserva}</b>
+	</div></td>
+    <td></td>
+  </tr>
+  <tr>
+    <td></td>
+    <td></td>
+    <td></td>
+  </tr>
+    
+        <tr  class="marge-footer">
+    <td> </td>
+    <td> </td>
+    <td> </td>
+  </tr>
+    
+    <tr class="franja">
+<td> </td>
+    <td> </td>
+    <td> </td>
+  </tr>
+</table>
+</body>
+</html>

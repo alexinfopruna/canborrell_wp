@@ -5,19 +5,22 @@
 defined('ROOT') or define('ROOT', 'cb-reserves/taules/');
 require_once (ROOT . "Gestor.php");
 
-if (defined("CB_FORA_DE_SERVEI") && CB_FORA_DE_SERVEI === true && $_SESSION['permisos']<200)
+if (defined("CB_FORA_DE_SERVEI") && CB_FORA_DE_SERVEI === true && $_SESSION['permisos'] < 200)
   header("Location:/cb-reserves/reservar/fora_de_servei.html");
 
-define("LLISTA_DIES_NEGRA", ROOT . INC_FILE_PATH . "bloq.txt");
+//define("LLISTA_DIES_NEGRA", ROOT . INC_FILE_PATH . "bloq.txt");
+define("LLISTA_DIES_NEGRA", ROOT . INC_FILE_PATH . "llista_dies_negra.txt");
 define("LLISTA_NITS_NEGRA", ROOT . INC_FILE_PATH . "bloq_nit.txt");
 define("LLISTA_DIES_BLANCA", ROOT . INC_FILE_PATH . "llista_dies_blanca.txt");
 define('USR_FORM_WEB', 3); //ES LA ID D'USUARI (admin) ANONIM QUE CREA RESERVA ONLINE
 // CREA USUARI ANONIM
 if (!isset($_SESSION))
   session_start();
+
+if (!isset($_SESSION['uSer'])){
 $usr = new Usuari(USR_FORM_WEB, "webForm", 1);
-if (!isset($_SESSION['uSer']))
   $_SESSION['uSer'] = $usr;
+}
 
 require (ROOT . "../reservar/Gestor_form.php");
 $gestorf = new Gestor_form();
@@ -31,6 +34,8 @@ $total = $na + $nj + $nn;
 //RECUPERA IDIOMA
 global $sitepress;
 $language_uri = substr($_SERVER['REQUEST_URI'], 0, 4);
+
+
 if ($language_uri == '/es/' || $language_uri == '/en/') {
   $lang = substr($_SERVER['REQUEST_URI'], 1, 2);
   $gestorf->idioma($lang);
@@ -66,11 +71,68 @@ $paga_i_senyal = $PERSONES_GRUP >= persones_paga_i_senyal;
 
 
 
+//RECUPERA RESERVA UPDATE
+if (isset($_REQUEST['rid'])) {
+  $decode = base64_decode($_REQUEST['rid']);
+  //print_r($decode);
+  $st = explode('&', $decode);
+  $_REQUEST['idr'] = $_POST['idr'] = $st[0];
+  //$_POST['email']=$st[1];
+  $_REQUEST['mob'] = $_POST['mob'] = $st[1];
+  // $_REQUEST['lang']=$_POST['lang']=  $_GET['lang'] =$st[2];
+
+  if (isset($_POST['idr']) && $_POST['idr'] > SEPARADOR_ID_RESERVES) { //si es reserva de grups
+    $row = $gestorf->recuperaReserva($_POST['mob'], $_POST['idr']);
+    if (!$row) {
+     // $error_edit = TRUE;
+      $message = "ERROR_LOAD_RESERVA";
+      $_REQUEST['idr'] = $_POST['idr'] = null;
+    }
+  }
+}
+else {
+  $row['id_reserva'] = null;
+  $row['idr'] = null;
+  $row['adults'] = null;
+  $row['nens10_14'] = null;
+  $row['nens4_9'] = null;
+  $row['reserva_info'] = null;
+  $row['cotxets'] = null;
+  $row['comanda'] = null;
+  $row['client_telefon'] = null;
+  $row['client_mobil'] = null;
+  $row['client_email'] = null;
+  $row['client_nom'] = null;
+  $row['client_cognoms'] = null;
+  $row['client_id'] = null;
+  $row['data'] = null;
+  $row['hora'] = null;
+  $row['observacions'] = null;
+  $row['reserva_pastis'] = null;
+  $row['reserva_info_pastis'] = null;
+  //$row['']=null;
+
+  $comanda = null;
+}
+
+$g = $gestorf;
+add_action('wp_enqueue_scripts', 'reservar_enqueue_styles');
+get_header();
+require_once(ROOT . '../reservar/translate_' . $gestorf->lng . '.php');
+$gestorf = $g;
+
+if (!isset($_POST['idr'])){
+  $_POST['idr'] = null;
+}
+
+$EDITA_RESERVA = $_POST['idr']?$_POST['idr']:NULL;
+//$EDITA_RESERVA = $_POST['idr'];
+
 //ELIMINA RESERVA 
 if (isset($_POST['cancel_reserva']) && $_POST['cancel_reserva'] == "Eliminar reserva" && $_POST['idr'] > SEPARADOR_ID_RESERVES) {
   if ($gestorf->cancelReserva($_POST['mob'], $_POST['idr'])) {
     $message = __("Your reservation is now cancelled", 'canborrell');
-    $_REQUEST['idr'] = $_POST['idr'] = null;
+    $_REQUEST['idr'] = $_POST['idr'] = $EDITA_RESERVA = null;
   }
   else {
     //$message=__("ERROR: No s'ha pogut cancel·lar la reserva per problemes tècnics. <a href='mailto:restaurant@can-borrell.com'>Contacta amb el restaurant</a>",'canborrell');
@@ -81,10 +143,8 @@ if (isset($_POST['cancel_reserva']) && $_POST['cancel_reserva'] == "Eliminar res
 
 
 
-$g = $gestorf;
-add_action('wp_enqueue_scripts', 'reservar_enqueue_styles');
-get_header();
-$gestorf = $g;
+
+
 
 $sidebar = isset($page_meta['page_layout']) ? $page_meta['page_layout'] : 'none';
 
@@ -117,7 +177,7 @@ if ($padding_bottom)
   $container_css .= 'padding-bottom:' . $padding_bottom . ';';
 
 
-require(ROOT . '../reservar/translate_' . $gestorf->lng . '.php');
+
 
 /* * *********************************************************** */
 /* * *********************************************************** */
@@ -161,16 +221,18 @@ function reservar_enqueue_styles() {
       @media (max-width: 768px){
           .row{margin:0}
       }
-      /*
-            .titol{display:flex;
-                   margin-right: 35px;
       
-            }
-      */
-      
+     
+
+
+      .resum-carta-iva{
+          font-size:12px;
+      }
+
+
       #divTooltip{
           font-size: 0.7em;
-    line-height: 1.1;
+          line-height: 1.1;
       }
       .ccarta  td, tr.item-carta, tr.item-carta td{    padding: 0px 4px;}
       .fxd-header{display:none !important;position:absolute;left:-1000px;}
@@ -295,6 +357,8 @@ function reservar_enqueue_styles() {
           display:flex;justify-content:center;width:100%;
       }
 
+      #compra button#boto{display:none}
+      
       @media (max-width: 770px){ 
           .ui-button-text {
               padding: 5px 15px !important;
@@ -369,74 +433,25 @@ function reservar_enqueue_styles() {
   </script>
   <?php
 }
+
 // FINAL reservar_enqueue_styles()
-/**********************************************************************************************************/
+/* * ******************************************************************************************************* */
 
-/**********************************************************************************************************/
-/**********************************************************************************************************/
-/**********************************************************************************************************/
-/**********************************************************************************************************/
-/**********************************************************************************************************/
-
-
+/* * ******************************************************************************************************* */
+/* * ******************************************************************************************************* */
+/* * ******************************************************************************************************* */
+/* * ******************************************************************************************************* */
+/* * ******************************************************************************************************* */
 
 
-//RECUPERA RESERVA UPDATE
-if (isset($_REQUEST['rid'])) {
-  $decode = base64_decode($_REQUEST['rid']);
-  //print_r($decode);
-  $st = explode('&', $decode);
-  $_REQUEST['idr'] = $_POST['idr'] = $st[0];
-  //$_POST['email']=$st[1];
-  $_REQUEST['mob'] = $_POST['mob'] = $st[1];
-  // $_REQUEST['lang']=$_POST['lang']=  $_GET['lang'] =$st[2];
-
-  if (isset($_POST['idr']) && $_POST['idr'] > SEPARADOR_ID_RESERVES) { //si es reserva de grups
-    $row = $gestorf->recuperaReserva($_POST['mob'], $_POST['idr']);
-    if (!$row) {
-      l("ERROR_LOAD_RESERVA");
-      $_REQUEST['idr'] = $_POST['idr'] = null;
-    }
-  }
-}
-else {
-  $row['id_reserva'] = null;
-  $row['idr'] = null;
-  $row['adults'] = null;
-  $row['nens10_14'] = null;
-  $row['nens4_9'] = null;
-  $row['reserva_info'] = null;
-  $row['cotxets'] = null;
-  $row['comanda'] = null;
-  $row['client_telefon'] = null;
-  $row['client_mobil'] = null;
-  $row['client_email'] = null;
-  $row['client_nom'] = null;
-  $row['client_cognoms'] = null;
-  $row['client_id'] = null;
-  $row['data'] = null;
-  $row['hora'] = null;
-  $row['observacions'] = null;
-  $row['reserva_pastis'] = null;
-  $row['reserva_info_pastis'] = null;
-  //$row['']=null;
-
-  $comanda = null;
-}
-
-if (!isset($_POST['idr']))
-  $_POST['idr'] = null;
-$EDITA_RESERVA = $_POST['idr'];
 ?>
-
-
 
 <article id="post-<?php the_ID(); ?>" <?php post_class(); ?>>
 <?php if ($display_breadcrumb == 'yes'): ?>
 
-      <section class="page-title-bar title-left no-subtitle" style="">
+      <section class="page-title-bar title-left no-subtitle loader" >
           <div class="container">
-                      <?php onetone_get_breadcrumb(array("before" => "<div class=''>", "after" => "</div>", "show_browse" => false, "separator" => '', 'container' => 'div')); ?>
+  <?php onetone_get_breadcrumb(array("before" => "<div class=''>", "after" => "</div>", "show_browse" => false, "separator" => '', 'container' => 'div')); ?>
               <hgroup class="page-title">
                   <h1>
                       <?php
@@ -451,10 +466,10 @@ $EDITA_RESERVA = $_POST['idr'];
           </div>
       </section>
 <?php endif; ?>
-    
-    
 
-        <?php if ($sidebar == 'left' || $sidebar == 'both'): ?>
+
+
+<?php if ($sidebar == 'left' || $sidebar == 'both'): ?>
       <div class="col-aside-left">
           <aside class="blog-side left text-left" style="padding-top:70px;">
 
@@ -477,28 +492,28 @@ $EDITA_RESERVA = $_POST['idr'];
 
 
                 <a href="#" class="btn btn-warning  ecp-trigger" data-modal="modal" >     <?php l('Tens algun dubte?'); ?></a>
-              <?php } ?> 
+  <?php } ?> 
 
               <div class="widget-area">
-                  <?php get_sidebar('pageleft'); ?>
+  <?php get_sidebar('pageleft'); ?>
               </div>
           </aside>
       </div>
-    <?php endif; ?>
-    
-    
-    
+<?php endif; ?>
+
+
+
     <div class="post-wrap">
         <div class="<?php echo $container; ?>">
             <div class="post-inner row <?php echo $aside; ?>" style=" <?php echo $container_css; ?>">
                 <div class="col-main">
                     <section class="post-main" role="main" id="content">
                             <?php while (have_posts()) : the_post(); ?>
-                          <article class="post type-post" id="">
-                                      <?php if (has_post_thumbnail()): ?>
+                          <article class="post type-post">
+  <?php if (has_post_thumbnail()): ?>
                                 <div class="feature-img-box">
                                     <div class="img-box">
-                                <?php the_post_thumbnail(); ?>
+    <?php the_post_thumbnail(); ?>
                                     </div>
                                 </div>
   <?php endif; ?>
@@ -534,17 +549,17 @@ $EDITA_RESERVA = $_POST['idr'];
                                                   <!-- ***************************************************************************************   -->
                                                   <!-- ***************************************************************************************   -->
 
-                                                  
+
                                                   <!-- ***************************************************************************************   -->
                                                   <!-- ********     CONTACTE       ***********************************************************   -->
                                                   <!-- ***************************************************************************************   -->
                                                   <!-- ***************************************************************************************   -->
                                                   <?php
                                                   if (isset($message)) {
-                                                    echo '<div class="alert alert-info"><i class="fa fa-info-circle" style="font-size:28px;color:#31708f;"></i> ' . $message . '</div>';
+                                                    echo '<div class="alert alert-danger"><i class="fa fa-info-circle" style="font-size:28px;color:#31708f;"></i> ' . l($message,FALSE) . '</div>';
                                                   }
                                                   ?>
-                                                  
+
                                                   <div style="clear:both"></div>
                                                   <h2 class="titol titol1">
                                                       <?php
@@ -562,10 +577,11 @@ $EDITA_RESERVA = $_POST['idr'];
                                                       }
                                                       ?>
                                                   </h2>  
-                                                                                                    
+
                                                   <form id="form-reserves" action="/cb-reserves/reservar/Gestor_form.php?a=submit" method="post" name="fr-reserves" accept-charset="utf-8"><!---->
                                                       <input type="hidden" name="id_reserva" value="<?php echo isset($_REQUEST['idr']) ? $_REQUEST['idr'] : ""; ?>"/>
                                                       <input type="hidden" name="reserva_info" value="<?php echo $row['reserva_info']; ?>"/>
+                                                      <input type="hidden" name="<?php echo (isset($_REQUEST['testTPV'])?"testTPV":"noTest"); ?>" value="testTPV"/>
                                                       <div id="fr-reserves" class="fr-reserves">
                                                           <!-- *******************************  QUANTS SOU ********************************************************   -->
                                                           <!-- *******************************  QUANTS SOU ********************************************************   -->
@@ -620,7 +636,7 @@ $EDITA_RESERVA = $_POST['idr'];
                                                                       <!------------------- AVIS MODIFICACIONS ---------------------------->
                                                                       <div id="avis-modificacions-overlay" class="ui-widget-overlay dspnn" > </div> 
                                                                       <div id="avis-modificacions" class="transition-1s" style="" >
-                                                                          <?php l('AVIS_MODIFICACIONS'); ?>
+  <?php l('AVIS_MODIFICACIONS'); ?>
                                                                       </div> 
                                                                       <!------------------- FI AVIS MODIFICACIONS ---------------------------->
 
@@ -723,7 +739,7 @@ $EDITA_RESERVA = $_POST['idr'];
                                                               </h1>
                                                               <div class="col-isqui flex ">
                                                                   <div class="caixa dere ui-corner-all info_dia">
-                                                                      <?php l('INFO_DATA'); ?>	
+  <?php l('INFO_DATA'); ?>	
                                                                       <input type="hidden" id="valida_calendari" name="selectorData" value="<?php echo $row['data']; ?>"/>
 
                                                                   </div>
@@ -732,12 +748,12 @@ $EDITA_RESERVA = $_POST['idr'];
                                                                   <div class="putoIE " style="">
                                                                       <!-- ******  CALENDARI  ********   -->
                                                                       <div id="data" style="float:left">
-                                                                          <?php if ($EDITA_RESERVA): ?>
+  <?php if ($EDITA_RESERVA): ?>
 
                                                                             <script>
                                                                               var BLOQ_DATA = '<?php echo $gestorf->cambiaf_a_normal($row['data']); ?>';
                                                                             </script>
-                                                                          <?php endif ?>
+  <?php endif ?>
                                                                           <div id="calendari" class=" ui-corner-all fr-seccio-dia"></div>
                                                                       </div>
                                                                       <div style="clear:both"></div>
@@ -758,7 +774,7 @@ $EDITA_RESERVA = $_POST['idr'];
 
                                                                   <!-- ******  INFO  ********   -->
                                                                   <div class="ui-corner-all caixa caixa100 dere hores info_hora">
-                                                                      <?php l('INFO_HORES'); ?>	
+  <?php l('INFO_HORES'); ?>	
                                                                   </div>
                                                                   <div>
                                                                       <!-- ******  DINAR  ********   -->
@@ -772,7 +788,7 @@ $EDITA_RESERVA = $_POST['idr'];
                                                                           <div id="selectorHoraSopar" class="col_dere" >
                                                                               <img src="/cb-reserves/reservar/css/loading.gif"/>
                                                                           </div>
-                                                                      </div>
+                                                                      </div></b></b></b>
 
                                                                       <input type="hidden" name="taulaT1" value="">
                                                                       <input type="hidden" name="taulaT2" value="">
@@ -802,7 +818,7 @@ $EDITA_RESERVA = $_POST['idr'];
 
 
                                                                   <div class="ui-corner-all info caixa" >
-                                                                      <?php l('INFO_CARTA'); ?>
+  <?php l('INFO_CARTA'); ?>
                                                                   </div>
                                                                   <div class="col-isqui " >    
 
@@ -819,7 +835,7 @@ $EDITA_RESERVA = $_POST['idr'];
                                                                               $pastis_info = $row['reserva_info_pastis'];
                                                                               ?>
                                                                               <label for="INFO_PASTIS" class="pastis_toggle" style="margin-left:25px;">
-                                                                                  <?php l("INFO_PASTIS") ?>
+  <?php l("INFO_PASTIS") ?>
                                                                               </label>
                                                                               <textarea id="INFO_PASTIS" name="INFO_PASTIS" style="margin-left:25px;" class="pastis_toggle"><?php echo $pastis_info ?></textarea>
                                                                               <table id="caixa-carta" class="col_dere">
@@ -828,13 +844,13 @@ $EDITA_RESERVA = $_POST['idr'];
                                                                                       <td class="menysX"></td>
                                                                                       <td class="Xborra"></td>
                                                                                       <td class="carta-plat">
-                                                                                          <h3><?php //l("SELECCIÓ")         ?></h3>
+                                                                                          <h3><?php //l("SELECCIÓ")          ?></h3>
                                                                                       </td>
                                                                                       <td></td>
                                                                                   </tr>
                                                                                   <tr>
                                                                                       <td class="mesX">							
-                                                                                          <?php echo $comanda ?></td>
+  <?php echo $comanda ?></td>
                                                                                       <td class="menysX"></td><td class="Xborra"></td>
                                                                                       <td class="carta-plat"><h3>	</h3></td>
                                                                                       <td></td>
@@ -842,7 +858,7 @@ $EDITA_RESERVA = $_POST['idr'];
                                                                               </table>
                                                                               <!-- ******  BUTO CARTA  ********   -->
                                                                               <div class="ui-corner-all info info-comanda info_carta" style="float:left;">
-                                                                                  <?php l('INFO_COMANDA'); ?>
+  <?php l('INFO_COMANDA'); ?>
                                                                               </div>
 
 
@@ -882,13 +898,13 @@ $EDITA_RESERVA = $_POST['idr'];
                                                                               <div><label class="label" for="client_email">Email*</label><input type="email" name="client_email" value="<?php echo $row['client_email'] ?>"/></div>
                                                                               <div><label class="label" for="client_nom"><?php l('Nom'); ?>*</label><input type="text" name="client_nom" value="<?php echo $row['client_nom'] ?>"/></div>
                                                                               <div><label class="label" for="client_cognoms"><?php l('Cognoms'); ?>*</label><input type="text" name="client_cognoms" value="<?php echo $row['client_cognoms'] ?>"/></div>
-                                                                              <div><label class="label" for="client_id"><?php //l('Client_id');         ?></label><input type="hidden" name="client_id" value="<?php echo $row['client_id'] ?>"/></div>
+                                                                              <div><label class="label" for="client_id"><?php //l('Client_id');          ?></label><input type="hidden" name="client_id" value="<?php echo $row['client_id'] ?>"/></div>
 
                                                                               <input name="observacions" value="" type="hidden" />
 
                                                                               <!--
                                                                               <div class="ui-corner-all info-legal info-observacions  caixa">
-                                                                              <?php l('NO_COBERTS_OBSERVACIONS'); ?>
+  <?php l('NO_COBERTS_OBSERVACIONS'); ?>
                                                                               </div>
     
     
@@ -934,15 +950,15 @@ $EDITA_RESERVA = $_POST['idr'];
                                                                       <b><?php l('Resum reserva'); ?>:</b><br/><br/>
                                                                       <?php l('Data'); ?>: <b id="resum-data">-</b> | <?php l('Hora'); ?>: <b id="resum-hora">-</b><br/>
                                                                       <?php l('Adults'); ?>: <b id="resum-adults">-</b> | <?php l('Nens'); ?>: <b id="resum-nens">-</b> | <?php l('Cotxets'); ?>: <b id="resum-cotxets">-</b><br/>
-                                                                      <?php l('Comanda'); ?>: <b id="resum-comanda"><?php l('Sense'); ?> </b> <?php l('plats'); ?> (<b id="resum-preu"></b> €)
+  <?php l('Comanda'); ?>: <b id="resum-comanda"><?php l('Sense'); ?> </b> <?php l('plats'); ?> (<b id="resum-preu"></b> €)
                                                                   </div>
 
                                                                   <div class="flex"></div>
                                                                   <div class="ui-corner-all info-submit caixaXX dere alert alert-danger ">
-                                                                      <?php l('INFO_NO_CONFIRMADA'); ?>:
+  <?php l('INFO_NO_CONFIRMADA'); ?>:
 
                                                                   </div>
-                                                                  <?php $t = (isset($_POST['idr']) && $_POST['idr'] > 5000) ? 'Modificar reserva' : 'Sol·licitar reserva'; ?>
+  <?php $t = (isset($_POST['idr']) && $_POST['idr'] > 5000) ? 'Modificar reserva' : 'Sol·licitar reserva'; ?>
                                                                   <button id="submit"><?php l($t); ?></button>
 
 
@@ -953,7 +969,7 @@ $EDITA_RESERVA = $_POST['idr'];
 
                                                   </form>	
 
-                                                  
+
                                                   <div id="td-form-tpv">
                                                       <?php
                                                       if (FALSE && isset($_REQUEST["testTPV"]) && $_REQUEST["testTPV"] = 'testTPV') {
@@ -970,7 +986,7 @@ $EDITA_RESERVA = $_POST['idr'];
                                                   <!-- ******************* CARTA *********************** -->
                                                   <div id="fr-cartaw-popup" title="<?php l("La nostra carta") ?>" class="carta-menu" style="height:300px">
                                                       <div id="fr-carta-tabs" >
-                                                          <?php echo $gestorf->recuperaCarta($row['id_reserva']) ?>
+  <?php echo $gestorf->recuperaCarta($row['id_reserva']) ?>
                                                       </div>	
                                                   </div>	
                                                   <!-- ******************* CARTA-MENU *********************** -->
@@ -978,7 +994,7 @@ $EDITA_RESERVA = $_POST['idr'];
                                                   <!-- ******************* CARTA-MENU *********************** -->
                                                   <div id="fr-menu-popup" title="<?php l("Els nostres menús") ?>" class="carta-menu">
                                                       <div id="fr-menu-tabs" >
-                                                          <?php echo $gestorf->recuperaCarta($row['id_reserva'], true) ?>
+  <?php echo $gestorf->recuperaCarta($row['id_reserva'], true) ?>
                                                       </div>	
                                                   </div>	
 
@@ -986,12 +1002,12 @@ $EDITA_RESERVA = $_POST['idr'];
                                                   <!-- ******************* POPUPS GRUPS *********************** -->
                                                   <!-- ******************* POPUPS GRUPS *********************** -->
                                                   <div id="popupGrups" title="<?php l("Reserva per grups") ?>">
-                                                      <?php l('ALERTA_GRUPS'); ?>
+  <?php l('ALERTA_GRUPS'); ?>
 
                                                   </div>
-                                                  
-                                                  
-                                                  
+
+
+
 
                                                   <!-- ******************* POPUPS INFO *********************** -->
                                                   <!-- ******************* POPUPS INFO *********************** -->
@@ -1006,8 +1022,7 @@ $EDITA_RESERVA = $_POST['idr'];
                                                       <div class="close"><a href="#" class="simplemodal-close">x</a></div>
                                                       <div id="osx-modal-data">
 
-                                                          <?php
-                                                          ?>
+                                                          <?php ?>
 
 
                                                           <div id="pp-content"><?php l('ALERTA_INFO_INICIAL'); ?></div>
@@ -1015,8 +1030,8 @@ $EDITA_RESERVA = $_POST['idr'];
                                                       </div>
                                                   </div>                                                    
 
-                                                  
-                                                  
+
+
 
                                                   <div id="popupInfo" class="ui-helper-hidden">
                                                       <?php l('ALERTA_INFO'); ?>
@@ -1069,21 +1084,16 @@ $EDITA_RESERVA = $_POST['idr'];
                               </div>
                           </article>
 
-                <?php endwhile; // end of the loop.      ?>
+                        <?php endwhile; // end of the loop.      ?>
                     </section>
                 </div>
-                
-              
-<?php
 
 
-
-
-               if ($sidebar == 'right' || $sidebar == 'both'): ?>
+                <?php if ($sidebar == 'right' || $sidebar == 'both'): ?>
                   <div class="col-aside-right">
                   <?php get_sidebar('pageright'); ?>
                   </div>
-<?php endif; ?>
+                <?php endif; ?>
             </div>
         </div>
     </div>

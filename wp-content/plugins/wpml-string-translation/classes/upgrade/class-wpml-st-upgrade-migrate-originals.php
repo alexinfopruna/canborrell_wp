@@ -1,14 +1,20 @@
 <?php
 
-class WPML_ST_Upgrade_Migrate_Originals extends WPML_WPDB_And_SP_User implements IWPML_St_Upgrade_Command {
-	
+class WPML_ST_Upgrade_Migrate_Originals implements IWPML_St_Upgrade_Command {
+
+	/** @var wpdb $wpdb */
+	private $wpdb;
+
+	/** @var SitePress sitepress */
+	private $sitepress;
 
 	private $translations = array();
 	private $not_translated = array();
 	private $active_languages;
 	
-	public function __construct( &$wpdb, &$sitepress ) {
-		parent::__construct( $wpdb, $sitepress );
+	public function __construct( wpdb $wpdb, SitePress $sitepress ) {
+		$this->wpdb      = $wpdb;
+		$this->sitepress = $sitepress;
 		$active_languages = $this->sitepress->get_active_languages();
 		foreach( $active_languages as $lang ) {
 			$this->active_languages[] = $lang['code'];
@@ -34,7 +40,7 @@ class WPML_ST_Upgrade_Migrate_Originals extends WPML_WPDB_And_SP_User implements
 		?>
 			<div id="wpml-st-upgrade-migrate-originals" class="update-nag" style="display:block">
 				<p>
-					<?php printf(__('WPML needs to update the database. This update will help improve WPML\'s performance when fetching translated strings.', 'wpml-string-translation') ); ?>
+					<?php esc_html_e( "WPML needs to update the database. This update will help improve WPML's performance when fetching translated strings.", 'wpml-string-translation' ); ?>
 					<br /><br />
 					<button class="wpml-st-upgrade-migrate-originals"><?php esc_html_e( 'Update Now', 'wpml-string-translation' ); ?></button> <span class="spinner" style="float: none"></span>
 				</p>
@@ -42,7 +48,7 @@ class WPML_ST_Upgrade_Migrate_Originals extends WPML_WPDB_And_SP_User implements
 			</div>
 			<div id="wpml-st-upgrade-migrate-originals-complete" class="update-nag" style="display:none">
 				<p>
-					<?php printf(__('The database has been updated.', 'wpml-string-translation') ); ?>
+					<?php esc_html_e( 'The database has been updated.', 'wpml-string-translation' ); ?>
 					<br /><br />
 					<button class="wpml-st-upgrade-migrate-originals-close"><?php esc_html_e( 'Close', 'wpml-string-translation' ); ?></button>
 				</p>

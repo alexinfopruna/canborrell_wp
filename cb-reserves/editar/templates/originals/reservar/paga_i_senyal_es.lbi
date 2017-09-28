@@ -1,0 +1,163 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<title>Recepció reserva</title>
+
+<link type="text/css" href="https://www.can-borrell.com/cb-reserves/css/taronja.css" rel="stylesheet"/>
+
+
+</head>
+
+<body><!-- reservar/{self}  -->
+		
+<table  border="0" align="center" cellpadding="0" cellspacing="0" >
+  <tr>
+    <td  colspan="2" align="right" background="https://www.can-borrell.com/img/fons_9c.jpg"><a href="https://www.can-borrell.com"><img src="https://www.can-borrell.com/img/lg_sup.png" alt="img" width="303" height="114" border="0" title="INICI" /></a></td>
+  </tr>
+  <tr>
+    <td class="franja" colspan="2" align="center"></td>
+  </tr>
+</table>
+
+
+
+
+
+<table  border="0" align="center" cellpadding="0" cellspacing="0" bgcolor="#FFFFFF">
+        <tr>
+    <td></td>
+    <td><span style="font-size:10px">{avui}</span><br/><br/></td>
+    <td></td>
+  </tr>
+    
+    
+  <tr>
+    <td></td>
+    <td align="center"><span class="titol"><br/>CONFIRMACIÓN DE RESERVA ONLINE {id_reserva}</span></td>
+    <td width="12">  </td>
+  </tr>
+
+  <tr>
+    <td></td>
+    <td align="center">Tu reserva ha sido confirmada. Te esperamos en Can Borrell<br/><br/></td>
+    <td>  </td>
+  </tr>
+
+  <tr>
+    <td></td>
+    <td align="center"><span class="titol" style="color:#222">Puedes imprimir este comprobante y presentar el al restaurante en el momento de pagar para que sea supuesto el importe de la paga y seÑal</span></td>
+    <td width="12">  </td>
+  </tr>
+  <tr>
+    <td></td>
+    <td align="center"><span class="titol" style="font-size:12px;">En cualquier caso el restaurante ya tiene constancia de dicho pago y realizará la compensación aunque no presenta el comprobante. Si prefiere no imprimirlo, simplemente comente le indicándole al camarero la id de reserva {id_reserva}</span><br/><br/></td>
+    <td width="12">  </td>
+  </tr>
+      <tr>
+    <td></td>
+    <td align="center"  style="font-size:9px;"><img class="qr" src="https://chart.googleapis.com/chart?chs=300x300&cht=qr&chl={id_reserva}:{dc}:{data}:{client_id}:{preu_reserva}&choe=UTF-8"/></td>
+    <td width="12">  </td>
+  </tr>
+
+  <tr>
+    <td></td>
+    <td></td>
+  <td> </td>
+  </tr>
+  <tr>
+    <td></td>
+    <td></td>
+  <td align="center" class="estat">  </td>
+  </tr>
+  
+  <tr>
+    <td width="12"></td>
+    <td><table border="0" align="center" cellpadding="3" cellspacing="3">
+      <tr>
+        <td align="right"  class="Estilo2" style="color:white">id_reserva</td>
+        <td width="160" align="right"  class="llista" style="color:white"><div align="left" class="titol2"><span class="Estilo4">{id_reserva}</span></div></td>
+      </tr>
+
+      <tr>
+        <td align="right"  class="Estilo2" style="color:white">fecha reserva</td>
+        <td width="160" align="right"  class="llista"><div align="left" class="estat"><span class="Estilo4">{data}</span></div></td>
+      </tr>
+      <tr>
+        <td align="right"  class="Estilo2" style="color:white">hora</td>
+        <td width="160" align="right"  class="llista"><div align="left" class="estat"><span class="Estilo4">{hora}</span></div></td>
+      </tr>
+      <tr>
+        <td align="right"  class="Estilo2" style="color:white">nombre</td>
+        <td width="160"  class="llista"><div align="left"><span class="Estilo4">{nom}</span></div></td>
+      </tr>
+      <tr>
+        <td align="right"  class="Estilo2" style="color:white"></td>
+        <td width="160"  class="llista"><span class="Estilo4"></span></td>
+      </tr>
+      <tr>
+        <td align="right"  class="Estilo2" style="color:white">adultos</td>
+        <td width="160" align="right"  class="llista"><div align="left"><span class="Estilo4">{adults}</span></div></td>
+      </tr>
+
+      <tr>
+        <td align="right"  class="Estilo2" style="color:white">niños 4 a 14 años </td>
+        <td width="160" align="right"  class="llista"><div align="left"><span class="Estilo4">{nens4_9}</span></div></td>
+      </tr>
+      <tr>
+        <td align="right"  class="Estilo2" style="color:white">Cochecitos</td>
+        <td width="160" align="right"  class="llista"><div align="left"><span class="Estilo4">{cotxets}</span></div></td>
+      </tr>
+      <tr>
+        <td align="right"  class="Estilo2" style="color:white">observaciones</td>
+        <td width="160"  class="llista"><span class="Estilo4">{observacions}</span></td>
+      </tr>
+      <tr>
+        <td align="right"  class="Estilo2" style="color:white">Paga y señal</td>
+        <td width="160"  class="llista"><span class="Estilo4">{resposta}</span></td>
+      </tr>
+      <tr>
+        <td align="right"  class="Estilo2" style="color:white">platos</td>
+        <td width="160" align="right" bgcolor="#999999" class="llista"><div align="left" class="estat">
+            <div align="right" class="Estilo4">{comanda}</div>
+        </div></td>
+      </tr>
+    </table></td>
+    <td></td>
+  </tr>
+  <tr>
+    <td></td>
+    <td></td>
+    <td></td>
+  </tr>
+  <tr>
+    <td></td>
+    <td>
+	<div align="center">
+		Hasta un día antes puedes modificar o cancelar tu reserva en  <br/><a href="https://www.can-borrell.com/reservar">www.can-borrell.com/reservar</a>
+		<br/><br/>
+		Para acceder debes conservar la ID de reserva: <b>{id_reserva}</b>
+	</div></td>
+    <td></td>
+  </tr>
+  <tr>
+    <td></td>
+    <td></td>
+    <td></td>
+  </tr>
+
+    
+        <tr  class="marge-footer">
+    <td> </td>
+    <td> </td>
+    <td> </td>
+  </tr>
+    
+    <tr class="franja">
+<td> </td>
+    <td> </td>
+    <td> </td>
+  </tr>
+</table>
+</body>
+</html>

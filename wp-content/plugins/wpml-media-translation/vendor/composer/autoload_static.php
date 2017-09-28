@@ -4,7 +4,7 @@
 
 namespace Composer\Autoload;
 
-class ComposerStaticInitdc4a29eae250a91e0bfd211545e1d05c
+class ComposerStaticInit041cd9ca35894c268a45f640e8693d51
 {
     public static $prefixesPsr0 = array (
         'x' => 
@@ -14,38 +14,29 @@ class ComposerStaticInitdc4a29eae250a91e0bfd211545e1d05c
                 0 => __DIR__ . '/..' . '/xrstf/composer-php52/lib',
             ),
         ),
-        'T' => 
-        array (
-            'Twig_' => 
-            array (
-                0 => __DIR__ . '/..' . '/twig/twig/lib',
-            ),
-        ),
     );
 
     public static $classMap = array (
-        'WPML_Auto_Loader' => __DIR__ . '/..' . '/wpml/commons/src/wpml-auto-loader.php',
-        'WPML_Cache_Directory' => __DIR__ . '/..' . '/wpml/commons/src/cache/class-wpml-cache-directory.php',
-        'WPML_Dependencies' => __DIR__ . '/..' . '/wpml/commons/src/dependencies/class-wpml-dependencies.php',
+        'WPML_Cache_Directory' => __DIR__ . '/..' . '/wpml-shared/wpml-lib-cache/src/cache/class-wpml-cache-directory.php',
+        'WPML_Dependencies' => __DIR__ . '/..' . '/wpml-shared/wpml-lib-dependencies/src/dependencies/class-wpml-dependencies.php',
         'WPML_Media' => __DIR__ . '/../..' . '/classes/class-wpml-media.php',
         'WPML_Media_Attachments_Duplication' => __DIR__ . '/../..' . '/classes/class-wpml-media-attachments-duplication.php',
         'WPML_Media_Attachments_Query' => __DIR__ . '/../..' . '/classes/class-wpml-media-attachments-query.php',
         'WPML_Media_Dependencies' => __DIR__ . '/../..' . '/inc/wpml-media-dependencies.class.php',
+        'WPML_Media_Edit_Hooks' => __DIR__ . '/../..' . '/classes/hooks/wpml-media-edit-hooks.php',
+        'WPML_Media_Edit_Hooks_Factory' => __DIR__ . '/../..' . '/classes/factory/wpml-media-edit-hooks-factory.php',
+        'WPML_Media_Exception' => __DIR__ . '/../..' . '/classes/class-wpml-media-exception.php',
         'WPML_Media_Upgrade' => __DIR__ . '/../..' . '/inc/wpml-media-upgrade.class.php',
-        'WPML_Notice' => __DIR__ . '/..' . '/wpml/commons/src/notices/class-wpml-notice.php',
-        'WPML_Notice_Action' => __DIR__ . '/..' . '/wpml/commons/src/notices/class-wpml-notice-action.php',
-        'WPML_Notice_Render' => __DIR__ . '/..' . '/wpml/commons/src/notices/class-wpml-notice-render.php',
-        'WPML_Notices' => __DIR__ . '/..' . '/wpml/commons/src/notices/class-wpml-notices.php',
-        'WPML_Templates_Factory' => __DIR__ . '/..' . '/wpml/commons/src/templating/class-wpml-templates-factory.php',
-        'WPML_Twig_WP_Plugin_Extension' => __DIR__ . '/..' . '/wpml/commons/src/twig/twig-extensions/wpml-twig-wp-plugin-extension.php',
-        'WPML_WP_API' => __DIR__ . '/..' . '/wpml/commons/src/wpml-wp/class-wpml-wp-api.php',
+        'WPML_Model_Attachments' => __DIR__ . '/../..' . '/classes/model/class-wpml-model-attachments.php',
+        'xrstf\\Composer52\\AutoloadGenerator' => __DIR__ . '/..' . '/xrstf/composer-php52/lib/xrstf/Composer52/AutoloadGenerator.php',
+        'xrstf\\Composer52\\Generator' => __DIR__ . '/..' . '/xrstf/composer-php52/lib/xrstf/Composer52/Generator.php',
     );
 
     public static function getInitializer(ClassLoader $loader)
     {
         return \Closure::bind(function () use ($loader) {
-            $loader->prefixesPsr0 = ComposerStaticInitdc4a29eae250a91e0bfd211545e1d05c::$prefixesPsr0;
-            $loader->classMap = ComposerStaticInitdc4a29eae250a91e0bfd211545e1d05c::$classMap;
+            $loader->prefixesPsr0 = ComposerStaticInit041cd9ca35894c268a45f640e8693d51::$prefixesPsr0;
+            $loader->classMap = ComposerStaticInit041cd9ca35894c268a45f640e8693d51::$classMap;
 
         }, null, ClassLoader::class);
     }

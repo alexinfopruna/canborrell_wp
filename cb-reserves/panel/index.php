@@ -28,18 +28,17 @@ if (isset($_GET['exit']))
 <HEAD>
     <link rel="shortcut icon" type="image/ico" href="/gear-favicon.ico" />
 
-<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
 <TITLE> PANEL DE CONTROL Masia Can Borrell </TITLE>
 
 <link type="text/css" href="../taules/css/blitzer/jquery-ui-1.8.9.custom.css" rel="stylesheet" />	
 <link type="text/css" href="../reservar/css/custom-theme/jquery.ui.all.css" rel="stylesheet" />	
-<link type="text/css" href="../css/estils.css" rel="stylesheet" />	
+	
 <link type="text/css" href="../reservar/css/form_reserves.css" rel="stylesheet" />	
-<xxxlink rel="stylesheet" href="//ajax.googleapis.com/ajax/libs/jqueryui/1.8.9/themes/redmond/jquery-ui.css" type="text/css" media="all" />
 
 <style>
 	.admin{display:none}
-	body{backgroun-image:none;font-size:10px;	}
+	body{backgroun-image:none;font-size:10px;    background-color: #eee;	}
 	a.bt,a.bt:link,a.bt:visited{display:block;color:#666;text-align:left;}
 	a.bt:hover{background:#570600;color:white;}
 	
@@ -57,6 +56,7 @@ if (isset($_GET['exit']))
 	#panel{width:500px;margin:0 auto;}
 	
 	iframe{width:100%;height:1000px;display:none;background:white;background-image:none;}
+                            
 </style>
 
                <?php echo Gestor::loadJQuery("2.0.3"); ?>
@@ -117,7 +117,7 @@ $(function(){$("#panel").accordion({collapsible:true,active:false,heightStyle: "
 		<!-- -->
 		<a target="_blank" href="../taules/DBTable/LlistatClient.php" class=" bt ui-button ui-widget ui-state-default ui-corner-all ui-button-text-only">TAULES: Cercador clients </a>
 		<!-- -->
-		<a target="_blank" href="../taules/gestio_dies.php" class=" bt ui-button ui-widget ui-state-default ui-corner-all ui-button-text-only">TAULES: Gestió dies bloquejats calendari TAULES</a>
+		<a target="_blank" href="../panel/gestio_calendari.php" class=" bt ui-button ui-widget ui-state-default ui-corner-all ui-button-text-only">TAULES: Gestió dies bloquejats calendari TAULES</a>
 		<!-- 
 		<a target="_blank" href="../taules/print.php?a=torn" class=" bt ui-button ui-widget ui-state-default ui-corner-all ui-button-text-only">TAULES: llistat per IMPRIMIR</a>-->
 		<!-- -->
@@ -140,9 +140,9 @@ $(function(){$("#panel").accordion({collapsible:true,active:false,heightStyle: "
 		<!-- -->
 		<a target="_blank" href="../reservar/form_grups.php" class=" bt ui-button ui-widget ui-state-default ui-corner-all ui-button-text-only">FORMULARI reserves GRUPS</a>
 		<!-- -->
-		<a target="_blank" href="../taules/gestio_dies.php?f=<?php echo INC_FILE_PATH;?>llista_dies_negra_online.txt&hideBlancs" class=" bt ui-button ui-widget ui-state-default ui-corner-all ui-button-text-only">ONLINE: Gestió dies bloquejats calendari FORMULARI res.petites</a>
+		<a target="_blank" href="../panel/gestio_calendari.php?f=<?php echo INC_FILE_PATH;?>llista_dies_negra_online.txt&hideBlancs" class=" bt ui-button ui-widget ui-state-default ui-corner-all ui-button-text-only">ONLINE: Gestió dies bloquejats calendari FORMULARI res.petites</a>
 		<!-- -->
-		<a target="_blank" href="../editar/gestio_dies.php" class=" bt ui-button ui-widget ui-state-default ui-corner-all ui-button-text-only">GRUPS: Gestió dies bloquejats calendari GRUPS</a>
+		<a target="_blank" href="../panel/gestio_calendari.php?f=<?php echo INC_FILE_PATH;?>bloq.txt" class=" bt ui-button ui-widget ui-state-default ui-corner-all ui-button-text-only">GRUPS: Gestió dies bloquejats calendari GRUPS</a>
 		<!--
 		<a target="_blank" href="../panel/editMenjadorsOnline_pk.php" class=" bt ui-button ui-widget ui-state-default ui-corner-all ui-button-text-only">ONLINE: Gestió menjadors OBERTS</a>
 		<!-- --><!-- --> 
@@ -166,10 +166,14 @@ $(function(){$("#panel").accordion({collapsible:true,active:false,heightStyle: "
 -->
 <h4><a href="#">Eines avançades</a></h4>
 <div id="ONLINE" class="caixa">
-		<a target="_blank" href="infoConn.php" class=" bt ui-button ui-widget ui-state-default ui-corner-all ui-button-text-only">INFO servidor</a>
-		<!-- -->
+		<a target="_blank" href="http://<?php echo $_SERVER['HTTP_HOST'];?>/panel/infoConn.php" class=" bt ui-button ui-widget ui-state-default ui-corner-all ui-button-text-only">INFO servidor</a>
+		<!-- 
 		<a target="_blank" href="../taules/DBTable/FormConfigAdmin.php" class=" bt ui-button ui-widget ui-state-default ui-corner-all ui-button-text-only">CONFIGURACIO AVANÇADA DEL SISTEMA</a>
-		<!-- -->
+		-->
+                                                        <!-- -->
+		<a target="_blank" href="./config/" class=" bt ui-button ui-widget ui-state-default ui-corner-all ui-button-text-only">CONFIGURACIO AVANÇADA DEL SISTEMA v2</a>
+                                                       
+                                                        
 		<a target="_blank" href="../taules/dumpBD.php?drop" class=" bt ui-button ui-widget ui-state-default ui-corner-all ui-button-text-only">Còpia de seguretat de la Base de Dades (Descarrega)</a>
 		<!-- -->
 		<!-- -->
@@ -182,6 +186,7 @@ $(function(){$("#panel").accordion({collapsible:true,active:false,heightStyle: "
 		<a target="_blank" href="../taules/TaulesDisponibles.php?d=2012-02-29&t=1&p=7&c=0" class=" bt ui-button ui-widget ui-state-default ui-corner-all ui-button-text-only">Test TaulesDisponibles</a>
 		<a target="_blank" href="../reservar/testTPV256.php" class=" bt ui-button ui-widget ui-state-default ui-corner-all ui-button-text-only">Test TPV</a>
 		<a target="_blank" href="../taules/gestor_reserves.php?a=testPHPerror" class=" bt ui-button ui-widget ui-state-default ui-corner-all ui-button-text-only">Genera error de PHP</a>
+		<a target="_blank" href="./config/test_mail.php" class=" bt ui-button ui-widget ui-state-default ui-corner-all ui-button-text-only">Envia email</a>
 
                                                           
                                                           <?php }?>		

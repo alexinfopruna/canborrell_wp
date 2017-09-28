@@ -22,8 +22,9 @@ var resub = false;
 
 var SECCIO_INICIAL = "fr-seccio-quants";
 var AVIS_MODIFICACIONS = false;
-
+var timer_estat;
 var popup = "";
+var prelang = (lang=="ca"?"":"/"+lang);
 var dlg = {
     autoOpen: false,
     modal: true,
@@ -81,8 +82,8 @@ if (!Array.prototype.indexOf)
 }
 
 
-$(".container").hide();
-$("body").hide();
+//$(".container").hide();
+//$("body").hide();
 $(function (){
     $(window).on('resize', function () {
         jQuery("#container").css("margin-top", jQuery(".navbar-header").height());
@@ -213,7 +214,6 @@ $(function (){
     validacio();
 
     /********  AMAGA PANELLS ********/
-
     if (!IDR && !DEBUG)
     {
         /**/
@@ -296,7 +296,8 @@ $(function (){
     if ('scrollRestoration' in history) {
   history.scrollRestoration = 'manual';
 }
-    
+    $(".page").hide();
+    $(".loader").fadeOut("slow",function(){$(".loader").removeClass("loader");$(".page").fadeIn(1000);})
 
 }); //ONLOAD, PRESENTACIO UI
 //***********************************************************************************************************/
@@ -487,12 +488,13 @@ function recargaHores()
     accesibilidad += $("input[name='selectorAccesible']:checked").length;
 
     $.post(GESTOR + "?a=horesDisponibles&b=" + $("#calendari").val() + "&c=" + comensals + "&d=" + $("input[name='selectorCotxets']:checked").val() + "&e=" + accesibilidad + "&f=" + IDR + "&g=" + NENS, function (dades) {
-        var obj = JSON.parse(dades);
-
-        //ANULAT var obj = ControlLocal($("#calendari").val(), comensals, obj);
+         if (dades.substr(0,3)=="err"){
+            
+            window.location = "/";
+                    alert("La sessió ha caducat");
+        }
         
-
-
+        var obj = JSON.parse(dades);
         var txt = "";
         if ((obj.dinar + obj.dinarT2) == "")
             txt = l("Cap taula o restaurant tancat");
@@ -1007,47 +1009,56 @@ function validacio()
 /********************************************************************************************************************/
 function controlSubmit()
 {
-    if (browser_malo)
-        $('#submit').click(function () {
+    var loading = '<div style="height:320px"><img src="/cb-reserves/reservar/css/loading.gif"/></div>';
+    if (browser_malo)   $('#submit').click(function () {
             $('#form-reserves').submit();
         });
     $('#form-reserves').submit(function () {
-        if (!$("#form-reserves").valid())
-            return false;
+        if (!$("#form-reserves").valid())       return false;
 
-        var control = setTimeout(function () {
-            timer_submit();
-        }, 15000);
+        var control = setTimeout(function () {  timer_submit();   }, 15000);
 
 
-        if ($("#popup").is(':visible'))
+
+        if ($("#popup").is(':visible')){
             SUBMIT_OK = SUBMIT_OK;
-        else {
-            $("#popup").html('<div style="height:320px"><img src="/cb-reserves/reservar/css/loading.gif"/></div>');
+        }else {
+            $("#popup").html(loading);
             $("#popup").dialog('open');
         }
-
+ 
+        $('.ui-dialog-buttonset').hide();
         $('#submit').hide();
 
         $('#form-reserves').ajaxSubmit(function (dades) {
             if (dades.substring(0, 11) != '{"resposta"')
                 dades = '{"resposta":"ko","error":"err0","email":false}';
             var obj = JSON.parse(dades);
+            $('.ui-dialog-buttonset').show();
             clearInterval(control);
             if (SUBMIT_OK)
                 return;//DOBLE SUBMIT?????????
-
+/****************************************************************************************************************/
             if (obj.resposta == "ok") // RESPOSTA OK
             {
                 $("#popup").bind("dialogclose", function (event, ui) {
-                    $.post(GESTOR + "?a=cancelPagaISenyal&b=" + obj.idr);
-                    window.location.href = "/#about";
+                   window.clearInterval(timer_estat); 
+                    if (typeof timer !== 'undefined') clearTimeout(timer);
+                    if (typeof control !== 'undefined')  clearTimeout(control);
+                   var res_estat = resultat_estat(obj.idr);
+                  // if (resultat_estat!=100) $.post(GESTOR + "?a=cancelPagaISenyal&b=" + obj.idr);
+                   
+                    SUBMIT_OK = false;
+                    //window.location.href = "/#about";
+                    $('#submit').show();
                 });
 
                 SUBMIT_OK = true;
                 SECCIO = null;
 
-                /** 
+                /********************************************************************************************************* 
+                /********************************************************************************************************* 
+                /********************************************************************************************************* 
                  * 
                  * PAGA I SENYAL */
                 /*
@@ -1055,29 +1066,28 @@ function controlSubmit()
                  */
                 if (obj.TPV == "TPV") {
                     $("#td-form-tpv").html(obj.form_tpv);
-                    if (getUrlParameter("testTPV") == "testTPV") {
-                        $(".ui-dialog").remove();
-                        $(".ui-widget-overlay").hide();
-                        return false;
-                    }
 
                     var info = l('PAGA_I_SENYAL');
                     $("#popup").html(info + '<iframe id="frame-tpv" name="frame-tpv" style="width:100%;height:500px"></iframe>');
-
                     $("#bt-continuar .ui-button-text").html("Tanca");
-
+                    var doc = document.getElementById('frame-tpv').contentWindow.document;
+                    doc.write('<html><head><title></title><style>body{background:url(//www.can-borrell.com/cb-reserves/reservar/css/loading.gif) center center no-repeat;}</style></head><body>Loading TPV...</body></html>');
                     /** 
                      * TIMER TEMPS MAXIM
                      */
+                    timer_estat = setInterval(function () { refresh_estat_pagament(obj.idr); },4000);
+                    
                     timer = setTimeout(function () {  // RESET 
                         clearTimeout(timer);
 
                         $.post(GESTOR + "?a=estatReserva&b=" + obj.idr, function (r) {
                             d = parseInt(r);
                             if (d != 100) {
+                                window.location.href = prelang+"/#about";
                                 alert("La sessió ha caducat");
                                 $("#popup").dialog('close');
                             } else {
+                                window.location.href = prelang+"/#about";
                                 alert("Can-Borrell: Hem registrat correctament el pagament");
                                 $("#bt-continuar .ui-button-text").html("Finalitzar");
                                 $("#popup").dialog('close');
@@ -1100,10 +1110,9 @@ function controlSubmit()
             else
             {
                 var err = "Error de servidor";
-                if (obj && obj.error)
-                    err = obj.error + "\n <br>" + l(obj.error) + " <br><br>\n\n" + l("err_contacti");
-                if (obj.error == "err10")
-                    return;//DOBLE SUBMIT?????????
+                if (obj && obj.error)    err = obj.error + "\n <br>" + l(obj.error) + " <br><br>\n\n" + l("err_contacti");
+                if (obj.error == "err10")     { alert("El servidor está tardando mucho en responder... Reintentar");return;}//DOBLE SUBMIT?????????
+                
                 $("#popup").html("ERROR: " + err);
                 $('#submit').show();
             }
@@ -1113,6 +1122,49 @@ function controlSubmit()
         return false;
     });
 }
+
+function resultat_estat(idr){
+      var desti = "/cb-reserves/taules/gestor_reserves.php?a=estat_reserva_online&b=" + idr ;
+    $.post(desti, {r: 0}, function (datos) {
+        if (datos == "100"){
+             window.clearInterval(timer_estat);
+            window.location.href = prelang+"/#about";
+            
+            //alert(l('PAGAMENT REBUT'));
+        }
+
+        if (datos == "0" || datos=="2"){
+            //alert("ELIMINA");
+             $.post(GESTOR + "?a=cancelPagaISenyal&b=" + idr);
+        }
+
+        return datos;
+    });
+    }
+    
+    function refresh_estat_pagament(idr){
+      var desti = "/cb-reserves/taules/gestor_reserves.php?a=estat_reserva_online&b=" + idr ;
+    $.post(desti, {r: 0}, function (datos) {
+        if (datos == "100"){
+             window.clearInterval(timer_estat);
+            window.location.href = prelang+"/#about";
+            if (resub) return datos;
+            resub=true;
+            alert(l('PAGAMENT REBUT'));
+        }
+
+        if (datos == "0"){
+           // alert("ELIMINA");
+             $.post(GESTOR + "?a=cancelPagaISenyal&b=" + idr);
+             window.clearInterval(timer_estat);
+            window.location.href = prelang+"/#about";
+            alert(l('EL PAGAMENT HA ESTAT ANULAT'));
+        }
+
+        return datos;
+    }); 
+}
+
 
 function timer_submit() {
     alert(l('err0'));

@@ -14,12 +14,12 @@ function mailer_reserva($idr, $template, $addr, $subject, $body, $altbody, $atta
       . "VALUES (  '$idr', '$addr', '$subject', '" . base64_encode($body) . "' , '0',  '$template');";
   $qry_result = mysqli_query($GLOBALS["___mysqli_ston"], $query) or die(((is_object($GLOBALS["___mysqli_ston"])) ? mysqli_error($GLOBALS["___mysqli_ston"]) : (($___mysqli_res = mysqli_connect_error()) ? $___mysqli_res : false)));
   $idt = mysqli_insert_id($GLOBALS["___mysqli_ston"]);
-
+//echo $body;
   $res = mailer($addr, $subject, $body, $altbody, $attach, $test, $cco);
   $resultat = $res ? '1' : '0';
 
-  if ($test || ENVIA_MAILS === false)
-    $resultat = '2';
+  if ($test || ENVIA_MAILS === false) $resultat = '2';
+  
   $query = "UPDATE email SET email_resultat = $resultat WHERE email_id = $idt";
   $qry_result = mysqli_query($GLOBALS["___mysqli_ston"], $query) or die(((is_object($GLOBALS["___mysqli_ston"])) ? mysqli_error($GLOBALS["___mysqli_ston"]) : (($___mysqli_res = mysqli_connect_error()) ? $___mysqli_res : false)));
 
@@ -35,31 +35,20 @@ function mailer($addr, $subject, $body, $altbody = null, $attach = null, $test =
   $exito = FALSE;
   error_log('<ul class="level-0"> >>> <span class="date">' . date("Y-m-d H:i:s") . "</span> >>>>  MAIL $addr<li class='level-0'>$addr, $subject, $body</li>", 3, ROOT . INC_FILE_PATH . '/log/logMAILSMS.txt');
 
-
-
-
-  if (!isset($altbody) || is_null($altbody))
-    $altbody = "Su cliente de correo no puede interpretar correctamente este mensaje. Por favor, póngase en contacto con el restaurante llamando al 936 929 723 o al 936 910 605. Disculpe las molestias";
+  if (!isset($altbody) || is_null($altbody))    $altbody = "Su cliente de correo no puede interpretar correctamente este mensaje. Por favor, póngase en contacto con el restaurante llamando al 936 929 723 o al 936 910 605. Disculpe las molestias";
 
   $mail = new phpmailer();
-  if (defined('CHARSET'))
-    $mail->CharSet = CHARSET;
   $mail->CharSet = 'UTF-8';
 
   /* SENSE IMATGE CAPSALERA */
   if ($addr == MAIL_RESTAURANT)
     $body = str_replace('<img src="//www.can-borrell.com/img/lg_sup.png" alt="img" width="303" height="114" border="0" title="INICI" />', "", $body);
-
  
   include(ROOT . INC_FILE_PATH . "mailer_profile.php");
+  if ($addr == MAIL_RESTAURANT && isset($_POST['client_email']))    $mail->From = $_POST['client_email'];
 
-  if ($addr == MAIL_RESTAURANT && isset($_POST['client_email']))
-    $mail->From = $_POST['client_email'];
-  if ($addr == MAIL_RESTAURANT && isset($_POST['client_email']))
-    $mail->From = $_POST['client_email'];
 
-  if ($attach)
-    $mail->AddAttachment($attach, basename($attach));
+  if ($attach)    $mail->AddAttachment($attach, basename($attach));
 
   $occo = '--NO CCO--<br>';
   error_log("<li>TEST: " . ($test ? 'SI' : 'NO') . '</li>', 3, ROOT . INC_FILE_PATH . '/log/logMAILSMS.txt');
@@ -67,8 +56,7 @@ function mailer($addr, $subject, $body, $altbody = null, $attach = null, $test =
   if ($test || ENVIA_MAILS === false) {
     $exito = true;
     $o = ">>>>>>>" . date("d-m-Y") . "<br/>";
-    $o.='<meta http-equiv="Content-Type" content="text/html; charset=utf-8" pageEncoding="UTF-8"/>';
-    $o.='<meta http-equiv="Content-Type" content="text/html; charset=utf-8" pageEncoding="UTF-8"/>';
+    $o.='<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" pageEncoding="UTF-8"/>';
     $o.= "<br/>charset=" . CHARSET . " *** mailer: " . $mail->CharSet . "<br/>";
     $o.= "MAIL TO: $addr  FROM: restaurant@can-borrell.com<br/>";
     if ($cco)
@@ -84,7 +72,7 @@ function mailer($addr, $subject, $body, $altbody = null, $attach = null, $test =
     fwrite($f, "ENVIAT AMB EXIT: <br>\n" . $o);
     fwrite($f, $o);
     echo $o;
-    die();
+    return;
 
     error_log("</ul>", 3, ROOT . INC_FILE_PATH . '/log/logMAILSMS.txt');
     return FALSE;
@@ -123,6 +111,21 @@ function mailer($addr, $subject, $body, $altbody = null, $attach = null, $test =
         error_log( '</ul>', 3, ROOT . INC_FILE_PATH . '/log/logMAILSMS.txt');
   
   return $exito;
+}
+
+
+
+function utf8mail($to,$s,$body,$from_name="x",$from_a = "info@x.com")
+{
+  $reply = $from_a;
+  
+    $s= "=?utf-8?b?".base64_encode($s)."?=";
+    $headers = "MIME-Version: 1.0\r\n";
+    $headers.= "From: =?utf-8?b?".base64_encode($from_name)."?= <".$from_a.">\r\n";
+    $headers.= "Content-Type: text/plain;charset=utf-8\r\n";
+    $headers.= "Reply-To: $reply\r\n";  
+    $headers.= "X-Mailer: PHP/" . phpversion();
+    return mail($to, $s, $body, $headers);
 }
 
 ?>

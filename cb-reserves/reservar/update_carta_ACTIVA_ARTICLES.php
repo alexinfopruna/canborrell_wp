@@ -3,9 +3,11 @@
 define('ROOT',"../taules/");
 require_once (ROOT."Gestor.php");
 
-define("LLISTA_DIES_NEGRA",ROOT . INC_FILE_PATH."llista_dies_negra_online.txt");
+//define("LLISTA_DIES_NEGRA",ROOT . INC_FILE_PATH."llista_dies_negra_online.txt");
+define("LLISTA_DIES_NEGRA",ROOT . INC_FILE_PATH."llista_dies_negra.txt");
 define("LLISTA_DIES_BLANCA",ROOT . INC_FILE_PATH."llista_dies_blanca.txt");
-define("LLISTA_NITS_NEGRA",ROOT . INC_FILE_PATH."llista_dies_negra_online.txt");
+//define("LLISTA_NITS_NEGRA",ROOT . INC_FILE_PATH."llista_dies_negra_online.txt");
+define("LLISTA_NITS_NEGRA",ROOT . INC_FILE_PATH."llista_dies_negra.txt");
 
 
 define('USR_FORM_WEB',3); //ES LA ID D'USUARI (admin) ANONIM QUE CREA RESERVA ONLINE

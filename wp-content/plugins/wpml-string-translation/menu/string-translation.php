@@ -1,6 +1,7 @@
 <?php
+/** @var WPML_String_Translation $WPML_String_Translation */
+global $sitepress, $WPML_String_Translation, $wpdb, $wpml_st_string_factory;
 
-global $sitepress, $WPML_String_Translation, $wpdb;
 $string_settings = $WPML_String_Translation->get_strings_settings();
 icl_st_reset_current_translator_notifications();
 
@@ -34,8 +35,6 @@ $context_filter = filter_input( INPUT_GET, 'context', FILTER_SANITIZE_FULL_SPECI
 
 $search_filter  = filter_input( INPUT_GET, 'search', FILTER_SANITIZE_FULL_SPECIAL_CHARS );
 $exact_match    = filter_input( INPUT_GET, 'em', FILTER_VALIDATE_BOOLEAN );
-
-$icl_string_translations = icl_get_string_translations();
 
 $active_languages = $sitepress->get_active_languages();
 $icl_contexts = icl_st_get_contexts( $status_filter );
@@ -248,7 +247,7 @@ $po_importer = apply_filters( 'wpml_st_get_po_importer', null );
 		<?php endif; ?>
 
 		<?php
-			$string_translation_table_ui = new WPML_String_Translation_Table( $icl_string_translations );
+			$string_translation_table_ui = new WPML_String_Translation_Table( icl_get_string_translations() );
 			$string_translation_table_ui->render( );
 
 			$change_string_language_dialog = new WPML_Change_String_Language_Dialog( $wpdb, $sitepress );
@@ -386,7 +385,7 @@ $po_importer = apply_filters( 'wpml_st_get_po_importer', null );
                                 <br/>
                             </div>
                             <h3 class="hndle">
-                                <span><?php echo __('Track where string appear on the site', 'wpml-string-translation')?></span>
+                                <span><?php echo __('Track where strings appear on the site', 'wpml-string-translation')?></span>
                             </h3>
                             <div class="inside">
                                 <p class="sub"><?php echo __("WPML can keep track of where strings are used on the public pages. Activating this feature will enable the 'view in page' functionality and make translation easier.", 'wpml-string-translation')?></p>
@@ -461,9 +460,9 @@ $po_importer = apply_filters( 'wpml_st_get_po_importer', null );
                                 <p class="sub"><?php echo esc_html__('WPML can automatically register strings for translation. This allows you to translate user-generated content with minimal PHP code.', 'wpml-string-translation')?></p>
 
                                 <p class="wpml-st-excluded-info"
-                                   data-all-included="<?php echo esc_attr__('Strings from all text domains will be auto-registred', 'wpml-string-translation') ?>"
+                                   data-all-included="<?php echo esc_attr__('Strings from all text domains will be auto-registered', 'wpml-string-translation') ?>"
                                    data-all-excluded="<?php echo esc_attr__('Strings from all text domains are excluded', 'wpml-string-translation') ?>"
-                                   data-excluded-preview="<?php echo esc_attr__('You exluded: ', 'wpml-string-translation') ?>"
+                                   data-excluded-preview="<?php echo esc_attr__('You excluded: ', 'wpml-string-translation') ?>"
                                    data-included-preview="<?php echo esc_attr__('You included: ', 'wpml-string-translation') ?>"
                                    data-preview-suffix="<?php echo esc_attr__('and others', 'wpml-string-translation') ?>"
                                 >

@@ -16,18 +16,32 @@ class WPML_URL_Filters {
 	/** @var WPML_URL_Converter $url_converter */
 	private $url_converter;
 
+	/** @var WPML_Debug_BackTrace */
+	private $debug_backtrace;
+
 	/**
-	 * @param WPML_Post_Translation $post_translation
-	 * @param WPML_URL_Converter    $url_converter
-	 * @param WPML_Canonicals       $canonicals
-	 * @param SitePress             $sitepress
+	 * WPML_URL_Filters constructor.
+	 *
+	 * @param $post_translation
+	 * @param $url_converter
+	 * @param WPML_Canonicals $canonicals
+	 * @param $sitepress
+	 * @param WPML_Debug_BackTrace $debug_backtrace
 	 */
-	public function __construct( &$post_translation, &$url_converter, WPML_Canonicals $canonicals, &$sitepress ) {
+	public function __construct(
+		&$post_translation,
+		&$url_converter,
+		WPML_Canonicals $canonicals,
+		&$sitepress,
+		WPML_Debug_BackTrace $debug_backtrace
+	) {
 		$this->sitepress        = &$sitepress;
 		$this->post_translation = &$post_translation;
 
 		$this->url_converter = &$url_converter;
 		$this->canonicals    = $canonicals;
+		$this->debug_backtrace = $debug_backtrace;
+
 		if ( $this->frontend_uses_root() === true ) {
 			WPML_Root_Page::init();
 		}
@@ -156,19 +170,25 @@ class WPML_URL_Filters {
 			return $link;
 		}
 
-		/** @var int $post */
+		$post_id = $post;
+
 		if ( is_object( $post ) ) {
-			$post = $post->ID;
+			$post_id = $post->ID;
 		}
 
-		$canonical_url = $this->canonicals->permalink_filter( $link, $post );
+		/** @var int $post_id */
+		if ( $post_id < 1 ) {
+			return $link;
+		}
+
+		$canonical_url = $this->canonicals->permalink_filter( $link, $post_id );
 		if ( $canonical_url ) {
 			return $canonical_url;
 		}
 
-		$post_element = new WPML_Post_Element( $post, $this->sitepress );
+		$post_element = new WPML_Post_Element( $post_id, $this->sitepress );
 		if ( $post_element->is_translatable() ) {
-				$link = $this->get_translated_permalink( $link, $post, $post_element );
+				$link = $this->get_translated_permalink( $link, $post_id, $post_element );
 		}
 		return $link;
 	}
@@ -217,6 +237,10 @@ class WPML_URL_Filters {
 	}
 
 	public function home_url_filter( $url, $path, $orig_scheme, $blog_id ) {
+		if ( WPML_LANGUAGE_NEGOTIATION_TYPE_PARAMETER === $this->sitepress->get_setting( 'language_negotiation_type' ) && $this->debug_backtrace->is_function_in_call_stack( 'get_pagenum_link' ) ) {
+			return $url;
+		}
+
 		$server_name = isset( $_SERVER['SERVER_NAME'] ) ? $_SERVER['SERVER_NAME'] : "";
 		$request_uri = isset( $_SERVER['REQUEST_URI'] ) ? $_SERVER['REQUEST_URI'] : "";
 		$server_name = strpos( $request_uri, '/' ) === 0
@@ -235,9 +259,18 @@ class WPML_URL_Filters {
 		/** @var array $urls */
 		$urls = $this->sitepress->get_setting( 'urls' );
 
-		return isset( $urls['root_page'] ) && isset( $urls['show_on_root'] )
-		       && ! empty( $urls['directory_for_default_language'] )
-		       && ( $urls['show_on_root'] === 'page' || $urls['show_on_root'] === 'html_file' );
+		if ( is_admin() ) {
+			$uses_root = isset( $urls['root_page'], $urls['show_on_root'] )
+			             && ! empty( $urls['directory_for_default_language'] )
+			             && ( in_array( $urls['show_on_root'], array( 'page', 'html_file' ) ) );
+		} else {
+			$uses_root = isset( $urls['root_page'], $urls['show_on_root'] )
+			             && ! empty( $urls['directory_for_default_language'] )
+			             && ( ( $urls['root_page'] > 0 && 'page' === $urls['show_on_root'] )
+			                  || ( $urls['root_html_file_path'] && 'html_file' === $urls['show_on_root'] ) );
+		}
+
+		return $uses_root;
 	}
 
 	/**
@@ -302,7 +335,7 @@ class WPML_URL_Filters {
 		$code             = $this->get_permalink_filter_lang( $post );
 		$post_id          = $post_element->get_element_id();
 		$current_language = $this->sitepress->get_current_language();
-		if ( ! is_admin()
+		if ( ( ! is_admin() || wp_doing_ajax() )
 		     && $this->sitepress->get_setting( 'auto_adjust_ids' )
 		     && $post_element->get_language_code() !== $this->sitepress->get_current_language()
 		     && ( $post_id = $this->post_translation->element_id_in( $post_id, $current_language ) )

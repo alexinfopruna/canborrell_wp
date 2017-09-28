@@ -78,7 +78,7 @@ valida_admin('login.php') ;
 <HEAD>
     <link rel="shortcut icon" type="image/ico" href="/gear-favicon.ico" />
 
-<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
 <TITLE> Masia Can Borrell </TITLE>
 	<LINK rel="stylesheet" type="text/css" href="css/estils.css">
                             <link rel="shortcut icon" type="image/ico" href="/gear-favicon.ico" />

@@ -300,6 +300,7 @@ td{border:white solid 3px;}
 			}
 			else
 			{
+				
 				$factura=" (Preu total: ".calcula_preu_real($row_DetailRS1,"../").")".($row_DetailRS1['factura']?" demana factura":"");
 			}
 		  

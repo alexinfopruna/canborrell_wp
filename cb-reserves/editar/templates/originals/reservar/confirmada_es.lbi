@@ -1,0 +1,154 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<title>Recepción reserva</title>
+
+<link type="text/css" href="https://www.can-borrell.com/cb-reserves/css/taronja.css" rel="stylesheet"/>
+
+</head>
+
+<body><!-- reservar/{self}  -->
+		
+<table  border="0" align="center" cellpadding="0" cellspacing="0" >
+  <tr>
+    <td  colspan="2" align="right" background="https://www.can-borrell.com/img/fons_9c.jpg"><a href="//www.can-borrell.com"><img src="http://www.can-borrell.com/img/lg_sup.png" alt="img" width="303" height="114" border="0" title="INICI" /></a></td>
+  </tr>
+  <tr>
+    <td  colspan="2" align="center">&nbsp;</td>
+  </tr>
+</table>
+<table  border="0" align="center" cellpadding="0" cellspacing="0" >
+  <tr>
+    <td>&nbsp;</td>
+    <td><span style="font-size:10px">{avui}</span></td>
+    <td>&nbsp;</td>
+  </tr>
+  <tr>
+    <td>&nbsp;</td>
+    <td align="center"><h1><span class="titol">CONFIRMACIÓN DE RESERVA ONLINE {id_reserva}</span></h1></td>
+    <td>&nbsp;</td>
+  </tr>
+  <tr>
+    <td>&nbsp;</td>
+    <td>&nbsp;</td>
+    <td>&nbsp;</td>
+  </tr>
+  <tr>
+    <td>&nbsp;</td>
+    <td align="center">Tu reserva ha sido confirmada. Te esperamos en Can Borrell</td>
+    <td>&nbsp;</td>
+  </tr>
+
+<!--
+  <tr>
+    <td>&nbsp;</td>
+    <td align="center">
+<br/><br/>
+<div class="alert alert-danger" style="background-color: #FFE8E8;"><span class=" glyphicon glyphicon-exclamation-sign f1" style="color:red"></span> <b>ATENCIÓN:</b> <br/>Las indicaciones que proporciona <b>Google maps son erroneas</b>. Para llegar al restaurant seguid <a href="https://www.google.com/maps/d/viewer?mid=1hCH2vgWQlsAYjkur26vrCBkHs_o&hl=ca&ll=41.46209031620546%2C2.1290506341933906&z=14" target="_blank" style="color:red;font-weight:bold;">este mapa</a> hasta el comienzo de la pista forestal.</div>
+<br/><br/></td>
+    <td>  </td>
+
+</tr>  
+
+-->
+
+  <tr>
+    <td>&nbsp;</td>
+    <td>&nbsp;</td>
+     <td>&nbsp;</td>
+  </tr>
+  
+  <tr>
+    <td width="12">&nbsp;</td>
+    <td><table border="0" align="center" cellpadding="3" cellspacing="3">
+      <tr>
+        <td class="fila-cap">id_reserva</td>
+        <td width="160" align="right"  class="llista" style="color:white"><div align="left" class="titol2"><span class="Estilo4">{id_reserva}</span></div></td>
+      </tr>
+
+      <tr>
+        <td class="fila-cap">fecha reserva</td>
+        <td width="160" align="right"  class="llista"><div align="left" class="estat"><span class="Estilo4">{data}</span></div></td>
+      </tr>
+      <tr>
+        <td class="fila-cap">hora</td>
+        <td width="160" align="right"  class="llista"><div align="left" class="estat"><span class="Estilo4">{hora}</span></div></td>
+      </tr>
+      <tr>
+        <td class="fila-cap">nombre</td>
+        <td width="160"  class="llista"><div align="left"><span class="Estilo4">{nom}</span></div></td>
+      </tr>
+      <tr>
+        <td class="fila-cap"></td>
+        <td width="160"  class="llista"><span class="Estilo4"></span></td>
+      </tr>
+      <tr>
+        <td class="fila-cap">adultos</td>
+        <td width="160" align="right"  class="llista"><div align="left"><span class="Estilo4">{adults}</span></div></td>
+      </tr>
+<!-- 
+      <tr>
+        <td class="fila-cap">niños 10 a 14 años </td>
+        <td width="160" align="right"  class="llista"><div align="left"><span class="Estilo4">{nens10_14}</span></div></td>
+      </tr>-->
+      <tr>
+        <td class="fila-cap">niños 4 a 14 años </td>
+        <td width="160" align="right"  class="llista"><div align="left"><span class="Estilo4">{nens4_9}</span></div></td>
+      </tr>
+      <tr>
+        <td class="fila-cap">Cochecitos</td>
+        <td width="160" align="right"  class="llista"><div align="left"><span class="Estilo4">{cotxets}</span></div></td>
+      </tr>
+      <tr>
+        <td class="fila-cap">observaciones</td>
+        <td width="160"  class="llista"><span class="Estilo4">{observacions}</span></td>
+      </tr>
+      <tr>
+        <td class="fila-cap">Paga y señal</td>
+        <td width="160"  class="llista"><span class="Estilo4">{resposta}</span></td>
+      </tr>
+      <tr>
+        <td class="fila-cap">platos</td>
+        <td width="160" align="right" bgcolor="#999999" class="llista"><div align="left" class="estat">
+            <div align="right" class="Estilo4">{comanda}</div>
+        </div></td>
+      </tr>
+    </table></td>
+    <td></td>
+  </tr>
+  <tr>
+    <td>&nbsp;</td>
+    <td>&nbsp;</td>
+    <td>&nbsp;</td>
+  </tr>
+  <tr>
+    <td>&nbsp;</td>
+    <td>
+	<div align="center">
+		Hasta un día antes puedes modificar o cancelar tu reserva en  <br/><a href="https://www.can-borrell.com/reservar">www.can-borrell.com/reservar</a>
+		<br/><br/>
+		Para acceder debes conservar la ID de reserva: <b>{id_reserva}</b>
+	</div></td>
+    <td>&nbsp;</td>
+  </tr>
+  <tr>
+    <td>&nbsp;</td>
+    <td>&nbsp;</td>
+    <td>&nbsp;</td>
+  </tr>
+
+    <tr  class="marge-footer">
+    <td> </td>
+    <td> </td>
+    <td> </td>
+  </tr>
+    
+    <tr class="franja">
+<td> </td>
+    <td> </td>
+    <td> </td>
+  </tr>
+</table>
+</body>
+</html>

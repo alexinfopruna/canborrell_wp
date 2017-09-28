@@ -144,7 +144,7 @@ foreach ($_REQUEST as $key => $val)
 <html>
 <head>
 <title>BigDump ver. <?php echo (VERSION); ?></title>
-<meta http-equiv="CONTENT-TYPE" content="text/html; charset=iso-8859-1"/>
+<meta http-equiv="CONTENT-TYPE" content="text/html; charset=UTF-8"/>
 <meta http-equiv="CONTENT-LANGUAGE" content="EN"/>
 
 <meta http-equiv="Cache-Control" content="no-cache/"/>

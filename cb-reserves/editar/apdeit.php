@@ -33,7 +33,9 @@ valida_admin('editar.php');
 
 $reserva = $gestor->load_reserva($id_reserva, 'reserves');
 $lang_r=Gestor::codelang($reserva['lang']);
+//require_once(ROOT."../editar/translate_editar_$lang_r.php");
 require_once(ROOT."../editar/translate_editar_$lang_r.php");
+
 
 
 switch($func)
@@ -113,6 +115,7 @@ if (!isset($_GET['resend']))
   $m=mail_SMS_cli($id , $SMS); 
 }
 
+
    $mensa="?msg=1&idr=$id&";
   $mensa.=$m['mail_cli']?"&mail_cli=ok":"&mail_cli=err";
    $mensa.=$m['mail_rest']?"&mail_rest=ok":"&mail_rest=err";
@@ -135,7 +138,7 @@ function mail_SMS_cli($id=false,$SMS=null)
   
    Gestor::xgreg_log("<span class='mail'>ENVIA SMS+MAIL: <span class='idr'>$id</span></span>",0,'/log/logGRUPS.txt');
   
-	global $camps, $mmenu,$txt,$database_canborrell, $canborrell,$lang;
+	global $camps, $mmenu,$txt,$translate, $database_canborrell, $canborrell,$lang;
 	if (!isset($_SESSION)) session_start();
 	
 	if ($id)
@@ -151,7 +154,11 @@ function mail_SMS_cli($id=false,$SMS=null)
 	$fila=mysqli_fetch_assoc($Result);
                             $id = $fila['id_reserva'];
  	$lang=$lang_cli=$fila['lang'];
-
+  /*    * *                       
+print_r($fila);                            
+echo $query ."   $database_canborrell  *** ".$lang;die();
+*/  
+   
  	/*** ENVIA SMS ***/ 	
  	$SMS=str_replace('{ID}', $id, $SMS);
  	$SMS=str_replace('{DIA}', $fila['data'], $SMS);
@@ -182,20 +189,32 @@ function mail_SMS_cli($id=false,$SMS=null)
             
             
                                                         $b64=base64_encode($fila["id_reserva"]."&".$fila['tel']."&".$lng);
-                                                        $aki="<a href='//".$_SERVER['HTTP_HOST']."/reservar/pagament?rid=$b64&lang=$lng' class='dins'>AQUI</a>";
+                                                        $link = 'https://' . $_SERVER['HTTP_HOST'] . '/reservar/pagament?rid='.$b64.'&lang='.$lng;
+                                                        //$link_text = $translate['Realitzar pagament'];
+                                                        $link_text = Gestor::lv('Realitzar pagament');
+         
+  $aki = '<div><!--[if mso]>
+    <v:roundrect xmlns:v="urn:schemas-microsoft-com:vml" xmlns:w="urn:schemas-microsoft-com:office:word" href="'.$link.'" style="height:38px;v-text-anchor:middle;width:200px;" arcsize="48%" strokecolor="#e6e6e8" fillcolor="#e1ff8a">
+      <w:anchorlock/>
+      <center style="color:#fafafb;font-family:sans-serif;font-size:13px;font-weight:bold;">'.$link_text.'</center>
+    </v:roundrect>
+  <![endif]--><a href="'.$link.'" style="background-color:#e1ff8a;border:1px solid #e6e6e8;border-radius:18px;color:#2f353e;display:inline-block;font-family:sans-serif;font-size:13px;font-weight:bold;line-height:38px;text-align:center;text-decoration:none;width:200px;-webkit-text-size-adjust:none;mso-hide:all;">'.$link_text.'</a>'
+      . '<br/><br/>'
+      . '</div>';
                                                         
-        $copia="Reserva Grups CONFIRMADA";
-        $subject="Can-Borrell: RESERVA CONFIRMADA";
+                                                        
+                                                        
+        $copia=Gestor::lv("Reserva Grups CONFIRMADA");
+        $subject=Gestor::lv("Can-Borrell: RESERVA CONFIRMADA")." ".$fila['id_reserva'];
         $altbdy="Su reserva para el Restaurante Can Borrel ha sido confirmada. \n\nDebido a que su cliente de correo no puede interpretar correctamente este mensaje no es posible automatizar el proceso de pago.\n\n Por favor, póngase en contacto con el restaurante llamando al 936 929 723 o al 936 910 605. \n\nDisculpe las molestias";
  	  break;
 	
           case 3: // PAGAMENT OK
 		$v=20;
 		$preu=$fila['preu_reserva'];
-	//    $datat=cambiaf_a_normal($fila['data']).", ".$fila['hora']."h";
 		$datat=data_llarga($fila['data'],$lang).", ".$fila['hora']."h";
-        $copia="Reserva Grups PAGADA";
-        $subject="Can-Borrell: NOTIFICACIÓ DE PAGAMENT REBUDA";
+        $copia=Gestor::lv("Reserva Grups PAGADA");
+        $subject=Gestor::lv("Can-Borrell: NOTIFICACIÓ DE PAGAMENT REBUDA")." ".$fila['id_reserva'];
 		if ($fila['factura']) 
 		{
 			$attach=factura($fila,"../",false);
@@ -212,10 +231,12 @@ function mail_SMS_cli($id=false,$SMS=null)
 	
           case 4: // RESERVA DENEGADA
 		$v=30;
+            /*
 		$aki="<a href='/#contact?id=".$fila["id_reserva"]."&lang=$lang_cli' class='dins'>AQUÍ</a>";
         $altbdy="Lamentamos informarle que la reserva que solicitó para el restaurante Can Borrell ha sido denegada por encontrarse el comedor lleno.\n\n Para más información, por favor, póngase en contacto con el restaurante llamando al 936 929 723 o al 936 910 605. \n\nDisculpe las molestias";
-    $copia="Reserva Grups DENEGADA";
-    $subject="Can-Borrell: RESERVA DENEGADA";
+    $copia=Gestor::lv("Reserva Grups DENEGADA");*/
+            $aki ="";
+    $subject=Gestor::lv("Can-Borrell: RESERVA DENEGADA")." ".$fila['id_reserva'];
 	  break;
 	  
 	  default:
@@ -230,7 +251,6 @@ function mail_SMS_cli($id=false,$SMS=null)
 	$ara=date("H:i");
 	
 	$file="templates/mail_cli.lbi";
-
 			$t=new Template('.','comment');
 			$t->set_file("page", $file);
 	
@@ -243,6 +263,7 @@ function mail_SMS_cli($id=false,$SMS=null)
             $idd=$fila['id_reserva']+100000;
             $mulink=substr($fila['email'],0,2).substr($fila['nom'],0,2).$idd."***".substr($fila['import'],0,2);
         
+			
 			$t->set_var('ident',	$txt[75][$lang]);
 			$t->set_var('confirma',$txt[76][$lang]);
 			$t->set_var('cancela',$txt[77][$lang]);
@@ -250,7 +271,7 @@ function mail_SMS_cli($id=false,$SMS=null)
 			$t->set_var('confirlink',$mulink);
 			$t->set_var('cancelink',$mulink);
     }
-		
+                                                                                    $t->set_var('self',$file);
 			$t->set_var('avui',$avui);
 			$t->set_var('titol',$txt[$v][$lang]);
 			$t->set_var('text1',$txt[$v+1][$lang]);
@@ -310,8 +331,8 @@ function mail_SMS_cli($id=false,$SMS=null)
 							
 			$t->parse("OUT", "page");
 			$html=$t->get("OUT");
-			//$t->p("OUT");
-			//exit();
+			//$t->p("OUT");die();
+			//
 	$recipient=$fila['email'];
     //$subject="..::Reserva Can Borrell::..";
     if (!isset($attach))$attach=null;
@@ -372,6 +393,7 @@ function mail_restaurant($id=false)
 			$t->set_file("page", $file);
 	
 	///////////// TEXTES
+			$t->set_var('self',$file);
 			$t->set_var('avui',$avui);
 			$t->set_var('titol',$txt[10][$lang]);
 			$t->set_var('text1',$txt[11][$lang]);
@@ -426,6 +448,7 @@ function mail_restaurant($id=false)
 							
 			$t->parse("OUT", "page");
 			$html=$t->get("OUT");
+                                                                                    
 		   // $t->p("OUT");
 	
 	

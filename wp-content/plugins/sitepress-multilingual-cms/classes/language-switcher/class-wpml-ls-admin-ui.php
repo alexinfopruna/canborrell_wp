@@ -60,7 +60,7 @@ class WPML_LS_Admin_UI extends WPML_Templates_Factory {
 	 * @return string
 	 */
 	public static function get_page_hook() {
-		return ICL_PLUGIN_FOLDER . '/menu/languages.php';
+		return WPML_PLUGIN_FOLDER . '/menu/languages.php';
 	}
 
 	/**
@@ -253,7 +253,7 @@ class WPML_LS_Admin_UI extends WPML_Templates_Factory {
 
 	protected function init_template_base_dir() {
 		$this->template_paths = array(
-			ICL_PLUGIN_PATH . '/templates/language-switcher-admin-ui/',
+			WPML_PLUGIN_PATH . '/templates/language-switcher-admin-ui/',
 		);
 	}
 
@@ -342,7 +342,6 @@ class WPML_LS_Admin_UI extends WPML_Templates_Factory {
 			'no_templates'               => __( 'There are no templates available.', 'sitepress' ),
 			'label_preview'              => _x( 'Preview', 'Language switcher preview', 'sitepress' ),
 			'label_position'             => _x( 'Position', 'Language switcher preview', 'sitepress' ),
-			'label_actions'              => _x( 'Actions', 'Language switcher preview', 'sitepress' ),
 			'label_actions'              => _x( 'Actions', 'Language switcher preview', 'sitepress' ),
 			'label_action'               => _x( 'Action', 'Language switcher preview', 'sitepress' ),
 			'button_save'                => __( 'Save', 'sitepress' ),
@@ -536,6 +535,7 @@ class WPML_LS_Admin_UI extends WPML_Templates_Factory {
 		return array(
 			'section_title'          => __( 'Custom language switchers', 'sitepress' ),
 			'section_description'    => sprintf( $description, $description_link ),
+			'show'                   => __( 'Enable', 'sitepress' ),
 			'customize_button_label' => __( 'Customize', 'sitepress' ),
 			'dialog_title'           => __( 'Edit Shortcode Actions Language Switcher', 'sitepress' ),
 		);
