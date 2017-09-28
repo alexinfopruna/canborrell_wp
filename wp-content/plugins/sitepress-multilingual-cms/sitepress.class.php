@@ -2352,7 +2352,7 @@ class SitePress extends WPML_WPDB_User{
 	function add_translate_options( $trid, $active_languages, $selected_language, $translations, $type ) {
 		if ( $trid && $this->wp_api->is_term_edit_page() ):
 			if(!$this->settings['setup_complete']){
-				return false;
+				return;
 			}
 	?>
 
@@ -2429,6 +2429,26 @@ class SitePress extends WPML_WPDB_User{
 				</table>
 			<?php endif; ?>
 			<br clear="all" style="line-height:1px;"/>
+		<?php
+		/**
+		 * Extends the translation options for terms
+		 *
+		 * Called after rendering the translation options for terms, right before closing the main container tag
+		 *
+		 * @since 3.8.2
+		 *
+		 * @param array $args              {
+		 *                                 Information about the current term and its translations
+		 *
+		 * @type int    $trid              The translation cluster ID.
+		 * @type array  $active_languages  All active languages data.
+		 * @type string $selected_language The language of the current term being edited.
+		 * @type array  $translations      All the available translations (including the current one).
+		 * @type string $type              The translation element type (e.g. `tax_category`, `tax_{taxonomy}`.
+		 * }
+		 */
+		do_action( 'wpml_translate_options_terms', array( 'trid' => $trid, 'active_languages' => $active_languages, 'selected_language' => $selected_language, 'translations' => $translations, 'type' => $type ) );
+		?>
 		</div>
 	<?php
 		endif;
@@ -2608,6 +2628,7 @@ class SitePress extends WPML_WPDB_User{
              || $debug_backtrace->is_function_in_call_stack( '_get_term_hierarchy' )
              || $debug_backtrace->is_class_function_in_call_stack( 'WPML_Term_Translation_Utils', 'synchronize_terms' )
              || $debug_backtrace->is_function_in_call_stack( 'wp_get_object_terms' )
+             || $debug_backtrace->is_function_in_call_stack( 'get_term_by' )
         ) {
             return $clauses;
         }

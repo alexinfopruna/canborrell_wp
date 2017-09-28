@@ -49,6 +49,7 @@ class WPML_ST_Upgrade {
 		$this->maybe_run( 'WPML_ST_Upgrade_DB_String_Location' );
 		$this->maybe_run( 'WPML_ST_Upgrade_MO_Scanning' );
 		$this->maybe_run( 'WPML_ST_Upgrade_DB_String_Name_Index' );
+		$this->maybe_run( 'WPML_ST_Upgrade_DB_Longtext_String_Value' );
 	}
 
 	private function run_ajax() {

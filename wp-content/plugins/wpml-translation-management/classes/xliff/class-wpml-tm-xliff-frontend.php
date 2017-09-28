@@ -249,8 +249,8 @@ class WPML_TM_Xliff_Frontend extends WPML_TM_Xliff_Shared {
 		global $wpdb, $current_user;
 
 		if ( empty( $job_ids ) && isset( $_GET['xliff_export_data'] ) ) {
-			$data = unserialize( base64_decode( $_GET['xliff_export_data'] ) );
-			$job_ids = isset( $data['job'] ) ? array_keys( $data['job'] ) : array();
+			$data = json_decode( base64_decode( $_GET['xliff_export_data'] ) );
+			$job_ids = isset( $data->job ) ? array_keys( (array) $data->job ) : array();
 		}
 
 		$archive = new wpml_zip();
@@ -471,7 +471,7 @@ class WPML_TM_Xliff_Frontend extends WPML_TM_Xliff_Shared {
 			<?php
 			if (isset( $data['job'] )) { ?>
 
-			var xliff_export_data = "<?php echo base64_encode( serialize( $data ) ); ?>";
+			var xliff_export_data = "<?php echo base64_encode( json_encode( $data ) ); ?>";
 			var xliff_export_nonce = "<?php echo wp_create_nonce( 'xliff-export' ); ?>";
 			var xliff_version = "<?php echo $xliff_version; ?>";
 			addLoadEvent(function () {

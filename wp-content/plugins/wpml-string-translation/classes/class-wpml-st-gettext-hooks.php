@@ -13,6 +13,11 @@ class WPML_ST_Gettext_Hooks {
 	/** @var bool */
 	private $all_strings_are_in_english;
 
+	/**
+	 * @var bool
+	 */
+	private $translate_with_st;
+
 	/** @var array  */
 	private $filters = array();
 
@@ -23,28 +28,33 @@ class WPML_ST_Gettext_Hooks {
 		array( 'ngettext_with_context', 'icl_sw_filters_nxgettext', 9, 6 ),
 	);
 
-	private $sitepress;
-
 	/**
 	 * WPML_ST_Gettext_Hooks constructor.
 	 *
 	 * @param WPML_String_Translation $string_translation
 	 * @param string $current_lang
 	 * @param string $all_strings_are_in_english
+	 * @param bool $translate_with_st
 	 */
 	public function __construct(
 		WPML_String_Translation $string_translation,
 		$current_lang,
-		$all_strings_are_in_english
+		$all_strings_are_in_english,
+		$translate_with_st
 	) {
 		$this->string_translation         = $string_translation;
 		$this->initial_language           = $this->current_lang = $current_lang;
 		$this->all_strings_are_in_english = $all_strings_are_in_english;
+		$this->translate_with_st          = $translate_with_st;
 	}
 
 	public function init_hooks() {
 		if ( $this->all_strings_are_in_english ) {
 			add_action( 'wpml_language_has_switched', array( $this, 'switch_language_hook' ), 10, 1 );
+		}
+
+		if ( $this->translate_with_st && $this->should_gettext_filters_be_turned_on() ) {
+			add_action( 'plugins_loaded', array( $this, 'init_gettext_hooks' ), 2 );
 		}
 	}
 

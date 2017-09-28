@@ -16,19 +16,4 @@ class WPML_ST_Theme_Localization_Utils {
 
 		return $theme_data;
 	}
-
-	/** @return array */
-	public function get_theme_localization_domains() {
-		return wp_list_pluck( $this->get_theme_data(), 'TextDomain' );
-	}
-
-	/**
-	 * @param WPML_Localization $wpml_localization
-	 *
-	 * @return array
-	 */
-	public function get_theme_localization_stats( WPML_Localization $wpml_localization ) {
-		$theme_localization_domains = $this->get_theme_localization_domains();
-		return $wpml_localization->get_theme_localization_stats( $theme_localization_domains );
-	}
 }

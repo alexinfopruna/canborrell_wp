@@ -42,7 +42,7 @@ class WPML_ST_Plugin_Localization_UI implements IWPML_Theme_Plugin_Localization_
 			'active_text'        => __( 'Active', 'wpml-string-translation' ),
 			'inactive_text'      => __( 'Inactive', 'wpml-string-translation' ),
 			'type'               => 'plugin',
-			'components'         => $this->get_components( $this->utils->get_plugins(), $this->localization->get_plugin_localization_stats() ),
+			'components'         => $this->get_components( $this->utils->get_plugins(), $this->localization->get_localization_stats( 'plugin' ) ),
 			'stats_id'           => 'wpml_plugin_scan_stats',
 			'scan_button_id'     => 'wpml_plugin_localization_scan',
 			'section_class'      => 'wpml_plugin_localization',

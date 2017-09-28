@@ -857,7 +857,11 @@ class WPML_String_Translation
 	 * @return string
 	 */
 	public function get_admin_language() {
-		if ( ! $this->admin_language || $this->sitepress->is_wpml_switch_language_triggered() ) {
+		if ( $this->sitepress->is_wpml_switch_language_triggered() ) {
+			return $this->sitepress->get_admin_language();
+		}
+
+		if ( ! $this->admin_language ) {
 			$this->admin_language = $this->sitepress->get_admin_language();
 		}
 

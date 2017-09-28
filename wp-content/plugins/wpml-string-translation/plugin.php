@@ -2,10 +2,10 @@
 /*
 Plugin Name: WPML String Translation
 Plugin URI: https://wpml.org/
-Description: Adds theme and plugins localization capabilities to WPML | <a href="https://wpml.org">Documentation</a> | <a href="https://wpml.org/version/string-translation-2-6-1/">WPML String Translation 2.6.1 release notes</a>
+Description: Adds theme and plugins localization capabilities to WPML | <a href="https://wpml.org">Documentation</a> | <a href="https://wpml.org/version/string-translation-2-6-2/">WPML String Translation 2.6.2 release notes</a>
 Author: OnTheGoSystems
 Author URI: http://www.onthegosystems.com/
-Version: 2.6.1
+Version: 2.6.2
 Plugin Slug: wpml-string-translation
 */
 
@@ -13,7 +13,7 @@ if ( defined( 'WPML_ST_VERSION' ) || get_option( '_wpml_inactive' ) ) {
 	return;
 }
 
-define( 'WPML_ST_VERSION', '2.6.1' );
+define( 'WPML_ST_VERSION', '2.6.2' );
 
 // Do not uncomment the following line!
 // If you need to use this constant, use it in the wp-config.php file
@@ -90,8 +90,9 @@ function wpml_st_core_loaded() {
 	$action_filter_loader = new WPML_Action_Filter_Loader();
 	$action_filter_loader->load( $actions );
 
-	$st_gettext_hooks_factory = new WPML_ST_Gettext_Hooks_Factory( $sitepress, $WPML_String_Translation );
+	$st_gettext_hooks_factory = new WPML_ST_Gettext_Hooks_Factory( $sitepress, $WPML_String_Translation, $theme_localization_type->is_st_type() );
 	$st_gettext_hooks = $st_gettext_hooks_factory->create();
+
 	$st_gettext_hooks->init_hooks();
 }
 

@@ -161,11 +161,10 @@ class WPML_Post_Synchronization extends WPML_SP_And_PT_User {
 		foreach ( $translated_ids as $lang_code => $translated_pid ) {
 			$post_status = get_post_status( $translated_pid );
 
-			if ( $this->sync_private_flag
-			     && ( 'private' === $source_post_status && 'publish' === $post_status )
-			        || ( 'publish' === $source_post_status && 'private' === $post_status )
-				) {
-					$post_status = $source_post_status;
+			$post_status_differs = ( 'private' === $source_post_status && 'publish' === $post_status )
+			                       || ( 'publish' === $source_post_status && 'private' === $post_status );
+			if ( $this->sync_private_flag && $post_status_differs ) {
+				$post_status = $source_post_status;
 			}
 
 			$this->sync_custom_fields ( $post_id, $translated_pid );
@@ -178,7 +177,7 @@ class WPML_Post_Synchronization extends WPML_SP_And_PT_User {
 				$now = gmdate('Y-m-d H:i:59');
 				$allow_post_statuses = array( 'private', 'pending', 'draft' );
 				if ( mysql2date('U', $post_date_gmt, false) > mysql2date('U', $now, false) ) {
-					if ( ! in_array( $post_status, $allow_post_statuses ) ) {
+					if ( ! in_array( $post_status, $allow_post_statuses, true ) ) {
 						$post_status = 'future';
 					}
 				}
@@ -192,7 +191,7 @@ class WPML_Post_Synchronization extends WPML_SP_And_PT_User {
 			if ( $post_status !== null && ! in_array( get_post_status( $translated_pid ), array( 'auto-draft', 'draft', 'inherit', 'trash' ) ) ) {
 				$wpdb->update ( $wpdb->posts, array( 'post_status' => $post_status ), array( 'ID' => $translated_pid ) );
 				$term_count_update->update_for_post( $translated_pid );
-			} elseif ( $post_status == null && $this->sync_private_flag && get_post_status( $translated_pid ) == 'private' ) {
+			} elseif ( $post_status == null && $this->sync_private_flag && get_post_status( $translated_pid ) === 'private' ) {
 				$wpdb->update ( $wpdb->posts, array( 'post_status' => get_post_status( $post_id ) ), array( 'ID' => $translated_pid ) );
 				$term_count_update->update_for_post( $translated_pid );
 			}

@@ -206,7 +206,7 @@ class WPML_ST_MO_Scan_Factory {
 	 */
 	private function get_aggregate_find_component() {
 		if ( null === $this->find_aggregate ) {
-			$debug_backtrace = new WPML_Debug_BackTrace( $this->get_wpml_wp_api()->phpversion(), 10 );
+			$debug_backtrace = new WPML_Debug_BackTrace( $this->get_wpml_wp_api()->phpversion(), 0 );
 
 			$this->find_aggregate = new WPML_ST_MO_Component_Details(
 				new WPML_ST_MO_Components_Find_Plugin( $debug_backtrace ),

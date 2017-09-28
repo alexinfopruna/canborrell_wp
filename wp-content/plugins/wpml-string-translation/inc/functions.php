@@ -1,7 +1,7 @@
 <?php
 /** @todo: Move the functions code to classes and keep the functions as wrappers only */
 
-add_action('plugins_loaded', 'icl_st_init');
+add_action( 'plugins_loaded', 'icl_st_init' );
 
 function icl_st_init(){
     global $sitepress_settings, $sitepress, $wpdb, $icl_st_err_str, $pagenow, $authordata;
@@ -93,17 +93,6 @@ function icl_st_init(){
 	$blog_name_and_desc_hooks->init_hooks();
 	add_filter('widget_title', 'icl_sw_filters_widget_title', 0);  //highest priority
 	add_filter('widget_text', 'icl_sw_filters_widget_text', 0); //highest priority
-
-	$setup_complete = apply_filters('WPML_get_setting', false, 'setup_complete' );
-	$theme_localization_type = new WPML_Theme_Localization_Type( $sitepress );
-
-	if ( $setup_complete && $theme_localization_type->is_st_type() ) {
-	    /** @var WPML_ST_Gettext_Hooks $st_gettext_hooks */
-	    global $st_gettext_hooks;
-	    if ( $st_gettext_hooks->should_gettext_filters_be_turned_on() ) {
-	        $st_gettext_hooks->init_gettext_hooks();
-        }
-	}
 
     $widget_groups = $wpdb->get_results("SELECT option_name, option_value FROM {$wpdb->options} WHERE option_name LIKE 'widget\\_%'");
     foreach($widget_groups as $w){
@@ -271,6 +260,7 @@ function icl_translate( $context, $name, $value = false, $allow_empty_value = fa
 			global $st_gettext_hooks;
 
 			$filter = $st_gettext_hooks->get_filter( $target_lang, $name );
+				
 			if ( $filter ) {
 				$value = $filter->translate_by_name_and_context( $value, $name, $context, $has_translation );
 			}

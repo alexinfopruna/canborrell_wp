@@ -58,7 +58,7 @@ class WPML_ST_MO_Scan_Storage {
 	 */
 	private function get_string_maps( $domain ) {
 		$sql = "
-			SELECT id, value FROM {$this->wpdb->prefix}icl_strings
+			SELECT id, value, gettext_context FROM {$this->wpdb->prefix}icl_strings
 			WHERE context = %s
 		";
 
@@ -66,7 +66,7 @@ class WPML_ST_MO_Scan_Storage {
 		$result = array();
 
 		foreach ( $rowset as $row ) {
-			$result[ $row->value ] = $row->id;
+			$result[ $row->value ][ $row->gettext_context ] = $row->id;
 		}
 
 		return $result;
@@ -84,7 +84,7 @@ class WPML_ST_MO_Scan_Storage {
 
 		foreach ( $translations as $translation ) {
 			$result[] = new WPML_ST_Models_String_Translation(
-				$value_id_map[ $translation->get_original() ],
+				$value_id_map[ $translation->get_original() ][ $translation->get_context() ],
 				$lang,
 				ICL_TM_NOT_TRANSLATED,
 				null,

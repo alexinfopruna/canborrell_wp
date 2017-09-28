@@ -72,34 +72,55 @@ class WPML_ST_Theme_Localization_UI implements IWPML_Theme_Plugin_Localization_U
 	/** @return array */
 	private function get_components() {
 		$components = array();
-		$theme_localization_status = $this->utils->get_theme_localization_stats( $this->localization );
-		$base_st_url = admin_url( 'admin.php?page=' . WPML_ST_FOLDER . '/menu/string-translation.php' );
+		$theme_localization_status = $this->localization->get_localization_stats( 'theme' );
+
+		$status_counters = array(
+			'complete'   => 0,
+			'incomplete' => 0,
+		);
 
 		foreach ( $this->utils->get_theme_data() as $theme_folder => $theme_data ) {
+			$domains = array_key_exists( $theme_folder, $theme_localization_status ) ? $theme_localization_status[ $theme_folder ] : false;
+
 			$components[ $theme_folder ] = array(
-				'domains' => array(
-					$theme_data['TextDomain'] => array(
-						'translated'   => array_key_exists( $theme_data['TextDomain'], $theme_localization_status ) ?
-							$theme_localization_status[ $theme_data['TextDomain'] ]['complete'] :
-							0,
-						'needs_update' => array_key_exists( $theme_data['TextDomain'], $theme_localization_status ) ?
-							$theme_localization_status[ $theme_data['TextDomain'] ]['incomplete'] :
-							0,
-						'needs_update_link' => add_query_arg( array( 'context' => $theme_data['TextDomain'], 'status' => ICL_STRING_TRANSLATION_NOT_TRANSLATED ), $base_st_url ),
-						'translated_link' => add_query_arg( array( 'context' => $theme_data['TextDomain'], 'status' => ICL_STRING_TRANSLATION_COMPLETE ), $base_st_url ),
-						'domain_link' => add_query_arg( array( 'context' => $theme_data['TextDomain'] ), $base_st_url ),
-						'title_needs_translation' => sprintf( __( 'Translate strings in %s', 'wpml-string-translation' ), $theme_data['TextDomain'] ),
-						'title_all_strings' => sprintf( __( 'All strings in %s', 'wpml-string-translation' ), $theme_data['TextDomain'] ),
-					),
-				),
-				'file'            => 'style.css',
-				'component_name'  => $theme_data['name'],
-				'active' => wp_get_theme()->get( 'Name' ) === $theme_data['name'],
-				'requires_rescan' => $this->localization->does_theme_require_rescan(),
+				'component_name' => $theme_data['name'],
+				'active'         => wp_get_theme()->get( 'Name' ) === $theme_data['name'],
 			);
+
+			$components[ $theme_folder ]['domains'] = array();
+
+			if ( $domains ) {
+				foreach ( $domains as $domain => $stats ) {
+					$components[ $theme_folder ]['domains'][ $domain ] = $this->get_component( $domain, $stats );
+				}
+			} else {
+				if ( ! array_key_exists( 'TextDomain', $theme_data ) ) {
+					$theme_data['TextDomain'] = __( 'No TextDomain', 'wpml-string-translation' );
+				}
+				$components[ $theme_folder ]['domains'][ $theme_data['TextDomain'] ] = $this->get_component( $theme_data['TextDomain'], $status_counters );
+			}
 		}
 
 		return $components;
+	}
+
+	/**
+	 * @param string $domain
+	 * @param array $stats
+	 *
+	 * @return array
+	 */
+	private function get_component( $domain, array $stats ) {
+		$base_st_url = admin_url( 'admin.php?page=' . WPML_ST_FOLDER . '/menu/string-translation.php' );
+		return array(
+			'translated'   => $stats['complete'],
+			'needs_update' => $stats['incomplete'],
+			'needs_update_link' => add_query_arg( array( 'context' => $domain, 'status' => ICL_STRING_TRANSLATION_NOT_TRANSLATED ), $base_st_url ),
+			'translated_link' => add_query_arg( array( 'context' => $domain, 'status' => ICL_STRING_TRANSLATION_COMPLETE ), $base_st_url ),
+			'domain_link' => add_query_arg( array( 'context' => $domain), $base_st_url ),
+			'title_needs_translation' => sprintf( __( 'Translate strings in %s', 'wpml-string-translation' ), $domain),
+			'title_all_strings' => sprintf( __( 'All strings in %s', 'wpml-string-translation' ), $domain),
+		);
 	}
 
 	/** @return string */
