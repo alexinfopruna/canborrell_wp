@@ -59,8 +59,8 @@ class WPML_ST_DB_Cache {
 	}
 
 	public function shutdown() {
-		$is_reseting_wpml_single = ( array_key_exists( 'icl-reset-all', $_POST ) && $_POST['icl-reset-all'] === 'on' );
-		$is_reseting_wpml_multi = ( array_key_exists( 'action', $_GET ) && $_GET['action'] === 'resetwpml' );
+		$is_reseting_wpml_single = ( $_POST && array_key_exists( 'icl-reset-all', $_POST ) && $_POST['icl-reset-all'] === 'on' );
+		$is_reseting_wpml_multi = ( $_GET && array_key_exists( 'action', $_GET ) && $_GET['action'] === 'resetwpml' );
 		if ( $this->is_404() || $is_reseting_wpml_single || $is_reseting_wpml_multi ) {
 			return;
 		}
@@ -91,7 +91,7 @@ class WPML_ST_DB_Cache {
 	 */
 	public function get_translation( $name, $context, $original_value, $gettext_context = '' ) {
 		if ( md5( '' ) == $name && empty( $original_value ) && empty( $gettext_context ) ) {
-			return $original_value;
+			return null;
 		}
 
 		if ( null === $this->translations ) {

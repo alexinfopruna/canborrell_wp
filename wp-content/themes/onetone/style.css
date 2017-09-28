@@ -1,8 +1,8 @@
 /*
-Theme Name: Onetone
+Theme Name: OneTone
 Theme URI: https://www.mageewp.com/onetone-theme.html
 Description: Onetone is a one-page business theme based on Bootstrap framework and coded with HTML5/CSS3. All required information are displayed on a single page with clear order according to users' preferences. The basic sections designed for business purpose have already been built for you, such as services, about, gallery, clients, etc. There's also an extensive admin panel where unlimited sections can be easily added. Multiple options are available if you prefer to do some adjustments, such as changing background, parallax scrolling background, video background, Font Awesome Icons, uploading logo and  favicon,adding custom CSS and so on. The theme is also responsive, clean, and SEO optimized. Please note that with our updation, interface of your blog can grow up with futher more diversities.
-Version: 2.0.8
+Version: 2.3.4
 Author: MageeWP
 Author URI: https://www.mageewp.com
 License: GNU General Public License
@@ -630,8 +630,8 @@ body {
 	overflow: hidden;
 }
 
-.container .container {
-	width: 100%;
+.container {
+	max-width: 100%;
 }
 /*
 .container-fullwidth .row .row {
@@ -819,9 +819,6 @@ img.site-logo {
 	background-color: #000;
 }
 
-.site-nav ul {
-	opacity:.9;	
-}
 
 @media (min-width: 920px) {
     .site-nav ul {
@@ -832,14 +829,16 @@ img.site-logo {
 .site-nav li ul {
     margin-left: 0;
 }
-
+header .site-nav li ul {
+	display:none;
+}
 .site-nav li {
 	position: relative;
 }
 
 .site-nav > ul > li a {
 	display: block;
-	font-size: 14px;
+	font-size: 13px;
 	line-height: 40px;
 	color: #fff;
 	padding: 0 15px;
@@ -871,20 +870,18 @@ img.site-logo {
 	display: block;
 }
 
-.site-nav li li a:before {
-	content: "-";
-	margin: 0 3px 0 10px;
+.site-nav li li a {
+	padding-left: 30px;
 }
 
-.site-nav li li li a:before {
-	content: "--";
-	margin: 0 3px 0 20px;
+.site-nav li li li a {
+	padding-left: 45px;
 }
 
-.site-nav li li li li a:before {
-	content: "---";
-	margin: 0 3px 0 30px;
+.site-nav li li li li a {
+	padding-left: 60px;
 }
+
 .site-nav > ul > li > a,
 .fxd-header .site-nav > ul > li > a {
     font-size: 13px;
@@ -971,6 +968,44 @@ img.site-logo {
 		display: none;
 	}
 
+}
+
+.site-nav .menu-item-toggle {
+    position: absolute;
+    display: block;
+    top: 0px;
+    right: 0;
+    width: 60px;
+    height: 40px;
+    cursor: pointer;
+}
+
+.site-nav li.menu-item-has-children > a:before {
+    position:absolute;
+    top:20px;
+    right:15px;
+    width: 12px;
+    height: 2px;
+    background-color: #ccc;
+    content: "";
+}
+
+.site-nav li.menu-item-has-children > a:after {
+    position:absolute;
+    top: 15px;
+    right: 20px;
+    width: 2px;
+    height: 12px;
+    background-color: #ccc;
+    content: "";
+}
+
+@media (min-width: 920px) {
+    .site-nav .menu-item-toggle,
+    .site-nav li.menu-item-has-children > a:before,
+    .site-nav li.menu-item-has-children > a:after {
+        display: none;
+    }
 }
 
 ul.onetone-dots {
@@ -1367,7 +1402,8 @@ ul.footer-links {
     background-color: #f5f5f5;
 }
 
-.page-title h1 {
+.page-title h1,
+.page-title h2 {
 	font-size: 18px;
 	line-height: 1;
 	margin: 0;
@@ -2528,7 +2564,7 @@ section.video-section .home-container {
 	padding: 20px; 
 }
 
-#onetone-owl-slider .owl-item .item > img {
+#onetone-owl-slider .item > img {
     width:100%;
 }
 
@@ -3065,7 +3101,7 @@ section.homepage-slider .btn, section.homepage-slider .dot {
 	}
 }
 
-@media (min-width: 641px) and (max-width: 768px) {
+@media (min-width: 641px) and (max-width: 767px) {
 	section.homepage-slider .inner {
 		padding-top: 50px;
 		padding-bottom: 0;
@@ -3149,7 +3185,7 @@ border:none;
 	margin: 10px 0 10px 10px;
 }
 
-@media screen and (min-width: 920px) {
+@media screen and (min-width: 919px) {
 	.logo-center .logo-box {
 		display: inline;
 		float: none;
@@ -3171,19 +3207,25 @@ border:none;
 
 }
 
-@media screen and (min-width: 920px) {
+@media screen and (min-width: 919px) {
+	.site-nav.style1 > ul > li > a > span {
+		padding: 10px;
+		border-radius: 5px;
+	}
     .site-nav.style1 > ul > li.current > a > span,
     .site-nav.style1 > ul > li > a:hover > span {
-        padding: 10px;
         background-color: #37cadd;
-        color: #fff;
-        border-radius: 5px;
+        color: #fff;    
     }
+    .site-nav.style2 > ul > li > a > span {
+		padding: 8px;
+		border: 2px solid transparent;
+		border-radius: 5px;
+	}
     .site-nav.style2 > ul > li.current > a > span,
     .site-nav.style2 > ul > li > a:hover > span {
         padding: 8px;
         border: 2px solid #37cadd;
-        border-radius: 5px;
     }
     .site-nav.style3 > ul > li.current > a > span,
     .site-nav.style3 > ul > li > a:hover > span {
@@ -3192,6 +3234,7 @@ border:none;
         border-bottom: 2px solid #37cadd;
     }
 }
+
 
 @media screen and (max-width: 600px) {
     body.admin-bar {
@@ -3202,7 +3245,7 @@ border:none;
     }
 }
 
-@media screen and (max-width: 768px) {
+@media screen and (max-width: 767px) {
     .footer-info-area .site-info,
     .footer-info-area .site-social {
         float: none!important;
@@ -3278,7 +3321,7 @@ border:none;
 .onetone-animated{
 	visibility:hidden;
 	}
-@media only screen and (max-width: 920px) {
+@media only screen and (max-width: 767px) {
 .header-wrap.overlay{
    position: static;
 }
@@ -3293,11 +3336,38 @@ header.overlay .main-header .site-tagline, header.overlay .main-header .site-nam
 }
 }
 
-@media screen and (max-width: 768px) {
+@media screen and (max-width: 767px) {
 section.home-section-1 .home-section-content {
     font-size: 12px;
 }
 }
 .contact-failed {
     padding: 0 10px;
+}
+#portfolio-cat section.post-main .row{
+  margin-top:0;
+}
+#portfolio-cat section.post-main .portfolio-col{
+  margin-bottom:0;
+  }
+  
+.magee-pricing-box-wrap .fa-shopping-cart{
+  color:#fff !important;
+}
+
+/*MPL Onetone fix*/
+.onetone .mpl-btn-normal {
+    line-height: 1;
+    padding: .9em 1.6em;
+    border-radius: 0;
+}
+
+.onetone .mpl-contact-form input[type="submit"] {
+    border-radius: 0;
+}
+.magee-promo-box{
+	width:100%;
+}
+.customize-partial-refreshing {
+    opacity: 1;
 }

@@ -64,6 +64,8 @@ class WPML_TM_Blog_Translators {
 						if ( array_key_exists( $lang_to, $user_lang_to ) ) {
 							$is_translator = true;
 							break;
+						} else {
+							$is_translator = false;
 						}
 					}
 				} else {
@@ -74,7 +76,7 @@ class WPML_TM_Blog_Translators {
 				$job_record    = $this->tm_records->icl_translate_job_by_job_id( $job_id );
 				$translator_id = in_array( $job_record->service(), array(
 					'local',
-					0
+					0,
 				) ) ? $job_record->translator_id() : - 1;
 				$is_translator = $translator_id == $user_id
 				                 || ( $is_translator && empty( $translator_id ) );

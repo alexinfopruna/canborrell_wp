@@ -1,6 +1,7 @@
 <?php
-global $onetone_animated;
- $i                   = 1 ;
+ // Section service
+ global $onetone_animated, $onetone_section_id, $allowedposttags;
+ $i                   = $onetone_section_id ;
  $detect              = new Mobile_Detect;
  $section_title       = onetone_option( 'section_title_'.$i );
  $section_menu        = onetone_option( 'menu_title_'.$i );
@@ -9,88 +10,133 @@ global $onetone_animated;
  $section_content     = onetone_option( 'section_content_'.$i );
  $full_width          = onetone_option( 'full_width_'.$i );
  
- $content_model       = onetone_option( 'section_content_model_'.$i,1);
+ $content_model       = onetone_option( 'section_content_model_'.$i);
  $section_subtitle    = onetone_option( 'section_subtitle_'.$i );
- $btn_text            = onetone_option( 'section_btn_text_'.$i );
- $btn_link            = onetone_option( 'section_btn_link_'.$i );
- $btn_target          = onetone_option( 'section_btn_target_'.$i );
- $description         = onetone_option( 'section_desc_'.$i );
- $color               = onetone_option( 'section_color_'.$i );
-  
+ 
+
+	
   if( !isset($section_content) || $section_content=="" ) 
     $section_content = onetone_option( 'sction_content_'.$i );
-  
-  $section_id      = sanitize_title( onetone_option( 'menu_slug_'.$i ,'section-'.($i+1) ) );
+	
+  $section_id      = sanitize_title( onetone_option( 'menu_slug_'.$i ) );
   
   if( $section_id == '' )
-    $section_id = 'section-'.($i+1);
+   $section_id = 'section-'.$i;
    
-    $section_id  = strtolower( $section_id );
+   $section_id  = strtolower( $section_id );
   
   $container_class = "container";
+  
   if( $full_width == "yes" ){
     $container_class = "";
   }
   
-  if( ($parallax_scrolling == "yes" || $parallax_scrolling == "1" || $parallax_scrolling == "on") && !$detect->isIOS()){
+  if( ($parallax_scrolling == "yes" || $parallax_scrolling == "1" || $parallax_scrolling == "on") && !$detect->isIOS()  ){
 	 $section_css_class  .= ' onetone-parallax';
   }
 ?>
-<section id="<?php echo $section_id; ?>" class="home-section-<?php echo ($i+1); ?> <?php echo $section_css_class;?>">
 
-    	<div class="home-container <?php echo $container_class; ?> page_container">
+<section id="<?php echo esc_attr($section_id); ?>" class="home-section-<?php echo $i; ?> <?php echo esc_attr($section_css_class);?>">
+
+    	<div class="home-container <?php echo $container_class; ?> page_container section_service_<?php echo $i; ?>">
 		 <?php
+		 
 		if( $content_model == '0' || $content_model == ''  ):
+		
 		?>
         
-        <?php if( $section_title != '' ):?>
-        <?php  
-		   $section_title_class = '';
+         <?php if( $section_title != '' || (function_exists('is_customize_preview') && is_customize_preview()) ):?>
+       <?php  
+			$section_title_class = '';
+			if( $section_subtitle == '' && !(function_exists('is_customize_preview') && is_customize_preview()))
+				$section_title_class = 'no-subtitle';
 		   
-		   if( $section_subtitle == '' )
-		      $section_title_class = 'no-subtitle';
 		?>
-       <h1 class="section-title <?php echo $section_title_class; ?>"><?php echo $section_title; ?></h1>
+       <h2 class="section-title <?php echo esc_attr($section_title_class); ?> <?php echo 'section_title_'.$i;?>"><?php echo wp_kses($section_title, $allowedposttags);?></h2>
         <?php endif;?>
-        <?php if( $section_subtitle != '' ):?>
-        <div class="section-subtitle"><?php echo do_shortcode($section_subtitle);?></div>
+        <?php if( $section_subtitle != '' || (function_exists('is_customize_preview') && is_customize_preview()) ):?>
+        <div class="section-subtitle <?php echo 'section_subtitle_'.$i;?>"><?php echo do_shortcode(wp_kses($section_subtitle, $allowedposttags))?></div>
          <?php endif;?>
-       <div class="home-section-content" style="color:<?php echo $color;?>;">
-       <div class="<?php echo $onetone_animated; ?>" data-animationduration="0.9" data-animationtype="fadeInRight" data-imageanimation="no">
-        <div >
- 
-          <div class="magee-promo-box">
-              <div class="promo-info">
-                <?php echo do_shortcode($description);?>
-              </div>
-              <div class="promo-action">
-              <?php if( $btn_text != ''):?>
-              <a href="<?php echo esc_url($btn_link);?>" target="<?php echo esc_attr($btn_target);?>" class="btn-normal btn-md"><?php echo do_shortcode($btn_text);?></a>
-              <?php endif;?>
-              </div>
-              
-            </div>
+        <div class="home-section-content"> 
+        <?php
+		$services = '';
+		$service  = '';
+		$d        = 0;
+		$section_service  = onetone_option( 'section_service_'.$i ); 
 
+		if (is_array($section_service) && !empty($section_service) ){
+			foreach($section_service as $item ){
+				 $image  = $item[ "image" ];
+				 $icon   = $item[ "icon" ];
+				 $title_ = $item[ "title" ];
+				 $desc   = $item[ "description" ];
+				 $link   = esc_url($item[ "link" ]);
+				 $target = esc_attr($item[ "target" ]);
+				 if (is_numeric($image)) {
+					$image_attributes = wp_get_attachment_image_src($image, 'full');
+					$image       = $image_attributes[0];
+				  }
+				 
+				 $icon = str_replace('fa-','',$icon);
+				 $icon = str_replace('fa ','',$icon);
+				 
+				 if( !($icon =='' && $title_=='' && $desc=='') ):
+				 if( $link == "" )
+					$title = $title_;
+				 else
+					 $title = '<a href="'.$link.'" target="'.$target.'">'.$title_.'</a>';
+			  
+				 if( $image !='' )
+					$service_icon = '<img src="'.esc_url($image).'" alt="'.esc_attr($title_).'" />';
+				 else
+					 $service_icon = '<div class="icon-box" data-animation=""> <i class="feature-box-icon fa fa-'.esc_attr($icon).'"></i></div>';
+				 
+				 if( $link != "" )
+					$service_icon = '<a href="'.$link.'" target="'.$target.'">'.$service_icon.'</a>';
+					
+			$service .= '<div class="col-md-4">
+			<div class="'.$onetone_animated.'" data-animationduration="0.9" data-animationtype="zoomIn" data-imageanimation="no">
+		  <div class="magee-feature-box style1" data-os-animation="fadeOut">
+			'.$service_icon.'
+			<h3 class="section_service_'.$i.'_title_'.$d.'">'.$title.'</h3>
+			<div class="feature-content">
+			  <p class="section_description_'.$i.'_title_'.$d.'">'.do_shortcode($desc).'</p>
+			  <a href="" target="_blank" class="feature-link"></a></div>
+		  </div></div>
+		</div>';
+			 if( ($d+1) % 3 == 0){
+				 $services .= '<div class="row">'.$service.'</div>';
+				 $service = '';
+				 }
+				 
+				 $d++;
+				 endif;
+			 
+			}
+		}
+		if( $service != '' ){ $services .= '<div class="row">'.$service.'</div>';}
+		echo $services;
+		?>
         </div>
-      </div>
-      </div>
         <?php
 		else:
 		?>
-        <?php if( $section_title != '' ):?>
-        <div class="section-title"><?php echo do_shortcode($section_title);?></div>
+        <?php if( $section_title != '' || (function_exists('is_customize_preview') && is_customize_preview()) ):?>
+        <div class="section-title <?php echo 'section_title_'.$i;?>"><?php echo esc_attr($section_title);?></div>
         <?php endif;?>
-            
-            <div class="home-section-content">
+       
+            <div class="home-section-content <?php echo 'section_content_'.$i;?>">
             <?php 
 			if(function_exists('Form_maker_fornt_end_main'))
              {
                  $section_content = Form_maker_fornt_end_main($section_content);
               }
-			 echo do_shortcode($section_content);
+			 echo do_shortcode(wp_kses($section_content, $allowedposttags));
 			?>
             </div>
-             <?php 	endif;?>
+            <?php 
+		endif;
+		?>
         </div>
   <div class="clear"></div>
 </section>

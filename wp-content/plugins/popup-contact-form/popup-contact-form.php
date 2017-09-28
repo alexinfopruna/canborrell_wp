@@ -3,7 +3,7 @@
 Plugin Name: Popup contact form
 Description: Plugin allows user to create and add the popup contact forms easily on the website. That popup contact form let user to send the emails to site admin.
 Author: Gopi Ramasamy
-Version: 6.1
+Version: 6.2
 Plugin URI: http://www.gopiplus.com/work/2012/05/18/popup-contact-form-wordpress-plugin/
 Author URI: http://www.gopiplus.com/work/2012/05/18/popup-contact-form-wordpress-plugin/
 Donate link: http://www.gopiplus.com/work/2012/05/18/popup-contact-form-wordpress-plugin/
@@ -244,7 +244,7 @@ function PopupContact_plugin_parse_request($qstring)
 							$message = $PopupContact_message;
 							
 							$headers = "MIME-Version: 1.0" . "\r\n";
-							$headers .= "Content-type:text/html;charset=UTF-8" . "\r\n";
+							$headers .= "Content-type:text/html;charset=iso-8859-1" . "\r\n";
 							$headers .= "From: \"$sender_name\" <$sender_email>\n";
 							$headers .= "Return-Path: <" . esc_sql(trim($PopupContact_email)) . ">\n";
 							$headers .= "Reply-To: \"" . esc_sql(trim($PopupContact_name)) . "\" <" . esc_sql(trim($PopupContact_email)) . ">\n";

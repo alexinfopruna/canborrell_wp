@@ -77,14 +77,17 @@ i{color:#666;}
 .page-template-page-premsa .panel-body{
     padding-top:15px;
     padding-bottom:15px;
+}
 
+.owl-stage{
+    margin: auto;
 }
 
 /***************************************/
 
 .aborder{border: #e5e5e5 solid 1px;border-radius: 7px;padding:10px;}
 
-h1.magee-heading .heading-inner{
+.magee-heading .heading-inner{
     font-family: Encient German Gothic,Times New Roman;
     font-size:74px;
 }
@@ -1284,11 +1287,21 @@ section.home-section-6 .home-section-content .alert-warning h3{
 section.home-section-1 .home-section-content, section.home-section-1 p{
     font-size: 2vw !important;
 }
-
-
-section.home-section-1 .section-subtitle {
+.home-container .section-subtitle.section_subtitle_0{
     font-size: 21px;
+    font-size: 14px;
+    font: 18px  sans-serif !important;
+}
 
+.magee-btn-normal.banner-scroll.btn-lg{
+     font: 30px  sans-serif !important;;
+     padding:15px;
+}
+
+.btn-md {
+    font-size: 0.7em;
+    background-color: black;
+    color: white;
 }
 
 
@@ -1385,8 +1398,12 @@ input.wpcf7-submit{
 
 .magee-tab-box.tab-line ul > li > a {
     padding: 10px 10px;
-};
+}
 
+
+section.home-section-6{
+    padding: 0 !important;
+}
 
 @media (max-width: 450px){
 section.home-section-1 .home-section-content, section.home-section-1 p{

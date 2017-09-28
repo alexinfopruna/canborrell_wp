@@ -170,14 +170,14 @@ class onetone_metaboxClass {
 		
 		/* sidebars */
 
-	  $sidebars[] = array(
+	  $onetone_sidebars[] = array(
 				  'label'       => __( 'None', 'onetone' ),
 				  'value'       => ''
 				);
 	  
 	  foreach( $wp_registered_sidebars as $key => $value){
 		  
-		  $sidebars[] = array(
+		  $onetone_sidebars[] = array(
 				  'label'       => $value['name'],
 				  'value'       => $value['id'],
 				);
@@ -250,7 +250,7 @@ class onetone_metaboxClass {
 		_e( 'Select Left Sidebar', 'onetone' );
 		echo '</label> ';
 		echo '<select name="left_sidebar" id="left_sidebar">';
-		foreach( $sidebars as $sidebar ){
+		foreach( $onetone_sidebars as $sidebar ){
 		echo '<option '.selected($left_sidebar,$sidebar['value'],false).' value="'.$sidebar['value'].'">'.$sidebar['label'].'</option>';
 		}
 		echo '</select></p>';
@@ -259,7 +259,7 @@ class onetone_metaboxClass {
 		_e( 'Select Right Sidebar', 'onetone' );
 		echo '</label> ';
 		echo '<select name="right_sidebar" id="right_sidebar">';
-		foreach( $sidebars as $sidebar ){
+		foreach( $onetone_sidebars as $sidebar ){
 		echo '<option '.selected($right_sidebar,$sidebar['value'],false).' value="'.$sidebar['value'].'">'.$sidebar['label'].'</option>';
 		}
 		echo '</select></p>';

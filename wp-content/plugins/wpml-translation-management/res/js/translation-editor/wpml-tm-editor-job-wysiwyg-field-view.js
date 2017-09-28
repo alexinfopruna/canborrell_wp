@@ -28,7 +28,7 @@ var WPML_TM = WPML_TM || {};
 			var self = this;
 			var editor = tinymce.get(self.field.field_type);
 			if (editor && editor instanceof tinyMCE.Editor) {
-				editor.setContent(value);
+				editor.setContent(value.replace(/\r?\n/g, '<br />'));
 			}
 			self.getTextAreaElement().val(value);
 			this.updateUI();

@@ -8,7 +8,7 @@
 <?php wp_head(); ?>
 </head>
 <?php
-  global  $page_meta;
+  global  $page_meta,$onetone_home_sections;
   $detect                      = new Mobile_Detect;
   $display_top_bar             = onetone_option('display_top_bar','yes');
   $header_background_parallax  = onetone_option('header_background_parallax');
@@ -30,15 +30,27 @@
   $logo_position      = onetone_option('logo_position','left');
   $logo_position      = $logo_position==''?'left':$logo_position;
   $header_overlay     = onetone_option('header_overlay');
- 
-  $overlay = '';
+  $overlay            = '';
+  $overlay_logo       = '';
   if( ($header_overlay == 'yes'|| $header_overlay == '1'|| $header_overlay == 'on') && (is_front_page() || is_home() ) )
   {
     $overlay      = 'overlay';
 	$overlay_logo = onetone_option('overlay_logo');
 	$logo         = ( $overlay_logo == '' ) ? $logo : $overlay_logo;
   }
-
+  
+  if (is_numeric($logo)) {
+	$image_attributes = wp_get_attachment_image_src($logo, 'full');
+	$logo       = $image_attributes[0];
+	}
+   if (is_numeric($sticky_logo)) {
+	$image_attributes = wp_get_attachment_image_src($sticky_logo, 'full');
+	$sticky_logo       = $image_attributes[0];
+	}
+   if (is_numeric($overlay_logo)) {
+	$image_attributes = wp_get_attachment_image_src($overlay_logo, 'full');
+	$overlay_logo       = $image_attributes[0];
+	}
   
   //sticky
   $enable_sticky_header         = onetone_option('enable_sticky_header','yes');
@@ -46,17 +58,21 @@
   $enable_sticky_header_mobiles = onetone_option('enable_sticky_header_mobiles','yes');
    
  if(isset($page_meta['nav_menu']) && $page_meta['nav_menu'] !='')
- $theme_location = $page_meta['nav_menu'];
+	 $theme_location = $page_meta['nav_menu'];
  else
- $theme_location = 'primary';
+ 	$theme_location = 'primary';
  
  $header_container = 'container';
+ 
  if( $header_fullwidth == 1)
- $header_container = 'container-fluid';
+	 $header_container = 'container-fluid';
  
  $body_class  = '';
+ 
  if(is_home() || is_front_page() )
- $body_class  = 'page homepage';
+ 	$body_class  = 'page homepage';
+ 
+ $body_class  .= ' onetone';
  $header_image = get_header_image();
 ?>
 <body <?php body_class($body_class); ?>>
@@ -116,41 +132,40 @@
 
 							  $onepage_menu      = '';
 							  $onepage_side_menu = '';
-	
-							  $sections_num = 15 ;
 							  
 							  $new_homepage_section = array();
+							  // order
+							  $home_sections = onetone_option('section_order');
 							  
-							  for($i=0;$i<$sections_num;$i++){
-								  
-							  $section = onetone_option('section_order_'.$i);
-							  
-							  if( is_numeric($section ) )
-							    $new_homepage_section[] = $section;
-							  else
-							    $new_homepage_section[] = $i;
+							  if( $home_sections !='' && count($home_sections)>0 ){
+									  $new_homepage_section = $home_sections;
+								}else{
+									  $new_homepage_section = $onetone_home_sections;
 							  }
+												
 							  $i = 0 ;
-							  foreach( $new_homepage_section as $section_part ):
+							  foreach( $new_homepage_section as $section ):
+	
+								  $onetone_section_id = $section['id'];
+								  $section_part       = $section['type'];
 							  
-							  $section_part  = $section_part - 1;
-							  $hide_section  = onetone_option( 'section_hide_'.$section_part );
-							  
-							  if( $hide_section != '1' && $hide_section != 'on' ){
-							  
-							  $section_menu = onetone_option( 'menu_title_'.$section_part );
-							  $section_slug = onetone_option( 'menu_slug_'.$section_part );
-							  $section_slug = $section_slug==''? 'section-'.($section_part+1):$section_slug;
-							  if( $section_menu != '' ){
-							   $onepage_menu    .= '<li class="onetone-menuitem"><a id="onetone-'.$section_slug.'" href="#'.strtolower($section_slug).'" >
-							 <span>'.$section_menu.'</span></a></li>';
-							 
-							 $onepage_side_menu .= '<li class="onetone-menuitem"><a href="#'.strtolower($section_slug).'" ><span>'.$section_menu.'</span></a></li>';
-							 
-							  }
-							 
-							  }
-							  $i++;
+								  $hide_section  = onetone_option( 'section_hide_'.$onetone_section_id );
+								  
+								  if( $hide_section != '1' && $hide_section != 'on' ){
+								  
+									  $section_menu = onetone_option( 'menu_title_'.$onetone_section_id );
+									  $section_slug = onetone_option( 'menu_slug_'.$onetone_section_id );
+									  $section_slug = $section_slug==''? 'section-'.$onetone_section_id:$section_slug;
+									  if( $section_menu != '' ){
+										   $onepage_menu    .= '<li class="onetone-menuitem"><a id="onetone-'.$section_slug.'" class="menu_title_'.$onetone_section_id.'" href="#'.strtolower($section_slug).'" >
+										 <span>'.$section_menu.'</span></a></li>';
+										 
+										   $onepage_side_menu .= '<li class="onetone-menuitem"><a href="#'.strtolower($section_slug).'" ><span>'.$section_menu.'</span></a></li>';
+									 
+									  }
+								 
+								  }
+								  $i++;
 							  endforeach;
 
 

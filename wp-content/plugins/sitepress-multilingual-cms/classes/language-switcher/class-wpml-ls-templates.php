@@ -3,7 +3,7 @@
 class WPML_LS_Templates {
 
 	const CONFIG_FILE    = 'config.json';
-	const TRANSIENT_NAME = 'wpml_language_switcher_template_objects';
+	const OPTION_NAME = 'wpml_language_switcher_template_objects';
 
 	/** @var  @var string $uploads_path */
 	private $uploads_path;
@@ -42,19 +42,20 @@ class WPML_LS_Templates {
 	}
 
 	public function activated_plugin_action() {
-		delete_site_transient( self::TRANSIENT_NAME );
+		delete_option( self::OPTION_NAME );
 	}
 
 	/**
-	 * @param mixed|bool|array $in_array
+	 * @param null|array $in_array
 	 *
-	 * @return mixed
+	 * @return array
 	 */
-	public function get_templates( $in_array = false ) {
-		if ( ! $in_array ) {
+	public function get_templates( $in_array = null ) {
+		if ( null === $in_array ) {
 			$ret = $this->templates;
 		} else {
-			$in_array = array_combine( $in_array, $in_array );
+			// PHP 5.3 Bug https://bugs.php.net/bug.php?id=34857
+			$in_array = $in_array ? array_combine( $in_array, $in_array ) : $in_array;
 			$ret = array_intersect_key( $this->templates, $in_array );
 		}
 		return $ret;
@@ -108,7 +109,7 @@ class WPML_LS_Templates {
 			$dirs_to_scan = apply_filters( 'wpml_ls_directories_to_scan', $dirs_to_scan );
 
 			$sub_dir          = $this->ds . 'templates' . $this->ds . 'language-switchers';
-			$wpml_core_path   = ICL_PLUGIN_PATH . $sub_dir;
+			$wpml_core_path   = WPML_PLUGIN_PATH . $sub_dir;
 			$theme_path       = get_template_directory() . $this->ds . 'wpml' . $sub_dir;
 			$child_theme_path = get_stylesheet_directory() . $this->ds . 'wpml' . $sub_dir;
 			$uploads_path     = $this->get_uploads_path() . $this->ds . 'wpml' . $sub_dir;
@@ -153,7 +154,7 @@ class WPML_LS_Templates {
 					$this->templates[ $tpl['slug'] ] = new WPML_LS_Template( $tpl );
 				}
 			}
-			set_site_transient( self::TRANSIENT_NAME, $this->templates, 30 * DAY_IN_SECONDS );
+			update_option( self::OPTION_NAME, $this->templates );
 		}
 
 		return $this->templates;
@@ -281,11 +282,11 @@ class WPML_LS_Templates {
 	 * @return bool
 	 */
 	private function is_core_template( $path ) {
-		return strpos( $path, ICL_PLUGIN_PATH ) === 0;
+		return strpos( $path, $this->wpml_file->fix_dir_separator( WPML_PLUGIN_PATH ) ) === 0;
 	}
 
 	private function get_templates_from_transient() {
-		$templates = get_site_transient( self::TRANSIENT_NAME );
+		$templates = get_option( self::OPTION_NAME );
 		if ( $templates && ! $this->are_template_paths_valid( $templates ) ) {
 			$templates = false;
 		}
@@ -313,7 +314,7 @@ class WPML_LS_Templates {
 	 */
 	private function get_uploads_path() {
 		if ( ! $this->uploads_path ) {
-			$uploads = wp_get_upload_dir();
+			$uploads = wp_upload_dir( null, false );
 
 			if ( isset( $uploads['basedir'] ) ) {
 				$this->uploads_path = $uploads['basedir'];

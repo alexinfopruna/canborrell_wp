@@ -1,5 +1,6 @@
 <?php
- $i                   = 11 ;
+global $onetone_animated, $onetone_section_id, $allowedposttags;
+ $i                   = $onetone_section_id ;
  $detect              = new Mobile_Detect;
  $section_title       = onetone_option( 'section_title_'.$i );
  $section_menu        = onetone_option( 'menu_title_'.$i );
@@ -8,13 +9,13 @@
  $section_content     = onetone_option( 'section_content_'.$i );
  $full_width          = onetone_option( 'full_width_'.$i );
  
-	
+
   if( !isset($section_content) || $section_content=="" ) 
   $section_content = onetone_option( 'sction_content_'.$i );
   
-  $section_id      = sanitize_title( onetone_option( 'menu_slug_'.$i ,'section-'.($i+1) ) );
+  $section_id      = sanitize_title( onetone_option( 'menu_slug_'.$i ) );
   if( $section_id == '' )
-   $section_id = 'section-'.($i+1);
+   $section_id = 'section-'.$i;
    
    $section_id  = strtolower( $section_id );
   
@@ -28,22 +29,22 @@
   }
   
 ?>
-<section id="<?php echo $section_id; ?>" class="home-section-<?php echo ($i+1); ?> <?php echo $section_css_class;?>">
 
+<section id="<?php echo esc_attr($section_id); ?>" class="home-section-<?php echo $i; ?> <?php echo esc_attr($section_css_class);?>">
 
     	<div class="home-container <?php echo $container_class; ?> page_container">
 
-
-<?php if($section_title){ ?>
-        	<h1 class="section-title"><?php echo $section_title;?></h1>
+		<?php if($section_title){ ?>
+        	<h2 class="section-title <?php echo 'section_title_'.$i;?>"><?php echo esc_attr($section_title);?></h2>
             <?php } ?>
-            <div class="home-section-content">
+           
+            <div class="home-section-content <?php echo 'section_content_'.$i;?>">
             <?php 
 			if(function_exists('Form_maker_fornt_end_main'))
              {
                  $section_content = Form_maker_fornt_end_main($section_content);
               }
-			 echo do_shortcode($section_content);
+			 echo do_shortcode(wp_kses($section_content, $allowedposttags));
 			?>
             </div>
         </div>

@@ -246,7 +246,7 @@ abstract class WPML_Post_Translation extends WPML_Element_Translation {
 		$translation_sync->sync_with_translations( $original_id ? $original_id : $post_vars['ID'], $post_vars );
 		$translation_sync->sync_with_duplicates( $post_vars['ID'] );
 		if ( ! function_exists( 'icl_cache_clear' ) ) {
-			require_once ICL_PLUGIN_PATH . '/inc/cache.php';
+			require_once WPML_PLUGIN_PATH . '/inc/cache.php';
 		}
 		icl_cache_clear( $post_vars['post_type'] . 's_per_language', true );
 		wp_defer_term_counting( false );
@@ -307,7 +307,8 @@ abstract class WPML_Post_Translation extends WPML_Element_Translation {
 			return false;
 		}
 		$is_auto_draft              = isset( $post->post_status ) && $post->post_status === 'auto-draft';
-		$is_editing_different_post  = array_key_exists( 'post_ID', $_POST ) && $post->ID != $_POST['post_ID'];
+		$is_editing_different_post  = array_key_exists( 'post_ID', $_POST ) && (int) $_POST['post_ID']
+		                              && $post->ID != $_POST['post_ID'];
 		$is_saving_a_revision       = array_key_exists( 'post_type', $_POST ) && 'revision' === $_POST['post_type'];
 		$is_untrashing              = array_key_exists( 'action', $_GET ) && 'untrash' === $_GET['action'];
 		$is_auto_save               = array_key_exists( 'autosave', $_POST );

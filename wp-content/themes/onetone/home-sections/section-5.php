@@ -1,6 +1,6 @@
 <?php
-global $onetone_animated;
- $i                   = 4 ;
+ global $onetone_animated, $onetone_section_id, $allowedposttags;
+ $i                   = $onetone_section_id ;
  $detect              = new Mobile_Detect;
  $section_title       = onetone_option( 'section_title_'.$i );
  $section_menu        = onetone_option( 'menu_title_'.$i );
@@ -9,23 +9,18 @@ global $onetone_animated;
  $section_content     = onetone_option( 'section_content_'.$i );
  $full_width          = onetone_option( 'full_width_'.$i );
  
- $content_model       = onetone_option( 'section_content_model_'.$i,1);
+ $content_model       = onetone_option( 'section_content_model_'.$i);
  $section_subtitle    = onetone_option( 'section_subtitle_'.$i );
- $color               = onetone_option( 'section_color_'.$i );
- $columns             = absint(onetone_option('section_team_columns',4));
- $col                 = $columns>0?12/$columns:3;
- $columns             = ($columns == 0)?4:$columns;
- $style               = absint(onetone_option('section_team_style'));
-
+ $left_content        = onetone_option( 'section_left_content_'.$i );
+ $right_content       = onetone_option( 'section_right_content_'.$i );
 	
   if( !isset($section_content) || $section_content=="" ) 
   $section_content = onetone_option( 'sction_content_'.$i );
   
-  $section_id      = sanitize_title( onetone_option( 'menu_slug_'.$i ,'section-'.($i+1) ) );
+  $section_id      = sanitize_title( onetone_option( 'menu_slug_'.$i ) );
   if( $section_id == '' )
-  $section_id      = 'section-'.($i+1);
-  
-  $section_id  = strtolower( $section_id );
+   $section_id = 'section-'.$i;
+   $section_id  = strtolower( $section_id );
   
   $container_class = "container";
   if( $full_width == "yes" ){
@@ -37,226 +32,48 @@ global $onetone_animated;
   }
   
 ?>
-
-<section id="<?php echo $section_id; ?>" class="home-section-<?php echo ($i+1); ?> <?php echo $section_css_class;?>">
-
-  <div class="home-container <?php echo $container_class; ?> page_container">
-    <?php
+<section id="<?php echo esc_attr($section_id); ?>" class="home-section-<?php echo $i; ?> <?php echo esc_attr($section_css_class);?>">
+    	<div class="home-container <?php echo esc_attr($container_class); ?> page_container">
+		 <?php
 		if( $content_model == '0' || $content_model == ''  ):
-		
-		if( $style == 1 ){ // carousel style
 		?>
-    
-      <?php if( $section_title != '' ):?>
-      <?php  
-		   $section_title_class = '';
-		   if( $section_subtitle == '' )
-		   $section_title_class = 'no-subtitle';
-		?>
-      <h1 class="section-title <?php echo $section_title_class; ?>"><?php echo $section_title; ?></h1>
-      <?php endif;?>
-      <?php if( $section_subtitle != '' ):?>
-      <div class="section-subtitle"><?php echo do_shortcode($section_subtitle);?></div>
-      <?php endif;?>
-      <div class="home-section-content" style="color:<?php echo $color;?>;">
-      <div class="onetone-owl-carousel-wrap">
-        <div id="onetone-team-carousel" class="onetone-owl-carousel owl-carousel owl-theme">
-          <?php
-	 $team_item = '';
-
-	 for( $j=0; $j<8; $j++ ){
-	   
-	  $avatar      =  esc_url(onetone_option('section_avatar_'.$i.'_'.$j));
-	  $link        =  esc_url(onetone_option('section_link_'.$i.'_'.$j));
-	  $name        =  esc_attr(onetone_option('section_name_'.$i.'_'.$j));
-	  $byline      =  esc_attr(onetone_option('section_byline_'.$i.'_'.$j));
-	  $description =  onetone_option('section_desc_'.$i.'_'.$j);
-	 
-	  
-	  if( $avatar != '' ):
-      if( $link!='' )
-	  $image = '<a href="'.$link.'" target="_blank"><img src="'.$avatar.'" alt="'.$name.'" style="border-radius: 0; display: inline-block;border-style: solid;" />
-        <div class="img-overlay primary">
-          <div class="img-overlay-container">
-            <div class="img-overlay-content"><i class="fa fa-link"></i></div>
-          </div>
-        </div>
-        </a>';
-		else
-		$image = '<img src="'.$avatar.'" alt="" />';
-		
-	 $icons = '';
-	for( $k=0;$k<4;$k++){
-		$icon = str_replace('fa-','',esc_attr(onetone_option('section_icon_'.$i.'_'.$j.'_'.$k)));
-		$link = esc_url(onetone_option('section_icon_link_'.$i.'_'.$j.'_'.$k));
-		if( $icon != '' ){
-		$icons .= '<li><a href="'.$link.'" target="_blank"><i class="fa fa-'.$icon.'"></i></a></li>';
-		}
-		}
-	
-	  $team_item .= '<div class="onetone-carousel-item">
-	  <div class="'.$onetone_animated.'" data-animationduration="0.9" data-animationtype="fadeInDown" data-imageanimation="no">
-						<div class="magee-person-box">
-						  <div class="person-img-box">
-							<div class="img-box figcaption-middle text-center fade-in">'.$image.'</div>
-						  </div>
-						  <div class="person-vcard text-center">
-							<h3 class="person-name" style="text-transform: uppercase;">'.$name.'</h3>
-							<h4 class="person-title" style="text-transform: uppercase;">'.$byline.'</h4>
-							<p class="person-desc">'.do_shortcode($description).'</p>
-							<ul class="person-social">
-							 '.$icons.'
-							</ul>
-						  </div>
-						</div>
-						</div>
-					  </div>';
-	
-	   endif;
-	   
-	 }
-
-	 echo $team_item;
-	?>
-        </div>
-      </div>
-    </div>
-    <script>
-jQuery(document).ready(function($){
-	$("#onetone-team-carousel").owlCarousel({
-		items:<?php echo absint($columns);?>,
-		nav:false,
-		responsiveClass:true,
-		loop: false,
-		responsive:{
-			  0:{
-				items:1,
-				dots:true
-			  },
-			  768:{
-				items:2,
-				dots:true
-			  },
-			  992:{
-				items:3,
-				dots:true
-			  },
-			   1200:{
-				items:<?php echo absint($columns);?>,
-				dots:true
-			  },
-			  
-			
-			}
-	});
-});  
-    
-</script>
-<?php
- }else{ 
- // normal style 
-?>
-    
-         <?php if( $section_title != '' ):?>
+        
+         <?php if( $section_title != '' || (function_exists('is_customize_preview') && is_customize_preview()) ):?>
        <?php  
 		   $section_title_class = '';
-		   if( $section_subtitle == '' )
+		   if( $section_subtitle == '' && !(function_exists('is_customize_preview') && is_customize_preview()))
 		   $section_title_class = 'no-subtitle';
 		?>
-       <h1 class="section-title <?php echo $section_title_class; ?>"><?php echo $section_title; ?></h1>
+       <h2 class="section-title <?php echo esc_attr($section_title_class); ?> <?php echo 'section_title_'.$i;?>"><?php echo wp_kses($section_title, $allowedposttags);?></h2>
         <?php endif;?>
-        <?php if( $section_subtitle != '' ):?>
-        <div class="section-subtitle"><?php echo do_shortcode($section_subtitle);?></div>
+        <?php if( $section_subtitle != '' || (function_exists('is_customize_preview') && is_customize_preview()) ):?>
+        <div class="section-subtitle <?php echo 'section_subtitle_'.$i;?>"><?php echo do_shortcode(wp_kses($section_subtitle, $allowedposttags));?></div>
          <?php endif;?>
-        <div class="home-section-content" style="color:<?php echo $color;?>;">
-        <?php
-	 $team_item = '';
-	 $team_str  = '';
-	 for( $j=0; $j<8; $j++ ){
-	   
-	  $avatar      =  esc_url(onetone_option('section_avatar_'.$i.'_'.$j));
-	  $link        =  esc_url(onetone_option('section_link_'.$i.'_'.$j));
-	  $name        =  esc_attr(onetone_option('section_name_'.$i.'_'.$j));
-	  $byline      =  esc_attr(onetone_option('section_byline_'.$i.'_'.$j));
-	  $description =  onetone_option('section_desc_'.$i.'_'.$j);
-	 
-	  
-	  if( $avatar != '' ):
-      if( $link!='' )
-	  $image = '<a href="'.$link.'" target="_blank"><img src="'.$avatar.'" alt="'.$name.'" style="border-radius: 0; display: inline-block;border-style: solid;" />
-        <div class="img-overlay primary">
-          <div class="img-overlay-container">
-            <div class="img-overlay-content"><i class="fa fa-link"></i></div>
+         <div class="home-section-content">
+         <div class="row">
+         <div class="col-md-8"><div class="<?php echo $onetone_animated;?> <?php echo 'section_left_content_'.$i;?>" data-animationduration="0.9" data-animationtype="fadeInLeft" data-imageanimation="no"><?php echo do_shortcode($left_content);?></div></div>
+         <div class="col-md-4"><div class="<?php echo $onetone_animated;?> <?php echo 'section_right_content_'.$i;?>" data-animationduration="0.9" data-animationtype="fadeInRight" data-imageanimation="no"><?php echo do_shortcode($right_content);?></div></div>
+         </div>
           </div>
-        </div>
-        </a>';
-		else
-		$image = '<img src="'.$avatar.'" alt="" />';
-		
-	 $icons = '';
-	for( $k=0;$k<4;$k++){
-		$icon = str_replace('fa-','',esc_attr(onetone_option('section_icon_'.$i.'_'.$j.'_'.$k)));
-		$link = esc_url(onetone_option('section_icon_link_'.$i.'_'.$j.'_'.$k));
-		if( $icon != '' ){
-		$icons .= '<li><a href="'.$link.'"><i class="fa fa-'.$icon.'"></i></a></li>';
-		}
-		}
-	
-	  $team_item .= '<div class="col-md-'.$col.'">
-	  <div class="'.$onetone_animated.'" data-animationduration="0.9" data-animationtype="fadeInDown" data-imageanimation="no">
-						<div class="magee-person-box" id="">
-						  <div class="person-img-box">
-							<div class="img-box figcaption-middle text-center fade-in">'.$image.'</div>
-						  </div>
-						  <div class="person-vcard text-center">
-							<h3 class="person-name" style="text-transform: uppercase;">'.$name.'</h3>
-							<h4 class="person-title" style="text-transform: uppercase;">'.$byline.'</h4>
-							<p class="person-desc">'.do_shortcode($description).'</p>
-							<ul class="person-social">
-							 '.$icons.'
-							</ul>
-						  </div>
-						</div>
-						</div>
-					  </div>';
-	  $m = $j+1;
-	  if( $m % $columns == 0 ){
-	        $team_str .= '<div class="row">'.$team_item.'</div>';
-	        $team_item = '';
-	   }
-	   endif;
-	   
-	 }
-	 if( $team_item != '' ){
-		    $team_str .= '<div class="row">'.$team_item.'</div>';
-	      
-		   }
-		
-	 echo $team_str;
-	?>
-    </div>
-<?php
-		}
-		//end
-?>
-    <?php
+           <?php
 		else:
 		?>
-    <?php if( $section_title != '' ):?>
-    <div class="section-title"><?php echo do_shortcode($section_title);?></div>
-    <?php endif;?>
-    <div class="home-section-content">
-      <?php 
+        <?php if( $section_title != '' || (function_exists('is_customize_preview') && is_customize_preview()) ):?>
+        <div class="section-title <?php echo 'section_title_'.$i;?>"><?php echo esc_attr($section_title);?></div>
+        <?php endif;?>
+       
+            <div class="home-section-content <?php echo 'section_content_'.$i;?>">
+            <?php 
 			if(function_exists('Form_maker_fornt_end_main'))
              {
                  $section_content = Form_maker_fornt_end_main($section_content);
               }
-			 echo do_shortcode($section_content);
+			 echo do_shortcode(wp_kses($section_content, $allowedposttags));
 			?>
-    </div>
-    <?php 
+            </div>
+              <?php 
 		endif;
 		?>
-  </div>
+        </div>
   <div class="clear"></div>
 </section>

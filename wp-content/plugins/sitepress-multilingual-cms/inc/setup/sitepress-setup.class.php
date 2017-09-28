@@ -92,24 +92,44 @@ class SitePress_Setup {
 		if( $records_count < $languages_names_count) return false;
 
 		$languages_codes = self::get_languages_codes();
+		$language_pairs = self::get_language_translations();
 
-		$table_name    = $wpdb->prefix . 'icl_languages_translations';
 		foreach ( self::get_languages_names() as $lang => $val ) {
 			if ( strpos( $lang, 'Norwegian Bokm' ) === 0 ) {
 				$lang                     = 'Norwegian Bokmål';
 				$languages_codes[ $lang ] = 'nb';
 			}
-			foreach ( $val[ 'tr' ] as $k => $display ) {
+
+			foreach ( $val['tr'] as $k => $display ) {
 				if ( strpos( $k, 'Norwegian Bokm' ) === 0 ) {
 					$k = 'Norwegian Bokmål';
 				}
-				$sql = $wpdb->prepare( "SELECT id FROM {$table_name} WHERE language_code=%s AND display_language_code=%s", array( $languages_codes[ $lang ], $languages_codes[ $k ] ) );
-				if ( !( $wpdb->get_var( $sql ) ) ) {
+
+				$code = $languages_codes[ $lang ];
+				if ( ! array_key_exists( $code, $language_pairs ) ||
+				     ! in_array( $languages_codes[ $k ], $language_pairs[ $code ] ) ) {
 					return false;
 				}
 			}
 		}
 		return true;
+	}
+
+	private static function get_language_translations() {
+		$result = array();
+
+		global $wpdb;
+		$table_name = $wpdb->prefix . 'icl_languages_translations';
+		$sql        = "SELECT language_code, display_language_code FROM {$table_name}";
+		$rowset     = $wpdb->get_results( $sql );
+
+		if ( is_array( $rowset ) ) {
+			foreach ( $rowset as $row ) {
+				$result[ $row->language_code ][] = $row->display_language_code;
+			}
+		}
+
+		return $result;
 	}
 
 	static function fill_languages() {
@@ -146,13 +166,17 @@ class SitePress_Setup {
 					} // exception for norwegian
 					$default_locale = isset( $lang_locales[ $language_code ] ) ? $lang_locales[ $language_code ] : '';
 
+					$language_tag = $default_locale ? $default_locale : $language_code;
+					$language_tag = str_replace( '_', '-', $language_tag );
+					$language_tag = strtolower( $language_tag );
+
 					$args = array(
 						'english_name'   => $key,
 						'code'           => $language_code,
 						'major'          => $val[ 'major' ],
 						'active'         => isset($active_languages[ $language_code ]) ? 1 : 0,
 						'default_locale' => $default_locale,
-						'tag'            => $language_code
+						'tag'            => $language_tag,
 					);
 					if ( $wpdb->insert( $table_name, $args )  === false) {
 						return false;
@@ -288,7 +312,7 @@ class SitePress_Setup {
             ) {
                 continue;
             }
-            if ( !file_exists ( ICL_PLUGIN_PATH . '/res/flags/' . $code . '.png' ) ) {
+            if ( !file_exists ( WPML_PLUGIN_PATH . '/res/flags/' . $code . '.png' ) ) {
                 $file = 'nil.png';
             } else {
                 $file = $code . '.png';

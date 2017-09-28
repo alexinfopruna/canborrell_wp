@@ -516,13 +516,16 @@ class WPML_TM_Xliff_Frontend extends WPML_TM_Xliff_Shared {
 		$export_label = esc_html__( 'Export all jobs:', 'wpml-translation-management' );
 
 		if ( isset( $_SESSION['translation_ujobs_filter'] ) ) {
+			$type = __( 'All types', 'wpml-translation-management' );
 
 			if ( ! empty( $_SESSION['translation_ujobs_filter']['type'] ) ) {
-				$post_slug = preg_replace( '/^post_/', '', $_SESSION['translation_ujobs_filter']['type'], 1 );
-				$post_type = get_post_type_object( $post_slug );
-				$type      = $post_type->label;
-			} else {
-				$type      = __( 'All types', 'wpml-translation-management' );
+				$post_slug  = preg_replace( '/^post_|^package_/', '', $_SESSION['translation_ujobs_filter']['type'], 1 );
+				$post_types = $this->sitepress->get_translatable_documents( true );
+				$post_types = apply_filters( 'wpml_get_translatable_types', $post_types );
+
+				if ( array_key_exists( $post_slug, $post_types ) ) {
+					$type = $post_types[ $post_slug ]->label;
+				}
 			}
 
 			$from   = ! empty( $_SESSION['translation_ujobs_filter']['from'] )

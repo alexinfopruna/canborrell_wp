@@ -1,6 +1,7 @@
 <?php
-global $onetone_animated;
- $i                   = 6 ;
+// section testimonial
+global $onetone_animated, $onetone_section_id, $allowedposttags;
+ $i                   = $onetone_section_id ;
  $detect              = new Mobile_Detect;
  $section_title       = onetone_option( 'section_title_'.$i );
  $section_menu        = onetone_option( 'menu_title_'.$i );
@@ -9,16 +10,18 @@ global $onetone_animated;
  $section_content     = onetone_option( 'section_content_'.$i );
  $full_width          = onetone_option( 'full_width_'.$i );
  
- $content_model       = onetone_option( 'section_content_model_'.$i,1);
+ $content_model       = onetone_option( 'section_content_model_'.$i);
  $section_subtitle    = onetone_option( 'section_subtitle_'.$i );
- $color               = onetone_option( 'section_color_'.$i );
-
+ $columns             = absint(onetone_option('section_testimonial_columns_'.$i,3));
+ $col                 = $columns>0?12/$columns:4;
+ $columns             = ($columns == 0)?3:$columns;
+ $style               = absint(onetone_option('section_testimonial_style_'.$id));
   if( !isset($section_content) || $section_content=="" ) 
   $section_content = onetone_option( 'sction_content_'.$i );
   
-  $section_id      = sanitize_title( onetone_option( 'menu_slug_'.$i ,'section-'.($i+1) ) );
+  $section_id      = sanitize_title( onetone_option( 'menu_slug_'.$i ) );
   if( $section_id == '' )
-   $section_id = 'section-'.($i+1);
+   $section_id = 'section-'.$i;
    
    $section_id  = strtolower( $section_id );
   
@@ -27,70 +30,208 @@ global $onetone_animated;
   $container_class = "";
   }
   
-  if( ($parallax_scrolling == "yes" || $parallax_scrolling == "1" || $parallax_scrolling == "on") && !$detect->isIOS() ){
+  if(($parallax_scrolling == "yes" || $parallax_scrolling == "1" || $parallax_scrolling == "on") && !$detect->isIOS()){
 	 $section_css_class  .= ' onetone-parallax';
   }
   
 ?>
 
-<section id="<?php echo $section_id; ?>" class="home-section-<?php echo ($i+1); ?> <?php echo $section_css_class;?>">
+<section id="<?php echo esc_attr($section_id); ?>" class="home-section-<?php echo $i; ?> <?php echo esc_attr($section_css_class);?>">
 
     	<div class="home-container <?php echo $container_class; ?> page_container">
 		<?php
 		if( $content_model == '0' || $content_model == ''  ):
+		
+		if( $style == 1 ){ // carousel style
 		?>
         
-         <?php if( $section_title != '' ):?>
+         <?php if( $section_title != '' || (function_exists('is_customize_preview') && is_customize_preview()) ):?>
        <?php  
 		   $section_title_class = '';
-		   if( $section_subtitle == '' )
+		   if( $section_subtitle == '' && !(function_exists('is_customize_preview') && is_customize_preview()))
 		   $section_title_class = 'no-subtitle';
 		?>
-       <h1 class="section-title <?php echo $section_title_class; ?>"><?php echo $section_title; ?></h1>
+       <h2 class="section-title <?php echo $section_title_class; ?>"><?php echo wp_kses($section_title, $allowedposttags);?></h2>
         <?php endif;?>
-        <?php if( $section_subtitle != '' ):?>
-        <div class="section-subtitle"><?php echo do_shortcode($section_subtitle);?></div>
+        <?php if( $section_subtitle != '' || (function_exists('is_customize_preview') && is_customize_preview()) ):?>
+        <div class="section-subtitle"><?php echo do_shortcode(wp_kses($section_subtitle, $allowedposttags));?></div>
          <?php endif;?>
-         <div class="home-section-content" style="color:<?php echo $color;?>;">
-  
-  <?php
-  $counters = '';
-  for($c=1;$c<=4;$c++){
-		 $title    = onetone_option( "counter_title_".$c."_".$i );
-		 $number   = onetone_option( "counter_number_".$c."_".$i );
-		 
-		 if( $title !='' || $number!='' )
-		   $counters .= '<div class="col-md-3">
-			  <div class="magee-counter-box">
-				<div class="counter"><span class="counter-num">'.absint($number).'</span></div>
-				<h3 class="counter-bottom_title"  style="color:'.$color.'">'.esc_attr($title).'</h3>
+         <div class="home-section-content">
+         <div class="onetone-owl-carousel-wrap">
+  <div id="onetone-testimonial-carousel" class="onetone-owl-carousel owl-carousel owl-theme">
+         
+     <?php
+	 $testimonial_item = '';
+	 $m                = 0;
+	 $section_testimonial  = onetone_option( 'section_testimonial_'.$i ); 
+
+	 if (is_array($section_testimonial) && !empty($section_testimonial) ){
+		foreach($section_testimonial as $client ){
+	   
+		  $avatar      =  $client['avatar'];
+		  $name        =  esc_attr($client['name']);
+		  $byline      =  esc_attr($client['byline']);
+		  $description =  wp_kses(do_shortcode($client['description']), $allowedposttags);
+		  if (is_numeric($avatar)) {
+					$image_attributes = wp_get_attachment_image_src($avatar, 'full');
+					$avatar       = $image_attributes[0];
+				  }
+	  
+	      if( $avatar != '' )
+	        $avatar = '<img src="'.esc_url($avatar).'" alt="'.$name.'" class="img-circle">';
+    
+		  $testimonial_item .= '<div class="onetone-carousel-item">
+		  <div class="'.$onetone_animated.'" data-animationduration="0.9" data-animationtype="fadeInUp" data-imageanimation="no">
+		 <div class="magee-testimonial-box">
+		<div class="testimonial-content">
+		  <div class="testimonial-quote">'.do_shortcode($description).'</div>
+		</div>
+		<div class="testimonial-vcard style1">
+		  <div class="testimonial-avatar">'.$avatar.'</div>
+		  <div class="testimonial-author">
+			<h4 class="name" style="text-transform: uppercase;">'.$name.'</h4>
+			<div class="title">'.$byline.'</div>
+		  </div>
+		</div>
+	  </div>
+	</div>
+	</div>';
+	  $m++;
+	 }
+	 }
+		
+	 echo $testimonial_item;
+	?>
+    </div>
+    
+    </div>
+    </div>
+    
+    <script>
+jQuery(document).ready(function($){
+$("#onetone-testimonial-carousel").owlCarousel({
+  items:<?php echo absint($columns);?>,
+  nav:true,
+  responsiveClass:true,
+  loop: false,
+  responsive:{
+			  0:{
+				items:1,
+				dots:true
+			  },
+			  768:{
+				items:2,
+				dots:true
+			  },
+			  992:{
+				items:3,
+				dots:true
+			  },
+			   1200:{
+				items:<?php echo absint($columns);?>,
+				dots:true
+			  },
+		
+			}
+});
+});  
+    
+</script>
+
+<?php
+ }else{ 
+ // normal style 
+?>
+
+
+         <?php if( $section_title != '' || (function_exists('is_customize_preview') && is_customize_preview()) ):?>
+       <?php  
+		   $section_title_class = '';
+		   if( $section_subtitle == '' && !(function_exists('is_customize_preview') && is_customize_preview()))
+		   $section_title_class = 'no-subtitle';
+		?>
+       <h2 class="section-title <?php echo $section_title_class; ?>"><?php echo wp_kses($section_title, $allowedposttags);?></h2>
+        <?php endif;?>
+        <?php if( $section_subtitle != '' || (function_exists('is_customize_preview') && is_customize_preview()) ):?>
+        <div class="section-subtitle"><?php echo do_shortcode(wp_kses($section_subtitle, $allowedposttags));?></div>
+         <?php endif;?>
+         <div class="home-section-content section_testimonial_<?php echo $i; ?>">
+             <?php
+	 $testimonial_item = '';
+	 $testimonial_str  = '';
+	 $m                = 0;
+	  $section_testimonial  = onetone_option( 'section_testimonial_'.$i ); 
+
+	 if (is_array($section_testimonial) && !empty($section_testimonial) ){
+		foreach($section_testimonial as $client ){
+	   
+		  $avatar      =  $client['avatar'];
+		  $name        =  esc_attr($client['name']);
+		  $byline      =  esc_attr($client['byline']);
+		  $description =  wp_kses(do_shortcode($client['description']), $allowedposttags);
+		  if (is_numeric($avatar)) {
+					$image_attributes = wp_get_attachment_image_src($avatar, 'full');
+					$avatar       = $image_attributes[0];
+				  }
+
+	 	  if( $avatar != '' )
+			  $avatar = '<img src="'.esc_url($avatar).'" alt="'.$name.'" class="img-circle">';
+			
+		  if( $description != '' ){
+			  $testimonial_item .= '<div class="col-md-'.$col.'">
+			  <div class="'.$onetone_animated.'" data-animationduration="0.9" data-animationtype="fadeInUp" data-imageanimation="no">
+								  <div class="magee-testimonial-box">
+			<div class="testimonial-content">
+			  <div class="testimonial-quote">'.do_shortcode($description).'</div>
+			</div>
+			<div class="testimonial-vcard style1">
+			  <div class="testimonial-avatar">'.$avatar.'</div>
+			  <div class="testimonial-author">
+				<h4 class="name" style="text-transform: uppercase;">'.$name.'</h4>
+				<div class="title">'.$byline.'</div>
 			  </div>
-			</div>';
-	
-     }
-	 if( $counters !='' )
-	   echo '<div class="row">'.$counters.'</div>';
-	 
-	 ?>
-      
-</div>
-            <?php
+			</div>
+		  </div>
+		</div>
+		</div>';
+	  $m++;
+	  
+	  if( $m % $columns == 0 && $m>0 ){
+	        $testimonial_str .= '<div class="row">'.$testimonial_item.'</div>';
+	        $testimonial_item = '';
+	   }
+	  }
+		}
+	 }
+	 if( $testimonial_item != '' ){
+		    $testimonial_str .= '<div class="row">'.$testimonial_item.'</div>';
+	      
+		   }
+		
+	 echo $testimonial_str;
+	?>
+    </div>
+<?php
+		}
+		//end
+?>
+<?php
 		else:
 		?>
-        <?php if( $section_title != '' ):?>
-        <div class="section-title"><?php echo do_shortcode($section_title);?></div>
+        <?php if( $section_title != '' || (function_exists('is_customize_preview') && is_customize_preview()) ):?>
+        <div class="section-title"><?php echo esc_attr($section_title);?></div>
         <?php endif;?>
            
-            <div class="home-section-content">
+            <div class="home-section-content  <?php echo 'section_content_'.$i;?>">
             <?php 
 			if(function_exists('Form_maker_fornt_end_main'))
              {
                  $section_content = Form_maker_fornt_end_main($section_content);
               }
-			 echo do_shortcode($section_content);
+			 echo do_shortcode(wp_kses($section_content, $allowedposttags));
 			?>
             </div>
-              <?php 
+                 <?php 
 		endif;
 		?>
         </div>

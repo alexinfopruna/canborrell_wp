@@ -6,11 +6,13 @@
  $section_background_video  = onetone_option( 'section_background_video_vimeo' );
  $vimeo_bg_type           = onetone_option("vimeo_bg_type");
  $vimeo_bg_type           = is_numeric($vimeo_bg_type)?$vimeo_bg_type:"1";
- $start_play              = absint(onetone_option("section_vimeo_start",3));
+ $start_play              = absint(onetone_option("section_vimeo_start",0));
 
  $vimeo_autoplay          = onetone_option("vimeo_autoplay",1);
  $vimeo_loop              = onetone_option("vimeo_loop",1);
  $vimeo_mute              = onetone_option("vimeo_mute",50);
+ $vimeo_quality           = onetone_option("vimeo_quality");
+ 
  
  if( $vimeo_autoplay == '1' )
    $vimeo_autoplay = 'true';
@@ -40,10 +42,10 @@
 					};
 				}
 ?>
-<section class="section home-section-<?php echo $video_background_section;?>  onetone-vimeo-section video-section">
+<section class="section home-section-<?php echo $i;?>  onetone-vimeo-section video-section">
 <script src='<?php echo get_template_directory_uri();?>/plugins/okvideo.js'></script>
 
-<?php get_template_part('home-sections/section',$video_background_section);?>
+<?php get_template_part('home-sections/section',intval($i));?>
     
   <div class="clear"></div>
    <?php 
@@ -73,7 +75,8 @@
 					playlist: { 
 					  list: null,
 					  index: 0,
-					  startSeconds: '.$start_play .',
+					  startSeconds: '.absint($start_play) .',
+					  suggestedQuality: "'.esc_attr($vimeo_quality).'" 
 					},
 					hd:true,
                     adproof: true,

@@ -7,11 +7,15 @@
  $youtube_bg_type           = onetone_option("youtube_bg_type");
  $youtube_bg_type           = is_numeric($youtube_bg_type)?$youtube_bg_type:"1";
  $display_video_mobile      = onetone_option("display_video_mobile","no");
- $start_play                = onetone_option("section_youtube_start",3);
+ $start_play                = onetone_option("section_youtube_start",0);
+ $stop_play                 = onetone_option("section_youtube_stop",0);
 
  $youtube_autoplay          = onetone_option("youtube_autoplay");
  $youtube_loop              = onetone_option("youtube_loop");
  $youtube_mute              = onetone_option("youtube_mute");
+ $youtube_anchor            = onetone_option("youtube_anchor");
+ $youtube_quality           = onetone_option("youtube_quality");
+ $youtube_opacity           = onetone_option("youtube_opacity");
  
  if( $youtube_autoplay == '1' )
    $youtube_autoplay = 'true';
@@ -34,10 +38,10 @@
     $containment = 'body';
 	
 ?>
-<section class="section home-section-<?php echo $video_background_section;?>  onetone-youtube-section video-section">
-<div id="onetone-youtube-video" class="onetone-player" data-property="{videoURL:'<?php echo $section_background_video;?>',containment:'<?php echo $containment;?>', showControls:false, autoPlay:<?php echo $youtube_autoplay;?>, loop:<?php echo $youtube_loop;?>, mute:<?php echo $youtube_mute;?>, startAt:<?php echo $start_play;?>, opacity:1, addRaster:true, quality:'default'}"></div>
+<section class="section home-section-<?php echo $i;?>  onetone-youtube-section video-section">
+<div id="onetone-youtube-video" class="onetone-player" data-property="{videoURL:'<?php echo esc_attr($section_background_video);?>',containment:'<?php echo $containment;?>', showControls:false, autoPlay:<?php echo $youtube_autoplay;?>, loop:<?php echo $youtube_loop;?>, mute:<?php echo $youtube_mute;?>, startAt:<?php echo absint($start_play);?>,stopAt:<?php echo absint($stop_play);?>, opacity:<?php echo esc_attr($youtube_opacity);?>, addRaster:true, anchor:'<?php echo esc_attr($youtube_anchor);?>',quality:'<?php echo esc_attr($youtube_quality);?>'}"></div>
 
-<?php get_template_part('home-sections/section',$video_background_section);?>
+<?php get_template_part('home-sections/section',intval($i));?>
     
   <div class="clear"></div>
    <?php 

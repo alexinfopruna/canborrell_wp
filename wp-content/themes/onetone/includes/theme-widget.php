@@ -3,8 +3,8 @@
 #########################################
 function onetone_widgets_init() {
 	
-	global $sidebars ;
-	  $sidebars =   array(
+	global $onetone_sidebars ;
+	  $onetone_sidebars =   array(
             ''  => __( 'No Sidebar', 'onetone' ),
 		    'default_sidebar'  => __( 'Default Sidebar', 'onetone' ),
 			'sidebar-1'  => __( 'Sidebar 1', 'onetone' ),
@@ -22,7 +22,7 @@ function onetone_widgets_init() {
 			'footer_widget_4'  => __( 'Footer Area Four', 'onetone' ),
           );
 	  
-	  foreach( $sidebars as $k => $v ){
+	  foreach( $onetone_sidebars as $k => $v ){
 		  if( $k !='' ){
 		  register_sidebar(array(
 			'name' => $v,

@@ -30,14 +30,15 @@
   $sticky_logo        = ( $sticky_logo == '' ) ? $sticky_logo_retina : $sticky_logo;
   $logo_position      = onetone_option('logo_position','left');
   $logo_position      = $logo_position==''?'left':$logo_position;
-  $header_overlay     = onetone_option('header_overlay');
- 
-  $overlay = '';
-  if( ($header_overlay == 'yes'|| $header_overlay == '1' || $header_overlay == 'on' ) && (is_front_page()) ){
-    $overlay      = 'overlay';
-	$overlay_logo = onetone_option('overlay_logo');
-	$logo         = ( $overlay_logo == '' ) ? $logo : $overlay_logo;
-  }
+  
+  if (is_numeric($logo)) {
+	$image_attributes = wp_get_attachment_image_src($logo, 'full');
+	$logo       = $image_attributes[0];
+	}
+   if (is_numeric($sticky_logo)) {
+	$image_attributes = wp_get_attachment_image_src($sticky_logo, 'full');
+	$sticky_logo       = $image_attributes[0];
+	}
 
   //sticky
   $enable_sticky_header         = onetone_option('enable_sticky_header');
@@ -53,7 +54,8 @@
  
  if( is_front_page() )
    $body_class  = 'page homepage';
- 
+   
+ $body_class      .= ' onetone';
  $header_container = 'container';
  
  if( $header_fullwidth == 1)
@@ -69,7 +71,7 @@
         <img src="<?php echo $header_image; ?>" height="<?php echo get_custom_header()->height; ?>" width="<?php echo get_custom_header()->width; ?>" alt="" />
          <?php endif;?>
             <!--Header-->
-            <header class="header-wrap logo-<?php echo $logo_position; ?> <?php echo $overlay; ?>" role="banner">
+            <header class="header-wrap logo-<?php echo $logo_position; ?>" role="banner">
              <?php if( $display_top_bar == 'yes' ):?>
                 <div class="top-bar">
                     <div class="<?php echo $header_container; ?>">

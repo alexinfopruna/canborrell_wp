@@ -78,7 +78,7 @@
 
 		adjustNav: function(self, $parent) {
 			
-			$('.main-nav li').removeClass(self.config.currentClass);
+			$('.site-nav li').removeClass(self.config.currentClass);
 			self.$elem.find('.' + self.config.currentClass).removeClass(self.config.currentClass);
 			
 			$parent.addClass(self.config.currentClass);
