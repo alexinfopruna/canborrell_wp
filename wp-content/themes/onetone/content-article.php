@@ -18,7 +18,7 @@
                                             <?php endif;?>
                                             <div class="entry-main">
                                                 <div class="entry-header">
-                                                    <h2 class="entry-title"><a href="<?php the_permalink();?>"><?php the_title();?></a></h2>
+                                                    <h1 class="entry-title"><a href="<?php the_permalink();?>"><?php the_title();?></a></h1>
                                                     <ul class="entry-meta">
                                                         <li class="entry-date"><i class="fa fa-calendar"></i><a href="<?php echo get_month_link(get_the_time('Y'), get_the_time('m'));?>"><?php echo get_the_date("M d, Y");?></a></li>
                                                         <li class="entry-author"><i class="fa fa-user"></i><?php echo get_the_author_link();?></li>

@@ -160,9 +160,7 @@ section .banner-box div.section-subtitle{
     text-align:center;
     display:inline-block;
 }
-.banner-sns > ul{
-	margin:0;
-}
+
 .banner-sns li {
     float:left;
     list-style-type:none;
