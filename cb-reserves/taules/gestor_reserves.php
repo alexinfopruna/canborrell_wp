@@ -2480,6 +2480,19 @@ ORDER BY `estat_hores_data` DESC";
     return $row['estat_hores_torn'];
 //return ($hora>"15")?(($hora>"19")?3:2):1;
   }
+  
+  
+  public function set_torn_hores($torn, $hora, $hora_fi){
+    $hora_fi .= "~";
+    $query = "UPDATE `estat_hores` SET `estat_hores_torn` = '$torn' WHERE estat_hores_data='2011-01-01' AND `estat_hores`.`estat_hores_hora` BETWEEN '$hora' AND '$hora_fi'";
+    $Result1 = mysqli_query($this->connexioDB, $query) or die(((is_object($GLOBALS["___mysqli_ston"])) ? mysqli_error($GLOBALS["___mysqli_ston"]) : (($___mysqli_res = mysqli_connect_error()) ? $___mysqli_res : false)));
+    $rows = mysqli_affected_rows($this->connexioDB);
+    //$row = mysqli_fetch_array($Result1);
+    
+    echo "<br>($rows) $query";
+    return $rows;
+  }
+  
 
   /*   * ******      SUMA DIAS     *********** */
 

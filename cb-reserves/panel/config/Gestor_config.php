@@ -38,6 +38,11 @@ class Gestor_config extends Gestor {
     $row = mysqli_fetch_array($result);
     $val2 = $row['config_val'];
     
+//    $action = "config_set_".$var;
+//    if (method_exists($this, $action)){
+//         call_user_func(array($this, $action));
+//    }
+    
     echo $sql;
     echo "  ..........  (".$this->qry_result.") .... ";
     echo " <br/>";
@@ -49,7 +54,6 @@ class Gestor_config extends Gestor {
 
     return true;
   }
-
 }
 
 /* * **************************************************************************************************** */
@@ -91,6 +95,31 @@ if (isset($accio) && !empty($accio)) {
 
 
     $gestor->out(call_user_func(array($gestor, $accio), $_REQUEST['b'], $_REQUEST['c'], $_REQUEST['d'], $_REQUEST['e'], $_REQUEST['f'], $_REQUEST['g']));
+  
+    $action = strtolower($_REQUEST['b']);
+  $callback = "config_action_".$action;
+    if (function_exists($callback)) call_user_func ($callback, $_REQUEST['c']);
   }
 }
+
+
+
+function config_action_activa_torn2($val){
+  //$query="UPDATE `estat_hores` SET `estat_hores_torn` = '6' WHERE estat_hores_data='2011-01-01' AND `estat_hores`.`estat_hores_hora` BETWEEN '15:00' AND '17:00'"
+  echo "--config_action_activa_torn2-  $val -";
+  
+  $gestor = new gestor_reserves();
+  $t= ($val=='true')?2:1;
+  $hora = '15:00';
+  $hora_fi = '18:00';
+  $gestor->set_torn_hores($t, $hora, $hora_fi);
+}
+
+
+function config_action_debug($val){
+  echo "DUUUUG = $val";
+}
+
+//INSERT INTO `config` (`config_id`, `config_var`, `config_val`, `config_define`, `config_js`, `config_session`, `config_array_index`, `config_descripcio`, `config_timestamp`, `config_type`, `config_permisos`) VALUES (NULL, 'activa_torn2', 'true', '1', '0', '0', NULL, 'Activa el torn2 per hores entre 15:00 i 17:00', CURRENT_TIMESTAMP, 'BOOL', NULL);
+
 ?>

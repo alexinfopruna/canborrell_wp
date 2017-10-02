@@ -176,7 +176,7 @@ if ((isset($_REQUEST["del_client"])) && ($_REQUEST["del_client"] > 0))
 				<div style="margin-left:230px;">
 				<div id="radio">
 					<input type="radio" id="torn1" name="radio" value="1" checked="checked" /><label for="torn1">Dinar T1</label>
-					<?php if (FALSE || isset($_REQUEST['Historic'])): ?>
+					<?php if (ACTIVA_TORN2 || isset($_REQUEST['Historic'])): ?>
 					<input type="radio" id="torn2" name="radio" value="2"  /><label for="torn2">Dinar T2</label> 
 					<?php endif;?>
 					<input type="radio" id="torn3" name="radio" value="3"  /><label for="torn3" id="lblTorn3">Sopar</label>
