@@ -550,17 +550,19 @@ function reservar_enqueue_styles() {
 
 
                                                                   </div>
-
+<div style="display:flex">
                                                                   <!-- ******  INFO  ********  
                                                                   <div class="ui-corner-all info">
                                                                   <?php l('INFO_CARTA'); ?>
                                                                   </div> -->
-                                                                  <!-- ******  BUTO CARTA  ********   
+                                                                  <!-- ******  BUTO CARTA  ********   -->
+
+                                                                  <a href="#"  id="bt-carta" name="bt-carta" class="bt" ><?php l('Carta'); ?></a>
+                                                                  <a href="#"  id="bt-menu" name="bt-menu" class="bt"><?php l('Menús'); ?></a>
                                                                   <a href="#" id="bt-no-carta" name="bt-no-carta" class="bt" ><?php l('Continuar'); ?></a>
-                                                                                              <a href="#"  id="bt-carta" name="bt-carta" class="bt" ><?php l('Veure la carta'); ?></a>-->
-                                                                  <a href="#"  id="bt-menu" name="bt-menu" class="bt"><?php l('Veure els menús'); ?></a>
                                                                   <div style="clear:both"></div>
 
+                                                              </div>
                                                               </div>
                                                           </div>	
 
@@ -661,7 +663,18 @@ function reservar_enqueue_styles() {
 
                                                           <h3 id="carta-total"></h3>
                                                       </div>	
+                                                  </div>
+                                                  
+                                                  
+                                                  <!-- ******************* CARTA *********************** -->
+                                                  <!-- ******************* CARTA *********************** -->
+                                                  <!-- ******************* CARTA *********************** -->
+                                                  <div id="fr-cartaw-popup" title="<?php l("La nostra carta") ?>" class="carta-menu" style="height:300px">
+                                                      <div id="fr-carta-tabs" >
+                                                         <?php echo $gestor->recuperaCarta($row['id_reserva']) ?>
+                                                      </div>	
                                                   </div>	
+                                                  
 
                                                   <!-- ******************* POPUPS GRUPS *********************** -->
                                                   <!-- ******************* POPUPS GRUPS *********************** -->

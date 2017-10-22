@@ -16,6 +16,9 @@ PANTALLES FINS A 500
     #bt-carta, #bt-menu, #bt-no-carta {float:none;min-width:100%}
 }  
 
+
+#fr-carta-tabs li,#fr-menu-tabs li{font-size:0.8em;}
+
 /**
 PANTALLES FINS A 770
 */

@@ -10,7 +10,7 @@ var SECCIO = null;
 
 var DEBUG = getParameterByName("debug");
 
-
+var shouldElementBeVisible = true;
 
 /* PROBLEMA IE indexOf */
 if (!Array.prototype.indexOf)
@@ -601,6 +601,9 @@ function updateMenus() {
     $("#carta h3").show();
     $("#carta2 h3").show();
     $("#carta3 h3").show();
+     shouldElementBeVisible =  $("input[name='adults']").val()<20;
+    $("#bt-carta").toggle(shouldElementBeVisible);
+    
 
     if (excepcio) {
         /*

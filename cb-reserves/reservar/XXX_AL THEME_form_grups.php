@@ -359,17 +359,16 @@ echo LOCAL ? " local " : "" ?>">
                                         <div class="ui-corner-all info info-comanda" style="float:left;">
                                             <?php l('INFO_COMANDA_GRUPS'); ?>
                                         </div>
-
-
                                     </div>
 
                                     <!-- ******  INFO  ********  
                                     <div class="ui-corner-all info">
                                     <?php l('INFO_CARTA'); ?>
-                                    </div> -->
-                                    <!-- ******  BUTO CARTA  ********   
+                                    </div> 
+                                    
+                                  ******  BUTO CARTA  ********  --> 
                                     <a href="#" id="bt-no-carta" name="bt-no-carta" class="bt" ><?php l('Continuar'); ?></a>
-                                                                <a href="#"  id="bt-carta" name="bt-carta" class="bt" ><?php l('Veure la carta'); ?></a>-->
+                                                                <a href="#"  id="bt-carta" name="bt-carta" class="bt" ><?php l('Veure la carta'); ?></a>
                                     <a href="#"  id="bt-menu" name="bt-menu" class="bt"><?php l('Veure els menús'); ?></a>
                                     <div style="clear:both"></div>
 

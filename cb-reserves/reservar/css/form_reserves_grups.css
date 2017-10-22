@@ -33,8 +33,8 @@
 	.col-dere{width:500px;float:left;}
 	.fr-seccio-carta .ui-button{width:170px;}
 	.grups-fr-seccio-carta .ui-button{width:170px;}
-	#bt-no-carta{color:#570600}
-	#bt-carta{color:#570600;float:right;margin-top:25px;}
+	//#bt-no-carta{color:#570600}
+	#bt-carta{float:right;}
 	#bt-carta:hover,#bt-no-carta:hover{color:white;}
 	
         #fr-menu-tabs {
