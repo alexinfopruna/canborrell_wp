@@ -10,7 +10,10 @@ $translate['INFO_COMANDA_GRUPS']="En las reservas de grupos debes escoger, como 
      . "Para más de 20 comensales no está disponible la carta y será necessario que indiquéis exclusivamente menús";
 $translate['Escull els menús']="Elige los menús";
  $translate['Veure els menús']='Ver los menús';
+$translate['CARTA_FINS_20']="Hasta 21 comensales la selección de platos de la carta es opcional i la podréis hacer directamente en el restaurant si lo preferís";
 
+ 
+ 
 $translate['INFO_QUANTS_SOU_GRUPS']='<b>Dinos cuantas personas vendrán,</b> indicando en primer lugar los mayores de 14 años. Indica también el número de juniors y niños. 
 		<br/> <br/>
 <b>Reservaremos espacio para los comensales que nos indicas aquí. La reserva no será válida para un número de persones que no coincida con el solicitado</b>

@@ -247,10 +247,8 @@ function reservar_enqueue_styles() {
 
       .fxd-header{display:none !important;position:absolute;left:-1000px;}
       h2.titol{
-          // background-blend-mode: multiply;
           background: white;
           padding: 4px;   
-          //mix-blend-mode: multiply;
       }
 
 
@@ -308,7 +306,7 @@ function reservar_enqueue_styles() {
                 <div class="col-main">
                     <section class="post-main" role="main" id="content">
                         <?php while (have_posts()) : the_post(); ?>
-                          <article class="post type-post" id="">
+                          <article class="post type-post" >
                               <?php if (has_post_thumbnail()): ?>
                                 <div class="feature-img-box">
                                     <div class="img-box">
@@ -559,7 +557,7 @@ function reservar_enqueue_styles() {
 
                                                                   <a href="#"  id="bt-carta" name="bt-carta" class="bt" ><?php l('Carta'); ?></a>
                                                                   <a href="#"  id="bt-menu" name="bt-menu" class="bt"><?php l('Menús'); ?></a>
-                                                                  <a href="#" id="bt-no-carta" name="bt-no-carta" class="bt" ><?php l('Continuar'); ?></a>
+<!--                                                                  <a href="#" id="bt-no-carta" name="bt-no-carta" class="bt" ><?php l('Continuar'); ?></a>-->
                                                                   <div style="clear:both"></div>
 
                                                               </div>
@@ -590,7 +588,7 @@ function reservar_enqueue_styles() {
                                                                           </div>
 
 
-                                                                          <div><label class="label" for=""><?php l('Observacions'); ?>
+                                                                          <div><label class="label" ><?php l('Observacions'); ?>
                                                                                   <a href="#" id="info-observacions" class="info-ico"><img src="/cb-reserves/reservar/css/info.png" title="<?php l('Ajuda'); ?>" style="width:16px;height:auto;margin-left:8px"/></a>
 
                                                                               </label><textarea type="text" name="observacions"> <?php echo $row['observacions'] ?></textarea>
@@ -670,6 +668,10 @@ function reservar_enqueue_styles() {
                                                   <!-- ******************* CARTA *********************** -->
                                                   <!-- ******************* CARTA *********************** -->
                                                   <div id="fr-cartaw-popup" title="<?php l("La nostra carta") ?>" class="carta-menu" style="height:300px">
+                                                      <div class="ui-corner-all info-legal caixa" role="alert">
+                                                      <?php l("CARTA_FINS_20") ?>
+                                                          
+                                                      </div>
                                                       <div id="fr-carta-tabs" >
                                                          <?php echo $gestor->recuperaCarta($row['id_reserva']) ?>
                                                       </div>	

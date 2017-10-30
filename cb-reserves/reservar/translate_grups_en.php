@@ -8,6 +8,7 @@ $translate['INFO_COMANDA_GRUPS']="In group reservations you should choose, at le
     . "For more than 20 people you can not choose from dish-menu and you must select set-menus for all of you";
 $translate['Escull els menús']="Choose menus";
  $translate['Veure els menús']='See menus';
+ $translate['Menús']='Set menus';
 
 $translate['INFO_QUANTS_SOU_GRUPS']='<b>Tell us how many people will come, indicate firstly people over 14 years of age. Also, mark the number of juniors and children. 
 		<br/> <br/>
@@ -32,7 +33,7 @@ $translate['Escull el menú']='Choose the menu';
 $translate['Menú per a adults']='Menu for adults';
 $translate['Menú per a juniors']='Menu for juniors (children from 10 to 14 years old)';
 $translate['Menú per a nens']='Menu for children (children from 4 to 9 years old)';
-
+$translate['CARTA_FINS_20']="Until 20 people, the menus pre-selection is optional and you can do it in the restaurant";
 
 $translate['ALERTA_INFO_GRUPS']='The reservation <b>request</b> has been sent.
 <br/><br/>
