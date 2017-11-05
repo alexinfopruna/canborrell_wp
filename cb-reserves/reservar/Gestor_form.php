@@ -179,8 +179,7 @@ class Gestor_form extends gestor_reserves {
   /*   * ******************************************************************************************************* */
 
   public function horesDisponibles($data, $coberts, $cotxets = 0, $accesible = 0, $idr = 0, $nens = null) {
-    if ($cotxets == 'undefined')
-      $cotxets = 0;
+    if ($cotxets == 'undefined')      $cotxets = 0;
     $mydata = $this->cambiaf_a_mysql($data);
 
     $this->taulesDisponibles->tableHores = "estat_hores";   //ANULAT GESTOR HORES FORM. Tot es gestiona igual, des d'estat hores
@@ -207,12 +206,20 @@ class Gestor_form extends gestor_reserves {
     $rc = new RestrictionController();
     $this->taulesDisponibles->rang_hores_nens = $rc->getHores($mydata, $cacheAdults, $cacheNens, $cotxets);
     $rules = $rc->getActiveRules($mydata, $cacheAdults, $cacheNens, $cotxets);
-    //SISTEMA ESTÀTIC >> hores_nens.php
+    
+    //RestriccionsTaules ALEX
     //TORN1
     $this->taulesDisponibles->torn = 1;
-    $dinar = $this->taulesDisponibles->recupera_hores();
+     $this->taulesDisponibles->recupera_hores();
     $taules = $this->taulesDisponibles->taulesDisponibles();
-
+  //  foreach($taules as $k => $v) echo $v->id." ** ".$v->nom. " //// ";
+    $hores_taules = null;
+    //$hores_taules = $rc->getHoresTaules($mydata, $taules);//$rc->
+    
+   // var_dump($hores_taules);
+    $this->taulesDisponibles->rang_hores_taules = $hores_taules;
+    $dinar = $this->taulesDisponibles->recupera_hores();
+   // var_dump($dinar);
     $taulaT1 = 0;
     if ($taules)
       $taulaT1 = $taules[0]->id;
@@ -629,6 +636,8 @@ FROM client
     // VALIDA SI HEM TROBAT TAULA
     if (!$taules = $this->taulesDisponibles->taulesDisponibles())
       return $this->jsonErr(3, $resposta);
+    
+     return $this->jsonErr(3, $resposta);
     $taula = $taules[0]->id;
     // VALIDA SI HEM TROBAT HORA
     if (!$this->taulesDisponibles->horaDisponible($hora))
@@ -803,7 +812,7 @@ FROM client
     $this->xgreg_log("Update <span class='idr'>" . $_POST['id_reserva'] . "</span>", 1);
     $resposta['request'] = "update";
     $resposta['idr'] = $_POST['id_reserva'];
-//TODO VALIDA 
+    //TODO VALIDA 
     $lang = $_POST['lang'] = $_SESSION["lang"];
     $dat = date("d/m");
     $_POST['observacions'] = "MODIFICADA $dat " . $_POST['observacions'];

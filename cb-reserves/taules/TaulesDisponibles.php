@@ -37,6 +37,7 @@ class TaulesDisponibles extends Gestor {
   public $llista_nits_negra; // 
   public $llista_dies_blanca; // 
   public $rang_hores_nens = array(); // 
+  public $rang_hores_taules = array(); // 
   private $arResultat = null; // RESULTAT PER ID
   private $arResultatTaula = null; //RESULTAT PER OBJ. Taula
   private $arHores = array(); //RESULTAT HORES DISPONIBLES
@@ -625,6 +626,9 @@ ORDER BY  `estat_hores_hora` ASC ";
     $info = '';
     $radio = '';
     $arrraw = array();
+    
+    
+    
     while ($row = mysqli_fetch_array($Result1)) {
       if ($hora == $row['estat_hores_hora']) {
         continue; // REGISTRES REPETITS ///////////////////////////////////
@@ -660,8 +664,12 @@ ORDER BY  `estat_hores_hora` ASC ";
       
       if ($torn < 3 && is_array($this->rang_hores_nens) && count($this->rang_hores_nens) && !in_array($row['estat_hores_hora'], $this->rang_hores_nens))
         continue;
-
-      
+    /*  */   
+    //  echo $row['estat_hores_hora']." *** ";
+      //var_dump($this->rang_hores_taules);
+      if ($torn < 3 && is_array($this->rang_hores_taules) && count($this->rang_hores_taules) && !in_array($row['estat_hores_hora'], $this->rang_hores_taules))
+        continue;
+   
 
       $this->arHores[] = $row['estat_hores_hora']; // GUARDA LES HORES BONES EN UN ARRAY
       ///////////////////////////////////////////////////

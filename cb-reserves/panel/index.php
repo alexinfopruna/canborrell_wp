@@ -136,9 +136,9 @@ $(function(){$("#panel").accordion({collapsible:true,active:false,heightStyle: "
 -->
 <h4><a href="#">Formularis de reserves</a></h4>
 <div id="ONLINE" class="caixa">
-		<a target="_blank" href="../reservar/form.php" class=" bt ui-button ui-widget ui-state-default ui-corner-all ui-button-text-only">FORMULARI reserves</a>
+		<a target="_blank" href="/reservar" class=" bt ui-button ui-widget ui-state-default ui-corner-all ui-button-text-only">FORMULARI reserves</a>
 		<!-- -->
-		<a target="_blank" href="../reservar/form_grups.php" class=" bt ui-button ui-widget ui-state-default ui-corner-all ui-button-text-only">FORMULARI reserves GRUPS</a>
+		<a target="_blank" href="/reservar/reserva-grup" class=" bt ui-button ui-widget ui-state-default ui-corner-all ui-button-text-only">FORMULARI reserves GRUPS</a>
 		<!-- -->
 		<a target="_blank" href="../panel/gestio_calendari.php?f=<?php echo INC_FILE_PATH;?>llista_dies_negra_online.txt&hideBlancs" class=" bt ui-button ui-widget ui-state-default ui-corner-all ui-button-text-only">ONLINE: Gestió dies bloquejats calendari FORMULARI res.petites</a>
 		<!-- -->
