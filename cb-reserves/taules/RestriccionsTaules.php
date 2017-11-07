@@ -268,6 +268,8 @@ $order
     while ($row = $Result1->fetch_assoc()) {
       $json[] = $row['estat_taula_nom'];
     }
+    
+    $json=array();
     return $this->resposta_json($json);
   }
 }
