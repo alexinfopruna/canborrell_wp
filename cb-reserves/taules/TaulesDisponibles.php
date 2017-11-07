@@ -659,14 +659,18 @@ ORDER BY  `estat_hores_hora` ASC ";
       // NENS A ULTIMA HORA
       /**/
       
-     // print_r( $this->rang_hores_nens);
-  //   echo "<br>---------- ".$row['estat_hores_hora']."  ". (in_array($row['estat_hores_hora'], $this->rang_hores_nens)?"SI":"NO");
-      
+      /** 
+       * ESQUIVA LES HORES QUE TENEN RESTRICCIONS DE NENS
+       */
       if ($torn < 3 && is_array($this->rang_hores_nens) && count($this->rang_hores_nens) && !in_array($row['estat_hores_hora'], $this->rang_hores_nens))
         continue;
-    /*  */   
-    //  echo $row['estat_hores_hora']." *** ";
-      //var_dump($this->rang_hores_taules);
+ 
+       /** 
+       * ESQUIVA LES HORES QUE TENEN RESTRICCIONS HORES TAULES
+       */
+      if ($torn < 3 && is_array($this->rang_hores_nens) && count($this->rang_hores_nens) && !in_array($row['estat_hores_hora'], $this->rang_hores_nens))
+        continue;
+      
       if ($torn < 3 && is_array($this->rang_hores_taules) && count($this->rang_hores_taules) && !in_array($row['estat_hores_hora'], $this->rang_hores_taules))
         continue;
    

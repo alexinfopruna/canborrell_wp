@@ -33,7 +33,6 @@ ini_set("html_errors", 1);
 $usr = new Usuari(2, "alex", 255);
 $_SESSION['uSer'] = $usr;
 
-
 //require_once(ROOT . "Restriccions.php");
 
 /* * ******************************************************************************************************* */
@@ -50,10 +49,8 @@ class RestriccionsTaules extends gestor_reserves {
     $usuari_minim = 0;
     parent::__construct(DB_CONNECTION_FILE, $usuari_minim);
   }
-  
-  
-  
- public function pliiin($txt, $reset = FALSE) {
+
+  public function pliiin($txt, $reset = FALSE) {
     $f = fopen("pliiin.txt", $reset ? "w" : "a");
     fwrite($f, " ---> " . $txt);
     fclose($f);
@@ -96,9 +93,7 @@ class RestriccionsTaules extends gestor_reserves {
       $n['restriccions_hores'] = $this->hores2bin($n['restriccions_hores']);
     }
     return $n;
-  }  
-  
-  
+  }
 
   public function parseFiltre($filtre) {
     if (!isset($filtre->restriccions_taula_id)) {
@@ -138,6 +133,7 @@ class RestriccionsTaules extends gestor_reserves {
 
     $group = "";
     $order = " order by  restriccions_taula_id DESC ";
+    $order = " order by  restriccions_id DESC ";
 
     $query = "SELECT * FROM
 (
@@ -157,9 +153,9 @@ $order
     $Result1 = mysqli_query($this->connexioDB, $query) or die(((is_object($GLOBALS["___mysqli_ston"])) ? mysqli_error($GLOBALS["___mysqli_ston"]) : (($___mysqli_res = mysqli_connect_error()) ? $___mysqli_res : false)));
     $json = [];
     while ($row = $Result1->fetch_assoc()) {
-    //  $row['restriccions_description']=$query;
-   //   $row['restriccions_data'] = Gestor::cambiaf_a_normal($row['restriccions_data']);
-   //   $row['restriccions_datafi'] = Gestor::cambiaf_a_normal($row['restriccions_datafi']);
+      //  $row['restriccions_description']=$query;
+      //   $row['restriccions_data'] = Gestor::cambiaf_a_normal($row['restriccions_data']);
+      //   $row['restriccions_datafi'] = Gestor::cambiaf_a_normal($row['restriccions_datafi']);
       $json[] = $row;
     }
 
@@ -172,22 +168,26 @@ $order
   }
 
   public function insertRestriccio($restriccio) {
+    
+    $restriccio->restriccions_hores = $this->dies2dec($restriccio->restriccions_hores);
+   
     if ($restriccio->restriccions_datafi < $restriccio->restriccions_data)
       $restriccio->restriccions_datafi = $restriccio->restriccions_data;
 
     if ($restriccio->restriccions_dies == "")
-      $restriccio->restriccions_dies = array(0,0,0,0,0,1,1);
+      $restriccio->restriccions_dies = array(0, 0, 0, 0, 0, 1, 1);
     $restriccio->restriccions_dies = $this->dies2dec($restriccio->restriccions_dies);
 
 
     $query = "REPLACE INTO RestriccioHoresTaula 
-      (restriccions_active, restriccions_taula_id, restriccions_data, restriccions_datafi, restriccions_hora, restriccions_description)
+      (restriccions_active, restriccions_taula_id, restriccions_data, restriccions_datafi, restriccions_hora, restriccions_hores, restriccions_description)
 
       VALUES ('{$restriccio->restriccions_active}',
              '{$restriccio->restriccions_taula_id}',
              '{$restriccio->restriccions_data}', 
              '{$restriccio->restriccions_datafi}',
              '{$restriccio->restriccions_hora}',
+             '{$restriccio->restriccions_hores}',
              '{$restriccio->restriccions_description}')";
 
 
@@ -196,7 +196,7 @@ $order
   }
 
   public function updateRestriccio($restriccio) {
-    
+
     $restriccio->restriccions_dies = $this->dies2dec($restriccio->restriccions_dies);
     $restriccio->restriccions_hores = $this->dies2dec($restriccio->restriccions_hores);
     if ($restriccio->restriccions_datafi < $restriccio->restriccions_data)
@@ -222,8 +222,8 @@ $order
        ";
 
 
-   
-    
+
+
     //$query = str_replace("%%%", $query, $query);
     $Result1 = mysqli_query($this->connexioDB, $query) or die(((is_object($GLOBALS["___mysqli_ston"])) ? mysqli_error($GLOBALS["___mysqli_ston"]) : (($___mysqli_res = mysqli_connect_error()) ? $___mysqli_res : false)));
     $plin = "{'data':\"zzzz$query\"}";
@@ -252,7 +252,6 @@ $order
  restriccions_id=$id";
 
     $Result1 = mysqli_query($this->connexioDB, $query) or die(((is_object($GLOBALS["___mysqli_ston"])) ? mysqli_error($GLOBALS["___mysqli_ston"]) : (($___mysqli_res = mysqli_connect_error()) ? $___mysqli_res : false)));
-//return $this->resposta_json("ESBORRAT id=$id");
 
     return $this->getRestriccions();
   }
@@ -261,6 +260,16 @@ $order
     return "horesDisponibles MAAAAL";
   }
 
+  public function recuperataules() {
+    //    $query = "SELECT distinct estat_taula_id, estat_taula_nom FROM `estat_taules` "; 
+    $query = "SELECT distinct estat_taula_nom FROM `estat_taules` ";
+    $Result1 = mysqli_query($this->connexioDB, $query) or die(((is_object($GLOBALS["___mysqli_ston"])) ? mysqli_error($GLOBALS["___mysqli_ston"]) : (($___mysqli_res = mysqli_connect_error()) ? $___mysqli_res : false)));
+
+    while ($row = $Result1->fetch_assoc()) {
+      $json[] = $row['estat_taula_nom'];
+    }
+    return $this->resposta_json($json);
+  }
 }
 
 // CLASS
@@ -295,8 +304,8 @@ switch ($accio) {
   case 'deleterestriccio':
     echo $r->deleteRestriccio($id);
     break;
-/*
-  case 'desglose':
+  /*
+    case 'desglose':
     $restriccio->restriccions_data = "2011-01-01";
     $restriccio->restriccions_datafi = "2031-01-01";
     $restriccio->restriccions_dies = array(0, 0, 0, 0, 0, 1, 1);
@@ -307,7 +316,7 @@ switch ($accio) {
 
     echo $r->desglose($restriccio);
     break;
-*/
+   */
   case 'updaterestriccio':
     $plin = print_r($restriccio->restriccions_dies, true);
     $r->pliiin($plin);
@@ -329,6 +338,10 @@ switch ($accio) {
   case 'savehores':
     $ides = $params->ides;
     $r->saveHores($ides, $restriccio);
+    break;
+
+  case 'recuperataules':
+    echo $r->recuperataules();
     break;
 
   case 'getrestriccions':

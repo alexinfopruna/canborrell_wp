@@ -212,9 +212,12 @@ class Gestor_form extends gestor_reserves {
     $this->taulesDisponibles->torn = 1;
      $this->taulesDisponibles->recupera_hores();
     $taules = $this->taulesDisponibles->taulesDisponibles();
-  //  foreach($taules as $k => $v) echo $v->id." ** ".$v->nom. " //// ";
-    $hores_taules = null;
-    //$hores_taules = $rc->getHoresTaules($mydata, $taules);//$rc->
+    
+    $tids = "";
+    foreach($taules as $k => $v) $tids.= $v->id." (".$v->nom. ")| ";
+    //$hores_taules = null;
+    
+    $hores_taules = $rc->getHoresTaules($mydata, $taules);//$rc->
     
    // var_dump($hores_taules);
     $this->taulesDisponibles->rang_hores_taules = $hores_taules;
@@ -226,6 +229,8 @@ class Gestor_form extends gestor_reserves {
     if (!$dinar)
       $dinar = "";
 
+    $taula_t1_nom =  $taules[0]->nom;
+    
     //TORN2
     $this->taulesDisponibles->torn = 2;
     $dinarT2 = $this->taulesDisponibles->recupera_hores();
@@ -252,7 +257,8 @@ class Gestor_form extends gestor_reserves {
     $json = array('dinar' => $dinar, 'dinarT2' => $dinarT2, 'sopar' => $sopar, 'taulaT1' => $taulaT1, 'taulaT2' => $taulaT2, 'taulaT3' => $taulaT3);
 
     $json['rules'] = array_column($rules, 'restriccions_id');
-    $json['params'] = "$mydata, $cacheAdults, $cacheNens, $cotxets";
+    $json['params'] = "$mydata, $cacheAdults, $cacheNens, $cotxets >>> $taula_t1_nom";
+    $json['taules'] =  $tids;
     return json_encode($json);
     //////////////////////////////////					
   }
@@ -637,7 +643,37 @@ FROM client
     if (!$taules = $this->taulesDisponibles->taulesDisponibles())
       return $this->jsonErr(3, $resposta);
     
-     return $this->jsonErr(3, $resposta);
+    
+    foreach ($taules as $key => $value) $t[]=$value->id;
+      $resposta['error']  = print_r($t,true);
+      
+      /*
+       * 
+       * Comprova si la taula compleix amb les restriccions d'hores taules. Si no busca si en troba una altra
+       * 
+       */
+        
+      $rc= new RestrictionController();
+      $hr=array();
+      $len = count($taules);
+      $t=null;
+      for ($i=0;$i<$len;$i++){
+        $hr=$rc->getHoresTaules($data, array($taules[$i]));
+        if (in_array($hora, $hr)){
+          $t=$taules[$i];
+          break;
+        }
+      }
+   
+      
+    if (is_null($t)) {
+      foreach ($taules as $v) $t.=$v->id." ** ";
+      $resposta['error']  = " No hi ha taula disponible per l'hora sol·licitada ".$t;//print_r($hr,true);
+       return $this->jsonErr(3, $resposta);
+    }
+     
+    
+    $taules[0] = $t;
     $taula = $taules[0]->id;
     // VALIDA SI HEM TROBAT HORA
     if (!$this->taulesDisponibles->horaDisponible($hora))

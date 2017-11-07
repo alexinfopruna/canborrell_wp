@@ -152,7 +152,10 @@ $order
     $hores_taula = array();
 
     foreach ($taules as $k => $v) {
-      $hores = $this->getHoresTaula($data, $v->id); //$rc->
+      
+   //   $hores = $this->getHoresTaula($data, $v->id); //$rc->
+      $hores = $this->getHoresTaula($data, $v->nom); //$rc->
+      
       $hores_taula = array_merge($hores_taula, $hores);
      }
 
@@ -166,10 +169,11 @@ $order
   /*   * ************************************************************************ */
 
   public function getHoresTaula($data, $taulaId) {
-    $were_data = "(restriccions_active = 1 AND restriccions_data='2011-01-01' OR restriccions_data <= '$data' AND restriccions_datafi >='$data') AND ";
-    $query = "SELECT * FROM RestriccioHoresTaula where $were_data restriccions_taula_id = $taulaId";
+    $were_data = "restriccions_active = 1 AND (restriccions_data='2011-01-01' OR restriccions_data <= '$data' AND restriccions_datafi >='$data') AND ";
+  //  $query = "SELECT * FROM RestriccioHoresTaula where $were_data restriccions_taula_id = $taulaId";
+    $query = "SELECT * FROM RestriccioHoresTaula where $were_data restriccions_taula_id = '$taulaId'";
 
- //   echo $query;
+  // echo $query;
  //   echo "<br>";
     $Result1 = mysqli_query($this->connexioDB, $query) or die(((is_object($GLOBALS["___mysqli_ston"])) ? mysqli_error($GLOBALS["___mysqli_ston"]) : (($___mysqli_res = mysqli_connect_error()) ? $___mysqli_res : false)));
     $nr = mysqli_num_rows($Result1); 
