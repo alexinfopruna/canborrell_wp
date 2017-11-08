@@ -44,7 +44,8 @@
 		  
 		  $detect = new Mobile_Detect;
 		  
-		  if( true || !$detect->isMobile() && !$detect->isTablet() ){
+		//  if( true || !$detect->isMobile() && !$detect->isTablet() ){
+                                                           if( true ){
 			  
 			  if( $youtube_autoplay == 'true' )
 			    $play_btn_icon = 'pause';
