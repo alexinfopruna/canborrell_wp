@@ -307,6 +307,21 @@ switch ($accio) {
     echo $r->deleteRestriccio($id);
     break;
   /*
+   * 
+   * 
+   * 
+   *    * 
+   * 
+<div class="wpb_wrapper section-fullwidth"><img class=" vc_box_border_grey" src="/wp-content/uploads/2017/10/mapa-web2126.jpg" style="margin: auto;display: block;" usemap="#Map">
+
+<map name="Map" id="Map">
+    <area alt="London" title="" href="http://isardsat.co.uk" shape="rect" coords="922,83,979,154" href="http://www.google.com"/>
+    <area alt="Barcelona" title="" href="http://isardsat.cat" shape="rect" coords="953,261,1003,326" href="http://www.google.com"/>
+    <area alt="Polska" title="" href="http://isardsat.pl" shape="rect" coords="1158,18,1204,87" href="http://www.google.com"/>
+  
+</map>
+</div>
+   * 
     case 'desglose':
     $restriccio->restriccions_data = "2011-01-01";
     $restriccio->restriccions_datafi = "2031-01-01";
@@ -353,7 +368,6 @@ switch ($accio) {
     $filtre = new stdClass();
     if ($params)
       $filtre = $restriccio;
-
     $filtre = $r->parseFiltre($filtre);
     echo $r->getRestriccions(null, $filtre->restriccions_taula_id, $filtre->restriccions_data, $filtre->restriccions_datafi);
     break;
