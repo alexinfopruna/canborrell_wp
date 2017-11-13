@@ -154,6 +154,10 @@ $(function(){$("#panel").accordion({collapsible:true,active:false,heightStyle: "
 		<!-- -->
 		<a target="_blank" href="../restriccions" class=" bt ui-button ui-widget ui-state-default ui-corner-all ui-button-text-only">Gestionar restriccions d'horaris</a>
 		<!-- -->
+
+<!--		<a target="_blank" href="../restriccions_taules" class=" bt ui-button ui-widget ui-state-default ui-corner-all ui-button-text-only">Gestionar restriccions horaris per taula</a>-->
+		<!-- -->
+
 </div>
 
 <?php if (ADMIN){?>
