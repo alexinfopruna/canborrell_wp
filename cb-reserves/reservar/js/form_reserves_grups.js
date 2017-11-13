@@ -7,6 +7,7 @@ var TAULA = 0;
 var DATA = "01/01/2011";
 var TORN = "0";
 var SECCIO = null;
+var SELECT_CARTA=false;
 
 var DEBUG = getParameterByName("debug");
 
@@ -105,6 +106,8 @@ $(function () {
 
     $(".fr-seccio-hora").change(function () {
         comportamentMenus();
+
+        updateMenusSectionButtons();
 
         if ($(".grups-fr-seccio-carta").is(":hidden"))
             $(".grups-fr-seccio-carta").slideDown("slow", function () {
@@ -263,6 +266,8 @@ function comportamentQuantsSou()
         $("#selectorComensals").buttonset("destroy");
         $("#selectorComensals").buttonset();
         $.scrollTo("#titol_SelectorJuniors", 600);
+        
+        updateMenusSectionButtons();
 
 
         return false;
@@ -601,8 +606,6 @@ function updateMenus() {
     $("#carta h3").show();
     $("#carta2 h3").show();
     $("#carta3 h3").show();
-     shouldElementBeVisible =  $("input[name='adults']").val()<20;
-    $("#bt-carta").toggle(shouldElementBeVisible);
     
 
     if (excepcio) {
@@ -747,9 +750,13 @@ function llistablanca(date)
 /********************************************************************************************************************/
 function validacio()
 {
+    
     $.validator.addMethod("menus_comensals", function (value, element) {
         var totalComansals = parseInt($("#totalComensals").val());
         var value = parseInt(value);
+        shouldElementBeVisible =  $("input[name='adults']").val()<=20;
+       // alert(SELECT_CARTA);
+        if (shouldElementBeVisible && SELECT_CARTA) return true;
         return (value >= totalComansals);
     }, l('MENUS_COMENSALS'));
 
@@ -951,4 +958,10 @@ function seccio(selector_seccio) {
  */
 function tanca_dlg() {
     $("#td_contingut").removeClass("fals-overlay");
+}
+
+function updateMenusSectionButtons(){
+         shouldElementBeVisible =  $("input[name='adults']").val()<=20;
+    $("#bt-carta").toggle(shouldElementBeVisible);
+
 }

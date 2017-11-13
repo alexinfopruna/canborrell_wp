@@ -37,6 +37,7 @@ $(function(){
 		//$(".cmenu .carta-seleccio").removeClass("carta-seleccio");
 		//$(".cmenu .contador").val(0);
 		//$( "#fr-cartaw-popup" ).dialog( "option", "height", 750 );
+                SELECT_CARTA=true;
 		$("#fr-cartaw-popup").dialog("open");
 		$( "#fr-carta-tabs" ).tabs( "option", "selected", 0 );
 		return false;
@@ -44,6 +45,7 @@ $(function(){
 	$("#bt-menu").click(function(){
 		//$(".ccarta .carta-seleccio").removeClass("carta-seleccio");
 		//$(".ccarta .contador").val(0);
+                SELECT_CARTA=false;
 		$( "#fr-menu-popup" ).dialog( "option", "height", 750 );
 		$("#fr-menu-popup").dialog("open");
 		$( "#fr-menu-tabs" ).tabs( "option", "selected", 0 );
@@ -241,7 +243,7 @@ function excepcio_nadal(dat){
 	}
 	else{	
 	//alert("remove rules");	
-        $("#te-comanda").rules("remove");
+            $("#te-comanda").rules("remove");
 	}
 	
 	return excepcio;
