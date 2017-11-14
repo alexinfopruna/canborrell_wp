@@ -22,6 +22,18 @@ if (isset($_GET['exit']))
 }
 
 
+
+    function get_version()
+    {
+      
+        $commitHash = trim(exec('git log --pretty="%s" -n1 HEAD'));
+
+        $commitDate = new \DateTime(trim(exec('git log -n1 --pretty=%ci HEAD')));
+        $commitDate->setTimezone(new \DateTimeZone('UTC'));
+
+        return sprintf('(%s) %s',  $commitDate->format('Y-m-d H:m:s'), $commitHash);
+    }
+
 ?>
 <!DOCTYPE HTML>
 <HTML>
@@ -79,6 +91,7 @@ $(function(){$("#panel").accordion({collapsible:true,active:false,heightStyle: "
 <body>
 
 <h1>PANEL DE CONTROL DEL SISTEMA DE RESERVES</h1>
+<p style="text-align:right;font-size:9px;padding:15px;"><i ><?php  echo get_version(); ?></i></p>
 <A HREF="<?php echo $_SERVER['PHP_SELF'];?>?exit" class="ui-button" style="border:#666 solid 1px;background:white;padding:3px;color:#666;float:right;margin-right:15px;">Tanca sessió</a>
 
 <div id="panel">

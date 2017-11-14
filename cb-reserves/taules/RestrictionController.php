@@ -168,8 +168,8 @@ $order
     while ($row = $Result1->fetch_assoc()) {
       $hores = $hores | $row['restriccions_hores'];
     }
-    //echo "-- $hores ----";
-    //echo $query;die();
+    echo "-- $hores ----";
+    echo $query;die();
     //var_dump(TOTES_HORES);
     
     $hores = $this->subArrayHoresb($hores);
@@ -205,15 +205,10 @@ $order
 
   public function getHoresTaula($data, $taulaId) {
     $were_data = "restriccions_active = 1 AND (restriccions_data='2011-01-01' OR restriccions_data <= '$data' AND restriccions_datafi >='$data') AND ";
-  //  $query = "SELECT * FROM RestriccioHoresTaula where $were_data restriccions_taula_id = $taulaId";
     $query = "SELECT * FROM RestriccioHoresTaula where $were_data restriccions_taula_id = '$taulaId'";
 
-  // echo $query;
- //   echo "<br>";
     $Result1 = mysqli_query($this->connexioDB, $query) or die(((is_object($GLOBALS["___mysqli_ston"])) ? mysqli_error($GLOBALS["___mysqli_ston"]) : (($___mysqli_res = mysqli_connect_error()) ? $___mysqli_res : false)));
     $nr = mysqli_num_rows($Result1); 
-//   echo $nr;
-//    echo " ******** <br>";
     if (!$nr) return $TOTES_HORES; // SI NO HI HA RESTRICCIONS SON TOTES
     $rules = array();
     $hores = array();
