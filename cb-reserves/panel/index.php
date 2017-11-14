@@ -140,9 +140,9 @@ $(function(){$("#panel").accordion({collapsible:true,active:false,heightStyle: "
 		<!-- -->
 		<a target="_blank" href="/reservar/reserva-grup" class=" bt ui-button ui-widget ui-state-default ui-corner-all ui-button-text-only">FORMULARI reserves GRUPS</a>
 		<!-- -->
-		<a target="_blank" href="../panel/gestio_calendari.php?f=<?php echo INC_FILE_PATH;?>llista_dies_negra_online.txt&hideBlancs" class=" bt ui-button ui-widget ui-state-default ui-corner-all ui-button-text-only">ONLINE: Gestió dies bloquejats calendari FORMULARI res.petites</a>
+		<a target="_blank" href="../panel/gestio_calendari.php?f=<?php echo INC_FILE_PATH;?>llista_dies_negra.txt&hideBlancs" class=" bt ui-button ui-widget ui-state-default ui-corner-all ui-button-text-only">ONLINE: Gestió dies bloquejats calendari FORMULARI res.petites</a>
 		<!-- -->
-		<a target="_blank" href="../panel/gestio_calendari.php?f=<?php echo INC_FILE_PATH;?>bloq.txt" class=" bt ui-button ui-widget ui-state-default ui-corner-all ui-button-text-only">GRUPS: Gestió dies bloquejats calendari GRUPS</a>
+		<a target="_blank" href="../panel/gestio_calendari.php?f=<?php echo INC_FILE_PATH;?>llista_dies_negra_grups.txt" class=" bt ui-button ui-widget ui-state-default ui-corner-all ui-button-text-only">GRUPS: Gestió dies bloquejats calendari GRUPS</a>
 		<!--
 		<a target="_blank" href="../panel/editMenjadorsOnline_pk.php" class=" bt ui-button ui-widget ui-state-default ui-corner-all ui-button-text-only">ONLINE: Gestió menjadors OBERTS</a>
 		<!-- --><!-- --> 

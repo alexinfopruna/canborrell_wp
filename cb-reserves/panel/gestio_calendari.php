@@ -5,8 +5,6 @@
  * and open the template in the editor.
  */
 defined('ROOT') or define('ROOT', '../taules/');
-//if (isset($_GET['f']))   define("LLISTA_DIES_NEGRA",  $_GET['f']);
-//if (isset($_GET['fblanc']))   define("LLISTA_DIES_BLANCA",  $_GET['fblanc']);
 
 
 require_once(ROOT . "gestor_reserves.php");
@@ -16,9 +14,11 @@ if (!$gestor->valida_sessio(64)) {
   die();
 }
 
-if (!defined('LLISTA_DIES_NEGRA'))  define("LLISTA_DIES_NEGRA", ROOT . INC_FILE_PATH . "llista_dies_negra.txt");
 if (!defined('LLISTA_NITS_NEGRA'))  define("LLISTA_NITS_NEGRA", ROOT . INC_FILE_PATH . "llista_dies_negra.txt");
 if (!defined('LLISTA_DIES_BLANCA'))  define("LLISTA_DIES_BLANCA", ROOT . INC_FILE_PATH . "llista_dies_blanca.txt");
+$LLISTA_DIES_NEGRA = LLISTA_DIES_NEGRA;
+
+if (isset($_GET['f'])) $LLISTA_DIES_NEGRA = $_GET['f'];
 
 
 require_once(ROOT . INC_FILE_PATH . "llista_dies_taules.php");
@@ -46,27 +46,11 @@ if ($handle) {
   return $blanca;
 }
 
-$path_parts = pathinfo(LLISTA_DIES_NEGRA);
+$path_parts = pathinfo($LLISTA_DIES_NEGRA);
 $filename = $path_parts['filename'];
 $info="";
 
-//echo $filename;die();
 
-/*
- if ($filename == "llista_dies_negra"){
-   $info="ELS DIES BLOQUEJATS AFECTEN NOMÉS AL CONTROL TAULES
-<br><br>
-ELS DIES DESBLOQUEJATS HAN DE SER DILLUNS o DIMARTS. AFECTEN A TOT ARREU (control_taules, form_petites, form_grups)
-<br><br>
-Sempre té prioritat un BLOQUEIG sobre un DESBLOQUEIG. Això permet bloquejar dies pels formularis ONLINE encara que estigui DESBLOQUEJATS ";
- }elseif($filename=="llista_dies_negra_online"){
-   $info="ELS DIES BLOQUEJATS AFECTEN NO</div>MÉS AL FORMULARI DE RESERVES PETITES";
- }elseif($filename=="bloq"){
-   $info="ELS DIES BLOQUEJATS AFECTEN NOMÉS AL FORMULARI DE RESERVES GRUPS";
- }else{
-   $info="AFECTA AL CONTROL TAULES";
- }
- */
  $info="ELS DIES MARCATS AL CALENDARI AFECTEN A TOTS ELS CALENDARIS DEL SISTEMA:
    <ul>
    <li>Calendari del control taules</li>
@@ -125,7 +109,7 @@ $info=""
     <body style="">
         <h1>Control de dies obert / tancat</h1>
             <!--<div>
-                Llista negra: <?php echo LLISTA_DIES_NEGRA ?><br>
+                Llista negra: <?php echo $LLISTA_DIES_NEGRA ?><br>
         Llista blanca: <?php echo LLISTA_DIES_BLANCA ?>
 
         </div>-->
@@ -153,7 +137,7 @@ $info=""
                         
                     <ul id="llista-negra">
                         <?php echo $filename ?>
-                  <?php echo read_llista(LLISTA_DIES_NEGRA, "negra");?>
+                  <?php echo read_llista($LLISTA_DIES_NEGRA, "negra");?>
                 </ul>
         </div>
 </div>
@@ -161,14 +145,14 @@ $info=""
     <script>
       
 <?php 
-                            $llista_negra=llegir_dies(LLISTA_DIES_NEGRA);
+                            $llista_negra=llegir_dies($LLISTA_DIES_NEGRA);
                             $llista_blanca=llegir_dies(LLISTA_DIES_BLANCA);
                             print crea_llista_js($llista_negra,"LLISTA_NEGRA"); 
                             print "\n\n";	
                             print crea_llista_js($llista_blanca,"LLISTA_BLANCA");  	
 ?>      
       var DATA=new Date("<?php echo $mydata ?>");
-      var FNEGRE="<?php echo LLISTA_DIES_NEGRA ?>";
+      var FNEGRE="<?php echo $LLISTA_DIES_NEGRA ?>";
       var FBLANC="<?php echo LLISTA_DIES_BLANCA ?>";
               
       $(function () {

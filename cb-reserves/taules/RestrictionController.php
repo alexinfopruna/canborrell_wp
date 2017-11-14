@@ -148,6 +148,28 @@ $order
 
   /*   * ************************************************************************ */
 
+  public function getHoresCoberts($data, $coberts ) {
+    $were_data = "restriccions_active = 1 AND (restriccions_data='2011-01-01' OR restriccions_data <= '$data' AND restriccions_datafi >='$data') AND ";
+    $query = "SELECT * FROM RestriccioHoresTaula where $were_data restriccions_taula_id = '$coberts'";
+
+    $Result1 = mysqli_query($this->connexioDB, $query) or die(((is_object($GLOBALS["___mysqli_ston"])) ? mysqli_error($GLOBALS["___mysqli_ston"]) : (($___mysqli_res = mysqli_connect_error()) ? $___mysqli_res : false)));
+    $nr = mysqli_num_rows($Result1); 
+    if (!$nr) return null; // SI NO HI HA RESTRICCIONS SON TOTES
+    
+    $hores = array();
+    while ($row = $Result1->fetch_assoc()) {
+      $hores = $hores | $row['restriccions_hores'];
+    }
+    //echo "-- $hores ----";
+    //echo $query;die();
+    $hores = $this->subArrayHoresb($hores);
+    return($hores);
+  }
+
+
+  
+  /*   * ************************************************************************ */
+
   public function getHoresTaules($data, $taules) {
     $hores_taula = array();
 
@@ -166,6 +188,9 @@ $order
     return $hores_taula;
   }
 
+  
+  
+  
   /*   * ************************************************************************ */
 
   public function getHoresTaula($data, $taulaId) {
@@ -214,11 +239,8 @@ $order
   private function subArrayHoresb($decNum) {
     $strbin = substr("00000000000000000000000000000000" . decbin($decNum), -26);
 
-
-    // $strbin = substr("000000000000000000000000" . decbin ( $decNum ),-26);
     $arrayBib = str_split($strbin);
     $binHores = array_map('intval', $arrayBib);
-
     $hores = TOTES_HORES;
 
     //NO POT QUEDAR BUIDA

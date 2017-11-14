@@ -215,14 +215,13 @@ class Gestor_form extends gestor_reserves {
     
     $tids = "";
     foreach($taules as $k => $v) $tids.= $v->id." (".$v->nom. ")| ";
-    //$hores_taules = null;
+    /*     * */
+    $hores_taules = $rc->getHoresCoberts($mydata, $coberts);//$rc->
     
-    $hores_taules = $rc->getHoresTaules($mydata, $taules);//$rc->
-    
-   // var_dump($hores_taules);
     $this->taulesDisponibles->rang_hores_taules = $hores_taules;
+
+     
     $dinar = $this->taulesDisponibles->recupera_hores();
-   // var_dump($dinar);
     $taulaT1 = 0;
     if ($taules)
       $taulaT1 = $taules[0]->id;

@@ -9,7 +9,8 @@ if (defined("CB_FORA_DE_SERVEI") && CB_FORA_DE_SERVEI === true && $_SESSION['per
   header("Location:/cb-reserves/reservar/fora_de_servei.html");
 
 //define("LLISTA_DIES_NEGRA", ROOT . INC_FILE_PATH . "bloq.txt");
-define("LLISTA_DIES_NEGRA", ROOT . INC_FILE_PATH . "llista_dies_negra.txt");
+define("LLISTA_DIES_NEGRA", ROOT . INC_FILE_PATH . "llista_dies_negra_grups.txt");
+//define("LLISTA_DIES_NEGRA", ROOT . INC_FILE_PATH . "llista_dies_negra.txt");
 define("LLISTA_NITS_NEGRA", ROOT . INC_FILE_PATH . "bloq_nit.txt");
 define("LLISTA_DIES_BLANCA", ROOT . INC_FILE_PATH . "llista_dies_blanca.txt");
 define('USR_FORM_WEB', 3); //ES LA ID D'USUARI (admin) ANONIM QUE CREA RESERVA ONLINE
@@ -164,6 +165,9 @@ function reservar_enqueue_styles() {
   $llista_nits_negra = llegir_dies(LLISTA_NITS_NEGRA);
   $llista_blanca = llegir_dies(LLISTA_DIES_BLANCA);
 
+  
+  
+  echo "/* LLISTA_NEGRA = ".LLISTA_DIES_NEGRA." */ \n\n";
   print crea_llista_js($llista_negra, "LLISTA_NEGRA");
   print "\n\n";
   print crea_llista_js($llista_nits_negra, "LLISTA_NITS_NEGRA");
