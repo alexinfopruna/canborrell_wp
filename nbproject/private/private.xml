@@ -5,12 +5,12 @@
             <url>cb-reserves/reservar/Gestor_form.php</url>
             <bookmark id="4">
                 <name/>
-                <line>254</line>
+                <line>253</line>
                 <key/>
             </bookmark>
             <bookmark id="5">
                 <name/>
-                <line>1161</line>
+                <line>1160</line>
                 <key/>
             </bookmark>
         </file>
@@ -25,14 +25,10 @@
     </editor-bookmarks>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/var/www/canborrell-wp/cb-reserves/taules/Restriccions.php</file>
-            <file>file:/var/www/canborrell-wp/youtube.php</file>
-            <file>file:/var/www/canborrell-wp/wp-content/themes/onetone/home-sections/section-youtube-video.php</file>
-            <file>file:/var/www/canborrell-wp/.htaccess</file>
             <file>file:/var/www/canborrell-wp/cb-reserves/reservar/Gestor_form.php</file>
             <file>file:/var/www/canborrell-wp/cb-reserves/panel/index.php</file>
-            <file>file:/var/www/canborrell-wp/wp-content/themes/onetone/js/onetone.js</file>
-            <file>file:/var/www/canborrell-wp/index.php</file>
+            <file>file:/var/www/canborrell-wp/cb-reserves/taules/RestriccionsTaules.php</file>
+            <file>file:/var/www/canborrell-wp/cb-reserves/taules/RestrictionController.php</file>
         </group>
     </open-files>
 </project-private>

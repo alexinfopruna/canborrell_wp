@@ -3995,4 +3995,29 @@
           restriccions_description = 'Nova restricció'
             
           WHERE restriccions_id = '66'
+       "} ---> Array
+(
+    [0] => 0
+    [1] => 0
+    [2] => 0
+    [3] => 0
+    [4] => 0
+    [5] => 0
+    [6] => 0
+    [7] => 0
+)
+ ---> 1792 ---> {'data':"zzzzUPDATE  RestriccioHoresTaula 
+ 
+
+
+      SET restriccions_active= '1',
+          restriccions_taula_id =   '16', 
+          restriccions_data =   '2017-11-15', 
+          restriccions_datafi = '2017-11-19',
+          restriccions_dies = '0',
+          restriccions_hora = '11:00',
+          restriccions_hores = '1792',
+          restriccions_description = 'Nova restricció'
+            
+          WHERE restriccions_id = '67'
        "}

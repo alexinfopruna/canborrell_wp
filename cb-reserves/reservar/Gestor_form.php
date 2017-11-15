@@ -19,12 +19,17 @@ require_once(ROOT . "Gestor.php");
 
 
 //if (!defined('LLISTA_DIES_NEGRA'))  define("LLISTA_DIES_NEGRA", ROOT . INC_FILE_PATH . "bloq.txt");
-if (!defined('LLISTA_DIES_NEGRA'))  define("LLISTA_DIES_NEGRA", ROOT . INC_FILE_PATH . "llista_dies_negra.txt");
+if (!defined('LLISTA_DIES_NEGRA'))
+  define("LLISTA_DIES_NEGRA", ROOT . INC_FILE_PATH . "llista_dies_negra.txt");
 //if (!defined('LLISTA_DIES_NEGRA_RES_PETITES'))  define("LLISTA_DIES_NEGRA_RES_PETITES", ROOT . INC_FILE_PATH . "llista_dies_negra_online.txt");
-if (!defined('LLISTA_DIES_NEGRA_RES_PETITES'))  define("LLISTA_DIES_NEGRA_RES_PETITES", ROOT . INC_FILE_PATH . "llista_dies_negra.txt");
-if (!defined('LLISTA_NITS_NEGRA'))  define("LLISTA_NITS_NEGRA", ROOT . INC_FILE_PATH . "bloq_nit.txt");
-if (!defined('LLISTA_DIES_BLANCA'))  define("LLISTA_DIES_BLANCA", ROOT . INC_FILE_PATH . "llista_dies_blanca.txt");
-if (!defined('TPV_CONFIG_FILE'))  define("TPV_CONFIG_FILE", "TPV256_test.php");
+if (!defined('LLISTA_DIES_NEGRA_RES_PETITES'))
+  define("LLISTA_DIES_NEGRA_RES_PETITES", ROOT . INC_FILE_PATH . "llista_dies_negra.txt");
+if (!defined('LLISTA_NITS_NEGRA'))
+  define("LLISTA_NITS_NEGRA", ROOT . INC_FILE_PATH . "bloq_nit.txt");
+if (!defined('LLISTA_DIES_BLANCA'))
+  define("LLISTA_DIES_BLANCA", ROOT . INC_FILE_PATH . "llista_dies_blanca.txt");
+if (!defined('TPV_CONFIG_FILE'))
+  define("TPV_CONFIG_FILE", "TPV256_test.php");
 
 require_once(ROOT . "gestor_reserves.php");
 require_once(ROOT . "Menjador.php");
@@ -179,7 +184,8 @@ class Gestor_form extends gestor_reserves {
   /*   * ******************************************************************************************************* */
 
   public function horesDisponibles($data, $coberts, $cotxets = 0, $accesible = 0, $idr = 0, $nens = null) {
-    if ($cotxets == 'undefined')      $cotxets = 0;
+    if ($cotxets == 'undefined')
+      $cotxets = 0;
     $mydata = $this->cambiaf_a_mysql($data);
 
     $this->taulesDisponibles->tableHores = "estat_hores";   //ANULAT GESTOR HORES FORM. Tot es gestiona igual, des d'estat hores
@@ -206,30 +212,33 @@ class Gestor_form extends gestor_reserves {
     $rc = new RestrictionController();
     $this->taulesDisponibles->rang_hores_nens = $rc->getHores($mydata, $cacheAdults, $cacheNens, $cotxets);
     $rules = $rc->getActiveRules($mydata, $cacheAdults, $cacheNens, $cotxets);
-    
+
     //RestriccionsTaules ALEX
     //TORN1
     $this->taulesDisponibles->torn = 1;
-     $this->taulesDisponibles->recupera_hores();
+    $this->taulesDisponibles->recupera_hores();
     $taules = $this->taulesDisponibles->taulesDisponibles();
-    
-    $tids = "";
-    foreach($taules as $k => $v) $tids.= $v->id." (".$v->nom. ")| ";
-    /*     * */
-    $hores_taules = $rc->getHoresCoberts($mydata, $coberts);//$rc->
-    
-    $this->taulesDisponibles->rang_hores_taules = $hores_taules;
 
-     
+     $tids = "";
+    if ($taules) {
+      foreach ($taules as $k => $v)
+        $tids .= $v->id . " (" . $v->nom . ")| ";
+    }
+    $hores_taules = $rc->getHoresCoberts($mydata, $coberts); //$rc->
+    $this->taulesDisponibles->rang_hores_taules = $hores_taules;
     $dinar = $this->taulesDisponibles->recupera_hores();
     $taulaT1 = 0;
-    if ($taules)
+    
+    $taula_t1_nom = "";
+    if ($taules){
       $taulaT1 = $taules[0]->id;
+      $taula_t1_nom = $taules[0]->nom;
+    }
     if (!$dinar)
       $dinar = "";
 
-    $taula_t1_nom =  $taules[0]->nom;
-    
+   
+
     //TORN2
     $this->taulesDisponibles->torn = 2;
     $dinarT2 = $this->taulesDisponibles->recupera_hores();
@@ -257,7 +266,7 @@ class Gestor_form extends gestor_reserves {
 
     $json['rules'] = array_column($rules, 'restriccions_id');
     $json['params'] = "$mydata, $cacheAdults, $cacheNens, $cotxets >>> $taula_t1_nom";
-    $json['taules'] =  $tids;
+    $json['taules'] = $tids;
     return json_encode($json);
     //////////////////////////////////					
   }
@@ -342,7 +351,7 @@ class Gestor_form extends gestor_reserves {
     else
       $were = ' (carta_plats.carta_plats_subfamilia_id<>20) ';
 
-    $were.=' AND carta_publicat = TRUE ';
+    $were .= ' AND carta_publicat = TRUE ';
 
     $CONTROLA_ARTICLES_ACTIUS = "";
 
@@ -378,7 +387,7 @@ ORDER BY carta_subfamilia_order,carta_plats_nom_es , carta_plats_nom_ca";
     $llista = "";
     foreach ($arCarta as $key => $val) {
       $k = $this->normalitzar($key);
-      $llista.='<li><a href="#carta_' . $k . '">' . $key . '</a></li>' . PHP_EOL;
+      $llista .= '<li><a href="#carta_' . $k . '">' . $key . '</a></li>' . PHP_EOL;
     }
     $tancaLlista = '</ul>' . PHP_EOL;
     $carta = $obreLlista . $llista . $tancaLlista;
@@ -389,7 +398,7 @@ ORDER BY carta_subfamilia_order,carta_plats_nom_es , carta_plats_nom_ca";
       $seccio = $this->seccioCarta($arCarta, $key, $class);
       $tancaSeccio = '</div>' . PHP_EOL . PHP_EOL;
 
-      $carta.=$obreSeccio . PHP_EOL . $seccio . PHP_EOL . $tancaSeccio;
+      $carta .= $obreSeccio . PHP_EOL . $seccio . PHP_EOL . $tancaSeccio;
     }
 
     return $carta;
@@ -418,7 +427,7 @@ ORDER BY carta_subfamilia_order,carta_plats_nom_es , carta_plats_nom_ca";
       $preu = number_format($preu, 2, '.', '');
 
       $odd = ($l % 2) ? "odd" : "pair";
-      $tr.='<tr producte_id="' . $val['id'] . '" class="item-carta ' . $odd . $menuEspecial . '">
+      $tr .= '<tr producte_id="' . $val['id'] . '" class="item-carta ' . $odd . $menuEspecial . '">
 				<td  class="mes"><div  class="d-mes ui-corner-all" ><a href"#">+</a></div></td>
 				<td class="contador">
                                 <div  class="mes"><div  class="m-mes ui-corner-all"> + </div></div>
@@ -547,6 +556,7 @@ FROM client
 
 
 
+
       
 // MIREM SI ESTÀ EDITANT UNA RESERVA EXISTENT
 //MIRA SI ENS VOLEM FER UNA DUPLICADA
@@ -588,6 +598,7 @@ FROM client
 
 
 
+
       
 //ESBRINA EL TORN	
     $data = $this->cambiaf_a_mysql($_POST['selectorData']);
@@ -606,6 +617,7 @@ FROM client
     //COMPROVEM HORA LIMIT
     if (!$this->reserva_entra_avui($data, $hora))
       return $this->jsonErr(11, $resposta); // "err7 adults";
+
 
 
 
@@ -641,37 +653,39 @@ FROM client
     // VALIDA SI HEM TROBAT TAULA
     if (!$taules = $this->taulesDisponibles->taulesDisponibles())
       return $this->jsonErr(3, $resposta);
-    
-    
-    foreach ($taules as $key => $value) $t[]=$value->id;
-      $resposta['error']  = print_r($t,true);
-      
-      /*
-       * 
-       * Comprova si la taula compleix amb les restriccions d'hores taules. Si no busca si en troba una altra
-       * 
-       */
-        
-      $rc= new RestrictionController();
-      $hr=array();
-      $len = count($taules);
-      $t=null;
-      for ($i=0;$i<$len;$i++){
-        $hr=$rc->getHoresTaules($data, array($taules[$i]));
-        if (in_array($hora, $hr)){
-          $t=$taules[$i];
-          break;
-        }
+
+
+    foreach ($taules as $key => $value)
+      $t[] = $value->id;
+    $resposta['error'] = print_r($t, true);
+
+    /*
+     * 
+     * Comprova si la taula compleix amb les restriccions d'hores taules. Si no busca si en troba una altra
+     * 
+     */
+
+    $rc = new RestrictionController();
+    $hr = array();
+    $len = count($taules);
+    $t = null;
+    for ($i = 0; $i < $len; $i++) {
+      $hr = $rc->getHoresTaules($data, array($taules[$i]));
+      if (in_array($hora, $hr)) {
+        $t = $taules[$i];
+        break;
       }
-   
-      
-    if (is_null($t)) {
-      foreach ($taules as $v) $t.=$v->id." ** ";
-      $resposta['error']  = " No hi ha taula disponible per l'hora sol·licitada ".$t;//print_r($hr,true);
-       return $this->jsonErr(3, $resposta);
     }
-     
-    
+
+
+    if (is_null($t)) {
+      foreach ($taules as $v)
+        $t .= $v->id . " ** ";
+      $resposta['error'] = " No hi ha taula disponible per l'hora sol·licitada " . $t; //print_r($hr,true);
+      return $this->jsonErr(3, $resposta);
+    }
+
+
     $taules[0] = $t;
     $taula = $taules[0]->id;
     // VALIDA SI HEM TROBAT HORA
@@ -692,6 +706,7 @@ FROM client
       return $this->jsonErr(5, $resposta); // "err5 nom";
     if (empty($_POST['client_cognoms']))
       return $this->jsonErr(6, $resposta); // "err6: cognoms";
+
 
 
 
@@ -783,7 +798,7 @@ FROM client
     //envia SMS
 
     $persones = $_POST['selectorComensals'] + $_POST['selectorJuniors'] + $_POST['selectorNens'];
-    $persones.='p';
+    $persones .= 'p';
     //$mensa = "Recuerde: reserva en Restaurant Can Borrell el $data a las $hora ($persones).Rogamos comunique cualquier cambio: 936929723 - 936910605.Gracias.(ID:$idr)";
     //$mensa = $this->lv("Recordi: reserva al Restaurant Can Borrell el %s a les %s (%s).Preguem comuniqui qualsevol canvi: 936929723 - 936910605.Gràcies.(ID:%s)");
 
@@ -798,14 +813,17 @@ FROM client
 
 
     $TPV = $this->paga_i_senyal($coberts);
-    
-    global $translate;
-        ob_start();    include('translate_' . $this->lng . '.php');    ob_end_clean();
-    $extres['subject'] = $this->l("Can-Borrell: CONFIRMACIÓ DE RESERVA ONLINE", FALSE)." ".$idr;
-    //envia MAIL
-    if ($_POST['client_email'] && !$TPV)    $mail = $this->enviaMail($idr, "confirmada_", FALSE, $extres);
 
-    
+    global $translate;
+    ob_start();
+    include('translate_' . $this->lng . '.php');
+    ob_end_clean();
+    $extres['subject'] = $this->l("Can-Borrell: CONFIRMACIÓ DE RESERVA ONLINE", FALSE) . " " . $idr;
+    //envia MAIL
+    if ($_POST['client_email'] && !$TPV)
+      $mail = $this->enviaMail($idr, "confirmada_", FALSE, $extres);
+
+
     $resposta['mail'] = isset($mail) ? $mail : FALSE;
     $resposta['virtual'] = $taulaVirtual;
     $resposta['TPV'] = $TPV ? "TPV" : "";
@@ -816,7 +834,7 @@ FROM client
     if ($TPV) {
       $nom = $_POST['client_nom'] . ' ' . $_POST['client_cognoms'];
       //$t=print_r($_REQUEST,TRUE);
-     //   $resposta['lx'] = " ... ".$_REQUEST["testTPV"]." *** ".$t;
+      //   $resposta['lx'] = " ... ".$_REQUEST["testTPV"]." *** ".$t;
 
       if (isset($_REQUEST["testTPV"]) && $_SESSION['permisos'] > 200)
         $resposta['form_tpv'] = $this->generaTESTTpvSHA256($idr, import_paga_i_senyal, $nom);
@@ -860,6 +878,7 @@ FROM client
     $torn = $this->torn($data, $hora);
     if (!$torn)
       return $this->jsonErr(8, $resposta); // COMPROVA torn
+
 
 
 
@@ -1003,7 +1022,9 @@ FROM client
 //envia MAIL
     //$extres['subject'] = "Can-Borrell: MODIFICACIÓ RESERVA ONLINE " . $_POST['id_reserva'];
     global $translate;
-           ob_start();    include('translate_' . $lang . '.php');    ob_end_clean();
+    ob_start();
+    include('translate_' . $lang . '.php');
+    ob_end_clean();
     $extres['subject'] = $this->l("Can-Borrell: MODIFICACIÓ RESERVA ONLINE ", FALSE) . $_POST['id_reserva'];
     if ($_POST['client_email'])
       $mail = $this->enviaMail($_POST['id_reserva'], "../reservar/mail_res_modificada_", FALSE, $extres);
@@ -1028,7 +1049,9 @@ FROM client
       //ENVIA MAIL
       $_POST['id_reserva'] = $idr;
       //$extres['subject'] = "Can-Borrell: RESERVA CANCELADA " . $_POST['id_reserva'];
-      ob_start();    include('translate_' . $this->lng . '.php');    ob_end_clean();
+      ob_start();
+      include('translate_' . $this->lng . '.php');
+      ob_end_clean();
       $extres['subject'] = $this->l("Can-Borrell: RESERVA CANCELADA ", FALSE) . $_POST['id_reserva'];
       $mail = $this->enviaMail($idr, "cancelada_", FALSE, $extres);
 
@@ -1102,7 +1125,7 @@ WHERE  `client`.`client_id` =$idc;
     //$dest="alex@infopruna.net";
     $extres['reserva_consulta_online'] = $_POST['reserva_consulta_online'];
     $extres['client_email'] = $_POST['client_email'];
-    $extres['subject'] = "Can-Borrell: Consulta reserves petites online"." ".$idr;
+    $extres['subject'] = "Can-Borrell: Consulta reserves petites online" . " " . $idr;
 
     if (!empty($post['idr']) && floor($post['idr']) < 1000)
       return false;
@@ -1134,7 +1157,7 @@ WHERE  `client`.`client_id` =$idc;
     $dest = MAIL_RESTAURANT;
     $extres['reserva_consulta_online'] = $_POST['reserva_consulta_online'];
     $extres['client_email'] = $_POST['client_email'];
-    $extres['subject'] = "Can-Borrell: GRUPS Consulta reservesonline"." ".$idr;
+    $extres['subject'] = "Can-Borrell: GRUPS Consulta reservesonline" . " " . $idr;
     //$extres['subject'] = $this->l("Can-Borrell: GRUPS Consulta reservesonline");
 
 
@@ -1366,29 +1389,29 @@ WHERE  `client`.`client_id` =$idc;
       $query = "UPDATE estat_taules SET estat_taules_timestamp=NOW() WHERE reserva_id=$idr";
       $res = $this->log_mysql_query($query, $this->connexioDB) or die(((is_object($GLOBALS["___mysqli_ston"])) ? mysqli_error($GLOBALS["___mysqli_ston"]) : (($___mysqli_res = mysqli_connect_error()) ? $___mysqli_res : false)));
     }
-    
+
     global $translate;
     require('translate_' . $lang . '.php');
-    $msg="FITXER TRANSLATE: ".'translate_' . $lang . '.php';
-   $this->xgreg_log($msg, 1, LOG_FILE_TPVPK, TRUE, 0); /* LOG */
-   $msg = $translate["Can-Borrell: CONFIRMACIÓ PAGA I SENYAL"];
-   $this->xgreg_log($msg, 1, LOG_FILE_TPVPK, TRUE, 0); /* LOG */
-   
-   $extres['subject'] = $this->l("Can-Borrell: CONFIRMACIÓ PAGA I SENYAL", FALSE)." ".$idr;
-  // $extres['subject'] = $translate["Can-Borrell: CONFIRMACIÓ PAGA I SENYAL"]." ".$idr;
+    $msg = "FITXER TRANSLATE: " . 'translate_' . $lang . '.php';
+    $this->xgreg_log($msg, 1, LOG_FILE_TPVPK, TRUE, 0); /* LOG */
+    $msg = $translate["Can-Borrell: CONFIRMACIÓ PAGA I SENYAL"];
+    $this->xgreg_log($msg, 1, LOG_FILE_TPVPK, TRUE, 0); /* LOG */
+
+    $extres['subject'] = $this->l("Can-Borrell: CONFIRMACIÓ PAGA I SENYAL", FALSE) . " " . $idr;
+    // $extres['subject'] = $translate["Can-Borrell: CONFIRMACIÓ PAGA I SENYAL"]." ".$idr;
 
     if ($mail) {
       $this->enviaMail($idr, "../reservar/paga_i_senyal_", "", $extres);
     }
 
     $persones = $row['adults'] + $row['nens10_14'] + $row['nens4_9'];
-    $persones.='p';
+    $persones .= 'p';
 
     $data = $this->cambiaf_a_normal($row['data']);
     $hora = $row['hora'];
 
     $missatge = "Recuerde: reserva en Restaurant Can Borrell el $data a las $hora ($persones).Rogamos comunique cualquier cambio: 936929723 - 936910605.Gracias.(ID:$idr)";
-    $missatge.="\n***\nConserve este SMS como comprobante de la paga y señal de " . $import . "€ que le será descontada. También hemos enviado un email que puede imprimir";
+    $missatge .= "\n***\nConserve este SMS como comprobante de la paga y señal de " . $import . "€ que le será descontada. También hemos enviado un email que puede imprimir";
 
     $args[] = $data;
     $args[] = $hora;
@@ -1426,7 +1449,7 @@ WHERE  `client`.`client_id` =$idc;
     $this->setLang($lang);
     // echo "------------ $this->lng  ---- $lang ------------";
     //print_r($row);
-    
+
     $estat = $row['estat'];
     $mail = $row['client_email'];
 
@@ -1453,7 +1476,7 @@ WHERE  `client`.`client_id` =$idc;
     include('translate_' . $this->lng . '.php');
     echo $query . " >>> " . $result;
 //
-    $extres['subject'] = $translate["MAIL_GRUPS_PAGAT_subject"]." ".$idr;
+    $extres['subject'] = $translate["MAIL_GRUPS_PAGAT_subject"] . " " . $idr;
     $extres['titol'] = $translate["MAIL_GRUPS_PAGAT_titol"];
     $extres['text1'] = $translate["MAIL_GRUPS_PAGAT_text1"] . number_format($import, 2);
     $extres['text2'] = $translate["MAIL_GRUPS_PAGAT_text2"];
@@ -1694,8 +1717,8 @@ SQL;
     else
       $were = ' (carta_plats.carta_plats_subfamilia_id<>20) ';
 
-    $were.=' AND carta_plats_subfamilia_id IN (1101, 1102, 1103, 1104, 1105)';
-    $were.=' AND carta_publicat = TRUE ';
+    $were .= ' AND carta_plats_subfamilia_id IN (1101, 1102, 1103, 1104, 1105)';
+    $were .= ' AND carta_publicat = TRUE ';
 
     if ($leng == 'en')
       $leng = 'ca';
@@ -1751,7 +1774,7 @@ ORDER BY carta_subfamilia_order,carta_plats_nom_es , carta_plats_nom_ca";
       $seccio = $this->seccioCartaWeb($arCarta, $key, $class);
       $tancaSeccio = '[/ms_tab]' . PHP_EOL . PHP_EOL;
 
-      $carta.=$obreSeccio . PHP_EOL . $seccio . PHP_EOL . $tancaSeccio;
+      $carta .= $obreSeccio . PHP_EOL . $seccio . PHP_EOL . $tancaSeccio;
     }
 
     //print_r($arCarta);
@@ -1779,10 +1802,10 @@ ORDER BY carta_subfamilia_order,carta_plats_nom_es , carta_plats_nom_ca";
       $nom = l($nom, FALSE);
       $nom = ucfirst(strtolower($nom));
 
-      $tr.='<li producte_id="' . $val['id'] . '" class="item-carta ' . $menuEspecial . '">';
-      $tr.=$nom . '<span class="fr">' . $preu . '</span>';
+      $tr .= '<li producte_id="' . $val['id'] . '" class="item-carta ' . $menuEspecial . '">';
+      $tr .= $nom . '<span class="fr">' . $preu . '</span>';
       // $tr.= '<div><div class="dt">'.$val['nom'].'</div><div class="dd">'.$preu."</div></div>";
-      $tr.='</li>' . PHP_EOL;
+      $tr .= '</li>' . PHP_EOL;
     }
 
     $tancaTaula = '</ul>' . PHP_EOL . PHP_EOL;
@@ -1831,20 +1854,21 @@ if (isset($accio) && !empty($accio)) {
     $log = in_array($accio, $logables);
     $ip = isset($ips[$_SERVER['REMOTE_ADDR']]) ? $ips[$_SERVER['REMOTE_ADDR']] : $_SERVER['REMOTE_ADDR'];
 
-    if (isset($_SESSION['uSer']))    {  
+    if (isset($_SESSION['uSer'])) {
       $sessuser = $_SESSION['uSer'];
-      
-    }elseif ($accio == 'respostaTPV_SHA256'){
-          {
-      $usr = new Usuari(3, "webForm", 1);
-      if (!isset($_SESSION['uSer']))
-        $_SESSION['uSer'] = $usr;
     }
+    elseif ($accio == 'respostaTPV_SHA256') { {
+        $usr = new Usuari(3, "webForm", 1);
+        if (!isset($_SESSION['uSer']))
+          $_SESSION['uSer'] = $usr;
+      }
     }
-    if (isset($sessuser)) {      $user = $sessuser->id;    }
+    if (isset($sessuser)) {
+      $user = $sessuser->id;
+    }
 
 
- 
+
     /*
       else{
       echo "err100";

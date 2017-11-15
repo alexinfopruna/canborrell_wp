@@ -14,13 +14,7 @@ if (!defined('ROOT'))
 //    "17:00"));
 
 
-$TOTES_HORES =array("", "11:00", "11:15", "11:30", "11:45",
-    "12:00", "12:15", "12:30", "12:45",
-    "13:00", "13:15", "13:30", "13:45",
-    "14:00", "14:15", "14:30", "14:45",
-    "15:00", "15:15", "15:30", "15:45",
-    "16:00", "16:15", "16:30", "16:45",
-    "17:00");
+
 
 require_once (ROOT . "./gestor_reserves.php");
 require_once(ROOT . INC_FILE_PATH . "llista_dies_taules.php");
@@ -34,7 +28,15 @@ if (!defined('ROOT'))
   define('ROOT', './');
 
 class RestrictionController extends gestor_reserves {
-
+static $TOTES_HORES =array("", "11:00", "11:15", "11:30", "11:45",
+    "12:00", "12:15", "12:30", "12:45",
+    "13:00", "13:15", "13:30", "13:45",
+    "14:00", "14:15", "14:30", "14:45",
+    "15:00", "15:15", "15:30", "15:45",
+    "16:00", "16:15", "16:30", "16:45",
+    "17:00");
+  
+  
   function __contruct($usuari_minim = 1) {
     parent::__construct(DB_CONNECTION_FILE, $usuari_minim);
   }
@@ -168,8 +170,8 @@ $order
     while ($row = $Result1->fetch_assoc()) {
       $hores = $hores | $row['restriccions_hores'];
     }
-    echo "-- $hores ----";
-    echo $query;die();
+//    echo "-- $hores ----";
+//    echo $query;die();
     //var_dump(TOTES_HORES);
     
     $hores = $this->subArrayHoresb($hores);
@@ -209,7 +211,7 @@ $order
 
     $Result1 = mysqli_query($this->connexioDB, $query) or die(((is_object($GLOBALS["___mysqli_ston"])) ? mysqli_error($GLOBALS["___mysqli_ston"]) : (($___mysqli_res = mysqli_connect_error()) ? $___mysqli_res : false)));
     $nr = mysqli_num_rows($Result1); 
-    if (!$nr) return $TOTES_HORES; // SI NO HI HA RESTRICCIONS SON TOTES
+    if (!$nr) return RestrictionController::$TOTES_HORES; // SI NO HI HA RESTRICCIONS SON TOTES
     $rules = array();
     $hores = array();
     while ($row = $Result1->fetch_assoc()) {
@@ -231,7 +233,7 @@ $order
 
   /** INTERSECCIO RESTRICTIVA * */
   private function interseccio_horesxxx($rules) {
-    $inter = $TOTES_HORES;
+    $inter = RestrictionController::$TOTES_HORES;
 
     foreach ($rules as $k => $rule) {
       $hores = $this->subArrayHoresb($rule['restriccions_hores']);
@@ -246,7 +248,7 @@ $order
 
     $arrayBib = str_split($strbin);
     $binHores = array_map('intval', $arrayBib);
-    $hores = $TOTES_HORES;
+    $hores = RestrictionController::$TOTES_HORES;
 
     //NO POT QUEDAR BUIDA
     $result = array();
