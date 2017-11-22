@@ -80,6 +80,6 @@ function cb_autocompletes(){
              $("#campsClient textarea[name='client_conflictes']",FORMULARI_INSERTA_RES).val(ui.item.client_conflictes.toUpperCase());
          }
       },
-      minLength: 4
+      minLength: 6
     });
 };
