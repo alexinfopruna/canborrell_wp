@@ -166,9 +166,9 @@ $(function(){$("#panel").accordion({collapsible:true,active:false,heightStyle: "
 		<!-- -->
 		<a target="_blank" href="../reservar/filtre_carta.php" class=" bt ui-button ui-widget ui-state-default ui-corner-all ui-button-text-only">CARTA: Gestionar plats publicats</a>
 		<!-- -->
-		<a target="_blank" href="../restriccions" class=" bt ui-button ui-widget ui-state-default ui-corner-all ui-button-text-only">Gestionar restriccions d'horaris</a>
+		<a target="_blank" href="../restriccions" class=" bt ui-button ui-widget ui-state-default ui-corner-all ui-button-text-only">Gestionar restriccions d'horaris ADULTS / NENS</a>
 		<!-- -->
-		<a target="_blank" href="../restriccions_taules" class=" bt ui-button ui-widget ui-state-default ui-corner-all ui-button-text-only">Gestionar restriccions horaris per taula</a>
+		<a target="_blank" href="../restriccions_taules" class=" bt ui-button ui-widget ui-state-default ui-corner-all ui-button-text-only">Gestionar restriccions horaris per COBERTS / DATA</a>
 		<!-- -->
 </div>
 

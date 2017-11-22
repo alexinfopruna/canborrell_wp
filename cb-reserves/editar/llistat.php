@@ -1,7 +1,4 @@
 <?php
-//phpinfo();die();
-//require_once("../taules/errorHandler.php"); // DEBUG, MOSTRAR ERRORS I NOTICES
-
 /* * ************************************************ */
 //
 // CODIFICACIO ESTAT
@@ -127,20 +124,20 @@ else {
 
 
 $were.=" AND (num_2<>666 OR num_2<=>NULL) ";  //// AMAGA L'HISTORIC!!!!
+//$were.=" AND (estat_taules.reserva_id>0) ";  //// AMAGA L'HISTORIC!!!!
 //$were.=" AND (num_2<>666) ";  //// AMAGA L'HISTORIC!!!!
 
-$query_reserves = "SELECT DISTINCT id_reserva, estat, data, hora, nom, tel, email, adults, nens4_9, nens10_14, preu_reserva , ADDDATE(data_limit,1) AS dlimit, (email.reserva_id IS NOT NULL ) AS emails FROM reserves ";
+$query_reserves = "SELECT DISTINCT id_reserva, estat, data, hora, nom, tel, email, adults, nens4_9, nens10_14, preu_reserva , ADDDATE(data_limit,1) AS dlimit, (email.reserva_id IS NOT NULL ) AS emails, estat_taula_nom FROM reserves ";
 $join_mail = " LEFT JOIN email ON email.reserva_id = id_reserva  AND email_resultat>0 ";
 //$join_sms = " LEFT JOIN sms ON sms.sms_reserva_id = id_reserva ";
-
+$join_taules = " LEFT JOIN estat_taules ON estat_taula_nom = CONCAT(id_reserva, 'G') AND estat_taules.reserva_id>0 ";
 $group_mail = "";// GROUP BY  email.reserva_id ";
 //$group_sms = " GROUP BY  sms.sms_reserva_id  ";
 //$join_mail ="";$group_mail="";
 $order = "ORDER BY IF(data < NOW(),1,0), IF(estat = 1,0,1),IF(estat = 2,0,1), IF(estat = 3,0,1),IF(estat = 7,0,1),estat, data ";
 //$order="ORDER BY estat, data ";
-$query_reserves .=  $join_mail . $were  . $group_mail.  $order;
+$query_reserves .=  $join_mail . $join_taules . $were  . $group_mail.  $order;
 $query_limit_reserves = sprintf("%s LIMIT %d, %d", $query_reserves, $startRow_reserves, $maxRows_reserves);
-//echo $query_limit_reserves;
 $reserves = mysqli_query($canborrell, $query_limit_reserves) or die(((is_object($GLOBALS["___mysqli_ston"])) ? mysqli_error($GLOBALS["___mysqli_ston"]) : (($___mysqli_res = mysqli_connect_error()) ? $___mysqli_res : false)));
 $row_reserves = mysqli_fetch_assoc($reserves);
 
@@ -161,9 +158,10 @@ fclose($f);
 $f = fopen('mensaini.txt', 'w');
 fclose($f);
 
+if (isset($_REQUEST['creada'])) $mensaini .= $_REQUEST['creada'];
 
 if ($mensaini != "")
-  $bodi = 'onload="alert(\'' . $mensaini . '\')"';
+  $bodi = 'onload="mensaini(\''.$mensaini.'\')"';
 else
   $bodi = "";
 ?>
@@ -215,6 +213,12 @@ else
               if (!results[2])
                   return '';
               return decodeURIComponent(results[2].replace(/\+/g, " "));
+          }
+          
+          
+          function mensaini(mensa){
+            alert(mensa);
+            window.history.pushState("llistat.php", "Reserves grup", "llistat.php");
           }
         </script>
         <style type="text/css">
@@ -363,6 +367,7 @@ td a:hover {color:white}
                                 <td bgcolor="#333333" class="Estilo2"><div align="center">adults + nens </div></td>
                                 <td bgcolor="#333333" class="Estilo2"><div align="center">preu reserva</div></td>
                                 <td bgcolor="#333333" class="Estilo2"><div align="center">Del</div></td>
+                                <td bgcolor="#333333" class="Estilo2"><div align="center">>>Menjador</div></td>
                             </tr>
                             <?php
                             do {
@@ -396,6 +401,15 @@ td a:hover {color:white}
                                     X</a></div>-->
                                       <div align="center"><input type="checkbox" style="background:#999999;" name="pdel[<?php echo $row_reserves['id_reserva']; ?>]" value="checkbox" />
                                       </div></td>
+                                  
+                                  <td bgcolor="#999999" class="llista">
+                                    <?php //echo $row_reserves['estat']; 
+                                    $avui = date("Y-m-d");
+                                    if ( $row_reserves['data']>=$avui && ($row_reserves['estat']==3 || $row_reserves['estat']==7 )){?>
+                                      <?php if ($row_reserves['estat_taula_nom']!=NULL){echo '<span style="color:white;background-color:green;padding:2px">Creada OK</span>';}else{ ?>                                      
+                                      <a href="../taules/gestor_reserves.php?a=insert_reserva_grup&b=<?php echo $row_reserves['id_reserva'] ?>" target="_self" style="border:#ccc solid 2px;color:#444;background-color:yellow;padding:2px">>>Menjador</a>
+                                      <?php }} ?>
+                                  </td>
                               </tr>
 <?php } while ($row_reserves = mysqli_fetch_assoc($reserves)); ?>
 
@@ -408,8 +422,9 @@ td a:hover {color:white}
                                 <td class="Estilo2">&nbsp;</td>
                                 <td class="Estilo2">&nbsp;</td>
                                 <td class="Estilo2">&nbsp;</td>
-                                <td class="Estilo2">&nbsp;</td
-                                ><td class="Estilo2"><input type="submit" name="Submit" value="Del" />
+                                <td class="Estilo2">&nbsp;</td>
+                                <td class="Estilo2"><input type="submit" name="Submit" value="Del" />
+                                    <td class="Estilo2">&nbsp;</td>
                                 <!--<br/><input type="submit" name="HISTORIC" value="Hist" />-->
                                 </td>
                             </tr>

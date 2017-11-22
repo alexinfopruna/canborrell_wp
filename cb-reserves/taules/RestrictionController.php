@@ -159,9 +159,15 @@ $order
   /*   * ************************************************************************ */
 
   public function getHoresCoberts($data, $coberts ) {
-    $were_data = "restriccions_active = 1 AND (restriccions_data='2011-01-01' OR restriccions_data <= '$data' AND restriccions_datafi >='$data') AND ";
-    $query = "SELECT * FROM RestriccioHoresTaula where $were_data restriccions_taula_id = '$coberts'";
+    $diesBin = array(64, 32, 16, 8, 4, 2, 1);
+    $ds = date('N', strtotime($data));
+    $diaBin = $diesBin[$ds - 1];
 
+
+    $wherediasem = "  (restriccions_dies & $diaBin > 0) AND ";
+
+    $were_data = "restriccions_active = 1 AND (restriccions_data='2011-01-01' OR restriccions_data <= '$data' AND restriccions_datafi >='$data') AND ";
+    $query = "SELECT * FROM RestriccioHoresTaula where $were_data  $wherediasem restriccions_taula_id = '$coberts'";
     $Result1 = mysqli_query($this->connexioDB, $query) or die(((is_object($GLOBALS["___mysqli_ston"])) ? mysqli_error($GLOBALS["___mysqli_ston"]) : (($___mysqli_res = mysqli_connect_error()) ? $___mysqli_res : false)));
     $nr = mysqli_num_rows($Result1); 
     if (!$nr) return null; // SI NO HI HA RESTRICCIONS SON TOTES

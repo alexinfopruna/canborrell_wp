@@ -57,8 +57,6 @@ class EstatTaula extends Gestor {
       $nom = $nom_o_torn;
     }
 
-
-
     $this->id = $taula_id;
     $this->nom = $nom;
     $this->hora = $hora;
@@ -91,6 +89,8 @@ public function EstatTaula($taula_id = null, $nom_o_torn = null, $data = 0, $hor
     $x = 32 * ($cnt) + 22;
     return $x;
   }
+
+  
 
   private function recuperaTaula($taula_id, $mydata, $torn) {
     $this->taulaVirtual = false;

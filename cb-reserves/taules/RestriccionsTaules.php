@@ -180,7 +180,7 @@ $order
 
 
     $query = "REPLACE INTO RestriccioHoresTaula 
-      (restriccions_active, restriccions_taula_id, restriccions_data, restriccions_datafi, restriccions_hora, restriccions_hores, restriccions_description)
+      (restriccions_active, restriccions_taula_id, restriccions_data, restriccions_datafi, restriccions_hora, restriccions_hores,  restriccions_dies, restriccions_description)
 
       VALUES ('{$restriccio->restriccions_active}',
              '{$restriccio->restriccions_taula_id}',
@@ -188,6 +188,7 @@ $order
              '{$restriccio->restriccions_datafi}',
              '{$restriccio->restriccions_hora}',
              '{$restriccio->restriccions_hores}',
+             '{$restriccio->restriccions_dies}',
              '{$restriccio->restriccions_description}')";
 
 

@@ -80,12 +80,11 @@ class TaulesDisponibles extends Gestor {
     $this->arTxtError[30] = "No es pot assignar reserva a aquesta taula";
   }
 
-  public function taules() {
-    $this->reset();
+  public function taules($force_crea_taules=FALSE) {
+
     //COMPROVA RESTAURANT OBERT (DL, DM + llistablanca + llistanegra)
     if (!$this->restaurantObert())
       return $this->addError(23);
-
     /////////////////////////////////////////////////////
     //RECULL LES TAULES x DIA/TORN/PERSONES/COTXETS
     $this->qryTaules(); /*     * ****************************************** */
@@ -96,10 +95,12 @@ class TaulesDisponibles extends Gestor {
       return $this->addError(26);
     //CONTROLA MENJADORS BLOQUEJATS
     $this->treuBloquejats();
-
     /////////////////////////////////////////
-    if ($this->recupera_creaTaules() === true && !count($this->arResultatTaula))
+    if (($force_crea_taules || $this->recupera_creaTaules()) === true && !count($this->arResultatTaula)){
+     
       $this->creaTaula();
+    }
+    
     return $this->arResultatTaula;
   }
 
@@ -238,21 +239,18 @@ class TaulesDisponibles extends Gestor {
 // CONTROL DEL DIA
   /*   * ********************************************************************************************************************* */
   /*   * ********************************************************************************************************************* */
-  private function restaurantObert() {
+  private function  restaurantObert() {
     $ds = date("w", strtotime($this->data));
     $dia = date("Y-m-d", strtotime($this->data));
-
     // si T1 o T2 mira llista negra
     if ($this->torn < 3 && $this->diaDinsLlista($this->llista_dies_negra))
       return $this->addError(21); //TODO controla LLISTA NEGRA
 
-      
 // si T3 i dia NO DV, DS -> TANCAT
     //if ($ds<5 && $this->torn==3) return $this->addError(24); // TORN NIT DX,DJ,DG
     if ($this->torn == 3 && !$this->nitsObert[$ds] && !$this->excepcionsNits($dia))
       return $this->addError(24); // TORN NIT DX,DJ,DG
 
-      
 //si T3 i DV, DS, mirem Llista negra nit
     if ($ds > 4 && $this->torn == 3 && $this->diaDinsLlista($this->llista_nits_negra))
       return $this->addError(20);
@@ -785,8 +783,6 @@ ORDER BY  `estat_hores_hora` ASC ";
   /*   * ********************************************************************************************************************* */
 
   private function creaTaula() {
-    //if ($this->creaTaules!==true) return false;
-
     $novaTaula = new EstatTaula(null, $this->torn, $this->data, $this->hora, $this->persones, $this->cotxets, $plena = 0, null, null, 0);
 
     array_unshift($this->arResultatTaula, $novaTaula);
