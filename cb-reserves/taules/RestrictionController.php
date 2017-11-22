@@ -164,7 +164,7 @@ $order
     $diaBin = $diesBin[$ds - 1];
 
 
-    $wherediasem = "  (restriccions_dies & $diaBin > 0) AND ";
+    $wherediasem = "  (restriccions_dies = 0 OR restriccions_dies & $diaBin > 0) AND ";
 
     $were_data = "restriccions_active = 1 AND (restriccions_data='2011-01-01' OR restriccions_data <= '$data' AND restriccions_datafi >='$data') AND ";
     $query = "SELECT * FROM RestriccioHoresTaula where $were_data  $wherediasem restriccions_taula_id = '$coberts'";
