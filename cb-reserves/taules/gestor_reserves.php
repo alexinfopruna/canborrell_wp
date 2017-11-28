@@ -731,11 +731,11 @@ class gestor_reserves extends Gestor {
     if (!isset($_POST['hora']) || $_POST['hora'] < '00:00') {
       return FALSE;
     }
-
+/*
     if (!isset($_POST['id_reserva']) || $_POST['id_reserva'] < 20000) {
       return FALSE;
     }
-
+*/
 
     return TRUE;
   }
