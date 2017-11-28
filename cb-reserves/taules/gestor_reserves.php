@@ -623,7 +623,8 @@ class gestor_reserves extends Gestor {
 
       mysqli_query($GLOBALS["___mysqli_ston"], $insert_nou_estat);
       $insert_id = ((is_null($___mysqli_res = mysqli_insert_id($GLOBALS["___mysqli_ston"]))) ? false : $___mysqli_res);
-      $error1 = $insert_id < 20000;
+      //$error1 = $insert_id < 20000;
+      $error1 = $insert_id < 1000; // MODIFICAT PER ADMETRE RESERVES GRUPS AL MENJADOR
       $this->xgreg_log($insert_nou_estat, 1);
       $this->xgreg_log("INSERT ID: $insert_id", 1);
 ////////////////////////////////////////////////////
