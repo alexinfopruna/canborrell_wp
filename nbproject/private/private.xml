@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project-private xmlns="http://www.netbeans.org/ns/project-private/1">
-    <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="5">
+    <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="6">
         <file>
             <url>cb-reserves/reservar/Gestor_form.php</url>
             <bookmark id="4">
@@ -15,21 +15,26 @@
             </bookmark>
         </file>
         <file>
+            <url>cb-reserves/taules/RestrictionController.php</url>
+            <bookmark id="6">
+                <name/>
+                <line>162</line>
+                <key/>
+            </bookmark>
+        </file>
+        <file>
             <url>cb-reserves/taules/gestor_reserves.php</url>
             <bookmark id="1">
                 <name/>
-                <line>2798</line>
+                <line>2833</line>
                 <key/>
             </bookmark>
         </file>
     </editor-bookmarks>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/var/www/canborrell-wp/cb-reserves/panel/index.php</file>
-            <file>file:/var/www/canborrell-wp/cb-reserves/taules/RestriccionsTaules.php</file>
-            <file>file:/var/www/canborrell-wp/cb-reserves/taules/RestrictionController.php</file>
-            <file>file:/var/www/canborrell-wp/cb-reserves/reservar/Gestor_form.php</file>
-            <file>file:/var/www/canborrell-wp/.gitignore</file>
+            <file>file:/var/www/canborrell-wp/home.txt</file>
+            <file>file:/var/www/canborrell-wp/wp-content/themes/onetone/template-home.php</file>
         </group>
     </open-files>
 </project-private>

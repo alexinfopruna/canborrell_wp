@@ -25,6 +25,7 @@ get_header('home');
 			$section_1_content         = onetone_option( 'section_1_content' );
 			$animated                  = onetone_option( 'home_animated');
 			$section_1_content         = $section_1_content == 'slider'?1:$section_1_content;
+                                                                                   // $section_1_content = 1;
 			if( $animated == '1' || $animated == 'on' )
 			$onetone_animated = 'onetone-animated';
 			
