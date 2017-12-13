@@ -106,13 +106,13 @@ function capsaleres_geleria() {
  .col-md-4:nth-child(3) i.fa.fa-link:after{
 	content: " ' . $translation_array['cuina'] . '";
 }
-#gallery .row:nth-child(2)  .col-md-4:nth-child(1) i.fa.fa-link:after{
+#gallery .row:nth-child(4)  .col-md-4:nth-child(1) i.fa.fa-link:after{
 	content: " ' . $translation_array['graella'] . '";
 }
-#gallery  .row:nth-child(2) .col-md-4:nth-child(2) i.fa.fa-link:after{
+#gallery  .row:nth-child(4) .col-md-4:nth-child(2) i.fa.fa-link:after{
 	content: " ' . $translation_array['equip'] . '";
 }
-#gallery  .row:nth-child(2) .col-md-4:nth-child(3) i.fa.fa-link:after{
+#gallery  .row:nth-child(4) .col-md-4:nth-child(3) i.fa.fa-link:after{
 	content: " ' . $translation_array['plats'] . '";
 }';
 
