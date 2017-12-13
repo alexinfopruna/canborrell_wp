@@ -407,7 +407,7 @@ td a:hover {color:white}
                                     $avui = date("Y-m-d");
                                     if ( $row_reserves['data']>=$avui && ($row_reserves['estat']==3 || $row_reserves['estat']==7 )){?>
                                       <?php if ($row_reserves['estat_taula_nom']!=NULL){echo '<span style="color:white;background-color:green;padding:2px">Creada OK</span>';}else{ ?>                                      
-                                      <a href="#" target="_self" style="border:#ccc solid 2px;color:#444;background-color:yellow;padding:2px">>>Menjador</a>
+                                      <a href="../taules/gestor_reserves.php?a=insert_reserva_grup&b=<?php echo $row_reserves['id_reserva'] ?>" target="_self" style="border:#ccc solid 2px;color:#444;background-color:yellow;padding:2px">>>Menjador</a>
                                       <?php }} ?>
                                   </td>
                               </tr>
