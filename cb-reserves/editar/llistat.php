@@ -130,7 +130,8 @@ $were.=" AND (num_2<>666 OR num_2<=>NULL) ";  //// AMAGA L'HISTORIC!!!!
 $query_reserves = "SELECT DISTINCT id_reserva, estat, data, hora, nom, tel, email, adults, nens4_9, nens10_14, preu_reserva , ADDDATE(data_limit,1) AS dlimit, (email.reserva_id IS NOT NULL ) AS emails, estat_taula_nom FROM reserves ";
 $join_mail = " LEFT JOIN email ON email.reserva_id = id_reserva  AND email_resultat>0 ";
 //$join_sms = " LEFT JOIN sms ON sms.sms_reserva_id = id_reserva ";
-$join_taules = " LEFT JOIN estat_taules ON estat_taula_nom = CONCAT(id_reserva, 'G') AND estat_taules.reserva_id>0 ";
+//$join_taules = " LEFT JOIN estat_taules ON estat_taula_nom = CONCAT(id_reserva, 'G') AND estat_taules.reserva_id>0 ";
+$join_taules = " LEFT JOIN estat_taules ON estat_taules.reserva_id = id_reserva ";
 $group_mail = "";// GROUP BY  email.reserva_id ";
 //$group_sms = " GROUP BY  sms.sms_reserva_id  ";
 //$join_mail ="";$group_mail="";
