@@ -59,6 +59,8 @@ $mensaini.=historic($canborrell);
 echo "<br/>-------------------------------------------------------------------------------------------<br/>";
 
 $mensaini.=recordatori($canborrell,0);
+$mensaini.=recordatori($canborrell,1);
+$mensaini.=recordatori($canborrell,3);
 echo "<br/>-------------------------------------------------------------------------------------------<br/>";
 
 $mensaini.=$gestor->recordatori_petites_3dies();
@@ -91,6 +93,8 @@ echo $query_reserves;
 
     while ($row=mysqli_fetch_array($reserves))
     {
+      echo $row["id_reserva"]." >> ".$row["data"].""." (".$row["estat"].") >>>>> ".$row['data_limit']."    num_1:".$row['num_1']."    num_2:".$row["num_2"];
+      
 		$plantilla="templates/recordatori_cli.lbi";
 		if ($dies==1) $plantilla="templates/recordatori_1dia_cli.lbi";
                 mail_cli($row["id_reserva"],$plantilla);
@@ -98,7 +102,7 @@ echo $query_reserves;
 
 		if ($dies<=1) 
 		{
-		    ereg( "([0-9]{2,4})-([0-9]{1,2})-([0-9]{1,2})", $row['data'], $mifecha); 
+                                                          preg_match( "/([0-9]{2,4})-([0-9]{1,2})-([0-9]{1,2})/", $row['data'], $mifecha); 
     		$lafecha=$mifecha[3]."/".$mifecha[2]; 
 		
 			print_log( "RECORDATORI enviaSMS({$row['tel']},{$row['preu_reserva']},$lafecha,{$row["id_reserva"]});");

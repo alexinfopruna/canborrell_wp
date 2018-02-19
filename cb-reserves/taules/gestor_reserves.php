@@ -603,6 +603,12 @@ class gestor_reserves extends Gestor {
     $_POST['id_reserva'] = "";
     $rollback = FALSE;
 
+    
+    if (!is_numeric(substr($data, 0,2))){
+      echo "Data errònia";
+      return FALSE;
+    }
+    
     try {////  INTENT PERMUTA  ////////////////////////////
       mysqli_autocommit($GLOBALS["___mysqli_ston"], FALSE);
 
