@@ -603,7 +603,7 @@ class gestor_reserves extends Gestor {
     $_POST['id_reserva'] = "";
     $rollback = FALSE;
 
-    $data="Nan/Nan/Nan";
+    
     if (!is_numeric(substr($data, 0,2))){
       $ret['error']="Data errònia";
       $ret['err']="Data errònia";
