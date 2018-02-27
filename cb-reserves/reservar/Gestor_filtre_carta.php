@@ -112,7 +112,8 @@ class Gestor_filtre_carta extends Gestor_form
       //$val['preu']*=IVA/100;
       $preu=round($val['preu']+$val['preu']*IVA/100,2);
       $preu=number_format($preu,2,'.','');
-       
+      $preu.=" -- (".IVA.") "; 
+      
       $odd=($l%2)?"odd":"pair";
       $checked=$val['publicat']?'checked="checked"':'';
       $tr.='<tr producte_id="'.$val['id'].'" class="item-carta '.$odd.$menuEspecial.'">

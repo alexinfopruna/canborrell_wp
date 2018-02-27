@@ -597,25 +597,25 @@ Incluyendo los acompañamientos (judias y patatas frits allioli pan tostado con 
 	$translate['titol_menu_2037']=$translate['titol_menu_infantil']='Men&uacute; Infantil (ni&ntilde;os de 4 a 9 a&ntilde;os)';
 	$translate['menu_2037']=$translate['menu_infantil']='
 Macarrones, pollo rebozado o croquetas con patatas, refresco y helado<br/>
-12.75 Euros/unidad (including VAT)<br/>
+{preu_2037} Euros/unidad (IVA incluido)<br/>
 &nbsp;<br/>';
 
 	$translate['titol_menu_2036']=$translate['titol_menu_junior']='Men&uacute; Junior (de 10 a 14 a&ntilde;os)';
-	$translate['menu_2036']=$translate['menu_2036']=$translate['menu_junior']='Macarrones o entrem&eacute;s, pollo o butifarra con patatas, refresco y helado<br/>
-17.71 Euros/unidad (including VAT)';
+	$translate['menu_2036']=$translate['menu_junior']='Macarrones o entrem&eacute;s, pollo o butifarra con patatas, refresco y helado<br/>
+{preu_2036} Euros/unidad (IVA incluido)';
 
 	$translate['titol_menu_2017']=$translate['titol_menu_inf_comunio']='Men&uacute; Comunión (ni&ntilde;os de 4 a 9 a&ntilde;os)';
-	$translate['menu_2017']=$translate['menu_inf_comunio']='17.66 Euros';
+	$translate['menu_2017']=$translate['menu_inf_comunio']='{preu_2017} Euros';
 	
 	$translate['titol_menu_2018']=$translate['titol_menu_jun_comunio']='Men&uacute; Comunión (ni&ntilde;os de 10 a 14 a&ntilde;os)';
-	$translate['menu_2018']=$translate['menu_jun_comunio']='25.38 Euros';
+	$translate['menu_2018']=$translate['menu_jun_comunio']='{preu_2018} Euros';
 	
 
 	$translate['titol_menu_2021']=$translate['titol_menu_inf_casament']='Men&uacute; Boda (ni&ntilde;os de 4 a 9 a&ntilde;os)';
-	$translate['menu_2021']=$translate['menu_inf_casament']='28.07 Euros ';
+	$translate['menu_2021']=$translate['menu_inf_casament']='{preu_2021} Euros ';
 	
 	$translate['titol_menu_2022']=$translate['titol_menu_jun_casament']='Men&uacute; Boda (ni&ntilde;os de 10 a 14 a&ntilde;os)';
-	$translate['menu_2022']=$translate['menu_jun_casament']='33.83 Euros ';
+	$translate['menu_2022']=$translate['menu_jun_casament']='{preu_2022} Euros ';
 	
         
         

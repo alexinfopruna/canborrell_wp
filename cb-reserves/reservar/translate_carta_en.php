@@ -68,6 +68,8 @@ $translate['PERNIL SERRÁ'] = 'Ham  <em>Jamón serrano  </em>';
 $translate['LLONGANISSA'] = 'Long pork sausage  <em>Longaniza  </em>';
 $translate['XORIÇO'] = 'Chorizo sausage  <em>Chorizo  </em>';
 
+$translate['Menu grupo nº 4'] = 'Menu grup nº 4 <i style="color:blue">No combinable: Cal que tots els comensals demanin el mateix</i>';
+
  
 require_once('translate.php');
 ?>

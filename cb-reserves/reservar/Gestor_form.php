@@ -407,10 +407,20 @@ ORDER BY carta_subfamilia_order,carta_plats_nom_es , carta_plats_nom_ca";
   /*   * ******************************************************************************************************* */
 
   public function seccioCarta($ar, $k, $class) {
+    
+    
+    global $translate;
+    ob_start();
+  //  include('translate_carta_' . $this->lng . '.php');
+     include(ROOT . '/../reservar/translate_carta_' . $this->lng . '.php');
+    ob_end_clean();
+    
+    
     $obreTaula = '<table id="c1" class="col_dere">' . PHP_EOL;
     $l = $c = 0;
     $tr = '';
     foreach ($ar[$k] as $key => $val) {
+      $comentari = "";
       $menuEspecial = $this->menuEspecial($val['id']) ? " menu-especial" : "";
       if (!calsoton && ($val['id'] == 2010 || $val['nom'] == "MENU CALÇOTADA" || $val['nom'] == "MENÚ CALÇOTADA"))
         continue;
@@ -420,12 +430,14 @@ ORDER BY carta_subfamilia_order,carta_plats_nom_es , carta_plats_nom_ca";
         $value = ' value="' . $val['quantitat'] . '" ';
       else
         $value = "0";
+      
+      /** COMENTARIS **/
 
       /**  IVA  * */
       //$val['preu']*=IVA/100;
       $preu = round($val['preu'] + $val['preu'] * IVA / 100, 2);
       $preu = number_format($preu, 2, '.', '');
-
+      $nomTrans = l($val['nom'], false);
       $odd = ($l % 2) ? "odd" : "pair";
       $tr .= '<tr producte_id="' . $val['id'] . '" class="item-carta ' . $odd . $menuEspecial . '">
 				<td  class="mes"><div  class="d-mes ui-corner-all" ><a href"#">+</a></div></td>
@@ -437,7 +449,7 @@ ORDER BY carta_subfamilia_order,carta_plats_nom_es , carta_plats_nom_ca";
 </td>
 				<td class="menys"><div  class="d-menys ui-corner-all" ><a href"#">-</a></div></td>
 				<td class="borra" style="display:none"></td>
-				<td><a class="resum-carta-nom" href="/cb-reserves/reservar/Gestor_form.php?a=TTmenu&b=' . $val['id'] . '" >' . $val['nom'] . '</a></td>
+				<td><a class="resum-carta-nom" href="/cb-reserves/reservar/Gestor_form.php?a=TTmenu&b=' . $val['id'] . '" >' . $nomTrans .'</a></td>
 				<td class="td-carta-preu"><span class="carta-preu">' . $preu . '</span>&euro; </td>
 				<!--<td class="carta-subtotal"><em>(subtotal: <span class="carta-preu-subtotal">0</span>&euro; )</em></td></tr>-->
                                            

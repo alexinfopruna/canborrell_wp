@@ -993,6 +993,7 @@ function reservar_enqueue_styles() {
                                                   <!-- ******************* CARTA-MENU *********************** -->
                                                   <!-- ******************* CARTA-MENU *********************** -->
                                                   <div id="fr-menu-popup" title="<?php l("Els nostres menús") ?>" class="carta-menu">
+                                                      
                                                       <div id="fr-menu-tabs" >
   <?php echo $gestorf->recuperaCarta($row['id_reserva'], true) ?>
                                                       </div>	
