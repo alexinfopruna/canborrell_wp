@@ -79,7 +79,7 @@ function recordatori($canborrell, $dies) {
   $ENVIAT = 1000 - $dies;
 
   $query_reserves = "SELECT * FROM reserves WHERE data_limit <= ADDDATE(CURDATE(), INTERVAL $dies DAY) AND data_limit >=CURDATE() AND data >=CURDATE()  AND estat=2 AND data>=CURDATE() AND  (num_1<$ENVIAT OR num_1<=>NULL) AND  (num_2<>666 OR num_2<=>NULL)";
-  $query_reserves = "SELECT * FROM reserves WHERE data_limit <= ADDDATE(CURDATE(), INTERVAL $dies DAY) AND data_limit >=CURDATE() AND data >=CURDATE()  AND estat=2 AND data>=CURDATE() AND  (num_2<>666 OR num_2<=>NULL)";
+  //$query_reserves = "SELECT * FROM reserves WHERE data_limit <= ADDDATE(CURDATE(), INTERVAL $dies DAY) AND data_limit >=CURDATE() AND data >=CURDATE()  AND estat=2 AND data>=CURDATE() AND  (num_2<>666 OR num_2<=>NULL)";
   echo "<br/><br/>RECORDATORI<br/>";
   echo $query_reserves;
   echo "<br/><br/><br/>";
@@ -278,7 +278,6 @@ function mail_cli($id = false, $plantilla = "templates/recordatori_cli.lbi") {
   $t->parse("OUT", "page");
   $html = $t->get("OUT");
 echo "<br><br><br>".$html."<br><br><br>";
-die();
   //$t->p("OUT");
   $recipient = $fila['email'];
   $subject = "..::Reserva Can Borrell: Recordatori reserva" . " " . $fila['id_reserva'];
