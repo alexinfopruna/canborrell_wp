@@ -2,14 +2,6 @@
 <project-private xmlns="http://www.netbeans.org/ns/project-private/1">
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="6">
         <file>
-            <url>cb-reserves/taules/RestrictionController.php</url>
-            <bookmark id="6">
-                <name/>
-                <line>162</line>
-                <key/>
-            </bookmark>
-        </file>
-        <file>
             <url>cb-reserves/reservar/Gestor_form.php</url>
             <bookmark id="4">
                 <name/>
@@ -18,7 +10,15 @@
             </bookmark>
             <bookmark id="5">
                 <name/>
-                <line>1198</line>
+                <line>1195</line>
+                <key/>
+            </bookmark>
+        </file>
+        <file>
+            <url>cb-reserves/taules/RestrictionController.php</url>
+            <bookmark id="6">
+                <name/>
+                <line>162</line>
                 <key/>
             </bookmark>
         </file>
@@ -33,14 +33,10 @@
     </editor-bookmarks>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/home/alex/0****__WWW__****/canborrell-wp/cb-reserves/reservar/translate_ca.php</file>
-            <file>file:/home/alex/0****__WWW__****/canborrell-wp/cb-reserves/reservar/translate_carta_ca.php</file>
-            <file>file:/home/alex/0****__WWW__****/canborrell-wp/cb-reserves/reservar/translate.php</file>
             <file>file:/home/alex/0****__WWW__****/canborrell-wp/cb-reserves/reservar/form_reserves_org.js</file>
             <file>file:/home/alex/0****__WWW__****/canborrell-wp/cb-reserves/reservar/translate_grups_ca.php</file>
             <file>file:/home/alex/0****__WWW__****/canborrell-wp/cb-reserves/reservar/Gestor_form.php</file>
             <file>file:/home/alex/0****__WWW__****/canborrell-wp/cb-reserves/taules/Carta.php</file>
-            <file>file:/home/alex/0****__WWW__****/canborrell-wp/cb-reserves/reservar/Gestor_filtre_carta.php</file>
             <file>file:/home/alex/0****__WWW__****/canborrell-wp/wp-content/themes/onetone_cb/page-reservar.php</file>
         </group>
     </open-files>
