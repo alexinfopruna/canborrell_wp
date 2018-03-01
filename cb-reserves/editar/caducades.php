@@ -76,10 +76,10 @@ else
 
 function recordatori($canborrell, $dies) {
   $bodi = "<br><br> NO HI HA RESERVES PER RECORDATORI <br><br>";
-  $TEST = $ENVIAT = 1000 - $dies;
+  $ENVIAT = 1000 - $dies;
 
-  //$TEST = 1111111;
-  $query_reserves = "SELECT * FROM reserves WHERE data_limit <= ADDDATE(CURDATE(), INTERVAL $dies DAY) AND data_limit >=CURDATE() AND data >=CURDATE()  AND estat=2 AND data>=CURDATE() AND  (num_1<$TEST OR num_1<=>NULL) AND  (num_2<>666 OR num_2<=>NULL)";
+  $query_reserves = "SELECT * FROM reserves WHERE data_limit <= ADDDATE(CURDATE(), INTERVAL $dies DAY) AND data_limit >=CURDATE() AND data >=CURDATE()  AND estat=2 AND data>=CURDATE() AND  (num_1<$ENVIAT OR num_1<=>NULL) AND  (num_2<>666 OR num_2<=>NULL)";
+  $query_reserves = "SELECT * FROM reserves WHERE data_limit <= ADDDATE(CURDATE(), INTERVAL $dies DAY) AND data_limit >=CURDATE() AND data >=CURDATE()  AND estat=2 AND data>=CURDATE() AND  (num_2<>666 OR num_2<=>NULL)";
   echo "<br/><br/>RECORDATORI<br/>";
   echo $query_reserves;
   echo "<br/><br/><br/>";
@@ -94,8 +94,7 @@ function recordatori($canborrell, $dies) {
     echo $row["id_reserva"] . " >> " . $row["data"] . "" . " (" . $row["estat"] . ") >>>>> " . $row['data_limit'] . "    num_1:" . $row['num_1'] . "    num_2:" . $row["num_2"];
 
     $plantilla = "templates/recordatori_cli.lbi";
-    if ($dies == 1)
-      $plantilla = "templates/recordatori_1dia_cli.lbi";
+    // if ($dies == 1)      $plantilla = "templates/recordatori_1dia_cli.lbi";
     mail_cli($row["id_reserva"], $plantilla);
     $mensa .= "ID Reserva: " . $row["id_reserva"] . " amb data límit per pagar: " . data_llarga($row['data_limit']) . " \\n";
 
@@ -160,7 +159,6 @@ function historic($canborrell) {
 function mail_cli($id = false, $plantilla = "templates/recordatori_cli.lbi") {
   require_once("mailer.php");
   global $camps, $mmenu, $txt, $database_canborrell, $canborrell, $lang, $gestor;
-  //session_start();
 
   if ($id) {
     $query = "SELECT * FROM reserves WHERE id_reserva=$id";
@@ -168,21 +166,17 @@ function mail_cli($id = false, $plantilla = "templates/recordatori_cli.lbi") {
   else {
     $query = "SELECT * FROM reserves ORDER BY id_reserva DESC Limit 1";
   }
-
-  /*   * *************************************************************************** */
+  /*********************************************************************************************************************************/
   $Result = mysqli_query($canborrell, $query) or die(((is_object($GLOBALS["___mysqli_ston"])) ? mysqli_error($GLOBALS["___mysqli_ston"]) : (($___mysqli_res = mysqli_connect_error()) ? $___mysqli_res : false)));
   $id = $fila['id_reserva'];
   $fila = mysqli_fetch_assoc($Result);
-
   $lang = $lang_cli = $fila['lang'];
-
   $v = 50;
+  
+  print_r($fila);
   $b64 = base64_encode($fila["id_reserva"] . "&" . $fila['tel'] . "&" . $lng);
   $link = 'https://' . $_SERVER['HTTP_HOST'] . '/reservar/pagament?rid=' . $b64 . '&lang=' . $lang;
   $aki = "<a href='" . $link . "' class='dins'>AQUI</a>";
-
-  //  $link = Gestor::lv('Realitzar pagament');
-  //  echo $aki  ;die();
   $copia = "Recordatori de Reserva";
   $altbdy = "Su reserva para el Restaurante Can Borrel ha sido confirmada. \n\nDebido a que su cliente de correo no puede interpretar correctamente este mensaje no es posible automatizar el proceso de pago.\n\n Por favor, póngase en contacto con el restaurante llamando al 936 929 723 o al 936 910 605. \n\nDisculpe las molestias";
 
@@ -192,28 +186,23 @@ function mail_cli($id = false, $plantilla = "templates/recordatori_cli.lbi") {
   $ara = date("H:i");
 
   $file = $plantilla;
-
   $t = new Template('.', 'comment');
   $t->set_file("page", $file);
-
   $dat_limit = data_llarga($fila['data_limit'], $lang);
   $dlim = "";
   $dlim = $dat_limit;
-  /*
-  echo " ---------- ";
+  
+  echo " ----------<br>";
+  echo " ----------<br>";
+  echo " ----------<br>";
   echo $lang;
   echo "....";
   echo $aki;
+  echo "....";
   echo $dat_limit;
   echo " ----------<br>";
   echo " ----------<br>";
   echo " ----------<br>";
-  echo " ----------<br>";
-  echo " ----------<br>";
-  echo " ----------<br>";
-  echo " ----------<br>";
-  echo " ----------<br>";
-   * */
    
   ///////////// TEXTES
   if ($v == 50) {
@@ -222,6 +211,8 @@ function mail_cli($id = false, $plantilla = "templates/recordatori_cli.lbi") {
     $fila['import'] = "***********";
     $mulink = substr($fila['email'], 0, 2) . substr($fila['nom'], 0, 2) . $idd . "***" . substr($fila['import'], 0, 2);
 
+    $t->set_var('data_limit', $dat_limit);
+    $t->set_var('dat_limit', $dat_limit);
     $t->set_var('self', $file);
     $t->set_var('ident', $txt[75][$lang]);
     $t->set_var('confirma', $txt[76][$lang]);
@@ -236,7 +227,6 @@ function mail_cli($id = false, $plantilla = "templates/recordatori_cli.lbi") {
   $t->set_var('titol', $txt[$v][$lang]);
   $t->set_var('text1', $txt[$v + 1][$lang]);
   $t->set_var('text2', $txt[$v + 2][$lang]);
-  $t->set_var('data_limit', $dlim);
   $t->set_var('contacti', $txt[9][$lang]);
   $t->set_var('import', $preu = 0);
   $t->set_var('aki', $aki);
@@ -277,8 +267,6 @@ function mail_cli($id = false, $plantilla = "templates/recordatori_cli.lbi") {
   $t->set_var('adults', (int) $fila['adults']);
   $t->set_var('nens10_14', (int) $fila['nens10_14']);
   $t->set_var('nens4_9', (int) $fila['nens4_9']);
-  //$t->set_var('txt_1'," menú: ".$fila['txt_1']);
-  //$t->set_var('txt_2'," menú: ".$fila['txt_2']);
   $t->set_var('txt_1', "");
   $t->set_var('txt_2', "");
   $t->set_var('cresposta', $txt[79][$lang]);
@@ -289,7 +277,8 @@ function mail_cli($id = false, $plantilla = "templates/recordatori_cli.lbi") {
 
   $t->parse("OUT", "page");
   $html = $t->get("OUT");
-
+echo "<br><br><br>".$html."<br><br><br>";
+die();
   //$t->p("OUT");
   $recipient = $fila['email'];
   $subject = "..::Reserva Can Borrell: Recordatori reserva" . " " . $fila['id_reserva'];

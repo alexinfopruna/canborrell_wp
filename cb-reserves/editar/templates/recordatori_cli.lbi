@@ -44,7 +44,7 @@
     <td></td>  </tr>
 <tr style="height: 10px;">
 <td></td>
-      <td align="center">{text1}{data_limit} </td>
+      <td align="center">{text1} {data_limit} </td>
       <td></td>  </tr>
 <tr style="height: 10px;">
 <td></td>
