@@ -250,6 +250,8 @@ $translate["MAIL_GRUPS_PAGAT_subject"]="Can-Borrell: CONFIRMACIÓN DE PAGO DE RE
 $translate["MAIL_GRUPS_PAGAT_titol"]="CONFIRMACIÓN DE PAGO DE RESERVA";
 $translate["MAIL_GRUPS_PAGAT_text1"]="Nos complace informarle que hemos recibido correctamente el pago de ";
 $translate['MAIL_GRUPS_PAGAT_text2']="€. Su reserva queda registrada<br>Le esperamos el próximo ";
+$translate['MAIL_GRUPS_PAGAT_text3']=" Hasta el momento se han abonado {pagat}€ ({coberts_pagats}) de un total {total} ({coberts_reservats}). "
+    . "<b>Recuerde que la reserva solo es efectiva para las reservas que hayan abonado</b> ";
 $translate['MAIL_GRUPS_PAGAT_contacti'] = "Si tiene cualquier duda póngase en contacto con nosotros en <a href='mailto:".MAIL_RESTAURANT."' class='dins'>".MAIL_RESTAURANT."</a> ";
 $translate["nom"] = "nombre";
 $translate["adults"] = "adultos";
@@ -258,6 +260,7 @@ $translate["nens 10 a 14"] = "niños 10 a 14";
 $translate["cotxets"] = "cochecitos";
 $translate["observacions"] = "observaciones";
 $translate["resposta"] = "respuesta";
+$translate["Total reserva"] = "Total reserva";
 $translate["Data límit per efectuar el pagament"] = "Data límite para efectuar el pago";
 $translate["menu"] = "menú";
 $translate["cdata_reserva"] = "fecha";

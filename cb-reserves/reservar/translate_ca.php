@@ -185,6 +185,11 @@ $translate["MAIL_GRUPS_PAGAT_titol"]="CONFIRMACIÓ DE PAGAMENT DE RESERVA";
 $translate["MAIL_GRUPS_PAGAT_text1"]="Ens complau informar-lo que hem rebut correctament el pagament de ";
 $translate['MAIL_GRUPS_PAGAT_text2']="€ La seva reserva queda registrada.<br><br>L'esperem el proper ";
 $translate['MAIL_GRUPS_PAGAT_contacti'] = "Si té qualsevol dubte posi's en contacte amb nosaltres a <a href='mailto:".MAIL_RESTAURANT."' class='dins'>".MAIL_RESTAURANT."</a> ";
+
+$translate['MAIL_GRUPS_PAGAT_text3']=" Fins ara s'han abonat {pagat}€ ({coberts_pagats}) d'un total de {total} ({coberts_reservats}). "
+    . "<b>Recordi que la reserva només és efectiva per a les reserves que s'hagin pagat</b><br> ";
+
+
 $translate["nom"] = "nom";
 $translate["adults"] = "adults";
 $translate["nens 4 a 9"] = "nens 4 a 9";

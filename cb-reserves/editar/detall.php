@@ -330,7 +330,24 @@ td{border:white solid 3px;}
           <td width="320" align="right" bgcolor="#999999" class="llista"><div align="left" class="estat"><?php
           $pagats = $pagaments->get_total_coberts_pagats($row_DetailRS1['id_reserva']);
           $pagat = $pagaments->get_total_import_pagaments($row_DetailRS1['id_reserva']);
-          echo $row_DetailRS1['preu_reserva']."€ Pagats <b> $pagat € ($pagats coberts)</b>".$factura; ?> </div></td>
+          echo $row_DetailRS1['preu_reserva']."€ / Pagats <b> $pagat € ($pagats coberts)</b> / ".$factura; ?> 
+                      <table>
+                    <?php                                              
+                    $llista_pagaments = $pagaments->get_llistat_pagaments($row_DetailRS1['id_reserva']);
+                    foreach ($llista_pagaments as $row): ?>
+                                             
+                                                <tr class="">
+                                                    <td   class="Estilo5"><?php echo $row['pagaments_grups_nom_pagador']; ?></td>
+                                                    <td   class="llista"><div  class="estat">
+                                                            
+                                                            <div  class="Estilo5 tar"><?php echo  " ( " .$row['coberts'] . " coberts) "?></div>
+                                                        </div></td>
+                                                        <td id="tar"><?php echo $row['pagaments_grups_import']."€ "  ?> </td>
+                                                </tr>
+                                              <?php endforeach; ?>
+
+                  </table>
+              </div></td>
         </tr>
         <?php if ($row_DetailRS1['factura']){?>
 		<tr>
@@ -400,6 +417,7 @@ td{border:white solid 3px;}
 	  break;
 	  case "3":
 	  case "7":
+	  case "8":
   		document.getElementById("Confirmar").style.display = "none";  
   		document.getElementById("Denegar").style.display = "none";  
   		document.getElementById("Pagada").style.display = "none";  

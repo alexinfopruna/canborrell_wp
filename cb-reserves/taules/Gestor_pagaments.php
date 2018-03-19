@@ -127,6 +127,8 @@ class Gestor_pagaments extends gestor_reserves {
   }
 
   public function afegir_pagament($order, $idr, $import, $preu_unit, $nom) {
+    $nom  = htmlentities($nom);
+    
     $query="INSERT INTO `pagaments_grups` (  `pagaments_grups_reserva_id`, `pagaments_grups_redsys_id`, `pagaments_grups_import`, `pagaments_grups_preu_unit`, `pagaments_grups_resposta_tpv`, `pagaments_grups_nom_pagador`, `pagaments_grups_aux`, `pagaments_grups_aux2`) "
         . "VALUES ( $idr, $order, $import, $preu_unit, NULL, '$nom', NULL, NULL);";
     return   $this->qry_result = mysqli_query($this->connexioDB, $query) or die(((is_object($GLOBALS["___mysqli_ston"])) ? mysqli_error($GLOBALS["___mysqli_ston"]) : (($___mysqli_res = mysqli_connect_error()) ? $___mysqli_res : false)));

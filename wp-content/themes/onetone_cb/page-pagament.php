@@ -225,9 +225,9 @@ $responaseok_callback_alter = "reserva_grups_tpv_ok_callback";
   var import_pendent = "<?php echo $pagaments->get_import_pendent($id); ?>";
   var coberts_pendents =  import_pendent / preu_unit ;
   $(function () {
-    $("#boto").hide();
+    
      $("#boto").click(submit_handler);
-      
+      button_state(false);
       
  
   //$("#compra").validate();
@@ -265,11 +265,18 @@ $responaseok_callback_alter = "reserva_grups_tpv_ok_callback";
   });
 
  $(function () {
+      $("#pagament").submit(function(e){
+        alert("submit");
+        e.preventDefault();
+        return false;
+      });
 
       $("#nom").change(function () {
       //document.getElementById('boto').style.display = $("#nom").val() == "" ? "none" : "block";
-      $("#boto").hide();
-      if ($("#pagament").valid()) $("#boto").show();
+      //$("#boto").hide();
+      button_state(false);
+      
+      if ($("#pagament").valid()) button_state(true);
     });
       $("#ncoberts").change(function () {
           var coberts = $("#ncoberts").val();
@@ -285,8 +292,9 @@ $responaseok_callback_alter = "reserva_grups_tpv_ok_callback";
             $( "#boto").unbind( "click" );
             $( "#boto").unbind( "click" );
             $("#boto").click(submit_handler);
-                  $("#boto").hide();
-            if ($("#pagament").valid()) $("#boto").show();
+                 // $("#boto").hide();
+                button_state();
+            if ($("#pagament").valid()) $("#boto").removeClass("boto_disabled");
 
           });
       });
@@ -305,11 +313,15 @@ $responaseok_callback_alter = "reserva_grups_tpv_ok_callback";
 
   }
   
-  function submit_handler() {
+  
+  function submit_handler(e) {
     var valid = $("#pagament").valid();
-    if (!valid) return false;
+    if (!valid) {
+      e.preventDefault(); // Cancel the submit
+      return false;
+    }
           alert("<?php echo $translate['COMPRA_SEGURA'][$lang] ?>");
-          document.getElementById('boto').style.display = 'none';
+          button_state(false);
           console.log("222");
           vent = window.open('', 'frame-tpv', 'width=725,height=600,scrollbars=no,resizable=yes,status=yes,menubar=no,location=no');
 
@@ -324,13 +336,20 @@ $responaseok_callback_alter = "reserva_grups_tpv_ok_callback";
           if (nom=="") nom = "sense_nom"
           var order = $("#dsorder").val();
           var desti = "/cb-reserves/taules/Gestor_pagaments.php?a=afegir_pagament&b=" + order + "&c=" + idr + "&d=" + preu + "&e=" + preu_unit +  "&f=" + nom  ;
-          $.post(desti, {r: rand}, function (datos) { });
-          document.forms[0].submit();
+          $.post(desti, {r: rand}, function (datos) { $("#compra").submit();});
+         // document.forms[0].submit();
+      }
+      
+      function button_state(state){
+        $("#boto").prop('disabled', !state);
+        if(state) $("#boto").removeClass("boto_disabled");
+        else $("#boto").addClass("boto_disabled");
       }
 </script>
 
 <style>
     .error{color:red;}
+    
     #tar, .tar{text-align: right;}
     
     .post-main .table{
@@ -367,7 +386,7 @@ $responaseok_callback_alter = "reserva_grups_tpv_ok_callback";
     }
 
     .post-main{max-width:600px;margin:auto;}
-    .ds_inputxxx{display:none}
+    .form_tpv_real .ds_input{display:none}
     .post-main .btn-success{
         font-size:24px;
         float:right;
@@ -376,6 +395,10 @@ $responaseok_callback_alter = "reserva_grups_tpv_ok_callback";
     .preu td{text-align: right;}
     
     td i{font-size:0.7em;color:#888;display: block}
+    .boto_disabled {
+    -webkit-filter: grayscale(100%); /* Safari 6.0 - 9.0 */
+    filter: grayscale(100%);
+}
 </style>
 
 <article id="post-<?php the_ID(); ?>" <?php post_class(); ?>>
@@ -605,9 +628,9 @@ $responaseok_callback_alter = "reserva_grups_tpv_ok_callback";
 
                                       /** */
                                       if (isset($_REQUEST["testTPV"]) && $_REQUEST["testTPV"] == 'testTPV')
-                                        echo '<div id="form_test">TEST<br><div  class="form_tpv"> ' . $gestor->generaTESTTpvSHA256($id_reserva, $import, $nom, $responaseok_callback_alter) . "</div></div>";
+                                        echo '<div id="form_test" class="form_tpv_test">TEST<br><div  class="form_tpv"> ' . $gestor->generaTESTTpvSHA256($id_reserva, $import, $nom, $responaseok_callback_alter) . "</div></div>";
                                       else
-                                        echo '<div id="form_tpv" class="form_tpv">REAL<br> <div  class="form_tpv">' . $gestor->generaFormTpvSHA256($id_reserva, $import, $nom, $responaseok_callback_alter) . "</div></div>";
+                                        echo '<div id="form_tpv" class="form_tpv_real"> <div  class="form_tpv">' . $gestor->generaFormTpvSHA256($id_reserva, $import, $nom, $responaseok_callback_alter) . "</div></div>";
                                       ?>  
 
                                        <?php else: //nou pagament  ?>

@@ -1506,6 +1506,13 @@ WHERE  `client`.`client_id` =$idc;
     $extres['titol'] = $translate["MAIL_GRUPS_PAGAT_titol"];
     $extres['text1'] = $translate["MAIL_GRUPS_PAGAT_text1"] . number_format($import, 2);
     $extres['text2'] = $translate["MAIL_GRUPS_PAGAT_text2"];
+    /*
+    $multipago = $translate["MAIL_GRUPS_PAGAT_text3"];
+    $multipago = str_replace("{pagat}", $pagat, $multipago);
+    $multipago = str_replace("{coberts_pagats}", $coberts_pagats, $multipago);
+    $multipago = str_replace("{total}", $total, $multipago);
+    $multipago = str_replace("{coberts_reservats}", $coberts_reservats, $multipago);
+    */
     $extres['contacti'] = $translate["MAIL_GRUPS_PAGAT_contacti"];
     $mydata = $this->cambiaf_a_mysql($pdata);
     $extres['datat'] = $this->data_llarga($row['data'], $this->lang) . ", " . $row['hora'] . "h";
@@ -1517,6 +1524,7 @@ WHERE  `client`.`client_id` =$idc;
     $extres['ccotxets'] = $translate["cotxets"];
     $extres['cobservacions'] = $translate["observacions"];
     $extres['cresposta'] = $translate["resposta"];
+    $extres['cpreu_reserva'] = $translate["preu_reserva"];
     //$extres['data_limit'] = $translate["Data límit per efectuar el pagament"]." ". $pdata;
     $extres['data_limit'] = "";
     $extres['cdata_reserva'] = $translate["cdata_reserva"];
