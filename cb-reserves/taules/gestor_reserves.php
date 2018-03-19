@@ -1119,7 +1119,6 @@ class gestor_reserves extends Gestor {
     $this->qry_result = mysqli_query($this->connexioDB, $query) or die(((is_object($GLOBALS["___mysqli_ston"])) ? mysqli_error($GLOBALS["___mysqli_ston"]) : (($___mysqli_res = mysqli_connect_error()) ? $___mysqli_res : false)));
 
     $this->last_row = mysqli_fetch_assoc($this->qry_result);
-
     if ($this->total_rows = mysqli_num_rows($this->qry_result))
       return $this->last_row;
 

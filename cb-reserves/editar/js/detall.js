@@ -5,7 +5,7 @@ $scope.open = function (size) {
   $scope.animationsEnabled = true;
     var modalInstance = $uibModal.open({
       animation: $scope.animationsEnabled,
-      templateUrl: 'Gestor_grups.php?a=get_html_email&b='+size,
+      templateUrl: '../taules/Gestor_grups.php?a=get_html_email&b='+size,
       controller: 'ModalInstanceCtrl',
       size: size,
       resolve: {
@@ -28,7 +28,7 @@ angular.module('detall').controller('ModalInstanceCtrl', function ($scope, $uibM
 
   $scope.reenvia = function (mid) {
     //$uibModalInstance.close($scope.selected.item);
-    $http.get("Gestor_grups.php?a=resend_email&b=" + mid)
+    $http.get("../taules/Gestor_grups.php?a=resend_email&b=" + mid)
         .then(function(response) {
         //    console.log(response);
         //  alert(response.data);

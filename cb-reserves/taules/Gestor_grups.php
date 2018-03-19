@@ -9,7 +9,7 @@ ini_set("html_errors", 1);
 */
 if (!defined('ROOT')) define('ROOT', "../taules/");
 //require_once(ROOT."Gestor.php");
-require(ROOT."gestor_reserves.php");
+require_once(ROOT."gestor_reserves.php");
 
 class Gestor_grups extends gestor_reserves {
   public function get_email($idmail){
@@ -106,6 +106,10 @@ return $rt;
 /**********************************************************************************************/
 /**********************************************************************************************/
 /**********************************************************************************************/
+/*********** AJAX**************/
+/*********** AJAX**************/
+/*********** AJAX**************/
+/*********** AJAX**************/
 if (isset($_REQUEST['a']))  $accio = $_REQUEST['a'];
 $_REQUEST['a'] = null;
 

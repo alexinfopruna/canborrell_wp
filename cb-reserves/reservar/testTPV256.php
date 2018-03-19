@@ -34,6 +34,9 @@ $conecta = "http://".$_SERVER['HTTP_HOST'] ."/cb-reserves/reservar/Gestor_form.p
 //$url = isset($_REQUEST['purl']) ? $_REQUEST['purl'] : "http://sis-d.redsys.es/sis/realizarPago";
 $id_reserva = isset($_REQUEST['pidr']) ? $_REQUEST['pidr'] : '****';
 $lidr = $order = substr(time(), -4, 3) . $id_reserva;
+
+if ( isset($_REQUEST['order'])) $lidr = $order = $_REQUEST['order'];
+
 $amount = isset($_REQUEST['pamount']) ? $_REQUEST['pamount'] : 1500;
 $response = isset($_REQUEST['presponse']) ? $_REQUEST['presponse'] : 99;
 $callback = isset($_REQUEST['pcallback']) ? $_REQUEST['pcallback'] : "reserva_pk_tpv_ok_callback";
@@ -141,10 +144,15 @@ input[type=text], .ds_input {
     </div>
     
                   <!--purl2<input type="text" name="purl2" value="<?php echo $url; ?>"/></br>-->
+    pidr <input type="text" name="order" value="<?php echo $order; ?>"/><br/>
     pidr <input type="text" name="pidr" value="<?php echo $id_reserva; ?>"/><br/>
     pamount <input type="text" name="pamount" value="<?php echo $amount; ?>"/><br/>
     presponse <input type="text" name="presponse" value="<?php echo $response; ?>"/><br/>
-    pcallback <input type="text" name="pcallback" value="<?php echo $callback; ?>"/><br/>
+    pcallback     <select name='pcallback'>
+        <option value='reserva_pk_tpv_ok_callback' <?php if ($callback == 'reserva_pk_tpv_ok_callback') echo 'selected' ?>>reserva_pk_tpv_ok_callback</option>
+        <option value="reserva_grups_tpv_ok_callback" <?php if ($callback == 'reserva_grups_tpv_ok_callback') echo 'selected' ?>>reserva_grups_tpv_ok_callback</option>
+    </select>
+<br/>
     <br/>
     <input type="submit" name="init" value="Enviar" />
     <input type="submit" name="reset_estat" value="reset_estat" />

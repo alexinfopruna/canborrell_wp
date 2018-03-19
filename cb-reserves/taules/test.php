@@ -2,8 +2,8 @@
 header('Content-Type: text/html; charset=UTF-8');
 header('Set-Cookie: fileDownload=true');
 
-//define("LLISTA_DIES_NEGRA",ROOT . INC_FILE_PATH."llista_dies_negra.txt");
-//define("LLISTA_DIES_BLANCA",ROOT . INC_FILE_PATH."llista_dies_blanca.txt");
+
+
 require_once("Gestor.php");
 define("LLISTA_DIES_NEGRA",ROOT . INC_FILE_PATH."llista_dies_negra.txt");
 define("LLISTA_DIES_BLANCA",ROOT . INC_FILE_PATH."llista_dies_blanca.txt");
@@ -11,7 +11,10 @@ define("LLISTA_DIES_BLANCA",ROOT . INC_FILE_PATH."llista_dies_blanca.txt");
 
 
 require_once("gestor_reserves.php");
+require_once(ROOT."../taules/Gestor_grups.php");
+require_once(ROOT."../taules/Gestor_pagaments.php");
 $gestor=new gestor_reserves();  
+
 
 require_once(ROOT . "RestrictionController.php");
 
@@ -25,73 +28,12 @@ class Test extends gestor_reserves {
   }
   
   public function run(){
-    
-  
-$data = '2017-11-18';
-$coberts = 3;
-$nens = 0;
-$cotxets = 0;
-$accesible = 0;
-$data = '2017-11-22';
-
-
-
-    $rc = new RestrictionController();
-    
-    
-    
-    
-        $mydata = $this->cambiaf_a_mysql($data);
-
-    $this->taulesDisponibles->tableHores = "estat_hores";   //ANULAT GESTOR HORES FORM. Tot es gestiona igual, des d'estat hores
-
-
-    $this->taulesDisponibles->data = $mydata;
-    $this->taulesDisponibles->persones = $coberts;
-    $this->taulesDisponibles->cotxets = $cotxets;
-    $this->taulesDisponibles->accesible = $accesible;
-    $this->taulesDisponibles->tableHores = "estat_hores";  //ANULAT GESTOR HORES FORM. Toto es gestiona igual, des de estat hores
-
-    $this->taulesDisponibles->llista_dies_negra = LLISTA_DIES_NEGRA_RES_PETITES;
-    $this->taulesDisponibles->llista_nits_negra = LLISTA_DIES_NEGRA_RES_PETITES;
-    $this->taulesDisponibles->llista_dies_blanca = LLISTA_DIES_BLANCA;
-    $cacheNens = $nens;
-    $cacheAdults = $coberts - $nens;
-
-
-    $rc = new RestrictionController();
-   // $this->taulesDisponibles->rang_hores_nens = $rc->getHores($mydata, $cacheAdults, $cacheNens, $cotxets);
-   // $rules = $rc->getActiveRules($mydata, $cacheAdults, $cacheNens, $cotxets);
-    
-    //RestriccionsTaules ALEX
-    //TORN1
-    $this->taulesDisponibles->torn = 1;
-    $dinar = $this->taulesDisponibles->recupera_hores();
-    $taules = $this->taulesDisponibles->taulesDisponibles();
-    
-   $hores_taula=array();
-    
-foreach($taules as $k => $v){
-  $hores = $rc->getHoresTaula($mydata, $v->id);//$rc->
-  $hores_taula = array_merge($hores_taula, $hores);
-  
-  
-
-  
-  echo $v->nom." --- ";
-  foreach($hores as $k => $v) echo " $v  / ";
-  echo "<br>";
-}
-
-$hores_taula = array_unique($hores_taula);
-$hores_taula = array_diff( $hores_taula, ['99:99'] );
- sort($hores_taula);
-
- echo "<br>----------------------------------<br>";
-foreach($hores_taula as $k => $v) echo " $v  / ";
-
-    $this->taulesDisponibles->rang_hores_taules = $hores_taula;//$rc->getHores($mydata, $cacheAdults, $cacheNens, $cotxets);
-  }
+      $grups=new Gestor_grups();
+      $pagament=new Gestor_pagaments();  
+      //echo $pagament->calcula_preu_grups(22);
+      //$pagament->afegir_pagament(1233047, 3047, 36, preu_persona_grups, "manolo");
+      $pagament->validar_pagament(1233047,  99);
+   }
 }
   
   

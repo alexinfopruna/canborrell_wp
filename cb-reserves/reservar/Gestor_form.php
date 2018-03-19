@@ -1323,6 +1323,16 @@ WHERE  `client`.`client_id` =$idc;
         $this->xgreg_log("$order $amount", 1, LOG_FILE_TPVPK, FALSE);
         $this->xgreg_log("$callback ", 1, LOG_FILE_TPVPK, FALSE);
 
+        /** MULTIPAGO */
+        /** MULTIPAGO */
+        /** MULTIPAGO */
+        /** MULTIPAGO */
+        /** MULTIPAGO */
+            $import = $amount / 100;
+            require_once(ROOT."Gestor_pagaments.php");
+            $pagaments=new Gestor_pagaments();
+            $pagaments->valida_pagament($param['Ds_Order'],  $idr, $import, $response);
+ 
         $this->$callback($idr, $amount, $data, $hora);
       }
       else {
@@ -1464,27 +1474,31 @@ WHERE  `client`.`client_id` =$idc;
 
     $estat = $row['estat'];
     $mail = $row['client_email'];
-
+/* ANULAT: PAGAMENTS PARCIALS
     if ($estat != 2) { // NO ESTÀ CONFIRMADA PER PAGAR
       $msg = "PAGAMENT INAPROPIAT RESERVA PETITA???: " . $idr . " estat: $estat  $mail";
-      $this->xgreg_log($msg, 1, LOG_FILE_TPVPK, FALSE); /* LOG */
+      $this->xgreg_log($msg, 1, LOG_FILE_TPVPK, FALSE); // LOG 
       echo "ERROR ESTAT!=2";
       $extres['subject'] = "Can-Borrell: !!!! $msg!!!";
       $mail = $this->enviaMail($idr, "../reservar/paga_i_senyal_", MAIL_RESTAURANT, $extres);
       return FALSE;
     }
+    */
     $referer = $_SERVER['REMOTE_ADDR'];
     $import = $amount / 100;
-    $resposta = "PAGA I SENYAL GRUPS TPV: " . $import . "Euros (" . $pdata . " " . $phora . ")";
+    $resposta = "<br>(" . $pdata . " " . $phora . ")TPV>>" . $import . "€ ";
 
     /*     * *****ATENCIO ******************** */
     /*     * *****ATENCIO ******************** */
     /*     * *****ATENCIO ******************** */
     /*     * *****ATENCIO ******************** */
     /*     * *****ATENCIO ******************** */
-    $query = "UPDATE reserves SET estat=7, preu_reserva='$import', resposta='$resposta' WHERE id_reserva=$idr";
-    //$result = "TEEEST";
+    //$query = "UPDATE reserves SET estat=7, preu_reserva='$import', resposta='$resposta' WHERE id_reserva=$idr";
+    $query = "UPDATE reserves SET estat=7, resposta=concat(resposta, '$resposta') WHERE id_reserva=$idr";
     $result = $this->log_mysql_query($query, $this->connexioDB) or die(((is_object($GLOBALS["___mysqli_ston"])) ? mysqli_error($GLOBALS["___mysqli_ston"]) : (($___mysqli_res = mysqli_connect_error()) ? $___mysqli_res : false)));
+    
+
+
     include('translate_' . $this->lng . '.php');
     echo $query . " >>> " . $result;
 //

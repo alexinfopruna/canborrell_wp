@@ -237,10 +237,8 @@ function reservar_enqueue_styles() {
       .ccarta  td, tr.item-carta, tr.item-carta td{    padding: 0px 4px;}
       .fxd-header{display:none !important;position:absolute;left:-1000px;}
       h2.titol{
-          // background-blend-mode: multiply;
           background: white;
           padding: 4px;   
-          //mix-blend-mode: multiply;
       }
 
       .anima-avis{
@@ -259,18 +257,15 @@ function reservar_enqueue_styles() {
           padding:10px;
           background-color: #FFFFA1;
           border: #570600 solid 3px;
-          //border: red solid 3px;
 
           z-index: 3000;
       }
       #avis-modificacions-overlay.anima-avis{
           display: block;
-          //opacity:0.8;
       }
       .dspnn{display:none;}
       #avis-modificacions{
 
-          //  position:relative;
           font-size: 14px;
           color:#570600;
           background-color: white;
@@ -599,9 +594,8 @@ function reservar_enqueue_styles() {
 
                                                                   <!-- ******  INFO  ********   -->
                                                                   <div class="caixa dere info ui-corner-all info-quants"><?php l('INFO_QUANTS_SOU'); ?>
-                                                                      <input type="text" name="totalComensals" value="<?php echo $row['adults'] + $row['nens10_14'] + $row['nens4_9'] ?>" readonly="readonly"/></b>
-                                                                      <input type="text" name="totalCotxets" value="<?php echo $row['cotxets'] ? "/ " . $row['cotxets'] : "" ?>" readonly="readonly"/></b>
-                                                                      <!--Tingue's present que si vols modificar aquest nombre més endavant no podem garantir la disponibilitat de taula.<br/><br/>-->
+                                                                      <input type="text" name="totalComensals" value="<?php echo $row['adults'] + $row['nens10_14'] + $row['nens4_9'] ?>" readonly="readonly"/>
+                                                                      <input type="text" name="totalCotxets" value="<?php echo $row['cotxets'] ? "/ " . $row['cotxets'] : "" ?>" readonly="readonly"/>
                                                                   </div>
 
 

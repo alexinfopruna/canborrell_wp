@@ -3,6 +3,8 @@
 if (!defined('ROOT'))  define('ROOT', "../taules/");
 require(ROOT . "gestor_reserves.php");
 $gestor = new gestor_reserves();
+require(ROOT . "Gestor_pagaments.php");
+
 $test = isset($_REQUEST['test']);
 $sms_activat = !$test;
 
@@ -77,8 +79,10 @@ else
 function recordatori($canborrell, $dies) {
   $bodi = "<br><br> NO HI HA RESERVES PER RECORDATORI <br><br>";
   $ENVIAT = 1000 - $dies;
-
-  $query_reserves = "SELECT * FROM reserves WHERE data_limit <= ADDDATE(CURDATE(), INTERVAL $dies DAY) AND data_limit >=CURDATE() AND data >=CURDATE()  AND estat=2 AND data>=CURDATE() AND  (num_1<$ENVIAT OR num_1<=>NULL) AND  (num_2<>666 OR num_2<=>NULL)";
+  $pagaments = new Gestor_pagaments();
+  $sms="";
+  $query_reserves = "SELECT * FROM reserves WHERE data_limit <= ADDDATE(CURDATE(), INTERVAL $dies DAY) AND data_limit >=CURDATE() AND data >=CURDATE()  AND (estat=2 OR estat=3 OR estat=7) AND data>=CURDATE() AND  (num_1<$ENVIAT OR num_1<=>NULL) AND  (num_2<>666 OR num_2<=>NULL)";
+  //$query_reserves = "SELECT * FROM reserves WHERE data_limit <= ADDDATE(CURDATE(), INTERVAL $dies DAY) AND data_limit >=CURDATE() AND data >=CURDATE()  AND estat=2 AND data>=CURDATE() AND  (num_1<$ENVIAT OR num_1<=>NULL) AND  (num_2<>666 OR num_2<=>NULL)";
   //$query_reserves = "SELECT * FROM reserves WHERE data_limit <= ADDDATE(CURDATE(), INTERVAL $dies DAY) AND data_limit >=CURDATE() AND data >=CURDATE()  AND estat=2 AND data>=CURDATE() AND  (num_2<>666 OR num_2<=>NULL)";
   echo "<br/><br/>RECORDATORI<br/>";
   echo $query_reserves;
@@ -91,8 +95,19 @@ function recordatori($canborrell, $dies) {
   $mensa = "\\n\\n\\nS´HAN ENVIAT ELS SEGÜENTS RECORDATORIS $sms(abans $dies dies):\\n\\n\\n";
 
   while ($row = mysqli_fetch_array($reserves)) {
+    echo "<br>*************************************<br>";
+    echo"";
     echo $row["id_reserva"] . " >> " . $row["data"] . "" . " (" . $row["estat"] . ") >>>>> " . $row['data_limit'] . "    num_1:" . $row['num_1'] . "    num_2:" . $row["num_2"];
 
+    $estat = $pagaments->get_estat_multipago($row["id_reserva"]);
+    if ($estat==100){
+      echo "Multipago....";
+       continue;
+    }
+    ///
+    //echo "APrAAA";
+    //continue;
+    
     $plantilla = "templates/recordatori_cli.lbi";
     // if ($dies == 1)      $plantilla = "templates/recordatori_1dia_cli.lbi";
     mail_cli($row["id_reserva"], $plantilla);
@@ -168,13 +183,13 @@ function mail_cli($id = false, $plantilla = "templates/recordatori_cli.lbi") {
   }
   /*********************************************************************************************************************************/
   $Result = mysqli_query($canborrell, $query) or die(((is_object($GLOBALS["___mysqli_ston"])) ? mysqli_error($GLOBALS["___mysqli_ston"]) : (($___mysqli_res = mysqli_connect_error()) ? $___mysqli_res : false)));
-  $id = $fila['id_reserva'];
   $fila = mysqli_fetch_assoc($Result);
+  $id = $fila['id_reserva'];
   $lang = $lang_cli = $fila['lang'];
   $v = 50;
   
-  print_r($fila);
-  $b64 = base64_encode($fila["id_reserva"] . "&" . $fila['tel'] . "&" . $lng);
+  //print_r($fila);
+  $b64 = base64_encode($fila["id_reserva"] . "&" . $fila['tel'] . "&" . $lang);
   $link = 'https://' . $_SERVER['HTTP_HOST'] . '/reservar/pagament?rid=' . $b64 . '&lang=' . $lang;
   $aki = "<a href='" . $link . "' class='dins'>AQUI</a>";
   $copia = "Recordatori de Reserva";

@@ -36,12 +36,12 @@ if (defined('MOSTRA_ERRORS') && MOSTRA_ERRORS == TRUE) {
  
   /* ERRORS ON */
 //set_error_handler("var_dump");
-  ini_set('error_reporting', E_ALL ^  ~E_DEPRECATED);
-  error_reporting(E_ALL ^  ~E_DEPRECATED);
-  ini_set("display_errors", 1);
-  ini_set("track_errors", 1);
-  ini_set("html_errors", 1);
+ini_set('display_errors', 1);
+ini_set('display_startup_errors', 1);
+error_reporting(E_ALL);
+
 }
+
 /* * ******************************************************************************************************************* */
 // DEFINE CARPETA DE TREBALL SOBRE LA ROOT
 if (!defined('INC_FILE_PATH'))
@@ -166,9 +166,9 @@ class Gestor {
     if (!$b)
       return FALSE;
 
-    $sessuser = $_SESSION['uSer'];
-
-    if (!property_exists ( $sessuser , 'id' )) return FALSE;
+    if(isset($_SESSION['uSer'])) $sessuser = $_SESSION['uSer'];
+    if (!is_object($sessuser)) return FALSE;
+    if (!property_exists( $sessuser , 'id' )) return FALSE;
     $c = $sessuser->id;
  
     if (!isset($_COOKIE['tok']))
@@ -528,7 +528,7 @@ class Gestor {
     $ip = isset($ips[$_SERVER['REMOTE_ADDR']]) ? $ips[$_SERVER['REMOTE_ADDR']] : $_SERVER['REMOTE_ADDR'];
     
     
-    $sessuser = $_SESSION['uSer'];
+    if (isset($_SESSION['uSer'])) $sessuser = $_SESSION['uSer'];
 
     if (isset($sessuser))
       $user = $sessuser->id;
@@ -923,7 +923,7 @@ class Gestor {
 
   public function generaFormTpvSHA256($id_reserva, $import, $nom, $tpv_ok_callback_alter = NULL) {
     $this->xgreg_log("generaFormTpvSHA256 $id_reserva $import $nom", 0, LOG_FILE_TPVPK, TRUE);
-
+//echo"$id_reserva s  $import s $nom s  $tpv_ok_callback_alter ssssssssss";
     $id = $order = substr(time(), -4, 3) . $id_reserva;
 
     $titular = $nom;
@@ -979,6 +979,7 @@ class Gestor {
       echo '<br><br>';
      */
     $form = '<form id="compra" name="compra" action="' . $url . '" method="post" target2="_blank" target="frame-tpv"  style="display:nonexxx">
+              <div class="ds_input">odr <input  id="dsorder"  type="text" name="Ds_odr" value="' . $id . '"/></div>
               <div class="ds_input">Ds_Merchant_SignatureVersion <input type="text" name="Ds_SignatureVersion" value="' . $version . '"/></div>
               <div class="ds_input">Ds_Merchant_MerchantParameters <input type="text" name="Ds_MerchantParameters" value="' . $params . '"/></div>
               <div class="ds_input">Ds_Merchant_Signature <input type="text" name="Ds_Signature" value="' . $signature . '"/></div>
@@ -1049,6 +1050,7 @@ public function generaTESTTpvSHA256($id_reserva, $import, $nom, $tpv_ok_callback
 
 
     $form = '<form id="compra" name="compra" action="' . $url . '" method="post" target2="_blank" target="frame-tpv"  style="display:nonexxx">
+              <div class="ds_input">odr <input id="dsorder"  type="text" name="Ds_odr" value="' . $id . '"/></div>
               <div class="ds_input">Ds_Merchant_SignatureVersion <input type="text" name="Ds_SignatureVersion" value="' . $version . '"/></div>
               <div class="ds_input">Ds_Merchant_MerchantParameters <input type="text" name="Ds_MerchantParameters" value="' . $params . '"/></div>
               <div class="ds_input">Ds_Merchant_Signature <input type="text" name="Ds_Signature" value="' . $signature . '"/></div>

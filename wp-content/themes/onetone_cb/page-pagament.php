@@ -2,6 +2,7 @@
 /*
   Template Name: Input pagament
  */
+  
 
 
 get_header();
@@ -113,10 +114,9 @@ if ($id) {
 else {
   
 }
-if (!isset($lang))
-  $lang = $lang_cli = "esp";
+if (!isset($lang))  $lang = $lang_cli = "esp";
 
-
+$lang = ICL_LANGUAGE_CODE;
 $old_lang_code['cat'] = 'cat';
 $old_lang_code['ca'] = 'cat';
 $old_lang_code['es'] = 'esp';
@@ -125,10 +125,17 @@ $old_lang_code['en'] = 'en';
 
 
 $lang = $old_lang_code[$lang];
+
+defined('ROOT') or define('ROOT', 'cb-reserves/taules/');
+require_once (ROOT . "../taules/Gestor_pagaments.php");
+$pagaments = new Gestor_pagaments();
 // comprovacions estat reserva
 // ARREGLAR MISSATGES
+//if (($estat == 3) || ($estat == 7)) { // JA S?HA PAGAT 
+$estat_multipago  = $pagaments->get_estat_multipago($id);
 
-if (($estat == 3) || ($estat == 7)) { // JA S?HA PAGAT 
+//if ($estat_multipago == 100) { // JA S'HA PAGAT 
+if (FALSE) { // JA S'HA PAGAT 
   $titol['cat'] = "Aquesta reserva ja ha estat pagada<br><br><br><br><br><br>";
   $titol['esp'] = "Esta reserva ya ha sido pagada<br><br><br><br><br><br><br>";
   $titol['en'] = "This reservation has now been paid<br><br><br><br><br><br><br>";
@@ -142,7 +149,7 @@ else if ($estat == 6) {
   $surt = true;
   $gestor->xgreg_log($titol['cat'], 1);
 }
-else if ($estat != 2) {    // NO ESTA CONFIRMADA
+else if ($estat != 2 && $estat != 3 && $estat != 7) {    // NO ESTA CONFIRMADA
   $titol['cat'] = "Lamentablement aquesta reserva no ha estat confirmada o ha caducat! Contacti amb el restaurant<br><br><br><br><br><br><br><br>";
   $titol['esp'] = "Lamentablemente esta reserva no ha sido confirmada o ha caducado! Contacte con el restaurante<br><br><br><br><br><br><br><br>";
   $titol['en'] = "Unfortunately, this reservation has not been confirmed or has expired! Contact the restaurant<br><br><br><br><br><br><br><br>";
@@ -159,7 +166,7 @@ if ($dif < 0) {
   $titol['cat'] = "Aquesta reserva ha caducat! Contacti amb el restaurant<br><br><br><br><br><br><br><br>";
   $titol['esp'] = "Esta reserva ha caducado! Contacte con el restaurante<br><br><br><br><br><br><br><br>";
   $titol['en'] = "This reservation has expired! Contact the restaurant<br><br><br><br><br><br><br><br>";
-  $surt = true;
+  $x = true;
   $gestor->xgreg_log($titol['cat'], 1);
 }
 
@@ -176,43 +183,154 @@ $translate['COMPRA_SEGURA']['esp'] = "Para realizar el pago a través de esta pa
 $translate['COMPRA_SEGURA']['cat'] = "Per poder realitzar el pagament a través d´aquesta passarel·la bancaria, cal que hagis activat la tarja per a COMPRA SEGURA A INTERNET al teu banc. \\n\\nAmb aquesta activació et facilitaran un codi de quatre xifres que és requerit al final del procès.\\n\\nDisculpa les molèsties";
 $translate['COMPRA_SEGURA']['en'] = "To make a payment using this bank gateway, you must activate the card for SECURE ONLINE PURCHASE in your bank.\\n\\nWith this activated you are given a code of four digits, needed to complete the process.\\n\\nSorry for the inconvenience";
 
+switch ($lang){
+  case 'cat':
+    $translate['INFO_MULTIPAGO'] = "<p>Podeu fer un sol pagament integre de tot l'import però, si ho preferiu, per evitar que una sola persona hagi de fer el pagament de tot l'import de la reserva, el nostre sistema permet que feu <b>diversos pagaments separats</b> "
+    . "de la manera que més us convingui (per persona, per famílies...).</p> <p><i>Per exemple, si sou 5 famílies de 4 persones, cada família pot pagar la part corresponent als 4 comensals que li toquen de manera que quedi més repartit</i></p>";
+$translate['INFO_MULTIPAGO2'] = "<p>El restaurant només tindrà en compte les reserves <b>pagades</b> fins a la data límit indicada. El nombre de comensals reser1at inicialment <b>no té valor si no s'ha abonat l'import corresponent</b> a tots els coberts.</p>"
+    . "<p><i>Per exemple: Si heu reservat per 20 persones però només n'heu abonat 15, el restaurant us prepararà taula per 15 comensals</i></p>";
+
+  break;
+    
+  case 'esp':
+    $translate['INFO_MULTIPAGO'] = "<p>Podéis hacer un solo pago de todo el importe o, si lo preferís, para evitar que una sola persona tenga que hacer el pago de un importe elevado, nuestro sistema permite que hagáis <b>diversos pagos separados</b> "
+    . "de la manera que más os convenga (por persona, por familias...).</p> <p><i>Por ejemplo, si sóis 5 familias de 4 personas, cada familia podría pagar la parte correspondiente a los 4 comensales que le tocan de manera que queda más repartido</i></p>";
+$translate['INFO_MULTIPAGO2'] = "<p>El restaurant solo tendrá en cuenta las reservas <b>pagadas</b>. El número de comensales indicados inicialmente <b>no tiene valor si no se ha abonado el importe correspondiente</b> a todos los cubiertos.</p>"
+    . "<p><i>Por ejemplo: Si habéis reservado para 20 personas pero solo habéis abonado 15 reservas, el restaurant os preparará mesa para 15 comensales</i></p>";
+
+  break;
+
+  case 'en':
+        $translate['INFO_MULTIPAGO'] = "<p> You can make a single payment of the entire amount but, if you prefer, to prevent a single person from paying the entire amount of the reservation, our system allows you to make <b> several separate payments </b> "
+      . "in the way that suits you best (per person, by families ...). ";
+    $translate['INFO_MULTIPAGO2'] = "<p> The restaurant will only consider <b> paid </b> reservations. The number of guests initially booked <b> has no value if the corresponding amount has not been paid </ b> for all the people reserved. </p> "
+        . "<p> <i> For example: If you have reserved for 20 people but you only paid 15, the restaurant will prepare a table for 15 diners </i> </p>";
+  break;  
+}
+
+//$translate['INFO_MULTIPAGO2']['en'] = "";
+//$translate['INFO_MULTIPAGO2']['esp'] = "";
+$translate['INFO_TOT_PAGAT'] = "<p>Ja s'ha satisfet la totalitat de l'import de la reserva.</p><h3> Us esperem Can Borrell!!</h3>";
+
 
 ((mysqli_free_result($Result) || (is_object($Result) && (get_class($Result) == "mysqli_result"))) ? true : false);
+
+$responaseok_callback_alter = "reserva_grups_tpv_ok_callback";
 ?>
 <?php echo Gestor::loadJQuery(); ?>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.17.0/jquery.validate.min.js"></script>
 <script language=JavaScript>
+  var preu_unit = <?php echo preu_persona_grups ?>;
+  var fcallback = "<?php echo $responaseok_callback_alter ?>";
   $(function () {
-      $("#boto").click(function () {
-          alert("<?php echo $translate['COMPRA_SEGURA'][$lang] ?>");
-          document.getElementById('boto').style.display = 'none';
-          vent = window.open('', 'frame-tpv', 'width=725,height=600,scrollbars=no,resizable=yes,status=yes,menubar=no,location=no');
-          
-            var idr=<?php echo $fila['id_reserva'] ?>;
-          var TIMER_INTERVAL = 5000;
-          var t = setInterval(ctimer, TIMER_INTERVAL,idr);
+    $("#boto").hide();
+     $("#boto").click(submit_handler);
+      
+      
+ 
+  //$("#compra").validate();
   
-  
-  document.forms[0].submit();
-          
+      $("#pagament").validate({
+          errorContainer: $("#error_validate"),
+          debug: true,
+          errorElement: "em",
+          rules: {
+              ncoberts: {
+                  required: true,
+                  min: 1,
+                  max: PERSONES_GRUP - 1
+              },
+              nom:
+                      {
+                          required: true,
+                          minlength: 4
+                      }
+          },
+          messages: {
+              ncoberts: {
+                  required: l("TOTAL!!!"),
+                  min: l("Selecciona, com a a mínim, 1 cobert"),
+                  max: l("Si sou més de " + (PERSONES_GRUP - 1) + " comensals, selecciona la reserva per GRUPS")
+              },
+              nom:
+                      {
+                          required: l("Indica un nom"),
+                          minlength: l("Indica un nom")
+                      }
+          }
       });
 
- 
- 
- });
-  
-  function ctimer(idr){
-      var desti = "/cb-reserves/taules/gestor_reserves.php?a=estat_reserva_grup&b=" + idr ;
-    $.post(desti, {r: 0}, function (datos) {
-        if (datos == "7"){
-            window.location.href = "/#about";
-            alert("PAGAMENT REBUT");
-        }
+  });
+
+ $(function () {
+
+      $("#nom").change(function () {
+      //document.getElementById('boto').style.display = $("#nom").val() == "" ? "none" : "block";
+      $("#boto").hide();
+      if ($("#pagament").valid()) $("#boto").show();
     });
-  
+      $("#ncoberts").change(function () {
+          var coberts = $("#ncoberts").val();
+          var preu = preu_unit * coberts;
+          var reserva = $("#reserva_id").html().trim();
+          var nom = $("#nom").val();
+          if (nom = "")
+        nom = "Sense_nom";
+          $("#preu_parcial").html(preu);
+
+          var desti = "/cb-reserves/taules/gestor_reserves.php?a=generaFormTpvSHA256&b=" + reserva + "&c=" + preu + "&d=" + nom + "&e=" + fcallback;
+          $(".form_tpv").load(desti,function(){
+            $( "#boto").unbind( "click" );
+            $( "#boto").unbind( "click" );
+            $("#boto").click(submit_handler);
+                  $("#boto").hide();
+            if ($("#pagament").valid()) $("#boto").show();
+
+          });
+      });
+  });
+
+  function ctimer(idr) {
+  var order = $("#dsorder").val();
+       var desti = "/cb-reserves/taules/Gestor_pagaments.php?a=get_estat_pagament&b=" + order  ;
+       $.post(desti, {r: 0}, function (datos) {
+         var estat = parseInt(datos);
+          if (estat>=0 && estat>=99 ) {
+              window.location.href = "/#about";
+              alert("PAGAMENT REBUT");
+          }
+      });
+
   }
+  
+  function submit_handler() {
+    var valid = $("#pagament").valid();
+    if (!valid) return false;
+          alert("<?php echo $translate['COMPRA_SEGURA'][$lang] ?>");
+          document.getElementById('boto').style.display = 'none';
+          console.log("222");
+          vent = window.open('', 'frame-tpv', 'width=725,height=600,scrollbars=no,resizable=yes,status=yes,menubar=no,location=no');
+
+          var idr =<?php echo $fila['id_reserva'] ?>;
+          var TIMER_INTERVAL = 5000;
+          var t = setInterval(ctimer, TIMER_INTERVAL, idr);
+          
+          var rand = "...";
+          var coberts = $("#ncoberts").val();
+          var preu = preu_unit * coberts ;
+          var nom = $("#nom").val();
+          if (nom=="") nom = "sense_nom"
+          var order = $("#dsorder").val();
+          var desti = "/cb-reserves/taules/Gestor_pagaments.php?a=afegir_pagament&b=" + order + "&c=" + idr + "&d=" + preu + "&e=" + preu_unit +  "&f=" + nom  ;
+          $.post(desti, {r: rand}, function (datos) { });
+          document.forms[0].submit();
+      }
 </script>
 
 <style>
+    .error{color:red;}
+    #tar, .tar{text-align: right;}
+    
     .post-main .table{
         max-width:600px;
         margin:auto;
@@ -247,11 +365,15 @@ $translate['COMPRA_SEGURA']['en'] = "To make a payment using this bank gateway, 
     }
 
     .post-main{max-width:600px;margin:auto;}
-    .ds_input{display:none}
+    .ds_inputxxx{display:none}
     .post-main .btn-success{
         font-size:24px;
         float:right;
     }
+
+    .preu td{text-align: right;}
+    
+    td i{font-size:0.7em;color:#888;display: block}
 </style>
 
 <article id="post-<?php the_ID(); ?>" <?php post_class(); ?>>
@@ -277,25 +399,25 @@ $translate['COMPRA_SEGURA']['en'] = "To make a payment using this bank gateway, 
               <div class="clearfix"></div>
           </div>
       </section>
-<?php endif; ?>
+    <?php endif; ?>
     <div class="post-wrap">
         <div class="<?php echo $container; ?>">
             <div class="post-inner row <?php echo $aside; ?>" style=" <?php echo $container_css; ?>">
                 <div class="col-main">
                     <section class="post-main" role="main" id="content">
-<?php while (have_posts()) : the_post(); ?>
-                          <article class="post type-post" id="">
-                          <?php if (has_post_thumbnail()): ?>
+                        <?php while (have_posts()) : the_post(); ?>
+                          <article class="post type-post" id="artic">
+                              <?php if (has_post_thumbnail()): ?>
                                 <div class="feature-img-box">
                                     <div class="img-box">
-    <?php the_post_thumbnail(); ?>
+                                        <?php the_post_thumbnail(); ?>
                                     </div>
                                 </div>
-  <?php endif; ?>
+                              <?php endif; ?>
                               <div class="entry-main">
 
                                   <div class="entry-content ">
-  <?php the_content(); ?>
+                                      <?php the_content(); ?>
 
                                       <?php
                                       if ($surt && !isset($_REQUEST['testTPV']))
@@ -303,15 +425,20 @@ $translate['COMPRA_SEGURA']['en'] = "To make a payment using this bank gateway, 
                                       ?>
 
                                       <div class="alert alert-info">
-  <?php echo $txt[40][$lang] ?>
+                                          <?php echo $txt[40][$lang] ?>
 
                                       </div>
 
                                       <table class="table table-stripped table-condensed">
+                                          <tr  class="preu">
+                                              <td  colspan="2" class="Estilo2"><?php l("Reserva"); ?></td>
+                                          </tr>
+
+
                                           <tr>
                                               <td   class="Estilo2">id_reserva</td>
-                                              <td   class="llista"><div  class="titol2"><?php echo $fila['id_reserva'];
-  ?> </div></td>
+                                              <td   class="llista"><div  class="titol2" id="reserva_id"><?php echo $fila['id_reserva'];
+                                          ?> </div></td>
                                           </tr>
 
                                           <tr>
@@ -342,8 +469,8 @@ $translate['COMPRA_SEGURA']['en'] = "To make a payment using this bank gateway, 
                                               <td   class="Estilo2">menú</td>
                                               <td  class="llista"><div  ><?php
 ///// COMANDA
-  echo $comanda = $gestor->plats_comanda($fila['id_reserva']);
-  ?> </div></td>
+                                          echo $comanda = $gestor->plats_comanda($fila['id_reserva']);
+                                          ?> </div></td>
                                           </tr>
                                           <tr>
                                               <td   class="Estilo2"><?php echo $camps[2][$lang] ?></td>
@@ -376,18 +503,118 @@ $translate['COMPRA_SEGURA']['en'] = "To make a payment using this bank gateway, 
                                                   </div></td>
                                           </tr>
                                       </table>
-  <?php
-  $id_reserva = ((int) $_GET["id"]) + 100000;
-  //$url_resposta = 'http://' . $_SERVER['HTTP_HOST'] . '/reservar/Gestor_form.php?a=respostaTPV_GRUPS_SHA256';
-  $responaseok_callback_alter = "reserva_grups_tpv_ok_callback";
-  $response = isset($_GET["testTPV"]) ? $_GET["testTPV"] : -1;
 
-  if (isset($_REQUEST["testTPV"]) && $_REQUEST["testTPV"] == 'testTPV')
-    echo $gestor->generaTESTTpvSHA256($id_reserva, $import, $nom, $responaseok_callback_alter);
-  else
-    echo $gestor->generaFormTpvSHA256($id_reserva, $import, $nom, $responaseok_callback_alter);
-  ?>  
+                                      <br>
+                                      <br>
+                                      <div class="alert alert-info">
+                                          <?php l("INFO_MULTIPAGO") ?>
 
+                                      </div>
+                                      <div class="alert alert-warning">
+                                          <?php l("INFO_MULTIPAGO2") ?>
+
+                                      </div>
+
+                                      <?php
+                                      if (defined('PAGAMENTS_PARCIALS') && PAGAMENTS_PARCIALS == true && $pagaments->get_multipago_activat($fila['preu_reserva'])):
+                                        $total_reserva = $fila['preu_reserva'];
+
+                                        $total_pagaments_parcials = $pagaments->get_total_import_pagaments($fila['id_reserva']);
+                                        $coberts_pagats = $pagaments->get_total_coberts_pagats($fila['id_reserva']);
+                                        $llista_pagaments = $pagaments->get_llistat_pagaments($fila['id_reserva']);
+
+                                        $comensals = $fila['adults'] + $fila['nens10_14'] + $fila['nens4_9'];
+                                        $pendents = $comensals - $coberts_pagats;
+                                        $import_pendent = $total_reserva - $total_pagaments_parcials;
+                                        ?>
+
+                                        <?php if ($coberts_pagats): ?>
+                                          <table class="table table-stripped table-condensed">
+                                              <tr  class="preu">
+                                                  <td  colspan="3" class="Estilo2"><?php l("Pagaments realitzats"); ?></td>
+                                              </tr>
+
+                                              <?php 
+                                              
+                                              foreach ($llista_pagaments as $row): ?>
+                                             
+                                                <tr class="">
+                                                    <td   class="Estilo2"><?php echo $row['pagaments_grups_nom_pagador']; ?></td>
+                                                    <td   class="llista"><div  class="estat">
+                                                            
+                                                            <div  class="Estilo5 tar"><?php echo  " ( " .$row['coberts'] . " coberts) "?></div>
+                                                        </div></td>
+                                                        <td id="tar"><?php echo $row['pagaments_grups_import']."€ "  ?> </td>
+                                                </tr>
+                                              <?php endforeach; ?>
+                                              <br>
+                                              <br>
+                                              <tr class="preu">
+                                                  <td   class="Estilo2"><?php echo "Import abonat"; ?></td>
+                                                  <td   class="llista"><div  class="estat">
+                                                          <div  class="Estilo2"><?php echo  "($coberts_pagats coberts)"?> </div>
+                                                      </div></td>
+                                                      <td><?php echo " " . $total_pagaments_parcials . "€ "; ?></td>
+                                              </tr>
+                                          </table>
+                                        <?php endif; //llista pagats  ?>
+                                        <br>
+                                        <br>
+                                                                                <?php endif; //mostra llistat  ?>
+
+                                        <?php if ($import_pendent>0 ): ?>
+                                        <form id="pagament">
+                                        <table class="table table-stripped table-condensed">
+                                            <tr  class="preu">
+                                                <td  colspan="2" class="Estilo2"><?php l("Realitzar un nou pagament") ?></td>
+                                            </tr>
+
+                                            <tr>
+                                                <td   class="Estilo2"><?php l("Indica el nom del pagador"); ?>
+                                                    <i><?php l('Per facilitar-vos la gestió dels pagaments introdueix un nom que identifiqui el pagador. Per exemple: Família Puig o Josep i Maria'); ?></i>
+                                                </td>
+                                                <td   class="llista"><div  class="estat">
+                                                        <div  class="Estilo2"><input name="nom" id="nom" type="text" placeholder="Introdueix un nom" required></div>
+                                                    </div></td>
+                                            </tr>
+                                            <tr>
+                                                <td   class="Estilo2"><?php l("Coberts que vols pagar"); ?>
+                                                    <i><?php l('Pots pagar tos els coberts que desitgis. Si sou un grup d\'amics o famílies podeu repartir els coberts de la manera que més us convingui fent múltiples pagaments fins a 3 dies abans de la reserva. La reserva es serà efectiva pels coberts que s\'hagin abonat'); ?></i>
+
+                                                </td>
+                                                <td   class="llista"><div  class="estat">
+                                                        <div id="coberts_parcial" class="Estilo2"><input id="ncoberts" name="ncoberts" type="number" min="1" max="<?php echo $pendents; ?>" value="<?php echo $pendents; ?>" placeholder="Coberts"> Coberts </div>
+                                                    </div></td>
+                                            </tr>
+                                            <tr class="preu">
+                                                <td   class="Estilo2"><?php l("Import a pagar"); ?></td>
+                                                <td   class="llista"><div  class="estat">
+                                                        <span id="preu_parcial" class="Estilo5" ><?php echo number_format($pendents * preu_persona_grups,2) ?></span>€
+                                                    </div></td>
+                                            </tr>
+
+                                        </table>
+                                            </form>
+                                        <?php
+
+
+                                      $id_reserva = ((int) $_GET["id"]) + 100000;
+                                      $response = isset($_GET["testTPV"]) ? $_GET["testTPV"] : -1;
+
+                                      /** */
+                                      if (isset($_REQUEST["testTPV"]) && $_REQUEST["testTPV"] == 'testTPV')
+                                        echo '<div id="form_test">TEST<br><div  class="form_tpv"> ' . $gestor->generaTESTTpvSHA256($id_reserva, $import, $nom, $responaseok_callback_alter) . "</div></div>";
+                                      else
+                                        echo '<div id="form_tpv" class="form_tpv">REAL<br> <div  class="form_tpv">' . $gestor->generaFormTpvSHA256($id_reserva, $import, $nom, $responaseok_callback_alter) . "</div></div>";
+                                      ?>  
+
+                                       <?php else: //nou pagament  ?>
+                                      <div class="alert alert-info">
+                                          <?php l("INFO_TOT_PAGAT") ?>
+
+                                      </div>
+
+                                        <?php endif; //nou pagament  ?>
 
 
 
@@ -414,23 +641,23 @@ $translate['COMPRA_SEGURA']['en'] = "To make a payment using this bank gateway, 
                               </div>
                               <!--Comments End-->
                           </div>
-<?php endwhile; // end of the loop.    ?>
+                                <?php endwhile; // end of the loop.     ?>
                     </section>
                 </div>
-<?php if ($sidebar == 'left' || $sidebar == 'both'): ?>
+                        <?php if ($sidebar == 'left' || $sidebar == 'both'): ?>
                   <div class="col-aside-left">
                       <aside class="blog-side left text-left">
                           <div class="widget-area">
-  <?php get_sidebar('pageleft'); ?>
+                  <?php get_sidebar('pageleft'); ?>
                           </div>
                       </aside>
                   </div>
-<?php endif; ?>
-                <?php if ($sidebar == 'right' || $sidebar == 'both'): ?>
+                            <?php endif; ?>
+<?php if ($sidebar == 'right' || $sidebar == 'both'): ?>
                   <div class="col-aside-right">
                   <?php get_sidebar('pageright'); ?>
                   </div>
-                    <?php endif; ?>
+                <?php endif; ?>
             </div>
         </div>
     </div>

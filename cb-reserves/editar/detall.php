@@ -3,6 +3,8 @@ if (!defined('ROOT')) define('ROOT', "../taules/");
 require_once(ROOT."Gestor.php");
 require_once(ROOT."gestor_reserves.php");
 $gestor=new gestor_reserves();
+require_once(ROOT . "Gestor_pagaments.php");
+$pagaments = new Gestor_pagaments();
 
 if (!isset($_SESSION)) session_start(); 
 
@@ -53,6 +55,7 @@ if ($b4) $ampla=$b3?" (Doble llarg)":" (Doble ample)";
 $cadira=$cadira?' / <span style="color:red;">Cadira de rodes</span> ':'';
 $movilitat=$movilitat?' / <span style="color:red;">Movilitat reduïda</span> ':'';
 
+
 /***************************************************************************************/
 /*************************          MAIL / SMS           *******************************/
 /*************************          MAIL / SMS           *******************************/
@@ -86,6 +89,24 @@ while( $row = mysqli_fetch_assoc($DetailRS1)){
   
 }
 $sms .= '</uib-accordion>';
+
+if ($pagaments->get_estat_multipago($row_DetailRS1['id_reserva'])== 8) {
+  $row_DetailRS1['estat'] = 8;
+  $total_coberts_pagats = $pagaments->get_total_coberts_pagats($row_DetailRS1['id_reserva']);
+  $total_import_pagaments = $pagaments->get_total_import_pagaments($row_DetailRS1['id_reserva']);
+
+  $total_coberts_pagats = " (" . ((int)$total_coberts_pagats) . ")";
+  //$total_import_pagaments = " (" . ($total_import_pagaments) . "€)";
+
+  $color[8] = "#00eeff";
+//  $estat[8] = " MultiPagament <br>".($row_DetailRS1['adults'] + $row_DetailRS1['nens10_14'] + $row_DetailRS1['nens4_9'])." / $total_coberts_pagats";
+  $estat[8] = " MultiPagament <br>".$row_DetailRS1['preu_reserva']." / Pagat: $total_import_pagaments";
+}
+else{
+  $total_coberts_pagats = "";
+  $total_import_pagaments = "";
+}
+
 
 
 //echo $mail_confirma;die();
@@ -193,7 +214,7 @@ td{border:white solid 3px;}
         </tr>
         <tr>
           <td align="right" bgcolor="#333333" class="Estilo2">estat</td>
-          <td width="320"  align="center" bgcolor="<?php if (($row_DetailRS1['estat']<0)||($row_DetailRS1['estat']>7)) $row_DetailRS1['estat']=0;echo $color[(int) $row_DetailRS1['estat']]; ?>" class="estat"><?php echo $estat[(int) $row_DetailRS1['estat']]; ?></td>
+          <td width="320"  align="center" bgcolor="<?php if (($row_DetailRS1['estat']<0)||($row_DetailRS1['estat']>8)) $row_DetailRS1['estat']=0;echo $color[(int) $row_DetailRS1['estat']]; ?>" class="estat"><?php echo $estat[(int) $row_DetailRS1['estat']]; ?></td>
         </tr>
         <tr>
           <td align="right" bgcolor="#333333" class="Estilo2">data de reserva</td>
@@ -293,6 +314,7 @@ td{border:white solid 3px;}
         <tr>
           <td align="right" bgcolor="#333333" class="Estilo2">preu reserva</td>
 		  <?php
+                                                          
 			if (file_exists('factures/'.NOM_FACTURA.date("Y")."-".$row_DetailRS1['id_reserva'].'.pdf'))
 			{
 				$factura='<a href="factures/'.NOM_FACTURA.date("Y")."-".$row_DetailRS1['id_reserva'].'.pdf" target="_blank"> - (Enviada Factura Proforma)</a>';
@@ -301,11 +323,14 @@ td{border:white solid 3px;}
 			else
 			{
 				
-				$factura=" (Preu total: ".calcula_preu_real($row_DetailRS1,"../").")".($row_DetailRS1['factura']?" demana factura":"");
+				$factura=" (Preu menús: ".calcula_preu_real($row_DetailRS1,"../").")".($row_DetailRS1['factura']?" demana factura":"");
 			}
 		  
 		  ?>
-          <td width="320" align="right" bgcolor="#999999" class="llista"><div align="left" class="estat"><?php echo $row_DetailRS1['preu_reserva']."€ ".$factura; ?> </div></td>
+          <td width="320" align="right" bgcolor="#999999" class="llista"><div align="left" class="estat"><?php
+          $pagats = $pagaments->get_total_coberts_pagats($row_DetailRS1['id_reserva']);
+          $pagat = $pagaments->get_total_import_pagaments($row_DetailRS1['id_reserva']);
+          echo $row_DetailRS1['preu_reserva']."€ Pagats <b> $pagat € ($pagats coberts)</b>".$factura; ?> </div></td>
         </tr>
         <?php if ($row_DetailRS1['factura']){?>
 		<tr>

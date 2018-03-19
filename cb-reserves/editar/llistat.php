@@ -25,6 +25,8 @@ require(ROOT . DB_CONNECTION_FILE);
 
 require_once(ROOT . INC_FILE_PATH . 'valors.php');
 require_once(ROOT . INC_FILE_PATH . 'alex.inc');
+require_once(ROOT . "Gestor_pagaments.php");
+$pagaments = new Gestor_pagaments();
 valida_admin('login.php');
 
 $bodi = "";
@@ -382,6 +384,23 @@ td a:hover {color:white}
                               if ($row_reserves['estat']==2 && $row_reserves['emails']==0) $class_mail = 'mail_error blink';
                               if ($row_reserves['estat']==2 && $row_reserves['emails']==1) $class_mail = 'mail_ok';
                               
+                              if ($pagaments->get_estat_multipago($row_reserves['id_reserva'])== 8) {
+                                $row_reserves['estat'] = 8;
+                                $total_coberts_pagats = $pagaments->get_total_coberts_pagats($row_reserves['id_reserva']);
+                                $total_import_pagaments = $pagaments->get_total_import_pagaments($row_reserves['id_reserva']);
+
+                                $total_coberts_pagats = " (" . ((int)$total_coberts_pagats) . ")";
+                               // $total_import_pagaments = " (" . ($total_import_pagaments) . "€)";
+                                
+                                $color[8] = "#00eeff";
+                                $estat[8] = " MultiPagament <br>".($row_reserves['adults'] + $row_reserves['nens10_14'] + $row_reserves['nens4_9'])." / $total_coberts_pagats";
+                                  $estat[8] = " MultiPagament <br>".$row_reserves['preu_reserva'].":$total_import_pagaments";
+
+                              }
+                              else{
+                                $total_coberts_pagats = "";
+                                $total_import_pagaments = "";
+                              }
                               ?>
                               <tr>
                                   <td align="center" bgcolor="#333333" class="llista <?php echo $class_mail; ?>"><div align="right"><a href="detall.php?id=<?php echo $row_reserves['id_reserva']; ?>">&nbsp;&nbsp;<?php echo $row_reserves['id_reserva'] ?>&nbsp;&nbsp;</a></div></td>
@@ -394,12 +413,10 @@ td a:hover {color:white}
                                   <td align="right" bgcolor="#CCCCCC" class="llista"><?php
                                       echo (int) $row_reserves['adults'] . " + ";
                                       echo ((int) $row_reserves['nens10_14']) + ((int) $row_reserves['nens4_9']);
+                                      echo $total_coberts_pagats;
                                       ?></td>
-                                  <td align="right" bgcolor="#999999" class="llista"><span class="estat"><?php echo $row_reserves['preu_reserva'] . "€"; ?></span></td>
+                                  <td align="right" bgcolor="#999999" class="llista"><span class="estat"><?php echo $row_reserves['preu_reserva'] . "€ ".$total_import_pagaments; ?></span></td>
                                   <td align="right" bgcolor="#999999" class="llista">
-                                  <!--<div align="center"><a href="llistat.php?del=xxxxx<?php echo $row_reserves['id_reserva']; ?>" class="llista Estilo6" onclick="JavaScript: if (confirm('Segur que vols esborrar la reserva <?php echo $row_reserves['id_reserva']; ?>?')){return true;} else {return false;}"> 
-                                    
-                                    X</a></div>-->
                                       <div align="center"><input type="checkbox" style="background:#999999;" name="pdel[<?php echo $row_reserves['id_reserva']; ?>]" value="checkbox" />
                                       </div></td>
                                   

@@ -24,7 +24,12 @@ $l = $lang = $gestor->idioma();
 $lang = $old_lang_code[$lang];
 
 $estat = 1;
-$preu = calcula_preu();
+require_once(ROOT . "../taules/Gestor_pagaments.php");
+$gestor = new Gestor_pagaments();
+
+//$preu = calcula_preu();
+$comensals = $_POST['nens10_14']+$_POST['nens4_9']+$_POST['adults'];
+$preu = $gestor->calcula_preu_grups($comensals);
 
 $data = cambiaf_a_mysql($_POST['DATA2']);
 
