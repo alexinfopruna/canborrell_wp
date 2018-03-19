@@ -51,6 +51,21 @@ class Gestor_pagaments extends gestor_reserves {
    * @param type $reserva_id
    * @return type
    * 
+   * retorna un integer que és el NUM de coberts que ja s'han abonat
+   */
+  public function get_import_pendent($reserva_id = 0) {
+   $r = $this->load_reserva($reserva_id, 'reserves');
+   $pagat = $this->get_total_import_pagaments($reserva_id);
+   
+   
+    return number_format($r['preu_reserva'] - $pagat,2 );     
+  }
+
+  /**
+   * 
+   * @param type $reserva_id
+   * @return type
+   * 
    * retorna array de rows
    */
   public function get_llistat_pagaments($reserva_id = 0) {

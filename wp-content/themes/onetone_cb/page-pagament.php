@@ -222,6 +222,8 @@ $responaseok_callback_alter = "reserva_grups_tpv_ok_callback";
 <script language=JavaScript>
   var preu_unit = <?php echo preu_persona_grups ?>;
   var fcallback = "<?php echo $responaseok_callback_alter ?>";
+  var import_pendent = "<?php echo $pagaments->get_import_pendent($id); ?>";
+  var coberts_pendents =  import_pendent / preu_unit ;
   $(function () {
     $("#boto").hide();
      $("#boto").click(submit_handler);
@@ -238,19 +240,19 @@ $responaseok_callback_alter = "reserva_grups_tpv_ok_callback";
               ncoberts: {
                   required: true,
                   min: 1,
-                  max: PERSONES_GRUP - 1
+                  max: coberts_pendents
               },
               nom:
                       {
                           required: true,
-                          minlength: 4
+                          minlength: 3
                       }
           },
           messages: {
               ncoberts: {
                   required: l("TOTAL!!!"),
                   min: l("Selecciona, com a a mínim, 1 cobert"),
-                  max: l("Si sou més de " + (PERSONES_GRUP - 1) + " comensals, selecciona la reserva per GRUPS")
+                  max: l("Com a màxim pots pagar " + (coberts_pendents) + " coberts")
               },
               nom:
                       {

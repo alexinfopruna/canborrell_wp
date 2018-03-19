@@ -935,7 +935,7 @@ function llistablanca(date)
 /********************************************************************************************************************/
 function validacio()
 {
-    $("#form-reserves").xdate({
+    $("#form-reserves").validate({
         errorContainer: $("#error_validate"),
         debug: true,
         errorElement: "em",
