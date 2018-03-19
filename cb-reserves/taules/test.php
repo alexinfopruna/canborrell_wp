@@ -13,7 +13,8 @@ define("LLISTA_DIES_BLANCA",ROOT . INC_FILE_PATH."llista_dies_blanca.txt");
 require_once("gestor_reserves.php");
 require_once(ROOT."../taules/Gestor_grups.php");
 require_once(ROOT."../taules/Gestor_pagaments.php");
-$gestor=new gestor_reserves();  
+require_once(ROOT."../reservar/Gestor_form.php");
+$gestor=new gestor_reserves(); 
 
 
 require_once(ROOT . "RestrictionController.php");
@@ -28,16 +29,20 @@ class Test extends gestor_reserves {
   }
   
   public function run(){
-      $grups=new Gestor_grups();
-      $pagament=new Gestor_pagaments();  
+    //  $grups=new Gestor_grups();
+   //   $pagament=new Gestor_pagaments();  
       //echo $pagament->calcula_preu_grups(22);
       //$pagament->afegir_pagament(1233047, 3047, 36, preu_persona_grups, "manolo");
-      $pagament->validar_pagament(1233047,  99);
+     // $pagament->validar_pagament(1233047,  99);
+      echo "WWW";
+      $gestor=new Gestor_form();  
+      $gestor->reserva_grups_tpv_ok_callback("3051", "36", "2018-02-02", "14:00:00") ;
    }
 }
   
   
   $t=new test();
+   echo "WWW";
   $t->run();
 ?>
 <html xmlns="//www.w3.org/1999/xhtml" xml:lang="es" lang="es">

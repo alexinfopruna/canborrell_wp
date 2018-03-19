@@ -11,7 +11,7 @@ $translate['EDIT_RESERVA_FORA_DE_SERVEI'] = '<p style="color:red">This service i
 <p>Thank you</p>
 ';
 
-
+$translate["preu_reserva"] = "Total reservation amount";
 
 // MENU
 $translate['CAN BORRELL'] = 'CAN BORRELL';
@@ -264,13 +264,17 @@ $translate["MAIL_GRUPS_PAGAT_titol"] = "CONFIRMATION OF RESERVATION PAYMENT";
 
 
 $translate["MAIL_GRUPS_PAGAT_text1"] = "We are happy to inform you that we have correctly received your payment of ";
-$translate['MAIL_GRUPS_PAGAT_text2'] = "€. Your reservation has been registered. See you in Can Borrell ";
+$translate['MAIL_GRUPS_PAGAT_text2'] = "See you in Can Borrell ";
 
-$translate['MAIL_GRUPS_PAGAT_text3']=" So far they have been paid {pagat} € ({coberts_pagats}) out of a total {total} ({coberts_reservats})"
-    . "<b> Remember that the reservation is only effective for reservations that have paid </ b> ";
+$translate['MAIL_GRUPS_PAGAT_text3'] = "<i style = 'font-size: 11px'> <p> So far € {pagat} € ({hedges_payments} covered} have been paid out of a total of {total} € ({covered-covered} covered) "
+    . "To complete all the requested places you still have to pay {pendent}€ </p>"
+    . "<p> <b> Remember that the reservation is only effective for the paid places </b> </p>"
+    . "<p> You can resend this email so that other people can pay their share. <br> You can make as many payments as you wish until <b>{data_limit}</b> </p> </i>";
+
 
 
 $translate['MAIL_GRUPS_PAGAT_contacti'] = "If you have any questions you can contact us on <a href='mailto:" . MAIL_RESTAURANT . "' class='dins'>" . MAIL_RESTAURANT . "</a> ";
+$translate["Realitzar pagament"] = "Make payment";
 $translate["nom"] = "name";
 $translate["adults"] = "adults";
 $translate["nens 4 a 9"] = "children 4 to 9";

@@ -53,7 +53,7 @@ angular.module('detall').controller('llistatEmails', function ($scope,  $http) {
   {
     
     $scope.idr = idr;
-        $http.get("Gestor_grups.php?a=llista_emails_reserva&b="+$scope.idr )
+        $http.get("../taules/Gestor_grups.php?a=llista_emails_reserva&b="+$scope.idr )
         .then(function(response) {
           $scope.confirmada = response.data.confirmada;
           $scope.files = response.data.rows;  

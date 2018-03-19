@@ -183,11 +183,12 @@ $translate['COMPRA_SEGURA']['esp'] = "Para realizar el pago a través de esta pa
 $translate['COMPRA_SEGURA']['cat'] = "Per poder realitzar el pagament a través d´aquesta passarel·la bancaria, cal que hagis activat la tarja per a COMPRA SEGURA A INTERNET al teu banc. \\n\\nAmb aquesta activació et facilitaran un codi de quatre xifres que és requerit al final del procès.\\n\\nDisculpa les molèsties";
 $translate['COMPRA_SEGURA']['en'] = "To make a payment using this bank gateway, you must activate the card for SECURE ONLINE PURCHASE in your bank.\\n\\nWith this activated you are given a code of four digits, needed to complete the process.\\n\\nSorry for the inconvenience";
 
+$data_limit = Gestor::cambiaf_a_normal($fila['data_limit']);
 switch ($lang){
   case 'cat':
     $translate['INFO_MULTIPAGO'] = "<p>Podeu fer un sol pagament integre de tot l'import però, si ho preferiu, per evitar que una sola persona hagi de fer el pagament de tot l'import de la reserva, el nostre sistema permet que feu <b>diversos pagaments separats</b> "
     . "de la manera que més us convingui (per persona, per famílies...).</p> <p><i>Per exemple, si sou 5 famílies de 4 persones, cada família pot pagar la part corresponent als 4 comensals que li toquen de manera que quedi més repartit</i></p>";
-$translate['INFO_MULTIPAGO2'] = "<p>El restaurant només tindrà en compte les reserves <b>pagades</b> fins a la data límit indicada. El nombre de comensals reser1at inicialment <b>no té valor si no s'ha abonat l'import corresponent</b> a tots els coberts.</p>"
+$translate['INFO_MULTIPAGO2'] = "<p>El restaurant només tindrà en compte les reserves <b>pagades</b> fins al <b>$data_limit</b>. El nombre de comensals reservats inicialment <b>no té valor si no s'ha abonat l'import corresponent</b> a tots els coberts.</p>"
     . "<p><i>Per exemple: Si heu reservat per 20 persones però només n'heu abonat 15, el restaurant us prepararà taula per 15 comensals</i></p>";
 
   break;
@@ -195,7 +196,7 @@ $translate['INFO_MULTIPAGO2'] = "<p>El restaurant només tindrà en compte les r
   case 'esp':
     $translate['INFO_MULTIPAGO'] = "<p>Podéis hacer un solo pago de todo el importe o, si lo preferís, para evitar que una sola persona tenga que hacer el pago de un importe elevado, nuestro sistema permite que hagáis <b>diversos pagos separados</b> "
     . "de la manera que más os convenga (por persona, por familias...).</p> <p><i>Por ejemplo, si sóis 5 familias de 4 personas, cada familia podría pagar la parte correspondiente a los 4 comensales que le tocan de manera que queda más repartido</i></p>";
-$translate['INFO_MULTIPAGO2'] = "<p>El restaurant solo tendrá en cuenta las reservas <b>pagadas</b>. El número de comensales indicados inicialmente <b>no tiene valor si no se ha abonado el importe correspondiente</b> a todos los cubiertos.</p>"
+$translate['INFO_MULTIPAGO2'] = "<p>El restaurant solo tendrá en cuenta las reservas <b>pagadas</b> hasta el <b>$data_limit</b>. El número de comensales indicados inicialmente <b>no tiene valor si no se ha abonado el importe correspondiente</b> a todos los cubiertos.</p>"
     . "<p><i>Por ejemplo: Si habéis reservado para 20 personas pero solo habéis abonado 15 reservas, el restaurant os preparará mesa para 15 comensales</i></p>";
 
   break;
@@ -224,6 +225,7 @@ $responaseok_callback_alter = "reserva_grups_tpv_ok_callback";
   var fcallback = "<?php echo $responaseok_callback_alter ?>";
   var import_pendent = "<?php echo $pagaments->get_import_pendent($id); ?>";
   var coberts_pendents =  import_pendent / preu_unit ;
+  PAGAMENTS_PARCIALS = <?php echo (defined('PAGAMENTS_PARCIALS') && PAGAMENTS_PARCIALS == true)?"true":"false";  ?>;
   $(function () {
     
      $("#boto").click(submit_handler);
@@ -265,6 +267,8 @@ $responaseok_callback_alter = "reserva_grups_tpv_ok_callback";
   });
 
  $(function () {
+      button_state(!PAGAMENTS_PARCIALS);
+   
       $("#pagament").submit(function(e){
         alert("submit");
         e.preventDefault();
@@ -272,19 +276,16 @@ $responaseok_callback_alter = "reserva_grups_tpv_ok_callback";
       });
 
       $("#nom").change(function () {
-      //document.getElementById('boto').style.display = $("#nom").val() == "" ? "none" : "block";
-      //$("#boto").hide();
-      button_state(false);
+        button_state(false);
+        if ($("#pagament").valid()) button_state(true);
+      });
       
-      if ($("#pagament").valid()) button_state(true);
-    });
       $("#ncoberts").change(function () {
           var coberts = $("#ncoberts").val();
           var preu = preu_unit * coberts;
           var reserva = $("#reserva_id").html().trim();
           var nom = $("#nom").val();
-          if (nom = "")
-        nom = "Sense_nom";
+          if (nom = "")   nom = "Sense_nom";
           $("#preu_parcial").html(preu);
 
           var desti = "/cb-reserves/taules/gestor_reserves.php?a=generaFormTpvSHA256&b=" + reserva + "&c=" + preu + "&d=" + nom + "&e=" + fcallback;
@@ -293,8 +294,8 @@ $responaseok_callback_alter = "reserva_grups_tpv_ok_callback";
             $( "#boto").unbind( "click" );
             $("#boto").click(submit_handler);
                  // $("#boto").hide();
-                button_state();
-            if ($("#pagament").valid()) $("#boto").removeClass("boto_disabled");
+                
+            if ($("#pagament").valid()) button_state(true);
 
           });
       });
@@ -315,11 +316,13 @@ $responaseok_callback_alter = "reserva_grups_tpv_ok_callback";
   
   
   function submit_handler(e) {
-    var valid = $("#pagament").valid();
-    if (!valid) {
-      e.preventDefault(); // Cancel the submit
-      return false;
-    }
+    if (PAGAMENTS_PARCIALS) {
+      var valid = $("#pagament").valid();
+      if (!valid) {
+        e.preventDefault(); // Cancel the submit
+        return false;
+      }
+  }
           alert("<?php echo $translate['COMPRA_SEGURA'][$lang] ?>");
           button_state(false);
           console.log("222");
@@ -341,6 +344,9 @@ $responaseok_callback_alter = "reserva_grups_tpv_ok_callback";
       }
       
       function button_state(state){
+       // alert(PAGAMENTS_PARCIALS);
+       // alert(state);
+        //if (!PAGAMENTS_PARCIALS) state = true;
         $("#boto").prop('disabled', !state);
         if(state) $("#boto").removeClass("boto_disabled");
         else $("#boto").addClass("boto_disabled");
@@ -521,16 +527,34 @@ $responaseok_callback_alter = "reserva_grups_tpv_ok_callback";
                                               <td   class="Estilo2">Respuesta</td>
                                               <td  class="llista"><div  ><?php echo $fila['resposta']; ?></div></td>
                                           </tr>
+                                          <tr>
+                                              <td   class="Estilo2">Límit pagament</td>
+                                              <td  class="llista"><div  ><?php                                      
+                                              echo Gestor::cambiaf_a_normal($fila['data_limit']); ?></div></td>
+                                          </tr>
                                           <tr class="preu">
                                               <td   class="Estilo2"><?php echo $camps[7][$lang]; ?></td>
                                               <td   class="llista"><div  class="estat">
-                                                      <div  class="Estilo5"><?php echo $fila['preu_reserva']; ?>€ </div>
+                                                      <?php 
+                                                      /*
+                                                      $total_pagaments_parcials = 100;//$pagaments->get_total_import_pagaments($fila['id_reserva']);
+                                                      $import_pendent = $fila['preu_reserva'] - $total_pagaments_parcials;
+                                                      if ($total_pagaments_parcials>0) $pendent= '<span style="font-size:12px">(Pendents '.$import_pendent.'€)</span>'
+                                                      */
+                                                       ?>
+                                                       
+                                                      <div  class="Estilo5"><?php echo $fila['preu_reserva']; ?>€ <?php //echo $pendent;?></div>
                                                   </div></td>
                                           </tr>
+                                          
+                                          
                                       </table>
 
                                       <br>
                                       <br>
+                                      
+                                       <?php   if ( defined('PAGAMENTS_PARCIALS') && PAGAMENTS_PARCIALS == true && $pagaments->get_multipago_activat($fila['preu_reserva'])):?>
+
                                       <div class="alert alert-info">
                                           <?php l("INFO_MULTIPAGO") ?>
 
@@ -539,18 +563,20 @@ $responaseok_callback_alter = "reserva_grups_tpv_ok_callback";
                                           <?php l("INFO_MULTIPAGO2") ?>
 
                                       </div>
-
+                                  <?php endif; //MULTIPAGE  ?>
                                       <?php
+                                      $import_pendent =$fila['preu_reserva'];
                                       if (defined('PAGAMENTS_PARCIALS') && PAGAMENTS_PARCIALS == true && $pagaments->get_multipago_activat($fila['preu_reserva'])):
                                         $total_reserva = $fila['preu_reserva'];
-
                                         $total_pagaments_parcials = $pagaments->get_total_import_pagaments($fila['id_reserva']);
                                         $coberts_pagats = $pagaments->get_total_coberts_pagats($fila['id_reserva']);
                                         $llista_pagaments = $pagaments->get_llistat_pagaments($fila['id_reserva']);
 
                                         $comensals = $fila['adults'] + $fila['nens10_14'] + $fila['nens4_9'];
                                         $pendents = $comensals - $coberts_pagats;
+                                        if (!$pendents) $pendents=1;
                                         $import_pendent = $total_reserva - $total_pagaments_parcials;
+                                        $import = $pendents * preu_persona_grups;
                                         ?>
 
                                         <?php if ($coberts_pagats): ?>
@@ -586,8 +612,9 @@ $responaseok_callback_alter = "reserva_grups_tpv_ok_callback";
                                         <br>
                                         <br>
                                                                                 <?php endif; //mostra llistat  ?>
-
-                                        <?php if ($import_pendent>0 ): ?>
+  <?php if ($import_pendent>0 ):?>
+  <?php   if (defined('PAGAMENTS_PARCIALS') && PAGAMENTS_PARCIALS == true && $pagaments->get_multipago_activat($fila['preu_reserva'])):?>
+  
                                         <form id="pagament">
                                         <table class="table table-stripped table-condensed">
                                             <tr  class="preu">
@@ -620,6 +647,7 @@ $responaseok_callback_alter = "reserva_grups_tpv_ok_callback";
 
                                         </table>
                                             </form>
+                                        <?php endif; //PAGAMENT PARCIAL  ?>
                                         <?php
 
 
@@ -627,6 +655,8 @@ $responaseok_callback_alter = "reserva_grups_tpv_ok_callback";
                                       $response = isset($_GET["testTPV"]) ? $_GET["testTPV"] : -1;
 
                                       /** */
+                                      
+                                    //  echo $_REQUEST["testTPV"];die();
                                       if (isset($_REQUEST["testTPV"]) && $_REQUEST["testTPV"] == 'testTPV')
                                         echo '<div id="form_test" class="form_tpv_test">TEST<br><div  class="form_tpv"> ' . $gestor->generaTESTTpvSHA256($id_reserva, $import, $nom, $responaseok_callback_alter) . "</div></div>";
                                       else
@@ -639,7 +669,7 @@ $responaseok_callback_alter = "reserva_grups_tpv_ok_callback";
 
                                       </div>
 
-                                        <?php endif; //nou pagament  ?>
+                                        <?php endif; //IMPORT PENDENT ?>
 
 
 

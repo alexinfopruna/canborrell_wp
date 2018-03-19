@@ -1456,18 +1456,20 @@ WHERE  `client`.`client_id` =$idc;
   }
 
   private function reserva_grups_tpv_ok_callback($idrl, $amount, $pdata, $phora) {
+    
+    
     $this->xgreg_log("reserva_grups_tpv_ok_callback", 1, LOG_FILE_TPVPK, FALSE);
 
     $idr = substr($idrl, -4);
-    $query = "SELECT estat, client_email, data, hora, lang, adults, nens10_14, nens4_9 "
+    $query = "SELECT estat, client_email, data, hora, tel, lang, adults, nens10_14, nens4_9, preu_reserva, data_limit "
         . "FROM reserves "
         . "LEFT JOIN client ON client.client_id=reserves.client_id "
         . "WHERE id_reserva=$idr";
 
     $result = mysqli_query($this->connexioDB, $query) or die(((is_object($GLOBALS["___mysqli_ston"])) ? mysqli_error($GLOBALS["___mysqli_ston"]) : (($___mysqli_res = mysqli_connect_error()) ? $___mysqli_res : false)));
     $row = mysqli_fetch_assoc($result);
-
     $this->lng = $lang = $row['lang'];
+    
     $this->setLang($lang);
     // echo "------------ $this->lng  ---- $lang ------------";
     //print_r($row);
@@ -1484,6 +1486,7 @@ WHERE  `client`.`client_id` =$idc;
       return FALSE;
     }
     */
+    
     $referer = $_SERVER['REMOTE_ADDR'];
     $import = $amount / 100;
     $resposta = "<br>(" . $pdata . " " . $phora . ")TPV>>" . $import . "€ ";
@@ -1506,13 +1509,27 @@ WHERE  `client`.`client_id` =$idc;
     $extres['titol'] = $translate["MAIL_GRUPS_PAGAT_titol"];
     $extres['text1'] = $translate["MAIL_GRUPS_PAGAT_text1"] . number_format($import, 2);
     $extres['text2'] = $translate["MAIL_GRUPS_PAGAT_text2"];
-    /*
+    $reserva_id = $idr;
+    require_once (ROOT . "../taules/Gestor_pagaments.php");
+    $pagaments = new Gestor_pagaments();
+    $pagat = $pagaments->get_total_import_pagaments($reserva_id);
+    $coberts_pagats = $pagaments->get_total_coberts_pagats($reserva_id);
+    $total = $row['preu_reserva'];
+    $data_limit = Gestor::cambiaf_a_normal($row['data_limit']);
+    $pendent = number_format($total - $pagat,2);
+    $coberts_reservats = $row['adults'] + $row['nens10_14'] + $row['nens4_9'];
+    
     $multipago = $translate["MAIL_GRUPS_PAGAT_text3"];
     $multipago = str_replace("{pagat}", $pagat, $multipago);
     $multipago = str_replace("{coberts_pagats}", $coberts_pagats, $multipago);
     $multipago = str_replace("{total}", $total, $multipago);
+    $multipago = str_replace("{pendent}", $pendent, $multipago);
     $multipago = str_replace("{coberts_reservats}", $coberts_reservats, $multipago);
-    */
+    $multipago = str_replace("{data_limit}", $data_limit, $multipago);
+    $extres['text1'] .= "€<br>".$multipago."<br>";
+        $boto=$this->botoPagament($reserva_id, $row['tel'], $this->lang);
+    $extres['text1'] .= $boto."<br>";
+    //echo $extres['text2'].$boto;die();    
     $extres['contacti'] = $translate["MAIL_GRUPS_PAGAT_contacti"];
     $mydata = $this->cambiaf_a_mysql($pdata);
     $extres['datat'] = $this->data_llarga($row['data'], $this->lang) . ", " . $row['hora'] . "h";
@@ -1558,6 +1575,24 @@ WHERE  `client`.`client_id` =$idc;
     }
   }
 
+  
+  private function botoPagament($idr, $tel, $lng){
+      $b64=base64_encode($idr."&".$tel."&".$lng);
+                                                        $link = 'https://' . $_SERVER['HTTP_HOST'] . '/reservar/pagament?rid='.$b64.'&lang='.$lng;
+                                                        //$link_text = $translate['Realitzar pagament'];
+                                                        $link_text = Gestor::lv('Realitzar pagament');
+         
+  $aki = '<div><!--[if mso]>
+    <v:roundrect xmlns:v="urn:schemas-microsoft-com:vml" xmlns:w="urn:schemas-microsoft-com:office:word" href="'.$link.'" style="height:38px;v-text-anchor:middle;width:200px;" arcsize="48%" strokecolor="#e6e6e8" fillcolor="#e1ff8a">
+      <w:anchorlock/>
+      <center style="color:#fafafb;font-family:sans-serif;font-size:13px;font-weight:bold;">'.$link_text.'</center>
+    </v:roundrect>
+  <![endif]--><a href="'.$link.'" style="background-color:#e1ff8a;border:1px solid #e6e6e8;border-radius:18px;color:#2f353e;display:inline-block;font-family:sans-serif;font-size:13px;font-weight:bold;line-height:38px;text-align:center;text-decoration:none;width:200px;-webkit-text-size-adjust:none;mso-hide:all;">'.$link_text.'</a>'
+      . '<br/><br/>'
+      . '</div>';
+                                                        
+return $aki;
+  }
   /*   * ******************************************************************************************************* */
   /* COMPROVA SI JA S'HA FET EL PAGAMENT (doble click a submit)
     /*   * ******************************************************************************************************* */

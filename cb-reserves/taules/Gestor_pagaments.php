@@ -17,13 +17,17 @@ class Gestor_pagaments extends gestor_reserves {
       FROM pagaments_grups 
       where pagaments_grups_reserva_id =  $reserva_id AND pagaments_grups_resposta_tpv < 100  AND pagaments_grups_resposta_tpv IS NOT NULL"
         . " GROUP BY pagaments_grups_reserva_id";
-    $this->last_row['total'] = 0;
+    
     $this->qry_result = mysqli_query($this->connexioDB, $query) or die(((is_object($GLOBALS["___mysqli_ston"])) ? mysqli_error($GLOBALS["___mysqli_ston"]) : (($___mysqli_res = mysqli_connect_error()) ? $___mysqli_res : false)));
-    if ($this->total_rows = mysqli_num_rows($this->qry_result))      $this->last_row = mysqli_fetch_assoc($this->qry_result);
-    ///echo $query;die();
+    if ($this->total_rows = mysqli_num_rows($this->qry_result))   {
+      $this->last_row = mysqli_fetch_assoc($this->qry_result);
+    }
+    else{
+      $row = $this->load_reserva($reserva_id, 'reserves');
+      if ($row['estat']==3 || $row['estat']==7 ) $this->last_row['total'] = $row['preu_reserva'];
+    }
+    if (!isset($this->last_row['total'])) $this->last_row['total'] = 0;
     return  number_format ( $this->last_row['total'],2 );     
-    return $this->last_row['total'];     
-    //return $this->total_rows;     
   }
 
   /**
@@ -40,6 +44,14 @@ class Gestor_pagaments extends gestor_reserves {
     $this->qry_result = mysqli_query($this->connexioDB, $query) or die(((is_object($GLOBALS["___mysqli_ston"])) ? mysqli_error($GLOBALS["___mysqli_ston"]) : (($___mysqli_res = mysqli_connect_error()) ? $___mysqli_res : false)));
     //if ($this->total_rows = mysqli_num_rows($this->qry_result))      $this->last_row = mysqli_fetch_assoc($this->qry_result);
     $coberts= 0;
+    
+    if (!$this->total_rows = mysqli_num_rows($this->qry_result))   {
+      $reserva = $this->load_reserva($reserva_id, 'reserves');
+      if ($reserva['estat']==3 || $reserva['estat']==7 ){
+        $coberts = $reserva['preu_reserva'] / preu_persona_grups;
+      }
+    }
+   
     while( $row = mysqli_fetch_assoc($this->qry_result)){
         $coberts += ($row['pagaments_grups_import'] / $row['pagaments_grups_preu_unit']);
     }
@@ -69,7 +81,7 @@ class Gestor_pagaments extends gestor_reserves {
    * retorna array de rows
    */
   public function get_llistat_pagaments($reserva_id = 0) {
-    $rows=NULL;
+    $rows=Array();
     $query = "SELECT  pagaments_grups_nom_pagador, pagaments_grups_import, pagaments_grups_preu_unit
    FROM pagaments_grups 
    where pagaments_grups_reserva_id =  $reserva_id AND pagaments_grups_resposta_tpv < 100  AND pagaments_grups_resposta_tpv IS NOT NULL";

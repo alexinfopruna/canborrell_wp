@@ -183,13 +183,17 @@ $translate["Can-Borrell: CONFIRMACIÓ PAGA I SENYAL"]="Can-Borrell: CONFIRMACIÓ
 $translate["MAIL_GRUPS_PAGAT_subject"]="Can-Borrell: CONFIRMACIÓ DE PAGAMENT DE RESERVA PER GRUP";
 $translate["MAIL_GRUPS_PAGAT_titol"]="CONFIRMACIÓ DE PAGAMENT DE RESERVA";
 $translate["MAIL_GRUPS_PAGAT_text1"]="Ens complau informar-lo que hem rebut correctament el pagament de ";
-$translate['MAIL_GRUPS_PAGAT_text2']="€ La seva reserva queda registrada.<br><br>L'esperem el proper ";
+$translate['MAIL_GRUPS_PAGAT_text2']="<br><br>L'esperem el proper ";
 $translate['MAIL_GRUPS_PAGAT_contacti'] = "Si té qualsevol dubte posi's en contacte amb nosaltres a <a href='mailto:".MAIL_RESTAURANT."' class='dins'>".MAIL_RESTAURANT."</a> ";
 
-$translate['MAIL_GRUPS_PAGAT_text3']=" Fins ara s'han abonat {pagat}€ ({coberts_pagats}) d'un total de {total} ({coberts_reservats}). "
-    . "<b>Recordi que la reserva només és efectiva per a les reserves que s'hagin pagat</b><br> ";
+$translate['MAIL_GRUPS_PAGAT_text3'] = "<i style='font-size:11px'><p> Fins ara han estat abonats {pagat}€ ({coberts_pagats} coberts) d'un total de {total}€ ({coberts_reservats} coberts).<br>"
+    . "Per completar tots els coberts sol·licitats encara heu de pagar {pendent}€</p> "
+    . "<p></p>"
+    . "<p><b>Recorda que la reserva només és efectiva per als coberts que s'hagin pagat</b> </p>"
+    . "<p>Pots reenviar aquest correu per tal que altres persones paguin la seva part.<br> Podeu realitzar tants pagaments com desitgeu fins el dia </b>{data_limit}</b> </p></i>";
 
 
+$translate["Realitzar pagament"] = "Realitzar pagament";
 $translate["nom"] = "nom";
 $translate["adults"] = "adults";
 $translate["nens 4 a 9"] = "nens 4 a 9";
@@ -200,6 +204,7 @@ $translate["resposta"] = "resposta";
 $translate["Data límit per efectuar el pagament"] = "Data límit per efectuar el pagament";
 $translate["menu"] = "menú";
 $translate["cdata_reserva"] = "data";
+$translate["preu_reserva"] = "Preu TOTAL reserva";
 
 
 /************ SMS ****************/

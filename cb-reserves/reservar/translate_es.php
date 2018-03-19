@@ -10,7 +10,7 @@ $translate['EDIT_RESERVA_FORA_DE_SERVEI']='<p style="color:red">Este servicio es
 <p>Gracias</p>
 ';
 
-
+$translate["preu_reserva"] = "Precio TOTAL reserva";
 
 // MENU
 $translate['CAN BORRELL'] = 'CAN BORRELL';
@@ -249,10 +249,14 @@ $translate["Can-Borrell: RESERVA CANCELADA "]="Can-Borrell: RESERVA CANCELADA ";
 $translate["MAIL_GRUPS_PAGAT_subject"]="Can-Borrell: CONFIRMACIÓN DE PAGO DE RESERVA PARA GRUPO";
 $translate["MAIL_GRUPS_PAGAT_titol"]="CONFIRMACIÓN DE PAGO DE RESERVA";
 $translate["MAIL_GRUPS_PAGAT_text1"]="Nos complace informarle que hemos recibido correctamente el pago de ";
-$translate['MAIL_GRUPS_PAGAT_text2']="€. Su reserva queda registrada<br>Le esperamos el próximo ";
-$translate['MAIL_GRUPS_PAGAT_text3']=" Hasta el momento se han abonado {pagat}€ ({coberts_pagats}) de un total {total} ({coberts_reservats}). "
-    . "<b>Recuerde que la reserva solo es efectiva para las reservas que hayan abonado</b> ";
+$translate['MAIL_GRUPS_PAGAT_text2']="Le esperamos el próximo ";
+$translate['MAIL_GRUPS_PAGAT_text3'] = "<i style='font-size:11px'><p> Hasta el momento se han abonado {pagat}€ ({coberts_pagats} cubiertos) de un total de {total}€ ({coberts_reservats} cubiertos).<br>"
+    . "Para completar todos los cubiertos reservados todavía debéis pagar {pendent}€</p> "
+    . "<p></p>"
+    . "<p><b>Recuerda que la reserva solo es efectiva para los cubiertos que se hayan abonado</b> </p>"
+    . "<p>Puedes reenviar este correo para que otros paguen su parte.<br> Podéis realizar tantos pagos como queráis hasta el día <b>{data_limit}</b> </p></i>";
 $translate['MAIL_GRUPS_PAGAT_contacti'] = "Si tiene cualquier duda póngase en contacto con nosotros en <a href='mailto:".MAIL_RESTAURANT."' class='dins'>".MAIL_RESTAURANT."</a> ";
+$translate["Realitzar pagament"] = "Realizar pago";
 $translate["nom"] = "nombre";
 $translate["adults"] = "adultos";
 $translate["nens 4 a 9"] = "niños 4 a 9";

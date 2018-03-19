@@ -330,6 +330,7 @@ td{border:white solid 3px;}
           <td width="320" align="right" bgcolor="#999999" class="llista"><div align="left" class="estat"><?php
           $pagats = $pagaments->get_total_coberts_pagats($row_DetailRS1['id_reserva']);
           $pagat = $pagaments->get_total_import_pagaments($row_DetailRS1['id_reserva']);
+          
           echo $row_DetailRS1['preu_reserva']."€ / Pagats <b> $pagat € ($pagats coberts)</b> / ".$factura; ?> 
                       <table>
                     <?php                                              
