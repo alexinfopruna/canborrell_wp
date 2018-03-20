@@ -1321,7 +1321,7 @@ WHERE  `client`.`client_id` =$idc;
         echo "<br/>FIRMA OK<br/>";
         $this->xgreg_log("dades >>> ", 1, LOG_FILE_TPVPK, FALSE);
         $this->xgreg_log("$order $amount", 1, LOG_FILE_TPVPK, FALSE);
-        $this->xgreg_log("$callback ", 1, LOG_FILE_TPVPK, FALSE);
+        $this->xgreg_log("$callback ...", 1, LOG_FILE_TPVPK, FALSE);
 
         /** MULTIPAGO */
         /** MULTIPAGO */
@@ -1354,7 +1354,7 @@ WHERE  `client`.`client_id` =$idc;
   /*   * *************************************************************************************** */
 
   private function reserva_pk_tpv_ok_callback($idr, $amount, $pdata, $phora) {
-    $this->xgreg_log("reserva_pk_tpv_ok_callback", 1, LOG_FILE_TPVPK, FALSE);
+    $this->xgreg_log("reserva_pk_tpv_ok_callbackxxx", 1, LOG_FILE_TPVPK, FALSE);
     $query = "SELECT estat, client_email, data, hora, adults, nens10_14, nens4_9, lang "
         . "FROM " . T_RESERVES . " "
         . "LEFT JOIN client ON client.client_id=" . T_RESERVES . ".client_id "
@@ -1458,7 +1458,7 @@ WHERE  `client`.`client_id` =$idc;
   private function reserva_grups_tpv_ok_callback($idrl, $amount, $pdata, $phora) {
     
     
-    $this->xgreg_log("reserva_grups_tpv_ok_callback", 1, LOG_FILE_TPVPK, FALSE);
+    $this->xgreg_log("reserva_grups_tpv_ok_callback ++ $idr", 1, LOG_FILE_TPVPK, FALSE);
 
     $idr = substr($idrl, -4);
     $query = "SELECT estat, client_email, data, hora, tel, lang, adults, nens10_14, nens4_9, preu_reserva, data_limit "
@@ -1469,10 +1469,8 @@ WHERE  `client`.`client_id` =$idc;
     $result = mysqli_query($this->connexioDB, $query) or die(((is_object($GLOBALS["___mysqli_ston"])) ? mysqli_error($GLOBALS["___mysqli_ston"]) : (($___mysqli_res = mysqli_connect_error()) ? $___mysqli_res : false)));
     $row = mysqli_fetch_assoc($result);
     $this->lng = $lang = $row['lang'];
-    
+
     $this->setLang($lang);
-    // echo "------------ $this->lng  ---- $lang ------------";
-    //print_r($row);
 
     $estat = $row['estat'];
     $mail = $row['client_email'];
@@ -1518,7 +1516,7 @@ WHERE  `client`.`client_id` =$idc;
     $data_limit = Gestor::cambiaf_a_normal($row['data_limit']);
     $pendent = number_format($total - $pagat,2);
     $coberts_reservats = $row['adults'] + $row['nens10_14'] + $row['nens4_9'];
-    
+
     $multipago = $translate["MAIL_GRUPS_PAGAT_text3"];
     $multipago = str_replace("{pagat}", $pagat, $multipago);
     $multipago = str_replace("{coberts_pagats}", $coberts_pagats, $multipago);
@@ -1529,7 +1527,6 @@ WHERE  `client`.`client_id` =$idc;
     $extres['text1'] .= "€<br>".$multipago."<br>";
         $boto=$this->botoPagament($reserva_id, $row['tel'], $this->lang);
     $extres['text1'] .= $boto."<br>";
-    //echo $extres['text2'].$boto;die();    
     $extres['contacti'] = $translate["MAIL_GRUPS_PAGAT_contacti"];
     $mydata = $this->cambiaf_a_mysql($pdata);
     $extres['datat'] = $this->data_llarga($row['data'], $this->lang) . ", " . $row['hora'] . "h";

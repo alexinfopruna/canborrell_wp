@@ -221,6 +221,7 @@ $responaseok_callback_alter = "reserva_grups_tpv_ok_callback";
 <?php echo Gestor::loadJQuery(); ?>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.17.0/jquery.validate.min.js"></script>
 <script language=JavaScript>
+  var TEST = <?php echo (isset($_REQUEST["testTPV"]) && $_REQUEST["testTPV"] == 'testTPV')?'true':'false';?>;
   var preu_unit = <?php echo preu_persona_grups ?>;
   var fcallback = "<?php echo $responaseok_callback_alter ?>";
   var import_pendent = "<?php echo $pagaments->get_import_pendent($id); ?>";
@@ -288,7 +289,8 @@ $responaseok_callback_alter = "reserva_grups_tpv_ok_callback";
           if (nom = "")   nom = "Sense_nom";
           $("#preu_parcial").html(preu);
 
-          var desti = "/cb-reserves/taules/gestor_reserves.php?a=generaFormTpvSHA256&b=" + reserva + "&c=" + preu + "&d=" + nom + "&e=" + fcallback;
+          if (TEST) var desti = "/cb-reserves/taules/gestor_reserves.php?a=generaTESTTpvSHA256&b=" + reserva + "&c=" + preu + "&d=" + nom + "&e=" + fcallback;
+          else var desti = "/cb-reserves/taules/gestor_reserves.php?a=generaFormTpvSHA256&b=" + reserva + "&c=" + preu + "&d=" + nom + "&e=" + fcallback;
           $(".form_tpv").load(desti,function(){
             $( "#boto").unbind( "click" );
             $( "#boto").unbind( "click" );
