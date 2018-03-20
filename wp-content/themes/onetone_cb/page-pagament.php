@@ -2,9 +2,6 @@
 /*
   Template Name: Input pagament
  */
-  
-
-
 get_header();
 
 $sidebar = isset($page_meta['page_layout']) ? $page_meta['page_layout'] : 'none';
@@ -103,7 +100,7 @@ if ($id) {
   $Result = mysqli_query($canborrell, $query) or die(((is_object($GLOBALS["___mysqli_ston"])) ? mysqli_error($GLOBALS["___mysqli_ston"]) : (($___mysqli_res = mysqli_connect_error()) ? $___mysqli_res : false)));
   $fila = mysqli_fetch_assoc($Result);
   $estat = $fila['estat'];
-  $import = $fila['preu_reserva'];
+  $import = $preu = $fila['preu_reserva'];
   $nom = $fila['nom'];
   $lang = $lang_cli = $fila['lang'];
 
@@ -225,7 +222,7 @@ $responaseok_callback_alter = "reserva_grups_tpv_ok_callback";
   var preu_unit = <?php echo preu_persona_grups ?>;
   var fcallback = "<?php echo $responaseok_callback_alter ?>";
   var import_pendent = "<?php echo $pagaments->get_import_pendent($id); ?>";
-  var coberts_pendents =  import_pendent / preu_unit ;
+  var coberts_pendents =  Math.ceil(import_pendent / preu_unit );
   PAGAMENTS_PARCIALS = <?php echo (defined('PAGAMENTS_PARCIALS') && PAGAMENTS_PARCIALS == true)?"true":"false";  ?>;
   $(function () {
     
@@ -271,7 +268,7 @@ $responaseok_callback_alter = "reserva_grups_tpv_ok_callback";
       button_state(!PAGAMENTS_PARCIALS);
    
       $("#pagament").submit(function(e){
-        alert("submit");
+        alert("Continue...");
         e.preventDefault();
         return false;
       });
@@ -288,6 +285,7 @@ $responaseok_callback_alter = "reserva_grups_tpv_ok_callback";
           var reserva = $("#reserva_id").html().trim();
           var nom = $("#nom").val();
           if (nom = "")   nom = "Sense_nom";
+          if (preu > import_pendent) preu = import_pendent;
           $("#preu_parcial").html(preu);
 
           if (TEST) var desti = "/cb-reserves/taules/gestor_reserves.php?a=generaTESTTpvSHA256&b=" + reserva + "&c=" + preu + "&d=" + nom + "&e=" + fcallback;
@@ -580,6 +578,16 @@ $responaseok_callback_alter = "reserva_grups_tpv_ok_callback";
                                         if (!$pendents) $pendents=1;
                                         $import_pendent = $total_reserva - $total_pagaments_parcials;
                                         $import = $pendents * preu_persona_grups;
+                                        
+                                        $preu = $pendents * preu_persona_grups;
+                                        if ($preu > $import_pendent) {
+                                          $preu = $import_pendent;
+                                          $pendents = ceil($preu / preu_persona_grups);
+                                        }
+                                        
+                                        $preu = number_format($preu,2);
+                                        
+                                        
                                         ?>
 
                                         <?php if ($coberts_pagats): ?>
@@ -644,7 +652,9 @@ $responaseok_callback_alter = "reserva_grups_tpv_ok_callback";
                                             <tr class="preu">
                                                 <td   class="Estilo2"><?php l("Import a pagar"); ?></td>
                                                 <td   class="llista"><div  class="estat">
-                                                        <span id="preu_parcial" class="Estilo5" ><?php echo number_format($pendents * preu_persona_grups,2) ?></span>€
+                                                        <span id="preu_parcial" class="Estilo5" ><?php 
+                                                        
+                                                        echo number_format($preu ,2) ?></span>€
                                                     </div></td>
                                             </tr>
 
@@ -658,12 +668,11 @@ $responaseok_callback_alter = "reserva_grups_tpv_ok_callback";
                                       $response = isset($_GET["testTPV"]) ? $_GET["testTPV"] : -1;
 
                                       /** */
-                                      
                                     //  echo $_REQUEST["testTPV"];die();
                                       if (isset($_REQUEST["testTPV"]) && $_REQUEST["testTPV"] == 'testTPV')
-                                        echo '<div id="form_test" class="form_tpv_test">TEST<br><div  class="form_tpv"> ' . $gestor->generaTESTTpvSHA256($id_reserva, $import, $nom, $responaseok_callback_alter) . "</div></div>";
+                                        echo '<div id="form_test" class="form_tpv_test">TEST<br><div  class="form_tpv"> ' . $gestor->generaTESTTpvSHA256($id_reserva, $preu, $nom, $responaseok_callback_alter) . "</div></div>";
                                       else
-                                        echo '<div id="form_tpv" class="form_tpv_real"> <div  class="form_tpv">' . $gestor->generaFormTpvSHA256($id_reserva, $import, $nom, $responaseok_callback_alter) . "</div></div>";
+                                        echo '<div id="form_tpv" class="form_tpv_real"> <div  class="form_tpv">' . $gestor->generaFormTpvSHA256($id_reserva, $preu, $nom, $responaseok_callback_alter) . "</div></div>";
                                       ?>  
 
                                        <?php else: //nou pagament  ?>
