@@ -308,7 +308,7 @@ $responaseok_callback_alter = "reserva_grups_tpv_ok_callback";
        var desti = "/cb-reserves/taules/Gestor_pagaments.php?a=get_estat_pagament&b=" + order  ;
        $.post(desti, {r: 0}, function (datos) {
          var estat = parseInt(datos);
-          if (estat>=0 && estat>=99 ) {
+          if (estat>=0 && estat<=99 ) {
               window.location.href = "/#about";
               alert("PAGAMENT REBUT");
           }
