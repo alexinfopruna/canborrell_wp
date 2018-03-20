@@ -282,6 +282,7 @@ $responaseok_callback_alter = "reserva_grups_tpv_ok_callback";
       });
       
       $("#ncoberts").change(function () {
+        button_state(false);
           var coberts = $("#ncoberts").val();
           var preu = preu_unit * coberts;
           var reserva = $("#reserva_id").html().trim();
