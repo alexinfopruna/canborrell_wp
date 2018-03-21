@@ -130,7 +130,9 @@ $pagaments = new Gestor_pagaments();
 // ARREGLAR MISSATGES
 //if (($estat == 3) || ($estat == 7)) { // JA S?HA PAGAT 
 $estat_multipago  = $pagaments->get_estat_multipago($id);
-
+//echo $estat;
+//echo "EEE";
+//echo $estat_multipago;die();
 //if ($estat_multipago == 100) { // JA S'HA PAGAT 
 if (FALSE) { // JA S'HA PAGAT 
   $titol['cat'] = "Aquesta reserva ja ha estat pagada<br><br><br><br><br><br>";
@@ -670,7 +672,7 @@ $responaseok_callback_alter = "reserva_grups_tpv_ok_callback";
                                       /** */
                                     //  echo $_REQUEST["testTPV"];die();
                                       if (isset($_REQUEST["testTPV"]) && $_REQUEST["testTPV"] == 'testTPV')
-                                        echo '<div id="form_test" class="form_tpv_test">TEST<br><div  class="form_tpv"> ' . $gestor->generaTESTTpvSHA256($id_reserva, $preu, $nom, $responaseok_callback_alter) . "</div></div>";
+                                        echo '<div id="form_test" class="form_tpv_test">TEST<br>BONA  4548812049400004  12/20   123  123456<br><div  class="form_tpv"> ' . $gestor->generaTESTTpvSHA256($id_reserva, $preu, $nom, $responaseok_callback_alter) . "</div></div>";
                                       else
                                         echo '<div id="form_tpv" class="form_tpv_real"> <div  class="form_tpv">' . $gestor->generaFormTpvSHA256($id_reserva, $preu, $nom, $responaseok_callback_alter) . "</div></div>";
                                       ?>  

@@ -384,11 +384,19 @@ td a:hover {color:white}
                               if ($row_reserves['estat']==2 && $row_reserves['emails']==0) $class_mail = 'mail_error blink';
                               if ($row_reserves['estat']==2 && $row_reserves['emails']==1) $class_mail = 'mail_ok';
                               
+                                $total_coberts_pagats = "";
+                                $total_import_pagaments = "";
+
+                             // 
+                              $total_pagat =  $pagaments->get_total_import_pagaments($row_reserves['id_reserva']);
+                              if ($total_pagat>0 && $total_pagat != $row_reserves['preu_reserva']){
+                                    $total_import_pagaments = $pagaments->get_total_import_pagaments($row_reserves['id_reserva']);
+                                    $total_import_pagaments = '<span style="color:blue;font-size:1.3em"><b>'.$total_import_pagaments.'</b></span>';
+                              }
                               if ($pagaments->get_estat_multipago($row_reserves['id_reserva'])== 8) {
                                 $row_reserves['estat'] = 8;
                                 $total_coberts_pagats = $pagaments->get_total_coberts_pagats($row_reserves['id_reserva']);
-                                $total_import_pagaments = $pagaments->get_total_import_pagaments($row_reserves['id_reserva']);
-
+                                 $total_import_pagaments = $pagaments->get_total_import_pagaments($row_reserves['id_reserva']); 
                                 $total_coberts_pagats = " (" . ((int)$total_coberts_pagats) . ")";
                                // $total_import_pagaments = " (" . ($total_import_pagaments) . "€)";
                                 
@@ -396,10 +404,6 @@ td a:hover {color:white}
                                 $estat[8] = " MultiPagament <br>".($row_reserves['adults'] + $row_reserves['nens10_14'] + $row_reserves['nens4_9'])." / $total_coberts_pagats";
                                   $estat[8] = " MultiPagament <br>".$row_reserves['preu_reserva'].":$total_import_pagaments";
 
-                              }
-                              else{
-                                $total_coberts_pagats = "";
-                                $total_import_pagaments = "";
                               }
                               ?>
                               <tr>

@@ -47,6 +47,23 @@ $query_reserves = "SELECT * FROM reserves WHERE id_reserva=$id ORDER BY estat ";
 $reserves = mysqli_query( $canborrell, $query_reserves) or die(((is_object($GLOBALS["___mysqli_ston"])) ? mysqli_error($GLOBALS["___mysqli_ston"]) : (($___mysqli_res = mysqli_connect_error()) ? $___mysqli_res : false)));
 $row_Recordset1 = mysqli_fetch_assoc($reserves);
 
+//if ($_POST['estat']==1 && ($row_Recordset1['estat']==3 || $row_Recordset1['estat']==7))
+$avis="";
+
+$estat[0]="Pendent";
+$estat[1]="Pendent";
+$estat[2]="Confirmada";
+$estat[3]="Pagada tranferència";
+$estat[4]="Caducada";
+$estat[5]="Denegada";
+$estat[6]="Eliminada";
+$estat[7]="Pagada tarja";
+$estat[100]="Petita";
+
+
+require_once(ROOT . "Gestor_pagaments.php");
+$pagaments = new Gestor_pagaments();
+$pagat  = $pagaments->get_total_import_pagaments($id);
 
 if ((isset($_POST["MM_update"])) && ($_POST["MM_update"] == "form1")) {
   $updateSQL = sprintf("UPDATE reserves SET num_1=000, data=%s, nom=%s, tel=%s, fax=%s, email=%s, lang=%s,hora=%s, menu=%s, adults=%s, nens10_14=%s, nens4_9=%s, cotxets=%s, observacions=%s, resposta=%s, txt_1=%s, txt_2=%s,estat=%s, preu_reserva=%s WHERE id_reserva=%s",
@@ -78,8 +95,15 @@ if ((isset($_POST["MM_update"])) && ($_POST["MM_update"] == "form1")) {
    Gestor::xgreg_log("<span class='grups'>Modificació reserva GRUPS: <span class='idr'>$res</span></span>",0,'/log/logGRUPS.txt');
    $anterior = Gestor::log_array($row_Recordset1);
    Gestor::xgreg_log("Valor anterior:<br>$anterior",1,'/log/logGRUPS.txt');
-  
-  header("location: llistat.php"); 
+  $coberts = $_POST['adults'] + $_POST['nens10_14'] + $_POST['nens4_9'];
+   if ($_POST['estat']!=$row_Recordset1['estat']) $avis="\\n\\nL`estat de la reserva passarà de ".$estat[$row_Recordset1['estat']]." a ".$estat[$_POST['estat']];
+if ($_POST['preu_reserva']!=($coberts) * preu_persona_grups) $avis .= "\\n\\nEl preu (".$_POST['preu_reserva'].") no escorrespon amb els coberts ($coberts)";
+if ($pagat>$row_Recordset1['preu_reserva']) $avis .= "\\n\\nS`ha pagat un import ($pagat) superior a la reserva (".$_POST['preu_reserva'].")";
+if ($pagat && $_POST['estat']!=3 && $_POST['estat']!=7) $avis .= "\\n\\nS'han realitzat pagaments d'aquesta reserva i l'estat (".$estat[$_POST['estat']].") no ho reflexa";
+
+   
+   
+//  header("location: llistat.php"); 
 }
 ?>
 
@@ -108,6 +132,19 @@ td a:hover {color:white}
 .Estilo8 {font-size: 12px}
 -->
 </style>
+
+
+     <?php echo Gestor::loadJQuery("2.0.3"); ?>
+        <script>
+          var avis = "<?php echo $avis;?>";
+          $(function () {
+            if (avis){
+              alert("ATENCIÓ!\n\n"+avis);
+              $(location).attr('href', 'llistat.php');
+            }
+          });
+          </script>
+
 </head>
 
 <body>

@@ -173,6 +173,17 @@ class TaulesDisponibles extends Gestor {
       $hora = 0;
       $taula = new EstatTaula($row['estat_taula_taula_id'], $row['estat_taula_nom'], $mydata, $hora, $row['estat_taula_persones'], $row['estat_taula_cotxets'], $row['estat_taula_plena'], $row['estat_taula_x'], $row['estat_taula_y']);
 
+       include(ROOT . "coord_menjadors.php");
+      
+
+       require_once("gestor_reserves.php");
+       
+       /*
+       $gr=new gestor_reserves();
+      $bloquejats = $this->menjadorsBloquejats($menjadors);
+      if (!is_null($bloquejats) && $gr->taulaBloquejada($taula->x, $taula->y, $bloquejats)) continue;
+        * */
+        
       // Calcula punts per ordenar
       $punts = $taula->puntuacioTaula($persones, $cotxets);
 

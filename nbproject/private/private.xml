@@ -2,14 +2,6 @@
 <project-private xmlns="http://www.netbeans.org/ns/project-private/1">
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="6">
         <file>
-            <url>cb-reserves/taules/RestrictionController.php</url>
-            <bookmark id="6">
-                <name/>
-                <line>162</line>
-                <key/>
-            </bookmark>
-        </file>
-        <file>
             <url>cb-reserves/reservar/Gestor_form.php</url>
             <bookmark id="4">
                 <name/>
@@ -19,6 +11,14 @@
             <bookmark id="5">
                 <name/>
                 <line>1195</line>
+                <key/>
+            </bookmark>
+        </file>
+        <file>
+            <url>cb-reserves/taules/RestrictionController.php</url>
+            <bookmark id="6">
+                <name/>
+                <line>162</line>
                 <key/>
             </bookmark>
         </file>
@@ -33,10 +33,12 @@
     </editor-bookmarks>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/home/alex/0****__WWW__****/canborrell-wp/cb-reserves/taules/Gestor.php</file>
-            <file>file:/home/alex/0****__WWW__****/canborrell-wp/cb-reserves/reservar/Gestor_form.php</file>
+            <file>file:/home/alex/0****__WWW__****/canborrell-wp/cb-reserves/editar/llistat.php</file>
+            <file>file:/home/alex/0****__WWW__****/canborrell-wp/cb-reserves/editar/js/detall.js</file>
+            <file>file:/home/alex/0****__WWW__****/canborrell-wp/cb-reserves/editar/detall.php</file>
+            <file>file:/home/alex/0****__WWW__****/canborrell-wp/cb-reserves/editar/apdeit.php</file>
+            <file>file:/home/alex/0****__WWW__****/canborrell-wp/cb-reserves/editar/edit_reserva.php</file>
             <file>file:/home/alex/0****__WWW__****/canborrell-wp/wp-content/themes/onetone_cb/page-pagament.php</file>
-            <file>file:/home/alex/0****__WWW__****/canborrell-wp/cb-reserves/taules/Gestor_pagaments.php</file>
         </group>
     </open-files>
 </project-private>
