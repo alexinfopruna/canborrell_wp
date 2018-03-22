@@ -566,7 +566,7 @@ $responaseok_callback_alter = "reserva_grups_tpv_ok_callback";
                                           <?php l("INFO_MULTIPAGO2") ?>
 
                                       </div>
-                                  <?php endif; //MULTIPAGE  ?>
+                                  <?php endif; //MULTIPAGAMENT  ?>
                                       <?php
                                       $import_pendent =$fila['preu_reserva'];
                                       if (defined('PAGAMENTS_PARCIALS') && PAGAMENTS_PARCIALS == true && $pagaments->get_multipago_activat($fila['preu_reserva'])):
@@ -578,6 +578,7 @@ $responaseok_callback_alter = "reserva_grups_tpv_ok_callback";
                                         $comensals = $fila['adults'] + $fila['nens10_14'] + $fila['nens4_9'];
                                         $pendents = $comensals - $coberts_pagats;
                                         if (!$pendents) $pendents=1;
+                                        if ($pendents<0) $pendent=0;
                                         $import_pendent = $total_reserva - $total_pagaments_parcials;
                                         $import = $pendents * preu_persona_grups;
                                         
@@ -586,6 +587,7 @@ $responaseok_callback_alter = "reserva_grups_tpv_ok_callback";
                                           $preu = $import_pendent;
                                           $pendents = ceil($preu / preu_persona_grups);
                                         }
+                                        
                                         
                                         $preu = number_format($preu,2);
                                         

@@ -273,8 +273,12 @@ td a:hover {color:white}
             Confirmada</td>
         </tr>
         <tr>
-          <td class="llista"><input type="radio" name="estat" value="3" style="background:#CCCCCC;"U <?php if (!(strcmp((int)$row_Recordset1['estat'],3))) {echo "CHECKED";} ?>>
-            Pagada</td>
+          <td class="llista"><input type="radio" name="estat" value="3" style="background:#CCCCCC;" <?php if ((int)$row_Recordset1['estat']==3)  {echo "CHECKED";} ?>>
+            Pagada Transfer</td>
+        </tr>
+        <tr>
+          <td class="llista"><input type="radio" name="estat" value="7" style="background:#CCCCCC;" <?php if ((int)$row_Recordset1['estat']==7)  {echo "CHECKED";} ?>>
+            Pagada Tarja</td>
         </tr>
       </table></td>
     </tr>
