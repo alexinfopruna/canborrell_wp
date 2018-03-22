@@ -178,11 +178,12 @@ class TaulesDisponibles extends Gestor {
 
        require_once("gestor_reserves.php");
        
-       /*
+       /*     * */
        $gr=new gestor_reserves();
       $bloquejats = $this->menjadorsBloquejats($menjadors);
+      //echo $gr->taulaBloquejada($taula->x, $taula->y, $bloquejats);die();
       if (!is_null($bloquejats) && $gr->taulaBloquejada($taula->x, $taula->y, $bloquejats)) continue;
-        * */
+   
         
       // Calcula punts per ordenar
       $punts = $taula->puntuacioTaula($persones, $cotxets);
@@ -335,8 +336,8 @@ class TaulesDisponibles extends Gestor {
   public function menjadorsBloquejats(&$arMenjadors = null) {
     $mydata = $this->data;
     $torn = $this->torn;
-    $table = $this->tableMenjadors;
-
+  //  $table = $this->tableMenjadors;
+    $table = "estat_menjador"; //ATENCIO, HEM ANULAT estat_menjador_form
     $accesible_condition = $accesible_not_condition = '';
     if ($this->accesible) {
       $accesible_condition = " AND estat_menjador_accesible=1";
@@ -356,7 +357,7 @@ class TaulesDisponibles extends Gestor {
 
     $Result1 = mysqli_query($this->connexioDB, $query) or die(((is_object($GLOBALS["___mysqli_ston"])) ? mysqli_error($GLOBALS["___mysqli_ston"]) : (($___mysqli_res = mysqli_connect_error()) ? $___mysqli_res : false)));
     $nfiles = mysqli_num_rows($Result1);
-
+//echo $query;
     $bloquejats = null;
     while ($row = mysqli_fetch_array($Result1)) {
       if (isset($arMenjadors[$row['estat_menjador_menjador_id']]))

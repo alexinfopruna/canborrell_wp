@@ -199,8 +199,9 @@ public function EstatTaula($taula_id = null, $nom_o_torn = null, $data = 0, $hor
   /*   * ********************************************************************************************************************* */
 
   public function bloquejada($bloquejats) {
-    if (!$bloquejats)
-      return false;
+    if (!$bloquejats)      return false;
+    
+    if (!$this->menjador) return false;
     foreach ($bloquejats as $key => $menjador) {
       if ($menjador->name == $this->menjador->name) {
         $this->menjador->bloquejat = true;

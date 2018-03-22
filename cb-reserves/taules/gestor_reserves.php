@@ -3123,8 +3123,8 @@ ORDER BY `estat_hores_data` DESC";
     $this->reg_log("updateMenjador " . (int) $bloquejat);
     $this->reg_log("$id, $data, $torn, $bloquejat", 1);
 
-    if (empty($table))
-      $table = "estat_menjador";
+   // if (empty($table))
+      $table = "estat_menjador"; //ATENCIO, HEM ANULAT estat_menjador_form
 
     $query = "DELETE FROM $table WHERE estat_menjador_menjador_id=$id AND estat_menjador_data='$data' AND estat_menjador_torn='$torn'";
 

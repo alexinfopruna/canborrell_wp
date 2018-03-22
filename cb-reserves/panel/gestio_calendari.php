@@ -29,7 +29,7 @@ $d= date_parse_from_format ("d-m-Y", $data );
 $mydata=$d['year'].'-'.$d['month'].'-'.$d['day'];
 
 function read_llista($file, $class){
-  
+  $blanca="";
   $handle = fopen($file, "r");
 if ($handle) {
     while (($line = fgets($handle)) !== false) {

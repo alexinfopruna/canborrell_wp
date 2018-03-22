@@ -55,7 +55,8 @@ class Gestor_form extends gestor_reserves {
   public function __construct($usuari_minim = 1) {
     parent::__construct(DB_CONNECTION_FILE, $usuari_minim);
     // Sobre quina taule fem les consultes
-    $this->taulesDisponibles->tableMenjadors = "estat_menjador_form";
+    //$this->taulesDisponibles->tableMenjadors = "estat_menjador_form";
+    $this->taulesDisponibles->tableMenjadors = "estat_menjador"; //ATENCIO, HEM ANULAT estat_menjador_form
   }
 
   /*   * ******************************************************************************************************* */
@@ -936,8 +937,8 @@ FROM client
     $this->taulesDisponibles->accesible = $accesible;
     //$this->taulesDisponibles->tableHores="estat_hores_form";
     $this->taulesDisponibles->tableHores = "estat_hores";
-    $this->taulesDisponibles->tableMenjadors = "estat_menjador_form";
-
+   //$this->taulesDisponibles->tableMenjadors = "estat_menjador_form";
+    $this->taulesDisponibles->tableMenjadors = "estat_menjador"; //ATENCIO, HEM ANULAT estat_menjador_form
     $this->taulesDisponibles->llista_dies_negra = LLISTA_DIES_NEGRA_RES_PETITES;
     $this->taulesDisponibles->llista_nits_negra = LLISTA_DIES_NEGRA_RES_PETITES;
     $this->taulesDisponibles->llista_dies_blanca = LLISTA_DIES_BLANCA;
