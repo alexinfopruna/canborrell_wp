@@ -530,8 +530,8 @@ class Gestor {
     
     if (isset($_SESSION['uSer'])) $sessuser = $_SESSION['uSer'];
 
-    if (isset($sessuser))
-      $user = $sessuser->id;
+    $user = "Sense usuari";
+    if (isset($sessuser))      $user = $sessuser->id;
 
     $sep = "";
     if ($type == 0)
