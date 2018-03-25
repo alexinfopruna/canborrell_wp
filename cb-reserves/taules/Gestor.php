@@ -1048,8 +1048,8 @@ public function generaTESTTpvSHA256($id_reserva, $import, $nom, $tpv_ok_callback
     $params = $miObj->createMerchantParameters();
     $signature = $miObj->createMerchantSignature($clave256);
 
-
-    $form = '<form id="compra" name="compra" action="' . $url . '" method="post" target2="_blank" target="frame-tpv"  style="display:nonexxx" class="generaTESTTpvSHA256">
+    $form = " <p>4548812049400004 12 20 123 123456</p>";
+    $form .= '<form id="compra" name="compra" action="' . $url . '" method="post" target2="_blank" target="frame-tpv"  style="display:nonexxx" class="generaTESTTpvSHA256">
               <div class="ds_input">odr <input id="dsorder"  type="text" name="Ds_odr" value="' . $id . '"/></div>
               <div class="ds_input">Ds_Merchant_SignatureVersion <input type="text" name="Ds_SignatureVersion" value="' . $version . '"/></div>
               <div class="ds_input">Ds_Merchant_MerchantParameters <input type="text" name="Ds_MerchantParameters" value="' . $params . '"/></div>
