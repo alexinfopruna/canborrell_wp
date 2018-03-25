@@ -185,18 +185,22 @@ $translate['COMPRA_SEGURA']['en'] = "To make a payment using this bank gateway, 
 $data_limit = Gestor::cambiaf_a_normal($fila['data_limit']);
 switch ($lang){
   case 'cat':
-    $translate['INFO_MULTIPAGO'] = "<p>Podeu fer un sol pagament integre de tot l'import però, si ho preferiu, per evitar que una sola persona hagi de fer el pagament de tot l'import de la reserva, el nostre sistema permet que feu <b>diversos pagaments separats</b> "
-    . "de la manera que més us convingui (per persona, per famílies...).</p> <p><i>Per exemple, si sou 5 famílies de 4 persones, cada família pot pagar la part corresponent als 4 comensals que li toquen de manera que quedi més repartit</i></p>";
+    $translate['INFO_MULTIPAGO'] = "El nostre sistema permet que feu <b>diversos pagaments independents</b> "
+    . "de la manera que més us convingui (per persona, per famílies...). Simplement pagueu la part que us correspon i reenvieu l'email de confirmació a les altres famílies perquè completin els pagaments restants</p> <p><i>Per exemple, si sou 5 famílies de 4 persones,"
+      . " cada família pot pagar la part corresponent als 4 comensals que li toquen de manera que quedi més repartit</i></p>"
+      . "<p>Si us resulta més senzill, també podeu fer un sol pagament integre de tot l'import.</p>";
 $translate['INFO_MULTIPAGO2'] = "<p>El restaurant només tindrà en compte les reserves <b>pagades</b> fins al <b>$data_limit</b>. El nombre de comensals reservats inicialment <b>no té valor si no s'ha abonat l'import corresponent</b> a tots els coberts.</p>"
-    . "<p><i>Per exemple: Si heu reservat per 20 persones però només n'heu abonat 15, el restaurant us prepararà taula per 15 comensals</i></p>";
+    . "<p><i>Per exemple: Si heu reservat per 20 persones però <b>només n'heu abonat 15, el restaurant us prepararà taula per 15 comensals</b></i></p>";
 
   break;
     
   case 'esp':
-    $translate['INFO_MULTIPAGO'] = "<p>Podéis hacer un solo pago de todo el importe o, si lo preferís, para evitar que una sola persona tenga que hacer el pago de un importe elevado, nuestro sistema permite que hagáis <b>diversos pagos separados</b> "
-    . "de la manera que más os convenga (por persona, por familias...).</p> <p><i>Por ejemplo, si sóis 5 familias de 4 personas, cada familia podría pagar la parte correspondiente a los 4 comensales que le tocan de manera que queda más repartido</i></p>";
+    $translate['INFO_MULTIPAGO'] = "<p>Nuestro sistema permite que hagáis <b>diversos pagos separados</b> "
+    . "de la manera que más os convenga (por persona, por familias...). Simplemente paga la parte que os corresponde i reenvía el email de confirmación a las otras familias para que completen el pago restante</p> "
+      . "<p><i>Por ejemplo, si sóis 5 familias de 4 personas, cada familia podría pagar la parte correspondiente a los 4 comensales que le tocan de manera que queda más repartido</i></p>"
+      . "<p>Si os resulta más sencillo, también podéis hacer un solo pago de todo el importe.";
 $translate['INFO_MULTIPAGO2'] = "<p>El restaurant solo tendrá en cuenta las reservas <b>pagadas</b> hasta el <b>$data_limit</b>. El número de comensales indicados inicialmente <b>no tiene valor si no se ha abonado el importe correspondiente</b> a todos los cubiertos.</p>"
-    . "<p><i>Por ejemplo: Si habéis reservado para 20 personas pero solo habéis abonado 15 reservas, el restaurant os preparará mesa para 15 comensales</i></p>";
+    . "<p><i>Por ejemplo: Si habéis reservado para 20 personas pero <b>solo habéis abonado 15 reservas, el restaurant os preparará mesa para 15 comensales</b></i></p>";
 
   break;
 

@@ -4,8 +4,12 @@ if (!isset($PERSONES_GRUP)) $PERSONES_GRUP=12;
 
 
 
-$translate['INFO_COMANDA_GRUPS']="In group reservations you should choose, at least, one menu for each diner (counting adults, juniors and children)<br>"
+$translate['ANULAT___INFO_COMANDA_GRUPS']="In group reservations you should choose, at least, one menu for each diner (counting adults, juniors and children)<br>"
     . "For more than 20 people you can not choose from dish-menu and you must select set-menus for all of you";
+$translate['INFO_COMANDA_GRUPS']="In order to formalize the reservation, we need you to know all the menus that you will take "
+     . "You have to communicate  to us<b> as many menus as reserved diners. </ B> <br>"
+     . "<ul> <li> If you are <b> up to 20 </ b> diners you can choose both menu items and full menus </ li>"
+     . "<li> If you are <b> more than 20 </ b> diners you can only choose menus </ li> </ ul>";
 $translate['Escull els menús']="Choose menus";
  $translate['Veure els menús']='See menus';
  $translate['Menús']='Set menus';

@@ -6,8 +6,13 @@ if (!isset($PERSONES_GRUP)) $PERSONES_GRUP=12;
 $translate['Realitzar pagament'] = "Realizar pago";
 
 
-$translate['INFO_COMANDA_GRUPS']="En las reservas de grupos debes escoger, como mínimo, un menú para cada comensal (contando adultos, juniors y niños<br>"
+$translate['ANULATS__INFO_COMANDA_GRUPS']="En las reservas de grupos debes escoger, como mínimo, un menú para cada comensal (contando adultos, juniors y niños<br>"
      . "Para más de 20 comensales no está disponible la carta y será necessario que indiquéis exclusivamente menús";
+$translate['INFO_COMANDA_GRUPS']="Para poder formalizar la reserva necesitamos que nos hagáis saber todos lo menús que tomaréis<br>"
+    . "Es necesario que nos comuniquéis<b>tantos menús como comensales reservados.</b><br>"
+    . "<ul><li>Si sóis <b>hasta 20</b> comensales podéis escoger tanto platos de la carta como menús completos</li>"
+    . "<li>Si sóis <b>más de 20</b> comensales solo podéis escoger menús</li></ul>";
+
 $translate['Escull els menús']="Elige los menús";
  $translate['Veure els menús']='Ver los menús';
 $translate['CARTA_FINS_20']="Hasta 21 comensales la selección de platos de la carta es opcional i la podréis hacer directamente en el restaurant si lo preferís";
