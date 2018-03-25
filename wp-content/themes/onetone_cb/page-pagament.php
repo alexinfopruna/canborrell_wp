@@ -183,10 +183,10 @@ $translate['COMPRA_SEGURA']['en'] = "To make a payment using this bank gateway, 
 $data_limit = Gestor::cambiaf_a_normal($fila['data_limit']);
 switch ($lang){
   case 'cat':
-    $translate['INFO_MULTIPAGO'] = "El nostre sistema permet que feu <b>diversos pagaments separats</b> "
+    $translate['INFO_MULTIPAGO'] = "El nostre sistema permet que feu <b>diversos pagaments independents</b> "
     . "de la manera que més us convingui (per persona, per famílies...). Simplement pagueu la part que us correspon i reenvieu l'email de confirmació a les altres famílies perquè completin els pagaments restants</p> <p><i>Per exemple, si sou 5 famílies de 4 persones,"
       . " cada família pot pagar la part corresponent als 4 comensals que li toquen de manera que quedi més repartit</i></p>"
-      . "<p>Si us resulte més senzill, també podeu fer un sol pagament integre de tot l'import.</p>";
+      . "<p>Si us resulta més senzill, també podeu fer un sol pagament integre de tot l'import.</p>";
 $translate['INFO_MULTIPAGO2'] = "<p>El restaurant només tindrà en compte les reserves <b>pagades</b> fins al <b>$data_limit</b>. El nombre de comensals reservats inicialment <b>no té valor si no s'ha abonat l'import corresponent</b> a tots els coberts.</p>"
     . "<p><i>Per exemple: Si heu reservat per 20 persones però <b>només n'heu abonat 15, el restaurant us prepararà taula per 15 comensals</b></i></p>";
 
