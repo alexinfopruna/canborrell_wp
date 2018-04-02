@@ -8,10 +8,10 @@ $translate['Realitzar pagament'] = "Realizar pago";
 
 $translate['ANULATS__INFO_COMANDA_GRUPS']="En las reservas de grupos debes escoger, como mínimo, un menú para cada comensal (contando adultos, juniors y niños<br>"
      . "Para más de 20 comensales no está disponible la carta y será necessario que indiquéis exclusivamente menús";
-$translate['INFO_COMANDA_GRUPS']="Para poder formalizar la reserva necesitamos que nos hagáis saber todos lo menús que tomaréis<br>"
-    . "Es necesario que nos comuniquéis<b>tantos menús como comensales reservados.</b><br>"
-    . "<ul><li>Si sóis <b>hasta 20</b> comensales podéis escoger tanto platos de la carta como menús completos</li>"
-    . "<li>Si sóis <b>más de 20</b> comensales solo podéis escoger menús</li></ul>";
+$translate['INFO_COMANDA_GRUPS']="Seleccionad los platos o menús que tomaréis. Tened presente que tendréis que escoger todos platos o todos carta. <b>No se pueden combinar menús y carta en una misma reserva </b><br>"
+    . "<br>"
+    . "<ul><li>Si sois <b>hasta 20</b> comensales, la selección de platos <b>es opcional</b>, pero si lo deseáis, pera facilitarnos nuestro trabajo, podéis escoger platos de la carta o menús completos, pero <b>no es posible combinar carta y menús</b></li>"
+    . "<li>Si sois <b>más de 20</b>, para poder completar la reserva <b>es imprescindible</b> que seleccionéis tantos menús como comensales (incluidos niños). La carta no estará disponible. </li></ul>";
 
 $translate['Escull els menús']="Elige los menús";
  $translate['Veure els menús']='Ver los menús';

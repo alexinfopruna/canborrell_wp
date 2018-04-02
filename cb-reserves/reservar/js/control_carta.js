@@ -33,6 +33,18 @@ $(function(){
 		
 	});
        
+	$("#bt-no-carta").click(function(e){	
+            //var totalPersones = parseInt(totalPersones());
+            var totalPersones = parseInt($("#totalComensals").val());
+           // alert(totalPersones);
+            if (totalPersones<=20){ 
+                 updateCarta();
+                 comportamentClient();
+            }
+          e.preventDefault();
+          return false;
+        });
+        
 	$("#bt-carta").click(function(){	
 		//$(".cmenu .carta-seleccio").removeClass("carta-seleccio");
 		//$(".cmenu .contador").val(0);
@@ -213,6 +225,7 @@ function updateMenus(){
 		 * CARTA
 		 */
 		$("#bt-carta").hide();
+		$("#bt-no-carta").hide();
 		$("#fr-carta-tabs").hide();
 		
 	}

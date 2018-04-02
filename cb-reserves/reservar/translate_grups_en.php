@@ -6,15 +6,14 @@ if (!isset($PERSONES_GRUP)) $PERSONES_GRUP=12;
 
 $translate['ANULAT___INFO_COMANDA_GRUPS']="In group reservations you should choose, at least, one menu for each diner (counting adults, juniors and children)<br>"
     . "For more than 20 people you can not choose from dish-menu and you must select set-menus for all of you";
-$translate['INFO_COMANDA_GRUPS']="In order to formalize the reservation, we need you to know all the menus that you will take "
-     . "You have to communicate  to us<b> as many menus as reserved diners. </ B> <br>"
-     . "<ul> <li> If you are <b> up to 20 </ b> diners you can choose both menu items and full menus </ li>"
-     . "<li> If you are <b> more than 20 </ b> diners you can only choose menus </ li> </ ul>";
+$translate['INFO_COMANDA_GRUPS']="Select the dishes or menus you will take. Keep in mind that you will have to choose all dishes or all full menus. <b> Full menus and dishes can not be combined in the same reservation </b> <br> "
+    . "<br><ul> <li> If you are <b> up to 20 </b> diners, the selection of dishes <b> is optional </b>, but if you want to make it easier for us, you can choose dishes from the menu or full menus, but <b> it is not possible to combine dishes and full menus </b> </li> "
+    . "<li> If you are <b> more than 20 </b>, you need to select as many <b>full menus (dishes not allowed)</b> as guests (including children) to complete the reservation   </li> </ul>";
 $translate['Escull els menús']="Choose menus";
  $translate['Veure els menús']='See menus';
  $translate['Menús']='Set menus';
 
-$translate['INFO_QUANTS_SOU_GRUPS']='<b>Tell us how many people will come, indicate firstly people over 14 years of age. Also, mark the number of juniors and children. 
+$translate['INFO_QUANTS_SOU_GRUPS']='Tell us how many people will come, indicate firstly people over 14 years of age. Also, mark the number of juniors and children. 
 		<br/> <br/>
 <b>We will reserve spaces for the number of diners shown here. The reservation will not be valid for a number of people that does not coincide with the reservation request. </b>
 			 <br/>
@@ -23,12 +22,12 @@ $translate['INFO_QUANTS_SOU_GRUPS']='<b>Tell us how many people will come, indic
 		We only allow access to guide dogs accompanied by blind people 
 <br/> <br/>
 		<em> If, in total, you are less than <b> '. ($PERSONES_GRUP ).'</b> people, mark the "<='. ($PERSONES_GRUP-1 ).'" </em> <br/> <br/>
-<b> TOTAL PEOPLE: ';
+<b> TOTAL PEOPLE</b>: ';
 
 	$translate['INFO_CARTA_GRUPS']='You should indicate the adults’ menu.
 	<br/><strong style="font-size:1.2em"> If you are accompanied by children/juniors, you also need to indicate the menu you would like for them </strong>
 			<br/><br/>
-For vegetarians we have a menu of grilled vegetables for 25€. Add a commentary in the <b>Other Information</b> field on the next stage of the reservation so that we are informed';
+For vegetarians we have a menu of grilled vegetables for 25€. Add a commentary in the <b>Other Information</b> fi the next stage of the reservation so that we are informed';
      
 
         

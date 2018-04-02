@@ -262,7 +262,7 @@ function comportamentQuantsSou()
     //ADULTS
     $("#selectorComensals").change(function () {
         $("input[name='adults']").val($("input[name='selectorComensals']:checked").val());
-        totalPersones();
+        var comensals = totalPersones();
         $("#selectorComensals").buttonset("destroy");
         $("#selectorComensals").buttonset();
         $.scrollTo("#titol_SelectorJuniors", 600);
@@ -753,7 +753,9 @@ function validacio()
     
     $.validator.addMethod("menus_comensals", function (value, element) {
         var totalComansals = parseInt($("#totalComensals").val());
+        //var totalPersones = totalPersones();
         var value = parseInt(value);
+        //shouldElementBeVisible = totalPersones<=20;
         shouldElementBeVisible =  $("input[name='adults']").val()<=20;
        // alert(SELECT_CARTA);
         if (shouldElementBeVisible && SELECT_CARTA) return true;
@@ -963,5 +965,5 @@ function tanca_dlg() {
 function updateMenusSectionButtons(){
          shouldElementBeVisible =  $("input[name='adults']").val()<=20;
     $("#bt-carta").toggle(shouldElementBeVisible);
-
+    $("#bt-no-carta").toggle(shouldElementBeVisible);
 }

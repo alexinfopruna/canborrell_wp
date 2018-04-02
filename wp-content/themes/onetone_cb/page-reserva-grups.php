@@ -561,7 +561,7 @@ function reservar_enqueue_styles() {
 
                                                                   <a href="#"  id="bt-carta" name="bt-carta" class="bt" ><?php l('Carta'); ?></a>
                                                                   <a href="#"  id="bt-menu" name="bt-menu" class="bt"><?php l('Menús'); ?></a>
-<!--                                                                  <a href="#" id="bt-no-carta" name="bt-no-carta" class="bt" ><?php l('Continuar'); ?></a>-->
+                                                                  <a href="#" id="bt-no-carta" name="bt-no-carta" class="bt" ><?php l('Continuar'); ?></a>
                                                                   <div style="clear:both"></div>
 
                                                               </div>

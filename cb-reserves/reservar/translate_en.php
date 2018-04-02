@@ -55,7 +55,7 @@ $translate['[Contactar amb el restaurant]'] = "Contact the restaurant";
 $translate['Contactar amb el restaurant'] = "Contact the restaurant";
 $translate['INFO_CONTACTE'] = "If you have a reservation made, give the ID";
 
-$translate['INFO_COMANDA'] = "You can choose different set menus or dishes from the main menu but, you cannot mix set menus and dishes from the main menu.</b><br/>";
+$translate['INFO_COMANDA'] = "You can choose different set menus or dishes from the main menu but, <b>you cannot mix set menus and dishes from the main menu.</b><br/>";
 
 
 
@@ -93,7 +93,7 @@ $translate['Paga i senyal necessària'] = "Payment of deposit necessary";
 $translate['INFO_QUANTS_SOU'] = '<b> Tell us how many people will come </b>, firstly age 14 and above, then children up to 14.  
 <br/> 
                          <div class=info-paga-i-senyal> <b>  If you are more than ' . (persones_paga_i_senyal - 1) . ' people,
-you will need to make a ' . import_paga_i_senyal . '€ deposit payment with a credit card </ b>.
+you will need to make a ' . import_paga_i_senyal . '€ deposit payment with a credit card </b>.
 This amount will be discounted from your bill, therefore there is no added expense. 
 The payment will be made using a secure bank gateway. 
 Can Borrell will not have access to information given.
@@ -135,7 +135,7 @@ Be sure to give the correct date changing month, if necessary, with the arrows o
 Remember that, excluding some holidays, the restaurant is closed on mondays and tuesdays.<br/> <br/> 
 If there is an unavailable day it could be because there are no tables free. <br/> <br/> ';
 
-$translate['google_maps']='<div class="alert alert-danger"><span class=" glyphicon glyphicon-exclamation-sign f1" style="color:red"></span> <b>ATTENTION:</b> <br/>The indications provided by <b> Google maps are wrong </ b>. To get to the restaurant, follow <a href="https://www.google.com/maps/d/viewer?mid=1hCH2vgWQlsAYjkur26vrCBkHs_o&hl=ca&ll=41.46209031620546%2C2.1290506341933906&z=14" target="_blank" style="color:red;font-weight:bold;">this map</a>  to the beginning of the forest. </div>';
+$translate['google_maps']='<div class="alert alert-danger"><span class=" glyphicon glyphicon-exclamation-sign f1" style="color:red"></span> <b>ATTENTION:</b> <br/>The indications provided by <b> Google maps are wrong </b>. To get to the restaurant, follow <a href="https://www.google.com/maps/d/viewer?mid=1hCH2vgWQlsAYjkur26vrCBkHs_o&hl=ca&ll=41.46209031620546%2C2.1290506341933906&z=14" target="_blank" style="color:red;font-weight:bold;">this map</a>  to the beginning of the forest. </div>';
 $translate['google_maps']='';
 $translate['ALERTA_INFO'] = '<b> The Reservation has been CONFIRMED. </b>. <br/> <br/>
 We have sent a confirmation text message to the mobile phone number you’ve given. <br/> <br/>'.$translate['google_maps'].'
@@ -158,7 +158,7 @@ This form allows you to<b> REQUEST </b>a reservation that the restaurant will ha
 Remember that filling in and sending off this form is the first step in a process that ends in a <b>credit card payment</b> of a deposit which will be discounted from your final bill, 
 therefore there is <b>no extra cost involved</b>.</p> 
 <p class="alert alert-danger"><span class=" glyphicon glyphicon-exclamation-sign f1"></span> <b>
-No reservation request is valid unless the payment is made before the date given.</p>';
+No reservation request is valid unless the payment is made before the date given.</b></p>';
 
 
 $translate['ALERTA_INFO_UPDATE'] = '<b> The reservation has been EDITED </b>. <br/> <br/>
@@ -321,9 +321,14 @@ $translateJS['fr-seccio-quants'] = '<p  class="alert alert-info "><span class=" 
     . 'Remember if you are more than ' . (persones_paga_i_senyal - 1)
     . ' people, it will be necessary for you to make a deposit payment of ' . import_paga_i_senyal . '€ with a credit card. </b>.</p>'
     . '<p  class="alert alert-info "><span class=" glyphicon glyphicon-info-sign f1"></span> '
-    . 'You can also tell us if you will bring pushchairs or prams or if you are accompanied by someone with reduced mobility or in a wheelchair. The sum of children and pushchairs or prams has to be the actual number of children that will come We will reserve space for the number of diners shown here. The reservation will not be valid for a number of people that do not coincide with the reservation request This form is for small group reservations. If you are more than 11 people click on Reservation request for groups We have a limited number of high chairs and we cannot guarantee their availability. We only allow access to guide dogs accompanied by blind people. Once this information is completed you will access step 2, below.</p>'
+    . 'You can also tell us if you will bring pushchairs or prams or if you are accompanied by someone with reduced mobility '
+    . 'or in a wheelchair. The sum of children and pushchairs or prams has to be the actual number of children that will come '
+    . 'We will reserve space for the number of diners shown here. The reservation will not be valid for a number of people that '
+    . 'do not coincide with the reservation request This form is for small group reservations. If you are more than 11 people click '
+    . 'on Reservation request for groups We have a limited number of high chairs and we cannot guarantee their availability. '
+    . 'We only allow access to guide dogs accompanied by blind people. Once this information is completed you will access step 2, below.</p>'
     . '<p  class="alert alert-warning "><span class=" glyphicon glyphicon-exclamation-sign f1"></span> '
-    . 'The sum of children and pushchairs or prams has to be the actual number of children that will come</b></p>'
+    . '<b>The sum of children and pushchairs or prams has to be the actual number of children that will come</b></p>'
     . '<b><p  class="alert alert-danger "><span class=" glyphicon glyphicon-exclamation-sign f1"></span>  '
     . 'We will reserve space for the number of diners shown here. '
     . 'The reservation will not be valid for a number of people that do not coincide with the reservation request</b>  '
@@ -433,7 +438,7 @@ $translateJS["REDIR_GRUPS"] = "You have marked more than " . $PERSONES_GRUP . " 
 
 $translateJS["PAGA_I_SENYAL"] = "<div>The following step is to make the " . import_paga_i_senyal . "€ payment to guarantee assistance on the day of your reservation. "
     . "This payment will be discounted from your final bill. <br/><br/>"
-    . '<div class = "info-paga-i-senyal"> Attention: If you cannot come on the day of your reservation your deposit will be refunded if we are informed with 24 hours notice</b>. Otherwise, the deposit cannot be returned </div> '
+    . '<div class = "info-paga-i-senyal"> Attention: If you cannot come on the day of your reservation your deposit will be refunded <b>if we are informed with 24 hours notice</b>. Otherwise, the deposit cannot be returned </div> '
     . "<br/><br/>We will transfer you from Can Borrell to an external bank gateway. The restaurant will not have access to the information given."
     . "<br/><br/></div>";
 
@@ -462,7 +467,7 @@ $translateDirectJS['EL PAGAMENT HA ESTAT ANULAT']="Unfortunately the payment pro
 $translate['err20'] = '<b>You have now made a reservation in Can Borrell!!</b><br/><br/>you can change or cancel it but. you cannot make more than one online reservation. <br/><em>(To edit or cancel use the link found above, below the navigation bar on this page)</em><br/><br/><br/>If you wish to contact us: <br/><b>936929723 / 936910605</b><br/><br/><br/>The reservation we have booked is for ';
 $translateDirectJS['err21'] = '<b>We can‘t make a reservation due to a problem with a past reservation</b><br/><br/>Please, to make a reservation contact us: 936929723 / 936910605';
 $translateDirectJS['err20'] = '<b>You have now made a reservation in Can Borrell!!</b><br/><br/>you can change or cancel it but. you cannot make more than one online reservation. <br/><em>(To edit or cancel use the link found above, below the navigation bar on this page)</em><br/><br/><br/>If you wish to contact us: <br/><b>936929723 / 936910605</b><br/><br/><br/>The reservation we have booked is for ';
-$translate['err21'] = '<b>We cannot make an online reservation because of one already made!!<br/><br/>Please, to make a reservation contact the restaurant:936929723 / 936910605';
+$translate['err21'] = '<b>We cannot make an online reservation because of one already made!!</b><br/><br/>Please, to make a reservation contact the restaurant:936929723 / 936910605';
 
 $translateDirectJS['CAP_TAULA'] = "Sorry, no tables available for the requested date / dinners.<br/><br/>Try an othe date";
 
