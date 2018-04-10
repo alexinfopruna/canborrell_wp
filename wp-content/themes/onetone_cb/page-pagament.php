@@ -220,12 +220,13 @@ $translate['INFO_TOT_PAGAT'] = "<p>Ja s'ha satisfet la totalitat de l'import de 
 ((mysqli_free_result($Result) || (is_object($Result) && (get_class($Result) == "mysqli_result"))) ? true : false);
 
 $responaseok_callback_alter = "reserva_grups_tpv_ok_callback";
+$preu_persona = $pagaments->get_preu_persona_reserva($id);
 ?>
 <?php echo Gestor::loadJQuery(); ?>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.17.0/jquery.validate.min.js"></script>
 <script language=JavaScript>
   var TEST = <?php echo (isset($_REQUEST["testTPV"]) && $_REQUEST["testTPV"] == 'testTPV')?'true':'false';?>;
-  var preu_unit = <?php echo preu_persona_grups ?>;
+  var preu_unit = <?php echo $preu_persona ?>;
   var fcallback = "<?php echo $responaseok_callback_alter ?>";
   var import_pendent = "<?php echo $pagaments->get_import_pendent($id); ?>";
   var coberts_pendents =  Math.ceil(import_pendent / preu_unit );
@@ -291,7 +292,9 @@ $responaseok_callback_alter = "reserva_grups_tpv_ok_callback";
           var reserva = $("#reserva_id").html().trim();
           var nom = $("#nom").val();
           if (nom = "")   nom = "Sense_nom";
+          
           if (preu > import_pendent) preu = import_pendent;
+          preu = Number(preu).toFixed(2);
           $("#preu_parcial").html(preu);
 
           if (TEST) var desti = "/cb-reserves/taules/gestor_reserves.php?a=generaTESTTpvSHA256&b=" + reserva + "&c=" + preu + "&d=" + nom + "&e=" + fcallback;
@@ -332,7 +335,7 @@ $responaseok_callback_alter = "reserva_grups_tpv_ok_callback";
   }
           alert("<?php echo $translate['COMPRA_SEGURA'][$lang] ?>");
           button_state(false);
-          console.log("222");
+          //console.log("222");
           vent = window.open('', 'frame-tpv', 'width=725,height=600,scrollbars=no,resizable=yes,status=yes,menubar=no,location=no');
 
           var idr =<?php echo $fila['id_reserva'] ?>;
@@ -584,15 +587,15 @@ $responaseok_callback_alter = "reserva_grups_tpv_ok_callback";
                                         if (!$pendents) $pendents=1;
                                         if ($pendents<0) $pendent=0;
                                         $import_pendent = $total_reserva - $total_pagaments_parcials;
-                                        $import = $pendents * preu_persona_grups;
+                                        $import = $pendents * $preu_persona;
                                         
-                                        $preu = $pendents * preu_persona_grups;
+                                        $preu = $pendents * $preu_persona;
                                         if ($preu > $import_pendent) {
                                           $preu = $import_pendent;
-                                          $pendents = ceil($preu / preu_persona_grups);
+                                          $pendents = ceil($preu / $preu_persona);
                                         }
-                                        
-                                        
+                                       // echo $import." / ".$preu_persona;
+                                       // $pendents=$import_pendent;
                                         $preu = number_format($preu,2);
                                         
                                         
@@ -655,7 +658,9 @@ $responaseok_callback_alter = "reserva_grups_tpv_ok_callback";
                                                 </td>
                                                 <td   class="llista"><div  class="estat">
                                                         <div id="coberts_parcial" class="Estilo2"><input id="ncoberts" name="ncoberts" type="number" min="1" max="<?php echo $pendents; ?>" value="<?php echo $pendents; ?>" placeholder="Coberts"> Coberts </div>
-                                                    </div></td>
+                                                    </div>
+                                                    <i><?php echo $preu_persona."€ ";l(" persona"); ?></i>
+                                                </td>
                                             </tr>
                                             <tr class="preu">
                                                 <td   class="Estilo2"><?php l("Import a pagar"); ?></td>

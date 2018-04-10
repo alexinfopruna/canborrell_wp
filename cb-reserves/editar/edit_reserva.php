@@ -97,7 +97,8 @@ if ((isset($_POST["MM_update"])) && ($_POST["MM_update"] == "form1")) {
    Gestor::xgreg_log("Valor anterior:<br>$anterior",1,'/log/logGRUPS.txt');
   $coberts = $_POST['adults'] + $_POST['nens10_14'] + $_POST['nens4_9'];
    if ($_POST['estat']!=$row_Recordset1['estat']) $avis="\\n\\nL`estat de la reserva passarà de ".$estat[$row_Recordset1['estat']]." a ".$estat[$_POST['estat']];
-if ($_POST['preu_reserva']!=($coberts) * preu_persona_grups) $avis .= "\\n\\nEl preu (".$_POST['preu_reserva'].") no escorrespon amb els coberts ($coberts)";
+$preu_persona = $pagaments->get_preu_persona_reserva();
+   if ($_POST['preu_reserva']!=($coberts) * $preu_persona) $avis .= "\\n\\nEl preu (".$_POST['preu_reserva'].") no escorrespon amb els coberts ($coberts)";
 if ($pagat>$row_Recordset1['preu_reserva']) $avis .= "\\n\\nS`ha pagat un import ($pagat) superior a la reserva (".$_POST['preu_reserva'].")";
 if ($pagat && $_POST['estat']!=3 && $_POST['estat']!=7) $avis .= "\\n\\nS'han realitzat pagaments d'aquesta reserva i l'estat (".$estat[$_POST['estat']].") no ho reflexa";
 

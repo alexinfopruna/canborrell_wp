@@ -332,6 +332,7 @@ td{border:white solid 3px;}
           $pagat = $pagaments->get_total_import_pagaments($row_DetailRS1['id_reserva']);
           
           echo $row_DetailRS1['preu_reserva']."€ / Pagats <b> $pagat € ($pagats coberts)</b> / ".$factura; ?> 
+                  <?php echo "Preu per persona=".$pagaments->get_preu_persona_reserva($row_DetailRS1['id_reserva']);?>€
                       <table>
                     <?php                                              
                     $llista_pagaments = $pagaments->get_llistat_pagaments($row_DetailRS1['id_reserva']);

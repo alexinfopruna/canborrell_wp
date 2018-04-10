@@ -1459,7 +1459,7 @@ WHERE  `client`.`client_id` =$idc;
   private function reserva_grups_tpv_ok_callback($idrl, $amount, $pdata, $phora) {
     
     
-    $this->xgreg_log("reserva_grups_tpv_ok_callback ++ $idr", 1, LOG_FILE_TPVPK, FALSE);
+    $this->xgreg_log("reserva_grups_tpv_ok_callback ++ $idrl", 1, LOG_FILE_TPVPK, FALSE);
 
     $idr = substr($idrl, -4);
     $query = "SELECT estat, client_email, data, hora, tel, lang, adults, nens10_14, nens4_9, preu_reserva, data_limit "

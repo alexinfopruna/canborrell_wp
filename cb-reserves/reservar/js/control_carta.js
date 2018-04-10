@@ -144,6 +144,7 @@ function updateMenu()
 
 function updateCarta(menu)
 {
+
 	var clas=(menu=="menu")?".cmenu":".ccarta";
 	var clasBorra=(menu!="menu")?".cmenu":".ccarta";
 	if (menu=="inici") clasBorra="noborrisres";

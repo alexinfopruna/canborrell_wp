@@ -18,8 +18,10 @@ define('USR_FORM_WEB', 3); //ES LA ID D'USUARI (admin) ANONIM QUE CREA RESERVA O
 if (!isset($_SESSION))
   session_start();
 $usr = new Usuari(USR_FORM_WEB, "webForm", 1);
-if (!isset($_SESSION['uSer']))
-  $_SESSION['uSer'] = $usr;
+
+if (!isset($_SESSION['uSer']))  $_SESSION['uSer'] = $usr;
+
+
 
 require (ROOT . "../reservar/Gestor_form.php");
 $gestor = new Gestor_form();
@@ -82,6 +84,15 @@ $row['client_id'] = null;
 $row['data'] = null;
 $row['hora'] = null;
 $row['observacions'] = null;
+
+if($_SESSION['uSer']->permisos==255){
+  $row['client_mobil']="999212121";
+  $row['client_email']="alexbasurilla@gmail.com";
+  $row['client_nom'] = "Àlex";
+  $row['client_cognoms'] = "Garcia";
+}
+
+
 
 $g = $gestor;
 add_action('wp_enqueue_scripts', 'reservar_enqueue_styles');

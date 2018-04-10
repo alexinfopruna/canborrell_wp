@@ -48,7 +48,7 @@ class Gestor_pagaments extends gestor_reserves {
     if (!$this->total_rows = mysqli_num_rows($this->qry_result))   {
       $reserva = $this->load_reserva($reserva_id, 'reserves');
       if ($reserva['estat']==3 || $reserva['estat']==7 ){
-        $coberts = $reserva['preu_reserva'] / preu_persona_grups;
+        $coberts = $reserva['preu_reserva'] /  $this->get_preu_persona_reserva();
       }
     }
    
@@ -121,8 +121,10 @@ class Gestor_pagaments extends gestor_reserves {
    public function get_estat_pagament($order){
     $query = "SELECT * FROM `pagaments_grups` WHERE `pagaments_grups_redsys_id` = " . $order;
     $this->qry_result = mysqli_query($this->connexioDB, $query) or die(((is_object($GLOBALS["___mysqli_ston"])) ? mysqli_error($GLOBALS["___mysqli_ston"]) : (($___mysqli_res = mysqli_connect_error()) ? $___mysqli_res : false)));
+    
     if (!$this->total_rows = mysqli_num_rows($this->qry_result))  return NULL;
     $row = mysqli_fetch_assoc($this->qry_result);  
+    
     if ($row['pagaments_grups_resposta_tpv']==="") $row['pagaments_grups_resposta_tpv']="NULL";
     return $row['pagaments_grups_resposta_tpv'];
   }
@@ -153,7 +155,7 @@ class Gestor_pagaments extends gestor_reserves {
      
     if (!$this->total_rows = mysqli_num_rows($this->qry_result))  {
       $reserva = $this->load_reserva($idr, "reserves");
-      $this->afegir_pagament($order, $idr, $import, preu_persona_grups, 'sense_nom');
+      $this->afegir_pagament($order, $idr, $import, $this->get_preu_persona_reserva(), 'sense_nom');
     }
 
     $query="UPDATE `pagaments_grups` SET `pagaments_grups_resposta_tpv` = '$resposta',  pagaments_grups_import = '$import' WHERE `pagaments_grups`.`pagaments_grups_redsys_id` = $order;";
@@ -168,6 +170,32 @@ class Gestor_pagaments extends gestor_reserves {
   }
   
 
+  /*   * ************************************************ 
+    public function get_preu_presona_reserva($reserva_id=0) {
+      if (!$reserva_id) return preu_persona_grups;
+      
+      return preu_persona_grups;
+    }
+*/
+  
+   public function get_preu_persona_reserva($reserva_id=0) {
+     if (!$reserva_id) return preu_persona_grups;
+   // $query = "SELECT preu_persona FROM reserves WHERE id_reserva=$reserva_id";
+    // $query = "SELECT preu_reserva, (adults + nens4_9 + nens10_14) AS comensals FROM reserves WHERE id_reserva=$reserva_id";
+     $query = "SELECT preu_persona FROM reserves WHERE id_reserva=$reserva_id";
+     
+    $this->qry_result=mysqli_query($this->connexioDB, $query); 
+    $row = mysqli_fetch_assoc($this->qry_result);
+    /**
+    echo $row['preu_reserva'];
+    echo $row['comensals'];
+    return $row['preu_reserva'] / $row['comensals'];
+*/
+
+    return $row['preu_persona']?$row['preu_persona']:preu_persona_grups;
+   }
+  
+  
   /*   * ************************************************ */
 
   public function calcula_preu_grups($comensals) {

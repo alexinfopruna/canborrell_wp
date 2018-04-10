@@ -263,6 +263,12 @@ function comportamentQuantsSou()
     $("#selectorComensals").change(function () {
         $("input[name='adults']").val($("input[name='selectorComensals']:checked").val());
         var comensals = totalPersones();
+        if (comensals >= PERSONES_GRUP) {
+            monta_calendari("#calendari");
+             comportamentDia();
+             recargaHores();
+          }
+
         $("#selectorComensals").buttonset("destroy");
         $("#selectorComensals").buttonset();
         $.scrollTo("#titol_SelectorJuniors", 600);
@@ -278,7 +284,13 @@ function comportamentQuantsSou()
         val = $("input[name='adults']").val();
         $("input[name='selectorComensals']:checked").prop("checked", false).button("refresh");
         $("#com" + val).prop("checked", "true").button("refresh");
-        totalPersones();
+        var comensals = totalPersones();
+        if (comensals >= PERSONES_GRUP) {
+            monta_calendari("#calendari");
+             comportamentDia();
+             recargaHores();
+          }
+
         $.scrollTo("#titol_SelectorJuniors", 600);
         return false;
     });
@@ -286,7 +298,13 @@ function comportamentQuantsSou()
     //JUNIORS
     $("input[name=selectorJuniors]").change(function () {
         $("input[name='nens10_14']").val($("input[name='selectorJuniors']:checked").val());
-        totalPersones();
+        var comensals = totalPersones();
+        if (comensals >= PERSONES_GRUP) {
+            monta_calendari("#calendari");
+             comportamentDia();
+             recargaHores();
+          }
+
         $.scrollTo("#titol_SelectorNens", 600);
         return false;
     });
@@ -295,7 +313,13 @@ function comportamentQuantsSou()
         val = $("input[name='nens10_14']").val();
         $("input[name='selectorJuniors']:checked").prop("checked", false).button("refresh");
         $("#junior" + val).prop("checked", "true").button("refresh");
-        totalPersones();
+        var comensals = totalPersones();
+        if (comensals >= PERSONES_GRUP) {
+            monta_calendari("#calendari");
+             comportamentDia();
+             recargaHores();
+          }
+
         $.scrollTo("#titol_SelectorNens", 600);
         return false;
     });
@@ -303,7 +327,13 @@ function comportamentQuantsSou()
     //NENS
     $("input[name=selectorNens]").change(function () {
         $("input[name='nens4_9']").val($("input[name='selectorNens']:checked").val());
-        totalPersones();
+         var comensals = totalPersones();
+        if (comensals >= PERSONES_GRUP) {
+            monta_calendari("#calendari");
+             comportamentDia();
+             recargaHores();
+          }
+
         $.scrollTo("#titol_SelectorCotxets", 600);
         return false;
     });
@@ -312,8 +342,14 @@ function comportamentQuantsSou()
         val = $("input[name='nens4_9']").val();
         $("input[name='selectorNens']:checked").prop("checked", false).button("refresh");
         $("#nens" + val).prop("checked", "true").button("refresh");
-        totalPersones();
-        $.scrollTo("#titol_SelectorCotxets", 600);
+        var comensals = totalPersones();
+        if (comensals >= PERSONES_GRUP) {
+            monta_calendari("#calendari");
+             comportamentDia();
+             recargaHores();
+          }
+
+            $.scrollTo("#titol_SelectorCotxets", 600);
         return false;
     });
 
@@ -341,10 +377,8 @@ function totalPersones()
     var total = na + nj + nn;
 
     $("input[name='totalComensals']").val(total);
-    if (total >= PERSONES_GRUP) {
-        monta_calendari("#calendari");
-        comportamentDia();
-    }
+    
+    
 
     updateResum();
     return total;
@@ -385,7 +419,7 @@ function comportamentDia()
 
         $("#resum-data").html($("#calendari").val());
         $("#valida_calendari").val($("#calendari").val());
-        $("#form-reserves").validate().element("#valida_calendari");
+        var validator = $("#form-reserves").validate().element("#valida_calendari");
 
         updateResum();
         updateMenus(); // excepció pels dies 26/12 - 1/1 - 6/1
@@ -684,6 +718,7 @@ function monta_calendari(selector)
     $(selector).datepicker("option",
             $.datepicker.regional[ lng ]);
 
+    $(selector).datepicker('setDate', null);
     $('.ui-datepicker-calendar .ui-state-active').removeClass('ui-state-active');
     $('.ui-datepicker-calendar .ui-state-hover').removeClass('ui-state-hover');
 
@@ -752,13 +787,12 @@ function validacio()
 {
     
     $.validator.addMethod("menus_comensals", function (value, element) {
-        var totalComansals = parseInt($("#totalComensals").val());
-        //var totalPersones = totalPersones();
+        //var totalComansals = parseInt($("#totalComensals").val());
+        var totalComansals = totalPersones();
         var value = parseInt(value);
-        //shouldElementBeVisible = totalPersones<=20;
-        shouldElementBeVisible =  $("input[name='adults']").val()<=20;
-       // alert(SELECT_CARTA);
-        if (shouldElementBeVisible && SELECT_CARTA) return true;
+        if (totalComansals<=20) return true;
+        //shouldElementBeVisible =  $("input[name='adults']").val()<=20;
+        //if (shouldElementBeVisible && SELECT_CARTA) return true;
         return (value >= totalComansals);
     }, l('MENUS_COMENSALS'));
 
@@ -848,11 +882,41 @@ function validacio()
 /********************************************************************************************************************/
 function controlSubmit()
 {
-    /**/
-    $('#submit').click(function () {
-        if (!$("#form-reserves").valid())
+    $('#submit').click(function (e) {
+        if (!$("#valida_calendari").valid()){
+            e.preventDefault();
             return false;
+        }
+            
 
+        if (!$("#te-comanda").valid()){
+            e.preventDefault();
+            return false;
+        }
+
+        if (!$("#valida_calendari").valid()){
+            e.preventDefault();
+            return false;
+        }
+        
+        if (!$("#calendari").datepicker("getDate")){
+            errors = { selectorData: "Indica dia" };
+        /* Show errors on the form */
+        alert("Has d'indicar una data");
+            validator.showErrors(errors);            
+            e.preventDefault();
+            return false;
+        }
+        if (!$("input[name='selectorHora']:checked").val()){
+            errors = { selectorHora: "Indica Hora" };
+
+            validator.showErrors(errors);            
+            e.preventDefault();
+            return false;
+        }
+
+
+            
         clearInterval(th);
 
         $("#popup").html('<div style="height:420px"><img src="/cb-reserves/reservar/css/loading.gif"/></div>');
@@ -864,16 +928,12 @@ function controlSubmit()
                 dades = '{"resposta":"ko","error":"err0","email":false}';
             $('.ui-dialog-buttonset').show();
             var obj = JSON.parse(dades);
-//alert(dades);
             if (obj.resposta == "ok")
             {
                 $("#popup").html($("#popupInfo").html() + $(".resum").html());
                 $("#popup").bind("dialogclose", function (event, ui) {
-                    //window.location.href = "../" + lang + "/on.html";
                     window.location.href = "../../#about";
-                    //return false;
                 });
-                //return false;
             }
             else
             {
@@ -882,10 +942,8 @@ function controlSubmit()
                 if (obj && obj.error)
                     err = l('err' + obj.error);
                 $("#popup").html("ERROR: " + err);
-                //alert("ERROR: "+err); 
             }
             $("#popup").dialog('open');
-            //return false;
         });
 
         return false;

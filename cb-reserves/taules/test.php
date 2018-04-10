@@ -29,20 +29,18 @@ class Test extends gestor_reserves {
   }
   
   public function run(){
-    //  $grups=new Gestor_grups();
-   //   $pagament=new Gestor_pagaments();  
-      //echo $pagament->calcula_preu_grups(22);
+      $grups=new Gestor_grups();
+      $pagament=new Gestor_pagaments();  
+      echo $pagament->get_preu_presona_reserva2(3050);
       //$pagament->afegir_pagament(1233047, 3047, 36, preu_persona_grups, "manolo");
      // $pagament->validar_pagament(1233047,  99);
-      echo "WWW";
-      $gestor=new Gestor_form();  
-      $gestor->reserva_grups_tpv_ok_callback("3051", "36", "2018-02-02", "14:00:00") ;
+     // $gestor=new Gestor_form();  
+     // $gestor->reserva_grups_tpv_ok_callback("3051", "36", "2018-02-02", "14:00:00") ;
    }
 }
   
   
   $t=new test();
-   echo "WWW";
   $t->run();
 ?>
 <html xmlns="//www.w3.org/1999/xhtml" xml:lang="es" lang="es">
