@@ -254,7 +254,8 @@ td a:hover {color:white}
     </tr>
     <tr valign="baseline">
       <td align="right" valign="top" nowrap bgcolor="#333333" class="Estilo2"><span class="Estilo8">Observacions:</span></td>
-      <td width="300" bgcolor="#CCCCCC" class="llista"><input name="observacions" type="text" value="<?php echo $row_Recordset1['observacions']; ?>" size="32"></td>
+      <td width="300" bgcolor="#CCCCCC" class="llista"><textarea name="observacions" cols="10" rows="6"><?php echo $row_Recordset1['observacions']; ?></textarea>
+          </td>
     </tr>
     <tr valign="baseline">
       <td align="right" valign="top" nowrap bgcolor="#333333" class="Estilo2">Resposta</td>
