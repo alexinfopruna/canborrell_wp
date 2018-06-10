@@ -9,15 +9,17 @@
 if (!defined('ROOT'))
   define('ROOT', "");
 
-if (isset($_GET['f']))   define("LLISTA_DIES_NEGRA",  $_GET['f']);
-if (isset($_GET['fblanc']))   define("LLISTA_DIES_BLANCA",  $_GET['fblanc']);
+if (isset($_GET['f']))
+  define("LLISTA_DIES_NEGRA", $_GET['f']);
+if (isset($_GET['fblanc']))
+  define("LLISTA_DIES_BLANCA", $_GET['fblanc']);
 
 
 require_once(ROOT . "gestor_reserves.php");
 if (!defined('LLISTA_DIES_NEGRA'))
   define("LLISTA_DIES_NEGRA", ROOT . INC_FILE_PATH . "llista_dies_negra.txt");
 if (!defined('LLISTA_NITS_NEGRA'))
-  define("LLISTA_NITS_NEGRA", ROOT . INC_FILE_PATH . "llista_nits_negra.txt");  
+  define("LLISTA_NITS_NEGRA", ROOT . INC_FILE_PATH . "llista_nits_negra.txt");
 if (!defined('LLISTA_DIES_BLANCA'))
   define("LLISTA_DIES_BLANCA", ROOT . INC_FILE_PATH . "llista_dies_blanca.txt");
 
@@ -27,31 +29,31 @@ class Gestor_calendari extends Gestor {
     parent::__construct($db_connection_file, $usuari_minim);
   }
 
-  public function click($data){
-    $data =  str_replace('/', '-', $data);
+  public function click($data) {
+    $data = str_replace('/', '-', $data);
     $data = Gestor::cambiaf_a_mysql($data);
     $data = Gestor::cambiaf_a_normal($data);
-    
+
     $llista = $this->get_llista_dies();
-    
-    if (isset($llista[$data])){
-      $estat = $llista[$data]=='tancat'?'obert':null;
+
+    if (isset($llista[$data])) {
+      $estat = $llista[$data] == 'tancat' ? 'obert' : null;
     }
-    else{
-      $estat="tancat";
+    else {
+      $estat = "tancat";
     }
-    
+
     $llista[$data] = $estat;
     $llista2 = $this->guarda_fitxer_dies(LLISTA_DIES_BLANCA, $llista, "obert");
     $llista3 = $this->guarda_fitxer_dies(LLISTA_DIES_NEGRA, $llista, "tancat");
   }
-  
+
   public function get_llista_dies() {
     $llista = array();
 
     $llista = $this->llegir_fitxer_dies(LLISTA_DIES_NEGRA, $llista, "tancat");
     $llista = $this->llegir_fitxer_dies(LLISTA_DIES_BLANCA, $llista, "obert");
-    
+
     return $llista;
   }
 
@@ -60,7 +62,7 @@ class Gestor_calendari extends Gestor {
     if ($handle) {
       while (($line = fgets($handle)) !== false) {
         $line = trim($line);
-        
+
         $llista[$line] = $val;
       }
       fclose($handle);
@@ -83,15 +85,16 @@ class Gestor_calendari extends Gestor {
     $filteredArray = $arr;
     //ksort($filteredArray);
 //print_r($filteredArray);
-    $fp = fopen($file  , 'w');
+    $fp = fopen($file, 'w');
     foreach ($filteredArray as $key => $value) {
- 
+
       $key = str_replace("/", "-", $key);
-    //$key = Gestor::cambiaf_a_mysql($key);
-    $key = Gestor::cambiaf_a_normal($key);
-      
-      
-      if ($key!=null) $text .= $key . "\n";
+      //$key = Gestor::cambiaf_a_mysql($key);
+      $key = Gestor::cambiaf_a_normal($key);
+
+
+      if ($key != null)
+        $text .= $key . "\n";
     }
     echo " $text $val";
     fwrite($fp, $text) or die("Could not write file! $file");
@@ -106,6 +109,78 @@ class Gestor_calendari extends Gestor {
 
   private function filterArraytancat($value) {
     return ($value == "tancat");
+  }
+
+  /*   * **************************************************************************************************** */
+  /*   * **************************************************************************************************** */
+  /*   * **************************************************************************************************** */
+  /*   * **************************************************************************************************** */
+  /*   * **************************************************************************************************** */
+  /*   * **************************************************************************************************** */
+  /*   * **************************************************************************************************** */
+
+  ///// 2.0
+
+  public function crea_llista_js($group = "small") {
+    $dies = $this->llegir_dies($group);
+    return $js = json_encode($dies);
+  }
+
+  private function llegir_dies($group = "small") {
+    $query = "SELECT  * FROM dies_especials_$group ";
+    $this->qry_result = mysqli_query($this->connexioDB, $query) or die(((is_object($GLOBALS["___mysqli_ston"])) ? mysqli_error($GLOBALS["___mysqli_ston"]) : (($___mysqli_res = mysqli_connect_error()) ? $___mysqli_res : false)));
+    if (!$this->total_rows = mysqli_num_rows($this->qry_result)) {
+      return false;
+    }
+
+    $rows = mysqli_fetch_all($this->qry_result, MYSQLI_ASSOC);
+    return $this->dies_especials = $rows;
+  }
+
+  public function print_llista($group = "small", $tipus = "black") {
+    $llista = "";
+    $query = "SELECT  * FROM dies_especials_$group WHERE dies_especials_tipus = '$tipus' ";
+
+    $this->qry_result = mysqli_query($this->connexioDB, $query) or die(((is_object($GLOBALS["___mysqli_ston"])) ? mysqli_error($GLOBALS["___mysqli_ston"]) : (($___mysqli_res = mysqli_connect_error()) ? $___mysqli_res : false)));
+    if (!$this->total_rows = mysqli_num_rows($this->qry_result)) {
+      return false;
+    }
+
+    while ($row = mysqli_fetch_assoc($this->qry_result)) {
+      $class = ($tipus == 'black') ? 'negra' : 'blanca';
+      $llista .= '<li class="fila ' . $class . '">' . $row['dies_especials_data'] . '</li>';
+    }
+
+
+    return $llista;
+  }
+
+  public function toggle($group, $data) {
+    $mydata = Gestor::cambiaf_a_mysql($data);
+
+    $query = "SELECT  * FROM dies_especials_$group WHERE dies_especials_data = '$mydata' ";
+    
+    $this->qry_result = mysqli_query($this->connexioDB, $query) or die(((is_object($GLOBALS["___mysqli_ston"])) ? mysqli_error($GLOBALS["___mysqli_ston"]) : (($___mysqli_res = mysqli_connect_error()) ? $___mysqli_res : false)));
+    if (!$this->total_rows = mysqli_num_rows($this->qry_result)) {
+
+      $query = "INSERT INTO dies_especials_$group VALUES ('$mydata', 'black')";
+      $this->qry_result = mysqli_query($this->connexioDB, $query) or die(((is_object($GLOBALS["___mysqli_ston"])) ? mysqli_error($GLOBALS["___mysqli_ston"]) : (($___mysqli_res = mysqli_connect_error()) ? $___mysqli_res : false)));
+
+    }
+    else {
+      $row = mysqli_fetch_assoc($this->qry_result);
+      if ($row['dies_especials_tipus'] == 'black') {
+
+        $query = "UPDATE dies_especials_$group SET dies_especials_tipus='white' WHERE dies_especials_data = '$mydata'";
+        $this->qry_result = mysqli_query($this->connexioDB, $query) or die(((is_object($GLOBALS["___mysqli_ston"])) ? mysqli_error($GLOBALS["___mysqli_ston"]) : (($___mysqli_res = mysqli_connect_error()) ? $___mysqli_res : false)));
+      }
+      else {
+
+        $query = "DELETE FROM dies_especials_$group  WHERE dies_especials_data = '$mydata'";
+        $this->qry_result = mysqli_query($this->connexioDB, $query) or die(((is_object($GLOBALS["___mysqli_ston"])) ? mysqli_error($GLOBALS["___mysqli_ston"]) : (($___mysqli_res = mysqli_connect_error()) ? $___mysqli_res : false)));
+      }
+    }
+    echo $query;die();
   }
 
 }

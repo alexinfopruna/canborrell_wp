@@ -7,8 +7,9 @@
 defined('ROOT') or define('ROOT', '../taules/');
 
 
-require_once(ROOT . "gestor_reserves.php");
-$gestor = new gestor_reserves();
+//require_once(ROOT . "Gestor_reserves.php");
+require_once(ROOT . "Gestor_calendari.php");
+$gestor = new Gestor_calendari();
 if (!$gestor->valida_sessio(64)) {
   header("Location: login.php");
   die();
@@ -21,30 +22,14 @@ $LLISTA_DIES_NEGRA = LLISTA_DIES_NEGRA;
 if (isset($_GET['f'])) $LLISTA_DIES_NEGRA = $_GET['f'];
 
 
-require_once(ROOT . INC_FILE_PATH . "llista_dies_taules.php");
+
 require_once(ROOT . '../reservar/translate_ca.php');
 
 $data=isset($_GET['data'])?$_GET['data']:date("d-m-Y");
 $d= date_parse_from_format ("d-m-Y", $data );
 $mydata=$d['year'].'-'.$d['month'].'-'.$d['day'];
 
-function read_llista($file, $class){
-  $blanca="";
-  $handle = fopen($file, "r");
-if ($handle) {
-    while (($line = fgets($handle)) !== false) {
-        // process the line read.
-      
-      $blanca.= '<li class="fila '.$class.'">'. $line.'</li>';
-    }
 
-    fclose($handle);
-} else {
-  die ("FILE ERROR: ".$file);
-    // error opening the file.
-} 
-  return $blanca;
-}
 
 $path_parts = pathinfo($LLISTA_DIES_NEGRA);
 $filename = $path_parts['filename'];
@@ -60,7 +45,10 @@ $info="";
  
  $path_parts = pathinfo(LLISTA_DIES_BLANCA);
 $filenameb = $path_parts['filename'];
-$info=""
+$info="";
+
+$group = (substr($LLISTA_DIES_NEGRA,-10)=="_grups.txt")?"group":"small";
+
  
 ?><!DOCTYPE HTML>
 <html>
@@ -129,7 +117,7 @@ $info=""
               
                     <ul id="llista_blanca">
                           <?php echo $filenameb ?>
-                  <?php echo read_llista(LLISTA_DIES_BLANCA, "blanca");?>
+                  <?php echo $gestor->print_llista($group,"white");?>
                 </ul>
         </div>
         
@@ -137,7 +125,7 @@ $info=""
                         
                     <ul id="llista-negra">
                         <?php echo $filename ?>
-                  <?php echo read_llista($LLISTA_DIES_NEGRA, "negra");?>
+                  <?php echo $gestor->print_llista($group,"black");?>
                 </ul>
         </div>
 </div>
@@ -145,16 +133,27 @@ $info=""
     <script>
       
 <?php 
+                           // $llista = $gestor->llegir_dies("small");
+                            
+                            
+                            /*
                             $llista_negra=llegir_dies($LLISTA_DIES_NEGRA);
                             $llista_blanca=llegir_dies(LLISTA_DIES_BLANCA);
                             print crea_llista_js($llista_negra,"LLISTA_NEGRA"); 
                             print "\n\n";	
-                            print crea_llista_js($llista_blanca,"LLISTA_BLANCA");  	
+                            print crea_llista_js($llista_blanca,"LLISTA_BLANCA");  	*/
 ?>      
       var DATA=new Date("<?php echo $mydata ?>");
+      /**/
       var FNEGRE="<?php echo $LLISTA_DIES_NEGRA ?>";
       var FBLANC="<?php echo LLISTA_DIES_BLANCA ?>";
-              
+      var GRUP= "<?php echo $group ?>";
+
+  
+      var DIES_ESPECIALS = <?php print $gestor->crea_llista_js($group); ?>;
+             
+             
+             
       $(function () {
           monta_calendari("#calendari");
       });
@@ -210,7 +209,8 @@ $info=""
         if ($(".ui-datepicker-current-day").hasClass('normal')) accio="obert";
         //accio="obert";
         DATA=dateText;
-        desti="../taules/Gestor_calendari.php?a=click&b="+DATA+"&c="+accio+"&f="+FNEGRE+"&fblanc="+FBLANC;
+        //desti="../taules/Gestor_calendari.php?a=click&b="+DATA+"&c="+accio+"&f="+FNEGRE+"&fblanc="+FBLANC;
+        desti="../taules/Gestor_calendari.php?a=toggle&b="+GRUP+"&c="+DATA;
         
         $.post(desti,dades,callback);
     },
@@ -240,45 +240,39 @@ $info=""
 
       var callback = function(dades){
         $(".overlay").show();
-       window.location.href="gestio_calendari.php?data="+DATA+"&f="+FNEGRE+"&fblanc="+FBLANC;
+      // window.location.href="gestio_calendari.php?data="+DATA+"&f="+FNEGRE+"&fblanc="+FBLANC;
       }
+      
+      
+      function llistanegra( date){
+        var found=false;
+        
+        DIES_ESPECIALS.forEach(function (arrayItem) {
+          var dateParts = arrayItem.dies_especials_data.split("-");
+var jsdate = new Date(dateParts[0], dateParts[1] - 1, dateParts[2].substr(0,2));
+          if (jsdate.getTime() == date.getTime() && arrayItem.dies_especials_tipus == "black") found = true;
+});
 
-      function llistanegra(date)
-      {
-//return false;
-          var y = date.getFullYear();
-          var m = date.getMonth();     // integer, 0..11
-          var d = date.getDate();      // integer, 1..31
-
-          var t = LLISTA_NEGRA[m];
-
-          if (!t)
-              return false;
-          for (var i in t)
-              if (t[i] == d)
-                  return true;
-
-          return false;
+          return found;
       }
+      
+
+
 
       /********************************************************************************************************************/
-      function llistablanca(date)
-      {
-          var y = date.getFullYear();
-          var m = date.getMonth();     // integer, 0..11
-          var d = date.getDate();      // integer, 1..31
+      function llistablanca(date){
+        var found=false;
+        
+        DIES_ESPECIALS.forEach(function (arrayItem) {
+          var dateParts = arrayItem.dies_especials_data.split("-");
+var jsdate = new Date(dateParts[0], dateParts[1] - 1, dateParts[2].substr(0,2));
+          if (jsdate.getTime() == date.getTime() && arrayItem.dies_especials_tipus == "white") found = true;
+});
 
-          var t = LLISTA_BLANCA[m];
-
-          if (!t)
-              return false;
-          for (var i in t)
-              if (t[i] == d)
-                  return true;
-
-
-          return false;
+          return found;
       }
+      
+
 
       /********************************************************************************************************************/
 

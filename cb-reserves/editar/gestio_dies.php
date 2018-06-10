@@ -1,6 +1,6 @@
 <?php
 header('Content-Type: text/html; charset=UTF-8');
-
+echo "OBSOLET!  ";die();
 if (!defined('ROOT')) define('ROOT', "../taules/");
 require_once(ROOT."gestor_reserves.php");
 $gestor=new gestor_reserves();   
@@ -14,12 +14,11 @@ require_once(ROOT . INC_FILE_PATH."llista_dies_taules.php");
 $fitxer=ROOT . INC_FILE_PATH."llista_dies_negra.txt";
 
 if (isset($_GET['f'])) $fitxer=$_GET['f'];
-
-//$dies=llegir_dies($fitxer);
-
 if (isset($_POST["bloq"]))
 {
 
+  
+    
   $dat=$_POST["datab"];
   $dat.="\n";
       $gestor->xgreg_log("<span class='grups'>Bloqueja dia GRUPS: <span class='idr'>".$_POST["bloq"]."</span> > $dat </span>",0,'/log/logGRUPS.txt');
