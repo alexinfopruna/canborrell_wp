@@ -54,6 +54,7 @@ static $TOTES_HORES =array("", "11:00", "11:15", "11:30", "11:45",
 
 
     $where_data = $this->mountWhereDate($data);
+    
     $where = $where_data . $where_adults . $where_nens . $where_cotxets;
 //$where = $where_data . $where_adults . " AND (restriccions_adults='Parell' OR restriccions_adults='Senar' OR TRUE $where_nens)" . $where_cotxets;
 //$order = "ORDER BY restriccions_data DESC, restriccions_data = restriccions_datafi";
@@ -282,9 +283,14 @@ $order
   private function mountWhereDate($data) {
     // $dates=llegir_dies(LLISTA_DIES_BLANCA);
     // echo LLISTA_DIES_BLANCA;
-    $dates = file(LLISTA_DIES_BLANCA);
+    //$dates = file(LLISTA_DIES_BLANCA);
+    $dates[0]["dies_especials_data"]= '2010-01-01';
+    $query = "SELECT dies_especials_data FROM dies_especials_small WHERE dies_especials_tipus ='white'";
+    $Result1 = mysqli_query($this->connexioDB, $query) or die(((is_object($GLOBALS["___mysqli_ston"])) ? mysqli_error($GLOBALS["___mysqli_ston"]) : (($___mysqli_res = mysqli_connect_error()) ? $___mysqli_res : false)));
+    $nr = mysqli_num_rows($Result1); 
+    if ($nr) $dates = mysqli_fetch_all($Result1, MYSQLI_ASSOC);
     foreach ($dates as $k => $value) {
-      $dates[$k] = "'" . Gestor::cambiaf_a_mysql($value) . "'";
+      $dates[$k] = "'" . Gestor::cambiaf_a_mysql($value["dies_especials_data"]) . "'";
     }
     $indates = implode(", ", $dates);
     $whereindates = " OR '$data' IN ($indates) ";
@@ -301,7 +307,6 @@ $order
 
     $r = json_encode($diaBin);
     $where .= " AND ((restriccions_data <> '2011-01-01' AND restriccions_data = restriccions_datafi) OR (restriccions_dies & $diaBin > 0) $whereindates  ) ";
-
     return $where;
   }
 

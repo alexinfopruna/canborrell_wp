@@ -4,7 +4,7 @@
 require_once("gestor_reserves.php");
 $gestor=new gestor_reserves();   
 if (!$gestor->valida_sessio())  header("Location: index.php");
-
+echo 'OBSOLET <a href="/cb-reserves/panel/gestio_calendari.php">Nova versió</a>';die();
 
 require_once(ROOT . INC_FILE_PATH."llista_dies_taules.php");
 $fitxer=ROOT . INC_FILE_PATH."llista_dies_blanca.txt";

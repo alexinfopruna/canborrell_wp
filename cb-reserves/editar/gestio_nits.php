@@ -6,6 +6,7 @@ require_once(ROOT . INC_FILE_PATH.'alex.inc');valida_admin('editar.php') ;
 require(ROOT . INC_FILE_PATH."llista_dies.php");
 $fitxer=ROOT . INC_FILE_PATH."bloq_nit.txt";
 
+echo 'OBSOLET <a href="/cb-reserves/panel/gestio_calendari.php">Nova versió</a>';die();
 
 if (isset($_POST["bloq"]))
 {

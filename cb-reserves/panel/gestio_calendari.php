@@ -16,7 +16,7 @@ if (!$gestor->valida_sessio(64)) {
 }
 
 if (!defined('LLISTA_NITS_NEGRA'))  define("LLISTA_NITS_NEGRA", ROOT . INC_FILE_PATH . "llista_dies_negra.txt");
-if (!defined('LLISTA_DIES_BLANCA'))  define("LLISTA_DIES_BLANCA", ROOT . INC_FILE_PATH . "llista_dies_blanca.txt");
+  if (!defined('LLISTA_DIES_BLANCA'))  define("LLISTA_DIES_BLANCA", ROOT . INC_FILE_PATH . "llista_dies_blanca.txt");
 $LLISTA_DIES_NEGRA = LLISTA_DIES_NEGRA;
 
 if (isset($_GET['f'])) $LLISTA_DIES_NEGRA = $_GET['f'];
@@ -90,18 +90,31 @@ $group = (substr($LLISTA_DIES_NEGRA,-10)=="_grups.txt")?"group":"small";
  background-color: white;
 }
 
+.nav {padding:0;}
+.navbar-header{margin-right:25px;}
         </style>
 
 
     </head>
     <body style="">
-        <h1>Control de dies obert / tancat</h1>
+        
             <!--<div>
                 Llista negra: <?php echo $LLISTA_DIES_NEGRA ?><br>
         Llista blanca: <?php echo LLISTA_DIES_BLANCA ?>
 
         </div>-->
         
+            
+<nav class="navbar navbar-default">
+    <h2 class="navbar-header">      Control de dies obert / tancat </h2>
+    <ul class="nav navbar-nav">
+      <li class="<?php echo $group=="small"?'active':"" ?>"><a href="gestio_calendari.php?f=llista_dies_negra.txt">Petites</a></li>
+      <li class="<?php echo $group=="group"?'active':"" ?>"><a href="gestio_calendari.php?f=llista_dies_negra_grups.txt">Grups</a></li>
+     
+    </ul>
+</nav>            
+            
+            
         <h3 class="alert alert-warning"><?php echo $info ?></h3>
         <div class="alert alert-info">
         <p>Fent click els dies canvies d'estat normal > obert > tancat</p>
@@ -240,7 +253,7 @@ $group = (substr($LLISTA_DIES_NEGRA,-10)=="_grups.txt")?"group":"small";
 
       var callback = function(dades){
         $(".overlay").show();
-      // window.location.href="gestio_calendari.php?data="+DATA+"&f="+FNEGRE+"&fblanc="+FBLANC;
+       window.location.href="gestio_calendari.php?data="+DATA+"&f="+FNEGRE+"&fblanc="+FBLANC;
       }
       
       

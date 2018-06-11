@@ -1,6 +1,7 @@
 <?php
 header('Content-Type: text/html; charset=UTF-8');
-echo "OBSOLET!  ";die();
+echo 'OBSOLET <a href="/cb-reserves/panel/gestio_calendari.php">Nova versió</a>';die();
+
 if (!defined('ROOT')) define('ROOT', "../taules/");
 require_once(ROOT."gestor_reserves.php");
 $gestor=new gestor_reserves();   

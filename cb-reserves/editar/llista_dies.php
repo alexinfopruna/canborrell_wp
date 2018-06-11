@@ -1,4 +1,7 @@
 <?php
+
+
+
 function llegir_dies($fitxer)
 {
   echo $fitxer;

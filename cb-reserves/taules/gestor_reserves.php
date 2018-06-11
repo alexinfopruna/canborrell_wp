@@ -299,7 +299,8 @@ class gestor_reserves extends Gestor {
 
     $this->qry_result = mysqli_query($this->connexioDB, $estatSQL) or die(((is_object($GLOBALS["___mysqli_ston"])) ? mysqli_error($GLOBALS["___mysqli_ston"]) : (($___mysqli_res = mysqli_connect_error()) ? $___mysqli_res : false)));
     $row = mysqli_fetch_assoc($this->qry_result);
-    if (!$row) header("location: ../editar/llistat.php?creada=No existeix la reserva $id_reserva");
+    if (!$row)
+      header("location: ../editar/llistat.php?creada=No existeix la reserva $id_reserva");
 
     // JA EXISTEIX????
     $repeSQL = "SELECT id_reserva FROM " . T_RESERVES . " WHERE id_reserva=$id_reserva";
@@ -312,7 +313,7 @@ class gestor_reserves extends Gestor {
     if (!$client || ($row['estat'] != 3 && $row['estat'] != 7)) {
       header("location: ../editar/llistat.php?creada=No ha estat possible crear la taula per la reserva $id_reserva");
     }
-    
+
     $_POST['id_reserva'] = $row['id_reserva'];
     $_POST['data'] = $row['data'];
     $_POST['hora'] = $row['hora'];
@@ -603,13 +604,13 @@ class gestor_reserves extends Gestor {
     $_POST['id_reserva'] = "";
     $rollback = FALSE;
 
-    if (!is_numeric(substr($data, 0,2))){
-      $ret['error']="Data errònia";
-      $ret['err']="Data errònia";
+    if (!is_numeric(substr($data, 0, 2))) {
+      $ret['error'] = "Data errònia";
+      $ret['err'] = "Data errònia";
       echo json_encode($ret);
       return FALSE;
     }
-    
+
     try {////  INTENT PERMUTA  ////////////////////////////
       mysqli_autocommit($GLOBALS["___mysqli_ston"], FALSE);
 
@@ -739,11 +740,11 @@ class gestor_reserves extends Gestor {
     if (!isset($_POST['hora']) || $_POST['hora'] < '00:00') {
       return FALSE;
     }
-/*
-    if (!isset($_POST['id_reserva']) || $_POST['id_reserva'] < 20000) {
+    /*
+      if (!isset($_POST['id_reserva']) || $_POST['id_reserva'] < 20000) {
       return FALSE;
-    }
-*/
+      }
+     */
 
     return TRUE;
   }
@@ -3123,8 +3124,8 @@ ORDER BY `estat_hores_data` DESC";
     $this->reg_log("updateMenjador " . (int) $bloquejat);
     $this->reg_log("$id, $data, $torn, $bloquejat", 1);
 
-   // if (empty($table))
-      $table = "estat_menjador"; //ATENCIO, HEM ANULAT estat_menjador_form
+    // if (empty($table))
+    $table = "estat_menjador"; //ATENCIO, HEM ANULAT estat_menjador_form
 
     $query = "DELETE FROM $table WHERE estat_menjador_menjador_id=$id AND estat_menjador_data='$data' AND estat_menjador_torn='$torn'";
 
@@ -3225,7 +3226,74 @@ ORDER BY `estat_hores_data` DESC";
 
   /*   * ********************************************************************************************************************* */
 
-  public function gestio_calendari($data = "01/01/2001", $accio = "open") {
+  private function llegir_dies_DB($group = "small", $tipus = "black") {
+    $query = "DELETE FROM dies_especials_small WHERE dies_especials_data <= CURRENT_DATE - INTERVAL 360 DAY";
+    $this->qry_result = mysqli_query($this->connexioDB, $query) or die(((is_object($GLOBALS["___mysqli_ston"])) ? mysqli_error($GLOBALS["___mysqli_ston"]) : (($___mysqli_res = mysqli_connect_error()) ? $___mysqli_res : false)));
+    $query = "DELETE FROM dies_especials_group WHERE dies_especials_data <= CURRENT_DATE - INTERVAL 360 DAY";
+    $this->qry_result = mysqli_query($this->connexioDB, $query) or die(((is_object($GLOBALS["___mysqli_ston"])) ? mysqli_error($GLOBALS["___mysqli_ston"]) : (($___mysqli_res = mysqli_connect_error()) ? $___mysqli_res : false)));
+    
+    
+    
+    $query = "SELECT  * FROM dies_especials_$group WHERE dies_especials_tipus = '$tipus' ";
+    $this->qry_result = mysqli_query($this->connexioDB, $query) or die(((is_object($GLOBALS["___mysqli_ston"])) ? mysqli_error($GLOBALS["___mysqli_ston"]) : (($___mysqli_res = mysqli_connect_error()) ? $___mysqli_res : false)));
+    if (!$this->total_rows = mysqli_num_rows($this->qry_result)) {
+      return false;
+    }
+
+    while ($row = mysqli_fetch_assoc($this->qry_result)) {
+      $class = ($tipus == 'black') ? 'negra' : 'blanca';
+      $date_parse = date_parse($row['dies_especials_data']);
+
+      $year = $date_parse['year'];
+      $month = $date_parse['month'];
+      $day = $date_parse['day'];
+      $llista[$month - 1][] = $day;
+    }
+
+
+    return $llista;
+  }
+
+  /*   * ********************************************************************************************************************* */
+  /*   * ********************************************************************************************************************* */
+
+  public function crea_llista_js_DB($group, $tipus, $var = "SPECIAL_DAYS") {
+    $dies = $this->llegir_dies_DB($group, $tipus);
+    
+    $js="";
+    $js .= "var $var = {";
+    for ($i = 0; $i < 12; $i++) {
+      if ($i < 11)
+        $coma = ",\n";
+      else
+        $coma = "\n";
+
+      $js .= $i . " : [";
+
+      $k = 0;
+      $q = 0;
+      while (isset($dies[$i][$k])) {
+        if ((((int) date("m") - 1) != $i) || (($dies[$i][$k]) != ((int) date("d")))) {
+          if ($q > 0)
+            $js .= ",";
+          $js .= $dies[$i][$k];
+          $q++;
+        }
+
+        $k++;
+      }
+      $js .= "]" . $coma;
+    }
+
+    $js .= "};";
+    
+    return $js;
+  }
+
+  /*   * ********************************************************************************************************************* */
+  /*   * ********************************************************************************************************************* */
+  /*
+    public function gestio_calendari($data = "01/01/2001", $accio = "open") {
     echo $data . " - " . $accio;
     //$file = LLISTA_DIES_BLANCA;
     $d = date_parse_from_format("d/m/Y", $data);
@@ -3243,36 +3311,36 @@ ORDER BY `estat_hores_data` DESC";
     print_r($dies_blancs);
     echo $month;
     switch ($accio) {
-      case "obert":
-        $dies_blancs[$month][] = $d['day'];
-        guarda_dies(LLISTA_DIES_BLANCA, $dies_blancs, $d['year']);
-        $dies_negres[$month][$keyn] = 0;
-        guarda_dies(LLISTA_DIES_NEGRA, $dies_negres, $d['year']);
-        break;
+    case "obert":
+    $dies_blancs[$month][] = $d['day'];
+    guarda_dies(LLISTA_DIES_BLANCA, $dies_blancs, $d['year']);
+    $dies_negres[$month][$keyn] = 0;
+    guarda_dies(LLISTA_DIES_NEGRA, $dies_negres, $d['year']);
+    break;
 
-      case "tancat":
-        $dies_blancs[$month][$keyb] = 0;
-        guarda_dies(LLISTA_DIES_BLANCA, $dies_blancs, $d['year']);
-        $dies_negres[$month][] = $d['day'];
-        guarda_dies(LLISTA_DIES_NEGRA, $dies_negres, $d['year']);
+    case "tancat":
+    $dies_blancs[$month][$keyb] = 0;
+    guarda_dies(LLISTA_DIES_BLANCA, $dies_blancs, $d['year']);
+    $dies_negres[$month][] = $d['day'];
+    guarda_dies(LLISTA_DIES_NEGRA, $dies_negres, $d['year']);
 
-        break;
+    break;
 
-      default:
-        $dies_blancs[$month][$keyb] = 0;
-        // guarda_dies(LLISTA_DIES_BLANCA, $dies_blancs, $d['year']);
-        $dies_negres[$month][$keyn] = 0;
-        //  guarda_dies(LLISTA_DIES_NEGRA, $dies_negres, $d['year']);
+    default:
+    $dies_blancs[$month][$keyb] = 0;
+    // guarda_dies(LLISTA_DIES_BLANCA, $dies_blancs, $d['year']);
+    $dies_negres[$month][$keyn] = 0;
+    //  guarda_dies(LLISTA_DIES_NEGRA, $dies_negres, $d['year']);
 
-        break;
+    break;
     }
 
 
     print_r($dies);
 
     return;
-  }
-
+    }
+   */
   /*
     private afegir_a_llista($file, ){
 
