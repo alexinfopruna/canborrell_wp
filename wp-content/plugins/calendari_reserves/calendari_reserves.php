@@ -104,11 +104,11 @@ function load_calendari_reserves() {
   if (strpos($url, "reserva-grup"))  $llistan=LLISTA_DIES_NEGRA;
 //  else  $llistan=ROOT . INC_FILE_PATH . "llista_dies_negra_online.txt";
   else  $llistan=ROOT . INC_FILE_PATH . "llista_dies_negra.txt";
- 
    echo "/* LLISTA_NEGRA = $llistan */ \n\n";
   
-  $llista_negra = llegir_dies($llistan );
-  print crea_llista_js($llista_negra, "LLISTA_NEGRA");
+ // $llista_negra = llegir_dies($llistan );
+  //print crea_llista_js($llista_negra, "LLISTA_NEGRA");
+  print $gestor->crea_llista_js_DB('small','black','LLISTA_NEGRA');
   //echo $llistan;die();
   //echo LLISTA_DIES_NEGRA;die();
   //echo get_permalink();die();
@@ -116,13 +116,16 @@ function load_calendari_reserves() {
   
   print "\n////////////1\n";
 
-  $llista_blanca = llegir_dies( LLISTA_DIES_BLANCA);
-  print crea_llista_js($llista_blanca, "LLISTA_BLANCA");
+//  $llista_blanca = llegir_dies( LLISTA_DIES_BLANCA);
+//  print crea_llista_js($llista_blanca, "LLISTA_BLANCA");
+  print $gestor->crea_llista_js_DB('small','white','LLISTA_BLANCA');
   print "\n////////////2\n";
 
 
-  $llista_dies_no_carta = llegir_dies(ROOT . INC_FILE_PATH . "llista_dies_no_carta.txt");
-  print crea_llista_js($llista_dies_no_carta, "LLISTA_DIES_NO_CARTA");
+  //$llista_dies_no_carta = llegir_dies(ROOT . INC_FILE_PATH . "llista_dies_no_carta.txt");
+  //print crea_llista_js($llista_dies_no_carta, "LLISTA_DIES_NO_CARTA");
+  
+  print $gestor->crea_llista_js_DB('carta','black','LLISTA_DIES_NO_CARTA');
   print "\n////////////3\n";
 
   echo "\n          if (typeof variable === 'undefined') var RDATA;\n\n ";

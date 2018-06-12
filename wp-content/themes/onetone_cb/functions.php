@@ -173,6 +173,8 @@ add_shortcode( 'contact-form-cb', 'contact_cb' );
 
 function contact_cb ($out, $pairs, $atts ) {
   global $lang;
+  
+  if (!isset($lang)) $lang = ICL_LANGUAGE_CODE;
   $contact['en']=1224;
   $contact['es']=1230;
   $contact['ca']=327;

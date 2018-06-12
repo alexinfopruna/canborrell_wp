@@ -63,10 +63,11 @@ if ($_SERVER['HTTP_HOST']=="localhost" ) $bg = "local";
 
 <script>
 	<?php 
-		//$llista_negra=llegir_dies(LLISTA_DIES_NEGRA);
-		//$llista_blanca=llegir_dies(LLISTA_DIES_BLANCA);
-		//print crea_llista_js($llista_negra,"LLISTA_NEGRA"); 
-                            
+                            /*
+		$llista_negra=llegir_dies(LLISTA_DIES_NEGRA);
+		$llista_blanca=llegir_dies(LLISTA_DIES_BLANCA);
+		print crea_llista_js($llista_negra,"LLISTA_NEGRA"); 
+                            */
                                                         print $gestor->crea_llista_js_DB("small","black","LLISTA_NEGRA");
 		print "\n\n";	
 		//print crea_llista_js($llista_blanca,"LLISTA_BLANCA");  

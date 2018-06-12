@@ -93,7 +93,7 @@ valida_admin('login.php') ;
 	<TD BGCOLOR="#570600" ALIGN="CENTER">
 	<TABLE CELLPADDING="0" CELLSPACING="0" WIDTH="716" HEIGHT="19" BORDER="0">
 		<TR>
-			<TD><A HREF="llistat.php">GESTIÓ RESERVES </A>  <IMG SRC="../img/separa_mn.gif" WIDTH="1" HEIGHT="8" BORDER="0"><A HREF="gestio_dies.php"> GESTIÓ DIES PLENS </A>  <IMG SRC="../img/separa_mn.gif" WIDTH="1" HEIGHT="8" BORDER="0"> <FONT COLOR="#FFFFFF"><B>EDITAR PREUS I SUGGERIMENTS</B></FONT></TD>
+			<TD><A HREF="llistat.php">GESTIÓ RESERVES </A>  <IMG SRC="../img/separa_mn.gif" WIDTH="1" HEIGHT="8" BORDER="0"><A HREF="../panel/gestio_calendari.php?f=../../../canBorrell_inc_LOCAL/llista_dies_negra_grups.txt"> GESTIÓ DIES PLENS </A>  <IMG SRC="../img/separa_mn.gif" WIDTH="1" HEIGHT="8" BORDER="0"> <FONT COLOR="#FFFFFF"><B>EDITAR PREUS I SUGGERIMENTS</B></FONT></TD>
 			<TD ALIGN="RIGHT"><A HREF="../cat/index.html">CAN BORRELL</A></TD>
 		</TR>
 	</TABLE>

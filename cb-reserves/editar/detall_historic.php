@@ -64,7 +64,7 @@ $totalPages_DetailRS1 = ceil($totalRows_DetailRS1/$maxRows_DetailRS1)-1;
   <tr>
     <td bgcolor="#570600" colspan="2" align="center"><table cellpadding="0" cellspacing="0" width="716" height="19" border="0">
       <tr>
-        <td><a href="llistat_historic.php" class="Estilo7">GESTI&Oacute; RESERVES </a> <img src="../img/separa_mn.gif" width="1" height="8" border="0" /><a href="gestio_dies.php"> GESTI&Oacute; DIES PLENS </a> <img src="../img/separa_mn.gif" width="1" height="8" border="0" /> <font color="#FFFFFF"><b><a href="editar.php?id=-1">EDITAR PREUS I SUGGERIMENTS</a></b></font></td>
+        <td><a href="llistat_historic.php" class="Estilo7">GESTI&Oacute; RESERVES </a> <img src="../img/separa_mn.gif" width="1" height="8" border="0" /><a href="../panel/gestio_calendari.php?f=../../../canBorrell_inc_LOCAL/llista_dies_negra_grups.txt"> GESTI&Oacute; DIES PLENS </a> <img src="../img/separa_mn.gif" width="1" height="8" border="0" /> <font color="#FFFFFF"><b><a href="editar.php?id=-1">EDITAR PREUS I SUGGERIMENTS</a></b></font></td>
         <td align="right"><a href="../cat/index.html">CAN BORRELL</a></td>
       </tr>
     </table></td>

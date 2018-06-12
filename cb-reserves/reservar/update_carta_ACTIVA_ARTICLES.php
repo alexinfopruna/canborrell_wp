@@ -1,4 +1,14 @@
 <?php 
+echo "update_carta_ACTIVA_ARTICLES";
+echo "update_carta_ACTIVA_ARTICLES";
+echo "update_carta_ACTIVA_ARTICLES";
+echo "update_carta_ACTIVA_ARTICLES";
+echo "update_carta_ACTIVA_ARTICLES";
+echo "update_carta_ACTIVA_ARTICLES";
+echo "update_carta_ACTIVA_ARTICLES";
+die();
+
+
 
 define('ROOT',"../taules/");
 require_once (ROOT."Gestor.php");
@@ -115,15 +125,21 @@ echo $gestor->dumpJSVars(true);
 	<?php 
 	//TRANSLATES
 
-	$llista_negra=llegir_dies(LLISTA_DIES_NEGRA);
-	print crea_llista_js($llista_negra,"LLISTA_NEGRA"); 
+	//$llista_negra=llegir_dies(LLISTA_DIES_NEGRA);
+	//print crea_llista_js($llista_negra,"LLISTA_NEGRA"); 
+                            print $gestor->crea_llista_js_DB('small','black','LLISTA_BLANCA');
+
 	print "\n\n";	
 	
-	$llista_blanca=llegir_dies(LLISTA_DIES_BLANCA);
-	print crea_llista_js($llista_blanca,"LLISTA_BLANCA");  	
+	//$llista_blanca=llegir_dies(LLISTA_DIES_BLANCA);
+	//print crea_llista_js($llista_blanca,"LLISTA_BLANCA");  
+                              print $gestor->crea_llista_js_DB('small','white','LLISTA_BLANCA');
+
 	
-	$llista_dies_no_carta=llegir_dies(ROOT . INC_FILE_PATH."llista_dies_no_carta.txt");
-	print crea_llista_js($llista_dies_no_carta,"LLISTA_DIES_NO_CARTA");  	
+	//$llista_dies_no_carta=llegir_dies(ROOT . INC_FILE_PATH."llista_dies_no_carta.txt");
+	//print crea_llista_js($llista_dies_no_carta,"LLISTA_DIES_NO_CARTA");  
+                             print $gestor->crea_llista_js_DB('carta','black','LLISTA_BLANCA');
+
 	
 	print "\nvar IDR='".$row['id_reserva']."';";
 	print "var RDATA;";

@@ -121,7 +121,7 @@ INPUT {
       <tr>
         <td><span class="Estilo5">GESTI&Oacute; RESERVES</span>  
 		<img src="../img/separa_mn.gif" alt="1" width="1" height="8" border="0" />
-		<a href="gestio_dies.php"> GESTI&Oacute; DIES PLENS </a> 
+		<a href="../panel/gestio_calendari.php?f=../../../canBorrell_inc_LOCAL/llista_dies_negra_grups.txt"> GESTI&Oacute; DIES PLENS </a> 
 		<img src="../img/separa_mn.gif" alt="2" width="1" height="8" border="0" /> 
 		<font color="#FFFFFF"><b><a href="editar.php?id=-1">EDITAR PREUS I SUGGERIMENTS </a></b>
 		<img src="../img/separa_mn.gif" alt="2" width="1" height="8" border="0" /> 

@@ -137,7 +137,7 @@ require(ROOT . '../reservar/translate_grups_' . $gestor->lng . '.php');
 /* * *********************************************************** */
 
 function reservar_enqueue_styles() {
-  global $lang;
+  global $lang, $gestor;
   ?>
   <link type="text/css" href="/cb-reserves/taules/css/blitzer/jquery-ui-1.8.9.custom.css" rel="stylesheet" />	
   <link type="text/css" href="/cb-reserves/reservar/css/form_reserves_grups.css" rel="stylesheet" />	
@@ -178,12 +178,20 @@ function reservar_enqueue_styles() {
 
   
   
-  echo "/* LLISTA_NEGRA = ".LLISTA_DIES_NEGRA." */ \n\n";
+  echo "/* >>> LLISTA_NEGRA = ".LLISTA_DIES_NEGRA." */ \n\n";
+  /*
   print crea_llista_js($llista_negra, "LLISTA_NEGRA");
   print "\n\n";
   print crea_llista_js($llista_nits_negra, "LLISTA_NITS_NEGRA");
   print "\n\n";
   print crea_llista_js($llista_blanca, "LLISTA_BLANCA");
+  */
+  // DATABASE
+  print $gestor->crea_llista_js_DB("group", "black","LLISTA_NEGRA");
+  print "\n\n";
+  print $gestor->crea_llista_js_DB("night", "black","LLISTA_NITS_NEGRA");
+  print "\n\n";
+  print $gestor->crea_llista_js_DB("group", "white","LLISTA_BLANCA");
   ?>
   </script>
 

@@ -71,7 +71,7 @@ function mailer($addr, $subject, $body, $altbody = null, $attach = null, $test =
     $f = fopen(ROOT . INC_FILE_PATH . "log/test_mail.html", 'a');
     fwrite($f, "ENVIAT AMB EXIT: <br>\n" . $o);
     fwrite($f, $o);
-    echo $o;
+ //   echo $o;
     return;
 
     error_log("</ul>", 3, ROOT . INC_FILE_PATH . '/log/logMAILSMS.txt');

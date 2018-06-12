@@ -153,6 +153,7 @@ class Restriccions extends gestor_reserves {
     $where .= (empty($nens)) ? "" : ' AND restriccions_nens' . $nens;
     $where .= (empty($cotxets)) ? "" : ' AND restriccions_cotxets' . $cotxets;
     $where .= (empty($suma)) ? "" : ' AND restriccions_nens + restriccions_adults ' . $suma;
+    //$where .= (empty($suma)) ? "" : ' AND restriccions_mesos ' . $suma;
 
     $were_data = " AND (restriccions_data $data AND restriccions_datafi $datafi)  ";
 
@@ -463,6 +464,17 @@ $order
     }
     return $limitNens;
   }
+  
+  
+  public function saveMesosAll($mesos){
+    $decmesos = $this->dies2dec($mesos);
+   $query = "UPDATE  restriccions 
+ 
+      SET restriccions_mesos= $decmesos";
+   $Result1 = mysqli_query($this->connexioDB, $query) or die(((is_object($GLOBALS["___mysqli_ston"])) ? mysqli_error($GLOBALS["___mysqli_ston"]) : (($___mysqli_res = mysqli_connect_error()) ? $___mysqli_res : false)));
+    //$nr = mysqli_num_rows($Result1); 
+    echo $query;
+  }
 
 }
 
@@ -542,6 +554,11 @@ switch ($accio) {
   case 'savehores':
     $ides = $params->ides;
     $r->saveHores($ides, $restriccio);
+    break;
+
+  case 'saveMesosAll':
+    $data = $params->data;
+    $r->saveMesosAll($data);
     break;
 
   case 'getrestriccions':

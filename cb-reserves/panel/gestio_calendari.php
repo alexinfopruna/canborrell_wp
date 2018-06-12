@@ -47,8 +47,12 @@ $info="";
 $filenameb = $path_parts['filename'];
 $info="";
 
-$group = (substr($LLISTA_DIES_NEGRA,-10)=="_grups.txt")?"group":"small";
+$group = 'small';
+if (strstr($LLISTA_DIES_NEGRA,'grups')) $group='group';
+if (strstr($LLISTA_DIES_NEGRA,'nits')) $group='night';
+if (strstr($LLISTA_DIES_NEGRA,'carta')) $group='carta';
 
+//echo "group $group";die();
  
 ?><!DOCTYPE HTML>
 <html>
@@ -90,6 +94,8 @@ $group = (substr($LLISTA_DIES_NEGRA,-10)=="_grups.txt")?"group":"small";
  background-color: white;
 }
 
+#llista_blanca{width:200px}
+#llista-negra{width:200px}
 .nav {padding:0;}
 .navbar-header{margin-right:25px;}
         </style>
@@ -110,6 +116,8 @@ $group = (substr($LLISTA_DIES_NEGRA,-10)=="_grups.txt")?"group":"small";
     <ul class="nav navbar-nav">
       <li class="<?php echo $group=="small"?'active':"" ?>"><a href="gestio_calendari.php?f=llista_dies_negra.txt">Petites</a></li>
       <li class="<?php echo $group=="group"?'active':"" ?>"><a href="gestio_calendari.php?f=llista_dies_negra_grups.txt">Grups</a></li>
+      <li class="<?php echo $group=="night"?'active':"" ?>"><a href="gestio_calendari.php?f=llista_dies_nits_negra.txt">Nits</a></li>
+      <li class="<?php echo $group=="carta"?'active':"" ?>"><a href="gestio_calendari.php?f=llista_dies_no_carta.txt">No carta</a></li>
      
     </ul>
 </nav>            

@@ -255,20 +255,24 @@ class TaulesDisponibles extends Gestor {
     $ds = date("w", strtotime($this->data));
     $dia = date("Y-m-d", strtotime($this->data));
     // si T1 o T2 mira llista negra
-    if ($this->torn < 3 && $this->diaDinsLlista($this->llista_dies_negra))
-      return $this->addError(21); //TODO controla LLISTA NEGRA
+  //  if ($this->torn < 3 && $this->diaDinsLlista($this->llista_dies_negra)) return $this->addError(21); //TODO controla LLISTA NEGRA
+    if ($this->torn < 3 && $this->diaDinsLlista_DB('small','black')) {return $this->addError(21);} //TODO controla LLISTA NEGRA
+      
 
 // si T3 i dia NO DV, DS -> TANCAT
-    //if ($ds<5 && $this->torn==3) return $this->addError(24); // TORN NIT DX,DJ,DG
+    if ($ds<5 && $this->torn==3) return $this->addError(24); // TORN NIT DX,DJ,DG
+    // 
     if ($this->torn == 3 && !$this->nitsObert[$ds] && !$this->excepcionsNits($dia))
       return $this->addError(24); // TORN NIT DX,DJ,DG
 
 //si T3 i DV, DS, mirem Llista negra nit
-    if ($ds > 4 && $this->torn == 3 && $this->diaDinsLlista($this->llista_nits_negra))
-      return $this->addError(20);
+  //  if ($ds > 4 && $this->torn == 3 && $this->diaDinsLlista($this->llista_nits_negra)) return $this->addError(20);
+    if ($ds > 4 && $this->torn == 3 && $this->diaDinsLlista_DB('night','black')) return $this->addError(20);
+    
 
     // si Dl, DM, mira llista BLANCA
-    if ($ds > 0 && $ds < 3 && !$this->diaDinsLlista($this->llista_dies_blanca))
+    if ($ds > 0 && $ds < 3 && !$this->diaDinsLlista_DB('small','white'))
+    if ($ds > 0 && $ds < 3 && !$this->diaDinsLlista_DB('small','white'))
       return $this->addError(25); //DL, DM en llista blanca
     return true;
   }
@@ -285,23 +289,30 @@ class TaulesDisponibles extends Gestor {
   }
 
   /*   * ********************************************************************************************************************* */
- public function diaDinsLlistaxxx($fitxer) {
-   //echo "AQUIIIII";die();
-   $tipus = (strstr($fitxer, "negra"))?"black":"white";   
-   $group = (strstr($fitxer, "grup"))?"group":"small"; 
+ public function diaDinsLlista_DB($group, $tipus) {
    
-   $query = "SELECT  * FROM dies_especials_$group WHERE dies_especials_tipus = '$tipus' ";
+   
+    $data = $this->data;
+    //$dia = substr($data, 8, 2);
+    //$mes = substr($data, 5, 2);
+   
+   $query = "SELECT  * FROM dies_especials_$group WHERE dies_especials_tipus = '$tipus' AND dies_especials_data = '$data'";
+   
+   
     $this->qry_result = mysqli_query($this->connexioDB, $query) or die(((is_object($GLOBALS["___mysqli_ston"])) ? mysqli_error($GLOBALS["___mysqli_ston"]) : (($___mysqli_res = mysqli_connect_error()) ? $___mysqli_res : false)));
     if ($this->total_rows = mysqli_num_rows($this->qry_result)) {
+     // echo "$query SIIII  $group  $tipus";
       return true;
     }
-
+//echo "$query NOOOO  $group  $tipus";
     return false;
  }
  
  
  
   public function diaDinsLlista($fitxer) {
+    
+    return false;
     if (!$fitxer || !file_exists($fitxer))
       return false;
 

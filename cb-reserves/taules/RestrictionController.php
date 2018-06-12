@@ -18,12 +18,14 @@ if (!defined('ROOT'))
 
 require_once (ROOT . "./gestor_reserves.php");
 require_once(ROOT . INC_FILE_PATH . "llista_dies_taules.php");
-
+/*
 ini_set('error_reporting', E_ALL ^ E_DEPRECATED);
 error_reporting(E_ALL ^ E_DEPRECATED);
 ini_set("display_errors", 1);
 ini_set("track_errors", 1);
 ini_set("html_errors", 1);
+ * 
+ */
 if (!defined('ROOT'))
   define('ROOT', './');
 
@@ -178,7 +180,7 @@ $order
       $hores = $hores | $row['restriccions_hores'];
     }
 //    echo "-- $hores ----";
-//    echo $query;die();
+    //echo $query;die();
     //var_dump(TOTES_HORES);
     
     $hores = $this->subArrayHoresb($hores);
@@ -281,8 +283,6 @@ $order
   /*   * ************************************************************************ */
 
   private function mountWhereDate($data) {
-    // $dates=llegir_dies(LLISTA_DIES_BLANCA);
-    // echo LLISTA_DIES_BLANCA;
     //$dates = file(LLISTA_DIES_BLANCA);
     $dates[0]["dies_especials_data"]= '2010-01-01';
     $query = "SELECT dies_especials_data FROM dies_especials_small WHERE dies_especials_tipus ='white'";
@@ -301,12 +301,17 @@ $order
         . "AND restriccions_datafi >= '$data') ) ";
 
     $diesBin = array(64, 32, 16, 8, 4, 2, 1);
+    $mesosBin = array(2048, 1024, 512, 256, 128, 64, 32, 16, 8, 4, 2, 1);
     $ds = date('N', strtotime($data));
+    $mes = date('n', strtotime($data));
     $diaBin = $diesBin[$ds - 1];
-
+    $mesBin =  $mesosBin[$mes - 1];
+    
+    //retriccions_mesos
 
     $r = json_encode($diaBin);
-    $where .= " AND ((restriccions_data <> '2011-01-01' AND restriccions_data = restriccions_datafi) OR (restriccions_dies & $diaBin > 0) $whereindates  ) ";
+    $where .= " AND ((restriccions_data <> '2011-01-01' AND restriccions_data = restriccions_datafi) OR (restriccions_dies & $diaBin > 0  AND restriccions_mesos & $mesBin > 0) $whereindates  ) ";
+
     return $where;
   }
 
@@ -342,7 +347,6 @@ $order
 
     return $where;
   }
-
 }
 
 if (isset($_REQUEST['data'])) {
