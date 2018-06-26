@@ -229,7 +229,6 @@ class Gestor_form extends gestor_reserves {
     $this->taulesDisponibles->rang_hores_taules = $hores_taules;
     $dinar = $this->taulesDisponibles->recupera_hores();
     $taulaT1 = 0;
-    
     $taula_t1_nom = "";
     if ($taules){
       $taulaT1 = $taules[0]->id;
@@ -300,6 +299,7 @@ class Gestor_form extends gestor_reserves {
     $time = time();
 
     $cache = FALSE;
+    /**/
     if (isset($_SESSION[$index]) && count($_SESSION[$index]['hores']) && $_SESSION[$index]['timestamp'] > $time) {
       $cache = $_SESSION[$index]['hores'];
     }

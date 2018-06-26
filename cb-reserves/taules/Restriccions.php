@@ -67,9 +67,19 @@ class Restriccions extends gestor_reserves {
     $strBin = implode($binArray);
     return $num = bindec($strBin);
   }
+  protected function mesos2dec($binArray) {
+    $strBin = implode($binArray);
+    return $num = bindec($strBin);
+  }
 
   protected function dies2bin($decNum) {
     $strbin = substr("00000000" . decbin($decNum), -8);
+    $arrayBib = str_split($strbin);
+    $integerIDs = array_map('intval', $arrayBib);
+    return $integerIDs;
+  }
+  protected function mesos2bin($decNum) {
+    $strbin = substr("000000000000" . decbin($decNum), -12);
     $arrayBib = str_split($strbin);
     $integerIDs = array_map('intval', $arrayBib);
     return $integerIDs;
@@ -97,6 +107,7 @@ class Restriccions extends gestor_reserves {
     if (isset($n['restriccions_active'])) {
       $n['restriccions_active'] = (bool) $n['restriccions_active'] ? 1 : 0;
       $n['restriccions_dies'] = $this->dies2bin($n['restriccions_dies']);
+      $n['restriccions_mesos'] = $this->mesos2bin($n['restriccions_mesos']);
       $n['restriccions_hores'] = $this->hores2bin($n['restriccions_hores']);
     }
     return $n;
@@ -141,6 +152,8 @@ class Restriccions extends gestor_reserves {
   /*   * ************************************************************************************************************ */
 
   public function getRestriccions($id = null, $data = ">=2000-01-01", $datafi = "<=3011-01-01", $adults = null, $nens = null, $cotxets = null, $suma = null) {
+ 
+    
     $where = " where TRUE ";
     $rcotxets = ", `restriccions_cotxets` ";
     $rcotxets = " ";
@@ -166,9 +179,9 @@ class Restriccions extends gestor_reserves {
 
     $query = "SELECT * FROM
 (
-  SELECT `restriccions_active`,`restriccions_id`,`restriccions_description`,`restriccions_suma`,`restriccions_adults`,`restriccions_nens`, restriccions_cotxets,`restriccions_data`, `restriccions_datafi`, `restriccions_dies`,`restriccions_hora`, `restriccions_hores` FROM restriccions where TRUE $were_data
+  SELECT `restriccions_active`,`restriccions_id`,`restriccions_description`,`restriccions_suma`,`restriccions_adults`,`restriccions_nens`, restriccions_cotxets,`restriccions_data`, `restriccions_datafi`, `restriccions_dies`,`restriccions_mesos`,`restriccions_hora`, `restriccions_hores` FROM restriccions where TRUE $were_data
   UNION 
-  SELECT `restriccions_active`,`restriccions_id`,`restriccions_description`,`restriccions_suma`,`restriccions_adults`,`restriccions_nens`, restriccions_cotxets,`restriccions_data`, `restriccions_datafi`, `restriccions_dies`,`restriccions_hora`, `restriccions_hores`   FROM restriccions where `restriccions_data`='2011-01-01'
+  SELECT `restriccions_active`,`restriccions_id`,`restriccions_description`,`restriccions_suma`,`restriccions_adults`,`restriccions_nens`, restriccions_cotxets,`restriccions_data`, `restriccions_datafi`, `restriccions_dies`,`restriccions_mesos`,`restriccions_hora`, `restriccions_hores`   FROM restriccions where `restriccions_data`='2011-01-01'
   
 ) R
      $where    
@@ -296,6 +309,7 @@ $order
 
   public function updateRestriccio($restriccio) {
     $restriccio->restriccions_dies = $this->dies2dec($restriccio->restriccions_dies);
+    $restriccio->restriccions_mesos = $this->mesos2dec($restriccio->restriccions_mesos);
     $restriccio->restriccions_hores = $this->dies2dec($restriccio->restriccions_hores);
     if ($restriccio->restriccions_datafi < $restriccio->restriccions_data)
       $restriccio->restriccions_datafi = $restriccio->restriccions_data;
@@ -322,6 +336,7 @@ $order
           restriccions_datafi = '$restriccio->restriccions_datafi',
           restriccions_suma = '$restriccio->restriccions_suma',
           restriccions_dies = '$restriccio->restriccions_dies',
+          restriccions_mesos = '$restriccio->restriccions_mesos',
           restriccions_adults = '$restriccio->restriccions_adults', 
           restriccions_nens = '$restriccio->restriccions_nens', 
           restriccions_cotxets = '$restriccio->restriccions_cotxets',
@@ -467,7 +482,7 @@ $order
   
   
   public function saveMesosAll($mesos){
-    $decmesos = $this->dies2dec($mesos);
+    $decmesos = $this->mesos2dec($mesos);
    $query = "UPDATE  restriccions 
  
       SET restriccions_mesos= $decmesos";
@@ -476,6 +491,48 @@ $order
     echo $query;
   }
 
+  
+  public function saveMesosSelect($ides, $mesos) {
+      $decmesos = $this->mesos2dec($mesos);
+    $arides = implode(", ", $ides);
+
+    $query = "UPDATE  restriccions 
+ 
+      SET restriccions_mesos= $decmesos
+        WHERE restriccions_id IN ($arides) ";
+
+
+     // echo $query;die();
+    $Result1 = mysqli_query($this->connexioDB, $query) or die(((is_object($GLOBALS["___mysqli_ston"])) ? mysqli_error($GLOBALS["___mysqli_ston"]) : (($___mysqli_res = mysqli_connect_error()) ? $___mysqli_res : false)));
+    //return $this->getRestriccions();
+     echo $Result1." --- ".$query;
+  }  
+  public function onUpdateDaysAll($mesos){
+    $decmesos = $this->dies2dec($mesos);
+   $query = "UPDATE  restriccions 
+ 
+      SET restriccions_dies= $decmesos";
+   $Result1 = mysqli_query($this->connexioDB, $query) or die(((is_object($GLOBALS["___mysqli_ston"])) ? mysqli_error($GLOBALS["___mysqli_ston"]) : (($___mysqli_res = mysqli_connect_error()) ? $___mysqli_res : false)));
+    //$nr = mysqli_num_rows($Result1); 
+    echo $query;
+  }
+
+  
+  public function onUpdateDaysSelect($ides, $mesos) {
+      $decmesos = $this->dies2dec($mesos);
+    $arides = implode(", ", $ides);
+
+    $query = "UPDATE  restriccions 
+ 
+      SET restriccions_dies= $decmesos
+        WHERE restriccions_id IN ($arides) ";
+
+
+     // echo $query;die();
+    $Result1 = mysqli_query($this->connexioDB, $query) or die(((is_object($GLOBALS["___mysqli_ston"])) ? mysqli_error($GLOBALS["___mysqli_ston"]) : (($___mysqli_res = mysqli_connect_error()) ? $___mysqli_res : false)));
+    return $this->getRestriccions();
+  }  
+  
 }
 
 /* * ********************************************* */
@@ -525,6 +582,7 @@ switch ($accio) {
     $restriccio->restriccions_data = "2011-01-01";
     $restriccio->restriccions_datafi = "2011-01-01";
     $restriccio->restriccions_dies = array(0, 0, 0, 0, 0, 1, 1);
+    $restriccio->restriccions_mesos = array(1,1,1,1,1,0, 0, 0, 0, 0, 1, 1);
     $restriccio->restriccions_active = 1;
     $restriccio->restriccions_hora = "14:00";
     $restriccio->restriccions_description = "Desglose generated";
@@ -559,6 +617,23 @@ switch ($accio) {
   case 'saveMesosAll':
     $data = $params->data;
     $r->saveMesosAll($data);
+    break;
+
+  case 'saveMesosSelect':
+    $data = $params->data;
+    $ides = $params->ides;
+    $r->saveMesosSelect($ides, $data);
+    break;
+
+  case 'onUpdateDaysAll':
+    $data = $params->data;
+    $r->onUpdateDaysAll($data);
+    break;
+
+  case 'onUpdateDaysSelect':
+    $data = $params->data;
+    $ides = $params->ides;
+    $r->onUpdateDaysSelect($ides, $data);
     break;
 
   case 'getrestriccions':
