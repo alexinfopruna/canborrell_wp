@@ -69,7 +69,7 @@ FROM restriccions
 WHERE restriccions_active = TRUE $where
 $order
 ";
-    //echo "$query";die();
+    echo "$query";die();
     if ($sqlquery)
       return "$data >>> $adults | $nens | $cotxets >>>>>>>>>>>>> " . $query;
     $Result1 = mysqli_query($this->connexioDB, $query) or die(((is_object($GLOBALS["___mysqli_ston"])) ? mysqli_error($GLOBALS["___mysqli_ston"]) : (($___mysqli_res = mysqli_connect_error()) ? $___mysqli_res : false)));
@@ -109,11 +109,8 @@ $order
       $cache = $_SESSION[$index]['hores'];
     }
 
-
-echo "11111111";
     $rules = $this->getActiveRules($data, $adults, $nens, $cotxets);
-echo "2222";
-    $jsonrules = json_encode($rules);echo "3333";
+    $jsonrules = json_encode($rules);
     if (!$rules)
       return false;
 
