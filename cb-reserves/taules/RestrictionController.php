@@ -278,16 +278,25 @@ $order
     $dates[0]["dies_especials_data"]= '2010-01-01';
     $query = "SELECT dies_especials_data FROM dies_especials_small WHERE dies_especials_tipus ='white'";
     
+    
     $Result1 = mysqli_query($this->connexioDB, $query) or die(((is_object($GLOBALS["___mysqli_ston"])) ? mysqli_error($GLOBALS["___mysqli_ston"]) : (($___mysqli_res = mysqli_connect_error()) ? $___mysqli_res : false)));
-    $nr = mysqli_num_rows($Result1); echo "*$nr ";
+    $nr = mysqli_num_rows($Result1); 
+    //if ($nr) $dates = mysqli_fetch_all($Result1, MYSQLI_ASSOC);
+    if ($nr){
+         while ($row = $Result1->fetch_assoc()) {
+           $dates[] = $row;
+         }
 
-    if ($nr) $dates = mysqli_fetch_all($Result1, MYSQLI_ASSOC);
+    }
+     
+    
+    
     foreach ($dates as $k => $value) {
       $dates[$k] = "'" . Gestor::cambiaf_a_mysql($value["dies_especials_data"]) . "'";
     }
     $indates = implode(", ", $dates);
     $whereindates = " OR '$data' IN ($indates) ";
-echo "* ";
+
     $where = " AND (restriccions_data ='2011-01-01' OR (restriccions_data <= '$data' "
         . "AND restriccions_datafi >= '$data') ) ";
 
@@ -297,12 +306,12 @@ echo "* ";
     $mes = date('n', strtotime($data));
     $diaBin = $diesBin[$ds - 1];
     $mesBin =  $mesosBin[$mes - 1];
-    echo "* ";
+    
     //retriccions_mesos
 
     $r = json_encode($diaBin);
     $where .= " AND ((restriccions_data <> '2011-01-01' AND restriccions_data = restriccions_datafi) OR (restriccions_dies & $diaBin > 0  AND restriccions_mesos & $mesBin > 0) $whereindates  ) ";
-echo "*$where ";
+
     return $where;
   }
 
