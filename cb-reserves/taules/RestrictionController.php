@@ -49,14 +49,14 @@ static $TOTES_HORES =array("", "11:00", "11:15", "11:30", "11:45",
     $parell = !$senar;
 //echo "{'ee':'$sum .. $parell'}";die();
     $where_adults = $this->mountWhereCoberts('adults', $adults, $parell);
-
+echo "* ";
     $where_nens = $this->mountWhereCoberts('nens', $nens);
-
+echo "* ";
     $where_cotxets = $this->mountWhereCoberts('cotxets', $cotxets);
 
-
+echo "* ";
     $where_data = $this->mountWhereDate($data);
-    
+echo "* ";    
     $where = $where_data . $where_adults . $where_nens . $where_cotxets;
 //$where = $where_data . $where_adults . " AND (restriccions_adults='Parell' OR restriccions_adults='Senar' OR TRUE $where_nens)" . $where_cotxets;
 //$order = "ORDER BY restriccions_data DESC, restriccions_data = restriccions_datafi";
