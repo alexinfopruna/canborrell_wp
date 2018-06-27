@@ -212,13 +212,14 @@ error_reporting(E_ALL);
     $this->taulesDisponibles->llista_dies_blanca = LLISTA_DIES_BLANCA;
     $cacheNens = $nens;
     $cacheAdults = $coberts - $nens;
-echo "3333";
 
     $rc = new RestrictionController();
-echo "4444";
+echo "1111";
     
     $this->taulesDisponibles->rang_hores_nens = $rc->getHores($mydata, $cacheAdults, $cacheNens, $cotxets);
+echo "2222";
     $rules = $rc->getActiveRules($mydata, $cacheAdults, $cacheNens, $cotxets);
+echo "3333";
     //RestriccionsTaules ALEX
     //TORN1
     $this->taulesDisponibles->torn = 1;
