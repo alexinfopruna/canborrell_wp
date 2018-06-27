@@ -198,7 +198,9 @@ class Gestor_form extends gestor_reserves {
         return json_encode($json);
       }
     }
-echo "WWWWWWWWWWW";die();
+ini_set('display_errors', 1);
+ini_set('display_startup_errors', 1);
+error_reporting(E_ALL);
     $this->taulesDisponibles->data = $mydata;
     $this->taulesDisponibles->persones = $coberts;
     $this->taulesDisponibles->cotxets = $cotxets;
