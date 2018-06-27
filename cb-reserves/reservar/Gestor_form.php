@@ -55,9 +55,7 @@ class Gestor_form extends gestor_reserves {
   public function __construct($usuari_minim = 1) {
     parent::__construct(DB_CONNECTION_FILE, $usuari_minim);
     
-    ini_set('display_errors', 1);
-ini_set('display_startup_errors', 1);
-error_reporting(E_ALL);
+
     // Sobre quina taule fem les consultes
     //$this->taulesDisponibles->tableMenjadors = "estat_menjador_form";
     $this->taulesDisponibles->tableMenjadors = "estat_menjador"; //ATENCIO, HEM ANULAT estat_menjador_form
@@ -200,7 +198,7 @@ error_reporting(E_ALL);
         return json_encode($json);
       }
     }
-
+echo "WWWWWWWWWWW";die();
     $this->taulesDisponibles->data = $mydata;
     $this->taulesDisponibles->persones = $coberts;
     $this->taulesDisponibles->cotxets = $cotxets;
