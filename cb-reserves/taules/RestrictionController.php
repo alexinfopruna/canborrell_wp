@@ -110,10 +110,10 @@ $order
     }
 
 
-
+echo "11111111";
     $rules = $this->getActiveRules($data, $adults, $nens, $cotxets);
-
-    $jsonrules = json_encode($rules);
+echo "2222";
+    $jsonrules = json_encode($rules);echo "3333";
     if (!$rules)
       return false;
 

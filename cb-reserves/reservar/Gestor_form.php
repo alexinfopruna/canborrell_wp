@@ -190,10 +190,6 @@ class Gestor_form extends gestor_reserves {
     if ($cotxets == 'undefined')
       $cotxets = 0;
     $mydata = $this->cambiaf_a_mysql($data);
-ini_set('display_errors', 1);
-ini_set('display_startup_errors', 1);
-error_reporting(E_ALL);
-
     $this->taulesDisponibles->tableHores = "estat_hores";   //ANULAT GESTOR HORES FORM. Tot es gestiona igual, des d'estat hores
     if ($idr) {
       if (!$this->taulesDisponibles->loadReserva($idr)) {
@@ -214,12 +210,9 @@ error_reporting(E_ALL);
     $cacheAdults = $coberts - $nens;
 
     $rc = new RestrictionController();
-echo "1111";
     
     $this->taulesDisponibles->rang_hores_nens = $rc->getHores($mydata, $cacheAdults, $cacheNens, $cotxets);
-echo "2222";
     $rules = $rc->getActiveRules($mydata, $cacheAdults, $cacheNens, $cotxets);
-echo "3333";
     //RestriccionsTaules ALEX
     //TORN1
     $this->taulesDisponibles->torn = 1;
