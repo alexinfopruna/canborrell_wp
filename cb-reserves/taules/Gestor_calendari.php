@@ -126,7 +126,7 @@ class Gestor_calendari extends Gestor {
       $date=Gestor::cambiaf_a_mysql($_GET['data']);
       $date = "'$date'";
     }
-    
+    echo "WWWWWWWW";die();
     if (!$date) $date="CURRENT_DATE";
     
     $query = "SELECT * FROM dies_especials_$group WHERE dies_especials_data <= $date + INTERVAL 360 DAY";
