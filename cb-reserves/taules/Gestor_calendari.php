@@ -126,18 +126,18 @@ class Gestor_calendari extends Gestor {
       $date=Gestor::cambiaf_a_mysql($_GET['data']);
       $date = "'$date'";
     }
-    //echo "WWWWWWWW";die();
-    if (!$date) $date="CURRENT_DATE";
     
     $query = "SELECT * FROM dies_especials_$group WHERE dies_especials_data <= $date + INTERVAL 360 DAY";
    
-   echo $date." -- -".$query;
+   
     $this->qry_result = mysqli_query($this->connexioDB, $query) or die(((is_object($GLOBALS["___mysqli_ston"])) ? mysqli_error($GLOBALS["___mysqli_ston"]) : (($___mysqli_res = mysqli_connect_error()) ? $___mysqli_res : false)));
     if (!$this->total_rows = mysqli_num_rows($this->qry_result)) {
       return "[]";
     }
 
+    
     $dies = mysqli_fetch_all($this->qry_result, MYSQLI_ASSOC);
+    var_dump($dies);
     return $js = json_encode($dies);
   }
 
