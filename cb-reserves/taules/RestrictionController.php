@@ -63,7 +63,6 @@ FROM restriccions
 WHERE restriccions_active = TRUE $where
 $order
 ";
-    echo "$query";die();
     if ($sqlquery)
       return "$data >>> $adults | $nens | $cotxets >>>>>>>>>>>>> " . $query;
     $Result1 = mysqli_query($this->connexioDB, $query) or die(((is_object($GLOBALS["___mysqli_ston"])) ? mysqli_error($GLOBALS["___mysqli_ston"]) : (($___mysqli_res = mysqli_connect_error()) ? $___mysqli_res : false)));
