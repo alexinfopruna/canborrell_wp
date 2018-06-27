@@ -138,9 +138,7 @@ class Gestor_calendari extends Gestor {
     $dies[] = $row;
 }
     //$dies = mysqli_fetch_all($this->qry_result, MYSQLI_ASSOC);
-
-
-    var_dump($dies);
+    //var_dump($dies);
     return $js = json_encode($dies);
   }
 
