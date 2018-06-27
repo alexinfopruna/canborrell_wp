@@ -47,16 +47,10 @@ static $TOTES_HORES =array("", "11:00", "11:15", "11:30", "11:45",
     $sum = $adults + $nens;
     $senar = ($sum) & 1;
     $parell = !$senar;
-//echo "{'ee':'$sum .. $parell'}";die();
     $where_adults = $this->mountWhereCoberts('adults', $adults, $parell);
-echo "* ";
     $where_nens = $this->mountWhereCoberts('nens', $nens);
-echo "* ";
     $where_cotxets = $this->mountWhereCoberts('cotxets', $cotxets);
-
-echo "* ";
     $where_data = $this->mountWhereDate($data);
-echo "* ";    
     $where = $where_data . $where_adults . $where_nens . $where_cotxets;
 //$where = $where_data . $where_adults . " AND (restriccions_adults='Parell' OR restriccions_adults='Senar' OR TRUE $where_nens)" . $where_cotxets;
 //$order = "ORDER BY restriccions_data DESC, restriccions_data = restriccions_datafi";
@@ -283,6 +277,8 @@ $order
     //$dates = file(LLISTA_DIES_BLANCA);
     $dates[0]["dies_especials_data"]= '2010-01-01';
     $query = "SELECT dies_especials_data FROM dies_especials_small WHERE dies_especials_tipus ='white'";
+    
+    echo $query;
     $Result1 = mysqli_query($this->connexioDB, $query) or die(((is_object($GLOBALS["___mysqli_ston"])) ? mysqli_error($GLOBALS["___mysqli_ston"]) : (($___mysqli_res = mysqli_connect_error()) ? $___mysqli_res : false)));
     $nr = mysqli_num_rows($Result1); 
     if ($nr) $dates = mysqli_fetch_all($Result1, MYSQLI_ASSOC);
@@ -291,8 +287,6 @@ $order
     }
     $indates = implode(", ", $dates);
     $whereindates = " OR '$data' IN ($indates) ";
-    //      print_r($indates);die();
-
 
     $where = " AND (restriccions_data ='2011-01-01' OR (restriccions_data <= '$data' "
         . "AND restriccions_datafi >= '$data') ) ";
