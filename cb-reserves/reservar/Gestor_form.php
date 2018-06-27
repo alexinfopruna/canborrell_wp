@@ -193,6 +193,8 @@ class Gestor_form extends gestor_reserves {
 ini_set('display_errors', 1);
 ini_set('display_startup_errors', 1);
 error_reporting(E_ALL);
+
+echo "11111";
     $this->taulesDisponibles->tableHores = "estat_hores";   //ANULAT GESTOR HORES FORM. Tot es gestiona igual, des d'estat hores
     if ($idr) {
       if (!$this->taulesDisponibles->loadReserva($idr)) {
@@ -206,18 +208,18 @@ error_reporting(E_ALL);
     $this->taulesDisponibles->cotxets = $cotxets;
     $this->taulesDisponibles->accesible = $accesible;
     $this->taulesDisponibles->tableHores = "estat_hores";  //ANULAT GESTOR HORES FORM. Toto es gestiona igual, des de estat hores
-
+echo "2222";
     $this->taulesDisponibles->llista_dies_negra = LLISTA_DIES_NEGRA_RES_PETITES;
     $this->taulesDisponibles->llista_nits_negra = LLISTA_DIES_NEGRA_RES_PETITES;
     $this->taulesDisponibles->llista_dies_blanca = LLISTA_DIES_BLANCA;
     $cacheNens = $nens;
     $cacheAdults = $coberts - $nens;
-
+echo "3333";
 
     $rc = new RestrictionController();
     $this->taulesDisponibles->rang_hores_nens = $rc->getHores($mydata, $cacheAdults, $cacheNens, $cotxets);
     $rules = $rc->getActiveRules($mydata, $cacheAdults, $cacheNens, $cotxets);
-
+echo "4444";
     //RestriccionsTaules ALEX
     //TORN1
     $this->taulesDisponibles->torn = 1;
