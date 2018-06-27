@@ -190,7 +190,9 @@ class Gestor_form extends gestor_reserves {
     if ($cotxets == 'undefined')
       $cotxets = 0;
     $mydata = $this->cambiaf_a_mysql($data);
-
+ini_set('display_errors', 1);
+ini_set('display_startup_errors', 1);
+error_reporting(E_ALL);
     $this->taulesDisponibles->tableHores = "estat_hores";   //ANULAT GESTOR HORES FORM. Tot es gestiona igual, des d'estat hores
     if ($idr) {
       if (!$this->taulesDisponibles->loadReserva($idr)) {
@@ -198,9 +200,7 @@ class Gestor_form extends gestor_reserves {
         return json_encode($json);
       }
     }
-ini_set('display_errors', 1);
-ini_set('display_startup_errors', 1);
-error_reporting(E_ALL);
+
     $this->taulesDisponibles->data = $mydata;
     $this->taulesDisponibles->persones = $coberts;
     $this->taulesDisponibles->cotxets = $cotxets;
