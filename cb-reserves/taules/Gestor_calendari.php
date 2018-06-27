@@ -125,10 +125,13 @@ class Gestor_calendari extends Gestor {
     if (isset($_GET['data'])) {
       $date=Gestor::cambiaf_a_mysql($_GET['data']);
       $date = "'$date'";
-      
     }
     
+    if (!$date) $date="CURRENT_DATE";
+    
     $query = "SELECT * FROM dies_especials_$group WHERE dies_especials_data <= $date + INTERVAL 360 DAY";
+   
+   // echo $date." -- -".$query;
     $this->qry_result = mysqli_query($this->connexioDB, $query) or die(((is_object($GLOBALS["___mysqli_ston"])) ? mysqli_error($GLOBALS["___mysqli_ston"]) : (($___mysqli_res = mysqli_connect_error()) ? $___mysqli_res : false)));
     if (!$this->total_rows = mysqli_num_rows($this->qry_result)) {
       return "[]";
@@ -154,6 +157,28 @@ class Gestor_calendari extends Gestor {
     }
     return $llista;
   }
+  
+  /*
+  public function import_dies_BD(){
+ //   echo "EUEUEUEU $fitxer";
+    
+    $llista = array();
+
+    $llista = $this->llegir_fitxer_dies(LLISTA_DIES_NEGRA, $llista, "tancat");
+    $llista = $this->llegir_fitxer_dies(LLISTA_DIES_BLANCA, $llista, "obert");
+
+    foreach ($llista as $k => $v){
+      $query = "INSERT INTO dies_especials_group VALUES ('$mydata', 'black')";
+      
+    }
+      $this->qry_result = mysqli_query($this->connexioDB, $query) or die(((is_object($GLOBALS["___mysqli_ston"])) ? mysqli_error($GLOBALS["___mysqli_ston"]) : (($___mysqli_res = mysqli_connect_error()) ? $___mysqli_res : false)));
+    
+    
+    return $llista;
+    
+  }
+  */
+  
 
   public function toggle($group, $data) {
     $mydata = Gestor::cambiaf_a_mysql($data);
