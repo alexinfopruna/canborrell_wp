@@ -134,9 +134,12 @@ class Gestor_calendari extends Gestor {
     if (!$this->total_rows = mysqli_num_rows($this->qry_result)) {
       return "[]";
     }
-echo $this->total_rows."  SSSSSSSSSSS";
-    
-    $dies = mysqli_fetch_all($this->qry_result, MYSQLI_ASSOC);
+    while ($row = $this->qry_result->fetch_assoc()) {
+    $dies[] = $row;
+}
+    //$dies = mysqli_fetch_all($this->qry_result, MYSQLI_ASSOC);
+
+
     var_dump($dies);
     return $js = json_encode($dies);
   }
