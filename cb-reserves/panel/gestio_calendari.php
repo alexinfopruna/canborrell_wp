@@ -236,7 +236,7 @@ if (strstr($LLISTA_DIES_NEGRA,'carta')) $group='carta';
         $.post(desti,dades,callback);
     },
               defaultDate: defData,
-              minDate: 1
+              minDate: -30
           });
 
 //CARREGA IDIOMA

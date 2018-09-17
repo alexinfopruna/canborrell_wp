@@ -70,7 +70,7 @@ $translate['INFO_COMANDA']="Pots escollir diferents menús o diferents plats de 
 	
 	$translate['INFO_QUANTS_SOU']='<b>Digue\'ns quantes persones vindreu</b>, indicant, en primer lloc els majors de 14 anys seguit de nens fins a 14. 
 			<br/><br/>
-                        <div class=info-paga-i-senyal><b>Si sou més de '.(persones_paga_i_senyal-1).' persones, 
+                        <div class="info-paga-i-senyal" style="display:none"><b>Si sou més de '.(persones_paga_i_senyal-1).' persones, 
                             caldrà que realitzeu una paga i senyal de '.import_paga_i_senyal.'€ amb targeta de crèdit</b>.
                               Aquest import se us descomptarà del preu final de les consumicions, de manera que no representarà cap despresa extra.
                                 El pagament es realitzarà a través d\'una passarel·la bancària segura. Can Borrell no tindrà accés a les dades introduïdes. 
@@ -239,7 +239,7 @@ $translateJS['OBSERVACIONS_COTXETS']='No tindrem en compte les indicacions que e
 $translateJS["fr-seccio-quants"] = '<p  class="alert alert-info "><span class=" glyphicon glyphicon-info-sign f1"></span> '
     . 'En aquesta secció has d&quot;indicar exactament quantes persones vindran (adults, júniors i nens). </p>'
         . 
-    '<p  class="alert alert-warning "><span class=" glyphicon glyphicon-exclamation-sign f1"></span> <b>Si sou més de '.(persones_paga_i_senyal-1).' persones, '
+    '<p  class="alert alert-warning " style="display:none"><span class=" glyphicon glyphicon-exclamation-sign f1"></span> <b>Si sou més de '.(persones_paga_i_senyal-1).' persones, '
         . 'caldrà que realitzeu una paga i senyal de '.import_paga_i_senyal.'€ amb targeta de crèdit.</b></p>'
     
         . '<p  class="alert alert-info "><span class=" glyphicon glyphicon-info-sign f1"></span> '

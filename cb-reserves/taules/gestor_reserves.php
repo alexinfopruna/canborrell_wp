@@ -3237,23 +3237,28 @@ ORDER BY `estat_hores_data` DESC";
     
     
     $query = "SELECT  * FROM dies_especials_$group WHERE dies_especials_tipus = '$tipus' AND  dies_especials_data <= CURRENT_DATE + INTERVAL 360 DAY";
+    
+   
     $this->qry_result = mysqli_query($this->connexioDB, $query) or die(((is_object($GLOBALS["___mysqli_ston"])) ? mysqli_error($GLOBALS["___mysqli_ston"]) : (($___mysqli_res = mysqli_connect_error()) ? $___mysqli_res : false)));
     if (!$this->total_rows = mysqli_num_rows($this->qry_result)) {
       return false;
     }
-
     while ($row = mysqli_fetch_assoc($this->qry_result)) {
+      
+      
       $class = ($tipus == 'black') ? 'negra' : 'blanca';
       $date_parse = date_parse($row['dies_especials_data']);
-
+      
       $year = $date_parse['year'];
       $month = $date_parse['month'];
       $day = $date_parse['day'];
       $llista[$month - 1][] = $day;
+      
+      
     }
 
 
-    return $llista;
+    return $llista;    
   }
 
   /*   * ********************************************************************************************************************* */
@@ -3261,6 +3266,7 @@ ORDER BY `estat_hores_data` DESC";
 
   public function crea_llista_js_DB($group, $tipus, $var = "SPECIAL_DAYS") {
     $dies = $this->llegir_dies_DB($group, $tipus);
+    //var_dump($dies) ;
     
     $js="";
     $js .= "var $var = {";
@@ -3273,9 +3279,14 @@ ORDER BY `estat_hores_data` DESC";
       $js .= $i . " : [";
 
       $k = 0;
-      $q = 0;
+    $q = 0;
       while (isset($dies[$i][$k])) {
-        if ((((int) date("m") - 1) != $i) || (($dies[$i][$k]) != ((int) date("d")))) {
+          
+          
+         // if ($tipus=="white"){echo "WWWW $i  $k";}
+        //NOMES AFEGEIX EL DIA SI NO ËS AVUI
+        //if ((((int) date("m") - 1) != $i) || (($dies[$i][$k]) != ((int) date("d")))) {
+        if (true){
           if ($q > 0)
             $js .= ",";
           $js .= $dies[$i][$k];

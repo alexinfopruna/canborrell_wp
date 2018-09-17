@@ -119,7 +119,7 @@ function load_calendari_reserves() {
 //  $llista_blanca = llegir_dies( LLISTA_DIES_BLANCA);
 //  print crea_llista_js($llista_blanca, "LLISTA_BLANCA");
   print $gestor->crea_llista_js_DB('small','white','LLISTA_BLANCA');
-  print "\n////////////2\n";
+  print "\n////////////222\n";
 
 
   //$llista_dies_no_carta = llegir_dies(ROOT . INC_FILE_PATH . "llista_dies_no_carta.txt");

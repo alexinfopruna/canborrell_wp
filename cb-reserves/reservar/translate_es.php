@@ -88,8 +88,8 @@ $translate["Hi ha errors al formulari. Revisa les dades, si us plau"]='Hay error
 $translate['Paga i senyal necessària']="Paga i señal necesaria";
 $translate['INFO_QUANTS_SOU']='<b> Dinos cuántas personas vendrán </b>, indicando, en primer lugar los mayores de 14 años
  seguido de niños hasta 14. 
-<br/> 
-                         <div class=info-paga-i-senyal> <b> Si sois más de '. (persones_paga_i_senyal-1).' personas,
+<br/> Si sois
+                         <div class="info-paga-i-senyal" style="display:none"> <b> Si sois más de '. (persones_paga_i_senyal-1).' personas,
 será necesario que realices una paga y señal de '. import_paga_i_senyal.'€ con tarjeta de crédito </ b>.
 Este importe se te descontará del precio final de las consumiciones, por lo que no representará ningún gasto extra.
 El pago se realizará a través de una pasarela bancaria segura. Can Borrell no tendrá acceso a los datos introducidos.
@@ -302,7 +302,7 @@ $translateJS["Segur que vols eliminar la teva reserva?"]="Seguro que quieres eli
 /*******************************************************     VALIDATE   ***********************************/	
 $translateJS['fr-seccio-quants'] = '<p  class="alert alert-info "><span class=" glyphicon glyphicon-info-sign f1"></span> '
     . 'En esta sección debes indicar exactamente cuántas personas van a venir (adultos, juniors y niños). </p>'
-        . '<p  class="alert alert-warning "><span class=" glyphicon glyphicon-exclamation-sign f1"></span>  <b> '
+        . '<p  class="alert alert-warning " style="display:none"><span class=" glyphicon glyphicon-exclamation-sign f1"></span>  <b> '
     . 'Recuerda que si sois más de '. (persones_paga_i_senyal-1)
         .' personas, será necesario que realices una paga y señal de '. import_paga_i_senyal.'€ con tarjeta de crédito </b>.</p> '
         . '<p  class="alert alert-info "><span class=" glyphicon glyphicon-info-sign f1"></span> '

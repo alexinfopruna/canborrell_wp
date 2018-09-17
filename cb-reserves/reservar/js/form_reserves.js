@@ -825,6 +825,7 @@ function monta_calendari(selector)
         var hours = currentTime.getHours();
         hours = "01/01/01 "+hours + ":00";
         var max = "01/01/01 "+MAX_HORA_RESERVA_ONLINE+":00";
+      //  var max = "01/01/01 "+"16"+":00";
         //var entraAvui = ((hours < MAX_HORA_RESERVA_ONLINE) ? 0 : 1);
        
         var entraAvui = Date.parse(hours) >= Date.parse(max)? 1: 0;
@@ -841,16 +842,24 @@ function monta_calendari(selector)
         defData = new Date(RDATA);
         //     alert(defData);
     }
+    /*
+     var ddd = new Date();
+    llistablanca(ddd);
+    alert(ddd + llistablanca(ddd));*/
     $(selector).datepicker("destroy");
     $(selector).datepicker({
         beforeShowDay: function (date, inst) {
             var r = new Array(3);
-            
+           
             if ((date.getDay() == 1 || date.getDay() == 2 || llistanegra(date)) && (!llistablanca(date)) || !taulaDisponible(date))
             {
                 r[0] = false;
                 r[1] = "maldia";
                 r[2] = l("Tancat");
+                /*
+                   r[0] = true;
+                r[1] = "bondia";
+                r[2] = l("Reservar");*/
             }
             else
             {

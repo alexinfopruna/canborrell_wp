@@ -14,7 +14,9 @@
         <!--[if lt IE 9]>
         <script src="<?php echo esc_url(get_template_directory_uri() . '/js/html5.js'); ?>"></script>
         <![endif]-->
-        <?php wp_head(); ?>
+        <?php wp_head();
+        
+        ?>
     </head>
     <?php
     global $page_meta;
@@ -57,7 +59,6 @@
       $body_class = 'page homepage';
 
     $header_image = get_header_image();
-
     $data = __('Make a resevation', 'canborrell');
     $reservar = __('Reservation', 'canborrell');
     $top_datepicker = ' <input type = "text" name = "rdata" placeholder = "' . $data . '" id = "top-datepicker" class = "form-control top-datepicker ">';

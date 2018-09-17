@@ -92,7 +92,7 @@ $translate["Hi ha errors al formulari. Revisa les dades, si us plau"] = 'There a
 $translate['Paga i senyal necessària'] = "Payment of deposit necessary";
 $translate['INFO_QUANTS_SOU'] = '<b> Tell us how many people will come </b>, firstly age 14 and above, then children up to 14.  
 <br/> 
-                         <div class=info-paga-i-senyal> <b>  If you are more than ' . (persones_paga_i_senyal - 1) . ' people,
+                         <div class="info-paga-i-senyal" style="display:none"> <b>  If you are more than ' . (persones_paga_i_senyal - 1) . ' people,
 you will need to make a ' . import_paga_i_senyal . '€ deposit payment with a credit card </b>.
 This amount will be discounted from your bill, therefore there is no added expense. 
 The payment will be made using a secure bank gateway. 
@@ -317,7 +317,7 @@ $translateJS["Segur que vols eliminar la teva reserva?"]="Cancel reservation. Ar
 /* * *****************************************************     VALIDATE   ********************************** */
 $translateJS['fr-seccio-quants'] = '<p  class="alert alert-info "><span class=" glyphicon glyphicon-info-sign f1"></span> '
     . 'In this search you should indicate exactly how many people are going to come (adults, juniors and children)</p>'
-    . '<p  class="alert alert-warning "><span class=" glyphicon glyphicon-exclamation-sign f1"></span>  <b> '
+    . '<p  class="alert alert-warning " style="display:none"><span class=" glyphicon glyphicon-exclamation-sign f1"></span>  <b> '
     . 'Remember if you are more than ' . (persones_paga_i_senyal - 1)
     . ' people, it will be necessary for you to make a deposit payment of ' . import_paga_i_senyal . '€ with a credit card. </b>.</p>'
     . '<p  class="alert alert-info "><span class=" glyphicon glyphicon-info-sign f1"></span> '
