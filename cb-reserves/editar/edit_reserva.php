@@ -33,6 +33,8 @@ function GetSQLValueString($theValue, $theType, $theDefinedValue = "", $theNotDe
   return $theValue;
 }
 
+//function l($st){return $st;}
+
 $editFormAction = $_SERVER['PHP_SELF'];
 if (isset($_SERVER['QUERY_STRING'])) {
   $editFormAction .= "?" . htmlentities($_SERVER['QUERY_STRING']);
@@ -64,8 +66,10 @@ $estat[100]="Petita";
 require_once(ROOT . "Gestor_pagaments.php");
 $pagaments = new Gestor_pagaments();
 $pagat  = $pagaments->get_total_import_pagaments($id);
-
 if ((isset($_POST["MM_update"])) && ($_POST["MM_update"] == "form1")) {
+  
+  
+  
   $updateSQL = sprintf("UPDATE reserves SET num_1=000, data=%s, nom=%s, tel=%s, fax=%s, email=%s, lang=%s,hora=%s, menu=%s, adults=%s, nens10_14=%s, nens4_9=%s, cotxets=%s, observacions=%s, resposta=%s, txt_1=%s, txt_2=%s,estat=%s, preu_reserva=%s WHERE id_reserva=%s",
                        GetSQLValueString($data, "date"),
                        GetSQLValueString($_POST['nom'], "text"),
@@ -74,7 +78,7 @@ if ((isset($_POST["MM_update"])) && ($_POST["MM_update"] == "form1")) {
                        GetSQLValueString($_POST['email'], "text"),
                        GetSQLValueString($_POST['lang'], "text"),
                        GetSQLValueString($_POST['hora'], "text"),
-                       GetSQLValueString($_POST['menu'], "int"),
+                       "NULL",
                        GetSQLValueString($_POST['adults'], "int"),
                        GetSQLValueString($_POST['nens10_14'], "int"),
                        GetSQLValueString($_POST['nens4_9'], "int"),
@@ -100,9 +104,28 @@ if ((isset($_POST["MM_update"])) && ($_POST["MM_update"] == "form1")) {
 $preu_persona = $pagaments->get_preu_persona_reserva();
    if ($_POST['preu_reserva']!=($coberts) * $preu_persona) $avis .= "\\n\\nEl preu (".$_POST['preu_reserva'].") no escorrespon amb els coberts ($coberts)";
 if ($pagat>$row_Recordset1['preu_reserva']) $avis .= "\\n\\nS`ha pagat un import ($pagat) superior a la reserva (".$_POST['preu_reserva'].")";
-if ($pagat && $_POST['estat']!=3 && $_POST['estat']!=7) $avis .= "\\n\\nS'han realitzat pagaments d'aquesta reserva i l'estat (".$estat[$_POST['estat']].") no ho reflexa";
+if ($pagat>0 && $_POST['estat']!=3 && $_POST['estat']!=7) $avis .= "\\n\\nS'han realitzat pagaments d'aquesta reserva i l'estat (".$estat[$_POST['estat']].") no ho reflexa";
 
+
+//INSERT INTO COMANDES
+
+
+    $deleteSQL = "DELETE FROM comanda WHERE comanda_reserva_id=" . $_POST['id_reserva'];
+
+    //$this->qry_result = $this->log_mysql_query($deleteSQL, $this->connexioDB) or die(((is_object($GLOBALS["___mysqli_ston"])) ? mysqli_error($GLOBALS["___mysqli_ston"]) : (($___mysqli_res = mysqli_connect_error()) ? $___mysqli_res : false)));
+    
+      $Result1 = mysqli_query( $canborrell, $deleteSQL) or die(((is_object($GLOBALS["___mysqli_ston"])) ? mysqli_error($GLOBALS["___mysqli_ston"]) : (($___mysqli_res = mysqli_connect_error()) ? $___mysqli_res : false)));
+
+    for ($i = 1; isset($_POST['plat_id_' . $i]); $i++) {
+      $insertSQL = sprintf("INSERT INTO comanda ( comanda_reserva_id, comanda_plat_id, comanda_plat_quantitat) 
+		VALUES (%s, %s, %s)", GetSQLValueString($_POST['id_reserva'], "text"), GetSQLValueString($_POST['plat_id_' . $i], "text"), GetSQLValueString($_POST['plat_quantitat_' . $i], "text"));
+
+      
+      $Result1 = mysqli_query( $canborrell, $insertSQL) or die(((is_object($GLOBALS["___mysqli_ston"])) ? mysqli_error($GLOBALS["___mysqli_ston"]) : (($___mysqli_res = mysqli_connect_error()) ? $___mysqli_res : false)));
+      
+    }
    
+
    
 //  header("location: llistat.php"); 
 }
@@ -116,6 +139,9 @@ if (isset($_GET['totalRows_reserves'])) {
   $all_reserves = mysqli_query($GLOBALS["___mysqli_ston"], $query_reserves);
   $totalRows_reserves = mysqli_num_rows($all_reserves);
 }
+
+
+require_once(ROOT . '../reservar/translate_ca.php');
 ?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "//www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="//www.w3.org/1999/xhtml">
@@ -125,6 +151,9 @@ if (isset($_GET['totalRows_reserves'])) {
 <title>Gestió de reserves</title>
 <link href="reserves.css" rel="stylesheet" type="text/css" />
 <link href="../css/estils.css" rel="stylesheet" type="text/css" />
+  <link type="text/css" href="/cb-reserves/taules/css/blitzer/jquery-ui-1.8.9.forms.css" rel="stylesheet" />	
+  <link type="text/css" href="/cb-reserves/reservar/css/form_reserves_mob.css" rel="stylesheet" />		
+
 <style type="text/css">
     td a, td a:visited, td a:link {color:#ccc} 
 td a:hover {color:white} 
@@ -144,8 +173,18 @@ td a:hover {color:white}
               $(location).attr('href', 'llistat.php');
             }
           });
+            
+            
+  
+          function roundNumber(num, dec) {
+    var result = Math.round(num * Math.pow(10, dec)) / Math.pow(10, dec);
+    return parseFloat(result.toFixed(dec));
+}
+          
+ 
           </script>
 
+<script  type="text/javascript" src="/cb-reserves/reservar/js/control_carta.js"></script>
 </head>
 
 <body>
@@ -213,6 +252,8 @@ td a:hover {color:white}
     <tr valign="baseline">
       <td align="right" valign="top" nowrap bgcolor="#333333" class="Estilo2"><span class="Estilo8">Menu:</span></td>
       <td width="300" bgcolor="#CCCCCC" class="llista">
+          
+          <!--
         <select name="menu">
 			<OPTION VALUE="0" <?php if ((int)$row_Recordset1['menu']==0) echo "selected='selected'";?>/>Men&uacute; nº1
 			<OPTION VALUE="1" <?php if ((int)$row_Recordset1['menu']==1) echo "selected='selected'";?>/>Men&uacute; nº1 Celebraci&oacute;
@@ -224,7 +265,45 @@ td a:hover {color:white}
 			<OPTION VALUE="7" <?php if ((int)$row_Recordset1['menu']==7) echo "selected='selected'";?>/>Men&uacute; Casaments
 			<OPTION VALUE="8" <?php if ((int)$row_Recordset1['menu']==8) echo "selected='selected'";?>/>Carta
 			<OPTION VALUE="9" <?php if ((int)$row_Recordset1['menu']==9) echo "selected='selected'";?>/>Men&uacute; nº4
-        </select> </td>
+        </select> 
+      -->
+      
+      
+       <table id="caixa-carta" class="col_dere">
+                                                                                  <tr>
+                                                                                      <td class="mesX"></td>
+                                                                                      <td class="menysX"></td>
+                                                                                      <td class="Xborra"></td>
+                                                                                      <td class="carta-plat">
+                                                                                          <h3><?php //l("SELECCIÓ")          ?></h3>
+                                                                                      </td>
+                                                                                      <td></td>
+                                                                                  </tr>
+                                                                                  <tr>
+                                                                                      <td class="mesX">							
+  <?php echo $comanda ?></td>
+                                                                                      <td class="menysX"></td><td class="Xborra"></td>
+                                                                                      <td class="carta-plat"><h3>	</h3></td>
+                                                                                      <td></td>
+                                                                                  </tr>
+                                                                              </table>
+      
+                                          
+                                                 	
+<div style="display:flex">
+                                                                  <!-- ******  INFO  ********  
+                                                                  <div class="ui-corner-all info">
+                                                                  Si ho desitges pots triar els plats que demanareu per tenir una idea del preu, evitar que us trobeu algun plat exhaurit i accelerar el servei quan vingueu al restaurant.<br/><br/> 
+						<b>Aquesta selecció no et compromet en absolut</b>.<br/><br/> Un cop al restaurant podràs modificar o anul·lar la comanda i, en qualsevol cas, us cobrarem únicament els plats i beugudes que us servim.                                                                  </div> -->
+                                                                  <!-- ******  BUTO CARTA  ********   -->
+
+                                                                  <a href="#" id="bt-carta" name="bt-carta" class="bt ui-button ui-widget ui-state-default ui-corner-all ui-button-text-only" role="button" aria-disabled="false" style="display: block;"><span class="ui-button-text">Modifica Carta</span></a>
+                                                                  <a href="#" id="bt-menu" name="bt-menu" class="bt ui-button ui-widget ui-state-default ui-corner-all ui-button-text-only" role="button" aria-disabled="false"><span class="ui-button-text">Modifica Menús</span></a>
+                                                                  <div style="clear:both"></div>
+
+                                                              </div>
+      
+      </td>
     <tr>
     <tr valign="baseline">
       <td align="right" valign="top" nowrap bgcolor="#333333" class="Estilo2"><span class="Estilo8">Adults:</span></td>
@@ -305,6 +384,30 @@ td a:hover {color:white}
 
 
 <p>&nbsp;</p>
+
+
+
+                                                  <!-- ******************* CARTA *********************** -->
+                                                  <!-- ******************* CARTA *********************** -->
+                                                  <!-- ******************* CARTA *********************** -->
+                                                  <?php //function l($s){return $s;} ?>
+                                                  <div id="fr-cartaw-popup" title="La nostra carta" class="carta-menu" style="height:300px">
+                                                      <div id="fr-carta-tabs" >
+  <?php  echo $pagaments->recuperaCarta($row_Recordset1['id_reserva']); ?>
+                                                          
+                                                      </div>	
+                                                  </div>	
+                                                  <!-- ******************* CARTA-MENU *********************** -->
+                                                  <!-- ******************* CARTA-MENU *********************** -->
+                                                  <!-- ******************* CARTA-MENU *********************** -->
+                                                  <div id="fr-menu-popup" title="Els nostres menús" class="carta-menu">
+                                                      
+                                                      <div id="fr-menu-tabs" >
+  <?php  echo $pagaments->recuperaCarta($row_Recordset1['id_reserva'], true) ?>
+                                                      </div>	
+                                                  </div>	
+
+
 </body>
 </html>
 <?php

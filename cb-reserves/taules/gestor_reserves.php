@@ -2370,6 +2370,7 @@ EOHTML;
     return $avis;
   }
 
+  
   /*   * ****************************************************************************************************************************** */
   /*   * ****************************************************************************************************************************** */
   /*   * ****************************************************************************************************************************** */
@@ -2529,6 +2530,145 @@ EOHTML;
     return $query . "<br/>\n<br/>\n" . $insertSQL;
   }
 
+  
+// FUNCIONS	recupera carta amb comanda inclosa
+  /*   * ******************************************************************************************************* */
+  /*   * ******************************************************************************************************* */
+  public function recuperaCarta($idr, $es_menu = false) {
+    $lng = $this->lng;
+    if ($idr < 1)
+      $idr = -1;
+    //CONTROL DIES NOMES CARTA
+
+
+    if ($es_menu)
+      $were = ' carta_plats.carta_plats_subfamilia_id=20 ';
+    else
+      $were = ' (carta_plats.carta_plats_subfamilia_id<>20) ';
+
+    $were .= ' AND carta_publicat = TRUE ';
+
+    $CONTROLA_ARTICLES_ACTIUS = "";
+
+    $query = "select `carta_plats_id`,`carta_plats_nom_es`,`carta_plats_nom_en`,`carta_plats_nom_ca`,`carta_plats_preu`,carta_subfamilia.carta_subfamilia_id AS subfamilia_id,`carta_subfamilia_nom_$lng`, comanda_client.comanda_plat_quantitat 
+FROM carta_plats 
+LEFT JOIN carta_publicat ON carta_plats_id=carta_publicat_plat_id
+LEFT JOIN carta_subfamilia ON carta_subfamilia.carta_subfamilia_id=carta_plats_subfamilia_id
+LEFT JOIN comanda as comanda_client ON carta_plats_id=comanda_plat_id AND comanda_reserva_id='$idr'
+LEFT JOIN carta_subfamilia_order ON carta_subfamilia.carta_subfamilia_id=carta_subfamilia_order.carta_subfamilia_id
+
+$CONTROLA_ARTICLES_ACTIUS
+
+WHERE $were
+ORDER BY carta_subfamilia_order,carta_plats_nom_es , carta_plats_nom_ca";
+    $Result1 = mysqli_query($this->connexioDB, $query) or die(((is_object($GLOBALS["___mysqli_ston"])) ? mysqli_error($GLOBALS["___mysqli_ston"]) : (($___mysqli_res = mysqli_connect_error()) ? $___mysqli_res : false)));
+
+    while ($row = mysqli_fetch_array($Result1)) {
+      if (empty($row['carta_plats_nom_ca']))
+        $row['carta_plats_nom_ca'] = $row['carta_plats_nom_es'];
+      if (empty($row['carta_plats_nom_en']))
+        $row['carta_plats_nom_en'] = $row['carta_plats_nom_es'];
+      //ucfirst
+      if ($_SESSION["lang"] != 'es')
+        $row['carta_plats_nom_' . $lng] = ucfirst(mb_strtolower($row['carta_plats_nom_' . $lng]));
+      $plat = array('id' => $row['carta_plats_id'], 'nom' => $row['carta_plats_nom_' . $lng], 'preu' => $row['carta_plats_preu'], 'quantitat' => $row['comanda_plat_quantitat']);
+      $arCarta[$row['carta_subfamilia_nom_' . $lng]][] = $plat;
+    }
+
+    /*     * ******************************************************************************************************* */
+
+    $class = $es_menu ? "cmenu" : "ccarta";
+    $obreLlista = '<ul id="carta-seccions" class="' . $class . '">' . PHP_EOL;
+    $llista = "";
+    foreach ($arCarta as $key => $val) {
+      $k = $this->normalitzar($key);
+      $llista .= '<li><a href="#carta_' . $k . '">' . $key . '</a></li>' . PHP_EOL;
+    }
+    $tancaLlista = '</ul>' . PHP_EOL;
+    $carta = $obreLlista . $llista . $tancaLlista;
+
+    foreach ($arCarta as $key => $val) {
+      $k = $this->normalitzar($key);
+      $obreSeccio = '<div id="carta_' . $k . '" class="llistat_menus ' . $class . '">' . PHP_EOL;
+      $seccio = $this->seccioCarta($arCarta, $key, $class);
+      $tancaSeccio = '</div>' . PHP_EOL . PHP_EOL;
+
+      $carta .= $obreSeccio . PHP_EOL . $seccio . PHP_EOL . $tancaSeccio;
+    }
+
+    return $carta;
+  }  
+  
+  
+   /*   * ******************************************************************************************************* */
+
+  public function seccioCarta($ar, $k, $class) {
+    
+    
+    global $translate;
+    ob_start();
+  //  include('translate_carta_' . $this->lng . '.php');
+     include(ROOT . '/../reservar/translate_carta_' . $this->lng . '.php');
+    ob_end_clean();
+    
+    
+    $obreTaula = '<table id="c1" class="col_dere">' . PHP_EOL;
+    $l = $c = 0;
+    $tr = '';
+    foreach ($ar[$k] as $key => $val) {
+      $comentari = "";
+      $menuEspecial = $this->menuEspecial($val['id']) ? " menu-especial" : "";
+      if (!calsoton && ($val['id'] == 2010 || $val['nom'] == "MENU CALÇOTADA" || $val['nom'] == "MENÚ CALÇOTADA"))
+        continue;
+      $l++;
+
+      if ($val['quantitat'])
+        $value = ' value="' . $val['quantitat'] . '" ';
+      else
+        $value = "0";
+      
+      /** COMENTARIS **/
+
+      /**  IVA  * */
+      //$val['preu']*=IVA/100;
+      $preu = round($val['preu'] + $val['preu'] * IVA / 100, 2);
+      $preu = number_format($preu, 2, '.', '');
+      $nomTrans = l($val['nom'], false);
+      $odd = ($l % 2) ? "odd" : "pair";
+      $tr .= '<tr producte_id="' . $val['id'] . '" class="item-carta ' . $odd . $menuEspecial . '">
+				<td  class="mes"><div  class="d-mes ui-corner-all" ><a href"#">+</a></div></td>
+				<td class="contador">
+                                <div  class="mes"><div  class="m-mes ui-corner-all"> + </div></div>
+                                <input id="carta_contador' . $val['id'] . '" nid="' . $val['id'] . '" type="text" name="carta_contador' . $c++ . '" class="contador ' . $class . '" ' . $value . ' preu="' . $preu . '" nom="' . $val['nom'] . '"/>
+                                 <div  class="menys"><div  class="m-menys ui-corner-all"> - </div></div>   
+
+</td>
+				<td class="menys"><div  class="d-menys ui-corner-all" ><a href"#">-</a></div></td>
+				<td class="borra" style="display:none"></td>
+				<td><a class="resum-carta-nom" href="/cb-reserves/reservar/Gestor_form.php?a=TTmenu&b=' . $val['id'] . '" >' . $nomTrans .'</a></td>
+				<td class="td-carta-preu"><span class="carta-preu">' . $preu . '</span>&euro; </td>
+				<!--<td class="carta-subtotal"><em>(subtotal: <span class="carta-preu-subtotal">0</span>&euro; )</em></td></tr>-->
+                                           
+
+' . PHP_EOL;
+    }
+
+    $tancaTaula = '
+		<tr><td></td><td></td><td></td><td></td><td>IVA incl.</td><td></td></tr>
+		</table>' . PHP_EOL . PHP_EOL;
+
+    return $obreTaula . $tr . $tancaTaula;
+  }
+
+  private function menuEspecial($id) {
+    return ($id == 2001 || $id == 2003);
+  }
+
+  /*   * ******************************************************************************************************* */
+  /*   * ******************************************************************************************************* */
+
+  
+  
   /*   * ****************************************************************************************************************************** */
   /*   * *********   PERMUTA *********************************************************************************** */
   /*   * ****************************************************************************************************************************** */
