@@ -69,7 +69,7 @@ $pagat  = $pagaments->get_total_import_pagaments($id);
 if ((isset($_POST["MM_update"])) && ($_POST["MM_update"] == "form1")) {
   
   
-  
+ 
   $updateSQL = sprintf("UPDATE reserves SET num_1=000, data=%s, nom=%s, tel=%s, fax=%s, email=%s, lang=%s,hora=%s, menu=%s, adults=%s, nens10_14=%s, nens4_9=%s, cotxets=%s, observacions=%s, resposta=%s, txt_1=%s, txt_2=%s,estat=%s, preu_reserva=%s WHERE id_reserva=%s",
                        GetSQLValueString($data, "date"),
                        GetSQLValueString($_POST['nom'], "text"),
@@ -78,7 +78,7 @@ if ((isset($_POST["MM_update"])) && ($_POST["MM_update"] == "form1")) {
                        GetSQLValueString($_POST['email'], "text"),
                        GetSQLValueString($_POST['lang'], "text"),
                        GetSQLValueString($_POST['hora'], "text"),
-                       "NULL",
+                       "0",
                        GetSQLValueString($_POST['adults'], "int"),
                        GetSQLValueString($_POST['nens10_14'], "int"),
                        GetSQLValueString($_POST['nens4_9'], "int"),
@@ -95,6 +95,7 @@ if ((isset($_POST["MM_update"])) && ($_POST["MM_update"] == "form1")) {
   $Result1 = mysqli_query( $canborrell, $updateSQL) or die(((is_object($GLOBALS["___mysqli_ston"])) ? mysqli_error($GLOBALS["___mysqli_ston"]) : (($___mysqli_res = mysqli_connect_error()) ? $___mysqli_res : false)));
   //print_log("Modificació valors: ".$_POST['id_reserva']);
   $res=$_POST['id_reserva'];
+   echo $Result1. "  WWW   $updateSQL";
 
    Gestor::xgreg_log("<span class='grups'>Modificació reserva GRUPS: <span class='idr'>$res</span></span>",0,'/log/logGRUPS.txt');
    $anterior = Gestor::log_array($row_Recordset1);
@@ -127,7 +128,7 @@ if ($pagat>0 && $_POST['estat']!=3 && $_POST['estat']!=7) $avis .= "\\n\\nS'han 
    
 
    
-//  header("location: llistat.php"); 
+  header("location: llistat.php"); 
 }
 ?>
 
@@ -155,6 +156,7 @@ require_once(ROOT . '../reservar/translate_ca.php');
   <link type="text/css" href="/cb-reserves/reservar/css/form_reserves_mob.css" rel="stylesheet" />		
 
 <style type="text/css">
+    .ui-button-text{color:#666;}
     td a, td a:visited, td a:link {color:#ccc} 
 td a:hover {color:white} 
 <!--
