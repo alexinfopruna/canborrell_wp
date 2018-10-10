@@ -2949,12 +2949,18 @@ ORDER BY `estat_hores_data` DESC";
     $recipients = $numMobil;    // The mobile number(s) to send the message to (comma-separated).
     $body = $mensa;     // The body of the message to send (must be less than 160 characters).
     $idReserva = $res;
-
+/*
     $username = "restaurant@can-borrell.com";     // Your Username (normally an email address).
 //ANTIC $password = "NDX5631";      // Your Password.
-    $password = "1909";     // Your Password 26/2/2013.
+    $password = "Alkaline:17";     // Your Password 26/2/2013.
     $accountReference = "EX0062561";    // Your Account Reference (either your virtual mobile number, or EX account number).
-    $originator = "Rest.Can Borrell";   // An alias that the message appears to come from (alphanumeric characters only, and must be less than 11 characters).
+
+ *     $originator = "Rest.Can Borrell";   // An alias that the message appears to come from (alphanumeric characters only, and must be less than 11 characters).
+ */
+        require_once ROOT . INC_FILE_PATH . 'essendex_config.php';
+
+    
+    
     $type = "Text";     // The type of the message in the body (e.g. Text, SmartMessage, Binary or Unicode).
     $validityPeriod = 0;    // The amount of time in hours until the message expires if it cannot be delivered.
     $result;      // The result of a service request.
