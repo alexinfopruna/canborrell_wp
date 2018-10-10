@@ -2958,7 +2958,7 @@ ORDER BY `estat_hores_data` DESC";
  *     $originator = "Rest.Can Borrell";   // An alias that the message appears to come from (alphanumeric characters only, and must be less than 11 characters).
  */
         require_once ROOT . INC_FILE_PATH . 'essendex_config.php';
-
+echo $essedex_user . $essedex_pwd;die();
     
     
     $type = "Text";     // The type of the message in the body (e.g. Text, SmartMessage, Binary or Unicode).
@@ -2971,7 +2971,7 @@ ORDER BY `estat_hores_data` DESC";
     $result['Message'] = "";
     if (ENVIA_SMS == "1" && $recipients != '999212121') {
       try {
-        $sendService = new EsendexSendService($username, $password, $accountReference);
+        $sendService = new EsendexSendService($essedex_user, $essedex_pwd, $accountReference);
         $result = $sendService->SendMessage($recipients, $body, $type);
         $pr = print_r($result, TRUE);
         $this->xgreg_log(">>> ENVIA SMS: REAL: " . $pr . " ***  " . $result['Result'], 1);
