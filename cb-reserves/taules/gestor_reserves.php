@@ -2958,7 +2958,7 @@ ORDER BY `estat_hores_data` DESC";
  *     $originator = "Rest.Can Borrell";   // An alias that the message appears to come from (alphanumeric characters only, and must be less than 11 characters).
  */
         require_once ROOT . INC_FILE_PATH . 'essendex_config.php';
-echo $essedex_user . $essedex_pwd;die();
+//echo $essedex_user . $essedex_pwd;die();
     
     
     $type = "Text";     // The type of the message in the body (e.g. Text, SmartMessage, Binary or Unicode).
