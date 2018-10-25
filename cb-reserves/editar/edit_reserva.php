@@ -78,7 +78,7 @@ if ((isset($_POST["MM_update"])) && ($_POST["MM_update"] == "form1")) {
                        GetSQLValueString($_POST['email'], "text"),
                        GetSQLValueString($_POST['lang'], "text"),
                        GetSQLValueString($_POST['hora'], "text"),
-                       "0",
+                       GetSQLValueString($_POST['menu'], "int"),
                        GetSQLValueString($_POST['adults'], "int"),
                        GetSQLValueString($_POST['nens10_14'], "int"),
                        GetSQLValueString($_POST['nens4_9'], "int"),
@@ -255,7 +255,7 @@ td a:hover {color:white}
       <td align="right" valign="top" nowrap bgcolor="#333333" class="Estilo2"><span class="Estilo8">Menu:</span></td>
       <td width="300" bgcolor="#CCCCCC" class="llista">
           
-          <!--
+          <!---->
         <select name="menu">
 			<OPTION VALUE="0" <?php if ((int)$row_Recordset1['menu']==0) echo "selected='selected'";?>/>Men&uacute; nº1
 			<OPTION VALUE="1" <?php if ((int)$row_Recordset1['menu']==1) echo "selected='selected'";?>/>Men&uacute; nº1 Celebraci&oacute;
@@ -268,7 +268,7 @@ td a:hover {color:white}
 			<OPTION VALUE="8" <?php if ((int)$row_Recordset1['menu']==8) echo "selected='selected'";?>/>Carta
 			<OPTION VALUE="9" <?php if ((int)$row_Recordset1['menu']==9) echo "selected='selected'";?>/>Men&uacute; nº4
         </select> 
-      -->
+      
       
       
        <table id="caixa-carta" class="col_dere">
