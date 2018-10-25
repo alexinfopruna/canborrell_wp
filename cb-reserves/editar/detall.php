@@ -247,9 +247,11 @@ td{border:white solid 3px;}
         <tr>
           <td align="right" bgcolor="#333333" class="Estilo2">menu</td>
           <td width="320" bgcolor="#CCCCCC" class="llista"><div align="left"><?php 
+          echo ($mmenu[(int)$row_DetailRS1['menu']]['cat'])."<br>"; 
+          
           $comanda=$gestor->plats_comanda($recordID);
           if ( $comanda) echo $comanda; 
-           else echo ($mmenu[(int)$row_DetailRS1['menu']]['cat']); 
+         //  else echo ($mmenu[(int)$row_DetailRS1['menu']]['cat']); 
           
           ?> </div></td>
         </tr>
