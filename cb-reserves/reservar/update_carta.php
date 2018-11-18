@@ -4,7 +4,7 @@
   
 
 <?php
-  //echo "UPDATE";die();
+  echo "UPDATE";die();
 /***
  * CAPITALIZE
  * UPDATE carta_subfamilia SET `carta_subfamilia_nom_ca` = CONCAT(UCASE(LEFT(`carta_subfamilia_nom_ca`, 1)), SUBSTRING(LCASE(`carta_subfamilia_nom_ca`), 2))
