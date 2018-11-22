@@ -1890,7 +1890,7 @@ ORDER BY carta_subfamilia_order,carta_plats_nom_es , carta_plats_nom_ca";
 
   public function cancelGrup($id_reserva) {
       $extres['observacions']="MISSATGE AUTOMÀTIC DEL SISTEMA DE RESERVES<br><br> >>>> Sol·licitud de cancel·lació de la reserva";
-      $mail = $this->enviaMail($id_reserva, "contactar_restaurant_", "alexinfopruna@gmail.com", $extres);
+      $mail = $this->enviaMail($id_reserva, "contactar_restaurant_", "restaurant@can-borrell.com", $extres);
   }
 
 }
