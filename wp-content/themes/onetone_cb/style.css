@@ -480,6 +480,11 @@ h3.entry-title{
     background:white;
 }
 
+.tab-title {
+    font-size: 13px;
+}
+
+
 .ui-dialog .ui-dialog-titlebar-close span {
     margin: -8px -8px;
     /* margin: inherit; */
