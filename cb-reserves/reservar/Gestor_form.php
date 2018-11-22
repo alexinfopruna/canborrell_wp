@@ -1072,7 +1072,7 @@ FROM client
       $hora = $row['hora'];
       $SMS = $this->enviaSMS($idr, "CANCELADA tu reserva $idr para el $data a las $hora" );
       
-/*
+/**
       $deleteSQL = "DELETE FROM " . T_RESERVES . " WHERE id_reserva=$idr";
       $this->qry_result = $this->log_mysql_query($deleteSQL, $this->connexioDB) or die(((is_object($GLOBALS["___mysqli_ston"])) ? mysqli_error($GLOBALS["___mysqli_ston"]) : (($___mysqli_res = mysqli_connect_error()) ? $___mysqli_res : false)));
 
