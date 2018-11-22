@@ -36,10 +36,21 @@ if (intval($mob)!=intval($_POST['mobil'])){
 }
 else{
   
-  
-  if (intval($_POST['rid'])< SEPARADOR_ID_RESERVES) $_POST['accio']='pay';
+    if (intval($_POST['rid'])< SEPARADOR_ID_RESERVES && $_POST['accio']=="cancel"){
+      $gestorf->cancelGrup($_POST['rid']);
+       $_POST['accio']="alert";
+      echo "<script>
+        alert('Se ha enviado un SOLICITUD de cancelación. En breve recibirá una respuesta del restaurant. \\n\\nSu reserva SIGUE EN CURSO hasta que reciba una confirmación de la cancelación');
+        window.location.replace('/');
+</script>";
+     
+      //header('Location: /');
+      //exit();
+    }
+/*
+  if (intval($_POST['rid'])< SEPARADOR_ID_RESERVES && $_POST['accio']='pay') $_POST['accio']='pay';
   else  $_POST['accio']='edit';
-  
+  */
  // echo $_POST['accio'];echo SEPARADOR_ID_RESERVES;die();
   $b64=base64_encode($_POST['rid']."&".$_POST['mobil']."&".ICL_LANGUAGE_CODE);
   switch ($_POST['accio']) {
@@ -56,6 +67,9 @@ exit();
       header('Location: /reservar/realitzar-reserva/?rid='.$b64.'&lang='.ICL_LANGUAGE_CODE);
 exit();
       break;
+    
+ //   case 'alert':
+      
     
     default:
         break;

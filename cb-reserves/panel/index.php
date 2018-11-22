@@ -26,12 +26,22 @@ if (isset($_GET['exit']))
     function get_version()
     {
       
-        $commitHash = trim(exec('git log --pretty="%s" -n1 HEAD'));
+        $commitHash = $branch = "?????";
+        $commitDate = new \DateTime();
+        $commitDate->setTimezone(new \DateTimeZone('UTC'));
+        
+      try{
+        /*
+       $commitHash = trim(exec('git log --pretty="%s" -n1 HEAD'));
         $branch = trim(exec('git branch | grep \*'));
 
         $commitDate = new \DateTime(trim(exec('git log -n1 --pretty=%ci HEAD')));
         $commitDate->setTimezone(new \DateTimeZone('UTC'));
+     */
+      }catch (Exception $e) {
 
+ 
+      } 
         return sprintf('(%s) %s',  $commitDate->format('Y-m-d H:m:s'), $commitHash." ".$branch);
     }
 

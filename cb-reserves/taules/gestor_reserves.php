@@ -2800,6 +2800,7 @@ ORDER BY `estat_hores_data` DESC";
 
     $this->reg_log(">>>> ENVIA EMAIL >>>> enviaMail($idr, $plantilla, $recipient )", 1);
     $this->xgreg_log(">>>> ENVIA EMAIL >>>> enviaMail(<span class='idr'>$idr</span>, $plantilla, $recipient, $subject )", 0, '/log/logMAILSMS.txt');
+   
     if (!ENVIA_MAILS) {
       $this->reg_log("ENVIA_MAILS DESACTIVAT", 1);
       return FALSE;
@@ -2894,7 +2895,11 @@ ORDER BY `estat_hores_data` DESC";
     $file = ROOT . "/editar/read.php?f=" . ROOT . INC_FILE_PATH . '/log/logMAILSMS.txt';
     $this->xgreg_log(">>> ENVIA SMS <span class='idr'>$res</span> > $numMobil  ", 1, '/log/logMAILSMS.txt');
     $this->xgreg_log('<br><a href="' . $file . '">log mail</a>', 1, '/log/logMAILSMS.txt');
-
+    
+   // echo "ZZZZZZZZZ $file";
+$this->xgreg_log('<br><a href="' . $file . '">log mail</a>', 1, '/log/logMAILSMS.txt');
+$this->xgreg_log('<br><a href="' . $file . '">log mail</a>', 1, '/log/logMAILSMS.txt');
+$this->xgreg_log('<br><a href="' . $file . '">log mail</a>', 1, '/log/logMAILSMS.txt');
     if (!isset($_SESSION['permisos']) || $_SESSION['permisos'] < 1) {
       $this->xgreg_log(">>> ENVIA SMS: SIN PERMISOS!!!", 1);
       $this->xgreg_log(">>> ENVIA SMS: SIN PERMISOS!!!", 1, '/log/logMAILSMS.txt');
@@ -2921,7 +2926,7 @@ ORDER BY `estat_hores_data` DESC";
       $this->xgreg_log(">>> ENVIA SMS: FALTA NUM MOBIL!!!", 1, '/log/logMAILSMS.txt');
       return false;
     }
-
+//echo "RRR";die();
     if (!$missatge) {
       $persones = $row['adults'] + $row['nens10_14'] + $row['nens4_9'];
       $persones .= 'p';

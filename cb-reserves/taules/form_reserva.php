@@ -440,7 +440,11 @@ echo $d;
                     <td nowrap="nowrap" align="right">Comanda:</td>
                     <td align="left" class="ui-corner-all info-comanda" style="">
 
-                        <?php echo $gestor->plats_comanda($row_reserva['id_reserva']); ?>
+                        <?php 
+                        $txtComanda = $gestor->plats_comanda($row_reserva['id_reserva']);
+                        
+                        if ($txtComanda=="") $txtComanda="CARTA";
+                        echo $txtComanda ?>
 
                     </td>
                 </tr>	  

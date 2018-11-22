@@ -70,6 +70,10 @@ $translate['XORIÇO'] = 'Chorizo sausage  <em>Chorizo  </em>';
 
 $translate['Menu grupo nº 4'] = 'Menu grup nº 4 <i style="color:blue">No combinable: Cal que tots els comensals demanin el mateix</i>';
 
+$translate['CELLER'] = 'WINE CELLAR<em>CELLER</em>';
+$translate['POSTRES'] = 'DESSERT<em>POSTRES</em>';
+$translate['CAVES'] = 'CAVES<em>cava</em>';
+
  
 require_once('translate.php');
 ?>

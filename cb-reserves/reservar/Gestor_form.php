@@ -1,4 +1,5 @@
 <?php
+  define('MAX_RESERVATION_TIME', "11:59");
 
 if (!defined('ROOT'))
   header('Content-Type: text/html; charset=UTF-8');
@@ -73,13 +74,14 @@ class Gestor_form extends gestor_reserves {
     if (strtolower(substr($id_reserva, 0, 2) == "id"))
       $id_reserva = substr($id_reserva, 2, 15);
 
+    $now = date('H:i');
+    $operador = $now >= MAX_RESERVATION_TIME?">":">=";
     $query = "SELECT * FROM " . T_RESERVES . " 
 		LEFT JOIN client ON " . T_RESERVES . ".client_id=client.client_id
 		LEFT JOIN " . ESTAT_TAULES . " ON " . T_RESERVES . ".id_reserva=" . ESTAT_TAULES . ".reserva_id
-		WHERE data>= NOW() + INTERVAL 24 HOUR
+		WHERE data $operador CURDATE() 
 		AND " . T_RESERVES . ".id_reserva='" . $id_reserva . "' AND client_mobil='" . $mob . "'";
     $this->qry_result = mysqli_query($this->connexioDB, $query) or die(((is_object($GLOBALS["___mysqli_ston"])) ? mysqli_error($GLOBALS["___mysqli_ston"]) : (($___mysqli_res = mysqli_connect_error()) ? $___mysqli_res : false)));
-
     if ($this->total_rows = mysqli_num_rows($this->qry_result)) {
       $this->last_row = mysqli_fetch_assoc($this->qry_result);
       $usr = new Usuari($this->last_row['client_id'], $this->last_row['client_nom'], 1);
@@ -1050,8 +1052,7 @@ FROM client
 
   public function cancelReserva($mob, $idr) {
     $this->xgreg_log("cancelReserva $mob <span class='idr'>$idr</span>");
-
-    if ($this->recuperaReserva($mob, $idr)) {
+    if ($row = $this->recuperaReserva($mob, $idr)) {
       $perm = $_SESSION['permisos'];
       $_SESSION['permisos'] = Gestor::$PERMISOS; //LI DONO PERMISOS PER FER LA PERMUTA
 
@@ -1064,9 +1065,14 @@ FROM client
       ob_start();
       include('translate_' . $this->lng . '.php');
       ob_end_clean();
+      
       $extres['subject'] = $this->l("Can-Borrell: RESERVA CANCELADA ", FALSE) . $_POST['id_reserva'];
       $mail = $this->enviaMail($idr, "cancelada_", FALSE, $extres);
-
+      $data = $row['data'];
+      $hora = $row['hora'];
+      $SMS = $this->enviaSMS($idr, "CANCELADA tu reserva $idr para el $data a las $hora" );
+      
+/*
       $deleteSQL = "DELETE FROM " . T_RESERVES . " WHERE id_reserva=$idr";
       $this->qry_result = $this->log_mysql_query($deleteSQL, $this->connexioDB) or die(((is_object($GLOBALS["___mysqli_ston"])) ? mysqli_error($GLOBALS["___mysqli_ston"]) : (($___mysqli_res = mysqli_connect_error()) ? $___mysqli_res : false)));
 
@@ -1074,7 +1080,9 @@ FROM client
 
       $deleteSQL = "UPDATE " . ESTAT_TAULES . " SET reserva_id=0, estat_taula_usuari_modificacio=$usr WHERE reserva_id=$idr";
       $this->qry_result = $this->log_mysql_query($deleteSQL, $this->connexioDB) or die(((is_object($GLOBALS["___mysqli_ston"])) ? mysqli_error($GLOBALS["___mysqli_ston"]) : (($___mysqli_res = mysqli_connect_error()) ? $___mysqli_res : false)));
-    }
+*/
+      }
+ 
     else {
       return false;
     }
@@ -1783,7 +1791,7 @@ SQL;
     else
       $were = ' (carta_plats.carta_plats_subfamilia_id<>20) ';
 
-    $were .= ' AND carta_plats_subfamilia_id IN (1101, 1102, 1103, 1104, 1105)';
+    $were .= ' AND carta_plats_subfamilia_id IN (1101, 1102, 1103, 1104, 1105, 2, 5001, 6)';
     $were .= ' AND carta_publicat = TRUE ';
 
     if ($leng == 'en')
@@ -1824,7 +1832,7 @@ ORDER BY carta_subfamilia_order,carta_plats_nom_es , carta_plats_nom_ca";
     /*     * ******************************************************************************************************* */
 
     $class = $es_menu ? "cmenu" : "ccarta";
-    $obreLlista = '[ms_tabs style="simple" title_color="" class="" id=""]' . PHP_EOL;
+    $obreLlista = '<style>h4 em {display:block;text-align:center}</style> [ms_tabs style="simple" title_color="" class="" id=""]' . PHP_EOL;
     $llista = "";
     $tancaLlista = ' [/ms_tabs]' . PHP_EOL;
     $carta = "";
@@ -1877,6 +1885,11 @@ ORDER BY carta_subfamilia_order,carta_plats_nom_es , carta_plats_nom_ca";
     $tancaTaula = '</ul>' . PHP_EOL . PHP_EOL;
 
     return $obreTaula . $tr . $tancaTaula;
+  }
+
+  public function cancelGrup($id_reserva) {
+      $extres['observacions']="MISSATGE AUTOMÀTIC DEL SISTEMA DE RESERVES<br><br> >>>> Sol·licitud de cancel·lació de la reserva";
+      $mail = $this->enviaMail($id_reserva, "contactar_restaurant_", "alexinfopruna@gmail.com", $extres);
   }
 
 }
