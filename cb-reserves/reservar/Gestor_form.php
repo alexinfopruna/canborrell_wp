@@ -1053,6 +1053,7 @@ FROM client
   public function cancelReserva($mob, $idr) {
     $this->xgreg_log("cancelReserva $mob <span class='idr'>$idr</span>");
     if ($row = $this->recuperaReserva($mob, $idr)) {
+      if (!isset($_SESSION['permisos'])) return false;
       $perm = $_SESSION['permisos'];
       $_SESSION['permisos'] = Gestor::$PERMISOS; //LI DONO PERMISOS PER FER LA PERMUTA
 
@@ -1072,7 +1073,7 @@ FROM client
       $hora = $row['hora'];
       $SMS = $this->enviaSMS($idr, "CANCELADA tu reserva $idr para el $data a las $hora" );
       
-/**
+/***/
       $deleteSQL = "DELETE FROM " . T_RESERVES . " WHERE id_reserva=$idr";
       $this->qry_result = $this->log_mysql_query($deleteSQL, $this->connexioDB) or die(((is_object($GLOBALS["___mysqli_ston"])) ? mysqli_error($GLOBALS["___mysqli_ston"]) : (($___mysqli_res = mysqli_connect_error()) ? $___mysqli_res : false)));
 
@@ -1080,7 +1081,7 @@ FROM client
 
       $deleteSQL = "UPDATE " . ESTAT_TAULES . " SET reserva_id=0, estat_taula_usuari_modificacio=$usr WHERE reserva_id=$idr";
       $this->qry_result = $this->log_mysql_query($deleteSQL, $this->connexioDB) or die(((is_object($GLOBALS["___mysqli_ston"])) ? mysqli_error($GLOBALS["___mysqli_ston"]) : (($___mysqli_res = mysqli_connect_error()) ? $___mysqli_res : false)));
-*/
+
       }
  
     else {
