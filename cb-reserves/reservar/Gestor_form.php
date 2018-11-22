@@ -1792,7 +1792,7 @@ SQL;
     else
       $were = ' (carta_plats.carta_plats_subfamilia_id<>20) ';
 
-    $were .= ' AND carta_plats_subfamilia_id IN (1101, 1102, 1103, 1104, 1105, 2, 5001, 6)';
+    $were .= ' AND carta_plats_subfamilia_id IN (1101, 1102, 1103, 1104, 1105, 2, 5001, 6, 3)';
     $were .= ' AND carta_publicat = TRUE ';
 
     if ($leng == 'en')
@@ -1890,7 +1890,8 @@ ORDER BY carta_subfamilia_order,carta_plats_nom_es , carta_plats_nom_ca";
 
   public function cancelGrup($id_reserva) {
       $extres['observacions']="MISSATGE AUTOMÀTIC DEL SISTEMA DE RESERVES<br><br> >>>> Sol·licitud de cancel·lació de la reserva";
-      $mail = $this->enviaMail($id_reserva, "contactar_restaurant_", "restaurant@can-borrell.com", $extres);
+      $extres['subject']="CANCEL·LACIO GRUP";
+      $mail = $this->enviaMail($id_reserva, "contactar_restaurant_", MAIL_RESTAURANT, $extres);
   }
 
 }
