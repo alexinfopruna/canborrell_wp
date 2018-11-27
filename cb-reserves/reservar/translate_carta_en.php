@@ -72,7 +72,52 @@ $translate['Menu grupo nº 4'] = 'Menu grup nº 4 <i style="color:blue">No combi
 
 $translate['CELLER'] = 'WINE CELLAR<em>CELLER</em>';
 $translate['POSTRES'] = 'DESSERT<em>POSTRES</em>';
+$translate['POSTRES GELATS'] = 'GLACES<em>GELATS</em>';
 $translate['CAVES'] = 'CAVES<em>cava</em>';
+
+
+$translate['TORRADA AMB ESCALIVADA I ANXOVES'] = 'Toast bread with escalivada (roast aubergine, onion and pepper) ';
+$translate['ALMENDRADO'] = 'Almond ice-cream ';
+$translate['COCO HELADO'] = 'Iced Coco';
+$translate['CROCANTI'] = 'Crunchy ice-cream ';
+$translate['CROCANTI CON NATA'] = 'Crunchy ice-cream with cream';
+$translate['FLAN BISCUIT'] = 'Biscuits flan ';
+$translate['LIMON HELADO'] = 'Iced lemon';
+$translate['SORBETE LIMON'] = 'Lemon sorbet';
+$translate['TARTA AL WHISQUI'] = 'Whiskey cake';
+$translate['TARTA AL WHISQUI C/NATA'] = 'Whiskey cake with cream';
+$translate['TARTA DE TRUFA'] = 'Chocolate truffles cake';
+$translate['TRUFAS CON NATA'] = 'Chocolate truffles with cream';
+$translate['TRUFAS'] = 'Chocolate truffles <em>TRUFAS</em>';
+
+
+$translate['CREMA CATALANA'] = 'CATALAN CUSTARD <em>CREMA CATALANA</em>';
+$translate['CREMA CATALANA CON NATA'] = 'CATALAN CUSTARD with cream<em>CREMA CATALANA NATA</em>';
+$translate['FLAN DE LA CASA'] = 'HOME MADE CRêME CARAMEL <em>FLAN DE LA CASA</em>';
+$translate['FLAN DE LA CASA CON NATA'] = 'CARAMEL FLAN WITH CREAM <em>FLAN CON NATA</em>';
+$translate['FRESAS'] = 'STRAWBERRIES <em>FRESAS</em>';
+$translate['FRESAS CON MOSCATEL'] = 'STRAWBERRIES WITH SWEET WINE<em>FRESAS CON MOSCATEL</em>';
+$translate['FRESAS CON NATA'] = 'STRAWBERRIES WITH CREAM<em>FRESAS CON NATA</em>';
+$translate['FRESAS CON ZUMO NARANJA'] = 'STRAWBERRIES WITH ORANGE JUICE<em>FRESAS CON ZUMO DE NARANJA</em>';
+$translate['MÚSICO'] = 'NUTS AND DRIED FRUIT <em>MÚSICO (FRUTOS SECOS)</em>';
+$translate['MELOCOTON EN ALMIBAR'] = 'PEACH IN SYRUP <em>MELOCOTÓN EN ALMÍBAR</em>';
+$translate['MELOCOTON EN ALM. C/NATA'] = 'PEACH IN SYRUP  WITH CREAM <em>MELOCOTÓN EN ALMÍBAR CON NATA</em>';
+$translate['PIÑA EN ALMIBAR'] = 'PINEAPPLE IN SYRUP <em>PIÑA EN ALMÍBAR</em>';
+$translate['PIÑA EN ALMIBAR C/NATA'] = 'PINEAPPLE IN SYRUP  WITH CREAM <em>PIÑA EN ALMÍBAR CON NATA</em>';
+$translate['NARANJA FRUTA'] = 'ORANGE FRUIT <em>NARANJA FRUTA</em>';
+$translate['MELON NATURAL'] = 'MELON FRUIT <em>MELON FRUTA</em>';
+$translate['PIÑA NATURAL'] = 'PINEAPPLE FRUIT <em>PIÑA FRUTA</em>';
+$translate['NATA CON NUECES'] = 'NUTS WITH CREAM <em>NATA CON NUECES</em>';
+
+$translate['MEL Y MATO'] = 'MILK CURD WITH HONEY <em>MEL I MATO</em>>';
+$translate['ZUMO DE NARANJA NATURAL'] = 'STRAWBERRIES AND CREAM (IN SEASON) <em>FRESONES CON NATA (TEMPORADA)</em>';
+$translate['PIJAMA DE LA CASA'] = 'HOME MADE \'PIJAMA\' (CARAMEL CREAM, ICE CREAM AND FRUIT) <em>PIJAMA DE LA CASA</em>';
+$translate['MANZANA AL HORNO'] = 'BAKED APPLES <em>MANZANAS AL HORNO</em>';
+$translate['TRUFAS CON NATA'] = 'CHOCOLATE TRUFFLES WITH CREAM <em>TRUFAS CON NATA</em>';
+$translate['TARTA DE QUESO'] = 'HOME MADE CHEESE CAKE <em>PASTEL DE QUESO DE LA CASA</em>';
+$translate['PASTEL MASSINI (4-6 RACIONES)'] = 'CELEBRATION CAKE (MASSINI CAKE, 4 TO 6 PORTIONS) ';
+$translate['PASTEL CELEBRACIÓN DE (10-14)RACIONES'] = 'CELEBRATION CAKE';
+$translate['PASTIS CELEBRACIÓ'] = 'CELEBRATION CAKE';
 
  
 require_once('translate.php');

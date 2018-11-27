@@ -13,14 +13,27 @@ if (!isset($PERSONES_GRUP))
 //$translate['MACARRONS'] = 'Home Macaroni  <em>Macarrones de la casa  </em>';
 //$translate['SOPA DE LA CASA'] = 'Home soup  <em>Sopa de la casa  </em>';
 //$translate['AMANIDA VERDA'] = 'Green salad  <em>Ensalda verde  </em>';
-//$translate['ESCALIVADA'] = 'Escalivada (roast aubergine, onion and pepper)  <em>Escalivada  </em>';
+$translate['ESCALIVADA'] = 'Escalivada casolana';
+$translate['ESTREMES'] = 'Entremès';
+$translate['CAPDELLS AMB TONYINA I ANXOVES'] = 'CABDELLS AMB TONYINA I ANXOVES';
+$translate['CAPDELLS'] = 'CABDELLS';
+$translate['MACARRONS'] = 'MACARRONS CASOLANS';
+$translate['CANALONES'] = 'Canelons';
+$translate['PA'] = 'PA DE PAGÈS';
+$translate['PA TORRAT'] = 'PA DE PAGÈS TORRAT';
+$translate['PA TORRAT AMB TOMAQUET'] = 'PA DE PAGÈS TORRAT AMB TOMAQUET';
+$translate['ESPATLLA DE XAI'] = 'ESPATLLA IBÈRICA D\'ENCEBALL';
+$translate['XORIÇO'] = 'XORIÇO CULAR';
+$translate['CARXOFES'] = 'CARXOFES TEMPORADA';
+$translate['CARXOFES A LA BRASA'] = 'CARXOFES A LA BRASA TEMPORADA)';
+
 $translate['ESPARRECS BLADERS A LA BR'] = 'Espàrrecs balders a la brasa  </em>';
 //$translate['Espárragos blancos'] = 'White asparagus  <em>Espárragos blancos  </em>';
 //$translate['GIRGOLES A LA BRASA'] = 'Roast mushrooms  <em>Setas a la brasa  </em>';
 $translate['CALÇOTS (TEMPORADA)'] = 'Calçots (temporada) ';
 //$translate['CARXOFES A LA BRASA'] = 'Roast artichokes (season)  <em>Alcachofas a la brasa (temporada)  </em>';
 //$translate['ESQUEIXADA'] = 'Esqueixada (codfish)  <em>Esqueixada  </em>';
-//$translate['ESTREMES'] = 'Started  <em>Entremeses  </em>';
+
 //$translate['CARGOLS'] = 'Home snails  <em>Caracoles de la casa  </em>';
 $translate['SURTIT DE PATES'] = 'Assortit de patés';
 $translate['ANXOVES DE L\'ESCALA'] = 'Anxoves de l\'Escala';
