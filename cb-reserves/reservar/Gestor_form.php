@@ -86,7 +86,7 @@ class Gestor_form extends gestor_reserves {
       $this->last_row = mysqli_fetch_assoc($this->qry_result);
       $usr = new Usuari($this->last_row['client_id'], $this->last_row['client_nom'], 1);
       $_SESSION['uSer'] = $usr;
-
+      $_SESSION['permisos'] = $usr->permisos;
 
       // $this->comprovaHoraEdicio($this->last_row);
       return $this->last_row;

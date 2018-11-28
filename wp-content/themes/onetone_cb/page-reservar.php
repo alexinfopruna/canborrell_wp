@@ -17,9 +17,11 @@ define('USR_FORM_WEB', 3); //ES LA ID D'USUARI (admin) ANONIM QUE CREA RESERVA O
 if (!isset($_SESSION))
   session_start();
 
-if (!isset($_SESSION['uSer'])){
+if (!isset($_SESSION['uSer'])  || !isset($_SESSION['permisos'])){
 $usr = new Usuari(USR_FORM_WEB, "webForm", 1);
   $_SESSION['uSer'] = $usr;
+  $_SESSION['permisos'] = $usr->permisos;
+
 }
 
 require (ROOT . "../reservar/Gestor_form.php");

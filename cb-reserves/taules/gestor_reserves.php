@@ -188,6 +188,7 @@ class gestor_reserves extends Gestor {
       return "DATA ANOMALA esborra_reserva";
 
 
+
     $dataSMS = $dataSMS = $this->cambiaf_a_normal($row['data']);
     $hora = $row['hora'];
     $lang = $row['lang'];
