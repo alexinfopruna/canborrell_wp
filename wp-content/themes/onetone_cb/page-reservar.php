@@ -440,7 +440,7 @@ function reservar_enqueue_styles() {
 /* * ******************************************************************************************************* */
 /* * ******************************************************************************************************* */
 
-
+if (isset($_REQUEST['testTPV'])  && $_SESSION['permisos'] > 200) echo '<div class="ui-corner-all    alert alert-danger ">******************************* tesTPV ************************************</div>';
 ?>
 
 <article id="post-<?php the_ID(); ?>" <?php post_class(); ?>>
@@ -578,7 +578,11 @@ function reservar_enqueue_styles() {
                                                   <form id="form-reserves" action="/cb-reserves/reservar/Gestor_form.php?a=submit" method="post" name="fr-reserves" accept-charset="utf-8"><!---->
                                                       <input type="hidden" name="id_reserva" value="<?php echo isset($_REQUEST['idr']) ? $_REQUEST['idr'] : ""; ?>"/>
                                                       <input type="hidden" name="reserva_info" value="<?php echo $row['reserva_info']; ?>"/>
-                                                      <input type="hidden" name="<?php echo (isset($_REQUEST['testTPV'])?"testTPV":"noTest"); ?>" value="testTPV"/>
+                                                      <?php
+                                                      $testTPV = ($_SESSION['permisos'] > 200 && isset($_REQUEST['testTPV']))?"testTPV":"noTest";
+                                                      ?>
+                                                      
+                                                      <input type="hidden" name="<?php echo $testTPV; ?>" value="<?php echo $testTPV; ?>"/>
                                                       <div id="fr-reserves" class="fr-reserves">
                                                           <!-- *******************************  QUANTS SOU ********************************************************   -->
                                                           <!-- *******************************  QUANTS SOU ********************************************************   -->
