@@ -144,7 +144,7 @@ input[type=text], .ds_input {
     </div>
     
                   <!--purl2<input type="text" name="purl2" value="<?php echo $url; ?>"/></br>-->
-    pidr <input type="text" name="order" value="<?php echo $order; ?>"/><br/>
+    order <input type="text" name="order" value="<?php echo $order; ?>"/><br/>
     pidr <input type="text" name="pidr" value="<?php echo $id_reserva; ?>"/><br/>
     pamount <input type="text" name="pamount" value="<?php echo $amount; ?>"/><br/>
     presponse <input type="text" name="presponse" value="<?php echo $response; ?>"/><br/>

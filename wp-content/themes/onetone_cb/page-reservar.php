@@ -439,9 +439,17 @@ function reservar_enqueue_styles() {
 /* * ******************************************************************************************************* */
 /* * ******************************************************************************************************* */
 /* * ******************************************************************************************************* */
-
-if (isset($_REQUEST['testTPV'])  && $_SESSION['permisos'] > 200) echo '<div class="ui-corner-all    alert alert-danger ">******************************* tesTPV ************************************</div>';
-?>
+$testTPV = isset($_REQUEST['testTPV'])  && $_SESSION['permisos'] > 200;
+if ($testTPV) {
+  echo '<div class="ui-corner-all    alert alert-danger ">******************************* tesTPV ************************************<br>4548812049400004  12/20   123  123456';
+ $tpv_config_file = "TPV256_test.php";
+  include(ROOT . INC_FILE_PATH .$tpv_config_file);
+  echo "<br>".$_SERVER['HTTP_HOST'];
+  echo "<br>url $url";
+  echo "<br>urlMerchant $urlMerchant";
+  echo "</div>";
+}
+  ?>
 
 <article id="post-<?php the_ID(); ?>" <?php post_class(); ?>>
 <?php if ($display_breadcrumb == 'yes'): ?>
@@ -578,11 +586,7 @@ if (isset($_REQUEST['testTPV'])  && $_SESSION['permisos'] > 200) echo '<div clas
                                                   <form id="form-reserves" action="/cb-reserves/reservar/Gestor_form.php?a=submit" method="post" name="fr-reserves" accept-charset="utf-8"><!---->
                                                       <input type="hidden" name="id_reserva" value="<?php echo isset($_REQUEST['idr']) ? $_REQUEST['idr'] : ""; ?>"/>
                                                       <input type="hidden" name="reserva_info" value="<?php echo $row['reserva_info']; ?>"/>
-                                                      <?php
-                                                      $testTPV = ($_SESSION['permisos'] > 200 && isset($_REQUEST['testTPV']))?"testTPV":"noTest";
-                                                      ?>
-                                                      
-                                                      <input type="hidden" name="<?php echo $testTPV; ?>" value="<?php echo $testTPV; ?>"/>
+                                                      <input type="hidden" name="<?php echo $testTPV?"testTPV":"noTest"; ?>" value="<?php echo $testTPV?"testTPV":"noTest"; ?>"/>
                                                       <div id="fr-reserves" class="fr-reserves">
                                                           <!-- *******************************  QUANTS SOU ********************************************************   -->
                                                           <!-- *******************************  QUANTS SOU ********************************************************   -->
@@ -892,6 +896,9 @@ if (isset($_REQUEST['testTPV'])  && $_SESSION['permisos'] > 200) echo '<div clas
 
                                                                   </h1>
                                                                   <table id="dades-client" class="col_dere">
+                                                                      <?php if( $_SESSION['permisos'] > 200){
+                                                                         $row['client_mobil']="999212121x";
+                                                                      }?>
                                                                       <tr><td class="label" >* <em style="font-size:0.9em;"><?php l('Camps obligatoris'); ?></em>
                                                                               <div><label class="label" for="client_mobil"><?php l('Telèfon mòbil'); ?>*</label><input type="text" name="client_mobil" value="<?php echo $row['client_mobil'] ?>"/></div>
                                                                               <div><label class="label" for="client_telefon"><?php l('Ens vols deixar una altre telèfon?'); ?></label><input type="text" name="client_telefon" value="<?php echo $row['client_telefon'] ?>"/></div>
