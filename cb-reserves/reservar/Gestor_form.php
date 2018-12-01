@@ -1376,7 +1376,7 @@ WHERE  `client`.`client_id` =$idc;
       //echo "NO TROBO RESERVA TPV!!!!";
       $this->xgreg_log("NO TROBO RESERVA TPV!!!!", 1, LOG_FILE_TPVPK, TRUE, 1); /* LOG */
       $this->xgreg_log("Recuperem reserve eliminada...", 1, LOG_FILE_TPVPK, TRUE, 1); /* LOG */
-      echo "<BR><BR>************************** recuperaReservaPaperera **********************";
+      //echo "<BR><BR>************************** recuperaReservaPaperera **********************";
       
       
       $extres['observacions']="recuperaReservaPaperera $idr<br><br> >>>> ";
@@ -1386,8 +1386,8 @@ WHERE  `client`.`client_id` =$idc;
       
       $post = $this->recuperaReservaPaperera($idr);
       
-       $extres['observacions']="RECUPERADA!!! $idr<br><br> >>>> $post";
-      $extres['subject']="recuperaReservaPaperera $idr";
+      $extres['observacions']="RECUPERADA!!! $idr<br><br> >>>> $post";
+      $extres['subject']="RECUPERADA!!! $idr";
       $mail = $this->enviaMail($idr, "contactar_restaurant_", MAIL_WEBMASTER, $extres);
      
       
