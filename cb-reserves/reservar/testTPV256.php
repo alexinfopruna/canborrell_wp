@@ -33,7 +33,8 @@ $conecta = "http://".$_SERVER['HTTP_HOST'] ."/cb-reserves/reservar/Gestor_form.p
 
 //$url = isset($_REQUEST['purl']) ? $_REQUEST['purl'] : "http://sis-d.redsys.es/sis/realizarPago";
 $id_reserva = isset($_REQUEST['pidr']) ? $_REQUEST['pidr'] : '****';
-$lidr = $order = substr(time(), -4, 3) . $id_reserva;
+//$lidr = $order = substr(time(), -4, 3) . $id_reserva;
+$lidr = $order = "999" . $id_reserva;
 
 if ( isset($_REQUEST['order'])) $lidr = $order = $_REQUEST['order'];
 
@@ -143,8 +144,8 @@ input[type=text], .ds_input {
             
     </div>
     
-                  <!--purl2<input type="text" name="purl2" value="<?php echo $url; ?>"/></br>-->
-    order <input type="text" name="order" value="<?php echo $order; ?>"/><br/>
+                  <!--purl2<input type="text" name="purl2" value="<?php echo $url; ?>"/></br>
+    order <input type="text" name="order" value="<?php echo $order; ?>"/><br/>-->
     pidr <input type="text" name="pidr" value="<?php echo $id_reserva; ?>"/><br/>
     pamount <input type="text" name="pamount" value="<?php echo $amount; ?>"/><br/>
     presponse <input type="text" name="presponse" value="<?php echo $response; ?>"/><br/>
@@ -172,7 +173,7 @@ input[type=text], .ds_input {
 <br/>
 <br/>
 <?php if (isset($_REQUEST['init'])): ?>
-  <form name="frm" action="<?php echo $conecta ?>" method="POST" target="_blank">
+  <form id="form-tpv" name="frm" action="<?php echo $conecta ?>" method="POST" target="_blank" onsubmit="fsleep()">
       Ds_Merchant_SignatureVersion <input type="text" name="Ds_SignatureVersion" value="<?php echo $version; ?>"/><br/>
       Ds_Merchant_MerchantParameters <input type="text" name="Ds_MerchantParameters" value="<?php echo $params; ?>"/><br/>
       Ds_Merchant_Signature <input type="text" name="Ds_Signature" value="<?php echo $signature; ?>"/><br/>
@@ -195,3 +196,9 @@ RewriteRule ^(.*)$ https://%{HTTP_HOST}%{REQUEST_URI} [R=301,L,NE]
  * */
 
 ?>
+<script>
+    function fsleep(){
+      return confirm("Confirma enviament");
+    };
+
+</script>

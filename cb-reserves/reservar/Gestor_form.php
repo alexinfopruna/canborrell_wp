@@ -84,7 +84,7 @@ class Gestor_form extends gestor_reserves {
     $this->qry_result = mysqli_query($this->connexioDB, $query) or die(((is_object($GLOBALS["___mysqli_ston"])) ? mysqli_error($GLOBALS["___mysqli_ston"]) : (($___mysqli_res = mysqli_connect_error()) ? $___mysqli_res : false)));
     if ($this->total_rows = mysqli_num_rows($this->qry_result)) {
       $this->last_row = mysqli_fetch_assoc($this->qry_result);
-      $usr = new Usuari($this->last_row['client_id'], $this->last_row['client_nom'], 1);
+      $usr = new Usuari($this->last_row['client_id'], $this->last_row['client_nom'], 31);
       $_SESSION['uSer'] = $usr;
       $_SESSION['permisos'] = $usr->permisos;
 
@@ -189,8 +189,10 @@ class Gestor_form extends gestor_reserves {
   /*   * ******************************************************************************************************* */
 
   public function horesDisponibles($data, $coberts, $cotxets = 0, $accesible = 0, $idr = 0, $nens = null) {
-    if ($cotxets == 'undefined')
-      $cotxets = 0;
+    if ($cotxets == 'undefined')      $cotxets = 0;
+    
+    
+    
     $mydata = $this->cambiaf_a_mysql($data);
     $this->taulesDisponibles->tableHores = "estat_hores";   //ANULAT GESTOR HORES FORM. Tot es gestiona igual, des d'estat hores
     if ($idr) {
@@ -211,6 +213,7 @@ class Gestor_form extends gestor_reserves {
     $cacheNens = $nens;
     $cacheAdults = $coberts - $nens;
 
+
     $rc = new RestrictionController();
     
     $this->taulesDisponibles->rang_hores_nens = $rc->getHores($mydata, $cacheAdults, $cacheNens, $cotxets);
@@ -220,7 +223,6 @@ class Gestor_form extends gestor_reserves {
     $this->taulesDisponibles->torn = 1;
     $this->taulesDisponibles->recupera_hores();
     $taules = $this->taulesDisponibles->taulesDisponibles();
-
      $tids = "";
     if ($taules) {
       foreach ($taules as $k => $v)
@@ -757,7 +759,7 @@ FROM client
 		  nens4_9, nens10_14, cotxets,lang,observacions, reserva_pastis, reserva_info_pastis,
                   resposta, estat, preu_reserva, usuari_creacio, 
                   reserva_navegador, reserva_info) VALUES (%s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s)", $this->SQLVal($_POST['id_reserva'], "text"), $this->SQLVal($idc, "text"), $this->SQLVal($_POST['selectorData'], "datePHP"), $this->SQLVal($_POST['hora'], "text"), $this->SQLVal($_POST['selectorComensals'], "zero"), $this->SQLVal($_POST['selectorNens'], "zero"), $this->SQLVal($_POST['selectorJuniors'], "zero"), $this->SQLVal($_POST['selectorCotxets'], "zero"), $this->SQLVal($_POST['lang'], "text"), $this->SQLVal($_POST['observacions'], "text"), $this->SQLVal($_POST['RESERVA_PASTIS'] == 'on', "zero"), $this->SQLVal($_POST['INFO_PASTIS'], "text"), $this->SQLVal($_POST['resposta'], "text"), $this->SQLVal($estat, "text"), $this->SQLVal($import_reserva, "text"), $this->SQLVal($idc, "text"), $this->SQLVal($_SERVER['HTTP_USER_AGENT'], "text"), $this->SQLVal($info, "zero"));
-
+//echo $insertSQL ;die();
     $this->qry_result = $this->log_mysql_query($insertSQL, $this->connexioDB) or die(((is_object($GLOBALS["___mysqli_ston"])) ? mysqli_error($GLOBALS["___mysqli_ston"]) : (($___mysqli_res = mysqli_connect_error()) ? $___mysqli_res : false)));
     //$idr = ((is_null($___mysqli_res = mysqli_insert_id($this->connexioDB))) ? false : $___mysqli_res);
     $idr = mysqli_insert_id($this->connexioDB);
@@ -1368,14 +1370,13 @@ WHERE  `client`.`client_id` =$idc;
         . "FROM " . T_RESERVES . " "
         . "LEFT JOIN client ON client.client_id=" . T_RESERVES . ".client_id "
         . "WHERE id_reserva=$idr";
-
     $result = mysqli_query($this->connexioDB, $query) or die(((is_object($GLOBALS["___mysqli_ston"])) ? mysqli_error($GLOBALS["___mysqli_ston"]) : (($___mysqli_res = mysqli_connect_error()) ? $___mysqli_res : false)));
     $files = mysqli_num_rows($result);
-
     if (!$files) {
       //echo "NO TROBO RESERVA TPV!!!!";
       $this->xgreg_log("NO TROBO RESERVA TPV!!!!", 1, LOG_FILE_TPVPK, TRUE, 1); /* LOG */
       $this->xgreg_log("Recuperem reserve eliminada...", 1, LOG_FILE_TPVPK, TRUE, 1); /* LOG */
+      echo "<BR><BR>************************** recuperaReservaPaperera **********************";
       $post = $this->recuperaReservaPaperera($idr);
 
       $query = "SELECT estat, client_email, data, hora, adults, nens10_14, nens4_9 "
@@ -1384,20 +1385,20 @@ WHERE  `client`.`client_id` =$idc;
           . "WHERE id_reserva=$idr";
       $result = mysqli_query($this->connexioDB, $query) or die(((is_object($GLOBALS["___mysqli_ston"])) ? mysqli_error($GLOBALS["___mysqli_ston"]) : (($___mysqli_res = mysqli_connect_error()) ? $___mysqli_res : false)));
       $files = mysqli_num_rows($result);
+      
     }
 
 
     $row = mysqli_fetch_assoc($result);
 
     $estat = $row['estat'];
-    $lang = $row['lang'];
+    $lang = isset($row['lang'])?$row['lang']:"ca";
     $mail = $row['client_email'];
     if ($estat != 2) { // NO ESTÀ CONFIRMADA PER PAGAR
       $msg = "PAGAMENT INAPROPIAT RESERVA PETITA???: " . $idr . " estat: $estat  $mail";
       $this->xgreg_log($msg, 1, LOG_FILE_TPVPK, TRUE, 1); /* LOG */
       $this->xgreg_log($msg, 1, LOG_FILE_TPVPK, TRUE, 0); /* LOG */
       //echo "ERROR ESTAT!=2";
-
 
       $extres['subject'] = "Can-Borrell: !!!! $msg!!!";
       $mail = $this->enviaMail($idr, "../reservar/paga_i_senyal_", MAIL_RESTAURANT, $extres);
@@ -1416,7 +1417,6 @@ WHERE  `client`.`client_id` =$idc;
       $query = "UPDATE " . T_RESERVES . " SET estat=100, preu_reserva='$import', resposta='$resposta' WHERE id_reserva=$idr";
       $res = $this->log_mysql_query($query, $this->connexioDB) or die(((is_object($GLOBALS["___mysqli_ston"])) ? mysqli_error($GLOBALS["___mysqli_ston"]) : (($___mysqli_res = mysqli_connect_error()) ? $___mysqli_res : false)));
       $result = print_r($res, TRUE);
-
       $query = "UPDATE estat_taules SET estat_taules_timestamp=NOW() WHERE reserva_id=$idr";
       $res = $this->log_mysql_query($query, $this->connexioDB) or die(((is_object($GLOBALS["___mysqli_ston"])) ? mysqli_error($GLOBALS["___mysqli_ston"]) : (($___mysqli_res = mysqli_connect_error()) ? $___mysqli_res : false)));
     }
@@ -1688,6 +1688,7 @@ SQL;
   }
 
   private function recuperaReservaPaperera($id_reserva) {
+    
     if ($_SESSION['permisos'] < 16)
       return "error:sin permisos";
 
@@ -1720,13 +1721,15 @@ SQL;
     $_POST['selectorCotxets'] = $row['cotxets'];
     $_POST['reserva_info'] = $row['reserva_info'];
     $ar = $this->decodeInfo($row['reserva_info']);
-    $_POST['amplaCotxets'] = $ar['ampla'];
-    $_POST['selectorAccesible'] = $ar['accesible'] ? "on" : 0;
-    $_POST['selectorCadiraRodes'] = $ar['cadiraRodes'] ? "on" : 0;
-    $_POST['esborra_dades'] = $ar['esborra_cli'] ? "on" : 0;
+    $_POST['amplaCotxets'] = intval($ar['ampla']);
+    $_POST['selectorAccesible'] = intval($ar['accesible']) ? "on" : FALSE;
+    $_POST['selectorCadiraRodes'] = intval($ar['cadiraRodes']) ? "on" : FALSE;
+    $_POST['esborra_dades'] = intval($ar['esborra_cli']) ? "on" : FALSE;
 
     $_POST['INFO_PASTIS'] = $row['reserva_info_pastis'];
-    $_POST['RESERVA_PASTIS'] = $row['reserva_pastis'] ? "on" : 0;
+    $_POST['RESERVA_PASTIS'] = intval($row['reserva_pastis'])? "on" : FALSE;
+    
+    
     $_POST['observacions'] = $row['observacions'];
     $_POST['resposta'] = $row['resposta'];
 
@@ -1743,6 +1746,7 @@ SQL;
     $_POST['presponse'] = 99;
     $_POST['client_id'] = 'reserva_pk_tpv_ok_callback';
     $_POST['recuperaReservaPaperera'] = 'recuperaReservaPaperera';
+    
 
     $this->xgreg_log("SUBMIT...", 1, LOG_FILE_TPVPK, TRUE, 1); /* LOG */
     $rjson = $this->submit();
@@ -1939,7 +1943,7 @@ if (isset($accio) && !empty($accio)) {
       $sessuser = $_SESSION['uSer'];
     }
     elseif ($accio == 'respostaTPV_SHA256') { {
-        $usr = new Usuari(3, "webForm", 1);
+        $usr = new Usuari(3, "webForm", 31);
         if (!isset($_SESSION['uSer']))
           $_SESSION['uSer'] = $usr;
       }
@@ -1963,6 +1967,7 @@ if (isset($accio) && !empty($accio)) {
     }
 
     $respostes = array('respostaTPV', 'respostaTPV_SHA256');
+    
     if (!$gestor->valida_sessio(1) && !in_array($accio, $respostes)) {
       echo "err100";
       die();

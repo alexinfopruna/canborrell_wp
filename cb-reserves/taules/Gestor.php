@@ -159,7 +159,7 @@ class Gestor {
     $a = isset($_SESSION['uSer']);
     if (!$a)
       return FALSE;
-
+ 
     $b = !empty($_SESSION['uSer']);
     //$sessuser=unserialize($_SESSION['uSer']);
 
@@ -177,12 +177,13 @@ class Gestor {
     $d = ($_COOKIE['tok'] == $sessuser->tok);
     //$e=($_SESSION['uSer']->permisos & $permisos); // NOMÉS CAL QUE COMPLEIX ALGUN PERMÍS
     $e = (($sessuser->permisos & $permisos) >= $permisos); // HA DE CUMPLIR IGUAL O MES DELS PERMISOS DEMANATS
+    
+    //echo $sessuser->permisos .";". $permisos;
     if ($user > 0 && $sessuser->id != $user && !($sessuser->permisos & $permis_admin))
       return false;
-    
    $valid = ($a && $b && $c && $d && $e);
     if ($valid) {
-      $this->usuari = $sessuser;
+      $this->usuari = $permisos;
       $_SESSION['admin_id'] = $c;
  
       if (!headers_sent())

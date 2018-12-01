@@ -18,7 +18,7 @@ if (!isset($_SESSION))
   session_start();
 
 if (!isset($_SESSION['uSer'])  || !isset($_SESSION['permisos'])){
-$usr = new Usuari(USR_FORM_WEB, "webForm", 1);
+$usr = new Usuari(USR_FORM_WEB, "webForm", 31);
   $_SESSION['uSer'] = $usr;
   $_SESSION['permisos'] = $usr->permisos;
 
@@ -897,7 +897,7 @@ if ($testTPV) {
                                                                   </h1>
                                                                   <table id="dades-client" class="col_dere">
                                                                       <?php if( $_SESSION['permisos'] > 200){
-                                                                         $row['client_mobil']="999212121x";
+                                                                         $row['client_mobil']="99921212";
                                                                       }?>
                                                                       <tr><td class="label" >* <em style="font-size:0.9em;"><?php l('Camps obligatoris'); ?></em>
                                                                               <div><label class="label" for="client_mobil"><?php l('Telèfon mòbil'); ?>*</label><input type="text" name="client_mobil" value="<?php echo $row['client_mobil'] ?>"/></div>
