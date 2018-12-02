@@ -277,7 +277,8 @@ class Configuracio {
               config_type AS config_type
               FROM config
               $were
-              ORDER BY config_descripcio";
+              ORDER BY config_group, config_var";
+          //    ORDER BY config_descripcio";
     //echo $query;
     
     $r = mysqli_query($GLOBALS["___mysqli_ston"], $query);

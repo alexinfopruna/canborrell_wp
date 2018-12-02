@@ -123,7 +123,7 @@ function parse_type_radio($type, $val, $label, $descripcio) {
   $parts = explode("_", $type);
 
   $n = count($parts);
-  $option = "";
+  $options = "";
   for ($i = 1; $i < $n; $i++) {
     $options.='  <paper-radio-button  label="' . $label . '" name="' . $parts[$i] . '" value="' . $parts[$i] . '">' . $parts[$i] . '</paper-radio-button>';
   }

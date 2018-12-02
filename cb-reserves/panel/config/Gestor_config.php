@@ -33,7 +33,7 @@ class Gestor_config extends Gestor {
     $this->qry_result = mysqli_query($this->connexioDB, $sql) or die(((is_object($GLOBALS["___mysqli_ston"])) ? mysqli_error($GLOBALS["___mysqli_ston"]) : (($___mysqli_res = mysqli_connect_error()) ? $___mysqli_res : false)));
 
     
-    $sql2="SELECT config_val FROM config   WHERE config_var='$var'";
+    $sql2="SELECT config_val FROM config   WHERE config_var='$var' ";
     $result = mysqli_query($this->connexioDB, $sql2) or die(((is_object($GLOBALS["___mysqli_ston"])) ? mysqli_error($GLOBALS["___mysqli_ston"]) : (($___mysqli_res = mysqli_connect_error()) ? $___mysqli_res : false)));
     $row = mysqli_fetch_array($result);
     $val2 = $row['config_val'];
