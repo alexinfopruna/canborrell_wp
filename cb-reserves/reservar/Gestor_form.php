@@ -1315,10 +1315,12 @@ WHERE  `client`.`client_id` =$idc;
 
         /** RESPOSTA INCORRECTA * */
         if ($response < 0 || $response > 99) {  // ****** VERIFICA RESPOSTA entre 0000 i 0099
+          $this->reservaImpagada($idr);
+          echo "MAIL MPAGADA";
           $this->cancelPagaISenyal($idr);
           echo "Response incorrecta!! >>>  $response";
           $this->xgreg_log("Response incorrecta >>> $response", 1, LOG_FILE_TPVPK, TRUE);
-          $this->reservaImpagada($idr);
+          
           return FALSE;
         }
 
