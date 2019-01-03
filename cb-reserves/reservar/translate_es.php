@@ -284,7 +284,7 @@ $translate["Restaurant Can Borrell, reserva MODIFICADA: L'esperem el %s a les %s
 $translate["RESERVA_IMPAGADA"] = "No hemos recibido confirmación del pago de la pasarela bancaria. "
     . "<b>NO HA SIDO POSIBLE REALIZAR LA RESERVA</b>. Vuelva a intentarlo y asegúrese de completar el pago. "
     . "Recuerde que hasta que no completes la paga y senyal NO TIENES reserva en el restaurant";
-$translate["Can Borrell: Reserva Anul·lada: No s'ha satisfet paga i senyal"] = "Can Borrell: Reserva Anulada: No se ha satisfecho la paga i señal";
+$translate["Can Borrell: Reserva Anul·lada: No es rep i senyal"] = "Can Borrell: Reserva Anulada: No se ha satisfecho la paga i señal";
 
 /****************************************************************************************************/	
 /*******************************************************     JS   ***********************************/	

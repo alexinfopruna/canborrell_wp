@@ -1928,7 +1928,7 @@ echo "reservaImpagada 2";
     
     $extres['observacions'] = $this->l("RESERVA_IMPAGADA", FALSE);
 
-    $extres['subject'] = $this->l("Can Borrell: Reserva Anul·lada: No s'ha satisfet paga i senyal", FALSE);
+    $extres['subject'] = $this->l("Can Borrell: Reserva Anul·lada: No es rep i senyal", FALSE);
     echo "reservaImpagada 3";
     $mail = $this->enviaMail($id_reserva, "cancelada_", FALSE, $extres);
     echo "reservaImpagada 4 >> "-$mail;
