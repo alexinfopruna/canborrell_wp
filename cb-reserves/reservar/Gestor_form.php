@@ -1,5 +1,6 @@
 <?php
-  define('MAX_RESERVATION_TIME', "11:59");
+
+define('MAX_RESERVATION_TIME', "11:59");
 
 if (!defined('ROOT'))
   header('Content-Type: text/html; charset=UTF-8');
@@ -55,7 +56,7 @@ class Gestor_form extends gestor_reserves {
 
   public function __construct($usuari_minim = 1) {
     parent::__construct(DB_CONNECTION_FILE, $usuari_minim);
-    
+
 
     // Sobre quina taule fem les consultes
     //$this->taulesDisponibles->tableMenjadors = "estat_menjador_form";
@@ -75,7 +76,7 @@ class Gestor_form extends gestor_reserves {
       $id_reserva = substr($id_reserva, 2, 15);
 
     $now = date('H:i');
-    $operador = $now >= MAX_RESERVATION_TIME?">":">=";
+    $operador = $now >= MAX_RESERVATION_TIME ? ">" : ">=";
     $query = "SELECT * FROM " . T_RESERVES . " 
 		LEFT JOIN client ON " . T_RESERVES . ".client_id=client.client_id
 		LEFT JOIN " . ESTAT_TAULES . " ON " . T_RESERVES . ".id_reserva=" . ESTAT_TAULES . ".reserva_id
@@ -189,10 +190,11 @@ class Gestor_form extends gestor_reserves {
   /*   * ******************************************************************************************************* */
 
   public function horesDisponibles($data, $coberts, $cotxets = 0, $accesible = 0, $idr = 0, $nens = null) {
-    if ($cotxets == 'undefined')      $cotxets = 0;
-    
-    
-    
+    if ($cotxets == 'undefined')
+      $cotxets = 0;
+
+
+
     $mydata = $this->cambiaf_a_mysql($data);
     $this->taulesDisponibles->tableHores = "estat_hores";   //ANULAT GESTOR HORES FORM. Tot es gestiona igual, des d'estat hores
     if ($idr) {
@@ -215,7 +217,7 @@ class Gestor_form extends gestor_reserves {
 
 
     $rc = new RestrictionController();
-    
+
     $this->taulesDisponibles->rang_hores_nens = $rc->getHores($mydata, $cacheAdults, $cacheNens, $cotxets);
     $rules = $rc->getActiveRules($mydata, $cacheAdults, $cacheNens, $cotxets);
     //RestriccionsTaules ALEX
@@ -223,7 +225,7 @@ class Gestor_form extends gestor_reserves {
     $this->taulesDisponibles->torn = 1;
     $this->taulesDisponibles->recupera_hores();
     $taules = $this->taulesDisponibles->taulesDisponibles();
-     $tids = "";
+    $tids = "";
     if ($taules) {
       foreach ($taules as $k => $v)
         $tids .= $v->id . " (" . $v->nom . ")| ";
@@ -233,14 +235,14 @@ class Gestor_form extends gestor_reserves {
     $dinar = $this->taulesDisponibles->recupera_hores();
     $taulaT1 = 0;
     $taula_t1_nom = "";
-    if ($taules){
+    if ($taules) {
       $taulaT1 = $taules[0]->id;
       $taula_t1_nom = $taules[0]->nom;
     }
     if (!$dinar)
       $dinar = "";
 
-   
+
 
     //TORN2
     $this->taulesDisponibles->torn = 2;
@@ -411,15 +413,15 @@ ORDER BY carta_subfamilia_order,carta_plats_nom_es , carta_plats_nom_ca";
   /*   * ******************************************************************************************************* */
 
   public function seccioCarta($ar, $k, $class) {
-    
-    
+
+
     global $translate;
     ob_start();
-  //  include('translate_carta_' . $this->lng . '.php');
-     include(ROOT . '/../reservar/translate_carta_' . $this->lng . '.php');
+    //  include('translate_carta_' . $this->lng . '.php');
+    include(ROOT . '/../reservar/translate_carta_' . $this->lng . '.php');
     ob_end_clean();
-    
-    
+
+
     $obreTaula = '<table id="c1" class="col_dere">' . PHP_EOL;
     $l = $c = 0;
     $tr = '';
@@ -434,9 +436,8 @@ ORDER BY carta_subfamilia_order,carta_plats_nom_es , carta_plats_nom_ca";
         $value = ' value="' . $val['quantitat'] . '" ';
       else
         $value = "0";
-      
-      /** COMENTARIS **/
 
+      /** COMENTARIS * */
       /**  IVA  * */
       //$val['preu']*=IVA/100;
       $preu = round($val['preu'] + $val['preu'] * IVA / 100, 2);
@@ -453,7 +454,7 @@ ORDER BY carta_subfamilia_order,carta_plats_nom_es , carta_plats_nom_ca";
 </td>
 				<td class="menys"><div  class="d-menys ui-corner-all" ><a href"#">-</a></div></td>
 				<td class="borra" style="display:none"></td>
-				<td><a class="resum-carta-nom" href="/cb-reserves/reservar/Gestor_form.php?a=TTmenu&b=' . $val['id'] . '" >' . $nomTrans .'</a></td>
+				<td><a class="resum-carta-nom" href="/cb-reserves/reservar/Gestor_form.php?a=TTmenu&b=' . $val['id'] . '" >' . $nomTrans . '</a></td>
 				<td class="td-carta-preu"><span class="carta-preu">' . $preu . '</span>&euro; </td>
 				<!--<td class="carta-subtotal"><em>(subtotal: <span class="carta-preu-subtotal">0</span>&euro; )</em></td></tr>-->
                                            
@@ -573,6 +574,7 @@ FROM client
 
 
 
+
       
 // MIREM SI ESTÀ EDITANT UNA RESERVA EXISTENT
 //MIRA SI ENS VOLEM FER UNA DUPLICADA
@@ -615,6 +617,7 @@ FROM client
 
 
 
+
       
 //ESBRINA EL TORN	
     $data = $this->cambiaf_a_mysql($_POST['selectorData']);
@@ -633,6 +636,7 @@ FROM client
     //COMPROVEM HORA LIMIT
     if (!$this->reserva_entra_avui($data, $hora))
       return $this->jsonErr(11, $resposta); // "err7 adults";
+
 
 
 
@@ -722,6 +726,7 @@ FROM client
       return $this->jsonErr(5, $resposta); // "err5 nom";
     if (empty($_POST['client_cognoms']))
       return $this->jsonErr(6, $resposta); // "err6: cognoms";
+
 
 
 
@@ -900,6 +905,7 @@ FROM client
 
 
 
+
       
 //VALIDA DADES	
 
@@ -940,7 +946,7 @@ FROM client
     $this->taulesDisponibles->accesible = $accesible;
     //$this->taulesDisponibles->tableHores="estat_hores_form";
     $this->taulesDisponibles->tableHores = "estat_hores";
-   //$this->taulesDisponibles->tableMenjadors = "estat_menjador_form";
+    //$this->taulesDisponibles->tableMenjadors = "estat_menjador_form";
     $this->taulesDisponibles->tableMenjadors = "estat_menjador"; //ATENCIO, HEM ANULAT estat_menjador_form
     $this->taulesDisponibles->llista_dies_negra = LLISTA_DIES_NEGRA_RES_PETITES;
     $this->taulesDisponibles->llista_nits_negra = LLISTA_DIES_NEGRA_RES_PETITES;
@@ -1055,7 +1061,8 @@ FROM client
   public function cancelReserva($mob, $idr) {
     $this->xgreg_log("cancelReserva $mob <span class='idr'>$idr</span>");
     if ($row = $this->recuperaReserva($mob, $idr)) {
-      if (!isset($_SESSION['permisos'])) return false;
+      if (!isset($_SESSION['permisos']))
+        return false;
       $perm = $_SESSION['permisos'];
       $_SESSION['permisos'] = Gestor::$PERMISOS; //LI DONO PERMISOS PER FER LA PERMUTA
 
@@ -1068,14 +1075,14 @@ FROM client
       ob_start();
       include('translate_' . $this->lng . '.php');
       ob_end_clean();
-      
+
       $extres['subject'] = $this->l("Can-Borrell: RESERVA CANCELADA ", FALSE) . $_POST['id_reserva'];
       $mail = $this->enviaMail($idr, "cancelada_", FALSE, $extres);
       $data = $row['data'];
       $hora = $row['hora'];
-      $SMS = $this->enviaSMS($idr, "CANCELADA tu reserva $idr para el $data a las $hora" );
-      
-/***/
+      $SMS = $this->enviaSMS($idr, "CANCELADA tu reserva $idr para el $data a las $hora");
+
+      /*       * */
       $deleteSQL = "DELETE FROM " . T_RESERVES . " WHERE id_reserva=$idr";
       $this->qry_result = $this->log_mysql_query($deleteSQL, $this->connexioDB) or die(((is_object($GLOBALS["___mysqli_ston"])) ? mysqli_error($GLOBALS["___mysqli_ston"]) : (($___mysqli_res = mysqli_connect_error()) ? $___mysqli_res : false)));
 
@@ -1083,9 +1090,8 @@ FROM client
 
       $deleteSQL = "UPDATE " . ESTAT_TAULES . " SET reserva_id=0, estat_taula_usuari_modificacio=$usr WHERE reserva_id=$idr";
       $this->qry_result = $this->log_mysql_query($deleteSQL, $this->connexioDB) or die(((is_object($GLOBALS["___mysqli_ston"])) ? mysqli_error($GLOBALS["___mysqli_ston"]) : (($___mysqli_res = mysqli_connect_error()) ? $___mysqli_res : false)));
+    }
 
-      }
- 
     else {
       return false;
     }
@@ -1340,11 +1346,11 @@ WHERE  `client`.`client_id` =$idc;
         /** MULTIPAGO */
         /** MULTIPAGO */
         /** MULTIPAGO */
-            $import = $amount / 100;
-            require_once(ROOT."Gestor_pagaments.php");
-            $pagaments=new Gestor_pagaments();
-            $pagaments->valida_pagament($param['Ds_Order'],  $idr, $import, $response);
- 
+        $import = $amount / 100;
+        require_once(ROOT . "Gestor_pagaments.php");
+        $pagaments = new Gestor_pagaments();
+        $pagaments->valida_pagament($param['Ds_Order'], $idr, $import, $response);
+
         $this->$callback($idr, $amount, $data, $hora);
       }
       else {
@@ -1378,20 +1384,20 @@ WHERE  `client`.`client_id` =$idc;
       $this->xgreg_log("NO TROBO RESERVA TPV!!!!", 1, LOG_FILE_TPVPK, TRUE, 1); /* LOG */
       $this->xgreg_log("Recuperem reserve eliminada...", 1, LOG_FILE_TPVPK, TRUE, 1); /* LOG */
       //echo "<BR><BR>************************** recuperaReservaPaperera **********************";
-      
-      
-      $extres['observacions']="recuperaReservaPaperera $idr<br><br> >>>> ";
-      $extres['subject']="recuperaReservaPaperera $idr";
+
+
+      $extres['observacions'] = "recuperaReservaPaperera $idr<br><br> >>>> ";
+      $extres['subject'] = "recuperaReservaPaperera $idr";
       $mail = $this->enviaMail($idr, "contactar_restaurant_", MAIL_WEBMASTER, $extres);
-      
-      
+
+
       $post = $this->recuperaReservaPaperera($idr);
-      
-      $extres['observacions']="RECUPERADA!!! $idr<br><br> >>>> $post";
-      $extres['subject']="RECUPERADA!!! $idr";
+
+      $extres['observacions'] = "RECUPERADA!!! $idr<br><br> >>>> $post";
+      $extres['subject'] = "RECUPERADA!!! $idr";
       $mail = $this->enviaMail($idr, "contactar_restaurant_", MAIL_WEBMASTER, $extres);
-     
-      
+
+
 
       $query = "SELECT estat, client_email, data, hora, adults, nens10_14, nens4_9 "
           . "FROM " . T_RESERVES . " "
@@ -1399,14 +1405,13 @@ WHERE  `client`.`client_id` =$idc;
           . "WHERE id_reserva=$idr";
       $result = mysqli_query($this->connexioDB, $query) or die(((is_object($GLOBALS["___mysqli_ston"])) ? mysqli_error($GLOBALS["___mysqli_ston"]) : (($___mysqli_res = mysqli_connect_error()) ? $___mysqli_res : false)));
       $files = mysqli_num_rows($result);
-      
     }
 
 
     $row = mysqli_fetch_assoc($result);
 
     $estat = $row['estat'];
-    $lang = isset($row['lang'])?$row['lang']:"ca";
+    $lang = isset($row['lang']) ? $row['lang'] : "ca";
     $mail = $row['client_email'];
     if ($estat != 2) { // NO ESTÀ CONFIRMADA PER PAGAR
       $msg = "PAGAMENT INAPROPIAT RESERVA PETITA???: " . $idr . " estat: $estat  $mail";
@@ -1479,8 +1484,8 @@ WHERE  `client`.`client_id` =$idc;
   }
 
   private function reserva_grups_tpv_ok_callback($idrl, $amount, $pdata, $phora) {
-    
-    
+
+
     $this->xgreg_log("reserva_grups_tpv_ok_callback ++ $idrl", 1, LOG_FILE_TPVPK, FALSE);
 
     $idr = substr($idrl, -4);
@@ -1497,17 +1502,17 @@ WHERE  `client`.`client_id` =$idc;
 
     $estat = $row['estat'];
     $mail = $row['client_email'];
-/* ANULAT: PAGAMENTS PARCIALS
-    if ($estat != 2) { // NO ESTÀ CONFIRMADA PER PAGAR
+    /* ANULAT: PAGAMENTS PARCIALS
+      if ($estat != 2) { // NO ESTÀ CONFIRMADA PER PAGAR
       $msg = "PAGAMENT INAPROPIAT RESERVA PETITA???: " . $idr . " estat: $estat  $mail";
-      $this->xgreg_log($msg, 1, LOG_FILE_TPVPK, FALSE); // LOG 
+      $this->xgreg_log($msg, 1, LOG_FILE_TPVPK, FALSE); // LOG
       echo "ERROR ESTAT!=2";
       $extres['subject'] = "Can-Borrell: !!!! $msg!!!";
       $mail = $this->enviaMail($idr, "../reservar/paga_i_senyal_", MAIL_RESTAURANT, $extres);
       return FALSE;
-    }
-    */
-    
+      }
+     */
+
     $referer = $_SERVER['REMOTE_ADDR'];
     $import = $amount / 100;
     $resposta = "<br>(" . $pdata . " " . $phora . ")TPV>>" . $import . "€ ";
@@ -1520,7 +1525,7 @@ WHERE  `client`.`client_id` =$idc;
     //$query = "UPDATE reserves SET estat=7, preu_reserva='$import', resposta='$resposta' WHERE id_reserva=$idr";
     $query = "UPDATE reserves SET estat=7, resposta=concat(resposta, '$resposta') WHERE id_reserva=$idr";
     $result = $this->log_mysql_query($query, $this->connexioDB) or die(((is_object($GLOBALS["___mysqli_ston"])) ? mysqli_error($GLOBALS["___mysqli_ston"]) : (($___mysqli_res = mysqli_connect_error()) ? $___mysqli_res : false)));
-    
+
 
 
     include('translate_' . $this->lng . '.php');
@@ -1537,7 +1542,7 @@ WHERE  `client`.`client_id` =$idc;
     $coberts_pagats = $pagaments->get_total_coberts_pagats($reserva_id);
     $total = $row['preu_reserva'];
     $data_limit = Gestor::cambiaf_a_normal($row['data_limit']);
-    $pendent = number_format($total - $pagat,2);
+    $pendent = number_format($total - $pagat, 2);
     $coberts_reservats = $row['adults'] + $row['nens10_14'] + $row['nens4_9'];
 
     $multipago = $translate["MAIL_GRUPS_PAGAT_text3"];
@@ -1547,9 +1552,9 @@ WHERE  `client`.`client_id` =$idc;
     $multipago = str_replace("{pendent}", $pendent, $multipago);
     $multipago = str_replace("{coberts_reservats}", $coberts_reservats, $multipago);
     $multipago = str_replace("{data_limit}", $data_limit, $multipago);
-    $extres['text1'] .= "€<br>".$multipago."<br>";
-        $boto=$this->botoPagament($reserva_id, $row['tel'], $this->lang);
-    $extres['text1'] .= $boto."<br>";
+    $extres['text1'] .= "€<br>" . $multipago . "<br>";
+    $boto = $this->botoPagament($reserva_id, $row['tel'], $this->lang);
+    $extres['text1'] .= $boto . "<br>";
     $extres['contacti'] = $translate["MAIL_GRUPS_PAGAT_contacti"];
     $mydata = $this->cambiaf_a_mysql($pdata);
     $extres['datat'] = $this->data_llarga($row['data'], $this->lang) . ", " . $row['hora'] . "h";
@@ -1595,24 +1600,24 @@ WHERE  `client`.`client_id` =$idc;
     }
   }
 
-  
-  private function botoPagament($idr, $tel, $lng){
-      $b64=base64_encode($idr."&".$tel."&".$lng);
-                                                        $link = 'https://' . $_SERVER['HTTP_HOST'] . '/reservar/pagament?rid='.$b64.'&lang='.$lng;
-                                                        //$link_text = $translate['Realitzar pagament'];
-                                                        $link_text = Gestor::lv('Realitzar pagament');
-         
-  $aki = '<div><!--[if mso]>
-    <v:roundrect xmlns:v="urn:schemas-microsoft-com:vml" xmlns:w="urn:schemas-microsoft-com:office:word" href="'.$link.'" style="height:38px;v-text-anchor:middle;width:200px;" arcsize="48%" strokecolor="#e6e6e8" fillcolor="#e1ff8a">
+  private function botoPagament($idr, $tel, $lng) {
+    $b64 = base64_encode($idr . "&" . $tel . "&" . $lng);
+    $link = 'https://' . $_SERVER['HTTP_HOST'] . '/reservar/pagament?rid=' . $b64 . '&lang=' . $lng;
+    //$link_text = $translate['Realitzar pagament'];
+    $link_text = Gestor::lv('Realitzar pagament');
+
+    $aki = '<div><!--[if mso]>
+    <v:roundrect xmlns:v="urn:schemas-microsoft-com:vml" xmlns:w="urn:schemas-microsoft-com:office:word" href="' . $link . '" style="height:38px;v-text-anchor:middle;width:200px;" arcsize="48%" strokecolor="#e6e6e8" fillcolor="#e1ff8a">
       <w:anchorlock/>
-      <center style="color:#fafafb;font-family:sans-serif;font-size:13px;font-weight:bold;">'.$link_text.'</center>
+      <center style="color:#fafafb;font-family:sans-serif;font-size:13px;font-weight:bold;">' . $link_text . '</center>
     </v:roundrect>
-  <![endif]--><a href="'.$link.'" style="background-color:#e1ff8a;border:1px solid #e6e6e8;border-radius:18px;color:#2f353e;display:inline-block;font-family:sans-serif;font-size:13px;font-weight:bold;line-height:38px;text-align:center;text-decoration:none;width:200px;-webkit-text-size-adjust:none;mso-hide:all;">'.$link_text.'</a>'
-      . '<br/><br/>'
-      . '</div>';
-                                                        
-return $aki;
+  <![endif]--><a href="' . $link . '" style="background-color:#e1ff8a;border:1px solid #e6e6e8;border-radius:18px;color:#2f353e;display:inline-block;font-family:sans-serif;font-size:13px;font-weight:bold;line-height:38px;text-align:center;text-decoration:none;width:200px;-webkit-text-size-adjust:none;mso-hide:all;">' . $link_text . '</a>'
+        . '<br/><br/>'
+        . '</div>';
+
+    return $aki;
   }
+
   /*   * ******************************************************************************************************* */
   /* COMPROVA SI JA S'HA FET EL PAGAMENT (doble click a submit)
     /*   * ******************************************************************************************************* */
@@ -1702,7 +1707,7 @@ SQL;
   }
 
   private function recuperaReservaPaperera($id_reserva) {
-    
+
     if ($_SESSION['permisos'] < 16)
       return "error:sin permisos";
 
@@ -1741,9 +1746,9 @@ SQL;
     $_POST['esborra_dades'] = intval($ar['esborra_cli']) ? "on" : FALSE;
 
     $_POST['INFO_PASTIS'] = $row['reserva_info_pastis'];
-    $_POST['RESERVA_PASTIS'] = intval($row['reserva_pastis'])? "on" : FALSE;
-    
-    
+    $_POST['RESERVA_PASTIS'] = intval($row['reserva_pastis']) ? "on" : FALSE;
+
+
     $_POST['observacions'] = $row['observacions'];
     $_POST['resposta'] = $row['resposta'];
 
@@ -1760,7 +1765,7 @@ SQL;
     $_POST['presponse'] = 99;
     $_POST['client_id'] = 'reserva_pk_tpv_ok_callback';
     $_POST['recuperaReservaPaperera'] = 'recuperaReservaPaperera';
-    
+
 
     $this->xgreg_log("SUBMIT...", 1, LOG_FILE_TPVPK, TRUE, 1); /* LOG */
     $rjson = $this->submit();
@@ -1907,19 +1912,24 @@ ORDER BY carta_subfamilia_order,carta_plats_nom_es , carta_plats_nom_ca";
   }
 
   public function cancelGrup($id_reserva) {
-      $extres['observacions']="MISSATGE AUTOMÀTIC DEL SISTEMA DE RESERVES<br><br> >>>> Sol·licitud de cancel·lació de la reserva";
-      $extres['subject']="CANCEL·LACIO GRUP";
-      $mail = $this->enviaMail($id_reserva, "contactar_restaurant_", MAIL_RESTAURANT, $extres);
+    $extres['observacions'] = "MISSATGE AUTOMÀTIC DEL SISTEMA DE RESERVES<br><br> >>>> Sol·licitud de cancel·lació de la reserva";
+    $extres['subject'] = "CANCEL·LACIO GRUP";
+    $mail = $this->enviaMail($id_reserva, "contactar_restaurant_", MAIL_RESTAURANT, $extres);
   }
 
   public function reservaImpagada($id_reserva) {
-          $this->xgreg_log("MAIL IMPAGADA");
+    echo "reservaImpagada 1";
+    
+    $this->xgreg_log("MAIL IMPAGADA", 1);
+    $this->xgreg_log("MAIL IMPAGADA", 1, LOG_FILE_TPVPK, TRUE, 1); /* LOG */
+echo "reservaImpagada 2";
+    
+    $extres['observacions'] = $this->l("RESERVA_IMPAGADA", FALSE);
 
-      $extres['observacions']=$this->l("RESERVA_IMPAGADA", FALSE) ;
-      
-            $extres['subject'] = $this->l("Can Borrell: Reserva Anul·lada: No s'ha satisfet paga i senyal", FALSE) ;
-      $mail = $this->enviaMail($id_reserva, "cancelada_", FALSE, $extres);
-
+    $extres['subject'] = $this->l("Can Borrell: Reserva Anul·lada: No s'ha satisfet paga i senyal", FALSE);
+    echo "reservaImpagada 3";
+    $mail = $this->enviaMail($id_reserva, "cancelada_", FALSE, $extres);
+    echo "reservaImpagada 4 >> "-$mail;
   }
 
 }
@@ -1927,7 +1937,7 @@ ORDER BY carta_subfamilia_order,carta_plats_nom_es , carta_plats_nom_ca";
 //END CLASS
 
 /* * **************************************************************************************************** */
-/* * **************************************************************************************************** */
+/* * **************************r************************************************************************** */
 /* * **************************************************************************************************** */
 /* * **************************************************************************************************** */
 /* * **************************************************************************************************** */
@@ -1991,7 +2001,7 @@ if (isset($accio) && !empty($accio)) {
     }
 
     $respostes = array('respostaTPV', 'respostaTPV_SHA256');
-    
+
     if (!$gestor->valida_sessio(1) && !in_array($accio, $respostes)) {
       echo "err100";
       die();
