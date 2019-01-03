@@ -1316,7 +1316,7 @@ WHERE  `client`.`client_id` =$idc;
         /** RESPOSTA INCORRECTA * */
         if ($response < 0 || $response > 99) {  // ****** VERIFICA RESPOSTA entre 0000 i 0099
           $this->reservaImpagada($idr);
-          echo "MAIL MPAGADA";
+          echo "MAIL IMPAGADA";
           $this->cancelPagaISenyal($idr);
           echo "Response incorrecta!! >>>  $response";
           $this->xgreg_log("Response incorrecta >>> $response", 1, LOG_FILE_TPVPK, TRUE);
@@ -1928,7 +1928,12 @@ echo "reservaImpagada 2";
     
     $extres['observacions'] = $this->l("RESERVA_IMPAGADA", FALSE);
 
-    $extres['subject'] = $this->l("Can Borrell: Reserva Anul·lada: No es rep i senyal", FALSE);
+        ob_start();
+    include('translate_' . $this->lng . '.php');
+    ob_end_clean();
+
+    
+    $extres['subject'] = $this->l("Can Borrell: Reserva Anul·lada: No es rep paga i senyal", FALSE);
     echo "reservaImpagada 3";
     $mail = $this->enviaMail($id_reserva, "cancelada_", FALSE, $extres);
     echo "reservaImpagada 4 >> "-$mail;

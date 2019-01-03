@@ -2817,10 +2817,13 @@ ORDER BY `estat_hores_data` DESC";
     LEFT JOIN client ON $taula.client_id=client.client_id
     WHERE id_reserva=$idr";
 
+    echo " ---- $query ---- ";
     if (TRUE) {
       $this->qry_result = mysqli_query($this->connexioDB, $query) or die(((is_object($GLOBALS["___mysqli_ston"])) ? mysqli_error($GLOBALS["___mysqli_ston"]) : (($___mysqli_res = mysqli_connect_error()) ? $___mysqli_res : false)));
       $row = mysqli_fetch_assoc($this->qry_result);
     }
+    
+    echo "WWWWW";
     if (!$this->qry_result || !mysqli_num_rows($this->qry_result))
       return "err10";
 
