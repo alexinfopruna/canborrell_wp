@@ -1312,6 +1312,7 @@ WHERE  `client`.`client_id` =$idc;
           $this->cancelPagaISenyal($idr);
           echo "Response incorrecta!! >>>  $response";
           $this->xgreg_log("Response incorrecta >>> $response", 1, LOG_FILE_TPVPK, TRUE);
+          $this->reservaImpagada($idr);
           return FALSE;
         }
 
@@ -1909,6 +1910,16 @@ ORDER BY carta_subfamilia_order,carta_plats_nom_es , carta_plats_nom_ca";
       $extres['observacions']="MISSATGE AUTOMÀTIC DEL SISTEMA DE RESERVES<br><br> >>>> Sol·licitud de cancel·lació de la reserva";
       $extres['subject']="CANCEL·LACIO GRUP";
       $mail = $this->enviaMail($id_reserva, "contactar_restaurant_", MAIL_RESTAURANT, $extres);
+  }
+
+  public function reservaImpagada($id_reserva) {
+          $this->xgreg_log("MAIL IMPAGADA");
+
+      $extres['observacions']=$this->l("RESERVA_IMPAGADA", FALSE) ;
+      
+            $extres['subject'] = $this->l("Can Borrell: Reserva Anul·lada: No s'ha satisfet paga i senyal", FALSE) ;
+      $mail = $this->enviaMail($id_reserva, "cancelada_", FALSE, $extres);
+
   }
 
 }

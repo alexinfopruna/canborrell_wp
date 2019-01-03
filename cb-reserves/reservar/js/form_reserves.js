@@ -1095,6 +1095,7 @@ function controlSubmit()
                                 window.location.href = prelang+"/#about";
                                 alert("La sessió ha caducat");
                                 $("#popup").dialog('close');
+                                $.post(GESTOR + "?a=reservaImpagada&b=" + obj.idr);
                             } else {
                                 window.location.href = prelang+"/#about";
                                 alert("Can-Borrell: Hem registrat correctament el pagament");
