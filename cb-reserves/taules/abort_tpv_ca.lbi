@@ -1,0 +1,111 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<title>Recepció reserva</title>
+<link type="text/css" href="https://www.can-borrell.com/cb-reserves/css/taronja.css" rel="stylesheet" />
+</head>
+<body style="font-family:Comic Sans MS , Verdana, Arial, Helvetica, sans-serif;
+        font-size:18px;
+        color:#666; 
+        background-color: #efefef;
+        margin: 0;">
+<!-- reservar/{self}  -->
+ 
+<table border="0" align="center" cellpadding="0" cellspacing="0" style="max-width: 600px;width:100%;background-color: white;    border-left: #dedede solid 2px;    border-right: #dedede solid 2px ;box-shadow: 0px 0px 20px #888888;">
+<tr style="height: 10px;">
+<td colspan="2" align="right" background="https://www.can-borrell.com/img/fons_9c.jpg"><a href="https://www.can-borrell.com" style="    background-repeat: no-repeat;color: #666"><img src="https://www.can-borrell.com/img/lg_sup.png" alt="img" width="303" height="114" border="0" title="INICI" /></a></td>
+  </tr>
+<tr style="height:10px;background-color:#FF8033;">
+<td class="franja" colspan="2" align="center" style="background-color: #FF8033  ;"></td>
+  </tr>
+</table>
+<table border="0" align="center" cellpadding="0" cellspacing="0" bgcolor="#FFFFFF" style="max-width: 600px;width:100%;background-color: white;    border-left: #dedede solid 2px;    border-right: #dedede solid 2px ;box-shadow: 0px 0px 20px #888888;">
+<tr style="height: 10px;">
+<td></td>
+    <td><span style="font-size:10px">{avui}</span></td>
+    <td></td>
+  </tr>
+<tr style="height: 10px;">
+<td></td>
+<td align="center"><h1><span class="titol" style="color:#444; font-size: 18px;">PAGAMENT ANULAT</span></h1></td>
+    <td width="12"></td>  </tr>
+<tr style="height: 10px;">
+<td></td>
+    <td></td>
+  <td></td>  </tr>
+<tr style="height: 10px;">
+<td></td>
+    <td align="center">El procés de pagament no s'ha pogut completar. Hem <strong>anul·lat</strong> la teva reserva</td>
+    <td></td>  </tr>
+<tr style="height: 10px;">
+<td></td>
+    <td></td>
+  <td align="center" class="estat"> </td> </tr>
+<tr style="height: 10px;">
+<td width="12"></td>
+    <td><table border="0" align="center" cellpadding="3" cellspacing="3">
+<tr style="height: 10px;">
+<td align="right" class="Estilo2" style="color:white;background-color:#FF8033;">id_reserva</td>
+        <td width="160" align="right" class="llista" style="color:white;background-color:#FFECD6;"><div align="left" class="titol2" style="color:#444; font-size: 18px;"><span class="Estilo4">{id_reserva}</span></div></td>
+      </tr>
+<tr style="height:10px;background-color:#FF8033;">
+<td align="right" class="Estilo2" style="color:white;background-color:#FF8033;">data_reserva</td>
+        <td width="160" align="right" class="llista" style="background-color: #FFECD6  ;"><div align="left" class="estat"><span class="Estilo4">{data}</span></div></td>
+      </tr>
+<tr style="height: 10px;">
+<td align="right" class="Estilo2" style="color:white;background-color:#FF8033;">hora</td>
+        <td width="160" align="right" class="llista" style="background-color: #FFECD6  ;"><div align="left" class="estat"><span class="Estilo4">{hora}</span></div></td>
+      </tr>
+<tr style="height: 10px;">
+<td align="right" class="Estilo2" style="color:white;background-color:#FF8033;">nom</td>
+        <td width="160" class="llista" style="background-color: #FFECD6  ;"><div align="left"><span class="Estilo4">{nom}</span></div></td>
+      </tr>
+<tr style="height: 10px;">
+<td align="right" class="Estilo2" style="color:white;background-color:#FF8033;"></td>
+        <td width="160" class="llista" style="background-color: #FFECD6  ;"><span class="Estilo4"></span></td>
+      </tr>
+<tr style="height: 10px;">
+<td align="right" class="Estilo2" style="color:white;background-color:#FF8033;">adults</td>
+        <td width="160" align="right" class="llista" style="background-color: #FFECD6  ;"><div align="left"><span class="Estilo4">{adults}</span></div></td>
+      </tr>
+<tr style="height: 10px;">
+<td align="right" class="Estilo2" style="color:white;background-color:#FF8033;">nens 4 a 14 anys </td>
+        <td width="160" align="right" class="llista" style="background-color: #FFECD6  ;"><div align="left"><span class="Estilo4">{nens4_9}</span></div></td>
+      </tr>
+<tr style="height: 10px;">
+<td align="right" class="Estilo2" style="color:white;background-color:#FF8033;">cotxets de nadons </td>
+        <td width="160" align="right" class="llista" style="background-color: #FFECD6  ;"><div align="left"><span class="Estilo4">{cotxets}</span></div></td>
+      </tr>
+<tr style="height: 10px;">
+<td align="right" class="Estilo2" style="color:white;background-color:#FF8033;">observacions</td>
+        <td width="160" class="llista" style="background-color: #FFECD6  ;"><span class="Estilo4">{observacions}</span></td>
+      </tr>
+<tr style="height: 10px;">
+<td align="right" class="Estilo2" style="color:white;background-color:#FF8033;">plats</td>
+        <td width="160" align="right" bgcolor="#999999" class="llista" style="background-color: #FFECD6  ;"><div align="left" class="estat">
+            <div align="right" class="Estilo4">{comanda}</div>
+        </div></td>
+      </tr>
+</table></td>
+    <td></td>
+  </tr>
+<tr style="height: 10px;">
+<td></td>
+    <td></td>
+    <td></td>
+  </tr>
+<tr class="marge-footer" style="height:70px;">
+<td> </td>
+    <td> </td>
+    <td> </td>
+  </tr>
+<tr class="franja" style="height:10px;background-color:#FF8033;">
+<td> </td>
+    <td> </td>
+    <td> </td>
+  </tr>
+</table>
+</body>
+</html>
+ 
