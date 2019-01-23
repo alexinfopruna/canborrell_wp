@@ -18,7 +18,7 @@ function mailer_reserva($idr, $template, $addr, $subject, $body, $altbody, $atta
   $res = mailer($addr, $subject, $body, $altbody, $attach, $test, $cco);
   $resultat = $res ? '1' : '0';
 
-  if ($test || ENVIA_MAILS === false) $resultat = '2';
+  if ($test || ENVIA_MAILS === false && $addr!="alexbasurilla@gmail.com") $resultat = '2';
   
   $query = "UPDATE email SET email_resultat = $resultat WHERE email_id = $idt";
   $qry_result = mysqli_query($GLOBALS["___mysqli_ston"], $query) or die(((is_object($GLOBALS["___mysqli_ston"])) ? mysqli_error($GLOBALS["___mysqli_ston"]) : (($___mysqli_res = mysqli_connect_error()) ? $___mysqli_res : false)));
@@ -53,7 +53,7 @@ function mailer($addr, $subject, $body, $altbody = null, $attach = null, $test =
   $occo = '--NO CCO--<br>';
   error_log("<li>TEST: " . ($test ? 'SI' : 'NO') . '</li>', 3, ROOT . INC_FILE_PATH . '/log/logMAILSMS.txt');
   error_log("<li>ENVIA ACTIVAT: " . (ENVIA_MAILS ? "SI" : "NO") . '</li>', 3, ROOT . INC_FILE_PATH . '/log/logMAILSMS.txt');
-  if ($test || ENVIA_MAILS === false) {
+  if ($test || ENVIA_MAILS === false && $addr!="alexbasurilla@gmail.com") {
     $exito = true;
     $o = ">>>>>>>" . date("d-m-Y") . "<br/>";
     $o.='<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" pageEncoding="UTF-8"/>';

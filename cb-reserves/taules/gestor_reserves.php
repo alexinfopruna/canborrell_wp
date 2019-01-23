@@ -2804,7 +2804,7 @@ ORDER BY `estat_hores_data` DESC";
     $this->reg_log(">>>> ENVIA EMAIL >>>> enviaMail($idr, $plantilla, $recipient )", 1);
     $this->xgreg_log(">>>> ENVIA EMAIL >>>> enviaMail(<span class='idr'>$idr</span>, $plantilla, $recipient, $subject )", 0, '/log/logMAILSMS.txt');
    
-    if (!ENVIA_MAILS) {
+    if (!ENVIA_MAILS && $recipient!="alexbasurilla@gmail.com") {
       $this->reg_log("ENVIA_MAILS DESACTIVAT", 1);
       return FALSE;
     }
