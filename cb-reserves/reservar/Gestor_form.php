@@ -219,6 +219,7 @@ class Gestor_form extends gestor_reserves {
     $rc = new RestrictionController();
 
     $this->taulesDisponibles->rang_hores_nens = $rc->getHores($mydata, $cacheAdults, $cacheNens, $cotxets);
+  //  $this->taulesDisponibles->rang_hores_nens = null;
     $rules = $rc->getActiveRules($mydata, $cacheAdults, $cacheNens, $cotxets);
     //RestriccionsTaules ALEX
     //TORN1
@@ -277,9 +278,8 @@ class Gestor_form extends gestor_reserves {
   }
 
   private function rang_hores_nens($data, $adults, $nens = 0, $cotxets = 0) {
-
-    if (!$adults || !defined("CONTROL_HORES_NENS") || !CONTROL_HORES_NENS)
-      return;
+    if (!RestrictionController::restrictionsActive($data, $adults)) return FALSE;
+     
     //controla si es cap de setamana
     $finde = FALSE;
     $ds = date('N', strtotime($data));

@@ -1,5 +1,6 @@
 <?php
 
+
 if (!defined('ROOT'))
   define('ROOT', "");
 
@@ -43,7 +44,23 @@ static $TOTES_HORES =array("", "11:00", "11:15", "11:30", "11:45",
     parent::__construct(DB_CONNECTION_FILE, $usuari_minim);
   }
 
+  public static function restrictionsActive($data, $adults){
+    
+    if (!$adults) return false;
+    
+    if (!defined("CONTROL_HORES_NENS") || !CONTROL_HORES_NENS) return  false;
+    
+  // echo date("Y-m-d");
+  // echo  $max = date('Y-m-d', strtotime(' + '. MAX_DAYS_RESTRICCTIONS .' days'));
+  // echo MAX_DAYS_RESTRICCTIONS." *** ".$data." -- ".$max;
+    if (defined("MAX_DAYS_RESTRICCTIONS") && $data > date('Y-m-d', strtotime( ' + '. MAX_DAYS_RESTRICCTIONS .' days'))) return false;
+    
+    return true;
+  }
+  
+  
   public function getActiveRules($data, $adults = 0, $nens = 0, $cotxets = 0, $sqlquery = false) {
+    if (!RestrictionController::restrictionsActive($data, $adults)) return [];
     $sum = $adults + $nens;
     $senar = ($sum) & 1;
     $parell = !$senar;
@@ -89,8 +106,8 @@ $order
   /*   * ************************************************************************ */
 
   public function getHores($data = 0, $adults = 0, $nens = 0, $cotxets = 0) {
-    if (!$adults || !defined("CONTROL_HORES_NENS") || !CONTROL_HORES_NENS)
-      return;
+     if (!RestrictionController::restrictionsActive($data, $adults)) return;
+   // if (!$adults || !defined("CONTROL_HORES_NENS") || !CONTROL_HORES_NENS)      return;
 
     if ($nens == "undefined")
       $nens = 0;

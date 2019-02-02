@@ -439,9 +439,8 @@ $order
   }
 
   protected function rang_hores_nens($data, $adults, $nens = 0, $cotxets = 0) {
-
-    if (!$adults || !defined("CONTROL_HORES_NENS") || !CONTROL_HORES_NENS)
-      return;
+    if (!RestrictionController::restrictionsActive($data, $adults )) return;
+    //if (!$adults || !defined("CONTROL_HORES_NENS") || !CONTROL_HORES_NENS)
     //controla si es cap de setamana
     $finde = FALSE;
     $ds = date('N', strtotime($data));
