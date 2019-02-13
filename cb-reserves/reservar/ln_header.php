@@ -1,0 +1,1 @@
+../../wp-content/themes/onetone_cb/header.php

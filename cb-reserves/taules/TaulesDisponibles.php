@@ -105,8 +105,114 @@ class TaulesDisponibles extends Gestor {
   }
 
   /*   * *********************************************************************************** */
-
+  /*   * *********************************************************************************** */
+  /*   * *********************************************************************************** */
   private function qryTaules() {
+    $this->reset();
+    $mydata = $this->data;
+    $torn = $this->torn;
+    $persones = $this->persones;
+    $cotxets = (int) $this->cotxets ? $this->cotxets : 0;
+
+
+    $base = $this->data_BASE;
+    $NOPLENES = $this->taulesGrans ? 'TRUE ' : 'FALSE '; // inclou taules + grans. Per ex: demanen 6 i tenim una taula de 8(plena=false)
+    $NOPLENESCOTXETS = $this->cotxetsGrans ? 'TRUE ' : 'FALSE '; // inclou taules amb + cotxets dels demanats. Per ex: demanen 6/0 i tenim una taula de 6/1(plena=false)
+    $sess = session_id();
+
+    $query = "		
+	SELECT * 
+	FROM " . ESTAT_TAULES . " 
+	WHERE 
+	/* DATA, TORN I SENSE RESERVA */ ((estat_taula_data='$mydata' AND estat_taula_torn=$torn  AND    estat_taula_taula_id NOT IN(SELECT estat_taula_taula_id FROM estat_taules WHERE estat_taula_data='$mydata' AND estat_taula_torn=$torn  AND reserva_id<>0)   ) 
+							OR
+	/* BASE SOLA */ 	((estat_taula_data = '$base' AND estat_taula_torn=$torn )
+	/* SENSE LA DATA ACTUAL */ AND estat_taula_taula_id  NOT IN( 	
+					SELECT estat_taula_taula_id FROM " . ESTAT_TAULES . " 
+					WHERE estat_taula_data='$mydata' AND estat_taula_torn=$torn )
+					)
+					)
+
+
+	/* SENSE RESERVA*/		AND reserva_id=0 
+	/* PERSONES  / COTXETS*/AND (estat_taula_persones=$persones OR ($NOPLENES AND estat_taula_persones>$persones AND estat_taula_plena=0))	
+							AND (estat_taula_cotxets=$cotxets OR ($NOPLENESCOTXETS AND estat_taula_cotxets>$cotxets AND estat_taula_plena=0))
+	/* X y */				AND (estat_taula_x>0 AND estat_taula_y>0) AND (estat_taula_x<2000 AND estat_taula_y<2000)
+	/* GRUP*/ 				AND (estat_taula_grup=0 OR estat_taula_taula_id=estat_taula_grup)
+	/* BLOQ MULTI-USR */	AND (estat_taula_blok IS NULL 
+								OR estat_taula_blok < NOW()
+								OR estat_taula_blok_sess='$sess')
+								
+								
+
+	ORDER BY   estat_taula_persones, estat_taula_cotxets,estat_taula_data DESC";
+//echo $query." ///// <br/>";
+    $Result1 = mysqli_query($this->connexioDB, $query) or die(((is_object($GLOBALS["___mysqli_ston"])) ? mysqli_error($GLOBALS["___mysqli_ston"]) : (($___mysqli_res = mysqli_connect_error()) ? $___mysqli_res : false)));
+
+    /**/
+
+    ////////////////////////////////////////////////////////////////////////////////////////////////////
+    //  T A U L A      P R O P I A
+    //TAULA PROPIA //verifica data/torn/persones/cotxets - Si no ha canviat res, té la taula que tenia
+    //
+		if ($this->reserva_id && $this->data == $this->reserva->data && $this->torn == $this->reserva->torn && ($this->reserva->persones == $persones || ($this->reserva->taula->persones > $persones && $this->reserva->taula->plena == false && $this->taulesGrans)) && ($this->reserva->cotxets == $cotxets ||
+        ($this->reserva->taula->cotxets > $cotxets && $this->reserva->taula->plena == false && $this->cotxetsGrans))) {
+      $r = $this->reserva; //=$this->loadReserva($this->reserva_id);
+      if ($r->taula->puntuacioTaula($persones, $cotxets, 5000))
+        $this->arResultatTaula[] = $r->taula;
+    }
+    elseif (!$Result1 || !mysqli_num_rows($Result1)) { // SI NO, MIREM SI HI HA ALGUNA TAULA
+      $this->addError(29);
+      return array();
+    }
+
+    ////////////////////////////////////////////////////////////////////////////////////////////////////
+    ////////////////////////////////////////////////////////////////////////////////////////////////////
+
+    while ($row = mysqli_fetch_array($Result1)) {//PRIMERA PASSADA
+      //CREACIO TAULA
+      $hora = 0;
+      $taula = new EstatTaula($row['estat_taula_taula_id'], $row['estat_taula_nom'], $mydata, $hora, $row['estat_taula_persones'], $row['estat_taula_cotxets'], $row['estat_taula_plena'], $row['estat_taula_x'], $row['estat_taula_y']);
+
+       include(ROOT . "coord_menjadors.php");
+      
+
+       require_once("gestor_reserves.php");
+       
+       /*     * */
+       $gr=new gestor_reserves();
+      $bloquejats = $this->menjadorsBloquejats($menjadors);
+      //echo $gr->taulaBloquejada($taula->x, $taula->y, $bloquejats);die();
+      if (!is_null($bloquejats) && $gr->taulaBloquejada($taula->x, $taula->y, $bloquejats)) continue;
+   
+        
+      // Calcula punts per ordenar
+      $punts = $taula->puntuacioTaula($persones, $cotxets);
+
+      // LA POSO A L'ARRAY
+      $this->arResultatTaula[] = $taula;
+    }//PRIMERA PASSADA
+    //ORDENA PER PUNTS
+    if (!$this->arResultatTaula || !sizeof($this->arResultatTaula)) {
+      $this->addError(29);
+      return array();
+    }
+    else
+      usort($this->arResultatTaula, array('TaulesDisponibles', 'ordenaPunts'));
+
+    foreach ($this->arResultatTaula as $k => $v) { //SEGONA PASSADA (ORDRE)
+      // genera array ids ordenada
+      $this->arResultat[] = $v->id;
+    }//SEGONA PASSADA (ORDRE)
+    return $this->arResultatTaula;
+  }
+  
+  /*   * *********************************************************************************** */
+  /*   * *********************************************************************************** */
+  /*   * *********************************************************************************** */
+  /*   * *********************************************************************************** */
+
+  private function qryTaules2_ANULAT() { // Ne exclou torns amb reserva
     $this->reset();
     $mydata = $this->data;
     $torn = $this->torn;
@@ -148,7 +254,6 @@ class TaulesDisponibles extends Gestor {
 //echo $query." ///// <br/>";
     $Result1 = mysqli_query($this->connexioDB, $query) or die(((is_object($GLOBALS["___mysqli_ston"])) ? mysqli_error($GLOBALS["___mysqli_ston"]) : (($___mysqli_res = mysqli_connect_error()) ? $___mysqli_res : false)));
 
-    /**/
 
     ////////////////////////////////////////////////////////////////////////////////////////////////////
     //  T A U L A      P R O P I A
@@ -547,6 +652,7 @@ class TaulesDisponibles extends Gestor {
     $this->reset();
     $contaPersones = $persones = $this->persones;
     $taules = $this->taules();
+    //echo "<br><br>TORN ".  $this->torn. "  <br>";    foreach ($this->arResultatTaula as $k => $v) echo $v->id. ", ";
     $cotxets = $this->cotxets;
       
     ////////////////////////////////////////////////////////////////////////////
@@ -559,10 +665,21 @@ class TaulesDisponibles extends Gestor {
     //		Cal mirar els màxims x hora SENSE sumar persones, pq ja estan comptats
     //		Cal mirar hores bloq. (base+torn a la taula que toqui)
     ////////////////////////////////////////////////////////////////////////////
-
+    if ($this->reserva_id && $this->data == $this->reserva->data && $this->torn != $this->reserva->torn ) {
+      // Primer verifiquem sie la taula està disponible en l'altre torn.
+      // Pot passar que editem una taula en un torn però l'altre està reservat, per tant, no oferirem les taules de l'altre torn
+      $this->taula_id = $this->reserva->taula->id;
+      $trobat = $this->taulaIdDisponible($this->taula_id);
+      if (!$trobat)
+        return $this->addError(30);      
+    }
+    ////////////////////////////////////////////////////////////////////////////
+    // Ara sí, donarem les hores del seu torn	
+    ////////////////////////////////////////////////////////////////////////////
     if ($this->reserva_id && $this->data == $this->reserva->data && $this->torn == $this->reserva->torn && ($this->reserva->persones == $persones || ($this->reserva->taula->persones > $persones && $this->reserva->taula->plena == false && $this->taulesGrans)) && ($this->reserva->cotxets == $cotxets || ($this->reserva->taula->cotxets > $cotxets && $this->reserva->taula->plena == false && $this->cotxetsGrans))) {
       $this->hora = $this->reserva->hora;
       $contaPersones = 0;
+      
     }  
     ////////////////////////////////////////////////////////////////////////////
     // SI NO MIREM SI TROBEM ALGUNA TAULA EN AQUEST TORN
