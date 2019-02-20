@@ -324,9 +324,9 @@ $(function (){
 /**********************************             FUNCIONS             ****************************************/
 /************************************************************************************************************/
 /************************************************************************************************************/
-/********************************************************************************************************************
+/************************************************************************************************************
  COMPORTAMENT QUANTS SOU > CALENDARI
- */
+*/
 function comportamentQuantsSou()
 {
     //ADULTS
@@ -349,6 +349,9 @@ function comportamentQuantsSou()
             return;
         }
         avis_modificacions(e);
+        
+                    
+
     });
 
     $("input[name=selectorComensals]").change(function (e) {
@@ -447,6 +450,8 @@ function comportamentDia()
         var avui = new Date();
         avui.setHours(0, 0, 0, 0);
 
+
+
         // NO ACCEPTEM PASSAT NI +1ANY NI PASSAR MARGE PEL MATEIX DIA
         if ((dat < avui) || (ara > minData && dat == avui) || (dat > maxData))
         {
@@ -457,6 +462,10 @@ function comportamentDia()
 
         if ($(".fr-seccio-hora").is(":hidden"))
             $(".fr-seccio-hora").slideDown("slow", function () {
+                $("#progress-pas-2").addClass("fet");
+                $(".reservation-progress-bar").css("width","25%");
+                
+                
                 seccio("fr-seccio-hora");
             });
         recargaHores();
@@ -465,7 +474,6 @@ function comportamentDia()
         $("#form-reserves").validate().element("#valida_calendari");
 
         updateMenus();
-
         return true;
     });
 }
@@ -608,6 +616,10 @@ function comportamentCarta()
 {
     if ($(".fr-seccio-carta").is(":hidden"))
         $(".fr-seccio-carta").slideDown("slow", function () {
+            
+        $("#progress-pas-3").addClass("fet");
+        $(".reservation-progress-bar").css("width","35%");
+           
             seccio("fr-seccio-carta");
         });
 
@@ -651,6 +663,9 @@ function comportamentClient()
 
     if ($(".fr-seccio-client").is(":hidden")){
         $(".fr-seccio-client").slideDown("slow", function () {
+          $("#progress-pas-4").addClass("fet");
+          $(".reservation-progress-bar").css("width","55%");
+            
             seccio("fr-seccio-client");
         });
         
@@ -740,6 +755,10 @@ function updateClient()
             client_auto = true;
             if ($(".fr-seccio-submit").is(":hidden"))
                 $(".fr-seccio-submit").slideDown("slow", function () {
+       $("#progress-pas-5").addClass("fet");
+        $(".reservation-progress-bar").css("width","65%");
+           
+                    
                     seccio("fr-seccio-submit");
                 });
             validaDadesClient();
@@ -1302,6 +1321,10 @@ function avis_modificacions(e) {
         monta_calendari("#calendari");
         $(".fr-seccio-dia").show();
         SECCIO = "fr-seccio-dia";
+        
+               $("#progress-pas-6").addClass("fet");
+                $(".reservation-progress-bar").css("width","25%");
+         
         updateCalendari();
         comportamentDia();
     }

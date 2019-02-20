@@ -835,6 +835,8 @@ ORDER BY  `estat_hores_hora` ASC ";
     $mydata = $this->data;
     $torn = $this->torn;
 
+    /** ATENCIO: Excepció creataules actiu de DL a DV no festiu */
+    
     $query = "SELECT estat_crea_taules_actiu FROM estat_crea_taules
     WHERE 
     (estat_crea_taules_data='$mydata' AND estat_crea_taules_torn = '$torn' ) 
