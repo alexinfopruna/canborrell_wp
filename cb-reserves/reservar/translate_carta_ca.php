@@ -85,7 +85,6 @@ $translate['XORIÇO'] = 'Xoriço';
 $translate['Menu grupo nº 4'] = 'Menu grup nº 4 <i style="color:blue">No combinable: Cal que tots els comensals demanin el mateix</i>';
 
 
-
  
 require_once('translate.php');
 ?>
