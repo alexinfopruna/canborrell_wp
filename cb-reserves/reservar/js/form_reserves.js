@@ -462,8 +462,8 @@ function comportamentDia()
 
         if ($(".fr-seccio-hora").is(":hidden"))
             $(".fr-seccio-hora").slideDown("slow", function () {
-                $("#progress-pas-2").addClass("fet");
-                $(".reservation-progress-bar").css("width","25%");
+              //  $("#progress-pas-2").addClass("fet");
+              //  $(".reservation-progress-bar").css("width","25%");
                 
                 
                 seccio("fr-seccio-hora");
@@ -617,8 +617,8 @@ function comportamentCarta()
     if ($(".fr-seccio-carta").is(":hidden"))
         $(".fr-seccio-carta").slideDown("slow", function () {
             
-        $("#progress-pas-3").addClass("fet");
-        $(".reservation-progress-bar").css("width","35%");
+     //   $("#progress-pas-3").addClass("fet");
+     //   $(".reservation-progress-bar").css("width","35%");
            
             seccio("fr-seccio-carta");
         });
@@ -663,8 +663,8 @@ function comportamentClient()
 
     if ($(".fr-seccio-client").is(":hidden")){
         $(".fr-seccio-client").slideDown("slow", function () {
-          $("#progress-pas-4").addClass("fet");
-          $(".reservation-progress-bar").css("width","55%");
+     //     $("#progress-pas-4").addClass("fet");
+     //     $(".reservation-progress-bar").css("width","55%");
             
             seccio("fr-seccio-client");
         });
@@ -755,8 +755,8 @@ function updateClient()
             client_auto = true;
             if ($(".fr-seccio-submit").is(":hidden"))
                 $(".fr-seccio-submit").slideDown("slow", function () {
-       $("#progress-pas-5").addClass("fet");
-        $(".reservation-progress-bar").css("width","65%");
+   //    $("#progress-pas-5").addClass("fet");
+   //     $(".reservation-progress-bar").css("width","65%");
            
                     
                     seccio("fr-seccio-submit");
@@ -1322,8 +1322,8 @@ function avis_modificacions(e) {
         $(".fr-seccio-dia").show();
         SECCIO = "fr-seccio-dia";
         
-               $("#progress-pas-6").addClass("fet");
-                $(".reservation-progress-bar").css("width","25%");
+         //      $("#progress-pas-6").addClass("fet");
+         //       $(".reservation-progress-bar").css("width","25%");
          
         updateCalendari();
         comportamentDia();

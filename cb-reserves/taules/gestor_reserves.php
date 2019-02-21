@@ -40,7 +40,7 @@ class gestor_reserves extends Gestor {
   protected $maxRows_reserva;
   protected $pageNum_reserva;
   protected $startRow_reserva;
-  protected $taulesDisponibles;
+  public $taulesDisponibles;
   protected $menjadors;
   protected $data_BASE = "2011-01-01";
 
@@ -55,7 +55,7 @@ class gestor_reserves extends Gestor {
 //COORDENADES MENJADORS
     include(ROOT . "coord_menjadors.php");
     $this->menjadors = $menjadors;
-    $this->taulesDisponibles = new TaulesDisponibles();
+    $this->taulesDisponibles = new TaulesDisponibles($this);
     $this->taulesDisponibles->data = $_SESSION['data'];
     $this->taulesDisponibles->torn = $_SESSION['torn'];
   }
@@ -3380,15 +3380,7 @@ $this->xgreg_log('<br><a href="' . $file . '">log mail</a>', 1, '/log/logMAILSMS
   }
 
   /*   * ********************************************************************************************************************* */
- 
-  public function es_festiu($data){
- $date = DateTime::createFromFormat("Y-m-d", $data);
- echo $date->format("d");
- echo $date->format("n");
-    
-    
-    return false;
-  }
+
   
   /*   * ********************************************************************************************************************* */
 
@@ -3404,7 +3396,6 @@ $this->xgreg_log('<br><a href="' . $file . '">log mail</a>', 1, '/log/logMAILSMS
     
     $query = "SELECT  * FROM dies_especials_$group WHERE dies_especials_tipus = '$tipus' AND  dies_especials_data <= CURRENT_DATE + INTERVAL 360 DAY";
     
-   echo $query;
     $this->qry_result = mysqli_query($this->connexioDB, $query) or die(((is_object($GLOBALS["___mysqli_ston"])) ? mysqli_error($GLOBALS["___mysqli_ston"]) : (($___mysqli_res = mysqli_connect_error()) ? $___mysqli_res : false)));
     if (!$this->total_rows = mysqli_num_rows($this->qry_result)) {
       return false;

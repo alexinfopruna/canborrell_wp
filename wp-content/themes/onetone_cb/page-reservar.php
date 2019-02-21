@@ -175,12 +175,11 @@ if ($padding_top)
   $container_css .= 'padding-top:' . $padding_top . ';';
 if ($padding_bottom)
   $container_css .= 'padding-bottom:' . $padding_bottom . ';';
-
+//echo $gestorf->taulesDisponibles->es_finde_o_festiu("2019-2-21")?"S":"N";
 /*
 $llista = $gestorf->llegir_dies_DB("small","white");
-var_dump($llista);
-die();
-*/
+var_dump($llista);*/
+
 /* * *********************************************************** */
 /* * *********************************************************** */
 /* * *********************************************************** */
@@ -1162,7 +1161,7 @@ if ($testTPV) {
     /*  .reservation-progress pendent{background-color: #4cae4c; }*/
     .reservation-progress .fet .number{background-color: #8de971; border-color:  #8de971}
 </style>
-<div>
+<div style="display:none">
     <div class="reservation-progress">
         <div class="reservation-progress-box" style="width: 100%;">
             <div class="reservation-progress-bar" style="width: 0%;"></div>
