@@ -122,7 +122,16 @@
 <td> </td>
     <td>
 	<div align="center">
-            Fins el dia abans, pot modificar la reserva o cancel·lar-la a <br><a href="https://www.can-borrell.com/reservar?{rid}" style="color: #666">www.can-borrell.com/reservar</a>
+            Fins el dia abans, pot modificar la reserva o cancel·lar-la a <br><a href="https://www.can-borrell.com/reservar?{rid}" style="color: #666">www.can-borrell.com/reservar</a>. 
+                <p style="background-color:#ffecd6">
+                    Si falten menys de 24 hores per la reserva no s'admetrà cap mena de modificació, ni a través del formulari ni per correu electrònic.
+                    
+                </p>
+                
+                <p style="background-color:#ffecd6">
+                El dret a devolució de la paga i senyal per anul·lació de la reserva
+serà vàlid fins 2 dies abans de la celebració. 
+</p>
 		<br><br>
 		Per accedir cal que conservi l'ID de reserva: <b style="background-color: #FF8033;color:white;padding:7px;">{id_reserva}</b> 
  

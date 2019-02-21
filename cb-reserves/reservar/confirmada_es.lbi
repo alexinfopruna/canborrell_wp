@@ -123,7 +123,19 @@
     <td>
 	<div align="center">
 		Hasta un día antes puedes modificar o cancelar tu reserva en  <br/><a href="https://www.can-borrell.com/reservar" style="color: #666">www.can-borrell.com/reservar</a>
-		<br><br>
+	
+                
+<p style = "background-color: #ffecd6">
+                     Si faltan menos de 24 horas para la reserva no se admitirá ningún tipo de modificación, ni a través del formulario ni por correo electrónico.
+                    
+                 </p>
+                
+                 <p style = "background-color: #ffecd6">
+                 El derecho a devolución de la paga y señal por anulación de la reserva
+será válido hasta 2 días antes de la celebración.
+</p>                
+                
+                <br><br>
 		Para acceder debes conservar la ID de reserva: <b style="background-color: #FF8033;color:white;padding:7px;">{id_reserva}</b>
 	</div>
 </td>
