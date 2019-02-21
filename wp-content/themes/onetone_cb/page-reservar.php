@@ -17,11 +17,10 @@ define('USR_FORM_WEB', 3); //ES LA ID D'USUARI (admin) ANONIM QUE CREA RESERVA O
 if (!isset($_SESSION))
   session_start();
 
-if (!isset($_SESSION['uSer'])  || !isset($_SESSION['permisos'])){
-$usr = new Usuari(USR_FORM_WEB, "webForm", 31);
+if (!isset($_SESSION['uSer']) || !isset($_SESSION['permisos'])) {
+  $usr = new Usuari(USR_FORM_WEB, "webForm", 31);
   $_SESSION['uSer'] = $usr;
   $_SESSION['permisos'] = $usr->permisos;
-
 }
 
 require (ROOT . "../reservar/Gestor_form.php");
@@ -86,7 +85,7 @@ if (isset($_REQUEST['rid'])) {
   if (isset($_POST['idr']) && $_POST['idr'] > SEPARADOR_ID_RESERVES) { //si es reserva de grups
     $row = $gestorf->recuperaReserva($_POST['mob'], $_POST['idr']);
     if (!$row) {
-     // $error_edit = TRUE;
+      // $error_edit = TRUE;
       $message = "ERROR_LOAD_RESERVA";
       $_REQUEST['idr'] = $_POST['idr'] = null;
     }
@@ -123,13 +122,12 @@ get_header();
 require_once(ROOT . '../reservar/translate_' . $gestorf->lng . '.php');
 $gestorf = $g;
 
-if (!isset($_POST['idr'])){
+if (!isset($_POST['idr'])) {
   $_POST['idr'] = null;
 }
 
-$EDITA_RESERVA = $_POST['idr']?$_POST['idr']:NULL;
+$EDITA_RESERVA = $_POST['idr'] ? $_POST['idr'] : NULL;
 //$EDITA_RESERVA = $_POST['idr'];
-
 //ELIMINA RESERVA 
 if (isset($_POST['cancel_reserva']) && $_POST['cancel_reserva'] == "Eliminar reserva" && $_POST['idr'] > SEPARADOR_ID_RESERVES) {
   if ($gestorf->cancelReserva($_POST['mob'], $_POST['idr'])) {
@@ -177,9 +175,10 @@ if ($padding_top)
   $container_css .= 'padding-top:' . $padding_top . ';';
 if ($padding_bottom)
   $container_css .= 'padding-bottom:' . $padding_bottom . ';';
-
-
-
+//echo $gestorf->taulesDisponibles->es_finde_o_festiu("2019-2-21")?"S":"N";
+/*
+$llista = $gestorf->llegir_dies_DB("small","white");
+var_dump($llista);*/
 
 /* * *********************************************************** */
 /* * *********************************************************** */
@@ -223,8 +222,8 @@ function reservar_enqueue_styles() {
       @media (max-width: 768px){
           .row{margin:0}
       }
-      
-     
+
+
 
 
       .resum-carta-iva{
@@ -355,7 +354,7 @@ function reservar_enqueue_styles() {
       }
 
       #compra button#boto{display:none}
-      
+
       @media (max-width: 770px){ 
           .ui-button-text {
               padding: 5px 15px !important;
@@ -439,24 +438,25 @@ function reservar_enqueue_styles() {
 /* * ******************************************************************************************************* */
 /* * ******************************************************************************************************* */
 /* * ******************************************************************************************************* */
-$testTPV = isset($_REQUEST['testTPV'])  && $_SESSION['permisos'] > 200;
+$testTPV = isset($_REQUEST['testTPV']) && $_SESSION['permisos'] > 200;
 if ($testTPV) {
   echo '<div class="ui-corner-all    alert alert-danger ">******************************* tesTPV ************************************<br>4548812049400004  12/20   123  123456';
- $tpv_config_file = "TPV256_test.php";
-  include(ROOT . INC_FILE_PATH .$tpv_config_file);
-  echo "<br>".$_SERVER['HTTP_HOST'];
+  $tpv_config_file = "TPV256_test.php";
+  include(ROOT . INC_FILE_PATH . $tpv_config_file);
+  echo "<br>" . $_SERVER['HTTP_HOST'];
   echo "<br>url $url";
   echo "<br>urlMerchant $urlMerchant";
   echo "</div>";
 }
-  ?>
+?>
+
 
 <article id="post-<?php the_ID(); ?>" <?php post_class(); ?>>
-<?php if ($display_breadcrumb == 'yes'): ?>
+    <?php if ($display_breadcrumb == 'yes'): ?>
 
       <section class="page-title-bar title-left no-subtitle loader" >
           <div class="container">
-  <?php onetone_get_breadcrumb(array("before" => "<div class=''>", "after" => "</div>", "show_browse" => false, "separator" => '', 'container' => 'div')); ?>
+              <?php onetone_get_breadcrumb(array("before" => "<div class=''>", "after" => "</div>", "show_browse" => false, "separator" => '', 'container' => 'div')); ?>
               <hgroup class="page-title">
                   <h1>
                       <?php
@@ -470,11 +470,11 @@ if ($testTPV) {
               <div class="clearfix"></div>
           </div>
       </section>
-<?php endif; ?>
+    <?php endif; ?>
 
 
 
-<?php if ($sidebar == 'left' || $sidebar == 'both'): ?>
+    <?php if ($sidebar == 'left' || $sidebar == 'both'): ?>
       <div class="col-aside-left">
           <aside class="blog-side left text-left" style="padding-top:70px;">
 
@@ -497,14 +497,14 @@ if ($testTPV) {
 
 
                 <a href="#" class="btn btn-warning  ecp-trigger" data-modal="modal" >     <?php l('Tens algun dubte?'); ?></a>
-  <?php } ?> 
+              <?php } ?> 
 
               <div class="widget-area">
-  <?php get_sidebar('pageleft'); ?>
+                  <?php get_sidebar('pageleft'); ?>
               </div>
           </aside>
       </div>
-<?php endif; ?>
+    <?php endif; ?>
 
 
 
@@ -513,15 +513,15 @@ if ($testTPV) {
             <div class="post-inner row <?php echo $aside; ?>" style=" <?php echo $container_css; ?>">
                 <div class="col-main">
                     <section class="post-main" role="main" id="content">
-                            <?php while (have_posts()) : the_post(); ?>
+                        <?php while (have_posts()) : the_post(); ?>
                           <article class="post type-post">
-  <?php if (has_post_thumbnail()): ?>
+                              <?php if (has_post_thumbnail()): ?>
                                 <div class="feature-img-box">
                                     <div class="img-box">
-    <?php the_post_thumbnail(); ?>
+                                        <?php the_post_thumbnail(); ?>
                                     </div>
                                 </div>
-  <?php endif; ?>
+                              <?php endif; ?>
                               <div class="entry-main">
 
                                   <div class="entry-content reservar">
@@ -561,7 +561,7 @@ if ($testTPV) {
                                                   <!-- ***************************************************************************************   -->
                                                   <?php
                                                   if (isset($message)) {
-                                                    echo '<div class="alert alert-danger"><i class="fa fa-info-circle" style="font-size:28px;color:#31708f;"></i> ' . l($message,FALSE) . '</div>';
+                                                    echo '<div class="alert alert-danger"><i class="fa fa-info-circle" style="font-size:28px;color:#31708f;"></i> ' . l($message, FALSE) . '</div>';
                                                   }
                                                   ?>
 
@@ -586,7 +586,7 @@ if ($testTPV) {
                                                   <form id="form-reserves" action="/cb-reserves/reservar/Gestor_form.php?a=submit" method="post" name="fr-reserves" accept-charset="utf-8"><!---->
                                                       <input type="hidden" name="id_reserva" value="<?php echo isset($_REQUEST['idr']) ? $_REQUEST['idr'] : ""; ?>"/>
                                                       <input type="hidden" name="reserva_info" value="<?php echo $row['reserva_info']; ?>"/>
-                                                      <input type="hidden" name="<?php echo $testTPV?"testTPV":"noTest"; ?>" value="<?php echo $testTPV?"testTPV":"noTest"; ?>"/>
+                                                      <input type="hidden" name="<?php echo $testTPV ? "testTPV" : "noTest"; ?>" value="<?php echo $testTPV ? "testTPV" : "noTest"; ?>"/>
                                                       <div id="fr-reserves" class="fr-reserves">
                                                           <!-- *******************************  QUANTS SOU ********************************************************   -->
                                                           <!-- *******************************  QUANTS SOU ********************************************************   -->
@@ -617,7 +617,7 @@ if ($testTPV) {
 
                                                                       <!-- ******  ADULTS  ********   -->
                                                                       <div id="selectorComensals" class="fr-col-dere selector">
-                                                                          <input type="hidden" id="com" name="adults" value="<?php echo $row['adults'] ?>"  style="width:35px;font-size:1.2em;padding-left:0;padding-right:0" class="ui-button ui-widget ui-state-default ui-button-text-only coberts"/><label for="comGrupsN" ><?php //l('Més de ');//echo ($PERSONES_GRUP+14)        ?></label>	
+                                                                          <input type="hidden" id="com" name="adults" value="<?php echo $row['adults'] ?>"  style="width:35px;font-size:1.2em;padding-left:0;padding-right:0" class="ui-button ui-widget ui-state-default ui-button-text-only coberts"/><label for="comGrupsN" ><?php //l('Més de ');//echo ($PERSONES_GRUP+14)          ?></label>	
                                                                           <?php
                                                                           for ($i = 2; $i < $PERSONES_GRUP; $i++) {
                                                                             $chek = ($i == $row['adults'] ? 'checked="checked"' : '');
@@ -640,7 +640,7 @@ if ($testTPV) {
                                                                       <!------------------- AVIS MODIFICACIONS ---------------------------->
                                                                       <div id="avis-modificacions-overlay" class="ui-widget-overlay dspnn" > </div> 
                                                                       <div id="avis-modificacions" class="transition-1s" style="" >
-  <?php l('AVIS_MODIFICACIONS'); ?>
+                                                                          <?php l('AVIS_MODIFICACIONS'); ?>
                                                                       </div> 
                                                                       <!------------------- FI AVIS MODIFICACIONS ---------------------------->
 
@@ -674,7 +674,7 @@ if ($testTPV) {
                                                                           <!-- ******  NENS  ********   -->
                                                                           <h4  id="titol_SelectorNens"><?php l('Nens (fins a 14 anys)'); ?>:</h4>
                                                                           <div id="selectorNens" class="col_dere">
-                                                                              <input type="hidden" id="nens" name="nens4_9" value="<?php echo $row['nens4_9'] ?>"  style="width:35px;font-size:1.2em;padding-left:0;padding-right:0" class="ui-button ui-widget ui-state-default ui-button-text-only coberts"/><label for="comGrupsN" ><?php //l('Més de ');//echo ($PERSONES_GRUP+14)        ?></label>
+                                                                              <input type="hidden" id="nens" name="nens4_9" value="<?php echo $row['nens4_9'] ?>"  style="width:35px;font-size:1.2em;padding-left:0;padding-right:0" class="ui-button ui-widget ui-state-default ui-button-text-only coberts"/><label for="comGrupsN" ><?php //l('Més de ');//echo ($PERSONES_GRUP+14)          ?></label>
                                                                               <?php
                                                                               for ($i = 0; $i <= $max_nens; $i++) {
                                                                                 //if (is_null($row['nens4_9'])) $row['nens10_14']=-1; 
@@ -743,7 +743,7 @@ if ($testTPV) {
                                                               </h1>
                                                               <div class="col-isqui flex ">
                                                                   <div class="caixa dere ui-corner-all info_dia">
-  <?php l('INFO_DATA'); ?>	
+                                                                      <?php l('INFO_DATA'); ?>	
                                                                       <input type="hidden" id="valida_calendari" name="selectorData" value="<?php echo $row['data']; ?>"/>
 
                                                                   </div>
@@ -752,12 +752,12 @@ if ($testTPV) {
                                                                   <div class="putoIE " style="">
                                                                       <!-- ******  CALENDARI  ********   -->
                                                                       <div id="data" style="float:left">
-  <?php if ($EDITA_RESERVA): ?>
+                                                                          <?php if ($EDITA_RESERVA): ?>
 
                                                                             <script>
                                                                               var BLOQ_DATA = '<?php echo $gestorf->cambiaf_a_normal($row['data']); ?>';
                                                                             </script>
-  <?php endif ?>
+                                                                          <?php endif ?>
                                                                           <div id="calendari" class=" ui-corner-all fr-seccio-dia"></div>
                                                                       </div>
                                                                       <div style="clear:both"></div>
@@ -778,7 +778,7 @@ if ($testTPV) {
 
                                                                   <!-- ******  INFO  ********   -->
                                                                   <div class="ui-corner-all caixa caixa100 dere hores info_hora">
-  <?php l('INFO_HORES'); ?>	
+                                                                      <?php l('INFO_HORES'); ?>	
                                                                   </div>
                                                                   <div>
                                                                       <!-- ******  DINAR  ********   -->
@@ -822,7 +822,7 @@ if ($testTPV) {
 
 
                                                                   <div class="ui-corner-all info caixa" >
-  <?php l('INFO_CARTA'); ?>
+                                                                      <?php l('INFO_CARTA'); ?>
                                                                   </div>
                                                                   <div class="col-isqui " >    
 
@@ -839,7 +839,7 @@ if ($testTPV) {
                                                                               $pastis_info = $row['reserva_info_pastis'];
                                                                               ?>
                                                                               <label for="INFO_PASTIS" class="pastis_toggle" style="margin-left:25px;">
-  <?php l("INFO_PASTIS") ?>
+                                                                                  <?php l("INFO_PASTIS") ?>
                                                                               </label>
                                                                               <textarea id="INFO_PASTIS" name="INFO_PASTIS" style="margin-left:25px;" class="pastis_toggle"><?php echo $pastis_info ?></textarea>
                                                                               <table id="caixa-carta" class="col_dere">
@@ -848,13 +848,13 @@ if ($testTPV) {
                                                                                       <td class="menysX"></td>
                                                                                       <td class="Xborra"></td>
                                                                                       <td class="carta-plat">
-                                                                                          <h3><?php //l("SELECCIÓ")          ?></h3>
+                                                                                          <h3><?php //l("SELECCIÓ")            ?></h3>
                                                                                       </td>
                                                                                       <td></td>
                                                                                   </tr>
                                                                                   <tr>
                                                                                       <td class="mesX">							
-  <?php echo $comanda ?></td>
+                                                                                          <?php echo $comanda ?></td>
                                                                                       <td class="menysX"></td><td class="Xborra"></td>
                                                                                       <td class="carta-plat"><h3>	</h3></td>
                                                                                       <td></td>
@@ -862,7 +862,7 @@ if ($testTPV) {
                                                                               </table>
                                                                               <!-- ******  BUTO CARTA  ********   -->
                                                                               <div class="ui-corner-all info info-comanda info_carta" style="float:left;">
-  <?php l('INFO_COMANDA'); ?>
+                                                                                  <?php l('INFO_COMANDA'); ?>
                                                                               </div>
 
 
@@ -896,22 +896,24 @@ if ($testTPV) {
 
                                                                   </h1>
                                                                   <table id="dades-client" class="col_dere">
-                                                                      <?php if( $_SESSION['permisos'] > 200){
-                                                                         $row['client_mobil']="99921212";
-                                                                      }?>
+                                                                      <?php
+                                                                      if ($_SESSION['permisos'] > 200) {
+                                                                        $row['client_mobil'] = "99921212";
+                                                                      }
+                                                                      ?>
                                                                       <tr><td class="label" >* <em style="font-size:0.9em;"><?php l('Camps obligatoris'); ?></em>
                                                                               <div><label class="label" for="client_mobil"><?php l('Telèfon mòbil'); ?>*</label><input type="text" name="client_mobil" value="<?php echo $row['client_mobil'] ?>"/></div>
                                                                               <div><label class="label" for="client_telefon"><?php l('Ens vols deixar una altre telèfon?'); ?></label><input type="text" name="client_telefon" value="<?php echo $row['client_telefon'] ?>"/></div>
                                                                               <div><label class="label" for="client_email">Email*</label><input type="email" name="client_email" value="<?php echo $row['client_email'] ?>"/></div>
                                                                               <div><label class="label" for="client_nom"><?php l('Nom'); ?>*</label><input type="text" name="client_nom" value="<?php echo $row['client_nom'] ?>"/></div>
                                                                               <div><label class="label" for="client_cognoms"><?php l('Cognoms'); ?>*</label><input type="text" name="client_cognoms" value="<?php echo $row['client_cognoms'] ?>"/></div>
-                                                                              <div><label class="label" for="client_id"><?php //l('Client_id');          ?></label><input type="hidden" name="client_id" value="<?php echo $row['client_id'] ?>"/></div>
+                                                                              <div><label class="label" for="client_id"><?php //l('Client_id');            ?></label><input type="hidden" name="client_id" value="<?php echo $row['client_id'] ?>"/></div>
 
                                                                               <input name="observacions" value="" type="hidden" />
 
                                                                               <!--
                                                                               <div class="ui-corner-all info-legal info-observacions  caixa">
-  <?php l('NO_COBERTS_OBSERVACIONS'); ?>
+                                                                              <?php l('NO_COBERTS_OBSERVACIONS'); ?>
                                                                               </div>
     
     
@@ -957,15 +959,15 @@ if ($testTPV) {
                                                                       <b><?php l('Resum reserva'); ?>:</b><br/><br/>
                                                                       <?php l('Data'); ?>: <b id="resum-data">-</b> | <?php l('Hora'); ?>: <b id="resum-hora">-</b><br/>
                                                                       <?php l('Adults'); ?>: <b id="resum-adults">-</b> | <?php l('Nens'); ?>: <b id="resum-nens">-</b> | <?php l('Cotxets'); ?>: <b id="resum-cotxets">-</b><br/>
-  <?php l('Comanda'); ?>: <b id="resum-comanda"><?php l('Sense'); ?> </b> <?php l('plats'); ?> (<b id="resum-preu"></b> €)
+                                                                      <?php l('Comanda'); ?>: <b id="resum-comanda"><?php l('Sense'); ?> </b> <?php l('plats'); ?> (<b id="resum-preu"></b> €)
                                                                   </div>
 
                                                                   <div class="flex"></div>
                                                                   <div class="ui-corner-all info-submit caixaXX dere alert alert-danger ">
-  <?php l('INFO_NO_CONFIRMADA'); ?>:
+                                                                      <?php l('INFO_NO_CONFIRMADA'); ?>:
 
                                                                   </div>
-  <?php $t = (isset($_POST['idr']) && $_POST['idr'] > 5000) ? 'Modificar reserva' : 'Sol·licitar reserva'; ?>
+                                                                  <?php $t = (isset($_POST['idr']) && $_POST['idr'] > 5000) ? 'Modificar reserva' : 'Sol·licitar reserva'; ?>
                                                                   <button id="submit"><?php l($t); ?></button>
 
 
@@ -993,16 +995,16 @@ if ($testTPV) {
                                                   <!-- ******************* CARTA *********************** -->
                                                   <div id="fr-cartaw-popup" title="<?php l("La nostra carta") ?>" class="carta-menu" style="height:300px">
                                                       <div id="fr-carta-tabs" >
-  <?php echo $gestorf->recuperaCarta($row['id_reserva']) ?>
+                                                          <?php echo $gestorf->recuperaCarta($row['id_reserva']) ?>
                                                       </div>	
                                                   </div>	
                                                   <!-- ******************* CARTA-MENU *********************** -->
                                                   <!-- ******************* CARTA-MENU *********************** -->
                                                   <!-- ******************* CARTA-MENU *********************** -->
                                                   <div id="fr-menu-popup" title="<?php l("Els nostres menús") ?>" class="carta-menu">
-                                                      
+
                                                       <div id="fr-menu-tabs" >
-  <?php echo $gestorf->recuperaCarta($row['id_reserva'], true) ?>
+                                                          <?php echo $gestorf->recuperaCarta($row['id_reserva'], true) ?>
                                                       </div>	
                                                   </div>	
 
@@ -1010,7 +1012,7 @@ if ($testTPV) {
                                                   <!-- ******************* POPUPS GRUPS *********************** -->
                                                   <!-- ******************* POPUPS GRUPS *********************** -->
                                                   <div id="popupGrups" title="<?php l("Reserva per grups") ?>">
-  <?php l('ALERTA_GRUPS'); ?>
+                                                      <?php l('ALERTA_GRUPS'); ?>
 
                                                   </div>
 
@@ -1099,7 +1101,7 @@ if ($testTPV) {
 
                 <?php if ($sidebar == 'right' || $sidebar == 'both'): ?>
                   <div class="col-aside-right">
-                  <?php get_sidebar('pageright'); ?>
+                      <?php get_sidebar('pageright'); ?>
                   </div>
                 <?php endif; ?>
             </div>
@@ -1117,4 +1119,63 @@ if ($testTPV) {
                                                   </script>
   
 -->
+
+<style>
+    .reservation-progress{
+        /*  width:100%;*/
+        top:0px;
+        position:fixed;
+        margin: auto;
+
+    }
+
+    .reservation-progress h1{
+        float:left;
+        clear:initial;
+    }
+    
+    .reservation-progress-box{
+        top:103px;
+        height:12px;
+        width:  100%;
+        background-color: #eee;
+        
+        position: relative;
+        border-radius: 4px;
+        z-index:-10;
+    }
+
+    .reservation-progress-bar{
+        /*//top:103px;*/
+        height:12px;
+        width:0%;
+        background-color: #8de971;
+        animation: width 1.5s ease;
+        position: relative;
+        border-radius: 4px;
+        z-index:-10;
+    }
+    
+     .reservation-progress-bar{    animation: width 1.5s ease;}
+
+    /*  .reservation-progress pendent{background-color: #4cae4c; }*/
+    .reservation-progress .fet .number{background-color: #8de971; border-color:  #8de971}
+</style>
+<div style="display:none">
+    <div class="reservation-progress">
+        <div class="reservation-progress-box" style="width: 100%;">
+            <div class="reservation-progress-bar" style="width: 0%;"></div>
+        </div>
+        <h3>Procés de reserva</h3>
+        <h1 id="progress-pas-1" class="titol"><span class="number " title="Quants Sou">1</span></h1>
+        <h1 id="progress-pas-2" class="titol"><span class="number" title="Quants Sou">2</span></h1>
+        <h1 id="progress-pas-3" class="titol"><span class="number " title="Quin dia">3</span></h1>
+        <h1 id="progress-pas-4" class="titol"><span class="number " title="Quina hora">4</span></h1>
+        <h1 id="progress-pas-5" class="titol"><span class="number " title="Vols Carta o Menú">5</span></h1>
+        <h1 id="progress-pas-6" class="titol"><span class="number " title="Dades personals">6</span></h1>
+        <h1 id="progress-pas-7" class="titol"><span class="number " title="Sol·icitud/Pagament">7</span></h1>
+        <h1 id="progress-pas-8" class="titol"><span class="number " title="Reserva confirmada">8</span></h1>
+    </div>
+</div>
+
 <?php get_footer(); ?>

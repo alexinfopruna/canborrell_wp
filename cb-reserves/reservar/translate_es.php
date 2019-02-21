@@ -233,8 +233,8 @@ $translate['RESERVA_PASTIS']='<span class="pastis">¿Quieres pastel de celebraci
         . '<span style="font-style: italic;">Pastel de la casa tipo Massini, pastel 500g (5 a 8 raciones) = 23.70€ / pastel 1000g (10 a 14 raciones) = 37.80 </span>';
 $translate['INFO_PASTIS']="<br/><br/>Comentarios pel pastel (¿Qué celebráis?, ¿Si es un cumpleaños, cuántos años?)";
 
-$translate['AVIS_MODIFICACIONS']='<span style = "color: red"> <b>Atención: </b> </span> El mismo día de la reserva <b> deberá comunicar cualquier variación </b> en el número de cubiertos llamando de 10 a 11 de la mañana al <b> 935 803 632 </b> o al<b> 936 929 723 </b>.
-<br/> Más tarde de las 11 <b> no admitiremos ninguna modificación </b> en la reserva y dispondrà exclusivamente de las plazas que tiene confirmadas. <br/> Antes de ese día, también puede editar la reserva en este mismo apartado. <span class = "tanca-avis" style = ""> <a href="#"> cierra </a> </span>';
+$translate['AVIS_MODIFICACIONS']='<span style = "color: red"> <b>Atención: </b> </span> Hasta 24 horas antes de la reserva <b> podrá comunicar cualquier variación </b> en el número de cubiertos llamando de 10 a 11 de la mañana al <b> 935 803 632 </b> o al<b> 936 929 723 </b>.
+<br/> Con menos de 24 horas de antelación <b> no admitiremos ninguna modificación </b> en la reserva y dispondrà exclusivamente de las plazas que tiene confirmadas. <br/> Antes de ese día, también puede editar la reserva en este mismo apartado. <span class = "tanca-avis" style = ""> <a href="#"> cierra </a> </span>';
 
 
 
@@ -456,6 +456,9 @@ $translateDirectJS['err21'] = '<b>No podemos hacer la reserva on-line a causa de
 $translateDirectJS['err20'] = '<b>Ya tienes una reserva hecha en Can Borrell!</b><br/><br/>Puedes modificarla o eliminarla pero no puedes crear más de una reserva online<br/><em>(Para editar o cancelar, utiliza el enlace que hay arriba, bajo la barra de navegación de esta página )</em><br/><br/><br/><br/><br/>Si lo deseas ponte en contacto con nosotros:<br/><b>936929723 / 936910605</b><br/><br/><br/>La reserva que nos consta es para el dia ';
 $translate['err21'] = '<b>No podem fer-te la reserva on-line a causa d´una reserva anterior!!</b><br/><br/>Si us plau, per reservar contacta amb el restaurant:936929723 / 936910605';
 $translateDirectJS['CAP_TAULA']="No tenemos ninguna mesa disponible para la fecha/cubiertos/cochecitos que nos pides.<br/><br/>Inténtalo para otra fecha";
+
+$translateJS['CALÇOTADA_NO_COMBINABLE'] = 'El menú calçotada solo se puede combinar con el menú nº1. \\nSi seleccionas confirmar se eliminarán de la selección los menús no combinables';
+$translateJS['N4_NO_COMBINABLE'] = 'El menú nº 4 no se puede combinar con ningún otro menú. Todos los comensales deberán pedir el mismo.  \\nSi seleccionas confirmar se eliminarán de la selección los menús no combinables';
 
 require_once('translate.php');
 

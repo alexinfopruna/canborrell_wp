@@ -952,6 +952,10 @@ ORDER BY  `estat_hores_hora` ASC ";
     $mydata = $this->data;
     $torn = $this->torn;
 
+    /** ATENCIO: Excepció creataules actiu de DL a DV no festiu */
+    
+    
+    if (!$this->es_finde_o_festiu($mydata)) return true;
     $query = "SELECT estat_crea_taules_actiu FROM estat_crea_taules
     WHERE 
     (estat_crea_taules_data='$mydata' AND estat_crea_taules_torn = '$torn' ) 
@@ -963,6 +967,26 @@ ORDER BY  `estat_hores_hora` ASC ";
     else
       return (mysqli_result($Result1, 0) == 1);
   }
+  
+  
+  
+    /*   * ********************************************************************************************************************* */
+ 
+  public function es_finde_o_festiu($data){
+    if (!$data) return true; // SI NO EM DONEN LA DATA LI PASSO LA VARIABLE CREA_TAULA
+    $date = DateTime::createFromFormat("Y-m-d", $data);
+    
+    // SI ES FINDE
+    if ($date->format("N") > 5) return true;
+    
+    // SI ES FESTIU
+    $query = "SELECT  * FROM dies_especials_small WHERE dies_especials_tipus = 'white' AND  dies_especials_data = '".$data."'";
+    $this->qry_result = mysqli_query($this->connexioDB, $query) or die(((is_object($GLOBALS["___mysqli_ston"])) ? mysqli_error($GLOBALS["___mysqli_ston"]) : (($___mysqli_res = mysqli_connect_error()) ? $___mysqli_res : false)));
+    if ($this->total_rows = mysqli_num_rows($this->qry_result)) return true;
+    
+    return false;
+  }
+
 
   /*   * ********************************************************************************************************************* */
   /*   * ********************************************************************************************************************* */
@@ -996,6 +1020,8 @@ ORDER BY  `estat_hores_hora` ASC ";
       return $dies;
     }
   }
+  
+
 
   /*   * ****************************************************************************** */
   /*   * ****************************************************************************** */

@@ -117,7 +117,18 @@ Children up to 14 years old </td>
     <td>
 	<div align="center">
 		Until a day before you can modify or cancel your reservation in <br/><a href="https://www.can-borrell.com/reservar" style="color: #666">www.can-borrell.com/reservar</a>
-		<br><br>
+		
+<p style = "background-color: #ffecd6">
+                     If there is less than 24 hours left for the reservation, no modification will be accepted, either through the form or by email.
+                    
+                 </p>
+                
+                 <p style = "background-color: #ffecd6">
+                 The refund of the payment and signal for cancellation of the reservation
+It will be able up to 2 days before the celebration.
+</p>                
+                
+                <br><br>
 		To access you must keep the reservation ID: <b style="background-color: #FF8033;color:white;padding:7px;">{id_reserva}</b>
 	</div>
 </td>

@@ -247,8 +247,8 @@ $translate['RESERVA_PASTIS'] = '<span class="pastis">Would you like a celebratio
 $translate['INFO_PASTIS'] = "<br/><br/>Comments about the cake? (What are you celebrating? If it’s a birthday, how many years?)";
 
 $translate['AVIS_MODIFICACIONS'] = '<span style = "color: red"> 
- <b> Attention: </b> </span>The same day of the reservation please <b> inform us of any change</b>  in the number of places by calling from 10 to 11 o’clock in the morning 
-  <b>935 803 632</b> or <b>936 929 723</b>.<br/> Later than 11 o’clock <b>we cannot make any changes</b> to the reservation and only the places reserved will be available. 
+ <b> Attention: </b> </span>Until 24 hours before the reservation time <b> you can inform us of any change</b>  in the number of places by calling from 10 to 11 o’clock in the morning 
+  <b>935 803 632</b> or <b>936 929 723</b>.<br/> Later than 24 hours <b>we cannot make any changes</b> to the reservation and only the places reserved will be available. 
   <br/>Before the day, you can also edit your reservation using the same section of our web page. 
   <span class = "tanca-avis" style = ""> <a href="#">close</a> </span>';
 
@@ -474,6 +474,11 @@ $translateDirectJS['err20'] = '<b>You have now made a reservation in Can Borrell
 $translate['err21'] = '<b>We cannot make an online reservation because of one already made!!</b><br/><br/>Please, to make a reservation contact the restaurant:936929723 / 936910605';
 
 $translateDirectJS['CAP_TAULA'] = "Sorry, no tables available for the requested date / dinners.<br/><br/>Try an othe date";
+
+$translateJS['CALÇOTADA_NO_COMBINABLE'] = 'The calçotada menu can only be combined with menu nº1. \\nIf you select confirm, the non-combinable menus will be removed from the selection';
+$translateJS['N4_NO_COMBINABLE'] = 'Menu No. 4 has not been combined with any other menu. All diners should ask for the same. \\nIf you select confirm, the non-combinable menus will be removed from the selection';
+
+
 
 require_once('translate.php');
 ?>

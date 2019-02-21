@@ -169,10 +169,10 @@ $translate['RESERVA_PASTIS']='<span class="pastis">Vols pastís de celebració?<
 $translate['INFO_PASTIS']="Comentaris pel pastís (Què celebreu?, Si és un aniversari, quants anys?)";
 
 $translate['AVIS_MODIFICACIONS']='<span style="color:red"><b>Atenció:</b>
-                                    </span> El mateix dia de la reserva <b>heu de comunicar qualsevol variació</b> 
+                                    </span>Fins a 24 hores abans de la data reservada <b>podeu comunicar qualsevol variació</b> 
                                     en el nombre de coberts trucant de 10 a 11 del matí al <b>935803632</b> o al <b>936929723</b>. 
 <br/>
-                                    Més tard de les 11 <b>no admetrem cap modificació</b> 
+                                    Amb menys de 24 hores d\'antelació <b>no admetrem cap modificació</b> 
                                     a la reserva i disposareu exclusivament de les places que teniu confirmades. 
                                     <br/>Abans d\'aquest dia, també podeu editar la reserva en aquest mateix apartat.
                                     <span class="tanca-avis" style=""><a href="#">tanca</a></span>';
@@ -210,6 +210,9 @@ $translate["RESERVA_IMPAGADA"] = "No hem rebut confirmació del pagament de la p
     . "<b>-NO HA ESTAT POSSIBLE REALITZAR LA RESERVA</b> Torna-ho a intentar i assegura\'t de completar el pagament. "
     . "Recorda que fins que no completis la paga i senyal NO TENS RESERVA al restaurant";
 $translate["Can Borrell: Reserva Anul·lada: No es rep i senyal"] = "Can Borrell: Reserva Anul·lada: No rebem paga i senyal";
+
+
+
 
 /************ SMS ****************/
 
@@ -359,6 +362,10 @@ $translateDirectJS['CAP_TAULA']="No tenim cap taula disponible per la data/cober
 $translateDirectJS['PAGAMENT REBUT']="Hem rebut la notificació del pagament. La teva reserva ja està confirmada. \\n\\nGràcies per utilitzar aquest servei";
 $translateDirectJS['EL PAGAMENT HA ESTAT ANULAT']="Malauradament no s\'ha completat el procés de pagament. \\n\\nGràcies per utilitzar aquest servei";
 //echo " ***************** ".$translate["MAIL_GRUPS_PAGAT_subject"];
+
+$translateJS['CALÇOTADA_NO_COMBINABLE'] = "El menú calçotada només es pot combinar amb el menú nº1. \\nSi selecciones confirmar s\'eliminaran de la selecció els menús no combinables";
+$translateJS['N4_NO_COMBINABLE'] = "El menú nº 4 no es pot combinar amb cap altre. Tots els comensales han de demanar el mateix.  \\nSi selecciones confirmar s\'eliminarán de la selecció els menús no combinables";
+
 
 require_once('translate.php');
 ?>
