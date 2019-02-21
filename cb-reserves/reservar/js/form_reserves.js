@@ -404,7 +404,6 @@ function totalPersones()
         comportamentDia();
 
         if (confirm(l("REDIR_GRUPS"))) {
-            //   window.location.href = "form_grups.php?a=redir&b=" + na + "&c=" + nj + "&d=" + nn + "&e=" + cotxets;
             window.location.href = "/reservar/reserva-grup/?a=redir&b=" + na + "&c=" + nj + "&d=" + nn + "&e=" + cotxets;
             $("body").fadeOut();
         }

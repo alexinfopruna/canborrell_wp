@@ -169,10 +169,10 @@ $translate['RESERVA_PASTIS']='<span class="pastis">Vols pastís de celebració?<
 $translate['INFO_PASTIS']="Comentaris pel pastís (Què celebreu?, Si és un aniversari, quants anys?)";
 
 $translate['AVIS_MODIFICACIONS']='<span style="color:red"><b>Atenció:</b>
-                                    </span> El mateix dia de la reserva <b>heu de comunicar qualsevol variació</b> 
+                                    </span>Fins a 24 hores abans de la data reservada <b>podeu comunicar qualsevol variació</b> 
                                     en el nombre de coberts trucant de 10 a 11 del matí al <b>935803632</b> o al <b>936929723</b>. 
 <br/>
-                                    Més tard de les 11 <b>no admetrem cap modificació</b> 
+                                    Amb menys de 24 hores d\'antelació <b>no admetrem cap modificació</b> 
                                     a la reserva i disposareu exclusivament de les places que teniu confirmades. 
                                     <br/>Abans d\'aquest dia, també podeu editar la reserva en aquest mateix apartat.
                                     <span class="tanca-avis" style=""><a href="#">tanca</a></span>';

@@ -233,8 +233,8 @@ $translate['RESERVA_PASTIS']='<span class="pastis">¿Quieres pastel de celebraci
         . '<span style="font-style: italic;">Pastel de la casa tipo Massini, pastel 500g (5 a 8 raciones) = 23.70€ / pastel 1000g (10 a 14 raciones) = 37.80 </span>';
 $translate['INFO_PASTIS']="<br/><br/>Comentarios pel pastel (¿Qué celebráis?, ¿Si es un cumpleaños, cuántos años?)";
 
-$translate['AVIS_MODIFICACIONS']='<span style = "color: red"> <b>Atención: </b> </span> El mismo día de la reserva <b> deberá comunicar cualquier variación </b> en el número de cubiertos llamando de 10 a 11 de la mañana al <b> 935 803 632 </b> o al<b> 936 929 723 </b>.
-<br/> Más tarde de las 11 <b> no admitiremos ninguna modificación </b> en la reserva y dispondrà exclusivamente de las plazas que tiene confirmadas. <br/> Antes de ese día, también puede editar la reserva en este mismo apartado. <span class = "tanca-avis" style = ""> <a href="#"> cierra </a> </span>';
+$translate['AVIS_MODIFICACIONS']='<span style = "color: red"> <b>Atención: </b> </span> Hasta 24 horas antes de la reserva <b> podrá comunicar cualquier variación </b> en el número de cubiertos llamando de 10 a 11 de la mañana al <b> 935 803 632 </b> o al<b> 936 929 723 </b>.
+<br/> Con menos de 24 horas de antelación <b> no admitiremos ninguna modificación </b> en la reserva y dispondrà exclusivamente de las plazas que tiene confirmadas. <br/> Antes de ese día, también puede editar la reserva en este mismo apartado. <span class = "tanca-avis" style = ""> <a href="#"> cierra </a> </span>';
 
 
 
