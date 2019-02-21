@@ -104,12 +104,7 @@ $(function(){$("#panel").accordion({collapsible:true,active:false,heightStyle: "
 <h1>PANEL DE CONTROL DEL SISTEMA DE RESERVES</h1>
 <p style="text-align:right;font-size:9px;padding:15px;"><i ><?php  echo get_version(); ?></i></p>
 <A HREF="<?php echo $_SERVER['PHP_SELF'];?>?exit" class="ui-button" style="border:#666 solid 1px;background:white;padding:3px;color:#666;float:right;margin-right:15px;">Tanca sessió</a>
-<?php
-$externalContent = file_get_contents('http://checkip.dyndns.com/');
-preg_match('/Current IP Address: \[?([:.0-9a-fA-F]+)\]?/', $externalContent, $m);
-$externalIp = $m[1];
-echo "EXTERNAL IP: ".$externalIp;
-?>
+
 <div id="panel">
 
 <!-- 

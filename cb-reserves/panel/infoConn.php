@@ -27,6 +27,16 @@ Info sistema
 </head>
 <body>
     <a href="http://cbwp-localhost/cb-reserves/panel/infoConn.php">http://cbwp-localhost/cb-reserves/panel/infoConn.php</a>
+        <p>
+      
+            <?php
+$externalContent = file_get_contents('http://checkip.dyndns.com/');
+preg_match('/Current IP Address: \[?([:.0-9a-fA-F]+)\]?/', $externalContent, $m);
+$externalIp = $m[1];
+echo "EXTERNAL IP: ".$externalIp;
+?>
+            
+    </p>
 <?php
 echo '<table id="info" style="margin:auto auto;">';
 echo '<tr><td><h1>SISTEMA DE RESERVES</h1></td></tr>';
