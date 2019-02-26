@@ -1404,11 +1404,13 @@ EOHTML;
           $filtre = "data='" . $_SESSION['data'] . "' AND estat_taula_torn='" . $_SESSION['torn'] . "' ";
           break;
         case "DIA_TORN1"://AVUI + TORN
-          $filtre = "data='" . $_SESSION['data'] . "' AND estat_taula_torn=1 AND hora<'15:00'";
+       //   $filtre = "data='" . $_SESSION['data'] . "' AND estat_taula_torn=1 AND hora<'15:00'";
+          $filtre = "data='" . $_SESSION['data'] . "' AND hora<'15:00'";
           $class = "torn1";
           break;
         case "DIA_TORN2"://AVUI + TORN
-          $filtre = "data='" . $_SESSION['data'] . "' AND estat_taula_torn=1 AND hora>='15:00'";
+         // $filtre = "data='" . $_SESSION['data'] . "' AND estat_taula_torn=2 AND hora>='15:00'";
+          $filtre = "data='" . $_SESSION['data'] . "' AND hora>='15:00'";
           $class = "torn2";
           break;
         case "FUTUR"://FUTUR
@@ -1445,9 +1447,8 @@ EOHTML;
     INNER JOIN " . ESTAT_TAULES . " ON " . T_RESERVES . ".id_reserva=" . ESTAT_TAULES . ".reserva_id
     WHERE " . T_RESERVES . ".client_id>0 AND $filtre 
     ORDER BY data , estat_taula_torn , sm , hora , client.client_cognoms, data_creacio    ";
-
     if (isset($cerca) && !empty($cerca) && $cerca != "" && $cerca != "undefined" && $cerca != "null")
-      $query = $this->qryCercaReserva($cerca, $filtre);
+       $query = $this->qryCercaReserva($cerca, $filtre);
 
     $result = mysqli_query($this->connexioDB, $query) or die(((is_object($GLOBALS["___mysqli_ston"])) ? mysqli_error($GLOBALS["___mysqli_ston"]) : (($___mysqli_res = mysqli_connect_error()) ? $___mysqli_res : false)));
     if (!$total = $this->total_rows = mysqli_num_rows($result))
