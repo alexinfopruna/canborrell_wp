@@ -203,7 +203,12 @@ td.hora-mati.online{background:#FFB300} /*groc*/
 			<?php  			
 			out($gestor->print_llista_reserves( "DIA_TORN1" ));	
                                                                                     ?>
-                                                                                        <br>
+                                                                                    </p>
+                                                                                    </div>
+                                                                                    <div id="llista_reserves2" class="pageBreak">
+                                                                                        <p>
+    
+                                                                                        
 			<h3>LLISTA RESERVES: <span class="print-taula"><?php echo $gestor->cambiaf_a_normal($_SESSION['data'],"%A %d de %B de %Y");?></span><?php echo $torn[2].' ( <span class="print-taula">'.$total_coberts_torn['t2'].' Coberts</span>)';?></h3> 
                                                                                         
                                                                                     <?php
