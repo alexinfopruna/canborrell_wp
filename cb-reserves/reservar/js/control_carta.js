@@ -95,11 +95,11 @@ $(function () {
          */
         var nid = $(this).attr('nid');
 
-        if (jQuery("#carta_contador2010").val() > 0 && jQuery(".contador.cmenu").not(" #carta_contador2010, #carta_contador2001").filter(function () {
+        if (jQuery("#carta_contador2010").val() > 0 && jQuery(".contador.cmenu").not(" #carta_contador2010, #carta_contador2001, #carta_contador2037, #carta_contador2036").filter(function () {
             return $(this).val() > 0;
         }).size()) {
             if (confirm(l("CALÇOTADA_NO_COMBINABLE"))) {
-                jQuery(".contador.cmenu").not(" #carta_contador2010, #carta_contador2001").each(function () {
+                jQuery(".contador.cmenu").not(" #carta_contador2010, #carta_contador2001, #carta_contador2037, #carta_contador2036").each(function () {
                     $(this).val(0);
                     $(this).removeClass("carta-seleccio");
                 });
