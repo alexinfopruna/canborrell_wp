@@ -878,7 +878,7 @@ function monta_calendari(selector)
         beforeShowDay: function (date, inst) {
             var r = new Array(3);
 
-            if ((date.getDay() == 1 || date.getDay() == 2 || llistanegra(date)) && (!llistablanca(date)) || !taulaDisponible(date))
+            if ( (date.getDay() == 1 || date.getDay() == 2 || llistanegra(date)) && (!llistablanca(date)) || !taulaDisponible(date))
             {
                 r[0] = false;
                 r[1] = "maldia";

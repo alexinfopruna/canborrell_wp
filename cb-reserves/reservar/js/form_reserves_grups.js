@@ -883,16 +883,23 @@ function validacio()
 function controlSubmit()
 {
     $('#submit').click(function (e) {
+                if (!$("#totalComensals").valid()){
+            e.preventDefault();
+            return false;
+        }
+        
+        
         if (!$("#valida_calendari").valid()){
             e.preventDefault();
             return false;
         }
             
-
         if (!$("#te-comanda").valid()){
             e.preventDefault();
             return false;
         }
+
+
 
         if (!$("#valida_calendari").valid()){
             e.preventDefault();
@@ -914,6 +921,9 @@ function controlSubmit()
             e.preventDefault();
             return false;
         }
+        
+        
+        
 
 
             

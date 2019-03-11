@@ -241,11 +241,11 @@ $order
   public function desglose($restriccio) {
 
     $restriccio->restriccions_adults = ">1";
-    $restriccio->restriccions_nens = ">0";
+    $restriccio->restriccions_nens = ">7";
     $restriccio->restriccions_cotxets = "1";
 
     $adults = $this->desglose_coberts($restriccio->restriccions_adults, 21);
-    $nens = $this->desglose_coberts($restriccio->restriccions_nens, 7);
+    $nens = $this->desglose_coberts($restriccio->restriccions_nens, 9);
     //var_dump($restriccio->restriccions_adults);die();
     $desglose = $adults;
     $desglose = array_fill_keys($desglose, $nens);
@@ -253,14 +253,14 @@ $order
 
     $rest = $restriccio;
 
-//var_dump($desglose);
+//var_dump($desglose);die();
     foreach ($desglose as $k => $a) {
       foreach ($a as $k2 => $n) {
 
         $restriccio->restriccions_adults = $k;
         $restriccio->restriccions_nens = $n;
         echo " $k ----> $n <br>";
-        $this->insertRestriccio($rest);
+          $this->insertRestriccio($rest);
       }
     }
   }
@@ -302,7 +302,7 @@ $order
              '{$restriccio->restriccions_hora}',
              '{$restriccio->restriccions_description}')";
 
-
+//echo $query;
     $Result1 = mysqli_query($this->connexioDB, $query) or die(((is_object($GLOBALS["___mysqli_ston"])) ? mysqli_error($GLOBALS["___mysqli_ston"]) : (($___mysqli_res = mysqli_connect_error()) ? $___mysqli_res : false)));
     return $this->getRestriccions();
   }
