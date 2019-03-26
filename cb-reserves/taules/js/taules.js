@@ -531,6 +531,14 @@ $(function () {
     $(window).focus(function () {
         //comprova_refresh();
     });
+    
+    
+     alert("W222WW");
+    $("#bt-carta").click(function () {
+        alert("WWW");
+           $(".d-mes,  .d-menys").button();
+        });
+            
 }); // FINAL READY
 
 
@@ -1684,3 +1692,14 @@ function editor_buttonsfn() {
     }
     return obj;
 }
+
+function roundNumber(num, dec) {
+    var result = Math.round(num * Math.pow(10, dec)) / Math.pow(10, dec);
+    return parseFloat(result.toFixed(dec));
+}
+
+function isNumber(value) {
+	return !isNaN(parseInt(value, 10));
+}
+
+

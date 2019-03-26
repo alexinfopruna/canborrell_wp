@@ -742,6 +742,7 @@ function llistanegra(date)
 
     var bloqNit = ds < 5;
 
+    var y = date.getYear();     // integer
     var m = date.getMonth();     // integer, 0..11
     var d = date.getDate();      // integer, 1..31
     // COMPROVA LLISTA MIGDIES

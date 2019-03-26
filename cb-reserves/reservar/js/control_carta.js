@@ -3,9 +3,23 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
+function l(p){return p;}
+
 $(function () {
+    initCarta();
+});
+    
+    function initCarta(){
     /* popup */
     /* popup CARTA */
+    if (typeof l !== "undefined") { 
+    // safe to use the function
+    //function l(p){return p}
+}
+    
+    
+    alert("initCarta");
+    
     $("#fr-menu-popup").dialog({
         autoOpen: false,
         modal: true,
@@ -46,6 +60,7 @@ $(function () {
     });
 
     $("#bt-carta").click(function () {
+        
         //$(".cmenu .carta-seleccio").removeClass("carta-seleccio");
         //$(".cmenu .contador").val(0);
         //$( "#fr-cartaw-popup" ).dialog( "option", "height", 750 );
@@ -66,7 +81,11 @@ $(function () {
     //  $("#carta_MENUS .resum-carta-nom").tooltip({cssClass:"tooltip-red",delay : 100});
     $(".llistat_menus .resum-carta-nom").tooltip({cssClass: "tooltip-red", delay: 100});
 
-
+    $(".resum-carta-nom").click(function (e) {
+        $(this).closest("tr").find("td.mes a").trigger("click");
+        e.preventDefault();
+        return false;
+    });
 
 //CONTROL CARTA	
     $(".mes").click(function () {
@@ -174,7 +193,10 @@ $(function () {
     if ('scrollRestoration' in history) {
         history.scrollRestoration = 'manual';
     }
-});
+    
+    
+ 
+}
 
 
 

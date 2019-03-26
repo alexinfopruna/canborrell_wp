@@ -3393,17 +3393,14 @@ $this->xgreg_log('<br><a href="' . $file . '">log mail</a>', 1, '/log/logMAILSMS
     $query = "DELETE FROM dies_especials_night WHERE dies_especials_data <= CURRENT_DATE - INTERVAL 360 DAY";
     $this->qry_result = mysqli_query($this->connexioDB, $query) or die(((is_object($GLOBALS["___mysqli_ston"])) ? mysqli_error($GLOBALS["___mysqli_ston"]) : (($___mysqli_res = mysqli_connect_error()) ? $___mysqli_res : false)));
     
-    
-    
-    $query = "SELECT  * FROM dies_especials_$group WHERE dies_especials_tipus = '$tipus' AND  dies_especials_data <= CURRENT_DATE + INTERVAL 360 DAY";
-    
+    $query = "SELECT  * FROM dies_especials_$group WHERE dies_especials_tipus = '$tipus' AND  dies_especials_data <= CURRENT_DATE + INTERVAL 360 DAY 
+      AND dies_especials_data > CURRENT_DATE - INTERVAL 30 DAY";
+   // echo $query;
     $this->qry_result = mysqli_query($this->connexioDB, $query) or die(((is_object($GLOBALS["___mysqli_ston"])) ? mysqli_error($GLOBALS["___mysqli_ston"]) : (($___mysqli_res = mysqli_connect_error()) ? $___mysqli_res : false)));
     if (!$this->total_rows = mysqli_num_rows($this->qry_result)) {
       return false;
     }
     while ($row = mysqli_fetch_assoc($this->qry_result)) {
-      
-      
       $class = ($tipus == 'black') ? 'negra' : 'blanca';
       $date_parse = date_parse($row['dies_especials_data']);
       
@@ -3411,11 +3408,7 @@ $this->xgreg_log('<br><a href="' . $file . '">log mail</a>', 1, '/log/logMAILSMS
       $month = $date_parse['month'];
       $day = $date_parse['day'];
       $llista[$month - 1][] = $day;
-      
-      
     }
-
-
     return $llista;    
   }
 
