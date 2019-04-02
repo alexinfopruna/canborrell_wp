@@ -63,9 +63,13 @@ function fromAS3_editReserva(id,n,p,c,f)
 	$("#edit").html('<div class="loading"></div>');
 	timer(false);
 	$('#edit').dialog('open');
-	
+	$("#fr-cartaw-popup").remove();
+        $("#fr-menu-popup").remove();
 	$.ajax({url: desti,	success: function(datos){
 			$("#edit").html(decodeURIComponent(datos));
+                        
+                        
+                        
 			addHandlersEditReserva();
 			$(".missatge_dia").html($("#ta_missatge_dia").val());
 			P=$("form.updata_res .places").html();

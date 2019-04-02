@@ -18,8 +18,6 @@ $(function () {
 }
     
     
-    alert("initCarta");
-    
     $("#fr-menu-popup").dialog({
         autoOpen: false,
         modal: true,
@@ -232,8 +230,12 @@ function updateCarta(menu)
     //NETEGEM L'ALTRA POPUP (carta / menu)
 
     $(".contador").each(function () {
+       
         if ($(this).val() != undefined && $(this).val() != 0 && $(this).val() != "0")
         {
+            //alert( $(".contador").length);//////////////////////////
+            
+            
             i++;
             var hidden = '<input type="hidden" name="plat_id_' + i + '" value="' + $(this).attr('nid') + '"/>';
             hidden += '<input type="hidden" name="plat_quantitat_' + i + '" value="' + $(this).val() + '"/>';
@@ -247,7 +249,6 @@ function updateCarta(menu)
             plats += parseInt($(this).val());
         }
     });
-
     if (total == 0)
         taula += '<tr><td class="resum-carta-nom">' + l("No hi ha cap plat seleccionat") + '</td><td class="resum-carta-preu"></td><td></td></tr>';
     else
@@ -256,6 +257,8 @@ function updateCarta(menu)
         taula += '<tr style="background:#eee;"><td class="resum-carta-nom"><h3 id="resum-total" style="display:inline">TOTAL</h3></td><td class="resum-carta-preu" style="text-alig:right"><h3>' + total + '€ <br/><span class="resum-carta-iva">(IVA ' + l("inclòs") + ')</span></h3></td><td></td></tr>';
     }
     $("#caixa-carta").html(taula);
+
+$(".form_edit .info-comanda").html(taula);
 
     $("#resum-comanda").html(plats);
     $("#resum-preu").html(total);

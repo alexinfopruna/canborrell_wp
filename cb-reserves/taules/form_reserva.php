@@ -438,7 +438,9 @@ else {
             <?php if ($id) { ?>
               <tr id="comanda">
                   <td nowrap="nowrap" align="right">Comanda:<br>
-                      <a href="#" id="bt-carta" name="bt-carta" class="bt">Edita</a>
+                      <a href="#" id="bt-carta" name="bt-carta" class="bt">Edita carta</a>
+                      <br>
+                      <a href="#" id="bt-menu" name="bt-carta" class="bt">Edita menu</a>
                   </td>
                   <td align="left" class="ui-corner-all info-comanda" style="">
                                                                                         
@@ -454,13 +456,18 @@ else {
                         }
 
                         echo '<div id="fr-cartaw-popup" title="La nostra carta" class="carta-menu" style="height:300px">
-                                                      <div id="fr-carta-tabs" >';
+                                                     <div id="fr-carta-tabs" >';
                         
                         echo $gestor->recuperaCarta($row_reserva['id_reserva']);
-                        echo '<script type="text/javascript" src="../reservar/js/control_carta.js"></script>';
-                        echo '<script> alert("DDD");</script>';
-
-                        }
+                        echo '</div>';
+                        echo '</div>';
+                        
+                        echo '<div id="fr-menu-popup" title="Els nostres menús" class="carta-menu" style="height:300px">
+                                                     <div id="fr-menu-tabs" >';
+                        echo $gestor->recuperaCarta($row_reserva['id_reserva'],true);
+                        echo '</div>';
+                        echo '</div>';
+                         }
                         ?>
 
 

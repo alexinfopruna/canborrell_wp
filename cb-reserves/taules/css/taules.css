@@ -85,12 +85,11 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#fefefe', end
 #reservesAc a{color:#004999}
 #reservesAc h3{font-size:13px; height:28px;border-bottom-color:#777;border-bottom-width: 2px;}
 #reservesAc h3 .idr{font-size:14px;color:#900}
-//#reservesAc h3{font-size:12px}
+
 
 
 #reservesAc a .act{font-size:11px;color:green;}
 .acn{font-size:14px;color:#2E2E2E}
-//.acn{font-size:14px;color:blue}
 .paga-i-senyal{
     font-size:9px;
     background:red;
@@ -539,9 +538,6 @@ top: -10%;
 
 #label-pastis.fluixet{color:lightgrey}
 
-.ui-widget .ui-widget {
-   // font-size: 0.8em;
-}
 #inserta_res_radio .ui-button-text-only .ui-button-text{
     font-size: 0.9em;
     padding: 0.4em 0.4em;
@@ -552,9 +548,10 @@ top: -10%;
     width: 16px;
     height: 16px;
     background-image: url(pastis1.png);
-    //background-color: red;
     background-repeat: no-repeat;
 }
 
+
+.contador.ccarta{width:25px;}
 
 

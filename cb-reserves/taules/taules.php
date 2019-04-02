@@ -101,7 +101,7 @@ if ((isset($_REQUEST["del_client"])) && ($_REQUEST["del_client"] > 0))
 <?php include("head.php");?>
 	
 		<?php if (LOCAL!==true && DEV!==true) echo '<style>#debug_out{display:none}</style>';?>
-	
+            <script type="text/javascript" src="../reservar/js/control_carta.js"></script>	
 </head>
 <body bgcolor="#ffffff" class="<?php echo DEV?" dev ":""; echo LOCAL?" local ":"" ?>">
 

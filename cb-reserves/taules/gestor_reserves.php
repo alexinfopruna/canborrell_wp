@@ -514,7 +514,10 @@ class gestor_reserves extends Gestor {
     if ($_SESSION['permisos'] < 16)
       return "error:sin permisos";
 
-
+    $id_reserva = $_POST['id_reserva'];
+    if (!isset( $_POST['RESERVA_PASTIS'])) $_POST['RESERVA_PASTIS'] = "true";
+    $mensa=0;
+    
     $this->reg_log("update_reserva <span class='idr'>" . $_POST['id_reserva'] . '</span>');
     if (!$this->valida_reserva($_POST['estat_taula_taula_id'], $this->cambiaf_a_mysql($_POST['data'])))
       return "DATA ANOMALA update_reserva";
@@ -553,6 +556,8 @@ class gestor_reserves extends Gestor {
 
     $result = $this->log_mysql_query($updateSQL, $this->connexioDB) or die(((is_object($GLOBALS["___mysqli_ston"])) ? mysqli_error($GLOBALS["___mysqli_ston"]) : (($___mysqli_res = mysqli_connect_error()) ? $___mysqli_res : false)));
 
+    
+    $this->update_comanda($id_reserva);
 
 
     if (isset($_POST['cb_sms'])) {
@@ -3656,6 +3661,17 @@ $this->xgreg_log('<br><a href="' . $file . '">log mail</a>', 1, '/log/logMAILSMS
     provovaError();
     provovaError2();
     provovaError3();
+  }
+
+  public function update_comanda($id_reserva) {
+    //INSERT INTO COMANDES
+    $deleteSQL = "DELETE FROM comanda WHERE comanda_reserva_id=" . $id_reserva;
+    $this->qry_result = $this->log_mysql_query($deleteSQL, $this->connexioDB) or die(((is_object($GLOBALS["___mysqli_ston"])) ? mysqli_error($GLOBALS["___mysqli_ston"]) : (($___mysqli_res = mysqli_connect_error()) ? $___mysqli_res : false)));
+    for ($i = 1; isset($_POST['plat_id_' . $i]); $i++) {
+      $insertSQL = sprintf("INSERT INTO comanda ( comanda_reserva_id, comanda_plat_id, comanda_plat_quantitat) 
+		VALUES (%s, %s, %s)", $this->SQLVal($id_reserva, "text"), $this->SQLVal($_POST['plat_id_' . $i], "text"), $this->SQLVal($_POST['plat_quantitat_' . $i], "text"));
+      $this->qry_result = $this->log_mysql_query($insertSQL, $this->connexioDB) or die(((is_object($GLOBALS["___mysqli_ston"])) ? mysqli_error($GLOBALS["___mysqli_ston"]) : (($___mysqli_res = mysqli_connect_error()) ? $___mysqli_res : false)));
+    }
   }
 
   /*   * ********************************************************************************************************************* */

@@ -533,11 +533,7 @@ $(function () {
     });
     
     
-     alert("W222WW");
-    $("#bt-carta").click(function () {
-        alert("WWW");
-           $(".d-mes,  .d-menys").button();
-        });
+ 
             
 }); // FINAL READY
 
@@ -921,11 +917,18 @@ function addHandlersEditReserva()
     $('#updata_resRESERVA_PASTIS').change(function () {
         $('.pastis_toggle').toggle(this.checked);
         $('#label-pastis').toggleClass("fluixet", !this.checked);
-    });//.change(); //ensure visible state matches initially
-    /*  */
+    });
+    
+    initCarta();
+   // $(".info-comanda").click(function(){ $("#bt-carta").trigger( "click" );});
+    
+    
     $('#updata_resRESERVA_PASTIS').change();
 
-
+    $("#bt-carta, #bt-menu").click(function () {
+           $(".d-mes,  .d-menys").button();
+            $(".m-mes,  .m-menys").hide();
+        });
 
 }
 
@@ -1027,11 +1030,13 @@ function obreDetallReserva(e)
     $("#edit").html('<div class="loading"></div>');
     timer(false);
     $('#edit').dialog('open');
-
+    $("#fr-cartaw-popup").remove();
+    $("#fr-menu-popup").remove();
     if (data)
         $('#calendari').datepicker("setDate", data);
     $.ajax({url: desti, success: function (datos) {
             //$("#edit").html(decodeURIComponent(datos));
+            
             $("#edit").html((datos));
             recargaAccordioReserves();
             addHandlersEditReserva();
@@ -1216,6 +1221,7 @@ function reset_form() {
 
     $("label.error").remove();
     $(".error").removeClass("error");
+    
 }
 
 /******************************************************************************************************/

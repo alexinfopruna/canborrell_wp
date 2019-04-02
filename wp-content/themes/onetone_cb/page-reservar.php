@@ -854,7 +854,7 @@ if ($testTPV) {
                                                                                   </tr>
                                                                                   <tr>
                                                                                       <td class="mesX">							
-                                                                                          <?php echo $comanda ?></td>
+                                                                                          <?php $comanda ?></td>
                                                                                       <td class="menysX"></td><td class="Xborra"></td>
                                                                                       <td class="carta-plat"><h3>	</h3></td>
                                                                                       <td></td>
