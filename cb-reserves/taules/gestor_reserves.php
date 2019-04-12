@@ -1500,7 +1500,7 @@ EOHTML;
       $row['observacions'] .= ($row['resposta'] ? $resposta : '');
       $saltaobs = empty($row['observacions']) ? "" : "<br/>";
       $amagat = " amagat";
-      $pastis = $row['reserva_pastis']?"<b>Pastís: " . $row['reserva_info_pastis']."</b>":"";
+      $pastis = $row['reserva_pastis']?"<br><b>Pastís: " . $row['reserva_info_pastis']."</b>":"";
 //echo $row['reserva_pastis']==true; 11
       if ($n == 11 && false) {
         $html .= '
