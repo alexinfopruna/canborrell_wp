@@ -1500,7 +1500,8 @@ EOHTML;
       $row['observacions'] .= ($row['resposta'] ? $resposta : '');
       $saltaobs = empty($row['observacions']) ? "" : "<br/>";
       $amagat = " amagat";
-
+      $pastis = $row['reserva_pastis']?"<b>Pastís: " . $row['reserva_info_pastis']."</b>":"";
+//echo $row['reserva_pastis']==true; 11
       if ($n == 11 && false) {
         $html .= '
                 <td><b>Total</b></td>
@@ -1528,8 +1529,8 @@ EOHTML;
                 <td class="td-hora {$hora_15} {$online}"><b  class="xx-print-taula">{$row['hora']}</b></td>
                 <td><span class="print-taula">{$row['estat_taula_nom']}</span></td>
                 <td><b>{$nom} - {$row['client_mobil']} <span class="garjola">{$row['client_conflictes']}</span></b>
-                {$saltaobs}<em>{$row['observacions']}{$paga}</em><span>{$comanda}</span></td>
-                <td>{$row['id_reserva']}</td>
+                {$saltaobs}<em>{$row['observacions']}{$paga}</em><span>{$comanda} {$pastis}</span></td>
+                <td>{$row['id_reserva']} </td>
               </tr>
               <tr  class="observacions {$par} {$amagat}"><td colspan="11">&nbsp;</td></tr>
       
