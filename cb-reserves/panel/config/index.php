@@ -20,6 +20,9 @@ OR config_id=39
 OR config_id=40";
 }
 */
+
+global $dialog;
+$dialog = 0;
 $were = "  config_permisos <= ".$_SESSION['uSer']->permisos." ";
 $rows = $cfg->array_vars($were);
 
@@ -282,7 +285,7 @@ function parse_type_int($type, $val, $label, $descripcio) {
             </template>
         </div>
         <script>
-          var tims =<?php echo $dialog; ?>
+        // var tims =<?php echo $dialog; ?>
 /**/
           function printValue(sliderID, textbox) {
               var x = document.getElementById(textbox);

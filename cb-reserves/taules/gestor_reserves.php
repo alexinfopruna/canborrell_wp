@@ -1235,19 +1235,33 @@ class gestor_reserves extends Gestor {
       $superinfo = "";
 //$superinfo = $this->superInfoReserva($row);
       $online = $row['reserva_info'] & 1 ? '<div class="online" title="Reserva ONLINE">' . $sobret . '</div>' : '';
+      $chekataula = $row['reserva_info'] & 32 ? 'checked' : '';
       $pastis = $row['reserva_pastis'] == 1 ? '<div class="pastis" title="Demana pastís"></div>' : '';
       if ($row['client_nom'] == "SENSE_NOM")
         $row['client_nom'] = "";
-      $nom = '<div class="acn">' . substr($row['client_cognoms'] . ", " . $row['client_nom'], 0, 30) . '</div>';
+      $nom = '<div class="acn" style="display:inline">' . substr($row['client_cognoms'] . ", " . $row['client_nom'], 0, 30) . '</div>';
 //$paga_i_senyal = ((int) $row['preu_reserva']) ? '<span class="paga-i-senyal" >' . $row['preu_reserva'] . '€</span>' : '';
       $paga_i_senyal = (floatval($row['preu_reserva']) ) ? '<span class="paga-i-senyal" >' . $row['preu_reserva'] . '€</span>' : '';
       $impagada = ( $row['estat'] != 100) ? "background:#EDFF00;" : "";
       $title = ( $row['estat'] != 100) ? 'title="Pendent de pagament"' : "";
 //$data = $this->cambiaf_a_normal($row['data'], "%d/%m");
+      /*
+      $ataula = '<label class="mdl-switch mdl-js-switch mdl-js-ripple-effect" for="switch-'.$row['id_reserva'].'">
+  <input type="checkbox" id="switch-'.$row['id_reserva'].'" class="mdl-switch__input" checked>
+  <span class="mdl-switch__label"></span>
+</label>'; */
+      $ataula = '<input type="checkbox" style="position:absolute;right:7px;" id="switch-'.$row['id_reserva'].'" idr="'.$row['id_reserva'].'" class="chekataula"  '.$chekataula.'>';
+     
+      
       $data = "";
       $html .= <<< EOHTML
           <h3 $deleted style="{$impagada}; CLEAR:BOTH" {$title}>
-            <a n="$n" href="form_reserva.php?edit={$row['id_reserva']}&id={$row['id_reserva']}" class="fr" taula="{$row['estat_taula_taula_id']}" id="accr-{$row['id_reserva']}"><span class="idr">{$row['reserva_id']}</span>&rArr;{$data}{$row['hora']} | <span class="act">{$row['estat_taula_nom']}&rArr;{$comensals}/{$row['cotxets']}</span> $online $paga_i_senyal $pastis $nom </a></h3>
+          
+            <a n="$n" href="form_reserva.php?edit={$row['id_reserva']}&id={$row['id_reserva']}" class="fr" taula="{$row['estat_taula_taula_id']}" id="accr-{$row['id_reserva']}"><span class="idr">{$row['reserva_id']}</span>&rArr;{$data}{$row['hora']} | <span class="act">{$row['estat_taula_nom']}&rArr;{$comensals}/{$row['cotxets']}</span>  $online $paga_i_senyal $pastis $nom </a>
+              
+ $ataula
+ </h3>
+                
 EOHTML;
 
       $n++;
@@ -3316,7 +3330,7 @@ $this->xgreg_log('<br><a href="' . $file . '">log mail</a>', 1, '/log/logMAILSMS
 
     $query = "UPDATE " . T_RESERVES . " SET reserva_info=$val WHERE id_reserva=$idr";
     $Result1 = mysqli_query($this->connexioDB, $query) or die(((is_object($GLOBALS["___mysqli_ston"])) ? mysqli_error($GLOBALS["___mysqli_ston"]) : (($___mysqli_res = mysqli_connect_error()) ? $___mysqli_res : false)));
-
+echo $query;
     return $idr;
   }
 

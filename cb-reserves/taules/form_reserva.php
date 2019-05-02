@@ -178,7 +178,7 @@ else {
                     <?php if ($id) echo ' Idr:<span id="spanidr" class="data-llarga ui-corner-all" style="margin-left:5px;font-size:0.7em">' . $row_reserva['id_reserva'] . '</span>'; ?>
                     <input type="hidden" name="data" value="<?php out($gestor->cambiaf_a_normal($row_reserva['data'])) ?>" size="10" tabindex="-1" class="required"  title="Selecciona una data" readonly="readonly"/>
                     <?php
-                    if ($id && $row_reserva['data'] <= date("Y-m-d")) {
+                    if ($id && $row_reserva['data'] <= date("Y-m-d") ) {
                       $chek = ($row_reserva['reserva_info'] & 32) ? 'checked="checked" ' : '';
                       ?>
 

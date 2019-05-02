@@ -850,11 +850,13 @@ function monta_calendari(selector)
         var currentTime = new Date();
         var hours = currentTime.getHours();
         hours = "01/01/01 " + hours + ":00";
-        var max = "01/01/01 " + MAX_HORA_RESERVA_ONLINE + ":00";
+    //    var max = "01/01/01 " + MAX_HORA_RESERVA_ONLINE + ":00";
+        var max = "01/01/01 " + MAX_HORA_RESERVA_ONLINE;
         //  var max = "01/01/01 "+"16"+":00";
         //var entraAvui = ((hours < MAX_HORA_RESERVA_ONLINE) ? 0 : 1);
 
-        var entraAvui = Date.parse(hours) >= Date.parse(max) ? 1 : 0;
+        var entraAvui = Date.parse(hours) <= Date.parse(max) ? 1 : 0;
+       // alert( hours + " *** "+ max + " *** "+ entraAvui);
         limit_passat = entraAvui;
     }
 
