@@ -1233,25 +1233,18 @@ class gestor_reserves extends Gestor {
         $sobret = "";
 
       $superinfo = "";
-//$superinfo = $this->superInfoReserva($row);
       $online = $row['reserva_info'] & 1 ? '<div class="online" title="Reserva ONLINE">' . $sobret . '</div>' : '';
       $chekataula = $row['reserva_info'] & 32 ? 'checked' : '';
       $pastis = $row['reserva_pastis'] == 1 ? '<div class="pastis" title="Demana pastís"></div>' : '';
       if ($row['client_nom'] == "SENSE_NOM")
         $row['client_nom'] = "";
-      $nom = '<div class="acn" style="display:inline">' . substr($row['client_cognoms'] . ", " . $row['client_nom'], 0, 30) . '</div>';
-//$paga_i_senyal = ((int) $row['preu_reserva']) ? '<span class="paga-i-senyal" >' . $row['preu_reserva'] . '€</span>' : '';
+      $nom = '<div class="acn" style="display:inline">' . substr($row['client_cognoms'] . ", " . $row['client_nom'], 0, 27) . '</div>';
       $paga_i_senyal = (floatval($row['preu_reserva']) ) ? '<span class="paga-i-senyal" >' . $row['preu_reserva'] . '€</span>' : '';
       $impagada = ( $row['estat'] != 100) ? "background:#EDFF00;" : "";
       $title = ( $row['estat'] != 100) ? 'title="Pendent de pagament"' : "";
-//$data = $this->cambiaf_a_normal($row['data'], "%d/%m");
-      /*
-      $ataula = '<label class="mdl-switch mdl-js-switch mdl-js-ripple-effect" for="switch-'.$row['id_reserva'].'">
-  <input type="checkbox" id="switch-'.$row['id_reserva'].'" class="mdl-switch__input" checked>
-  <span class="mdl-switch__label"></span>
-</label>'; */
+
       $ataula = '<input type="checkbox" style="position:absolute;right:7px;" id="switch-'.$row['id_reserva'].'" idr="'.$row['id_reserva'].'" class="chekataula"  '.$chekataula.'>';
-     
+     $ataula = "";
       
       $data = "";
       $html .= <<< EOHTML
