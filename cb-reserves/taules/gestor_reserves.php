@@ -1225,6 +1225,7 @@ class gestor_reserves extends Gestor {
       $body = $this->mail_body($row['data'], $row['hora']);
 
       $deleted = $row['deleted'] ? ' style="background:red" ' : '';
+      
       $obs = trim($row['observacions']);
       if (!empty($obs)) {
         $sobret = '<div style="position:relative;left:0" class="ui-icon ' . ($row['reserva_info'] & 16 ? "ui-icon-mail-open" : "ui-icon-mail-closed") . '" title="Observacions del client">' . (strlen($row['observacions']) + 5) . '</div>';
@@ -1235,6 +1236,8 @@ class gestor_reserves extends Gestor {
       $superinfo = "";
       $online = $row['reserva_info'] & 1 ? '<div class="online" title="Reserva ONLINE">' . $sobret . '</div>' : '';
       $chekataula = $row['reserva_info'] & 32 ? 'checked' : '';
+      $class_ataula = $chekataula?"ataula":"";
+      
       $pastis = $row['reserva_pastis'] == 1 ? '<div class="pastis" title="Demana pastís"></div>' : '';
       if ($row['client_nom'] == "SENSE_NOM")
         $row['client_nom'] = "";
@@ -1248,7 +1251,7 @@ class gestor_reserves extends Gestor {
       
       $data = "";
       $html .= <<< EOHTML
-          <h3 $deleted style="{$impagada}; CLEAR:BOTH" {$title}>
+          <h3 $deleted style="{$impagada} clear:both;" {$title} class="{$class_ataula}">
           
             <a n="$n" href="form_reserva.php?edit={$row['id_reserva']}&id={$row['id_reserva']}" class="fr" taula="{$row['estat_taula_taula_id']}" id="accr-{$row['id_reserva']}"><span class="idr">{$row['reserva_id']}</span>&rArr;{$data}{$row['hora']} | <span class="act">{$row['estat_taula_nom']}&rArr;{$comensals}/{$row['cotxets']}</span>  $online $paga_i_senyal $pastis $nom </a>
               
