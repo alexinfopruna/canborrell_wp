@@ -1246,7 +1246,7 @@ class gestor_reserves extends Gestor {
       $impagada = ( $row['estat'] != 100) ? "background:#EDFF00;" : "";
       $title = ( $row['estat'] != 100) ? 'title="Pendent de pagament"' : "";
 
-      $ataula = '<input title="Són a taula" type="checkbox" style="float:right;position:relative;right:2px;bottom:16px;" id="switch-'.$row['id_reserva'].'" idr="'.$row['id_reserva'].'" class="chekataula"  '.$chekataula.'>';
+      $ataula = '<input title="Són a taula" type="checkbox" style="float:right;position:relative;right:-2px;bottom:11px;" id="switch-'.$row['id_reserva'].'" idr="'.$row['id_reserva'].'" class="chekataula"  '.$chekataula.'>';
    //  $ataula = "";
       
       $data = "";
@@ -1255,9 +1255,9 @@ class gestor_reserves extends Gestor {
           
             <a n="$n" href="form_reserva.php?edit={$row['id_reserva']}&id={$row['id_reserva']}" class="fr" taula="{$row['estat_taula_taula_id']}" id="accr-{$row['id_reserva']}"><span class="idr">{$row['reserva_id']}</span>&rArr;{$data}{$row['hora']} | <span class="act">{$row['estat_taula_nom']}&rArr;{$comensals}/{$row['cotxets']}</span>  $online $paga_i_senyal $pastis $nom </a>
               
- 
+ $ataula       
  </h3>
-     $ataula           
+         
 EOHTML;
 
       $n++;
