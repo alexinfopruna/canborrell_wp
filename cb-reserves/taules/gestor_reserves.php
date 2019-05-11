@@ -1238,7 +1238,7 @@ class gestor_reserves extends Gestor {
       $pastis = $row['reserva_pastis'] == 1 ? '<div class="pastis" title="Demana pastís"></div>' : '';
       if ($row['client_nom'] == "SENSE_NOM")
         $row['client_nom'] = "";
-      $nom = '<div class="acn" style="display:inline">' . substr($row['client_cognoms'] . ", " . $row['client_nom'], 0, 27) . '</div>';
+      $nom = '<div class="acn" style="">' . substr($row['client_cognoms'] . ", " . $row['client_nom'], 0, 27) . '</div>';
       $paga_i_senyal = (floatval($row['preu_reserva']) ) ? '<span class="paga-i-senyal" >' . $row['preu_reserva'] . '€</span>' : '';
       $impagada = ( $row['estat'] != 100) ? "background:#EDFF00;" : "";
       $title = ( $row['estat'] != 100) ? 'title="Pendent de pagament"' : "";
