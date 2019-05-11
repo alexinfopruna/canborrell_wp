@@ -1243,7 +1243,7 @@ class gestor_reserves extends Gestor {
       $impagada = ( $row['estat'] != 100) ? "background:#EDFF00;" : "";
       $title = ( $row['estat'] != 100) ? 'title="Pendent de pagament"' : "";
 
-      $ataula = '<input title="Sín a taula" type="checkbox" style="float:right;position:relative;right:2px;bottom:16px;" id="switch-'.$row['id_reserva'].'" idr="'.$row['id_reserva'].'" class="chekataula"  '.$chekataula.'>';
+      $ataula = '<input title="Són a taula" type="checkbox" style="float:right;position:relative;right:2px;bottom:16px;" id="switch-'.$row['id_reserva'].'" idr="'.$row['id_reserva'].'" class="chekataula"  '.$chekataula.'>';
    //  $ataula = "";
       
       $data = "";
