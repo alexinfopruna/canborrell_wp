@@ -1247,7 +1247,7 @@ class gestor_reserves extends Gestor {
       $title = ( $row['estat'] != 100) ? 'title="Pendent de pagament"' : "";
 
       $ataula = '<input title="Són a taula" type="checkbox" style="float:right;position:relative;right:-2px;bottom:11px;" id="switch-'.$row['id_reserva'].'" idr="'.$row['id_reserva'].'" class="chekataula"  '.$chekataula.'>';
-     $ataula = "";
+    // $ataula = "";
       
       $data = "";
       $html .= <<< EOHTML
@@ -3323,10 +3323,17 @@ $this->xgreg_log('<br><a href="' . $file . '">log mail</a>', 1, '/log/logMAILSMS
 
   public function taulaEntrada($idr, $val) {
     $this->reg_log("taulaEntrada " . (int) $idr . "  $val");
+    
+    
+
+     $val=$val?"(reserva_info|32)":"(reserva_info&65503)";
+
+
 
     $query = "UPDATE " . T_RESERVES . " SET reserva_info=$val WHERE id_reserva=$idr";
     $Result1 = mysqli_query($this->connexioDB, $query) or die(((is_object($GLOBALS["___mysqli_ston"])) ? mysqli_error($GLOBALS["___mysqli_ston"]) : (($___mysqli_res = mysqli_connect_error()) ? $___mysqli_res : false)));
-echo $query;
+echo "VAL: ".$val." *** ";
+    echo $query. " kkk ";
     return $idr;
   }
 
