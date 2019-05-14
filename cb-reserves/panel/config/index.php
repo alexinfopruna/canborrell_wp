@@ -63,7 +63,17 @@ function parse_type($type, $val, $label, $descripcio) {
       break;
 
     case "TIM":
-      $parsed = date_parse($val);
+      
+     $parsed = date_parse($val);
+      global $dialog;
+      $dialog++;      
+      
+    $widget ='<paper-time-picker time="4:20pm"></paper-time-picker>';
+     break;
+    
+    
+    case "cccTIM":
+     $parsed = date_parse($val);
       global $dialog;
       $dialog++;
       //   $widget='<paper-time-input value="{{result}}" hour="4" min="00" am-pm="AM"></paper-time-input>';
@@ -111,6 +121,8 @@ $widget = '<label aria-hidden="true" for="label1" class="lx style-scope paper-in
       $widget = '<paper-input pattern="' . $pattern . '"    on-input="postData_input"    prevent-invalid-input error-message="Invalid input!" label="' . $label . '" value="' . $val . '" required auto-validate error-message="needs some text!"  auto-validate="validate">' . $val . '</paper-input>';
       break;
 
+    case "TEX":
+    case "TXT":
     default:
       $widget = '<paper-input error-message="Invalid input!" label="' . $label . '"     on-input="postData_input"   value="' . $val . '">' . $val . '</paper-input>';
       break;
@@ -186,7 +198,6 @@ function parse_type_int($type, $val, $label, $descripcio) {
         <link rel="import" href="bower_components/paper-toggle-button/paper-toggle-button.html">
         <link rel="import" href="bower_components/paper-time-input/paper-time-input.html">
         <link rel="import" href="bower_components/paper-radio-group/paper-radio-group.html">
-        <!--<link rel="import" href="bower_components/iron-ajax/iron-ajax.html">-->
         <link rel="import" href="bower_components/paper-styles/paper-styles.html">
 
         <style>
@@ -194,7 +205,6 @@ function parse_type_int($type, $val, $label, $descripcio) {
             
             table{width:100%;}
             table td{
-                //text-align:right;
                 padding:20px;
             }
             
@@ -236,6 +246,8 @@ function parse_type_int($type, $val, $label, $descripcio) {
                 margin:20px;
                 color:#444;
             }
+            
+            .descripcio{font-size:12px;color:#444;}
         </style>
     </head>
     <body>
@@ -273,7 +285,7 @@ function parse_type_int($type, $val, $label, $descripcio) {
 
                           echo $row = "<tr>"
                           //. "<td>" . $v['config_var'] . "</td>"
-                          . "<td>" . $widget . "</td>"
+                          . "<td>" . $widget . "<br><span class='descripcio'> {$v['config_descripcio']}</span></td>"
                           //   . "<td>" . $v['config_val'] . "</td>"
                           // . "<td>" . $v['config_descripcio'] . "</td>"
                           // . "<td>" . $v['config_type'] . "</td>"

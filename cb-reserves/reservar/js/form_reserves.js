@@ -848,16 +848,14 @@ function monta_calendari(selector)
     if (!MARGE_DIES_RESERVA_ONLINE)
     {
         var currentTime = new Date();
-        var hours = currentTime.getHours();
-        hours = "01/01/01 " + hours + ":00";
-    //    var max = "01/01/01 " + MAX_HORA_RESERVA_ONLINE + ":00";
-        var max = "01/01/01 " + MAX_HORA_RESERVA_ONLINE;
-        //  var max = "01/01/01 "+"16"+":00";
-        //var entraAvui = ((hours < MAX_HORA_RESERVA_ONLINE) ? 0 : 1);
-
-        var entraAvui = Date.parse(hours) <= Date.parse(max) ? 1 : 0;
-       // alert( hours + " *** "+ max + " *** "+ entraAvui);
-        limit_passat = entraAvui;
+        var maxTime = new Date();
+       // var MAX =  "09:33";
+        
+        maxTime.setHours(parseInt(MAX_HORA_RESERVA_ONLINE.substring(0,2)));
+        if (MAX_HORA_RESERVA_ONLINE.includes(":")) maxTime.setMinutes(parseInt(MAX_HORA_RESERVA_ONLINE.substring(3,5)));
+        limit_passat = maxTime < currentTime ? 1 : 0;
+        
+        // alert(maxTime+" \n*** "+currentTime+" \n *** "+limit_passat);
     }
 
 

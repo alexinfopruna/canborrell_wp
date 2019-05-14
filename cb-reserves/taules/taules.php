@@ -110,7 +110,7 @@ if ((isset($_REQUEST["del_client"])) && ($_REQUEST["del_client"] > 0))
 	<ul>
 		<li><a href="#" class="catcher round">+</a></li>
 <?php if ($_SESSION['permisos']>64){ ?><li><a href="" id="bt_refresh" class="round">Actualitza</a></li><?php }?>
-<?php if ($_SESSION['permisos']>64){ ?><li><a href="gestio_dies.php" class="round">Calendari</a></li><?php }?>
+<?php if ($_SESSION['permisos']>64){ ?><li><a href="/cb-reserves/panel/gestio_calendari.php" class="round">Calendari</a></li><?php }?>
 <?php if ($_SESSION['permisos']>64){ ?><li id="menu_missatge_dia"><a href="gestor_reserves.php?a=guarda_missatge_dia" class="round">Missatge</a></li><?php }?>
 <?php if ($_SESSION['permisos']>64){ ?><li><a href="#" id="bt_edit_hores"  class="round">Hores</a></li><?php }?>
 <?php if ($_SESSION['permisos']>64){ ?><li><a href="edbase.php" id="bt_edit_base" target="_self" class="round">Base</a></li><?php }?>

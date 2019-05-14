@@ -28,6 +28,9 @@ class Gestor_config extends Gestor {
     echo "set_value($var, $val)";
      echo " <br/>";
       echo " <br/>";
+      
+      
+     // validate($var, $val);
     $sql="UPDATE config SET config_val='$val' WHERE config_var='$var'";
     //$this->qry_result=TRUE;
     $this->qry_result = mysqli_query($this->connexioDB, $sql) or die(((is_object($GLOBALS["___mysqli_ston"])) ? mysqli_error($GLOBALS["___mysqli_ston"]) : (($___mysqli_res = mysqli_connect_error()) ? $___mysqli_res : false)));
