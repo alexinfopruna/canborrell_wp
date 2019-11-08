@@ -680,7 +680,7 @@ function optionsframework_options() {
 			}
 			
 		if(!isset($menu_title[$i])){
-			$menu_title[$i] = "";
+			$menu_title[$i] = " ";
 			}
 			
 		if(!isset($menu_slug[$i])){
