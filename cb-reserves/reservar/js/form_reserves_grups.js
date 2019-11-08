@@ -792,7 +792,7 @@ function validacio()
         var value = parseInt(value);
         if (totalComansals<=20) return true;
         //shouldElementBeVisible =  $("input[name='adults']").val()<=20;
-        //if (shouldElementBeVisible && SELECT_CARTA) return true;
+    //    if (shouldElementBeVisible && SELECT_CARTA) return true;
         return (value >= totalComansals);
     }, l('MENUS_COMENSALS'));
 

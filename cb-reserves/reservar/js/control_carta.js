@@ -239,7 +239,42 @@ function updateCarta(menu)
     $("#resum-preu").html(total);
     $("#te-comanda").val(plats);
     $("#te-comanda").change();
-}
+    //alert("AKIII");
+    /*
+        var dat = $("#calendari").datepicker("getDate");
+    var excepcioNadal = excepcio_nadal(dat);
+
+    if (excepcioNadal) $("#bt-no-carta").hide();
+    */
+            var na = parseInt($("input[name='adults']").val());
+    var nj = parseInt($("input[name='nens10_14']").val());
+    var nn = parseInt($("input[name='nens4_9']").val());
+
+    na = na ? na : 0;
+    nj = nj ? nj : 0;
+    nn = nn ? nn : 0;
+    var total = na + nj + nn;
+    
+    
+    var dat = $("#calendari").datepicker("getDate");
+    if(dat) {
+        var excepcioNadal = excepcio_nadal(dat);
+        $("#bt-no-carta").hide();
+        if (excepcioNadal){
+           seccio("fr-seccio-carta");
+           $(".fr-seccio-client").hide();
+            $("#bt-no-carta").hide(); 
+            if (total<=plats) $("#bt-no-carta").show();    
+            }
+        }
+    }    
+    
+     
+    
+  //  
+        
+    
+
 
 
 /********************************************************************************************************************/
@@ -276,6 +311,8 @@ function updateMenus() {
         $("#bt-carta").hide();
         $("#bt-no-carta").hide();
         $("#fr-carta-tabs").hide();
+        
+        
 
     }
 }
@@ -290,9 +327,10 @@ function excepcio_nadal(dat) {
         excepcio = true; //stesteve
     if (dat.getDate() == 1 && dat.getMonth() == 0)
         excepcio = true; // any nou
+    /*
     if (dat.getDate() == 6 && dat.getMonth() == 0)
         excepcio = true; //reis
-
+*/
     //va1ida si es obligatori triar menu
     /*
      */
