@@ -2,6 +2,11 @@
 /*
   Template Name: Reserves grups
  */
+
+
+
+
+
 defined('ROOT') or define('ROOT', 'cb-reserves/taules/');
 require_once (ROOT . "Gestor.php");
 
@@ -188,7 +193,18 @@ var_dump($llista);*/
 
 function reservar_enqueue_styles() {
   global $lang;
+  //echo '<meta http-equiv="Pragma" content="no-cache" />';
+  
+  header("Expires: Tue, 01 Jan 2000 00:00:00 GMT");
+header("Last-Modified: " . gmdate("D, d M Y H:i:s") . " GMT");
+header("Cache-Control: no-store, no-cache, must-revalidate, max-age=0");
+header("Cache-Control: post-check=0, pre-check=0", false);
+header("Pragma: no-cache");  
+ // echo "WWWddd222";exit();
+
   ?>
+
+
   <link href='https://fonts.googleapis.com/css?family=Raleway:400,300,700,300italic' rel='stylesheet' type='text/css'>
 
   <link type="text/css" href="/cb-reserves/taules/css/blitzer/jquery-ui-1.8.9.forms.css" rel="stylesheet" />	
