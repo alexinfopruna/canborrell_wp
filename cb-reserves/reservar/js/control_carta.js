@@ -211,6 +211,7 @@ function updateMenu()
 
 function updateCarta(menu)
 {
+$(".titol.titol1 img").attr("title","Info reserves");
 
     var clas = (menu == "menu") ? ".cmenu" : ".ccarta";
     var clasBorra = (menu != "menu") ? ".cmenu" : ".ccarta";
@@ -275,22 +276,22 @@ $(".form_edit .info-comanda").html(taula);
     nn = nn ? nn : 0;
     var total = na + nj + nn;
     
+    //ui-corner-all info caixa
+    
     
     var dat = $("#calendari").datepicker("getDate");
     if(dat) {
         var excepcioNadal = excepcio_nadal(dat);
         $("#bt-no-carta").hide();
         if (excepcioNadal){
+            
+          
            seccio("fr-seccio-carta");
            $(".fr-seccio-client").hide();
             $("#bt-no-carta").hide(); 
             if (total<=plats) $("#bt-no-carta").show();    
         }
      }
-        
-    
-    
-    
 }
 
 
@@ -312,6 +313,9 @@ function updateMenus() {
         /*
          * MENUS
          */
+         // alert(l("INFO_CARTA_NADAL"));
+         
+        $(".col-isqui-carta .info.caixa").html(l("INFO_CARTA_NADAL"));
         $("#bt-menu span").html(l("Menús Nadal"));
         $("#carta_MENUS tr").hide();
         $("#carta_MENUS tr[producte_id=2012]").show(); //N3
@@ -328,6 +332,13 @@ function updateMenus() {
         $("#bt-carta").hide();
         $("#bt-no-carta").hide();
         $("#fr-carta-tabs").hide();
+
+    }else{
+                $(".col-isqui-carta .info.caixa").html(l("INFO_CARTA"));
+        $("#bt-menu span").html(l("Menús"));
+       // $("#bt-menu span").hide();
+        $("#bt-no-carta").show(); 
+       
 
     }
 }
