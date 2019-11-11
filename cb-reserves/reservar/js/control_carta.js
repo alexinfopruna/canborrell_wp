@@ -211,7 +211,7 @@ function updateMenu()
 
 function updateCarta(menu)
 {
-$(".titol.titol1 img").attr("title","Info reserves");
+$(".titol.titol1 img").attr("title","Info reserves (2019)");
 
     var clas = (menu == "menu") ? ".cmenu" : ".ccarta";
     var clasBorra = (menu != "menu") ? ".cmenu" : ".ccarta";
