@@ -1,4 +1,4 @@
-<?php 
+F<?php 
 header('Content-Type: text/html; charset=UTF-8');
 header('Set-Cookie: fileDownload=true');
 
@@ -198,10 +198,20 @@ td.hora-mati.online{background:#FFB300} /*groc*/
 			  <?php
 			     $total_coberts_torn=json_decode($gestor->total_coberts_torn(),TRUE);
 			  ?>
-			<h3>LLISTA RESERVES: <span class="print-taula"><?php echo $gestor->cambiaf_a_normal($_SESSION['data'],"%A %d de %B de %Y");?></span><?php echo $torn[$_SESSION['torn']].' ( <span class="print-taula">'.$total_coberts_torn['t'.$_SESSION['torn']].' Coberts</span>)';?></h3> 
+			<h3>LLISTA RESERVES: <span class="print-taula"><?php echo $gestor->cambiaf_a_normal($_SESSION['data'],"%A %d de %B de %Y");?></span><?php echo $torn[1].' ( <span class="print-taula">'.$total_coberts_torn['t1'].' Coberts</span>)';?></h3> 
 			<p>
 			<?php  			
-			out($gestor->print_llista_reserves( "DIA_TORN1" ));			
+			out($gestor->print_llista_reserves( "DIA_TORN1" ));	
+                                                                                    ?>
+                                                                                    </p>
+                                                                                    </div>
+                                                                                    <div id="llista_reserves2" class="pageBreak">
+                                                                                        <p>
+    
+                                                                                        
+			<h3>LLISTA RESERVES: <span class="print-taula"><?php echo $gestor->cambiaf_a_normal($_SESSION['data'],"%A %d de %B de %Y");?></span><?php echo $torn[2].' ( <span class="print-taula">'.$total_coberts_torn['t2'].' Coberts</span>)';?></h3> 
+                                                                                        
+                                                                                    <?php
 			out($gestor->print_llista_reserves( "DIA_TORN2" ));			
 			?>
 			</p>

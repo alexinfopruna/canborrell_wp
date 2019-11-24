@@ -183,30 +183,40 @@ $translate['COMPRA_SEGURA']['cat'] = "Per poder realitzar el pagament a través 
 $translate['COMPRA_SEGURA']['en'] = "To make a payment using this bank gateway, you must activate the card for SECURE ONLINE PURCHASE in your bank.\\n\\nWith this activated you are given a code of four digits, needed to complete the process.\\n\\nSorry for the inconvenience";
 
 $data_limit = Gestor::cambiaf_a_normal($fila['data_limit']);
+
 switch ($lang){
   case 'cat':
     $translate['INFO_MULTIPAGO'] = "El nostre sistema permet que feu <b>diversos pagaments independents</b> "
     . "de la manera que més us convingui (per persona, per famílies...). Simplement pagueu la part que us correspon i reenvieu l'email de confirmació a les altres famílies perquè completin els pagaments restants</p> <p><i>Per exemple, si sou 5 famílies de 4 persones,"
       . " cada família pot pagar la part corresponent als 4 comensals que li toquen de manera que quedi més repartit</i></p>"
-      . "<p>Si us resulta més senzill, també podeu fer un sol pagament integre de tot l'import.</p>";
+      . "<p>Si us resulta més senzill, també podeu fer un sol pagament integre de tot l'import.</p>"
+      . '<div class="alert alert-warning">Tot i això, el restaurant us recomana que <b>cada comensal o família pagui la seva part</b> per tal de tenir més clar qui vindrà i qui no.</div>';
+    
 $translate['INFO_MULTIPAGO2'] = "<p>El restaurant només tindrà en compte les reserves <b>pagades</b> fins al <b>$data_limit</b>. El nombre de comensals reservats inicialment <b>no té valor si no s'ha abonat l'import corresponent</b> a tots els coberts.</p>"
     . "<p><i>Per exemple: Si heu reservat per 20 persones però <b>només n'heu abonat 15, el restaurant us prepararà taula per 15 comensals</b></i></p>";
 
   break;
     
+  case 'es':
   case 'esp':
     $translate['INFO_MULTIPAGO'] = "<p>Nuestro sistema permite que hagáis <b>diversos pagos separados</b> "
     . "de la manera que más os convenga (por persona, por familias...). Simplemente paga la parte que os corresponde i reenvía el email de confirmación a las otras familias para que completen el pago restante</p> "
       . "<p><i>Por ejemplo, si sóis 5 familias de 4 personas, cada familia podría pagar la parte correspondiente a los 4 comensales que le tocan de manera que queda más repartido</i></p>"
-      . "<p>Si os resulta más sencillo, también podéis hacer un solo pago de todo el importe.";
-$translate['INFO_MULTIPAGO2'] = "<p>El restaurant solo tendrá en cuenta las reservas <b>pagadas</b> hasta el <b>$data_limit</b>. El número de comensales indicados inicialmente <b>no tiene valor si no se ha abonado el importe correspondiente</b> a todos los cubiertos.</p>"
+      . "<p>Si os resulta más sencillo, también podéis hacer un solo pago de todo el importe."
+           . '<div class="alert alert-warning">De todos modos, el restaurant os recomienda que <b>cada comensal o familia pague su parte</b> con el fin de tener más claro quién asistirá.</div>';
+
+
+    
+    $translate['INFO_MULTIPAGO2'] = "<p>El restaurant solo tendrá en cuenta las reservas <b>pagadas</b> hasta el <b>$data_limit</b>. El número de comensales indicados inicialmente <b>no tiene valor si no se ha abonado el importe correspondiente</b> a todos los cubiertos.</p>"
     . "<p><i>Por ejemplo: Si habéis reservado para 20 personas pero <b>solo habéis abonado 15 reservas, el restaurant os preparará mesa para 15 comensales</b></i></p>";
 
   break;
 
   case 'en':
         $translate['INFO_MULTIPAGO'] = "<p> You can make a single payment of the entire amount but, if you prefer, to prevent a single person from paying the entire amount of the reservation, our system allows you to make <b> several separate payments </b> "
-      . "in the way that suits you best (per person, by families ...). ";
+      . "in the way that suits you best (per person, by families ...). "
+      
+      .'<div class="alert alert-warning">Anyway we suggest you to make <b>separate payments</b></div>';
     $translate['INFO_MULTIPAGO2'] = "<p> The restaurant will only consider <b> paid </b> reservations. The number of guests initially booked <b> has no value if the corresponding amount has not been paid </ b> for all the people reserved. </p> "
         . "<p> <i> For example: If you have reserved for 20 people but you only paid 15, the restaurant will prepare a table for 15 diners </i> </p>";
   break;  

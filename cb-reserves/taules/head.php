@@ -13,6 +13,11 @@
 <link type="text/css" href="css/taules.css" rel="stylesheet" />	
 
                 <?php echo Gestor::loadJQuery("2.0.3"); ?>
+
+
+
+
+
 <script type="text/javascript">
     /* */
     if (typeof jQuery.ui == 'undefined') {
@@ -104,3 +109,4 @@ if ($_SERVER['HTTP_HOST']=="localhost" ) $bg = "local";
 		
 	?>
 </script>
+

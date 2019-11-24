@@ -2,6 +2,11 @@
 /*
   Template Name: Reserves grups
  */
+
+
+
+
+
 defined('ROOT') or define('ROOT', 'cb-reserves/taules/');
 require_once (ROOT . "Gestor.php");
 
@@ -188,7 +193,18 @@ var_dump($llista);*/
 
 function reservar_enqueue_styles() {
   global $lang;
+  //echo '<meta http-equiv="Pragma" content="no-cache" />';
+  
+  header("Expires: Tue, 01 Jan 2000 00:00:00 GMT");
+header("Last-Modified: " . gmdate("D, d M Y H:i:s") . " GMT");
+header("Cache-Control: no-store, no-cache, must-revalidate, max-age=0");
+header("Cache-Control: post-check=0, pre-check=0", false);
+header("Pragma: no-cache");  
+ // echo "WWWddd222";exit();
+
   ?>
+
+
   <link href='https://fonts.googleapis.com/css?family=Raleway:400,300,700,300italic' rel='stylesheet' type='text/css'>
 
   <link type="text/css" href="/cb-reserves/taules/css/blitzer/jquery-ui-1.8.9.forms.css" rel="stylesheet" />	
@@ -854,7 +870,7 @@ if ($testTPV) {
                                                                                   </tr>
                                                                                   <tr>
                                                                                       <td class="mesX">							
-                                                                                          <?php echo $comanda ?></td>
+                                                                                          <?php $comanda ?></td>
                                                                                       <td class="menysX"></td><td class="Xborra"></td>
                                                                                       <td class="carta-plat"><h3>	</h3></td>
                                                                                       <td></td>
@@ -1122,25 +1138,44 @@ if ($testTPV) {
 
 <style>
     .reservation-progress{
-        /*  width:100%;*/
-        top:0px;
+          max-width:500px;
+        top:-20px;
+        left:50%;
+        margin-left: -250px;
         position:fixed;
-        margin: auto;
-
+    /*    margin: auto;*/
+         transform: translate(-50%, -50%);
+  transform: scale(0.7); /* Equal to scaleX(0.7) scaleY(0.7) */
+  background-color:rgba(200, 200, 200, 0.3);
+  
+  
+ 
     }
-
+    .reservation-progress .glyphicon{
+     color:white;   
+    }
+    .reservation-progress .number{
+        background-color: #ffa500;
+    }
+        .reservation-progress .no-tpv{display:none}
+    .reservation-progress .no-tpv .number{
+        background-color: #ddd;
+        border-color: #ddd;
+    }
     .reservation-progress h1{
         float:left;
         clear:initial;
+        
     }
     
+    
+    
     .reservation-progress-box{
-        top:103px;
+        position: absolute;
+        top:32px;
         height:12px;
-        width:  100%;
-        background-color: #eee;
-        
-        position: relative;
+        width:  90%;
+        background-color: #aaa;
         border-radius: 4px;
         z-index:-10;
     }
@@ -1150,31 +1185,31 @@ if ($testTPV) {
         height:12px;
         width:0%;
         background-color: #8de971;
-        animation: width 1.5s ease;
+        -webkit-transition: width 2s, background-color 1000ms linear;
+        transition: width 2s, background-color 1000ms linear;
         position: relative;
         border-radius: 4px;
         z-index:-10;
     }
     
      .reservation-progress-bar{    animation: width 1.5s ease;}
+     #progress-pas-7 .number.no-confirmada{background-color:darkred;}
 
     /*  .reservation-progress pendent{background-color: #4cae4c; }*/
     .reservation-progress .fet .number{background-color: #8de971; border-color:  #8de971}
 </style>
-<div style="display:none">
+<div >
     <div class="reservation-progress">
-        <div class="reservation-progress-box" style="width: 100%;">
+        <div class="reservation-progress-box" style="width:90%">
             <div class="reservation-progress-bar" style="width: 0%;"></div>
         </div>
-        <h3>Procés de reserva</h3>
-        <h1 id="progress-pas-1" class="titol"><span class="number " title="Quants Sou">1</span></h1>
-        <h1 id="progress-pas-2" class="titol"><span class="number" title="Quants Sou">2</span></h1>
-        <h1 id="progress-pas-3" class="titol"><span class="number " title="Quin dia">3</span></h1>
-        <h1 id="progress-pas-4" class="titol"><span class="number " title="Quina hora">4</span></h1>
-        <h1 id="progress-pas-5" class="titol"><span class="number " title="Vols Carta o Menú">5</span></h1>
-        <h1 id="progress-pas-6" class="titol"><span class="number " title="Dades personals">6</span></h1>
-        <h1 id="progress-pas-7" class="titol"><span class="number " title="Sol·icitud/Pagament">7</span></h1>
-        <h1 id="progress-pas-8" class="titol"><span class="number " title="Reserva confirmada">8</span></h1>
+        <h1 id="progress-pas-1" class="titol"><span class="number " title="Quants Sou"><i class="glyphicon glyphicon-user"></i></span></h1>
+        <h1 id="progress-pas-2" class="titol"><span class="number " title="Quin dia"><i class="glyphicon glyphicon-calendar"></i></span></h1>
+        <h1 id="progress-pas-3" class="titol"><span class="number " title="Quina hora"><i class="glyphicon glyphicon-time"></i></span></h1>
+        <h1 id="progress-pas-4" class="titol"><span class="number " title="Vols Carta o Menú"><i class="glyphicon glyphicon-cutlery"></i></span></h1>
+        <h1 id="progress-pas-5" class="titol"><span class="number " title="Dades personals"><i class="glyphicon glyphicon-envelope"></i></span></h1>
+        <h1 id="progress-pas-6" class="titol"><span class="number " title="Sol·icitud/Pagament"><i class="glyphicon glyphicon-euro"></i></span></h1>
+        <h1 id="progress-pas-7" class="titol"><span class="number no-confirmada" title="Reserva NO CONFIRMADA"><i class="glyphicon glyphicon-transfer"></i></i></span></h1>
     </div>
 </div>
 

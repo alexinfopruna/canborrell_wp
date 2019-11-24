@@ -121,10 +121,7 @@ $translate['LLEI'] = 'In accordance with the provisions of Organic Law 15/1999 o
 $translate['INFO_NO_CONFIRMADA'] = '<b> <strong> Remember </strong> : The reservation <strong> IS NOT CONFIRMED </strong> until a text message is received on the Mobile phone number given.</b>';
 
 
-$translate['INFO_CARTA'] = 'If you wish you can choose the dishes you will order so you are able to estimate the price. <br/> <br/>
-<b> This selection does not oblige you in any way.  </b>. <br/> <br/> 
-Until the day before the reservation you can change your selection online. Once in the restaurant you can also alter or cancel an order by informing the waiter, 
-we will only charge for the dishes and drinks served.';
+$translate['INFO_CARTA'] = 'If you wish you can choose the dishes you will order so you are able to estimate the price. <br/> <br/><b> This selection does not oblige you in any way.  </b>. <br/> <br/> Until the day before the reservation you can change your selection online. Once in the restaurant you can also alter or cancel an order by informing the waiter, we will only charge for the dishes and drinks served.';
 
 $translate['PREU'] = 'Price (including VAT)';
 
@@ -478,7 +475,8 @@ $translateDirectJS['CAP_TAULA'] = "Sorry, no tables available for the requested 
 $translateJS['CALÇOTADA_NO_COMBINABLE'] = 'The calçotada menu can only be combined with menu nº1. \\nIf you select confirm, the non-combinable menus will be removed from the selection';
 $translateJS['N4_NO_COMBINABLE'] = 'Menu No. 4 has not been combined with any other menu. All diners should ask for the same. \\nIf you select confirm, the non-combinable menus will be removed from the selection';
 
-
+$translateJS['INFO_CARTA_NADAL']="Els dies especials de nadal cal que escolliu els menús que us oferim. N`heu d`escollir tants com comensals";
+        $translateJS['INFO_CARTA']=$translate['INFO_CARTA'];
 
 require_once('translate.php');
 ?>

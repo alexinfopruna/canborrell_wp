@@ -98,9 +98,11 @@ Podeu exercir els vostres drets d\'accés, rectificació, cancel·lació i oposi
 	$translate['INFO_NO_CONFIRMADA']='<b>Recorda</b>: La reserva <b>NO QUEDA CONFIRMADA</b> fins que rebis un SMS al mòbil que ens has facilitat o un email a l\'adreça que ens has indicat.';
 
 	
-	$translate['INFO_CARTA']='Si ho desitges pots triar els plats que demanareu per tenir una idea del preu, evitar que us trobeu algun plat exhaurit i accelerar el servei quan vingueu al restaurant.<br/><br/> 
-						<b>Aquesta selecció no et compromet en absolut</b>.<br/><br/> Un cop al restaurant podràs modificar o anul·lar la comanda i, en qualsevol cas, us cobrarem únicament els plats i beugudes que us servim.';
+	$translate['INFO_CARTA']='Si ho desitges pots triar els plats que demanareu per tenir una idea del preu, evitar que us trobeu algun plat exhaurit i accelerar el servei quan vingueu al restaurant.<br/><br/><b>Aquesta selecció no et compromet en absolut</b>.<br/><br/> Un cop al restaurant podràs modificar o anul·lar la comanda i, en qualsevol cas, us cobrarem únicament els plats i beugudes que us servim.';
 
+        ///ui-corner-all info caixa
+        //  $translate['INFO_CARTA']=
+        
 	$translate['PREU']='Preu (IVA inclòs)';
 	
 	$translate['INFO_HORES']='<b>Recorda</b>: Només apareixen les hores per les que hem trobat taula disponible pel nombre de persones que has demanat.<br/>';
@@ -366,6 +368,12 @@ $translateDirectJS['EL PAGAMENT HA ESTAT ANULAT']="Malauradament no s\'ha comple
 $translateJS['CALÇOTADA_NO_COMBINABLE'] = "El menú calçotada només es pot combinar amb el menú nº1. \\nSi selecciones confirmar s\'eliminaran de la selecció els menús no combinables";
 $translateJS['N4_NO_COMBINABLE'] = "El menú nº 4 no es pot combinar amb cap altre. Tots els comensales han de demanar el mateix.  \\nSi selecciones confirmar s\'eliminarán de la selecció els menús no combinables";
 
+       // $translateJS['INFO_CARTA_NADAL']='Los dias especiales de navidad tenéis que escoger entre los menús que os ofrecemo. Tenéis que escoger tantos menús como comensales ';
+       // $translateJS['INFO_CARTA_NADAL']='Els dies especials de nadal cal que escolliu els menús que us oferim. N`heu d`escollir tants com comensals';
+        $translateJS['INFO_CARTA_NADAL']="Els dies especials de nadal cal que escolliu els menús que us oferim. N`heu d`escollir tants com comensals";
 
+        $translateJS['INFO_CARTA']=$translate['INFO_CARTA'];
+   //     $translateJS['INFO_CARTA']="Si ho desitges pots triar els plats que demanareu per tenir una idea del preu, evitar que us trobeu algun plat exhaurit i accelerar el servei quan vingueu al restaurant.<br/><br/><b>Aquesta selecció no et compromet en absolut</b>.<br/><br/> Un cop al restaurant podràs modificar o anul·lar la comanda i, en qualsevol cas, us cobrarem únicament els plats i beugudes que us servim.";;
+        
 require_once('translate.php');
 ?>

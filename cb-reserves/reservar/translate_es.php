@@ -113,9 +113,7 @@ Puede ejercer sus derechos de cceso, rectificación, cancelación y oposición a
 $translate['INFO_NO_CONFIRMADA']='<b> Recuerda </b>: La reserva <b> NO QUEDA CONFIRMADA </b> hasta que recibas un SMS en el móvil que nos has facilitado o un email en la dirección que nos has indicado.';
 
 
-$translate['INFO_CARTA'] = 'Si lo deseas puedes elegir los platos que pedireis para tener una idea del precio. <br/> <br/>
-<b> Esta selección no te compromete en absoluto </b>. <br/> <br/> 
-Hasta el día anterior a la reserva puedes modificar tu elección online. Una vez en el restaurante  también podrás modificar o anular el pedido comunicándoselo al camarero y, en cualquier caso, te cobraremos únicamente los platos y bebidas que te sirvamos. ';
+$translate['INFO_CARTA'] = "Si lo deseas puedes elegir los platos que pedireis para tener una idea del precio. <br/> <br/><b> Esta selección no te compromete en absoluto </b>. <br/> <br/> Hasta el día anterior a la reserva puedes modificar tu elección online. Una vez en el restaurante  también podrás modificar o anular el pedido comunicándoselo al camarero y, en cualquier caso, te cobraremos únicamente los platos y bebidas que te sirvamos. ";
 
 $translate['PREU'] = 'Precio (IVA incluido)';
 
@@ -459,6 +457,11 @@ $translateDirectJS['CAP_TAULA']="No tenemos ninguna mesa disponible para la fech
 
 $translateJS['CALÇOTADA_NO_COMBINABLE'] = 'El menú calçotada solo se puede combinar con el menú nº1. \\nSi seleccionas confirmar se eliminarán de la selección los menús no combinables';
 $translateJS['N4_NO_COMBINABLE'] = 'El menú nº 4 no se puede combinar con ningún otro menú. Todos los comensales deberán pedir el mismo.  \\nSi seleccionas confirmar se eliminarán de la selección los menús no combinables';
+
+
+        $translateJS['INFO_CARTA_NADAL']="Los dias especiales de navidad tenéis que escoger entre los menús que os ofrecemos. Tenéis que escoger tantos menús como comensales ";
+        $translateJS['INFO_CARTA']=$translate['INFO_CARTA'];
+
 
 require_once('translate.php');
 

@@ -15,6 +15,7 @@ var AC_ACTIU;
 var ntimer;
 var ntimer2;
 var validator_inserta_res;
+var PREVENTDEFAULT = false;
 
 var reserva = 0;
 var acop = {collapsible: false, active: false, heightStyle: "content", fillSpace: true, clearStyle: true, autoHeight: false, change: function (event, ui) {
@@ -531,6 +532,10 @@ $(function () {
     $(window).focus(function () {
         //comprova_refresh();
     });
+    
+    
+ 
+            
 }); // FINAL READY
 
 
@@ -913,49 +918,53 @@ function addHandlersEditReserva()
     $('#updata_resRESERVA_PASTIS').change(function () {
         $('.pastis_toggle').toggle(this.checked);
         $('#label-pastis').toggleClass("fluixet", !this.checked);
-    });//.change(); //ensure visible state matches initially
-    /*  */
+    });
+    
+    initCarta();
+   // $(".info-comanda").click(function(){ $("#bt-carta").trigger( "click" );});
+    
+    
     $('#updata_resRESERVA_PASTIS').change();
 
-
+    $("#bt-carta, #bt-menu").click(function () {
+           $(".d-mes,  .d-menys").button();
+            $(".m-mes,  .m-menys").hide();
+        });
 
 }
 
-function reservaEntrada()
+function reservaEntrada(id=-1, actiu=-1)
 {
     // POSA EL 5e bit de reserves_info
     // 0 no han entrat
     // 1 reserva entrada
     // ho passa al gestor per ajax (taulaEntrada(idr,estat))
 
-    var actiu = false;
     var val = false;
     var des = false;
 
-    actiu = $("input[name='reserva_entrada']").prop('checked');
-    actiu = actiu ? 1 : 0;
+    if (actiu==-1) actiu = $("input[name='reserva_entrada']").is(":checked");
 
     val = $(".updata_res input[name=reserva_info]").val();
     des = (val & ~(1 << 5)) | ((!!actiu) << 5);
     $(".updata_res input[name=reserva_info]").val(des);
 
     // AJAX
-    var idRes = $(".updata_res input[name=id_reserva]").val();
-    var desti = "gestor_reserves.php?a=taulaEntrada&b=" + idRes;
-    $.post(desti, {b: idRes, c: des});
+    var idRes = id
+    if (typeof idRes === 'object') idRes = $(".updata_res input[name=id_reserva]").val();
+    var desti = "gestor_reserves.php?a=taulaEntrada&b=" + idRes + "&f=" + actiu;
+    $.post(desti, {b: idRes, c: des}, refresh);
 }
 
 function missatgeLlegit()
 {
-    if (timeractiu)
-        return false;
+    if (timeractiu)  return false;
 
     var idRes = $(".updata_res input[name=id_reserva]").val();
     var desti = "gestor_reserves.php?a=missatgeLlegit&b=" + idRes;
     $.post(desti, {b: idRes}, function (datos) {
         recargaAccordioReserves();
     });
-
 }
 
 function eliminaClient(id)
@@ -970,31 +979,23 @@ function eliminaClient(id)
                 }
                 else
                     $("#clientsAc").html(decodeURIComponent(datos));
-
-                addHandlersAccordionClients();
-                $('#edit').dialog("close");
-
+                    addHandlersAccordionClients();
+                    $('#edit').dialog("close");
             }
         });
 
     }
-
-
-
     /**** EDIT RESERVA ****/
     onClickAmpliaReserva();
-
-
-
     e.preventDefault();
     return false;
-
-
 }
 
 
 function onClickAmpliaReserva()
 {
+   
+    
     $(".fr").unbind();
 
     $(".fr").mouseover(function () {
@@ -1006,12 +1007,22 @@ function onClickAmpliaReserva()
         getFlashMovie("flash").seleccionaTaula(0);
     });
     $(".fr").click(obreDetallReserva);
-
+  /**/
+ 
+  //$(".chekataula").button();
+   $(".chekataula").change(function(e){
+       var idr = $(this).attr("idr");
+       //if(this.checked) alert(idr+"* "+this.checked);
+      reservaEntrada(idr, this.checked);
+   });
 }
 
 function obreDetallReserva(e)
 {
-
+    if (PREVENTDEFAULT){
+        PREVENTDEFAULT = false;
+        return false;
+    }
     AC_ACTIU = $(this).attr("n");//$(this).parent();
     var desti = $(this).attr("href");
     var data = $(this).attr("data");
@@ -1019,11 +1030,13 @@ function obreDetallReserva(e)
     $("#edit").html('<div class="loading"></div>');
     timer(false);
     $('#edit').dialog('open');
-
+    $("#fr-cartaw-popup").remove();
+    $("#fr-menu-popup").remove();
     if (data)
         $('#calendari').datepicker("setDate", data);
     $.ajax({url: desti, success: function (datos) {
             //$("#edit").html(decodeURIComponent(datos));
+            
             $("#edit").html((datos));
             recargaAccordioReserves();
             addHandlersEditReserva();
@@ -1208,6 +1221,7 @@ function reset_form() {
 
     $("label.error").remove();
     $(".error").removeClass("error");
+    
 }
 
 /******************************************************************************************************/
@@ -1684,3 +1698,14 @@ function editor_buttonsfn() {
     }
     return obj;
 }
+
+function roundNumber(num, dec) {
+    var result = Math.round(num * Math.pow(10, dec)) / Math.pow(10, dec);
+    return parseFloat(result.toFixed(dec));
+}
+
+function isNumber(value) {
+	return !isNaN(parseInt(value, 10));
+}
+
+

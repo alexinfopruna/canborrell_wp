@@ -742,6 +742,7 @@ function llistanegra(date)
 
     var bloqNit = ds < 5;
 
+    var y = date.getYear();     // integer
     var m = date.getMonth();     // integer, 0..11
     var d = date.getDate();      // integer, 1..31
     // COMPROVA LLISTA MIGDIES
@@ -883,16 +884,23 @@ function validacio()
 function controlSubmit()
 {
     $('#submit').click(function (e) {
+                if (!$("#totalComensals").valid()){
+            e.preventDefault();
+            return false;
+        }
+        
+        
         if (!$("#valida_calendari").valid()){
             e.preventDefault();
             return false;
         }
             
-
         if (!$("#te-comanda").valid()){
             e.preventDefault();
             return false;
         }
+
+
 
         if (!$("#valida_calendari").valid()){
             e.preventDefault();
@@ -914,6 +922,9 @@ function controlSubmit()
             e.preventDefault();
             return false;
         }
+        
+        
+        
 
 
             

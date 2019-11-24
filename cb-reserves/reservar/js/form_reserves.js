@@ -24,7 +24,7 @@ var SECCIO_INICIAL = "fr-seccio-quants";
 var AVIS_MODIFICACIONS = false;
 var timer_estat;
 var popup = "";
-var prelang = (lang=="ca"?"":"/"+lang);
+var prelang = (lang == "ca" ? "" : "/" + lang);
 var dlg = {
     autoOpen: false,
     modal: true,
@@ -84,7 +84,7 @@ if (!Array.prototype.indexOf)
 
 //$(".container").hide();
 //$("body").hide();
-$(function (){
+$(function () {
     $(window).on('resize', function () {
         jQuery("#container").css("margin-top", jQuery(".navbar-header").height());
     }).resize();
@@ -265,9 +265,9 @@ $(function (){
     var rand = d.getTime();
     var desti = "/cb-reserves/taules/dumpBD.php?drop&file&hores=4";
     $.post(desti, {r: rand}, function (datos) {
-        if (datos == "backup" && permisos > 64){
+        if (datos == "backup" && permisos > 64) {
             alert("S'ha realitzat una còpia de la base de dades");
-        }else if(datos == "error" && permisos > 64) {
+        } else if (datos == "error" && permisos > 64) {
             alert("No s'ha pogut realitzar la còpia de la base de dades");
         }
     });
@@ -285,20 +285,26 @@ $(function (){
         SECCIO = "fr-seccio-dia";
     }
     document.body.scrollTop = document.documentElement.scrollTop = 0;
-    
-    
-        $('#unpopup').dialog({
+
+
+    $('#unpopup').dialog({
         autoOpen: false,
         modal: true,
         width: 300});
-    
-    
-    if ('scrollRestoration' in history) {
-  history.scrollRestoration = 'manual';
-}
-    $(".page").hide();
-    $(".loader").fadeOut("slow",function(){$(".loader").removeClass("loader");$(".page").fadeIn(1000);})
 
+
+    if ('scrollRestoration' in history) {
+        history.scrollRestoration = 'manual';
+    }
+    $(".page").hide();
+    $(".loader").fadeOut("slow", function () {
+        $(".loader").removeClass("loader");
+        $(".page").fadeIn(1000);
+    })
+
+
+
+   
 }); //ONLOAD, PRESENTACIO UI
 //***********************************************************************************************************/
 /************************************************************************************************************/
@@ -326,7 +332,7 @@ $(function (){
 /************************************************************************************************************/
 /************************************************************************************************************
  COMPORTAMENT QUANTS SOU > CALENDARI
-*/
+ */
 function comportamentQuantsSou()
 {
     //ADULTS
@@ -349,8 +355,8 @@ function comportamentQuantsSou()
             return;
         }
         avis_modificacions(e);
-        
-                    
+
+
 
     });
 
@@ -363,11 +369,11 @@ function comportamentQuantsSou()
     $("input[name=selectorNens]").change(function () {
         NENS = $("input[name='selectorNens']:checked").val();
         ADULTS = $("input[name='selectorComensals']:checked").val();
-       
+
 
         $("input[name='nens4_9']").val(NENS);
 
-      if (!ADULTS)
+        if (!ADULTS)
             $.scrollTo("#titol_SelectorComensals", 600, {offset: -100});
         else
             $.scrollTo("#titol_SelectorCotxets", 600, {offset: -100});
@@ -424,6 +430,12 @@ function totalPersones()
         recargaHores();
 
 
+    if (total >= persones_paga_i_senyal) {
+        $("#progress-pas-6").removeClass("no-tpv");
+    } else {
+        $("#progress-pas-6").addClass("no-tpv")
+    }
+
     return total;
 }
 
@@ -461,10 +473,10 @@ function comportamentDia()
 
         if ($(".fr-seccio-hora").is(":hidden"))
             $(".fr-seccio-hora").slideDown("slow", function () {
-              //  $("#progress-pas-2").addClass("fet");
-              //  $(".reservation-progress-bar").css("width","25%");
-                
-                
+                $("#progress-pas-2").addClass("fet");
+                $(".reservation-progress-bar").css("width", "40%");
+
+
                 seccio("fr-seccio-hora");
             });
         recargaHores();
@@ -495,12 +507,12 @@ function recargaHores()
     accesibilidad += $("input[name='selectorAccesible']:checked").length;
 
     $.post(GESTOR + "?a=horesDisponibles&b=" + $("#calendari").val() + "&c=" + comensals + "&d=" + $("input[name='selectorCotxets']:checked").val() + "&e=" + accesibilidad + "&f=" + IDR + "&g=" + NENS, function (dades) {
-         if (dades.substr(0,3)=="err"){
-            
+        if (dades.substr(0, 3) == "err") {
+
             window.location = "/";
-                    alert("La sessió ha caducat");
+            alert("La sessió ha caducat");
         }
-        
+
         var obj = JSON.parse(dades);
         var txt = "";
         if ((obj.dinar + obj.dinarT2) == "")
@@ -509,11 +521,11 @@ function recargaHores()
         $("#selectorHora").buttonset();
         $("#selectorHora").find("label").unbind("mouseup");
         txt = "";
-        if (obj.sopar == ""){
+        if (obj.sopar == "") {
             txt = l("Cap taula o restaurant tancat");
             $("#tira-sopars").hide();
-        }
-        else  $("#tira-sopars").show();
+        } else
+            $("#tira-sopars").show();
         $("#selectorHoraSopar").html(obj.sopar + txt);
         $("#selectorHoraSopar").buttonset();
         $("#selectorHoraSopar").find("label").unbind("mouseup");
@@ -523,7 +535,7 @@ function recargaHores()
         {
             $("#popup").html(l("CAP_TAULA"));
             $("#popup").dialog("open");
-            
+
             popup = "#popup";
         }
 
@@ -554,31 +566,32 @@ function recargaHores()
 }
 
 function ControlLocal(data, comensals, obj) {
-        var index= "hores"+data+"-"+comensals;
-        var val=0;
-        var value=0;
+    var index = "hores" + data + "-" + comensals;
+    var val = 0;
+    var value = 0;
 
     for (var i in window.localStorage) {
-        
-        if (i != "hores"+data+"-"+comensals) continue;
+
+        if (i != "hores" + data + "-" + comensals)
+            continue;
         val = localStorage.getItem(i);
         value = JSON.parse(localStorage.getItem(index));
-      //  if (value && value.data == data && value.comensals == comensals)
-      obj.dinar= value.obj.dinar;
-      obj.dinarT2= value.obj.dinarT2;
-      obj.sopar= value.obj.sopar;
-      
-            return obj;
+        //  if (value && value.data == data && value.comensals == comensals)
+        obj.dinar = value.obj.dinar;
+        obj.dinarT2 = value.obj.dinarT2;
+        obj.sopar = value.obj.sopar;
+
+        return obj;
     }
-    
+
     var hores = new Object();//{data data, comensals: comensals, obj: obj};
     hores.data = data;
     hores.comensals = comensals;
     hores.time = Date.now;
     hores.obj = obj;
-  localStorage.setItem(index, JSON.stringify(hores));
+    localStorage.setItem(index, JSON.stringify(hores));
     return obj;
-    
+
 }
 
 
@@ -597,8 +610,7 @@ function bloqueigTaula(forsat)
                     if (dades == "ko")
                     {
                         recargaHores();
-                    }
-                    else
+                    } else
                         torn = torn;
                 });
         });
@@ -615,10 +627,10 @@ function comportamentCarta()
 {
     if ($(".fr-seccio-carta").is(":hidden"))
         $(".fr-seccio-carta").slideDown("slow", function () {
-            
-     //   $("#progress-pas-3").addClass("fet");
-     //   $(".reservation-progress-bar").css("width","35%");
-           
+
+            $("#progress-pas-3").addClass("fet");
+            $(".reservation-progress-bar").css("width", "60%");
+
             seccio("fr-seccio-carta");
         });
 
@@ -628,11 +640,7 @@ function comportamentCarta()
         return false;
     });
 
-    $(".resum-carta-nom").click(function (e) {
-        $(this).closest("tr").find("td.mes a").trigger("click");
-        e.preventDefault();
-        return false;
-    });
+
 }
 
 /********************************************************************************************************************
@@ -647,29 +655,30 @@ function comportamentClient()
      $(".fr-seccio-submit").css("visibility","visible");
      *****/
     $("#bt-no-carta").hide();
-    
-     $("input[name='client_mobil']").change(function () {
+
+    $("input[name='client_mobil']").change(function () {
         var n = $("input[name='client_mobil']").val();
-        if (n == "999212121")            updateClient();
-    });
-    /*
-   
-    $(".fr-seccio-client input[name='client_email']").change(function () {
-        if ($(this).valid())
+        if (n == "999212121")
             updateClient();
     });
-*/
+    /*
+     
+     $(".fr-seccio-client input[name='client_email']").change(function () {
+     if ($(this).valid())
+     updateClient();
+     });
+     */
 
-    if ($(".fr-seccio-client").is(":hidden")){
+    if ($(".fr-seccio-client").is(":hidden")) {
         $(".fr-seccio-client").slideDown("slow", function () {
-     //     $("#progress-pas-4").addClass("fet");
-     //     $(".reservation-progress-bar").css("width","55%");
-            
+            $("#progress-pas-4").addClass("fet");
+            $(".reservation-progress-bar").css("width", "74%");
+
             seccio("fr-seccio-client");
         });
-        
+
     }
-    
+
     //(".fr-seccio-client input").change(validaDadesClient);
     $(".fr-seccio-client input").bind('blur change ', validaDadesClient);
     $(".fr-seccio-client").bind('blur change ', validaDadesClient);
@@ -701,12 +710,10 @@ function validaDadesClient() {
             $(".fr-seccio-submit").css("display", "block");
             $(".fr-seccio-submit").css("visibility", "visible");
 
-             $.scrollTo("#scroll-seccio-submit", 800, {offset: -100});
+            $.scrollTo("#scroll-seccio-submit", 800, {offset: -100});
         }
 
-    }
-
-    else {
+    } else {
         //alert(t);
     }
 }
@@ -723,8 +730,7 @@ function updateClient()
         {
             resetClient();
             $(".fr-seccio-client input[name='client_email']").val(email);
-        }
-        else
+        } else
         {
             var obj = JSON.parse(dades);
             if (obj.id_reserva || obj.err)
@@ -754,10 +760,12 @@ function updateClient()
             client_auto = true;
             if ($(".fr-seccio-submit").is(":hidden"))
                 $(".fr-seccio-submit").slideDown("slow", function () {
-   //    $("#progress-pas-5").addClass("fet");
-   //     $(".reservation-progress-bar").css("width","65%");
-           
-                    
+                    $("#progress-pas-5").addClass("fet");
+                    $(".reservation-progress-bar").css("width", "85%");
+                    if ($("#progress-pas-6").hasClass("no-tpv"))
+                        $(".reservation-progress-bar").css("width", "95%");
+
+
                     seccio("fr-seccio-submit");
                 });
             validaDadesClient();
@@ -843,20 +851,20 @@ function monta_calendari(selector)
     if (!MARGE_DIES_RESERVA_ONLINE)
     {
         var currentTime = new Date();
-        var hours = currentTime.getHours();
-        hours = "01/01/01 "+hours + ":00";
-        var max = "01/01/01 "+MAX_HORA_RESERVA_ONLINE+":00";
-      //  var max = "01/01/01 "+"16"+":00";
-        //var entraAvui = ((hours < MAX_HORA_RESERVA_ONLINE) ? 0 : 1);
-       
-        var entraAvui = Date.parse(hours) >= Date.parse(max)? 1: 0;
-        limit_passat = entraAvui;
+        var maxTime = new Date();
+       // var MAX =  "09:33";
+        
+        maxTime.setHours(parseInt(MAX_HORA_RESERVA_ONLINE.substring(0,2)));
+        if (MAX_HORA_RESERVA_ONLINE.includes(":")) maxTime.setMinutes(parseInt(MAX_HORA_RESERVA_ONLINE.substring(3,5)));
+        limit_passat = maxTime < currentTime ? 1 : 0;
+        
+        // alert(maxTime+" \n*** "+currentTime+" \n *** "+limit_passat);
     }
 
 
 
     var defData = new Date();
-    
+
     if (RDATA != "") {
 
         //   var msec = Date.parse('10-26-2016');
@@ -865,24 +873,23 @@ function monta_calendari(selector)
     }
     /*
      var ddd = new Date();
-    llistablanca(ddd);
-    alert(ddd + llistablanca(ddd));*/
+     llistablanca(ddd);
+     alert(ddd + llistablanca(ddd));*/
     $(selector).datepicker("destroy");
     $(selector).datepicker({
         beforeShowDay: function (date, inst) {
             var r = new Array(3);
-           
-            if ((date.getDay() == 1 || date.getDay() == 2 || llistanegra(date)) && (!llistablanca(date)) || !taulaDisponible(date))
+
+            if ( (date.getDay() == 1 || date.getDay() == 2 || llistanegra(date)) && (!llistablanca(date)) || !taulaDisponible(date))
             {
                 r[0] = false;
                 r[1] = "maldia";
                 r[2] = l("Tancat");
                 /*
-                   r[0] = true;
-                r[1] = "bondia";
-                r[2] = l("Reservar");*/
-            }
-            else
+                 r[0] = true;
+                 r[1] = "bondia";
+                 r[2] = l("Reservar");*/
+            } else
             {
                 r[0] = true;
                 r[1] = "bondia";
@@ -1040,23 +1047,27 @@ function validacio()
 function controlSubmit()
 {
     var loading = '<div style="height:320px"><img src="/cb-reserves/reservar/css/loading.gif"/></div>';
-    if (browser_malo)   $('#submit').click(function () {
+    if (browser_malo)
+        $('#submit').click(function () {
             $('#form-reserves').submit();
         });
     $('#form-reserves').submit(function () {
-        if (!$("#form-reserves").valid())       return false;
+        if (!$("#form-reserves").valid())
+            return false;
 
-        var control = setTimeout(function () {  timer_submit();   }, 15000);
+        var control = setTimeout(function () {
+            timer_submit();
+        }, 15000);
 
 
 
-        if ($("#popup").is(':visible')){
+        if ($("#popup").is(':visible')) {
             SUBMIT_OK = SUBMIT_OK;
-        }else {
+        } else {
             $("#popup").html(loading);
             $("#popup").dialog('open');
         }
- 
+
         $('.ui-dialog-buttonset').hide();
         $('#submit').hide();
 
@@ -1068,17 +1079,20 @@ function controlSubmit()
             clearInterval(control);
             if (SUBMIT_OK)
                 return;//DOBLE SUBMIT?????????
-/****************************************************************************************************************/
+            /****************************************************************************************************************/
             if (obj.resposta == "ok") // RESPOSTA OK
             {
                 $("#popup").bind("dialogclose", function (event, ui) {
-                   window.clearInterval(timer_estat); 
-                    if (typeof timer !== 'undefined') clearTimeout(timer);
-                    if (typeof control !== 'undefined')  clearTimeout(control);
-                   var res_estat = resultat_estat(obj.idr);
-                  // if (resultat_estat!=100) $.post(GESTOR + "?a=cancelPagaISenyal&b=" + obj.idr);
-                   
+                    window.clearInterval(timer_estat);
+                    if (typeof timer !== 'undefined')
+                        clearTimeout(timer);
+                    if (typeof control !== 'undefined')
+                        clearTimeout(control);
+                    var res_estat = resultat_estat(obj.idr);
+                    // if (resultat_estat!=100) $.post(GESTOR + "?a=cancelPagaISenyal&b=" + obj.idr);
+
                     SUBMIT_OK = false;
+
                     //window.location.href = "/#about";
                     $('#submit').show();
                 });
@@ -1087,8 +1101,8 @@ function controlSubmit()
                 SECCIO = null;
 
                 /********************************************************************************************************* 
-                /********************************************************************************************************* 
-                /********************************************************************************************************* 
+                 /********************************************************************************************************* 
+                 /********************************************************************************************************* 
                  * 
                  * PAGA I SENYAL */
                 /*
@@ -1105,20 +1119,31 @@ function controlSubmit()
                     /** 
                      * TIMER TEMPS MAXIM
                      */
-                    timer_estat = setInterval(function () { refresh_estat_pagament(obj.idr); },4000);
-                    
+                    timer_estat = setInterval(function () {
+                        refresh_estat_pagament(obj.idr);
+                    }, 4000);
+
                     timer = setTimeout(function () {  // RESET 
                         clearTimeout(timer);
 
                         $.post(GESTOR + "?a=estatReserva&b=" + obj.idr, function (r) {
                             d = parseInt(r);
                             if (d != 100) {
-                                window.location.href = prelang+"/#about";
+                                window.location.href = prelang + "/#about";
                                 alert("La sessió ha caducat");
                                 $("#popup").dialog('close');
                                 $.post(GESTOR + "?a=reservaImpagada&b=" + obj.idr);
                             } else {
-                                window.location.href = prelang+"/#about";
+                                $("#progress-pas-7").addClass("fet");
+                                $("#progress-pas-7 .glyphicon").removeClass("glyphicon-transfer");
+                                $("#progress-pas-7 .glyphicon").addClass("glyphicon-ok");
+                                $("#progress-pas-7 .number").removeClass("no-confirmada");
+                                $(".reservation-progress-bar").css("width", "100%");
+
+
+
+
+                                window.location.href = prelang + "/#about";
                                 alert("Can-Borrell: Hem registrat correctament el pagament");
                                 $("#bt-continuar .ui-button-text").html("Finalitzar");
                                 $("#popup").dialog('close');
@@ -1136,14 +1161,24 @@ function controlSubmit()
                 else {
                     var text = (obj.request == "create") ? $("#popupInfo").html() : $("#popupInfoUpdate").html();
                     $("#popup").html(text + $(".resum").html());
+                    $("#progress-pas-7").addClass("fet");
+                    $("#progress-pas-7 .glyphicon").removeClass("glyphicon-transfer");
+                    $("#progress-pas-7 .glyphicon").addClass("glyphicon-ok");
+                    $("#progress-pas-7 .number").removeClass("no-confirmada");
+                    $(".reservation-progress-bar").css("width", "100%");
+
+
                 }
-            }
-            else
+            } else
             {
                 var err = "Error de servidor";
-                if (obj && obj.error)    err = obj.error + "\n <br>" + l(obj.error) + " <br><br>\n\n" + l("err_contacti");
-                if (obj.error == "err10")     { alert("El servidor está tardando mucho en responder... Reintentar");return;}//DOBLE SUBMIT?????????
-                
+                if (obj && obj.error)
+                    err = obj.error + "\n <br>" + l(obj.error) + " <br><br>\n\n" + l("err_contacti");
+                if (obj.error == "err10") {
+                    alert("El servidor está tardando mucho en responder... Reintentar");
+                    return;
+                }//DOBLE SUBMIT?????????
+
                 $("#popup").html("ERROR: " + err);
                 $('#submit').show();
             }
@@ -1154,46 +1189,47 @@ function controlSubmit()
     });
 }
 
-function resultat_estat(idr){
-      var desti = "/cb-reserves/taules/gestor_reserves.php?a=estat_reserva_online&b=" + idr ;
+function resultat_estat(idr) {
+    var desti = "/cb-reserves/taules/gestor_reserves.php?a=estat_reserva_online&b=" + idr;
     $.post(desti, {r: 0}, function (datos) {
-        if (datos == "100"){
-             window.clearInterval(timer_estat);
-            window.location.href = prelang+"/#about";
-            
+        if (datos == "100") {
+            window.clearInterval(timer_estat);
+            window.location.href = prelang + "/#about";
+
             //alert(l('PAGAMENT REBUT'));
         }
 
-        if (datos == "0" || datos=="2"){
+        if (datos == "0" || datos == "2") {
             //alert("ELIMINA");
-             $.post(GESTOR + "?a=cancelPagaISenyal&b=" + idr);
+            $.post(GESTOR + "?a=cancelPagaISenyal&b=" + idr);
         }
 
         return datos;
     });
-    }
-    
-    function refresh_estat_pagament(idr){
-      var desti = "/cb-reserves/taules/gestor_reserves.php?a=estat_reserva_online&b=" + idr ;
+}
+
+function refresh_estat_pagament(idr) {
+    var desti = "/cb-reserves/taules/gestor_reserves.php?a=estat_reserva_online&b=" + idr;
     $.post(desti, {r: 0}, function (datos) {
-        if (datos == "100"){
-             window.clearInterval(timer_estat);
-            window.location.href = prelang+"/#about";
-            if (resub) return datos;
-            resub=true;
+        if (datos == "100") {
+            window.clearInterval(timer_estat);
+            window.location.href = prelang + "/#about";
+            if (resub)
+                return datos;
+            resub = true;
             alert(l('PAGAMENT REBUT'));
         }
 
-        if (datos == "0"){
-           // alert("ELIMINA");
-             $.post(GESTOR + "?a=cancelPagaISenyal&b=" + idr);
-             window.clearInterval(timer_estat);
-            window.location.href = prelang+"/#about";
+        if (datos == "0") {
+            // alert("ELIMINA");
+            $.post(GESTOR + "?a=cancelPagaISenyal&b=" + idr);
+            window.clearInterval(timer_estat);
+            window.location.href = prelang + "/#about";
             alert(l('EL PAGAMENT HA ESTAT ANULAT'));
         }
 
         return datos;
-    }); 
+    });
 }
 
 
@@ -1267,12 +1303,12 @@ function seccio(selector_seccio) {
     if (!selector_seccio)
         return;
 
-         $.scrollTo("." + selector_seccio, 800, {offset: -100});
+    $.scrollTo("." + selector_seccio, 800, {offset: -100});
     SECCIO = selector_seccio;
-    
-    
-    
-    
+
+
+
+
 }
 
 
@@ -1308,7 +1344,7 @@ function calc() {
 function avis_modificacions(e) {
     // $("input[name=selectorComensals]").unbind("change");
     var secc = SECCIO;
-   // SECCIO = null;
+    // SECCIO = null;
     if (AVIS_MODIFICACIONS)
         return;
     AVIS_MODIFICACIONS = true;
@@ -1323,10 +1359,10 @@ function avis_modificacions(e) {
         monta_calendari("#calendari");
         $(".fr-seccio-dia").show();
         SECCIO = "fr-seccio-dia";
-        
-         //      $("#progress-pas-6").addClass("fet");
-         //       $(".reservation-progress-bar").css("width","25%");
-         
+
+        $("#progress-pas-1").addClass("fet");
+        $(".reservation-progress-bar").css("width", "20%");
+
         updateCalendari();
         comportamentDia();
     }
@@ -1336,11 +1372,10 @@ function avis_modificacions(e) {
         comportamentDia();
         recargaHores();
         $(".fr-seccio-hora").show();
-         $.scrollTo("#titol_SelectorNens", 600, {offset: -100});
+        $.scrollTo("#titol_SelectorNens", 600, {offset: -100});
         //$("#calendari").change();
-    }
-    else {
-         $.scrollTo("#titol_SelectorNens", 600, {offset: -100});
+    } else {
+        $.scrollTo("#titol_SelectorNens", 600, {offset: -100});
         SECCIO = 'fr-seccio-dia';
 
 

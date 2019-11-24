@@ -126,7 +126,7 @@ $order
 
 //$hores = $this->subArrayHoresb($rules[0]['restriccions_hores']);
     $hores = $cache ? $cache : $this->interseccio_hores($rules);
-//$hores = $this->interseccio_hores($rules);
+$hores = $this->interseccio_hores($rules);
     /**/
     //if (count($rules)) {
     $cachev = array();
@@ -270,6 +270,8 @@ $order
     $result = array();
     $result = array('99:99');
     foreach ($binHores as $k => $v) {
+          //  if (($hores[$k]<"11:00") && date("l", strtotime("2002-12-02"))!=6 ) continue;
+   
       if ($v)
         $result[] = $hores[$k];
     }

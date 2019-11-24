@@ -1,11 +1,24 @@
 /* 
+ * NOU
  * To change this license header, choose License Headers in Project Properties.
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
+function l(p){return p;}
+
 $(function () {
+    initCarta();
+});
+    
+    function initCarta(){
     /* popup */
     /* popup CARTA */
+    if (typeof l !== "undefined") { 
+    // safe to use the function
+    //function l(p){return p}
+}
+    
+    
     $("#fr-menu-popup").dialog({
         autoOpen: false,
         modal: true,
@@ -46,6 +59,7 @@ $(function () {
     });
 
     $("#bt-carta").click(function () {
+        
         //$(".cmenu .carta-seleccio").removeClass("carta-seleccio");
         //$(".cmenu .contador").val(0);
         //$( "#fr-cartaw-popup" ).dialog( "option", "height", 750 );
@@ -66,7 +80,11 @@ $(function () {
     //  $("#carta_MENUS .resum-carta-nom").tooltip({cssClass:"tooltip-red",delay : 100});
     $(".llistat_menus .resum-carta-nom").tooltip({cssClass: "tooltip-red", delay: 100});
 
-
+    $(".resum-carta-nom").click(function (e) {
+        $(this).closest("tr").find("td.mes a").trigger("click");
+        e.preventDefault();
+        return false;
+    });
 
 //CONTROL CARTA	
     $(".mes").click(function () {
@@ -95,11 +113,11 @@ $(function () {
          */
         var nid = $(this).attr('nid');
 
-        if (jQuery("#carta_contador2010").val() > 0 && jQuery(".contador.cmenu").not(" #carta_contador2010, #carta_contador2001").filter(function () {
+        if (jQuery("#carta_contador2010").val() > 0 && jQuery(".contador.cmenu").not(" #carta_contador2010, #carta_contador2001, #carta_contador2037, #carta_contador2036").filter(function () {
             return $(this).val() > 0;
         }).size()) {
             if (confirm(l("CALÇOTADA_NO_COMBINABLE"))) {
-                jQuery(".contador.cmenu").not(" #carta_contador2010, #carta_contador2001").each(function () {
+                jQuery(".contador.cmenu").not(" #carta_contador2010, #carta_contador2001, #carta_contador2037, #carta_contador2036").each(function () {
                     $(this).val(0);
                     $(this).removeClass("carta-seleccio");
                 });
@@ -174,7 +192,10 @@ $(function () {
     if ('scrollRestoration' in history) {
         history.scrollRestoration = 'manual';
     }
-});
+    
+    
+ 
+}
 
 
 
@@ -190,6 +211,7 @@ function updateMenu()
 
 function updateCarta(menu)
 {
+$(".titol.titol1 img").attr("title","Info reserves (2019)");
 
     var clas = (menu == "menu") ? ".cmenu" : ".ccarta";
     var clasBorra = (menu != "menu") ? ".cmenu" : ".ccarta";
@@ -210,8 +232,12 @@ function updateCarta(menu)
     //NETEGEM L'ALTRA POPUP (carta / menu)
 
     $(".contador").each(function () {
+       
         if ($(this).val() != undefined && $(this).val() != 0 && $(this).val() != "0")
         {
+            //alert( $(".contador").length);//////////////////////////
+            
+            
             i++;
             var hidden = '<input type="hidden" name="plat_id_' + i + '" value="' + $(this).attr('nid') + '"/>';
             hidden += '<input type="hidden" name="plat_quantitat_' + i + '" value="' + $(this).val() + '"/>';
@@ -225,7 +251,6 @@ function updateCarta(menu)
             plats += parseInt($(this).val());
         }
     });
-
     if (total == 0)
         taula += '<tr><td class="resum-carta-nom">' + l("No hi ha cap plat seleccionat") + '</td><td class="resum-carta-preu"></td><td></td></tr>';
     else
@@ -235,18 +260,14 @@ function updateCarta(menu)
     }
     $("#caixa-carta").html(taula);
 
+$(".form_edit .info-comanda").html(taula);
+
     $("#resum-comanda").html(plats);
     $("#resum-preu").html(total);
     $("#te-comanda").val(plats);
     $("#te-comanda").change();
-    //alert("AKIII");
-    /*
-        var dat = $("#calendari").datepicker("getDate");
-    var excepcioNadal = excepcio_nadal(dat);
 
-    if (excepcioNadal) $("#bt-no-carta").hide();
-    */
-            var na = parseInt($("input[name='adults']").val());
+    var na = parseInt($("input[name='adults']").val());
     var nj = parseInt($("input[name='nens10_14']").val());
     var nn = parseInt($("input[name='nens4_9']").val());
 
@@ -255,24 +276,30 @@ function updateCarta(menu)
     nn = nn ? nn : 0;
     var total = na + nj + nn;
     
+
+    
+
     
     var dat = $("#calendari").datepicker("getDate");
     if(dat) {
         var excepcioNadal = excepcio_nadal(dat);
         $("#bt-no-carta").hide();
         if (excepcioNadal){
+
+
+            
+          
+
            seccio("fr-seccio-carta");
            $(".fr-seccio-client").hide();
             $("#bt-no-carta").hide(); 
             if (total<=plats) $("#bt-no-carta").show();    
+
             }
         }
     }    
     
      
-    
-  //  
-        
     
 
 
@@ -295,6 +322,9 @@ function updateMenus() {
         /*
          * MENUS
          */
+         // alert(l("INFO_CARTA_NADAL"));
+         
+        $(".col-isqui-carta .info.caixa").html(l("INFO_CARTA_NADAL"));
         $("#bt-menu span").html(l("Menús Nadal"));
         $("#carta_MENUS tr").hide();
         $("#carta_MENUS tr[producte_id=2012]").show(); //N3
@@ -314,6 +344,13 @@ function updateMenus() {
         
         
 
+    }else{
+                $(".col-isqui-carta .info.caixa").html(l("INFO_CARTA"));
+        $("#bt-menu span").html(l("Menús"));
+       // $("#bt-menu span").hide();
+        $("#bt-no-carta").show(); 
+       
+
     }
 }
 
@@ -326,7 +363,9 @@ function excepcio_nadal(dat) {
     if (dat.getDate() == 26 && dat.getMonth() == 11)
         excepcio = true; //stesteve
     if (dat.getDate() == 1 && dat.getMonth() == 0)
-        excepcio = true; // any nou
+
+    
+
     /*
     if (dat.getDate() == 6 && dat.getMonth() == 0)
         excepcio = true; //reis
