@@ -282,8 +282,8 @@ class TaulesDisponibles extends Gestor {
   private function excepcionsNits($dia) {
     $data = explode('-', $dia);
     $ds = date("w", strtotime($dia));
-    if ($ds == 5 && $data[1] == 12 && $data[2] > 19 && $data[2] < 21)
-      return true;
+    //if ($ds == 5 && $data[1] == 12 && $data[2] > 19 && $data[2] < 21)
+    //  return true;
 
     return false;
   }
@@ -714,7 +714,8 @@ ORDER BY  `estat_hores_hora` ASC ";
       /**
        * ESQUIVA ESMORZARS FORA DE DS
        */
-       if (($row['estat_hores_hora']<"12:00") && date("N", strtotime($data))!=6 ) continue;
+       //if (($row['estat_hores_hora']<"12:00") && date("N", strtotime($data))!=6 ) continue;
+       if (($row['estat_hores_hora']<"12:00") && !$this->es_finde_o_festiu($data) ) continue;
         // echo date("N", strtotime($data));
       
       $this->arHores[] = $row['estat_hores_hora']; // GUARDA LES HORES BONES EN UN ARRAY
