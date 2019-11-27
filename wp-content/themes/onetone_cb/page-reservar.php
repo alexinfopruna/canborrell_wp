@@ -738,6 +738,12 @@ if ($testTPV) {
                                                                               <input type="checkbox" id="accesible" name="selectorAccesible" value="on"  <?php echo $chek1 ?> /><label for="accesible"><?php l("Algú amb movilitat reduïda"); ?></label>
                                                                               <input type="checkbox" id="cadira0" name="selectorCadiraRodes" value="on"  <?php echo $chek0 ?> /><label for="cadira0"><?php l("Portem una cadira de rodes"); ?></label>
                                                                           </div>
+                                                                          
+                                                                          <br>
+                                                                          <br>
+                                                                          <div class="ui-corner-all caixa caixa100 dere hores info_hora">
+                                                                              <?php l("gossos"); ?>
+                                                                          </div>
 
                                                                       </div>	
                                                                   </div>	

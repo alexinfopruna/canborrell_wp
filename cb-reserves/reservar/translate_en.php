@@ -84,6 +84,8 @@ $translate['Editant reserva ID'] = 'Editing reservation ID';
 $translate['Sol·licitud de reserva per a GRUPS'] = 'Reservation request for GROUPS';
 $translate['Tens algun dubte?'] = 'Any question?';
 
+$translate["gossos"] = "
+We accept pets inside the restaurant up to 8Kg. If it is bigger you can have lunch outside";
 
 
 

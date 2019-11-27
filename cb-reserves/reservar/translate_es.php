@@ -270,6 +270,7 @@ $translate["Edita una reserva existent"] = "Edita una reserva existente";
 $translate["Cancel·lar reserva"] = "Cancelar reserva";
 $translate['Tens algun dubte?'] = '¿Tienes alguna duda?';
 
+$translate["gossos"] = "Admitimos mascotas en el interior de hasta 8Kg. Si pesa más podéis comer en el exterior";
 
 /****************************** SMS **************************************/
 $translate["Recuerde: reserva en Restaurant Can Borrell el %s a las %s (%s).Rogamos comunique cualquier cambio: 936929723 - 936910605.Gracias.(ID:%s)"] 

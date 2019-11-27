@@ -1237,6 +1237,7 @@ class gestor_reserves extends Gestor {
       $online = $row['reserva_info'] & 1 ? '<div class="online" title="Reserva ONLINE">' . $sobret . '</div>' : '';
       $chekataula = $row['reserva_info'] & 32 ? 'checked' : '';
       $class_ataula = $chekataula?"ataula":"";
+      $class_esmorzar = $row['hora']<"12:00"?"esmorzar":""; 
       
       $pastis = $row['reserva_pastis'] == 1 ? '<div class="pastis" title="Demana pastís"></div>' : '';
       if ($row['client_nom'] == "SENSE_NOM")
@@ -1251,7 +1252,7 @@ class gestor_reserves extends Gestor {
       
       $data = "";
       $html .= <<< EOHTML
-          <h3 $deleted style="{$impagada} clear:both;" {$title} class="{$class_ataula}">
+          <h3 $deleted style="{$impagada} clear:both;" {$title} class="{$class_ataula} {$class_esmorzar}">
           
             <a n="$n" href="form_reserva.php?edit={$row['id_reserva']}&id={$row['id_reserva']}" class="fr" taula="{$row['estat_taula_taula_id']}" id="accr-{$row['id_reserva']}"><span class="idr">{$row['reserva_id']}</span>&rArr;{$data}{$row['hora']} | <span class="act">{$row['estat_taula_nom']}&rArr;{$comensals}/{$row['cotxets']}</span>  $online $paga_i_senyal $pastis $nom </a>
               
