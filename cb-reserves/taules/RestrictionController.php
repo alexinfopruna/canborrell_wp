@@ -199,7 +199,7 @@ $hores = $this->interseccio_hores($rules);
   /*   * ************************************************************************ */
 
   public function getHoresTaules($data, $taules) {
-    $hores_taula = array();
+    $hores_taula = array("10:00","10:30");  //ESMORZARS SENSE RESTRICCIONS!!
 
     foreach ($taules as $k => $v) {
       
@@ -208,7 +208,7 @@ $hores = $this->interseccio_hores($rules);
       
       $hores_taula = array_merge($hores_taula, $hores);
      }
-
+    // var_dump($hores_taula);
     $hores_taula = array_unique($hores_taula);
     $hores_taula = array_diff($hores_taula, ['99:99']);
     sort($hores_taula);

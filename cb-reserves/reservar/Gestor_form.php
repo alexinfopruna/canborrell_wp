@@ -698,10 +698,11 @@ FROM client
     }
 
 
+
     if (is_null($t)) {
       foreach ($taules as $v)
         $t .= $v->id . " ** ";
-      $resposta['error'] = " No hi ha taula disponible per l'hora sol·licitada " . $t; //print_r($hr,true);
+      $resposta['error'] = " No hi ha taula disponible per l'hora sol·licitada ";// . $t; //print_r($hr,true);
       return $this->jsonErr(3, $resposta);
     }
 
