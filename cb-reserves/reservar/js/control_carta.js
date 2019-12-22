@@ -333,7 +333,7 @@ function updateMenus() {
         $("#carta_MENUS tr[producte_id=2036]").show(); //junior
         $("#carta_MENUS tr[producte_id=2001]").show(); //n1
         $("#carta_MENUS tr[producte_id=2003]").show(); //n2
-        $("#carta_MENUS tr[producte_id=2007]").show(); //n4		
+        //$("#carta_MENUS tr[producte_id=2007]").show(); //n4		
         $("#carta_MENUS tr[producte_id=2010]").show(); //calsotada		
         /*
          * CARTA
