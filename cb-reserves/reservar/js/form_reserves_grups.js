@@ -646,6 +646,8 @@ function updateMenus() {
         /*
          * ADUULTS
          */
+        
+        
         $("#carta a[v=1]").parent().hide();
         $("#carta a[v=3]").parent().hide();
         $("#carta a[v=5]").parent().hide();
@@ -666,6 +668,23 @@ function updateMenus() {
          */
         $("#carta3 a[v=inf_comu]").parent().hide();
         $("#carta3 a[v=inf_casa]").parent().hide();
+        
+        
+        
+        //ALEX 22/12 2019 EXCEPCIO
+        
+        
+        $(".col-isqui-carta .info.caixa").html(l("INFO_CARTA_NADAL"));
+        $("#bt-menu span").html(l("Menús Nadal"));
+        $("#carta_MENUS tr").hide();
+        $("#carta_MENUS tr[producte_id=2012]").show(); //N3
+        $("#carta_MENUS tr[producte_id=2035]").show(); //infantil
+        $("#carta_MENUS tr[producte_id=2037]").show(); //infantil
+        $("#carta_MENUS tr[producte_id=2036]").show(); //junior
+        $("#carta_MENUS tr[producte_id=2001]").show(); //n1
+        $("#carta_MENUS tr[producte_id=2003]").show(); //n2
+        //$("#carta_MENUS tr[producte_id=2007]").show(); //n4		
+        $("#carta_MENUS tr[producte_id=2010]").show(); //calsotada		
     }
 
 
