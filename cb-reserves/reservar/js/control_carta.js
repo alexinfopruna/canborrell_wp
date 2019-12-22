@@ -363,6 +363,9 @@ function excepcio_nadal(dat) {
     if (dat.getDate() == 26 && dat.getMonth() == 11)
         excepcio = true; //stesteve
     if (dat.getDate() == 1 && dat.getMonth() == 0)
+      excepcio = true; 
+    if (dat.getDate() == 6 && dat.getMonth() == 0)
+      excepcio = true; 
 
     
 
