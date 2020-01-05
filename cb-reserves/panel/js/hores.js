@@ -2,6 +2,17 @@ $(function(){
 	$( ".ckbx_hora" ).click(horaClick);
 	//$( ".max_hores" ).change(maxClick);
 	$("span.edita-hores-max").hide();
+        
+        	$( "#edit_t1 #creaTaules" ).click(function (){		
+                    //var desti=ROOT+"gestor_reserves.php?a=estat_crea_taules&p="+$(this).val()+"&c="+($(this).is(":checked")?"1":"0")+"&d="+max+"&e="+data+"&f="+torn+"&g=estat_hores_form";
+                    var desti=ROOT+"gestor_reserves.php?a=update_creaTaules&b="+'01-01-2011'+"&c=1"+"&d=0";
+		$.ajax({url: desti,	success: function(datos){				}});
+                    
+                    //$.ajax({url: desti,	success: function(datos){				}});	
+});
+        	$( "#edit_t2 #creaTaules" ).click(function (){alert("IEEEPA222")});
+        	$( "#edit_t3 #creaTaules" ).click(function (){alert("IEEEPA333")});
+
 /***********************************************************************************/
 });	
 
@@ -23,7 +34,7 @@ function horaClick()
 /*
 function maxClick()
 {
-		alert("No pots posar màxims en aquesta pantalla. Has de modificar els Màxims des del control taules > editar base");
+		alert("No pots posar mï¿½xims en aquesta pantalla. Has de modificar els Mï¿½xims des del control taules > editar base");
 		$(this).val("");
 		var data="BASE";
 		var torn=1;

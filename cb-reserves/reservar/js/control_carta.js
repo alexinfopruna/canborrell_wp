@@ -309,7 +309,7 @@ $(".form_edit .info-comanda").html(taula);
  COMPORTAMENT EXCEPCIONS STESTEVE,ANYNOU,REIS
  */
 function updateMenus() {
-    alert("FFFFF");
+    
     var dat = $("#calendari").datepicker("getDate");
     var excepcioNadal = excepcio_nadal(dat);
 

@@ -2477,7 +2477,7 @@ EOHTML;
     $this->taulesDisponibles->data = $_SESSION['data'];
     $this->taulesDisponibles->torn = $_SESSION['torn'];
     $checked = $this->taulesDisponibles->recupera_creaTaules() ? 'checked="checked"' : '';
-    $radio .= '<br/><br/><input type="checkbox" id="creaTaules" ' . $checked . ' /> Creació automàtica de taules al formulari Online de reserves petites. <b>Només afecta el dia i torn actual!</b>';
+    $radio .= '<br/><br/><div class="check-creatales"><input type="checkbox" id="creaTaules" ' . $checked . ' /> Creació automàtica de taules al formulari Online de reserves petites. <b>Només afecta el dia i torn actual!</b></div>';
     return $radio;
 //return "RESULTAT: ".$query." ---- ".$torn;
   }
@@ -2535,7 +2535,7 @@ EOHTML;
       session_start();
 
     $mydata = $this->cambiaf_a_mysql($data);
-
+echo $data.$torn;
     $query = "DELETE FROM estat_crea_taules WHERE    
     (estat_crea_taules_data='$mydata' AND estat_crea_taules_torn = '$torn')";
     $Result1 = $this->log_mysql_query($query, $this->connexioDB) or die(((is_object($GLOBALS["___mysqli_ston"])) ? mysqli_error($GLOBALS["___mysqli_ston"]) : (($___mysqli_res = mysqli_connect_error()) ? $___mysqli_res : false)));
