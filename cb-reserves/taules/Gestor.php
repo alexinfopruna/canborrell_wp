@@ -990,6 +990,8 @@ class Gestor {
               <!--<input id="boto" type="submit" name="Submit" value="' . $this->l('Realizar Pago', false) . '" onclickxx="javascript:calc();" />-->
                 <button id="boto" type="submit" name="Submit" value="' . $this->l('Realizar Pago', false) . '" class="btn btn-success boto_disabled">' . $this->l('Realizar Pago', false) . '</button>
 </form>';
+    
+    $form .= "<!-- ".$tpv_ok_callback."..>";
 
     return $form;
   }
