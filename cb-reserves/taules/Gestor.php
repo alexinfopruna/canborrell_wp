@@ -991,7 +991,9 @@ class Gestor {
                 <button id="boto" type="submit" name="Submit" value="' . $this->l('Realizar Pago', false) . '" class="btn btn-success boto_disabled">' . $this->l('Realizar Pago', false) . '</button>
 </form>';
     
-    $form .= "<!-- ".$tpv_ok_callback."..>";
+    $form .= "<!-- ".$tpv_ok_callback;
+    $form .= "DS_MERCHANT_TRANSACTIONTYPE ".$trans;
+    $form .= "-->";
 
     return $form;
   }
