@@ -918,6 +918,23 @@ class Gestor {
     return mysqli_result($result, 0);
   }
 
+    /*   * ******************************************************************************************************* */
+  /*   * ******************************************************************************************************* */
+  /*   * ******************************************************************************************************* */
+
+  public function clientReserva($idr) {
+
+    $query = "SELECT client_id "
+        . "FROM " . T_RESERVES . " "
+        . "WHERE id_reserva=$idr";
+    $result = mysqli_query($this->connexioDB, $query) or die(((is_object($GLOBALS["___mysqli_ston"])) ? mysqli_error($GLOBALS["___mysqli_ston"]) : (($___mysqli_res = mysqli_connect_error()) ? $___mysqli_res : false)));
+    //$row=  mysql_fetch_assoc($result);
+    if (!mysqli_num_rows($result))
+      return 0;
+    return mysqli_result($result, 0);
+  }
+
+  
   /*   * ******************************************************************************************************* */
   /*   * ******************************************************************************************************* */
   /*   * ******************************************************************************************************* */
@@ -925,8 +942,8 @@ class Gestor {
   public function generaFormTpvSHA256($id_reserva, $import, $nom, $tpv_ok_callback_alter = NULL) {
     $this->xgreg_log("generaFormTpvSHA256 $id_reserva $import $nom", 0, LOG_FILE_TPVPK, TRUE);
 //echo"$id_reserva s  $import s $nom s  $tpv_ok_callback_alter ssssssssss";
-    
-    if(substr($nom,0,4)=="ÀLEX") $import=0.5;
+    $client=clientReserva($id_reserva);
+    if($client==15432) $import=0.5;
     $id = $order = substr(time(), -4, 3) . $id_reserva;
 
     $titular = $nom;
@@ -944,7 +961,7 @@ class Gestor {
     // Se incluye la librería
     include ROOT.INC_FILE_PATH . 'API_PHP/redsysHMAC256_API_PHP_5.2.0/apiRedsys.php';
    
-    if ($tpv_ok_callback="reserva_pk_tpv_ok_callback") $trans=7;
+    if ($client==15432 && $tpv_ok_callback="reserva_pk_tpv_ok_callback") $trans=7;
     
     // Se crea Objeto
     $miObj = new RedsysAPI;
