@@ -941,6 +941,9 @@ class Gestor {
     //$fuc="999008881";$terminal="871";$moneda="978";$trans="0";//$url="";$urlMerchant="";$urlOKKO="";$urlKO="";$urlOK="";$id=time();$amount="145";
     // Se incluye la librería
     include ROOT.INC_FILE_PATH . 'API_PHP/redsysHMAC256_API_PHP_5.2.0/apiRedsys.php';
+   
+    if ($tpv_ok_callback="reserva_pk_tpv_ok_callback") $trans=7;
+    
     // Se crea Objeto
     $miObj = new RedsysAPI;
     // Se Rellenan los campos
