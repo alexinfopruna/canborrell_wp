@@ -926,7 +926,7 @@ class Gestor {
     $this->xgreg_log("generaFormTpvSHA256 $id_reserva $import $nom", 0, LOG_FILE_TPVPK, TRUE);
 //echo"$id_reserva s  $import s $nom s  $tpv_ok_callback_alter ssssssssss";
     
-    if(substr($titular,0,4)=="ÀLEX") $import=0.5;
+    if(substr($nom,0,4)=="ÀLEX") $import=0.5;
     $id = $order = substr(time(), -4, 3) . $id_reserva;
 
     $titular = $nom;
