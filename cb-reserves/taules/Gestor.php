@@ -943,8 +943,8 @@ class Gestor {
     $this->xgreg_log("generaFormTpvSHA256 $id_reserva $import $nom", 0, LOG_FILE_TPVPK, TRUE);
 //echo"$id_reserva s  $import s $nom s  $tpv_ok_callback_alter ssssssssss";
     //$client=$this->clientReserva($id_reserva);
-    //if($client==15432) $import=0.5;
-    //$import=0.5;
+    if($_SESSION['permisos']>120 && isset($_GET["testAuth"])) $import=0.5;
+    //$import=0.5;isset($_GET["testAuth"])
     $id = $order = substr(time(), -4, 3) . $id_reserva;
 
     $titular = $nom;
@@ -962,7 +962,7 @@ class Gestor {
     // Se incluye la librería
     include ROOT.INC_FILE_PATH . 'API_PHP/redsysHMAC256_API_PHP_5.2.0/apiRedsys.php';
    
-    //if ( $tpv_ok_callback="reserva_pk_tpv_ok_callback") $trans=7;
+    if ( $_SESSION['permisos']>120 && isset($_GET["testAuth"]) && $tpv_ok_callback="reserva_pk_tpv_ok_callback") $trans=7;
     
     // Se crea Objeto
     $miObj = new RedsysAPI;
@@ -1013,6 +1013,8 @@ class Gestor {
     
     $form .= "<!-- ".$tpv_ok_callback;
     $form .= "DS_MERCHANT_TRANSACTIONTYPE ".$trans;
+    $form .= "  NOM ".$nom;
+    $form .= "  AMOUNT ".$amount;
     $form .= "-->";
 
     return $form;
