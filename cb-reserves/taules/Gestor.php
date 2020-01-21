@@ -941,8 +941,6 @@ class Gestor {
 
   public function generaFormTpvSHA256($id_reserva, $import, $nom, $tpv_ok_callback_alter = NULL) {
     $this->xgreg_log("generaFormTpvSHA256 $id_reserva $import $nom", 0, LOG_FILE_TPVPK, TRUE);
-//echo"$id_reserva s  $import s $nom s  $tpv_ok_callback_alter ssssssssss";
-    //$client=$this->clientReserva($id_reserva);
     if( intval($_SESSION['uSer']->id) ==2) { $import=0.5;}
     
     $id = $order = substr(time(), -4, 3) . $id_reserva;
@@ -1002,7 +1000,7 @@ class Gestor {
       echo   '$urlMerchant: '.     $tpv_ok_callback.'<br>';
       echo '<br><br>';
      */
-    $form = '<form id="compra" name="compra" action="' . $url . '" method="post" target="_blank" target2="frame-tpv"  style="display:nonexxx" class="generaFormTpvSHA256">
+    $form = '<form id="compra" name="compra" action="' . $url . '" method="post" target2="_blank" target="frame-tpv"  style="display:nonexxx" class="generaFormTpvSHA256">
               <div class="ds_input">odr <input  id="dsorder"  type="text" name="Ds_odr" value="' . $id . '"/></div>
               <div class="ds_input">Ds_Merchant_SignatureVersion <input type="text" name="Ds_SignatureVersion" value="' . $version . '"/></div>
               <div class="ds_input">Ds_Merchant_MerchantParameters <input type="text" name="Ds_MerchantParameters" value="' . $params . '"/></div>
@@ -1031,7 +1029,6 @@ public function generaTESTTpvSHA256($id_reserva, $import, $nom, $tpv_ok_callback
   
  
   $_LOG_FILE_TPVPK = "TPV256_test.php";
-  $_LOG_FILE_TPVPK = "TPV256.php";
   $import=20;
   
     $this->xgreg_log("generaFormTpvSHA256 $id_reserva $import $nom", 0, LOG_FILE_TPVPK, TRUE);
