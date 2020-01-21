@@ -34,14 +34,14 @@ $translate["RESTAURANT CAN BORRELL: SEGONS SOLICITUD, HEM ESBORRAT LES TEVES ES 
 
 
 $translate["Restaurant Can Borrell: La seva reserva per al %s a les %s HA ESTAT ANUL·LADA. Si desitja contactar amb nosaltres: 936929723 - 936910605. Gràcies.(ID%s)"] 
-    = "Restaurant Can Borrell: Your reservation on %s at %s has been canceled. If you wish to contact us: 936929723 - 936910605. Thank you (ID% s)";
+    = "Restaurant Can Borrell: Your reservation on %s at %s has been canceled. If you wish to contact us: restaurant@can-borrell.com (ID% s)";
 
 $translate["Recordi: reserva %s, el %s - %s per a %s personas.Es IMPRESCINDIBLE que ens comuniqui qualsevol canvi abans de les 11:00h: 936929723 - 936910605"] 
-    = "Remember: reservation %s,%s-%s for %s personas.It is IMPERATIVE to notify us of any changes before 11:00 AM: 936929723 - 936910605";
+    = "Remember: reservation %s,%s-%s for %s personas.It is IMPERATIVE to notify us of any changes before 11:00 AM: restaurant@can-borrell.com";
 
 
 $translate["Recordi: reserva al Restaurant Can Borrell. %s %s (%s).Preguem comuniqui qualsevol canvi: 936929723/936910605.Gràcies.(ID%s)"] 
-    = "Remember: reservation at Restaurant Can Borrell. %s %s (%s). We encourage you to report any changes: 936929723 / 936910605.Thanks (ID%s)";
+    = "Remember: reservation at Restaurant Can Borrell. %s %s (%s). We encourage you to report any changes: restaurant@can-borrell.com (ID%s)";
 
 $translate["\n***\nConservi quest SMS com a comprovant de la paga y senyal de %s€ que li serà descomptada. També hem enviat un email que pot imprimir"] 
     = "\n***\nKeep this SMS as proof of the deposit payment of %s€ that will be discounted. We have also sent you an email that you can print";

@@ -172,7 +172,7 @@ $translate['INFO_PASTIS']="Comentaris pel pastís (Què celebreu?, Si és un ani
 
 $translate['AVIS_MODIFICACIONS']='<span style="color:red"><b>Atenció:</b>
                                     </span>Fins a 24 hores abans de la data reservada <b>podeu comunicar qualsevol variació</b> 
-                                    en el nombre de coberts trucant de 10 a 11 del matí al <b>935803632</b> o al <b>936929723</b>. 
+                                    en el nombre de coberts fes-nos-ho saber a restaurant@can-borrell.com</b>. 
 <br/>
                                     Amb menys de 24 hores d\'antelació <b>no admetrem cap modificació</b> 
                                     a la reserva i disposareu exclusivament de les places que teniu confirmades. 
@@ -349,7 +349,7 @@ $translateJS['err10'] = 'Per aquesta data cal que seleccionis un menú per cada 
 $translateJS['err11'] = 'Ja no es poden registrar reserves per la data d&#39;avui';
 $translateJS['err99'] = 'El camp cognom no és correcte';
 $translateJS['err100'] = 'Error de sessió';
-$translateJS['err_contacti'] = 'Contacti amb el restaurant:936929723 / 936910605';
+$translateJS['err_contacti'] = 'Contacti amb el restaurant:restaurant@can-borrell.com';
 /*
 $translateJS['INFO_PAGA_I_SENYAL'] = 'Per confirmar la reserva <b>cal que realitzi una paga i senyal de '.IMPORT_PAGA_I_SENYAL.'€</b>\n\n'
         . 'El transferirem a la passarel·la bancària del Banc de Sabadell per tal que pugui finalitzar el procés de reserva realitzant el pagament amb tarja de crèdit.\n\n'
@@ -358,9 +358,9 @@ $translateJS['INFO_PAGA_I_SENYAL'] = 'Per confirmar la reserva <b>cal que realit
         . '\n-El Banc de Sabadell gestionarà el pagament en un entorn segur. El restaurant, en cap cas, tindrà accès a les dades de la seva targeta';
         
 */
-$translate['err20'] = '<b>Ja tens una reserva feta a Can Borrell!!</b><br/><br/>Pots modificar-la o eliminar-la, però no pots crear més d&#39;una reserva online.<br/><em>(Per editar o cancel·lar utilitza l&#39;enllaç que trobarà més amunt, sota la barra de navegació d&#39;aquesta pàgina)</em><br/><br/><br/>Si ho desitges posa&#39;t en contacte amb nosaltres:<br/><b>936929723 / 936910605</b><br/><br/><br/>La reserva que ens consta es pel dia ';
-$translateDirectJS['err21'] = '<b>No podem fer-te la reserva on-line a causa d&#39;algun problema amb una reserva anterior!!</b><br/><br/>Si us plau, per reservar contacta amb el restaurant:936929723 / 936910605 /';
-$translateDirectJS['err20'] = '<b>Ja tens una reserva feta a Can Borrell!!</b><br/><br/>Pots modificar-la o eliminar-la, però no pots crear més d&#39;una reserva online.<br/><em>(Per editar o cancel·lar utilitza l&#39;enllaç que trobarà més amunt, sota la barra de navegació d&#39;aquesta pàgina)</em><br/><br/><br/>Si ho desitges posa&#39;t en contacte amb nosaltres:<br/><b>936929723 / 936910605</b><br/><br/><br/>La reserva que ens consta es pel dia ';
+$translate['err20'] = '<b>Ja tens una reserva feta a Can Borrell!!</b><br/><br/>Pots modificar-la o eliminar-la, però no pots crear més d&#39;una reserva online.<br/><em>(Per editar o cancel·lar utilitza l&#39;enllaç que trobarà més amunt, sota la barra de navegació d&#39;aquesta pàgina)</em><br/><br/><br/>Si ho desitges posa&#39;t en contacte amb nosaltres:<br/><b>restaurant@can-borrell.com</b><br/><br/><br/>La reserva que ens consta es pel dia ';
+$translateDirectJS['err21'] = '<b>No podem fer-te la reserva on-line a causa d&#39;algun problema amb una reserva anterior!!</b><br/><br/>Si us plau, per reservar contacta amb el restaurant:restaurant@can-borrell.com /';
+$translateDirectJS['err20'] = '<b>Ja tens una reserva feta a Can Borrell!!</b><br/><br/>Pots modificar-la o eliminar-la, però no pots crear més d&#39;una reserva online.<br/><em>(Per editar o cancel·lar utilitza l&#39;enllaç que trobarà més amunt, sota la barra de navegació d&#39;aquesta pàgina)</em><br/><br/><br/>Si ho desitges posa&#39;t en contacte amb nosaltres:<br/><b>restaurant@can-borrell.com</b><br/><br/><br/>La reserva que ens consta es pel dia ';
 $translateDirectJS['CAP_TAULA']="No tenim cap taula disponible per la data/coberts/cotxets que ens demanes.<br/><br/>Intenta-ho per una altra data";
 $translateDirectJS['PAGAMENT REBUT']="Hem rebut la notificació del pagament. La teva reserva ja està confirmada. \\n\\nGràcies per utilitzar aquest servei";
 $translateDirectJS['EL PAGAMENT HA ESTAT ANULAT']="Malauradament no s\'ha completat el procés de pagament. \\n\\nGràcies per utilitzar aquest servei";

@@ -273,11 +273,11 @@ $translate['Tens algun dubte?'] = '¿Tienes alguna duda?';
 $translate["gossos"] = "Admitimos mascotas en el interior de hasta 8Kg. Si pesa más podéis comer en el exterior";
 
 /****************************** SMS **************************************/
-$translate["Recuerde: reserva en Restaurant Can Borrell el %s a las %s (%s).Rogamos comunique cualquier cambio: 936929723 - 936910605.Gracias.(ID:%s)"] 
-    = "Recuerde: reserva en Restaurant Can Borrell el %s a las %s (%s).Rogamos comunique cualquier cambio: 936929723 - 936910605.Gracias.(ID:%s)";
+$translate["Recuerde: reserva en Restaurant Can Borrell el %s a las %s (%s).Rogamos comunique cualquier cambio: restaurant@can-borrell.com.Gracias.(ID:%s)"] 
+    = "Recuerde: reserva en Restaurant Can Borrell el %s a las %s (%s).Rogamos comunique cualquier cambio: restaurant@can-borrell.com.Gracias.(ID:%s)";
 
-$translate["Restaurant Can Borrell, reserva MODIFICADA: L'esperem el %s a les %s. Preguem comuniqui qualsevol canvi al web o tel.936929723 - 936910605. Gràcies.(ID:%s)"] 
-    = "Restaurant Can Borrell, reserva MODIFICADA: Le esperamos el %s a las %s. Rogamos comunique cualquier cambio en la web o tels.936929723 - 936910605. Gracias.(ID:%s)";
+$translate["Restaurant Can Borrell, reserva MODIFICADA: L'esperem el %s a les %s. Preguem comuniqui qualsevol canvi al web o restaurant@can-borrell.com. Gràcies.(ID:%s)"] 
+    = "Restaurant Can Borrell, reserva MODIFICADA: Le esperamos el %s a las %s. Rogamos comunique cualquier cambio en la web o restaurant@can-borrell.com. Gracias.(ID:%s)";
 
 
 $translate["RESERVA_IMPAGADA"] = "No hemos recibido confirmación del pago de la pasarela bancaria. "
@@ -448,12 +448,12 @@ $translateJS['err10'] = 'Para esta fecha debes seleccionar un menú para cada co
 $translateJS['err11'] = 'Ya no se pueden registrar reservas para hoy';
 $translateJS['err99'] = 'Test error';
 $translateJS['err100'] = 'Error de sessió';
-$translateJS['err_contacti'] = 'Contacti amb el restaurant: 936929723 / 936910605';
+$translateJS['err_contacti'] = 'Contacti amb el restaurant: restaurant@can-borrell.com';
 
-$translate['err20'] = '<b>Ja tens una reserva feta a Can Borrell!!</b><br/><br/>Pots modificar-la o eliminar-la, però no pots crear més d´una reserva online.<br/><em>(Per editar o cancel·lar utilitza l´enllaç que trobarà més amunt, sota la barra de navegació d´aquesta pàgina)</em><br/><br/><br/>Si ho desitges posa´t en contacte amb nosaltres:<br/><b>936929723 / 936910605</b><br/><br/><br/>La reserva que ens consta es pel dia ';
-$translateDirectJS['err21'] = '<b>No podemos hacer la reserva on-line a causa de algún problema con una reserva anterior</b><br/><br/>Por favor, para reservar contacta con el restaurant:936929723 / 936910605';
-$translateDirectJS['err20'] = '<b>Ya tienes una reserva hecha en Can Borrell!</b><br/><br/>Puedes modificarla o eliminarla pero no puedes crear más de una reserva online<br/><em>(Para editar o cancelar, utiliza el enlace que hay arriba, bajo la barra de navegación de esta página )</em><br/><br/><br/><br/><br/>Si lo deseas ponte en contacto con nosotros:<br/><b>936929723 / 936910605</b><br/><br/><br/>La reserva que nos consta es para el dia ';
-$translate['err21'] = '<b>No podem fer-te la reserva on-line a causa d´una reserva anterior!!</b><br/><br/>Si us plau, per reservar contacta amb el restaurant:936929723 / 936910605';
+$translate['err20'] = '<b>Ja tens una reserva feta a Can Borrell!!</b><br/><br/>Pots modificar-la o eliminar-la, però no pots crear més d´una reserva online.<br/><em>(Per editar o cancel·lar utilitza l´enllaç que trobarà més amunt, sota la barra de navegació d´aquesta pàgina)</em><br/><br/><br/>Si ho desitges posa´t en contacte amb nosaltres:<br/><b>restaurant@can-borrell.com</b><br/><br/><br/>La reserva que ens consta es pel dia ';
+$translateDirectJS['err21'] = '<b>No podemos hacer la reserva on-line a causa de algún problema con una reserva anterior</b><br/><br/>Por favor, para reservar contacta con el restaurant:restaurant@can-borrell.com';
+$translateDirectJS['err20'] = '<b>Ya tienes una reserva hecha en Can Borrell!</b><br/><br/>Puedes modificarla o eliminarla pero no puedes crear más de una reserva online<br/><em>(Para editar o cancelar, utiliza el enlace que hay arriba, bajo la barra de navegación de esta página )</em><br/><br/><br/><br/><br/>Si lo deseas ponte en contacto con nosotros:<br/><b>restaurant@can-borrell.com</b><br/><br/><br/>La reserva que nos consta es para el dia ';
+$translate['err21'] = '<b>No podem fer-te la reserva on-line a causa d´una reserva anterior!!</b><br/><br/>Si us plau, per reservar contacta amb el restaurant:restaurant@can-borrell.com';
 $translateDirectJS['CAP_TAULA']="No tenemos ninguna mesa disponible para la fecha/cubiertos/cochecitos que nos pides.<br/><br/>Inténtalo para otra fecha";
 
 $translateJS['CALÇOTADA_NO_COMBINABLE'] = 'El menú calçotada solo se puede combinar con el menú nº1. \\nSi seleccionas confirmar se eliminarán de la selección los menús no combinables';

@@ -1082,6 +1082,7 @@ FROM client
       $data = $row['data'];
       $hora = $row['hora'];
       $SMS = $this->enviaSMS($idr, "CANCELADA tu reserva $idr para el $data a las $hora");
+      $mail = $this->enviaMail($idr, "cancelada_", MAIL_RESTAURANT, $extres);
 
       /*       * */
       $deleteSQL = "DELETE FROM " . T_RESERVES . " WHERE id_reserva=$idr";
