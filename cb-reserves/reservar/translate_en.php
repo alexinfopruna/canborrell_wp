@@ -106,7 +106,7 @@ Can Borrell will not have access to information given.
 		 <br/> <br/>
 		
 		<b>(WE CANNOT GUARANTEE THE AVAILABILITY OF HIGH CHAIRS).</b>  <br/><br/>
-		We only allow access to guide dogs accompanied by blind people<br/><br/>
+		We only allow access to guide dogs accompanied by blind people or pets up to 8kg<br/><br/>
                                                       <em>   If, in total you are more than ' . ($PERSONES_GRUP - 1 ) . ' people, click on the tab “Groups”  </em>
                                                       <br/> <br/><b>TOTAL PEOPLE/PUSH CHAIRS';
 
@@ -322,7 +322,7 @@ $translateJS['fr-seccio-quants'] = '<p  class="alert alert-info "><span class=" 
     . 'In this search you should indicate exactly how many people are going to come (adults, juniors and children)</p>'
     . '<p  class="alert alert-warning " style="display:none"><span class=" glyphicon glyphicon-exclamation-sign f1"></span>  <b> '
     . 'Remember if you are more than ' . (persones_paga_i_senyal - 1)
-    . ' people, it will be necessary for you to make a deposit payment of ' . import_paga_i_senyal . '€ with a credit card. </b>.</p>'
+    . ' people, it will be necessary for you to make a deposit payment with a credit card. no amount will be charged your account unless you do not come on the day of reservation</b>.</p>'
     . '<p  class="alert alert-info "><span class=" glyphicon glyphicon-info-sign f1"></span> '
     . 'You can also tell us if you will bring pushchairs or prams or if you are accompanied by someone with reduced mobility '
     . 'or in a wheelchair. The sum of children and pushchairs or prams has to be the actual number of children that will come '

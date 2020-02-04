@@ -81,7 +81,7 @@ $translate['INFO_COMANDA']="Pots escollir diferents menús o diferents plats de 
 			
 			<b>(NO PODEM GARANTIR LA DISPONIBILITAT DE TRONES).</b> 
 					<br/><br/>
-			Només permetem l\'entrada de gossos pigall acompanyant invidents<br/><br/>
+			Només permetem l\'entrada de gossos pigall acompanyant invidents i mascotes de fins a 8kg<br/><br/>
 					<em>Si, en total, sou més de <b>'.($PERSONES_GRUP-1).'</b> persones, marca el botó "Grups"</em><br/><br/>
 					<b>TOTAL PERSONES/COTXETS:';
 
@@ -245,12 +245,12 @@ $translateJS['OBSERVACIONS_COTXETS']='No tindrem en compte les indicacions que e
         . '<br/><br/>'
         . 'Gracies la teva comprensió';
 
-/**/
+
 $translateJS["fr-seccio-quants"] = '<p  class="alert alert-info "><span class=" glyphicon glyphicon-info-sign f1"></span> '
     . 'En aquesta secció has d&quot;indicar exactament quantes persones vindran (adults, júniors i nens). </p>'
         . 
     '<p  class="alert alert-warning " style="display:none"><span class=" glyphicon glyphicon-exclamation-sign f1"></span> <b>Si sou més de '.(persones_paga_i_senyal-1).' persones, '
-        . 'caldrà que realitzeu una paga i senyal de '.import_paga_i_senyal.'€ amb targeta de crèdit.</b></p>'
+        . 'caldrà que autoritzeu una paga i senyal amb targeta de crèdit. És una autorització i no es realitzarà cap càrrec trec que no us presenteu el dia de la reserva</b></p>'
     
         . '<p  class="alert alert-info "><span class=" glyphicon glyphicon-info-sign f1"></span> '
     . 'A més, opcionalment, pots indicar si portareu cotxet i si us acompanya algú amb mobilitat reduïda o cadira de rodes.</p> '
@@ -327,10 +327,11 @@ $translateJS["grups-fr-seccio-client"] =$translateJS["fr-seccio-client"];
 $translateJS["grups-fr-seccio-submit"] =$translateJS["fr-seccio-submit"];
 
 $translateJS["REDIR_GRUPS"] ="Has indicat més de $PERSONES_GRUP persones. En aquest cas et transferirem al formulari de reserves de grups. \\nÉs això correcte?";
-$translateJS["PAGA_I_SENYAL"] ="<div>A continuació cal que autoritzis la fiança de ".import_paga_i_senyal."€ per garantitzar l&#39;assistència el dia de la reserva. "
-        . "AQUEST IMPORT NO ES DESCOMPTARÀ del teu compte, NO ES FARÀ CAP CÀRREC.<br/><br/>"
-        . "<br/><br/>Et transferim a una passarel·la bancària externa a Can Borrell. El restaurant no tindrà accés a les dades que introdueixis"
+//$translateJS["PAGA_I_SENYAL"] ="<div>A continuació cal que autoritzis la fiança de ".import_paga_i_senyal."€ per garantitzar l&#39;assistència el dia de la reserva. "
+$translateJS["PAGA_I_SENYAL"] ="<div>A continuació cal que autoritzis la fiança per garantitzar l&#39;assistència el dia de la reserva. "
+        . "L&#39;import va en funció del nombre de comensals. AQUEST IMPORT NO ES DESCOMPTARÀ del teu compte, NO ES FARÀ CAP CÀRREC.<br/>"
         . "Només en cas de NO COMPAREXENÇA el dia de la reserva es farà efectiu el càrrec de l&#39;import<br/><br/>"        
+        . "<br/><br/>Et transferim a una passarel·la bancària externa a Can Borrell. El restaurant no tindrà accés a les dades que introdueixis"
         . "<div class=\"info-paga-i-senyal\">Atenció: Si no podeu venir el dia de la reserva <b>pots evitar que es realitzi el càrrec si ens avises amb 24 hores d&#39;antelació</b>. "
         . "En cas contrari, carregarem aquest import al teu compte com a compensació per la taula que em guardat reservada i no em pogut oferir a altres clients </div>"
         . "<br/><br/></div>";

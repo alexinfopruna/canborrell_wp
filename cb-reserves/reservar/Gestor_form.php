@@ -857,7 +857,8 @@ FROM client
       $nom = $_POST['client_nom'] . ' ' . $_POST['client_cognoms'];
       //$t=print_r($_REQUEST,TRUE);
       //   $resposta['lx'] = " ... ".$_REQUEST["testTPV"]." *** ".$t;
-
+      global $COBERTS;
+      $COBERTS = $pers;
       $import_paga_i_senyal = $this->import_paga_i_senyal_pk($pers);
       
       if (isset($_REQUEST["testTPV"]) && $_SESSION['permisos'] > 200)

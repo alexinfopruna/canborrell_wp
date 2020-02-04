@@ -314,6 +314,15 @@ class Gestor {
   }
 
   /*   * ************************************************************************************** */
+  
+    public static function import_paga_i_senyal_pk($coberts){
+      return 3 * $coberts;
+     // return import_paga_i_senyal * $coberts;
+  }
+
+  
+  
+  /*   * ************************************************************************************** */
 
   public static function log_mysql_query($query, $conn = null, $charset = false) {
     $log_querys_file = ROOT . INC_FILE_PATH . LOG_QUERYS_FILE;

@@ -308,7 +308,8 @@ $translateJS['fr-seccio-quants'] = '<p  class="alert alert-info "><span class=" 
     . 'En esta sección debes indicar exactamente cuántas personas van a venir (adultos, juniors y niños). </p>'
         . '<p  class="alert alert-warning " style="display:none"><span class=" glyphicon glyphicon-exclamation-sign f1"></span>  <b> '
     . 'Recuerda que si sois más de '. (persones_paga_i_senyal-1)
-        .' personas, será necesario que realices una paga y señal de '. import_paga_i_senyal.'€ con tarjeta de crédito </b>.</p> '
+        .' personas, será necesario que autorices una paga y señal con tarjeta de crédito </b>. '
+        . 'Este importe no se cobrará y no habrà ningún cargo a tu cuenta salvo que no comparezcáis el dia de la reserva</p> '
         . '<p  class="alert alert-info "><span class=" glyphicon glyphicon-info-sign f1"></span> '
     . 'Además  puedes indicar si traeréis cochecito y si os acompaña alguien con mobilidad reducidad o silla de ruedas.</p>'
     . ''
@@ -322,7 +323,7 @@ $translateJS['fr-seccio-quants'] = '<p  class="alert alert-info "><span class=" 
     . ' Si sois más de '.($PERSONES_GRUP-1).' personas clica sobre <b>'
     . '<a href="form_grups.php" style="color:#570600">Solicitud de reserva para grupos</a></b><br/><br/>	'
     . 'Disponemos de un número limitado de tronas y no podemos garantizar su disponibilidad <br/><br/> '
-    . 'Solo permitimos la entrada de perros guía acompañando invidentes. </p>'
+    . 'Solo permitimos la entrada de perros guía acompañando invidentes o mascotas pequeñas de hasta 8kg </p>'
     . '<p  class="alert alert-success "><span class=" glyphicon glyphicon-info-sign f1"> </span>  '
     . 'Una vez rellenes estos datos, accederás al paso 2, más abajo</p>';
 $translateJS['fr-seccio-dia'] = '<p  class="alert alert-info "><span class=" glyphicon glyphicon-info-sign f1"></span> '
