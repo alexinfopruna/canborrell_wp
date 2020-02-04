@@ -3481,7 +3481,8 @@ echo "VAL: ".$val." *** ";
   public function import_paga_i_senyal_pk($coberts){
     //  echo import_paga_i_senyal;
     //  echo "   ";
-      return import_paga_i_senyal * $coberts;
+      return 3 * $coberts;
+     // return import_paga_i_senyal * $coberts;
       
   }
   /*   * ********************************************************************************************************************* */
