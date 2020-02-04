@@ -819,7 +819,7 @@ FROM client
 
     //envia SMS
 
-    $persones = $_POST['selectorComensals'] + $_POST['selectorJuniors'] + $_POST['selectorNens'];
+    $persones = $pers = $_POST['selectorComensals'] + $_POST['selectorJuniors'] + $_POST['selectorNens'];
     $persones .= 'p';
     //$mensa = "Recuerde: reserva en Restaurant Can Borrell el $data a las $hora ($persones).Rogamos comunique cualquier cambio: 936929723 - 936910605.Gracias.(ID:$idr)";
     //$mensa = $this->lv("Recordi: reserva al Restaurant Can Borrell el %s a les %s (%s).Preguem comuniqui qualsevol canvi: 936929723 - 936910605.Gràcies.(ID:%s)");
@@ -858,10 +858,12 @@ FROM client
       //$t=print_r($_REQUEST,TRUE);
       //   $resposta['lx'] = " ... ".$_REQUEST["testTPV"]." *** ".$t;
 
+      $import_paga_i_senyal = $this->import_paga_i_senyal_pk($pers);
+      
       if (isset($_REQUEST["testTPV"]) && $_SESSION['permisos'] > 200)
         $resposta['form_tpv'] = $this->generaTESTTpvSHA256($idr, import_paga_i_senyal, $nom);
       else
-        $resposta['form_tpv'] = $this->generaFormTpvSHA256($idr, import_paga_i_senyal, $nom);
+        $resposta['form_tpv'] = $this->generaFormTpvSHA256($idr, $import_paga_i_senyal, $nom);
     }
     else {
       $this->enviaSMS($idr, $mensa);

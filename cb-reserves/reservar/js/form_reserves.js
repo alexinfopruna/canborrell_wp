@@ -1115,7 +1115,10 @@ function controlSubmit()
                     $("#popup").html(info + '<iframe id="frame-tpv" name="frame-tpv" style="width:100%;height:500px"></iframe>');
                     $("#bt-continuar .ui-button-text").html("Tanca");
                     var doc = document.getElementById('frame-tpv').contentWindow.document;
-                    doc.write('<html><head><title></title><style>body{background:url(//www.can-borrell.com/cb-reserves/reservar/css/loading.gif) center center no-repeat;}</style></head><body>Loading TPV...</body></html>');
+                    doc.write('<html><head><title></title><style>body{background:url(//www.can-borrell.com/cb-reserves/reservar/css/loading.gif) center center no-repeat;}</style></head><body>Et tranferim a la passarel·la Redsys...</body></html>');
+                    
+                    $("#bt-continuar").hide();
+                    
                     /** 
                      * TIMER TEMPS MAXIM
                      */
@@ -1151,7 +1154,7 @@ function controlSubmit()
                             }
                         });
                     }, temps_paga_i_senyal * 60000);
-                    $("#compra").submit();
+                   $("#compra").submit();
                 }
                 /*
                  * 
@@ -1413,4 +1416,35 @@ function setCalendDate(date) {
     // comportamentDia();
 
 
+}
+
+
+function PopupCenter() {
+    // Fixes dual-screen position     
+    //                    Most browsers      Firefox
+    var w=600;
+    var h=400;
+    var title='Redsys';
+    
+    var dualScreenLeft = window.screenLeft != undefined ? window.screenLeft : window.screenX;
+    var dualScreenTop = window.screenTop != undefined ? window.screenTop : window.screenY;
+
+    var width = window.innerWidth ? window.innerWidth : document.documentElement.clientWidth ? document.documentElement.clientWidth : screen.width;
+    var height = window.innerHeight ? window.innerHeight : document.documentElement.clientHeight ? document.documentElement.clientHeight : screen.height;
+
+    var systemZoom = width / window.screen.availWidth;
+    var left = (width - w) / 2 / systemZoom + dualScreenLeft
+    var top = (height - h) / 2 / systemZoom + dualScreenTop
+    
+    
+    var params = 'width=' + w / systemZoom + ', height=' + h / systemZoom + ', top=' + top + ', left=' + left;
+    
+    return params;
+    /*
+    var newWindow = window.open('about:blank', title, 'scrollbars=yes, width=' + w / systemZoom + ', height=' + h / systemZoom + ', top=' + top + ', left=' + left);
+
+    // Puts focus on the newWindow
+    if (window.focus) newWindow.focus();
+    
+    return newWindow;*/
 }

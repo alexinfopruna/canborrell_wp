@@ -17,6 +17,10 @@ $titol['en']="THE PAYMENT IS COMPLETE.<br><br>Thank you for using this service";
 <link href="../reserves.css" rel="stylesheet" type="text/css" />
 <link href="../../css/estils.css" rel="stylesheet" type="text/css" />
 
+<SCRIPT>
+setTimeout("self.close()", 5000 ) // after 5 seconds
+</SCRIPT>
+
 </head>
 
 <body>

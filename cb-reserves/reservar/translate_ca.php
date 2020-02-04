@@ -327,12 +327,13 @@ $translateJS["grups-fr-seccio-client"] =$translateJS["fr-seccio-client"];
 $translateJS["grups-fr-seccio-submit"] =$translateJS["fr-seccio-submit"];
 
 $translateJS["REDIR_GRUPS"] ="Has indicat més de $PERSONES_GRUP persones. En aquest cas et transferirem al formulari de reserves de grups. \\nÉs això correcte?";
-$translateJS["PAGA_I_SENYAL"] ="<div>A continuació cal que realitzis el pagament de ".import_paga_i_senyal."€ per garantitzar l&#39;assistència el dia de la reserva. "
-        . "Aquest import serà descomptat del compte total.<br/><br/>"
-        . '<div class="info-paga-i-senyal">Atenció: Si no podeu venir el dia de la reserva <b>pots recuperar la paga i senyal si ens avises amb 24 hores d&#39;antelació</b>. En cas contrari, l&#39;import abonat no serà retornat</div>'
+$translateJS["PAGA_I_SENYAL"] ="<div>A continuació cal que autoritzis la fiança de ".import_paga_i_senyal."€ per garantitzar l&#39;assistència el dia de la reserva. "
+        . "AQUEST IMPORT NO ES DESCOMPTARÀ del teu compte, NO ES FARÀ CAP CÀRREC.<br/><br/>"
         . "<br/><br/>Et transferim a una passarel·la bancària externa a Can Borrell. El restaurant no tindrà accés a les dades que introdueixis"
+        . "Només en cas de NO COMPAREXENÇA el dia de la reserva es farà efectiu el càrrec de l&#39;import<br/><br/>"        
+        . "<div class=\"info-paga-i-senyal\">Atenció: Si no podeu venir el dia de la reserva <b>pots evitar que es realitzi el càrrec si ens avises amb 24 hores d&#39;antelació</b>. "
+        . "En cas contrari, carregarem aquest import al teu compte com a compensació per la taula que em guardat reservada i no em pogut oferir a altres clients </div>"
         . "<br/><br/></div>";
-
 
 
 $translateJS['err0'] = 'El servidor no ha respost. No ha estat possible crear la reserva. Torna a enviar el formulari ara i, si el problema persisteix, contacta amb el restaurant';

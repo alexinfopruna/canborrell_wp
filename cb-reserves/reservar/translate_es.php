@@ -90,9 +90,10 @@ $translate['INFO_QUANTS_SOU']='<b> Dinos cuántas personas vendrán </b>, indica
  seguido de niños hasta 14. 
 <br/> Si sois
                          <div class="info-paga-i-senyal" style="display:none"> <b> Si sois más de '. (persones_paga_i_senyal-1).' personas,
-será necesario que realices una paga y señal de '. import_paga_i_senyal.'€ con tarjeta de crédito </ b>.
-Este importe se te descontará del precio final de las consumiciones, por lo que no representará ningún gasto extra.
-El pago se realizará a través de una pasarela bancaria segura. Can Borrell no tendrá acceso a los datos introducidos.
+será necesario que autorices una paga y señal de '. import_paga_i_senyal.'€ con tarjeta de crédito </ b>.
+Se trata únicament de una autorización para un posible cargo en caso de no comparecencia. En este momento NO SE REALIZARÁ NINGÚN CARGO A TU CUENTA.<br>
+<br>Sólo en caso de NO COMPARECENCIA el dia de la reserva se hará efectivo el cargo a tu cuenta del importe<br/><br/>
+La autorización se realizará a través de una pasarela bancaria segura. Can Borrell no tendrá acceso a los datos introducidos.
               </div> 
 <br/> <br/> 
 		<b>Reservaremos espacio para los comensales que nos indicas aquí. La reserva no será válida para un número de persones que no coincida con el solicitado</b>
