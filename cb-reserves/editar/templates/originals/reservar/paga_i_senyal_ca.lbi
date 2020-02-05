@@ -44,7 +44,7 @@
   </tr>
 
 
-  
+  <!--
   <tr>
     <td></td>
     <td align="center"><span class="titol" style="color:#222">Pots imprimir aquest comprovant i presentar-lo al restaurant a al moment de pagar per tal que sigui descomptat l'import de la paga i senyal.</span></td>
@@ -55,6 +55,7 @@
     <td align="center"><span class="titol" style="font-size:10px;">En qualsevol cas el restaurant ja té constància d'aquest pagament i realitzarà la compensació encara que no presenteu el comprovant. Si preferiu no imprimir-lo, simplement comenteu-li al cambrer indicant-li la id de reserva: {id_reserva}</span></td>
     <td width="12">  </td>
   </tr>
+-->
   <tr>
     <td></td>
     <td align="center" style="font-size:9px;"><img class="qr" src="https://chart.googleapis.com/chart?chs=100x100&cht=qr&chl={id_reserva}:{dc}:{data}:{client_id}:{preu_reserva}&choe=UTF-8"/><br/>{id_reserva}:{dc}:{data}:{client_id}:{preu_reserva}  </td>

@@ -1083,7 +1083,7 @@ function controlSubmit()
             if (obj.resposta == "ok") // RESPOSTA OK
             {
                 $("#popup").bind("dialogclose", function (event, ui) {
-                    window.clearInterval(timer_estat);
+                    //gener window.clearInterval(timer_estat);
                     if (typeof timer !== 'undefined')
                         clearTimeout(timer);
                     if (typeof control !== 'undefined')
@@ -1094,7 +1094,7 @@ function controlSubmit()
                     SUBMIT_OK = false;
 
                     //window.location.href = "/#about";
-                    $('#submit').show();
+                    //gener $('#submit').show();
                 });
 
                 SUBMIT_OK = true;
@@ -1115,7 +1115,9 @@ function controlSubmit()
                     $("#popup").html(info + '<iframe id="frame-tpv" name="frame-tpv" style="width:100%;height:500px"></iframe>');
                     $("#bt-continuar .ui-button-text").html("Tanca");
                     var doc = document.getElementById('frame-tpv').contentWindow.document;
-                    doc.write('<html><head><title></title><style>body{background:url(//www.can-borrell.com/cb-reserves/reservar/css/loading.gif) center center no-repeat;}</style></head><body>Et tranferim a la passarel·la Redsys...</body></html>');
+                    var loading=l("LOADING TPV");
+                    
+                    doc.write('<html><head><title></title><style>body{background:url(//www.can-borrell.com/cb-reserves/reservar/css/loading.gif) center center no-repeat;}</style></head><body>'+loading+'</body></html>');
                     
                     $("#bt-continuar").hide();
                     
@@ -1204,6 +1206,7 @@ function resultat_estat(idr) {
 
         if (datos == "0" || datos == "2") {
             //alert("ELIMINA");
+             POPUPW.close();
             $.post(GESTOR + "?a=cancelPagaISenyal&b=" + idr);
         }
 
@@ -1224,11 +1227,13 @@ function refresh_estat_pagament(idr) {
         }
 
         if (datos == "0") {
+             POPUPW.close();
             // alert("ELIMINA");
             $.post(GESTOR + "?a=cancelPagaISenyal&b=" + idr);
             window.clearInterval(timer_estat);
             window.location.href = prelang + "/#about";
             alert(l('EL PAGAMENT HA ESTAT ANULAT'));
+           
         }
 
         return datos;

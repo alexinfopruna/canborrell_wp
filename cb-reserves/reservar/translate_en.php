@@ -462,7 +462,7 @@ $translateJS['err99'] = 'Test error';
 $translateJS['err100'] = 'Net Session Error';
 $translateJS['err_contacti'] = 'contact the restaurant: 936929723 / 936910605';
 
-$translateDirectJS['PAGAMENT REBUT']="We have received notification of the payment. Your reservation is already confirmed. \\n\\nThanks to use this service";
+$translateDirectJS['PAGAMENT REBUT']="We have received notification of the authorization. Your reservation is already confirmed. \\n Remenber that the amount will be charged only in the case you do not come to the restaurant \\n\\nThanks to use this service";
 $translateDirectJS['EL PAGAMENT HA ESTAT ANULAT']="Unfortunately the payment process is not complete. \\n\\nThanks to use this service";
 
 

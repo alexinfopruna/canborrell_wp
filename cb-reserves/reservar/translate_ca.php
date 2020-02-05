@@ -352,6 +352,7 @@ $translateJS['err11'] = 'Ja no es poden registrar reserves per la data d&#39;avu
 $translateJS['err99'] = 'El camp cognom no és correcte';
 $translateJS['err100'] = 'Error de sessió';
 $translateJS['err_contacti'] = 'Contacti amb el restaurant:restaurant@can-borrell.com';
+$translateJS['LOADING TPV'] = 'Et transferim a la passarel·la Redsys... \\n\\n No tanquis aquesta finestra ni la de pagament fins a completar el procés';
 /*
 $translateJS['INFO_PAGA_I_SENYAL'] = 'Per confirmar la reserva <b>cal que realitzi una paga i senyal de '.IMPORT_PAGA_I_SENYAL.'€</b>\n\n'
         . 'El transferirem a la passarel·la bancària del Banc de Sabadell per tal que pugui finalitzar el procés de reserva realitzant el pagament amb tarja de crèdit.\n\n'
@@ -364,8 +365,8 @@ $translate['err20'] = '<b>Ja tens una reserva feta a Can Borrell!!</b><br/><br/>
 $translateDirectJS['err21'] = '<b>No podem fer-te la reserva on-line a causa d&#39;algun problema amb una reserva anterior!!</b><br/><br/>Si us plau, per reservar contacta amb el restaurant:restaurant@can-borrell.com /';
 $translateDirectJS['err20'] = '<b>Ja tens una reserva feta a Can Borrell!!</b><br/><br/>Pots modificar-la o eliminar-la, però no pots crear més d&#39;una reserva online.<br/><em>(Per editar o cancel·lar utilitza l&#39;enllaç que trobarà més amunt, sota la barra de navegació d&#39;aquesta pàgina)</em><br/><br/><br/>Si ho desitges posa&#39;t en contacte amb nosaltres:<br/><b>restaurant@can-borrell.com</b><br/><br/><br/>La reserva que ens consta es pel dia ';
 $translateDirectJS['CAP_TAULA']="No tenim cap taula disponible per la data/coberts/cotxets que ens demanes.<br/><br/>Intenta-ho per una altra data";
-$translateDirectJS['PAGAMENT REBUT']="Hem rebut la notificació del pagament. La teva reserva ja està confirmada. \\n\\nGràcies per utilitzar aquest servei";
-$translateDirectJS['EL PAGAMENT HA ESTAT ANULAT']="Malauradament no s\'ha completat el procés de pagament. \\n\\nGràcies per utilitzar aquest servei";
+$translateDirectJS['PAGAMENT REBUT']="Hem rebut l\'autorització. La teva reserva ja està confirmada\\n Recorda que només en cas de no comparèixer es realitzarà el càrrec al teu compte \\n\\nGràcies per utilitzar aquest servei";
+$translateDirectJS['EL PAGAMENT HA ESTAT ANULAT']="Malauradament no s\'ha completat el procés d\'autorització. \\n\\nGràcies per utilitzar aquest servei";
 //echo " ***************** ".$translate["MAIL_GRUPS_PAGAT_subject"];
 
 $translateJS['CALÇOTADA_NO_COMBINABLE'] = "El menú calçotada només es pot combinar amb el menú nº1. \\nSi selecciones confirmar s\'eliminaran de la selecció els menús no combinables";

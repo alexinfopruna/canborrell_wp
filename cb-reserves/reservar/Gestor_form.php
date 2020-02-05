@@ -1440,6 +1440,8 @@ WHERE  `client`.`client_id` =$idc;
       $result = "ANULAT";
     }
     else {
+        
+        $import = $import*-1;
       $query = "UPDATE " . T_RESERVES . " SET estat=100, preu_reserva='$import', resposta='$resposta' WHERE id_reserva=$idr";
       $res = $this->log_mysql_query($query, $this->connexioDB) or die(((is_object($GLOBALS["___mysqli_ston"])) ? mysqli_error($GLOBALS["___mysqli_ston"]) : (($___mysqli_res = mysqli_connect_error()) ? $___mysqli_res : false)));
       $result = print_r($res, TRUE);
@@ -1468,7 +1470,8 @@ WHERE  `client`.`client_id` =$idc;
     $hora = $row['hora'];
 
     $missatge = "Recuerde: reserva en Restaurant Can Borrell el $data a las $hora ($persones).Rogamos comunique cualquier cambio: 936929723 - 936910605.Gracias.(ID:$idr)";
-    $missatge .= "\n***\nConserve este SMS como comprobante de la paga y señal de " . $import . "€ que le será descontada. También hemos enviado un email que puede imprimir";
+    $missatge .= "\n***\n También hemos enviado un email que puede imprimir";
+//    $missatge .= "\n***\nConserve este SMS como comprobante de la paga y señal de " . $import . "€ que le será descontada. También hemos enviado un email que puede imprimir";
 
     $args[] = $data;
     $args[] = $hora;
@@ -1477,7 +1480,8 @@ WHERE  `client`.`client_id` =$idc;
     $args[] = $import;
     $missatge = "Recordi: reserva al Restaurant Can Borrell. %s %s (%s).Preguem comuniqui qualsevol canvi: 936929723/936910605.Gràcies.(ID%s)";
 
-    $missatge .= "\n***\nConservi quest SMS com a comprovant de la paga y senyal de %s€ que li serà descomptada. També hem enviat un email que pot imprimir";
+   // $missatge .= "\n***\nConservi aquest SMS com a comprovant de la paga i senyal de %s€ que li serà descomptada. També hem enviat un email que pot imprimir";
+    $missatge .= "\n***\nTambé hem enviat un email que pot imprimir";
     $row['lang'] = isset($row['lang']) ? $row['lang'] : "ca";
     $missatge = gestor_reserves::SMS_language($missatge, $row['lang'], $args);
     $this->enviaSMS($idr, $missatge);

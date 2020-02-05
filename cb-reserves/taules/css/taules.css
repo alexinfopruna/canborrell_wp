@@ -101,6 +101,16 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#fefefe', end
     margin-right:4px;
 }
 
+.authorization{
+    font-size:9px;
+    background:REBECCAPURPLE;
+    color:white;
+    float:right;
+    border-radius: 3px;
+    padding:1px 1px;
+    margin-right:4px;
+}
+
 .online{
     
 	float:right;

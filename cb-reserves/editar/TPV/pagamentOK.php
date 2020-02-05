@@ -5,9 +5,9 @@ require_once(ROOT."Gestor.php");
 
 if (!isset($lang)) $lang="esp";
 require_once(ROOT.INC_FILE_PATH.'valors.php'); 
-$titol['cat']="EL PAGAMENT S'HA REALITZAT AMB ÈXIT.<br><br>Gràcies per utilitzar aquest servei.";
-$titol['esp']="EL PAGO SE HA REALIZADO CON ÉXITO.<br><br>Gracias por utilizar este servicio";
-$titol['en']="THE PAYMENT IS COMPLETE.<br><br>Thank you for using this service";
+$titol['cat']="EL PAGAMENT/AUTORITZACIÓ S'HA REALITZAT AMB ÈXIT.<br><br>Gràcies per utilitzar aquest servei.";
+$titol['esp']="EL PAGO/AUTORITZACIÓN SE HA REALIZADO CON ÉXITO.<br><br>Gracias por utilizar este servicio";
+$titol['en']="THE PAYMENT/AUTHORIZATION IS COMPLETE.<br><br>Thank you for using this service";
 ?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "//www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="//www.w3.org/1999/xhtml">

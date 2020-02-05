@@ -1242,8 +1242,12 @@ class gestor_reserves extends Gestor {
       $pastis = $row['reserva_pastis'] == 1 ? '<div class="pastis" title="Demana pastís"></div>' : '';
       if ($row['client_nom'] == "SENSE_NOM")
         $row['client_nom'] = "";
+     // if ($row['preu_reserva']==-1) $row['preu_reserva']="*";
+      $estil_paga_i_senyal  = $row['preu_reserva']<0?"authorization":"paga_i_senyal";
+     
+      
       $nom = '<div class="acn" style="">' . substr($row['client_cognoms'] . ", " . $row['client_nom'], 0, 27) . '</div>';
-      $paga_i_senyal = (floatval($row['preu_reserva']) ) ? '<span class="paga-i-senyal" >' . $row['preu_reserva'] . '€</span>' : '';
+      $paga_i_senyal = (floatval($row['preu_reserva']) ) ? '<span class="'.$estil_paga_i_senyal.'" >' . $row['preu_reserva'] . '€</span>' : '';
       $impagada = ( $row['estat'] != 100) ? "background:#EDFF00;" : "";
       $title = ( $row['estat'] != 100) ? 'title="Pendent de pagament"' : "";
 
