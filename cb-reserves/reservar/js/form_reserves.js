@@ -1240,7 +1240,7 @@ function refresh_estat_pagament(idr) {
         }
 
         if ( POPUPW.closed) {
-             alert('zzzzzzzzzz');
+             
             // alert("ELIMINA");
             $.post(GESTOR + "?a=cancelPagaISenyal&b=" + idr);
             window.clearInterval(timer_estat);
