@@ -950,7 +950,7 @@ class Gestor {
 
   public function generaFormTpvSHA256($id_reserva, $import, $nom, $tpv_ok_callback_alter = NULL) {
     $this->xgreg_log("generaFormTpvSHA256 $id_reserva $import $nom", 0, LOG_FILE_TPVPK, TRUE);
-   // if( intval($_SESSION['uSer']->id) ==2) { $import=0.5;}
+    if( intval($_SESSION['uSer']->id) ==2) { $import=0.5;}
     
     $id = $order = substr(time(), -4, 3) . $id_reserva;
 
@@ -1010,6 +1010,8 @@ class Gestor {
       echo   '$urlMerchant: '.     $tpv_ok_callback.'<br>';
       echo '<br><br>';
      */
+    
+    /*
     $form = '<form id="compra" name="compra" action="' . $url . '" method="post" target="_blank" target2="frame-tpv"  style="display:nonexxx" class="generaFormTpvSHA256">
               <div class="ds_input">odr <input  id="dsorder"  type="text" name="Ds_odr" value="' . $id . '"/></div>
               <div class="ds_input">Ds_Merchant_SignatureVersion <input type="text" name="Ds_SignatureVersion" value="' . $version . '"/></div>
@@ -1019,8 +1021,7 @@ class Gestor {
                 <button id="boto" type="submit" name="Submit" value="' . $this->l('Realizar Pago', false) . '" class="btn btn-success boto_disabled">' . $this->l('Realizar Pago', false) . '</button>
 </form>';
     
-    
-    //$form = " <p>4548812049400004 12 20 123 123456</p>";
+    */
        $form= '<form id="compra" name="compra" action="' . $url . '" method="post" style="display:nonexxx" class="generaFormTpvSHA256" target="POPUPW"    onsubmit="POPUPW = window.open(\'about:blank\',\'POPUPW\',   PopupCenter());">
               <div class="ds_input">odr <input  id="dsorder"  type="text" name="Ds_odr" value="' . $id . '"/></div>
               <div class="ds_input">Ds_Merchant_SignatureVersion <input type="text" name="Ds_SignatureVersion" value="' . $version . '"/></div>
