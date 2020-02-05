@@ -1083,6 +1083,7 @@ function controlSubmit()
             if (obj.resposta == "ok") // RESPOSTA OK
             {
                 $("#popup").bind("dialogclose", function (event, ui) {
+                    POPUPW.close();
                     //gener window.clearInterval(timer_estat);
                     if (typeof timer !== 'undefined')
                         clearTimeout(timer);
@@ -1137,6 +1138,7 @@ function controlSubmit()
                                 window.location.href = prelang + "/#about";
                                 alert("La sessió ha caducat");
                                 $("#popup").dialog('close');
+                                POPUPW.close();
                                 $.post(GESTOR + "?a=reservaImpagada&b=" + obj.idr);
                             } else {
                                 $("#progress-pas-7").addClass("fet");
@@ -1152,7 +1154,7 @@ function controlSubmit()
                                 alert("Can-Borrell: Hem registrat correctament el pagament");
                                 $("#bt-continuar .ui-button-text").html("Finalitzar");
                                 $("#popup").dialog('close');
-
+                                            POPUPW.close();
                             }
                         });
                     }, temps_paga_i_senyal * 60000);
@@ -1224,19 +1226,31 @@ function refresh_estat_pagament(idr) {
                 return datos;
             resub = true;
             alert(l('PAGAMENT REBUT'));
+            return datos;
         }
 
-        if (datos == "0") {
+        if (datos == "0" ) {
              POPUPW.close();
             // alert("ELIMINA");
             $.post(GESTOR + "?a=cancelPagaISenyal&b=" + idr);
             window.clearInterval(timer_estat);
             window.location.href = prelang + "/#about";
             alert(l('EL PAGAMENT HA ESTAT ANULAT'));
-           
+           return datos;
         }
 
-        return datos;
+        if ( POPUPW.closed) {
+             alert('zzzzzzzzzz');
+            // alert("ELIMINA");
+            $.post(GESTOR + "?a=cancelPagaISenyal&b=" + idr);
+            window.clearInterval(timer_estat);
+            window.location.href = prelang + "/#about";
+            alert(l('EL PAGAMENT HA ESTAT ANULAT'));
+           return datos;
+        }
+
+        
+        
     });
 }
 
@@ -1249,7 +1263,7 @@ function timer_submit() {
     var tel = $(".fr-seccio-client input[name='client_telefon']").val();
 
     $("#popup").dialog('close');
-
+    POPUPW.close();
 
 }
 /********************************************************************************************************************/
