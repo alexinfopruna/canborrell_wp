@@ -1012,8 +1012,8 @@ class Gestor {
       echo '<br><br>';
      */
     
-    /*
-    $form = '<form id="compra" name="compra" action="' . $url . '" method="post" target="_blank" target2="frame-tpv"  style="display:nonexxx" class="generaFormTpvSHA256">
+    /**/
+    $form_grups = '<form id="compra" name="compra" action="' . $url . '" method="post" target="_blank" target2="frame-tpv"  style="display:nonexxx" class="generaFormTpvSHA256">
               <div class="ds_input">odr <input  id="dsorder"  type="text" name="Ds_odr" value="' . $id . '"/></div>
               <div class="ds_input">Ds_Merchant_SignatureVersion <input type="text" name="Ds_SignatureVersion" value="' . $version . '"/></div>
               <div class="ds_input">Ds_Merchant_MerchantParameters <input type="text" name="Ds_MerchantParameters" value="' . $params . '"/></div>
@@ -1022,7 +1022,7 @@ class Gestor {
                 <button id="boto" type="submit" name="Submit" value="' . $this->l('Realizar Pago', false) . '" class="btn btn-success boto_disabled">' . $this->l('Realizar Pago', false) . '</button>
 </form>';
     
-    */
+    
        $form= '<form id="compra" name="compra" action="' . $url . '" method="post" style="display:nonexxx" class="generaFormTpvSHA256" target="POPUPW"    onsubmit="POPUPW = window.open(\'about:blank\',\'POPUPW\',   PopupCenter());">
               <div class="ds_input">odr <input  id="dsorder"  type="text" name="Ds_odr" value="' . $id . '"/></div>
               <div class="ds_input">Ds_Merchant_SignatureVersion <input type="text" name="Ds_SignatureVersion" value="' . $version . '"/></div>
@@ -1033,7 +1033,7 @@ class Gestor {
 </form>';
     
  
-       
+       if ($trans!=7) $form=$form_grups;
        
     
     $form .= "<!-- ".$tpv_ok_callback;
