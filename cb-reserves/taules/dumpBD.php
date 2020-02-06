@@ -196,6 +196,7 @@ if ( !headers_sent() ) {
 			fclose($f);
                                                                                     //echo RUTA_DB_BACKUP.$nombre;
                                                                                     //echo "$res die(); $f";die();
+                        echo RUTA_DB_BACKUP.$nombre;
                                                                                     if ($res === FALSE) die( "error");
                                                                                     //echo $nombre  ;
 			die( "backup");

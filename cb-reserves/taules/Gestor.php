@@ -970,7 +970,7 @@ class Gestor {
     // Se incluye la librería
     include ROOT.INC_FILE_PATH . 'API_PHP/redsysHMAC256_API_PHP_5.2.0/apiRedsys.php';
    
-    if( intval($_SESSION['uSer']->id) ==2 && $tpv_ok_callback="reserva_pk_tpv_ok_callback") $trans=7;
+    if( intval($_SESSION['uSer']->id) ==2 && $tpv_ok_callback=="reserva_pk_tpv_ok_callback") $trans=7;
    if( $tpv_ok_callback="reserva_pk_tpv_ok_callback") $trans=7;
     
     // Se crea Objeto
