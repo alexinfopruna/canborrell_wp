@@ -1013,7 +1013,7 @@ class Gestor {
      */
     
     /**/
-    $form_grups = '<form id="compra" name="compra" action="' . $url . '" method="post" target="_blank" target2="frame-tpv"  style="display:nonexxx" class="generaFormTpvSHA256">
+    $form_grups = '<form id="compra" name="compra" action="' . $url . '" method="post" target2="_blank" target="frame-tpv"  style="display:nonexxx" class="generaFormTpvSHA256">
               <div class="ds_input">odr <input  id="dsorder"  type="text" name="Ds_odr" value="' . $id . '"/></div>
               <div class="ds_input">Ds_Merchant_SignatureVersion <input type="text" name="Ds_SignatureVersion" value="' . $version . '"/></div>
               <div class="ds_input">Ds_Merchant_MerchantParameters <input type="text" name="Ds_MerchantParameters" value="' . $params . '"/></div>
