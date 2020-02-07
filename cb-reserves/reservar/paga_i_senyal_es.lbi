@@ -34,23 +34,30 @@
             </tr>
             <tr style="height: 10px;">
                 <td></td>
-                <td align="center">Hemos recibido correctament el pago de tu reserva. Tu reserva ha sido confirmada. Te esperamos en Can Borrell<br/><br/>
+                <td align="center">Hemos recibido correctament la autorización de tu reserva. Tu reserva ha sido confirmada. Te esperamos en Can Borrell<br/><br/>
                 </td>
                 <td>  </td>
             </tr>
 
             <tr style="height: 10px;">
                 <td></td>
-                <td align="center"><span class="titol" style="color:#444;font-size:18px;">Puedes imprimir este comprobante y presentar el al restaurante en el momento de pagar para que sea supuesto el importe de la paga y seÑal</span></td>
+                <td align="center"><span class="titol" style="color:#444;font-size:18px;">
+
+<b>No hemos hecho ningún cargo a su cuenta.</b><br><br>
+Sólo en caso de no presentarse el día de la reserva cargaremos {preu_reserva} €
+como compensación por el perjuicio de haberte Reservado una mesa que no hemos podido ofrecer a otros clientes
+</span></td>
                 <td width="12">  </td>
             </tr>
+
+<!--
             <tr style="height: 10px;">
                 <td></td>
                 <td align="center">
                     <span class="titol" style="font-size:18px;color:#444;">En cualquier caso el restaurante ya tiene constancia de dicho pago y realizará la compensación aunque no presenta el comprobante. Si prefiere no imprimirlo, simplemente comente le indicándole al camarero la id de reserva {id_reserva}</span><br><br>
                             </td>
                             <td width="12">  </td>
-                            </tr>
+                            </tr>-->
                             <tr style="height: 10px;">
                                 <td></td>
                                 <td align="center" style="font-size:9px;"><img class="qr" src="https://chart.googleapis.com/chart?chs=200x200&amp;cht=qr&amp;chl={id_reserva}:{dc}:{data}:{client_id}:{preu_reserva}&amp;choe=UTF-8"/></td>

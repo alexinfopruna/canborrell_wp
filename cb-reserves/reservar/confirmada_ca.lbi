@@ -127,11 +127,11 @@
                     Si falten menys de 24 hores per la reserva no s'admetrà cap mena de modificació, ni a través del formulari ni per correu electrònic.
                     
                 </p>
-                
+              <!--  
                 <p style="background-color:#ffecd6">
                 El dret a devolució de la paga i senyal per anul·lació de la reserva
 serà vàlid fins 2 dies abans de la celebració. 
-</p>
+</p>-->
 		<br><br>
 		Per accedir cal que conservi l'ID de reserva: <b style="background-color: #FF8033;color:white;padding:7px;">{id_reserva}</b> 
  

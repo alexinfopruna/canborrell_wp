@@ -35,20 +35,28 @@
             </tr>
             <tr style="height: 10px;">
                 <td></td>
-                <td align="center">We have received the payment of your reservation. Your reservation has been confirmed. See you in Can Borrell<br/><br/>
+                <td align="center">We have received the autorization of your reservation. Your reservation has been confirmed. See you in Can Borrell<br/><br/>
                 </td>
                 <td>  </td>
             </tr>
+
             <tr style="height: 10px;">
                 <td></td>
-                <td align="center"><span class="titol" style="color:#444;font-size:18px;">You can print this voucher and present to the restaurant in the moment to pay in order that the amount is discounted.</span></td>
+                <td align="center"><span class="titol" style="color:#444;font-size:18px;">
+<b>We have not charged your account.</b><br><br>
+Only in case of not appearing the day of the reservation will charge {price_reserve} €
+as compensation for the harm of having a table we failed to offer to other clients
+
+</span></td>
                 <td width="12">  </td>
             </tr>
+<!--
             <tr style="height: 10px;">
                 <td></td>
                 <td align="center"><span class="titol" style="font-size:18px;color:#444;">Anyway the restaurant already knows the above mentioned payment and it will realize the compensation though you do not present the voucher. If you prefer not printing it, simply comment indicating the waiter telling him the ID: {id_reserva}</span></td>
                 <td width="12">  </td>
             </tr>
+-->
             <tr style="height: 10px;">
                 <td></td>
                 <td align="center" style="font-size:9px;">

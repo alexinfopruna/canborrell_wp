@@ -122,11 +122,11 @@ Children up to 14 years old </td>
                      If there is less than 24 hours left for the reservation, no modification will be accepted, either through the form or by email.
                     
                  </p>
-                
+                <!--
                  <p style = "background-color: #ffecd6">
                  The refund of the payment and signal for cancellation of the reservation
 It will be able up to 2 days before the celebration.
-</p>                
+</p>      -->          
                 
                 <br><br>
 		To access you must keep the reservation ID: <b style="background-color: #FF8033;color:white;padding:7px;">{id_reserva}</b>
