@@ -239,7 +239,7 @@ $translate['AVIS_MODIFICACIONS']='<span style = "color: red"> <b>Atención: </b>
 
 
 /************ MAIL CONFIRMA PAGAMENT GRUPS ****************/
-$translate["Can-Borrell: CONFIRMACIÓ PAGA I SENYAL"]="Can-Borrell: CONFIRMACIÓN DEL PAGO DE RESERVA ONLINE";
+$translate["Can-Borrell: CONFIRMACIÓ PAGA I SENYAL"]="Can-Borrell: CONFIRMACIÓN DE RESERVA ONLINE";
 $translate["Can-Borrell: CONFIRMACIÓ DE RESERVA ONLINE"]="Can-Borrell: CONFIRMACIÓN DE RESERVA ONLINE";
 $translate["Can-Borrell: CONFIRMACIÓ DE RESERVA"]="Can-Borrell: CONFIRMACIÓN DE RESERVA";
 $translate["Can-Borrell: MODIFICACIÓ RESERVA ONLINE "]="Can-Borrell: MODIFICACIÓN DE RESERVA ONLINE";
