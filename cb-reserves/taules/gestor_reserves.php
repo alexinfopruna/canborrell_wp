@@ -1243,7 +1243,7 @@ class gestor_reserves extends Gestor {
       if ($row['client_nom'] == "SENSE_NOM")
         $row['client_nom'] = "";
      // if ($row['preu_reserva']==-1) $row['preu_reserva']="*";
-      $estil_paga_i_senyal  = $row['preu_reserva']<0?"authorization":"paga_i_senyal";
+      $estil_paga_i_senyal  = $row['preu_reserva']<0?"authorization":"paga-i-senyal";
      
       
       $nom = '<div class="acn" style="">' . substr($row['client_cognoms'] . ", " . $row['client_nom'], 0, 27) . '</div>';
