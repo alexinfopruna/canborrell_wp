@@ -1434,7 +1434,7 @@ WHERE  `client`.`client_id` =$idc;
 
     $referer = $_SERVER['REMOTE_ADDR'];
     $import = $amount / 100;
-    $resposta = "PAGA I SENYAL TPV: " . $import . "Euros (" . $pdata . " " . $phora . ")";
+    $resposta = "**PENDENT!** TPV: " . $import . "Euros (" . $pdata . " " . $phora . ")";
 
     if (isset($_REQUEST['param']) && $_REQUEST['param'] == 'no-update') {
       $result = "ANULAT";
