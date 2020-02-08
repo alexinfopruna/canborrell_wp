@@ -1599,7 +1599,7 @@ WHERE  `client`.`client_id` =$idc;
     $args[] = $idr;
     $args[] = $import;
     $missatge = "Recordi: reserva al Restaurant Can Borrell. %s %s (%s).Preguem comuniqui qualsevol canvi: 936929723/936910605.Gràcies.(ID%s)";
-    $missatge .= "\n***\nConservi quest SMS com a comprovant de la paga y senyal de %s€ que li serà descomptada. També hem enviat un email que pot imprimir";
+    $missatge .= "\n***\nConservi aquest SMS com a comprovant de la reserva. També hem enviat un email que pot imprimir";
     $missatge = gestor_reserves::SMS_language($missatge, $row['lang'], $args);
     $this->enviaSMS($idr, $missatge);
 
