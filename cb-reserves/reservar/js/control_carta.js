@@ -283,13 +283,8 @@ $(".form_edit .info-comanda").html(taula);
     var dat = $("#calendari").datepicker("getDate");
     if(dat) {
         var excepcioNadal = excepcio_nadal(dat);
-        $("#bt-no-carta").hide();
+      //  $("#bt-no-carta").hide();
         if (excepcioNadal){
-
-
-            
-          
-
            seccio("fr-seccio-carta");
            $(".fr-seccio-client").hide();
             $("#bt-no-carta").hide(); 
