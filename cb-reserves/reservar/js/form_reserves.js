@@ -1437,6 +1437,26 @@ function setCalendDate(date) {
 
 }
 
+function popupw(){
+    POPUPW = window.open('about:blank','POPUPW',   PopupCenter());
+    
+    
+ setTimeout( function() {
+    if(!POPUPW || POPUPW.outerHeight === 0) {
+        //First Checking Condition Works For IE & Firefox
+        //Second Checking Condition Works For Chrome
+        alert("Popup Blocker is enabled! Please add this site to your exception list.");
+         
+    } else {
+        //Popup Blocker Is Disabled
+        window.open('','_self');
+        window.close();
+    } 
+}, 25);    
+    
+    return POPUPW;
+}
+
 
 function PopupCenter() {
     // Fixes dual-screen position     

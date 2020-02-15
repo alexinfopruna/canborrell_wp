@@ -1023,7 +1023,7 @@ class Gestor {
 </form>';
     
     
-       $form= '<form id="compra" name="compra" action="' . $url . '" method="post" style="display:nonexxx" class="generaFormTpvSHA256" target="POPUPW"    onsubmit="POPUPW = window.open(\'about:blank\',\'POPUPW\',   PopupCenter());">
+       $form= '<form id="compra" name="compra" action="' . $url . '" method="post" style="display:nonexxx" class="generaFormTpvSHA256" target="_blank"    onsubmitxxx="POPUPW=popupw()">
               <div class="ds_input">odr <input  id="dsorder"  type="text" name="Ds_odr" value="' . $id . '"/></div>
               <div class="ds_input">Ds_Merchant_SignatureVersion <input type="text" name="Ds_SignatureVersion" value="' . $version . '"/></div>
               <div class="ds_input">Ds_Merchant_MerchantParameters <input type="text" name="Ds_MerchantParameters" value="' . $params . '"/></div>
