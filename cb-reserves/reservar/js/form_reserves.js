@@ -1230,15 +1230,14 @@ function refresh_estat_pagament(idr) {
         }
 
         if (datos == "0" ) {
-             POPUPW.close();
-            // alert("ELIMINA");
+          //   POPUPW.close();
             $.post(GESTOR + "?a=cancelPagaISenyal&b=" + idr);
             window.clearInterval(timer_estat);
             window.location.href = prelang + "/#about";
             alert(l('EL PAGAMENT HA ESTAT ANULAT'));
            return datos;
         }
-
+/*
         if ( POPUPW.closed) {
              
             // alert("ELIMINA");
@@ -1248,7 +1247,7 @@ function refresh_estat_pagament(idr) {
             alert(l('EL PAGAMENT HA ESTAT ANULAT'));
            return datos;
         }
-
+*/
         
         
     });
