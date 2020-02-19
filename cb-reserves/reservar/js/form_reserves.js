@@ -1082,7 +1082,7 @@ function controlSubmit()
             if (obj.resposta == "ok") // RESPOSTA OK
             {
                 $("#popup").bind("dialogclose", function (event, ui) {
-                    POPUPW.close();
+                    //POPUPW.close();
                     //gener window.clearInterval(timer_estat);
                     if (typeof timer !== 'undefined')
                         clearTimeout(timer);
@@ -1119,7 +1119,8 @@ function controlSubmit()
                     var doc = document.getElementById('frame-tpv').contentWindow.document;
                     var loading=l("LOADING TPV");
                     
-                    doc.write('<html><head><title></title><style>body{background:url(//www.can-borrell.com/cb-reserves/reservar/css/loading.gif) center center no-repeat;}</style></head><body>'+loading+'</body></html>');
+                    //doc.write('<html><head><title></title><style>body{background:url(//www.can-borrell.com/cb-reserves/reservar/css/loading.gif) center center no-repeat;}</style></head><body>'+loading+'</body></html>');
+                    doc.write('<html><head><title></title></head><body></body></html>');
                     
                     $("#bt-continuar").hide();
                     
