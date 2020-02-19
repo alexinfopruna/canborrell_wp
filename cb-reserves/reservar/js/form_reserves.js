@@ -121,7 +121,6 @@ $(function () {
                 text: 'Continuar',
                 id: 'bt-continuar',
                 click: function () {
-
                     $(this).dialog("close");
                 }
             }
@@ -1113,7 +1112,7 @@ function controlSubmit()
                    // $("#td-form-tpv").html(obj.form_tpv);
 
                     var info = l('PAGA_I_SENYAL');
-                    $("#popup").html(info + '<iframe id="frame-tpv" name="frame-tpv" style="width:100%;height:500px"></iframe>');
+                    $("#popup").html(info + '<iframe id="frame-tpv" name="frame-tpv" style="width:100%;height:100px"></iframe>');
                     
                     $("#popup").append(obj.form_tpv);
                     $("#bt-continuar .ui-button-text").html("Tanca");
@@ -1161,6 +1160,12 @@ function controlSubmit()
                         });
                     }, temps_paga_i_senyal * 60000);
                   // $("#compra").submit();
+                  $("#compra").submit(function(e){$("#compra #boto").hide();
+});
+                  
+                  
+                  
+                  
                 }
                 /*
                  * 

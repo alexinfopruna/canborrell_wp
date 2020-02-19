@@ -352,7 +352,11 @@ $translateJS['err11'] = 'Ja no es poden registrar reserves per la data d&#39;avu
 $translateJS['err99'] = 'El camp cognom no és correcte';
 $translateJS['err100'] = 'Error de sessió';
 $translateJS['err_contacti'] = 'Contacti amb el restaurant:restaurant@can-borrell.com';
-$translateJS['LOADING TPV'] = 'Et transferim a la passarel·la Redsys... \\n\\n No tanquis aquesta finestra ni la de pagament fins a completar el procés';
+$translateJS['LOADING TPV2'] = 'Et transferim a la passarel·la Redsys... \\n\\n No tanquis aquesta finestra ni la de pagament fins a completar el procés';
+$translateJS['LOADING TPV'] = 'Per connectar amb la passarel·la bancàri prem el botó \\n\\n No tanquis aquesta finestra ni la de pagament fins a completar el procés';
+$translateJS['Realizar pago'] = 'Connectar amb Redsys';
+
+
 /*
 $translateJS['INFO_PAGA_I_SENYAL'] = 'Per confirmar la reserva <b>cal que realitzi una paga i senyal de '.IMPORT_PAGA_I_SENYAL.'€</b>\n\n'
         . 'El transferirem a la passarel·la bancària del Banc de Sabadell per tal que pugui finalitzar el procés de reserva realitzant el pagament amb tarja de crèdit.\n\n'
