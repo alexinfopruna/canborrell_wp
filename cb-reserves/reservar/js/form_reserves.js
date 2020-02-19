@@ -1110,10 +1110,12 @@ function controlSubmit()
                  * 
                  */
                 if (obj.TPV == "TPV") {
-                    $("#td-form-tpv").html(obj.form_tpv);
+                   // $("#td-form-tpv").html(obj.form_tpv);
 
                     var info = l('PAGA_I_SENYAL');
                     $("#popup").html(info + '<iframe id="frame-tpv" name="frame-tpv" style="width:100%;height:500px"></iframe>');
+                    
+                    $("#popup").append(obj.form_tpv);
                     $("#bt-continuar .ui-button-text").html("Tanca");
                     var doc = document.getElementById('frame-tpv').contentWindow.document;
                     var loading=l("LOADING TPV");
@@ -1138,7 +1140,7 @@ function controlSubmit()
                                 window.location.href = prelang + "/#about";
                                 alert("La sessió ha caducat");
                                 $("#popup").dialog('close');
-                                POPUPW.close();
+                                //POPUPW.close();
                                 $.post(GESTOR + "?a=reservaImpagada&b=" + obj.idr);
                             } else {
                                 $("#progress-pas-7").addClass("fet");
@@ -1154,11 +1156,11 @@ function controlSubmit()
                                 alert("Can-Borrell: Hem registrat correctament el pagament");
                                 $("#bt-continuar .ui-button-text").html("Finalitzar");
                                 $("#popup").dialog('close');
-                                            POPUPW.close();
+                                          //  POPUPW.close();
                             }
                         });
                     }, temps_paga_i_senyal * 60000);
-                   $("#compra").submit();
+                  // $("#compra").submit();
                 }
                 /*
                  * 
@@ -1208,7 +1210,7 @@ function resultat_estat(idr) {
 
         if (datos == "0" || datos == "2") {
             //alert("ELIMINA");
-             POPUPW.close();
+             //POPUPW.close();
             $.post(GESTOR + "?a=cancelPagaISenyal&b=" + idr);
         }
 
@@ -1262,7 +1264,7 @@ function timer_submit() {
     var tel = $(".fr-seccio-client input[name='client_telefon']").val();
 
     $("#popup").dialog('close');
-    POPUPW.close();
+    //POPUPW.close();
 
 }
 /********************************************************************************************************************/

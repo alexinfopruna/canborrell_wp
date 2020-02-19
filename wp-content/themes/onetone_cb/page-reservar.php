@@ -369,7 +369,7 @@ header("Pragma: no-cache");
           display:flex;justify-content:center;width:100%;
       }
 
-      #compra button#boto{display:none}
+    /*  #compra button#boto{display:none}*/
 
       @media (max-width: 770px){ 
           .ui-button-text {
