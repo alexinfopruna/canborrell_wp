@@ -1118,9 +1118,8 @@ function controlSubmit()
                     $("#bt-continuar .ui-button-text").html("Tanca");
                     var doc = document.getElementById('frame-tpv').contentWindow.document;
                     var loading=l("LOADING TPV");
-                    
                     //doc.write('<html><head><title></title><style>body{background:url(//www.can-borrell.com/cb-reserves/reservar/css/loading.gif) center center no-repeat;}</style></head><body>'+loading+'</body></html>');
-                    doc.write('<html><head><title></title></head><body></body></html>');
+                    doc.write('<html><head><title></title></head><body>'+loading+'</body></html>');
                     
                     $("#bt-continuar").hide();
                     

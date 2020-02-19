@@ -431,7 +431,7 @@ $translateJS["PAGA_I_SENYAL"] ="<div>A continuación has de realizar el pago de 
         . "<br/><br/></div>";
 
 $translateJS['LOADING TPV'] = 'Pulsa el botón para acceder a la pasarela bancaria \\n\\n No tanquis aquesta finestra ni la de pagament fins a completar el procés';
-$translateJS['Realizar pago'] = 'Conectar con Redsys';
+$translateJS['Realizar Pago'] = 'Conectar con Redsys';
 
 
 

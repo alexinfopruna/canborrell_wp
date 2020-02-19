@@ -15,6 +15,9 @@ $titol['en']="THERE HAS BEEN A PAYMENT/AUTHORIZATION ERROR.<br><br>Thank you for
 <title>Error de pagament</title>
 <link href="../reserves.css" rel="stylesheet" type="text/css" />
 <link href="../../css/estils.css" rel="stylesheet" type="text/css" />
+<SCRIPT>
+setTimeout('window.location.replace("http://can-borrell.com/reservar")', 5000 ) // after 5 seconds
+</SCRIPT>
 
 </head>
 

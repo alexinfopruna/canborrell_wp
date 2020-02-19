@@ -18,7 +18,7 @@ $titol['en']="THE PAYMENT/AUTHORIZATION IS COMPLETE.<br><br>Thank you for using 
 <link href="../../css/estils.css" rel="stylesheet" type="text/css" />
 
 <SCRIPT>
-setTimeout("self.close()", 5000 ) // after 5 seconds
+setTimeout('window.location.replace("http://can-borrell.com")', 5000 ) // after 5 seconds
 </SCRIPT>
 
 </head>

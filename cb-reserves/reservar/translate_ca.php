@@ -353,8 +353,8 @@ $translateJS['err99'] = 'El camp cognom no és correcte';
 $translateJS['err100'] = 'Error de sessió';
 $translateJS['err_contacti'] = 'Contacti amb el restaurant:restaurant@can-borrell.com';
 $translateJS['LOADING TPV2'] = 'Et transferim a la passarel·la Redsys... \\n\\n No tanquis aquesta finestra ni la de pagament fins a completar el procés';
-$translateJS['LOADING TPV'] = 'Per connectar amb la passarel·la bancàri prem el botó \\n\\n No tanquis aquesta finestra ni la de pagament fins a completar el procés';
-$translateJS['Realizar pago'] = 'Connectar amb Redsys';
+$translateJS['LOADING TPV'] = 'Per connectar amb la passarel·la bancària prem el botó \\n\\n No tanquis aquesta finestra ni la de pagament fins a completar el procés';
+$translateJS['Realizar Pago'] = 'Connectar amb Redsys';
 
 
 /*
