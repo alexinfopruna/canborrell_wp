@@ -353,7 +353,7 @@ $translateJS['err99'] = 'El camp cognom no és correcte';
 $translateJS['err100'] = 'Error de sessió';
 $translateJS['err_contacti'] = 'Contacti amb el restaurant:restaurant@can-borrell.com';
 $translateJS['LOADING TPV2'] = 'Et transferim a la passarel·la Redsys... \\n\\n No tanquis aquesta finestra ni la de pagament fins a completar el procés';
-$translateJS['LOADING TPV'] = 'Per connectar amb la passarel·la bancària prem el botó \\n\\n No tanquis aquesta finestra ni la de pagament fins a completar el procés';
+$translateJS['LOADING TPV'] = 'Per connectar amb la passarel·la bancària prem el botó. \\n\\n No tanquis aquesta finestra ni la de pagament fins a completar el procés';
 $translateJS['Realizar Pago'] = 'Connectar amb Redsys';
 
 
@@ -366,8 +366,11 @@ $translateJS['INFO_PAGA_I_SENYAL'] = 'Per confirmar la reserva <b>cal que realit
         
 */
 $translate['err20'] = '<b>Ja tens una reserva feta a Can Borrell!!</b><br/><br/>Pots modificar-la o eliminar-la, però no pots crear més d&#39;una reserva online.<br/><em>(Per editar o cancel·lar utilitza l&#39;enllaç que trobarà més amunt, sota la barra de navegació d&#39;aquesta pàgina)</em><br/><br/><br/>Si ho desitges posa&#39;t en contacte amb nosaltres:<br/><b>restaurant@can-borrell.com</b><br/><br/><br/>La reserva que ens consta es pel dia ';
+$translate['err22'] = '<b>No pots iniciar una nova reserva!!</b><br/><br/>Es possible que tingui un procés de pagament incomplert. Si és així, finalitza\'l o espera uns minuts a que el banc ens comuniqui que ha explira\'t. Torna a intentar-ho en uns minuts ';
 $translateDirectJS['err21'] = '<b>No podem fer-te la reserva on-line a causa d&#39;algun problema amb una reserva anterior!!</b><br/><br/>Si us plau, per reservar contacta amb el restaurant:restaurant@can-borrell.com /';
 $translateDirectJS['err20'] = '<b>Ja tens una reserva feta a Can Borrell!!</b><br/><br/>Pots modificar-la o eliminar-la, però no pots crear més d&#39;una reserva online.<br/><em>(Per editar o cancel·lar utilitza l&#39;enllaç que trobarà més amunt, sota la barra de navegació d&#39;aquesta pàgina)</em><br/><br/><br/>Si ho desitges posa&#39;t en contacte amb nosaltres:<br/><b>restaurant@can-borrell.com</b><br/><br/><br/>La reserva que ens consta es pel dia ';
+$translateDirectJS['err22'] = '<b>No pots iniciar una nova reserva!!</b><br/><br/>Es possible que tingui un procés de pagament incomplert. Si és així, finalitza el pagament o espera uns minuts a que el banc ens comuniqui que ha explirat. Torna a intentar-ho en uns minuts ';
+
 $translateDirectJS['CAP_TAULA']="No tenim cap taula disponible per la data/coberts/cotxets que ens demanes.<br/><br/>Intenta-ho per una altra data";
 $translateDirectJS['PAGAMENT REBUT']="Hem rebut l\'autorització. La teva reserva ja està confirmada\\n Recorda que només en cas de no comparèixer es realitzarà el càrrec al teu compte \\n\\nGràcies per utilitzar aquest servei";
 $translateDirectJS['EL PAGAMENT HA ESTAT ANULAT']="Malauradament no s\'ha completat el procés d\'autorització. \\n\\nGràcies per utilitzar aquest servei";

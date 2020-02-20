@@ -430,7 +430,7 @@ $translateJS["PAGA_I_SENYAL"] ="<div>A continuación has de realizar el pago de 
         . "<br/><br/>Te transferimos a una passarela bancaria externa a Can Borrell. El restaurant no tendrá acceso a los datos que introduzcas"
         . "<br/><br/></div>";
 
-$translateJS['LOADING TPV'] = 'Pulsa el botón para acceder a la pasarela bancaria \\n\\n No tanquis aquesta finestra ni la de pagament fins a completar el procés';
+$translateJS['LOADING TPV'] = 'Pulsa el botón para acceder a la pasarela bancaria. \\n\\n No cierres ninguna ventana hasta finalizar el proceso';
 $translateJS['Realizar Pago'] = 'Conectar con Redsys';
 
 
@@ -458,6 +458,9 @@ $translateJS['err100'] = 'Error de sessió';
 $translateJS['err_contacti'] = 'Contacti amb el restaurant: restaurant@can-borrell.com';
 
 $translate['err20'] = '<b>Ja tens una reserva feta a Can Borrell!!</b><br/><br/>Pots modificar-la o eliminar-la, però no pots crear més d´una reserva online.<br/><em>(Per editar o cancel·lar utilitza l´enllaç que trobarà més amunt, sota la barra de navegació d´aquesta pàgina)</em><br/><br/><br/>Si ho desitges posa´t en contacte amb nosaltres:<br/><b>restaurant@can-borrell.com</b><br/><br/><br/>La reserva que ens consta es pel dia ';
+$translate['err22'] = '<b>No puedes iniciar una nueva reserva!!</b><br/><br/>Es posible que tengas un proceso de pago incompleto. Si es así, finalizalo o espera unos minutos a que el banco nos comunique que ha explirado. Reinténtalo en unos minutos ';
+$translateDirectJS['err22'] = $translate['err22'];
+
 $translateDirectJS['err21'] = '<b>No podemos hacer la reserva on-line a causa de algún problema con una reserva anterior</b><br/><br/>Por favor, para reservar contacta con el restaurant:restaurant@can-borrell.com';
 $translateDirectJS['err20'] = '<b>Ya tienes una reserva hecha en Can Borrell!</b><br/><br/>Puedes modificarla o eliminarla pero no puedes crear más de una reserva online<br/><em>(Para editar o cancelar, utiliza el enlace que hay arriba, bajo la barra de navegación de esta página )</em><br/><br/><br/><br/><br/>Si lo deseas ponte en contacto con nosotros:<br/><b>restaurant@can-borrell.com</b><br/><br/><br/>La reserva que nos consta es para el dia ';
 $translate['err21'] = '<b>No podem fer-te la reserva on-line a causa d´una reserva anterior!!</b><br/><br/>Si us plau, per reservar contacta amb el restaurant:restaurant@can-borrell.com';

@@ -488,7 +488,7 @@ ORDER BY carta_subfamilia_order,carta_plats_nom_es , carta_plats_nom_ca";
 
     $query = "
 SELECT client.`client_id`,`client_nom`,`client_conflictes`,`client_email`,`client_mobil`,`client_telefon`,`client_dni`,`client_cp`,`client_localitat`,`client_adresa`,`client_cognoms`,reserves.id_reserva AS id_reserva_grup," . T_RESERVES . ".id_reserva AS id_reserva, reserves.data as data_grup, " . T_RESERVES . ".data AS data,
-(reserves.id_reserva OR reservestaules.id_reserva) as reservat
+(reserves.id_reserva OR reservestaules.id_reserva) as reservat, reservestaules.estat
 
 FROM client 
 		LEFT JOIN reserves ON client.client_id=reserves.client_id AND reserves.data>=NOW()AND (reserves.estat=1 OR reserves.estat=2 OR reserves.estat=3 OR reserves.estat=7 OR reserves.estat=100)
@@ -499,8 +499,9 @@ FROM client
 	
 	ORDER BY id_reserva_grup DESC , id_reserva DESC , client.client_id DESC";
 
-    $Result1 = mysqli_query($this->connexioDB, $query) or die(((is_object($GLOBALS["___mysqli_ston"])) ? mysqli_error($GLOBALS["___mysqli_ston"]) : (($___mysqli_res = mysqli_connect_error()) ? $___mysqli_res : false)));
 
+    
+    $Result1 = mysqli_query($this->connexioDB, $query) or die(((is_object($GLOBALS["___mysqli_ston"])) ? mysqli_error($GLOBALS["___mysqli_ston"]) : (($___mysqli_res = mysqli_connect_error()) ? $___mysqli_res : false)));
     if (mysqli_num_rows($Result1) == 0)
       return 'false';
 
@@ -511,6 +512,8 @@ FROM client
         $row['data'] = $row['data_grup'];
       $row['data'] = $this->cambiaf_a_normal($row['data']);
       $row['err'] = "20";
+      
+      if ($row['estat']==2) $row['err'] = "22";
     }
 
     //GARJOLA
@@ -583,14 +586,13 @@ FROM client
     if (!isset($_POST['observacions']))
       $_POST['observacions'] = '';
 
-    if (!isset($_POST['client_mail']))
-      $_POST['client_mail'] = null;
+    if (!isset($_POST['client_mail']))      $_POST['client_mail'] = null;
     $result = json_decode($this->recuperaClient($_POST['client_mobil'], $_POST['client_mail']));
     if (isset($result->{'err'}) && $result->{'err'}) {
       $this->xgreg_log("ERROR SUBMIT->CLIENT REPETIT" . $result->{'err'}, 1);
+      
       return $this->jsonErr($result->{'err'}, $resposta);
     }
-
 
     $_POST['lang'] = $_SESSION["lang"];
     $_POST['observacions'] = $_POST['observacions']; //????
