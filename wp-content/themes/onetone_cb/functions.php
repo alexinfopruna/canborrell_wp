@@ -33,7 +33,6 @@ add_filter('icl_set_current_language', 'my_icl_set_current_language');
 
 function my_icl_set_current_language($lang) {
 
-  echo "TAAAA";
   die();
   $lang = 'nl';
   return $lang;
@@ -285,3 +284,26 @@ function arphabet_widgets_init() {
 }
 
 add_action('widgets_init', 'arphabet_widgets_init');
+
+
+
+add_action( 'template_redirect', function() {
+        global $post;
+ $p=$post->ID;
+    
+    if ( $p== 1374 ) {
+        return;
+    }
+    if (  $p== 1378 ) {
+        return;
+    }
+    if (  $p== 1380 ) {
+        return;
+    }
+    
+    
+    $node=array('zzz'=>1079,'ca'=>1374,'es'=>1378,'en'=>1380);
+   
+    wp_redirect( esc_url_raw( home_url( 'index.php?page_id='.$node[ICL_LANGUAGE_CODE] ) ) );
+    exit;
+} );
