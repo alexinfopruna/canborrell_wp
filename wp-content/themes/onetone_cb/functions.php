@@ -291,6 +291,8 @@ add_action( 'template_redirect', function() {
         global $post;
  $p=$post->ID;
  session_start();
+ 
+ 
 if ($_SESSION['permisos']>250) return;  
     if ( $p== 1374 ) {
         return;
@@ -301,23 +303,26 @@ if ($_SESSION['permisos']>250) return;
     if (  $p== 1380 ) {
         return;
     }
-    
-    /*
-    if ( $p== 1362 ) {
-        return;
-    }
-    if (  $p== 1364){
-        return;
-    }
-    if (  $p== 1366 ) {
-        return;
-    }
-    */
-    
     $node=array('ca'=>1374,'es'=>1378,'en'=>1380);
-   // $node=array('ca'=>1366,'es'=>1362,'en'=>1364);
-    wp_redirect( esc_url_raw( home_url( 'index.php?page_id='.$node[ICL_LANGUAGE_CODE] ) ) );
-    exit;
+    
+    if ($_SERVER['HTTP_HOST']=="cbwp-localhost"){
+
+        if ( $p== 1362 ) {
+            return;
+        }
+        if (  $p== 1364){
+            return;
+        }
+        if (  $p== 1366 ) {
+            return;
+        }
+        $node=array('ca'=>1366,'es'=>1362,'en'=>1364);
+    }
+    
+    
+   // 
+   // wp_redirect( esc_url_raw( home_url( 'index.php?page_id='.$node[ICL_LANGUAGE_CODE] ) ) );
+  //  exit;
 } );
  
  

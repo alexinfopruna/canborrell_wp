@@ -415,6 +415,16 @@ header("Pragma: no-cache");
       #c1 tbody{
           font-size:12px;   
       }
+      
+      .coronavirus{
+          width:50%;
+           margin: auto;
+           margin-top:10px;
+           border: #990000 solid 10px;
+           padding:5px;
+           font-size:21px;
+           background-color:#ffffe6;
+      }
 
   </style>                
 
@@ -466,7 +476,9 @@ if ($testTPV) {
 }
 ?>
 
-
+  <div class="coronavirus">Nos vemos en la obligación de advertirle que si usted sufre sintomatología
+que pueda estar relacionada con el virus Covid-19, por favor tome las
+medidas dictaminadas por el Ministerio de Sanidad</div>
 <article id="post-<?php the_ID(); ?>" <?php post_class(); ?>>
     <?php if ($display_breadcrumb == 'yes'): ?>
 
