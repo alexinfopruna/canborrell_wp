@@ -476,9 +476,7 @@ if ($testTPV) {
 }
 ?>
 
-  <div class="coronavirus">Nos vemos en la obligación de advertirle que si usted sufre sintomatología
-que pueda estar relacionada con el virus Covid-19, por favor tome las
-medidas dictaminadas por el Ministerio de Sanidad</div>
+  <div class="coronavirus"><?php l("RESERVA_CORONA") ?></div>
 <article id="post-<?php the_ID(); ?>" <?php post_class(); ?>>
     <?php if ($display_breadcrumb == 'yes'): ?>
 

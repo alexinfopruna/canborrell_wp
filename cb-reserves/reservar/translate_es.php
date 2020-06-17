@@ -286,6 +286,11 @@ $translate["RESERVA_IMPAGADA"] = "No hemos recibido confirmación del pago de la
     . "Recuerde que hasta que no completes la paga y senyal NO TIENES reserva en el restaurant";
 $translate["Can Borrell: Reserva Anul·lada: No es rep i senyal"] = "Can Borrell: Reserva Anulada: No se ha satisfecho la paga i señal";
 
+
+$translate['RESERVA_CORONA'] = "Nos vemos en la obligación de advertirle que si usted sufre sintomatología
+que pueda estar relacionada con el virus Covid-19, por favor tome las
+medidas dictaminadas por el Ministerio de Sanidad";
+
 /****************************************************************************************************/	
 /*******************************************************     JS   ***********************************/	
 /****************************************************************************************************/	
