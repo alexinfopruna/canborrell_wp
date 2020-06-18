@@ -129,7 +129,7 @@ switch (ICL_LANGUAGE_CODE){
                                 <?php endif;?>
                                 <div class="entry-main aborder">
                                     
-          <a href="#menus"> <button type="button" class="btn btn-primary"><?php echo __("Veure tots els menús",'themedomain')?></button></a>
+          <a href="#menus"> <button type="button" class="btn btn-primary veure-menus"><?php echo __("Veure tots els menús",'themedomain')?></button></a>
                                     
                                                                            <div class="panel panel-default">
   <div class="panel-heading"><?php the_title();?></div>

@@ -21,10 +21,8 @@ border:white solid 1px;
     border-radius: 5px; 
 }
 
-@media only screen and (min-width: 600px) {
-  body {
-    background-color: lightblue;
-  }
+@media  (min-width: 999px) {
+  .veure-menus{display:none;}
 }
 
 
