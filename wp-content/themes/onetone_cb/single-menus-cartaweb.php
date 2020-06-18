@@ -94,7 +94,6 @@ $sitepress->switch_lang($lang);
             </div>
         </section>
         
-    
 <div class="post-wrap">
             <div class="container">
                 <div class="post-inner row <?php echo $aside; ?>">
@@ -129,12 +128,18 @@ switch (ICL_LANGUAGE_CODE){
                                 </div>
                                 <?php endif;?>
                                 <div class="entry-main aborder">
+                                    
+          <a href="#menus"> <button type="button" class="btn btn-primary"><?php echo __("Veure tots els menús",'themedomain')?></button></a>
+                                    
                                                                            <div class="panel panel-default">
   <div class="panel-heading"><?php the_title();?></div>
   <div class="panel-body menu-content">
     <a><img title="Ampliar" src="/wp-content/uploads/assets/plats/f_plats_7pt.jpg" alt="Foto"    width="80" height="80" border="0" /></a> <a><img title="Ampliar" src="/wp-content/uploads/assets/plats/f_plats_15pt.jpg" alt="Foto" width="80" height="80" border="0" /></a> <a><img title="Ampliar" src="/wp-content/uploads/assets/plats/f_plats_14pt.jpg" alt="Foto" width="80" height="80" border="0" /></a>
     
-    <?php 
+         
+      
+      <?php 
+   
   /*****************************/
   /*****************************/
   /*****************************/
@@ -238,8 +243,9 @@ echo $string = do_shortcode( $gestorf->recuperaCartaWeb() );
                             <?php endwhile; // end of the loop. ?>
                         </section>
                     </div>
-                    <?php if( $left_sidebar !='' ):?>
+                        <?php if( $left_sidebar !='' ):?>
                     <div class="col-aside-left">
+                        <a id="menus"></a>
                         <aside class="blog-side left text-left">
                             <div class="widget-area">
                                 <?php get_sidebar('menus');?> 
@@ -247,6 +253,7 @@ echo $string = do_shortcode( $gestorf->recuperaCartaWeb() );
                         </aside>
                     </div>
                     <?php endif; ?>
+
                     <?php if( $right_sidebar !='' ):?>
                     <div class="col-aside-right">
                        <?php get_sidebar('postright');?>

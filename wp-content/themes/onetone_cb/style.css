@@ -10,16 +10,30 @@ Template: onetone
 
 .coronavirus{
 max-width:500px;
-margin:auto;
-margin-top:10px;
+margin: 10px auto;
+/*margin-top:10px;*/
 padding:5px;
 border:white solid 1px;
 }
 
-/* Your code goes below! 
+#myTab1 li{
+    border:#999 solid 1px;
+    border-radius: 5px; 
+}
+
+@media only screen and (min-width: 600px) {
+  body {
+    background-color: lightblue;
+  }
+}
 
 
-*/
+#myTab1 li.active{
+    border:#444 solid 2px;
+    border-radius: 5px;
+    background-color: #eee;
+}
+
 
 @font-face {
     font-family:"Encient German Gothic";
