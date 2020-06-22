@@ -60,6 +60,8 @@ ul.carta li td span {
     background-color: #eee;
 }
 
+.suggeriments.alert{display:none}
+
 
 @font-face {
     font-family:"Encient German Gothic";

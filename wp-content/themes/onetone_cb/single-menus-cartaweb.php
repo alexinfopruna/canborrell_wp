@@ -100,7 +100,7 @@ $sitepress->switch_lang($lang);
                     <div class="col-main">
                         <section class="post-main" role="main" id="content">
                             
-                            <div class="alert alert-success">
+                            <div class="suggeriments alert alert-success ">
 <span class="glyphicon glyphicon-info-sign" style="font-size:1.8em"></span>   <?php
 switch (ICL_LANGUAGE_CODE){
   case 'en':
