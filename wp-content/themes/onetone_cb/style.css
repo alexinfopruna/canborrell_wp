@@ -26,6 +26,34 @@ border:white solid 1px;
 }
 
 
+ul.carta td, ul.carta table{
+    border:none;
+    margin-bottom: 0px;
+    padding:2px;
+}
+
+.tab-pane ul.carta li:before{
+    /*content: "\f14a \0000a0";*/
+    content: "";
+}
+@media  (max-width: 999px) {
+
+
+ ul.carta li{margin-left: 5px;} 
+ .cartapreu{min-width:70px;}
+
+
+
+ul.carta li td span {
+     margin-right: 0px; 
+}
+
+
+  .carta td{font-size: 0.9em;}
+}
+
+
+
 #myTab1 li.active{
     border:#444 solid 2px;
     border-radius: 5px;
@@ -1461,19 +1489,3 @@ float:left;
 
 .single-menus .post-main ul.dots{padding-top: 0}
 
-ul.carta td, ul.carta table{
-    border:none;
-    margin-bottom: 0px;
-}
-
- ul.carta li{margin-left: 5px;} 
- .cartapreu{min-width:70px;}
-
-ul.carta li:before, .menu-content li:before {
-    /*content: "\f14a \0000a0";*/
-    content: "";
-}
-
-ul.carta li span {
-     margin-right: 0px; 
-}
