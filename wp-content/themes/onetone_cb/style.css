@@ -1461,3 +1461,19 @@ float:left;
 
 .single-menus .post-main ul.dots{padding-top: 0}
 
+ul.carta td, ul.carta table{
+    border:none;
+    margin-bottom: 0px;
+}
+
+ ul.carta li{margin-left: 5px;} 
+ .cartapreu{min-width:70px;}
+
+ul.carta li:before, .menu-content li:before {
+    /*content: "\f14a \0000a0";*/
+    content: "";
+}
+
+ul.carta li span {
+     margin-right: 0px; 
+}

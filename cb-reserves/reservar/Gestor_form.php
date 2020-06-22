@@ -1914,7 +1914,8 @@ ORDER BY carta_subfamilia_order,carta_plats_nom_es , carta_plats_nom_ca";
       $nom = ucfirst(strtolower($nom));
 
       $tr .= '<li producte_id="' . $val['id'] . '" class="item-carta ' . $menuEspecial . '">';
-      $tr .= $nom . '<span class="fr">' . $preu . '</span>';
+      $tr .= '<table><tr><td>'.$nom.'</td><td class="cartapreu"><span class="fr">' . $preu . '</span></td></tr></table>';
+     // $tr .= $nom . '<span class="fr">' . $preu . '</span>';
       // $tr.= '<div><div class="dt">'.$val['nom'].'</div><div class="dd">'.$preu."</div></div>";
       $tr .= '</li>' . PHP_EOL;
     }
