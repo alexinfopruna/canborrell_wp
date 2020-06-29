@@ -1828,7 +1828,7 @@ SQL;
     else
       $were = ' (carta_plats.carta_plats_subfamilia_id<>20) ';
 
-    $were .= ' AND carta_plats_subfamilia_id IN (1101, 1102, 1103, 1104, 1105, 2, 5001, 6, 3)';
+    $were .= ' AND carta_plats_subfamilia_id IN (1101, 1102, 1103, 1104, 1105, 2, 5001, 6, 3, 4)';
     $were .= ' AND carta_publicat = TRUE ';
 
     if ($leng == 'en')
@@ -1880,7 +1880,7 @@ ORDER BY carta_subfamilia_order,carta_plats_nom_es , carta_plats_nom_ca";
 
       $nom = ucfirst(strtolower($nom));
 
-      $obreSeccio = "[ms_tab title='$nom' icon='xfa-leaf']" . PHP_EOL;
+      $obreSeccio = " [ms_tab title='$nom' icon='xfa-leaf']" . PHP_EOL;
       $obreSeccio .= '<p><b>' . $nom . '</b></p>' . PHP_EOL;
       $seccio = $this->seccioCartaWeb($arCarta, $key, $class);
       $tancaSeccio = '[/ms_tab]' . PHP_EOL . PHP_EOL;
