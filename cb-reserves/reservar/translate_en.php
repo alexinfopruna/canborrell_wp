@@ -294,6 +294,7 @@ $translate["Cancel·lar reserva"] = "Cancel reservation";
 $translate["RESERVA_CANCELADA"] = "Your reservation is canceled";
 
 
+
 /* * **************************** SMS ************************************* */
 $translate["Recuerde: reserva en Restaurant Can Borrell el %s a las %s (%s).Rogamos comunique cualquier cambio: 936929723 - 936910605.Gracias.(ID:%s)"] = "Remenber: reservation at Restaurant Can Borrell on %s at %s (%s).We ask you to inform us of any changes: 936929723 - 936910605.Thank's.(ID:%s)";
 

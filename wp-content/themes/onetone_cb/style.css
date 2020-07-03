@@ -21,8 +21,9 @@ border:white solid 1px;
     border-radius: 5px; 
 }
 
-@media  (min-width: 999px) {
+@media  (max-width: 500px) {
   .veure-menus{display:none;}
+  .complements{width:max-content !important;}
 }
 
 

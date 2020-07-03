@@ -208,6 +208,8 @@ $translate["menu"] = "menú";
 $translate["cdata_reserva"] = "data";
 $translate["preu_reserva"] = "Preu TOTAL reserva";
 
+
+
 $translate["RESERVA_IMPAGADA"] = "No hem rebut confirmació del pagament de la passarel·la bancària i "
     . "<b>-NO HA ESTAT POSSIBLE REALITZAR LA RESERVA</b> Torna-ho a intentar i assegura\'t de completar el pagament. "
     . "Recorda que fins que no completis la paga i senyal NO TENS RESERVA al restaurant";

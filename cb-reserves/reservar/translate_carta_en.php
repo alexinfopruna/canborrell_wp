@@ -74,6 +74,9 @@ $translate['CELLER'] = 'WINE CELLAR<em>CELLER</em>';
 $translate['POSTRES'] = 'DESSERT<em>POSTRES</em>';
 $translate['POSTRES GELATS'] = 'GLACES<em>GELATS</em>';
 $translate['CAVES'] = 'CAVES<em>cava</em>';
+$translate['ENTREPANS'] = 'SANDWICHES<em>ENTREPANS</em>';
+$translate['HORARI_ENTREPANS'] = 'Sandwiches only from 10:00h to 12:00h';
+
 
 
 $translate['TORRADA AMB ESCALIVADA I ANXOVES'] = 'Toast bread with escalivada (roast aubergine, onion and pepper) ';

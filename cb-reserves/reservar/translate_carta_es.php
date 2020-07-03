@@ -70,6 +70,7 @@ $translate['NEGRA A LA BRASA - BUTIF'] = 'Butifarra negra a la brasa';
 //$translate['LLONGANISSA'] = 'Long pork sausage  <em>Longaniza  </em>';
 //$translate['XORIÇO'] = 'Chorizo sausage  <em>Chorizo  </em>';
 $translate['Menu grupo nº 4'] = 'Menu grup nº 4 <i style="color:blue">No combinable: Cal que tots els comensals demanin el mateix</i>';
+$translate['HORARI_ENTREPANS'] = 'Los bocadillos sólo se sirven de 10:00h a 12:00h';
 
 
  

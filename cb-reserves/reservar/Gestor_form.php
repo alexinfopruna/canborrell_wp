@@ -1875,6 +1875,12 @@ ORDER BY carta_subfamilia_order,carta_plats_nom_es , carta_plats_nom_ca";
     $carta = "";
     /**/
     foreach ($arCarta as $key => $val) {
+        $entrepans=$key;
+        if ( $key=="ENTREPANS" || $key=="BOCADILLOS" || $key=="SANDWICHES"){
+            $entrepans='<p class="alert alert-info " role="alert">'.l("HORARI_ENTREPANS", FALSE).'</p>';
+        }else{
+            $entrepans="";
+        }
       $k = $nom = $this->normalitzar($key);
       $nom = l($key, FALSE);
 
@@ -1882,7 +1888,7 @@ ORDER BY carta_subfamilia_order,carta_plats_nom_es , carta_plats_nom_ca";
 
       $obreSeccio = " [ms_tab title='$nom' icon='xfa-leaf']" . PHP_EOL;
       $obreSeccio .= '<p><b>' . $nom . '</b></p>' . PHP_EOL;
-      $seccio = $this->seccioCartaWeb($arCarta, $key, $class);
+      $seccio =$entrepans . $this->seccioCartaWeb($arCarta, $key, $class);
       $tancaSeccio = '[/ms_tab]' . PHP_EOL . PHP_EOL;
 
       $carta .= $obreSeccio . PHP_EOL . $seccio . PHP_EOL . $tancaSeccio;
