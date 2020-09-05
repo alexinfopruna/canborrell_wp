@@ -1,0 +1,2462 @@
+[33mcommit ec50353f0db1bfd92c653181c317795838486b6b[m
+Author: Àlex Garcia <agarci9@xtec.cat>
+Date:   Fri Apr 10 09:06:47 2020 +0200
+
+    coronavirus deixa pas per admin
+
+[33mcommit f66a6aefef3ee33296aa527ccf9f53eaadfc9a70[m
+Author: Àlex Garcia <agarci9@xtec.cat>
+Date:   Sat Mar 14 17:09:18 2020 +0100
+
+    missatge tancat
+
+[33mcommit 323300e327c30d234f2a39444d07691675ddfdec[m
+Author: Àlex Garcia <agarci9@xtec.cat>
+Date:   Thu Feb 20 15:36:37 2020 +0100
+
+    TPV self...
+
+[33mcommit ede75826633b06f6fb69aa81412a1834252df526[m
+Author: Àlex Garcia <agarci9@xtec.cat>
+Date:   Thu Feb 20 00:17:27 2020 +0100
+
+    TPV self...
+
+[33mcommit 52890c85573fbfe5d4ed19164b8527723cb30d36[m
+Author: Àlex Garcia <agarci9@xtec.cat>
+Date:   Thu Feb 20 00:05:34 2020 +0100
+
+    TPV self...
+
+[33mcommit fea91cacbfca1a7788370f5b4c301875d222ecff[m
+Author: Àlex Garcia <agarci9@xtec.cat>
+Date:   Wed Feb 19 23:58:36 2020 +0100
+
+    TPV self...
+
+[33mcommit 07057f913db2a3f8ab9a35eacf8604903453aef5[m
+Author: Àlex Garcia <agarci9@xtec.cat>
+Date:   Wed Feb 19 21:39:35 2020 +0100
+
+    TPV self...
+
+[33mcommit e72ece70edc1532cea698d8773383e716b29a5e4[m
+Author: Àlex Garcia <agarci9@xtec.cat>
+Date:   Wed Feb 19 20:01:21 2020 +0100
+
+    TPV self...
+
+[33mcommit bce32f4dde41f9c856ba55a5c369b65492ced602[m
+Author: Àlex Garcia <agarci9@xtec.cat>
+Date:   Sat Feb 15 13:59:14 2020 +0100
+
+    TPV target tARGET BLANK
+
+[33mcommit 8543af131d7b33baeffadb4bd95db9abddcd8e68[m
+Author: Àlex Garcia <agarci9@xtec.cat>
+Date:   Sat Feb 15 13:54:23 2020 +0100
+
+    TPV target tARGET BLANK
+
+[33mcommit b5036774a89029fe6e6c869a24e7501acde99eda[m
+Merge: d3ded91 17a9565
+Author: Àlex Garcia <agarci9@xtec.cat>
+Date:   Fri Feb 14 08:25:46 2020 +0100
+
+    Merge branch 'master' into error_tpv_blank
+    
+    el boto continua 'amagava Ho he arreglat a master i hopasso a error_tpv_blank
+
+[33mcommit 17a95651183cc0a2e2c2bf47eae1fc76d5164275[m
+Author: Àlex Garcia <agarci9@xtec.cat>
+Date:   Fri Feb 14 08:23:38 2020 +0100
+
+    menu/carta continue
+
+[33mcommit d3ded9143b10860cd895fe8435fc1ea8ef9b38bf[m
+Author: Àlex Garcia <agarci9@xtec.cat>
+Date:   Sat Feb 8 08:30:53 2020 +0100
+
+    text asunt mail confirmada
+
+[33mcommit 4324778e857426aadf9c3af5caa0c913bc09a661[m
+Author: Àlex Garcia <agarci9@xtec.cat>
+Date:   Sat Feb 8 08:23:57 2020 +0100
+
+    text resposta TPV
+
+[33mcommit c39d9291056fcc007006df9eea860dbb1f190a10[m
+Author: Àlex Garcia <agarci9@xtec.cat>
+Date:   Sat Feb 8 07:53:00 2020 +0100
+
+    text sms
+
+[33mcommit fa141820be731a294554991705663fdf11b1c1d8[m
+Author: Àlex Garcia <agarci9@xtec.cat>
+Date:   Sat Feb 8 07:29:26 2020 +0100
+
+    error class paga_i_senyal
+
+[33mcommit 4d826fa1920da531d5cfe2358f4734b1976596d6[m
+Author: Àlex Garcia <agarci9@xtec.cat>
+Date:   Fri Feb 7 08:55:34 2020 +0100
+
+    mes textes... plantilles lbi
+
+[33mcommit 9f3b5988d832ac7ae0fc24f2bd153e2668ef39a3[m
+Author: Àlex Garcia <agarci9@xtec.cat>
+Date:   Thu Feb 6 23:47:38 2020 +0100
+
+    grups finestra pròpia
+
+[33mcommit b73ba75a9b396cddbbbcf6e5e2b1723b20518e16[m
+Author: Àlex Garcia <agarci9@xtec.cat>
+Date:   Thu Feb 6 23:42:57 2020 +0100
+
+    TPV TRANS=0 per grups
+
+[33mcommit 2f38443553a749aa7d1f759118ef8c581d513908[m
+Author: Àlex Garcia <agarci9@xtec.cat>
+Date:   Thu Feb 6 23:08:01 2020 +0100
+
+    TPV error TRANS=7 per grups
+
+[33mcommit d089ecc79fe762b354d7c0dd28e6a294696c5383[m
+Author: Àlex Garcia <agarci9@xtec.cat>
+Date:   Thu Feb 6 22:59:48 2020 +0100
+
+    TPV TRANS=0 per grups
+
+[33mcommit a5db270dfa0838d28d4ef5212bb74675e5bad78f[m
+Author: Àlex Garcia <agarci9@xtec.cat>
+Date:   Thu Feb 6 00:06:44 2020 +0100
+
+    TPV TRANS=7
+
+[33mcommit cc6e8f4c39d83943eaa2dcbc091f4458aa76f1e8[m
+Author: Àlex Garcia <agarci9@xtec.cat>
+Date:   Wed Feb 5 23:18:01 2020 +0100
+
+    pagament ok
+
+[33mcommit 27084374635a72aaf638d7e5f22578b70f31a822[m
+Author: Àlex Garcia <agarci9@xtec.cat>
+Date:   Wed Feb 5 23:14:19 2020 +0100
+
+    textes corregits 80%, tanca finestra TPV
+
+[33mcommit 2cf3a8d4d40e91a8f6a426ddf10011fd4917d99d[m
+Author: Àlex Garcia <agarci9@xtec.cat>
+Date:   Wed Feb 5 22:57:26 2020 +0100
+
+    pagament ok
+
+[33mcommit acac07ee54a8ac5914dba9ff8693aababb205333[m
+Author: Àlex Garcia <agarci9@xtec.cat>
+Date:   Wed Feb 5 22:55:44 2020 +0100
+
+    pagament ok
+
+[33mcommit 6c6b32613248dac0af62b3278157fda39df47009[m
+Author: Àlex Garcia <agarci9@xtec.cat>
+Date:   Tue Feb 4 22:28:05 2020 +0100
+
+    pagament ok
+
+[33mcommit 596171f03c1e4fe6b422f5060d6f2f77a23331c1[m
+Author: Àlex Garcia <agarci9@xtec.cat>
+Date:   Tue Feb 4 21:37:33 2020 +0100
+
+    pagament ok
+
+[33mcommit 4461b0a4f9157880d3d4c3eb226b89c074cb586a[m
+Author: Àlex Garcia <agarci9@xtec.cat>
+Date:   Tue Feb 4 21:34:51 2020 +0100
+
+    pagament ok
+
+[33mcommit 920fa5f8b82e3567b4844f8c153e2fc9796c6421[m
+Author: Àlex Garcia <agarci9@xtec.cat>
+Date:   Thu Jan 30 08:18:28 2020 +0100
+
+    tpv popup
+
+[33mcommit a62a1ca3473b32751bb8f80e9b2a7e78c0d66e89[m
+Author: Àlex Garcia <agarci9@xtec.cat>
+Date:   Wed Jan 29 16:58:33 2020 +0100
+
+    tpv popup
+
+[33mcommit 68b9ea6b0076980d7ec8cc3c2f209d14413863bf[m
+Author: Àlex Garcia <agarci9@xtec.cat>
+Date:   Tue Jan 21 23:42:20 2020 +0100
+
+    tpv iframe
+
+[33mcommit c97b9b630b74f619941ec70ad9a90ee65968eab9[m
+Author: Àlex Garcia <agarci9@xtec.cat>
+Date:   Tue Jan 21 23:36:51 2020 +0100
+
+    tpv iframe
+
+[33mcommit ad04ef2b0e7d7a1f272cdab8a48766bcca743e5a[m
+Author: Àlex Garcia <agarci9@xtec.cat>
+Date:   Tue Jan 21 22:49:45 2020 +0100
+
+    err tpv
+
+[33mcommit 8ca354cb930251d4410194b91672e8d3546c0427[m
+Author: Àlex Garcia <agarci9@xtec.cat>
+Date:   Tue Jan 21 11:01:32 2020 +0100
+
+    tpv authentication PROVES
+
+[33mcommit b504ac5c5bfee9b1db688d015924a51d5cd304c3[m
+Author: Àlex Garcia <agarci9@xtec.cat>
+Date:   Tue Jan 21 09:22:54 2020 +0100
+
+    tpv authentication PROVES
+
+[33mcommit 7e40ab263bd6eff66b0682f962dc678a17679107[m
+Author: Àlex Garcia <agarci9@xtec.cat>
+Date:   Tue Jan 21 09:21:11 2020 +0100
+
+    tpv authentication PROVES
+
+[33mcommit 51cedc7fbbe4d29a490882a9b0f8c640b062cf7a[m
+Author: Àlex Garcia <agarci9@xtec.cat>
+Date:   Mon Jan 20 22:25:27 2020 +0100
+
+    tpv authentication PROVES
+
+[33mcommit c07a3a5761a51434fecc296855191c9733e427a5[m
+Author: Àlex Garcia <agarci9@xtec.cat>
+Date:   Mon Jan 20 22:15:48 2020 +0100
+
+    tpv authentication PROVES
+
+[33mcommit 1b90c769ee08d8fdf9a250982693693089ab4ffe[m
+Author: Àlex Garcia <agarci9@xtec.cat>
+Date:   Mon Jan 20 21:46:45 2020 +0100
+
+    tpv authentication PROVES
+
+[33mcommit 0f25c7d07bb737b1f8e6b4e8c77da7a359effaac[m
+Author: Àlex Garcia <agarci9@xtec.cat>
+Date:   Mon Jan 20 21:40:43 2020 +0100
+
+    tpv authentication PROVES
+
+[33mcommit 2d752cd97ce18ff3e5c14d9367e981c1199d9bbd[m
+Author: Àlex Garcia <agarci9@xtec.cat>
+Date:   Mon Jan 20 21:38:56 2020 +0100
+
+    tpv authentication PROVES
+
+[33mcommit 8f159e11a008e518d701b96879fa61c7b78f87f8[m
+Author: Àlex Garcia <agarci9@xtec.cat>
+Date:   Mon Jan 20 21:20:48 2020 +0100
+
+    tpv authentication PROVES
+
+[33mcommit e919af43d1ee4193d4b9aaf36035b5643f7159b4[m
+Author: Àlex Garcia <agarci9@xtec.cat>
+Date:   Mon Jan 20 19:58:24 2020 +0100
+
+    tpv authentication PROVES
+
+[33mcommit acf65cac8867bce5993f29b50266b7acb8d6eea3[m
+Author: Àlex Garcia <agarci9@xtec.cat>
+Date:   Mon Jan 20 19:55:36 2020 +0100
+
+    tpv authentication PROVES
+
+[33mcommit 63210b475807eda5a8003eea76d46dbd239b7e02[m
+Author: Àlex Garcia <agarci9@xtec.cat>
+Date:   Mon Jan 20 19:52:09 2020 +0100
+
+    tpv authentication PROVES
+
+[33mcommit 495dd5c92f1eea90c14ba1797b67e5d2d620754c[m
+Author: Àlex Garcia <agarci9@xtec.cat>
+Date:   Mon Jan 20 16:08:42 2020 +0100
+
+    tpv authentication PROVES
+
+[33mcommit 6ad9e5732c14841766639e349905ea04f95af1ba[m
+Author: Àlex Garcia <agarci9@xtec.cat>
+Date:   Mon Jan 20 16:03:56 2020 +0100
+
+    tpv authentication PROVES
+
+[33mcommit 0da72de82c2b8f0c4dbd635ca31f990ae880cdbd[m
+Author: Àlex Garcia <agarci9@xtec.cat>
+Date:   Mon Jan 20 16:00:18 2020 +0100
+
+    tpv authentication PROVES
+
+[33mcommit c04db2866b015e238e1b6a5378481a5f8bbf3cab[m
+Author: Àlex Garcia <agarci9@xtec.cat>
+Date:   Sun Jan 5 22:17:35 2020 +0100
+
+    FFF
+
+[33mcommit e44e4d29fec0afa905b6d178be0b36230d19b54b[m
+Author: Àlex Garcia <agarci9@xtec.cat>
+Date:   Sun Dec 22 18:07:15 2019 +0100
+
+    menus nadal GRUPS
+
+[33mcommit 6a6ee1f74060cbb468ebfae90470fe58a9cd3250[m
+Author: Àlex Garcia <agarci9@xtec.cat>
+Date:   Sun Dec 22 17:51:09 2019 +0100
+
+    treuremenu n4 del nadal
+
+[33mcommit 603c56b3e0825313f7c284543fedd686b9dd2d63[m
+Author: Àlex Garcia <agarci9@xtec.cat>
+Date:   Sun Dec 22 12:18:20 2019 +0100
+
+    error menus nadal dia1i dia6, if tallat
+
+[33mcommit c532a918aca13e409f1bbe12bfefc2aad8de8940[m
+Author: Àlex Garcia <agarci9@xtec.cat>
+Date:   Wed Nov 27 17:27:49 2019 +0100
+
+    esmorzars 10:00, 10:30 sense restriccions
+
+[33mcommit 34643d7fa462bb59e9073b95cde39208404603b6[m
+Author: Àlex Garcia <agarci9@xtec.cat>
+Date:   Wed Nov 27 16:09:20 2019 +0100
+
+    esmorzars i gossos
+
+[33mcommit 92b5eb9b3b5e71033a333d2fe64a7655e51c9536[m
+Merge: ee962cf 699db70
+Author: Àlex Garcia <agarci9@xtec.cat>
+Date:   Sun Nov 24 23:01:36 2019 +0100
+
+    esmorzars finde o festiu merge blauclicl
+
+[33mcommit 699db70b5c751b80e4b9c0c369921e0503874712[m
+Author: Àlex Garcia <agarci9@xtec.cat>
+Date:   Sun Nov 24 22:54:33 2019 +0100
+
+    esmorzars finde o festiu
+
+[33mcommit 63b62ef6be8080b66f1065500d995e036f6aa347[m
+Author: Àlex Garcia <agarci9@xtec.cat>
+Date:   Wed Nov 20 12:45:08 2019 +0100
+
+    esmorzars només dissabtes + sopars
+
+[33mcommit 5e3464e33bbddeddc7d0e30edb130b70a267b270[m
+Author: Àlex Garcia <agarci9@xtec.cat>
+Date:   Mon Nov 11 08:47:29 2019 +0100
+
+    info nadal
+
+[33mcommit 6902da4f984d074649d179337e1c712a26f57b28[m
+Author: Àlex Garcia <agarci9@xtec.cat>
+Date:   Mon Nov 11 08:45:21 2019 +0100
+
+    info nadal
+
+[33mcommit ed97d074a44b7ce7bdd26a5346ca27cbe31f1ba3[m
+Author: Àlex Garcia <agarci9@xtec.cat>
+Date:   Sat Nov 9 09:02:01 2019 +0100
+
+    cache
+
+[33mcommit 78219c4e99605fc22d349f56dd609b0a2c67c45f[m
+Author: Àlex Garcia <agarci9@xtec.cat>
+Date:   Sat Nov 9 09:00:36 2019 +0100
+
+    cache
+
+[33mcommit 25162cf2d37ed31c9cfc49c07b3a8b9706d5efa0[m
+Author: Àlex Garcia <agarci9@xtec.cat>
+Date:   Sat Nov 9 00:33:22 2019 +0100
+
+    dies especials -6/1 / control boto continue
+
+[33mcommit ee962cf6672ad32d780511aab79cea3bb42f3594[m
+Author: Àlex Garcia <agarci9@xtec.cat>
+Date:   Sat Nov 9 00:10:09 2019 +0100
+
+    dies especials
+
+[33mcommit 805f2cf3444edb4db4ca777a7bd2ec7b06ae5947[m
+Author: icastelletdam2 <alexinfopruna@gmail.com>
+Date:   Tue May 14 21:21:59 2019 +0200
+
+    MAX_hora corregit
+
+[33mcommit 1dc1ca53d9e67e61c58e7807d20b940bcc9efb0f[m
+Author: icastelletdam2 <alexinfopruna@gmail.com>
+Date:   Sat May 11 15:22:07 2019 +0200
+
+    ataula, relative right, bottom
+
+[33mcommit 6ba23e2d28bf1e91ac15bed5ca38e27cf0cd813e[m
+Author: icastelletdam2 <alexinfopruna@gmail.com>
+Date:   Sat May 11 13:47:02 2019 +0200
+
+    ataula, relative right, bottom
+
+[33mcommit 1d90965cef19be5a1ba25cfd2d71bdd4e9de113b[m
+Author: icastelletdam2 <alexinfopruna@gmail.com>
+Date:   Sat May 11 13:28:23 2019 +0200
+
+    ataula, relative right, bottom
+
+[33mcommit 0f57edf9b9d39a53d0fd770518fdbf7a9dc69c58[m
+Author: icastelletdam2 <alexinfopruna@gmail.com>
+Date:   Sat May 11 13:22:40 2019 +0200
+
+    ataula, relative right, bottom
+
+[33mcommit d7f2931ec3154f7fcef3b8595fd37b106ff4e28a[m
+Author: icastelletdam2 <alexinfopruna@gmail.com>
+Date:   Sat May 11 13:00:29 2019 +0200
+
+    ataula, relative right, bottom
+
+[33mcommit 17cbb26787c7ba85a823a05044aae3a27a619a16[m
+Author: icastelletdam2 <alexinfopruna@gmail.com>
+Date:   Sat May 11 12:58:33 2019 +0200
+
+    ataula, relative right, bottom
+
+[33mcommit 4d67dcab3106a72c8901153a5ff711e3d924f72e[m
+Author: icastelletdam2 <alexinfopruna@gmail.com>
+Date:   Sat May 11 12:55:50 2019 +0200
+
+    ataula, relative right, bottom
+
+[33mcommit 63e24d0d470e8c833377b178903ffab401523297[m
+Author: icastelletdam2 <alexinfopruna@gmail.com>
+Date:   Sat May 11 12:54:10 2019 +0200
+
+    ataula, relative right, bottom
+
+[33mcommit ededc3d93cd3a126a3fd0c9190b3910476ee6a64[m
+Author: icastelletdam2 <alexinfopruna@gmail.com>
+Date:   Sun May 5 09:17:59 2019 +0200
+
+    disable checkbox
+
+[33mcommit 5d50f5588919309242d948ca05582a6c1f09c3f9[m
+Author: icastelletdam2 <alexinfopruna@gmail.com>
+Date:   Thu May 2 12:47:25 2019 +0200
+
+    correccions premisis config (calsoton, max_hora, creataules)
+
+[33mcommit 481c015a825d16a23937e066d10d82eb4d55193f[m
+Author: icastelletdam2 <alexinfopruna@gmail.com>
+Date:   Fri Apr 12 23:00:12 2019 +0200
+
+    pastis a print
+
+[33mcommit 3b9075fd701059e7730392786556b52d103ee63b[m
+Author: icastelletdam2 <alexinfopruna@gmail.com>
+Date:   Fri Apr 12 22:36:45 2019 +0200
+
+    pastis a print
+
+[33mcommit 5a5060bfae37ccf60f709e1f063f8d099d2a909b[m
+Author: icastelletdam2 <alexinfopruna@gmail.com>
+Date:   Tue Apr 2 11:58:23 2019 +0200
+
+    completat
+
+[33mcommit 2b19d362d901e2fdb7ee957dfab5b3a90522cf38[m
+Author: icastelletdam2 <alexinfopruna@gmail.com>
+Date:   Tue Mar 26 11:13:45 2019 +0100
+
+    popup ok, preparant js comanda
+
+[33mcommit fc87e506f003dec271f652a6d5fd8d797a48988d[m
+Author: icastelletdam2 <alexinfopruna@gmail.com>
+Date:   Mon Mar 11 23:51:18 2019 +0100
+
+    grups totalcomensals
+
+[33mcommit 37691de32f218a1fe98f5803b88a5311a3b19f9b[m
+Author: icastelletdam2 <alexinfopruna@gmail.com>
+Date:   Fri Mar 1 19:40:04 2019 +0100
+
+    menus combinable permetre junior, infantil
+
+[33mcommit dedbbe815c110480e906f68b8eff3b69c61622b2[m
+Author: icastelletdam2 <alexinfopruna@gmail.com>
+Date:   Tue Feb 26 19:52:28 2019 +0100
+
+    print torn2
+
+[33mcommit 8868c20434c76b5a1acf1bfefd1794bf9b1c74a9[m
+Author: icastelletdam2 <alexinfopruna@gmail.com>
+Date:   Tue Feb 26 19:45:14 2019 +0100
+
+    print torn2
+
+[33mcommit 84fc2da5eda6d6b3f0a69449383004de7b4874dd[m
+Author: icastelletdam2 <alexinfopruna@gmail.com>
+Date:   Tue Feb 26 08:05:18 2019 +0100
+
+    progess ok, falta centrar, espais
+
+[33mcommit 109199657970da3c47b90983519593fe441fefa0[m
+Merge: 135239f 8148b5e
+Author: icastelletdam2 <alexinfopruna@gmail.com>
+Date:   Thu Feb 21 23:26:29 2019 +0100
+
+    Merge branch 'progressbar'
+    
+    Canvi al formulari, 24h abans EN LLOC DE fins a 11:00h
+
+[33mcommit 8148b5efa968f4f0b336e939c1d1731db0c2c0f8[m
+Author: icastelletdam2 <alexinfopruna@gmail.com>
+Date:   Thu Feb 21 23:26:09 2019 +0100
+
+    11:00h >> 24h
+
+[33mcommit 135239f057a35d92a0765fd8d858e8a2340f3090[m
+Author: icastelletdam2 <alexinfopruna@gmail.com>
+Date:   Thu Feb 21 21:17:04 2019 +0100
+
+    external ip
+
+[33mcommit ce848a7b5e0ffd292e6ecb87791ea5d6c8fc8ac5[m
+Author: icastelletdam2 <alexinfopruna@gmail.com>
+Date:   Thu Feb 21 21:14:08 2019 +0100
+
+    external ip
+
+[33mcommit eb6df11313e56f98d6dbad4fa2b8dafbef73af1c[m
+Merge: f48d671 b1e47d3
+Author: icastelletdam2 <alexinfopruna@gmail.com>
+Date:   Thu Feb 21 21:09:31 2019 +0100
+
+    Merge branch 'patchr_eserves_multitorns'
+    
+    en principi ja esta fet aquest join
+
+[33mcommit f48d6711eca656f4f063b0d4b34702f4a0b800b8[m
+Author: icastelletdam2 <alexinfopruna@gmail.com>
+Date:   Thu Feb 21 21:02:12 2019 +0100
+
+    get my ip
+
+[33mcommit c3a4271ccbaeb02369300179a3eaba98f03866f5[m
+Author: icastelletdam2 <alexinfopruna@gmail.com>
+Date:   Thu Feb 21 20:57:51 2019 +0100
+
+    confirmada
+
+[33mcommit 8df17be62a8bc969edc7928cd61160b3fdeaa8f8[m
+Author: icastelletdam2 <alexinfopruna@gmail.com>
+Date:   Thu Feb 21 16:39:41 2019 +0100
+
+    menus no combinables + 3 idiomes JS
+
+[33mcommit 22787285248acad14a7d26edd27dddf41c98fa59[m
+Author: icastelletdam2 <alexinfopruna@gmail.com>
+Date:   Thu Feb 21 15:08:27 2019 +0100
+
+    creataules ds-dg
+
+[33mcommit f475c5dd70642950de0ab7a588b074ba0e30cd0c[m
+Author: icastelletdam2 <alexinfopruna@gmail.com>
+Date:   Wed Feb 20 14:08:03 2019 +0100
+
+    crea taules ds+dg + varis
+
+[33mcommit b1e47d3a4399fb787362b3390619d12f67a7040b[m
+Author: icastelletdam2 <alexinfopruna@gmail.com>
+Date:   Wed Feb 13 13:23:54 2019 +0100
+
+    2 patch hores_disponibles 2 torns amb un torn reservat
+
+[33mcommit 06b85febb277a7e1386cde4443aec7be12a80d5b[m
+Author: icastelletdam2 <alexinfopruna@gmail.com>
+Date:   Sat Feb 2 16:29:39 2019 +0100
+
+    desactiva restriccions en 35 dies
+
+[33mcommit d13d4deb8989e8b3dc4156645b9a86538e547af3[m
+Author: icastelletdam2 <alexinfopruna@gmail.com>
+Date:   Thu Jan 24 00:33:40 2019 +0100
+
+    plantilla abort_tpv
+
+[33mcommit 087d9a25c69985cf41b71bcb4d841e38b3ba023c[m
+Author: icastelletdam2 <alexinfopruna@gmail.com>
+Date:   Thu Jan 24 00:25:25 2019 +0100
+
+    plantilla abort_tpv
+
+[33mcommit 984f84e17ffc6659ded344d50e1ae113e585c4b1[m
+Author: icastelletdam2 <alexinfopruna@gmail.com>
+Date:   Thu Jan 3 20:47:47 2019 +0100
+
+    primer mail impagada S'ha
+
+[33mcommit 59a7a8c6b5b375e97a4915a32507aff79594f5ca[m
+Author: icastelletdam2 <alexinfopruna@gmail.com>
+Date:   Thu Jan 3 20:26:42 2019 +0100
+
+    primer mail impagada S'ha
+
+[33mcommit 078c9c25337cf0c36836ac21f16c3b30ee50b0d8[m
+Author: icastelletdam2 <alexinfopruna@gmail.com>
+Date:   Thu Jan 3 20:21:06 2019 +0100
+
+    primer mail impagada S'ha
+
+[33mcommit 1666295b530fbca656403c1b16ab7a282bcceb26[m
+Author: icastelletdam2 <alexinfopruna@gmail.com>
+Date:   Thu Jan 3 19:28:49 2019 +0100
+
+    primer mail impagada S'ha
+
+[33mcommit 5d06de5750c6b69869324d68472f72b364e1ac99[m
+Author: icastelletdam2 <alexinfopruna@gmail.com>
+Date:   Thu Jan 3 19:26:26 2019 +0100
+
+    primer mail impagada S'ha
+
+[33mcommit b6d4f373e591ff51a51edebfd1702a6ba63e8bea[m
+Author: icastelletdam2 <alexinfopruna@gmail.com>
+Date:   Thu Jan 3 19:22:54 2019 +0100
+
+    primer mail impagada
+
+[33mcommit 5a2a69c3e366ef2c645383f365c9401470adc0d4[m
+Author: icastelletdam2 <alexinfopruna@gmail.com>
+Date:   Thu Jan 3 18:54:55 2019 +0100
+
+    mail error tpv
+
+[33mcommit 13f666526ac060cee85fe43d69c632f5793de8cb[m
+Author: icastelletdam2 <alexinfopruna@gmail.com>
+Date:   Thu Jan 3 18:27:04 2019 +0100
+
+    mail error tpv
+
+[33mcommit b64f8bc8a48b60947d57ab541ac94129753d70c7[m
+Author: icastelletdam2 <alexinfopruna@gmail.com>
+Date:   Sun Dec 2 17:14:04 2018 +0100
+
+    ordre config
+
+[33mcommit b3689ef1b0d7acde93c8daabfb00f2b95c910283[m
+Author: icastelletdam2 <alexinfopruna@gmail.com>
+Date:   Sun Dec 2 00:43:22 2018 +0100
+
+    correccio paperera (die)
+
+[33mcommit 13ae9294b9da808815a8501e0e7fd00e87e19fe7[m
+Author: icastelletdam2 <alexinfopruna@gmail.com>
+Date:   Sun Dec 2 00:07:33 2018 +0100
+
+    envia email webmaster
+
+[33mcommit 8ea09f3fe2bbec9774241cbb9604274b876e5b22[m
+Author: icastelletdam2 <alexinfopruna@gmail.com>
+Date:   Sat Dec 1 23:57:33 2018 +0100
+
+    -aAfegit paperera reserves per cancel / afegit recuperareserva / new Ususari permision=31
+
+[33mcommit f4e8a9782b4f216e4b215eba0ff0abaa69e3e1bf[m
+Author: icastelletdam2 <alexinfopruna@gmail.com>
+Date:   Sat Dec 1 00:02:02 2018 +0100
+
+    testTPV
+
+[33mcommit 80f8760a7c78881a1861962c89a8540b7ca3a876[m
+Author: icastelletdam2 <alexinfopruna@gmail.com>
+Date:   Fri Nov 30 22:20:52 2018 +0100
+
+    testTPV
+
+[33mcommit 86aec196f51d5700652a9c2d2ca5ccad467be7b1[m
+Author: icastelletdam2 <alexinfopruna@gmail.com>
+Date:   Wed Nov 28 09:52:08 2018 +0100
+
+    problema cancel reserva
+
+[33mcommit cbc6c3ee9b85416264a2aa227983951f080981f9[m
+Author: icastelletdam2 <alexinfopruna@gmail.com>
+Date:   Tue Nov 27 22:24:02 2018 +0100
+
+    postres angles + correccions carta
+
+[33mcommit 519f5350b7c023a20a4f445d3ff60fa6da476366[m
+Author: icastelletdam2 <alexinfopruna@gmail.com>
+Date:   Thu Nov 22 10:53:46 2018 +0100
+
+    afegir gelats
+
+[33mcommit 59f07ea090a2eac688a75b1fb69d1af07e4a3d24[m
+Author: icastelletdam2 <alexinfopruna@gmail.com>
+Date:   Thu Nov 22 10:50:36 2018 +0100
+
+    afegir gelats
+
+[33mcommit fd82b047b77277d7c72243a16dce12b5d3b799fd[m
+Author: icastelletdam2 <alexinfopruna@gmail.com>
+Date:   Thu Nov 22 10:18:48 2018 +0100
+
+    cancel + SMS, nova carta
+
+[33mcommit abc7609759b04dae6388091285d25a2828ebbc2b[m
+Author: icastelletdam2 <alexinfopruna@gmail.com>
+Date:   Thu Nov 22 09:48:36 2018 +0100
+
+    cancel + SMS, nova carta
+
+[33mcommit 8af6a65b355e0b78936193778c6dbece9b808ac1[m
+Author: icastelletdam2 <alexinfopruna@gmail.com>
+Date:   Thu Nov 22 09:34:20 2018 +0100
+
+    + valida update carta
+
+[33mcommit bf633492e670aca1ddb79a8153caae3ceabb998d[m
+Author: icastelletdam2 <alexinfopruna@gmail.com>
+Date:   Thu Nov 22 09:32:26 2018 +0100
+
+    cancel + SMS, nova carta
+
+[33mcommit f88ff5d5aa6242620b7ed35e75f08c01f27f9696[m
+Author: icastelletdam2 <alexinfopruna@gmail.com>
+Date:   Sun Nov 18 17:03:11 2018 +0100
+
+    redirect resvalida update_carta file_exist + regexp format
+
+[33mcommit ba05521771d5c010e0e979202f9fb3065175afed[m
+Author: icastelletdam2 <alexinfopruna@gmail.com>
+Date:   Sun Nov 18 15:26:58 2018 +0100
+
+    merge grups_carta
+
+[33mcommit 162ed7ffb5faf7f288b3779b8d2402d194fc0741[m
+Author: icastelletdam2 <alexinfopruna@gmail.com>
+Date:   Sun Nov 18 15:24:00 2018 +0100
+
+    0update_carta
+
+[33mcommit 6aae9dfb21c2073bbee44685384c004be71ed1fa[m
+Author: icastelletdam2 <alexinfopruna@gmail.com>
+Date:   Sun Nov 18 15:23:06 2018 +0100
+
+    update_carta
+
+[33mcommit e7f138747fb9ebe01872f5fec1feb699cc418404[m
+Author: icastelletdam2 <alexinfopruna@gmail.com>
+Date:   Fri Oct 26 00:23:29 2018 +0200
+
+    edit reserva desplegable carta
+
+[33mcommit dd31cbf99115ec8c773a57f682c29252ffe1d87d[m
+Author: icastelletdam2 <alexinfopruna@gmail.com>
+Date:   Fri Oct 26 00:18:12 2018 +0200
+
+    edit reserva desplegable carta
+
+[33mcommit aeebae9a86b258269c44ec9bd799618dbf93236d[m
+Author: icastelletdam2 <alexinfopruna@gmail.com>
+Date:   Wed Oct 10 10:48:31 2018 +0200
+
+    testSMS
+
+[33mcommit 8fe4b9cd152700ce6bf28d8d53e323d1c3cb6de2[m
+Author: icastelletdam2 <alexinfopruna@gmail.com>
+Date:   Wed Oct 10 10:47:11 2018 +0200
+
+    testSMS
+
+[33mcommit 352f541ce270c55fbe56d95f7bee4730e744714a[m
+Author: icastelletdam2 <alexinfopruna@gmail.com>
+Date:   Wed Oct 10 10:37:10 2018 +0200
+
+    fitxer config essendex_config.php per dades de connexió al CONFIG_INC
+
+[33mcommit a3422f2e5b2a035e9377cc74b001b86ae1ec9051[m
+Author: icastelletdam2 <alexinfopruna@gmail.com>
+Date:   Wed Oct 3 12:44:42 2018 +0200
+
+    correccio SQL update  menu = NULL
+
+[33mcommit 0c48ac7d0bc02ad84df83af483b8a3f5fc3d6c26[m
+Author: icastelletdam2 <alexinfopruna@gmail.com>
+Date:   Thu Sep 27 12:28:56 2018 +0200
+
+    edit_reserva permet modificar comanda
+
+[33mcommit b648c52e1f2c9eb8a5e94cbc6097b8a806553ff2[m
+Author: icastelletdam2 <alexinfopruna@gmail.com>
+Date:   Mon Sep 17 10:45:59 2018 +0200
+
+    dies blanc/negres no actuen en la data actual /// Elimino el cartell de paga i senyal, a la barra dere de formulari petites i al popup d'ajuda.>> -display:none  a reservar/tanslate_ca.php
+
+[33mcommit 7dd2e1ba433f16b9ddb57993b39a6ce9ad98346d[m
+Author: icastelletdam2 <alexinfopruna@gmail.com>
+Date:   Wed Jun 27 17:36:07 2018 +0200
+
+    dies especials falla
+
+[33mcommit 3ad85185ce43d6967c79c8803b7e87da40864101[m
+Author: icastelletdam2 <alexinfopruna@gmail.com>
+Date:   Wed Jun 27 17:34:30 2018 +0200
+
+    dies especials falla
+
+[33mcommit c5173685f7a74b51248850e7abd5e72e3156bd5f[m
+Author: icastelletdam2 <alexinfopruna@gmail.com>
+Date:   Wed Jun 27 17:31:35 2018 +0200
+
+    dies especials falla
+
+[33mcommit 5874cdba21ef1e7d4cb95f9d380a4f9cc6cdadcc[m
+Author: icastelletdam2 <alexinfopruna@gmail.com>
+Date:   Wed Jun 27 17:29:13 2018 +0200
+
+    dies especials falla
+
+[33mcommit e216959f87206c7366d885d17d0b795eb76b9657[m
+Author: icastelletdam2 <alexinfopruna@gmail.com>
+Date:   Wed Jun 27 17:28:23 2018 +0200
+
+    dies especials falla
+
+[33mcommit ee0e9abd014b6c869bce66194aa15c72b0279e7e[m
+Author: icastelletdam2 <alexinfopruna@gmail.com>
+Date:   Wed Jun 27 17:26:32 2018 +0200
+
+    dies especials falla
+
+[33mcommit 57a56996ca88b8ca82483837e1390305ba0e9e46[m
+Author: icastelletdam2 <alexinfopruna@gmail.com>
+Date:   Wed Jun 27 17:25:45 2018 +0200
+
+    dies especials falla
+
+[33mcommit c7d28579b566c9f08888cc2a1e95959d381705e7[m
+Author: icastelletdam2 <alexinfopruna@gmail.com>
+Date:   Wed Jun 27 17:24:16 2018 +0200
+
+    dies especials falla
+
+[33mcommit 2a2ae897bb571692e981d392ab9d410066b398bc[m
+Author: icastelletdam2 <alexinfopruna@gmail.com>
+Date:   Wed Jun 27 17:23:14 2018 +0200
+
+    dies especials falla
+
+[33mcommit 5dd8b117a1b257b4c55bc1feb6cfb0ee4d48869e[m
+Author: icastelletdam2 <alexinfopruna@gmail.com>
+Date:   Wed Jun 27 17:22:29 2018 +0200
+
+    dies especials falla
+
+[33mcommit a24351448bb48415e6c532baba121e8c8f952b9d[m
+Author: icastelletdam2 <alexinfopruna@gmail.com>
+Date:   Wed Jun 27 17:21:26 2018 +0200
+
+    dies especials falla
+
+[33mcommit 1d6f5064015d54d83a5660f1b80d30db489a74ec[m
+Author: icastelletdam2 <alexinfopruna@gmail.com>
+Date:   Wed Jun 27 17:20:05 2018 +0200
+
+    dies especials falla
+
+[33mcommit 9c2d7d580ea052c200c498ea8645ecd55351b772[m
+Author: icastelletdam2 <alexinfopruna@gmail.com>
+Date:   Wed Jun 27 17:19:10 2018 +0200
+
+    dies especials falla
+
+[33mcommit 6e2538aaf7a20c69b370f951b426a299cee4fa79[m
+Author: icastelletdam2 <alexinfopruna@gmail.com>
+Date:   Wed Jun 27 17:18:10 2018 +0200
+
+    dies especials falla
+
+[33mcommit 3db485394fcf63bf97bcc895be8af5b74acafaa6[m
+Author: icastelletdam2 <alexinfopruna@gmail.com>
+Date:   Wed Jun 27 17:05:34 2018 +0200
+
+    dies especials falla
+
+[33mcommit df28889bc2a0647c975d1759868e0bc2a7a6c61f[m
+Author: icastelletdam2 <alexinfopruna@gmail.com>
+Date:   Wed Jun 27 17:04:51 2018 +0200
+
+    dies especials falla
+
+[33mcommit d60355d10a7df2a69b541b7285deb534ead89349[m
+Author: icastelletdam2 <alexinfopruna@gmail.com>
+Date:   Wed Jun 27 17:00:34 2018 +0200
+
+    dies especials falla
+
+[33mcommit 465eda9d4ea6649984e69a720b43010f18199d0f[m
+Author: icastelletdam2 <alexinfopruna@gmail.com>
+Date:   Wed Jun 27 16:59:49 2018 +0200
+
+    dies especials falla
+
+[33mcommit 56ecd0ad683825ab292554a5c7f7ea14db275146[m
+Author: icastelletdam2 <alexinfopruna@gmail.com>
+Date:   Wed Jun 27 16:58:57 2018 +0200
+
+    dies especials falla
+
+[33mcommit e91403645ecc1bb09382bab4058824fb42b729da[m
+Author: icastelletdam2 <alexinfopruna@gmail.com>
+Date:   Wed Jun 27 16:57:11 2018 +0200
+
+    dies especials falla
+
+[33mcommit 8735026f4a6dd1306792d76fecbd33d5b2e6efc5[m
+Author: icastelletdam2 <alexinfopruna@gmail.com>
+Date:   Wed Jun 27 16:56:31 2018 +0200
+
+    dies especials falla
+
+[33mcommit bf515551a0b8814014957c87cd011c8245445b8c[m
+Author: icastelletdam2 <alexinfopruna@gmail.com>
+Date:   Wed Jun 27 16:54:37 2018 +0200
+
+    dies especials falla
+
+[33mcommit f573a414179a6842f1ca1b3ceb70889c558c1314[m
+Author: icastelletdam2 <alexinfopruna@gmail.com>
+Date:   Tue Jun 26 14:30:14 2018 +0200
+
+    restriccions sense menu
+
+[33mcommit 99b10b607e54e8811948e59f55228b706da822a2[m
+Author: icastelletdam2 <alexinfopruna@gmail.com>
+Date:   Tue Jun 26 13:50:18 2018 +0200
+
+    faltaven 2
+
+[33mcommit a53d3b71c331ea7d0c8429be8c3eb7ae1c6099a0[m
+Author: icastelletdam2 <alexinfopruna@gmail.com>
+Date:   Wed Jun 13 00:59:53 2018 +0200
+
+    dies especials TOT BE!
+
+[33mcommit 36ba662cf25f46945ee68ba15d7221049b2d16ec[m
+Author: icastelletdam2 <alexinfopruna@gmail.com>
+Date:   Mon Jun 11 13:31:10 2018 +0200
+
+    convertat head, restriccions
+
+[33mcommit c6890380333571a45f7fcd63b0478c38f24dd526[m
+Author: icastelletdam2 <alexinfopruna@gmail.com>
+Date:   Sun Jun 10 18:46:15 2018 +0200
+
+    gestor_dies ok
+
+[33mcommit 1eddc2d9bcd70c127b1b964485a11ecb311273b7[m
+Author: icastelletdam2 <alexinfopruna@gmail.com>
+Date:   Fri Apr 13 11:12:13 2018 +0200
+
+    obervacions grups testarea
+
+[33mcommit 2a3b34956bbaee9e194e880cba7f648edee4eb30[m
+Author: icastelletdam2 <alexinfopruna@gmail.com>
+Date:   Tue Apr 10 12:49:39 2018 +0200
+
+    correccions preu_grup_persona variable + validacio form grups (dat0/hora en blanc) + pagament, preu amb decimals
+
+[33mcommit 64e130401325abd024c7d60c0b0ded10a1039638[m
+Author: icastelletdam2 <alexinfopruna@gmail.com>
+Date:   Mon Apr 2 12:56:34 2018 +0200
+
+    form grups, carta-menus boto continuar. Canvi text explicació
+
+[33mcommit 43bb4853f3b47f047a2ea507e5620e18030a5fe8[m
+Merge: b149d7e b34ef7f
+Author: icastelletdam2 <alexinfopruna@gmail.com>
+Date:   Sun Mar 25 18:30:10 2018 +0200
+
+    Merge branch 'master' into menjadors_bloquejats_taules
+
+[33mcommit b34ef7f7a6b01182812ffa5e1c1b7f84278c4cad[m
+Author: icastelletdam2 <alexinfopruna@gmail.com>
+Date:   Sun Mar 25 18:27:29 2018 +0200
+
+    textes pagament i reserva frups menus
+
+[33mcommit 448349f73004f17509626bdf73b2fef761a152bf[m
+Author: icastelletdam2 <alexinfopruna@gmail.com>
+Date:   Sun Mar 25 18:22:11 2018 +0200
+
+    textes pagament i reserva frups menus
+
+[33mcommit 7e76a339520852a165941b9de8495ad8ecdcb23f[m
+Author: icastelletdam2 <alexinfopruna@gmail.com>
+Date:   Sun Mar 25 18:06:51 2018 +0200
+
+    canvi text grups has de seleccionar menús2
+
+[33mcommit 741df74a24eeb5aa4a4ab924aeda3b02ae136cbe[m
+Author: icastelletdam2 <alexinfopruna@gmail.com>
+Date:   Sun Mar 25 17:51:15 2018 +0200
+
+    canvi text grups has de seleccionar menús
+
+[33mcommit b149d7e0c93a80e5e24700c9d4cef9888fee7e40[m
+Author: icastelletdam2 <alexinfopruna@gmail.com>
+Date:   Thu Mar 22 12:23:49 2018 +0100
+
+    anul·lat estat_menjador_form. Substituim tots els accessos a estat_menjadors
+
+[33mcommit a2cf58c7fd5dbd58f4833254976a1f74b8a31be7[m
+Merge: dd46a13 66eee24
+Author: icastelletdam2 <alexinfopruna@gmail.com>
+Date:   Thu Mar 22 10:57:26 2018 +0100
+
+    merge multipago
+
+[33mcommit 66eee2410f9feb65db12d7f9edcb9569d4a43e2e[m
+Author: icastelletdam2 <alexinfopruna@gmail.com>
+Date:   Thu Mar 22 10:55:05 2018 +0100
+
+    Problema Gestor no
+
+[33mcommit 3a027ca3e4bfb77927fdeb69023eb23a9e65d56a[m
+Author: icastelletdam2 <alexinfopruna@gmail.com>
+Date:   Wed Mar 21 21:57:08 2018 +0100
+
+    edit res.pagada transfer / tarja
+
+[33mcommit dd46a13fd7d2db120826e94e1c75727ca1e677c9[m
+Author: icastelletdam2 <alexinfopruna@gmail.com>
+Date:   Wed Mar 21 21:47:27 2018 +0100
+
+    menjadors_bloquejats_taules
+
+[33mcommit 19e60919316eb069b6ee2f68f6855eb7359cf26c[m
+Author: icastelletdam2 <alexinfopruna@gmail.com>
+Date:   Tue Mar 20 12:23:22 2018 +0100
+
+    ja funciona tot
+
+[33mcommit b5597ebf59fe690ad40c74e9f82c9d72d1407b40[m
+Author: icastelletdam2 <alexinfopruna@gmail.com>
+Date:   Tue Mar 20 03:07:59 2018 +0100
+
+    corrccions mail / compatibilitat
+
+[33mcommit bb66050e54c2fb281207e014dd54d33767208ddd[m
+Author: icastelletdam2 <alexinfopruna@gmail.com>
+Date:   Tue Mar 20 02:43:16 2018 +0100
+
+    corrccions mail / compatibilitat
+
+[33mcommit c6d76dc9f5adb2d1d06a3132e176e28f0bcd9387[m
+Author: icastelletdam2 <alexinfopruna@gmail.com>
+Date:   Tue Mar 20 02:42:01 2018 +0100
+
+    corrccions mail / compatibilitat
+
+[33mcommit 9c8d918cea7359adb999296ddb2bd904ea11c5c5[m
+Author: icastelletdam2 <alexinfopruna@gmail.com>
+Date:   Tue Mar 20 02:34:23 2018 +0100
+
+    corrccions mail / compatibilitat
+
+[33mcommit 38020cc9a176cf57ecfc8f7c3a2a3d1fe2b960a2[m
+Author: icastelletdam2 <alexinfopruna@gmail.com>
+Date:   Tue Mar 20 01:57:23 2018 +0100
+
+    corrccions mail / compatibilitat
+
+[33mcommit 2d1e0cf123fa43b8ec66ac82a498a0a4ca00872d[m
+Author: icastelletdam2 <alexinfopruna@gmail.com>
+Date:   Tue Mar 20 00:17:33 2018 +0100
+
+    corrccions mail / compatibilitat
+
+[33mcommit 3897f701a070ec0e3ba343a60f3c7936b3c755e3[m
+Author: icastelletdam2 <alexinfopruna@gmail.com>
+Date:   Mon Mar 19 11:10:52 2018 +0100
+
+    corregit max coberts
+
+[33mcommit f209f675427e98a49644b2495a2dd1370c9e2824[m
+Author: icastelletdam2 <alexinfopruna@gmail.com>
+Date:   Mon Mar 19 08:37:40 2018 +0100
+
+    corregit max coberts
+
+[33mcommit 7ce2ddc495c838e08dcb077a036b9e3e3a740266[m
+Author: icastelletdam2 <alexinfopruna@gmail.com>
+Date:   Mon Mar 19 07:44:20 2018 +0100
+
+    multipago valida - tot ok
+
+[33mcommit fa25b31a85ef2065d7171ac5f3ab4b832823aac6[m
+Merge: a50f2d5 6cb0a35
+Author: icastelletdam2 <alexinfopruna@gmail.com>
+Date:   Mon Mar 12 12:14:44 2018 +0100
+
+    liada
+
+[33mcommit a50f2d5d9caa574f060d85f86259ded7eb9ea5a9[m
+Merge: 16035ae af96c6f
+Author: icastelletdam2 <alexinfopruna@gmail.com>
+Date:   Mon Mar 12 12:12:07 2018 +0100
+
+    noborra·
+
+[33mcommit 6cb0a357bd4125b3ed569d36a952f8a2f90baf29[m
+Merge: 16035ae af96c6f
+Author: icastelletdam2 <alexinfopruna@gmail.com>
+Date:   Mon Mar 12 12:12:07 2018 +0100
+
+    noborra·
+
+[33mcommit 16035ae0bc2f7bc49aabc53e9a923a6680ad5d16[m
+Merge: c4a9276 56ead13
+Author: icastelletdam2 <alexinfopruna@gmail.com>
+Date:   Mon Mar 12 12:09:50 2018 +0100
+
+    jasta liada
+
+[33mcommit af96c6f0ce0899118875942da4cf9cf8d840e82a[m
+Merge: c4a9276 56ead13
+Author: icastelletdam2 <alexinfopruna@gmail.com>
+Date:   Mon Mar 12 12:09:50 2018 +0100
+
+    jasta liada
+
+[33mcommit c4a92766d265676d52e3a7b67343546684d129a8[m
+Author: icastelletdam2 <alexinfopruna@gmail.com>
+Date:   Fri Mar 2 18:49:54 2018 +0100
+
+    problema mail_confirma_pagament hora malament
+
+[33mcommit 56ead13245e951ec94a720a9b257e0b2f358be8c[m
+Author: icastelletdam2 <alexinfopruna@gmail.com>
+Date:   Fri Mar 2 18:49:54 2018 +0100
+
+    problema mail_confirma_pagament hora malament
+
+[33mcommit 27e542dd8ecc2fb6189d1f4c1976ef673a532258[m
+Author: icastelletdam2 <alexinfopruna@gmail.com>
+Date:   Thu Mar 1 15:43:23 2018 +0100
+
+    problema mail recirdatori link pagament2
+
+[33mcommit 0cbb4ecf8afbf7d2acf58763eec635765cb2f2d5[m
+Author: icastelletdam2 <alexinfopruna@gmail.com>
+Date:   Thu Mar 1 15:37:09 2018 +0100
+
+    problema mail recirdatori link pagament2
+
+[33mcommit c2d21df99ec84bf526206fba45fad014ba899715[m
+Author: icastelletdam2 <alexinfopruna@gmail.com>
+Date:   Thu Mar 1 15:05:44 2018 +0100
+
+    problema mail recirdatori link pagament
+
+[33mcommit c45ca2b178edfd883dc30dac6f2dbe89a7ae566a[m
+Author: icastelletdam2 <alexinfopruna@gmail.com>
+Date:   Tue Feb 27 12:19:54 2018 +0100
+
+    menu 4 NO combinable + problema IVA hardcoded
+
+[33mcommit 532c310c52636213d7c496167b81482feb06d841[m
+Author: icastelletdam2 <alexinfopruna@gmail.com>
+Date:   Wed Feb 21 09:35:51 2018 +0100
+
+    correccio data=NaN
+
+[33mcommit 0698b3b7671de483ad388f5435d34e1b7e81d37f[m
+Author: icastelletdam2 <alexinfopruna@gmail.com>
+Date:   Mon Feb 19 23:28:37 2018 +0100
+
+    caducades 0,1,3 + problema edit reserva NaN/NaN/NaN
+
+[33mcommit 4cbc9e4776275fa2b6d4c3f26c2c8612262269dc[m
+Author: icastelletdam2 <alexinfopruna@gmail.com>
+Date:   Mon Feb 19 23:11:24 2018 +0100
+
+    caducades 0,1,3 + problema edit reserva NaN/NaN/NaN
+
+[33mcommit 629d96c561b52b3ef7e7a47a451c7c1c291d7da6[m
+Author: icastelletdam2 <alexinfopruna@gmail.com>
+Date:   Thu Dec 14 11:11:56 2017 +0100
+
+    correccion taula-grups lligat per nom_taula+G. Ara senzillament miro que la reserva_id coincideixi. Les reserves conserven la numeració de grups
+
+[33mcommit 123760d40a39093e6e7c3e217840697b1e8da9b8[m
+Author: icastelletdam2 <alexinfopruna@gmail.com>
+Date:   Wed Dec 13 21:04:03 2017 +0100
+
+    nose que passa...
+
+[33mcommit 61eb40a8c56b9b819956497ad8b608157596dc43[m
+Author: icastelletdam2 <alexinfopruna@gmail.com>
+Date:   Wed Dec 13 20:58:48 2017 +0100
+
+    Problema amb el botons "Menjador" de control taules grups
+    Revert "totols galeries"
+    
+    This reverts commit 6dc75d11db538c02cb3c57ded77b0823551796f8.
+
+[33mcommit 9ceead26fb5327e78d2ec0fe6bdfdafd099d8526[m
+Author: icastelletdam2 <alexinfopruna@gmail.com>
+Date:   Wed Dec 13 11:18:24 2017 +0100
+
+    Creacio automatica de reserves de grups menjador >> Elimino el botó un cop ja s'ha creat la taula
+
+[33mcommit 6dc75d11db538c02cb3c57ded77b0823551796f8[m
+Author: icastelletdam2 <alexinfopruna@gmail.com>
+Date:   Sun Dec 3 01:17:31 2017 +0100
+
+    totols galeries
+
+[33mcommit 91a6555045ab9c10e63007a26d45572c58c9ba5e[m
+Author: icastelletdam2 <alexinfopruna@gmail.com>
+Date:   Sun Dec 3 00:41:27 2017 +0100
+
+    slideshow
+
+[33mcommit 3bf09a3ef434d49fd82791294616190473cb0b4c[m
+Author: icastelletdam2 <alexinfopruna@gmail.com>
+Date:   Thu Nov 30 11:36:06 2017 +0100
+
+    verify email hotmail
+
+[33mcommit bcd5835b191f67e40e8415175cea342d39f08140[m
+Author: icastelletdam2 <alexinfopruna@gmail.com>
+Date:   Tue Nov 28 11:43:08 2017 +0100
+
+    permuta grups + posicio barra
+
+[33mcommit 2c7529c3e63d5cd582e14ae756217e9b01ae314d[m
+Author: icastelletdam2 <alexinfopruna@gmail.com>
+Date:   Tue Nov 28 11:32:26 2017 +0100
+
+    permuta grups
+
+[33mcommit 1f013d79e7a6c998acc22463da3d176705d47c13[m
+Author: icastelletdam2 <alexinfopruna@gmail.com>
+Date:   Tue Nov 28 10:03:23 2017 +0100
+
+    error print sql hores_disponibles
+
+[33mcommit b45358def7c071022b661eb45a4adab1bb69accd[m
+Author: icastelletdam2 <alexinfopruna@gmail.com>
+Date:   Thu Nov 23 12:01:19 2017 +0100
+
+    dies setmana tots
+
+[33mcommit 70863c4adb1000a09ae6722ace9346f0c064aff2[m
+Author: icastelletdam2 <alexinfopruna@gmail.com>
+Date:   Thu Nov 23 00:34:04 2017 +0100
+
+    -adiasetmana desmarcat val TOT
+
+[33mcommit e16335d422411503a127e3669be4d1e27482d7db[m
+Author: icastelletdam2 <alexinfopruna@gmail.com>
+Date:   Thu Nov 23 00:13:39 2017 +0100
+
+    autocomplete mob 6 digits
+
+[33mcommit 378823262a40d2a0fe26817df0bc06c389a66eb2[m
+Author: icastelletdam2 <alexinfopruna@gmail.com>
+Date:   Thu Nov 23 00:07:12 2017 +0100
+
+    dies setmana a restriccions-taules + reserves grups a menjador
+
+[33mcommit f623e1411a5d00a157029c14f8baaf47a9f67f74[m
+Author: icastelletdam2 <alexinfopruna@gmail.com>
+Date:   Wed Nov 15 11:17:43 2017 +0100
+
+    ignores
+
+[33mcommit 8d38ccd498582a059e02a4e0a451bf6ef464e554[m
+Merge: 63d9d45 0c8db0d
+Author: icastelletdam2 <alexinfopruna@gmail.com>
+Date:   Wed Nov 15 10:58:28 2017 +0100
+
+    Merge branch 'restriccions_hores' of https://github.com/alexinfopruna/canborrell_wp into restriccions_hores
+
+[33mcommit 63d9d45a4757acff7e3de40d216d8080c3258192[m
+Author: icastelletdam2 <alexinfopruna@gmail.com>
+Date:   Wed Nov 15 10:55:30 2017 +0100
+
+    cr: restriccions sense taules disponibles
+
+[33mcommit 0c8db0da336860e408b579d19f0404e20d487af8[m
+Author: icastelletdam2 <alexinfopruna@gmail.com>
+Date:   Wed Nov 15 10:55:30 2017 +0100
+
+    cr: restriccions sense taules disponibles
+
+[33mcommit dc304e18ee5707b0c658d4d693ec3a6b98d4db4d[m
+Author: icastelletdam2 <alexinfopruna@gmail.com>
+Date:   Tue Nov 14 23:06:25 2017 +0100
+
+    v9.0.1 - crr:hores const
+
+[33mcommit 1606ee432231308027c34da3d85ec25a6047a7dc[m
+Author: icastelletdam2 <alexinfopruna@gmail.com>
+Date:   Tue Nov 14 22:34:20 2017 +0100
+
+    define arrayyyyyyyy
+
+[33mcommit e8723923d097a3997c1903c49533428d91aaee45[m
+Author: icastelletdam2 <alexinfopruna@gmail.com>
+Date:   Tue Nov 14 12:29:47 2017 +0100
+
+    restriccions x dies+coberts +++++ correccio dies llista_negra_grups
+
+[33mcommit b633e9ebb0bca21bc4c9aa1a3add6ef454b7be3d[m
+Merge: 0e9ed4b f9f587e
+Author: icastelletdam2 <alexinfopruna@gmail.com>
+Date:   Tue Nov 14 10:17:45 2017 +0100
+
+    Merge branch 'master' into restriccions_hores
+    
+    # Conflicts:
+    #	cb-reserves/panel/index.php
+
+[33mcommit f9f587eae48f94b02206a232b86691611696877f[m
+Author: icastelletdam2 <alexinfopruna@gmail.com>
+Date:   Mon Nov 13 11:43:32 2017 +0100
+
+    panel formularis link
+
+[33mcommit ae0def23db76e772435e65e077a7d731739bd506[m
+Author: icastelletdam2 <alexinfopruna@gmail.com>
+Date:   Mon Nov 13 11:41:06 2017 +0100
+
+    panel formularis link
+
+[33mcommit 3eddf6dae1ff9e1ff8a107962b2a14ac5be48fda[m
+Merge: ca99b94 6fb412e
+Author: icastelletdam2 <alexinfopruna@gmail.com>
+Date:   Mon Nov 13 11:24:20 2017 +0100
+
+    Merge branch 'master' of https://github.com/alexinfopruna/canborrell_wp
+    
+    EJEMMMMMM
+
+[33mcommit ca99b944fc7e57dd802d86c851ad4e6c0903354b[m
+Author: icastelletdam2 <alexinfopruna@gmail.com>
+Date:   Mon Nov 13 11:23:32 2017 +0100
+
+    corregit restriccions
+
+[33mcommit 0e9ed4b533a6477df281cf28c495208cba14db5e[m
+Author: icastelletdam2 <alexinfopruna@gmail.com>
+Date:   Thu Nov 9 07:07:35 2017 +0100
+
+    youtube
+
+[33mcommit 760dbe33e544a33e4008952a6189c8e4ad09ae32[m
+Author: alex <alexinfopruna@gmail.com>
+Date:   Thu Nov 9 00:46:18 2017 +0100
+
+    youuuuutubeee
+
+[33mcommit 56f06519aa2009440306fac61a1dd9ffc813a704[m
+Author: alex <alexinfopruna@gmail.com>
+Date:   Thu Nov 9 00:40:38 2017 +0100
+
+    youtube mobile
+
+[33mcommit ce57ac4d9024909d37a07e6917a1a72e381ab41c[m
+Author: alex <alexinfopruna@gmail.com>
+Date:   Tue Nov 7 12:38:40 2017 +0100
+
+     Tot ok + correccio hores_nens, cotxetsdonava error
+
+[33mcommit a7980b76040320cf1484d923c20996fff80585a2[m
+Author: alex <alexinfopruna@gmail.com>
+Date:   Tue Nov 7 12:28:14 2017 +0100
+
+     Tot ok + correccio hores_nens, cotxetsdonava error
+
+[33mcommit 09576edd58e463c9c1fd6dea22e3b7158db25305[m
+Author: alex <alexinfopruna@gmail.com>
+Date:   Sun Nov 5 17:07:36 2017 +0100
+
+    restriccions beta2
+
+[33mcommit 1491ce9019f9b4acbcec6e594ce6b34bf98409a1[m
+Author: alex <alexinfopruna@gmail.com>
+Date:   Sun Nov 5 17:07:10 2017 +0100
+
+    restriccions beta
+
+[33mcommit 6fb412ebbf8be4f6fbbf0aee0dfd2fd0f7d60d5b[m
+Author: alex <alexinfopruna@gmail.com>
+Date:   Mon Oct 30 07:11:00 2017 +0100
+
+    modificat form grups per mostrar carta si són FINS A 20. La carta no és obligatori triar
+
+[33mcommit 1a9b5b17c5f333b2693a651b09b7f980b85039e3[m
+Author: alex <alexinfopruna@gmail.com>
+Date:   Sun Oct 22 21:10:05 2017 +0200
+
+    cart per grups
+
+[33mcommit 3f2092a5f04bbc4b9ee4f2225071c4358597fc64[m
+Author: alex <alexinfopruna@gmail.com>
+Date:   Mon Oct 2 10:38:54 2017 +0200
+
+    activa torn2!
+
+[33mcommit 1c6ab46183b99a9bf2c665a04a78f0f1de356a7c[m
+Merge: 414d814 8ff4f31
+Author: alex <alexinfopruna@gmail.com>
+Date:   Thu Sep 28 18:20:36 2017 +0200
+
+    Merge branch 'onetone'
+    
+    Me n'havia anat per les branques.... je,je....i vull tornar al cami recte!
+
+[33mcommit 8ff4f313a67b8b8a9e2877b04072b3f87dee3012[m
+Author: alex <alexinfopruna@gmail.com>
+Date:   Thu Sep 28 18:15:42 2017 +0200
+
+    torno a onetone 2.0.8 perquè no el puc traduir...Queda pendent...
+
+[33mcommit 70163d7423fd25f3742937f5cb9cb3cd21084f0f[m
+Author: alex <alexinfopruna@gmail.com>
+Date:   Thu Sep 28 15:38:38 2017 +0200
+
+    ho poso tot updated: WP4.8.2 + ON2.3.4
+
+[33mcommit 139326349af3a9fdf1ee66fb645a051c5661f295[m
+Author: alex <alexinfopruna@gmail.com>
+Date:   Thu Sep 28 15:19:25 2017 +0200
+
+    lio amb el onetone...2.0.8 >> 2.3.3 >> 2.3.4
+
+[33mcommit 5461a08dd1107d548e7c95c482f12687553cfb0c[m
+Author: alex <alexinfopruna@gmail.com>
+Date:   Thu Sep 21 19:05:24 2017 +0200
+
+    menu POPUP
+
+[33mcommit 89a8e644d1e66234e5fd8a56731732c4d361ce8a[m
+Author: alex <alexinfopruna@gmail.com>
+Date:   Thu Sep 21 14:11:08 2017 +0200
+
+    dit.gif
+
+[33mcommit 240a7cb9d8a9565eb541b17b8080f309c6eeb63c[m
+Author: alex <alexinfopruna@gmail.com>
+Date:   Thu Sep 21 13:47:54 2017 +0200
+
+    dit.gif
+
+[33mcommit 02227386a803c50d38d1cbb778d5fbee617720bd[m
+Author: alex <alexinfopruna@gmail.com>
+Date:   Thu Sep 21 13:41:09 2017 +0200
+
+    canvis menus2
+
+[33mcommit 7c1b224464acd454bf3fd5ca5994b0bfc1866ee7[m
+Author: alex <alexinfopruna@gmail.com>
+Date:   Thu Sep 21 13:37:51 2017 +0200
+
+    canvis menus2
+
+[33mcommit e20bbd382152a36e9eb5b13369387960dc15aab3[m
+Author: alex <alexinfopruna@gmail.com>
+Date:   Thu Sep 21 13:33:57 2017 +0200
+
+    canvis menus2
+
+[33mcommit 7e8f2601a52dc238a8e2fbda5295563a63114ffa[m
+Author: alex <alexinfopruna@gmail.com>
+Date:   Thu Sep 21 13:27:35 2017 +0200
+
+    canvis menus
+
+[33mcommit 5a745a0e72c4e9ead3e1d208b504542e60d2d969[m
+Author: alex <alexinfopruna@gmail.com>
+Date:   Thu Sep 21 13:24:31 2017 +0200
+
+    canvis menus
+
+[33mcommit 592695f25712b9b9757a119419c2fe1b201657ba[m
+Author: alex <alexinfopruna@gmail.com>
+Date:   Thu Sep 21 13:21:31 2017 +0200
+
+    canvis menus
+
+[33mcommit 81cac839236aa5bf23bd4c6a5e990e56050715e3[m
+Author: alex <alexinfopruna@gmail.com>
+Date:   Thu Jun 8 18:46:21 2017 +0200
+
+    confiiiig v2
+
+[33mcommit c421220bee66071860a57e4571fc40a84c460fcf[m
+Author: alex <alexinfopruna@gmail.com>
+Date:   Fri Jun 2 13:09:27 2017 +0200
+
+    variables config permisos
+
+[33mcommit bed3b5623c39706d379e0774438cc4534d211acf[m
+Author: alex <alexinfopruna@gmail.com>
+Date:   Fri Jun 2 11:58:16 2017 +0200
+
+    variables config permisos
+
+[33mcommit 791ead3b7375b618bc6c41e948c25164da168a1f[m
+Author: alex <alexinfopruna@gmail.com>
+Date:   Fri Jun 2 11:56:58 2017 +0200
+
+    variables config permisos
+
+[33mcommit 0db698e112b082a8c29f055d73519bb3cfb77d76[m
+Author: alex <alexinfopruna@gmail.com>
+Date:   Fri Jun 2 11:48:40 2017 +0200
+
+    variables config permisos
+
+[33mcommit 38f078dc03f3908f51fb3dc0ebdc1d64b56a02f4[m
+Author: alex <alexinfopruna@gmail.com>
+Date:   Fri Jun 2 11:32:27 2017 +0200
+
+    variables config permisos
+
+[33mcommit 85455dc617ad7ed1896e378d3378c51cf74df634[m
+Author: alex <alexinfopruna@gmail.com>
+Date:   Wed May 31 19:44:15 2017 +0200
+
+    variables config permisos
+
+[33mcommit 05ffc8ce9b254fe207d90c36965a0b8e7fb13671[m
+Author: alex <alexinfopruna@gmail.com>
+Date:   Wed May 31 13:39:01 2017 +0200
+
+    variables config permisos
+
+[33mcommit ca5f38c393c50975234af165a068600d155866f1[m
+Author: alex <alexinfopruna@gmail.com>
+Date:   Wed May 31 13:08:47 2017 +0200
+
+    variables config permisos
+
+[33mcommit 21cc4bd7358e9b9e39650ffac4bcd54077255198[m
+Author: alex <alexinfopruna@gmail.com>
+Date:   Mon May 29 01:16:04 2017 +0200
+
+    update on tpv response
+
+[33mcommit 66410effcf61398aada7425cbd8793f3deb9828b[m
+Author: alex <alexinfopruna@gmail.com>
+Date:   Sun May 28 23:46:12 2017 +0200
+
+    correccions enviament emails
+
+[33mcommit f837f84db8721dca1cb8e40f2462218d634546fb[m
+Author: alex <alexinfopruna@gmail.com>
+Date:   Sun May 28 23:45:46 2017 +0200
+
+    correccions enviament emails
+
+[33mcommit a0a01759c5180899dcf5889015b5be7d14346be1[m
+Author: alex <alexinfopruna@gmail.com>
+Date:   Sat May 27 15:24:14 2017 +0200
+
+    correccions enviament emails + llista_dies_negra
+
+[33mcommit b7a2a2f9bf3bf978280d57b64b3abb2a68a3af51[m
+Author: alex <alexinfopruna@gmail.com>
+Date:   Mon May 22 19:01:31 2017 +0200
+
+    error insert reserva his / this
+
+[33mcommit 1edabd92b2bd10cc5f8f357d615e819172bc8b19[m
+Author: alex <alexinfopruna@gmail.com>
+Date:   Fri May 19 23:28:15 2017 +0200
+
+    FORMS boto tanca dialogs help + amaga contunua dlg final
+
+[33mcommit 31c50ccb5572680e8e9491358e9e0ae37a8a9dfb[m
+Author: alex <alexinfopruna@gmail.com>
+Date:   Wed May 17 01:07:18 2017 +0200
+
+    config i calendaris correccions
+
+[33mcommit 8eb65b107667ebffcb4c352f8277284eaa6198dc[m
+Author: alex <alexinfopruna@gmail.com>
+Date:   Wed May 17 00:01:46 2017 +0200
+
+    config i calendaris
+
+[33mcommit 7bf8cc34c4de0a270c9a6fcb5f4e52d59808a016[m
+Author: alex <alexinfopruna@gmail.com>
+Date:   Thu May 11 15:55:56 2017 +0200
+
+    repas popup TPV
+
+[33mcommit 5c043f16e4fbfa6facc94011ec0f42a1a17d89b1[m
+Author: alex <alexinfopruna@gmail.com>
+Date:   Thu May 11 11:12:23 2017 +0200
+
+    plantilles paga i senyal
+
+[33mcommit 20b7232711fd086216462fec2f09c6d39110cef5[m
+Author: alex <alexinfopruna@gmail.com>
+Date:   Thu May 11 00:35:27 2017 +0200
+
+    dialog tpv, reuse, autodetect
+
+[33mcommit c94f6e9b882f69e62ebfe5f23e0c0f6b574bee80[m
+Author: alex <alexinfopruna@gmail.com>
+Date:   Wed May 10 17:06:07 2017 +0200
+
+    pujant... proves
+
+[33mcommit e1bd5be037808c3171317ae20aa89ed726045357[m
+Author: alex <alexinfopruna@gmail.com>
+Date:   Tue May 9 14:51:20 2017 +0200
+
+    afegir idr asubject
+
+[33mcommit aedaebff643d3591b99670ef386338e9a2be5454[m
+Author: alex <alexinfopruna@gmail.com>
+Date:   Tue May 9 13:06:43 2017 +0200
+
+    tot ok
+
+[33mcommit 1e29d14e970bcb18c9eb45ef31c5652072e4b81a[m
+Author: alex <alexinfopruna@gmail.com>
+Date:   Tue May 9 13:02:51 2017 +0200
+
+    tot ok
+
+[33mcommit 0f92a1b8d9961e27179f8e0d2bd7ca9f8ab7df2c[m
+Author: alex <alexinfopruna@gmail.com>
+Date:   Tue May 9 12:51:50 2017 +0200
+
+    tot ok
+
+[33mcommit 05c0fcd71ca4e0613b18bd4afeb68464c9aceee2[m
+Author: alex <alexinfopruna@gmail.com>
+Date:   Tue May 9 12:43:28 2017 +0200
+
+    tot ok
+
+[33mcommit 0d02b1de921f5b1e6a6d9058326f0309bd2f2b3f[m
+Author: alex <alexinfopruna@gmail.com>
+Date:   Tue May 9 12:20:00 2017 +0200
+
+    tot ok
+
+[33mcommit d5d6708924785db107d6770700eeb4e652e5eeaa[m
+Author: alex <alexinfopruna@gmail.com>
+Date:   Tue May 9 12:13:34 2017 +0200
+
+    tot ok
+
+[33mcommit 730d33853dbbf4663624dd19225c6ffc79b06ef8[m
+Author: alex <alexinfopruna@gmail.com>
+Date:   Tue May 9 12:10:10 2017 +0200
+
+    tot ok
+
+[33mcommit 712551a734cd90de65518ea9df247e3160e89ed0[m
+Author: alex <alexinfopruna@gmail.com>
+Date:   Tue May 9 11:47:11 2017 +0200
+
+    proves TPV2
+
+[33mcommit 7358047509ba6a2cfb7287c397deac2bddf71818[m
+Author: alex <alexinfopruna@gmail.com>
+Date:   Tue May 9 11:39:42 2017 +0200
+
+    proves TPV2
+
+[33mcommit c394e30b4b7f72f9ea952b07ed5e265749209815[m
+Author: alex <alexinfopruna@gmail.com>
+Date:   Tue May 9 08:09:37 2017 +0200
+
+    proves TPV
+
+[33mcommit fb4afdb87a6c18bf5b1e8372257a0c227edfe33c[m
+Author: alex <alexinfopruna@gmail.com>
+Date:   Tue May 9 07:58:27 2017 +0200
+
+    proves TPV
+
+[33mcommit 3e02532df8fcadf8d715de3e9422e1a1307b45a9[m
+Author: alex <alexinfopruna@gmail.com>
+Date:   Tue May 9 07:51:51 2017 +0200
+
+    proves TPV
+
+[33mcommit 5cedffaa9741d167c16673eb4f10d68189bac326[m
+Author: alex <alexinfopruna@gmail.com>
+Date:   Tue May 9 07:33:41 2017 +0200
+
+    proves TPV
+
+[33mcommit 1b994a478a01db079e0838af6d7693a65d27a3bd[m
+Author: alex <alexinfopruna@gmail.com>
+Date:   Tue May 9 07:13:58 2017 +0200
+
+    proves TPV
+
+[33mcommit 0edfecfaf1ac7cfefa4bd087abf54f82c11a36d4[m
+Author: alex <alexinfopruna@gmail.com>
+Date:   Tue May 9 07:13:04 2017 +0200
+
+    proves TPV
+
+[33mcommit 360c91acbcfd29e81b8bd8980e3322f3d9fb6e23[m
+Author: alex <alexinfopruna@gmail.com>
+Date:   Mon May 8 23:42:10 2017 +0200
+
+    emails ok. die??
+
+[33mcommit a4d87746d21ca634c4684310a1e5ad0f79fdb043[m
+Author: alex <alexinfopruna@gmail.com>
+Date:   Mon May 8 22:50:16 2017 +0200
+
+    emails okgit add .
+
+[33mcommit 47f9d6ed605119dedb1170c003638cd460816bd8[m
+Author: alex <alexinfopruna@gmail.com>
+Date:   Fri May 5 12:15:59 2017 +0200
+
+    començo config
+
+[33mcommit eab0501aba040a827beac68501ec5fc47c1168be[m
+Author: alex <alexinfopruna@gmail.com>
+Date:   Thu May 4 17:52:14 2017 +0200
+
+    corregits tots el lbi + traduccions EN
+
+[33mcommit 414d8147de363eaa577751391e639e773ba2965a[m
+Author: alex <alexinfopruna@gmail.com>
+Date:   Fri Apr 28 02:18:30 2017 +0200
+
+    restriccions ok
+
+[33mcommit 24286c30c300782f3d8f4330275e9453a4db4f16[m
+Author: alex <alexinfopruna@gmail.com>
+Date:   Fri Apr 28 02:11:19 2017 +0200
+
+    cometes ok
+
+[33mcommit 85ffa0350acd870f334cc3fb46fad6f5b65bac83[m
+Merge: cca6299 1f8ff41
+Author: alex <alexinfopruna@gmail.com>
+Date:   Fri Apr 28 01:09:42 2017 +0200
+
+    liiio amb merge2
+
+[33mcommit 1f8ff41b3cc61ed1c2f471ed587c9e9d102e33f7[m
+Author: alex <alexinfopruna@gmail.com>
+Date:   Fri Apr 28 01:05:01 2017 +0200
+
+    restriccions ok amb cache
+
+[33mcommit cca6299739cb819dca762dc37050a298a2736bd8[m
+Merge: 758c264 65f03f8
+Author: alex <alexinfopruna@gmail.com>
+Date:   Fri Apr 28 00:43:59 2017 +0200
+
+    merge correccions restriccions
+
+[33mcommit 65f03f888fa331b7ea457932dbf175238afad527[m
+Author: alex <alexinfopruna@gmail.com>
+Date:   Fri Apr 28 00:21:49 2017 +0200
+
+    correccio restriccion tot vermell anula regla!
+
+[33mcommit 758c26415b89972fa29b9b35df084f9d14fea5a6[m
+Author: alex <alexinfopruna@gmail.com>
+Date:   Thu Apr 27 23:44:25 2017 +0200
+
+    corregit quotes però falta provar-ho
+
+[33mcommit e069a0e21b0d0bfd6c2ed7ef2bdbe8f6c294f9f7[m
+Author: alex <alexinfopruna@gmail.com>
+Date:   Thu Apr 27 09:31:04 2017 +0200
+
+    alergogens
+
+[33mcommit 79163f4ddb2b7831eaf4edfe740dc5deb235d70c[m
+Author: alex <alexinfopruna@gmail.com>
+Date:   Wed Apr 26 17:56:28 2017 +0200
+
+    carta en, tooltip
+
+[33mcommit 7cee554d12015480165d95f6e8ccca006af21496[m
+Author: alex <alexinfopruna@gmail.com>
+Date:   Mon Apr 24 01:01:21 2017 +0200
+
+    correccions form:  dialog, css, carta anglès, estils
+
+[33mcommit cfc5b3ed20d0eb9243de237bca1286046d4e0d92[m
+Author: alex <alexinfopruna@gmail.com>
+Date:   Sun Apr 23 11:37:44 2017 +0200
+
+    merge
+
+[33mcommit 072460bc3f8b11db01b860fc5cb53c9e39a9c475[m
+Author: alex <alexinfopruna@gmail.com>
+Date:   Sun Apr 23 11:35:52 2017 +0200
+
+    merge
+
+[33mcommit cd6c0d1b2193a556e3486d6ff219bdbef6c988f8[m
+Author: alex <alexinfopruna@gmail.com>
+Date:   Sun Apr 23 11:13:25 2017 +0200
+
+    test_tpc OK
+
+[33mcommit 6562e38ec28469e311053e2d0371ff978e60f438[m
+Author: alex <alexinfopruna@gmail.com>
+Date:   Fri Apr 21 09:50:38 2017 +0200
+
+    test_tpv
+
+[33mcommit ee860fb51c5fb8c257fa75ae6b223a70b3651f0d[m
+Author: alex <alexinfopruna@gmail.com>
+Date:   Fri Apr 21 00:31:08 2017 +0200
+
+    test_tpv
+
+[33mcommit 4bd93828166711f52dd3173fca698b8c7ef724b1[m
+Author: alex <alexinfopruna@gmail.com>
+Date:   Fri Apr 21 00:23:56 2017 +0200
+
+    test_tpv
+
+[33mcommit b292f74cc2f477609f8ed51be7e6d2683202832a[m
+Author: alex <alexinfopruna@gmail.com>
+Date:   Fri Apr 21 00:11:45 2017 +0200
+
+    test_tpv
+
+[33mcommit 4d52bddbe8d264e550ed12262c52011edb86404b[m
+Author: alex <alexinfopruna@gmail.com>
+Date:   Fri Apr 21 00:10:24 2017 +0200
+
+    test_tpv
+
+[33mcommit 1ddb4df7ebb760e73f6fe25a372632f87edb745c[m
+Author: alex <alexinfopruna@gmail.com>
+Date:   Fri Apr 21 00:00:17 2017 +0200
+
+    test_tpv
+
+[33mcommit 67ee0c25b5a5456b41639ce06918a2d3ba9185ab[m
+Author: alex <alexinfopruna@gmail.com>
+Date:   Thu Apr 20 23:53:54 2017 +0200
+
+    test_tpv
+
+[33mcommit 2f79cf77c0184d94b3b1368acbd965c7cb57675c[m
+Author: alex <alexinfopruna@gmail.com>
+Date:   Thu Apr 20 23:50:59 2017 +0200
+
+    test_tpv
+
+[33mcommit 64b2a01d49be572b9b93d43bb49baca08110a6a3[m
+Author: alex <alexinfopruna@gmail.com>
+Date:   Thu Apr 20 23:37:30 2017 +0200
+
+    test_tpv
+
+[33mcommit b389a527fbfca6c5ae426f4b38c8074d3b1896ec[m
+Author: alex <alexinfopruna@gmail.com>
+Date:   Thu Apr 20 20:10:40 2017 +0200
+
+    test_tpv
+
+[33mcommit 8c6636f58b5e955e76d89f8e79918ba657c3c879[m
+Author: alex <alexinfopruna@gmail.com>
+Date:   Thu Apr 20 18:44:38 2017 +0200
+
+    test_tpv
+
+[33mcommit 0c2e27d948b2ceca5b4b523c6d3914a5a5759427[m
+Author: alex <alexinfopruna@gmail.com>
+Date:   Thu Apr 20 18:42:45 2017 +0200
+
+    fora de servei
+
+[33mcommit 85ab018dc879f5ab929569fc82cf6ab0ae316db3[m
+Author: alex <alexinfopruna@gmail.com>
+Date:   Thu Apr 20 18:40:17 2017 +0200
+
+    test_tpv
+
+[33mcommit af9a1ab370faff043ecb8411a72e5a896f8b1010[m
+Author: alex <alexinfopruna@gmail.com>
+Date:   Wed Apr 19 14:52:07 2017 +0200
+
+    testTPV
+
+[33mcommit 94efd6de9c12b51c328cf10b56c344c4a34320e0[m
+Author: alex <alexinfopruna@gmail.com>
+Date:   Wed Apr 19 13:47:09 2017 +0200
+
+    error reserves grups
+
+[33mcommit 6aced5c96d110072fe50d15c5529e2a3b7333571[m
+Author: alex <alexinfopruna@gmail.com>
+Date:   Wed Apr 19 13:26:27 2017 +0200
+
+    error reserves grups
+
+[33mcommit 6f3119d2059284d97d8b96585cdff92e2a31cbf3[m
+Author: alex <alexinfopruna@gmail.com>
+Date:   Wed Apr 19 00:11:34 2017 +0200
+
+    estilsalerta google maps
+
+[33mcommit da365c51e826d267e4588296bcdcca3a63cf4632[m
+Author: alex <alexinfopruna@gmail.com>
+Date:   Wed Apr 19 00:02:34 2017 +0200
+
+    restriccions http
+
+[33mcommit 97d85d692d82138f5ace58a1372278a115f64cf9[m
+Author: alex <alexinfopruna@gmail.com>
+Date:   Tue Apr 18 15:07:39 2017 +0200
+
+    provant https
+
+[33mcommit 445596cd6785ab9e03adffa0e25365d3f288aa21[m
+Author: alex <alexinfopruna@gmail.com>
+Date:   Tue Apr 18 13:18:47 2017 +0200
+
+    remove nbproject
+
+[33mcommit 1262e4879cf8aa7ae832357fd37da1c3acba8e70[m
+Author: alexinfopruna <alexinfopruna@gmail.com>
+Date:   Tue Apr 18 11:03:01 2017 +0000
+
+    desastre tpv - ssl
+
+[33mcommit 6c89a3a983972cdb22366e8b0d9dde376c06f09a[m
+Author: alex <alexinfopruna@gmail.com>
+Date:   Mon Apr 10 16:39:47 2017 +0200
+
+    mail verify
+
+[33mcommit 4154600ef0362a624285af4f95de40f1844764a1[m
+Author: alex <alexinfopruna@gmail.com>
+Date:   Mon Apr 10 13:01:08 2017 +0200
+
+    verifyemail
+
+[33mcommit 508ba6f593052c548d3657e4fd771dd4a226f3aa[m
+Author: alex <alexinfopruna@gmail.com>
+Date:   Mon Apr 10 11:08:49 2017 +0200
+
+    hora max reserves
+
+[33mcommit 9dd7b5ce22b4c179b635a7378e772a86a66438e3[m
+Author: alex <alexinfopruna@gmail.com>
+Date:   Sat Apr 8 00:27:35 2017 +0200
+
+    expandit ok, sense cache 33cache 444
+
+[33mcommit cedc7001050ce56fb6396702833ff000460edfd0[m
+Author: alex <alexinfopruna@gmail.com>
+Date:   Sat Apr 8 00:15:51 2017 +0200
+
+    expandit ok, sense cache 33cache 444
+
+[33mcommit c63eef071fe4123cd5f1bb34a1873ae4b851898c[m
+Author: alex <alexinfopruna@gmail.com>
+Date:   Sat Apr 8 00:10:34 2017 +0200
+
+    expandit ok, sense cache 33cache 444
+
+[33mcommit 847b6df902cad7656d1aaf9d593b8b81463a4454[m
+Author: alex <alexinfopruna@gmail.com>
+Date:   Fri Apr 7 23:16:11 2017 +0200
+
+    expandit ok, sense cache 333ç3
+
+[33mcommit 0e2f1af7048c565ce4ddff6eda347a0dfc5989ae[m
+Author: alex <alexinfopruna@gmail.com>
+Date:   Fri Apr 7 21:39:22 2017 +0200
+
+    expandit ok, sense cache2
+
+[33mcommit 4fca90fd299f8d7daedf7c42b294241a085070ac[m
+Author: alex <alexinfopruna@gmail.com>
+Date:   Fri Apr 7 20:08:57 2017 +0200
+
+    expandit ok, sense cache2
+
+[33mcommit 5b043a79d4b8c1ccc24d4292037167474bdc0ebb[m
+Author: alex <alexinfopruna@gmail.com>
+Date:   Fri Apr 7 19:35:34 2017 +0200
+
+    expandit ok, sense cache
+
+[33mcommit f672c2595c17015279c866c8ac5fe438006bed0d[m
+Author: alex <alexinfopruna@gmail.com>
+Date:   Wed Apr 5 00:36:00 2017 +0200
+
+    expandit v.0.1
+
+[33mcommit d44665f7f4aa765525d27642910bed8efa61fd1f[m
+Author: alex <alexinfopruna@gmail.com>
+Date:   Mon Apr 3 20:29:35 2017 +0200
+
+    apali hhtps2
+
+[33mcommit d8ed0bcaa4da6bb764c74f38bdca89def736e1d6[m
+Author: alex <alexinfopruna@gmail.com>
+Date:   Mon Apr 3 18:50:50 2017 +0200
+
+    apali hhtps
+
+[33mcommit 778030bac59f09a0fcaf80e4ee9dd3143ff37a9c[m
+Author: alex <alexinfopruna@gmail.com>
+Date:   Sat Apr 1 14:10:12 2017 +0200
+
+    update wpml + themes + translation TOT OK
+
+[33mcommit 7935c6fb25055885bc4f3fd4b73f13829292248f[m
+Author: alex <alexinfopruna@gmail.com>
+Date:   Sat Apr 1 13:09:40 2017 +0200
+
+    update photo contact
+
+[33mcommit 63a5b5d59aec3cdc9967d3200b8245f3d0123e8c[m
+Author: alex <alexinfopruna@gmail.com>
+Date:   Sat Apr 1 13:06:10 2017 +0200
+
+    update core 4.7.3
+
+[33mcommit bf0c84c9bcc3c73f6b4797d3364689c324e5b709[m
+Author: alex <alexinfopruna@gmail.com>
+Date:   Sat Apr 1 00:10:24 2017 +0200
+
+    https ok
+
+[33mcommit bab2582a2fbb86222dfd4b180a5f0b82be8da306[m
+Author: alex <alexinfopruna@gmail.com>
+Date:   Tue Mar 28 15:50:12 2017 +0200
+
+    correccions
+
+[33mcommit 7ddfed94bb49cd165d9cc171b66b3ead0be3a280[m
+Author: alex <alexinfopruna@gmail.com>
+Date:   Tue Mar 28 15:47:03 2017 +0200
+
+    correccions
+
+[33mcommit 1402ae85d65360306e47701d0555db31c9b30e62[m
+Author: alex <alexinfopruna@gmail.com>
+Date:   Tue Mar 28 14:13:00 2017 +0200
+
+    senar
+
+[33mcommit 098ea93b43e1716b744aac2ee622c9260b34797b[m
+Author: alex <alexinfopruna@gmail.com>
+Date:   Mon Mar 27 01:38:53 2017 +0200
+
+    senar
+
+[33mcommit f5e30e173abc2ccac393c76d0f50ed598348f797[m
+Author: alex <alexinfopruna@gmail.com>
+Date:   Mon Mar 27 01:37:12 2017 +0200
+
+    senar
+
+[33mcommit 9ba780de3ed7f858ceb7591c34be2cd22eb5808b[m
+Author: alex <alexinfopruna@gmail.com>
+Date:   Mon Mar 27 01:31:15 2017 +0200
+
+    update active
+
+[33mcommit aa6863d593dfdfa2c7b19fb3660d1439fec80637[m
+Author: alex <alexinfopruna@gmail.com>
+Date:   Mon Mar 27 01:26:13 2017 +0200
+
+    update active
+
+[33mcommit 15a920abfd91ec5e2f68f74eb14b06ca21371923[m
+Author: alex <alexinfopruna@gmail.com>
+Date:   Mon Mar 27 00:47:29 2017 +0200
+
+    hores individuals + correccions date range + format data CA + msg login + interseccio
+
+[33mcommit 844e96f4d0ef51c82a61bec1ace97d2a78c9f72c[m
+Author: alex <alexinfopruna@gmail.com>
+Date:   Fri Mar 24 15:40:10 2017 +0100
+
+    desactivo restriccions
+
+[33mcommit 5a9364e16ce8a1655b3c484ee45c88ab1e4f81c3[m
+Author: alex <alexinfopruna@gmail.com>
+Date:   Tue Mar 21 19:05:23 2017 +0100
+
+    buuuuffff POSTgit add .
+
+[33mcommit ac107eb3fca8eaf97286410566664231a47359df[m
+Author: alex <alexinfopruna@gmail.com>
+Date:   Tue Mar 21 19:02:37 2017 +0100
+
+    buuuuffff POSTgit add .
+
+[33mcommit 7566fbb5e5e6a52ad79ef580709356c8893b2be8[m
+Author: alex <alexinfopruna@gmail.com>
+Date:   Tue Mar 21 18:46:29 2017 +0100
+
+    prrrbr2
+
+[33mcommit 9176dacd081198c4f1e28e49e5d359eb897fbfc9[m
+Author: alex <alexinfopruna@gmail.com>
+Date:   Tue Mar 21 18:41:13 2017 +0100
+
+    prrrbr
+
+[33mcommit 5e23c3932f332104721500089aaf1533c9eff25f[m
+Author: alex <alexinfopruna@gmail.com>
+Date:   Mon Mar 20 20:30:59 2017 +0100
+
+    host i a
+
+[33mcommit 62834245508d4432a9db96736dd09390702f8a38[m
+Author: alex <alexinfopruna@gmail.com>
+Date:   Mon Mar 20 20:27:00 2017 +0100
+
+    host i a
+
+[33mcommit 175480f2d45eabc38289b1cd531359a0260e655a[m
+Author: alex <alexinfopruna@gmail.com>
+Date:   Mon Mar 20 20:22:34 2017 +0100
+
+    hooost
+
+[33mcommit ee9c85af1a8a3afebe2187af77b858395d44709e[m
+Author: alex <alexinfopruna@gmail.com>
+Date:   Mon Mar 20 19:06:43 2017 +0100
+
+    hooost
+
+[33mcommit 74dc5c3484345a0c8109bf8eb2389ac4c9ce60dd[m
+Author: alex <alexinfopruna@gmail.com>
+Date:   Mon Mar 20 18:50:49 2017 +0100
+
+    host
+
+[33mcommit 74030498bf83dda1542ac81e3da5b3e55ac27e2d[m
+Author: alex <alexinfopruna@gmail.com>
+Date:   Mon Mar 20 15:05:35 2017 +0100
+
+    restriccions 1.0
+
+[33mcommit c27fa6cab0b9af66372caf2985bf7e7bb11e2581[m
+Author: alex <alexinfopruna@gmail.com>
+Date:   Mon Mar 20 00:42:01 2017 +0100
+
+    restriccions OK
+
+[33mcommit e9daffff74630a2fd2ed326ad76b02b01607c2d0[m
+Author: alex <alexinfopruna@gmail.com>
+Date:   Thu Mar 9 22:56:55 2017 +0100
+
+    restriccions antigues
+
+[33mcommit 7a20d84dffb2f056797fb07daf778ee365aae5a5[m
+Author: alex <alexinfopruna@gmail.com>
+Date:   Thu Mar 9 21:46:14 2017 +0100
+
+    incompatible mysqli_fetch_all
+
+[33mcommit ea2199b746e93915ad8cc56498a677486babad40[m
+Author: alex <alexinfopruna@gmail.com>
+Date:   Thu Mar 9 17:24:04 2017 +0100
+
+    dos torns tot ok
+
+[33mcommit d7fb5459dcf50dedb5ebe86f177222d505597fc8[m
+Author: alex <alexinfopruna@gmail.com>
+Date:   Thu Mar 9 15:06:57 2017 +0100
+
+    cartaweb
+
+[33mcommit 63bbd0d256ccb009ef0d597d2b44b2b27aff8636[m
+Author: alex <alexinfopruna@gmail.com>
+Date:   Fri Feb 24 01:11:56 2017 +0100
+
+    llista negra barrejada grups + pk
+
+[33mcommit 22aac64509e304e3ae21593ee91d82878cabd5fe[m
+Author: alex <alexinfopruna@gmail.com>
+Date:   Fri Feb 17 14:20:59 2017 +0100
+
+    images excursions
+
+[33mcommit 59ddb74b523346408d02312b78c0cb624c7bd4cf[m
+Author: alex <alexinfopruna@gmail.com>
+Date:   Fri Feb 17 14:00:36 2017 +0100
+
+    fotos historia
+
+[33mcommit 8f156c0362a01e77171dceba2b4583e7abf094fa[m
+Author: alex <alexinfopruna@gmail.com>
+Date:   Tue Jan 31 22:59:11 2017 +0100
+
+    impars 15:30
+
+[33mcommit ae81f64d4fa10a74b240186cb20856a5a874d42d[m
+Author: alex <alexinfopruna@gmail.com>
+Date:   Thu Jan 26 00:11:46 2017 +0100
+
+    cartaweb
+
+[33mcommit a2d598aceb7047948377f2f21d3ba5d63ec61875[m
+Author: alex <alexinfopruna@gmail.com>
+Date:   Thu Jan 19 18:50:06 2017 +0100
+
+    limit nens només ds i dg
+
+[33mcommit f5550d6d3ff5dd500a2802e3782a95b0bced1a68[m
+Author: alex <alexinfopruna@gmail.com>
+Date:   Wed Jan 18 15:34:09 2017 +0100
+
+    merge remot+local
+
+[33mcommit e8ca746acbdfcaa55dbd3b2be1fe43fc98792e52[m
+Merge: 22ade1f a42c160
+Author: alex <alexinfopruna@gmail.com>
+Date:   Wed Jan 18 15:30:27 2017 +0100
+
+    Merge branch 'master' of https://github.com/alexinfopruna/canborrell_wp
+    
+      Update WP 4.7 (EN REMOT)
+    +
+    Canvis en local:
+        CB: Cartell SMS,
+        limit modificacions grups,
+        error JS
+        Config avanzada edit in place
+
+[33mcommit a42c160d29dc570e40bbcb34846707a0781e0c3a[m
+Author: alexinfopruna <alexinfopruna@gmail.com>
+Date:   Wed Jan 18 14:28:44 2017 +0000
+
+    update wp 4.7
+
+[33mcommit 22ade1fac74b3f752d5f19eb61e23daf733e8181[m
+Author: alex <alexinfopruna@gmail.com>
+Date:   Wed Jan 18 15:27:03 2017 +0100
+
+    Update WP 4.7
+    CB: Cartell SMS,
+    limit modificacions grups,
+    error JS
+    Config avanzada edit in place
+
+[33mcommit 10b01df44378565e514caa439a1dabaeecf6ffe4[m
+Author: alex <alexinfopruna@gmail.com>
+Date:   Fri Jan 13 20:08:01 2017 +0100
+
+    fora cartell maps, problemes localhost, text como llegar...
+
+[33mcommit 2c3fc5e00823c7a4a83ed97937111b820e55721c[m
+Author: alex <alexinfopruna@gmail.com>
+Date:   Sat Jan 7 23:16:19 2017 +0100
+
+    cartell googlemaps
+
+[33mcommit 517d48462e3a3fa8ec12d79916448e633e237811[m
+Author: alex <alexinfopruna@gmail.com>
+Date:   Sat Jan 7 22:59:46 2017 +0100
+
+    cartell googlemaps
+
+[33mcommit ef729a18e98daff7e2f96e05ac0895e7c4c4b670[m
+Author: alex <alexinfopruna@gmail.com>
+Date:   Wed Dec 28 02:39:06 2016 +0100
+
+    trec cartell internet
+
+[33mcommit 787bafc9b6ffdccfaa12907fde7d61e35ee7ab7f[m
+Author: alex <alexinfopruna@gmail.com>
+Date:   Wed Dec 28 02:20:57 2016 +0100
+
+    trec cartell internet
+
+[33mcommit a36f21bc4a2f419ca8219a7a74e07e327d52e9b1[m
+Author: alex <alexinfopruna@gmail.com>
+Date:   Mon Dec 26 12:07:58 2016 +0100
+
+     no_internet corregit
+
+[33mcommit f9ed59b58afc256a6e016357b38d502318f8bbd4[m
+Author: alex <alexinfopruna@gmail.com>
+Date:   Fri Dec 23 17:40:54 2016 +0100
+
+    NO-INTERNET
+
+[33mcommit e2188b91e97e0205c6d0f801318f1f1a7575f4ac[m
+Author: alex <alexinfopruna@gmail.com>
+Date:   Fri Dec 23 00:07:08 2016 +0100
+
+    alergens + limit cotxets
+
+[33mcommit 302a62a2b5d00fb5a036cc4e6b1a6fcf2fe9c376[m
+Author: alex <alexinfopruna@gmail.com>
+Date:   Thu Dec 15 00:41:32 2016 +0100
+
+    correccio js galley
+
+[33mcommit c2d772bf70a035239b2ab5e84143bdba56d0a779[m
+Author: alex <alexinfopruna@gmail.com>
+Date:   Wed Dec 14 23:51:29 2016 +0100
+
+    garjola no va
+
+[33mcommit ba56de14fe9bb628a3fc1c1d1cf595ca1acd16a7[m
+Author: alex <alexinfopruna@gmail.com>
+Date:   Wed Dec 14 23:20:54 2016 +0100
+
+    backgroung video + mida slogan
+
+[33mcommit 1a34bf528bad39ee8902191566cd3f83953eb3c5[m
+Author: alex <alexinfopruna@gmail.com>
+Date:   Mon Dec 12 13:17:59 2016 +0100
+
+    css comptador comensals al form
+
+[33mcommit 4f34174be0f999420b71ecb05f377a374d8dadb5[m
+Author: alex <alexinfopruna@gmail.com>
+Date:   Mon Nov 28 13:43:45 2016 +0100
+
+    update onetone
+
+[33mcommit c54b2f5f9747de39621e2946220c1f5119f5a55a[m
+Author: alex <alexinfopruna@gmail.com>
+Date:   Sun Nov 27 18:36:11 2016 +0100
+
+    update wp461 + plugins + wpml (registrat)
+    Q
+
+[33mcommit 83c29a549d904b6ddf1a4807e7ada9325341a26c[m
+Author: alex <alexinfopruna@gmail.com>
+Date:   Sat Nov 26 10:42:26 2016 +0100
+
+    garjola, modifica clients
+
+[33mcommit 31222c85ae1ac6482b3e7c99cc6a7b67b649144a[m
+Author: alex <alexinfopruna@gmail.com>
+Date:   Sat Nov 26 10:41:56 2016 +0100
+
+    garjola, modifica clients
+
+[33mcommit 0b8af8615e6b3daa7e44e8768f95194e0888e89d[m
+Author: alex <alexinfopruna@gmail.com>
+Date:   Fri Nov 25 23:28:06 2016 +0100
+
+    responsive - mobils
+
+[33mcommit 4c0405f5e4ad8f331ebf2adfc41ccef017ff45c1[m
+Author: alex <alexinfopruna@gmail.com>
+Date:   Fri Nov 25 23:26:58 2016 +0100
+
+    responsive - mobils
+
+[33mcommit a6d51fe19846259e334ceb0f8147fedfdd56e915[m
+Author: alex <alexinfopruna@gmail.com>
+Date:   Fri Nov 25 23:23:32 2016 +0100
+
+    responsive - mobils
+
+[33mcommit 36484ca2a382f1c718b7f87dea14acd6e599e87f[m
+Author: alex <alexinfopruna@gmail.com>
+Date:   Fri Nov 25 23:19:35 2016 +0100
+
+    responsive - mobils
+
+[33mcommit 1682b82e903eb88f18130cb07b5308e33364c4f1[m
+Author: alex <alexinfopruna@gmail.com>
+Date:   Fri Nov 25 23:00:29 2016 +0100
+
+    responsive - mobils
+
+[33mcommit 8c18050af87e0c068d01e1f4c7d70ecf169df407[m
+Author: alex <alexinfopruna@gmail.com>
+Date:   Fri Nov 25 22:35:55 2016 +0100
+
+    responsive - mobils
+
+[33mcommit 3b46e5b9766e08dc5b9ceab5e0a1fb76a3f01030[m
+Author: alex <alexinfopruna@gmail.com>
+Date:   Mon Nov 21 23:19:48 2016 +0100
+
+    Cache comberts / nens
+
+[33mcommit fb171cfb24fca6f1b0ae303bb963e98eb3ec592d[m
+Author: alex <alexinfopruna@gmail.com>
+Date:   Sun Nov 20 12:01:12 2016 +0100
+
+    Cache comberts / nens
+
+[33mcommit 633d989f3e51ed7c3bac7aada87e29f50a3d45b8[m
+Author: alex <alexinfopruna@gmail.com>
+Date:   Sat Nov 19 13:46:51 2016 +0100
+
+    SUGGERIMENTS a horaris i a menus
+
+[33mcommit dee8f41cd0b2a2a6d4f3cf299f27b4894723686f[m
+Author: alex <alexinfopruna@gmail.com>
+Date:   Fri Nov 18 17:42:33 2016 +0100
+
+    popup confirmar form surt massa sovint.
+    
+    activar nits
+
+[33mcommit 47c2477bf658f425900a07021196e2bda01d9a81[m
+Author: alex <alexinfopruna@gmail.com>
+Date:   Fri Nov 18 17:13:07 2016 +0100
+
+    popup confirmar form surt massa sovint.
+    
+    activar nits
+
+[33mcommit 94c215849891ba19aefc1dcf2087b1bc45e59b37[m
+Author: alex <alexinfopruna@gmail.com>
+Date:   Fri Nov 18 16:55:33 2016 +0100
+
+    popup confirmar form surt massa sovint.
+    
+    activar nits
+
+[33mcommit 8902a2db7d39288ebae41f19916823283b6c042f[m
+Author: alex <alexinfopruna@gmail.com>
+Date:   Fri Nov 18 16:26:20 2016 +0100
+
+    popup confirmar form surt massa sovint.
+    
+    activar nits
+
+[33mcommit bdf78b4fc338e91e3658284d71fa9d8afc9a7d17[m
+Author: alex <alexinfopruna@gmail.com>
+Date:   Fri Nov 18 16:21:14 2016 +0100
+
+    popup confirmar form surt massa sovint.
+    
+    activar nits

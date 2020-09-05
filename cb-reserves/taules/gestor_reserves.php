@@ -482,7 +482,7 @@ class gestor_reserves extends Gestor {
       $args[] = $coberts;
       $args[] = $idr;
       $lang = $this->getLanguage();
-
+//11111 inserta_reserva()
       $mensa = "Recordi: reserva al Restaurant Can Borrell. %s %s (%s).Preguem comuniqui qualsevol canvi: 936929723/936910605.Gràcies.(ID%s)";
       $mensa = gestor_reserves::SMS_language($mensa, $lang, $args);
 
@@ -2159,6 +2159,8 @@ EOHTML;
 // ENVIA UN
   function recordatori_petites_3dies() {
 
+	//ANULAT. PROBLEMA RECORDATORIS
+    return "ANULAT. PROBLEMA RECORDATORIS";
 
     $html = " ... ";
     $query = "SELECT * FROM " . T_RESERVES . " WHERE (adults + nens10_14 + nens4_9)>=6 AND estat=100 AND  data <= ADDDATE(CURDATE(), INTERVAL 35 DAY) AND data>=CURDATE() AND  num_1=0";
@@ -2192,6 +2194,7 @@ EOHTML;
       $args[1] = $data;
       $args[2] = $hora;
       $args[3] = $persones;
+//2222 recordatori_petites_3dies     
       $missatge = "Recordi: reserva %s, el %s - %s per a %s personas.Es IMPRESCINDIBLE que ens comuniqui qualsevol canvi abans de les 11:00h: 936929723 - 936910605";
       $missatge = gestor_reserves::SMS_language($missatge, $lang, $args);
 
