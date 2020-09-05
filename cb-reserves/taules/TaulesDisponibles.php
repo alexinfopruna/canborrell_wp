@@ -805,10 +805,10 @@ ORDER BY  `estat_hores_hora` ASC ";
 
       $comensals = $this->sum_comensals_hora($row['estat_hores_hora']);
       $disabled = ($row['estat_hores_max'] && $comensals + $contaPersones > $row['estat_hores_max']) ? 'disabled="disabled"' : '';
-
+/*
       // HORES DESACTIVADES
       if (!empty($disabled) && !$mostraDisableds)
-        continue;
+        continue;*/
       // NENS A ULTIMA HORA
       /**/
       
