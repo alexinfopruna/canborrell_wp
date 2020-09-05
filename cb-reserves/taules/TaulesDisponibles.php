@@ -805,30 +805,29 @@ ORDER BY  `estat_hores_hora` ASC ";
 
       $comensals = $this->sum_comensals_hora($row['estat_hores_hora']);
       $disabled = ($row['estat_hores_max'] && $comensals + $contaPersones > $row['estat_hores_max']) ? 'disabled="disabled"' : '';
-/*
+
       // HORES DESACTIVADES
       if (!empty($disabled) && !$mostraDisableds)
-        continue;*/
+        continue;
       // NENS A ULTIMA HORA
       /**/
       
       /** 
        * ESQUIVA LES HORES QUE TENEN RESTRICCIONS DE NENS
        */
-      /*
       if ($torn < 3 && is_array($this->rang_hores_nens) && count($this->rang_hores_nens) && !in_array($row['estat_hores_hora'], $this->rang_hores_nens))
         continue;
- */
+ 
        /** 
        * ESQUIVA LES HORES QUE TENEN RESTRICCIONS HORES TAULES
-       *//*
+       */
       if ($torn < 3 && is_array($this->rang_hores_nens) && count($this->rang_hores_nens) && !in_array($row['estat_hores_hora'], $this->rang_hores_nens))
         continue;
       
       if ($torn < 3 && is_array($this->rang_hores_taules) && count($this->rang_hores_taules) && !in_array($row['estat_hores_hora'], $this->rang_hores_taules))
         continue;
    
-*/
+
       /**
        * ESQUIVA ESMORZARS FORA DE DS
        */
