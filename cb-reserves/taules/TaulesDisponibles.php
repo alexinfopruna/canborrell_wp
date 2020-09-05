@@ -832,7 +832,7 @@ ORDER BY  `estat_hores_hora` ASC ";
        * ESQUIVA ESMORZARS FORA DE DS
        */
        //if (($row['estat_hores_hora']<"12:00") && date("N", strtotime($data))!=6 ) continue;
-       if (($row['estat_hores_hora']<"12:00") && !$this->es_finde_o_festiu($data) ) continue;
+       if (($row['estat_hores_hora']<"13:00") && !$this->es_finde_o_festiu($data) ) continue;
         // echo date("N", strtotime($data));
       
       $this->arHores[] = $row['estat_hores_hora']; // GUARDA LES HORES BONES EN UN ARRAY
