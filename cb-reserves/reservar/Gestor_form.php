@@ -1696,15 +1696,20 @@ SQL;
   }
 
   public function reserva_entra_avui($data, $torn) {
-    $min_date = new DateTime(MAX_HORA_RESERVA_ONLINE);
-    $min_date->modify("+" . MARGE_DIES_RESERVA_ONLINE . " days");
+    $ara= new DateTime("now");
+    $max_date = new DateTime(MAX_HORA_RESERVA_ONLINE);
+    $max_date->modify("+" . MARGE_DIES_RESERVA_ONLINE . " days");
+    $entra = $ara <= $max_date;
+    
     $data_reserva = new DateTime($data . ' ' . $torn);
-    $entra = $data_reserva < $min_date;
-   //  echo $data_reserva->format('c')." / ".$min_date->format('c');
-            
-  //  echo $entra?"----ENTRA":"----NO_ENTRA";
+    $ara->modify("+1 hour");
+    
+    $entra2 = $data_reserva > $ara;
+     //echo $data_reserva->format('c')." / ".$ara->format('c');
+     // echo $entra&$entra2?"----ENTRA":"----NO_ENTRA";
     return $entra;
   }
+ 
 
   
 
