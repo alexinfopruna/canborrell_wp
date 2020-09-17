@@ -1700,6 +1700,14 @@ SQL;
     $min_date->modify("+" . MARGE_DIES_RESERVA_ONLINE . " days");
     $data_reserva = new DateTime($data . ' ' . $torn);
     $entra = $data_reserva > $min_date;
+    return $entra;
+  }
+
+  public function reserva_entra_avui2($data, $torn) {
+    $min_date = new DateTime(MAX_HORA_RESERVA_ONLINE);
+    $min_date->modify("+" . MARGE_DIES_RESERVA_ONLINE . " days");
+    $data_reserva = new DateTime($data . ' ' . $torn);
+    $entra = $data_reserva > $min_date;
     echo $data_reserva." / ".$min_date;
     die();
     return $entra;
