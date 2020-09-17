@@ -1708,8 +1708,8 @@ SQL;
     $min_date->modify("+" . MARGE_DIES_RESERVA_ONLINE . " days");
     $data_reserva = new DateTime($data . ' ' . $torn);
     $entra = $data_reserva > $min_date;
-    //echo $data_reserva." / ".$min_date;
-    //die();
+    echo $data_reserva->format('c')." / ".$min_date->format('c');
+    die();
     return $entra;
   }
 
