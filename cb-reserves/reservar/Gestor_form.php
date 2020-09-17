@@ -1705,8 +1705,8 @@ SQL;
     $ara->modify("+1 hour");
     
     $entra2 = $data_reserva > $ara;
-     //echo $data_reserva->format('c')." / ".$ara->format('c');
-     // echo $entra&$entra2?"----ENTRA":"----NO_ENTRA";
+     echo $data_reserva->format('c')." / ".$ara->format('c');
+      echo $entra&&$entra2?"----ENTRA":"----NO_ENTRA";
     return ($entra && $entra2);
   }
  
