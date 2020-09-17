@@ -1701,7 +1701,7 @@ SQL;
     $data_reserva = new DateTime($data . ' ' . $torn);
     $entra = $data_reserva > $min_date;
     echo $data_reserva." / ".$min_date;
-    return false;
+    die();
     return $entra;
   }
 
