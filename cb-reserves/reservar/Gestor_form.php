@@ -1709,7 +1709,7 @@ SQL;
     $data_reserva = new DateTime($data . ' ' . $torn);
     $entra = $data_reserva > $min_date;
     echo $data_reserva->format('c')." / ".$min_date->format('c');
-    die();
+    echo entra?"ENTRA":"NOENTRA";
     return $entra;
   }
 
