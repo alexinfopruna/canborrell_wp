@@ -636,11 +636,11 @@ FROM client
       $resposta['error'] = "err2: data futura: " . $_POST['selectorData'];
 
     //COMPROVEM HORA LIMIT
-    /*
+    
     if (!$this->reserva_entra_avui($data, $hora))
       return $this->jsonErr(11, $resposta); // "err7 adults";
 
-*/
+
 
 
 
@@ -1700,6 +1700,8 @@ SQL;
     $min_date->modify("+" . MARGE_DIES_RESERVA_ONLINE . " days");
     $data_reserva = new DateTime($data . ' ' . $torn);
     $entra = $data_reserva > $min_date;
+    echo $data_reserva." / ".$min_date;
+    return false;
     return $entra;
   }
 
