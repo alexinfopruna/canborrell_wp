@@ -1699,19 +1699,14 @@ SQL;
     $min_date = new DateTime(MAX_HORA_RESERVA_ONLINE);
     $min_date->modify("+" . MARGE_DIES_RESERVA_ONLINE . " days");
     $data_reserva = new DateTime($data . ' ' . $torn);
-    $entra = $data_reserva > $min_date;
+    $entra = $data_reserva < $min_date;
+   //  echo $data_reserva->format('c')." / ".$min_date->format('c');
+            
+  //  echo $entra?"----ENTRA":"----NO_ENTRA";
     return $entra;
   }
 
-  public function reserva_entra_avui2($data, $torn) {
-    $min_date = new DateTime(MAX_HORA_RESERVA_ONLINE);
-    $min_date->modify("+" . MARGE_DIES_RESERVA_ONLINE . " days");
-    $data_reserva = new DateTime($data . ' ' . $torn);
-    $entra = $data_reserva > $min_date;
-    echo $data_reserva->format('c')." / ".$min_date->format('c');
-    echo entra?"ENTRA":"NOENTRA";
-    return $entra;
-  }
+  
 
   public function reset_estat($pidr, $taula = 'reservestaules') {
 
