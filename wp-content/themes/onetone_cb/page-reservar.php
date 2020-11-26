@@ -417,8 +417,9 @@ header("Pragma: no-cache");
       }
       
       .coronavirus{
-          width:50%;
+          /*width:50%;*/
            margin: auto;
+           margin:20px;
            margin-top:10px;
            border: #990000 solid 10px;
            padding:5px;
