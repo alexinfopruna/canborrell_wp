@@ -318,6 +318,7 @@ function wp_debug_mode() {
 	}
 
 	if ( WP_DEBUG ) {
+		
 		error_reporting( E_ALL );
 
 		if ( WP_DEBUG_DISPLAY )

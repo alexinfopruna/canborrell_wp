@@ -22,11 +22,7 @@ if (!defined('TPV_CONFIG_FILE'))
   define("TPV_CONFIG_FILE", "TPV256_test.php");
 
 set_error_handler("var_dump");
-ini_set('error_reporting', E_ALL ^ E_DEPRECATED);
-error_reporting(E_ALL ^ E_DEPRECATED);
-ini_set("display_errors", 1);
-ini_set("track_errors", 1);
-ini_set("html_errors", 1);
+
 $usr = new Usuari(2, "alex", 255);
 $_SESSION['uSer'] = $usr;
 

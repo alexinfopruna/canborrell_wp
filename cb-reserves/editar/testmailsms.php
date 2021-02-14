@@ -6,11 +6,7 @@ $gestor=new gestor_reserves();
 //if (!$gestor->valida_sessio())die("USUARI NO AUTORITZAT!");
 //if (ENVIA_SMS == "1" )
 
-ini_set('display_errors','On');
-ini_set('error_reporting',1);
-error_reporting(E_ALL ^ ~E_DEPRECATED);
-//error_reporting(E_ALL);
-//error_reporting(NONE);
+
 define ('SMS_ACTIVAT',true);
 
 require(ROOT.DB_CONNECTION_FILE); 

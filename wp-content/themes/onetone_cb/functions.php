@@ -288,11 +288,12 @@ add_action('widgets_init', 'arphabet_widgets_init');
 
 /* */
 add_action( 'template_redirect', function() {
-        global $post;
- $p=$post->ID;
+        global $post;    
  session_start();
- 
- 
+ // $_SESSION['permisos']=(isset($_SESSION['permisos']))?$_SESSION['permisos']:0;
+ //$p=(isset($post))?$post->ID:0;
+ $p=$post->ID;
+
 if ($_SESSION['permisos']>250) return;  
     if ( $p== 1374 ) {
         return;

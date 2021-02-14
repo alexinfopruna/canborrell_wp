@@ -2,10 +2,7 @@
 #have access to httpd.conf and you have a good reason to develop remotely instead of
 #locally, you may have luck with uploading this configuration file to the server
 
-#php_value display_errors On
-#php_value display_startup_errors On
-#php_value error_reporting E_ALL
-#php_value display_errors 1
+
 
 
 Header add Access-Control-Allow-Origin *

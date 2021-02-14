@@ -1,9 +1,6 @@
 <?php
 
-//include "verifyEmail/example.php";
 
-error_reporting(E_ALL);
-ini_set('display_errors', 1);
 
 if (!isset($_REQUEST['client_email'])){
 echo '<form>Valida email:  <input type="text" name="client_email" placeholder="Escriu email"><input type="submit" value="Submit"></form> ';

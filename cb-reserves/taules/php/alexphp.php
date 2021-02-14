@@ -78,24 +78,7 @@ class alexphp
 		
 		$a=$b;
 		
-		// ERRORS		
-		//error_reporting($e_error); // 0 E_ALL E_WARNING E_PARSE E_NOTICE
-		
-		//ini_set('display_errors','ON');
-		//date_default_timezone_set('Europe/Madrid');
-		// durada sessio=5h
-		//ini_set("session.gc_maxlifetime", "18000");
-
-		// definicions per host
-		/*
-		switch ($_SERVER['HTTP_HOST'])
-		{
-			case "localhost":
-				$www_arrel = '/';
-				$carpeta_arrel="C:/Archivos de programa/xampp/htdocs/";
-				break;
-		}
-		*/					
+				
 	}
 	/////////////////////////////////////////////////////////////////////////	
 	/////////////////////////////////////////////////////////////////////////	

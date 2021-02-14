@@ -1,12 +1,6 @@
 <?php 
 
-/*
-ini_set('error_reporting', E_ALL ^ E_DEPRECATED);
-error_reporting(E_ALL ^ E_DEPRECATED);
-ini_set("display_errors", 1);
-ini_set("track_errors", 1);
-ini_set("html_errors", 1);
-*/
+
 if (!defined('ROOT')) define('ROOT', "../taules/");
 //require_once(ROOT."Gestor.php");
 require_once(ROOT."gestor_reserves.php");

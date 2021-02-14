@@ -7,11 +7,7 @@ include("vo/com/canBorrell/EstatTaulesVO.php");
 include("vo/com/canBorrell/EstatMenjadorVO.php");
 include("vo/com/canBorrell/TaulaVO.php");
 include("vo/com/canBorrell/UsuariVO.php");
-/*
-ini_set('display_errors', 'Off');
-ini_set('error_reporting', 0);
-//error_reporting(E_ALL ^ E_DEPRECATED);
-*/
+
 include(ROOT . "php/Configuracio.php");
 $config = new Configuracio();
 
