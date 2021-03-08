@@ -58,6 +58,8 @@ class gestor_reserves extends Gestor {
     $this->taulesDisponibles = new TaulesDisponibles($this);
     $this->taulesDisponibles->data = $_SESSION['data'];
     $this->taulesDisponibles->torn = $_SESSION['torn'];
+    
+    
   }
 
   /*   * ************************************* */

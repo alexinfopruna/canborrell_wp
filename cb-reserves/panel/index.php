@@ -5,7 +5,6 @@ define("LOG_LIST", "listlogs.php");
 define("LINS", "&l=ALL");
 require_once(ROOT."gestor_reserves.php");
 $gestor=new gestor_reserves();   
-
 if (!$gestor->valida_sessio(64))  
 {
 	header("Location: login.php");

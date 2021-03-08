@@ -55,11 +55,15 @@ class TaulesDisponibles extends Gestor {
     include(ROOT . "coord_menjadors.php");
     $this->menjadors = $menjadors;
     //RECUPEREM CREA_TAULES i NITS_OBERT DEL CONFIG
+     $this->data = $this->data_BASE;
     $this->creaTaules = $this->recupera_creaTaules();
+
+
+
     $this->nitsObert = unserialize(AR__NITS_OBERT);
 
     $this->reset();
-    $this->data = $this->data_BASE;
+   
 
 
     $this->llista_dies_negra = defined('LLISTA_DIES_NEGRA') ? LLISTA_DIES_NEGRA : "zz"; // RESULTAT PER ID
@@ -963,6 +967,7 @@ ORDER BY  `estat_hores_hora` ASC ";
     /** ATENCIO: Excepció creataules actiu de DL a DV no festiu */
     
     
+
     if (!$this->es_finde_o_festiu($mydata)) return true;
     $query = "SELECT estat_crea_taules_actiu FROM estat_crea_taules
     WHERE 
