@@ -2,6 +2,12 @@
 
 class WPML_Installation extends WPML_WPDB_And_SP_User {
 
+	const WPML_START_VERSION_KEY = 'wpml_start_version';
+
+	public static function getStartVersion() {
+		return get_option( self::WPML_START_VERSION_KEY, '0.0.0' );
+	}
+
 	function go_to_setup1() {
 		// Reverse $this->prepopulate_translations()
 		$this->wpdb->query( "TRUNCATE TABLE {$this->wpdb->prefix}icl_translations" );
@@ -30,7 +36,7 @@ class WPML_Installation extends WPML_WPDB_And_SP_User {
 	/**
 	 * Sets the locale in the icl_locale_map if it has not yet been set
 	 *
-	 * @param $initial_language_code
+	 * @param string $initial_language_code
 	 */
 	private function maybe_set_locale( $initial_language_code ) {
 		$q          = "SELECT code FROM {$this->wpdb->prefix}icl_locale_map WHERE code=%s";
@@ -112,13 +118,18 @@ class WPML_Installation extends WPML_WPDB_And_SP_User {
 		return $sanitized_codes;
 	}
 
-	public function finish_installation( $site_key = false ) {
+	public function finish_installation( ) {
 		icl_set_setting( 'setup_complete', 1, true );
+
+		update_option( self::WPML_START_VERSION_KEY, ICL_SITEPRESS_VERSION );
+
+		do_action( 'wpml_setup_completed' );
+	}
+
+	public function store_site_key( $site_key = false ) {
 		if ( $site_key ) {
 			icl_set_setting( 'site_key', $site_key, true );
 		}
-
-		do_action( 'wpml_setup_completed' );
 	}
 
 	public function finish_step3() {
@@ -148,7 +159,9 @@ class WPML_Installation extends WPML_WPDB_And_SP_User {
 	public function finish_step1( $initial_language_code ) {
 		$this->set_initial_default_category( $initial_language_code );
 		$this->prepopulate_translations( $initial_language_code );
-		$this->maybe_set_locale( $initial_language_code );
+		$this->update_active_language( $initial_language_code );
+		$admin_language = $this->get_admin_language( $initial_language_code );
+		$this->maybe_set_locale( $admin_language );
 		icl_set_setting( 'existing_content_language_verified', 1 );
 		icl_set_setting( 'default_language', $initial_language_code );
 		icl_set_setting( 'setup_wizard_step', 2 );
@@ -157,17 +170,42 @@ class WPML_Installation extends WPML_WPDB_And_SP_User {
 		$this->refresh_active_lang_cache( $initial_language_code );
 		add_filter( 'locale', array( $this->sitepress, 'locale_filter' ), 10, 1 );
 
-		if ( $this->sitepress->is_rtl( $initial_language_code ) ) {
+		if ( ! array_key_exists( 'wp_styles', $GLOBALS ) || ! $GLOBALS['wp_styles'] ) {
+			wp_styles();
+		}
+
+		if ( $this->sitepress->is_rtl( $admin_language ) ) {
 			$GLOBALS['text_direction'] = 'rtl';
-			$this->sitepress->rtl_fix();
+			$GLOBALS['wp_styles']->text_direction = 'rtl';
 		} else {
-			unset( $GLOBALS['text_direction'] );
+			$GLOBALS['text_direction'] = 'ltr';
+			$GLOBALS['wp_styles']->text_direction = 'ltr';
 		}
 
 		$GLOBALS['wp_locale'] = new WP_Locale();
-		$GLOBALS['locale'] = $this->sitepress->get_locale( $initial_language_code );
+		$GLOBALS['locale'] = $this->sitepress->get_locale( $admin_language );
 
 		do_action( 'icl_initial_language_set' );
+	}
+
+	/**
+	 * @param string $initial_language_code
+	 *
+	 * @return string
+	 */
+	private function get_admin_language( $initial_language_code ) {
+		$user_locale = get_user_meta( get_current_user_id(), 'locale', true );
+
+		if ( $user_locale ) {
+			$lang = $this->sitepress->get_language_code_from_locale( $user_locale );
+
+			if ( $lang ) {
+				return $lang;
+			}
+		}
+
+		return $initial_language_code;
+
 	}
 
 	private function set_initial_default_category( $initial_lang ) {
@@ -205,11 +243,11 @@ class WPML_Installation extends WPML_WPDB_And_SP_User {
 
 	/**
 	 * @param string $display_language
-	 * @param bool $active_only
+	 * @param bool   $active_only
+	 * @param bool   $major_first
+	 * @param string $order_by
 	 *
-	 * @param bool $major_first
-	 *
-	 * @return array
+	 * @return array<string,\stdClass>
 	 */
 	public function refresh_active_lang_cache( $display_language, $active_only = false, $major_first = false,  $order_by = 'english_name' ) {
 		$active_snippet     = $active_only ? " l.active = 1 AND " : "";
@@ -252,18 +290,19 @@ class WPML_Installation extends WPML_WPDB_And_SP_User {
 		$res                = $this->wpdb->get_results( $res_query_prepared, ARRAY_A );
 		$languages          = array();
 
+		$icl_cache = $this->sitepress->get_language_name_cache();
 		foreach ( (array) $res as $r ) {
 			$languages[ $r[ 'code' ] ] = $r;
-			$this->sitepress->get_language_name_cache()->set( 'language_details_' . $r['code'] . $display_language, $r );
+			$icl_cache->set( 'language_details_' . $r['code'] . $display_language, $r );
 		}
 
 		if ( $active_only ) {
-			$this->sitepress->get_language_name_cache()->set( 'in_language_' . $display_language . '_' . $major_first . '_' . $order_by, $languages );
+			$icl_cache->set( 'in_language_' . $display_language . '_' . $major_first . '_' . $order_by, $languages );
 		} else {
-			$this->sitepress->get_language_name_cache()->set( 'all_language_' . $display_language . '_' . $major_first . '_' . $order_by, $languages );
+			$icl_cache->set( 'all_language_' . $display_language . '_' . $major_first . '_' . $order_by, $languages );
 		}
 
-		$this->sitepress->get_language_name_cache()->save_cache_if_required();
+		$icl_cache->save_cache_if_required();
 		
 		return $languages;
 	}
@@ -324,7 +363,7 @@ class WPML_Installation extends WPML_WPDB_And_SP_User {
 			)
 		);
 
-		$maxtrid = 1 + $this->wpdb->get_var( "SELECT MAX(trid) FROM {$this->wpdb->prefix}icl_translations" );
+		$maxtrid = 1 + (int) $this->wpdb->get_var( "SELECT MAX(trid) FROM {$this->wpdb->prefix}icl_translations" );
 
 		global $wp_taxonomies;
 		$taxonomies = array_keys( (array) $wp_taxonomies );
@@ -337,7 +376,7 @@ class WPML_Installation extends WPML_WPDB_And_SP_User {
 				";
 			$insert_prepare = $this->wpdb->prepare( $insert_query, array( $element_type, $maxtrid, $lang, $tax ) );
 			$this->wpdb->query( $insert_prepare );
-			$maxtrid = 1 + $this->wpdb->get_var( "SELECT MAX(trid) FROM {$this->wpdb->prefix}icl_translations" );
+			$maxtrid = 1 + (int) $this->wpdb->get_var( "SELECT MAX(trid) FROM {$this->wpdb->prefix}icl_translations" );
 		}
 
 		$this->wpdb->query(
@@ -349,7 +388,9 @@ class WPML_Installation extends WPML_WPDB_And_SP_User {
 				$lang
 			)
 		);
+	}
 
+	public function update_active_language( $lang ) {
 		$this->wpdb->update( $this->wpdb->prefix . 'icl_languages', array( 'active' => '1' ), array( 'code' => $lang ) );
 	}
 

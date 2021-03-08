@@ -3,8 +3,16 @@
 /**
  * Class WPML_Meta_Boxes_Post_Edit_HTML
  */
-class WPML_Meta_Boxes_Post_Edit_HTML extends WPML_SP_And_PT_User {
+class WPML_Meta_Boxes_Post_Edit_HTML {
 
+	const FLAG_HAS_MEDIA_OPTIONS = 'wpml_has_media_options';
+	const TAXONOMIES_PRIORITY    = 'translation_priority';
+	const WRAPPER_ID = 'icl_div';
+
+	/** @var SitePress $sitepress */
+	private $sitepress;
+	/** @var WPML_Post_Translation $post_translation */
+	private $post_translation;
 	private $translation_of_options;
 	/** @var  array $allowed_languages */
 	private $allowed_languages;
@@ -29,9 +37,9 @@ class WPML_Meta_Boxes_Post_Edit_HTML extends WPML_SP_And_PT_User {
 	 * @param SitePress             $sitepress
 	 * @param WPML_Post_Translation $post_translation
 	 */
-	function __construct( &$sitepress, &$post_translation ) {
-		parent::__construct( $post_translation, $sitepress );
-		add_action( 'wpml_post_edit_languages', array( $this, 'render_languages' ), 10, 1 );
+	function __construct( SitePress $sitepress, WPML_Post_Translation $post_translation ) {
+		$this->sitepress        = $sitepress;
+		$this->post_translation = $post_translation;
 	}
 
 	/**
@@ -48,9 +56,17 @@ class WPML_Meta_Boxes_Post_Edit_HTML extends WPML_SP_And_PT_User {
 		ob_start();
 		$this->post_edit_languages_dropdown();
 		$this->connect_translations();
+		$this->translation_priority();
 		$this->translation_of();
 		$this->languages_actions();
 		$this->copy_from_original( $post );
+
+		if ( $this->sitepress->is_translated_post_type( 'attachment' ) ) {
+			$this->media_options( $post );
+		}
+
+		$this->minor_edit();
+
 		do_action( 'icl_post_languages_options_after' );
 		$contents = ob_get_clean();
 
@@ -74,7 +90,9 @@ class WPML_Meta_Boxes_Post_Edit_HTML extends WPML_SP_And_PT_User {
 
 	private function post_edit_languages_dropdown() {
 		?>
-		<div id="icl_document_language_dropdown" class="icl_box_paragraph">
+		<div id="icl_document_language_dropdown" class="icl_box_paragraph"
+		     data-metabox-refresh-nonce="<?php echo wp_create_nonce( WPML_Meta_Boxes_Post_Edit_Ajax::ACTION_GET_META_BOXES ) ?>"
+		     data-admin-ls-refresh-nonce="<?php echo wp_create_nonce( WPML_Meta_Boxes_Post_Edit_Ajax::ACTION_GET_ADMIN_LS ) ?>">
 			<p>
 				<label for="icl_post_language">
                     <strong><?php printf( esc_html__( 'Language of this %s', 'sitepress' ), esc_html( $this->post_type_label ) ); ?></strong>
@@ -83,6 +101,7 @@ class WPML_Meta_Boxes_Post_Edit_HTML extends WPML_SP_And_PT_User {
 
 			<?php
 			$disabled_language = disabled( false, $this->can_translate_post, false );
+			wp_nonce_field( WPML_Post_Edit_Ajax::AJAX_ACTION_SWITCH_POST_LANGUAGE, 'nonce' );
 			?>
 			<select name="icl_post_language" id="icl_post_language" <?php echo $disabled_language; ?>>
 				<?php
@@ -106,6 +125,49 @@ class WPML_Meta_Boxes_Post_Edit_HTML extends WPML_SP_And_PT_User {
 			<input type="hidden" name="icl_trid" value="<?php echo esc_attr( $this->get_trid() ); ?>"/>
 		</div>
 		<?php
+	}
+
+	private function translation_priority() {
+		if ( ! class_exists( 'WPML_TM_Translation_Priorities' ) ) {
+			return;
+		}
+		?>
+        <div id="icl_translation_priority_dropdown" class="icl_box_paragraph">
+            <p>
+                <label for="icl_translation_priority_dropdown">
+                    <strong><?php esc_html_e( 'Translation Priority', 'sitepress' ); ?></strong>
+                </label>
+            </p>
+			<?php
+			wp_nonce_field( 'wpml_translation_priority', 'nonce' );
+
+			wp_dropdown_categories(
+				array(
+					'hide_empty' => 0,
+					'selected'   => $this->get_selected_priority(),
+					'name'       => 'icl_translation_priority',
+					'taxonomy'   => self::TAXONOMIES_PRIORITY
+				)
+			);
+			?>
+            <a href="<?php echo admin_url( 'edit-tags.php?taxonomy=translation_priority' ); ?>"
+               target="_blank"><?php esc_html_e( 'edit terms', 'sitepress' ); ?></a>
+        </div>
+		<?php
+	}
+
+	/**
+	 * @param int $element_id
+	 *
+	 * @return WP_Term|null
+	 */
+	private function get_term_obj( $element_id ) {
+		$terms = wp_get_object_terms( $element_id, self::TAXONOMIES_PRIORITY );
+		if ( is_wp_error( $terms ) ) {
+			return null;
+		}
+
+		return empty( $terms ) ? null : $terms[0];
 	}
 
 	private function connect_translations() {
@@ -139,7 +201,7 @@ class WPML_Meta_Boxes_Post_Edit_HTML extends WPML_SP_And_PT_User {
 
                 <div class="hidden">
                     <div id="connect_translations_dialog"
-                         title="<?php esc_attr_e( 'Choose a post to assign', 'sitepress' ); ?>"
+                         title="<?php esc_attr_e( sprintf( 'Choose a %s to assign', get_post_type_object( get_post_type( $this->post ) )->labels->singular_name ), 'sitepress' ); ?>"
                          data-set_as_source-text="<?php echo esc_attr( sprintf( __( 'Make %s the original language for this %s', 'sitepress' ), $language_name, $this->post->post_type ) ); ?>"
                          data-alert-text="<?php esc_attr_e( "Please make sure to save your post, if you've made any change, before proceeding with this action!", 'sitepress' ); ?>"
                          data-cancel-label="<?php esc_attr_e( 'Cancel', 'sitepress' ); ?>"
@@ -180,7 +242,7 @@ class WPML_Meta_Boxes_Post_Edit_HTML extends WPML_SP_And_PT_User {
 		?>
 		<div id="translation_of_wrap">
 			<?php
-			if ( $this->is_a_translation() || ! $this->has_translations() ) {
+			if ( 'auto-draft' !== $this->post->post_status && ( $this->is_a_translation() || ! $this->has_translations() ) ) {
 				$disabled = disabled( false, $this->is_edit_action() && $this->get_trid(), false );
 				?>
 
@@ -193,6 +255,7 @@ class WPML_Meta_Boxes_Post_Edit_HTML extends WPML_SP_And_PT_User {
 					</select>
 					<?php //Add hidden value when the dropdown is hidden ?>
 					<?php
+					$source_element_id = SitePress::get_original_element_id_by_trid( $this->get_trid() );
 					if ( $disabled && ! empty( $source_element_id ) ) {
 						?>
 						<input type="hidden" name="icl_translation_of" id="icl_translation_of_hidden" value="<?php echo esc_attr( $source_element_id ); ?>">
@@ -207,6 +270,13 @@ class WPML_Meta_Boxes_Post_Edit_HTML extends WPML_SP_And_PT_User {
 
 		<br clear="all"/>
 	<?php
+	}
+
+	private function minor_edit() {
+		$stacktrace = new WPML\Utils\DebugBackTrace();
+		if ( $stacktrace->is_function_in_call_stack( 'the_block_editor_meta_boxes' ) ) {
+			do_action( 'wpml_minor_edit_for_gutenberg' );
+		}
 	}
 
 	private function languages_actions() {
@@ -287,6 +357,18 @@ class WPML_Meta_Boxes_Post_Edit_HTML extends WPML_SP_And_PT_User {
 	private function languages_table( $status_display ) {
 		?>
 		<p style="clear:both;"><b><?php esc_html_e( 'Translate this Document', 'sitepress' ); ?></b></p>
+
+		<?php
+		/**
+		 * Fire actions before to render the translations tables
+		 *
+		 * @since 4.2.0
+		 *
+		 * @param WP_Post $this->post
+		 */
+		do_action( 'wpml_before_post_edit_translations_table', $this->post );
+		?>
+
 		<table width="100%" id="icl_untranslated_table" class="icl_translations_table">
 			<tr>
 				<th>&nbsp;</th>
@@ -302,8 +384,17 @@ class WPML_Meta_Boxes_Post_Edit_HTML extends WPML_SP_And_PT_User {
 			?>
 			<tr>
 				<td colspan="3" align="right">
-					<input id="icl_make_duplicates" type="button" class="button-secondary" value="<?php echo esc_attr__( 'Duplicate', 'sitepress' ) ?>" disabled="disabled" style="display:none;"/>
-					<?php wp_nonce_field( 'make_duplicates_nonce', '_icl_nonce_mdup' ); ?>
+					<input
+							id="icl_make_duplicates"
+							type="button"
+							class="button-secondary"
+							value="<?php echo esc_attr__( 'Duplicate', 'sitepress' ) ?>"
+							disabled="disabled"
+							style="display:none;"
+							data-action="<?php echo WPML_Meta_Boxes_Post_Edit_Ajax::ACTION_DUPLICATE; ?>"
+        					data-nonce="<?php echo wp_create_nonce( WPML_Meta_Boxes_Post_Edit_Ajax::ACTION_DUPLICATE ); ?>"
+        					data-post-id="<?php echo isset( $this->post->ID ) ? $this->post->ID : 0; ?>"
+					/>
 				</td>
 			</tr>
 		</table>
@@ -318,13 +409,24 @@ class WPML_Meta_Boxes_Post_Edit_HTML extends WPML_SP_And_PT_User {
 		$not_show_flags = ! apply_filters( 'wpml_setting', false, 'show_translations_flag' );
 		?>
         <div class="icl_box_paragraph">
-            <b><?php esc_html_e( 'Translations', 'sitepress' ) ?></b>
-            (<a class="icl_toggle_show_translations" href="#"
-			    <?php if ( $not_show_flags ) : ?>style="display:none;"<?php endif; ?>><?php esc_html_e( 'hide', 'sitepress' ); ?></a>
-            <a class="icl_toggle_show_translations" href="#"
-			   <?php if ( ! $not_show_flags ) : ?>style="display:none;"<?php endif; ?>><?php esc_html_e( 'show', 'sitepress' ) ?></a>)
-			<?php wp_nonce_field( 'toggle_show_translations_nonce', '_icl_nonce_tst' ) ?>
-            <table width="100%" class="icl_translations_table" id="icl_translations_table"
+            <p><b><?php esc_html_e( 'Translations', 'sitepress' ) ?></b>
+          (<a class="icl_toggle_show_translations" href="#" <?php if ( $not_show_flags ) : ?>style="display:none;"<?php endif; ?>><?php esc_html_e( 'hide', 'sitepress' ); ?></a><a class="icl_toggle_show_translations" href="#" <?php if ( ! $not_show_flags ) : ?>style="display:none;"<?php endif; ?>><?php esc_html_e( 'show', 'sitepress' ) ?></a>)
+            </p>
+
+			<?php
+			/**
+			 * Fire actions before to render the translations summary
+			 *
+			 * @since 4.2.0
+			 *
+			 * @param WP_Post $this->post
+			 */
+			 do_action( 'wpml_before_post_edit_translations_summary', $this->post );
+
+			 wp_nonce_field( 'toggle_show_translations_nonce', '_icl_nonce_tst' );
+			 ?>
+
+            <table width="100%" class="icl_translations_table wpml-margin-bottom-base" id="icl_translations_table"
 			       <?php
 			       if ( $not_show_flags ) : ?>style="display:none;"<?php endif; ?>>
 				<?php
@@ -406,24 +508,24 @@ class WPML_Meta_Boxes_Post_Edit_HTML extends WPML_SP_And_PT_User {
 					<?php echo $status_display->get_status_html( $this->post->ID, $lang[ 'code' ] ); ?>
 				</td>
 				<td align="right">
-					<?php
-					$disabled_duplication       = false;
-					$disabled_duplication_title = esc_attr__( 'Create duplicate', 'sitepress' );
-					$element_key                = array( 'trid' => $this->trid, 'language_code' => $lang['code'] );
-					$translation_status         = apply_filters( 'wpml_tm_translation_status', null, $element_key );
-					echo PHP_EOL . '<!-- $translation_status = ' . $translation_status . ' -->' . PHP_EOL;
+				    <?php
+				    $disabled_duplication       = false;
+				    $disabled_duplication_title = esc_attr__( 'Create duplicate', 'sitepress' );
+				    $element_key                = array( 'trid' => $this->trid, 'language_code' => $lang['code'] );
+				    $translation_status         = apply_filters( 'wpml_tm_translation_status', null, $element_key );
+				    echo PHP_EOL . '<!-- $translation_status = ' . $translation_status . ' -->' . PHP_EOL;
 
-					if ( $translation_status && $translation_status < ICL_TM_COMPLETE ) {
-						$disabled_duplication       = true;
-						if ( ICL_TM_DUPLICATE === (int) $translation_status ) {
-							$disabled_duplication_title = esc_attr__( 'This post is already duplicated.', 'sitepress' );
-						} else {
-							$disabled_duplication_title = esc_attr__( "Can't create a duplicate. A translation is in progress.", 'sitepress' );
-						}
-					}
+				    if ( $translation_status && $translation_status < ICL_TM_COMPLETE ) {
+				        $disabled_duplication       = true;
+				        if ( ICL_TM_DUPLICATE === (int) $translation_status ) {
+				            $disabled_duplication_title = esc_attr__( 'This post is already duplicated.', 'sitepress' );
+				        } else {
+				            $disabled_duplication_title = esc_attr__( "Can't create a duplicate. A translation is in progress.", 'sitepress' );
+				        }
+				    }
 
-					?>
-					<input<?php disabled( true, $disabled_duplication ); ?> type="checkbox" name="icl_dupes[]" value="<?php echo esc_attr( $lang['code'] ); ?>" title="<?php echo $disabled_duplication_title ?>"/>
+				    ?>
+				    <input<?php disabled( true, $disabled_duplication ); ?> type="checkbox" name="icl_dupes[]" value="<?php echo esc_attr( $lang['code'] ); ?>" title="<?php echo $disabled_duplication_title ?>"/>
 				</td>
 
 			<?php
@@ -505,6 +607,37 @@ class WPML_Meta_Boxes_Post_Edit_HTML extends WPML_SP_And_PT_User {
 		}
 	}
 
+	private function media_options( $post ) {
+		echo '<br /><br /><strong>' . esc_html__( 'Media attachments', 'sitepress' ) . '</strong>';
+
+		$original_post_id = (int) $this->post_translation->get_original_post_ID( $this->trid );
+
+		if( ! $original_post_id ){
+			$settings = get_option( '_wpml_media' );
+			$content_defaults = $settings['new_content_settings'];
+			$duplicate_media = $content_defaults['duplicate_media'];
+			$duplicate_featured  = $content_defaults['duplicate_featured'];
+		} else{
+			$duplicate_media = get_post_meta( $original_post_id, WPML_Admin_Post_Actions::DUPLICATE_MEDIA_META_KEY, true );
+			$duplicate_featured  = get_post_meta( $original_post_id, WPML_Admin_Post_Actions::DUPLICATE_FEATURED_META_KEY, true );
+		}
+
+		if( ! $original_post_id || (int) $post->ID === $original_post_id ){
+			$duplicate_media_label =  esc_html__('Duplicate uploaded media to translations', 'sitepress');
+			$duplicate_featured_label =  esc_html__('Duplicate featured image to translations', 'sitepress');
+		} else {
+			$duplicate_media_label =  esc_html__('Duplicate uploaded media from original', 'sitepress');
+			$duplicate_featured_label =  esc_html__('Duplicate featured image from original', 'sitepress');
+		}
+
+		echo '<br /><input name="' . self::FLAG_HAS_MEDIA_OPTIONS . '" type="hidden" value="1"/>';
+		echo '<br /><label><input name="wpml_duplicate_media" type="checkbox" value="1" ' .
+		     checked( $duplicate_media, true, false ) . '/>&nbsp;' . $duplicate_media_label . '</label>';
+		echo '<br /><label><input name="wpml_duplicate_featured" type="checkbox" value="1" ' .
+		     checked( $duplicate_featured, true, false ) . '/>&nbsp;' . $duplicate_featured_label . '</label>';
+
+	}
+
 	/**
 	 * Renders the button for copying the original posts content to the currently edited post on the post edit screen.
 	 *
@@ -521,16 +654,11 @@ class WPML_Meta_Boxes_Post_Edit_HTML extends WPML_SP_And_PT_User {
                 $source_lang_name
             ) . '"
 				onclick="icl_copy_from_original(\'' . esc_js( $source_lang ) . '\', \'' . esc_js( $trid ) . '\')"'
-		     . $disabled . ' style="white-space:normal;height:auto;line-height:normal;"/>';
-		icl_pop_info(
-				esc_html__(
-						"This operation copies the content from the original language onto this translation. It's meant for when you want to start with the original content, but keep translating in this language. This button is only enabled when there's no content in the editor.",
-						'sitepress'
-				),
-				'question'
-		);
-		echo '<br clear="all" />';
-	}
+		     . $disabled . ' />'; ?>
+		<i class="otgs-ico-help js-otgs-popover-tooltip"
+		   data-tippy-zindex="999999"
+		   title="<?php echo  esc_html__("This operation copies the content from the original language onto this translation. It's meant for when you want to start with the original content, but keep translating in this language. This button is only enabled when there's no content in the editor.",'sitepress');?>"></i>
+	<?php }
 
 	/**
 	 * Renders the "Overwrite" button on the post edit screen that allows setting the post as a duplicate of its
@@ -545,7 +673,6 @@ class WPML_Meta_Boxes_Post_Edit_HTML extends WPML_SP_And_PT_User {
 		wp_nonce_field( 'set_duplication_nonce', '_icl_nonce_sd' ) ?>
 		<input id="icl_set_duplicate" type="button" class="button-secondary"
 		       value="<?php printf( esc_html__( 'Overwrite with %s content.', 'sitepress' ), $source_lang_name ) ?>"
-		       style="white-space:normal;height:auto;line-height:normal;"
 		       data-wpml_original_post_id="<?php echo absint( $original_post_id ); ?>"
 		       data-post_lang="<?php echo esc_attr( $post_lang ); ?>"/>
 		<span style="display: none;"><?php echo esc_js(
@@ -558,14 +685,9 @@ class WPML_Meta_Boxes_Post_Edit_HTML extends WPML_SP_And_PT_User {
 							esc_html( $source_lang_name )
 					)
 			); ?></span>
-		<?php icl_pop_info(
-				esc_html__(
-						"This operation will synchronize this translation with the original language. When you edit the original, this translation will update immediately. It's meant when you want the content in this language to always be the same as the content in the original language.",
-						'sitepress'
-				),
-				'question'
-		); ?>
-		<br clear="all"/>
+		<i class="otgs-ico-help js-otgs-popover-tooltip"
+		   data-tippy-zindex="999999"
+		   title="	  <?php echo esc_html__("This operation will synchronize this translation with the original language. When you edit the original, this translation will update immediately. It's meant when you want the content in this language to always be the same as the content in the original language.",'sitepress') ?>"></i>
 		<?php
 	}
 
@@ -721,11 +843,39 @@ class WPML_Meta_Boxes_Post_Edit_HTML extends WPML_SP_And_PT_User {
 				if ( ! $this->is_original ) {
 					$selected_content_language_details = $this->sitepress->get_element_translations( $selected_content_translation,
 					                                                                                 'post_' . $this->post->post_type );
-					if ( isset( $selected_content_language_details ) && isset( $selected_content_language_details->source_language_code ) ) {
+					if (isset( $selected_content_language_details->source_language_code ) ) {
 						$this->source_language = $selected_content_language_details->source_language_code;
 					}
 				}
 			}
 		}
+	}
+
+	/**
+	 * @return bool|int|mixed|void
+	 */
+	private function get_selected_priority() {
+		$selected = null;
+
+		if ( $this->is_original ) {
+			$term_obj = $this->get_term_obj( $this->post->ID );
+			$selected = $term_obj ? $term_obj->term_id : WPML_TM_Translation_Priorities::get_default_term()->term_id;
+		} else {
+			$this->fix_source_language();
+			$element_id = $this->post_translation->get_element_id( $this->source_language, $this->trid );
+			$term_obj   = $this->get_term_obj( $element_id );
+
+			if ( $term_obj ) {
+				$selected = apply_filters( 'translate_object_id', $term_obj->term_id, self::TAXONOMIES_PRIORITY, false, $this->selected_language );
+			}
+
+			if ( ! $selected ) {
+				$selected = $term_obj ?
+					WPML_TM_Translation_Priorities::insert_missing_translation( $term_obj->term_id, $term_obj->name, $this->selected_language ) :
+					WPML_TM_Translation_Priorities::get_default_term()->term_id;
+			}
+		}
+
+		return $selected;
 	}
 }

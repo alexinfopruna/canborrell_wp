@@ -32,7 +32,7 @@ class WPML_TM_Post_Actions extends WPML_Translation_Job_Helper {
 
 		// set trid and lang code if front-end translation creating
 		$trid = apply_filters( 'wpml_tm_save_post_trid_value', isset( $trid ) ? $trid : '', $post_id );
-		$lang = apply_filters( 'wpml_tm_save_post_lang_value', isset( $lang ) ? $lang : '', $post_id );
+		$lang = apply_filters( 'wpml_tm_save_post_lang_value', '', $post_id );
 
 		$trid = $this->maybe_retrive_trid_again( $trid, $post );
 		$needs_second_update = array_key_exists( 'needs_second_update', $_POST ) ? (bool) $_POST['needs_second_update'] : false;
@@ -43,6 +43,11 @@ class WPML_TM_Post_Actions extends WPML_Translation_Job_Helper {
 			: ! (bool) $this->tm_records
 				->icl_translations_by_element_id_and_type_prefix( $post_id, 'post_' . $post->post_type )
 				->source_language_code();
+
+		if( $is_original ){
+			$this->save_translation_priority( $post_id );
+		}
+
 		if ( ! empty( $trid ) && ! $is_original ) {
 			$lang = $lang ? $lang : $this->get_save_post_lang( $lang, $post_id );
 			$res  = $wpdb->get_row( $wpdb->prepare( "
@@ -76,10 +81,16 @@ class WPML_TM_Post_Actions extends WPML_Translation_Job_Helper {
 						$job_id_sql      = "SELECT MAX(job_id) FROM {$wpdb->prefix}icl_translate_job WHERE rid=%d GROUP BY rid";
 						$job_id_prepared = $wpdb->prepare( $job_id_sql, $rid );
 						$job_id          = $wpdb->get_var( $job_id_prepared );
-						$job_id          = $job_id ? $job_id : $this->action_helper->add_translation_job( $rid,
-						                                                                                  $user_id,
-						                                                                                  $translation_package );
+						if ( ! $job_id ) {
+							$job_id = $this->action_helper->add_translation_job(
+								$rid,
+								$user_id,
+								$translation_package
+							);
+						}
 					}
+
+					wpml_tm_load_old_jobs_editor()->set( $job_id, WPML_TM_Editors::WP );
 
 					// saving the translation
 					do_action( 'wpml_save_job_fields_from_post', $job_id );
@@ -129,15 +140,21 @@ class WPML_TM_Post_Actions extends WPML_Translation_Job_Helper {
 	 *                                                   a translation in a given language pair.
 	 */
 	private function maybe_add_as_translator( $user_id, $target_lang, $source_lang ) {
-		if ( $target_lang && ! $this->blog_translators->is_translator( $user_id,
+
+		$user = new WP_User( $user_id );
+		if ( $user->has_cap( 'manage_options' ) && $target_lang && ! $this->blog_translators->is_translator( $user_id,
 		                                                        array(
 			                                                        'lang_from'      => $source_lang,
 			                                                        'lang_to'        => $target_lang,
 			                                                        'admin_override' => false
 		                                                        ) )
 		) {
-			$this->action_helper->get_tm_instance()->add_translator( $user_id,
-			                                                         array( $source_lang => array( $target_lang => 1 ) ) );
+			global $wpdb;
+
+			$user->add_cap( WPML_Translator_Role::CAPABILITY );
+
+			$language_pair_records = new WPML_Language_Pair_Records( $wpdb, new WPML_Language_Records( $wpdb ) );
+			$language_pair_records->store( $user_id, array( $source_lang => array( $target_lang ) ) );
 		}
 	}
 
@@ -161,5 +178,45 @@ class WPML_TM_Post_Actions extends WPML_Translation_Job_Helper {
 		}
 
 		return $trid;
+	}
+
+	/**
+	 * @param int $post_id
+	 */
+	public function save_translation_priority( $post_id ) {
+		$translation_priority = (int) filter_var(
+			( isset( $_POST['icl_translation_priority'] ) ? $_POST['icl_translation_priority'] : '' ),
+			FILTER_SANITIZE_NUMBER_INT );
+
+		if ( ! $translation_priority ) {
+			$assigned_priority = $this->get_term_obj( $post_id );
+
+			if ( $assigned_priority ) {
+				$translation_priority = $assigned_priority->term_id;
+			} else {
+				$term = \WPML_TM_Translation_Priorities::get_default_term();
+				if ( $term ) {
+					$translation_priority = $term->term_id;
+				};
+			}
+		}
+
+		if ( $translation_priority ) {
+			wp_set_post_terms( $post_id, array( $translation_priority ), \WPML_TM_Translation_Priorities::TAXONOMY );
+		}
+	}
+
+	/**
+	 * @param int $element_id
+	 *
+	 * @return WP_Term|null
+	 */
+	private function get_term_obj( $element_id ) {
+		$terms = wp_get_object_terms( $element_id, \WPML_TM_Translation_Priorities::TAXONOMY );
+		if ( is_wp_error( $terms ) ) {
+			return null;
+		}
+
+		return empty( $terms ) ? null : $terms[0];
 	}
 }

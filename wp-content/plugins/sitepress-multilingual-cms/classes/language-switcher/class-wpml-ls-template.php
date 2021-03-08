@@ -26,7 +26,7 @@ class WPML_LS_Template extends WPML_Templates_Factory {
 			$this->template_string = $this->template['template_string'];
 		}
 
-		$this->model    = $template_model;
+		$this->model = $template_model;
 		parent::__construct();
 	}
 
@@ -183,7 +183,9 @@ class WPML_LS_Template extends WPML_Templates_Factory {
 	}
 
 	public function is_path_valid() {
-		$valid = true;
+		$valid                = true;
+		$this->template_paths = apply_filters( 'wpml_ls_template_paths', $this->template_paths );
+
 		foreach ( $this->template_paths as $path ) {
 			if ( ! file_exists( $path ) ) {
 				$valid = false;

@@ -29,15 +29,15 @@ abstract class WPML_URL_Converter_Abstract_Strategy implements IWPML_URL_Convert
 	protected $wp_rewrite;
 
 	/**
-	 * @param $default_language
-	 * @param $active_languages
-	 * @param WP_Rewrite $wp_rewrite
+	 * @param string        $default_language
+	 * @param array<string> $active_languages
+	 * @param WP_Rewrite    $wp_rewrite
 	 */
 	public function __construct( $default_language, $active_languages, $wp_rewrite = null ) {
 		$this->default_language = $default_language;
 		$this->active_languages = $active_languages;
 
-		$this->lang_param = new WPML_URL_Converter_Lang_Param_Helper( $active_languages );
+		$this->lang_param   = new WPML_URL_Converter_Lang_Param_Helper( $active_languages );
 		$this->slash_helper = new WPML_Slash_Management();
 
 		if ( ! $wp_rewrite ) {
@@ -48,7 +48,7 @@ abstract class WPML_URL_Converter_Abstract_Strategy implements IWPML_URL_Convert
 
 	public function validate_language( $language, $url ) {
 		return in_array( $language, $this->active_languages, true )
-		       || 'all' === $language && $this->get_url_helper()->is_url_admin( $url ) ? $language : $this->get_default_language();
+			   || 'all' === $language && $this->get_url_helper()->is_url_admin( $url ) ? $language : $this->get_default_language();
 	}
 
 	/**
@@ -89,5 +89,27 @@ abstract class WPML_URL_Converter_Abstract_Strategy implements IWPML_URL_Convert
 		} else {
 			return icl_get_setting( 'default_language' );
 		}
+	}
+
+	public function fix_trailingslashit( $source_url ) {
+		return $source_url;
+	}
+
+	public function skip_convert_url_string( $source_url, $lang_code ) {
+		/**
+		 * Allows plugins to skip url conversion.
+		 *
+		 * @since 4.3
+		 *
+		 * @param bool
+		 * @param string $source_url
+		 * @param string $lang_code
+		 * @return bool
+		 */
+		return apply_filters( 'wpml_skip_convert_url_string', false, $source_url, $lang_code );
+	}
+
+	public function use_wp_login_url_converter() {
+		return false;
 	}
 }

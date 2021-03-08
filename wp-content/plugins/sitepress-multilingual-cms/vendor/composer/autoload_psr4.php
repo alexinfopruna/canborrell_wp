@@ -6,5 +6,10 @@ $vendorDir = dirname(dirname(__FILE__));
 $baseDir = dirname($vendorDir);
 
 return array(
+    'WPML\\Collect\\' => array($vendorDir . '/wpml/collect/src/Illuminate'),
+    'WPML\\Auryn\\' => array($vendorDir . '/otgs/auryn/lib'),
+    'Symfony\\Polyfill\\Mbstring\\' => array($vendorDir . '/symfony/polyfill-mbstring'),
+    'Symfony\\Polyfill\\Iconv\\' => array($vendorDir . '/symfony/polyfill-iconv'),
+    'PhpMyAdmin\\SqlParser\\' => array($vendorDir . '/phpmyadmin/sql-parser/src'),
     'Composer\\Installers\\' => array($vendorDir . '/composer/installers/src/Composer/Installers'),
 );

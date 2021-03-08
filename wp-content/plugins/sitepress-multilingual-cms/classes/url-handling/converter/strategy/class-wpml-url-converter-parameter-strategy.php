@@ -2,65 +2,101 @@
 
 class WPML_URL_Converter_Parameter_Strategy extends WPML_URL_Converter_Abstract_Strategy {
 
+	public function add_hooks() {
+
+	}
+
+	public function remove_hooks() {
+
+	}
+
+
 	public function get_lang_from_url_string( $url ) {
 		return $this->lang_param->lang_by_param( $url, false );
 	}
 
 	public function convert_url_string( $source_url, $lang_code ) {
-		if ( ! $lang_code ) {
-			$lang_code = $this->default_language;
+		if ( $this->skip_convert_url_string( $source_url, $lang_code ) ) {
+			return $source_url;
 		}
-		if ( $lang_code === $this->default_language ) {
+
+		if ( ! $lang_code || $lang_code === $this->default_language ) {
 			$lang_code = '';
 		}
 
-		$source_url = $this->fix_query_structure( $source_url );
+		$url_parts = wpml_parse_url( $source_url );
+		if ( ! is_array( $url_parts ) ) {
+			$url_parts = [];
+		}
+		$query_args = $this->get_query_args( $url_parts );
 
-		$source_url = $this->fix_trailingslashit( $source_url );
-
-		$query = wpml_parse_url( $source_url, PHP_URL_QUERY );
-		if ( false !== strpos( $query, 'lang=' ) ) {
-			$source_url = remove_query_arg( 'lang', $source_url );
+		if ( $lang_code ) {
+			$query_args['lang'] = $lang_code;
+		} else {
+			unset( $query_args['lang'] );
 		}
 
-		if ( ! empty( $lang_code ) ) {
-			$source_url = add_query_arg( 'lang', $lang_code, $source_url );
-		}
+		$url_parts['query'] = http_build_query( $query_args );
+		$converted_url      = http_build_url( $url_parts );
 
-		return  $source_url ;
+		return $this->slash_helper->maybe_user_trailingslashit( $converted_url );
+	}
+
+	public function convert_admin_url_string( $source_url, $lang ) {
+		return $this->convert_url_string( $source_url, $lang );
 	}
 
 	/**
-	 * Replace double ? to &
+	 * @param array $url_parts
 	 *
+	 * @return array
+	 */
+	private function get_query_args( array $url_parts ) {
+		$query = isset( $url_parts['query'] ) ? $url_parts['query'] : '';
+		$query = str_replace( '?', '&', $query );
+		parse_str( $query, $query_args );
+		return $query_args;
+	}
+
+	/**
 	 * @param string $url
+	 * @param string $language
 	 *
 	 * @return string
 	 */
-	private function fix_query_structure( $url ) {
-		$query = wpml_parse_url( $url, PHP_URL_QUERY );
-		$new_query = str_replace( '?', '&', $query );
+	public function get_home_url_relative( $url, $language ) {
+		if ( $language === $this->default_language ) {
+			$language = '';
+		}
 
-		return str_replace( $query, $new_query, $url );
+		if ( $language ) {
+			return add_query_arg( 'lang', $language, $url );
+		} else {
+			return $url;
+		}
 	}
 
 	/**
-	 * @param $source_url
+	 * @param string $source_url
 	 *
-	 * @return mixed|string
+	 * @return string
 	 */
-	private function fix_trailingslashit( $source_url ) {
+	public function fix_trailingslashit( $source_url ) {
 		$query = wpml_parse_url( $source_url, PHP_URL_QUERY );
 		if ( ! empty( $query ) ) {
 			$source_url = str_replace( '?' . $query, '', $source_url );
 		}
 
-		$source_url = $this->slash_helper->maybe_user_trailingslashit( $source_url, 'trailingslashit' );
+		$source_url = $this->slash_helper->maybe_user_trailingslashit( $source_url );
 
 		if ( ! empty( $query ) ) {
-			$source_url .= '?' . $query;
+			$source_url .= '?' . untrailingslashit( $query );
 		}
 
 		return $source_url;
+	}
+
+	public function use_wp_login_url_converter() {
+		return true;
 	}
 }

@@ -18,11 +18,6 @@
   width: 100%;
 }
 
-#explorer_header_container .item_name::after,
-#explorer_header_container .item_size::after {
-  content: url("../images/btn_icons/divider.png");
-  display: table-cell;
-}
 
 #explorer_header_container .item_name,
 #explorer_header_container .item_size,
@@ -82,8 +77,9 @@
   display: inline-block;
   width: 120px;
   height: 100px;
-  margin: 0 auto;
+  margin: 2px 1px;
   text-align: center;
+  vertical-align: bottom;
 }
 
 .explorer_item_hover,

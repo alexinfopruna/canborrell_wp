@@ -1,13 +1,24 @@
 <?php
 
-class WPML_Locale extends WPML_WPDB_And_SP_User {
+use WPML\Collect\Support\Collection;
 
-	/** @var  string $locale */
+class WPML_Locale {
+	/**
+	 * @var wpdb
+	 */
+	private $wpdb;
+	/**
+	 * @var SitePress
+	 */
+	private $sitepress;
+	/**
+	 * @var  string $locale
+	 */
 	private $locale;
 	private $locale_cache;
 
-	/** @var bool $theme_locales_loaded */
-	private $theme_locales_loaded = false;
+	/** @var Collection $all_locales */
+	private $all_locales;
 
 	/**
 	 * WPML_Locale constructor.
@@ -16,9 +27,10 @@ class WPML_Locale extends WPML_WPDB_And_SP_User {
 	 * @param SitePress $sitepress
 	 * @param string    $locale
 	 */
-	public function __construct( &$wpdb, &$sitepress, &$locale ) {
-		parent::__construct( $wpdb, $sitepress );
-		$this->locale = &$locale;
+	public function __construct( wpdb &$wpdb, SitePress &$sitepress, &$locale ) {
+		$this->wpdb         =& $wpdb;
+		$this->sitepress    =& $sitepress;
+		$this->locale       =& $locale;
 		$this->locale_cache = null;
 	}
 
@@ -37,8 +49,8 @@ class WPML_Locale extends WPML_WPDB_And_SP_User {
 	 * to the new tests framework.
 	 */
 	public function reset_cached_data() {
-		$this->locale_cache         = null;
-		$this->theme_locales_loaded = false;
+		$this->locale_cache = null;
+		$this->all_locales  = null;
 	}
 
 	/**
@@ -86,87 +98,95 @@ class WPML_Locale extends WPML_WPDB_And_SP_User {
 			if ( $is_ajax && isset( $_REQUEST['action'], $_REQUEST['lang'] ) ) {
 				$locale_lang_code = $_REQUEST['lang'];
 			} elseif ( $wp_api->is_admin()
-			           && ( ! $is_ajax
-			                || $this->sitepress->check_if_admin_action_from_referer() )
+					   && ( ! $is_ajax
+							|| $this->sitepress->check_if_admin_action_from_referer() )
 			) {
 				$locale_lang_code = $this->sitepress->user_lang_by_authcookie();
 			} else {
 				$locale_lang_code = $this->sitepress->get_current_language();
 			}
 			$locale = $this->get_locale( $locale_lang_code );
-			// theme localization
-			remove_filter( 'locale', array( $this->sitepress, 'locale_filter' ) ); //avoid infinite loop
 
-			$theme_folder_settings = $this->sitepress->get_setting( 'theme_language_folders' );
-			if ( ! $this->theme_locales_loaded
-			     && $theme_folder_settings
-			     && is_array( $theme_folder_settings )
-			     && (bool) $this->sitepress->get_setting( 'theme_localization_load_textdomain' ) === true
-			     && (bool) $this->sitepress->get_setting( 'gettext_theme_domain_name' ) === true
-			) {
-				/** @var array $theme_folder_settings */
-				foreach ( $theme_folder_settings as $folder ) {
-					$wp_api->load_textdomain( $this->sitepress->get_setting( 'gettext_theme_domain_name' ), $folder . '/' . $locale . '.mo' );
-				}
-				$this->theme_locales_loaded = true;
+			if ( did_action( 'plugins_loaded' ) ) {
+				$this->locale_cache = $locale;
 			}
-			add_filter( 'locale', array( $this->sitepress, 'locale_filter' ) );
-			$this->locale_cache = $locale;
+
+			return $locale;
 		}
 
 		return $this->locale_cache;
 	}
 
+	/**
+	 * @param string $code
+	 *
+	 * @return false|string
+	 */
 	public function get_locale( $code ) {
 		if ( ! $code ) {
 			return false;
 		}
-		$found  = false;
-		$cache_key = 'get_locale' . $code;
-		$cache  = new WPML_WP_Cache( '' );
-		$locale = $cache->get( $cache_key, $found );
-		if ( $found ) {
-			return $locale;
-		}
-		$all_locales_data = $this->wpdb->get_results( "SELECT code, locale FROM {$this->wpdb->prefix}icl_locale_map" );
-		/** @var array $all_locales_data */
-		foreach ( $all_locales_data as $locales_data ) {
-			$all_locales[ $locales_data->code ] = $locales_data->locale;
-		}
-		$locale = isset( $all_locales[ $code ] ) ? $all_locales[ $code ] : false;
-		if ( false === $locale ) {
-			$this_locale_data_query   = "SELECT code, default_locale FROM {$this->wpdb->prefix}icl_languages WHERE code = %s";
-			$this_locale_data_prepare = $this->wpdb->prepare( $this_locale_data_query, $code );
-			$this_locale_data         = $this->wpdb->get_row( $this_locale_data_prepare );
-			if ( $this_locale_data ) {
-				$locale = $this_locale_data->default_locale;
-			}
-		}
-		$cache->set( $cache_key, $locale );
 
-		return $locale;
+		return $this->get_all_locales()->get( $code, $code );
+	}
+
+	/**
+	 * @return Collection
+	 */
+	public function get_all_locales() {
+		if ( ! $this->all_locales ) {
+			$sql = "
+				SELECT
+					l.code,
+					m.locale,
+					l.default_locale
+				FROM {$this->wpdb->prefix}icl_languages AS l
+				LEFT JOIN {$this->wpdb->prefix}icl_locale_map AS m ON m.code = l.code
+			";
+
+			$this->all_locales = wpml_collect( $this->wpdb->get_results( $sql ) )
+				->mapWithKeys(
+					function( $row ) {
+						if ( $row->locale ) {
+							$locale = $row->locale;
+						} elseif ( $row->default_locale ) {
+							$locale = $row->default_locale;
+						} else {
+							$locale = $row->code;
+						}
+
+						return [ $row->code => $locale ];
+					}
+				);
+		}
+
+		return $this->all_locales;
 	}
 
 	public function switch_locale( $lang_code = false ) {
 		global $l10n;
 		static $original_l10n;
 		if ( ! empty( $lang_code ) ) {
-			$original_l10n = isset( $l10n[ 'sitepress' ] ) ? $l10n[ 'sitepress' ] : null;
+			$original_l10n = isset( $l10n['sitepress'] ) ? $l10n['sitepress'] : null;
 			if ( $original_l10n !== null ) {
-				unset( $l10n[ 'sitepress' ] );
+				unset( $l10n['sitepress'] );
 			}
-			load_textdomain( 'sitepress',
-				WPML_PLUGIN_PATH . '/locale/sitepress-' . $this->get_locale( $lang_code ) . '.mo' );
+			load_textdomain(
+				'sitepress',
+				WPML_PLUGIN_PATH . '/locale/sitepress-' . $this->get_locale( $lang_code ) . '.mo'
+			);
 		} else { // switch back
-			$l10n[ 'sitepress' ] = $original_l10n;
+			$l10n['sitepress'] = $original_l10n;
 		}
 	}
 
 	public function get_locale_file_names() {
 		$locales = array();
-		$res     = $this->wpdb->get_results( "
+		$res     = $this->wpdb->get_results(
+			"
 			SELECT lm.code, locale
-			FROM {$this->wpdb->prefix}icl_locale_map lm JOIN {$this->wpdb->prefix}icl_languages l ON lm.code = l.code AND l.active=1" );
+			FROM {$this->wpdb->prefix}icl_locale_map lm JOIN {$this->wpdb->prefix}icl_languages l ON lm.code = l.code AND l.active=1"
+		);
 		foreach ( $res as $row ) {
 			$locales[ $row->code ] = $row->locale;
 		}
@@ -176,10 +196,14 @@ class WPML_Locale extends WPML_WPDB_And_SP_User {
 
 	private function language_needs_title_sanitization() {
 		$lang_needs_filter = array( 'de_DE', 'da_DK' );
-		$current_lang = $this->sitepress->get_language_details( $this->sitepress->get_current_language() );
-		$needs_filter = false;
+		$current_lang      = $this->sitepress->get_language_details( $this->sitepress->get_current_language() );
+		$needs_filter      = false;
 
-		if ( in_array( $current_lang['default_locale'], $lang_needs_filter ) ) {
+		if ( ! isset( $current_lang['default_locale'] ) ) {
+			return $needs_filter;
+		}
+
+		if ( in_array( $current_lang['default_locale'], $lang_needs_filter, true ) ) {
 			$needs_filter = true;
 		}
 
@@ -189,8 +213,19 @@ class WPML_Locale extends WPML_WPDB_And_SP_User {
 	function _language_attributes( $latr ) {
 
 		return preg_replace(
-			'#lang="(.[a-z])"#i',
+			'#lang="([a-z]+)"#i',
 			'lang="' . str_replace( '_', '-', $this->locale ) . '"',
-			$latr );
+			$latr
+		);
+	}
+
+	/**
+	 * @return WPML_Locale
+	 */
+	public static function get_instance_from_sitepress() {
+		/** SitePress $sitepress */
+		global $sitepress;
+
+		return $sitepress->get_wpml_locale();
 	}
 }

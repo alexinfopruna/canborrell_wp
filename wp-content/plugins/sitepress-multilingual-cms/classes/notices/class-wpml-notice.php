@@ -8,10 +8,10 @@ class WPML_Notice {
 	private $id;
 	private $text;
 	private $collapsed_text;
-	private $group             = 'default';
+	private $group                  = 'default';
 	private $restricted_to_user_ids = array();
 
-	private $actions            = array();
+	private $actions = array();
 	/**
 	 * @see \WPML_Notice::set_css_class_types
 	 * @var array
@@ -23,6 +23,8 @@ class WPML_Notice {
 	private $hideable                       = false;
 	private $collapsable                    = false;
 	private $restrict_to_pages              = array();
+	private $restrict_to_page_prefixes      = array();
+	private $restrict_to_screen_ids         = array();
 	private $hide_if_notice_exists          = null;
 	private $dismissible_for_different_text = true;
 
@@ -31,6 +33,20 @@ class WPML_Notice {
 	private $capabilities = array();
 
 	private $dismiss_reset = false;
+
+	/*
+	 * @var bool
+	 * @since 4.1.0
+	 */
+	private $flash = false;
+
+	/**
+	 * @var string
+	 */
+	private $nonce_action;
+
+	/** @var bool */
+	private $text_only = false;
 
 	/**
 	 * WPML_Admin_Notification constructor.
@@ -69,7 +85,7 @@ class WPML_Notice {
 
 	/** @param int $user_id */
 	public function add_user_restriction( $user_id ) {
-		$user_id = (int) $user_id;
+		$user_id                                  = (int) $user_id;
 		$this->restricted_to_user_ids[ $user_id ] = $user_id;
 	}
 
@@ -91,7 +107,7 @@ class WPML_Notice {
 	/** @return bool */
 	public function is_for_current_user() {
 		return ! $this->restricted_to_user_ids
-		       || array_key_exists( get_current_user_id(), $this->restricted_to_user_ids );
+			   || array_key_exists( get_current_user_id(), $this->restricted_to_user_ids );
 	}
 
 	/**
@@ -156,6 +172,9 @@ class WPML_Notice {
 		return $this->display_callbacks;
 	}
 
+	/**
+	 * @return array<\WPML_Notice_Action>
+	 */
 	public function get_actions() {
 		return $this->actions;
 	}
@@ -192,15 +211,44 @@ class WPML_Notice {
 		return $this->id;
 	}
 
+	public function set_restrict_to_page_prefixes( array $page_prefixes ) {
+		$this->restrict_to_page_prefixes = $page_prefixes;
+	}
+
+	/**
+	 * @return array
+	 */
+	public function get_restrict_to_page_prefixes() {
+		return $this->restrict_to_page_prefixes;
+	}
+
 	public function get_restrict_to_pages() {
 		return $this->restrict_to_pages;
+	}
+
+	public function set_restrict_to_screen_ids( array $screens ) {
+		$this->restrict_to_screen_ids = $screens;
+	}
+
+	/**
+	 * @return array
+	 */
+	public function get_restrict_to_screen_ids() {
+		return $this->restrict_to_screen_ids;
+	}
+
+	public function get_nonce_action() {
+		return $this->nonce_action;
 	}
 
 	/**
 	 * @return string
 	 */
 	public function get_text() {
-		$notice = array( 'id' => $this->get_id(), 'group' => $this->get_group() );
+		$notice     = array(
+			'id'    => $this->get_id(),
+			'group' => $this->get_group(),
+		);
 		$this->text = apply_filters( 'wpml_notice_text', $this->text, $notice );
 		return $this->text;
 	}
@@ -225,6 +273,7 @@ class WPML_Notice {
 	 * - notice-info
 	 * You can use the above values with or without the "notice-" prefix:
 	 * the prefix will be added automatically in the HTML, if missing.
+	 *
 	 * @see https://codex.wordpress.org/Plugin_API/Action_Reference/admin_notices for more details
 	 *
 	 * @param string|array $types Accepts either a space separated values string, or an array of values.
@@ -254,7 +303,7 @@ class WPML_Notice {
 		);
 	}
 
-	public function get_hide_if_notice_exists( ) {
+	public function get_hide_if_notice_exists() {
 		return $this->hide_if_notice_exists;
 	}
 
@@ -270,6 +319,13 @@ class WPML_Notice {
 	 */
 	public function set_collapsable( $collapsable ) {
 		$this->collapsable = $collapsable;
+	}
+
+	/**
+	 * @param string $action
+	 */
+	public function set_nonce_action( $action ) {
+		$this->nonce_action = $action;
 	}
 
 	/**
@@ -293,5 +349,35 @@ class WPML_Notice {
 
 	public function is_different( WPML_Notice $other_notice ) {
 		return serialize( $this ) !== serialize( $other_notice );
+	}
+
+	/**
+	 * @param bool $flash
+	 * @since 4.1.0
+	 */
+	public function set_flash( $flash = true ) {
+		$this->flash = (bool) $flash;
+	}
+
+	/**
+	 * @return bool
+	 * @since 4.1.0
+	 */
+	public function is_flash() {
+		return $this->flash;
+	}
+
+	/**
+	 * @return bool
+	 */
+	public function should_be_text_only() {
+		return $this->text_only;
+	}
+
+	/**
+	 * @param bool $text_only
+	 */
+	public function set_text_only( $text_only ) {
+		$this->text_only = $text_only;
 	}
 }

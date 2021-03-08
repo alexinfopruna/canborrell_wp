@@ -44,7 +44,7 @@ $(document).on("click",'a.magee_shortcode_item',function(){
 		   $(".magee-shortcodes-settings-inner-clone").html(form.find(".column-shortcode-inner").html());
 		   var myOptions = {
 		   change: function(event, ui){
-			   $('.magee_shortcodes_container .wp-color-picker-field').each(function(){	
+			   $('#magee_shortcodes_container .wp-color-picker-field').each(function(){	
 					var color = $(this).parents('.wp-picker-container').find('.wp-color-result').css("background-color")						 
 					$(this).css("background-color",color);
 					var  top = parseInt($(this).parents('.wp-picker-container').find('a.iris-square-value').css("top").replace('px',''));
@@ -58,7 +58,7 @@ $(document).on("click",'a.magee_shortcode_item',function(){
 			   },
 			};
 
-		   $('.magee_shortcodes_container .wp-color-picker-field').wpColorPicker(myOptions);	
+		   $('#magee_shortcodes_container .wp-color-picker-field').wpColorPicker(myOptions);	
 		   $.ajax({
 			  type: "POST",
 			  url: ajaxurl,
@@ -489,12 +489,14 @@ $(document).on("click",'.magee-shortcodes-preview',function(e){
 							 }
 							 
 							 //modal
+							 
+							 var Base64={_keyStr:"ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/=",encode:function(e){var t="";var n,r,i,s,o,u,a;var f=0;e=Base64._utf8_encode(e);while(f<e.length){n=e.charCodeAt(f++);r=e.charCodeAt(f++);i=e.charCodeAt(f++);s=n>>2;o=(n&3)<<4|r>>4;u=(r&15)<<2|i>>6;a=i&63;if(isNaN(r)){u=a=64}else if(isNaN(i)){a=64}t=t+this._keyStr.charAt(s)+this._keyStr.charAt(o)+this._keyStr.charAt(u)+this._keyStr.charAt(a)}return t},decode:function(e){var t="";var n,r,i;var s,o,u,a;var f=0;e=e.replace(/[^A-Za-z0-9+/=]/g,"");while(f<e.length){s=this._keyStr.indexOf(e.charAt(f++));o=this._keyStr.indexOf(e.charAt(f++));u=this._keyStr.indexOf(e.charAt(f++));a=this._keyStr.indexOf(e.charAt(f++));n=s<<2|o>>4;r=(o&15)<<4|u>>2;i=(u&3)<<6|a;t=t+String.fromCharCode(n);if(u!=64){t=t+String.fromCharCode(r)}if(a!=64){t=t+String.fromCharCode(i)}}t=Base64._utf8_decode(t);return t},_utf8_encode:function(e){e=e.replace(/rn/g,"n");var t="";for(var n=0;n<e.length;n++){var r=e.charCodeAt(n);if(r<128){t+=String.fromCharCode(r)}else if(r>127&&r<2048){t+=String.fromCharCode(r>>6|192);t+=String.fromCharCode(r&63|128)}else{t+=String.fromCharCode(r>>12|224);t+=String.fromCharCode(r>>6&63|128);t+=String.fromCharCode(r&63|128)}}return t},_utf8_decode:function(e){var t="";var n=0;var r=c1=c2=0;while(n<e.length){r=e.charCodeAt(n);if(r<128){t+=String.fromCharCode(r);n++}else if(r>191&&r<224){c2=e.charCodeAt(n+1);t+=String.fromCharCode((r&31)<<6|c2&63);n+=2}else{c2=e.charCodeAt(n+1);c3=e.charCodeAt(n+2);t+=String.fromCharCode((r&15)<<12|(c2&63)<<6|c3&63);n+=3}}return t}}
 							 if($("#magee-sc-form-preview").contents().find(".magee-modal-trigger").length>0){
 								
 								obj = $("#magee-sc-form-preview").contents().find(".magee-modal-trigger");
 								obj.mgmodal({
 										title: obj.data('title'),
-										message	: obj.data('content'),
+										message	:Base64.decode(obj.data('content')),
 										close_icon:obj.data('close_icon'),
 										type:obj.data('effect'),
 										id:obj.data('id')
@@ -783,7 +785,7 @@ tb_remove();
 			$(".shortcode-add").before(wraptext);
 			var myclone_Options = {
 		    change: function(event, ui){
-			   $('.magee_shortcodes_container .column-shortcode-inner').eq(count).find('.wp-color-picker-field').each(function(){								
+			   $('#magee_shortcodes_container .column-shortcode-inner').eq(count).find('.wp-color-picker-field').each(function(){								
 					var color = $(this).parents('.wp-picker-container').eq(0).find('.wp-color-result').css("background-color");
 					$(this).css("background-color",color);
 					var  top = parseInt($(this).parents('.wp-picker-container').find('a.iris-square-value').css("top").replace('px',''));
@@ -797,8 +799,8 @@ tb_remove();
 			   },
 			 defaultColor: true,  
 			};
-			$('.magee_shortcodes_container .column-shortcode-inner').eq(count).find('.wp-color-picker-field').wpColorPicker(myclone_Options);
-			$('.magee_shortcodes_container .column-shortcode-inner').eq(count).find('.wp-color-picker-field').each(function(){
+			$('#magee_shortcodes_container .column-shortcode-inner').eq(count).find('.wp-color-picker-field').wpColorPicker(myclone_Options);
+			$('#magee_shortcodes_container .column-shortcode-inner').eq(count).find('.wp-color-picker-field').each(function(){
 					var color = $(this).attr('value');
 					$(this).css("background-color",color);
 					var since = 0 ;

@@ -6,17 +6,17 @@
  * Time: 17:28
  */
 
-jQuery(document).ready(function ($) {
+jQuery(function ($) {
 
-	setupCopyButtons();
+    setupCopyButtons();
 
-	var postEdit = postEdit || {};
+    var postEdit = postEdit || {};
 
-	postEdit.$connect_translations_dialog = $('#connect_translations_dialog');
-	postEdit.$no_posts_found_message = postEdit.$connect_translations_dialog.find('.js-no-posts-found');
-	postEdit.$posts_found_container = postEdit.$connect_translations_dialog.find('.js-posts-found');
-	postEdit.$ajax_loader = postEdit.$connect_translations_dialog.find('.js-ajax-loader');
-	postEdit.$connect_translations_dialog_confirm = $("#connect_translations_dialog_confirm");
+    postEdit.$connect_translations_dialog = $('#connect_translations_dialog');
+    postEdit.$no_posts_found_message = postEdit.$connect_translations_dialog.find('.js-no-posts-found');
+    postEdit.$posts_found_container = postEdit.$connect_translations_dialog.find('.js-posts-found');
+    postEdit.$ajax_loader = postEdit.$connect_translations_dialog.find('.js-ajax-loader');
+    postEdit.$connect_translations_dialog_confirm = $("#connect_translations_dialog_confirm");
 
 	postEdit.connect_element_translations_open = function(event) {
 
@@ -166,7 +166,7 @@ jQuery(document).ready(function ($) {
 				var set_as_source_checkbox = $('<input type="checkbox" value="1" name="set_as_source" />');
 
 				if(!translation_set_has_source_language) {
-					set_as_source_checkbox.attr('checked', 'checked');
+					set_as_source_checkbox.prop('checked', true);
 				}
 				var action = $('<label>').append(set_as_source_checkbox).append(postEdit.$connect_translations_dialog.data('set_as_source-text'));
 				action.appendTo($list);
@@ -276,47 +276,49 @@ jQuery(document).ready(function ($) {
 	}
 	/* HOTFIX END */
 
-	var $submit_post_form = $('#post');
-	$submit_post_form.find(':input').on('change', function(e) {
-		edit_form_change();
-	});
+	var classic_wp_editor_form = $('#post');
+	var is_duplicate_post = typeof icl_duplicate_data !== 'undefined' && icl_duplicate_data.duplicate_post;
+	var classic_editor_duplicate_post_changed = classic_wp_editor_form.length && is_duplicate_post && icl_duplicate_data.wp_classic_editor_changed;
 
-	window.edit_form_change = function() {
-		$('#icl-duplicate-post').attr( 'data-changed', 'true' );
-	}
-
-	$submit_post_form.on('submit', function (e) {
-		var $trigger  = $('#icl-duplicate-post');
-		if ($trigger.length > 0 && $trigger.data('changed') === true ) {
+	var post_form_callback = function (e) {
+		if ( is_duplicate_post || classic_editor_duplicate_post_changed ) {
 			e.preventDefault();
-			var $answer = window.confirm(icl_duplicate_data.icl_duplicate_message);
-			var $spinner = $('#publishing-action .spinner');
-			if ($answer) {
-				$spinner.toggleClass('is-active');
+			var answer = window.confirm(icl_duplicate_data.icl_duplicate_message);
+			var spinner = $('#publishing-action .spinner');
+			if (answer) {
+				spinner.toggleClass('is-active');
 				$.ajax({
 					method: "POST",
 					url: ajaxurl,
 					data: {
 						action: 'check_duplicate',
-						post_id: $trigger.val(),
-						icl_duplciate_nonce: $('#icl-duplicate-post-nonce').val()
+						post_id: icl_duplicate_data.duplicate_post,
+						icl_duplciate_nonce: icl_duplicate_data.duplicate_post_nonce
 					}
 				})
-					.success(function ($resp) {
-						$spinner.toggleClass('is-active');
-						if ($resp.data) {
-							$('#icl-duplicate-post').remove();
-							$submit_post_form.submit();
+					.success(function (res) {
+						spinner.toggleClass('is-active');
+						if (res.data) {
+							is_duplicate_post = false;
+							classic_wp_editor_form.submit();
 						} else {
 							alert(icl_duplicate_data.icl_duplicate_fail);
 						}
 					})
 					.error(function () {
-						$spinner.toggleClass('is-active');
+						spinner.toggleClass('is-active');
 						alert(icl_duplicate_data.icl_duplicate_fail);
 					});
 			}
 		}
+	};
+
+	classic_wp_editor_form.on('submit', post_form_callback);
+	$(document).on('click', '.editor-post-publish-button', post_form_callback);
+
+	$(document).on('heartbeat-send', function (event, data) {
+		data.icl_post_language = $('#icl_post_language').val();
+		data.icl_trid          = $('input[name="icl_trid"]').val();
 	});
 });
 
@@ -327,7 +329,7 @@ function setupCopyButtons() {
 			type: "POST", url: icl_ajx_url,
 			data: "icl_ajx_action=reset_duplication&post_id=" + jQuery('#post_ID').val() + '&_icl_nonce=' + jQuery('#_icl_nonce_rd').val(),
 			success: function (msg) {
-				location.reload()
+				location.reload(true);
 			}
 		});
 	});

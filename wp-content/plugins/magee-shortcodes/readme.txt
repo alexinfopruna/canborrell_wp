@@ -3,8 +3,8 @@ Contributors: magictheme
 Donate link: http://www.mageewp.com/
 Tags: shortcodes, shortcode, accordion, alert, button, column, custom box, countdowns, counter, divider, dropcap, feature box, flip box, highlight, list, modal, popover, tooltip, person, promo box, scocial, tab, testimonial, progress, piechart, timeline, panel, section, slider
 Requires at least: 4.0
-Tested up to: 4.6
-Stable tag: 4.6
+Tested up to: 4.9
+Stable tag: 4.9
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -67,6 +67,15 @@ Activate plugin at "Plugins" administration page.
 
 
 == Changelog ==
+
+= 1.6.3 - 25/04/2018 =
+* Fix - Fixed shortcode - modal issue
+
+= 1.6.2 - 03/23/2018 =
+* Fix - Fixed menu shortcode issue
+
+= 1.6.1 - 02/28/2018 =
+* Fix - Fixed colorpicker issue
 
 = 1.6.0 - 07/11/2016 =
 * Improve - Improved modal shortcode

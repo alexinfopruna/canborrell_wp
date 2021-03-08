@@ -33,6 +33,7 @@ class Magee_Menu {
 		if(isset($menu)):
 		$menus = array(
 		   'menu' => esc_attr($menu),
+		   'echo' => false,
 		   'items_wrap' => '<ul id="%1$s '.esc_attr($id).'" class="%2$s ' . esc_attr($class) . '">%3$s</ul>'
 		);
 		$html = wp_nav_menu($menus);

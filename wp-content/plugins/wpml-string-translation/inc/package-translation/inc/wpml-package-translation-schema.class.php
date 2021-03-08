@@ -2,10 +2,13 @@
 
 class WPML_Package_Translation_Schema {
 
+	const OPTION_NAME      = 'wpml-package-translation-db-updates-run';
+	const REQUIRED_VERSION = '0.0.2';
+
 	private static $table_name;
 
 	static function run_update() {
-		$updates_run = get_option( 'wpml-package-translation-db-updates-run', array() );
+		$updates_run = get_option( self::OPTION_NAME, array() );
 
 		if ( defined( 'WPML_PT_VERSION_DEV' ) ) {
 			delete_option( 'wpml-package-translation-string-packages-table-updated' );
@@ -14,7 +17,7 @@ class WPML_Package_Translation_Schema {
 			}
 		}
 
-		if ( ! in_array( '0.0.2', $updates_run ) ) {
+		if ( ! in_array( self::REQUIRED_VERSION, $updates_run ) ) {
 			// We need to make sure we build everything for 0.0.2 because users may
 			// only be updating the string translation plugin and may not do an
 			// activation.
@@ -23,9 +26,9 @@ class WPML_Package_Translation_Schema {
 			self::fix_icl_string_packages_ID_column();
 			self::build_icl_strings_columns_if_required();
 
-			$updates_run[ ] = '0.0.2';
+			$updates_run[] = self::REQUIRED_VERSION;
 
-			update_option( 'wpml-package-translation-db-updates-run', $updates_run );
+			update_option( self::OPTION_NAME, $updates_run );
 		}
 
 	}
@@ -33,7 +36,7 @@ class WPML_Package_Translation_Schema {
 	private static function current_table_has_column( $column ) {
 		global $wpdb;
 
-		$cols  = $wpdb->get_results( "SHOW COLUMNS FROM `" . self::$table_name . "`" );
+		$cols  = $wpdb->get_results( 'SHOW COLUMNS FROM `' . self::$table_name . '`' );
 		$found = false;
 		foreach ( $cols as $col ) {
 			if ( $col->Field == $column ) {
@@ -47,23 +50,23 @@ class WPML_Package_Translation_Schema {
 
 	private static function add_string_package_id_to_icl_strings() {
 		global $wpdb;
-		$sql = "ALTER TABLE `" . self::$table_name . "`
+		$sql = 'ALTER TABLE `' . self::$table_name . '`
 						ADD `string_package_id` BIGINT unsigned NULL AFTER value,
-						ADD INDEX (`string_package_id`)";
+						ADD INDEX (`string_package_id`)';
 
 		return $wpdb->query( $sql );
 	}
 
 	private static function add_type_to_icl_strings() {
 		global $wpdb;
-		$sql = "ALTER TABLE `" . self::$table_name . "` ADD `type` VARCHAR(40) NOT NULL DEFAULT 'LINE' AFTER string_package_id";
+		$sql = 'ALTER TABLE `' . self::$table_name . "` ADD `type` VARCHAR(40) NOT NULL DEFAULT 'LINE' AFTER string_package_id";
 
 		return $wpdb->query( $sql );
 	}
 
 	private static function add_title_to_icl_strings() {
 		global $wpdb;
-		$sql = "ALTER TABLE `" . self::$table_name . "` ADD `title` VARCHAR(160) NULL AFTER type";
+		$sql = 'ALTER TABLE `' . self::$table_name . '` ADD `title` VARCHAR(160) NULL AFTER type';
 
 		return $wpdb->query( $sql );
 	}
@@ -115,7 +118,7 @@ class WPML_Package_Translation_Schema {
 
 	private static function add_kind_slug_to_icl_string_packages() {
 		global $wpdb;
-		$sql    = "ALTER TABLE `" . self::$table_name . "` ADD `kind_slug` varchar(160) DEFAULT '' NOT NULL AFTER `ID`";
+		$sql    = 'ALTER TABLE `' . self::$table_name . "` ADD `kind_slug` varchar(160) DEFAULT '' NOT NULL AFTER `ID`";
 		$result = $wpdb->query( $sql );
 
 		return $result;
@@ -123,7 +126,7 @@ class WPML_Package_Translation_Schema {
 
 	private static function add_view_link_to_icl_string_packages() {
 		global $wpdb;
-		$sql = "ALTER TABLE `" . self::$table_name . "` ADD `view_link` TEXT NOT NULL AFTER `edit_link`";
+		$sql = 'ALTER TABLE `' . self::$table_name . '` ADD `view_link` TEXT NOT NULL AFTER `edit_link`';
 
 		return $wpdb->query( $sql );
 	}
@@ -132,7 +135,7 @@ class WPML_Package_Translation_Schema {
 		global $wpdb;
 		self::$table_name = $wpdb->prefix . 'icl_string_packages';
 		if ( self::current_table_has_column( 'id' ) ) {
-			$sql = "ALTER TABLE `" . self::$table_name . "` CHANGE id ID BIGINT UNSIGNED NOT NULL auto_increment;";
+			$sql = 'ALTER TABLE `' . self::$table_name . '` CHANGE id ID BIGINT UNSIGNED NOT NULL auto_increment;';
 			$wpdb->query( $sql );
 		}
 	}
@@ -140,11 +143,11 @@ class WPML_Package_Translation_Schema {
 	private static function build_icl_string_packages_table() {
 		global $wpdb;
 
-		$charset_collate = self::build_charset_collate();
+		$charset_collate = SitePress_Setup::get_charset_collate();
 
 		self::$table_name = $wpdb->prefix . 'icl_string_packages';
-		$sql              = "
-                 CREATE TABLE IF NOT EXISTS `" . self::$table_name . "` (
+		$sql              = '
+                 CREATE TABLE IF NOT EXISTS `' . self::$table_name . '` (
                   `ID` bigint(20) unsigned NOT NULL auto_increment,
                   `kind_slug` varchar(160) NOT NULL,
                   `kind` varchar(160) NOT NULL,
@@ -153,52 +156,17 @@ class WPML_Package_Translation_Schema {
                   `edit_link` TEXT NOT NULL,
                   `view_link` TEXT NOT NULL,
                   `post_id` INTEGER DEFAULT NULL,
+                  `word_count` VARCHAR(2000) DEFAULT NULL,
                   PRIMARY KEY  (`ID`)
-                ) " . $charset_collate . "";
+                ) ' . $charset_collate . '';
 		if ( $wpdb->query( $sql ) === false ) {
 			throw new Exception( $wpdb->last_error );
 		}
 	}
 
-	private static function build_charset_collate() {
-		$charset_collate = '';
-		if ( self::wpdb_has_cap_collation() ) {
-			$charset_collate .= self::build_default_char_set();
-			$charset_collate .= self::build_collate();
-		}
-
-		return $charset_collate;
-	}
-
-	private static function wpdb_has_cap_collation() {
-		global $wpdb;
-
-		return method_exists( $wpdb, 'has_cap' ) && $wpdb->has_cap( 'collation' );
-	}
-
-	private static function build_default_char_set() {
-		global $wpdb;
-		$charset_collate = '';
-		if ( ! empty( $wpdb->charset ) ) {
-			$charset_collate = "DEFAULT CHARACTER SET $wpdb->charset";
-		}
-
-		return $charset_collate;
-	}
-
-	private static function build_collate() {
-		global $wpdb;
-		$charset_collate = '';
-		if ( ! empty( $wpdb->collate ) ) {
-			$charset_collate .= " COLLATE $wpdb->collate";
-		}
-
-		return $charset_collate;
-	}
-
 	private static function update_kind_slug() {
 		global $wpdb;
-		$sql    = "SELECT kind FROM " . self::$table_name . " WHERE IFNULL(kind_slug,'')='' GROUP BY kind";
+		$sql    = 'SELECT kind FROM ' . self::$table_name . " WHERE IFNULL(kind_slug,'')='' GROUP BY kind";
 		$kinds  = $wpdb->get_col( $sql );
 		$result = ( count( $kinds ) == 0 );
 		foreach ( $kinds as $kind ) {
@@ -211,5 +179,5 @@ class WPML_Package_Translation_Schema {
 
 		return $result;
 	}
-	
+
 }

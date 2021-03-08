@@ -5,10 +5,6 @@
 	padding: 9px 10px 0 15px;
 }
 
-#contact-form-editor-tabs li a span.dashicons {
-	padding: 6px 4px 4px 0;
-}
-
 /*
  * Form Tab
  */
@@ -16,7 +12,7 @@
 	text-align: right;
 }
 
-.tag-generator-panel .control-box > fieldset legend {
+.tag-generator-panel .control-box > fieldset > legend {
 	border: 1px solid #dfdfdf;
 	border-right: 4px solid #00a0d2;
 }

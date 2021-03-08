@@ -1,6 +1,6 @@
 /*jshint browser:true, devel:true */
 /*global _, jQuery, ajaxurl, icl_ajx_url, icl_ajxloaderimg, wpActiveEditor, tinyMCE,
- tinymce, icl_thickbox_reopen, icl_tb_init, icl_tb_set_size, iclSaveForm,
+ tinymce, iclSaveForm,
  tmEditorStrings, WPML_TM.editorFooterView, WPML_TM.editorHeaderView,
  WpmlTmEditorMainView,
  WpmlTranslationEditorTemplates, WpmlTemplateCompiler */
@@ -76,7 +76,7 @@ var tmEditor = {
     }
 };
 
-jQuery(document).ready(function () {
+jQuery(function () {
     var wpml_diff_toggle = jQuery('.wpml_diff_toggle');
     wpml_diff_toggle.closest('.wpml_diff_wrapper').find('.wpml_diff').hide();
     wpml_diff_toggle.on('click', function (e) {
@@ -134,17 +134,17 @@ jQuery(document).ready(function () {
             data = jQuery('[name="' + field.toLowerCase() + '"]*').val() + datatemp;
         }
 
-        if (jQuery(this).attr('checked') && !data) {
+        if (jQuery(this).prop('checked') && !data) {
             jQuery(this).closest('.icl_tm_error').show();
-            jQuery(this).removeAttr('checked');
+            jQuery(this).prop('checked', false);
         }
     });
 
     jQuery('.icl_tmf_term').on('click', function (e) {
         var box = jQuery(this);
         var inputField = tmEditor.findInputFieldForCheckBox(box.attr('name'));
-        if (box.attr('checked')) {
-            box.attr('checked', 'checked');
+        if (box.prop('checked')) {
+            box.prop('checked', true);
         } else {
             if (tmEditor.dontShowAgain === true) {
                 inputField.attr('disabled', false);
@@ -164,8 +164,8 @@ jQuery(document).ready(function () {
                                     jQuery(this).dialog("close");
                                     if (inputField) {
                                         inputField.attr('disabled', false);
-                                        box.attr('checked', false);
-                                        if (jQuery(this).find('.tm-editor-not-show-again').attr('checked')) {
+                                        box.prop('checked', false);
+                                        if (jQuery(this).find('.tm-editor-not-show-again').prop('checked')) {
                                             jQuery(this).dialog("destroy");
                                             tmEditor.dontShowAgain = true;
                                         }
@@ -175,7 +175,7 @@ jQuery(document).ready(function () {
                                 text: "Cancel",
                                 click: function () {
                                     jQuery(this).dialog("close");
-                                    box.attr('checked', 'checked');
+                                    box.prop('checked', true);
                                 }
                             }
                         ]

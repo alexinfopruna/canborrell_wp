@@ -1,6 +1,5 @@
 .otgsi_site_key_form{
     display:none;
-    /*display:inline;*/
 }
 
 .installer-status-installing, .installer-status-installed, .installer-status-updating, .installer-status-updated, .installer-status-activating, .installer-status-activated, .installer-status-success{
@@ -108,8 +107,9 @@
 .installer-q-icon:before{
     content: '\f223' !important;
     font-family: dashicons !important;
+    font-size: 20px;
+    line-height: 1;
     color: #f56e28;
-    font: 20px/1 "dashicons";
 }
 
 .installer-plugin-update-tr td{
@@ -212,12 +212,30 @@
     font-size: 24px;
     vertical-align:bottom;
 }
+.installer-table-wrap table.installer-plugins{
+    margin-bottom: 20px;
+}
+
+td.installer_plugin_name {
+    width: 300px;
+}
+
+td.installer_version {
+    width: 100px;
+}
+
+td.installer_release_date {
+    width: 300px;
+}
+
+td.installer_checkbox {
+    width: 30px;
+}
+
 .installer-table-wrap a.handle:active,
 .installer-table-wrap a.handle:focus{
     outline:0;
     border:none;
-    -moz-outline-style: none;
-    -webkit-box-shadow: none;
     box-shadow: none;
 }
 
@@ -290,4 +308,53 @@
 
 .otgs_wp_installer_table .installer-repository-image {
     padding: 8px 20px;
+}
+
+.remove_site_key_js:disabled,
+.enter_site_key_js:disabled {
+    cursor: help;
+}
+
+.otgs-installer-registered span {
+    display: inline-block;
+    vertical-align: middle;
+    margin-bottom: .5em;
+}
+
+@media (min-width: 1400px) {
+    .otgs-installer-registered-buttons {
+        float: right;
+    }
+}
+
+.otgs-installer-keepuptodate small {
+    display: block;
+    margin-top: 3px;
+    line-height: 1.3;
+}
+
+@media (min-width: 783px) {
+    .otgs-installer-keepuptodate small {
+        -webkit-margin-start: 25px;
+        -moz-margin-start: 25px;
+        margin-inline-start: 25px;
+    }
+}
+
+.otgs-installer-component-setting .spinner.otgs-components-report-setting-spinner {
+    float: right;
+}
+.rtl .otgs-installer-component-setting .spinner.otgs-components-report-setting-spinner {
+    float: left;
+}
+.otgs-installer-component-privacy-policy {
+    margin-top: 30px;
+}
+
+.otgs-external-link:after {
+    font-family: dashicons!important;
+    content: "\A0\F504";
+    vertical-align: baseline;
+    line-height: 1;
+    display: inline-block;
 }

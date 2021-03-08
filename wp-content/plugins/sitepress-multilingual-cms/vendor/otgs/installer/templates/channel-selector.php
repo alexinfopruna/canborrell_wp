@@ -19,8 +19,8 @@
 	        '%CHANNEL%', WP_Installer()->get_generic_product_name( $repository_id ) ) ) ?>">
         </span>
         <span class="installer-channel-update-fail" data-text-unstable="<?php
-        $support_url  = $repository_id ==='toolset' ? 'https://wp-types.com/forums/forum/support-2/' : 'https://wpml.org/forums/forum/english-support/';
-        $download_url = $repository_id ==='toolset' ? 'https://wp-types.com/account/downloads/' : 'https://wpml.org/account/downloads/';
+        $support_url  = $repository_id ==='toolset' ? 'https://toolset.com/forums/forum/professional-support/' : 'https://wpml.org/forums/forum/english-support/';
+        $download_url = $repository_id ==='toolset' ? 'https://toolset.com/account/downloads/' : 'https://wpml.org/account/downloads/';
         echo esc_attr( sprintf(
             __( "Something went wrong and we could not install all updates from the %s channel. Click here to %stry again%s. If the errors persist, please switch back to the Production channel and contact the %s%s support%s.", 'installer' ),
 	        '%CHANNEL%',
@@ -48,16 +48,16 @@
             <button class="button-primary js-proceed"><?php _e("Switch", 'installer') ?></button>
         </p>
         <p>
-            <?php _e("Plugins will be updated to their most advanced version in the channel that you selected.", 'installer') ?>
+            <?php _e( 'The plugins will update to the most recent version in the channel that you selected.', 'installer') ?>
         </p>
         <label>
             <input type="checkbox" value="1" class="js-remember"/>
-                &nbsp;<?php _e("Remember my preference.", 'installer') ?><br />
+                &nbsp;<?php _e( 'Remember my preference.', 'installer') ?><br />
         </label>
     </div>
     <?php endif; ?>
 
-    <div class="installer-warn-text" <?php if( WP_Installer_Channels()->get_channel( $repository_id ) <= 1 ): ?>style="display:none" <?php endif; ?>>
+    <div class="installer-warn-text" <?php if( WP_Installer_Channels()->get_channel( $repository_id ) === WP_Installer_Channels::CHANNEL_PRODUCTION ): ?>style="display:none" <?php endif; ?>>
         <?php printf(
                 __("You are using a potentially less stable channel for %s. If you didn't enable this on purpose, you should switch to the 'Production' channel.", 'installer'),
 	            WP_Installer()->get_generic_product_name( $repository_id )

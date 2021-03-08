@@ -31,9 +31,15 @@ class WPML_Page_Name_Query_Filter extends WPML_Name_Query_Filter_Translated {
 	 */
 	protected function maybe_adjust_query_by_pid( $page_query, $pid, $index ) {
 		$page_query = parent::maybe_adjust_query_by_pid( $page_query, $pid, $index );
-		if ( (int) $pid === (int) get_option( 'page_for_posts' ) ) {
+
+		$is_page_for_posts = 'page' == get_option( 'show_on_front' ) && (int) $pid === (int) get_option( 'page_for_posts' );
+		if ( $is_page_for_posts ) {
 			$page_query->query_vars['post_status'] = 'publish';
 			$page_query->query_vars['name']        = '';
+			$page_query->query_vars['page_id']     = 0;
+			/**
+			 * @phpstan-ignore-next-line
+			 */
 			$page_query->post_status               = 'publish';
 			$page_query->is_page                   = false;
 			$page_query->is_singular               = false;
@@ -46,15 +52,15 @@ class WPML_Page_Name_Query_Filter extends WPML_Name_Query_Filter_Translated {
 
 	/**
 	 * Called when the post id is being adjusted. Can be overridden.
-	 * 
+	 *
 	 * @param WP_Query $page_query
 	 *
 	 * @return WP_Query
 	 */
-	
+
 	protected function adjusting_id( $page_query ) {
 		$page_query->is_page = true;
-		
+
 		return $page_query;
 	}
 }

@@ -73,7 +73,7 @@ class Magee_Modal {
 		$html .='</style>';
         do_shortcode( Magee_Core::fix_shortcodes($content));
 		
-		$html .= sprintf('<div id="%s" class="magee-modal-trigger %s" data-id="%s" data-title="%s" data-content="%s" data-effect="%s" data-close_icon="%s">%s</div>',$id,$class,$uniqid,$title,do_shortcode( Magee_Core::fix_shortcodes($this->modal_content)),$effect,$close_icon,do_shortcode( Magee_Core::fix_shortcodes($this->modal_anchor_text)));
+		$html .= sprintf('<div id="%s" class="magee-modal-trigger %s" data-id="%s" data-title="%s" data-content="%s" data-effect="%s" data-close_icon="%s">%s</div>',$id,$class,$uniqid,$title,base64_encode(do_shortcode( Magee_Core::fix_shortcodes($this->modal_content))), $effect,$close_icon,do_shortcode( Magee_Core::fix_shortcodes($this->modal_anchor_text)));
 		
 		return $html;
 	}

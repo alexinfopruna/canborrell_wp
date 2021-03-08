@@ -6,120 +6,22 @@ var WPML_TM = WPML_TM || {};
 (function () {
 	"use strict";
 
-jQuery(document).ready(function () {
+jQuery(function () {
 
-    var tm_add_user = jQuery('#icl_tm_adduser');
 
-	jQuery('#icl_tm_selected_user').change(function () {
-		if (jQuery(this).val()) {
-			jQuery('.icl_tm_lang_pairs').slideDown();
-		} else {
-			jQuery('.icl_tm_lang_pairs').slideUp();
-            tm_add_user.find('.icl_tm_lang_pairs_to').hide();
-			jQuery('#icl_tm_add_user_errors').find('span').hide();
-		}
+    jQuery(document).on('change', '.icl_tj_select_translator select', icl_tm_assign_translator);
 
-	});
 
-    tm_add_user.find('.icl_tm_to_lang').change(function () {
-		var icl_tm_lang_to = jQuery(this).closest('.js-icl-tm-lang-pair');
-
-		if (jQuery(this).attr('checked')) {
-			icl_tm_lang_to.addClass('js-lang-pair-selected');
-		} else {
-			icl_tm_lang_to.removeClass('js-lang-pair-selected');
-		}
-	});
-
-    tm_add_user.find('.icl_tm_from_lang').change(function () {
-		var icl_tm_lang_from = jQuery(this).closest('.js-icl-tm-lang-from');
-		var icl_tm_lang_pairs_to = icl_tm_lang_from.find('.icl_tm_lang_pairs_to');
-
-		if (jQuery(this).attr('checked')) {
-			icl_tm_lang_from.addClass('js-lang-from-selected');
-			icl_tm_lang_pairs_to.slideDown();
-		} else {
-			icl_tm_lang_from.removeClass('js-lang-from-selected');
-			icl_tm_lang_pairs_to.find('.js-icl-tm-lang-pair').removeClass('js-lang-pair-selected');
-			icl_tm_lang_pairs_to.find(':checkbox').removeAttr('checked');
-			icl_tm_lang_pairs_to.slideUp();
-		}
-	});
-
-	jQuery(document).delegate('.icl_tj_select_translator select', 'change', icl_tm_assign_translator);
-
-	if (jQuery('#radio-local').is(':checked')) {
-		jQuery('#local_translations_add_translator_toggle').slideDown();
-	}
-
-	icl_add_translators_form_check_submit();
-	var icl_active_service = jQuery("input[name='services']:checked").val();
-
-	jQuery('input[name=services]').change(function () {
-		if (jQuery('#radio-local').is(':checked')) {
-			jQuery('#local_translations_add_translator_toggle').slideDown();
-		} else {
-			jQuery('#local_translations_add_translator_toggle').slideUp();
-		}
-		icl_active_service = jQuery(this).val();
-		icl_add_translators_form_check_submit();
-	});
-
-	jQuery('#edit-from').change(function () {
-		icl_add_translators_form_check_submit();
-	});
-
-	jQuery('#edit-to').change(function () {
-		icl_add_translators_form_check_submit();
-	});
-
-	jQuery('#icl_add_translator_submit').click(function () {
-		var url = jQuery('#' + icl_active_service + '_setup_url').val();
-		if (url !== undefined) {
-			url = url.replace(/from_replace/, jQuery('#edit-from').val());
-			url = url.replace(/to_replace/, jQuery('#edit-to').val());
-			icl_thickbox_reopen(url);
-			return false;
-		}
-		var icl_tm_add_user_errors = jQuery('#icl_tm_add_user_errors');
-		icl_tm_add_user_errors.find('span').hide();
-		if (jQuery('input[name=services]').val() === 'local' && jQuery('#icl_tm_selected_user').val() === 0) {
-			icl_tm_add_user_errors.find('.icl_tm_no_to').show();
-			return false;
-		}
-		return true;
-	});
-
-	jQuery('#icl_add_translator_form_toggle').click(function () {
-		jQuery('#icl_add_translator_form_wrapper').slideToggle(function () {
-			var caption;
-			var icl_add_translator_form_toggle = jQuery('#icl_add_translator_form_toggle');
-			if (jQuery('#icl_add_translator_form_wrapper').is(':hidden')) {
-				caption = icl_add_translator_form_toggle.val().replace(/<</, '>>');
-			} else {
-				caption = icl_add_translator_form_toggle.val().replace(/>>/, '<<');
-			}
-			icl_add_translator_form_toggle.val(caption);
-		});
-
-		return false;
-	});
-
-	jQuery('#icl_side_by_site').find('a[href="#cancel"]').click(function () {
-		var anchor = jQuery(this);
-		jQuery.ajax({
-			type: "POST", url: ajaxurl, data: 'action=dismiss_icl_side_by_site',
-			success: function () {
+    jQuery('#icl_side_by_site').find('a[href="#cancel"]').click(function () {
+        var anchor = jQuery(this);
+        jQuery.ajax({
+                        type   : "POST", url: ajaxurl, data: 'action=dismiss_icl_side_by_site',
+                        success: function () {
 				anchor.parent().parent().fadeOut();
 			}
 		});
 		return false;
 	});
-
-	if (typeof(icl_tb_init) !== 'undefined') {
-		icl_tb_init('a.icl_thickbox');
-		icl_tb_set_size('a.icl_thickbox');
-	}
 
 	// Translator notes - translation dashboard - start
 	jQuery('.icl_tn_link').click(function () {
@@ -149,14 +51,16 @@ jQuery(document).ready(function () {
 
 	jQuery('.icl_tn_save').click(function () {
 		var anchor = jQuery(this);
-		anchor.closest('table').find('input').attr('disabled', 'disabled');
+		anchor.closest('table').find('input').prop('disabled', true);
 		var tn_post_id = anchor.closest('table').find('.icl_tn_post_id').val();
+		var note = jQuery('#post_note_' + tn_post_id).val();
+
 		jQuery.ajax({
 			type: "POST",
 			url: icl_ajx_url,
-			data: "icl_ajx_action=save_translator_note&note=" + anchor.closest('table').prev().val() + '&post_id=' + tn_post_id + '&_icl_nonce=' + jQuery('#_icl_nonce_stn_').val(),
+			data: "icl_ajx_action=save_translator_note&note=" + note + '&post_id=' + tn_post_id + '&_icl_nonce=' + jQuery('#_icl_nonce_stn_').val(),
 			success: function () {
-				anchor.closest('table').find('input').removeAttr('disabled');
+				anchor.closest('table').find('input').prop('disabled', false);
 				anchor.closest('table').parent().slideUp();
 				var note_icon = jQuery('#icl_tn_link_' + tn_post_id).find('i');
 				if (anchor.closest('table').prev().val()) {
@@ -177,6 +81,7 @@ jQuery(document).ready(function () {
 	jQuery('form[name="icl_custom_posts_sync_options"]').submit(iclSaveForm);
 	jQuery('form[name="icl_cf_translation"]').submit(iclSaveForm);
 	jQuery('form[name="icl_tcf_translation"]').submit(iclSaveForm);
+	jQuery('form[name="wpml-old-jobs-editor"]').submit(iclSaveForm);
 
 	var icl_translation_jobs_basket = jQuery('#icl-translation-jobs-basket');
 	icl_translation_jobs_basket.find('th :checkbox').change(iclTmSelectAllJobsBasket);
@@ -209,37 +114,40 @@ jQuery(document).ready(function () {
     // --- Start: XLIFF form handler ---
 	var icl_xliff_options_form = jQuery('#icl_xliff_options_form');
 	if (icl_xliff_options_form !== undefined) {
-        /** @namespace jQuery.browser.msie */
-        if (jQuery.browser.msie) {
-            icl_xliff_options_form.submit(icl_xliff_set_newlines);
-        } else {
-            jQuery(document).undelegate("#icl_xliff_options_form");
-            jQuery(document).delegate('#icl_xliff_options_form', 'submit', icl_xliff_set_newlines);
-        }
+		jQuery("#icl_xliff_options_form").off();
+		jQuery(document).on('submit', '#icl_xliff_options_form', icl_xliff_set_newlines);
     }
 
     // --- End: XLIFF form handler ---
 
 	// Make the number in the translation basket tab flash.
-	var translation_basket_flash = function ( count ) {
+    var translation_basket_flash = function (count) {
 
-		var basket_count = jQuery('#wpml-basket-items');
+        var basket_count = jQuery('#wpml-basket-items');
+        var basket_tab = basket_count.parent();
 
-		if ( basket_count.length && count ) {
-			count--;
+        if (basket_count.length && count) {
+            count--;
 
-			basket_count.animate(
-								 {opacity: 0},
-								 1000,
-								 function () {
-									jQuery(this).animate(
-										{opacity: 1.0},
-										1000,
-										function () {translation_basket_flash(count)});
-								 }
-			);
-		}
-	};
+            var originalBackgroundColor = basket_tab.css('background-color');
+            var originalColor = basket_tab.css('color');
+
+            flash_animate_element(basket_tab, '#0085ba', '#ffffff');
+            if (count) {
+                flash_animate_element(basket_tab, originalBackgroundColor, originalColor);
+            }
+
+            translation_basket_flash(count);
+
+        }
+    };
+
+    var flash_animate_element = function (element, backgroundColor, color) {
+        element.animate({opacity: 1}, 500, function () {
+                element.css({backgroundColor: backgroundColor, color: color});
+            }
+        );
+    };
 
 	if (location.href.indexOf("main.php&sm=basket") == -1 ) {
 		translation_basket_flash (3);
@@ -287,21 +195,6 @@ function icl_xliff_set_newlines(e) {
     return false;
 }
 
-function icl_add_translators_form_check_submit() {
-	var icl_add_translator_submit = jQuery('#icl_add_translator_submit');
-	icl_add_translator_submit.attr('disabled', 'disabled');
-
-	var edit_from = jQuery('#edit-from');
-	var edit_to = jQuery('#edit-to');
-	if (edit_from.val() !== 0 && edit_to.val() !== 0 && edit_from.val() !== edit_to.val()) {
-		var selected_service = jQuery('[name="services"]').is(':checked');
-		if (selected_service || (jQuery('#radio-local').is(':checked') && jQuery('#icl_tm_selected_user').val())) {
-			icl_add_translator_submit.removeAttr('disabled');
-		}
-	}
-
-}
-
 function icl_tm_assign_translator() {
 	var this_translator = jQuery(this);
 	var translator_id = this_translator.val();
@@ -314,7 +207,7 @@ function icl_tm_assign_translator() {
 		translation_controls.hide();
 	});
 	var jobType = jQuery('#icl_tj_ty_' + job_id).val();
-	translation_controls.find('.icl_tj_ok').unbind('click').click(function () {
+	translation_controls.find('.icl_tj_ok').off().click(function () {
 		icl_tm_assign_translator_request(job_id, translator_id, this_translator, jobType);
 	});
 
@@ -322,8 +215,8 @@ function icl_tm_assign_translator() {
 
 function icl_tm_assign_translator_request(job_id, translator_id, select, jobType) {
 	var translation_controls = select.closest('.icl_tj_select_translator').find('.icl_tj_select_translator_controls');
-	select.attr('disabled', 'disabled');
-	translation_controls.find('.icl_tj_cancel, .icl_tj_ok').attr('disabled', 'disabled');
+	select.prop('disabled', true);
+	translation_controls.find('.icl_tj_cancel, .icl_tj_ok').prop('disabled', true);
 	var td_wrapper = select.parent().parent();
 
     var ajaxLoader = jQuery( icl_ajxloaderimg ).insertBefore( translation_controls.find( '.icl_tj_ok' ) );
@@ -341,8 +234,8 @@ function icl_tm_assign_translator_request(job_id, translator_id, select, jobType
 					td_wrapper.html(msg.message);
 				}
 			}
-			select.removeAttr('disabled');
-			translation_controls.find('.icl_tj_cancel, .icl_tj_ok').removeAttr('disabled');
+			select.prop('disabled', false);
+			translation_controls.find('.icl_tj_cancel, .icl_tj_ok').prop('disabled', false);
 			ajaxLoader.remove();
 			translation_controls.hide();
 
@@ -384,47 +277,46 @@ function icl_tm_assign_translator_request(job_id, translator_id, select, jobType
     }
 
     function iclTmSelectAllJobsBasket(caller) {
-        if (jQuery(caller).attr('checked')) {
-            jQuery('#icl-translation-jobs-basket').find(':checkbox').attr('checked', 'checked');
-            jQuery('#icl-tm-jobs-cancel-but').removeAttr('disabled');
-        } else {
-            jQuery('#icl-translation-jobs-basket').find(':checkbox').removeAttr('checked');
-            jQuery('#icl-tm-jobs-cancel-but').attr('disabled', 'disabled');
-        }
+		jQuery('#icl-translation-jobs-basket').find(':checkbox').prop('checked', jQuery(caller).prop('checked'));
+		jQuery('#icl-tm-jobs-cancel-but').prop('disabled', !jQuery(caller).prop('checked'));
+    }
+
+    function updateTMSelectAllCheckbox(tableSelector) {
+	    jQuery(tableSelector).find('td.js-check-all :checkbox').prop(
+	    	'checked',
+		    !jQuery(tableSelector).find('.js-wpml-job-row :checkbox:not(:checked)').length
+	    );
     }
 
 	function update_translation_job_checkboxes() {
-		update_job_checkboxes('#icl-translation-jobs')
+		updateJobCheckboxes('#icl-translation-jobs');
+		updateTMSelectAllCheckbox('#icl-translation-jobs');
 	}
-    function update_job_checkboxes(table_selector) {
+    function updateJobCheckboxes(table_selector) {
         var job_parent = jQuery(table_selector);
+
+		jQuery('#icl-tm-jobs-cancel-but').prop('disabled', job_parent.find(':checkbox:checked').length === 0);
         if (job_parent.find(':checkbox:checked').length > 0) {
-            jQuery('#icl-tm-jobs-cancel-but').removeAttr('disabled');
             var checked_items = job_parent.find('th :checkbox');
             if (job_parent.find('td :checkbox:checked').length === job_parent.find('td :checkbox').length) {
-                checked_items.attr('checked', 'checked');
+                checked_items.prop('checked', true);
             } else {
-                checked_items.removeAttr('checked');
+                checked_items.prop('checked', false);
             }
-        } else {
-            jQuery('#icl-tm-jobs-cancel-but').attr('disabled', 'disabled');
         }
     }
 
     function iclTmUpdateJobsSelectionBasket() {
         iclTmSelectAllJobsBasket(this);
-        update_job_checkboxes('#icl-translation-jobs-basket');
+        updateJobCheckboxes('#icl-translation-jobs-basket');
     }
 
 	function iclTmSelectAllJobsSelection() {
-     if (jQuery(this).attr('checked')) {
-         jQuery('#icl-translation-jobs').find(':checkbox').attr('checked', 'checked');
-         jQuery('#icl-tm-jobs-cancel-but').removeAttr('disabled');
-     } else {
-         jQuery('#icl-translation-jobs').find(':checkbox').removeAttr('checked');
-         jQuery('#icl-tm-jobs-cancel-but').attr('disabled', 'disabled');
-     }
- }
+		jQuery('#icl-translation-jobs').find(':checkbox').prop(
+			'checked',
+			jQuery('#icl-translation-jobs td.js-check-all :checkbox').prop('checked')
+		);
+	}
 
 if (typeof String.prototype.startsWith !== 'function') {
   // see below for better implementation!
@@ -438,3 +330,17 @@ if (typeof String.prototype.endsWith !== 'function') {
   };
 }
 }());
+
+(function($) {
+    $(function () {
+        $('#translation-notifications').on('change', 'input', function (e) {
+            var input = $(e.target);
+            var child = $('[name="' + input.data('child') + '"]');
+
+            if (child.length) {
+                child.prop('disabled', !input.is(":checked"));
+            }
+
+        });
+    });
+})(jQuery);

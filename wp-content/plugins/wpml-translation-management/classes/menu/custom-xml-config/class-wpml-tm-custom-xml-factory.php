@@ -16,7 +16,7 @@ class WPML_TM_Custom_XML_Factory {
 			WPML_TM_PATH . '/templates/custom-xml/',
 		);
 
-		$template_loader  = new WPML_Twig_Template_Loader( $template_paths );
+		$template_loader = new WPML_Twig_Template_Loader( $template_paths );
 
 		return new WPML_TM_Custom_XML_UI( $this->custom_xml, $template_loader->get_template() );
 	}
@@ -26,6 +26,10 @@ class WPML_TM_Custom_XML_Factory {
 	}
 
 	public function create_ajax() {
-		return new WPML_TM_Custom_XML_AJAX( $this->custom_xml, new WPML_XML_Config_Validate( WPML_PLUGIN_PATH . '/res/xsd/wpml-config.xsd' ) );
+		return new WPML_TM_Custom_XML_AJAX(
+			$this->custom_xml,
+			new WPML_XML_Config_Validate( WPML_PLUGIN_PATH . '/res/xsd/wpml-config.xsd' ),
+			array( 'WPML_Config', 'load_config_run' )
+		);
 	}
 }

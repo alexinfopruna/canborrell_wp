@@ -4,93 +4,85 @@
  * @author OnTheGo Systems
  */
 class WPML_Integrations {
+	const SCOPE_WP_CORE = 'wp-core';
+
 	private $components = array(
-		'page-builders' => array(
-			'js_composer'    => array(
-				'name'     => 'Visual Composer',
-				'constant' => 'WPB_VC_VERSION',
+		self::SCOPE_WP_CORE => array(
+			'block-editor' => array(
+				'name'            => 'WordPress Block Editor',
+				'function'        => 'parse_blocks',
+				'notices-display' => array(),
+			),
+		),
+		'page-builders'     => array(
+			'js_composer' => array(
+				'name'            => 'Visual Composer',
+				'constant'        => 'WPB_VC_VERSION',
 				'notices-display' => array(
 					'wpml-translation-editor',
 				),
 			),
-			'divi'           => array(
-				'name'     => 'Divi',
-				'constant' => 'ET_BUILDER_DIR',
+			'divi'        => array(
+				'name'            => 'Divi',
+				'constant'        => 'ET_BUILDER_DIR',
 				'notices-display' => array(
 					'wpml-translation-editor',
 				),
 			),
-			'layouts'        => array(
-				'name'     => 'Toolset Layouts',
-				'constant' => 'WPDDL_VERSION',
+			'layouts'     => array(
+				'name'            => 'Toolset Layouts',
+				'constant'        => 'WPDDL_VERSION',
 				'notices-display' => array(
 					'wpml-translation-editor',
 				),
 			),
-			'x-theme'        => array(
-				'name'     => 'X Theme',
-				'constant' => 'X_VERSION',
+			'x-theme'     => array(
+				'name'            => 'X Theme',
+				'constant'        => 'X_VERSION',
 				'notices-display' => array(
 					'wpml-translation-editor',
 				),
 			),
-			'enfold'         => array(
-				'name'     => 'Enfold',
-				'constant' => 'AVIA_FW',
+			'enfold'      => array(
+				'name'            => 'Enfold',
+				'constant'        => 'AVIA_FW',
 				'notices-display' => array(
 					'wpml-translation-editor',
 				),
 			),
-			'avada'          => array(
-				'name'     => 'Avada',
-				'function' => 'Avada',
+			'avada'       => array(
+				'name'            => 'Avada',
+				'function'        => 'Avada',
 				'notices-display' => array(
 					'wpml-translation-editor',
 				),
 			),
-			'oxygen'    => array(
-				'name'     => 'Oxygen',
-				'constant' => 'CT_VERSION',
+			'oxygen'      => array(
+				'name'            => 'Oxygen',
+				'constant'        => 'CT_VERSION',
 				'notices-display' => array(
 					'wpml-translation-editor',
 				),
 			),
 		),
-		'integrations'  => array(
-			'woocommerce'  => array(
-				'name'  => 'WooCommerce',
-				'class' => 'WooCommerce',
-				'notices-display' => array(),
-			),
-			'gravityforms' => array(
-				'name'  => 'Gravity Forms',
-				'class' => 'GFForms',
-				'notices-display' => array(),
-			),
-			'buddypress'   => array(
-				'name'  => 'BuddyPress',
-				'class' => 'BuddyPress',
+		'integrations'      => array(
+			'bb-plugin'        => array(
+				'name'            => 'Beaver Builder Plugin',
+				'class'           => 'FLBuilderLoader',
 				'notices-display' => array(
 					'wpml-translation-editor',
 				),
 			),
-			'bb-plugin'   => array(
-				'name'  => 'Beaver Builder Plugin',
-				'class' => 'FLBuilderLoader',
-				'notices-display' => array(
-					'wpml-translation-editor',
-				),
-			),
-			'elementor-plugin'   => array(
-				'name'  => 'Elementor',
-				'class' => '\Elementor\Plugin',
+			'elementor-plugin' => array(
+				'name'            => 'Elementor',
+				'class'           => '\Elementor\Plugin',
 				'notices-display' => array(
 					'wpml-translation-editor',
 				),
 			),
 		),
 	);
-	private $items = array();
+	private $items      = array();
 	private $wpml_wp_api;
 
 	/**
@@ -99,7 +91,7 @@ class WPML_Integrations {
 	 * @param WPML_WP_API $wpml_wp_api
 	 */
 	function __construct( WPML_WP_API $wpml_wp_api ) {
-		$this->wpml_wp_api         = $wpml_wp_api;
+		$this->wpml_wp_api = $wpml_wp_api;
 		$this->fetch_items();
 	}
 

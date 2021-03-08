@@ -4,6 +4,18 @@ abstract class WPML_TM_Xliff_Shared extends WPML_TM_Job_Factory_User {
 	/** @var  WP_Error $error */
 	protected $error;
 
+	/** @var WPML_TM_Validate_HTML */
+	private $validator = null;
+
+	/**
+	 * @param $string
+	 *
+	 * @return mixed
+	 */
+	protected function replace_xliff_new_line_tag_with_new_line( $string ) {
+		return WPML_TP_Xliff_Parser::restore_new_line( $string );
+	}
+
 	/**
 	 * @param SimpleXMLElement $xliff
 	 *
@@ -18,18 +30,18 @@ abstract class WPML_TM_Xliff_Shared extends WPML_TM_Job_Factory_User {
 	/**
 	 * @param SimpleXMLElement $xliff
 	 *
-	 * @return stdClass|void|WP_Error
+	 * @return stdClass|WP_Error
 	 */
-	protected function get_job_for_xliff( $xliff ) {
+	public function get_job_for_xliff( SimpleXMLElement $xliff ) {
 		$identifier           = $this->identifier_from_xliff( $xliff );
-		$job_identifier_parts = explode( '-', (string) $identifier );
-		if ( sizeof( $job_identifier_parts ) == 2 && is_numeric( $job_identifier_parts[0] ) ) {
+		$job_identifier_parts = explode( '-', $identifier );
+		if ( count( $job_identifier_parts ) === 2 && is_numeric( $job_identifier_parts[0] ) ) {
 			$job_id = $job_identifier_parts[0];
 			$job_id = apply_filters( 'wpml_job_id', $job_id );
 			$md5    = $job_identifier_parts[1];
 			/** @var stdClass $job */
 			$job = $this->job_factory->get_translation_job( (int) $job_id, false, 1, false );
-			if ( ! $job || $md5 != md5( $job_id . $job->original_doc_id ) ) {
+			if ( ! $job || $md5 !== md5( $job_id . $job->original_doc_id ) ) {
 				$job = $this->does_not_belong_error();
 			}
 		} else {
@@ -55,24 +67,47 @@ abstract class WPML_TM_Xliff_Shared extends WPML_TM_Job_Factory_User {
 		return $target;
 	}
 
-	protected function generate_job_data( $xliff, $job ) {
-		$data = array(
+	/**
+	 * @param $validator WPML_TM_Validate_HTML
+	 */
+	public function set_validator( $validator ) {
+		$this->validator = $validator;
+	}
+
+	/**
+	 * @return WPML_TM_Validate_HTML
+	 */
+	private function get_validator() {
+		if ( null === $this->validator ) {
+			$this->set_validator( new WPML_TM_Validate_HTML() );
+		}
+
+		return $this->validator;
+	}
+
+	protected function generate_job_data( SimpleXMLElement $xliff, $job ) {
+		$data = [
 			'job_id'   => $job->job_id,
-			'fields'   => array(),
-			'complete' => 1
-		);
+			'rid'      => $job->rid,
+			'fields'   => [],
+			'complete' => 1,
+		];
+
 		foreach ( $xliff->file->body->children() as $node ) {
 			$attr   = $node->attributes();
 			$type   = (string) $attr['id'];
 			$target = $this->get_xliff_node_target( $node );
+			if ( 'html' === (string) $attr['datatype'] ) {
+				$target = $this->get_validator()->restore_html( $target );
+			}
 
-			if ( ! $this->is_valid_unit_content( $target ) ) {
+			if ( ! $this->is_valid_target( $target ) ) {
 				return $this->invalid_xliff_error( array( 'target' ) );
 			}
 
 			foreach ( $job->elements as $element ) {
-				if ( strpos($type, $element->field_type ) === 0 || strpos($element->field_type, $type ) === 0) {
-					$target              = str_replace( '<br class="xliff-newline" />', "\n", $target );
+				if ( $element->field_type === $type ) {
+					$target              = $this->replace_xliff_new_line_tag_with_new_line( $target );
 					$field               = array();
 					$field['data']       = $target;
 					$field['finished']   = 1;
@@ -80,13 +115,24 @@ abstract class WPML_TM_Xliff_Shared extends WPML_TM_Job_Factory_User {
 					$field['field_type'] = $element->field_type;
 					$field['format']     = $element->field_format;
 
-					$data['fields'][] = $field;
+					$data['fields'][ $element->field_type ] = $field;
 					break;
 				}
 			}
 		}
 
 		return $data;
+	}
+
+	/**
+	 * Validate XLIFF target on reading XLIFF.
+	 *
+	 * @param $target string
+	 *
+	 * @return bool
+	 */
+	private function is_valid_target( $target ) {
+		return $target || '0' === $target;
 	}
 
 	protected function validate_file( $name, $content, $current_user ) {
@@ -121,12 +167,12 @@ abstract class WPML_TM_Xliff_Shared extends WPML_TM_Job_Factory_User {
 	}
 
 	/**
-	 * @param string $filename 
+	 * @param string $filename
 	 * @return bool
 	 */
 	function validate_file_name( $filename ) {
 		$ignored_files = apply_filters( 'wpml_xliff_ignored_files', array( '__MACOSX' ) );
-		return !( preg_match( '/(\/)/', $filename ) || in_array( $filename, $ignored_files, false ) );
+		return ! ( preg_match( '/(\/)/', $filename ) || in_array( $filename, $ignored_files, false ) );
 	}
 
 	protected function is_user_the_job_owner( $current_user, $job ) {
@@ -146,8 +192,7 @@ abstract class WPML_TM_Xliff_Shared extends WPML_TM_Job_Factory_User {
 	 * @return bool|SimpleXMLElement|WP_Error
 	 */
 	protected function check_xml_file( $name, $content ) {
-		$new_error_handler = create_function( '$errno, $errstr, $errfile, $errline', 'throw new ErrorException( $errstr, $errno, 1, $errfile, $errline );' );
-		set_error_handler( $new_error_handler );
+		set_error_handler( array( $this, 'error_handler' ) );
 		try {
 			$xml = simplexml_load_string( $content );
 		} catch ( Exception $e ) {
@@ -162,6 +207,20 @@ abstract class WPML_TM_Xliff_Shared extends WPML_TM_Job_Factory_User {
 	}
 
 	/**
+	 * @param $errno
+	 * @param $errstr
+	 * @param $errfile
+	 * @param $errline
+	 *
+	 * @throws ErrorException
+	 */
+	protected function error_handler( $errno, $errstr, $errfile, $errline ) {
+		throw new ErrorException( $errstr, $errno, 1, $errfile, $errline );
+	}
+
+	/**
+	 * @param string $name
+	 *
 	 * @return WP_Error
 	 */
 	protected function not_xml_file_error( $name ) {
@@ -175,7 +234,7 @@ abstract class WPML_TM_Xliff_Shared extends WPML_TM_Job_Factory_User {
 	 *
 	 * @return WP_Error
 	 */
-	protected function invalid_xliff_error( $missing_data = array() ) {
+	protected function invalid_xliff_error( array $missing_data = array() ) {
 		$message = __( 'The uploaded xliff file does not seem to be properly formed.', 'wpml-translation-management' );
 
 		if ( $missing_data ) {

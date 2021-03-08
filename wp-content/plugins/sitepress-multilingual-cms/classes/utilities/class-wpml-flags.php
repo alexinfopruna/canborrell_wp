@@ -9,30 +9,40 @@ class WPML_Flags {
 	/** @var icl_cache  */
 	private $cache;
 
-	/** @var WPDB $wpdb */
+	/** @var wpdb $wpdb */
 	private $wpdb;
 
 	/** @var WP_Filesystem_Direct */
 	private $filesystem;
 
 	/**
-	 * @param WPDB $wpdb
-	 * @param icl_cache $cache
+	 * @param wpdb                 $wpdb
+	 * @param icl_cache            $cache
 	 * @param WP_Filesystem_Direct $filesystem
 	 */
 	public function __construct( $wpdb, icl_cache $cache, WP_Filesystem_Direct $filesystem ) {
-		$this->wpdb = $wpdb;
-		$this->cache = $cache;
+		$this->wpdb       = $wpdb;
+		$this->cache      = $cache;
 		$this->filesystem = $filesystem;
 	}
 
+	/**
+	 * @param string $lang_code
+	 *
+	 * @return \stdClass|null
+	 */
 	public function get_flag( $lang_code ) {
 		$flag = $this->cache->get( $lang_code );
 
 		if ( ! $flag ) {
-			$flag = $this->wpdb->get_row( $this->wpdb->prepare( "SELECT flag, from_template
+			$flag = $this->wpdb->get_row(
+				$this->wpdb->prepare(
+					"SELECT flag, from_template
                                                     FROM {$this->wpdb->prefix}icl_flags
-                                                    WHERE lang_code=%s", $lang_code ) );
+                                                    WHERE lang_code=%s",
+					$lang_code
+				)
+			);
 
 			$this->cache->set( $lang_code, $flag );
 		}
@@ -40,16 +50,28 @@ class WPML_Flags {
 		return $flag;
 	}
 
+	/**
+	 * @param string $lang_code
+	 *
+	 * @return string
+	 */
 	public function get_flag_url( $lang_code ) {
 		$flag = $this->get_flag( $lang_code );
-		if ( $flag->from_template ) {
-			$wp_upload_dir = wp_upload_dir();
-			$flag_url = $wp_upload_dir['baseurl'] . '/flags/' . $flag->flag;
-		} else {
-			$flag_url = $this->get_wpml_flags_url() . $flag->flag;
+		if ( ! $flag ) {
+			return '';
 		}
 
-		return $flag_url;
+		$path = '';
+		if ( $flag->from_template ) {
+			$wp_upload_dir = wp_upload_dir();
+			$base_url      = $wp_upload_dir['baseurl'];
+			$path          = 'flags/';
+		} else {
+			$base_url = $this->get_wpml_flags_url();
+		}
+		$path .= $flag->flag;
+
+		return $this->append_path_to_url( $base_url, $path );
 	}
 
 	public function clear() {
@@ -77,14 +99,14 @@ class WPML_Flags {
 	/**
 	 * @return string
 	 */
-	public final function get_wpml_flags_directory() {
+	final public function get_wpml_flags_directory() {
 		return WPML_PLUGIN_PATH . '/res/flags/';
 	}
 
 	/**
 	 * @return string
 	 */
-	public final function get_wpml_flags_url() {
+	final public function get_wpml_flags_url() {
 		return ICL_PLUGIN_URL . '/res/flags/';
 	}
 
@@ -107,5 +129,29 @@ class WPML_Flags {
 		}
 
 		return $result;
+	}
+
+	/**
+	 * @param string $base_url
+	 * @param string $path
+	 *
+	 * @return string
+	 */
+	private function append_path_to_url( $base_url, $path ) {
+		$base_url_parts = wp_parse_url( $base_url );
+
+		$base_url_path_components = array();
+		if ( array_key_exists( 'path', $base_url_parts ) ) {
+			$base_url_path_components = explode( '/', untrailingslashit( $base_url_parts['path'] ) );
+		}
+
+		$sub_dir_path_components = explode( '/', trim( $path, '/' ) );
+		foreach ( $sub_dir_path_components as $sub_dir_path_part ) {
+			$base_url_path_components[] = $sub_dir_path_part;
+		}
+
+		$base_url_parts['path'] = implode( '/', $base_url_path_components );
+
+		return http_build_url( $base_url_parts );
 	}
 }

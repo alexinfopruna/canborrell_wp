@@ -3,6 +3,9 @@
  * @package    wpml-core
  * @subpackage wpml-core
  */
+
+use WPML\TM\TranslationProxy\Services\AuthorizationFactory;
+
 require_once WPML_TM_PATH . '/inc/translation-proxy/functions.php';
 require_once WPML_TM_PATH . '/inc/translation-proxy/translationproxy-basket.class.php';
 require_once WPML_TM_PATH . '/inc/translation-proxy/translationproxy-api.class.php';
@@ -14,87 +17,88 @@ require_once WPML_TM_PATH . '/inc/translation-proxy/translationproxy-translator.
 define( 'CUSTOM_TEXT_MAX_LENGTH', 1000 );
 
 class TranslationProxy {
+	private static $tp_client;
 
-	static $errors = array();
-
+	/**
+	 * @param bool $reload
+	 *
+	 * @return WPML_TP_Service[]
+	 */
 	public static function services( $reload = true ) {
-		$services = get_transient( 'wpml_translation_service_list' );
-		$services = $services ? $services : array();
-		if ( $reload || empty( $services ) ) {
-			$services = TranslationProxy_Service::list_services();
-			set_transient( 'wpml_translation_service_list', $services );
-		}
-
-		return apply_filters( 'otgs_translation_get_services', $services );
+		return self::get_tp_client()->services()->get_all( $reload );
 	}
 
 	public static function get_tp_default_suid() {
 		$tp_default_suid = false;
 
-		$preferred_translation_service = self::get_preferred_translation_service();
-		if ( $preferred_translation_service ) {
-			$tp_default_suid = $preferred_translation_service;
-		} elseif ( defined( 'WPML_TP_DEFAULT_SUID' ) ) {
+		if ( defined( 'WPML_TP_DEFAULT_SUID' ) ) {
 			$tp_default_suid = WPML_TP_DEFAULT_SUID;
+		}
+
+		$preferred_translation_service = self::get_preferred_translation_service();
+		if ( $preferred_translation_service && ! $tp_default_suid ) {
+			$tp_default_suid = $preferred_translation_service;
 		}
 
 		return $tp_default_suid;
 	}
 
 	public static function has_preferred_translation_service() {
-		return self::get_preferred_translation_service() !== false;
+		return self::get_tp_default_suid() !== false;
 	}
 
 	public static function clear_preferred_translation_service() {
 		WP_Installer_API::set_preferred_ts( 'clear' );
 	}
 
+	/**
+	 * @param int $service_id
+	 *
+	 * @return stdClass
+	 */
+	public static function get_service( $service_id ) {
+		// @todo: implement usage of WPML_TP_Service for the active service
+		return (object) (array) self::get_tp_client()->services()->get_service( $service_id, true );
+	}
 
 	/**
 	 * @param int $service_id
 	 *
 	 * @return TranslationProxy_Project|WP_Error
+	 * @throws \WPMLTranslationProxyApiException
+	 * @throws \InvalidArgumentException
 	 */
-	public static function select_service( $service_id ) {
+	public static function select_service( $service_id, $credentials = null ) {
 		global $sitepress;
 
 		$service_selected = false;
 		$error            = false;
 
-		/** @var $service TranslationProxy_Service */
-		$service = TranslationProxy_Api::proxy_request( "/services/{$service_id}.json" );
+		/** @var TranslationProxy_Service $service */
+		$service = self::get_service( $service_id );
 
 		if ( $service ) {
 			self::deselect_active_service();
 
-			//set language map
-			$service->languages_map = self::languages_map( $service );
-
-			//set information about custom fields
-			$service->custom_fields      = self::get_custom_fields( $service_id,
-				true );
-			$service->custom_fields_data = false;
-
-			$sitepress->set_setting( 'translation_service', $service );
+			$service          = self::build_and_store_active_translation_service( $service, $credentials );
 			$result           = $service;
 			$service_selected = true;
 
-			//Force authentication if no user input is needed
-			if ( ! TranslationProxy::service_requires_authentication( $service ) ) {
-				$networking      = wpml_tm_load_tp_networking();
-				$project_factory = new WPML_TP_Project_Factory();
-				$auth            = new WPML_TP_Service_Authentication( $sitepress,
-					$networking, $project_factory, new stdClass() );
-				$auth->run();
+			// Force authentication if no user input is needed
+			if ( ! self::service_requires_authentication( $service ) ) {
+				( new AuthorizationFactory() )->create()->authorize( new \stdClass() );
 			}
 		} else {
-			$result = new WP_Error( '0', 'No service selected',
-				array( 'service_id' => $service_id ) );
+			$result = new WP_Error(
+				'0',
+				'No service selected',
+				array( 'service_id' => $service_id )
+			);
 		}
 
-		//Do not store selected service if this operation failed;
+		// Do not store selected service if this operation failed;
 		if ( $error || ! $service_selected ) {
-			$sitepress->set_setting( 'translation_service', false );
+			$sitepress->set_setting( 'translation_service', false, true );
 		}
 		$sitepress->save_settings();
 
@@ -113,22 +117,50 @@ class TranslationProxy {
 		$sitepress->set_setting( 'translators_management_info', false );
 		$sitepress->set_setting( 'language_pairs', false );
 		$sitepress->save_settings();
+
+		do_action( 'wpml_tp_service_dectivated', self::get_current_service() );
+	}
+
+	/**
+	 * @param      $service
+	 * @param bool    $custom_fields_data
+	 *
+	 * @return mixed
+	 * @throws \WPMLTranslationProxyApiException
+	 */
+	public static function build_and_store_active_translation_service( $service, $custom_fields_data = false ) {
+		global $sitepress;
+
+		// set language map
+		$service->languages_map = self::languages_map( $service );
+
+		// set information about custom fields
+		$service->custom_fields      = self::get_custom_fields( $service->id, true );
+		$service->custom_fields_data = $custom_fields_data;
+
+		$service->last_refresh = time();
+
+		$sitepress->set_setting( 'translation_service', $service, true );
+
+		return $service;
 	}
 
 	/**
 	 * @return bool|TranslationProxy_Project
 	 */
 	public static function get_current_project() {
-		$translation_service = apply_filters( 'wpml_get_setting', false, 'translation_service' );
+		$translation_service = self::get_current_service();
 
-		return $translation_service ? new TranslationProxy_Project( $translation_service ) : false;
+		if ( $translation_service ) {
+			return new TranslationProxy_Project( $translation_service, 'xmlrpc', self::get_tp_client() );
+		}
+		return false;
 	}
 
-	public static function get_current_service_info( $info = array() ) {
+	public static function get_current_service_info( array $info = array() ) {
 		global $sitepress;
 		if ( ! $sitepress->get_setting( 'translation_service' ) ) {
-			$sitepress->set_setting( 'translation_service', false );
-			$sitepress->save_settings();
+			$sitepress->set_setting( 'translation_service', false, true );
 		}
 		$service = self::get_current_service();
 		if ( $service ) {
@@ -147,7 +179,7 @@ class TranslationProxy {
 				$service_info['contact_url'] = $service->url;
 			}
 			$service_info['setup_url']                = TranslationProxy_Popup::get_link( '@select-translators;from_replace;to_replace@', array( 'ar' => 1 ), true );
-			$service_info['has_quote']                = $service->quote_iframe_url != '';
+			$service_info['has_quote']                = $service->quote_iframe_url !== '';
 			$service_info['has_translator_selection'] = $service->has_translator_selection;
 
 			$info[ $service->id ] = $service_info;
@@ -175,8 +207,6 @@ class TranslationProxy {
 		$icl_translation_services = apply_filters( 'icl_translation_services', array() );
 		$icl_translation_services = array_merge( $icl_translation_services, self::get_current_service_info() );
 
-		$current_language = $sitepress->get_current_language();
-
 		$output = '';
 
 		if ( ! empty( $icl_translation_services ) ) {
@@ -199,18 +229,6 @@ class TranslationProxy {
 				$output .= '<h3 class="icl-translation-services-header">  ' . $service['header'] . '</h3>';
 				$output .= '<div class="icl-translation-desc"> ' . $service['description'] . '</div>';
 				$output .= '</div>';
-				$output .= '<p class="icl-translation-buttons">';
-				if ( $service['has_translator_selection'] ) {
-					$output .=
-						'<a href="admin.php?page='
-						. WPML_TM_FOLDER
-						. '/menu/main.php&sm=translators&icl_lng='
-						. $current_language
-						. '&service=icanlocalize" class="button-secondary"><span>'
-						. __( 'Add translators', 'wpml-translation-management' )
-						. '</span></a>';
-				}
-				$output .= '</p>';
 				$output .= '<p class="icl-translation-links">';
 				$output .= '<a class="icl-mail-ico" href="' . $service['contact_url'] . '" target="_blank">' . __( 'Contact', 'wpml-translation-management' ) . " {$service['name']}</a>";
 				$output .= '<a id="icl_hide_promo" href="#">' . __( 'Hide this', 'wpml-translation-management' ) . '</a>';
@@ -229,27 +247,35 @@ class TranslationProxy {
 	public static function get_service_dashboard_info() {
 		global $sitepress;
 
-		return TranslationProxy::get_custom_html( 'dashboard', $sitepress->get_current_language(), array(
-			'TranslationProxy_Popup',
-			'get_link'
-		) );
+		return self::get_custom_html(
+			'dashboard',
+			$sitepress->get_current_language(),
+			array(
+				'TranslationProxy_Popup',
+				'get_link',
+			)
+		);
 	}
 
 	public static function get_service_translators_info() {
 		global $sitepress;
 
-		return TranslationProxy::get_custom_html( 'translators', $sitepress->get_current_language(), array(
-			'TranslationProxy_Popup',
-			'get_link'
-		) );
+		return self::get_custom_html(
+			'translators',
+			$sitepress->get_current_language(),
+			array(
+				'TranslationProxy_Popup',
+				'get_link',
+			)
+		);
 	}
 
 	/**
-	 * @param string $location
-	 * @param string $locale
-	 * @param string $popup_link_callback
-	 * @param int $max_count
-	 * @param bool $paragraph
+	 * @param string   $location
+	 * @param string   $locale
+	 * @param callable $popup_link_callback
+	 * @param int      $max_count
+	 * @param bool     $paragraph
 	 *
 	 * @return string
 	 */
@@ -267,13 +293,17 @@ class TranslationProxy {
 			return '';
 		}
 
-		$cache_key   = $project->id . ':' . md5( serialize( array(
-				$location,
-				$locale,
-				serialize( $popup_link_callback ),
-				$max_count,
-				$paragraph
-			) ) );
+		$cache_key   = $project->id . ':' . md5(
+			serialize(
+				array(
+					$location,
+					$locale,
+					serialize( $popup_link_callback ),
+					$max_count,
+					$paragraph,
+				)
+			)
+		);
 		$cache_group = 'get_custom_html';
 		$cache_found = false;
 
@@ -296,19 +326,23 @@ class TranslationProxy {
 				$format_string = self::sanitize_custom_text( $string->format_string );
 
 				if ( $paragraph ) {
-					$format = '<p class="icl_status_jobs">' . $format_string . '</p>';
+					$format = '<p>' . $format_string . '</p>';
 				} else {
 					$format = '<div>' . $format_string . '</div>';
 				}
 				$links = array();
-				foreach ( $string->links as $link ) {
+				/** @var array $string_links */
+				$string_links = $string->links;
+				foreach ( $string_links as $link ) {
 					$url  = self::sanitize_custom_text( $link->url );
 					$text = self::sanitize_custom_text( $link->text );
-					if ( isset( $link->dismiss ) and $link->dismiss == 1 ) {
+					if ( isset( $link->dismiss ) && (int) $link->dismiss === 1 ) {
 						$links[] = '<a href="' . $url . '" class="wpml_tp_custom_dismiss_able">' . $text . '</a>';
 					} else {
-						$links[] = call_user_func( $popup_link_callback,
-								$url ) . $text . '</a>';
+						$links[] = call_user_func(
+							$popup_link_callback,
+							$url
+						) . $text . '</a>';
 					}
 				}
 
@@ -353,41 +387,21 @@ class TranslationProxy {
 	public static function get_current_service_batch_name_max_length() {
 		$translation_service = self::get_current_service();
 
-		if ( $translation_service && isset( $translation_service->batch_name_max_length ) ) {
+		if ( $translation_service && isset( $translation_service->batch_name_max_length )
+			 && null
+				!== $translation_service->batch_name_max_length ) {
 			return $translation_service->batch_name_max_length;
 		}
 
 		return 40;
 	}
 
-	public static function get_batch_id_from_name( $batch_name ) {
-		$cache_key   = $batch_name;
-		$cache_group = 'get_batch_id_from_name';
-		$cache_found = false;
-
-		$batch_id = wp_cache_get( $cache_key, $cache_group, false, $cache_found );
-
-		if ( $cache_found ) {
-			return $batch_id;
-		}
-
-		global $wpdb;
-		$batch_id_sql      = "SELECT id FROM {$wpdb->prefix}icl_translation_batches WHERE batch_name=%s";
-		$batch_id_prepared = $wpdb->prepare( $batch_id_sql, array( $batch_name ) );
-		$batch_id          = $wpdb->get_var( $batch_id_prepared );
-
-		if ( $batch_id ) {
-			//Cache only if there is a result
-			wp_cache_set( $cache_key, $batch_id, $cache_group );
-		}
-
-		return $batch_id;
-	}
-
 	/**
-	 * @param bool|TranslationProxy_Service $service
+	 * @param bool|TranslationProxy_Service|WP_Error $service
 	 *
 	 * @return bool
+	 * @throws \InvalidArgumentException
+	 * @throws \WPMLTranslationProxyApiException
 	 */
 	public static function service_requires_authentication( $service = false ) {
 		if ( ! $service ) {
@@ -395,8 +409,8 @@ class TranslationProxy {
 		}
 
 		$custom_fields = false;
-		if ( $service != false ) {
-			$custom_fields = TranslationProxy::get_custom_fields( $service->id );
+		if ( false !== (bool) $service ) {
+			$custom_fields = self::get_custom_fields( $service->id );
 		}
 
 		return $custom_fields && isset( $custom_fields->custom_fields ) && count( $custom_fields->custom_fields ) > 0;
@@ -406,9 +420,10 @@ class TranslationProxy {
 	 * Return true if $service has been successfully authenticated
 	 * Services that do not require authentication are by default authenticated
 	 *
-	 * @param bool $service
+	 * @param bool|WP_Error|TranslationProxy_Service $service
 	 *
 	 * @return bool
+	 * @throws \InvalidArgumentException
 	 */
 	public static function is_service_authenticated( $service = false ) {
 		if ( ! $service ) {
@@ -419,19 +434,14 @@ class TranslationProxy {
 			return false;
 		}
 
-		if ( ! TranslationProxy::service_requires_authentication( $service ) ) {
+		if ( ! self::service_requires_authentication( $service ) ) {
 			return true;
 		}
 
-		$has_custom_fields  = TranslationProxy::has_custom_fields();
-		$custom_fields_data = TranslationProxy::get_custom_fields_data();
+		$has_custom_fields  = self::has_custom_fields();
+		$custom_fields_data = self::get_custom_fields_data();
 
-		if ( $has_custom_fields && $custom_fields_data ) {
-			return true;
-		}
-
-		return false;
-
+		return $has_custom_fields && $custom_fields_data;
 	}
 
 	/**
@@ -440,14 +450,11 @@ class TranslationProxy {
 	public static function get_current_service() {
 		global $sitepress;
 
-		//Todo: if array, cast to object
-		/** @var $ts TranslationProxy_Service */
+		/** @var TranslationProxy_Service $ts */
 		$ts = $sitepress->get_setting( 'translation_service' );
 
 		if ( is_array( $ts ) ) {
-			$error = new WP_Error( 'translation-proxy-service-misconfiguration', 'translation_service is stored as array!', $ts );
-
-			return $error;
+			return new WP_Error( 'translation-proxy-service-misconfiguration', 'translation_service is stored as array!', $ts );
 		}
 
 		return $ts;
@@ -456,11 +463,12 @@ class TranslationProxy {
 	/**
 	 *
 	 * @return bool
+	 * @throws \InvalidArgumentException
 	 */
 	public static function is_current_service_active_and_authenticated() {
 		$active_service = self::get_current_service();
 
-		return $active_service && ( ! TranslationProxy::service_requires_authentication() || TranslationProxy_Service::is_authenticated( $active_service ) );
+		return $active_service && ( ! self::service_requires_authentication() || TranslationProxy_Service::is_authenticated( $active_service ) );
 	}
 
 	/**
@@ -469,7 +477,7 @@ class TranslationProxy {
 	public static function get_translation_projects() {
 		global $sitepress;
 
-		return $sitepress->get_setting( 'icl_translation_projects' );
+		return $sitepress->get_setting( 'icl_translation_projects', null );
 	}
 
 	public static function get_service_name( $service_id = false ) {
@@ -478,7 +486,7 @@ class TranslationProxy {
 			$services = self::services( false );
 
 			foreach ( $services as $service ) {
-				if ( $service->id == $service_id ) {
+				if ( $service->id === $service_id ) {
 					$name = $service->name;
 				}
 			}
@@ -501,9 +509,9 @@ class TranslationProxy {
 
 	/**
 	 * @param int|bool $service_id If not given, will use the current service ID (if any)
-	 * @param bool $force_reload Force reload custom fields from Translation Service
+	 * @param bool     $force_reload Force reload custom fields from Translation Service
 	 *
-	 * @throws TranslationProxy_Api_Error
+	 * @throws WPMLTranslationProxyApiException
 	 * @throws InvalidArgumentException
 	 * @return array|mixed|null|string
 	 */
@@ -518,14 +526,10 @@ class TranslationProxy {
 
 		$translation_service = self::get_current_service();
 		if ( $translation_service && ! $force_reload ) {
-			return isset( $translation_service->custom_fields ) ? $translation_service->custom_fields : false;
+			return null !== $translation_service->custom_fields ? $translation_service->custom_fields : false;
 		}
 
-		$params = array(
-			'service_id' => $service_id,
-		);
-
-		return TranslationProxy_Api::proxy_request( '/services/{service_id}/custom_fields.json', $params );
+		return self::get_tp_client()->services()->get_custom_fields( $service_id );
 	}
 
 	/**
@@ -533,7 +537,7 @@ class TranslationProxy {
 	 */
 	public static function get_extra_fields_local() {
 		global $sitepress;
-		$service                  = TranslationProxy::get_current_service();
+		$service                  = self::get_current_service();
 		$icl_translation_projects = $sitepress->get_setting( 'icl_translation_projects' );
 
 		if ( isset( $icl_translation_projects[ TranslationProxy_Project::generate_service_index( $service ) ]['extra_fields'] ) && ! empty( $icl_translation_projects[ TranslationProxy_Project::generate_service_index( $service ) ]['extra_fields'] ) ) {
@@ -541,6 +545,21 @@ class TranslationProxy {
 		}
 
 		return array();
+	}
+
+	/**
+	 * @param $extra_fields
+	 */
+	public static function save_extra_fields( $extra_fields ) {
+		global $sitepress;
+		$service                  = self::get_current_service();
+		$icl_translation_projects = $sitepress->get_setting( 'icl_translation_projects' );
+
+		if ( isset( $icl_translation_projects[ TranslationProxy_Project::generate_service_index( $service ) ]['extra_fields'] ) && ! empty( $icl_translation_projects[ TranslationProxy_Project::generate_service_index( $service ) ]['extra_fields'] ) ) {
+			$icl_translation_projects[ TranslationProxy_Project::generate_service_index( $service ) ]['extra_fields'] = $extra_fields;
+			$sitepress->set_setting( 'icl_translation_projects', $icl_translation_projects );
+			$sitepress->save_settings();
+		}
 	}
 
 	public static function maybe_convert_extra_fields( $extra_fields ) {
@@ -577,11 +596,12 @@ class TranslationProxy {
 	public static function get_custom_fields_data() {
 		$service = self::get_current_service();
 
-		return isset( $service->custom_fields_data ) ? $service->custom_fields_data : false;
+		return null !== $service->custom_fields_data ? $service->custom_fields_data : false;
 	}
 
 	/**
 	 * @return bool true if the current translation service allows selection of specific translators
+	 * @throws \InvalidArgumentException
 	 */
 	public static function translator_selection_available() {
 		$res = false;
@@ -599,15 +619,14 @@ class TranslationProxy {
 		$text = esc_html( $text );
 
 		// Service sends html tags as [tag]
-		$text = str_replace( '[', '<', $text );
-		$text = str_replace( ']', '>', $text );
+		$text = str_replace( array( '[', ']' ), array( '<', '>' ), $text );
 
 		return $text;
 	}
 
 	private static function languages_map( $service ) {
 		$languages_map = array();
-		$languages     = TranslationProxy_Api::proxy_request( "/services/{$service->id}/language_identifiers.json" );
+		$languages     = self::get_tp_client()->services()->get_languages_map( $service->id );
 		if ( ! empty( $languages ) ) {
 			foreach ( $languages as $language ) {
 				$languages_map[ $language->iso_code ] = $language->value;
@@ -620,7 +639,7 @@ class TranslationProxy {
 	private static function get_preferred_translation_service() {
 		$tp_default_suid                              = false;
 		$preferred_translation_service_from_installer = self::get_preferred_translation_service_from_installer();
-		if ( $preferred_translation_service_from_installer != 'clear' ) {
+		if ( 'clear' !== $preferred_translation_service_from_installer ) {
 			$tp_default_suid = $preferred_translation_service_from_installer;
 		}
 
@@ -630,5 +649,14 @@ class TranslationProxy {
 	private static function get_preferred_translation_service_from_installer() {
 
 		return WP_Installer_API::get_preferred_ts();
+	}
+
+	public static function get_tp_client() {
+		if ( ! self::$tp_client ) {
+			$tp_api_factory  = new WPML_TP_Client_Factory();
+			self::$tp_client = $tp_api_factory->create();
+		}
+
+		return self::$tp_client;
 	}
 }

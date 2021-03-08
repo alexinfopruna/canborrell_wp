@@ -79,7 +79,8 @@ return __p
 
 this["WPML_core"]["templates/taxonomy-translation/label-popup.html"] = function(obj) {
 obj || (obj = {});
-var __t, __p = '', __e = _.escape;
+var __t, __p = '', __e = _.escape, __j = Array.prototype.join;
+function print() { __p += __j.call(arguments, '') }
 with (obj) {
 __p += '<div class="icl_tt_form wpml-dialog" id="icl_tt_form_' +
 ((__t = ( taxonomy )) == null ? '' : __t) +
@@ -107,7 +108,7 @@ __e( labels.Singular ) +
 __e( originalLabels.singular ) +
 '" type="text">\n\t\t\t<button class="button-copy button-secondary js-button-copy otgs-ico-copy" title="' +
 __e( labels.copyFromOriginal ) +
-'"/>\n\t\t\t<input class="js-translation" id="' +
+'"></button>\n\t\t\t<input class="js-translation js-required-translation" id="' +
 ((__t = ( taxonomy )) == null ? '' : __t) +
 '-singular" value="' +
 __e( translatedLabels.singular ) +
@@ -121,11 +122,29 @@ __e( labels.Plural ) +
 __e(originalLabels.general ) +
 '" type="text">\n\t\t\t<button class="button-copy button-secondary js-button-copy otgs-ico-copy" title="' +
 __e( labels.copyFromOriginal ) +
-'"/>\n\t\t\t<input class="js-translation" id="' +
+'"></button>\n\t\t\t<input class="js-translation js-required-translation" id="' +
 ((__t = ( taxonomy )) == null ? '' : __t) +
 '-plural" value="' +
 __e( translatedLabels.general ) +
-'" type="text">\n\t\t</div>\n\t\n\t\t<div class="wpml-dialog-footer ">\n\t\t\t<span class="errors icl_error_text"></span>\n\t\t\t<input class="cancel wpml-dialog-close-button alignleft" value="' +
+'" type="text">\n\t\t</div>\n\n\t\t';
+ if( slugTranslationEnabled ) { ;
+__p += '\n\t\t\t<div class="wpml-form-row js-slug-translation-wrapper">\n\t\t\t\t<label for="' +
+((__t = ( taxonomy )) == null ? '' : __t) +
+'-slug">' +
+__e( labels.Slug ) +
+'</label>\n\t\t\t\t<input readonly id="' +
+((__t = ( taxonomy )) == null ? '' : __t) +
+'-slug-original" value="' +
+__e(originalLabels.slug ) +
+'" type="text">\n\t\t\t\t<button class="button-copy button-secondary js-button-copy otgs-ico-copy" title="' +
+__e( labels.copyFromOriginal ) +
+'"></button>\n\t\t\t\t<input class="js-translation" id="' +
+((__t = ( taxonomy )) == null ? '' : __t) +
+'-slug" value="' +
+__e( translatedLabels.slug ) +
+'" type="text">\n\t\t\t</div>\n\t\t';
+ } ;
+__p += '\n\t\n\t\t<div class="wpml-dialog-footer ">\n\t\t\t<span class="errors icl_error_text"></span>\n\t\t\t<input class="cancel wpml-dialog-close-button alignleft" value="' +
 __e( labels.cancel ) +
 '" type="button">\n\t\t\t<input class="button-primary js-label-save alignright" value="' +
 __e( labels.save ) +
@@ -263,13 +282,22 @@ return __p
 
 this["WPML_core"]["templates/taxonomy-translation/original-label.html"] = function(obj) {
 obj || (obj = {});
-var __t, __p = '', __e = _.escape;
+var __t, __p = '', __e = _.escape, __j = Array.prototype.join;
+function print() { __p += __j.call(arguments, '') }
 with (obj) {
 __p += '<td class="wpml-col-title">\n\t<span class="wpml-title-flag"><img src="' +
 ((__t = ( flag )) == null ? '' : __t) +
 '"></span><strong>' +
 ((__t = ( taxLabel.singular + ' / ' + taxLabel.general )) == null ? '' : __t) +
-'</strong>\n</td>\n';
+'</strong>\n\t<p>\n\t\t';
+ if(!langSelector){ ;
+__p += '<a href="#" class="js-show-lang-selector">' +
+((__t = ( labels.changeLanguage )) == null ? '' : __t) +
+'</a>';
+ } ;
+__p += '\n\t\t' +
+((__t = ( langSelector )) == null ? '' : __t) +
+'\n\t</p>\n</td>\n';
 
 }
 return __p
@@ -456,13 +484,21 @@ __p += '<div class="wpml-wrap">\n\t';
  if ( mode === 'translate' ) { ;
 __p += '\n\t\t<h3 id="term-table-summary">' +
 ((__t = ( summaryTerms )) == null ? '' : __t) +
-'</h3>\n\t\t<div id="wpml-taxonomy-translation-filters"></div>\n\t\t<div id="wpml-taxonomy-translation-terms-table"></div>\n\t\t<div id="wpml-taxonomy-translation-terms-nav"></div>\n\t\t';
- if ( TaxonomyTranslation.data.translatedTaxonomyLabels ) { ;
-__p += '\n\t\t\t<h3 id="term-label-summary">' +
+'</h3>\n\t\t';
+ if ( TaxonomyTranslation.data.resultsTruncated ) { ;
+__p += '\n\t\t<div class="icl-admin-message-warning"><p>' +
+((__t = ( resultsTruncated )) == null ? '' : __t) +
+'</p></div>\n\t\t';
+ } ;
+__p += '\n\t\t<div id="wpml-taxonomy-translation-filters"></div>\n\t\t<div id="wpml-taxonomy-translation-terms-table"></div>\n\t\t<div id="wpml-taxonomy-translation-terms-nav"></div>\n\n\t\t<h3 id="term-label-summary">' +
 ((__t = ( labelSummary )) == null ? '' : __t) +
-'</h3>\n\t\t\t<div id="wpml-taxonomy-translation-labels-table"></div>\n\t\t\t<p>' +
-((__t = ( labels.changeLabelLanguage )) == null ? '' : __t) +
-'</p>\n\t\t';
+'</h3>\n\t\t';
+ if ( TaxonomyTranslation.data.translatedTaxonomyLabels ) { ;
+__p += '\n\t\t\t<div id="wpml-taxonomy-translation-labels-table"></div>\n\t\t';
+ } else { ;
+__p += '\n\t\t\t<div class="otgs-notice notice notice-warning"><p>' +
+((__t = ( labels.activateStringTranslation )) == null ? '' : __t) +
+'</p></div>\n\t\t';
  } ;
 __p += '\n\t';
  } else if ( mode === 'sync' ) { ;
@@ -576,7 +612,7 @@ __p += '<div class="icl_tt_form wpml-dialog" id="icl_tt_form_' +
 ((__t = ( original_term.name )) == null ? '' : __t) +
 '" type="text">\n\t\t\t<button class="button-copy button-secondary js-button-copy otgs-ico-copy" title="' +
 ((__t = ( labels.copyFromOriginal )) == null ? '' : __t) +
-'"/>\n\t\t\t<input id="term-name" value="' +
+'"></button>\n\t\t\t<input id="term-name" value="' +
 ((__t = ( term.name )) == null ? '' : __t) +
 '" type="text">\n\t\t</div>\n\t\n\t\t<div class="wpml-form-row">\n\t\t\t<label for="term-slug">' +
 ((__t = ( labels.Slug )) == null ? '' : __t) +
@@ -584,7 +620,7 @@ __p += '<div class="icl_tt_form wpml-dialog" id="icl_tt_form_' +
 ((__t = ( original_term.slug )) == null ? '' : __t) +
 '" type="text">\n\t\t\t<button class="button-copy button-secondary js-button-copy otgs-ico-copy" title="' +
 ((__t = ( labels.copyFromOriginal )) == null ? '' : __t) +
-'"/>\n\t\t\t<input id="term-slug" value="' +
+'"></button>\n\t\t\t<input id="term-slug" value="' +
 ((__t = ( term.slug )) == null ? '' : __t) +
 '" type="text">\n\t\t</div>\n\t\t<div class="wpml-form-row">\n\t\t\t<label for="term-description">' +
 ((__t = ( labels.Description )) == null ? '' : __t) +
@@ -592,7 +628,7 @@ __p += '<div class="icl_tt_form wpml-dialog" id="icl_tt_form_' +
 ((__t = ( original_term.description )) == null ? '' : __t) +
 '</textarea>\n\t\t\t<button class="button-copy button-secondary js-button-copy otgs-ico-copy" title="' +
 ((__t = ( labels.copyFromOriginal )) == null ? '' : __t) +
-'"/>\n\t\t\t<textarea id="term-description" cols="22" rows="4">' +
+'"></button>\n\t\t\t<textarea id="term-description" cols="22" rows="4">' +
 ((__t = ( term.description )) == null ? '' : __t) +
 '</textarea>\n\t\t</div>\n\t\t';
  if ( original_term_meta.length ) { ;
@@ -606,7 +642,7 @@ __p += '\n\t\t\t\t\t<label for="term-meta">' +
 __e( meta_data.meta_value ) +
 '" type="text">\n\t\t\t\t\t<button class="button-copy button-secondary js-button-copy otgs-ico-copy" title="' +
 ((__t = ( labels.copyFromOriginal )) == null ? '' : __t) +
-'"/>\n\t\t\t\t\t<input name="term-meta" class="term-meta" data-meta-key="' +
+'"></button>\n\t\t\t\t\t<input name="term-meta" class="term-meta" data-meta-key="' +
 ((__t = ( meta_data.meta_key )) == null ? '' : __t) +
 '" value="' +
 __e( term_meta[meta_data.meta_key] ) +
@@ -614,11 +650,11 @@ __e( term_meta[meta_data.meta_key] ) +
  }); ;
 __p += '\n\t\t\t</div>\n\t\t';
  } ;
-__p += '\n\t\t<div class="wpml-dialog-footer ">\n\t\t\t<span class="errors icl_error_text"></span>\n\t\t\t<input class="cancel wpml-dialog-close-button alignleft" value="' +
+__p += '\n\t</div>\n\t<div class="wpml-dialog-footer ">\n\t\t<span class="errors icl_error_text"></span>\n\t\t<input class="cancel wpml-dialog-close-button alignleft" value="' +
 ((__t = ( labels.cancel )) == null ? '' : __t) +
-'" type="button">\n\t\t\t<input class="button-primary term-save alignright" value="' +
+'" type="button">\n\t\t<input class="button-primary term-save alignright" value="' +
 ((__t = ( labels.save )) == null ? '' : __t) +
-'" type="submit">\n\t\t\t<span class="spinner alignright"></span>\n\t\t</div>\n\t</div>\n</div>\n';
+'" type="submit">\n\t\t<span class="spinner alignright"></span>\n\t</div>\n</div>\n';
 
 }
 return __p

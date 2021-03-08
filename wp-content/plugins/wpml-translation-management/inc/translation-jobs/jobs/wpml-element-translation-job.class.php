@@ -6,13 +6,11 @@ abstract class WPML_Element_Translation_Job extends WPML_Translation_Job {
 
 	protected $original_del_text;
 
-	protected $asian_languages = array( 'ja', 'ko', 'zh-hans', 'zh-hant', 'mn', 'ne', 'hi', 'pa', 'ta', 'th' );
-
 	/** @var  WPML_Translation_Job_Factory $job_factory */
 	protected $job_factory;
 
 	private $original_doc_id = false;
-	private $translation_id = false;
+	private $translation_id  = false;
 
 	/**
 	 * @param int                               $job_id
@@ -22,7 +20,7 @@ abstract class WPML_Element_Translation_Job extends WPML_Translation_Job {
 	 */
 	function __construct( $job_id, $batch_id = null, &$tm_instance = null, &$job_factory = null ) {
 		parent::__construct( $job_id, $batch_id, $tm_instance );
-		$this->original_del_text = __( "The original has been deleted!", "sitepress" );
+		$this->original_del_text = __( 'The original has been deleted!', 'sitepress' );
 		if ( ! $job_factory ) {
 			global $wpml_translation_job_factory;
 			$job_factory = &$wpml_translation_job_factory;
@@ -55,13 +53,10 @@ abstract class WPML_Element_Translation_Job extends WPML_Translation_Job {
 
 	function get_original_element_id() {
 		if ( ! $this->original_doc_id ) {
-			$original_element_id   = $this->get_iclt_field( 'element_id', false );
-			$this->original_doc_id = $original_element_id;
-		} else {
-			$original_element_id = $this->original_doc_id;
+			$this->original_doc_id = $this->get_iclt_field( 'element_id', false );
 		}
 
-		return $original_element_id;
+		return $this->original_doc_id;
 	}
 
 	function get_translation_id() {
@@ -85,11 +80,14 @@ abstract class WPML_Element_Translation_Job extends WPML_Translation_Job {
 		global $wpdb, $wpml_post_translations, $wpml_term_translations;
 
 		$wpml_tm_records  = new WPML_TM_Records( $wpdb, $wpml_post_translations, $wpml_term_translations );
-		$save_data_action = new WPML_Save_Translation_Data_Action( array(
-			'job_id'   => $this->get_id(),
-			'complete' => $complete,
-			'fields'   => array()
-		), $wpml_tm_records );
+		$save_data_action = new WPML_Save_Translation_Data_Action(
+			array(
+				'job_id'   => $this->get_id(),
+				'complete' => $complete,
+				'fields'   => array(),
+			),
+			$wpml_tm_records
+		);
 		$save_data_action->save_translation();
 	}
 
@@ -97,29 +95,26 @@ abstract class WPML_Element_Translation_Job extends WPML_Translation_Job {
 	 * @return int
 	 */
 	function estimate_word_count() {
-		$words           = 0;
-		$lang_code       = $this->get_source_language_code();
-		$is_asian_lang   = in_array( $lang_code, $this->asian_languages, true );
 		$fields          = $this->get_original_fields();
 		$combined_string = join( ' ', $fields );
-		$words += $is_asian_lang === true
-			? strlen( strip_tags( $combined_string ) ) / 6
-			: count( preg_split( '/[\s\/]+/', $combined_string, 0, PREG_SPLIT_NO_EMPTY ) );
-
-		return (int) $words;
+		$calculator      = new WPML_TM_Word_Calculator( new WPML_PHP_Functions() );
+		return $calculator->count_words( $combined_string, $this->get_source_language_code() );
 	}
 
 	function get_original_fields() {
 		global $wpdb;
 
 		$fields = $wpdb->get_results(
-			$wpdb->prepare( "SELECT field_type, field_data, field_format
+			$wpdb->prepare(
+				"SELECT field_type, field_data, field_format
 							 FROM {$wpdb->prefix}icl_translate
 							 WHERE job_id = %d
 							 	AND field_translate = 1",
-				$this->get_id() ) );
+				$this->get_id()
+			)
+		);
 
-		$res                        = array();
+		$res = array();
 		foreach ( $fields as $field ) {
 			$res[ $field->field_type ] = base64_decode( $field->field_data );
 		}
@@ -146,7 +141,13 @@ abstract class WPML_Element_Translation_Job extends WPML_Translation_Job {
 		if ( $translation_id ) {
 			$wpdb->delete( $wpdb->prefix . 'icl_translations', array( 'translation_id' => $translation_id ) );
 			if ( $rid ) {
-				$wpdb->delete( $wpdb->prefix . 'icl_translation_status', array( 'translation_id' => $translation_id, 'rid' => $rid ) );
+				$wpdb->delete(
+					$wpdb->prefix . 'icl_translation_status',
+					array(
+						'translation_id' => $translation_id,
+						'rid'            => $rid,
+					)
+				);
 			}
 		}
 
@@ -155,10 +156,10 @@ abstract class WPML_Element_Translation_Job extends WPML_Translation_Job {
 
 	/**
 	 * @param TranslationProxy_Project $project
-	 * @param int $translator_id
-	 * @param WPML_TM_CMS_ID $cms_id_helper
-	 * @param TranslationManagement $tm_instance
-	 * @param null|string $note
+	 * @param int                      $translator_id
+	 * @param WPML_TM_CMS_ID           $cms_id_helper
+	 * @param TranslationManagement    $tm_instance
+	 * @param null|string              $note
 	 *
 	 * @return array
 	 */
@@ -173,34 +174,39 @@ abstract class WPML_Element_Translation_Job extends WPML_Translation_Job {
 		$url             = $this->get_url( true );
 		$word_count      = $this->estimate_word_count();
 		$note            = isset( $note ) ? $note : '';
-		$is_update       = intval( $this->get_resultant_element_id() );
 		$source_language = $this->get_source_language_code();
 		$target_language = $this->get_language_code();
+		$uuid            = $this->get_uuid();
 
 		try {
-			$res = $project->send_to_translation_batch_mode( $file, $title, $cms_id, $url, $source_language, $target_language, $word_count, $translator_id, $note, $is_update );
+			$tp_job_id = $project->send_to_translation_batch_mode( $file, $title, $cms_id, $url, $source_language, $target_language, $word_count, $translator_id, $note, $uuid );
 		} catch ( Exception $err ) {
 			// The translation entry will be removed
 			$project->errors[] = $err;
-			$res = 0;
+			$tp_job_id         = 0;
 		}
 
 		$translation_id = $this->get_translation_id();
 
-		if ( $res ) {
-			$tm_instance->update_translation_status( array(
-				'translation_id' => $translation_id,
-				'translator_id'  => $translator_id,
-				'status'         => ICL_TM_IN_PROGRESS,
-				'needs_update'   => 0
-			) );
+		if ( $tp_job_id ) {
+			$tm_instance->update_translation_status(
+				array(
+					'translation_id' => $translation_id,
+					'translator_id'  => $translator_id,
+					'status'         => ICL_TM_IN_PROGRESS,
+					'needs_update'   => 0,
+				)
+			);
 		} else {
 			$previous_state = $wpdb->get_var(
-				$wpdb->prepare( "	SELECT _prevstate
+				$wpdb->prepare(
+					"	SELECT _prevstate
 									FROM {$wpdb->prefix}icl_translation_status
 									WHERE translation_id=%d
 									LIMIT 1",
-				$translation_id ) );
+					$translation_id
+				)
+			);
 			if ( ! empty( $previous_state ) ) {
 				$previous_state = unserialize( $previous_state );
 				$data           = array(
@@ -211,19 +217,22 @@ abstract class WPML_Element_Translation_Job extends WPML_Translation_Job {
 					'translation_service' => $previous_state['translation_service'],
 					'translation_package' => $previous_state['translation_package'],
 					'timestamp'           => $previous_state['timestamp'],
-					'links_fixed'         => $previous_state['links_fixed']
+					'links_fixed'         => $previous_state['links_fixed'],
 				);
 				$data_where     = array( 'translation_id' => $translation_id );
 				$wpdb->update( $wpdb->prefix . 'icl_translation_status', $data, $data_where );
 			} else {
-				$data       = array( 'status' => ICL_TM_NOT_TRANSLATED, 'needs_update' => 0 );
+				$data       = array(
+					'status'       => ICL_TM_NOT_TRANSLATED,
+					'needs_update' => 0,
+				);
 				$data_where = array( 'translation_id' => $translation_id );
 				$wpdb->update( $wpdb->prefix . 'icl_translation_status', $data, $data_where );
 			}
 			$err = true;
 		}
 
-		return array( isset( $err ) ? $err : false, $project, $res );
+		return array( isset( $err ) ? $err : false, $project, $tp_job_id );
 	}
 
 	/**
@@ -243,23 +252,33 @@ abstract class WPML_Element_Translation_Job extends WPML_Translation_Job {
 
 		$this->basic_data->status = ! empty( $this->basic_data->translated ) ? ICL_TM_COMPLETE : $this->basic_data->status;
 
-		return TranslationManagement::get_job_status_string( $this->basic_data->status,
-			$this->basic_data->needs_update );
+		return TranslationManagement::get_job_status_string(
+			$this->basic_data->status,
+			$this->basic_data->needs_update
+		);
 	}
 
+	/**
+	 * @param int $job_id
+	 *
+	 * @return bool|stdClass|WPML_Element_Translation_Job
+	 */
 	protected function load_job_data( $job_id ) {
+		if ( $this->job_factory ) {
+			return $this->job_factory->get_translation_job( $job_id, false, 1 );
+		}
 
-		return $this->job_factory->get_translation_job( $job_id, false, 1 );
+		return false;
 	}
 
-	protected function save_updated_assignment(){
+	protected function save_updated_assignment() {
 		global $wpdb;
 
-		$job_id = $this->get_id();
-		$service = $this->get_translation_service();
+		$job_id                           = $this->get_id();
+		$service                          = $this->get_translation_service();
 		list( $prev_translator_id, $rid ) = $wpdb->get_row( $wpdb->prepare( "SELECT translator_id, rid FROM {$wpdb->prefix}icl_translate_job WHERE job_id=%d", $job_id ), ARRAY_N );
 
-		$translator_id = $this->get_translator_id();
+		$translator_id      = $this->get_translator_id();
 		$assigned_correctly = $translator_id == $prev_translator_id;
 		$assigned_correctly = apply_filters( 'wpml_job_assigned_to_after_assignment', $assigned_correctly, $job_id, $translator_id, $service );
 
@@ -270,7 +289,7 @@ abstract class WPML_Element_Translation_Job extends WPML_Translation_Job {
 		$data       = array(
 			'translator_id'       => $translator_id,
 			'status'              => ICL_TM_WAITING_FOR_TRANSLATOR,
-			'translation_service' => $service
+			'translation_service' => $service,
 		);
 		$data_where = array( 'rid' => $rid );
 		$wpdb->update( $wpdb->prefix . 'icl_translation_status', $data, $data_where );
@@ -279,20 +298,25 @@ abstract class WPML_Element_Translation_Job extends WPML_Translation_Job {
 		return true;
 	}
 
-	protected function get_batch_id_table_col() {
+	/**
+	 * Retrieves the batch ID for job elements using the
+	 * `icl_translation_status` and `icl_translate_job` tables
+	 */
+	protected function load_batch_id() {
 		global $wpdb;
 
-		$table = $wpdb->prefix . 'icl_translation_status';
-
-		return array(
-			$table,
-			"(SELECT job_id FROM {$wpdb->prefix}icl_translate_job trans_job WHERE trans_job.rid = {$table}.rid LIMIT 1)"
+		$this->batch_id = $wpdb->get_var(
+			$wpdb->prepare(
+				"SELECT batch_id
+				FROM {$wpdb->prefix}icl_translation_status as ts
+				LEFT JOIN {$wpdb->prefix}icl_translate_job as tj ON tj.rid = ts.rid
+				WHERE tj.job_id = %d AND tj.revision IS NULL
+				LIMIT 1",
+				$this->job_id
+			)
 		);
 	}
 
-	public function maybe_load_terms_from_post_into_job( $delete ) {
-	}
-	
 	private function get_iclt_field( $field_name, $translation ) {
 		global $wpdb;
 
@@ -311,10 +335,64 @@ abstract class WPML_Element_Translation_Job extends WPML_Translation_Job {
 							LIMIT 1";
 		$args           = array( $this->get_id() );
 		$prepared_query = $wpdb->prepare( $query, $args );
-		$value          = $wpdb->get_var( $prepared_query );
-
-		return $value;
+		return $wpdb->get_var( $prepared_query );
 	}
-	
 
+	/**
+	 * If the job does not have deadline date,
+	 * we consider that the job was completed on time.
+	 *
+	 * @return bool
+	 */
+	public function is_completed_on_time() {
+		return $this->get_number_of_days_overdue() <= 0;
+	}
+
+	/**
+	 * @return false|int Negative integer if the job was completed before the deadline, or positive either.
+	 *                   False is the job has no deadline date
+	 */
+	public function get_number_of_days_overdue() {
+		$deadline  = $this->get_deadline_date();
+		$completed = $this->get_completed_date();
+
+		if ( ! $deadline ) {
+			return false;
+		}
+
+		if ( ! $completed ) {
+			$completed = strtotime( 'now' );
+		} else {
+			$completed = strtotime( $completed );
+		}
+
+		$deadline = strtotime( $deadline );
+
+		return (int) floor( ( $completed - $deadline ) / DAY_IN_SECONDS );
+	}
+
+	/** @return string|null */
+	public function get_deadline_date() {
+		return $this->get_basic_data_property( 'deadline_date' );
+	}
+
+	/** @return string|null */
+	public function get_completed_date() {
+		return $this->get_basic_data_property( 'completed_date' );
+	}
+
+	/** @return string|null */
+	public function get_manager_id() {
+		return $this->get_basic_data_property( 'manager_id' );
+	}
+
+	/** @return string|null */
+	protected function get_title_from_db() {
+		return $this->get_basic_data_property( 'title' );
+	}
+
+	/** @return string|null */
+	protected function get_uuid() {
+		return $this->get_basic_data_property( 'uuid' );
+	}
 }

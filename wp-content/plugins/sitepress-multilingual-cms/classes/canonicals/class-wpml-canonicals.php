@@ -10,16 +10,24 @@ class WPML_Canonicals {
 	private $sitepress;
 	/** @var WPML_Translations */
 	private $wpml_translations;
+	/** @var WPML_Translation_Element_Factory  */
+	private $translation_element_factory;
 
 	/**
 	 * WPML_Canonicals constructor.
 	 *
-	 * @param SitePress         $sitepress
-	 * @param WPML_Translations $wpml_translations
+	 * @param SitePress                        $sitepress
+	 * @param WPML_Translation_Element_Factory $translation_element_factory
+	 * @param WPML_Translations                $wpml_translations
 	 */
-	public function __construct( SitePress $sitepress, WPML_Translations $wpml_translations = null ) {
-		$this->sitepress         = $sitepress;
-		$this->wpml_translations = $wpml_translations;
+	public function __construct(
+		SitePress $sitepress,
+		WPML_Translation_Element_Factory $translation_element_factory,
+		WPML_Translations $wpml_translations = null
+	) {
+		$this->sitepress                   = $sitepress;
+		$this->translation_element_factory = $translation_element_factory;
+		$this->wpml_translations           = $wpml_translations;
 	}
 
 	/**
@@ -30,7 +38,7 @@ class WPML_Canonicals {
 	 */
 	private function must_filter_permalink( $post_id ) {
 		$this->init_wpml_translations();
-		$post_element           = new WPML_Post_Element( $post_id, $this->sitepress );
+		$post_element           = $this->translation_element_factory->create( $post_id, 'post' );
 		$must_handle_canonicals = $this->must_handle_a_canonical_url();
 
 		if ( $post_element->is_translatable() ) {
@@ -54,7 +62,7 @@ class WPML_Canonicals {
 	public function permalink_filter( $link, $post_id ) {
 		switch ( $this->must_filter_permalink( $post_id ) ) {
 			case self::CANONICAL_FOR_DUPLICATED_POST:
-				$post_element = new WPML_Post_Element( $post_id, $this->sitepress );
+				$post_element = $this->translation_element_factory->create( $post_id, 'post' );
 
 				return $this->get_canonical_of_duplicate( $post_element );
 
@@ -67,16 +75,26 @@ class WPML_Canonicals {
 	}
 
 	/**
-	 * @param string|bool $canonical_url
-	 * @param WP_Post     $post
+	 * @param string  $canonical_url
+	 * @param WP_Post $post
 	 *
 	 * @return string|bool
-	 * @throws \InvalidArgumentException
 	 */
-	public function get_canonical_url( $canonical_url, $post ) {
+	public function get_canonical_url( $canonical_url, $post, $request_language ) {
 		if ( $post && $this->sitepress->get_wp_api()->is_front_end() ) {
 			try {
-				$post_element = new WPML_Post_Element( $post->ID, $this->sitepress );
+				/** @var WPML_Post_Element $post_element */
+				$post_element = $this->translation_element_factory->create( $post->ID, 'post' );
+
+				$should_translate_canonical_url = apply_filters(
+					'wpml_must_translate_canonical_url',
+					true,
+					$post_element
+				);
+
+				if ( ! $should_translate_canonical_url ) {
+					return $canonical_url;
+				}
 
 				if ( ! $post_element->is_translatable() ) {
 					global $wpml_url_filters;
@@ -87,11 +105,27 @@ class WPML_Canonicals {
 					$this->init_wpml_translations();
 					if ( $this->wpml_translations->is_a_duplicate_of( $post_element ) ) {
 						$canonical_url = (string) $this->get_canonical_of_duplicate( $post_element );
+					} elseif ( $post_element->get_language_code() != $request_language ) {
+						$canonical_url = $this->sitepress->convert_url_string( $canonical_url, $post_element->get_language_code() );
 					}
 				}
 			} catch ( InvalidArgumentException $e ) {
 			}
 		}
+
+		return $canonical_url;
+	}
+
+	/**
+	 * @param string $url
+	 *
+	 * @return string
+	 */
+	public function get_general_canonical_url( $url ) {
+		global $wpml_url_filters;
+		$wpml_url_filters->remove_global_hooks();
+		$canonical_url = $this->sitepress->convert_url_string( $url, $this->sitepress->get_current_language() );
+		$wpml_url_filters->add_global_hooks();
 
 		return $canonical_url;
 	}
@@ -113,7 +147,7 @@ class WPML_Canonicals {
 				foreach ( $keywords as $keyword ) {
 					if ( 'function' === $key && $keyword === $value ) {
 						$result = true;
-						break 2;
+						break;
 					}
 				}
 			}

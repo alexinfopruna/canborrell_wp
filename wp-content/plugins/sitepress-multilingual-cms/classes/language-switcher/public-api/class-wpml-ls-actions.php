@@ -8,6 +8,7 @@ class WPML_LS_Actions extends WPML_LS_Public_API {
 
 			/**
 			 * Backward compatibility
+			 *
 			 * @deprecated see 'wpml_language_switcher'
 			 */
 			add_action( 'icl_language_selector', array( $this, 'callback' ) );
@@ -46,5 +47,4 @@ class WPML_LS_Actions extends WPML_LS_Public_API {
 
 		return $args;
 	}
-
 }

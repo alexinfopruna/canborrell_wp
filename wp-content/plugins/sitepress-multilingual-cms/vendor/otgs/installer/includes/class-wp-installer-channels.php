@@ -71,9 +71,7 @@ class WP_Installer_Channels{
 		$channel = sanitize_text_field( $_POST['channel'] );
 
 		$response = array();
-
-		if( $_POST['nonce'] === wp_create_nonce( 'installer_set_channel:' . $repository_id )  ){
-
+		if ( wp_verify_nonce( $_POST['nonce'], 'installer_set_channel:' . $repository_id ) ) {
 			if( isset( WP_Installer()->settings['repositories'][$repository_id] ) ){
 				WP_Installer()->settings['repositories'][$repository_id]['channel'] = $channel;
 				WP_Installer()->settings['repositories'][$repository_id]['no-prompt'] = $_POST['noprompt'] === 'true';
@@ -103,6 +101,17 @@ class WP_Installer_Channels{
 	}
 
 	/**
+	 * @param $repository_id
+	 *
+	 * @return bool
+	 */
+	private function get_no_prompt( $repository_id ) {
+		$settings  = WP_Installer()->settings;
+
+		return ! empty( $settings['repositories'][ $repository_id ]['no-prompt'] );
+	}
+
+	/**
 	 * @param string $repository_id
 	 * @param array $downloads
 	 */
@@ -112,11 +121,12 @@ class WP_Installer_Channels{
 
 		if ( $available_channels ) {
 			$args = array(
-				'can_switch'      => $this->can_use_unstable_channels( $downloads ) || $this->get_channel( $repository_id ) > 1,
+				'can_switch'      => $this->can_use_unstable_channels( $downloads )
+				                     || $this->get_channel( $repository_id ) != self::CHANNEL_PRODUCTION,
 				'channels'        => $available_channels,
 				'repository_id'   => $repository_id,
 				'current_channel' => $this->get_channel( $repository_id ),
-				'no_prompt'       => !empty( WP_Installer()->settings['repositories'][ $repository_id ]['no-prompt'] ),
+				'no_prompt'       => $this->get_no_prompt( $repository_id ),
 				'nonce'           => wp_create_nonce( 'installer_set_channel:' . $repository_id )
 			);
 			extract( $args );

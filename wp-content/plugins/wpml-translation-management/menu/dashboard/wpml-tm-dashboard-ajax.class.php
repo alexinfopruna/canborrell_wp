@@ -2,21 +2,31 @@
 
 class WPML_Dashboard_Ajax {
 
-	public function init_ajax_actions(){
-		add_action ( 'wp_ajax_wpml_duplicate_dashboard', array( $this, 'wpml_duplicate_dashboard' ) );
-		add_action ( 'wp_ajax_wpml_need_sync_message', array( $this, 'wpml_need_sync_message' ) );
+	/** @var WPML_Super_Globals_Validation $super_globals*/
+	private $super_globals;
+
+	public function __construct( WPML_Super_Globals_Validation $super_globals ) {
+		$this->super_globals = $super_globals;
+	}
+
+	public function init_ajax_actions() {
+		add_action( 'wp_ajax_wpml_duplicate_dashboard', array( $this, 'wpml_duplicate_dashboard' ) );
+		add_action( 'wp_ajax_wpml_need_sync_message', array( $this, 'wpml_need_sync_message' ) );
 	}
 
 	public function enqueue_js() {
-		wp_register_script (
+		wp_register_script(
 			'wpml-tm-dashboard-scripts',
 			WPML_TM_URL . '/res/js/tm-dashboard/wpml-tm-dashboard.js',
-			array( 'jquery', 'backbone' ),
+			array( 'jquery', 'backbone', 'wpml-tm-progressbar' ),
 			WPML_TM_VERSION
 		);
-		$wpml_tm_strings = $this->get_wpml_tm_script_js_strings ();
-		wp_localize_script ( 'wpml-tm-dashboard-scripts', 'wpml_tm_strings', $wpml_tm_strings );
-		wp_enqueue_script ( 'wpml-tm-dashboard-scripts' );
+		$wpml_tm_strings = $this->get_wpml_tm_script_js_strings();
+		wp_localize_script( 'wpml-tm-dashboard-scripts', 'wpml_tm_strings', $wpml_tm_strings );
+		wp_enqueue_script( 'wpml-tm-dashboard-scripts' );
+
+		wp_enqueue_script( OTGS_Assets_Handles::POPOVER_TOOLTIP );
+		wp_enqueue_style( OTGS_Assets_Handles::POPOVER_TOOLTIP );
 	}
 
 	private function get_wpml_tm_script_js_strings() {
@@ -38,6 +48,8 @@ class WPML_Dashboard_Ajax {
 			'wpml_duplicate_dashboard_nonce' => wp_create_nonce( 'wpml_duplicate_dashboard_nonce' ),
 			'wpml_need_sync_message_nonce'   => wp_create_nonce( 'wpml_need_sync_message_nonce' ),
 			'duplicating'                    => __( 'Duplicating', 'wpml-translation-management' ),
+			'post_parent'                    => __( 'Post parent', 'wpml-translation-management' ),
+			'any'                            => __( 'Any', 'wpml-translation-management' ),
 		);
 
 		return $wpml_tm_strings;
@@ -65,12 +77,14 @@ class WPML_Dashboard_Ajax {
 	}
 
 	public function wpml_need_sync_message() {
-		if ( !wpml_is_action_authenticated( 'wpml_need_sync_message' ) ) {
+		if ( ! wpml_is_action_authenticated( 'wpml_need_sync_message' ) ) {
 			wp_send_json_error( 'Wrong Nonce' );
+			return;
 		}
 
-		$post_ids   = filter_input( INPUT_POST, 'duplicated_post_ids' );
-		$post_ids   = array_filter( explode( ',', $post_ids ) );
+		$post_ids = $this->super_globals->post( 'duplicated_post_ids' );
+		$post_ids = array_values( array_filter( explode( ',', $post_ids ) ) );
 		do_action( 'wpml_new_duplicated_terms', $post_ids );
+		wp_send_json_success();
 	}
 }

@@ -4,11 +4,15 @@ this["WPML_TM"]["templates/translation-editor/footer.html"] = function(obj) {
 obj || (obj = {});
 var __t, __p = '', __e = _.escape;
 with (obj) {
-__p += '<div class="alignleft">\n\t<button class="cancel wpml-dialog-close-button js-dialog-cancel">' +
+__p += '<div class="wpml-translation-action-buttons-abort">\n\t<button class="cancel wpml-dialog-close-button js-dialog-cancel">' +
 ((__t = (cancel)) == null ? '' : __t) +
 '</button>\n\t<button class="button-secondary wpml-resign-button js-resign">' +
 ((__t = (resign)) == null ? '' : __t) +
-'</button>\n</div>\n<div class = "alignright">\n\t<span class = "js-saving-message" style = "display:none"><img src="' +
+'</button>\n</div>\n<div class="wpml-translation-action-buttons-status">\n\t<div class="progress-bar js-progress-bar"><div class="progress-bar-text"></div></div>\n\t<label><input class="js-translation-complete" name="complete" type="checkbox"/>' +
+((__t = (translation_complete)) == null ? '' : __t) +
+'</label>\n\n\n\t<div class="otgs-toggle-group">\n\t\t<input type="checkbox" class="js-toggle-translated otgs-switcher-input" id="wpml_tm_toggle_translated">\n\t\t<label for="wpml_tm_toggle_translated" class="otgs-switcher" data-on="ON" data-off="OFF">' +
+((__t = (hide_translated)) == null ? '' : __t) +
+'</label>\n\t</div>\n</div>\n<div class = "wpml-translation-action-buttons-apply">\n\t<span class = "js-saving-message" style = "display:none"><img src="' +
 ((__t = (loading_url)) == null ? '' : __t) +
 '" alt="' +
 ((__t = (saving)) == null ? '' : __t) +
@@ -18,9 +22,7 @@ __p += '<div class="alignleft">\n\t<button class="cancel wpml-dialog-close-butto
 ((__t = (save_and_close)) == null ? '' : __t) +
 '</button>\n\t<button class = "button button-primary button-large wpml-dialog-close-button js-save">' +
 ((__t = (save)) == null ? '' : __t) +
-'</button>\n</div>\n<div class="text-center">\n\t<div class="progress-bar js-progress-bar"><div class="progress-bar-text"></div></div>\n\t<label><input class="js-translation-complete" name="complete" type="checkbox"/>' +
-((__t = (translation_complete)) == null ? '' : __t) +
-'</label>\n</div>';
+'</button>\n</div>\n\n\n';
 
 }
 return __p
@@ -89,19 +91,19 @@ __p += '\t<input type="hidden" name="source_lang" value="' +
 ((__t = ( language.target )) == null ? '' : __t) +
 '" />\n\t<h3 class="wpml-header-original">' +
 ((__t = ( labels.source_lang )) == null ? '' : __t) +
-':\n\t\t<span class="wpml-title-flag">\n\t\t\t<img src="' +
+':\n\t\t<span class="wpml-title-flag"><img src="' +
 ((__t = ( language.img.source_url )) == null ? '' : __t) +
-'"\n\t\t\t\t alt="' +
+'" alt="' +
 ((__t = ( language.source_lang )) == null ? '' : __t) +
-'"/>\n\t\t</span>\n\t\t<strong>' +
+'"/></span>\n\t\t<strong>' +
 ((__t = ( language.source_lang )) == null ? '' : __t) +
 '</strong>\n\t</h3>\n\n\t<h3 class="wpml-header-translation">' +
 ((__t = ( labels.target_lang )) == null ? '' : __t) +
-':\n\t\t<span class="wpml-title-flag">\n\t\t\t<img src="' +
+':\n\t\t<span class="wpml-title-flag"><img src="' +
 ((__t = ( language.img.target_url )) == null ? '' : __t) +
-'"\n\t\t\t\t alt="' +
+'" alt="' +
 ((__t = ( language.target_lang )) == null ? '' : __t) +
-'"/>\n\t\t</span>\n\t\t<strong>' +
+'"/></span>\n\t\t<strong>' +
 ((__t = ( language.target_lang )) == null ? '' : __t) +
 '</strong>\n\t</h3>\n\n\t<div class="wpml-copy-container">\n\t\t<button class="button-secondary button-copy-all js-button-copy-all" title="' +
 ((__t = ( labels.copy_from_original )) == null ? '' : __t) +
@@ -164,13 +166,13 @@ __e( field.field_data ) +
 ((__t = (field.field_type)) == null ? '' : __t) +
 '" title="' +
 ((__t = ( labels.copy_from_original )) == null ? '' : __t) +
-'"/>\n<input class="translated_value js-translated-value" name="fields[' +
+'" ></button>\n<input class="translated_value js-translated-value" name="fields[' +
 ((__t = (field.field_type)) == null ? '' : __t) +
 '][data]" value="' +
 __e( field.field_data_translated ) +
 '" type="text" ' +
 ((__t = (field.translation_direction)) == null ? '' : __t) +
-'/>\n<div class="field_translation_complete">\n\t<label><input class="icl_tm_finished js-field-translation-complete" name="fields[' +
+'/>\n\n<div class="field_translation_complete">\n\t<label><input class="icl_tm_finished js-field-translation-complete" name="fields[' +
 ((__t = (field.field_type)) == null ? '' : __t) +
 '][finished]" type="checkbox" ';
  if (field.field_finished) { ;
@@ -178,7 +180,15 @@ __p += ' checked="checked" ';
  } ;
 __p += ' />' +
 ((__t = (labels.translation_complete)) == null ? '' : __t) +
-'</label>\n</div>\n<input type="hidden" name="fields[' +
+'</label>\n</div>\n\n';
+ if (field.diff) { ;
+__p += '\n<a class="js-toggle-diff toggle-diff">' +
+((__t = (labels.show_diff)) == null ? '' : __t) +
+'</a>\n' +
+((__t = (field.diff)) == null ? '' : __t) +
+'\n';
+ } ;
+__p += '\n\n\n<input type="hidden" name="fields[' +
 ((__t = (field.field_type)) == null ? '' : __t) +
 '][tid]" value="' +
 ((__t = (field.tid)) == null ? '' : __t) +
@@ -205,13 +215,13 @@ __p += '<label>' +
 ((__t = (field.field_type)) == null ? '' : __t) +
 '" title="' +
 ((__t = ( labels.copy_from_original )) == null ? '' : __t) +
-'"/>\n<textarea class="translated_value js-translated-value cols="22" rows="10" name="fields[' +
+'"></button>\n<textarea class="translated_value js-translated-value cols="22" rows="10" name="fields[' +
 ((__t = (field.field_type)) == null ? '' : __t) +
 '][data]" ' +
 ((__t = (field.translation_direction)) == null ? '' : __t) +
 '>' +
 ((__t = ( field.field_data_translated )) == null ? '' : __t) +
-'</textarea>\n<div class="field_translation_complete">\n\t<label><input class="icl_tm_finished js-field-translation-complete" name="fields[' +
+'</textarea>\n\n<div class="field_translation_complete">\n\t<label><input class="icl_tm_finished js-field-translation-complete" name="fields[' +
 ((__t = (field.field_type)) == null ? '' : __t) +
 '][finished]" type="checkbox" ';
  if (field.field_finished) { ;
@@ -219,7 +229,15 @@ __p += ' checked="checked" ';
  } ;
 __p += ' />' +
 ((__t = (labels.translation_complete)) == null ? '' : __t) +
-'</label>\n</div>\n<input type="hidden" name="fields[' +
+'</label>\n</div>\n\n';
+ if (field.diff) { ;
+__p += '\n<a class="js-toggle-diff toggle-diff">' +
+((__t = (labels.show_diff)) == null ? '' : __t) +
+'</a>\n' +
+((__t = (field.diff)) == null ? '' : __t) +
+'\n';
+ } ;
+__p += '\n\n\n<input type="hidden" name="fields[' +
 ((__t = (field.field_type)) == null ? '' : __t) +
 '][tid]" value="' +
 ((__t = (field.tid)) == null ? '' : __t) +
@@ -244,7 +262,7 @@ __p += '<label>' +
 ((__t = (field.field_type)) == null ? '' : __t) +
 '" title="' +
 ((__t = ( labels.copy_from_original )) == null ? '' : __t) +
-'"/>\n<div id="translated_' +
+'"></button>\n<div id="translated_' +
 ((__t = (field.field_type)) == null ? '' : __t) +
 '_placeholder"></div>\n<input type="hidden" name="fields[' +
 ((__t = (field.field_type)) == null ? '' : __t) +
@@ -252,7 +270,7 @@ __p += '<label>' +
 ((__t = (field.tid)) == null ? '' : __t) +
 '">\n<input type="hidden" name="fields[' +
 ((__t = (field.field_type)) == null ? '' : __t) +
-'][format]" value="base64">\n<div class="field_translation_complete">\n    <label><input class="icl_tm_finished js-field-translation-complete" name="fields[' +
+'][format]" value="base64">\n\n<div class="field_translation_complete">\n  <label><input class="icl_tm_finished js-field-translation-complete" name="fields[' +
 ((__t = (field.field_type)) == null ? '' : __t) +
 '][finished]" type="checkbox" ';
  if (field.field_finished) { ;
@@ -260,7 +278,15 @@ __p += ' checked="checked" ';
  } ;
 __p += ' />' +
 ((__t = (labels.translation_complete)) == null ? '' : __t) +
-'</label>\n</div>\n';
+'</label>\n</div>\n\n';
+ if (field.diff) { ;
+__p += '\n<a class="js-toggle-diff toggle-diff">' +
+((__t = (labels.show_diff)) == null ? '' : __t) +
+'</a>\n' +
+((__t = (field.diff)) == null ? '' : __t) +
+'\n';
+ } ;
+__p += '\n\n\n';
 
 }
 return __p

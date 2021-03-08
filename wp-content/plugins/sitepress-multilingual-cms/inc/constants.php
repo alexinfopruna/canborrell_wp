@@ -19,39 +19,46 @@ if ( ! defined( 'ICL_PLUGIN_INACTIVE' ) ) {
 }
 
 if ( defined( 'PHP_INT_MIN' ) ) {
+	// phpcs:disable PHPCompatibility.Constants.NewConstants.php_int_minFound -- A check for the presence of the constant is made
 	define( 'WPML_PRIORITY_BEFORE_EVERYTHING', PHP_INT_MIN );
+	// phpcs:enable PHPCompatibility.Constants.NewConstants.php_int_minFound
 } else {
 	define( 'WPML_PRIORITY_BEFORE_EVERYTHING', ~PHP_INT_MAX );
 }
 
-define ( 'ICL_TM_NOT_TRANSLATED', 0);
-define ( 'ICL_TM_WAITING_FOR_TRANSLATOR', 1);
-define ( 'ICL_TM_IN_PROGRESS', 2);
-define ( 'ICL_TM_NEEDS_UPDATE', 3);  //virt. status code (based on needs_update)
-define ( 'ICL_TM_DUPLICATE', 9);
-define ( 'ICL_TM_COMPLETE', 10);
-define ( 'ICL_TM_IN_BASKET', 20);
-//@since 3.2
-define ( 'ICL_TM_PENDING_TP', 102);
+define( 'ICL_TM_NOT_TRANSLATED', 0 );
+define( 'ICL_TM_WAITING_FOR_TRANSLATOR', 1 );
+define( 'ICL_TM_IN_PROGRESS', 2 );
+define( 'ICL_TM_NEEDS_UPDATE', 3 );  // virt. status code (based on needs_update)
+define( 'ICL_TM_TRANSLATION_READY_TO_DOWNLOAD', 4 ); // when translation is ready in TP
+define( 'ICL_TM_DUPLICATE', 9 );
+define( 'ICL_TM_COMPLETE', 10 );
+define( 'ICL_TM_IN_BASKET', 20 );
+// @since 3.2
+define( 'ICL_TM_PENDING_TP', 102 );
 
-define('ICL_TM_NOTIFICATION_NONE', 0);
-define('ICL_TM_NOTIFICATION_IMMEDIATELY', 1);
-define('ICL_TM_NOTIFICATION_DAILY', 2);
+/** @deprecated Use constants in WPML_TM_Emails_Settings instead */
+define( 'ICL_TM_NOTIFICATION_NONE', 0 );
+/** @deprecated Use WPML_TM_Emails_Settings::NOTIFY_IMMEDIATELY instead */
+define( 'ICL_TM_NOTIFICATION_IMMEDIATELY', 1 );
+/** @deprecated Use WPML_TM_Emails_Settings::NOTIFY_DAILY instead */
+define( 'ICL_TM_NOTIFICATION_DAILY', 2 );
 
-define('ICL_TM_TMETHOD_MANUAL', 0);
-define('ICL_TM_TMETHOD_EDITOR', 1);
-define('ICL_TM_TMETHOD_PRO', 2);
+define( 'ICL_TM_TMETHOD_MANUAL', 0 );
+define( 'ICL_TM_TMETHOD_EDITOR', 1 );
+define( 'ICL_TM_TMETHOD_PRO', 2 );
+define( 'ICL_TM_TMETHOD_ATE', 'ATE' );
 
 if ( ! defined( 'ICL_TM_DOCS_PER_PAGE' ) ) {
 	define( 'ICL_TM_DOCS_PER_PAGE', 20 );
 }
 
-define('ICL_ASIAN_LANGUAGE_CHAR_SIZE', 6);
+define( 'ICL_ASIAN_LANGUAGE_CHAR_SIZE', 6 );
 
 /* legacy? */
 define( 'CMS_REQUEST_WAITING_FOR_PROJECT_CREATION', 1 );
 
-define ( 'ICL_FINANCE_LINK', '/finance' );
+define( 'ICL_FINANCE_LINK', '/finance' );
 
 define( 'MESSAGE_TRANSLATION_IN_PROGRESS', 3 );
 define( 'MESSAGE_TRANSLATION_COMPLETE', 4 );
@@ -88,11 +95,9 @@ define( 'ICL_PRO_TRANSLATION_COST_PER_WORD', 0.09 );
 define( 'ICL_PRO_TRANSLATION_PICKUP_XMLRPC', 0 );
 define( 'ICL_PRO_TRANSLATION_PICKUP_POLLING', 1 );
 
-define( 'ICL_REMOTE_WPML_CONFIG_FILES_INDEX', 'https://d2salfytceyqoe.cloudfront.net/' );
+define( 'ICL_REMOTE_WPML_CONFIG_FILES_INDEX', 'http://cdn.wpml.org/' );
 
 define( 'ICL_ICONS_URL', ICL_PLUGIN_URL . '/res/img/' );
-define( 'ICL_ICON', ICL_ICONS_URL . 'icon.png' );
-define( 'ICL_ICON16', ICL_ICONS_URL . 'icon16.png' );
 
 define( 'WPML_ELEMENT_IS_NOT_TRANSLATED', 0 );
 define( 'WPML_ELEMENT_IS_TRANSLATED', 1 );
@@ -101,13 +106,13 @@ define( 'WPML_ELEMENT_IS_A_DUPLICATE', 3 );
 
 define( 'WPML_STRING_TABLE_NAME_CONTEXT_LENGTH', 160 );
 
-define( "WPML_QUERY_IS_ROOT", 1 );
-define( "WPML_QUERY_IS_OTHER_THAN_ROOT", 2 );
-define( "WPML_QUERY_IS_NOT_FOR_POST", 3 );
+define( 'WPML_QUERY_IS_ROOT', 1 );
+define( 'WPML_QUERY_IS_OTHER_THAN_ROOT', 2 );
+define( 'WPML_QUERY_IS_NOT_FOR_POST', 3 );
 
-define( 'WPML_XDOMAIN_DATA_OFF', 	0 );
-define( 'WPML_XDOMAIN_DATA_GET', 	1 );
-define( 'WPML_XDOMAIN_DATA_POST', 	2 );
+define( 'WPML_XDOMAIN_DATA_OFF', 0 );
+define( 'WPML_XDOMAIN_DATA_GET', 1 );
+define( 'WPML_XDOMAIN_DATA_POST', 2 );
 
 define( 'WPML_TT_TAXONOMIES_NOT_TRANSLATED', 1 );
 define( 'WPML_TT_TAXONOMIES_ALL', 0 );
@@ -132,16 +137,23 @@ define( 'WPML_TERM_META_SETTING_INDEX_PLURAL', 'custom_term_fields_translation' 
 define( 'WPML_POST_META_READONLY_SETTING_INDEX', 'custom_fields_readonly_config' );
 define( 'WPML_TERM_META_READONLY_SETTING_INDEX', 'custom_term_fields_readonly_config' );
 
+define( 'WPML_POST_META_UNLOCKED_SETTING_INDEX', 'custom_fields_unlocked_config' );
+define( 'WPML_TERM_META_UNLOCKED_SETTING_INDEX', 'custom_term_fields_unlocked_config' );
+
 define( 'WPML_POST_TYPE_READONLY_SETTING_INDEX', 'custom_types_readonly_config' );
 
-define( 'WPML_LANGUAGE_NEGOTIATION_TYPE_DIRECTORY',  1 );
-define( 'WPML_LANGUAGE_NEGOTIATION_TYPE_DOMAIN',     2 );
-define( 'WPML_LANGUAGE_NEGOTIATION_TYPE_PARAMETER',  3 );
+define( 'WPML_LANGUAGE_NEGOTIATION_TYPE_DIRECTORY', 1 );
+define( 'WPML_LANGUAGE_NEGOTIATION_TYPE_DOMAIN', 2 );
+define( 'WPML_LANGUAGE_NEGOTIATION_TYPE_PARAMETER', 3 );
 
 define( 'WPML_ELEMENT_TRANSLATIONS_CACHE_GROUP', 'element_translations' );
 
-define('WEBSITE_DETAILS_TRANSIENT_KEY', 'wpml_icl_query_website_details');
+define( 'WEBSITE_DETAILS_TRANSIENT_KEY', 'wpml_icl_query_website_details' );
 
-if ( ! defined('WPML_COMPATIBILITY_ENDPOINT' ) ) {
+if ( ! defined( 'WPML_COMPATIBILITY_ENDPOINT' ) ) {
 	define( 'WPML_COMPATIBILITY_ENDPOINT', 'https://wpml.org/account/wpml-compatibility/' );
 }
+
+define( 'WPML_CONTENT_TYPE_DONT_TRANSLATE', 0 );
+define( 'WPML_CONTENT_TYPE_TRANSLATE', 1 );
+define( 'WPML_CONTENT_TYPE_DISPLAY_AS_IF_TRANSLATED', 2 );

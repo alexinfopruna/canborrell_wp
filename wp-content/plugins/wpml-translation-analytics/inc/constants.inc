@@ -1,4 +1,0 @@
-<?php
-define('WPML_TRANSLATION_ANALYTICS_FOLDER', basename(WPML_TRANSLATION_ANALYTICS_PATH));
-
-define('WPML_TRANSLATION_ANALYTICS_URL', plugins_url('', dirname(__FILE__)));

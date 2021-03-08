@@ -1,115 +1,60 @@
 <?php
 
-class WPML_Rewrite_Rule_Filter extends WPML_WPDB_And_SP_User {
+class WPML_Rewrite_Rule_Filter implements IWPML_ST_Rewrite_Rule_Filter {
+	/** @var WPML_ST_Slug_Translation_Custom_Types_Repository[] */
+	private $custom_types_repositories;
 
-	function rewrite_rules_filter( $value ) {
-		if ( empty( $value ) ) {
-			return $value;
-		}
-		
-		$current_language               = $this->sitepress->get_current_language();
-		$queryable_post_types           = get_post_types( array( 'publicly_queryable' => true ) );
-		$post_slug_translation_settings = $this->sitepress->get_setting( 'posts_slug_translation', array() );
+	/** @var WPML_ST_Slug_New_Match_Finder */
+	private $new_match_finder;
 
-		foreach ( $queryable_post_types as $type ) {
-			if ( ! isset( $post_slug_translation_settings['types'][ $type ] ) || ! $post_slug_translation_settings['types'][ $type ] || ! $this->sitepress->is_translated_post_type( $type ) ) {
-				continue;
-			}
-			$slug = $this->get_slug_by_type( $type );
-			if ( $slug === false ) {
-				continue;
-			}
-
-			$slug_translation = $this->wpdb->get_var( $this->wpdb->prepare( "
-						SELECT t.value
-						FROM {$this->wpdb->prefix}icl_string_translations t
-							JOIN {$this->wpdb->prefix}icl_strings s ON t.string_id = s.id
-						WHERE t.language = %s AND s.name = %s AND t.status = %d
-					",
-				$current_language,
-				'URL slug: ' . $type,
-				ICL_TM_COMPLETE ) );
-			if ( ! $slug_translation ) {
-				// check original
-				$slug_translation = $this->wpdb->get_var( $this->wpdb->prepare( "
-						SELECT value
-						FROM {$this->wpdb->prefix}icl_strings
-						WHERE language = %s AND name = %s
-					",
-					$current_language,
-					'URL slug: ' . $type
-				) );
-
-			}
-			$slug_translation = trim( $slug_translation, '/' );
-
-			$using_tags = false;
-			/* case of slug using %tags% - PART 1 of 2 - START */
-			if ( preg_match( '#%([^/]+)%#', $slug ) ) {
-				$slug       = preg_replace( '#%[^/]+%#', '.+?', $slug );
-				$using_tags = true;
-			}
-			if ( preg_match( '#%([^/]+)%#', $slug_translation ) ) {
-				$slug_translation = preg_replace( '#%[^/]+%#', '.+?', $slug_translation );
-				$using_tags       = true;
-			}
-			/* case of slug using %tags% - PART 1 of 2 - END */
-
-			$buff_value = array();
-			foreach ( (array) $value as $k => $v ) {
-
-				if ( $slug && $slug != $slug_translation ) {
-					$k = $this->adjust_key( $k, $slug_translation, $slug );
-				}
-				$buff_value[ $k ] = $v;
-			}
-
-			$value = $buff_value;
-			unset( $buff_value );
-
-			/* case of slug using %tags% - PART 2 of 2 - START */
-			if ( $using_tags ) {
-				if ( preg_match( '#\.\+\?#', $slug ) ) {
-					$slug = preg_replace( '#\.\+\?#', '(.+?)', $slug );
-				}
-				if ( preg_match( '#\.\+\?#', $slug_translation ) ) {
-					$slug_translation = preg_replace( '#\.\+\?#', '(.+?)', $slug_translation );
-				}
-				$buff_value = array();
-				foreach ( $value as $k => $v ) {
-					if ( trim( $slug ) && trim( $slug_translation ) && $slug != $slug_translation ) {
-						$k = $this->adjust_key( $k, $slug_translation, $slug );
-					}
-					$buff_value[ $k ] = $v;
-				}
-
-				$value = $buff_value;
-				unset( $buff_value );
-			}
-			/* case of slug using %tags% - PART 2 of 2 - END */
-		}
-
-		return $value;
+	/**
+	 * @param WPML_ST_Slug_Translation_Custom_Types_Repository[] $custom_types_repositories
+	 * @param WPML_ST_Slug_New_Match_Finder                      $new_match_finder
+	 */
+	public function __construct( array $custom_types_repositories, WPML_ST_Slug_New_Match_Finder $new_match_finder ) {
+		$this->custom_types_repositories = $custom_types_repositories;
+		$this->new_match_finder          = $new_match_finder;
 	}
 
-	function get_slug_by_type( $type ) {
-		$slug_translation = $this->wpdb->get_var( $this->wpdb->prepare( "
-														SELECT value
-														FROM {$this->wpdb->prefix}icl_strings
-														WHERE name = %s ",
-			'URL slug: ' . $type
-		) );
 
-		return $slug_translation;
-	}
-
-	private function adjust_key( $k, $slug_translation, $slug ) {
-		if ( (bool) $slug_translation === true && preg_match( '#^[^/]*/?' . preg_quote( $slug ) . '/#',
-				$k ) && $slug != $slug_translation
-		) {
-			$k = preg_replace( '#^' . addslashes($slug) . '/#', $slug_translation . '/', $k );
+	/**
+	 * @param array|false|null $rules
+	 *
+	 * @return array
+	 */
+	function rewrite_rules_filter( $rules ) {
+		if ( ! is_array( $rules ) && empty( $rules ) ) {
+			return $rules;
 		}
 
-		return $k;
+		$custom_types = $this->get_custom_types();
+		if ( ! $custom_types ) {
+			return $rules;
+		}
+
+		$result = array();
+		foreach ( $rules as $match => $query ) {
+			$new_match                         = $this->new_match_finder->get( $match, $custom_types );
+			$result[ $new_match->get_value() ] = $query;
+
+			if ( $new_match->should_preserve_original() ) {
+				$result[ $match ] = $query;
+			}
+		}
+
+		return $result;
+	}
+
+	private function get_custom_types() {
+		if ( empty( $this->custom_types_repositories ) ) {
+			return array();
+		}
+
+		$types = array();
+		foreach ( $this->custom_types_repositories as $repository ) {
+			$types[] = $repository->get();
+		}
+
+		return call_user_func_array( 'array_merge', $types );
 	}
 }

@@ -3,7 +3,7 @@
   Plugin Name: Magee Shortcodes
   Plugin URI: http://www.mageewp.com/magee-shortcode.html
   Description: Magee Shortcodes is WordPress plugin that provides a pack of shortcodes. With Magee Shortcodes, you can easily create accordion, buttons, boxes, columns, social and much more. They allow you to create so many different page layouts. You could quickly and easily built your own custom pages using all the various shortcodes that Magee Shortcodes includes.
-  Version: 1.6.0
+  Version: 1.6.3
   Author: MageeWP
   Author URI: http://www.mageewp.com
   Text Domain: magee-shortcodes

@@ -18,6 +18,16 @@ var WPML_TM = WPML_TM || {};
 			var job_type = jQuery('input[name="job_post_type"]').val();
 			self.fieldViews = [];
 
+			self.translationMemory = null;
+
+			if (
+				WpmlTmEditorModel.translation_memory
+				&& tmEditorStrings.translationMemoryNonce
+				&& tmEditorStrings.translationMemoryEndpoint
+			) {
+				self.translationMemory = new WPML_TM.translationMemory( WpmlTmEditorModel.languages );
+			}
+
 			jQuery('#screen-meta-links').hide();
 
 			jQuery(document).trigger('WPML_TM.editor.before_render', [job_type] );
@@ -33,6 +43,10 @@ var WPML_TM = WPML_TM || {};
 				jQuery(document).trigger('WPML_TM.editor.ready', [job_type, self.fieldViews, self.footerView]);
 			});
 			self.updateState();
+
+			if ( self.translationMemory ) {
+				self.translationMemory.fetch();
+			}
 
 			return self;
 		},
@@ -61,6 +75,11 @@ var WPML_TM = WPML_TM || {};
 			view.render(self.model.get(field.field_type + '_raw'), tmEditorStrings);
 			$location.last().append(view.$el);
 			view.setup();
+
+			if ( self.translationMemory ) {
+				self.translationMemory.addField( field, view );
+			}
+
 			return view;
 		},
 		createSection: function (field, $location) {
@@ -125,7 +144,8 @@ var WPML_TM = WPML_TM || {};
 		addFooterView: function () {
 			var self = this;
 			self.footerView = new WPML_TM.editorFooterView({
-				model: tmEditor.model
+				model: tmEditor.model,
+				mainView: self
 			});
 			self.footerView.render();
 			self.appendToDom(self.footerView);
@@ -163,7 +183,28 @@ var WPML_TM = WPML_TM || {};
 					view.copyField();
 				}
 			});
+		},
+		hideTranslated: function (state) {
+			var self = this;
+			_.each(self.fieldViews, function (view) {
+				view.hideTranslated(state);
+			});
+			self.hideEmptyGroups();
+		},
+		hideEmptyGroups: function () {
+			jQuery('.postbox').each( function () {
+				var elements = jQuery('[class*="wpml-form-row"]', jQuery(this));
+				var hiddenElements = elements.filter( function () {
+					return jQuery(this).css('display') === 'none';
+				} );
+				if ( elements.length === hiddenElements.length ) {
+					jQuery(this).hide();
+				} else {
+					jQuery(this).show();
+				}
+			} );
 		}
+
 	});
 }());
 	

@@ -493,9 +493,7 @@ a#TB_closeWindowButton .tb-close-icon:before {
     width: 696px;
 	display:block!important;
 }
-.magee_shortcodes_container .wp-color-result{
-    display:none;     
-}
+
 .wp-picker-holder {
     width: 260px;
 }

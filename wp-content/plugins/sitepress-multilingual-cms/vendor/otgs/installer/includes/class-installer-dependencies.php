@@ -5,6 +5,7 @@ class Installer_Dependencies {
 	private $uploading_allowed = null;
 	private $is_win_paths_exception = array();
 
+	private $missing_php_libraries = array();
 
 	function __construct() {
 
@@ -33,12 +34,9 @@ class Installer_Dependencies {
 	}
 
 	public function is_win_paths_exception( $repository_id ) {
-
 		if ( ! isset( $this->is_win_paths_exception[ $repository_id ] ) ) {
-
 			$this->is_win_paths_exception[ $repository_id ] = false;
-
-			if ( strtoupper( substr( PHP_OS, 0, 3 ) ) === 'WIN' ) {
+			if ( strtoupper( substr( constant('PHP_OS'), 0, 3 ) ) === 'WIN' ) {
 
 				$windows_max_path_length = 256;
 				$longest_path['wpml']    = 109;
@@ -49,29 +47,21 @@ class Installer_Dependencies {
 				$upgrade_path_length = strlen( WP_CONTENT_DIR . '/upgrade' );
 
 				$installer_settings = WP_Installer()->settings;
-
-                if ( isset($installer_settings['repositories'][$repository_id]['data']) && is_array( $installer_settings['repositories'][$repository_id]['data']['downloads']['plugins'] ) ) {
-                    $a_plugin = current( $installer_settings['repositories'][$repository_id]['data']['downloads']['plugins'] );
-                    $url = WP_Installer()->append_site_key_to_download_url( $a_plugin['url'], 'xxxxxx', $repository_id );
-                    $tmpfname = wp_tempnam( $url );
-
+				if ( isset( $installer_settings['repositories'][ $repository_id ]['data']['downloads']['plugins'] ) ) {
+					$a_plugin       = current( $installer_settings['repositories'][ $repository_id ]['data']['downloads']['plugins'] );
+					$url            = WP_Installer()->append_site_key_to_download_url( $a_plugin['url'], 'xxxxxx', $repository_id );
+					$tmpfname       = wp_tempnam( $url );
 					$tmpname_length = strlen( basename( $tmpfname ) ) - 4; // -.tmp
+					wp_delete_file( $tmpfname );
 
 					if ( $upgrade_path_length + $tmpname_length + $longest_path[ $repository_id ] + $margin > $windows_max_path_length ) {
-
 						$this->is_win_paths_exception[ $repository_id ] = true;
-
 					}
-
 				}
-
-
 			}
-
 		}
 
 		return $this->is_win_paths_exception[ $repository_id ];
-
 	}
 
 	public function is_uploading_allowed() {
@@ -284,6 +274,37 @@ class Installer_Dependencies {
 
 	}
 
+	public function php_libraries_missing() {
+		$requirements = new OTGS_Installer_Requirements();
+
+		foreach ( $requirements->get() as $requirement ) {
+			if ( ! $requirement['active'] ) {
+				$this->missing_php_libraries[] = $requirement['name'];
+			}
+		}
+		if ( $this->missing_php_libraries ) {
+			add_action( 'admin_notices', array( $this, 'missing_php_functions_notice' ) );
+		}
+	}
+
+	public function missing_php_functions_notice() {
+		$installer_doc_url  = 'https://wpml.org/?p=72674#automated-updates';
+		$installer_doc_link = '<a href="' . $installer_doc_url . '">' . __( 'OTGS Installer', 'installer' ) . '</a>';
+
+		echo '<div class="updated error">';
+		echo '<p>';
+		echo sprintf(
+			__( '%s, responsible for receiving automated updates for WPML and Toolset, requires the following PHP component(s) in order to function:', 'installer' ),
+			$installer_doc_link
+		);
+		echo '<code>' . join( ', ', $this->missing_php_libraries ) . '</code>';
+		echo '</p>';
+
+		$minimum_requirements_link = '<a href="https://wpml.org/?page_id=716">' . __( 'Minimum WPML requirements' ) . '</a>';
+		echo '<p>' . sprintf( __( 'Learn more: %s', 'installer' ), $minimum_requirements_link ) . '</p>';
+
+		echo '</div>';
+	}
 
 }
 

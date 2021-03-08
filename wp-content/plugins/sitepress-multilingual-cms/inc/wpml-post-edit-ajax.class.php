@@ -1,6 +1,14 @@
 <?php
 
 class WPML_Post_Edit_Ajax {
+	const AJAX_ACTION_SWITCH_POST_LANGUAGE = 'wpml_switch_post_language';
+
+	/**
+	 * For test purposes
+	 *
+	 * @var WPML_Custom_Field_Setting_Factory
+	 */
+	public static $post_custom_field_settings;
 
 	/**
 	 * Ajax handler for adding a term via Ajax.
@@ -17,14 +25,29 @@ class WPML_Post_Edit_Ajax {
 		$slug        = filter_var( $_POST['slug'], FILTER_SANITIZE_STRING );
 		$name        = filter_var( $_POST['name'], FILTER_SANITIZE_STRING );
 		$trid        = filter_var( $_POST['trid'], FILTER_SANITIZE_NUMBER_INT );
-		$description = filter_var( $_POST['description'], FILTER_SANITIZE_STRING );
+		$description = wp_kses_post( $_POST['description'] );
 		$meta_data   = isset( $_POST['meta_data'] ) ? $_POST['meta_data'] : array();
+
+		remove_filter( 'pre_term_description', 'wp_filter_kses' );
+		remove_filter( 'term_description', 'wp_kses_data' );
 
 		$new_term_object = self::save_term_ajax( $sitepress, $lang, $taxonomy, $slug, $name, $trid, $description, $meta_data );
 		$sitepress->get_wp_api()->wp_send_json_success( $new_term_object );
 
 	}
 
+	/**
+	 * @param \SitePress          $sitepress
+	 * @param string              $lang
+	 * @param string              $taxonomy
+	 * @param string              $slug
+	 * @param string              $name
+	 * @param int                 $trid
+	 * @param string              $description
+	 * @param array<string,mixed> $meta_data
+	 *
+	 * @return \WP_Term|false
+	 */
 	public static function save_term_ajax( $sitepress, $lang, $taxonomy, $slug, $name, $trid, $description, $meta_data ) {
 		$new_term_object = false;
 
@@ -46,18 +69,24 @@ class WPML_Post_Edit_Ajax {
 			}
 
 			$switch_lang = new WPML_Temporary_Switch_Language( $sitepress, $lang );
+			$is_new_term = ! term_exists( $name, $taxonomy );
 			$res = WPML_Terms_Translations::create_new_term( $args );
 			$switch_lang->restore_lang();
 
 			if ( $res && isset( $res[ 'term_taxonomy_id' ] ) ) {
 				/* res holds the term taxonomy id, we return the whole term objects to the ajax call */
 				$switch_lang = new WPML_Temporary_Switch_Language( $sitepress, $lang );
-				$new_term_object                = get_term_by( 'term_taxonomy_id', (int) $res[ 'term_taxonomy_id' ], $taxonomy );
+				/**
+				 * @var \WP_Term|\stdClass $new_term_object A few lines below, we are adding properties that WP_Term does not have.
+				 *                                          We should probably improve this code and use a specialized object instead.
+				 */
+				$new_term_object = get_term_by( 'term_taxonomy_id', (int) $res['term_taxonomy_id'], $taxonomy );
 				$switch_lang->restore_lang();
+
 				$lang_details                   = $sitepress->get_element_language_details( $new_term_object->term_taxonomy_id, 'tax_' . $new_term_object->taxonomy );
 				$new_term_object->trid          = $lang_details->trid;
 				$new_term_object->language_code = $lang_details->language_code;
-				if ( self::add_term_metadata( $res, $meta_data ) ) {
+				if ( self::add_term_metadata( $res, $meta_data, $is_new_term ) ) {
 					$new_term_object->meta_data = get_term_meta( $res['term_id'] );
 				}
 
@@ -100,7 +129,7 @@ class WPML_Post_Edit_Ajax {
 					} elseif ( $editor_key === 'excerpt' ) {
 						$editor_var = $excerpt_type;
 					}
-					
+
 					if ( function_exists( 'format_for_editor' ) ) {
 						// WordPress 4.3 uses format_for_editor
 						$html_pre = $post->$editor_field;
@@ -123,8 +152,10 @@ class WPML_Post_Edit_Ajax {
 					$fields_contents[ $editor_key ] = strip_tags( $post->$editor_field );
 				}
 			}
-			$fields_contents[ 'customfields' ] = apply_filters( 'wpml_copy_from_original_custom_fields',
+			$fields_contents[ 'builtin_custom_fields' ] = apply_filters( 'wpml_copy_from_original_custom_fields',
 			                                                    self::copy_from_original_custom_fields( $post ) );
+
+			$fields_contents['external_custom_fields'] = self::copy_meta_values_from_original( $post );
 		} else {
 			$fields_contents[ 'error' ] = __( 'Post not found', 'sitepress' );
 		}
@@ -136,9 +167,9 @@ class WPML_Post_Edit_Ajax {
 	/**
 	 * Gets the content of a custom posts custom field , its excerpt as well as its title and returns it as an array
 	 *
-	 * @param  WP_post $post
+	 * @param \WP_Post $post
 	 *
-	 * @return array
+	 * @return array<string,string|array<string,string>>
 	 */
 	public static function copy_from_original_custom_fields( $post ) {
 
@@ -154,10 +185,39 @@ class WPML_Post_Edit_Ajax {
 	}
 
 	/**
+	 * @param WP_Post $post
+	 * @return array
+	 */
+	private static function copy_meta_values_from_original ($post) {
+		global $wpdb;
+
+		if ( ! self::$post_custom_field_settings instanceof WPML_Custom_Field_Setting_Factory ) {
+			$translation_management = wpml_load_core_tm();
+			self::$post_custom_field_settings = new WPML_Custom_Field_Setting_Factory( $translation_management );
+		}
+
+		$post_custom_fields = self::$post_custom_field_settings->get_post_meta_keys();
+
+		if ( ! is_array( $post_custom_fields ) || empty( $post_custom_fields ) ) {
+			return array();
+		}
+
+		$sql = "SELECT meta_key as name, meta_value as value FROM {$wpdb->postmeta} WHERE post_id=%d AND meta_key IN ("
+		       . wpml_prepare_in( $post_custom_fields ) . ')';
+
+		return $wpdb->get_results( $wpdb->prepare( $sql, $post->ID ), ARRAY_A );
+	}
+
+	/**
 	 * Ajax handler for switching the language of a post.
 	 */
 	public static function wpml_switch_post_language() {
 		global $sitepress, $wpdb;
+
+		$nonce = $_POST['nonce'];
+		if ( ! wp_verify_nonce( $nonce, self::AJAX_ACTION_SWITCH_POST_LANGUAGE ) ) {
+			wp_send_json_error();
+		}
 
 		$to      = false;
 		$post_id = false;
@@ -210,7 +270,16 @@ class WPML_Post_Edit_Ajax {
 		wp_send_json_success( $sitepress->get_default_language() );
 	}
 
-	private static function add_term_metadata( $term, $meta_data ) {
+	/**
+	 * @param array $term
+	 * @param array $meta_data
+	 * @param bool  $is_new_term
+	 *
+	 * @return bool
+	 */
+	private static function add_term_metadata( $term, $meta_data, $is_new_term ) {
+		global $sitepress;
+
 		foreach ( $meta_data as $meta_key => $meta_value ) {
 			delete_term_meta( $term['term_id'], $meta_key );
 			$data = maybe_unserialize( stripslashes( $meta_value ) );
@@ -218,6 +287,9 @@ class WPML_Post_Edit_Ajax {
 				throw new RuntimeException( sprintf( 'Unable to add term meta form term: %d', $term['term_id'] ) );
 			}
 		}
+
+		$sync_meta_action = new WPML_Sync_Term_Meta_Action( $sitepress, $term[ 'term_taxonomy_id' ], $is_new_term );
+		$sync_meta_action->run();
 
 		return true;
 	}

@@ -1,6 +1,6 @@
 /**
  *     Popup contact form
- *     Copyright (C) 2011 - 2016 www.gopiplus.com
+ *     Copyright (C) 2011 - 2019 www.gopiplus.com
  *     http://www.gopiplus.com/work/2012/05/18/popup-contact-form-wordpress-plugin/
  * 
  *     This program is free software: you can redistribute it and/or modify
@@ -19,8 +19,8 @@
 
 #PopupContact_BoxContainer
 {
-	height:400px;
-	width:390px;
+	height:500px;
+	width:500px;
 	background:#FFFFFF;
 	border:1px solid #000;
 	padding:0;
@@ -71,12 +71,12 @@
 {
    float:right;
    width:50px;
-   margin:5px;
+   margin-bottom:5px;
 }
 
 #PopupContact_BoxContainerBody
 {
-   margin:15px;
+   margin:15px; 
 }
 
 #PopupContact_BoxContainerBody h2
@@ -101,11 +101,11 @@
    left:0; 
    bottom:0; 
    right:0;
-   background:#000000;
+   /*background-color:#000000;*/
    opacity: .3;
    -moz-opacity: .3;
    filter: alpha(opacity=30);
-   border:1px solid #cecece;
+   /*border:1px solid #cecece;*/
    z-index:1;
    display:none;
 }
@@ -122,7 +122,7 @@
 	font-family : Arial, sans-serif;
 	font-weight: bold;
 	color:#000000;
-	padding-top:4px;
+	padding-top:10px;
 	line-height:0.5em;
 	font-size:14px;
 }
@@ -135,13 +135,13 @@
 }
 .PopupContact_TextBox 
 {
-	width:160px;
+	/*width:160px;*/
 	color:#000000 !important;
 }
 .PopupContact_TextArea 
 {
-	width:270px;
-	height:90px;
+	/*width:270px;
+	height:90px;*/
 	color:#000000 !important;
 }
 .PopupContact_Button 

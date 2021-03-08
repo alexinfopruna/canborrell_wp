@@ -5,7 +5,6 @@
  *
  * @package    wpml-core
  * @subpackage taxonomy-term-translation
- *
  */
 class WPML_Term_Actions extends WPML_Full_Translation_API {
 
@@ -17,12 +16,13 @@ class WPML_Term_Actions extends WPML_Full_Translation_API {
 	 */
 	public function generate_unique_term_slug_ajax_handler() {
 		if ( $this->sitepress->get_wp_api()->is_ajax() && wp_verify_nonce( $_POST['nonce'], 'wpml_generate_unique_slug_nonce' ) ) {
-			$term = array_key_exists( 'term', $_POST ) ? sanitize_text_field( $_POST['term'] ) : '';
-			$taxonomy = array_key_exists( 'taxonomy', $_POST ) ? sanitize_text_field( $_POST['taxonomy'] ) : '';
+			$term          = array_key_exists( 'term', $_POST ) ? sanitize_text_field( $_POST['term'] ) : '';
+			$taxonomy      = array_key_exists( 'taxonomy', $_POST ) ? sanitize_text_field( $_POST['taxonomy'] ) : '';
 			$language_code = array_key_exists( 'language_code', $_POST ) ? sanitize_text_field( $_POST['language_code'] ) : '';
+
 			wp_send_json_success(
 				array(
-					'slug' => $this->term_translations->generate_unique_term_slug( $term, '', $taxonomy, $language_code ),
+					'slug' => urldecode( $this->term_translations->generate_unique_term_slug( $term, '', $taxonomy, $language_code ) ),
 				)
 			);
 		} else {
@@ -31,8 +31,8 @@ class WPML_Term_Actions extends WPML_Full_Translation_API {
 	}
 
 	/**
-	 * @param int                    $tt_id    Taxonomy Term ID of the saved Term
-	 * @param string                 $taxonomy Taxonomy of the saved Term
+	 * @param int    $tt_id    Taxonomy Term ID of the saved Term
+	 * @param string $taxonomy Taxonomy of the saved Term
 	 */
 	function save_term_actions( $tt_id, $taxonomy ) {
 		if ( ! $this->sitepress->is_translated_taxonomy( $taxonomy ) ) {
@@ -42,10 +42,25 @@ class WPML_Term_Actions extends WPML_Full_Translation_API {
 		$term_lang    = $this->get_term_lang( $tt_id, $post_action, $taxonomy );
 		$trid         = $this->get_saved_term_trid( $tt_id, $post_action );
 		$src_language = $this->term_translations->get_source_lang_code( $tt_id );
-		$this->sitepress->set_element_language_details( $tt_id,
-			'tax_' . $taxonomy, $trid, $term_lang, $src_language );
-		$sync_meta_action = new WPML_Sync_Term_Meta_Action( $this->sitepress,
-			$tt_id );
+		$this->sitepress->set_element_language_details(
+			$tt_id,
+			'tax_' . $taxonomy,
+			$trid,
+			$term_lang,
+			$src_language
+		);
+
+		add_action( 'created_term', array( $this, 'sync_term_meta' ), 10, 2 );
+		add_action( 'edited_term', array( $this, 'sync_term_meta' ), 10, 2 );
+	}
+
+	/**
+	 * @param int $term_id
+	 * @param int $tt_id
+	 */
+	public function sync_term_meta( $term_id, $tt_id ) {
+		$is_new_term      = 'created_term' === current_filter();
+		$sync_meta_action = new WPML_Sync_Term_Meta_Action( $this->sitepress, $tt_id, $is_new_term );
 		$sync_meta_action->run();
 	}
 
@@ -66,7 +81,7 @@ class WPML_Term_Actions extends WPML_Full_Translation_API {
 		if ( empty( $lang_details->source_language_code ) ) {
 			if ( ! $this->delete_recursion_flag && $this->sitepress->get_setting( 'sync_delete_tax' ) ) {
 				$this->delete_recursion_flag = true;
-				$translations = $this->sitepress->get_element_translations( $trid, $element_type );
+				$translations                = $this->sitepress->get_element_translations( $trid, $element_type );
 				$this->delete_translations( $term_taxonomy_id, $taxonomy_name, $translations );
 				$this->delete_recursion_flag = false;
 			} else {
@@ -77,17 +92,23 @@ class WPML_Term_Actions extends WPML_Full_Translation_API {
 		$update_args = array(
 			'element_id'   => $term_taxonomy_id,
 			'element_type' => $element_type,
-			'context'      => 'tax'
+			'context'      => 'tax',
 		);
 
 		do_action( 'wpml_translation_update', array_merge( $update_args, array( 'type' => 'before_delete' ) ) );
-		$this->wpdb->delete( $this->wpdb->prefix . 'icl_translations', array( 'element_type' => $element_type, 'element_id' => $term_taxonomy_id ) );
+		$this->wpdb->delete(
+			$this->wpdb->prefix . 'icl_translations',
+			array(
+				'element_type' => $element_type,
+				'element_id'   => $term_taxonomy_id,
+			)
+		);
 		do_action( 'wpml_translation_update', array_merge( $update_args, array( 'type' => 'after_delete' ) ) );
 	}
 
 	/**
-	 * @param $trid
-	 * @param $deleted_language_code
+	 * @param int    $trid
+	 * @param string $deleted_language_code
 	 */
 	public function set_new_original_term( $trid, $deleted_language_code ) {
 		if ( $trid && $deleted_language_code ) {
@@ -102,18 +123,24 @@ class WPML_Term_Actions extends WPML_Full_Translation_API {
 				}
 			}
 			if ( $new_source_lang_code ) {
-				$rows_updated = $this->wpdb->update( $this->wpdb->prefix . 'icl_translations',
+				$rows_updated = $this->wpdb->update(
+					$this->wpdb->prefix . 'icl_translations',
 					array( 'source_language_code' => $new_source_lang_code ),
-					array( 'trid' => $trid, 'source_language_code' => $deleted_language_code )
+					array(
+						'trid'                 => $trid,
+						'source_language_code' => $deleted_language_code,
+					)
 				);
 
 				if ( 0 < $rows_updated ) {
 					do_action( 'wpml_translation_update', array( 'trid' => $trid ) );
 				}
 
-				$this->wpdb->query( "UPDATE {$this->wpdb->prefix}icl_translations 
+				$this->wpdb->query(
+					"UPDATE {$this->wpdb->prefix}icl_translations 
 									 SET source_language_code = NULL 
-									 WHERE language_code = source_language_code" );
+									 WHERE language_code = source_language_code"
+				);
 			}
 		}
 	}
@@ -142,11 +169,13 @@ class WPML_Term_Actions extends WPML_Full_Translation_API {
 								foreach ( $tags as $tag ) {
 									if ( ! $tag->original && isset( $translations[ $tag->language_code ] ) ) {
 										$translated_post = $translations[ $tag->language_code ];
-										$this->wpdb->delete( $this->wpdb->term_relationships,
-										                     array(
-											                     'object_id'        => $translated_post->element_id,
-											                     'term_taxonomy_id' => $tag->element_id
-										                     ) );
+										$this->wpdb->delete(
+											$this->wpdb->term_relationships,
+											array(
+												'object_id'        => $translated_post->element_id,
+												'term_taxonomy_id' => $tag->element_id,
+											)
+										);
 									}
 								}
 							}
@@ -161,12 +190,13 @@ class WPML_Term_Actions extends WPML_Full_Translation_API {
 	 * Copies taxonomy terms from original posts to their translation, if the translations of these terms exist
 	 * and the option 'sync_post_taxonomies' is set.
 	 *
-	 * @param $object_id int ID of the object, that terms have just been added to.
+	 * @param int $object_id ID of the object, that terms have just been added to.
 	 */
 	public function added_term_relationships( $object_id ) {
 		$i                 = $this->wpdb->prefix . 'icl_translations';
 		$current_ttids_sql =
-			$this->wpdb->prepare( "SELECT
+			$this->wpdb->prepare(
+				"SELECT
 									ctt.taxonomy,
 									ctt.term_id,
 									p.ID
@@ -194,7 +224,8 @@ class WPML_Term_Actions extends WPML_Full_Translation_API {
 										AND trans_rel.term_taxonomy_id = ctt.term_taxonomy_id
 								WHERE  ip.element_id = %d
 									AND trans_rel.object_id IS NULL",
-			                      $object_id );
+				$object_id
+			);
 
 		$this->apply_added_term_changes( $this->wpdb->get_results( $current_ttids_sql ) );
 	}
@@ -218,14 +249,18 @@ class WPML_Term_Actions extends WPML_Full_Translation_API {
 		}
 		foreach ( $changes as $post_id => $tax_changes ) {
 			foreach ( $tax_changes as $taxonomy => $term_ids ) {
-				remove_action( 'set_object_terms',
-				               array( 'WPML_Terms_Translations', 'set_object_terms_action' ),
-				               10 );
+				remove_action(
+					'set_object_terms',
+					array( 'WPML_Terms_Translations', 'set_object_terms_action' ),
+					10
+				);
 				$this->sitepress->get_wp_api()->wp_set_object_terms( $post_id, $term_ids, $taxonomy, true );
-				add_action( 'set_object_terms',
-				            array( 'WPML_Terms_Translations', 'set_object_terms_action' ),
-				            10,
-				            6 );
+				add_action(
+					'set_object_terms',
+					array( 'WPML_Terms_Translations', 'set_object_terms_action' ),
+					10,
+					6
+				);
 			}
 		}
 	}
@@ -242,9 +277,11 @@ class WPML_Term_Actions extends WPML_Full_Translation_API {
 	 * @return null|string
 	 */
 	private function get_term_lang( $tt_id, $post_action, $taxonomy ) {
-		$term_lang = filter_input( INPUT_POST,
-		                           'icl_tax_' . $taxonomy . '_language',
-		                           FILTER_SANITIZE_FULL_SPECIAL_CHARS );
+		$term_lang = filter_input(
+			INPUT_POST,
+			'icl_tax_' . $taxonomy . '_language',
+			FILTER_SANITIZE_FULL_SPECIAL_CHARS
+		);
 		$term_lang = $term_lang ? $term_lang : $this->get_term_lang_ajax( $taxonomy, $post_action );
 		$term_lang = $term_lang ? $term_lang : $this->get_lang_from_post( $post_action, $tt_id );
 
@@ -298,7 +335,7 @@ class WPML_Term_Actions extends WPML_Full_Translation_API {
 	 */
 	public function get_term_lang_ajax( $taxonomy, $post_action ) {
 		if ( isset( $_POST['_ajax_nonce'] ) && filter_var( $_POST['_ajax_nonce'] ) !== false
-		     && $post_action === 'add-' . $taxonomy
+			 && $post_action === 'add-' . $taxonomy
 		) {
 			$referrer = isset( $_SERVER['HTTP_REFERER'] ) ? $_SERVER['HTTP_REFERER'] : '';
 			parse_str( (string) wpml_parse_url( $referrer, PHP_URL_QUERY ), $qvars );
@@ -319,7 +356,7 @@ class WPML_Term_Actions extends WPML_Full_Translation_API {
 			$translation_of = filter_input( INPUT_POST, 'icl_translation_of', FILTER_VALIDATE_INT );
 			$translation_of = $translation_of ? $translation_of : filter_input( INPUT_POST, 'icl_translation_of' );
 
-			$trid = $translation_of === 'none' ? false
+			$trid           = $translation_of === 'none' ? false
 				: ( $translation_of
 					? $this->term_translations->get_element_trid( $translation_of )
 					: $trid = filter_input( INPUT_POST, 'icl_trid', FILTER_SANITIZE_NUMBER_INT )

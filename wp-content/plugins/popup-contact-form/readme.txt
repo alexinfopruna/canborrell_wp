@@ -5,14 +5,16 @@ Author URI: http://www.gopiplus.com/work/2012/05/18/popup-contact-form-wordpress
 Plugin URI: http://www.gopiplus.com/work/2012/05/18/popup-contact-form-wordpress-plugin/
 Tags: popup, contact, contact form, gopiplus
 Requires at least: 3.4
-Tested up to: 4.8
-Stable tag: 6.2
+Tested up to: 5.6
+Stable tag: 6.8
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
 Plugin allows user to create and add the popup contact forms easily on the website. That popup contact form let user to send the emails to site admin.
 
 == Description ==
+
+This popup contact form allows user to create and add the popup contact forms easily on the WordPress website and it is good to see the contact form on popup.
 
 Check official website for live demo [http://www.gopiplus.com/work/2012/05/18/popup-contact-form-wordpress-plugin/](http://www.gopiplus.com/work/2012/05/18/popup-contact-form-wordpress-plugin/)
 
@@ -140,6 +142,31 @@ Plugin *.po file (popup-contact.po) available in the languages folder.
 
 1. Tested up to 4.8
 
+= 6.3 =
+
+1. Tested up to 4.9
+
+= 6.4 =
+
+1. Tested up to 5.1
+
+= 6.5 =
+
+1. Tested up to 5.2
+2. Uninstall option added. All plugin reference and plugin table will be cleared during uninstallation.
+
+= 6.6 =
+
+1. Tested up to 5.3
+
+= 6.7 =
+
+1. Tested up to 5.4
+
+= 6.8 =
+
+1. Tested up to 5.5
+
 == Upgrade Notice ==
 
 = 1.0 =
@@ -220,3 +247,28 @@ Plugin *.po file (popup-contact.po) available in the languages folder.
 = 6.2 =
 
 1. Tested up to 4.8
+
+= 6.3 =
+
+1. Tested up to 4.9
+
+= 6.4 =
+
+1. Tested up to 5.1
+
+= 6.5 =
+
+1. Tested up to 5.2
+2. Uninstall option added. All plugin reference and plugin table will be cleared during uninstallation.
+
+= 6.6 =
+
+1. Tested up to 5.3
+
+= 6.7 =
+
+1. Tested up to 5.4
+
+= 6.8 =
+
+1. Tested up to 5.5

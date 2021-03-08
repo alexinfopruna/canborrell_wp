@@ -14,19 +14,19 @@ class WPML_Translate_Link_Targets_In_Strings extends WPML_Translate_Link_Targets
 
 	public function __construct( WPML_Translate_Link_Target_Global_State $translate_link_target_global_state, &$wpdb, $wp_api, $pro_translation ) {
 		parent::__construct( $translate_link_target_global_state, $wpdb, $pro_translation );
-		$this->wp_api          = $wp_api;
+		$this->wp_api = $wp_api;
 	}
-	
+
 	protected function get_contents_with_links_needing_fix( $start = 0, $count = 0 ) {
 		$strings_to_fix = $this->wp_api->get_option( $this->option_name, array() );
 		sort( $strings_to_fix, SORT_NUMERIC );
 		$strings_to_fix_part = array();
-		$include_all = $count == 0 ? true : false;
+		$include_all         = $count == 0 ? true : false;
 		foreach ( $strings_to_fix as $string_id ) {
 			if ( $string_id >= $start ) {
 				$strings_to_fix_part[] = $string_id;
 			}
-			if ( !$include_all ) {
+			if ( ! $include_all ) {
 				$count--;
 				if ( $count == 0 ) {
 					break;
@@ -37,7 +37,7 @@ class WPML_Translate_Link_Targets_In_Strings extends WPML_Translate_Link_Targets
 		$this->content_to_fix = array();
 
 		if ( sizeof( $strings_to_fix_part ) ) {
-			$strings_to_fix_part  = implode( ',', $strings_to_fix_part );
+			$strings_to_fix_part  = wpml_prepare_in( $strings_to_fix_part, '%d' );
 			$this->content_to_fix = $this->wpdb->get_results(
 				"SELECT id as element_id, language as language_code 
 					FROM {$this->wpdb->prefix}icl_string_translations

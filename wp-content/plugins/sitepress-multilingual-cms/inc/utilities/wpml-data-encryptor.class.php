@@ -1,6 +1,20 @@
 <?php
+// phpcs:disable PHPCompatibility.Constants.NewConstants.openssl_raw_dataFound -- This and the following exceptions are made as function and version checks are also made
+// phpcs:disable PHPCompatibility.Constants.RemovedConstants.mcrypt_mode_ecbDeprecatedRemoved
+// phpcs:disable PHPCompatibility.Constants.RemovedConstants.mcrypt_randDeprecatedRemoved
+// phpcs:disable PHPCompatibility.Constants.RemovedConstants.mcrypt_rijndael_256DeprecatedRemoved
+// phpcs:disable PHPCompatibility.Extensions.RemovedExtensions.mcryptDeprecatedRemoved
+// phpcs:disable PHPCompatibility.FunctionUse.NewFunctionParameters.openssl_decrypt_ivFound
+// phpcs:disable PHPCompatibility.FunctionUse.NewFunctionParameters.openssl_encrypt_ivFound
+// phpcs:disable PHPCompatibility.FunctionUse.RemovedFunctions.mcrypt_create_ivDeprecatedRemoved
+// phpcs:disable PHPCompatibility.FunctionUse.RemovedFunctions.mcrypt_decryptDeprecatedRemoved
+// phpcs:disable PHPCompatibility.FunctionUse.RemovedFunctions.mcrypt_encryptDeprecatedRemoved
+// phpcs:disable PHPCompatibility.FunctionUse.RemovedFunctions.mcrypt_get_iv_sizeDeprecatedRemoved
 
 class WPML_Data_Encryptor {
+
+	const SALT_CHARS  = 'abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789!@#$%^&*()-_ []{}<>~`+=,.;:/?|';
+	const SALT_LENGTH = 64;
 
 	/**
 	 * @var string $method
@@ -25,12 +39,15 @@ class WPML_Data_Encryptor {
 	 *
 	 * @param string $key_salt
 	 * @param string $method
-	 *
 	 */
-	public function __construct( $key_salt = NONCE_SALT, $method = 'AES-256-CTR' ) {
+	public function __construct( $key_salt = '', $method = 'AES-256-CTR' ) {
+
+		if ( ! $key_salt ) {
+			$key_salt = $this->get_key_salt();
+		}
 
 		if ( function_exists( 'openssl_encrypt' ) && function_exists( 'openssl_decrypt' )
-		     && version_compare( phpversion(), '5.3.2', '>' ) ) {
+			 && version_compare( phpversion(), '5.3.2', '>' ) ) {
 
 			$methods = openssl_get_cipher_methods();
 			if ( ! in_array( $method, $methods ) && ! empty( $methods ) ) {
@@ -39,10 +56,10 @@ class WPML_Data_Encryptor {
 				$this->method = $method;
 			}
 			$this->library = 'openssl';
-			$this->key   = substr( sha1( $key_salt, true ), 0, 16 );
-			$this->iv    = substr( $key_salt, 0, 16 );
+			$this->key     = substr( sha1( $key_salt, true ), 0, 16 );
+			$this->iv      = substr( $key_salt, 0, 16 );
 
-		} else if ( function_exists( 'mcrypt_encrypt' ) && function_exists( 'mcrypt_decrypt' ) ) { // PHP 5.2 support
+		} elseif ( function_exists( 'mcrypt_encrypt' ) && function_exists( 'mcrypt_decrypt' ) ) { // PHP 5.2 support
 			$this->library = 'mcrypt';
 			$this->key     = substr( NONCE_KEY, 0, 24 );
 			$this->iv      = mcrypt_create_iv( mcrypt_get_iv_size( MCRYPT_RIJNDAEL_256, MCRYPT_MODE_ECB ), MCRYPT_RAND );
@@ -90,15 +107,48 @@ class WPML_Data_Encryptor {
 	/**
 	 * @param string $library
 	 */
-	public function set_crypt_library( $library ){
+	public function set_crypt_library( $library ) {
 		$this->library = $library;
 	}
 
 	/**
 	 * @return string
 	 */
-	public function get_crypt_library(){
+	public function get_crypt_library() {
 		return $this->library;
 	}
 
+	/**
+	 * @return string
+	 */
+	private function get_key_salt() {
+		if ( defined( 'NONCE_SALT' ) ) {
+			return NONCE_SALT;
+		}
+
+		return $this->generate_salt_key();
+	}
+
+	/**
+	 * @return string
+	 */
+	private function generate_salt_key() {
+		$salt_key = '';
+		for ( $i = 0; $i < self::SALT_LENGTH; $i++ ) {
+			$salt_key .= substr( self::SALT_CHARS, mt_rand( 0, strlen( self::SALT_CHARS ) - 1 ), 1 );
+		}
+
+		return $salt_key;
+	}
 }
+// phpcs:enable PHPCompatibility.FunctionUse.RemovedFunctions.mcrypt_get_iv_sizeDeprecatedRemoved
+// phpcs:enable PHPCompatibility.FunctionUse.RemovedFunctions.mcrypt_encryptDeprecatedRemoved
+// phpcs:enable PHPCompatibility.FunctionUse.RemovedFunctions.mcrypt_decryptDeprecatedRemoved
+// phpcs:enable PHPCompatibility.FunctionUse.RemovedFunctions.mcrypt_create_ivDeprecatedRemoved
+// phpcs:enable PHPCompatibility.FunctionUse.NewFunctionParameters.openssl_encrypt_ivFound
+// phpcs:enable PHPCompatibility.FunctionUse.NewFunctionParameters.openssl_decrypt_ivFound
+// phpcs:enable PHPCompatibility.Extensions.RemovedExtensions.mcryptDeprecatedRemoved
+// phpcs:enable PHPCompatibility.Constants.RemovedConstants.mcrypt_rijndael_256DeprecatedRemoved
+// phpcs:enable PHPCompatibility.Constants.RemovedConstants.mcrypt_randDeprecatedRemoved
+// phpcs:enable PHPCompatibility.Constants.RemovedConstants.mcrypt_mode_ecbDeprecatedRemoved
+// phpcs:enable PHPCompatibility.Constants.NewConstants.openssl_raw_dataFound
