@@ -89,6 +89,7 @@ class TaulesDisponibles extends Gestor {
     //COMPROVA RESTAURANT OBERT (DL, DM + llistablanca + llistanegra)
     if (!$this->restaurantObert())
       return $this->addError(23);
+    
     /////////////////////////////////////////////////////
     //RECULL LES TAULES x DIA/TORN/PERSONES/COTXETS
     $this->qryTaules(); /*     * ****************************************** */
@@ -479,7 +480,7 @@ class TaulesDisponibles extends Gestor {
       $accesible_not_condition = " OR estat_menjador_accesible=0";
     }
 
-    $query = "SELECT DISTINCT estat_menjador_menjador_id FROM $table 
+    $query = "SELECT DISTINCT estat_menjador_menjador_id, estat_menjador_data FROM $table 
 		WHERE (estat_menjador_data = '$mydata' AND estat_menjador_torn = $torn AND estat_menjador_bloquejat = 1
 		OR estat_menjador_data = '" . $this->data_BASE . "' AND (estat_menjador_bloquejat = 1 $accesible_not_condition))
 		
