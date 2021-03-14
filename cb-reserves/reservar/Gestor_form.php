@@ -602,6 +602,7 @@ FROM client
     $_POST['selectorNens'] = isset($_POST['selectorNens']) ? $_POST['selectorNens'] : 0;
     $_POST['selectorJuniors'] = isset($_POST['selectorJuniors']) ? $_POST['selectorJuniors'] : 0;
     $_POST['RESERVA_PASTIS'] = isset($_POST['RESERVA_PASTIS']) ? $_POST['RESERVA_PASTIS'] : FALSE;
+  //  $_POST['reserva_terrassa'] = isset($_POST['reserva_terrassa']) ? $_POST['reserva_terrassa'] : FALSE;
 
     $total_coberts = $_POST['selectorComensals'] + $_POST['selectorNens'] + $_POST['selectorJuniors'];
 

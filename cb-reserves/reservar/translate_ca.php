@@ -222,6 +222,8 @@ $translate['RESERVA_CORONA'] = "Ens veiem en l'obligació d'advertir que si vost
 que pugui estar relacionada amb el virus Covid-19, si us plau prengui les
 mesures dictaminades pel Ministeri de Sanitat. 
 <br><b> Recordeu que només podeu compartir taula si sou unitat familiar o grup bombolla</b>";
+
+$translate["meteo_terrassa"]="Les reserves a la terrassa depenen de les condicions meteorològiques. Us confirmarem la disponibilitat de la terrassa dos dies abans de la reserva. En cas de pluja o vent fort la taula seràparada a l'interior";
 /************ SMS ****************/
 
 

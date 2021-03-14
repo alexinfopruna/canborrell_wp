@@ -1,5 +1,5 @@
 <?php
-
+//ALTER TABLE `reservestaules` ADD `reserva_terrassa` TINYINT(1) NOT NULL DEFAULT '0' AFTER `preu_persona`;
 if (!defined('ROOT'))
   define('ROOT', "");
 

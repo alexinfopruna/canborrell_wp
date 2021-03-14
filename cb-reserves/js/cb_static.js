@@ -6,6 +6,9 @@
 (function($){
 $(function() {
     
+    $(".onetone-animated .alert-white").css("visibility","visible");
+    $(".onetone-animated iframe").css("visibility","visible");
+    $(".onetone-animated").css("visibility","visible");
     monta_calendari(".top-datepicker");
     monta_calendari("#datepicker");
     

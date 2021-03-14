@@ -750,6 +750,19 @@ if ($testTPV) {
                                                                               <input type="checkbox" id="cadira0" name="selectorCadiraRodes" value="on"  <?php echo $chek0 ?> /><label for="cadira0"><?php l("Portem una cadira de rodes"); ?></label>
                                                                           </div>
                                                                           
+                                                                    <!--
+                                                                          <h4 id="titol_SelectorCadiraRodes"><?php l('Vols que la taula sigui a la terrassa?'); ?>:</h4>
+                                                                              <div class="ui-corner-all caixa caixa100 dere hores info_hora">
+                                                                                <?php l("meteo_terrassa"); ?>
+                                                                             </div>
+                                                                           <div id="selectorTerrassa" class="col_dere">
+                                                                              <?php
+                                                                              $chek0 = ($row['reserva_terrassa'] == 0 ? '' : 'checked="checked"');
+                                                                              ?>
+                                                                              <input type="checkbox" id="terrassa" name="selectorTerrassa" value="on"  <?php echo $chek0 ?> /><label for="terrassa"><?php l("Taula a la terrassa"); ?></label>
+
+                                                                           </div>
+                                                                    -->
                                                                           <br>
                                                                           <br>
                                                                           <div class="ui-corner-all caixa caixa100 dere hores info_hora">
