@@ -969,13 +969,12 @@ ORDER BY  `estat_hores_hora` ASC ";
     
     
 
-    if (!$this->es_finde_o_festiu($mydata)) return true;
+  //  if (!$this->es_finde_o_festiu($mydata)) return true;
     $query = "SELECT estat_crea_taules_actiu FROM estat_crea_taules
     WHERE 
     (estat_crea_taules_data='$mydata' AND estat_crea_taules_torn = '$torn' ) 
     ORDER BY estat_crea_taules_timestamp DESC";
     $Result1 = mysqli_query($this->connexioDB, $query) or die(((is_object($GLOBALS["___mysqli_ston"])) ? mysqli_error($GLOBALS["___mysqli_ston"]) : (($___mysqli_res = mysqli_connect_error()) ? $___mysqli_res : false)));
-
     if (!mysqli_num_rows($Result1))
       return CREA_TAULES;
     else

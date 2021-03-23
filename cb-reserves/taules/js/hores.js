@@ -68,9 +68,10 @@ function maxClick()
 
 function creaTaulesClick()
 {
-		var data=$("#calendari").val();		
+		var data=$("#calendari").val();	
+                if (typeof data  === 'undefined') data="2011-01-01";
 		var torn=$("input[name='radio']:checked").val();
-		
+		if (typeof torn == 'undefined') torn="1";
 		var desti="gestor_reserves.php?a=update_creaTaules&b="+data+"&c="+torn+"&d="+($(this).is(":checked")?"1":"0");
 		$.ajax({url: desti,	success: function(datos){				}});	
 }

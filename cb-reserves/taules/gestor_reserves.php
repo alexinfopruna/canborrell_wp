@@ -1,5 +1,5 @@
 <?php
-//ALTER TABLE `reservestaules` ADD `reserva_terrassa` TINYINT(1) NOT NULL DEFAULT '0' AFTER `preu_persona`;
+//ALTER TABLE `reserves` ADD `reserva_terrassa` BOOLEAN NULL DEFAULT FALSE AFTER `preu_persona`;
 if (!defined('ROOT'))
   define('ROOT', "");
 
@@ -383,6 +383,7 @@ class gestor_reserves extends Gestor {
     $_POST['client_id'] = isset($_POST['client_id']) ? $_POST['client_id'] : NULL;
     $_POST['client_mobil'] = isset($_POST['client_mobil']) ? $_POST['client_mobil'] : NULL;
     $_POST['RESERVA_PASTIS'] = isset($_POST['RESERVA_PASTIS']) ? $_POST['RESERVA_PASTIS'] : NULL;
+    $_POST['reserva_terrassa'] = isset($_POST['reserva_terrassa']) ? $_POST['reserva_terrassa'] : NULL;
 
     $_POST['client_id'] = $this->controlClient($_POST['client_id'], $_POST['client_mobil']);
 
@@ -406,8 +407,8 @@ class gestor_reserves extends Gestor {
 
     $estat = 100; // !!!!!!!!!! SEMPRE  ??????
     $insertSQL = sprintf("INSERT INTO " . T_RESERVES . " ( id_reserva, client_id, data, hora, adults, 
-      nens4_9, nens10_14, cotxets, reserva_pastis, reserva_info_pastis, observacions, resposta, estat, usuari_creacio, reserva_navegador, reserva_info) 
-      VALUES (%s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s)", $this->SQLVal($_POST['id_reserva'], "text"), $this->SQLVal($_POST['client_id'], "text"), $this->SQLVal($_POST['data'], "datePHP"), $this->SQLVal($_POST['hora'], "text"), $this->SQLVal($_POST['adults'], "zero"), $this->SQLVal($_POST['nens4_9'], "zero"), $this->SQLVal($_POST['nens10_14'], "zero"), $this->SQLVal($_POST['cotxets'], "zero"), $this->SQLVal($_POST['RESERVA_PASTIS'] == 'on', "zero"), $this->SQLVal($_POST['INFO_PASTIS'], "text"), $this->SQLVal($_POST['observacions'], "text"), $this->SQLVal($_POST['resposta'], "text"), $this->SQLVal($estat, "text"), $editor_id, $this->SQLVal($_SERVER['HTTP_USER_AGENT'], "text"), $this->SQLVal($_POST['reserva_info'], "zero"));
+      nens4_9, nens10_14, cotxets, reserva_pastis, reserva_info_pastis, observacions, resposta, estat, usuari_creacio, reserva_navegador, reserva_info, reserva_terrassa) 
+      VALUES (%s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s)", $this->SQLVal($_POST['id_reserva'], "text"), $this->SQLVal($_POST['client_id'], "text"), $this->SQLVal($_POST['data'], "datePHP"), $this->SQLVal($_POST['hora'], "text"), $this->SQLVal($_POST['adults'], "zero"), $this->SQLVal($_POST['nens4_9'], "zero"), $this->SQLVal($_POST['nens10_14'], "zero"), $this->SQLVal($_POST['cotxets'], "zero"), $this->SQLVal($_POST['RESERVA_PASTIS'] == 'on', "zero"), $this->SQLVal($_POST['INFO_PASTIS'], "text"), $this->SQLVal($_POST['observacions'], "text"), $this->SQLVal($_POST['resposta'], "text"), $this->SQLVal($estat, "text"), $editor_id, $this->SQLVal($_SERVER['HTTP_USER_AGENT'], "text"), $this->SQLVal($_POST['reserva_info'], "zero"),$this->SQLVal($_POST['reserva_terrassa'] == 'on', "zero"));
 
 //echo $insertSQL;echo "<br><br>";
     $a = $this->qry_result = $this->log_mysql_query($insertSQL, $this->connexioDB) or die(((is_object($GLOBALS["___mysqli_ston"])) ? mysqli_error($GLOBALS["___mysqli_ston"]) : (($___mysqli_res = mysqli_connect_error()) ? $___mysqli_res : false)));
@@ -530,11 +531,13 @@ class gestor_reserves extends Gestor {
     $torn = $this->torn($this->cambiaf_a_mysql($_POST['data']), $_POST['hora']);
 
     $this->estat_anterior($_POST['id_reserva']);
-//$this->gr
-
-    $updateSQL = "UPDATE " . ESTAT_TAULES . " SET estat_taula_usuari_modificacio=" . $_SESSION['admin_id'] . ", reserva_id='" . $_POST['id_reserva'] . "',estat_taula_data=" . $this->SQLVal($_POST['data'], 'datePHP') . ", estat_taula_torn='" . $torn . "', estat_taules_timestamp=CURRENT_TIMESTAMP WHERE reserva_id=" . $_POST['id_reserva'];
+    $terrassa = (isset($_POST['reserva_terrassa']) && $_POST['reserva_terrassa'] == 'on') ? 1 : 0;
+   
+    
+    
+   $updateSQL = "UPDATE " . ESTAT_TAULES . " SET estat_taula_usuari_modificacio=" . $_SESSION['admin_id'] . ", reserva_id='" . $_POST['id_reserva'] . "',estat_taula_data=" . $this->SQLVal($_POST['data'], 'datePHP') . ", estat_taula_torn='" . $torn . "', estat_taules_timestamp=CURRENT_TIMESTAMP WHERE reserva_id=" . $_POST['id_reserva'];
     //echo "$updateSQL EEEE";die();
-
+//die("$updateSQL QQQ");
 
     $result = $this->log_mysql_query($updateSQL, $this->connexioDB) or die(((is_object($GLOBALS["___mysqli_ston"])) ? mysqli_error($GLOBALS["___mysqli_ston"]) : (($___mysqli_res = mysqli_connect_error()) ? $___mysqli_res : false)));
 
@@ -554,8 +557,9 @@ class gestor_reserves extends Gestor {
      * 
      */
     $updateSQL = sprintf("UPDATE " . T_RESERVES . " SET  id_reserva=%s, client_id=%s, data=%s, hora=%s, adults=%s,nens4_9=%s, 
-      nens10_14 = %s, cotxets = % s, reserva_pastis= %s, reserva_info_pastis = %s, observacions = %s, resposta = %s,  reserva_info=%s WHERE id_reserva=%s", $this->SQLVal($_POST['id_reserva'], "text"), $this->SQLVal($_POST['client_id'], "text"), $this->SQLVal($_POST['data'], "datePHP"), $this->SQLVal($_POST['hora'], "text"), $this->SQLVal($_POST['adults'], "text"), $this->SQLVal($_POST['nens4_9'], "text"), $this->SQLVal($_POST['nens10_14'], "text"), $this->SQLVal($_POST['cotxets'], "text"), $this->SQLVal($_POST['RESERVA_PASTIS'] == 'on' ? 1 : 0, "zero"), $this->SQLVal($_POST['INFO_PASTIS'], "text"), $this->SQLVal($_POST['observacions'], "text"), $this->SQLVal($_POST['resposta'], "text"), $this->SQLVal($_POST['reserva_info'], "int"), $this->SQLVal($_POST['id_reserva'], "text"));
-
+      nens10_14 = %s, cotxets = % s, reserva_pastis= %s, reserva_info_pastis = %s, observacions = %s, resposta = %s,  reserva_info=%s, reserva_terrassa=%s WHERE id_reserva=%s", $this->SQLVal($_POST['id_reserva'], "text"), $this->SQLVal($_POST['client_id'], "text"), $this->SQLVal($_POST['data'], "datePHP"), $this->SQLVal($_POST['hora'], "text"), $this->SQLVal($_POST['adults'], "text"), $this->SQLVal($_POST['nens4_9'], "text"), $this->SQLVal($_POST['nens10_14'], "text"), $this->SQLVal($_POST['cotxets'], "text"), $this->SQLVal($_POST['RESERVA_PASTIS'] == 'on' ? 1 : 0, "zero"), $this->SQLVal($_POST['INFO_PASTIS'], "text"), $this->SQLVal($_POST['observacions'], "text"), $this->SQLVal($_POST['resposta'], "text"), $this->SQLVal($_POST['reserva_info'], "int"), $this->SQLVal($_POST['reserva_terrassa'] == 'on' ? 1 : 0, "zero"),$this->SQLVal($_POST['id_reserva'], "text"));
+    
+    echo($updateSQL);
     $result = $this->log_mysql_query($updateSQL, $this->connexioDB) or die(((is_object($GLOBALS["___mysqli_ston"])) ? mysqli_error($GLOBALS["___mysqli_ston"]) : (($___mysqli_res = mysqli_connect_error()) ? $___mysqli_res : false)));
 
     
@@ -601,6 +605,7 @@ class gestor_reserves extends Gestor {
     $taula = $_POST['estat_taula_taula_id'];
     $cotxets = $_POST['cotxets'] ? $_POST['cotxets'] : 0;
     $pastis = (isset($_POST['RESERVA_PASTIS']) && $_POST['RESERVA_PASTIS'] == 'on') ? 1 : 0;
+    $terrassa = (isset($_POST['reserva_terrassa']) && $_POST['reserva_terrassa'] == 'on') ? 1 : 0;
     $adults = $_POST['adults'];
     $nens10_14 = $_POST['nens10_14'];
     $nens4_9 = $_POST['nens4_9'];
@@ -625,7 +630,7 @@ class gestor_reserves extends Gestor {
       mysqli_autocommit($GLOBALS["___mysqli_ston"], FALSE);
 
 ////////////////////////////////////////////////////
-//// INSERTA UN NOU ESTA AMB LA RESERVA
+//// INSERTA UN NOU ESTAT AMB LA RESERVA
       $insert_nou_estat = "INSERT INTO " . ESTAT_TAULES . " ( estat_taula_data, estat_taula_nom, estat_taula_torn, estat_taula_taula_id, 
                   reserva_id, estat_taula_x, estat_taula_y, estat_taula_persones, estat_taula_cotxets, estat_taula_grup, estat_taula_plena, estat_taula_usuari_modificacio) 
 
@@ -674,12 +679,13 @@ class gestor_reserves extends Gestor {
                 cotxets={$cotxets},
                 reserva_pastis={$pastis},
                 reserva_info_pastis={$info_pastis},
+                reserva_terrassa={$terrassa},
 
                 observacions={$observacions},      
                 resposta={$resposta}      
                 WHERE id_reserva=$reserva";
 
-      //echo     $update_reserva;die();   
+      echo     $update_reserva;die();   
       $r = mysqli_query($GLOBALS["___mysqli_ston"], $update_reserva);
       $affected = mysqli_affected_rows($GLOBALS["___mysqli_ston"]);
       $update_err = (!$r || $affected < 0);
@@ -798,10 +804,10 @@ class gestor_reserves extends Gestor {
                 nens10_14={$_POST['nens10_14']},
                 nens4_9={$_POST['nens4_9']},
                 cotxets={$_POST['cotxets']},
-
+           
                 reserva_pastis={$_POST['RESERVA_PASTIS']},
                 reserva_info_pastis='{$_POST['INFO_PASTIS']}',
-
+                reserva_terrassa={$_POST['reserva_terrassa']},
                 observacions={$observacions},      
                 resposta='{$_POST['resposta']}'      
                 WHERE id_reserva=$reserva";
@@ -1242,6 +1248,7 @@ class gestor_reserves extends Gestor {
       $class_esmorzar = $row['hora']<"12:00"?"esmorzar":""; 
       
       $pastis = $row['reserva_pastis'] == 1 ? '<div class="pastis" title="Demana pastís"></div>' : '';
+      $terrassa = $row['reserva_terrassa'] == 1 ? '<div class="terrassa" style="float:right" title="Terrassa">[T]</div>' : '';
       if ($row['client_nom'] == "SENSE_NOM")
         $row['client_nom'] = "";
      // if ($row['preu_reserva']==-1) $row['preu_reserva']="*";
@@ -1260,7 +1267,7 @@ class gestor_reserves extends Gestor {
       $html .= <<< EOHTML
           <h3 $deleted style="{$impagada} clear:both;" {$title} class="{$class_ataula} {$class_esmorzar}">
           
-            <a n="$n" href="form_reserva.php?edit={$row['id_reserva']}&id={$row['id_reserva']}" class="fr" taula="{$row['estat_taula_taula_id']}" id="accr-{$row['id_reserva']}"><span class="idr">{$row['reserva_id']}</span>&rArr;{$data}{$row['hora']} | <span class="act">{$row['estat_taula_nom']}&rArr;{$comensals}/{$row['cotxets']}</span>  $online $paga_i_senyal $pastis $nom </a>
+            <a n="$n" href="form_reserva.php?edit={$row['id_reserva']}&id={$row['id_reserva']}" class="fr" taula="{$row['estat_taula_taula_id']}" id="accr-{$row['id_reserva']}"><span class="idr">{$row['reserva_id']}</span>&rArr;{$data}{$row['hora']} | <span class="act">{$row['estat_taula_nom']}&rArr;{$comensals}/{$row['cotxets']}</span>  $online $paga_i_senyal $terrassa $pastis $nom </a>
               
  $ataula       
  </h3>
@@ -2410,7 +2417,6 @@ EOHTML;
   public function edita_hores($base = "", $torn = 1, $table = "estat_hores") {
     $this->reg_log("edita_hores($base, $torn, $table)");
 
-
     if (empty($table))
       $table = "estat_hores";
 
@@ -2482,13 +2488,17 @@ EOHTML;
     <input type="text" name="max_torn" class="max_hores" value="' . $maxtorn . '"  torn="' . $torn . '"> (0 = sense límit)
     <input type="hidden" id="max_torn" class="max_hores" value="00:00" readonly="readonly"  torn="' . $torn . '"></span></td>';
     $radio .= '</tr></table>';
-
+/*
     $this->taulesDisponibles->data = $_SESSION['data'];
     $this->taulesDisponibles->torn = $_SESSION['torn'];
+    */
+    $this->taulesDisponibles->data = $data;
+    $this->taulesDisponibles->torn = $torn;
+    
+    $amaga_crea_taules = ($data == $this->data_BASE?"amagat":"");
     $checked = $this->taulesDisponibles->recupera_creaTaules() ? 'checked="checked"' : '';
-    $radio .= '<br/><br/><div class="check-creatales"><input type="checkbox" id="creaTaules" ' . $checked . ' /> Creació automàtica de taules al formulari Online de reserves petites. <b>Només afecta el dia i torn actual!</b></div>';
+    $radio .= '<br/><br/><div class="check-creatales '.$amaga_crea_taules.'"><input type="checkbox" id="creaTaules" ' . $checked . ' style="'.$option_crea_taules.'"/> Creació automàtica de taules al formulari Online de reserves petites. <b>Només afecta el dia i torn actual!</b></div>';
     return $radio;
-//return "RESULTAT: ".$query." ---- ".$torn;
   }
 
   /*   * ****************************************************************************************************************************** */
@@ -2544,17 +2554,22 @@ EOHTML;
       session_start();
 
     $mydata = $this->cambiaf_a_mysql($data);
-echo $data.$torn;
+//echo $data.$torn;
     $query = "DELETE FROM estat_crea_taules WHERE    
     (estat_crea_taules_data='$mydata' AND estat_crea_taules_torn = '$torn')";
+    
     $Result1 = $this->log_mysql_query($query, $this->connexioDB) or die(((is_object($GLOBALS["___mysqli_ston"])) ? mysqli_error($GLOBALS["___mysqli_ston"]) : (($___mysqli_res = mysqli_connect_error()) ? $___mysqli_res : false)));
 
     $insertSQL = sprintf("INSERT INTO estat_crea_taules 
     (estat_crea_taules_data, estat_crea_taules_torn, estat_crea_taules_actiu) 
     VALUES (%s, %s, %s)", $this->SQLVal($mydata, "text"), $this->SQLVal($torn, "text"), $this->SQLVal($activa, "text"));
 
+ 
+    
     $Result1 = $this->log_mysql_query($insertSQL, $this->connexioDB) or die(((is_object($GLOBALS["___mysqli_ston"])) ? mysqli_error($GLOBALS["___mysqli_ston"]) : (($___mysqli_res = mysqli_connect_error()) ? $___mysqli_res : false)));
 
+    
+    
 
     return $query . "<br/>\n<br/>\n" . $insertSQL;
   }

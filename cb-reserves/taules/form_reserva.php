@@ -66,6 +66,7 @@ else {
   $row_reserva['nens4_9'] = null;
   $row_reserva['reserva_info'] = null;
   $row_reserva['cotxets'] = null;
+  $row_reserva['reserva_terrassa'] = null;
   $row_reserva['comanda'] = null;
   $row_reserva['client_telefon'] = null;
   $row_reserva['client_mobil'] = null;
@@ -431,6 +432,14 @@ else {
                     $pastis_info = $pastis ? $row_reserva['reserva_info_pastis'] : '';
                     ?>
                     <input id="INFO_PASTIS" name="INFO_PASTIS" class="pastis_toggle" value="<?php echo $pastis_info ?>"/>
+               
+                     <label id="label-terrassa" for="<?php echo trim($class) ?>RESERVA_TERRASSA" >TERRASSA </label> <!---->
+                   <?php
+                    $terrassa = (isset($row_reserva['reserva_terrassa']) ? $row_reserva['reserva_terrassa'] : FALSE);
+                    $row_reserva['reserva_pastis'] = $pastis;
+                    ?>
+                    <input type="checkbox" id="<?php echo trim($class) ?>RESERVA_TERRASSA" name="reserva_terrassa" value="on" <?php echo $row_reserva['reserva_terrassa'] ? 'checked="checked"' : "" ?>/>
+                
                 </td>
             </tr>
 
