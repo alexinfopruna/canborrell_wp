@@ -306,6 +306,9 @@ $translate["RESERVA_IMPAGADA"] = "We have not received confirmation of the payme
 . "Remember that until you have completed the payment DO NOT HAVE RESERVATION AT THE RESTAURANT";
 $translate["Can Borrell: Reserva Anul·lada: No es rep i senyal"] = "Can Borrell: Reservation cancelled: No payment done";
 
+
+$translate["meteo_terrassa"]="Reservations on the terrace depends on the weather conditions. We will confirm the availability of the terrace two days before the reservation. In case of rain or strong wind the table will be prepared indoors";
+
 /* * ************************************************************************************************* */
 /* * *****************************************************     JS   ********************************** */
 /* * ************************************************************************************************* */
