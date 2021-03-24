@@ -288,7 +288,8 @@ add_action('widgets_init', 'arphabet_widgets_init');
 
 /* */
 add_action( 'template_redirect', function() {
-        global $post;    
+        global $post;  
+        if (!isset($post->ID)) $post->ID=0;
  session_start();
  // $_SESSION['permisos']=(isset($_SESSION['permisos']))?$_SESSION['permisos']:0;
  //$p=(isset($post))?$post->ID:0;
