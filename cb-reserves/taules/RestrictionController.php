@@ -54,6 +54,8 @@ static $TOTES_HORES =array("", "11:00", "11:15", "11:30", "11:45",
   
   public function getActiveRules($data, $adults = 0, $nens = 0, $cotxets = 0, $sqlquery = false) {
     if (!RestrictionController::restrictionsActive($data, $adults)) return [];
+    if (!is_null($nens)) $nens=0;
+    if (!is_null($adults)) $adults=0;
     $sum = $adults + $nens;
     $senar = ($sum) & 1;
     $parell = !$senar;
