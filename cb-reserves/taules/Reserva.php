@@ -63,10 +63,10 @@ class Reserva extends Gestor {
     }
   }
   
- 
+ /*
       function  Reserva($id = null, $data = null, $hora = null, $adults = null, $juniors = null, $nens = null, $cotxets = null, $client = null) {
      self::__construct($id = null, $data = null, $hora = null, $adults = null, $juniors = null, $nens = null, $cotxets = null, $client = null) ;
-   }
+   }*/
 
 
 

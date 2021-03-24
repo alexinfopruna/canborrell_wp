@@ -38,6 +38,7 @@ function mailer($addr, $subject, $body, $altbody = null, $attach = null, $test =
   if (!isset($altbody) || is_null($altbody))    $altbody = "Su cliente de correo no puede interpretar correctamente este mensaje. Por favor, póngase en contacto con el restaurante llamando al 936 929 723 o al 936 910 605. Disculpe las molestias";
 
   $mail = new phpmailer();
+  //echo "POOORT: ".$mail->Port;die();
   $mail->CharSet = 'UTF-8';
 
   /* SENSE IMATGE CAPSALERA */

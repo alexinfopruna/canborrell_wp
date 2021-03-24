@@ -106,6 +106,9 @@ if ((isset($_REQUEST["del_client"])) && ($_REQUEST["del_client"] > 0))
 <body bgcolor="#ffffff" class="<?php echo DEV?" dev ":""; echo LOCAL?" local ":"" ?>">
 
 <?php if (isset($_SESSION['permisos']) && $_SESSION['permisos']>16){ ?>
+    
+    
+
 <div id="barra_dalt" class="NOtransparent">
 	<ul>
 		<li><a href="#" class="catcher round">+</a></li>

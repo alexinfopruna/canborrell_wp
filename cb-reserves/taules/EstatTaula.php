@@ -72,10 +72,10 @@ class EstatTaula extends Gestor {
     $this->quinMenjador();
   }
 
-/** constructor compatibilitat */
+/** constructor compatibilitat 
 public function EstatTaula($taula_id = null, $nom_o_torn = null, $data = 0, $hora = 0, $persones = 0, $cotxets = 0, $plena = 0, $x = 0, $y = 0, $punts = 0) {
  self::__construct($taula_id , $nom_o_torn , $data , $hora , $persones, $cotxets, $plena, $x, $y, $punts);
-}
+}*/
 
   private function calculaX($mydata, $torn) {
     $query = "SELECT estat_taula_x AS cnt FROM " . ESTAT_TAULES . " 	
