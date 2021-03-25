@@ -259,7 +259,7 @@ class Gestor_form extends gestor_reserves {
     $this->taulesDisponibles->torn = 3;
     $sopar = $this->taulesDisponibles->recupera_hores();
     $taules = $this->taulesDisponibles->taulesDisponibles();
-    if ($taules[0])
+    if (isset($taules[0]))
       $taulaT3 = $taules[0]->id;
     else
       $taulaT3 = null;

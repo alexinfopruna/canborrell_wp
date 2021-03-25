@@ -11,6 +11,7 @@ require_once(ROOT . "Reserva.php");
 
 class TaulesDisponibles extends Gestor {
 
+    private $gestor_reserves=null;
   private $data_BASE = "2011-01-01";
   public $data;
   public $hora;
@@ -49,10 +50,13 @@ class TaulesDisponibles extends Gestor {
   /*   * ************************************* */
   /*   * ************************************* */
 
-  public function __construct($db_connection_file = DB_CONNECTION_FILE, $usuari_minim = 16) {
-    parent::__construct($db_connection_file, $usuari_minim);
+ // public function __construct($db_connection_file = DB_CONNECTION_FILE, $usuari_minim = 16) {
+  public function __construct($gestor_reserves) {
+ //   parent::__construct($db_connection_file, $usuari_minim);
+    parent::__construct(DB_CONNECTION_FILE, 16);
     //COORDENADES MENJADORS
     include(ROOT . "coord_menjadors.php");
+    $this->gestor_reserves = $gestor_reserves;
     $this->menjadors = $menjadors;
     //RECUPEREM CREA_TAULES i NITS_OBERT DEL CONFIG
      $this->data = $this->data_BASE;
@@ -173,19 +177,19 @@ class TaulesDisponibles extends Gestor {
 
     ////////////////////////////////////////////////////////////////////////////////////////////////////
     ////////////////////////////////////////////////////////////////////////////////////////////////////
-
+echo "111";
     while ($row = mysqli_fetch_array($Result1)) {//PRIMERA PASSADA
       //CREACIO TAULA
       $hora = 0;
       $taula = new EstatTaula($row['estat_taula_taula_id'], $row['estat_taula_nom'], $mydata, $hora, $row['estat_taula_persones'], $row['estat_taula_cotxets'], $row['estat_taula_plena'], $row['estat_taula_x'], $row['estat_taula_y']);
 
-       include(ROOT . "coord_menjadors.php");
+       //include(ROOT . "coord_menjadors.php");
       
 
-       require_once("gestor_reserves.php");
+       //require_once("gestor_reserves.php");
        
        /*     * */
-       $gr=new gestor_reserves();
+      $gr=$this->gestor_reserves;
       $bloquejats = $this->menjadorsBloquejats($menjadors);
       //echo $gr->taulaBloquejada($taula->x, $taula->y, $bloquejats);die();
       if (!is_null($bloquejats) && $gr->taulaBloquejada($taula->x, $taula->y, $bloquejats)) continue;

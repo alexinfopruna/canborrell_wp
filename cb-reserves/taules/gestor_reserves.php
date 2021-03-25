@@ -559,7 +559,7 @@ class gestor_reserves extends Gestor {
     $updateSQL = sprintf("UPDATE " . T_RESERVES . " SET  id_reserva=%s, client_id=%s, data=%s, hora=%s, adults=%s,nens4_9=%s, 
       nens10_14 = %s, cotxets = % s, reserva_pastis= %s, reserva_info_pastis = %s, observacions = %s, resposta = %s,  reserva_info=%s, reserva_terrassa=%s WHERE id_reserva=%s", $this->SQLVal($_POST['id_reserva'], "text"), $this->SQLVal($_POST['client_id'], "text"), $this->SQLVal($_POST['data'], "datePHP"), $this->SQLVal($_POST['hora'], "text"), $this->SQLVal($_POST['adults'], "text"), $this->SQLVal($_POST['nens4_9'], "text"), $this->SQLVal($_POST['nens10_14'], "text"), $this->SQLVal($_POST['cotxets'], "text"), $this->SQLVal($_POST['RESERVA_PASTIS'] == 'on' ? 1 : 0, "zero"), $this->SQLVal($_POST['INFO_PASTIS'], "text"), $this->SQLVal($_POST['observacions'], "text"), $this->SQLVal($_POST['resposta'], "text"), $this->SQLVal($_POST['reserva_info'], "int"), $this->SQLVal($_POST['reserva_terrassa'] == 'on' ? 1 : 0, "zero"),$this->SQLVal($_POST['id_reserva'], "text"));
     
-    echo($updateSQL);
+   // echo($updateSQL);die("QQQ");
     $result = $this->log_mysql_query($updateSQL, $this->connexioDB) or die(((is_object($GLOBALS["___mysqli_ston"])) ? mysqli_error($GLOBALS["___mysqli_ston"]) : (($___mysqli_res = mysqli_connect_error()) ? $___mysqli_res : false)));
 
     

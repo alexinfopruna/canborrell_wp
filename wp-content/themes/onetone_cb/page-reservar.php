@@ -116,6 +116,7 @@ else {
   $row['observacions'] = null;
   $row['reserva_pastis'] = null;
   $row['reserva_info_pastis'] = null;
+  $row['reserva_terrassa'] = null;
   //$row['']=null;
 
   $comanda = null;
