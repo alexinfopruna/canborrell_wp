@@ -629,7 +629,7 @@ FROM client
     $torn = $this->torn($data, $hora);
 
     if ($data < date("Y-m-d"))
-      $resposta['error'] = "err1 Data passada: " . $_POST['selectorData'] . " < " . date("d/m/Y");
+      $resposta['error'] = "err1 Data passada: err3" . $_POST['selectorData'] . " < " . date("d/m/Y");
     $date = strtotime(date("Y-m-d", strtotime("now")) . " +1 year");
     if ($data > $date)
       $resposta['error'] = "err2: data futura: " . $_POST['selectorData'];
@@ -643,7 +643,9 @@ FROM client
 
 
 
-
+    if(!is_numeric($_POST['adults'])) $_POST['adults']=0;
+    if(!is_numeric($_POST['nens10_14'])) $_POST['nens10_14']=0;
+    if(!is_numeric($_POST['nens4_9'])) $_POST['nens4_9']=0;
       
 //COMPROVA hora - torn - taula ok?
     $coberts = $_POST['adults'] + $_POST['nens10_14'] + $_POST['nens4_9'];

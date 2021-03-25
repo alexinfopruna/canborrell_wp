@@ -2924,7 +2924,8 @@ ORDER BY `estat_hores_data` DESC";
       $mail = "err10";
     }
 
-    $rs = ($result['Result'] == "NO ENVIAT!!!") ? "ERROR" : "EXIT";
+    //$rs = ($result || $result['Result'] == "NO ENVIAT!!!") ? "ERROR" : "EXIT";
+    $rs = ($result) ? "ERROR" : "EXIT";
     $this->xgreg_log(">>> MAIL RESULTAT: <span class='$rs'>$rs</span> > $recipient ", 1);
 
     return $mail;
@@ -2941,10 +2942,10 @@ ORDER BY `estat_hores_data` DESC";
     $this->xgreg_log(">>> ENVIA SMS <span class='idr'>$res</span> > $numMobil  ", 1, '/log/logMAILSMS.txt');
     $this->xgreg_log('<br><a href="' . $file . '">log mail</a>', 1, '/log/logMAILSMS.txt');
     
-   // echo "ZZZZZZZZZ $file";
-$this->xgreg_log('<br><a href="' . $file . '">log mail</a>', 1, '/log/logMAILSMS.txt');
-$this->xgreg_log('<br><a href="' . $file . '">log mail</a>', 1, '/log/logMAILSMS.txt');
-$this->xgreg_log('<br><a href="' . $file . '">log mail</a>', 1, '/log/logMAILSMS.txt');
+    $this->xgreg_log('<br><a href="' . $file . '">log mail</a>', 1, '/log/logMAILSMS.txt');
+    $this->xgreg_log('<br><a href="' . $file . '">log mail</a>', 1, '/log/logMAILSMS.txt');
+    $this->xgreg_log('<br><a href="' . $file . '">log mail</a>', 1, '/log/logMAILSMS.txt');
+    
     if (!isset($_SESSION['permisos']) || $_SESSION['permisos'] < 1) {
       $this->xgreg_log(">>> ENVIA SMS: SIN PERMISOS!!!", 1);
       $this->xgreg_log(">>> ENVIA SMS: SIN PERMISOS!!!", 1, '/log/logMAILSMS.txt');

@@ -119,6 +119,7 @@ class TaulesDisponibles extends Gestor {
   private function qryTaules() {
     $this->reset();
     $mydata = $this->data;
+    $base= $this->data_BASE; 
     $torn = $this->torn;
     $persones = $this->persones;
     $cotxets = (int) $this->cotxets ? $this->cotxets : 0;

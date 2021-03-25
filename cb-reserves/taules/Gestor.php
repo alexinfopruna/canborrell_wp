@@ -379,7 +379,8 @@ class Gestor {
   /*   * ************************************************************************************** */
 
   public static function SQLVal($theValue, $theType = "text", $theDefinedValue = "", $theNotDefinedValue = "") {
-    $theValue = (!get_magic_quotes_gpc()) ? addslashes($theValue) : $theValue;
+   // $theValue = (!get_magic_quotes_gpc()) ? addslashes($theValue) : $theValue;
+  //  mysqli_real_escape_string
 
     switch ($theType) {
            case "no_quotes":
