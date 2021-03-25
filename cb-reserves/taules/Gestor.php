@@ -88,7 +88,14 @@ class Gestor {
     if (!defined('PERMISOS'))
       define('PERMISOS', $usuari_minim);
     $this->conf = new Configuracio();
-    $this->connectaBD();
+    
+    if(!isset($GLOBALS["___mysqli_ston"])){
+       
+        $this->connectaBD();
+    }
+    else{
+        $this->connexioDB = $GLOBALS["___mysqli_ston"];
+    }
     $_SESSION['admin_id'] = '0';
   }
 

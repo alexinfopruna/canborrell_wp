@@ -40,7 +40,6 @@ class EstatTaula extends Gestor {
     $db_connection_file = NULL;
     $usuari_minim = NULL;
     parent::__construct($db_connection_file, $usuari_minim);
-
     //COORDENADES MENJADORS		
     $this->data = $data;
     if (!$taula_id) {
@@ -56,7 +55,6 @@ class EstatTaula extends Gestor {
       $this->torn = $torn = null;
       $nom = $nom_o_torn;
     }
-
     $this->id = $taula_id;
     $this->nom = $nom;
     $this->hora = $hora;
@@ -67,8 +65,9 @@ class EstatTaula extends Gestor {
     $this->x = $x;
     $this->y = $y;
     $this->punts = $punts;
-    if (empty($hora) && empty($persones))
+    if (empty($hora) && empty($persones)){
       $this->recuperaTaula($taula_id, $data, $nom_o_torn);
+    }
     $this->quinMenjador();
   }
 

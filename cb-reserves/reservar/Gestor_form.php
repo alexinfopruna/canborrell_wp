@@ -214,16 +214,17 @@ class Gestor_form extends gestor_reserves {
 
 
     $rc = new RestrictionController();
-
     $this->taulesDisponibles->rang_hores_nens = $rc->getHores($mydata, $cacheAdults, $cacheNens, $cotxets);
   //  $this->taulesDisponibles->rang_hores_nens = null;
     $rules = $rc->getActiveRules($mydata, $cacheAdults, $cacheNens, $cotxets);
     //RestriccionsTaules ALEX
     //TORN1
-    
-    $this->taulesDisponibles->torn = 1;
-    $this->taulesDisponibles->recupera_hores();
+ 
+    $this->taulesDisponibles->torn = 1; 
+    $this->taulesDisponibles->recupera_hores(); 
+
     $taules = $this->taulesDisponibles->taulesDisponibles();
+
     $tids = "";
     if ($taules) {
       foreach ($taules as $k => $v)

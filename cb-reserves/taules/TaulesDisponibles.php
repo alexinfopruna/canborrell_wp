@@ -11,7 +11,7 @@ require_once(ROOT . "Reserva.php");
 
 class TaulesDisponibles extends Gestor {
 
-    private $gestor_reserves=null;
+  private $gestor_reserves=null;
   private $data_BASE = "2011-01-01";
   public $data;
   public $hora;
@@ -123,8 +123,6 @@ class TaulesDisponibles extends Gestor {
     $persones = $this->persones;
     $cotxets = (int) $this->cotxets ? $this->cotxets : 0;
 
-
-    $base = $this->data_BASE;
     $NOPLENES = $this->taulesGrans ? 'TRUE ' : 'FALSE '; // inclou taules + grans. Per ex: demanen 6 i tenim una taula de 8(plena=false)
     $NOPLENESCOTXETS = $this->cotxetsGrans ? 'TRUE ' : 'FALSE '; // inclou taules amb + cotxets dels demanats. Per ex: demanen 6/0 i tenim una taula de 6/1(plena=false)
     $sess = session_id();
@@ -181,7 +179,6 @@ class TaulesDisponibles extends Gestor {
       //CREACIO TAULA
       $hora = 0;
       $taula = new EstatTaula($row['estat_taula_taula_id'], $row['estat_taula_nom'], $mydata, $hora, $row['estat_taula_persones'], $row['estat_taula_cotxets'], $row['estat_taula_plena'], $row['estat_taula_x'], $row['estat_taula_y']);
-
        //include(ROOT . "coord_menjadors.php");
       
 
@@ -190,13 +187,13 @@ class TaulesDisponibles extends Gestor {
        /*     * */
       $gr=$this->gestor_reserves;
       $bloquejats = $this->menjadorsBloquejats($menjadors);
+
       //echo $gr->taulaBloquejada($taula->x, $taula->y, $bloquejats);die();
       if (!is_null($bloquejats) && $gr->taulaBloquejada($taula->x, $taula->y, $bloquejats)) continue;
    
         
       // Calcula punts per ordenar
       $punts = $taula->puntuacioTaula($persones, $cotxets);
-
       // LA POSO A L'ARRAY
       $this->arResultatTaula[] = $taula;
     }//PRIMERA PASSADA
@@ -205,9 +202,8 @@ class TaulesDisponibles extends Gestor {
       $this->addError(29);
       return array();
     }
-    else
-      usort($this->arResultatTaula, array('TaulesDisponibles', 'ordenaPunts'));
-
+    else{
+    }
     foreach ($this->arResultatTaula as $k => $v) { //SEGONA PASSADA (ORDRE)
       // genera array ids ordenada
       $this->arResultat[] = $v->id;
@@ -662,7 +658,7 @@ class TaulesDisponibles extends Gestor {
     $taules = $this->taules();
     //echo "<br><br>TORN ".  $this->torn. "  <br>";    foreach ($this->arResultatTaula as $k => $v) echo $v->id. ", ";
     $cotxets = $this->cotxets;
-      
+
     ////////////////////////////////////////////////////////////////////////////
     // Busca les hores disponibles per un dia/torn. HI HA 3 CASOS	
     ////////////////////////////////////////////////////////////////////////////
