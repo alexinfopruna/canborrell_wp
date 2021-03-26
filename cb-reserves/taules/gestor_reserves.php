@@ -2877,6 +2877,7 @@ ORDER BY `estat_hores_data` DESC";
     $file = ROOT . $plantilla . $this->lng . ".lbi";
     // echo $file."  ".__FILE__;die();
     $t = new Template('.', 'comment');
+    $t->root=".";
     if (is_array($extres)) {
       foreach ($row as $k => $v) {
         $t->set_var($k, $v);

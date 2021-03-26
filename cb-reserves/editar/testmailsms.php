@@ -1,4 +1,7 @@
 <?php 
+
+
+
 if (!defined('ROOT')) define('ROOT', "../taules/");
 //require_once(ROOT."Gestor.php");
 require(ROOT."gestor_reserves.php");

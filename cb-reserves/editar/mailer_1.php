@@ -1,6 +1,7 @@
 <?php
 
 require_once (ROOT . INC_FILE_PATH . "PHPMailer-master/PHPMailerAutoload.php");
+//require_once (ROOT.'../../wp-includes/PHPMailer/PHPMailer.php');
 require_once(ROOT . INC_FILE_PATH . 'alex.inc');
 
 if (!defined('CONFIG')) {
@@ -78,8 +79,12 @@ function mailer($addr, $subject, $body, $altbody = null, $attach = null, $test =
     return FALSE;
   }
   else {
+      echo "HOST: ".$mail->Host;
+      $mail->Password="Alkaline17";
+      echo "PASS: ".$mail->Password;
+      echo "Enviant....";
     $exito = $mail->Send();
-    echo "WWW";
+   
     if (!$exito) {
 echo "!FALLA";
 echo  $mail->ErrorInfo;
