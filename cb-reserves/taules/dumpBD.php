@@ -1,4 +1,6 @@
 <?php
+if (true) echo "taules/dumpDB.php disabled at the same file";
+
 require_once("gestor_reserves.php");
 $gestor=new gestor_reserves();   
 if (!$gestor->valida_sessio())  header("Location: index.php");

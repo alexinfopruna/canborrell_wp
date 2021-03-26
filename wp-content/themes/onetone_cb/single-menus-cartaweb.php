@@ -37,6 +37,7 @@ define('USR_FORM_WEB', 3); //ES LA ID D'USUARI (admin) ANONIM QUE CREA RESERVA O
 
 require_once(ROOT . '../reservar/' . "Gestor_form.php");
 $gestorf = new Gestor_form();
+$_SESSION['uSer'] = unserialize($_SESSION['uSer_serialized']);
 
 $usr = new Usuari(USR_FORM_WEB, "webForm", 1);
 if (!isset($_SESSION['uSer'])) {

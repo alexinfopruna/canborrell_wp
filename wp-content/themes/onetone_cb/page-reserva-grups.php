@@ -19,7 +19,12 @@ if (!isset($_SESSION))
   session_start();
 $usr = new Usuari(USR_FORM_WEB, "webForm", 1);
 
-if (!isset($_SESSION['uSer']))  $_SESSION['uSer'] = $usr;
+if (!isset($_SESSION['uSer']) || !isset($_SESSION['permisos'])) {
+  $usr = new Usuari(USR_FORM_WEB, "webForm", 31);
+  $_SESSION['uSer'] = $usr;
+  $_SESSION['uSer_serialized']= serialize($_SESSION['uSer']);
+  $_SESSION['permisos'] = $usr->permisos;
+}
 
 
 
@@ -85,7 +90,7 @@ $row['data'] = null;
 $row['hora'] = null;
 $row['observacions'] = null;
 
-if($_SESSION['uSer']->permisos==255){
+if(isset($_SESSION['uSer']) && $_SESSION['uSer']->permisos==255){
   $row['client_mobil']="999212121";
   $row['client_email']="alexbasurilla@gmail.com";
   $row['client_nom'] = "Àlex";

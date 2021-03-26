@@ -57,7 +57,7 @@ $res = $gestor->query($FILTRE);
                         foreach ($row as $k => $v) {
                           $bool = ($v == 'true' || $v == 'false') ? ' bool ' : ' no-bool ';
                           $tipus = substr($k, 0, 4);
-                          $tipus = $row["config_type"];
+                          $tipus = isset($row["config_type"])?$row["config_type"]:"text";
                           
                           echo '<td id="' . $k . '__' . $idr . '" col="' . $k . '"   tipus="' . $tipus . '" class="' . $row[$k] . $bool . '" idR="' . $idr . '">';
                           echo $gestor->controlsTaula($row, $k);

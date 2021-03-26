@@ -93,9 +93,9 @@ class Gestor {
        
         $this->connectaBD();
     }
-    else{
-        $this->connexioDB = $GLOBALS["___mysqli_ston"];
-    }
+    
+    $this->connexioDB = $GLOBALS["___mysqli_ston"];
+    
     $_SESSION['admin_id'] = '0';
   }
 
@@ -163,6 +163,9 @@ class Gestor {
       $permis_admin = Gestor::$USUARI_ADMIN;
     if (!isset($_SESSION))
       session_start();
+    
+    
+    if (isset ($_SESSION['uSer_serialized'])) $_SESSION['uSer'] = unserialize($_SESSION['uSer_serialized']);
     $a = isset($_SESSION['uSer']);
     if (!$a)
       return FALSE;
@@ -230,7 +233,10 @@ class Gestor {
       $usuari = new usuari($row['admin_id'], $loginUsername, $row['permisos']);
       if (!isset($_SESSION))
         session_start();
-      //$this->usuari=$_SESSION['uSer']=serialize($usuari);
+
+if (!isset($_SESSION['uSer'])) {
+  $_SESSION['uSer'] =  unserialize($_SESSION['uSer_serialized']);
+}
 
       $this->usuari  = $_SESSION['uSer'] = $usuari;
       $_SESSION['uSer_serialized']  = serialize($usuari);
@@ -338,7 +344,10 @@ class Gestor {
     
     if (Gestor::stringMultiSearch($query, LOG_QUERYS) && DEBUG === false) {
       $ip = isset($ips[$_SERVER['REMOTE_ADDR']]) ? $ips[$_SERVER['REMOTE_ADDR']] : $_SERVER['REMOTE_ADDR'];
-      $sessuser = $_SESSION['uSer'];
+          if (isset ($_SESSION['uSer_serialized'])) $sessuser = unserialize($_SESSION['uSer_serialized']);
+          else $_SESSION['uSer'] = new Usuari(3, "webForm", 31);
+
+          $_SESSION['uSer_serialized'] = serialize($_SESSION['uSer']);
 
       //$sep="";
       //$miniquery ='<span class="miniquery">'.substr($query,0,50).'</span>';
@@ -549,7 +558,8 @@ class Gestor {
     if (isset($_SESSION['uSer'])) $sessuser = $_SESSION['uSer'];
 
     $user = "Sense usuari";
-    if (isset($sessuser))      $user = $sessuser->id;
+    if (isset($sessuser))      //$user = $sessuser->id;
+        $user="problema sessio";
 
     $sep = "";
     if ($type == 0)
