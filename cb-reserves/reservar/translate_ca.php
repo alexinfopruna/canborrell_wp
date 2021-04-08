@@ -223,7 +223,10 @@ que pugui estar relacionada amb el virus Covid-19, si us plau prengui les
 mesures dictaminades pel Ministeri de Sanitat. 
 <br><b> Recordeu que només podeu compartir taula si sou unitat familiar o grup bombolla</b>";
 
-$translate["meteo_terrassa"]="Les reserves a la terrassa depenen de les condicions meteorològiques. Us confirmarem la disponibilitat de la terrassa dos dies abans de la reserva. En cas de pluja o vent fort la taula seràparada a l'interior";
+$translate["meteo_terrassa"]="Les reserves a la terrassa depenen de les condicions meteorològiques. "
+        . "Us confirmarem la disponibilitat de la terrassa dos dies abans de la reserva. "
+        . "En cas de pluja o vent fort la taula seràparada a l'interior<br>"
+        . "Per gaudir de taula ala terrassa cal arribar al restaurant abans de les 14:30h";
 /************ SMS ****************/
 
 
