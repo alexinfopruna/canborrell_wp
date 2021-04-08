@@ -90,6 +90,7 @@ class ControlTaules {
         $taula->x = -100;
       if ($taula->y > 100000)
         $taula->y = -100;
+      if (empty($taula->plena)) $taula->plena=0;
       $mydata = $data;
       $values = $coma . "('" . $mydata . "','" . $torn . "','" . $taula->id . "','" . $taula->nom . "','" . $taula->reserva . "','" . $taula->x . "','" . $taula->y . "','" . $taula->persones . "','" . $taula->cotxets . "','" . $taula->grup . "','" . $taula->plena . "','" . $_SESSION['admin_id'] . "')";
       $query = "INSERT INTO " . ESTAT_TAULES . " 
@@ -98,6 +99,7 @@ class ControlTaules {
 		VALUES 
 		$values;
 		";
+      //echo $query;die();
       $Result1 = $this->log_mysql_query($query, $canborrell); // or die(((is_object($GLOBALS["___mysqli_ston"])) ? mysqli_error($GLOBALS["___mysqli_ston"]) : (($___mysqli_res = mysqli_connect_error()) ? $___mysqli_res : false)));
       //$Result1 = $this->log_mysql_query($query, $canborrell); // or die(((is_object($GLOBALS["___mysqli_ston"])) ? mysqli_error($GLOBALS["___mysqli_ston"]) : (($___mysqli_res = mysqli_connect_error()) ? $___mysqli_res : false)));
       $nid =mysqli_insert_id($canborrell);

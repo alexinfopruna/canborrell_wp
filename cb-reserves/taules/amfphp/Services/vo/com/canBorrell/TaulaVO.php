@@ -44,6 +44,7 @@ class TaulaVO
 		$this->dades_hora=$dades_hora;
 		$this->dades_torn=$dades_torn;		
 		$this->dades_client=$dades_client;
+                
 		$this->plena=$plena;
 		$this->observacions=$observacions;		
 		$this->online=$online;		
