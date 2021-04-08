@@ -226,7 +226,7 @@ mesures dictaminades pel Ministeri de Sanitat.
 $translate["meteo_terrassa"]="Les reserves a la terrassa depenen de les condicions meteorològiques. "
         . "Us confirmarem la disponibilitat de la terrassa dos dies abans de la reserva. "
         . "En cas de pluja o vent fort la taula seràparada a l'interior<br>"
-        . "Per gaudir de taula ala terrassa cal arribar al restaurant abans de les 14:30h";
+        . "Per gaudir de taula a la terrassa cal arribar al restaurant abans de les 14:30h";
 /************ SMS ****************/
 
 

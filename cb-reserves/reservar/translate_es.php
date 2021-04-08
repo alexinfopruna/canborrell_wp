@@ -292,7 +292,9 @@ que pueda estar relacionada con el virus Covid-19, por favor tome las
 medidas dictaminadas por el Ministerio de Sanidad. 
 <br><b> Recuerde que sólo puede compartir mesa si es unidad familiar o grupo burbuja</b>";
 
-$translate["meteo_terrassa"]="Las reservas en la terraza dependen de las condiciones meteorológiques. Os confirmaremos la disponibilidad de la terraza dos dias antes de la reserva. En caso de lluvia o viento fuerte la mesa será preparada en el interior";
+$translate["meteo_terrassa"]="Las reservas en la terraza dependen de las condiciones meteorológiques. Os confirmaremos la disponibilidad de la terraza dos dias antes de la reserva. En caso de lluvia o viento fuerte la mesa será preparada en el interior"
+        . "<br>"
+        . "Para disfrutar de mesa en la terraza es necesario llegar al restaurante antes de las 14: 30h";
 
 
 /****************************************************************************************************/	
