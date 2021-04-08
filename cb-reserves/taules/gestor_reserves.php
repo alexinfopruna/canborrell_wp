@@ -685,7 +685,7 @@ class gestor_reserves extends Gestor {
                 resposta={$resposta}      
                 WHERE id_reserva=$reserva";
 
-      echo     $update_reserva;die();   
+      //echo     $update_reserva;die();   
       $r = mysqli_query($GLOBALS["___mysqli_ston"], $update_reserva);
       $affected = mysqli_affected_rows($GLOBALS["___mysqli_ston"]);
       $update_err = (!$r || $affected < 0);

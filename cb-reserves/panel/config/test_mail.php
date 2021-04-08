@@ -47,7 +47,6 @@ if ($_REQUEST['a'] == "envia"){
 
             table{width:100%;}
             table td{
-                //text-align:right;
                 padding:20px;
             }
 
