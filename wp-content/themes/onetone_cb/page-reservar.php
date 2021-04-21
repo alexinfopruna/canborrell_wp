@@ -521,7 +521,7 @@ if ($testTPV) {
                 ?>
 
 
-                <a href="<?php echo $prefix ?>/reservar/localitza-reserva/?a=edit" class="btn btn-success" >     <?php l('Edita una reserva existent'); ?></a>
+                <a href="<?php echo $prefix ?>/reservar/localitza-reserva/" class="btn btn-success" >     <?php l('Edita una reserva existent'); ?></a>
 
 
                 <a href="#" class="btn btn-warning  ecp-trigger" data-modal="modal" >     <?php l('Tens algun dubte?'); ?></a>

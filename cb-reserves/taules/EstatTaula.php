@@ -95,10 +95,11 @@ public function EstatTaula($taula_id = null, $nom_o_torn = null, $data = 0, $hor
     $this->taulaVirtual = false;
     $base = $this->data_BASE;
 
+   // if (!is_numeric($torn)) $torn=1;
     $query = "SELECT * FROM " . ESTAT_TAULES . " 	WHERE estat_taula_taula_id=$taula_id AND
-	/* DATA, TORN */ ((estat_taula_data='$mydata' AND estat_taula_torn=$torn) 
+	/* DATA, TORN */ ((estat_taula_data='$mydata' AND estat_taula_torn='$torn') 
 							OR
-	/* BASE SOLA */ 	(estat_taula_data = '$base' AND estat_taula_torn=$torn ))
+	/* BASE SOLA */ 	(estat_taula_data = '$base' AND estat_taula_torn='$torn' ))
 	ORDER BY estat_taula_data DESC";
 //echo $query;	
     $Result1 = mysqli_query($this->connexioDB, $query) or die(((is_object($GLOBALS["___mysqli_ston"])) ? mysqli_error($GLOBALS["___mysqli_ston"]) : (($___mysqli_res = mysqli_connect_error()) ? $___mysqli_res : false)));

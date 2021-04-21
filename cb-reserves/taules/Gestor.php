@@ -166,6 +166,8 @@ class Gestor {
     
     
     if (isset ($_SESSION['uSer_serialized'])) $_SESSION['uSer'] = unserialize($_SESSION['uSer_serialized']);
+    else return false;
+    
     $a = isset($_SESSION['uSer']);
     if (!$a)
       return FALSE;

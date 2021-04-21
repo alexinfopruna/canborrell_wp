@@ -224,9 +224,8 @@ mesures dictaminades pel Ministeri de Sanitat.
 <br><b> Recordeu que només podeu compartir taula si sou unitat familiar o grup bombolla</b>";
 
 $translate["meteo_terrassa"]="Les reserves a la terrassa depenen de les condicions meteorològiques. "
-        . "Us confirmarem la disponibilitat de la terrassa dos dies abans de la reserva. "
         . "En cas de pluja o vent fort la taula seràparada a l'interior<br>"
-        . "Per gaudir de taula a la terrassa cal arribar al restaurant abans de les 14:30h";
+        . "Per gaudir de taula a la terrassa cal arribar al restaurant abans de les 14:30h DISSABTES  I  LES 13.30h  DIUMENGES I FESTIUS. (per més tard no garantim que sigui a la terrassa)";
 /************ SMS ****************/
 
 

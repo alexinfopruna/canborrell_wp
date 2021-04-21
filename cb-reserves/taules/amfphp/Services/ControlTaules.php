@@ -16,6 +16,7 @@ class ControlTaules {
   private $data_BASE = "2011-01-01";
 
   function recuperaEstat($data, $torn) {
+      ///echo "WWWWW";die();
     $mydata = $data;
     $this->recuperaSesion($data, $torn);
     $cercaTornB = "";

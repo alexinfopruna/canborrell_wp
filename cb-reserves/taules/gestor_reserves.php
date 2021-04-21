@@ -2228,7 +2228,7 @@ EOHTML;
   /*   * ************************************* */
 
   public function refresh($update = false) {
-    session_set_cookie_params(3600 * 24 * 7);
+    if (session_status() === PHP_SESSION_NONE) session_set_cookie_params(3600 * 24 * 7);
     if (!isset($_SESSION))
       session_start(); //REDUNDANT, PERO CADUCA!!!
 
@@ -2433,8 +2433,9 @@ EOHTML;
 
     $torn100 = $torn + 100;
     $maxtorn = 0;
+    $option_crea_taules = CREA_TAULES;
 
-
+      
     $query = "SELECT * FROM $table
     WHERE 
     
