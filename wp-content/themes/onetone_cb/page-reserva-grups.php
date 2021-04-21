@@ -90,6 +90,8 @@ $row['data'] = null;
 $row['hora'] = null;
 $row['observacions'] = null;
 
+if (isset ($_SESSION['uSer_serialized'])) $_SESSION['uSer'] = unserialize($_SESSION['uSer_serialized']);
+
 if(isset($_SESSION['uSer']) && $_SESSION['uSer']->permisos==255){
   $row['client_mobil']="999212121";
   $row['client_email']="alexbasurilla@gmail.com";

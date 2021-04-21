@@ -36,7 +36,7 @@ $data = cambiaf_a_mysql($_POST['DATA2']);
 $hora = $_POST['hora'] . ":00";
 
 function GetSQLValueString($theValue, $theType, $theDefinedValue = "", $theNotDefinedValue = "") {
-  $theValue = (!get_magic_quotes_gpc()) ? addslashes($theValue) : $theValue;
+ // $theValue = (!get_magic_quotes_gpc()) ? addslashes($theValue) : $theValue;
 
   switch ($theType) {
     case "no_quotes":
@@ -55,7 +55,7 @@ function GetSQLValueString($theValue, $theType, $theDefinedValue = "", $theNotDe
       break;
     case "long":
     case "int":
-      $theValue = ($theValue != "") ? intval($theValue) : "NULL";
+      $theValue = ($theValue != "") ? intval($theValue) : "0";
       break;
     case "double":
       $theValue = ($theValue != "") ? "'" . doubleval($theValue) . "'" : "NULL";
@@ -86,11 +86,14 @@ if (isset($_POST['nocalsots']) && $_POST['nocalsots'] > 0)
   $_POST['observacions'] = "<b>Sol·licitades " . $_POST['nocalsots'] . " substitucions de menú calçotada per menú nº1</b><br/><br/>" . $_POST['observacions'];
 if (!isset($_POST['factura']))
   $_POST['factura'][0] = 0;
+
+$hora = substr($_POST['hora'], 0, 5);
+$_POST['menu']=0;
 $query = sprintf("INSERT INTO reserves (id_reserva, `data`, client_id, nom, tel, fax, email, hora, menu, adults, nens10_14, nens4_9, cotxets, observacions, resposta, estat, data_creacio, preu_reserva, lang, txt_1, txt_2, num_1, num_2,factura,factura_cif,factura_nom,factura_adresa,reserva_navegador,reserva_info, preu_persona) VALUES (%s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s)", GetSQLValueString($_POST['id_reserva'], "int"), GetSQLValueString($data, "date"), GetSQLValueString($_POST['client_id'], "int"), GetSQLValueString($_POST['client_nom'] . " " . $_POST['client_cognoms'], "text"), GetSQLValueString($_POST['tel'], "text"), GetSQLValueString($_POST['fax'], "text"), GetSQLValueString($_POST['email'], "text"), GetSQLValueString($hora, "date"), GetSQLValueString($_POST['menu'], "int"), GetSQLValueString($_POST['adults'], "int"), GetSQLValueString($_POST['nens10_14'], "int"), GetSQLValueString($_POST['nens4_9'], "int"), GetSQLValueString($_POST['cotxets'], "int"), GetSQLValueString($_POST['observacions'], "text"), GetSQLValueString($resp[$lang], "text"), GetSQLValueString($estat, "int"), GetSQLValueString($_POST['data_creacio'], "date"), GetSQLValueString($preu, "double"), GetSQLValueString($lang, "text"), GetSQLValueString($_POST['txt_1'], "text"), GetSQLValueString($_POST['txt_2'], "text"), GetSQLValueString($_POST['num_1'], "int"), GetSQLValueString($_POST['num_2'], "int"), $_POST['factura'][0] ? 1 : 0, GetSQLValueString($_POST['factura_cif'], "text"), GetSQLValueString($_POST['factura_nom'], "text"), GetSQLValueString($_POST['factura_adresa'], "text"), GetSQLValueString($_POST['reserva_navegador'], "text"), GetSQLValueString($_POST['reserva_info'], "text"), GetSQLValueString(preu_persona_grups, "double"));
 
 /* * *************************************************************************** */
 
-//echo $query;die();
+//      echo $query;die();
 $Result1 = $gestor->log_mysql_query($query, $canborrell) or die(((is_object($GLOBALS["___mysqli_ston"])) ? mysqli_error($GLOBALS["___mysqli_ston"]) : (($___mysqli_res = mysqli_connect_error()) ? $___mysqli_res : false)));
 $idr = $id = ((is_null($___mysqli_res = mysqli_insert_id($canborrell))) ? false : $___mysqli_res);
 //print_log("Recepció de reserva: ".$_POST['id_reserva'].": ".$_POST['client_nom']." ".$_POST['client_cognoms']);

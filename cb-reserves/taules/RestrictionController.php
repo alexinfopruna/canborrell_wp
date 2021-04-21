@@ -4,7 +4,7 @@
 if (!defined('ROOT'))
   define('ROOT', "");
 
-
+//echo "RESTRICCCCCC";die();
 //if (!defined('TOTES_HORES'))
 //  define('TOTES_HORES', array("", "11:00", "11:15", "11:30", "11:45",
 //    "12:00", "12:15", "12:30", "12:45",
@@ -54,8 +54,8 @@ static $TOTES_HORES =array("", "11:00", "11:15", "11:30", "11:45",
   
   public function getActiveRules($data, $adults = 0, $nens = 0, $cotxets = 0, $sqlquery = false) {
     if (!RestrictionController::restrictionsActive($data, $adults)) return [];
-    if (!is_null($nens)) $nens=0;
-    if (!is_null($adults)) $adults=0;
+    if (is_null($nens)) $nens=0;
+    if (is_null($adults)) $adults=0;
     $sum = $adults + $nens;
     $senar = ($sum) & 1;
     $parell = !$senar;
@@ -75,8 +75,9 @@ FROM restriccions
 WHERE restriccions_active = TRUE $where
 $order
 ";
+    
     if ($sqlquery)
-      return "$data >>> $adults | $nens | $cotxets >>>>>>>>>>>>> " . $query;
+       return "$data >>> $adults | $nens | $cotxets >>>>>>>>>>>>> " . $query;
     $Result1 = mysqli_query($this->connexioDB, $query) or die(((is_object($GLOBALS["___mysqli_ston"])) ? mysqli_error($GLOBALS["___mysqli_ston"]) : (($___mysqli_res = mysqli_connect_error()) ? $___mysqli_res : false)));
     if (isset($_REQUEST['test']))
       echo "---------------------- $data, $adults, $nens, $cotxets -----------------------------<br><br><br>";
@@ -90,9 +91,10 @@ $order
 
     if (isset($_REQUEST['test']))
       echo ">>> $query <br><br>";
+    /*
     while ($row = mysqli_fetch_row($Result1)) {
       
-    }
+    }*/
 
 
     return $rules;
@@ -125,6 +127,9 @@ $hores = $this->interseccio_hores($rules);
     /**/
     //if (count($rules)) {
     $cachev = array();
+    
+    if (!defined('CB_CHILD_CACHE_MAX_TIME'))
+        define('CB_CHILD_CACHE_MAX_TIME', 80000);    
     $cachev['timestamp'] = time() + CB_CHILD_CACHE_MAX_TIME;
     $cachev['hores'] = $hores;
     $_SESSION[$index] = $cachev;
@@ -333,7 +338,6 @@ $hores = $this->interseccio_hores($rules);
   private function mountWhereCoberts($field, $coberts, $parell = FALSE) {
 //if ($coberts == "Parell") return $where=" AND ((restriccions_adults + restriccions_nens) %2 = 0 )";
 //if ($coberts == "Senar") return $where=" AND ((restriccions_adults + restriccions_nens) %2 <> 0 )";
-
     if ($coberts == "undefined")
       $coberts = '0';
 
@@ -368,13 +372,15 @@ if (isset($_REQUEST['data'])) {
   $adults = $_REQUEST['adults'];
   $nens = $_REQUEST['nens'];
   $cotxets = $_REQUEST['cotxets'];
-  $rules = $rc->getActiveRules($data, adults, $nens, $cotxets);
+  $rules = $rc->getActiveRules($data, $adults, $nens, $cotxets);
   echo "<h1>RULES</h1>";
   foreach ($rules as $row) {
     echo "<li><pre>";
     print_r($row);
     echo "</pre></li>";
   }
+  
+  print_r($rc->getHores($data, $adults, $nens, $cotxets));
 }
 
 if (isset($_REQUEST['json']))

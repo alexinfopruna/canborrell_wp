@@ -23,7 +23,8 @@ function mysqli_result($result, $row, $field = 0) {
 
 
 spl_autoload_register(function ($class_name) {
-  $ruta="../";
+    
+  $ruta=defined('ROOT')?ROOT:"../";
   
     include $ruta.$class_name . '.php';
 });

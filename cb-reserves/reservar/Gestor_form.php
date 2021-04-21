@@ -207,8 +207,8 @@ class Gestor_form extends gestor_reserves {
     $this->taulesDisponibles->llista_dies_negra = LLISTA_DIES_NEGRA_RES_PETITES;
     $this->taulesDisponibles->llista_nits_negra = LLISTA_DIES_NEGRA_RES_PETITES;
     $this->taulesDisponibles->llista_dies_blanca = LLISTA_DIES_BLANCA;
-    if (!is_null($nens)) $nens=0;
-    if (!is_null($coberts)) $coberts=0;
+    if (is_null($nens)) $nens=0;
+    if (is_null($coberts)) $coberts=0;
     $cacheNens = $nens;
     $cacheAdults = $coberts - $nens;
 

@@ -31,7 +31,7 @@ class Test extends gestor_reserves {
   public function run(){
       $grups=new Gestor_grups();
       $pagament=new Gestor_pagaments();  
-      echo $pagament->get_preu_presona_reserva2(3050);
+      echo $pagament->get_preu_persona_reserva(3050);
       //$pagament->afegir_pagament(1233047, 3047, 36, preu_persona_grups, "manolo");
      // $pagament->validar_pagament(1233047,  99);
      // $gestor=new Gestor_form();  
