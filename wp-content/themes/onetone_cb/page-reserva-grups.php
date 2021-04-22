@@ -4,6 +4,7 @@
  */
 defined('ROOT') or define('ROOT', 'cb-reserves/taules/');
 require_once (ROOT . "Gestor.php");
+require_once (ROOT . "Usuari.php");
 
 if (defined("CB_FORA_DE_SERVEI") && CB_FORA_DE_SERVEI === true && $_SESSION['permisos'] < 200)
   header("Location:/cb-reserves/reservar/fora_de_servei.html");
@@ -18,6 +19,13 @@ define('USR_FORM_WEB', 3); //ES LA ID D'USUARI (admin) ANONIM QUE CREA RESERVA O
 if (!isset($_SESSION))
   session_start();
 $usr = new Usuari(USR_FORM_WEB, "webForm", 1);
+
+    if (isset($_SESSION['uSer_serialized'])) {
+      $_SESSION['uSer'] = unserialize($_SESSION['uSer_serialized']);
+    }
+   // echo isset($_SESSION['__PHP_Incomplete_Class_Name']);
+   // echo $_SESSION['uSer']['__PHP_Incomplete_Class_Name'];
+   // var_dump($_SESSION['uSer']);
 
 if (!isset($_SESSION['uSer']) || !isset($_SESSION['permisos'])) {
   $usr = new Usuari(USR_FORM_WEB, "webForm", 31);
@@ -90,7 +98,6 @@ $row['data'] = null;
 $row['hora'] = null;
 $row['observacions'] = null;
 
-if (isset ($_SESSION['uSer_serialized'])) $_SESSION['uSer'] = unserialize($_SESSION['uSer_serialized']);
 
 if(isset($_SESSION['uSer']) && $_SESSION['uSer']->permisos==255){
   $row['client_mobil']="999212121";

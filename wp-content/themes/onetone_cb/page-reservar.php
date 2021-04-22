@@ -31,6 +31,7 @@ if (!isset($_SESSION['uSer']) || !isset($_SESSION['permisos'])) {
 require (ROOT . "../reservar/Gestor_form.php");
 $gestorf = new Gestor_form();
 require_once(ROOT . INC_FILE_PATH . 'alex.inc');
+$_SESSION['uSer_serialized']= serialize($_SESSION['uSer']);
 require_once(ROOT . INC_FILE_PATH . "llista_dies_taules.php");
 //PERSONES PARAM
 $na = isset($_REQUEST['b']) ? $_REQUEST['b'] : 0;
