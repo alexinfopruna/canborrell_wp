@@ -189,7 +189,6 @@ class Gestor_form extends gestor_reserves {
       $cotxets = 0;
 
 
-
     $mydata = $this->cambiaf_a_mysql($data);
     $this->taulesDisponibles->tableHores = "estat_hores";   //ANULAT GESTOR HORES FORM. Tot es gestiona igual, des d'estat hores
     if ($idr) {
@@ -198,7 +197,6 @@ class Gestor_form extends gestor_reserves {
         return json_encode($json);
       }
     }
-
     $this->taulesDisponibles->data = $mydata;
     $this->taulesDisponibles->persones = $coberts;
     $this->taulesDisponibles->cotxets = $cotxets;
@@ -211,7 +209,6 @@ class Gestor_form extends gestor_reserves {
     if (!is_numeric($coberts)) $coberts=0;
     $cacheNens = $nens;
     $cacheAdults = $coberts - $nens;
-
 
     $rc = new RestrictionController();
     $this->taulesDisponibles->rang_hores_nens = $rc->getHores($mydata, $cacheAdults, $cacheNens, $cotxets);
@@ -2015,14 +2012,27 @@ if (isset($accio) && !empty($accio)) {
     $log = in_array($accio, $logables);
     $ip = isset($ips[$_SERVER['REMOTE_ADDR']]) ? $ips[$_SERVER['REMOTE_ADDR']] : $_SERVER['REMOTE_ADDR'];
 
+    
+    if (isset($_SESSION['uSer_serialized'])) {
+      $_SESSION['uSer'] = unserialize($_SESSION['uSer_serialized']);
+    }
+
+
+    
     if (isset($_SESSION['uSer'])) {
       $sessuser = $_SESSION['uSer'];
-    }
+    } 
     elseif ($accio == 'respostaTPV_SHA256') { {
         $usr = new Usuari(3, "webForm", 31);
-        if (!isset($_SESSION['uSer']))
           $_SESSION['uSer'] = $usr;
+           $_SESSION['uSer_serialized'] = serialize($_SESSION['uSer']);
       }
+    }else{
+         $usr = new Usuari(3, "webForm", 31);
+
+          $_SESSION['uSer'] = $usr;
+           $_SESSION['uSer_serialized'] = serialize($_SESSION['uSer']);
+        
     }
     if (isset($sessuser)) {
       $user = $sessuser->id;

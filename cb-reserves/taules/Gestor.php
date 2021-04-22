@@ -164,7 +164,6 @@ class Gestor {
     if (!isset($_SESSION))
       session_start();
     
-    
     if (isset ($_SESSION['uSer_serialized'])) $_SESSION['uSer'] = unserialize($_SESSION['uSer_serialized']);
     else return false;
     
@@ -174,10 +173,11 @@ class Gestor {
  
     $b = !empty($_SESSION['uSer']);
     //$sessuser=unserialize($_SESSION['uSer']);
-
+    $_SESSION['uSer_serialized'] = serialize($_SESSION['uSer']);
     if (!$b)
       return FALSE;
 
+    
     if(isset($_SESSION['uSer'])) $sessuser = $_SESSION['uSer'];
     if (!is_object($sessuser)) return FALSE;
     if (!property_exists( $sessuser , 'id' )) return FALSE;
