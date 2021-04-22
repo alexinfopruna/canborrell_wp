@@ -115,9 +115,11 @@ while (($l = fgetcsv($f, 1000, ";")) !== FALSE) {
 
   echo "<br/><br/> -- $query >> $r ";
 
-  echo ">> insertem a $table <br/><br/>";
+  echo ">> insertem a $table ";
   $reglog->reg_log("+insertem a $table");
   $r = mysqli_query($canborrell, $query);
+  $r = mysqli_query($canborrell, $query)?"ok":"ko";
+  echo ">>> $r <br/><br/>";
 }
 fclose($f);
 /* * ****************************************************************** */
