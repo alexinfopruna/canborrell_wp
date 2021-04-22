@@ -174,7 +174,9 @@ public function EstatTaula($taula_id = null, $nom_o_torn = null, $data = 0, $hor
 
     $Result1 = mysqli_query($this->connexioDB, $query) or die(((is_object($GLOBALS["___mysqli_ston"])) ? mysqli_error($GLOBALS["___mysqli_ston"]) : (($___mysqli_res = mysqli_connect_error()) ? $___mysqli_res : false)));
     $row = mysqli_fetch_array($Result1);
-    $p = explode($prefix, $row['estat_taula_nom']);
+    
+    $p=array();
+    if (isset($row['estat_taula_nom']))    $p = explode($prefix, $row['estat_taula_nom']);
     if (!isset($p[1]))
       $p[1] = 0;
     return $prefix . (floor($p[1]) + 1);

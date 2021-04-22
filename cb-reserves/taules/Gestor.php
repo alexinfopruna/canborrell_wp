@@ -163,7 +163,8 @@ class Gestor {
       $permis_admin = Gestor::$USUARI_ADMIN;
     if (!isset($_SESSION))
       session_start();
-    
+  //  print_r($_SESSION['uSer_serialized']);
+  //  print_r($_SESSION['uSer']);
     if (isset ($_SESSION['uSer_serialized'])) $_SESSION['uSer'] = unserialize($_SESSION['uSer_serialized']);
     else return false;
     

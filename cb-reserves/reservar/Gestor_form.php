@@ -1,4 +1,11 @@
 <?php
+/*
+    if (!isset($_SESSION))
+      session_start();
+
+$_SESSION = array();
+session_destroy();
+*/
 
 define('MAX_RESERVATION_TIME', "11:59");
 
@@ -1984,6 +1991,9 @@ echo "reservaImpagada 2";
 /* * **************************************************************************************************** */
 // AJAX
 
+
+
+
 if (isset($accio) && !empty($accio)) {
   if (!isset($_REQUEST['b']))
     $_REQUEST['b'] = null;
@@ -2021,6 +2031,7 @@ if (isset($accio) && !empty($accio)) {
     
     if (isset($_SESSION['uSer'])) {
       $sessuser = $_SESSION['uSer'];
+      $_SESSION['uSer_serialized'] = serialize($_SESSION['uSer']);
     } 
     elseif ($accio == 'respostaTPV_SHA256') { {
         $usr = new Usuari(3, "webForm", 31);
@@ -2037,15 +2048,6 @@ if (isset($accio) && !empty($accio)) {
     if (isset($sessuser)) {
       $user = $sessuser->id;
     }
-
-
-
-    /*
-      else{
-      echo "err100";
-      die();
-      }
-     */
 
     if ($log) {
       $req = '<pre>' . print_r($_REQUEST, true) . '</pre>';
