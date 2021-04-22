@@ -160,7 +160,7 @@ function mail_plantilla($id = false) {
   $avui = date("d/m/Y");
   $ara = date("H:i");
   /////// ATENCIO
-  $file = "templates/pre_reserva_rest.lbi";
+  $file = ROOT . "../editar/templates/pre_reserva_rest.lbi";
 
 
   $t = new Template('.', 'comment');
