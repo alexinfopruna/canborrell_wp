@@ -295,7 +295,7 @@ add_action( 'template_redirect', function() {
  //$p=(isset($post))?$post->ID:0;
  $p=$post->ID;
 
-if ($_SESSION['permisos']>250) return;  
+if (isset($_SESSION['permisos']) && $_SESSION['permisos']>250) return;  
     if ( $p== 1374 ) {
         return;
     }
