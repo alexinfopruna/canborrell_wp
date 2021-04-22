@@ -113,13 +113,13 @@ while (($l = fgetcsv($f, 1000, ";")) !== FALSE) {
 
   $query = "INSERT INTO `carta_subfamilia` (`carta_subfamilia_id`, `carta_familia_id`, `carta_subfamilia_nom_ca`, `carta_subfamilia_nom_es`) VALUES ('$id', '$fam', '$c1_ca', '$c1_es')";
 
-  echo "<br/><br/> -- $query >> $r ";
+  echo "<br/><br/> -- $query ";
 
-  echo ">> insertem a $table ";
+  //echo ">> insertem a $table ";
   $reglog->reg_log("+insertem a $table");
-  $r = mysqli_query($canborrell, $query);
   $r = mysqli_query($canborrell, $query)?"ok":"ko";
-  echo ">>> $r <br/><br/>";
+  $rs = mysqli_error($canborrell);
+  echo ">>> $r >>> $rs <br/><br/>";
 }
 fclose($f);
 /* * ****************************************************************** */
@@ -177,8 +177,8 @@ while (($l = fgetcsv($f, 1000, ";")) !== FALSE) {
     break;
   $k++;
   $r = mysqli_query($canborrell, $query)?"ok":"ko";
-  $r=mysqli_error ( $canborrell );
-  echo "<br/><br/> -- $query >> $r <br/><br/>";
+  $rs=mysqli_error ( $canborrell );
+  echo "<br/><br/> -- $query >> $r >> $rs <br/><br/>";
 }
 fclose($f);
 echo "<br/><br/>Finalitzada importació d'articles ($k registres)<br/>";
