@@ -249,8 +249,10 @@ echo $query ."   $database_canborrell  *** ".$lang;die();
 	
 	$avui=date("d/m/Y");
 	$ara=date("H:i");
+        //$file="templates/mail_cli.lbi";
+	$file = getcwd(). "/templates/mail_cli.lbi";
+
 	
-	$file="templates/mail_cli.lbi";
 			$t=new Template('.','comment');
 			$t->set_file("page", $file);
 	
