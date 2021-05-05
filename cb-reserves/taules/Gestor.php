@@ -613,7 +613,7 @@ if (!isset($_SESSION['uSer'])) {
       $f = fopen($file, "w");
       fclose($f);
 
-      $link = "/panel/read.php?f=$rename";
+      $link = "/cb-reserves/panel/read.php?f=$rename";
       error_log('<div><a href="' . $link . '">FITXER ANTERIOR: ' . $link . '</a></div>' . EOL, 3, $file);
       error_log("<div><h2> " . date("Y-m-d H:i:s") . " </h2></div>" . EOL, 3, $file);
       error_log('<ul class="ini-li">' . EOL, 3, $file);
