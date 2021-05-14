@@ -293,7 +293,7 @@ medidas dictaminadas por el Ministerio de Sanidad.
 <br><b> Recuerde que sólo puede compartir mesa si es unidad familiar o grupo burbuja</b>";
 
 $translate["meteo_terrassa"]="Las reservas en la terraza dependen de las condiciones meteorológiques. "
-        . "Para disfrutar de mesa en la terraza es necesario llegar al restaurante antes de las 14:30h  SÁBADA  Y  LAS 13.30h  DOMINGOS Y FESTIVOS. (para más tarde no garantizamos que sea en la terraza)";
+        . "Para disfrutar de mesa en la terraza es necesario llegar al restaurante antes de las 14:00h  SÁBADA  Y  LAS 13.30h  DOMINGOS Y FESTIVOS. (para más tarde no garantizamos que sea en la terraza)";
 
 
 /****************************************************************************************************/	

@@ -309,7 +309,7 @@ $translate["Can Borrell: Reserva Anul·lada: No es rep i senyal"] = "Can Borrell
 
 $translate["meteo_terrassa"]="Reservations on the terrace depends on the weather conditions. We will confirm the availability of the terrace two days before the reservation. In case of rain or strong wind the table will be prepared indoors"
         . "<br>"
-        . "To enjoy a table on the terrace you must arrive at the restaurant before 14:30";
+        . "To enjoy a table on the terrace you must arrive at the restaurant before 14:00";
 
 /* * ************************************************************************************************* */
 /* * *****************************************************     JS   ********************************** */
