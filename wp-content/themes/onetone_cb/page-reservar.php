@@ -752,21 +752,7 @@ if ($testTPV) {
                                                                               <input type="checkbox" id="cadira0" name="selectorCadiraRodes" value="on"  <?php echo $chek0 ?> /><label for="cadira0"><?php l("Portem una cadira de rodes"); ?></label>
                                                                           </div>
                                                                           
-                                                                          
-                                                                         <div style="<?php echo OPCIO_TERRASSA>0?"":"display:none"?>">
-                                                                          <h4 id="titol_SelectorCadiraRodes"><?php l('Vols que la taula sigui a la terrassa?'); ?>:</h4>
-                                                                              <div class="ui-corner-all caixa caixa100 dere hores info_hora">
-                                                                                <?php l("meteo_terrassa"); ?>
-                                                                             </div>
-                                                                           
-                                                                           <div id="selectorTerrassa" class="col_dere">
-                                                                              <?php
-                                                                              $chek0 = ($row['reserva_terrassa'] == 0 ? '' : 'checked="checked"');
-                                                                              ?>
-                                                                              <input type="checkbox" id="terrassa" name="reserva_terrassa" value="on"  <?php echo $chek0 ?> /><label for="terrassa"><?php l("Taula a la terrassa"); ?></label>
-
-                                                                           </div>
-                                                                           </div>
+                                    
                                                                     
                                                                           <br>
                                                                           <br>
@@ -826,6 +812,29 @@ if ($testTPV) {
                                                                   <a href="#" id="info_hora" class="info-ico"><img src="/cb-reserves/reservar/css/info.png" title="<?php l('Ajuda'); ?>" style="width:16px;height:auto;margin-left:8px"/></a>
                                                               </h1>
                                                               <div class="col-isqui flexw">
+                                                                  
+                                                                    <?php
+                                                                             $opcio_terrassa = OPCIO_TERRASSA;
+                                                                          ?>
+                                                                         <div id='opcio_terrassa' style="<?php echo $opcio_terrassa>0?"":"display:none"?>">
+                                                                          <h4 id="titol_SelectorCadiraRodes"><?php l('Vols que la taula sigui a la terrassa?'); ?>:</h4>
+                                                                              <div class="ui-corner-all caixa caixa100 dere hores info_hora">
+                                                                                <?php l("meteo_terrassa"); ?>
+                                                                             </div>
+                                                                           
+                                                                           <div id="selectorTerrassa" class="col_dere">
+                                                                              <?php
+                                                                              $chek0 = ($row['reserva_terrassa'] == 0 ? '' : 'checked="checked"');
+                                                                              ?>
+                                                                              <input type="checkbox" id="terrassa" name="reserva_terrassa" value="on"  <?php echo $chek0 ?> /><label for="terrassa"><?php l("Taula a la terrassa"); ?></label>
+
+                                                                           </div>
+                                                                           </div>                                    
+                                                                  
+                                                                  
+                                                                  
+                                                                  
+                                                                  
 
                                                                   <!-- ******  INFO  ********   -->
                                                                   <div class="ui-corner-all caixa caixa100 dere hores info_hora">

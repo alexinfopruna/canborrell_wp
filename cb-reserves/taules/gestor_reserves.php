@@ -2498,7 +2498,9 @@ EOHTML;
     
     $amaga_crea_taules = ($data == $this->data_BASE?"amagat":"");
     $checked = $this->taulesDisponibles->recupera_creaTaules() ? 'checked="checked"' : '';
+    $checkedterrassa = $this->recupera_estatTerrassa($data) ? 'checked="checked"' : '';
     $radio .= '<br/><br/><div class="check-creatales '.$amaga_crea_taules.'"><input type="checkbox" id="creaTaules" ' . $checked . ' style="'.$option_crea_taules.'"/> Creació automàtica de taules al formulari Online de reserves petites. <b>Només afecta el dia i torn actual!</b></div>';
+    $radio .= '<br/><br/><div class="check-creatales '.$amaga_crea_taules.'"><input type="checkbox" id="opcioTerrassa" ' . $checkedterrassa . ' style="'.$option_crea_taules.'"/> Opció terrassa disponible. <b>Només afecta el dia i torn actual!</b></div>';
     return $radio;
   }
 
@@ -2575,6 +2577,56 @@ EOHTML;
     return $query . "<br/>\n<br/>\n" . $insertSQL;
   }
 
+  
+ /*   * ****************************************************************************************************************************** */
+  /*   * *********   RECUPERA ESTAT TERRASSA ***************************************************************************** */
+  /*   * ****************************************************************************************************************************** */
+ 
+    public function recupera_estatTerrassa($data) {
+    $mydata = Gestor::cambiaf_a_mysql($data);
+    $query = "SELECT estat_terrassa_actiu FROM estat_terrassa
+    WHERE 
+    (estat_terrassa_data='$mydata' ) 
+    ORDER BY estat_terrassa_timestamp DESC";
+    $Result1 = mysqli_query($this->connexioDB, $query) or die(((is_object($GLOBALS["___mysqli_ston"])) ? mysqli_error($GLOBALS["___mysqli_ston"]) : (($___mysqli_res = mysqli_connect_error()) ? $___mysqli_res : false)));
+    if (!mysqli_num_rows($Result1))
+      return OPCIO_TERRASSA?'1':'0';
+    else
+      return (mysqli_result($Result1, 0) == 1);
+  }
+  
+  /*   * ****************************************************************************************************************************** */
+  /*   * *********   UPDATE ESTAT TERRASSA ***************************************************************************** */
+  /*   * ****************************************************************************************************************************** */
+
+  public function update_estatTerrassa($data, $activa) {
+    $this->reg_log("update_estat_terrassa($data, $activa)");
+
+    if (!isset($_SESSION))
+      session_start();
+
+    $mydata = $this->cambiaf_a_mysql($data);
+//echo $data.$torn;
+    $query = "DELETE FROM estat_terrassa WHERE    
+    (estat_terrassa_data='$mydata')";
+    
+    $Result1 = $this->log_mysql_query($query, $this->connexioDB) or die(((is_object($GLOBALS["___mysqli_ston"])) ? mysqli_error($GLOBALS["___mysqli_ston"]) : (($___mysqli_res = mysqli_connect_error()) ? $___mysqli_res : false)));
+
+    $insertSQL = sprintf("INSERT INTO estat_terrassa
+    (estat_terrassa_data,  estat_terrassa_actiu) 
+    VALUES (%s,  %s)", $this->SQLVal($mydata, "text"),  $this->SQLVal($activa, "text"));
+
+ //echo $insertSQL;die();
+    
+    $Result1 = $this->log_mysql_query($insertSQL, $this->connexioDB) or die(((is_object($GLOBALS["___mysqli_ston"])) ? mysqli_error($GLOBALS["___mysqli_ston"]) : (($___mysqli_res = mysqli_connect_error()) ? $___mysqli_res : false)));
+
+    
+    
+
+    return $query . "<br/>\n<br/>\n" . $insertSQL;
+  }
+  
+  
   
 // FUNCIONS	recupera carta amb comanda inclosa
   /*   * ******************************************************************************************************* */
