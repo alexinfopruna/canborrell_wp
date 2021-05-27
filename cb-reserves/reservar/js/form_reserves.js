@@ -187,8 +187,13 @@ $(function () {
     $("button, .bt").button();
     $("button, .bt").find("label").unbind("mouseup");
 
-
-
+/*
+$("#terrassa").change(function () {
+    alert("····");
+       if ( $( elem ).prop( "checked" ) ) {
+           
+       }
+    });*/
 
     $("#cotxets0").click(function () {
         $(".fr-seccio-quants input[name=amplaCotxets]").val(0);
