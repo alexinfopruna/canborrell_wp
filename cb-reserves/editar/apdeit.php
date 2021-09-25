@@ -99,6 +99,7 @@ else{
 if (!isset($_GET['resend']))
 {    
     $d_limit=$_POST['data_limit'];
+    if (empty($d_limit)) $d_limit=date('Y-m-d');
    $query='UPDATE reserves SET estat='.$estat.', num_1=0, data_limit="'.$d_limit.'" WHERE id_reserva='.$id;
    //print_log("Reserva modificada: $id / estat=$estat / data limit=$d_limit ---- $query");
    Gestor::xgreg_log("<span class='grups'>Reserva modificada: <span class='idr'>$id</span> / estat=$estat / data limit=$d_limit ---- </span>",0,'/log/logGRUPS.txt');
