@@ -1495,6 +1495,7 @@ EOHTML;
                 <td><b>Taula</span></b></td>
                 <td class="columna-nom"><b>Nom</b></td>
                 <td><b>ID</b></td>
+                
               </tr>
 ';
 
@@ -1536,6 +1537,7 @@ EOHTML;
                 <td><b>Taula</span></b></td>
                 <td class="columna-nom"><b>Nom</b></td>
                 <td><b>ID</b></td>
+                <td><b>Terrassa</b></td>
               </tr>
         
         <div class="pageBreak"> &nbsp; </div>';
@@ -1555,6 +1557,9 @@ EOHTML;
                 <td><b>{$nom} - {$row['client_mobil']} <span class="garjola">{$row['client_conflictes']}</span></b>
                 {$saltaobs}<em>{$row['observacions']}{$paga}</em><span>{$comanda} {$pastis}</span></td>
                 <td>{$row['id_reserva']} </td>
+                
+                <td>{$row['reserva_terrassa']} </td>
+                    
               </tr>
               <tr  class="observacions {$par} {$amagat}"><td colspan="11">&nbsp;</td></tr>
       
