@@ -1546,7 +1546,7 @@ EOHTML;
       $n++;
 
       $paga = (floatval($row['preu_reserva']) > 0) ? "(Psenyal:{$row['preu_reserva']})" : "";
-      $terrassa=$row['reserva_terrassa']?" [T]":"";
+      $terrassa=$row['reserva_terrassa']?" -[T]":"";
       $html .= <<< EOHTML
                     <tr class="taulaf2 {$par}">
                 <td class="contador"><b>{$total}</b></td>
