@@ -1546,6 +1546,7 @@ EOHTML;
       $n++;
 
       $paga = (floatval($row['preu_reserva']) > 0) ? "(Psenyal:{$row['preu_reserva']})" : "";
+      $terrassa=$row['reserva_terrassa']?" [T]":"";
       $html .= <<< EOHTML
                     <tr class="taulaf2 {$par}">
                 <td class="contador"><b>{$total}</b></td>
@@ -1558,7 +1559,7 @@ EOHTML;
                 {$saltaobs}<em>{$row['observacions']}{$paga}</em><span>{$comanda} {$pastis}</span></td>
                 <td>{$row['id_reserva']} </td>
                 
-                <td>{$row['reserva_terrassa']?" [T]"} </td>
+                <td>{$terrassa} </td>
                     
               </tr>
               <tr  class="observacions {$par} {$amagat}"><td colspan="11">&nbsp;</td></tr>
