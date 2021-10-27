@@ -221,7 +221,7 @@ $translate["gossos"] = "Admetem mascotes al'interior del restaurant fins a 8Kg. 
 $translate['RESERVA_CORONA'] = "Ens veiem en l'obligació d'advertir que si vostè pateix simptomatologia
 que pugui estar relacionada amb el virus Covid-19, si us plau prengui les
 mesures dictaminades pel Ministeri de Sanitat. 
-<br><b> Recordeu que només podeu compartir taula si sou unitat familiar o grup bombolla</b>";
+<br><b> </b>";
 
 $translate["meteo_terrassa"]="Les reserves a la terrassa depenen de les condicions meteorològiques. "
         . "En cas de pluja o vent fort la taula seràparada a l'interior<br>"

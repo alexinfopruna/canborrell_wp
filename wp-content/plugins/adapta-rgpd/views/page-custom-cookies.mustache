@@ -1,0 +1,66 @@
+
+
+<div>
+      <div id="custom-cookies-eu-label">
+      {{^cookies-label}}        
+          {{#__}}El sitio Web {{dominio}} utiliza cookies propias {{#clause-thirdparty}}y de terceros{{/clause-thirdparty}} para su correcto funcionamiento{{#thirdparty-analytics}} y para fines analíticos{{/thirdparty-analytics}}{{#thirdparty-advertising}} {{# thirdparty-amazon }}y para fines de afiliación {{/ thirdparty-amazon }}y para mostrarte publicidad relacionada con sus preferencias en base a un perfil elaborado a partir de tus hábitos de navegación{{/thirdparty-advertising}}. Al hacer clic en el botón Aceptar, acepta el uso de estas tecnologías y el procesamiento de sus datos para estos propósitos.{{/__}}          
+      {{/cookies-label}}
+
+      {{#cookies-label}}
+        {{{cookies-label}}}
+          &nbsp;&nbsp;
+          {{# cookiesURL }}<a target="_blank" id="cookies-eu-more" rel="nofollow" href="{{ cookiesURL }}">{{cookies-linklabel}}</a>{{/ cookiesURL }}
+      {{/cookies-label}}
+      </div>
+
+      <div id="custom-cookies-eu-buttons" class="cookies-eu-buttons">
+        <button id="custom-cookies-eu-reject" class="cookies-eu-reject">{{ cookies-rejectlabel }}</button>
+        <button id="custom-cookies-eu-accept" class="cookies-eu-accept">{{#__}}ACEPTAR TODAS LAS COOKIES{{/__}}</button></div>
+      </div>
+
+<br/>
+<p>
+	{{#__}}Puedes cambiar tus preferencias de cookies en cualquier momento si vuelves a la página de Personalizar cookies, a la que puedes acceder a través del Aviso de cookies.{{/__}} {{# cookiesURL }}{{#__}}Para obtener más información sobre las cookies y cómo las usamos, consulta la página de {{/__}}<a href="{{cookiesURL}}">{{#__}}Política de Cookies{{/__}}</a>.{{/ cookiesURL }}
+</p>
+
+<h3>{{#__}}Cookies técnicas{{/__}}</h3>
+<p>
+	{{#__}}Son aquellas que permiten a los usuarios registrados navegar a través del sitio Web, del área restringida y a utilizar sus diferentes funciones, como por ejemplo, el sistema de comentarios o el buscador{{#es-tienda}} o llevar a cabo el proceso de compra de un Producto o Servicio{{/es-tienda}} y no pueden ser desactivadas.{{/__}}
+</p>
+
+{{#thirdparty-analytics}}
+<div class="custom-cookies-option">
+  <h3>{{#__}}Cookies de análisis o medición{{/__}}</h3>
+  <span>
+    <input type="radio" name="cookies-analytics-option" value="true" class="custom-cookies-radio" data-consent="ANLTCS" id="custom-cookies-accept-analytics" {{#consent-analytics}}checked{{/consent-analytics}}>
+    <label for="custom-cookies-accept-analytics">{{#__}}Activar{{/__}}</label>
+    &nbsp;&nbsp;
+    <input type="radio" name="cookies-analytics-option" value="false" class="custom-cookies-radio" data-consent="ANLTCS" id="custom-cookies-reject-analytics" 
+    {{^consent-analytics}}checked{{/consent-analytics}}>
+    <label for="custom-cookies-reject-analytics">{{#__}}Desactivar{{/__}}</label>
+</span>
+</div>
+
+<p>
+	{{#__}}Son aquellas que, {{#clause-thirdparty}}bien tratadas por el sitio Web o por terceros{{/clause-thirdparty}}{{^clause-thirdparty}}tratadas por el sitio Web{{/clause-thirdparty}}, permiten cuantificar el número de usuarios y así realizar la medición y análisis estadístico de la utilización que hacen los usuarios del sitio Web. Para ello se analiza la navegación que realizas en este sitio Web con el fin de mejorarlo.{{/__}}
+</p>
+{{/thirdparty-analytics}}
+
+{{#thirdparty-social}}
+<div class="custom-cookies-option">
+  <h3>{{#__}}Cookies sociales{{/__}}</h3>
+  <span>
+    <input type="radio" name="cookies-social-option" value="true" class="custom-cookies-radio" data-consent="SCLS" id="custom-cookies-accept-social" 
+    {{#consent-social}}checked{{/consent-social}}>
+    <label for="custom-cookies-accept-social">{{#__}}Activar{{/__}}</label>
+    &nbsp;&nbsp;
+    <input type="radio" name="cookies-social-option" value="false" class="custom-cookies-radio" data-consent="SCLS" id="custom-cookies-reject-social" 
+    {{^consent-social}}checked{{/consent-social}}>
+    <label for="custom-cookies-reject-social">{{#__}}Desactivar{{/__}}</label>
+</span>
+</div>
+
+<p>
+  {{#__}}Son establecidas por las plataformas de redes sociales para permitir a los usuarios compartir contenido con sus amigos y redes.{{/__}}  
+</p>
+{{/thirdparty-social}}

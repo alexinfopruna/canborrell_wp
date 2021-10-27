@@ -1,0 +1,128 @@
+{{!
+
+ Copyright (c) 2018 superadmin (email : hola@superadmin.es)
+
+ This program is free software; you can redistribute it and/or modify
+ it under the terms of the GNU General Public License, version 2 or, at
+ your discretion, any later version, as published by the Free
+ Software Foundation.
+
+ This program is distributed in the hope that it will be useful,
+ but WITHOUT ANY WARRANTY; without even the implied warranty of
+ MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ GNU General Public License for more details.
+
+ You should have received a copy of the GNU General Public License
+ along with this program; if not, write to the Free Software
+ Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA
+
+}}
+
+<div id='banner-wrapper'>
+  <div class='banner-row'>
+    <div class='banner-column'>      
+      	{{! //////////////// AYUDA //////////////// }}
+	
+		<p>
+			{{#__}}¿Necesitas ayuda, tienes ideas para mejorar el plugin?{{/__}}
+		</p>
+		<p>
+			{{#__}}Cuéntanos qué necesitas:{{/__}}
+		</p>
+		<p>
+			<a target="_blank" href="https://superadmin.es/contacto/?utm_source=wordpressorg" style="text-decoration: none">
+				<button class=" button button-primary" style="margin: 0.5em 0">
+					{{#__}}CONTACTAR{{/__}}				
+				</button>
+			</a>
+		</p>      
+      
+      	<br>
+		<h2>{{#__}}Cómo funciona{{/__}}</h2>		
+		<p>
+			{{#__}}Tras activar el plugin, en el menú "Páginas" aparecen tres nuevas páginas con los títulos{{/__}}:
+			<ul style="padding-left: 20px">
+				<li>&bull; {{#__}}Aviso Legal{{/__}}</li>
+				<li>&bull; {{#__}}Política de Privacidad{{/__}}</li>
+				<li>&bull; {{#__}}Política de Cookies{{/__}}</li>
+			</ul>
+		</p>
+		<p>		
+			{{#__}}El contenido es creado dinámicamente en el momento en que el usuario visita cualquiera de las páginas que contienen los textos legales. De este modo, puedes haces cambios en los datos del Titular o en la configuración del plugin que los textos estarán siempre actualizados.{{/__}}
+		</p>
+		<p>		
+			{{#__}}En el menú principal aparece un nuevo elemento con el nombre "Adapta RGPD" que sirve para configurar el plugin. Al pulsar sobre su nombre verás que tiene 4 pestañas{{/__}}:
+		</p>
+		
+		<h4>1. {{#__}}Pestaña Titular{{/__}}</h4>
+		<p>
+			{{#__}}Está compuesta por un formulario que sirve para rellenar los datos del titular, ya sea un particular o una empresa, y del sitio web.{{/__}}
+		</p>
+
+		<h4>2. {{#__}}Pestaña Textos legales{{/__}}</h4>
+		<p>
+			{{#__}}Formado por 2 apartados{{/__}}:
+		</p>
+			<ul style="padding-left: 20px">
+				<li>&bull; <b>{{#__}}Páginas Legales{{/__}}</b><br/>{{#__}}Para activar o desactivar las páginas de Aviso Legal, Política de Privacidad y la Política de Cookies.{{/__}}</li>
+				<li>&bull; <b>{{#__}}Primera capa informativa{{/__}}</b><br/>{{#__}}Sirve para cumplir el deber de informar.{{/__}}</li>				
+			</ul> 
+		
+		<h4>3. {{#__}}Pestaña Banner de Cookies{{/__}}</h4>
+		<p>
+			{{#__}}Sirve para activar el banner de cookies y aspectos del la Política de Cookies.{{/__}}</li>
+		</p>
+
+		<h4>3. {{#__}}Pestaña Ayuda{{/__}}</h4>
+		<p>
+			{{#__}}Esta página de ayuda. Además puedes mandarnos cualquier consulta o sugerencia a través de{{/__}} <a href="https://superadmin.es/contacto" target="_blank">este enlace</a>.
+		</p>
+
+		<br>
+		<h2>Shortcodes</h2>		
+		<ul style="padding-left: 20px">
+			<li>&bull; <b>{{#__}}Páginas Legales{{/__}}</b>
+				<br>{{#__}}Para mostrar el texto del Aviso Legal, la Política de Privacidad o la Política de Cookies a través de un shortcode utiliza respectivamente{{/__}}:
+				<br/>
+				<br/>[argpd_aviso-legal/]
+				<br/>[argpd_politica-privacidad/]
+				<br/>[argpd_politica-cookies/]	
+				<br/>[argpd_preferencias-cookies/]
+				<br/><br/>
+			</li>	
+			<li>&bull; <b>{{#__}}Primera capa informativa{{/__}}</b><br/>
+				<br/>[argpd_deber_de_informar finalidad="Cumplir con la prestación contratada" destinatarios="No se ceden los datos" legitimacion="Ejecución del contrato"/]
+			</li>
+		</ul>			
+      </div>
+    
+    
+    	<div class='banner-column'>
+    	{{! //////////////// BANNER //////////////// }}        
+        <div class="banner-card" style="text-align: center; background-color: #f7f7f7">
+			<img src="https://superadmin.es/img/superadmin-premium-hosting-administrado.png" alt="Superadmin - Hosting WordPress Administrado">
+		
+			<div class="banner-text" >
+				<h2 style="font-size: 1.5em"><a href="https://superadmin.es">Superadmin.es</a><h2>
+				
+				<h2>Ayuda de<br/>
+				expertos en WordPress</h2>	
+				
+				<a 	target="_blank" 			
+					href="https://superadmin.es/contacto/?source=wordpressorg">
+					<button class="button button-secondary">
+						{{#__}}CONTACTAR{{/__}}
+					</button>
+				</a>
+
+				<a 	target="_blank"			
+					href="https://superadmin.es/caracteristicas/source=wordpressorg">
+					<button class=" button button-primary">
+						{{#__}}VER DETALLES{{/__}}
+					</button>
+				</a>
+			</div>
+		</div>
+		</div>
+    </div>  
+</div>

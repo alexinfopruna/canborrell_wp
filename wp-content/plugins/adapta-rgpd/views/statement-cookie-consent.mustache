@@ -1,0 +1,56 @@
+{{!
+
+ Copyright (c) 2018 superadmin (email : superadmin@superadmin.es)
+
+ This program is free software; you can redistribute it and/or modify
+ it under the terms of the GNU General Public License, version 2 or, at
+ your discretion, any later version, as published by the Free
+ Software Foundation.
+
+ This program is distributed in the hope that it will be useful,
+ but WITHOUT ANY WARRANTY; without even the implied warranty of
+ MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ GNU General Public License for more details.
+
+ You should have received a copy of the GNU General Public License
+ along with this program; if not, write to the Free Software
+ Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA
+
+}}
+
+<div id="cookies-eu-wrapper">
+    <div 
+      id="cookies-eu-banner"       
+      data-wait-remove="250"
+      >      
+      <div id="cookies-eu-label">
+      {{^cookies-label}}        
+          {{#__}}Esta web utiliza cookies propias {{#clause-thirdparty}}y de terceros{{/clause-thirdparty}} para su correcto funcionamiento{{#thirdparty-analytics}} y para fines analíticos{{/thirdparty-analytics}}{{#thirdparty-advertising}} {{# thirdparty-amazon }}y para fines de afiliación {{/ thirdparty-amazon }}y para mostrarte publicidad relacionada con sus preferencias en base a un perfil elaborado a partir de tus hábitos de navegación{{/thirdparty-advertising}}. Al hacer clic en el botón Aceptar, acepta el uso de estas tecnologías y el procesamiento de tus datos para estos propósitos.{{/__}}
+          
+          {{! si exite la página para personalizar cookies}}
+          {{#custom-cookies-page-url}}
+          <a class="argpd-cookies-politica" rel="nofollow" id="cookies-eu-more" href="{{ custom-cookies-page-url }}">{{#cookies-linklabel}}{{cookies-linklabel}}{{/cookies-linklabel}}{{^cookies-linklabel}}{{#__}}Configurar y más información{{/__}}{{/cookies-linklabel}}</a>
+          {{/custom-cookies-page-url}}
+
+          {{! si no exite la página para personalizar cookies }}
+          {{^custom-cookies-page-url}}
+          {{# cookiesURL }}<a class="argpd-cookies-politica" rel="nofollow" id="cookies-eu-more" href="{{ cookiesURL }}">{{#cookies-linklabel}}{{cookies-linklabel}}{{/cookies-linklabel}}{{^cookies-linklabel}}{{#__}}Configurar y más información{{/__}}{{/cookies-linklabel}}</a>{{/ cookiesURL }}
+          {{/custom-cookies-page-url}}
+
+      {{/cookies-label}}
+
+      {{#cookies-label}}
+        {{{cookies-label}}}
+          &nbsp;&nbsp;
+          {{# cookiesURL }}<a id="cookies-eu-more" rel="nofollow" href="{{ cookiesURL }}">{{cookies-linklabel}}</a>{{/ cookiesURL }}
+      {{/cookies-label}}
+      </div>
+
+        <div id="cookies-eu-buttons"><button id="cookies-eu-reject" class="cookies-eu-reject">{{ cookies-rejectlabel }}</button>
+        <button id="cookies-eu-accept" class="cookies-eu-accept">{{ cookies-btnlabel }}</button></div>
+    </div>
+</div>
+
+<div id="cookies-eu-banner-closed">
+  <span>{{#__}}Privacidad{{/__}}</span>
+</div>

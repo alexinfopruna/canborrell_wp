@@ -83,7 +83,7 @@ $translate['Cap taula o restaurant tancat'] = 'There are no tables available or 
 $translate['Editant reserva ID'] = 'Editing reservation ID';
 $translate['RESERVA_CORONA'] = 'We are obliged to warn you that if you have symptoms
 that may be related to the Covid-19 virus, please take the measures ruled by the Ministry. 
-<br> <b>Remember that you can only share a table if you are a family unit or a bubble group</b>';
+<br> <b></b>';
 
 
 $translate['Sol·licitud de reserva per a GRUPS'] = 'Reservation request for GROUPS';

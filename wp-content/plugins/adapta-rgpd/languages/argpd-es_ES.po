@@ -1,0 +1,2623 @@
+# Copyright (C) 2021 Adapta RGPD
+# This file is distributed under the same license as the Adapta RGPD package.
+msgid ""
+msgstr ""
+"Project-Id-Version: Adapta RGPD 1.3.3\n"
+"Report-Msgid-Bugs-To: https://wordpress.org/support/plugin/adapta-rgpd\n"
+"POT-Creation-Date: 2021-07-08 09:49:40+00:00\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"PO-Revision-Date: 2021-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+
+#: adapta-rgpd.php:323
+msgid ""
+"La instalaci&oacute;n no cumple los requisitos, Adapta RGPD necesita al "
+"menos PHP 5.6, y el plugin ha sido <a href=\"%s\">desactivado</a>."
+msgstr ""
+
+#: bin/t/data/add-textdomain-0-result.php:3
+#: bin/t/data/add-textdomain-0-result.php:4 bin/t/data/add-textdomain-0.php:3
+#: bin/t/data/add-textdomain-0.php:4
+msgid "Hello World"
+msgstr ""
+
+#: bin/t/data/add-textdomain-0-result.php:5 bin/t/data/add-textdomain-0.php:5
+msgid "Single"
+msgid_plural "Plural"
+msgstr[0] ""
+msgstr[1] ""
+
+#: bin/t/data/add-textdomain-0-result.php:6 bin/t/data/add-textdomain-0.php:6
+msgid "Single Noop"
+msgid_plural "Plural Noop"
+msgstr[0] ""
+msgstr[1] ""
+
+#: bin/t/data/add-textdomain-0-result.php:7
+#: bin/t/data/add-textdomain-0-result.php:8 bin/t/data/add-textdomain-0.php:7
+#: bin/t/data/add-textdomain-0.php:8
+msgctxt "Testing"
+msgid "Hello World"
+msgstr ""
+
+#: bin/t/data/add-textdomain-0-result.php:10
+msgctxt "test-domain"
+msgid "Hello World Noop"
+msgid_plural "Testing"
+msgstr[0] ""
+msgstr[1] ""
+
+#: bin/t/data/add-textdomain-0-result.php:11
+#: bin/t/data/add-textdomain-0-result.php:13 bin/t/data/add-textdomain-0.php:11
+#: bin/t/data/add-textdomain-0.php:13
+msgid "Attribute"
+msgstr ""
+
+#: bin/t/data/add-textdomain-0-result.php:12
+#: bin/t/data/add-textdomain-0-result.php:14 bin/t/data/add-textdomain-0.php:12
+#: bin/t/data/add-textdomain-0.php:14
+msgid "HTML"
+msgstr ""
+
+#: bin/t/data/add-textdomain-0-result.php:15 bin/t/data/add-textdomain-0.php:15
+msgctxt "Testing"
+msgid "Attribute"
+msgstr ""
+
+#: bin/t/data/add-textdomain-0-result.php:16 bin/t/data/add-textdomain-0.php:16
+msgctxt "Testing"
+msgid "HTML"
+msgstr ""
+
+#: includes/class-admin.php:124 includes/class-admin.php:139
+#: includes/class-admin.php:170 includes/class-admin.php:258
+#: includes/class-admin.php:321
+msgid "You do not have sufficient permissions to access this page."
+msgstr ""
+
+#: includes/class-admin.php:359
+msgid "Settings"
+msgstr ""
+
+#: includes/class-integration.php:479
+msgid "Moderar los comentarios."
+msgstr ""
+
+#: includes/class-integration.php:490
+msgid "Para poder comentar debes aceptar la política de privacidad."
+msgstr ""
+
+#: includes/class-integration.php:583
+msgid "Menú para los textos legales - RGPD"
+msgstr ""
+
+#: includes/class-integration.php:604 includes/class-ui.php:1119 views/mustache
+msgid "Aviso Legal"
+msgstr ""
+
+#: includes/class-integration.php:609 includes/class-ui.php:1185 views/mustache
+msgid "Política de Privacidad"
+msgstr ""
+
+#: includes/class-integration.php:614 includes/class-ui.php:1251 views/mustache
+msgid "Política de Cookies"
+msgstr ""
+
+#: includes/class-integration.php:618
+msgid "Configuración de Cookies"
+msgstr ""
+
+#: includes/class-integration.php:770
+msgid "Cumplir con la prestación contratada."
+msgstr ""
+
+#: includes/class-integration.php:772
+msgid "Ejecución del contrato con el interesado."
+msgstr ""
+
+#: includes/class-integration.php:804 includes/class-integration.php:837
+#: includes/class-integration.php:855
+msgid "Sí"
+msgstr ""
+
+#: includes/class-integration.php:836 includes/class-integration.php:854
+msgid "Aceptar promociones"
+msgstr ""
+
+#: includes/class-integration.php:837 includes/class-integration.php:855
+msgid "No"
+msgstr ""
+
+#: includes/class-settings.php:199
+msgid "Simple"
+msgstr ""
+
+#: includes/class-settings.php:200
+msgid "Con borde"
+msgstr ""
+
+#: includes/class-settings.php:201
+msgid "Borde + Números"
+msgstr ""
+
+#: includes/class-settings.php:202
+msgid "Compacto en una línea"
+msgstr ""
+
+#: includes/class-settings.php:203
+msgid "Compacto con botón ver más"
+msgstr ""
+
+#: includes/class-settings.php:207
+msgid "Clásico"
+msgstr ""
+
+#: includes/class-settings.php:208
+msgid "Clásico en parte superior"
+msgstr ""
+
+#: includes/class-settings.php:209
+msgid "Moderno Claro"
+msgstr ""
+
+#: includes/class-settings.php:210
+msgid "Moderno Oscuro"
+msgstr ""
+
+#: includes/class-settings.php:211
+msgid "Moderno en columnas"
+msgstr ""
+
+#: includes/class-settings.php:216
+msgid "Argentina"
+msgstr ""
+
+#: includes/class-settings.php:217
+msgid "Andorra"
+msgstr ""
+
+#: includes/class-settings.php:218
+msgid "Alemania"
+msgstr ""
+
+#: includes/class-settings.php:219
+msgid "Austria"
+msgstr ""
+
+#: includes/class-settings.php:220
+msgid "Bélgica"
+msgstr ""
+
+#: includes/class-settings.php:221
+msgid "Bulgaria"
+msgstr ""
+
+#: includes/class-settings.php:222
+msgid "Bolivia"
+msgstr ""
+
+#: includes/class-settings.php:223
+msgid "Brasil"
+msgstr ""
+
+#: includes/class-settings.php:224
+msgid "Canadá"
+msgstr ""
+
+#: includes/class-settings.php:225
+msgid "Colombia"
+msgstr ""
+
+#: includes/class-settings.php:226
+msgid "Chile"
+msgstr ""
+
+#: includes/class-settings.php:227
+msgid "Costa Rica"
+msgstr ""
+
+#: includes/class-settings.php:228
+msgid "Chipre"
+msgstr ""
+
+#: includes/class-settings.php:229
+msgid "Cuba"
+msgstr ""
+
+#: includes/class-settings.php:230
+msgid "Dinamarca"
+msgstr ""
+
+#: includes/class-settings.php:231
+msgid "Ecuador"
+msgstr ""
+
+#: includes/class-settings.php:232
+msgid "El Salvador"
+msgstr ""
+
+#: includes/class-settings.php:233
+msgid "Eslovaquia"
+msgstr ""
+
+#: includes/class-settings.php:234
+msgid "Eslovenia"
+msgstr ""
+
+#: includes/class-settings.php:235
+msgid "Estonia"
+msgstr ""
+
+#: includes/class-settings.php:236
+msgid "España"
+msgstr ""
+
+#: includes/class-settings.php:237
+msgid "Estados Unidos"
+msgstr ""
+
+#: includes/class-settings.php:238
+msgid "Finlandia"
+msgstr ""
+
+#: includes/class-settings.php:239
+msgid "Francia"
+msgstr ""
+
+#: includes/class-settings.php:240
+msgid "Grecia"
+msgstr ""
+
+#: includes/class-settings.php:241
+msgid "Guatemala"
+msgstr ""
+
+#: includes/class-settings.php:242
+msgid "Haití"
+msgstr ""
+
+#: includes/class-settings.php:243
+msgid "Honduras"
+msgstr ""
+
+#: includes/class-settings.php:244
+msgid "Hungría"
+msgstr ""
+
+#: includes/class-settings.php:245
+msgid "Italia"
+msgstr ""
+
+#: includes/class-settings.php:246
+msgid "Irlanda"
+msgstr ""
+
+#: includes/class-settings.php:247
+msgid "Letonia"
+msgstr ""
+
+#: includes/class-settings.php:248
+msgid "Lituania"
+msgstr ""
+
+#: includes/class-settings.php:249
+msgid "Luxemburgo"
+msgstr ""
+
+#: includes/class-settings.php:250
+msgid "Malta"
+msgstr ""
+
+#: includes/class-settings.php:251
+msgid "México"
+msgstr ""
+
+#: includes/class-settings.php:252
+msgid "Nicaragua"
+msgstr ""
+
+#: includes/class-settings.php:253
+msgid "Países Bajos"
+msgstr ""
+
+#: includes/class-settings.php:254
+msgid "Perú"
+msgstr ""
+
+#: includes/class-settings.php:255
+msgid "Panamá"
+msgstr ""
+
+#: includes/class-settings.php:256
+msgid "Paraguay"
+msgstr ""
+
+#: includes/class-settings.php:257
+msgid "Polonia"
+msgstr ""
+
+#: includes/class-settings.php:258
+msgid "Portugal"
+msgstr ""
+
+#: includes/class-settings.php:259
+msgid "Reino Unido"
+msgstr ""
+
+#: includes/class-settings.php:260
+msgid "República Checa"
+msgstr ""
+
+#: includes/class-settings.php:261
+msgid "República Dominicana"
+msgstr ""
+
+#: includes/class-settings.php:262
+msgid "Rumania"
+msgstr ""
+
+#: includes/class-settings.php:263
+msgid "Suecia"
+msgstr ""
+
+#: includes/class-settings.php:264
+msgid "Federación Rusa"
+msgstr ""
+
+#: includes/class-settings.php:265
+msgid "Confederación Suiza"
+msgstr ""
+
+#: includes/class-settings.php:266
+msgid "Uruguay"
+msgstr ""
+
+#: includes/class-settings.php:267
+msgid "Venezuela"
+msgstr ""
+
+#: includes/class-settings.php:342
+msgid "Aceptar"
+msgstr ""
+
+#: includes/class-settings.php:346
+msgid "Rechazar"
+msgstr ""
+
+#: includes/class-settings.php:351
+msgid "Más información"
+msgstr ""
+
+#: includes/class-settings.php:353 views/mustache
+msgid "Configurar y más información"
+msgstr ""
+
+#: includes/class-settings.php:383
+msgid ""
+"Acepto recibir ofertas, noticias y otras recomendaciones sobre productos o "
+"servicios"
+msgstr ""
+
+#: includes/class-ui.php:182
+msgid "cargando..."
+msgstr ""
+
+#: includes/class-ui.php:380 views/mustache
+msgid "Responsable"
+msgstr ""
+
+#: includes/class-ui.php:414
+msgid "Pulsa en"
+msgstr ""
+
+#: includes/class-ui.php:415
+msgid "Guardar cambios"
+msgstr ""
+
+#: includes/class-ui.php:416
+msgid "para actualizar automáticamente los textos legales."
+msgstr ""
+
+#: includes/class-ui.php:427
+msgid "Responsable del Tratamiento"
+msgstr ""
+
+#: includes/class-ui.php:434
+msgid "Particular"
+msgstr ""
+
+#: includes/class-ui.php:440
+msgid "Empresa o autónomo"
+msgstr ""
+
+#: includes/class-ui.php:452
+msgid "Nombre y apellidos"
+msgstr ""
+
+#: includes/class-ui.php:453
+msgid "de Contacto"
+msgstr ""
+
+#: includes/class-ui.php:461
+msgid "Denominación social"
+msgstr ""
+
+#: includes/class-ui.php:462
+msgid "o Titular"
+msgstr ""
+
+#: includes/class-ui.php:488
+msgid "Identificador fiscal"
+msgstr ""
+
+#: includes/class-ui.php:489
+msgid "NIF o CIF"
+msgstr ""
+
+#: includes/class-ui.php:511 includes/class-ui.php:535
+msgid "Datos del"
+msgstr ""
+
+#: includes/class-ui.php:512
+msgid "Colegio Profesional"
+msgstr ""
+
+#: includes/class-ui.php:523 includes/class-ui.php:665
+msgid "Opcional"
+msgstr ""
+
+#: includes/class-ui.php:536
+msgid "Registro mercantil"
+msgstr ""
+
+#: includes/class-ui.php:542
+msgid "Registro mercantil de"
+msgstr ""
+
+#: includes/class-ui.php:547
+msgid "Tomo"
+msgstr ""
+
+#: includes/class-ui.php:553
+msgid "Libro"
+msgstr ""
+
+#: includes/class-ui.php:559
+msgid "Sección"
+msgstr ""
+
+#: includes/class-ui.php:566
+msgid "Folio"
+msgstr ""
+
+#: includes/class-ui.php:572
+msgid "Hoja"
+msgstr ""
+
+#: includes/class-ui.php:578
+msgid "Inscripción"
+msgstr ""
+
+#: includes/class-ui.php:591 views/mustache
+msgid "Domicilio"
+msgstr ""
+
+#: includes/class-ui.php:592
+msgid "Domicilio social"
+msgstr ""
+
+#: includes/class-ui.php:637 views/mustache
+msgid "Correo electrónico"
+msgstr ""
+
+#: includes/class-ui.php:638
+msgid "de contacto"
+msgstr ""
+
+#: includes/class-ui.php:649
+msgid "Correo electrónico dónde ejercen sus"
+msgstr ""
+
+#: includes/class-ui.php:650
+msgid "derechos los usuarios"
+msgstr ""
+
+#: includes/class-ui.php:660
+msgid "Teléfono"
+msgstr ""
+
+#: includes/class-ui.php:677
+msgid "Sobre el sitio Web"
+msgstr ""
+
+#. translators: en el contexto: Dirección web del sitio
+#: includes/class-ui.php:688
+msgid "Dirección web"
+msgstr ""
+
+#: includes/class-ui.php:689
+msgid "del sitio"
+msgstr ""
+
+#: includes/class-ui.php:708
+msgid "Actividad del"
+msgstr ""
+
+#: includes/class-ui.php:709 views/mustache
+msgid "Sitio Web"
+msgstr ""
+
+#: includes/class-ui.php:717
+msgid "Actividad de"
+msgstr ""
+
+#: includes/class-ui.php:718
+msgid "la Empresa"
+msgstr ""
+
+#: includes/class-ui.php:732
+msgid "Por ejemplo, tienda de venta de zapatos"
+msgstr ""
+
+#: includes/class-ui.php:739
+msgid "Tienda online"
+msgstr ""
+
+#: includes/class-ui.php:758
+msgid "¿Qué es la LSSI?"
+msgstr ""
+
+#: includes/class-ui.php:769
+msgid "Proveedor del"
+msgstr ""
+
+#: includes/class-ui.php:770
+msgid "alojamiento web"
+msgstr ""
+
+#: includes/class-ui.php:787
+msgid "Servicios de Terceros"
+msgstr ""
+
+#: includes/class-ui.php:842
+msgid "Programa de Afiliados de Amazon de la UE"
+msgstr ""
+
+#: includes/class-ui.php:927
+msgid "Facebook, Twitter, Linkedin, YouTube o Instagram"
+msgstr ""
+
+#: includes/class-ui.php:941
+msgid "Más Ajustes"
+msgstr ""
+
+#: includes/class-ui.php:947
+msgid "Cláusulas"
+msgstr ""
+
+#: includes/class-ui.php:958
+msgid "Reservar el Derecho de exclusión"
+msgstr ""
+
+#: includes/class-ui.php:968
+msgid "Cesión de datos a terceros"
+msgstr ""
+
+#: includes/class-ui.php:980
+msgid "Requisito mayoría edad. "
+msgstr ""
+
+#: includes/class-ui.php:987 includes/class-ui.php:994
+msgid "años"
+msgstr ""
+
+#: includes/class-ui.php:988
+msgid "otros"
+msgstr ""
+
+#: includes/class-ui.php:1005
+msgid ""
+"Datos especialmente protegidos: médicos, religiosos, orientación sexual..."
+msgstr ""
+
+#: includes/class-ui.php:1017
+msgid "Permitir la Portabilidad de datos"
+msgstr ""
+
+#: includes/class-ui.php:1029
+msgid "Error tipográfico y fe de erratas"
+msgstr ""
+
+#: includes/class-ui.php:1041
+msgid "Renuncia de fuero propio"
+msgstr ""
+
+#: includes/class-ui.php:1069
+msgid "Textos Legales"
+msgstr ""
+
+#: includes/class-ui.php:1094 views/mustache
+msgid "Páginas Legales"
+msgstr ""
+
+#: includes/class-ui.php:1096
+msgid "Activa o desactiva cada texto legal y escoge en que página aparece."
+msgstr ""
+
+#: includes/class-ui.php:1102
+msgid "Texto Legal"
+msgstr ""
+
+#: includes/class-ui.php:1103
+msgid "Página en la que aparece"
+msgstr ""
+
+#: includes/class-ui.php:1104 includes/class-ui.php:1937
+#: includes/class-ui.php:1955
+msgid "Ayuda"
+msgstr ""
+
+#: includes/class-ui.php:1127 includes/class-ui.php:1193
+#: includes/class-ui.php:1260 includes/class-ui.php:1325
+msgid "Ver"
+msgstr ""
+
+#: includes/class-ui.php:1316
+msgid "Preferencias de Cookies"
+msgstr ""
+
+#: includes/class-ui.php:1387
+msgid "Los buscadores de Google y Bing indexan los textos legales"
+msgstr ""
+
+#: includes/class-ui.php:1396
+msgid "No recomendado."
+msgstr ""
+
+#: includes/class-ui.php:1410
+msgid "Primera capa informativa en formularios y pie de página"
+msgstr ""
+
+#: includes/class-ui.php:1412
+msgid ""
+"Este apartado sirve para cumplir el deber de informar. Aprende los conceptos "
+"que necesitas en"
+msgstr ""
+
+#: includes/class-ui.php:1416
+msgid "esta guía."
+msgstr ""
+
+#: includes/class-ui.php:1425
+msgid "Activar en"
+msgstr ""
+
+#: includes/class-ui.php:1436
+msgid "Comentarios "
+msgstr ""
+
+#: includes/class-ui.php:1438
+msgid ""
+"Activa la primera capa informativa y la casilla de aceptación en los "
+"comentarios."
+msgstr ""
+
+#: includes/class-ui.php:1450
+msgid "Formularios"
+msgstr ""
+
+#: includes/class-ui.php:1453
+msgid "Guía para adecuar los formularios"
+msgstr ""
+
+#: includes/class-ui.php:1456 includes/class-ui.php:1764
+#: includes/class-ui.php:1853 includes/class-ui.php:1911
+msgid "Recomendado."
+msgstr ""
+
+#: includes/class-ui.php:1468
+msgid "Menú en el pie de página"
+msgstr ""
+
+#: includes/class-ui.php:1471
+msgid "Añade más enlaces"
+msgstr ""
+
+#: includes/class-ui.php:1474
+msgid "Crea un menú en el pie de página con enlaces a los textos legales."
+msgstr ""
+
+#: includes/class-ui.php:1486
+msgid "Carrito de la compra"
+msgstr ""
+
+#: includes/class-ui.php:1488
+msgid ""
+"Activa la primera capa informativa en la página de checkout de WooCommerce."
+msgstr ""
+
+#: includes/class-ui.php:1500
+msgid "Consentimiento promocional"
+msgstr ""
+
+#: includes/class-ui.php:1502
+msgid ""
+"Activa la casilla de consentimiento para promociones en la página de "
+"checkout de WooCommerce."
+msgstr ""
+
+#: includes/class-ui.php:1512 includes/class-ui.php:1650
+msgid "Textos"
+msgstr ""
+
+#: includes/class-ui.php:1515
+msgid "Texto para solicitar el consentimiento en la primera capa informativa:"
+msgstr ""
+
+#: includes/class-ui.php:1525 includes/class-ui.php:1546
+#: includes/class-ui.php:1666
+msgid "Para mostrar el texto por defecto deja en blanco."
+msgstr ""
+
+#: includes/class-ui.php:1536
+msgid "Texto para solicitar el consentimiento promocional:"
+msgstr ""
+
+#: includes/class-ui.php:1554 includes/class-ui.php:1735
+msgid "Diseño"
+msgstr ""
+
+#: includes/class-ui.php:1591 includes/class-ui.php:1618
+msgid "Banner de Cookies"
+msgstr ""
+
+#: includes/class-ui.php:1620
+msgid "Este apartado sirve para cumplir la ley de Cookies."
+msgstr ""
+
+#: includes/class-ui.php:1633 views/mustache
+msgid "Activar"
+msgstr ""
+
+#: includes/class-ui.php:1643
+msgid "Banner de Cookies "
+msgstr ""
+
+#: includes/class-ui.php:1654
+msgid "Texto para solicitar el consentimiento:"
+msgstr ""
+
+#: includes/class-ui.php:1669
+msgid "Texto para el enlace a la Política de cookies:"
+msgstr ""
+
+#: includes/class-ui.php:1678
+msgid "Texto para el botón Aceptar:"
+msgstr ""
+
+#: includes/class-ui.php:1686
+msgid "Texto para el botón Rechazar:"
+msgstr ""
+
+#: includes/class-ui.php:1703
+msgid "Página vinculada a"
+msgstr ""
+
+#: includes/class-ui.php:1704
+msgid "la Política de Cookies"
+msgstr ""
+
+#: includes/class-ui.php:1727
+msgid ""
+"Selecciona la página a la que apunta el enlace \"Ver Política de Cookies\"."
+msgstr ""
+
+#: includes/class-ui.php:1749
+msgid "Cómo personalizar con CSS"
+msgstr ""
+
+#: includes/class-ui.php:1761
+msgid "Botón flotante para mostrar el Banner de Cookies."
+msgstr ""
+
+#: includes/class-ui.php:1777
+msgid "Listado de Cookies"
+msgstr ""
+
+#: includes/class-ui.php:1788
+msgid "Detector de"
+msgstr ""
+
+#: includes/class-ui.php:1789
+msgid "Cookies"
+msgstr ""
+
+#: includes/class-ui.php:1802 includes/class-ui.php:1804
+msgid "Detectar cookies ahora"
+msgstr ""
+
+#: includes/class-ui.php:1821
+msgid "Bloqueo de Cookies"
+msgstr ""
+
+#: includes/class-ui.php:1832
+msgid "Bloqueo de"
+msgstr ""
+
+#: includes/class-ui.php:1833
+msgid "scripts"
+msgstr ""
+
+#: includes/class-ui.php:1848
+msgid "Bloquea scripts conocidos"
+msgstr ""
+
+#: includes/class-ui.php:1851
+msgid ""
+"Bloquea los scripts conocidos de analítica como Google analytics, Recaptcha, "
+"Facebook analytics, ... y de redes sociales como Twitter o Disqus."
+msgstr ""
+
+#: includes/class-ui.php:1888
+msgid "Ningún script detectado."
+msgstr ""
+
+#: includes/class-ui.php:1892
+msgid ""
+"Desactiva los scripts marcados mientras el usuario no dé el consentimiento "
+"para instalar cookies."
+msgstr ""
+
+#: includes/class-ui.php:1908
+msgid "Recarga la página cuando el usuario acepte las cookies"
+msgstr ""
+
+#: includes/class-ui.php:1981
+msgid "Algo fue mal."
+msgstr ""
+
+#: includes/class-ui.php:1987
+msgid "Los cambios se han guardado."
+msgstr ""
+
+#: includes/class-ui.php:1990
+msgid "La página ya existe."
+msgstr ""
+
+#. Plugin Name of the plugin/theme
+msgid "Adapta RGPD"
+msgstr ""
+
+#. Plugin URI of the plugin/theme
+msgid "https://superadmin.es/adapta-rgpd"
+msgstr ""
+
+#. Description of the plugin/theme
+msgid ""
+"Crea textos legales adecuados a las regulaciones europeas de privacidad RGPD "
+"y la LOPDGDD de España."
+msgstr ""
+
+#. Author of the plugin/theme
+msgid "Superadmin"
+msgstr ""
+
+#. Author URI of the plugin/theme
+msgid "https://superadmin.es"
+msgstr ""
+
+#: views/mustache
+msgid ""
+"(UAB “MailerLite”, J. Basanavičiaus 15, LT-03108 Vilnius, con domicilio en "
+"Lithuania."
+msgstr ""
+
+#: views/mustache
+msgid "A continuación el Titular expone sus datos identificativos:"
+msgstr ""
+
+#: views/mustache
+msgid "A continuación se clasifican las cookies utilizadas por el sitio Web"
+msgstr ""
+
+#: views/mustache
+msgid ""
+"A tal efecto, está obligado y comprometido a NO utilizar cualquiera de los "
+"contenidos del Sitio Web con fines o efectos ilícitos, prohibidos en este "
+"Aviso Legal o por la legislación vigente, lesivos de los derechos e "
+"intereses de terceros, o que de cualquier forma puedan dañar, inutilizar, "
+"sobrecargar, deteriorar o impedir la normal utilización de los contenidos, "
+"los equipos informáticos o los documentos, archivos y toda clase de "
+"contenidos almacenados en cualquier equipo informático propios o contratados "
+"por el Titular, de otros usuarios o de cualquier usuario de Internet."
+msgstr ""
+
+#: views/mustache
+msgid ""
+"A través del Sitio Web, el Titular le facilita el acceso y la utilización de "
+"diversos contenidos que el Titular y/o sus colaboradores han publicado por "
+"medio de Internet."
+msgstr ""
+
+#: views/mustache
+msgid "ACEPTAR TODAS LAS COOKIES"
+msgstr ""
+
+#: views/mustache
+msgid "Acceder, rectificar y suprimir los datos."
+msgstr ""
+
+#: views/mustache
+msgid "Aceptación o rechazo de la instalación de cookies"
+msgstr ""
+
+#: views/mustache
+msgid "Aceptación y consentimiento"
+msgstr ""
+
+#: views/mustache
+msgid ""
+"Aceptar o rechazar la instalación de cookies, o retirar el consentimiento "
+"previamente otorgado."
+msgstr ""
+
+#: views/mustache
+msgid "Acepto la política de privacidad."
+msgstr ""
+
+#: views/mustache
+msgid "ActiveCampaign, LLC (\"ActiveCampaign\"), con domicilio en EEUU."
+msgstr ""
+
+#: views/mustache
+msgid ""
+"ActiveCampaign, LLC trata los datos con la finalidad de prestar sus "
+"servicios de email marketing al Titular."
+msgstr ""
+
+#: views/mustache
+msgid ""
+"AdSense utiliza las cookies para mejorar la publicidad, segmentarla según el "
+"contenido que sea relevante para los usuarios y mejorar los informes de "
+"rendimiento de las campañas."
+msgstr ""
+
+#: views/mustache
+msgid "Al comprar un producto o contratar un servicio."
+msgstr ""
+
+#: views/mustache
+msgid ""
+"Al contactar a través de los formularios de contacto o enviar un correo "
+"electrónico."
+msgstr ""
+
+#: views/mustache
+msgid ""
+"Al inscribirse en un formulario de suscripción o un boletín que el Titular "
+"gestiona con"
+msgstr ""
+
+#: views/mustache
+msgid ""
+"Al navegar por el Sitio Web se pueden recoger datos no identificativos, que "
+"pueden incluir, la dirección IP, geolocalización, un registro de cómo se "
+"utilizan los servicios y sitios, hábitos de navegación y otros datos que no "
+"pueden ser utilizados para identificarle."
+msgstr ""
+
+#: views/mustache
+msgid "Al realizar un comentario en un artículo o en una página."
+msgstr ""
+
+#: views/mustache
+msgid ""
+"Antes de tomar decisiones y/o acciones con base a la información incluida en "
+"el Sitio Web, el Titular le recomienda comprobar y contrastar la información "
+"recibida con otras fuentes."
+msgstr ""
+
+#: views/mustache
+msgid ""
+"Asimismo, el Titular no responde de los links o enlaces ubicados en los "
+"sitios web vinculados a los que le proporciona acceso."
+msgstr ""
+
+#: views/mustache
+msgid "Aviso legal de Amazon Afiliados"
+msgstr ""
+
+#: views/mustache
+msgid "Aviso sobre publicidad basada en los intereses del usuario."
+msgstr ""
+
+#: views/mustache
+msgid "CONTACTAR"
+msgstr ""
+
+#: views/mustache
+msgid ""
+"CPC trata los datos con la finalidad de prestar sus servicios de email "
+"marketing al Titular."
+msgstr ""
+
+#: views/mustache
+msgid ""
+"Cambiar las preferencias de cookies desde la página Personalizar Cookies, a "
+"la que puede acceder desde el Aviso de Cookies o desde la página de "
+msgstr ""
+
+#: views/mustache
+msgid "Cambios en la Política de Privacidad"
+msgstr ""
+
+#: views/mustache
+msgid "Categorías de datos personales"
+msgstr ""
+
+#: views/mustache
+msgid ""
+"Como Usuario del Sitio Web declara haber sido informado de las condiciones "
+"sobre protección de datos de carácter personal, acepta y consiente el "
+"tratamiento de los mismos por parte del Titular en la forma y para las "
+"finalidades indicadas en esta Política de Privacidad."
+msgstr ""
+
+#: views/mustache
+msgid ""
+"Como Usuario del Sitio Web es el único responsable de la veracidad y "
+"corrección de los datos remitidos al Sitio Web exonerando al Titular de "
+"cualquier responsabilidad al respecto."
+msgstr ""
+
+#: views/mustache
+msgid "Condiciones de Uso"
+msgstr ""
+
+#: views/mustache
+msgid "Conservación de datos personales"
+msgstr ""
+
+#: views/mustache
+msgid ""
+"Considera que es tu responsabilidad usar estos recursos correctamente, para "
+"ofrecer la información que requiera tu Política de Privacidad y para "
+"asegurar que la información es actual y precisa. Expresamente, el autor y "
+"sus colaboradores declinan toda responsabilidad con respecto al uso de este "
+"plugin."
+msgstr ""
+
+#: views/mustache
+msgid "Contacto"
+msgstr ""
+
+#: views/mustache
+msgid "Contenido de otros sitios web"
+msgstr ""
+
+#: views/mustache
+msgid "Contenidos"
+msgstr ""
+
+#: views/mustache
+msgid ""
+"Cookie Analítica para distinguir usuarios. Su ámbito es la sesión y tiene "
+"una duración de 24 horas."
+msgstr ""
+
+#: views/mustache
+msgid ""
+"Cookie Analítica para limitar el número de solicitudes. Su ámbito es la "
+"sesión y tiene una duración de 1 minuto."
+msgstr ""
+
+#: views/mustache
+msgid ""
+"Cookie Analítica que habilita la función de control de visitas únicas. Es "
+"persistente y tiene una duración de 2 años."
+msgstr ""
+
+#: views/mustache
+msgid ""
+"Cookie para registrar y notificar DoubleClick las acciones del Usuario del "
+"sitio web cuando este haya visto o haya hecho clic en uno de los anuncios "
+"del anunciante, con el objetivo de medir la eficacia y mostrar anuncios "
+"publicitarios que se ajusten a sus intereses. Es persistente y tiene una "
+"duración de 1 año."
+msgstr ""
+
+#: views/mustache
+msgid ""
+"Cookie que mide el rendimiento de la publicidad de Facebook. Es persistente "
+"y tiene una duración de 1 día."
+msgstr ""
+
+#: views/mustache
+msgid ""
+"Cookie que permite ofrecer a los visitantes del sitio Web publicidad "
+"personalizada en su plataforma basándose en los datos relativos a las "
+"cabeceras http, el píxel (ID, cookie Facebook), y registrar y comunicar a "
+"Facebook las acciones del Usuario en el sitio Web."
+msgstr ""
+
+#: views/mustache
+msgid ""
+"Cookie técnica que almacena el consentimiento del Usuario. Es persistente y "
+"tiene una duración de 1 año."
+msgstr ""
+
+#: views/mustache
+msgid ""
+"Cookie técnica que se usa para mantener la configuración del Usuario en el "
+"escritorio de WordPress (/wp-admin). Es persistente y tiene una duración de "
+"1 año."
+msgstr ""
+
+#: views/mustache
+msgid ""
+"Cookies de DoubleClick para medir las interacciones con los anuncios y "
+"evitar que te muestre la misma publicidad demasiadas veces. Es persistente y "
+"tiene una duración de 1 año."
+msgstr ""
+
+#: views/mustache
+msgid "Cookies de afiliación"
+msgstr ""
+
+#: views/mustache
+msgid ""
+"Cookies de afiliados: Son aquellas que permiten hacer un seguimiento de las "
+"visitas procedentes de otras webs, con las que el Titular tiene un contrato "
+"de afiliación."
+msgstr ""
+
+#: views/mustache
+msgid "Cookies de análisis o medición"
+msgstr ""
+
+#: views/mustache
+msgid ""
+"Cookies de análisis o medición: Son aquellas que, {{#clause-thirdparty}}bien "
+"tratadas por el sitio Web o por terceros{{/clause-thirdparty}}{{^clause-"
+"thirdparty}}tratadas por el sitio Web{{/clause-thirdparty}}, permiten "
+"cuantificar el número de usuarios y así realizar la medición y análisis "
+"estadístico de la utilización que hacen los usuarios del sitio Web. Para "
+"ello se analiza la navegación que realizas en este sitio Web con el fin de "
+"mejorarlo."
+msgstr ""
+
+#: views/mustache
+msgid ""
+"Cookies de personalización: Son aquellas que permiten a los usuarios acceder "
+"al Servicio con algunas características de carácter general predefinidas en "
+"función de una serie de criterios establecidos por el Usuario como, por "
+"ejemplo, el idioma o el tipo de navegador a través del cual se conecta a "
+"este sitio Web."
+msgstr ""
+
+#: views/mustache
+msgid "Cookies de publicidad comportamental"
+msgstr ""
+
+#: views/mustache
+msgid ""
+"Cookies de publicidad comportamental: Son aquellas que, {{#clause-"
+"thirdparty}}bien tratadas por el sitio Web o por terceros{{/clause-"
+"thirdparty}}{{^clause-thirdparty}}tratadas por el sitio Web{{/clause-"
+"thirdparty}}, almacenan información del comportamiento de los usuarios "
+"obtenida a través de la observación continuada de sus hábitos de navegación, "
+"lo que permite desarrollar un perfil específico para mostrar publicidad en "
+"función del mismo."
+msgstr ""
+
+#: views/mustache
+msgid ""
+"Cookies de sesión: Son aquellas diseñadas para recabar y almacenar datos "
+"mientras el Usuario accede al sitio Web."
+msgstr ""
+
+#: views/mustache
+msgid ""
+"Cookies de terceros: Son aquellas que se envían al Usuario desde un dominio "
+"ajeno al Titular."
+msgstr ""
+
+#: views/mustache
+msgid ""
+"Cookies persistentes: Son aquellas en las que los datos siguen almacenados "
+"en el terminal del Usuario y pueden ser accedidos y tratados durante un "
+"período definido por el responsable de la cookie."
+msgstr ""
+
+#: views/mustache
+msgid ""
+"Cookies propias: Son aquellas enviadas y gestionadas directamente por el "
+"Titular."
+msgstr ""
+
+#: views/mustache
+msgid ""
+"Cookies que miden el rendimiento de la publicidad de Facebook. Son cookies "
+"persistentes."
+msgstr ""
+
+#: views/mustache
+msgid "Cookies sociales"
+msgstr ""
+
+#: views/mustache
+msgid ""
+"Cookies sociales: Son establecidas por las plataformas de redes sociales "
+"para permitir a los usuarios compartir contenido con sus amigos y redes."
+msgstr ""
+
+#: views/mustache
+msgid "Cookies técnicas"
+msgstr ""
+
+#: views/mustache
+msgid ""
+"Cookies técnicas: Son aquellas que permiten a los usuarios registrados "
+"navegar a través del sitio Web, del área restringida y a utilizar sus "
+"diferentes funciones, como por ejemplo, el sistema de comentarios o el "
+"buscador{{#es-tienda}} o llevar a cabo el proceso de compra de un Producto o "
+"Servicio{{/es-tienda}}."
+msgstr ""
+
+#: views/mustache
+msgid "Cookies utilizadas en el sitio Web"
+msgstr ""
+
+#: views/mustache
+msgid ""
+"Cuando usted se conecta al Sitio Web para mandar un correo al Titular,"
+"{{#option-comments}} escribe un comentario en un artículo o una página, {{/"
+"option-comments}} se suscribe a su boletín {{#es-tienda}} o contrata un "
+"producto o un servicio{{/es-tienda}} está facilitando información de "
+"carácter personal de la que el responsable es el Titular. Esta información "
+"puede incluir datos de carácter personal como pueden ser su dirección IP, "
+"nombre y apellidos, dirección física, dirección de correo electrónico, "
+"número de teléfono, y otra información. Al facilitar esta información, da su "
+"consentimiento para que su información sea recopilada, utilizada, gestionada "
+"y almacenada por "
+msgstr ""
+
+#: views/mustache
+msgid "Cuéntanos qué necesitas:"
+msgstr ""
+
+#: views/mustache
+msgid "Cómo funciona"
+msgstr ""
+
+#: views/mustache
+msgid "Datos identificativos."
+msgstr ""
+
+#: views/mustache
+msgid "Derecho de exclusión"
+msgstr ""
+
+#: views/mustache
+msgid "Derechos"
+msgstr ""
+
+#: views/mustache
+msgid "Derechos:"
+msgstr ""
+
+#: views/mustache
+msgid "Desactivar"
+msgstr ""
+
+#: views/mustache
+msgid "Destinatarios de datos personales"
+msgstr ""
+
+#: views/mustache
+msgid "Destinatarios y encargados de tratamiento:"
+msgstr ""
+
+#: views/mustache
+msgid ""
+"DoubleClick utiliza cookies que sirven para aumentar la relevancia de los "
+"anuncios relacionados con sus búsquedas recientes."
+msgstr ""
+
+#: views/mustache
+msgid ""
+"Ejecución del contrato o la aplicación de medidas precontractuales con el "
+"interesado, con el fin de proporcionarle un producto o servicio adquirido al "
+"Titular."
+msgstr ""
+
+#: views/mustache
+msgid ""
+"El Sitio Web ofrece contenidos patrocinados, anuncios y/o enlaces de "
+"afiliados."
+msgstr ""
+
+#: views/mustache
+msgid ""
+"El Titular declina cualquier responsabilidad en caso de que existan "
+"interrupciones o un mal funcionamiento de los Servicios o contenidos "
+"ofrecidos en Internet, cualquiera que sea su causa. Asimismo, el Titular no "
+"se hace responsable por caídas de la red, pérdidas de negocio a consecuencia "
+"de dichas caídas, suspensiones temporales de fluido eléctrico o cualquier "
+"otro tipo de daño indirecto que te pueda ser causado por causas ajenas a el "
+"Titular."
+msgstr ""
+
+#: views/mustache
+msgid ""
+"El Titular es el Responsable del tratamiento de los datos personales del "
+"usuario."
+msgstr ""
+
+#: views/mustache
+msgid ""
+"El Titular ha contratado los servicios de alojamiento web a {{hosting-info}} "
+"que actúa como encargado de tratamiento."
+msgstr ""
+
+#: views/mustache
+msgid ""
+"El Titular ha obtenido la información, el contenido multimedia y los "
+"materiales incluidos en el Sitio Web de fuentes que considera fiables, pero, "
+"si bien ha tomado todas las medidas razonables para asegurar que la "
+"información contenida es correcta, el Titular no garantiza que sea exacta, "
+"completa o actualizada. El Titular declina expresamente cualquier "
+"responsabilidad por error u omisión en la información contenida en las "
+"páginas del Sitio Web."
+msgstr ""
+
+#: views/mustache
+msgid ""
+"El Titular informa al Usuario de que sus datos personales no serán cedidos a "
+"terceras organizaciones, con la salvedad de que dicha cesión de datos esté "
+"amparada en una obligación legal o cuando la prestación de un servicio "
+"implique la necesidad de una relación contractual con un encargado de "
+"tratamiento. En este último caso, solo se llevará a cabo la cesión de datos "
+"al tercero cuando el Titular disponga del consentimiento expreso del Usuario."
+msgstr ""
+
+#: views/mustache
+msgid "El Titular le informa que sobre sus datos personales tiene derecho a:"
+msgstr ""
+
+#: views/mustache
+msgid ""
+"El Titular le informa sobre su Política de Privacidad respecto del "
+"tratamiento y protección de los datos de carácter personal de los usuarios "
+"{{#es-tienda}}y clientes{{/es-tienda}} que puedan ser recabados durante la "
+"navegación{{#es-tienda}}, al comprar un producto o al contratar un "
+"servicio{{/es-tienda}} a través del Sitio Web:"
+msgstr ""
+
+#: views/mustache
+msgid ""
+"El Titular muestra información sobre su Política de cookies {{#option-"
+"footer}}en el menú del pie de página y {{/option-footer}}en el banner de "
+"cookies accesible en todas las páginas del Sitio Web. El banner de cookies "
+"muestra información esencial sobre el tratamiento de datos y permite al "
+"Usuario realizar las siguientes acciones"
+msgstr ""
+
+#: views/mustache
+msgid ""
+"El Titular no declara ni garantiza que los servicios o contenidos sean "
+"interrumpidos o que estén libres de errores, que los defectos sean "
+"corregidos, o que el servicio o el servidor que lo pone a disposición estén "
+"libres de virus u otros componentes nocivos sin perjuicio de que el Titular "
+"realiza todos los esfuerzos en evitar este tipo de incidentes."
+msgstr ""
+
+#: views/mustache
+msgid ""
+"El Titular no se hace responsable del tratamiento de los datos personales "
+"que realicen las páginas web a las que pueda acceder a través de los "
+"distintos enlaces que contiene el Sitio Web."
+msgstr ""
+
+#: views/mustache
+msgid ""
+"El Titular no será responsable de las opiniones vertidas por los usuarios a "
+"través del sistema de comentarios, {{#thirdparty-social}}redes sociales{{/"
+"thirdparty-social}} u otras herramientas de participación, conforme a lo "
+"previsto en la normativa de aplicación."
+msgstr ""
+
+#: views/mustache
+msgid ""
+"El Titular obtiene y conserva la siguiente información acerca de los "
+"visitantes del Sitio Web:"
+msgstr ""
+
+#: views/mustache
+msgid ""
+"El Titular participa en el Programa de Afiliados de Amazon EU. Amazon y "
+"otros anunciantes pueden instalar cookies en su equipo que sirven para "
+"obtener información, ofrecerle anuncios, mostrar contenido basado en sus "
+"intereses o para hacer un seguimiento de su navegación, guardando la "
+"información de afiliado por si realiza una compra en las siguientes 24 horas."
+msgstr ""
+
+#: views/mustache
+msgid ""
+"El Titular puede proporcionarle acceso a sitios Web de terceros mediante "
+"enlaces con la finalidad exclusiva de informar sobre la existencia de otras "
+"fuentes de información en Internet en las que podrá ampliar los datos "
+"ofrecidos en el Sitio Web."
+msgstr ""
+
+#: views/mustache
+msgid ""
+"El Titular se reserva el derecho a denegar o retirar el acceso al Sitio Web "
+"y los servicios ofrecidos sin necesidad de preaviso, a instancia propia o de "
+"un tercero, a aquellos usuarios que incumplan cualquiera de las condiciones "
+"de este Aviso Legal."
+msgstr ""
+
+#: views/mustache
+msgid ""
+"El Titular se reserva el derecho a modificar la presente Política de "
+"Privacidad para adaptarla a novedades legislativas o jurisprudenciales, así "
+"como a prácticas de la industria."
+msgstr ""
+
+#: views/mustache
+msgid ""
+"El Titular se reserva el derecho a modificar, suspender, cancelar o "
+"restringir el contenido del Sitio Web, los vínculos o la información "
+"obtenida a través del Sitio Web, sin necesidad de previo aviso."
+msgstr ""
+
+#: views/mustache
+msgid ""
+"El Titular se reserva el derecho de retirar todos aquellos comentarios que "
+"vulneren la legislación vigente, lesivos de los derechos o intereses de "
+"terceros, o que, a su juicio, no resulten adecuados para su publicación."
+msgstr ""
+
+#: views/mustache
+msgid ""
+"El Titular toma las precauciones necesarias para evitar el acceso no "
+"autorizado o uso indebido de los datos de sus usuarios por parte de terceros."
+msgstr ""
+
+#: views/mustache
+msgid ""
+"El Titular tratará sus datos personales con la finalidad de administrar "
+"correctamente su presencia en la red social, informarle de sus "
+"actividades{{#es-tienda}}, productos o servicios{{/es-tienda}}, así como "
+"para cualquier otra finalidad que las normativas de las redes sociales "
+"permitan."
+msgstr ""
+
+#: views/mustache
+msgid ""
+"El Titular utiliza la información obtenida para obtener datos estadísticos, "
+"analizar tendencias, administrar el sitio, estudiar patrones de navegación y "
+"para recopilar información demográfica."
+msgstr ""
+
+#: views/mustache
+msgid ""
+"El Titular no es responsable de los daños y perjuicios que pudieran "
+"derivarse de la utilización de la información del Sitio Web{{#thirdparty-"
+"social}} o de la contenida en las redes sociales del Titular{{/thirdparty-"
+"social}}."
+msgstr ""
+
+#: views/mustache
+msgid ""
+"El acceso al Sitio Web no supone, en modo alguno, el inicio de una relación "
+"comercial con el Titular."
+msgstr ""
+
+#: views/mustache
+msgid "El consentimiento del interesado."
+msgstr ""
+
+#: views/mustache
+msgid ""
+"El contenido es creado dinámicamente en el momento en que el usuario visita "
+"cualquiera de las páginas que contienen los textos legales. De este modo, "
+"puedes haces cambios en los datos del Titular o en la configuración del "
+"plugin que los textos estarán siempre actualizados."
+msgstr ""
+
+#: views/mustache
+msgid ""
+"El ejercicio de estos derechos es personal y por tanto debe ser ejercido "
+"directamente por el interesado, solicitándolo directamente al Titular, lo "
+"que significa que cualquier cliente, suscriptor o colaborador que haya "
+"facilitado sus datos en algún momento, puede dirigirse al Titular y pedir "
+"información sobre los datos que tiene almacenados y cómo los ha obtenido, "
+"solicitar la rectificación de los mismos{{#clause-portabilidad}}, solicitar "
+"la portabilidad de sus datos personales{{/clause-portabilidad}}, oponerse al "
+"tratamiento, limitar su uso o solicitar la cancelación de esos datos en los "
+"ficheros del Titular."
+msgstr ""
+
+#: views/mustache
+msgid ""
+"El ejercicio de estos derechos no incluye ningún dato que el Titular esté "
+"obligado a conservar con fines administrativos, legales o de seguridad."
+msgstr ""
+
+#: views/mustache
+msgid ""
+"El establecimiento del enlace no implica en ningún caso la existencia de "
+"relaciones entre el Titular y el propietario del sitio en el que se "
+"establezca el enlace, ni la aceptación o aprobación por parte del Titular de "
+"sus contenidos o servicios."
+msgstr ""
+
+#: views/mustache
+msgid ""
+"El nombre de dominio del proveedor (PSI) y/o dirección IP que les da acceso "
+"a la red."
+msgstr ""
+
+#: views/mustache
+msgid "El número de visitantes diarios de cada sección."
+msgstr ""
+
+#: views/mustache
+msgid ""
+"El plugin Adapta RGPD es apto para empresas y bloggers que quieren adaptar "
+"su sitio por sus propios medios a las regulaciones europeas de privacidad "
+"conocidas como RGPD, sin embargo NO garantiza el cumplimiento de RGPD o "
+"cualquier otra disposición legal."
+msgstr ""
+
+#: views/mustache
+msgid "El sitio Web está alojado en: "
+msgstr ""
+
+#: views/mustache
+msgid ""
+"El sitio Web incluye otras funcionalidades proporcionadas por servicios de "
+"terceros y redes sociales para mejorar la experiencia de los visitantes. "
+"Puede compartir el contenido en sus redes sociales como Facebook, Twitter, "
+"Instagram, Vimeo o YouTube con los botones incluidos a tal efecto o con las "
+"herramientas para compartir propias de las redes sociales. Como resultado, "
+"estos servicios pueden instalar cookies y utilizarlas para rastrear su "
+"actividad online. El Titular no tiene control directo sobre la información "
+"recopilada por estas cookies."
+msgstr ""
+
+#: views/mustache
+msgid "El sitio Web puede instalar otras cookies:"
+msgstr ""
+
+#: views/mustache
+msgid "El sitio Web utiliza los siguientes servicios de análisis de terceros"
+msgstr ""
+
+#: views/mustache
+msgid ""
+"El sitio Web {{dominio}} utiliza cookies propias {{#clause-thirdparty}}y de "
+"terceros{{/clause-thirdparty}} para su correcto funcionamiento{{#thirdparty-"
+"analytics}} y para fines analíticos{{/thirdparty-analytics}}{{#thirdparty-"
+"advertising}} {{# thirdparty-amazon }}y para fines de afiliación {{/ "
+"thirdparty-amazon }}y para mostrarte publicidad relacionada con sus "
+"preferencias en base a un perfil elaborado a partir de tus hábitos de "
+"navegación{{/thirdparty-advertising}}. Al hacer clic en el botón Aceptar, "
+"acepta el uso de estas tecnologías y el procesamiento de sus datos para "
+"estos propósitos."
+msgstr ""
+
+#: views/mustache
+msgid "El titular del sitio"
+msgstr ""
+
+#: views/mustache
+msgid "El titular del sitio."
+msgstr ""
+
+#: views/mustache
+msgid ""
+"El uso de sitio Web implica la aceptación de esta Política de Privacidad"
+msgstr ""
+
+#: views/mustache
+msgid "Eliminación de cookies"
+msgstr ""
+
+#: views/mustache
+msgid ""
+"En calidad de Afiliado de Amazon, obtengo ingresos por las compras adscritas "
+"que cumplen los requisitos aplicables."
+msgstr ""
+
+#: views/mustache
+msgid ""
+"En caso de que tenga cualquier duda acerca de esta Política de Cookies o "
+"quiera realizar cualquier comentario sobre este sitio Web, puede enviar un "
+"mensaje a la dirección de correo electrónico: "
+msgstr ""
+
+#: views/mustache
+msgid ""
+"En caso de que usted tenga cualquier duda acerca de este Aviso Legal o "
+"quiera realizar cualquier comentario sobre el Sitio Web, puede enviar un "
+"mensaje de correo electrónico a la dirección:"
+msgstr ""
+
+#: views/mustache
+msgid ""
+"En cumplimiento con el artículo 22 de la Ley 34/2002, de 11 de julio, de "
+"servicios de la sociedad de la información y de comercio electrónico (LSSI), "
+"en relación con el Reglamento (UE) 2016/679 del Parlamento Europeo y del "
+"Consejo, de 27 de abril de 2016, General de Protección de Datos (RGPD) y la "
+"Ley Orgánica 3/2018, de 5 de diciembre, de Protección de Datos y garantía de "
+"los derechos digitales (LOPDGDD), el Titular pone a disposición de los "
+"usuarios la Política de recogida y tratamiento de cookies del sitio Web."
+msgstr ""
+
+#: views/mustache
+msgid ""
+"En cumplimiento del artículo 10 de la Ley 34/2002, de 11 de julio, de "
+"Servicios de la Sociedad de la Información y Comercio Electrónico, el "
+"Titular expone sus datos identificativos:"
+msgstr ""
+
+#: views/mustache
+msgid ""
+"En el caso de suscripciones, el Titular revisará periódicamente las listas y "
+"eliminará aquellos registros inactivos durante un tiempo considerable."
+msgstr ""
+
+#: views/mustache
+msgid ""
+"En el menú principal aparece un nuevo elemento con el nombre \"Adapta RGPD\" "
+"que sirve para configurar el plugin. Al pulsar sobre su nombre verás que "
+"tiene 4 pestañas"
+msgstr ""
+
+#: views/mustache
+msgid ""
+"En el tratamiento de sus datos personales, el Titular aplicará los "
+"siguientes principios que se ajustan a las exigencias del nuevo reglamento "
+"europeo de protección de datos (RGPD):"
+msgstr ""
+
+#: views/mustache
+msgid ""
+"En este sentido, el Titular cumple con el Reglamento (UE) 2016/679 del "
+"Parlamento Europeo y del Consejo de 27 de abril de 2016 relativo a la "
+"protección de las personas físicas (RGPD)."
+msgstr ""
+
+#: views/mustache
+msgid ""
+"En este sentido, el Titular garantiza el cumplimiento de la normativa "
+"vigente en materia de protección de datos personales, reflejada en la Ley "
+"Orgánica 3/2018, de 5 de diciembre, de Protección de Datos Personales y de "
+"Garantía de Derechos Digitales (LOPD GDD). Cumple también con el Reglamento "
+"(UE) 2016/679 del Parlamento Europeo y del Consejo de 27 de abril de 2016 "
+"relativo a la protección de las personas físicas (RGPD)."
+msgstr ""
+
+#: views/mustache
+msgid ""
+"En los siguientes enlaces encontrará instrucciones para habilitar o "
+"deshabilitar las cookies en los navegadores más comunes."
+msgstr ""
+
+#: views/mustache
+msgid ""
+"En ningún caso el Titular utilizará los perfiles de seguidores en redes "
+"sociales para enviar publicidad de manera individual."
+msgstr ""
+
+#: views/mustache
+msgid "Encontrará más información en:"
+msgstr ""
+
+#: views/mustache
+msgid "Enlaces a otros sitios Web"
+msgstr ""
+
+#: views/mustache
+msgid "Enlaces de Afiliados y anuncios patrocinados"
+msgstr ""
+
+#: views/mustache
+msgid ""
+"Esta página de ayuda. Además puedes mandarnos cualquier consulta o "
+"sugerencia a través de"
+msgstr ""
+
+#: views/mustache
+msgid ""
+"Esta web utiliza cookies propias {{#clause-thirdparty}}y de terceros{{/"
+"clause-thirdparty}} para su correcto funcionamiento{{#thirdparty-analytics}} "
+"y para fines analíticos{{/thirdparty-analytics}}{{#thirdparty-advertising}} "
+"{{# thirdparty-amazon }}y para fines de afiliación {{/ thirdparty-amazon }}y "
+"para mostrarte publicidad relacionada con sus preferencias en base a un "
+"perfil elaborado a partir de tus hábitos de navegación{{/thirdparty-"
+"advertising}}. Al hacer clic en el botón Aceptar, acepta el uso de estas "
+"tecnologías y el procesamiento de tus datos para estos propósitos."
+msgstr ""
+
+#: views/mustache
+msgid ""
+"Estas políticas estarán vigentes hasta que sean modificadas por otras "
+"debidamente publicadas."
+msgstr ""
+
+#: views/mustache
+msgid "Este Aviso Legal se rige íntegramente por la legislación española."
+msgstr ""
+
+#: views/mustache
+msgid "Este sitio Web puede instalar las siguientes cookies:"
+msgstr ""
+
+#: views/mustache
+msgid ""
+"Este sitio Web utiliza servicios de DoubleClick; que pueden instalar cookies "
+"para mostrarle publicidad relacionada con el contenido que le es relevante "
+"en base a un perfil elaborado a partir de sus hábitos de navegación, "
+"mejorando así su percepción de la calidad del sitio Web."
+msgstr ""
+
+#: views/mustache
+msgid ""
+"Este sitio Web utiliza servicios de Google Adsense que pueden instalar "
+"cookies para recopilar información con fines estadísticos y de uso del sitio "
+"Web. Las cookies instaladas permiten mejorar la publicidad que encuentra en "
+"el sitio Web mostrándole publicidad según el contenido que le es relevante, "
+"mejorando así su percepción de la calidad del sitio Web."
+msgstr ""
+
+#: views/mustache
+msgid ""
+"Estos enlaces a otros sitios Web no suponen en ningún caso una sugerencia o "
+"recomendación para que usted visite las páginas web de destino, que están "
+"fuera del control del Titular, por lo que el Titular no es responsable del "
+"contenido de los sitios web vinculados ni del resultado que obtenga al "
+"seguir los enlaces."
+msgstr ""
+
+#: views/mustache
+msgid ""
+"Estos sitios Web pueden recopilar datos sobre usted, utilizar cookies, "
+"incrustar un código de seguimiento adicional de terceros, y supervisar su "
+"interacción usando este código."
+msgstr ""
+
+#: views/mustache
+msgid ""
+"Está compuesta por un formulario que sirve para rellenar los datos del "
+"titular, ya sea un particular o una empresa, y del sitio web."
+msgstr ""
+
+#: views/mustache
+msgid "Exactitud y veracidad de los datos personales"
+msgstr ""
+
+#: views/mustache
+msgid ""
+"Existen otras finalidades por las que el Titular trata datos personales:"
+msgstr ""
+
+#: views/mustache
+msgid "Facilitar al interesado ofertas de productos y servicios de su interés."
+msgstr ""
+
+#: views/mustache
+msgid "Finalidad"
+msgstr ""
+
+#: views/mustache
+msgid "Finalidad del tratamiento de datos personales"
+msgstr ""
+
+#: views/mustache
+msgid "Finalidad:"
+msgstr ""
+
+#: views/mustache
+msgid "Formado por 2 apartados"
+msgstr ""
+
+#: views/mustache
+msgid ""
+"Formularios de comentarios: El Titular solicita datos personales entre los "
+"que pueden estar: nombre y apellidos, dirección de correo electrónico, y "
+"dirección de sitio Web con la finalidad de responder a los comentarios de "
+"los Usuarios."
+msgstr ""
+
+#: views/mustache
+msgid ""
+"Formularios de contacto: El Titular solicita datos personales entre los que "
+"pueden estar: nombre y apellidos, dirección de correo electrónico, número de "
+"teléfono y dirección de sitio web con la finalidad de responder las "
+"consultas de los Usuarios{{#es-tienda}}, ofrecer información y "
+"demostraciones de los productos y servicios del Titular, incluidos "
+"presupuestos{{/es-tienda}}."
+msgstr ""
+
+#: views/mustache
+msgid ""
+"Formularios de contratación de productos o servicios: El Titular solicita "
+"datos personales entre los que pueden estar: nombre y apellidos, documento "
+"de identidad (número de identificación fiscal, número de identificación de "
+"extranjero, pasaporte o permiso de residencia), dirección de correo "
+"electrónico, dirección postal, número de teléfono y datos de pago (métodos "
+"de pago o datos bancarios) con la finalidad de mantener una relación "
+"comercial con el Usuario, realizar el envío de los pedidos, prestar los "
+"servicios contratados y para realizar la facturación y el cobro de los "
+"productos o servicios contratados."
+msgstr ""
+
+#: views/mustache
+msgid ""
+"Formularios de suscripción a contenidos: El Titular solicita los siguientes "
+"datos personales: nombre y apellidos, dirección de correo electrónico, "
+"número de teléfono y dirección de un sitio web para gestionar la lista de "
+"suscripciones, enviar boletines, promociones y ofertas especiales. Los datos "
+"personales facilitados al Titular estarán ubicados en los servidores de "
+"ActiveCampaign, LLC (\"ActiveCamapign\"), con domicilio en EEUU. "
+msgstr ""
+
+#: views/mustache
+msgid ""
+"Formularios de suscripción a contenidos: El Titular solicita los siguientes "
+"datos personales: nombre y apellidos, dirección de correo electrónico, "
+"número de teléfono y dirección de un sitio web para gestionar la lista de "
+"suscripciones, enviar boletines, promociones y ofertas especiales. Los datos "
+"personales facilitados al Titular estarán ubicados en los servidores de The "
+"Rocket Science Group LLC d/b/a, con domicilio en EEUU. (Mailchimp)."
+msgstr ""
+
+#: views/mustache
+msgid ""
+"Formularios de suscripción a contenidos: El Titular solicita los siguientes "
+"datos personales: nombre y apellidos, dirección de correo electrónico, "
+"número de teléfono y dirección de un sitio web para gestionar la lista de "
+"suscripciones, enviar boletines, promociones y ofertas especiales. Los datos "
+"personales facilitados al Titular estarán ubicados en los servidores de UAB "
+"“MailerLite”, J. Basanavičiaus 15, LT-03108 Vilnius, con domicilio en "
+"Lithuania."
+msgstr ""
+
+#: views/mustache
+msgid ""
+"Google Analytics puede instalar otras cookies según el documento Uso de las "
+"cookies de Google Analytics en sitios web que puede consultar "
+msgstr ""
+
+#: views/mustache
+msgid ""
+"Google Analytics utiliza \"cookies\", que son archivos de texto ubicados en "
+"tu ordenador, para ayudar al Titular a analizar el uso que hacen los "
+"Usuarios del sitio Web. La información que genera la cookie acerca del uso "
+"del sitio Web (incluyendo la dirección IP) será directamente transmitida y "
+"archivada por Google en los servidores de Estados Unidos."
+msgstr ""
+
+#: views/mustache
+msgid "He leído y acepto la "
+msgstr ""
+
+#: views/mustache
+msgid "Identidad del Responsable"
+msgstr ""
+
+#: views/mustache
+msgid "Identificación y Titularidad"
+msgstr ""
+
+#: views/mustache
+msgid "Información Adicional:"
+msgstr ""
+
+#: views/mustache
+msgid "Información adicional"
+msgstr ""
+
+#: views/mustache
+msgid "Información básica sobre protección de datos"
+msgstr ""
+
+#: views/mustache
+msgid "Jurisdicción"
+msgstr ""
+
+#: views/mustache
+msgid "La base legal para el tratamiento de sus datos es:"
+msgstr ""
+
+#: views/mustache
+msgid "La dirección de Internet origen del enlace que dirige al sitio Web."
+msgstr ""
+
+#: views/mustache
+msgid "La fecha y hora de acceso al sitio Web."
+msgstr ""
+
+#: views/mustache
+msgid "La finalidad del Sitio Web es:"
+msgstr ""
+
+#: views/mustache
+msgid ""
+"La información obtenida es totalmente anónima, y en ningún caso puede ser "
+"asociada a un Usuario concreto e identificado."
+msgstr ""
+
+#: views/mustache
+msgid ""
+"La información que aparece en estos enlaces de afiliados o los anuncios "
+"insertados, son facilitados por los propios anunciantes, por lo que el "
+"Titular no se hace responsable de posibles inexactitudes o errores que "
+"pudieran contener los anuncios, ni garantiza en modo alguno la experiencia, "
+"integridad o responsabilidad de los anunciantes o la calidad de sus "
+"productos y/o servicios."
+msgstr ""
+
+#: views/mustache
+msgid ""
+"La información y servicios incluidos o disponibles a través del Sitio Web "
+"pueden incluir incorrecciones o errores tipográficos. De forma periódica el "
+"Titular incorpora mejoras y/o cambios a la información contenida y/o los "
+"Servicios que puede introducir en cualquier momento."
+msgstr ""
+
+#: views/mustache
+msgid ""
+"La seguridad de los datos está garantizada, ya que toman todas las medidas "
+"de seguridad necesarias para ello. Puede consultar su política de privacidad "
+"para tener más información."
+msgstr ""
+
+#: views/mustache
+msgid ""
+"La utilización del Sitio Web le otorga la condición de Usuario, e implica la "
+"aceptación completa de todas las cláusulas y condiciones de uso incluidas en "
+"las páginas:"
+msgstr ""
+
+#: views/mustache
+msgid "Las categorías de datos personales que trata el Titular son"
+msgstr ""
+
+#: views/mustache
+msgid ""
+"Las páginas de este sitio Web pueden incluir contenido incrustado (por "
+"ejemplo, vídeos, imágenes, artículos, etc.). El contenido incrustado de "
+"otras web se comporta exactamente de la misma manera que si hubiera visitado "
+"la otra web."
+msgstr ""
+
+#: views/mustache
+msgid "Legitimación para el tratamiento de datos"
+msgstr ""
+
+#: views/mustache
+msgid "Legitimación:"
+msgstr ""
+
+#: views/mustache
+msgid "Limitación de responsabilidad"
+msgstr ""
+
+#: views/mustache
+msgid "Listado de cookies utilizadas"
+msgstr ""
+
+#: views/mustache
+msgid ""
+"Los casos en los que usted sí proporciona sus datos personales son los "
+"siguientes:"
+msgstr ""
+
+#: views/mustache
+msgid ""
+"Los contenidos del Sitio Web tienen únicamente una finalidad informativa y "
+"bajo ninguna circunstancia deben usarse ni considerarse como oferta de "
+"venta, solicitud de una oferta de compra ni recomendación para realizar "
+"cualquier otra operación, salvo que así se indique expresamente."
+msgstr ""
+
+#: views/mustache
+msgid ""
+"Los datos personales proporcionados al Titular se conservarán hasta que "
+"solicite su supresión."
+msgstr ""
+
+#: views/mustache
+msgid ""
+"Los datos personales que facilite al Titular pueden ser almacenados en bases "
+"de datos automatizadas o no, cuya titularidad corresponde en exclusiva al "
+"Titular, que asume todas las medidas de índole técnica, organizativa y de "
+"seguridad que garantizan la confidencialidad, integridad y calidad de la "
+"información contenida en las mismas de acuerdo con lo establecido en la "
+"normativa vigente en protección de datos."
+msgstr ""
+
+#: views/mustache
+msgid ""
+"Los datos personales y la finalidad del tratamiento por parte del Titular es "
+"diferente según el sistema de captura de información:"
+msgstr ""
+
+#: views/mustache
+msgid ""
+"MailPoet trata los datos con la finalidad de ofrecer soluciones para el "
+"envío de correos electrónicos y de marketing al Titular."
+msgstr ""
+
+#: views/mustache
+msgid ""
+"MailerLite trata los datos con la finalidad de prestar sus servicios de "
+"email marketing al Titular."
+msgstr ""
+
+#: views/mustache
+msgid "Mayoría de edad"
+msgstr ""
+
+#: views/mustache
+msgid "Medidas de seguridad"
+msgstr ""
+
+#: views/mustache
+msgid "Más información en:"
+msgstr ""
+
+#: views/mustache
+msgid ""
+"No obstante, debe ser consciente de que las medidas de seguridad de los "
+"sistemas informáticos en Internet no son enteramente fiables y que, por "
+"tanto el Titular no puede garantizar la inexistencia de virus u otros "
+"elementos que puedan producir alteraciones en los sistemas informáticos "
+"(software y hardware) del Usuario o en sus documentos electrónicos y "
+"ficheros contenidos en los mismos aunque el Titular pone todos los medios "
+"necesarios y toma las medidas de seguridad oportunas para evitar la "
+"presencia de estos elementos dañinos."
+msgstr ""
+
+#: views/mustache
+msgid "No puede ejercitar el derecho a la portabilidad de los datos."
+msgstr ""
+
+#: views/mustache
+msgid "No se tratan categorías de datos especialmente protegidos."
+msgstr ""
+
+#: views/mustache
+msgid "Obtención de datos personales"
+msgstr ""
+
+#: views/mustache
+msgid "Obtener información adicional en la página de "
+msgstr ""
+
+#: views/mustache
+msgid ""
+"Obtén más información sobre el uso de las cookies por parte de Facebook en "
+"la página de "
+msgstr ""
+
+#: views/mustache
+msgid "Oponerse al tratamiento."
+msgstr ""
+
+#: views/mustache
+msgid ""
+"Para activar o desactivar las páginas de Aviso Legal, Política de Privacidad "
+"y la Política de Cookies."
+msgstr ""
+
+#: views/mustache
+msgid ""
+"Para analizar la navegación de los usuarios. El Titular recoge otros datos "
+"no identificativos que se obtienen mediante el uso de cookies que se "
+"descargan en el ordenador del Usuario cuando navega por el Sitio Web cuyas "
+"características y finalidad están detalladas en la página de "
+msgstr ""
+
+#: views/mustache
+msgid "Para apoyar y mejorar los servicios que ofrece este Sitio Web."
+msgstr ""
+
+#: views/mustache
+msgid "Para cumplir las obligaciones legales."
+msgstr ""
+
+#: views/mustache
+msgid ""
+"Para dejar de recibir publicidad personalizada de Google puede inhabilitar "
+"la personalización de anuncios mediante la configuración de anuncios de "
+"Google cuyas instrucciones puede consultar "
+msgstr ""
+
+#: views/mustache
+msgid ""
+"Para ejercitar sus derechos tiene que enviar su petición junto con una "
+"fotocopia del Documento Nacional de Identidad o equivalente a"
+msgstr ""
+
+#: views/mustache
+msgid ""
+"Para gestionar las redes sociales. El Titular tiene presencia en redes "
+"sociales."
+msgstr ""
+
+#: views/mustache
+msgid ""
+"Para mostrar el texto del Aviso Legal, la Política de Privacidad o la "
+"Política de Cookies a través de un shortcode utiliza respectivamente"
+msgstr ""
+
+#: views/mustache
+msgid ""
+"Para navegar por el sitio Web no es necesario que facilite ningún dato "
+"personal."
+msgstr ""
+
+#: views/mustache
+msgid ""
+"Para obtener ayuda adicional contacta con profesionales legales. Como cada "
+"negocio y situación es único, es posible que tengas que modificar, agregar o "
+"eliminar información en estas plantillas."
+msgstr ""
+
+#: views/mustache
+msgid ""
+"Para obtener más información sobre las cookies y cómo las usamos, consulta "
+"la página de "
+msgstr ""
+
+#: views/mustache
+msgid "Para obtener más información visita:"
+msgstr ""
+
+#: views/mustache
+msgid ""
+"Para proteger sus datos personales, el Titular toma todas las precauciones "
+"razonables y sigue las mejores prácticas de la industria para evitar su "
+"pérdida, mal uso, acceso indebido, divulgación, alteración o destrucción de "
+"los mismos."
+msgstr ""
+
+#: views/mustache
+msgid ""
+"Para que este sitio Web funcione correctamente necesita utilizar cookies, "
+"que es una información que se almacena en su navegador web."
+msgstr ""
+
+#: views/mustache
+msgid "Pestaña Ayuda"
+msgstr ""
+
+#: views/mustache
+msgid "Pestaña Banner de Cookies"
+msgstr ""
+
+#: views/mustache
+msgid "Pestaña Textos legales"
+msgstr ""
+
+#: views/mustache
+msgid "Pestaña Titular"
+msgstr ""
+
+#: views/mustache
+msgid "Política de Cookies de Facebook"
+msgstr ""
+
+#: views/mustache
+msgid "Política de cookies"
+msgstr ""
+
+#: views/mustache
+msgid "Por consentimiento del interesado."
+msgstr ""
+
+#: views/mustache
+msgid ""
+"Por ejemplo, el Titular utiliza esos datos para dar respuesta a mensajes, "
+"dudas, quejas, comentarios o inquietudes que pueden tener los Usuarios "
+"relativas a la información incluida en el sitio Web{{#es-tienda}}, los "
+"productos y los servicios que se prestan a través del sitio Web{{/es-"
+"tienda}}, el tratamiento de los datos personales, cuestiones referentes a "
+"los textos legales incluidos en el Sitio Web, así como cualquier otra "
+"consulta que el Usuario pueda tener y que no esté sujeta a las condiciones "
+"del sitio Web{{#es-tienda}} o de las condiciones de contratación{{/es-"
+"tienda}}."
+msgstr ""
+
+#: views/mustache
+msgid "Primera capa informativa"
+msgstr ""
+
+#: views/mustache
+msgid ""
+"Principio de integridad y confidencialidad: Los datos personales recabados "
+"serán tratados de tal manera que su seguridad, confidencialidad e integridad "
+"esté garantizada."
+msgstr ""
+
+#: views/mustache
+msgid ""
+"Principio de licitud, lealtad y transparencia: El Titular siempre requerirá "
+"el consentimiento para el tratamiento de los datos personales que puede ser "
+"para uno o varios fines específicos sobre los que el Titular informará al "
+"Usuario previamente con absoluta transparencia."
+msgstr ""
+
+#: views/mustache
+msgid ""
+"Principio de limitación del plazo de conservación: El Titular mantendrá los "
+"datos personales recabados durante el tiempo estrictamente necesario para el "
+"fin o los fines del tratamiento. El Titular informará al Usuario del plazo "
+"de conservación correspondiente según la finalidad."
+msgstr ""
+
+#: views/mustache
+msgid ""
+"Principio de minimización de datos: El Titular solicitará solo los datos "
+"estrictamente necesarios para el fin o los fines que los solicita."
+msgstr ""
+
+#: views/mustache
+msgid "Principios aplicados en el tratamiento de datos"
+msgstr ""
+
+#: views/mustache
+msgid "Privacidad"
+msgstr ""
+
+#: views/mustache
+msgid "Programa de afiliados de Amazon."
+msgstr ""
+
+#: views/mustache
+msgid "Propiedad intelectual e industrial"
+msgstr ""
+
+#: views/mustache
+msgid ""
+"Puede aceptar, bloquear o eliminar las cookies instaladas en su equipo "
+"mediante la configuración de las opciones del navegador, pero tenga en "
+"cuenta que parte del sitio no funcionará correctamente o que algunas de sus "
+"funcionalidades no estarán disponibles o tendrán errores."
+msgstr ""
+
+#: views/mustache
+msgid ""
+"Puede consultar como Google gestiona la privacidad en lo que respecta al uso "
+"de las cookies y otra información en la página de Política de privacidad de "
+"Google:"
+msgstr ""
+
+#: views/mustache
+msgid "Puede consultar la información detallada en la"
+msgstr ""
+
+#: views/mustache
+msgid ""
+"Puede consultar las políticas de privacidad de las principales redes "
+"sociales en estos enlaces"
+msgstr ""
+
+#: views/mustache
+msgid ""
+"Puede consultar toda la información relativa a la política de recogida y "
+"tratamiento de las cookies en la página de "
+msgstr ""
+
+#: views/mustache
+msgid ""
+"Puede consultar toda la información relativa al tratamiento de datos "
+"personales que recoge el Titular en la página de "
+msgstr ""
+
+#: views/mustache
+msgid ""
+"Puede consultar toda la información relativa al tratamiento de datos "
+"personales que recoge el Titular en la página de la "
+msgstr ""
+
+#: views/mustache
+msgid ""
+"Puedes cambiar tus preferencias de cookies en cualquier momento si vuelves a "
+"la página de Personalizar cookies, a la que puedes acceder a través del "
+"Aviso de cookies."
+msgstr ""
+
+#: views/mustache
+msgid ""
+"Queda prohibido transmitir o enviar a través del Sitio Web cualquier "
+"contenido ilegal o ilícito, virus informáticos, o mensajes que, en general, "
+"afecten o violen derechos del Titular o de terceros."
+msgstr ""
+
+#: views/mustache
+msgid "Qué son las Cookies"
+msgstr ""
+
+#: views/mustache
+msgid "Renuncia de responsabilidad"
+msgstr ""
+
+#: views/mustache
+msgid "Responder las consultas."
+msgstr ""
+
+#: views/mustache
+msgid "Responsable:"
+msgstr ""
+
+#: views/mustache
+msgid "Seguridad de los datos personales"
+msgstr ""
+
+#: views/mustache
+msgid "Según la entidad que las gestiona"
+msgstr ""
+
+#: views/mustache
+msgid "Según su duración"
+msgstr ""
+
+#: views/mustache
+msgid "Según su finalidad"
+msgstr ""
+
+#: views/mustache
+msgid ""
+"SendinBlue trata los datos con la finalidad de ofrecer soluciones para el "
+"envío de correos electrónicos, SMS transaccionales y de marketing al Titular."
+msgstr ""
+
+#: views/mustache
+msgid ""
+"SendinBlue, sociedad por acciones simplificada (société par actions "
+"simplifiée) inscrita en el Registro Mercantil de París con el número 498 019 "
+"298, con domicilio social situado en 55 rue d Amsterdam, 75008, París "
+"(Francia)."
+msgstr ""
+
+#: views/mustache
+msgid ""
+"Si accede a un sitio web externo desde un enlace que encuentre en el Sitio "
+"Web usted deberá leer la propia política de privacidad del otro sitio web "
+"que puede ser diferente de la de este sitio Web."
+msgstr ""
+
+#: views/mustache
+msgid ""
+"Si no estuviera conforme con todas y cada una de estas cláusulas y "
+"condiciones absténgase de utilizar el Sitio Web."
+msgstr ""
+
+#: views/mustache
+msgid ""
+"Si usted se hace seguidor en las redes sociales del Titular el tratamiento "
+"de los datos personales se regirá por este apartado, así como por aquellas "
+"condiciones de uso, políticas de privacidad y normativas de acceso que "
+"pertenezcan a la red social que proceda en cada caso y que ha aceptado "
+"previamente."
+msgstr ""
+
+#: views/mustache
+msgid ""
+"Siempre que no haya una norma que obligue a otra cosa, para cuantas "
+"cuestiones se susciten sobre la interpretación, aplicación y cumplimiento de "
+"este Aviso Legal, así como de las reclamaciones que puedan derivarse de su "
+"uso, las partes acuerdan someterse a los Jueces y Tribunales de la provincia "
+"de {{provincia}}, con renuncia expresa de cualquier otra jurisdicción que "
+"pudiera corresponderles."
+msgstr ""
+
+#: views/mustache
+msgid ""
+"Sin embargo, en algunos casos se pueden realizar colaboraciones con otros "
+"profesionales, en esos casos, se requerirá consentimiento al Usuario "
+"informando sobre la identidad del colaborador y la finalidad de la "
+"colaboración. Siempre se realizará con los más estrictos estándares de "
+"seguridad."
+msgstr ""
+
+#: views/mustache
+msgid ""
+"Sirve para activar el banner de cookies y aspectos del la Política de "
+"Cookies."
+msgstr ""
+
+#: views/mustache
+msgid "Sirve para cumplir el deber de informar."
+msgstr ""
+
+#: views/mustache
+msgid "Solicitar el acceso a los datos almacenados."
+msgstr ""
+
+#: views/mustache
+msgid "Solicitar la limitación de su tratamiento."
+msgstr ""
+
+#: views/mustache
+msgid "Solicitar la portabilidad de sus datos."
+msgstr ""
+
+#: views/mustache
+msgid "Solicitar una rectificación o la cancelación."
+msgstr ""
+
+#: views/mustache
+msgid ""
+"Son aquellas que permiten a los usuarios registrados navegar a través del "
+"sitio Web, del área restringida y a utilizar sus diferentes funciones, como "
+"por ejemplo, el sistema de comentarios o el buscador{{#es-tienda}} o llevar "
+"a cabo el proceso de compra de un Producto o Servicio{{/es-tienda}} y no "
+"pueden ser desactivadas."
+msgstr ""
+
+#: views/mustache
+msgid ""
+"Son aquellas que, {{#clause-thirdparty}}bien tratadas por el sitio Web o por "
+"terceros{{/clause-thirdparty}}{{^clause-thirdparty}}tratadas por el sitio "
+"Web{{/clause-thirdparty}}, permiten cuantificar el número de usuarios y así "
+"realizar la medición y análisis estadístico de la utilización que hacen los "
+"usuarios del sitio Web. Para ello se analiza la navegación que realizas en "
+"este sitio Web con el fin de mejorarlo."
+msgstr ""
+
+#: views/mustache
+msgid ""
+"Son establecidas por las plataformas de redes sociales para permitir a los "
+"usuarios compartir contenido con sus amigos y redes."
+msgstr ""
+
+#: views/mustache
+msgid ""
+"Sus datos podrán ser incorporados a un fichero de lista de correo, del cual "
+"el Titular es responsable de su gestión y tratamiento. La seguridad de sus "
+"datos está garantizada, ya que el Titular toma todas las medidas de "
+"seguridad necesarias y le garantiza que los datos personales sólo se usarán "
+"para las finalidades dadas."
+msgstr ""
+
+#: views/mustache
+msgid ""
+"También puede ver una lista de los tipos de cookies que utiliza Google y sus "
+"colaboradores y toda la información relativa al uso que hacen de las cookies "
+"publicitarias en:"
+msgstr ""
+
+#: views/mustache
+msgid "Teléfono de contacto"
+msgstr ""
+
+#: views/mustache
+msgid "The Rocket Science Group LLC d/b/a , con domicilio en EEUU."
+msgstr ""
+
+#: views/mustache
+msgid ""
+"The Rocket Science Group LLC d/b/a trata los datos con la finalidad de "
+"prestar sus servicios de email marketing al Titular."
+msgstr ""
+
+#: views/mustache
+msgid ""
+"Tiene derecho a la tutela judicial efectiva y a presentar una reclamación "
+"ante la autoridad de control, en este caso, la Agencia Española de "
+"Protección de Datos, si considera que el tratamiento de datos personales que "
+"le conciernen infringe el Reglamento."
+msgstr ""
+
+#: views/mustache
+msgid "Titular"
+msgstr ""
+
+#: views/mustache
+msgid ""
+"Todo acceso a este Sitio Web está sujeto a las siguientes condiciones: la "
+"reproducción, almacenaje permanente y la difusión de los contenidos o "
+"cualquier otro uso que tenga finalidad pública o comercial queda "
+"expresamente prohibida sin el consentimiento previo expreso y por escrito "
+"del Titular."
+msgstr ""
+
+#: views/mustache
+msgid "Todos los derechos están reservados."
+msgstr ""
+
+#: views/mustache
+msgid ""
+"Tras activar el plugin, en el menú \"Páginas\" aparecen tres nuevas páginas "
+"con los títulos"
+msgstr ""
+
+#: views/mustache
+msgid "Tratamiento de Datos Personales"
+msgstr ""
+
+#: views/mustache
+msgid ""
+"Una Cookie es un fichero que se descarga en su ordenador al entrar a "
+"determinadas páginas web. Las cookies permiten a una página web, entre otras "
+"cosas, almacenar y recuperar información sobre sus hábitos de navegación y "
+"dependiendo de la información que contengan y de la forma en que utilice su "
+"equipo pueden utilizarse para identificarle."
+msgstr ""
+
+#: views/mustache
+msgid ""
+"Usted se compromete a que los datos facilitados al Titular sean correctos, "
+"completos, exactos y vigentes, así como a mantenerlos debidamente "
+"actualizados."
+msgstr ""
+
+#: views/mustache
+msgid "VER DETALLES"
+msgstr ""
+
+#: views/mustache
+msgid "Ver más"
+msgstr ""
+
+#: views/mustache
+msgid "así como las condiciones incluidas en el "
+msgstr ""
+
+#: views/mustache
+msgid "en este enlace"
+msgstr ""
+
+#: views/mustache
+msgid ""
+"es un conjunto de servicios publicitarios proporcionado por Google, Inc., "
+"una compañía de Delaware cuya oficina principal está en 1600 Amphitheatre "
+"Parkway, Mountain View (California), CA 94043, Estados Unidos (\"Google\")."
+msgstr ""
+
+#: views/mustache
+msgid ""
+"es un producto de CPC Servicios Informáticos Aplicados a Nuevas Tecnologías "
+"S.L., con domicilio social en C/ Nardo, 12. 28250  Torrelodones, Madrid."
+msgstr ""
+
+#: views/mustache
+msgid ""
+"es un producto de Wysija SARL, sociedad inscrita en el Registro Mercantil de "
+"Marsella con el número B 538 230 186 y domicilio social situado en 6 rue "
+"Dieudé, 13006, Marsella (Francia)."
+msgstr ""
+
+#: views/mustache
+msgid ""
+"es un servicio de analítica web prestado por Google, Inc., una compañía de "
+"Delaware cuya oficina principal está en 1600 Amphitheatre Parkway, Mountain "
+"View (California), CA 94043, Estados Unidos (\"Google\")."
+msgstr ""
+
+#: views/mustache
+msgid "la dirección de correo electrónico:"
+msgstr ""
+
+#: views/mustache
+msgid "la dirección de correo postal:"
+msgstr ""
+
+#: views/mustache
+msgid "sólo como se describe en las páginas:"
+msgstr ""
+
+#: views/mustache
+msgid "¿Necesitas ayuda, tienes ideas para mejorar el plugin?"
+msgstr ""

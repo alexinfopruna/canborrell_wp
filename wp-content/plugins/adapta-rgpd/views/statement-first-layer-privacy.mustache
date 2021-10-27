@@ -1,0 +1,59 @@
+{{!
+
+ Copyright (c) 2018 superadmin (email : superadmin@superadmin.es)
+
+ This program is free software; you can redistribute it and/or modify
+ it under the terms of the GNU General Public License, version 2 or, at
+ your discretion, any later version, as published by the Free
+ Software Foundation.
+
+ This program is distributed in the hope that it will be useful,
+ but WITHOUT ANY WARRANTY; without even the implied warranty of
+ MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ GNU General Public License for more details.
+
+ You should have received a copy of the GNU General Public License
+ along with this program; if not, write to the Free Software
+ Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA
+
+}}
+<div class="argpd-informar">
+	<p class="argpd-informar-title"><{{#__}}Información básica sobre protección de datos{{/__}} <span class="argpd-mas">{{#__}}Ver más{{/__}}</span></p> 
+	<ul>
+		<li>
+			<b>{{#__}}Responsable:{{/__}}</b>&nbsp;{{titular}}{{^titular}}{{#__}}El titular del sitio{{/__}}{{/titular}}.
+		</li>
+		<li><b>{{#__}}Finalidad:{{/__}}</b>&nbsp;
+			{{#purpose}}{{ purpose }}{{/purpose}}
+			{{^purpose}}
+				{{#option-forms}} {{#__}}Responder las consultas.{{/__}} {{/option-forms}}
+				{{#es-tienda}} {{#__}}Facilitar al interesado ofertas de productos y servicios de su interés.{{/__}} {{/es-tienda}}
+			{{/purpose}}
+		</li>
+		<li><b>{{#__}}Legitimación:{{/__}}</b>&nbsp;
+			{{#legitimacy}}{{legitimacy}}{{/legitimacy}}
+			{{^legitimacy}}
+				{{#__}}Por consentimiento del interesado.{{/__}}</li>
+			{{/legitimacy}}
+
+		<li><b>{{#__}}Destinatarios y encargados de tratamiento:{{/__}}</b>&nbsp;
+			{{#communication}}
+				{{ communication }}
+			{{/communication}}
+
+			{{^communication}}
+				No se ceden o comunican datos a terceros para prestar este servicio.
+				{{#hosting-info}}
+					{{#__}}El Titular ha contratado los servicios de alojamiento web a {{hosting-info}} que actúa como encargado de tratamiento.{{/__}}
+				{{/hosting-info}}
+			{{/communication}}			
+		</li>
+		<li>
+			<b>{{#__}}Derechos:{{/__}}</b>&nbsp;{{#__}}Acceder, rectificar y suprimir los datos.{{/__}}
+		</li>
+		{{#privacidadURL}}
+		<li>
+			<b>{{#__}}Información Adicional:{{/__}}</b>&nbsp;{{#__}}Puede consultar la información detallada en la{{/__}} <a target="_noblank" href="{{ privacidadURL }}">{{#__}}Política de Privacidad{{/__}}</a>.</li>
+		{{/privacidadURL}}
+	</ul>
+</div>

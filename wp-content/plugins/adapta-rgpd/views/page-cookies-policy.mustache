@@ -1,0 +1,257 @@
+{{!
+
+ Copyright (c) 2018 superadmin (email : superadmin@superadmin.es)
+
+ This program is free software; you can redistribute it and/or modify
+ it under the terms of the GNU General Public License, version 2 or, at
+ your discretion, any later version, as published by the Free
+ Software Foundation.
+
+ This program is distributed in the hope that it will be useful,
+ but WITHOUT ANY WARRANTY; without even the implied warranty of
+ MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ GNU General Public License for more details.
+
+ You should have received a copy of the GNU General Public License
+ along with this program; if not, write to the Free Software
+ Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA
+
+}}
+
+<p>
+	{{#__}}En cumplimiento con el artículo 22 de la Ley 34/2002, de 11 de julio, de servicios de la sociedad de la información y de comercio electrónico (LSSI), en relación con el Reglamento (UE) 2016/679 del Parlamento Europeo y del Consejo, de 27 de abril de 2016, General de Protección de Datos (RGPD) y la Ley Orgánica 3/2018, de 5 de diciembre, de Protección de Datos y garantía de los derechos digitales (LOPDGDD), el Titular pone a disposición de los usuarios la Política de recogida y tratamiento de cookies del sitio Web.{{/__}}
+</p>
+
+<h2>{{#__}}Qué son las Cookies{{/__}}</h2>
+<p>
+	{{#__}}Una Cookie es un fichero que se descarga en su ordenador al entrar a determinadas páginas web. Las cookies permiten a una página web, entre otras cosas, almacenar y recuperar información sobre sus hábitos de navegación y dependiendo de la información que contengan y de la forma en que utilice su equipo pueden utilizarse para identificarle.{{/__}}
+</p>
+
+
+<h2>{{#__}}Cookies utilizadas en el sitio Web{{/__}}</h2>
+<p>
+	{{#__}}A continuación se clasifican las cookies utilizadas por el sitio Web{{/__}} <a href="{{site-url}}">{{dominio}}</a>:
+	<!--así como su tipología, fines de tratamiento y criterios de conservación de los datos clasificadas:-->
+</p>
+
+<p>
+	<b>{{#__}}Según la entidad que las gestiona{{/__}}</b>
+	<ul>
+		<li>{{#__}}Cookies propias: Son aquellas enviadas y gestionadas directamente por el Titular.{{/__}}</li>
+		{{#clause-thirdparty}}
+		<li>{{#__}}Cookies de terceros: Son aquellas que se envían al Usuario desde un dominio ajeno al Titular.{{/__}}</li>
+		{{/clause-thirdparty}}
+	</ul>
+</p>
+
+<p>
+	<b>{{#__}}Según su finalidad{{/__}}</b>
+	<ul>
+		<li>
+			{{#__}}Cookies técnicas: Son aquellas que permiten a los usuarios registrados navegar a través del sitio Web, del área restringida y a utilizar sus diferentes funciones, como por ejemplo, el sistema de comentarios o el buscador{{#es-tienda}} o llevar a cabo el proceso de compra de un Producto o Servicio{{/es-tienda}}.{{/__}}
+		</li>
+		<li>
+			{{#__}}Cookies de personalización: Son aquellas que permiten a los usuarios acceder al Servicio con algunas características de carácter general predefinidas en función de una serie de criterios establecidos por el Usuario como, por ejemplo, el idioma o el tipo de navegador a través del cual se conecta a este sitio Web.{{/__}}
+		</li>
+		{{#thirdparty-analytics}}
+		<li>
+			{{#__}}Cookies de análisis o medición: Son aquellas que, {{#clause-thirdparty}}bien tratadas por el sitio Web o por terceros{{/clause-thirdparty}}{{^clause-thirdparty}}tratadas por el sitio Web{{/clause-thirdparty}}, permiten cuantificar el número de usuarios y así realizar la medición y análisis estadístico de la utilización que hacen los usuarios del sitio Web. Para ello se analiza la navegación que realizas en este sitio Web con el fin de mejorarlo.{{/__}}
+		</li>
+		{{/thirdparty-analytics}}
+		{{#thirdparty-advertising}}
+		<li>
+			{{#__}}Cookies de publicidad comportamental: Son aquellas que, {{#clause-thirdparty}}bien tratadas por el sitio Web o por terceros{{/clause-thirdparty}}{{^clause-thirdparty}}tratadas por el sitio Web{{/clause-thirdparty}}, almacenan información del comportamiento de los usuarios obtenida a través de la observación continuada de sus hábitos de navegación, lo que permite desarrollar un perfil específico para mostrar publicidad en función del mismo.{{/__}}
+		</li>
+		{{/thirdparty-advertising}}
+		{{# thirdparty-social }}
+		<li>
+			{{#__}}Cookies sociales: Son establecidas por las plataformas de redes sociales para permitir a los usuarios compartir contenido con sus amigos y redes.{{/__}}
+		</li>
+		{{/ thirdparty-social }}
+		{{# thirdparty-amazon }}
+		<li>
+			{{#__}}Cookies de afiliados: Son aquellas que permiten hacer un seguimiento de las visitas procedentes de otras webs, con las que el Titular tiene un contrato de afiliación.{{/__}}
+		</li>
+		{{/ thirdparty-amazon }}
+	</ul>
+</p>
+
+<p>
+	<b>{{#__}}Según su duración{{/__}}</b>
+	<ul>
+		<li>
+			{{#__}}Cookies de sesión: Son aquellas diseñadas para recabar y almacenar datos mientras el Usuario accede al sitio Web.{{/__}}
+		</li>
+		<li>
+			{{#__}}Cookies persistentes: Son aquellas en las que los datos siguen almacenados en el terminal del Usuario y pueden ser accedidos y tratados durante un período definido por el responsable de la cookie.{{/__}}
+		</li>		
+	</ul>
+</p>
+
+
+<h2>{{#__}}Listado de cookies utilizadas{{/__}}</h2>
+<p>
+	{{#__}}Este sitio Web puede instalar las siguientes cookies:{{/__}}
+</p>
+<p>
+	<b>{{#__}}Cookies técnicas{{/__}}</b>
+
+	<ul>
+		<li><b>wp-settings-{user_id}:</b> {{#__}}Cookie técnica que se usa para mantener la configuración del Usuario en el escritorio de WordPress (/wp-admin). Es persistente y tiene una duración de 1 año.{{/__}}</li>
+		<li><b>hasConsent:</b> {{#__}}Cookie técnica que almacena el consentimiento del Usuario. Es persistente y tiene una duración de 1 año.{{/__}}</li>
+	</ul>
+</p>
+{{#thirdparty-analytics}}
+<p>
+	<b>{{#__}}Cookies de análisis o medición{{/__}}</b>
+	<ul>
+		{{# thirdparty-fanalytics }}
+		<li><b>_fbp:</b> {{#__}}Cookie que mide el rendimiento de la publicidad de Facebook. Es persistente y tiene una duración de 1 día.{{/__}}</li>
+		<li><b>fr, sb:</b> {{#__}}Cookies que miden el rendimiento de la publicidad de Facebook. Son cookies persistentes.{{/__}}</li>
+		<li><b>Pixel:</b> {{#__}}Cookie que permite ofrecer a los visitantes del sitio Web publicidad personalizada en su plataforma basándose en los datos relativos a las cabeceras http, el píxel (ID, cookie Facebook), y registrar y comunicar a Facebook las acciones del Usuario en el sitio Web.{{/__}}</li>
+		{{/ thirdparty-fanalytics }}
+		{{# thirdparty-ganalytics }}
+		<li><b>_ga:</b> {{#__}}Cookie Analítica que habilita la función de control de visitas únicas. Es persistente y tiene una duración de 2 años.{{/__}}</li>
+		<li><b>_gat:</b> {{#__}}Cookie Analítica para limitar el número de solicitudes. Su ámbito es la sesión y tiene una duración de 1 minuto.{{/__}}</li>
+		<li><b>_gid:</b> {{#__}}Cookie Analítica para distinguir usuarios. Su ámbito es la sesión y tiene una duración de 24 horas.{{/__}}</li>
+		{{/ thirdparty-ganalytics }}
+	</ul>
+</p>
+<p>
+  {{#__}}Información adicional{{/__}}:
+  <ul>
+</p>  
+{{/thirdparty-analytics}}
+
+{{# thirdparty-fanalytics }}
+<li>
+  {{#__}}Obtén más información sobre el uso de las cookies por parte de Facebook en la página de {{/__}} <a target="_blank" rel="noopener noreferrer nofollow" href="https://www.facebook.com/policies/cookies/">{{#__}}Política de Cookies de Facebook{{/__}}</a>
+</li>
+{{/ thirdparty-fanalytics }}
+{{# thirdparty-ganalytics }}
+<li>  
+  {{#__}}Google Analytics puede instalar otras cookies según el documento Uso de las cookies de Google Analytics en sitios web que puede consultar {{/__}} <a target="_blank" rel="noopener noreferrer nofollow" href="https://developers.google.com/analytics/devguides/collection/analyticsjs/cookie-usage?hl=es">{{#__}}en este enlace{{/__}}</a>.
+</li>
+{{/ thirdparty-ganalytics }}
+
+{{# thirdparty-adsense }}
+  <li>
+    {{#__}}Para dejar de recibir publicidad personalizada de Google puede inhabilitar la personalización de anuncios mediante la configuración de anuncios de Google cuyas instrucciones puede consultar {{/__}} <a rel="nofollow" href="https://www.google.es/settings/ads">{{#__}}en este enlace{{/__}}</a>.
+  </li>
+{{/ thirdparty-adsense }}
+</ul>
+
+{{#thirdparty-dclick}}
+<p>
+  <b>{{#__}}Cookies de publicidad comportamental{{/__}}</b>
+  <ul>
+    <li><b>_gads y _gac.</b> {{#__}}Cookies de DoubleClick para medir las interacciones con los anuncios y evitar que te muestre la misma publicidad demasiadas veces. Es persistente y tiene una duración de 1 año.{{/__}}</li>
+    <li><b>IDE.</b> {{#__}}Cookie para registrar y notificar DoubleClick las acciones del Usuario del sitio web cuando este haya visto o haya hecho clic en uno de los anuncios del anunciante, con el objetivo de medir la eficacia y mostrar anuncios publicitarios que se ajusten a sus intereses. Es persistente y tiene una duración de 1 año.{{/__}}</li>
+  </ul>
+</p>  
+
+<p>
+  {{#__}}Información adicional{{/__}}:
+  </ul>
+    <li>
+      {{#__}}Este sitio Web utiliza servicios de DoubleClick; que pueden instalar cookies para mostrarle publicidad relacionada con el contenido que le es relevante en base a un perfil elaborado a partir de sus hábitos de navegación, mejorando así su percepción de la calidad del sitio Web.{{/__}}
+    </li>
+    <li>    
+      {{#__}}Este sitio Web utiliza servicios de Google Adsense que pueden instalar cookies para recopilar información con fines estadísticos y de uso del sitio Web. Las cookies instaladas permiten mejorar la publicidad que encuentra en el sitio Web mostrándole publicidad según el contenido que le es relevante, mejorando así su percepción de la calidad del sitio Web.{{/__}}
+    </li>
+  </ul>
+</p>
+{{/thirdparty-dclick}}
+
+{{# thirdparty-social }}
+<p>
+  <b>{{#__}}Cookies sociales{{/__}}</b>
+  <ul>
+    <li>
+      {{#__}}El sitio Web incluye otras funcionalidades proporcionadas por servicios de terceros y redes sociales para mejorar la experiencia de los visitantes. Puede compartir el contenido en sus redes sociales como Facebook, Twitter, Instagram, Vimeo o YouTube con los botones incluidos a tal efecto o con las herramientas para compartir propias de las redes sociales. Como resultado, estos servicios pueden instalar cookies y utilizarlas para rastrear su actividad online. El Titular no tiene control directo sobre la información recopilada por estas cookies.{{/__}}
+    </li>
+  </ul>
+</p>
+
+
+{{/ thirdparty-social }}
+
+
+{{# thirdparty-amazon }}
+<p>
+  <b>{{#__}}Cookies de afiliación{{/__}}</b>
+  <ul>
+    <li>
+    	<p>
+      	{{#__}}El Titular participa en el Programa de Afiliados de Amazon EU. Amazon y otros anunciantes pueden instalar cookies en su equipo que sirven para obtener información, ofrecerle anuncios, mostrar contenido basado en sus intereses o para hacer un seguimiento de su navegación, guardando la información de afiliado por si realiza una compra en las siguientes 24 horas.{{/__}}
+      	</p>
+      	<p>
+    	{{#__}}Encontrará más información en:{{/__}}
+    	<ul>
+    		<li><a href="https://afiliados.amazon.es/" rel="nofollow" target="_blank">{{#__}}Programa de afiliados de Amazon.{{/__}}</a></li>
+    		<li><a href="https://www.amazon.es/gp/help/customer/display.html/?nodeId=201909150" rel="nofollow" target="_blank">{{#__}}Aviso sobre publicidad basada en los intereses del usuario.{{/__}}</a></li>
+    	</ul>
+		</p>
+    </li>
+  </ul>
+</p>
+{{/ thirdparty-amazon }}
+{{#clause-thirdparty}}
+
+{{#cookies-html}}
+<p> 
+  {{#__}}El sitio Web puede instalar otras cookies:{{/__}}
+</p>
+<p>
+  {{{cookies-html}}}
+</p>
+{{/cookies-html}}
+
+{{/clause-thirdparty}}
+
+{{#option-cookies}}
+<h2>{{#__}}Aceptación o rechazo de la instalación de cookies{{/__}}</h2>
+<p>
+{{#__}}El Titular muestra información sobre su Política de cookies {{#option-footer}}en el menú del pie de página y {{/option-footer}}en el banner de cookies accesible en todas las páginas del Sitio Web. El banner de cookies muestra información esencial sobre el tratamiento de datos y permite al Usuario realizar las siguientes acciones{{/__}}:
+</p>
+<p>
+<ul>
+  <li>{{#__}}Aceptar o rechazar la instalación de cookies, o retirar el consentimiento previamente otorgado.{{/__}}</li>
+  {{#custom-cookies-page-url}}<li>{{#__}}Cambiar las preferencias de cookies desde la página Personalizar Cookies, a la que puede acceder desde el Aviso de Cookies o desde la página de {{/__}}<a href="{{custom-cookies-page-url}}">Personalizar Cookies</a>.</li>{{/custom-cookies-page-url}}
+  
+  {{#cookiesURL}}<li>{{#__}}Obtener información adicional en la página de {{/__}} <a href={{cookiesURL}}>Política de Cookies</a>.</li>{{/cookiesURL}}
+</ul>
+</p>
+{{/option-cookies}}
+
+<h2>{{#__}}Eliminación de cookies{{/__}}</h2>
+<p>
+  {{#__}}Puede aceptar, bloquear o eliminar las cookies instaladas en su equipo mediante la configuración de las opciones del navegador, pero tenga en cuenta que parte del sitio no funcionará correctamente o que algunas de sus funcionalidades no estarán disponibles o tendrán errores.{{/__}}
+</p>
+<p> 
+  {{#__}}En los siguientes enlaces encontrará instrucciones para habilitar o deshabilitar las cookies en los navegadores más comunes.{{/__}}
+</p>
+<p>
+  <ul>
+    <li><a rel="nofollow" target="_blank" rel="noopener noreferrer nofollow" href="http://support.mozilla.org/es/kb/habilitar-y-deshabilitar-cookies-que-los-sitios-we">Firefox</a></li>
+    <li><a target="_blank" rel="noopener noreferrer nofollow" href="https://support.google.com/chrome/answer/95647?hl=es">Google Chrome</a></li>
+    <li><a target="_blank" rel="noopener noreferrer nofollow" href='https://support.microsoft.com/es-es/help/17442/windows-internet-explorer-delete-manage-cookies#ie="ie-10'>Internet Explorer</a></li>
+    <li><a target="_blank" rel="noopener noreferrer nofollow" href='https://support.microsoft.com/es-es/help/4468242/microsoft-edge-browsing-data-and-privacy'>Microsoft Edge</a></li>
+    <li><a rel="nofollow" target="_blank" rel="noopener noreferrer nofollow" href="http://support.apple.com/kb/HT1677?viewlocale=es_ES">Safari</a></li>
+  </ul>
+</p>
+
+
+<h2>{{#__}}Tratamiento de Datos Personales{{/__}}</h2>
+
+<p> 
+  {{#__}}El Titular es el Responsable del tratamiento de los datos personales del usuario.{{/__}}
+  {{#privacidadURL}}{{#__}}Puede consultar toda la información relativa al tratamiento de datos personales que recoge el Titular en la página de la {{/__}} <a href="{{privacidadURL}}">{{#__}}Política de Privacidad{{/__}}</a>{{/privacidadURL}}.
+</p>
+
+{{#correo}}
+<h2>{{#__}}Contacto{{/__}}</h2>
+<p>
+  {{#__}}En caso de que tenga cualquier duda acerca de esta Política de Cookies o quiera realizar cualquier comentario sobre este sitio Web, puede enviar un mensaje a la dirección de correo electrónico: {{/__}} {{correo}}
+</p>
+{{/correo}}

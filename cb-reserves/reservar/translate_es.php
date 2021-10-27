@@ -290,7 +290,7 @@ $translate["Can Borrell: Reserva Anul·lada: No es rep i senyal"] = "Can Borrell
 $translate['RESERVA_CORONA'] = "Nos vemos en la obligación de advertirle que si usted sufre sintomatología
 que pueda estar relacionada con el virus Covid-19, por favor tome las
 medidas dictaminadas por el Ministerio de Sanidad. 
-<br><b> Recuerde que sólo puede compartir mesa si es unidad familiar o grupo burbuja</b>";
+<br><b> </b>";
 
 $translate["meteo_terrassa"]="Las reservas en la terraza dependen de las condiciones meteorológiques. "
         . "Para disfrutar de mesa en la terraza es necesario llegar al restaurante antes de las 14:00h  SÁBADA  Y  LAS 13.30h  DOMINGOS Y FESTIVOS. (para más tarde no garantizamos que sea en la terraza)";
