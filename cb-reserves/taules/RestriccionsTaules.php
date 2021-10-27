@@ -173,8 +173,9 @@ $order
       $restriccio->restriccions_dies = array(0, 0, 0, 0, 0, 1, 1);
     $restriccio->restriccions_dies = $this->dies2dec($restriccio->restriccions_dies);
 
-    if (!$restriccio->restriccions_active) $restriccio->restriccions_active=0;
-    else $restriccio->restriccions_active=1;
+    //if (!$restriccio->restriccions_active) $restriccio->restriccions_active=0;
+    //else 
+    $restriccio->restriccions_active=1;
     
     $query = "REPLACE INTO RestriccioHoresTaula 
       (restriccions_active, restriccions_taula_id, restriccions_data, restriccions_datafi, restriccions_hora, restriccions_hores,  restriccions_dies, restriccions_description)
