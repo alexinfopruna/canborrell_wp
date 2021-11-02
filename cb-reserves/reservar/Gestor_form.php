@@ -350,6 +350,7 @@ class Gestor_form extends gestor_reserves {
   /*   * ******************************************************************************************************* */
   public function recuperaCarta($idr, $es_menu = false) {
     $lng = $this->lng;
+    $arCarta=[];
     if ($idr < 1)
       $idr = -1;
     //CONTROL DIES NOMES CARTA
@@ -409,7 +410,6 @@ ORDER BY carta_subfamilia_order,carta_plats_nom_es , carta_plats_nom_ca";
 
       $carta .= $obreSeccio . PHP_EOL . $seccio . PHP_EOL . $tancaSeccio;
     }
-
     return $carta;
   }
 

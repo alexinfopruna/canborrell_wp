@@ -390,7 +390,15 @@ $translateJS['N4_NO_COMBINABLE'] = "El menú nº 4 no es pot combinar amb cap al
 
        // $translateJS['INFO_CARTA_NADAL']='Los dias especiales de navidad tenéis que escoger entre los menús que os ofrecemo. Tenéis que escoger tantos menús como comensales ';
        // $translateJS['INFO_CARTA_NADAL']='Els dies especials de nadal cal que escolliu els menús que us oferim. N`heu d`escollir tants com comensals';
-        $translateJS['INFO_CARTA_NADAL']="Els dies especials de nadal cal que escolliu els menús que us oferim. N`heu d`escollir tants com comensals";
+        $translateJS['INFO_CARTA_NADAL']="Els dies especials de nadal cal que escolliu els menús que us oferim. N`heu d`escollir tants com comensals."
+                . "<br><br><b>(el menú de calçotada es pot combinar amb els menús nº 1 i nº2)</b>"
+                . "<br><br><b>SUPLEMENTS (pels que no volen fer graellada)</b><br>"
+                . "<ul><li>Costella de vedella a la brasa (10.60€)</li>"
+                . "<li>Espatlla de xai a la brasa (9.10€)</li>"
+                . "<li>Bacallà a la llauna (8.10€)</li>"
+                . "<li>Cargols a la llauna (8.70€)</li>"
+                . "<li>Moixarra a la brasa  (6.90€)</li><br>";
+
 
         $translateJS['INFO_CARTA']=$translate['INFO_CARTA'];
    //     $translateJS['INFO_CARTA']="Si ho desitges pots triar els plats que demanareu per tenir una idea del preu, evitar que us trobeu algun plat exhaurit i accelerar el servei quan vingueu al restaurant.<br/><br/><b>Aquesta selecció no et compromet en absolut</b>.<br/><br/> Un cop al restaurant podràs modificar o anul·lar la comanda i, en qualsevol cas, us cobrarem únicament els plats i beugudes que us servim.";;
