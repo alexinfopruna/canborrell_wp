@@ -46,9 +46,9 @@ class RestriccionsTaules extends gestor_reserves {
   }
 
   public function pliiin($txt, $reset = FALSE) {
-    $f = fopen("pliiin.txt", $reset ? "w" : "a");
-    fwrite($f, " ---> " . $txt);
-    fclose($f);
+   // $f = fopen("pliiin.txt", $reset ? "w" : "a");
+   // fwrite($f, " ---> " . $txt);
+   // fclose($f);
   }
 
   protected function dies2dec($binArray) {
@@ -203,7 +203,8 @@ $order
 
     $plin = $restriccio->restriccions_hores;
     $this->pliiin($plin);
-
+if (!($restriccio->restriccions_active))$restriccio->restriccions_active=0;
+    
     $query = "UPDATE  RestriccioHoresTaula 
  
       SET restriccions_active= '$restriccio->restriccions_active',

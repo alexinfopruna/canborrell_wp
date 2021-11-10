@@ -47,7 +47,6 @@ static $TOTES_HORES =array("", "11:00", "11:15", "11:30", "11:45",
   // echo  $max = date('Y-m-d', strtotime(' + '. MAX_DAYS_RESTRICCTIONS .' days'));
   // echo MAX_DAYS_RESTRICCTIONS." *** ".$data." -- ".$max;
     if (defined("MAX_DAYS_RESTRICCTIONS") && $data > date('Y-m-d', strtotime( ' + '. MAX_DAYS_RESTRICCTIONS .' days'))) return false;
-    
     return true;
   }
   
@@ -134,7 +133,7 @@ $hores = $this->interseccio_hores($rules);
     $cachev['hores'] = $hores;
     $_SESSION[$index] = $cachev;
     //   } 
-
+//var_dump($hores);die();
 
     return $hores;
   }
@@ -169,6 +168,7 @@ $hores = $this->interseccio_hores($rules);
   /*   * ************************************************************************ */
 
   public function getHoresCoberts($data, $coberts ) {
+     
     $diesBin = array(64, 32, 16, 8, 4, 2, 1);
     $ds = date('N', strtotime($data));
     $diaBin = $diesBin[$ds - 1];
@@ -181,7 +181,7 @@ $hores = $this->interseccio_hores($rules);
     $Result1 = mysqli_query($this->connexioDB, $query) or die(((is_object($GLOBALS["___mysqli_ston"])) ? mysqli_error($GLOBALS["___mysqli_ston"]) : (($___mysqli_res = mysqli_connect_error()) ? $___mysqli_res : false)));
     $nr = mysqli_num_rows($Result1); 
     if (!$nr) return null; // SI NO HI HA RESTRICCIONS SON TOTES
-    
+    //die($query);
     $hores = array();
     while ($row = $Result1->fetch_assoc()) {
       $hores = $hores | $row['restriccions_hores'];

@@ -695,8 +695,7 @@ ORDER BY  `estat_hores_hora` ASC ";
       if ($row['estat_hores_hora'] == $this->hora)
         $checked = 'checked="checked"'; // CHECKED
       else {
-        if (!$row['estat_hores_actiu'])
-          continue;
+        if (!$row['estat_hores_actiu'])          continue;
         $checked = null;
       }
  
@@ -709,33 +708,32 @@ ORDER BY  `estat_hores_hora` ASC ";
 
       $comensals = $this->sum_comensals_hora($row['estat_hores_hora']);
       $disabled = ($row['estat_hores_max'] && $comensals + $contaPersones > $row['estat_hores_max']) ? 'disabled="disabled"' : '';
-
       // HORES DESACTIVADES
-      if (!empty($disabled) && !$mostraDisableds)
-        continue;
+      if (!empty($disabled) && !$mostraDisableds)        continue;
       // NENS A ULTIMA HORA
       /**/
       
       /** 
        * ESQUIVA LES HORES QUE TENEN RESTRICCIONS DE NENS
-       */
-     // echo "WWW";
-      //print_r($this->rang_hores_nens);die(); 
+     
       if ($torn < 3 && is_array($this->rang_hores_nens) && count($this->rang_hores_nens) && !in_array($row['estat_hores_hora'], $this->rang_hores_nens))
         continue;
- 
-       /** 
-       * ESQUIVA LES HORES QUE TENEN RESTRICCIONS HORES TAULES
-       */
+   */
+     
       if ($row['estat_hores_hora']>='13:00'){ // Les restriccion no afecten els esmorzars
+          
         if ($torn < 3 && is_array($this->rang_hores_nens) && count($this->rang_hores_nens) && !in_array($row['estat_hores_hora'], $this->rang_hores_nens))
              continue;
       
-      
+          
+      /** 
+       * ESQUIVA LES HORES QUE TENEN RESTRICCIONS HORES TAULES
+       */
         if ($torn < 3 && is_array($this->rang_hores_taules) && count($this->rang_hores_taules) && !in_array($row['estat_hores_hora'], $this->rang_hores_taules))
              continue;
       }
-
+      //var_dump($this->rang_hores_nens);die();
+       
       /**
        * ESQUIVA ESMORZARS FORA DE DS
        */

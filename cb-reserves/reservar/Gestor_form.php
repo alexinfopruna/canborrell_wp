@@ -228,7 +228,7 @@ class Gestor_form extends gestor_reserves {
     $this->taulesDisponibles->recupera_hores(); 
 
     $taules = $this->taulesDisponibles->taulesDisponibles();
-
+    
     $tids = "";
     if ($taules) {
       foreach ($taules as $k => $v)
@@ -237,6 +237,8 @@ class Gestor_form extends gestor_reserves {
     $hores_taules = $rc->getHoresCoberts($mydata, $coberts); //$rc->
     $this->taulesDisponibles->rang_hores_taules = $hores_taules;
     $dinar = $this->taulesDisponibles->recupera_hores();
+    //var_dump($hores_taules);
+    //var_dump($dinar);die();
     $taulaT1 = 0;
     $taula_t1_nom = "";
     if ($taules) {
