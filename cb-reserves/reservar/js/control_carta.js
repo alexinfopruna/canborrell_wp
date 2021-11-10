@@ -50,7 +50,7 @@ $(function () {
         //var totalPersones = parseInt(totalPersones());
         var totalPersones = parseInt($("#totalComensals").val());
         // alert(totalPersones);
-        if (totalPersones <= 20) {
+        if (totalPersones <= 14) {
             updateCarta();
             comportamentClient();
         }
