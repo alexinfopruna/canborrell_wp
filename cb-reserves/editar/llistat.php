@@ -467,20 +467,20 @@ td a:hover {color:white}
 
                                 if ($pageNum_reserves > 0) { // Show if not first page 
                                   ?>
-                                  <a href="<?php printf("%s?pageNum_reserves=%d%s", $currentPage, 0, $queryString_reserves); ?>"><img src="../img/First.gif" border=0></a>
+                                  <a href="<?php printf("%s?pageNum_reserves=%d%s", $currentPage, 0, $queryString_reserves); ?>"><span class="ui-icon ui-icon-seek-first"></span></a>
 <?php } // Show if not first page    ?>
                             </td>
                             <td width="10%" align="center"><?php if ($pageNum_reserves > 0) { // Show if not first page   ?>
-                                  <a href="<?php printf("%s?pageNum_reserves=%d%s", $currentPage, max(0, $pageNum_reserves - 1), $queryString_reserves); ?>"><img src="../img/Previous.gif" border=0></a>
+                                  <a href="<?php printf("%s?pageNum_reserves=%d%s", $currentPage, max(0, $pageNum_reserves - 1), $queryString_reserves); ?>"><span class="ui-icon ui-icon-seek-prev"></span></a>
 <?php } // Show if not first page    ?>
                             </td>
                             <td width="60%"  align="center"> Registres <?php echo ($startRow_reserves + 1) ?> a <?php echo min($startRow_reserves + $maxRows_reserves, $totalRows_reserves) ?> de <?php echo $totalRows_reserves ?> </td>
                             <td width="10%" align="center"><?php if ($pageNum_reserves < $totalPages_reserves) { // Show if not last page    ?>
-                                  <a href="<?php printf("%s?pageNum_reserves=%d%s", $currentPage, min($totalPages_reserves, $pageNum_reserves + 1), $queryString_reserves); ?>"><img src="../img/Next.gif" border=0></a>
+                                  <a href="<?php printf("%s?pageNum_reserves=%d%s", $currentPage, min($totalPages_reserves, $pageNum_reserves + 1), $queryString_reserves); ?>"><span class="ui-icon ui-icon-seek-next"></span></a>
 <?php } // Show if not last page    ?>
                             </td>
                             <td width="10%" align="center"><?php if ($pageNum_reserves < $totalPages_reserves) { // Show if not last page    ?>
-                                  <a href="<?php printf("%s?pageNum_reserves=%d%s", $currentPage, $totalPages_reserves, $queryString_reserves); ?>"><img src="../img/Last.gif" border=0></a>
+                                  <a href="<?php printf("%s?pageNum_reserves=%d%s", $currentPage, $totalPages_reserves, $queryString_reserves); ?>"><span class="ui-icon ui-icon-seek-last"></span></a>
 <?php } // Show if not last page    ?>
                             </td>
                         </tr>
