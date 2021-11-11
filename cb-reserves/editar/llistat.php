@@ -480,7 +480,7 @@ td a:hover {color:white}
 <?php } // Show if not last page    ?>
                             </td>
                             <td width="10%" align="center"><?php if ($pageNum_reserves < $totalPages_reserves) { // Show if not last page    ?>
-                                  <a href="<?php printf("%s?pageNum_reserves=%d%s", $currentPage, $totalPages_reserves, $queryString_reserves); ?>"><span class="ui-icon ui-icon-seek-last"></span></a>
+                                  <a href="<?php printf("%s?pageNum_reserves=%d%s", $currentPage, $totalPages_reserves, $queryString_reserves); ?>"><span class="ui-icon ui-icon-seek-end"></span></a>
 <?php } // Show if not last page    ?>
                             </td>
                         </tr>
