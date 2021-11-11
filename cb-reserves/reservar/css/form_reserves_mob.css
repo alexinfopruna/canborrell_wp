@@ -495,3 +495,15 @@ html, body
     top:40px !important;
 }
 */
+
+#selectorTerrassa input[type="checkbox"]:checked+label { background: #8E7252;}
+#selectorTerrassa input[type="checkbox"]{display:none}
+#selectorTerrassa label { 
+  /*  border: black solid 2px; */
+    background: #444;
+    padding: 8px;
+    border-radius: 4px;
+    color: white;
+    
+}
+#xxxxselectorTerrassa label:hover {background: #BD7E22;}

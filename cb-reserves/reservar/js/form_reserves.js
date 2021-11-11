@@ -173,7 +173,8 @@ $(function () {
     $("#selectorCotxets").find("label").unbind("mouseup");
     $("#selectorCadiraRodes").buttonset();
     $("#selectorCadiraRodes").find("label").unbind("mouseup");
-    $("#selectorTerrassa").buttonset();
+    
+   //$("#selectorTerrassa").buttonset();
     $("#selectorTerrassa").find("label").unbind("mouseup");
    
 
@@ -512,7 +513,7 @@ function recargaHores()
 
     var accesibilidad = $("input[name='selectorCadiraRodes']:checked").length;
     accesibilidad += $("input[name='selectorAccesible']:checked").length;
-
+/*
     var desti=GESTOR + "?a=recupera_estatTerrassa&b="+$("#calendari").val();
     $("#terrassa").prop('checked', false);
     $('#terrassa').button( "refresh" );
@@ -525,7 +526,7 @@ function recargaHores()
         
     });
 
-
+*/
     $.post(GESTOR + "?a=horesDisponibles&b=" + $("#calendari").val() + "&c=" + comensals + "&d=" + $("input[name='selectorCotxets']:checked").val() + "&e=" + accesibilidad + "&f=" + IDR + "&g=" + NENS, function (dades) {
         if (dades.substr(0, 3) == "err") {
 
