@@ -680,7 +680,7 @@ function updateMenus() {
         $("#carta_MENUS tr[producte_id=2002]").show(); //N3
         $("#carta_MENUS tr[producte_id=2004]").show(); //infantil
         $("#carta_MENUS tr[producte_id=2011]").show(); //infantil
-        $("#carta_MENUS tr[producte_id=2022]").show(); //junior
+        $("#carta_MENUS tr[producte_id=2023]").show(); //junior
         $("#carta_MENUS tr[producte_id=2024]").show(); //n1
         //$("#carta_MENUS tr[producte_id=2003]").show(); //n2
         //$("#carta_MENUS tr[producte_id=2007]").show(); //n4		
