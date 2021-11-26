@@ -81,6 +81,7 @@ $translate['Els nostres menús'] = 'Our set menus';
 $translate['Connexió amb el sistema de reserves'] = 'Connect to our reservation service';
 $translate['Cap taula o restaurant tancat'] = 'There are no tables available or the restaurant is closed';
 $translate['Editant reserva ID'] = 'Editing reservation ID';
+$translate['RESERVA_CORONA'] = 'Following the COVID protocol established by the Generalitat de Catalunya, the digital covid certificate will be mandatory to access the restaurant. <br> <b> </b>';
 $translate['RESERVA_CORONA'] = 'We are obliged to warn you that if you have symptoms
 that may be related to the Covid-19 virus, please take the measures ruled by the Ministry. 
 <br> <b></b>';
