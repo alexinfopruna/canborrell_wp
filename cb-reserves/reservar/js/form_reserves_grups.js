@@ -646,7 +646,7 @@ function updateMenus() {
     
 
     if (excepcio) {
-        alert("EXCEPCIO");
+       // alert("EXCEPCIO");
         $("#bt-carta").hide();
         $("#bt-no-carta").hide();
         $("#fr-carta-tabs").hide();        
@@ -1057,7 +1057,7 @@ function getParameterByName(name)
 function seccio(selector_seccio) {
     if (selector_seccio)
         SECCIO = selector_seccio;
-    alert(selector_seccio);
+ //   alert(selector_seccio);
     $.scrollTo($("." + selector_seccio), 800);
     
     if (selector_seccio=="grups-fr-seccio-carta") updateMenus();
