@@ -700,7 +700,7 @@ function updateMenus() {
         $("#carta_ tr[producte_id=2022]").show(); //junior
         $("#carta_ tr[producte_id=2024]").show(); //n1
     }else{
-            /*
+            
                 $(".col-isqui-carta .info.caixa").html(l("INFO_CARTA"));
         $("#bt-menu span").html(l("Menús"));
        // $("#bt-menu span").hide();
@@ -710,7 +710,7 @@ function updateMenus() {
         $("#bt-no-carta").show();
         $("#fr-carta-tabs").show();        
          $("#carta_ tr").show();
-         $("#carta_MENUS tr").show();*/
+         $("#carta_MENUS tr").show();
     }
 
 
