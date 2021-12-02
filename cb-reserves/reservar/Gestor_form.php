@@ -149,6 +149,8 @@ class Gestor_form extends gestor_reserves {
   /*   * ******************************************************************************************************* */
   // Llistat hores form GRUPS. 
   public function totesHores($data) {
+    if (empty($data)) return json_encode(false);;
+    
     $mydata = $this->cambiaf_a_mysql($data);
     $ds = date("w", strtotime($mydata));
     $coberts = 0;

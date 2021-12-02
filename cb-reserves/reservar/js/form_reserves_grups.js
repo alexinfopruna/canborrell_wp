@@ -8,6 +8,7 @@ var DATA = "01/01/2011";
 var TORN = "0";
 var SECCIO = null;
 var SELECT_CARTA=false;
+var GRUPS=true;
 
 var DEBUG = getParameterByName("debug");
 
@@ -432,6 +433,8 @@ function comportamentDia()
  */
 function recargaHores()
 {
+    
+    
     $("#selectorHora").html('<img src="/cb-reserves/reservar/css/loading.gif"/>');
     $("#selectorHoraSopar").html('<img src="/cb-reserves/reservar/css/loading.gif"/>');
     var hora = $("input[name='selectorHora']:checked").val();
@@ -627,6 +630,7 @@ function updateResum()
  COMPORTAMENT EXCEPCIONS STESTEVE,ANYNOU,REIS
  */
 function updateMenus() {
+    return;
     var excepcio = false;
     var dat = $("#calendari").datepicker("getDate");
 
@@ -642,12 +646,15 @@ function updateMenus() {
     $("#carta3 h3").show();
     
 
-    if (excepcio) {
+    if (excepcio && false) {
+        $("#bt-carta").hide();
+        $("#bt-no-carta").hide();
+        $("#fr-carta-tabs").hide();        
+        
+        
         /*
          * ADUULTS
          */
-        
-        
         $("#carta a[v=1]").parent().hide();
         $("#carta a[v=3]").parent().hide();
         $("#carta a[v=5]").parent().hide();
@@ -686,12 +693,23 @@ function updateMenus() {
         //$("#carta_MENUS tr[producte_id=2007]").show(); //n4		
         //$("#carta_MENUS tr[producte_id=2010]").show(); //calsotada	
         
-               $("#carta_ tr").hide();
+              $("#carta_MENUS tr").hide();
         $("#carta_ tr[producte_id=2002]").show(); //N3
         $("#carta_ tr[producte_id=2004]").show(); //infantil
         $("#carta_ tr[producte_id=2011]").show(); //infantil
         $("#carta_ tr[producte_id=2022]").show(); //junior
         $("#carta_ tr[producte_id=2024]").show(); //n1
+    }else{
+            
+                $(".col-isqui-carta .info.caixa").html(l("INFO_CARTA"));
+        $("#bt-menu span").html(l("Menús"));
+       // $("#bt-menu span").hide();
+        $("#bt-no-carta").show(); 
+        
+        $("#bt-carta").show();
+        $("#bt-no-carta").show();
+        $("#fr-carta-tabs").show();        
+         $("#carta_ tr").show();
     }
 
 
@@ -1038,7 +1056,10 @@ function getParameterByName(name)
 function seccio(selector_seccio) {
     if (selector_seccio)
         SECCIO = selector_seccio;
+   // alert(selector_seccio);
     $.scrollTo($("." + selector_seccio), 800);
+    
+    if (selector_seccio=="grups-fr-seccio-carta") updateMenus();
     //clearTimeout(th);//
     //th=setTimeout('timer_help("'+l("grups-"+selector_seccio)+'")',TIMER_HELP_INTERVAL);
 

@@ -284,7 +284,8 @@ $(".form_edit .info-comanda").html(taula);
     if(dat) {
         var excepcioNadal = excepcio_nadal(dat);
       //  $("#bt-no-carta").hide();
-        if (excepcioNadal){
+        if (excepcioNadal && !GRUPS){
+           
            seccio("fr-seccio-carta");
            $(".fr-seccio-client").hide();
             $("#bt-no-carta").hide(); 
