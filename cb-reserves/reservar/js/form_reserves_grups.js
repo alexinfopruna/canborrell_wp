@@ -630,7 +630,6 @@ function updateResum()
  COMPORTAMENT EXCEPCIONS STESTEVE,ANYNOU,REIS
  */
 function updateMenus() {
-    return;
     var excepcio = false;
     var dat = $("#calendari").datepicker("getDate");
 
@@ -646,7 +645,7 @@ function updateMenus() {
     $("#carta3 h3").show();
     
 
-    if (excepcio && false) {
+    if (excepcio) {
         $("#bt-carta").hide();
         $("#bt-no-carta").hide();
         $("#fr-carta-tabs").hide();        
