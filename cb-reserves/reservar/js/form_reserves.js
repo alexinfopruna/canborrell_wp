@@ -1008,7 +1008,7 @@ function validacio()
                 min: 2,
                 max: PERSONES_GRUP - 1
             },
-            selectorCalcots: "required",
+            selectorCalcotsxxx: "required",
             valida_calendari: "required",
             hora: "required",
             selectorData: "required",
