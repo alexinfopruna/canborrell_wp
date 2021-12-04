@@ -433,7 +433,7 @@ header("Pragma: no-cache");
 
   <script type="text/javascript" src="/cb-reserves/reservar/js/jquery.simplemodal.js"></script>
   <script type="text/javascript" src="/cb-reserves/reservar/js/control_carta.js"></script>
-  <script type="text/javascript" src="/cb-reserves/reservar/js/form_reserves.js"></script>		
+  <script type="text/javascript" src="/cb-reserves/reservar/js/form_reserves.js?211204"></script>		
   <script type="text/javascript" src="/cb-reserves/reservar/js/popups_ajuda.js"></script>
 
   <script>
@@ -889,6 +889,7 @@ if ($testTPV) {
                                                 <div id="selectorCalcots" class="fr-col-dere selector">
                                                     <h3><?php l("QUANTS_CALCOTS") ?></h3>
                                                     <span style="font-style:italic;"><?php l("INFO_CALCOTS") ?></span>
+                                                    <br>
                                                                           <input type="hidden" id="com" name="calcots" value="<?php echo $row['adults'] ?>"  style="width:35px;font-size:1.2em;padding-left:0;padding-right:0" class="ui-button ui-widget ui-state-default ui-button-text-only coberts"/><label for="calcGrupsN" ><?php //l('Més de ');//echo ($PERSONES_GRUP+14)          ?></label>	
                                                                          
 <input type="radio" id="calc0" name="selectorCalcots" value="0" /><label for="calc0" class="" title="No en voldrem"><?php l("CAP") ?></label>

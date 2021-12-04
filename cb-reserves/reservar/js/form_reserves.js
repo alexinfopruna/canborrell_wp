@@ -1008,6 +1008,7 @@ function validacio()
                 min: 2,
                 max: PERSONES_GRUP - 1
             },
+            selectorCalcots: "required",
             valida_calendari: "required",
             hora: "required",
             selectorData: "required",
@@ -1027,6 +1028,7 @@ function validacio()
                 min: l("Selecciona, com a a mínim, dos adults"),
                 max: l("Si sou més de " + (PERSONES_GRUP - 1) + " comensals, selecciona la reserva per GRUPS")
             },
+            selectorCalcots: "Selecciona les racions de calçots",
             valida_calendari: l("Cal que indiquis el dia"),
             hora: l("Selecciona l´hora"),
             selectorData: l("Selecciona el dia"),
