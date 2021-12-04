@@ -614,6 +614,7 @@ FROM client
     $_POST['selectorJuniors'] = isset($_POST['selectorJuniors']) ? $_POST['selectorJuniors'] : 0;
     $_POST['RESERVA_PASTIS'] = isset($_POST['RESERVA_PASTIS']) ? $_POST['RESERVA_PASTIS'] : FALSE;
     $_POST['reserva_terrassa'] = isset($_POST['reserva_terrassa']) ? $_POST['reserva_terrassa'] : FALSE;
+    $_POST['selectorCalcots'] = isset($_POST['selectorCalcots']) ? $_POST['selectorCalcots'] : 0;
 
     $total_coberts = $_POST['selectorComensals'] + $_POST['selectorNens'] + $_POST['selectorJuniors'];
 
@@ -763,6 +764,12 @@ FROM client
     if ($selectorCadiraRodes) {
       $_POST['observacions'] = 'Portem cadira de rodes ' . $_POST['observacions'];
     }
+    
+    if ($_POST['selectorCalcots']) {
+      $_POST['observacions'] = ' **** Racions calçots: '. $_POST['selectorCalcots']." ****"  . $_POST['observacions'];
+    }    
+    
+    
     //INSERT INTO RESERVES TAULES
     if (!isset($_POST['resposta']))
       $_POST['resposta'] = '';

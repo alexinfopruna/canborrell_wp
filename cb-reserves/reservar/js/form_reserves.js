@@ -173,6 +173,11 @@ $(function () {
     $("#selectorCotxets").find("label").unbind("mouseup");
     $("#selectorCadiraRodes").buttonset();
     $("#selectorCadiraRodes").find("label").unbind("mouseup");
+    $("#selectorCalcots").buttonset();
+    $("#selectorCalcots").find("label").unbind("mouseup");
+    
+    
+    
     
    //$("#selectorTerrassa").buttonset();
     $("#selectorTerrassa").find("label").unbind("mouseup");

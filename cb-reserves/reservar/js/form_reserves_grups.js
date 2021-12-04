@@ -689,28 +689,20 @@ function updateMenus() {
         $("#carta_MENUS tr[producte_id=2011]").show(); //infantil
         $("#carta_MENUS tr[producte_id=2023]").show(); //junior
         $("#carta_MENUS tr[producte_id=2024]").show(); //n1
-        //$("#carta_MENUS tr[producte_id=2003]").show(); //n2
-        //$("#carta_MENUS tr[producte_id=2007]").show(); //n4		
-        //$("#carta_MENUS tr[producte_id=2010]").show(); //calsotada	
-        
-              $("#carta_ tr").hide();
+        $("#carta_ tr").hide();
         $("#carta_ tr[producte_id=2002]").show(); //N3
         $("#carta_ tr[producte_id=2004]").show(); //infantil
         $("#carta_ tr[producte_id=2011]").show(); //infantil
         $("#carta_ tr[producte_id=2022]").show(); //junior
         $("#carta_ tr[producte_id=2024]").show(); //n1
-    }else{
-            
-                $(".col-isqui-carta .info.caixa").html(l("INFO_CARTA"));
+    }else{    
+        $(".col-isqui-carta .info.caixa").html(l("INFO_CARTA"));
         $("#bt-menu span").html(l("Menús"));
-       // $("#bt-menu span").hide();
         $("#bt-no-carta").show(); 
-        
         $("#bt-carta").show();
-        $("#bt-no-carta").show();
         $("#fr-carta-tabs").show();        
-         $("#carta_ tr").show();
-         $("#carta_MENUS tr").show();
+        $("#carta_ tr").show();
+        $("#carta_MENUS tr").show();
     }
 
 

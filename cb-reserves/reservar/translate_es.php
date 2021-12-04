@@ -295,7 +295,10 @@ medidas dictaminadas por el Ministerio de Sanidad.
 $translate["meteo_terrassa"]="Las reservas en la terraza dependen de las condiciones meteorológiques. "
         . "Para disfrutar de mesa en la terraza es necesario llegar al restaurante antes de las 14:00h  SÁBADA  Y  LAS 13.30h  DOMINGOS Y FESTIVOS. (para más tarde no garantizamos que sea en la terraza)";
 
-
+$translate["QUANTS_CALCOTS"] = "Queréis calçots? Quantas raciones?";
+$translate["INFO_CALCOTS"] = "Este dato nos permitirá tenerlo todo a punto para serviros más rápido";
+$translate["CAP"] = "Ninguna";
+$translate["MESDE15"] = "Más de doce";
 /****************************************************************************************************/	
 /*******************************************************     JS   ***********************************/	
 /****************************************************************************************************/	

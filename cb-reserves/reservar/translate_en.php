@@ -312,6 +312,12 @@ $translate["meteo_terrassa"]="Reservations on the terrace depends on the weather
         . "<br>"
         . "To enjoy a table on the terrace you must arrive at the restaurant before 14:00";
 
+$translate["QUANTS_CALCOTS"] = "Do you want calçots? How many servings?";
+$translate["INFO_CALCOTS"] = "This data will allow us to have everything ready to serve you faster";
+$translate["CAP"] = "None";
+$translate["MESDE15"] = "More than twelve";
+
+
 /* * ************************************************************************************************* */
 /* * *****************************************************     JS   ********************************** */
 /* * ************************************************************************************************* */
