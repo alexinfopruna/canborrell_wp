@@ -219,12 +219,12 @@ $translate["Can Borrell: Reserva Anul·lada: No es rep i senyal"] = "Can Borrell
 $translate["gossos"] = "Admetem mascotes al'interior del restaurant fins a 8Kg. Si és més gran podeu dinar a l'exterior ";
 
 $translate['RESERVA_CORONA'] = "Seguint el protocol COVID establert per la Generalitat de Catalunya, el certificat COVID digital serà obligatori per poder accedir al restaurant.<br><b> </b>";
-
+/*
 $translate['RESERVA_CORONA'] = "Ens veiem en l'obligació d'advertir que si vostè pateix simptomatologia
 que pugui estar relacionada amb el virus Covid-19, si us plau prengui les
 mesures dictaminades pel Ministeri de Sanitat. 
 <br><b> </b>";
-
+*/
 $translate["meteo_terrassa"]="Les reserves a la terrassa depenen de les condicions meteorològiques. "
         . "En cas de pluja o vent fort la taula seràparada a l'interior<br>"
         . "Per gaudir de taula a la terrassa cal arribar al restaurant abans de les 14:00h DISSABTES  I  LES 13.30h  DIUMENGES I FESTIUS. (per més tard no garantim que sigui a la terrassa)";
