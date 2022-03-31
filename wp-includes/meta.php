@@ -497,13 +497,10 @@ function delete_metadata( $meta_type, $object_id, $meta_key, $meta_value = '', $
  * @param int    $object_id ID of the object metadata is for.
  * @param string $meta_key  Optional. Metadata key. If not specified, retrieve all metadata for
  *                          the specified object. Default empty.
- * @param bool   $single    Optional. If true, return only the first value of the specified `$meta_key`.
- *                          This parameter has no effect if `$meta_key` is not specified. Default false.
- * @return mixed An array of values if `$single` is false.
- *               The value of the meta field if `$single` is true.
- *               False for an invalid `$object_id` (non-numeric, zero, or negative value),
- *               or if `$meta_type` is not specified.
- *               An empty string if a valid but non-existing object ID is passed.
+ * @param bool   $single    Optional. If true, return only the first value of the specified meta_key.
+ *                          This parameter has no effect if meta_key is not specified. Default false.
+ * @return mixed Single metadata value, or array of values.
+ *               False if there's a problem with the parameters passed to the function.
  */
 function get_metadata( $meta_type, $object_id, $meta_key = '', $single = false ) {
 	$value = get_metadata_raw( $meta_type, $object_id, $meta_key, $single );
@@ -524,13 +521,10 @@ function get_metadata( $meta_type, $object_id, $meta_key = '', $single = false )
  * @param int    $object_id ID of the object metadata is for.
  * @param string $meta_key  Optional. Metadata key. If not specified, retrieve all metadata for
  *                          the specified object. Default empty.
- * @param bool   $single    Optional. If true, return only the first value of the specified `$meta_key`.
- *                          This parameter has no effect if `$meta_key` is not specified. Default false.
- * @return mixed An array of values if `$single` is false.
- *               The value of the meta field if `$single` is true.
- *               False for an invalid `$object_id` (non-numeric, zero, or negative value),
- *               or if `$meta_type` is not specified.
- *               Null if the value does not exist.
+ * @param bool   $single    Optional. If true, return only the first value of the specified meta_key.
+ *                          This parameter has no effect if meta_key is not specified. Default false.
+ * @return mixed Single metadata value, or array of values. Null if the value does not exist.
+ *               False if there's a problem with the parameters passed to the function.
  */
 function get_metadata_raw( $meta_type, $object_id, $meta_key = '', $single = false ) {
 	if ( ! $meta_type || ! is_numeric( $object_id ) ) {
@@ -614,10 +608,9 @@ function get_metadata_raw( $meta_type, $object_id, $meta_key = '', $single = fal
  *                          or any other object type with an associated meta table.
  * @param int    $object_id ID of the object metadata is for.
  * @param string $meta_key  Metadata key.
- * @param bool   $single    Optional. If true, return only the first value of the specified `$meta_key`.
- *                          This parameter has no effect if `$meta_key` is not specified. Default false.
- * @return mixed An array of default values if `$single` is false.
- *               The default value of the meta field if `$single` is true.
+ * @param bool   $single    Optional. If true, return only the first value of the specified meta_key.
+ *                          This parameter has no effect if meta_key is not specified. Default false.
+ * @return mixed Single metadata value, or array of values.
  */
 function get_metadata_default( $meta_type, $object_id, $meta_key, $single = false ) {
 	if ( $single ) {
@@ -680,7 +673,7 @@ function metadata_exists( $meta_type, $object_id, $meta_key ) {
 	}
 
 	/** This filter is documented in wp-includes/meta.php */
-	$check = apply_filters( "get_{$meta_type}_metadata", null, $object_id, $meta_key, true, $meta_type );
+	$check = apply_filters( "get_{$meta_type}_metadata", null, $object_id, $meta_key, true );
 	if ( null !== $check ) {
 		return (bool) $check;
 	}
@@ -778,11 +771,11 @@ function get_metadata_by_mid( $meta_type, $meta_id ) {
  *
  * @global wpdb $wpdb WordPress database abstraction object.
  *
- * @param string       $meta_type  Type of object metadata is for. Accepts 'post', 'comment', 'term', 'user',
- *                                 or any other object type with an associated meta table.
- * @param int          $meta_id    ID for a specific meta row.
- * @param string       $meta_value Metadata value. Must be serializable if non-scalar.
- * @param string|false $meta_key   Optional. You can provide a meta key to update it. Default false.
+ * @param string $meta_type  Type of object metadata is for. Accepts 'post', 'comment', 'term', 'user',
+ *                           or any other object type with an associated meta table.
+ * @param int    $meta_id    ID for a specific meta row.
+ * @param string $meta_value Metadata value. Must be serializable if non-scalar.
+ * @param string $meta_key   Optional. You can provide a meta key to update it. Default false.
  * @return bool True on successful update, false on failure.
  */
 function update_metadata_by_mid( $meta_type, $meta_id, $meta_value, $meta_key = false ) {
@@ -815,10 +808,10 @@ function update_metadata_by_mid( $meta_type, $meta_id, $meta_value, $meta_key = 
 	 *
 	 * @since 5.0.0
 	 *
-	 * @param null|bool    $check      Whether to allow updating metadata for the given type.
-	 * @param int          $meta_id    Meta ID.
-	 * @param mixed        $meta_value Meta value. Must be serializable if non-scalar.
-	 * @param string|false $meta_key   Meta key, if provided.
+	 * @param null|bool   $check      Whether to allow updating metadata for the given type.
+	 * @param int         $meta_id    Meta ID.
+	 * @param mixed       $meta_value Meta value. Must be serializable if non-scalar.
+	 * @param string|bool $meta_key   Meta key, if provided.
 	 */
 	$check = apply_filters( "update_{$meta_type}_metadata_by_mid", null, $meta_id, $meta_value, $meta_key );
 	if ( null !== $check ) {
@@ -1408,12 +1401,11 @@ function register_meta( $object_type, $meta_key, $args, $deprecated = null ) {
  * @param mixed  $value     Current value passed to filter.
  * @param int    $object_id ID of the object metadata is for.
  * @param string $meta_key  Metadata key.
- * @param bool   $single    If true, return only the first value of the specified `$meta_key`.
- *                          This parameter has no effect if `$meta_key` is not specified.
+ * @param bool   $single    If true, return only the first value of the specified meta_key.
+ *                          This parameter has no effect if meta_key is not specified.
  * @param string $meta_type Type of object metadata is for. Accepts 'post', 'comment', 'term', 'user',
  *                          or any other object type with an associated meta table.
- * @return mixed An array of default values if `$single` is false.
- *               The default value of the meta field if `$single` is true.
+ * @return mixed Single metadata default, or array of defaults.
  */
 function filter_default_metadata( $value, $object_id, $meta_key, $single, $meta_type ) {
 	global $wp_meta_keys;

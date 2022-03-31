@@ -69,8 +69,6 @@ class WP_Image_Editor_GD extends WP_Image_Editor {
 				return ( $image_types & IMG_PNG ) != 0;
 			case 'image/gif':
 				return ( $image_types & IMG_GIF ) != 0;
-			case 'image/webp':
-				return ( $image_types & IMG_WEBP ) != 0; // phpcs:ignore PHPCompatibility.Constants.NewConstants.img_webpFound
 		}
 
 		return false;
@@ -81,7 +79,7 @@ class WP_Image_Editor_GD extends WP_Image_Editor {
 	 *
 	 * @since 3.5.0
 	 *
-	 * @return true|WP_Error True if loaded successfully; WP_Error on failure.
+	 * @return bool|WP_Error True if loaded successfully; WP_Error on failure.
 	 */
 	public function load() {
 		if ( $this->image ) {
@@ -101,21 +99,13 @@ class WP_Image_Editor_GD extends WP_Image_Editor {
 			return new WP_Error( 'error_loading_image', __( 'File doesn&#8217;t exist?' ), $this->file );
 		}
 
-		// WebP may not work with imagecreatefromstring().
-		if (
-			function_exists( 'imagecreatefromwebp' ) &&
-			( 'image/webp' === wp_get_image_mime( $this->file ) )
-		) {
-			$this->image = @imagecreatefromwebp( $this->file );
-		} else {
-			$this->image = @imagecreatefromstring( $file_contents );
-		}
+		$this->image = @imagecreatefromstring( $file_contents );
 
 		if ( ! is_gd_image( $this->image ) ) {
 			return new WP_Error( 'invalid_image', __( 'File is not an image.' ), $this->file );
 		}
 
-		$size = wp_getimagesize( $this->file );
+		$size = @getimagesize( $this->file );
 
 		if ( ! $size ) {
 			return new WP_Error( 'invalid_image', __( 'Could not read image size.' ), $this->file );
@@ -321,7 +311,7 @@ class WP_Image_Editor_GD extends WP_Image_Editor {
 	 * @param int  $dst_w   Optional. The destination width.
 	 * @param int  $dst_h   Optional. The destination height.
 	 * @param bool $src_abs Optional. If the source crop points are absolute.
-	 * @return true|WP_Error
+	 * @return bool|WP_Error
 	 */
 	public function crop( $src_x, $src_y, $src_w, $src_h, $dst_w = null, $dst_h = null, $src_abs = false ) {
 		// If destination width/height isn't specified,
@@ -469,10 +459,6 @@ class WP_Image_Editor_GD extends WP_Image_Editor {
 			if ( ! $this->make_image( $filename, 'imagejpeg', array( $image, $filename, $this->get_quality() ) ) ) {
 				return new WP_Error( 'image_save_error', __( 'Image Editor Save Failed' ) );
 			}
-		} elseif ( 'image/webp' == $mime_type ) {
-			if ( ! function_exists( 'imagewebp' ) || ! $this->make_image( $filename, 'imagewebp', array( $image, $filename, $this->get_quality() ) ) ) {
-				return new WP_Error( 'image_save_error', __( 'Image Editor Save Failed' ) );
-			}
 		} else {
 			return new WP_Error( 'image_save_error', __( 'Image Editor Save Failed' ) );
 		}
@@ -516,12 +502,6 @@ class WP_Image_Editor_GD extends WP_Image_Editor {
 			case 'image/gif':
 				header( 'Content-Type: image/gif' );
 				return imagegif( $this->image );
-			case 'image/webp':
-				if ( function_exists( 'imagewebp' ) ) {
-					header( 'Content-Type: image/webp' );
-					return imagewebp( $this->image, null, $this->get_quality() );
-				}
-				// Fall back to the default if webp isn't supported.
 			default:
 				header( 'Content-Type: image/jpeg' );
 				return imagejpeg( $this->image, null, $this->get_quality() );

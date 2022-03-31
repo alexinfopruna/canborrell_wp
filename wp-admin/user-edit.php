@@ -609,6 +609,7 @@ endif;
 	</td>
 </tr>
 <?php endif; ?>
+
 		<?php
 		/**
 		 * Filters the display of the password fields.
@@ -671,28 +672,6 @@ endif;
 	<?php endif; ?>
 
 		<?php
-		// Allow admins to send reset password link.
-		if ( ! IS_PROFILE_PAGE ) :
-			?>
-	<tr class="user-generate-reset-link-wrap hide-if-no-js">
-		<th><?php _e( 'Password Reset' ); ?></th>
-		<td>
-			<div class="generate-reset-link">
-				<button type="button" class="button button-secondary" id="generate-reset-link">
-					<?php _e( 'Send Reset Link' ); ?>
-				</button>
-			</div>
-			<p class="description">
-				<?php
-				/* translators: %s: User's display name. */
-				printf( __( 'Send %s a link to reset their password. This will not change their password, nor will it force a change.' ), esc_html( $profileuser->display_name ) );
-				?>
-			</p>
-		</td>
-	</tr>
-		<?php endif; ?>
-
-		<?php
 		if ( IS_PROFILE_PAGE && count( $sessions->get_all() ) === 1 ) :
 			?>
 	<tr class="user-sessions-wrap hide-if-no-js">
@@ -745,10 +724,10 @@ endif;
 					<p>
 						<?php
 						printf(
-							/* translators: 1: URL to my-sites.php, 2: Number of sites the user has. */
+							/* translators: 1: URL to my-sites.php, 2: Number of blogs the user has. */
 							_n(
-								'Application passwords grant access to <a href="%1$s">the %2$s site in this installation that you have permissions on</a>.',
-								'Application passwords grant access to <a href="%1$s">all %2$s sites in this installation that you have permissions on</a>.',
+								'Application passwords grant access to <a href="%1$s">the %2$s blog in this installation that you have permissions on</a>.',
+								'Application passwords grant access to <a href="%1$s">all %2$s blogs in this installation that you have permissions on</a>.',
 								$blogs_count
 							),
 							admin_url( 'my-sites.php' ),
@@ -780,7 +759,7 @@ endif;
 				do_action( 'wp_create_application_password_form', $profileuser );
 				?>
 
-				<button type="button" name="do_new_application_password" id="do_new_application_password" class="button button-secondary"><?php _e( 'Add New Application Password' ); ?></button>
+				<?php submit_button( __( 'Add New Application Password' ), 'secondary', 'do_new_application_password' ); ?>
 			</div>
 		<?php } else { ?>
 			<div class="notice notice-error inline">

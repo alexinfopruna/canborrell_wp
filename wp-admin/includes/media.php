@@ -430,23 +430,21 @@ function media_handle_upload( $file_id, $post_id, $post_data = array(), $overrid
  * @since 2.6.0
  * @since 5.3.0 The `$post_id` parameter was made optional.
  *
- * @param string[] $file_array Array that represents a `$_FILES` upload array.
- * @param int      $post_id    Optional. The post ID the media is associated with.
- * @param string   $desc       Optional. Description of the side-loaded file. Default null.
- * @param array    $post_data  Optional. Post data to override. Default empty array.
+ * @param array  $file_array Array similar to a `$_FILES` upload array.
+ * @param int    $post_id    Optional. The post ID the media is associated with.
+ * @param string $desc       Optional. Description of the side-loaded file. Default null.
+ * @param array  $post_data  Optional. Post data to override. Default empty array.
  * @return int|WP_Error The ID of the attachment or a WP_Error on failure.
  */
 function media_handle_sideload( $file_array, $post_id = 0, $desc = null, $post_data = array() ) {
 	$overrides = array( 'test_form' => false );
 
-	if ( isset( $post_data['post_date'] ) && substr( $post_data['post_date'], 0, 4 ) > 0 ) {
-		$time = $post_data['post_date'];
-	} else {
-		$post = get_post( $post_id );
-		if ( $post && substr( $post->post_date, 0, 4 ) > 0 ) {
+	$time = current_time( 'mysql' );
+	$post = get_post( $post_id );
+
+	if ( $post ) {
+		if ( substr( $post->post_date, 0, 4 ) > 0 ) {
 			$time = $post->post_date;
-		} else {
-			$time = current_time( 'mysql' );
 		}
 	}
 
@@ -533,7 +531,7 @@ function wp_iframe( $content_func, ...$args ) {
 
 	?>
 	<script type="text/javascript">
-	addLoadEvent = function(func){if(typeof jQuery!=='undefined')jQuery(document).ready(func);else if(typeof wpOnload!=='function'){wpOnload=func;}else{var oldonload=wpOnload;wpOnload=function(){oldonload();func();}}};
+	addLoadEvent = function(func){if(typeof jQuery!="undefined")jQuery(document).ready(func);else if(typeof wpOnload!='function'){wpOnload=func;}else{var oldonload=wpOnload;wpOnload=function(){oldonload();func();}}};
 	var ajaxurl = '<?php echo esc_js( admin_url( 'admin-ajax.php', 'relative' ) ); ?>', pagenow = 'media-upload-popup', adminpage = 'media-upload-popup',
 	isRtl = <?php echo (int) is_rtl(); ?>;
 	</script>
@@ -607,7 +605,7 @@ function wp_iframe( $content_func, ...$args ) {
 	do_action( 'admin_print_footer_scripts' );
 
 	?>
-	<script type="text/javascript">if(typeof wpOnload==='function')wpOnload();</script>
+	<script type="text/javascript">if(typeof wpOnload=='function')wpOnload();</script>
 	</body>
 	</html>
 	<?php
@@ -696,14 +694,9 @@ function get_upload_iframe_src( $type = null, $post_id = null, $tab = null ) {
 	 * The dynamic portion of the hook name, `$type`, refers to the type
 	 * of media uploaded.
 	 *
-	 * Possible hook names include:
-	 *
-	 *  - `image_upload_iframe_src`
-	 *  - `media_upload_iframe_src`
-	 *
 	 * @since 3.0.0
 	 *
-	 * @param string $upload_iframe_src The upload iframe source URL.
+	 * @param string $upload_iframe_src The upload iframe source URL by type.
 	 */
 	$upload_iframe_src = apply_filters( "{$type}_upload_iframe_src", $upload_iframe_src );
 
@@ -898,12 +891,6 @@ function wp_media_upload_handler() {
 			 * The dynamic portion of the hook name, `$type`, refers to the type
 			 * of media being sent.
 			 *
-			 * Possible hook names include:
-			 *
-			 *  - `audio_send_to_editor_url`
-			 *  - `file_send_to_editor_url`
-			 *  - `video_send_to_editor_url`
-			 *
 			 * @since 3.3.0
 			 *
 			 * @param string $html  HTML markup sent to the editor.
@@ -993,7 +980,7 @@ function wp_media_upload_handler() {
 function media_sideload_image( $file, $post_id = 0, $desc = null, $return = 'html' ) {
 	if ( ! empty( $file ) ) {
 
-		$allowed_extensions = array( 'jpg', 'jpeg', 'jpe', 'png', 'gif', 'webp' );
+		$allowed_extensions = array( 'jpg', 'jpeg', 'jpe', 'png', 'gif' );
 
 		/**
 		 * Filters the list of allowed file extensions when sideloading an image from a URL.
@@ -2196,11 +2183,6 @@ function media_upload_form( $errors = null ) {
 		strpos( $_SERVER['HTTP_USER_AGENT'], 'like Mac OS X' ) !== false
 	) {
 		$plupload_init['multi_selection'] = false;
-	}
-
-	// Check if WebP images can be edited.
-	if ( ! wp_image_editor_supports( array( 'mime_type' => 'image/webp' ) ) ) {
-		$plupload_init['webp_upload_error'] = true;
 	}
 
 	/**
@@ -3545,7 +3527,7 @@ function wp_add_id3_tag_data( &$metadata, $data ) {
  * @since 3.6.0
  *
  * @param string $file Path to file.
- * @return array|false Returns array of metadata, if found.
+ * @return array|bool Returns array of metadata, if found.
  */
 function wp_read_video_metadata( $file ) {
 	if ( ! file_exists( $file ) ) {
@@ -3656,7 +3638,7 @@ function wp_read_video_metadata( $file ) {
  * @since 3.6.0
  *
  * @param string $file Path to file.
- * @return array|false Returns array of metadata, if found.
+ * @return array|bool Returns array of metadata, if found.
  */
 function wp_read_audio_metadata( $file ) {
 	if ( ! file_exists( $file ) ) {
@@ -3725,8 +3707,8 @@ function wp_read_audio_metadata( $file ) {
  * @link https://github.com/JamesHeinrich/getID3/blob/master/structure.txt
  *
  * @param array $metadata The metadata returned by getID3::analyze().
- * @return int|false A UNIX timestamp for the media's creation date if available
- *                   or a boolean FALSE if a timestamp could not be determined.
+ * @return int|bool A UNIX timestamp for the media's creation date if available
+ *                  or a boolean FALSE if a timestamp could not be determined.
  */
 function wp_get_media_creation_timestamp( $metadata ) {
 	$creation_date = false;

@@ -289,7 +289,7 @@
 					collection.focusContainer.focus();
 				}
 			} else if ( collection.previousActiveElement ) {
-				$( collection.previousActiveElement ).trigger( 'focus' );
+				$( collection.previousActiveElement ).focus();
 				collection.previousActiveElement = null;
 			}
 
@@ -1342,10 +1342,10 @@
 				template = wp.template( 'customize-' + container.containerType + '-default' );
 			}
 			if ( template && container.container ) {
-				return template( _.extend(
+				return $.trim( template( _.extend(
 					{ id: container.id },
 					container.params
-				) ).toString().trim();
+				) ) );
 			}
 
 			return '<li></li>';
@@ -1592,12 +1592,12 @@
 				if ( args.unchanged ) {
 					expand = args.completeCallback;
 				} else {
-					expand = function() {
+					expand = $.proxy( function() {
 						section._animateChangeExpanded( function() {
 							sectionTitle.attr( 'tabindex', '-1' );
 							backBtn.attr( 'tabindex', '0' );
 
-							backBtn.trigger( 'focus' );
+							backBtn.focus();
 							content.css( 'top', '' );
 							container.scrollTop( 0 );
 
@@ -1609,7 +1609,7 @@
 						content.addClass( 'open' );
 						overlay.addClass( 'section-open' );
 						api.state( 'expandedSection' ).set( section );
-					}.bind( this );
+					}, this );
 				}
 
 				if ( ! args.allowMultiple ) {
@@ -1645,7 +1645,7 @@
 					backBtn.attr( 'tabindex', '-1' );
 					sectionTitle.attr( 'tabindex', '0' );
 
-					sectionTitle.trigger( 'focus' );
+					sectionTitle.focus();
 					content.css( 'top', '' );
 
 					if ( args.completeCallback ) {
@@ -2696,12 +2696,12 @@
 				if ( args.unchanged ) {
 					expand = args.completeCallback;
 				} else {
-					expand = function() {
+					expand = $.proxy( function() {
 						section._animateChangeExpanded( function() {
 							sectionTitle.attr( 'tabindex', '-1' );
 							backBtn.attr( 'tabindex', '0' );
 
-							backBtn.trigger( 'focus' );
+							backBtn.focus();
 							content.css( 'top', '' );
 							container.scrollTop( 0 );
 
@@ -2711,7 +2711,7 @@
 						} );
 
 						content.addClass( 'open' );
-					}.bind( this );
+					}, this );
 				}
 
 				if ( section.panel() ) {
@@ -2734,7 +2734,7 @@
 					backBtn.attr( 'tabindex', '-1' );
 					sectionTitle.attr( 'tabindex', '0' );
 
-					sectionTitle.trigger( 'focus' );
+					sectionTitle.focus();
 					content.css( 'top', '' );
 
 					if ( args.completeCallback ) {
@@ -2956,7 +2956,7 @@
 						topPanel.attr( 'tabindex', '-1' );
 						backBtn.attr( 'tabindex', '0' );
 
-						backBtn.trigger( 'focus' );
+						backBtn.focus();
 						accordionSection.css( 'top', '' );
 						container.scrollTop( 0 );
 
@@ -3874,9 +3874,9 @@
 
 			control.container.toggleClass( 'has-notifications', 0 !== notifications.length );
 			control.container.toggleClass( 'has-error', hasError );
-			container.empty().append(
-				control.notificationsTemplate( { notifications: notifications, altNotice: Boolean( control.altNotice ) } ).trim()
-			);
+			container.empty().append( $.trim(
+				control.notificationsTemplate( { notifications: notifications, altNotice: Boolean( control.altNotice ) } )
+			) );
 		},
 
 		/**
@@ -4485,7 +4485,7 @@
 				y = control.settings.y.get();
 				inputValue = String( x ) + ' ' + String( y );
 				radioInput = control.container.find( 'input[name="background-position"][value="' + inputValue + '"]' );
-				radioInput.trigger( 'click' );
+				radioInput.click();
 			} );
 			control.settings.x.bind( updateRadios );
 			control.settings.y.bind( updateRadios );
@@ -5452,7 +5452,7 @@
 			controls = section.controls();
 			controlIndex = controls.indexOf( control );
 			if ( controls.length === controlIndex + 1 ) {
-				$( '#customize-footer-actions .collapse-sidebar' ).trigger( 'focus' );
+				$( '#customize-footer-actions .collapse-sidebar' ).focus();
 			} else {
 				controls[ controlIndex + 1 ].container.find( ':focusable:first' ).focus();
 			}
@@ -6336,7 +6336,7 @@
 					} ) );
 				} );
 				previewFrame.container.append( form );
-				form.trigger( 'submit' );
+				form.submit();
 				form.remove(); // No need to keep the form around after submitted.
 			}
 
@@ -7081,7 +7081,7 @@
 
 		// Restore focus if there was a reflow and there was an active (focused) element.
 		if ( wasReflowed && activeElement ) {
-			activeElement.trigger( 'focus' );
+			activeElement.focus();
 		}
 		api.trigger( 'pane-contents-reflowed' );
 	}, api );
@@ -7712,7 +7712,7 @@
 			/**
 			 * Trash the current changes.
 			 *
-			 * Revert the Customizer to its previously-published state.
+			 * Revert the Customizer to it's previously-published state.
 			 *
 			 * @since 4.9.0
 			 *
@@ -8397,10 +8397,10 @@
 		}
 
 		// Button bindings.
-		saveBtn.on( 'click', function( event ) {
+		saveBtn.click( function( event ) {
 			api.previewer.save();
 			event.preventDefault();
-		}).on( 'keydown', function( event ) {
+		}).keydown( function( event ) {
 			if ( 9 === event.which ) { // Tab.
 				return;
 			}
@@ -8410,7 +8410,7 @@
 			event.preventDefault();
 		});
 
-		closeBtn.on( 'keydown', function( event ) {
+		closeBtn.keydown( function( event ) {
 			if ( 9 === event.which ) { // Tab.
 				return;
 			}
@@ -8449,13 +8449,6 @@
 			 * This ensures that ESC meant to collapse a modal dialog or a TinyMCE toolbar won't collapse something else.
 			 */
 			if ( ! $( event.target ).is( 'body' ) && ! $.contains( $( '#customize-controls' )[0], event.target ) ) {
-				return;
-			}
-
-			// Abort if we're inside of a block editor instance.
-			if ( event.target.closest( '.block-editor-writing-flow' ) !== null ||
-				event.target.closest( '.block-editor-block-list__block-popover' ) !== null
-			) {
 				return;
 			}
 
@@ -8759,8 +8752,7 @@
 		if ( title.length ) {
 			api( 'blogname', function( setting ) {
 				var updateTitle = function() {
-					var blogTitle = setting() || '';
-					title.text( blogTitle.toString().trim() || api.l10n.untitledBlogName );
+					title.text( $.trim( setting() ) || api.l10n.untitledBlogName );
 				};
 				setting.bind( updateTitle );
 				updateTitle();

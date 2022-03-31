@@ -38,7 +38,7 @@ function list_core_update( $update ) {
 	static $first_pass = true;
 
 	$wp_version     = get_bloginfo( 'version' );
-	$version_string = sprintf( '%s&ndash;%s', $update->current, get_locale() );
+	$version_string = sprintf( '%s&ndash;<strong>%s</strong>', $update->current, $update->locale );
 
 	if ( 'en_US' === $update->locale && 'en_US' === get_locale() ) {
 		$version_string = $update->current;
@@ -55,29 +55,19 @@ function list_core_update( $update ) {
 		$current = true;
 	}
 
-	$message       = '';
+	$submit        = __( 'Update Now' );
 	$form_action   = 'update-core.php?action=do-core-upgrade';
 	$php_version   = phpversion();
 	$mysql_version = $wpdb->db_version();
 	$show_buttons  = true;
-
-	// Nightly build versions have two hyphens and a commit number.
-	if ( preg_match( '/-\w+-\d+/', $update->current ) ) {
-		// Retrieve the major version number.
-		preg_match( '/^\d+.\d+/', $update->current, $update_major );
-		/* translators: %s: WordPress version. */
-		$submit = sprintf( __( 'Update to latest %s nightly' ), $update_major[0] );
-	} else {
-		/* translators: %s: WordPress version. */
-		$submit = sprintf( __( 'Update to version %s' ), $version_string );
-	}
 
 	if ( 'development' === $update->response ) {
 		$message = __( 'You can update to the latest nightly build manually:' );
 	} else {
 		if ( $current ) {
 			/* translators: %s: WordPress version. */
-			$submit      = sprintf( __( 'Re-install version %s' ), $version_string );
+			$message     = sprintf( __( 'If you need to re-install version %s, you can do so here:' ), $version_string );
+			$submit      = __( 'Re-install Now' );
 			$form_action = 'update-core.php?action=do-core-reinstall';
 		} else {
 			$php_compat = version_compare( $php_version, $update->php_version, '>=' );
@@ -158,8 +148,8 @@ function list_core_update( $update ) {
 	wp_nonce_field( 'upgrade-core' );
 
 	echo '<p>';
-	echo '<input name="version" value="' . esc_attr( $update->current ) . '" type="hidden" />';
-	echo '<input name="locale" value="' . esc_attr( $update->locale ) . '" type="hidden" />';
+	echo '<input name="version" value="' . esc_attr( $update->current ) . '" type="hidden"/>';
+	echo '<input name="locale" value="' . esc_attr( $update->locale ) . '" type="hidden"/>';
 	if ( $show_buttons ) {
 		if ( $first_pass ) {
 			submit_button( $submit, $current ? '' : 'primary regular', 'upgrade', false );
@@ -314,7 +304,7 @@ function core_auto_updates_settings() {
 	$upgrade_major = get_site_option( 'auto_update_core_major', 'unset' ) === 'enabled';
 
 	$can_set_update_option = true;
-	// WP_AUTO_UPDATE_CORE = true (all), 'beta', 'rc', 'development', 'branch-development', 'minor', false.
+	// WP_AUTO_UPDATE_CORE = true (all), 'beta', 'rc', 'minor', false.
 	if ( defined( 'WP_AUTO_UPDATE_CORE' ) ) {
 		if ( false === WP_AUTO_UPDATE_CORE ) {
 			// Defaults to turned off, unless a filter allows it.
@@ -322,7 +312,8 @@ function core_auto_updates_settings() {
 			$upgrade_minor = false;
 			$upgrade_major = false;
 		} elseif ( true === WP_AUTO_UPDATE_CORE
-			|| in_array( WP_AUTO_UPDATE_CORE, array( 'beta', 'rc', 'development', 'branch-development' ), true )
+			|| 'beta' === WP_AUTO_UPDATE_CORE
+			|| 'rc' === WP_AUTO_UPDATE_CORE
 		) {
 			// ALL updates for core.
 			$upgrade_dev   = true;
@@ -421,14 +412,6 @@ function core_auto_updates_settings() {
 	 * Fires after the major core auto-update settings.
 	 *
 	 * @since 5.6.0
-	 *
-	 * @param array $auto_update_settings {
-	 *     Array of core auto-update settings.
-	 *
-	 *     @type bool $dev   Whether to enable automatic updates for development versions.
-	 *     @type bool $minor Whether to enable minor automatic core updates.
-	 *     @type bool $major Whether to enable major automatic core updates.
-	 * }
 	 */
 	do_action( 'after_core_auto_updates_settings', $auto_update_settings );
 }
@@ -457,18 +440,8 @@ function list_plugin_updates() {
 	} else {
 		$core_update_version = $core_updates[0]->current;
 	}
-
-	$plugins_count = count( $plugins );
 	?>
-<h2>
-	<?php
-	printf(
-		'%s <span class="count">(%d)</span>',
-		__( 'Plugins' ),
-		number_format_i18n( $plugins_count )
-	);
-	?>
-</h2>
+<h2><?php _e( 'Plugins' ); ?></h2>
 <p><?php _e( 'The following plugins have new versions available. Check the ones you want to update and then click &#8220;Update Plugins&#8221;.' ); ?></p>
 <form method="post" action="<?php echo esc_url( $form_action ); ?>" name="upgrade-plugins" class="upgrade">
 	<?php wp_nonce_field( 'upgrade-core' ); ?>
@@ -620,18 +593,8 @@ function list_theme_updates() {
 	}
 
 	$form_action = 'update-core.php?action=do-theme-upgrade';
-
-	$themes_count = count( $themes );
 	?>
-<h2>
-	<?php
-	printf(
-		'%s <span class="count">(%d)</span>',
-		__( 'Themes' ),
-		number_format_i18n( $themes_count )
-	);
-	?>
-</h2>
+<h2><?php _e( 'Themes' ); ?></h2>
 <p><?php _e( 'The following themes have new versions available. Check the ones you want to update and then click &#8220;Update Themes&#8221;.' ); ?></p>
 <p>
 	<?php
@@ -969,7 +932,7 @@ get_current_screen()->add_help_tab(
 	)
 );
 
-$updates_howto  = '<p>' . __( '<strong>WordPress</strong> &mdash; Updating your WordPress installation is a simple one-click procedure: just <strong>click on the &#8220;Update now&#8221; button</strong> when you are notified that a new version is available.' ) . ' ' . __( 'In most cases, WordPress will automatically apply maintenance and security updates in the background for you.' ) . '</p>';
+$updates_howto  = '<p>' . __( '<strong>WordPress</strong> &mdash; Updating your WordPress installation is a simple one-click procedure: just <strong>click on the &#8220;Update Now&#8221; button</strong> when you are notified that a new version is available.' ) . ' ' . __( 'In most cases, WordPress will automatically apply maintenance and security updates in the background for you.' ) . '</p>';
 $updates_howto .= '<p>' . __( '<strong>Themes and Plugins</strong> &mdash; To update individual themes or plugins from this screen, use the checkboxes to make your selection, then <strong>click on the appropriate &#8220;Update&#8221; button</strong>. To update all of your themes or plugins at once, you can check the box at the top of the section to select all before clicking the update button.' ) . '</p>';
 
 if ( 'en_US' !== get_locale() ) {
