@@ -2,7 +2,6 @@ var browser_malo = (navigator.appVersion.indexOf("MSIE 7.") != -1);
 
 //var TIMER_INTERVAL = 110000;
 var TIMER_INTERVAL = 110000;
-var GRUPS=false;
 
 var GESTOR = "/cb-reserves/reservar/Gestor_form.php";
 var client_auto = true;
