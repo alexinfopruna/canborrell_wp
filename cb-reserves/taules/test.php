@@ -2,7 +2,9 @@
 header('Content-Type: text/html; charset=UTF-8');
 header('Set-Cookie: fileDownload=true');
 
-
+echo "HOLAAAA";
+phpinfo();
+exit();
 
 require_once("Gestor.php");
 define("LLISTA_DIES_NEGRA",ROOT . INC_FILE_PATH."llista_dies_negra.txt");

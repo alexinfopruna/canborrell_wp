@@ -479,7 +479,7 @@ if ($testTPV) {
 }
 ?>
 
-  <div class="coronavirus"><?php l("RESERVA_CORONA") ?></div>
+<!--  <div class="coronavirus"><?php l("RESERVA_CORONA") ?></div> -->
 <article id="post-<?php the_ID(); ?>" <?php post_class(); ?>>
     <?php if ($display_breadcrumb == 'yes'): ?>
 
