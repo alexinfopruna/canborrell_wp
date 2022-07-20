@@ -479,7 +479,7 @@ if ($testTPV) {
 }
 ?>
 
-  <div class="coronavirus"><?php l("RESERVA_CORONA") ?></div>
+<!--  <div class="coronavirus"><?php l("RESERVA_CORONA") ?></div> -->
 <article id="post-<?php the_ID(); ?>" <?php post_class(); ?>>
     <?php if ($display_breadcrumb == 'yes'): ?>
 
@@ -885,7 +885,7 @@ if ($testTPV) {
                                                                           <div class=" ui-corner-all" >
 
                                                                               
-                      <div id="blockCalcots">
+                      <div id="blockCalcots" class="hidden">
                                                 <div id="selectorCalcots" class="fr-col-dere selector">
                                                     <h3><?php l("QUANTS_CALCOTS") ?></h3>
                                                     <span style="font-style:italic;"><?php l("INFO_CALCOTS") ?></span>
