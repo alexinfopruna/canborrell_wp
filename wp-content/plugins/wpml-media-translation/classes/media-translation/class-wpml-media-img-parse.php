@@ -1,5 +1,7 @@
 <?php
 
+use WPML\LIB\WP\Attachment;
+
 /**
  * Class WPML_Media_Img_Parse
  */
@@ -46,7 +48,7 @@ class WPML_Media_Img_Parse {
 		return $media->toArray();
 	}
 
-	private function getAttachments($matches) {
+	private function getAttachments( $matches ) {
 		$attachments = [];
 
 		foreach ( $matches[1] as $i => $match ) {
@@ -57,10 +59,11 @@ class WPML_Media_Img_Parse {
 				}
 				if ( isset( $attributes['src'] ) ) {
 					$attachments[ $i ]['attributes']    = $attributes;
-					$attachments[ $i ]['attachment_id'] = attachment_url_to_postid( $attributes['src'] );
+					$attachments[ $i ]['attachment_id'] = Attachment::idFromUrl( $attributes['src'] );
 				}
 			}
 		}
+
 		return $attachments;
 	}
 

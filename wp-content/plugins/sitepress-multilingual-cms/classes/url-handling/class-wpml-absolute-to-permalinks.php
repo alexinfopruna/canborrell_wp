@@ -66,8 +66,8 @@ class WPML_Absolute_To_Permalinks {
 	private function get_url( $parts ) {
 		$tax = $this->taxonomies_query->find( $parts->content_type );
 
-		$auto_adjust_ids_origin = $this->sitepress->get_setting( 'auto_adjust_ids', false );
-		$this->sitepress->set_setting( 'auto_adjust_ids', true );
+		// Always enable adjust id to get the current lang id.
+		$this->force_adjust_id_to_translated();
 
 		if ( $parts->content_type == 'cat_ID' ) {
 			$url = $this->sitepress->get_wp_api()->get_category_link( $parts->id );
@@ -77,10 +77,71 @@ class WPML_Absolute_To_Permalinks {
 			$url = $this->sitepress->get_wp_api()->get_permalink( $parts->id );
 		}
 
-		$this->sitepress->set_setting( 'auto_adjust_ids', $auto_adjust_ids_origin );
+		// Reapply the behaviour before force_adjust_id_to_translated().
+		$this->restore_original_adjust_id_behaviour();
 
 		return $url;
 	}
+
+	/** @var bool? $adjust_id_was_enabled State before enabling it. */
+	private $adjust_id_was_enabled;
+	/** @var bool? $adjust_id_had_filter_get_term */
+	private $adjust_id_had_filter_get_term;
+	/** @var bool? $adjust_id_had_filter_get_pages */
+	private $adjust_id_had_filter_get_pages;
+
+	private function force_adjust_id_to_translated() {
+		// Enable Adjust Id Setting if not active.
+		// Looking isolated to this file it may not be required, but the
+		// get_wp_api() calls may trigger filters which in the end checking
+		// for the setting to be enabled.
+		$this->adjust_id_was_enabled =
+			$this->sitepress->get_setting( 'auto_adjust_ids', false );
+
+		! $this->adjust_id_was_enabled &&
+			$this->sitepress->set_setting( 'auto_adjust_ids', true );
+
+		// Add SitePress::get_term_adjust_id() as callback for get_term()
+		// if not already added.
+		$this->adjust_id_had_filter_get_term =
+			has_filter( 'get_term', [ $this->sitepress, 'get_term_adjust_id' ] );
+
+		! $this->adjust_id_had_filter_get_term &&
+			add_filter( 'get_term', [ $this->sitepress, 'get_term_adjust_id' ], 1 );
+
+		// Add SitePress::get_pages_adjust_ids as callback to get_pages()
+		// if not already added.
+		$this->adjust_id_had_filter_get_pages =
+			has_filter( 'get_pages', [ $this->sitepress, 'get_pages_adjust_ids' ] );
+
+		! $this->adjust_id_had_filter_get_pages &&
+			add_filter( 'get_pages', [ $this->sitepress, 'get_pages_adjust_ids' ], 1, 2 );
+	}
+
+	private function restore_original_adjust_id_behaviour() {
+		if ( null === $this->adjust_id_was_enabled ) {
+			// Called before self::enable_adjust_id().
+			return;
+		}
+
+		// Restore 'adjust_id' setting.
+		! $this->adjust_id_was_enabled &&
+			$this->sitepress->set_setting( 'auto_adjust_ids', false );
+
+		// Remove filter callback for get_term() if it wasn't there before.
+		! $this->adjust_id_had_filter_get_term &&
+			remove_filter( 'get_term', array( $this->sitepress, 'get_term_adjust_id' ), 1 );
+
+		// Remove filter callback for get_pages() if it wasn't there before.
+		! $this->adjust_id_had_filter_get_pages &&
+			remove_filter( 'get_pages', array( $this, 'get_pages_adjust_ids' ), 1 );
+
+		// Reset state for next iteration.
+		$this->adjust_id_was_enabled          = null;
+		$this->adjust_id_had_filter_get_term  = null;
+		$this->adjust_id_had_filter_get_pages = null;
+	}
+
 
 	private function get_fragment( $url, $parts ) {
 		$fragment = $parts->fragment;

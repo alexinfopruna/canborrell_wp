@@ -6,6 +6,7 @@ $vendorDir = dirname(dirname(__FILE__));
 $baseDir = dirname($vendorDir);
 
 return array(
+    'WPML\\Media\\Widgets\\Block\\DisplayTranslation' => $baseDir . '/classes/Widgets/Block/DisplayTranslation.php',
     'WPML_Cache_Directory' => $vendorDir . '/wpml-shared/wpml-lib-cache/src/cache/class-wpml-cache-directory.php',
     'WPML_Core_Version_Check' => $vendorDir . '/wpml-shared/wpml-lib-dependencies/src/dependencies/class-wpml-core-version-check.php',
     'WPML_Dependencies' => $vendorDir . '/wpml-shared/wpml-lib-dependencies/src/dependencies/class-wpml-dependencies.php',

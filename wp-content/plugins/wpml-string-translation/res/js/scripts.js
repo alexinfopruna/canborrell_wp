@@ -87,17 +87,17 @@ jQuery(function () {
 
 function icl_st_filter_status(){
     var qs = jQuery(this).val() != '' ? '&status=' + WPML_core.sanitize(jQuery(this).val()) : '';
-    location.href=location.href.replace(/#(.*)$/,'').replace(/&paged=([0-9]+)/,'').replace(/&updated=true/,'').replace(/&status=([0-9a-z-]+)/g,'') + qs;
+    location.href = WPML_core.sanitize(location.href).replace(/#(.*)$/,'').replace(/&paged=([0-9]+)/,'').replace(/&updated=true/,'').replace(/&status=([0-9a-z-]+)/g,'') + qs;
 }
 
 function icl_st_filter_context(){
     var qs = jQuery(this).val() != '' ? '&context=' + encodeURIComponent(jQuery(this).val()) : '';
-    location.href=location.href.replace(/#(.*)$/,'').replace(/&paged=([0-9]+)/,'').replace(/&updated=true/,'').replace(/&context=(.*)/g,'') + qs;
+    location.href= WPML_core.sanitize(location.href).replace(/#(.*)$/,'').replace(/&paged=([0-9]+)/,'').replace(/&updated=true/,'').replace(/&context=(.*)/g,'') + qs;
 }
 
 function icl_st_filter_translation_priority(){
     var qs = jQuery(this).val() != '' ? '&translation-priority=' + encodeURIComponent(jQuery(this).val()) : '';
-    location.href=location.href.replace(/#(.*)$/,'').replace(/&paged=([0-9]+)/,'').replace(/&updated=true/,'').replace(/&translation-priority=(.*)/g,'') + qs;
+    location.href= WPML_core.sanitize(location.href).replace(/#(.*)$/,'').replace(/&paged=([0-9]+)/,'').replace(/&updated=true/,'').replace(/&translation-priority=(.*)/g,'') + qs;
 }
 
 function icl_st_filter_search(){
@@ -106,7 +106,7 @@ function icl_st_filter_search(){
 		exact_match        = jQuery('#icl_st_filter_search_em').prop('checked'),
 		search_translation = jQuery('#search_translation').prop('checked'),
 		query_string       = search_text !== '' ? '&search=' + encodeURIComponent(search_text) : '',
-		url                = location.href;
+		url                = WPML_core.sanitize(location.href);
 
 	query_string = query_string.replace(/&em=1/g,'');
 
@@ -130,18 +130,18 @@ function icl_st_filter_search(){
 		url = url.replace(/&context=(.*)/g,'');
 	}
 
-	location.href = url;
+	location.href = WPML_core.sanitize(url);
 }
 
 function icl_st_getUrlParameter(name) {
 	name        = name.replace(/[\[]/, '\\[').replace(/[\]]/, '\\]');
 	var regex   = new RegExp('[\\?&]' + name + '=([^&#]*)');
-	var results = regex.exec(location.search);
+	var results = regex.exec( WPML_core.sanitize(location.search) );
 	return results === null ? '' : decodeURIComponent(results[1].replace(/\+/g, ' '));
 }
 
 function icl_st_filter_search_remove(){
-    location.href=location.href.replace(/#(.*)$/,'').replace(/&search=(.*)/g,'').replace(/&em=1/g,'');
+    location.href = WPML_core.sanitize(location.href).replace(/#(.*)$/,'').replace(/&search=(.*)/g,'').replace(/&em=1/g,'');
 }
 
 function icl_st_delete_selected() {
@@ -205,7 +205,7 @@ function icl_st_send_strings(){
 }
 
 function icl_st_update_languages() {
-    if (!jQuery('#icl_tm_languages').find('input:checked').length) {
+    if (!jQuery('#icl_tm_languages').find('input[type=checkbox]:checked:not(:disabled)').length) {
         jQuery('#icl_send_strings').prop('disabled', true);
     } else if (jQuery('.icl_st_row_cb:checked, .check-column input:checked').length && jQuery('.js-lang-not-active:checked').length === 0) {
         jQuery('#icl_send_strings').prop('disabled', false);
@@ -333,7 +333,7 @@ function icl_show_in_source(tabfile, line){
     if(icl_show_in_source_scroll_once){
         if(line > 40){
             line = line - 10;
-            location.href=location.protocol+'//'+location.host+location.pathname+location.search+'#icl_source_line_'+tabfile+'_'+line;
+            location.href= WPML_core.sanitize(location.protocol+'//'+location.host+location.pathname+location.search+'#icl_source_line_'+tabfile+'_'+line);
         }
     }else{
         jQuery('.icl_string_track_source').fadeOut(
@@ -342,7 +342,7 @@ function icl_show_in_source(tabfile, line){
                     function(){
                         if(line > 40){
                             line = line - 10;
-                            location.href=location.protocol+'//'+location.host+location.pathname+location.search+'#icl_source_line_'+tabfile+'_'+line;
+                            location.href= WPML_core.sanitize(location.protocol+'//'+location.host+location.pathname+location.search+'#icl_source_line_'+tabfile+'_'+line);
                         }
                     }
                 );
@@ -373,7 +373,7 @@ function icl_st_pop_download(){
     var file = jQuery(this).data('file');
     var domain = jQuery(this).data('domain');
 
-    location.href = ajaxurl + "?action=icl_st_pop_download&file=" + file + "&domain=" + domain;
+    location.href = WPML_core.sanitize( ajaxurl + "?action=icl_st_pop_download&file=" + file + "&domain=" + domain );
 
     return false;
 }

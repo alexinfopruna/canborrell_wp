@@ -4,9 +4,10 @@
 
 namespace Composer\Autoload;
 
-class ComposerStaticInit9d4637f4e232d9b06ee5144169a75c41
+class ComposerStaticInitc5e56ec5dc878250480373475cddeb1b
 {
     public static $classMap = array (
+        'WPML\\Media\\Widgets\\Block\\DisplayTranslation' => __DIR__ . '/../..' . '/classes/Widgets/Block/DisplayTranslation.php',
         'WPML_Cache_Directory' => __DIR__ . '/..' . '/wpml-shared/wpml-lib-cache/src/cache/class-wpml-cache-directory.php',
         'WPML_Core_Version_Check' => __DIR__ . '/..' . '/wpml-shared/wpml-lib-dependencies/src/dependencies/class-wpml-core-version-check.php',
         'WPML_Dependencies' => __DIR__ . '/..' . '/wpml-shared/wpml-lib-dependencies/src/dependencies/class-wpml-dependencies.php',
@@ -87,7 +88,7 @@ class ComposerStaticInit9d4637f4e232d9b06ee5144169a75c41
     public static function getInitializer(ClassLoader $loader)
     {
         return \Closure::bind(function () use ($loader) {
-            $loader->classMap = ComposerStaticInit9d4637f4e232d9b06ee5144169a75c41::$classMap;
+            $loader->classMap = ComposerStaticInitc5e56ec5dc878250480373475cddeb1b::$classMap;
 
         }, null, ClassLoader::class);
     }

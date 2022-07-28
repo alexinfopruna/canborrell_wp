@@ -13,6 +13,11 @@ global $wpdb;
 function get_term_taxonomy_id_from_term_object( $term_object ) {
 	return $term_object->term_taxonomy_id;
 }
+
+function get_ATE_account_data() {
+	return get_option( WPML_TM_ATE_Authentication::AMS_DATA_KEY, [] );
+}
+
 $action = filter_input( INPUT_GET, 'debug_action', FILTER_SANITIZE_STRING );
 $nonce  = filter_input( INPUT_GET, 'nonce', FILTER_SANITIZE_STRING );
 if ( ! $action ) {
@@ -57,9 +62,9 @@ if ( isset( $action ) && wp_verify_nonce( $nonce, $action ) ) {
 			// clean the icl_translations table
 			$orphans = $wpdb->get_col(
 				"
-                SELECT t.translation_id, t.element_type 
-                FROM {$wpdb->prefix}icl_translations t 
-                LEFT JOIN {$wpdb->posts} p ON t.element_id = p.ID 
+                SELECT t.translation_id, t.element_type
+                FROM {$wpdb->prefix}icl_translations t
+                LEFT JOIN {$wpdb->posts} p ON t.element_id = p.ID
                 WHERE t.element_id IS NOT NULL AND t.element_type LIKE 'post\\_%' AND p.ID IS NULL
             "
 			);
@@ -89,8 +94,8 @@ if ( isset( $action ) && wp_verify_nonce( $nonce, $action ) ) {
 
 			$orphans = $wpdb->get_col(
 				"
-                SELECT t.translation_id 
-                FROM {$wpdb->prefix}icl_translations t 
+                SELECT t.translation_id
+                FROM {$wpdb->prefix}icl_translations t
                 LEFT JOIN {$wpdb->comments} c ON t.element_id = c.comment_ID
                 WHERE t.element_type = 'comment' AND c.comment_ID IS NULL "
 			);
@@ -123,9 +128,9 @@ if ( isset( $action ) && wp_verify_nonce( $nonce, $action ) ) {
 
 			$orphans = $wpdb->get_col(
 				"
-                SELECT t.translation_id 
-                FROM {$wpdb->prefix}icl_translations t 
-                LEFT JOIN {$wpdb->term_taxonomy} p ON t.element_id = p.term_taxonomy_id 
+                SELECT t.translation_id
+                FROM {$wpdb->prefix}icl_translations t
+                LEFT JOIN {$wpdb->term_taxonomy} p ON t.element_id = p.term_taxonomy_id
                 WHERE t.element_id IS NOT NULL AND t.element_type LIKE 'tax\\_%' AND p.term_taxonomy_id IS NULL"
 			);
 			if ( ! empty( $orphans ) ) {
@@ -156,11 +161,11 @@ if ( isset( $action ) && wp_verify_nonce( $nonce, $action ) ) {
 				foreach ( $wp_taxonomies as $t => $v ) {
 					$orphans = $wpdb->get_col(
 						"
-                SELECT t.translation_id 
-                FROM {$wpdb->prefix}icl_translations t 
-                LEFT JOIN {$wpdb->term_taxonomy} p 
-                ON t.element_id = p.term_taxonomy_id 
-                WHERE t.element_type = 'tax_{$t}' 
+                SELECT t.translation_id
+                FROM {$wpdb->prefix}icl_translations t
+                LEFT JOIN {$wpdb->term_taxonomy} p
+                ON t.element_id = p.term_taxonomy_id
+                WHERE t.element_type = 'tax_{$t}'
                 AND p.taxonomy <> '{$t}'
                     "
 					);
@@ -374,7 +379,7 @@ echo '</textarea>';
 		if (!select.val()) return;
 		select.attr('disabled', 'disabled');
 		select.after(icl_ajxloaderimg);
-		jQuery.post(location.href + '&debug_action=link_taxonomy&nonce=<?php echo wp_create_nonce( 'link_taxonomy' ); ?>&new_value=' + select.val() + '&old_value=' + old_value, function () {
+		jQuery.post(WPML_core.sanitize(location.href) + '&debug_action=link_taxonomy&nonce=<?php echo wp_create_nonce( 'link_taxonomy' ); ?>&new_value=' + select.val() + '&old_value=' + old_value, function () {
 			alert('<?php echo esc_js( __( 'Done', 'sitepress' ) ); ?>');
 			select.next().fadeOut();
 			location.reload();
@@ -395,7 +400,7 @@ echo '</textarea>';
 
 			jQuery.ajax({
 										type:    "POST",
-										url:     location.href,
+										url:     WPML_core.sanitize( location.href ),
 										data:    {
 											'debug_action': 'otgs_twig_cache_enable',
 											'nonce':        '<?php echo wp_create_nonce( 'otgs_twig_cache_enable' ); ?>',
@@ -450,7 +455,7 @@ echo '</textarea>';
 			var self = jQuery(this);
 			self.prop('disabled', true);
 			self.after(icl_ajxloaderimg);
-			jQuery.post(location.href + '&debug_action=ghost_clean&nonce=<?php echo wp_create_nonce( 'ghost_clean' ); ?>', function () {
+			jQuery.post(WPML_core.sanitize(location.href) + '&debug_action=ghost_clean&nonce=<?php echo wp_create_nonce( 'ghost_clean' ); ?>', function () {
 				self.prop('disabled', false);
 				alert('<?php echo esc_js( __( 'Done', 'sitepress' ) ); ?>');
 				self.next().fadeOut();
@@ -481,7 +486,7 @@ echo '</textarea>';
 			jQuery.ajax({
 				type: 'POST',
 				contentType: "application/json; charset=utf-8",
-				url: location.href + '&debug_action=assign_translation_status_to_duplicates&nonce=<?php echo wp_create_nonce( 'assign_translation_status_to_duplicates' ); ?>',
+				url: WPML_core.sanitize(location.href) + '&debug_action=assign_translation_status_to_duplicates&nonce=<?php echo wp_create_nonce( 'assign_translation_status_to_duplicates' ); ?>',
 				dataType: 'json',
 				success: function (msg) {
 					assign_translation_status_to_duplicates_updated += msg.updated;
@@ -564,7 +569,7 @@ echo '</textarea>';
 			var self = jQuery(this);
 			self.prop('disabled', true);
 			self.after(icl_ajxloaderimg);
-			jQuery.post(location.href + '&debug_action=icl_fix_terms_count&nonce=<?php echo wp_create_nonce( 'icl_fix_terms_count' ); ?>', function () {
+			jQuery.post(WPML_core.sanitize(location.href) + '&debug_action=icl_fix_terms_count&nonce=<?php echo wp_create_nonce( 'icl_fix_terms_count' ); ?>', function () {
 				self.prop('disabled', false);
 				alert('<?php echo esc_js( __( 'Done', 'sitepress' ) ); ?>');
 				self.next().fadeOut();
@@ -576,7 +581,30 @@ echo '</textarea>';
 			var self = jQuery(this);
 			self.prop('disabled', true);
 			self.after(icl_ajxloaderimg);
-			jQuery.post(location.href + '&debug_action=icl_remove_st_db_cache_logs&nonce=<?php echo wp_create_nonce( 'icl_remove_st_db_cache_logs' ); ?>', function () {
+			jQuery.post(WPML_core.sanitize(location.href) + '&debug_action=icl_remove_st_db_cache_logs&nonce=<?php echo wp_create_nonce( 'icl_remove_st_db_cache_logs' ); ?>', function () {
+				self.prop('disabled', false);
+				alert('<?php echo esc_js( __( 'Done', 'sitepress' ) ); ?>');
+				self.next().fadeOut();
+
+			});
+		});
+
+		<?php
+		$icl_ajax_url = wpml_get_admin_url(
+			[
+				'path'  => 'admin.php',
+				'query' => [ 'page' => WPML_PLUGIN_FOLDER . '/menu/languages.php' ],
+			]
+		);
+		?>
+
+		jQuery('#icl_reset_languages').click(function () {
+			var icl_ajx_url = '<?php echo esc_url( $icl_ajax_url ); ?>';
+			var self = jQuery(this);
+			self.prop('disabled', true);
+			self.after(icl_ajxloaderimg);
+
+			jQuery.post(icl_ajx_url + "&icl_ajx_action=reset_languages&_icl_nonce=" + jQuery('#_icl_nonce_rl').val(), function () {
 				self.prop('disabled', false);
 				alert('<?php echo esc_js( __( 'Done', 'sitepress' ) ); ?>');
 				self.next().fadeOut();
@@ -602,6 +630,22 @@ echo '</textarea>';
 	</p>
 
 </div><br clear="all"/>
+<?php
+	$registration_data = get_ATE_account_data();
+	$shared            = array_key_exists( 'shared', $registration_data ) ? $registration_data['shared'] : null;
+	$uuid              = get_option( WPML_Site_ID::SITE_ID_KEY . ':' . WPML_TM_ATE::SITE_ID_SCOPE, null );
+
+if ( $shared ) {
+	?>
+		<div class="icl_cyan_box">
+			<h3><?php _e( 'Your Automatic Translation account id is', 'sitepress' ); ?></h3>
+			<p>
+			<?php echo $uuid . '#' . $registration_data['shared']; ?>
+			</p>
+		</div><br clear="all"/>
+	<?php
+}
+?>
 
 <div class="icl_cyan_box">
 	<h3><?php _e( 'Clean up', 'sitepress' ); ?></h3>
@@ -646,6 +690,8 @@ echo '</textarea>';
 
 		<?php do_action( 'wpml_troubleshooting_after_fix_element_type_collation' ); ?>
 
+		<?php do_action( 'wpml_tm_mcs_troubleshooting' ); ?>
+
 		<?php if ( class_exists( 'TranslationManagement' ) ) { ?>
 	<p>
 		<input id="assign_translation_status_to_duplicates" type="button" class="button-secondary" value="<?php _e( 'Assign translation status to duplicated content', 'sitepress' ); ?>"/><span id="assign_translation_status_to_duplicates_resp"></span><br/>
@@ -655,6 +701,12 @@ echo '</textarea>';
 	<p>
 		<input id="icl_add_missing_lang" type="button" class="button-secondary" value="<?php _e( 'Set language information', 'sitepress' ); ?>"/><br/>
 		<small style="margin-left:10px;"><?php _e( 'Adds language information to posts and taxonomies that are missing this information.', 'sitepress' ); ?></small>
+	</p>
+
+	<p>
+		<?php wp_nonce_field( 'reset_languages_nonce', '_icl_nonce_rl' ); ?>
+		<input class="button-secondary" type="button" id="icl_reset_languages" value="<?php esc_html_e( 'Reset languages', 'sitepress' ); ?>"/>
+		<small style="margin-left:10px;"><?php esc_html_e( 'WPML will reset all language information to its default values. Any languages that you added or edited will be lost.', 'sitepress' ); ?></small>
 	</p>
 	<p>
 		<input id="icl_fix_terms_count" type="button" class="button-secondary" value="<?php _e( 'Fix terms count', 'sitepress' ); ?>"/><br/>

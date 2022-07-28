@@ -39,20 +39,22 @@ class WPML_PO_Import_Strings {
 		$strings = json_decode( $_POST['strings_json'] );
 
 		foreach ( $strings as $k => $string ) {
+			$original = filter_var( $string->original, FILTER_SANITIZE_STRING );
+			$context  = filter_var( $string->context, FILTER_SANITIZE_STRING );
 
-			$string->original = str_replace('\n', "\n", $string->original );
-			$name = isset( $string->name ) ? $string->name : md5( $string->original );
+			$string->original = str_replace( '\n', "\n", $original );
+			$name             = isset( $string->name )
+				? filter_var( $string->name, FILTER_SANITIZE_STRING ) : md5( $original );
 
 			$string_id = icl_register_string( array(
-					'domain' => filter_var( $_POST[ 'icl_st_domain_name' ], FILTER_SANITIZE_STRING ),
-					'context' => $string->context
-				),
-					$name,
-					$string->original
+				'domain'  => filter_var( $_POST['icl_st_domain_name'], FILTER_SANITIZE_STRING ),
+				'context' => $context
+			),
+				$name,
+				$original
 			);
 
 			$this->maybe_add_translation( $string_id, $string );
-
 		}
 	}
 

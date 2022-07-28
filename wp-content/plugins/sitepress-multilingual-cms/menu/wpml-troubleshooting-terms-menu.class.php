@@ -115,7 +115,7 @@ class WPML_Troubleshooting_Terms_Menu {
 			die( 'Wrong Nonce' );
 		}
 
-		$request_post_terms = filter_input( INPUT_POST, 'terms' );
+		$request_post_terms = filter_input( INPUT_POST, 'terms', FILTER_SANITIZE_STRING );
 		if ( $request_post_terms ) {
 			$term_names = json_decode( stripcslashes( $request_post_terms ) );
 			if ( ! is_object( $term_names ) ) {
