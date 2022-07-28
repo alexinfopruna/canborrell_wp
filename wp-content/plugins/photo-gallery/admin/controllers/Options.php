@@ -5,7 +5,10 @@
  */
 class OptionsController_bwg {
 
+  public $prefix;
+
   public function __construct() {
+    $this->prefix = BWG()->prefix;
     $this->model = new OptionsModel_bwg();
     $this->view = new OptionsView_bwg();
     $this->page = WDWLibrary::get('page');
@@ -45,23 +48,23 @@ class OptionsController_bwg {
       'monospace' => 'Monospace',
       'serif' => 'Serif',
     );
-    $params['page_title'] = __('Global Settings', BWG()->prefix);
+    $params['page_title'] = __('Global Settings', 'photo-gallery');
     $params['active_tab'] = WDWLibrary::get('active_tab', 0, 'intval');
     $params['gallery_type'] = WDWLibrary::get('gallery_type', 'thumbnails');
     $params['album_type'] = WDWLibrary::get('album_type', 'album_compact_preview');
     $params['gallery_types_name'] = array(
-      'thumbnails' => __('Thumbnails', BWG()->prefix),
-      'thumbnails_masonry' => __('Masonry', BWG()->prefix),
-      'thumbnails_mosaic' => __('Mosaic', BWG()->prefix),
-      'slideshow' => __('Slideshow', BWG()->prefix),
-      'image_browser' => __('Image Browser', BWG()->prefix),
-      'blog_style' => __('Blog Style', BWG()->prefix),
-      'carousel' => __('Carousel', BWG()->prefix),
+      'thumbnails' => __('Thumbnails', 'photo-gallery'),
+      'thumbnails_masonry' => __('Masonry', 'photo-gallery'),
+      'thumbnails_mosaic' => __('Mosaic', 'photo-gallery'),
+      'slideshow' => __('Slideshow', 'photo-gallery'),
+      'image_browser' => __('Image Browser', 'photo-gallery'),
+      'blog_style' => __('Blog Style', 'photo-gallery'),
+      'carousel' => __('Carousel', 'photo-gallery'),
     );
     $params['album_types_name'] = array(
-      'album_compact_preview' => __('Compact', BWG()->prefix),
-      'album_masonry_preview' => __('Masonry', BWG()->prefix),
-      'album_extended_preview' => __('Extended', BWG()->prefix),
+      'album_compact_preview' => __('Compact', 'photo-gallery'),
+      'album_masonry_preview' => __('Masonry', 'photo-gallery'),
+      'album_extended_preview' => __('Extended', 'photo-gallery'),
     );
     if (method_exists($this, $task)) {
       $this->$task($params);
@@ -80,7 +83,7 @@ class OptionsController_bwg {
   public function display($params = array()) {
     $row = new WD_BWG_Options();
     // Set Instagram access token.
-    if ( isset( $_GET[ 'wdi_access_token' ] ) ) {
+    if ( isset( $_GET['bwg_access_token'] ) ) {
       ob_end_clean();
       $success = $this->model->set_instagram_access_token( false );
       if ( $success ) {
@@ -97,7 +100,7 @@ class OptionsController_bwg {
 													BWG()->nonce => wp_create_nonce(BWG()->nonce),
 												), admin_url('admin-ajax.php') );
 
-    $params['instagram_return_url'] = 'https://api.instagram.com/oauth/authorize/?app_id=734781953985462&scope=user_profile,user_media&redirect_uri=https://instagram-api.10web.io/instagram/personal/&state=' . urlencode( admin_url('admin.php?options_bwg')) . '&response_type=code';
+    $params['instagram_return_url'] = 'https://api.instagram.com/oauth/authorize/?app_id=6999276113447603&scope=user_profile,user_media&redirect_uri=https://instagram-api.10web.io/instagram/photo-gallery/&state=' . urlencode( admin_url('admin.php?options_bwg')) . '&response_type=code';
     $params['instagram_reset_href'] =  add_query_arg( array(
 														'page' => $this->page,
 														'task' => 'reset_instagram_access_token',
@@ -120,13 +123,13 @@ class OptionsController_bwg {
 													'action' => 'options_' . BWG()->prefix,
 													BWG()->nonce => wp_create_nonce(BWG()->nonce),
 												), admin_url('admin-ajax.php') );
-    $params['instagram_return_url'] = 'https://api.instagram.com/oauth/authorize/?client_id=54da896cf80343ecb0e356ac5479d9ec&scope=basic+public_content&redirect_uri=http://api.web-dorado.com/instagram/?return_url=' . urlencode( admin_url('admin.php?page=options_bwg')) . '&response_type=token';
+    $params['instagram_return_url'] = 'https://api.instagram.com/oauth/authorize/?app_id=6999276113447603&scope=user_profile,user_media&redirect_uri=https://instagram-api.10web.io/instagram/photo-gallery/&state=' . urlencode( admin_url('admin.php?options_bwg')) . '&response_type=code';
     $params['instagram_reset_href'] =  add_query_arg( array(
 			'page' => $this->page,
 			'task' => 'reset_instagram_access_token',
 			BWG()->nonce => wp_create_nonce(BWG()->nonce),
 		), admin_url('admin.php'));
-    echo WDWLibrary::message_id(0, __('Default values restored. Changes must be saved.', BWG()->prefix), 'notice notice-warning');
+    echo WDWLibrary::message_id(0, __('Default values restored. Changes must be saved.', 'photo-gallery'), 'notice notice-warning');
     $this->view->display($params);
   }
 
@@ -139,7 +142,7 @@ class OptionsController_bwg {
     ob_end_clean();
     $success = $this->model->set_instagram_access_token();
     if ( $success ) {
-      wp_redirect( add_query_arg( array( 'page' => $this->page . '&instagram_token=' . time() ), admin_url( 'admin.php' ) ) );
+      wp_redirect( add_query_arg( array( 'page' => $this->page . '&instagram_token=reset'), admin_url( 'admin.php' ) ) );
     }
   }
 
@@ -158,10 +161,10 @@ class OptionsController_bwg {
       $row->images_directory = WDWLibrary::get('images_directory', '', 'sanitize_text_field');
       if (!is_dir(BWG()->abspath . $row->images_directory) || (is_dir(BWG()->abspath . $row->images_directory . '/photo-gallery') && $row->old_images_directory && $row->old_images_directory != $row->images_directory)) {
         if (!is_dir(BWG()->abspath . $row->images_directory)) {
-          echo WDWLibrary::message_id(0, __('Uploads directory doesn\'t exist. Old value is restored.', BWG()->prefix), 'error');
+          echo WDWLibrary::message_id(0, __('Uploads directory doesn\'t exist. Old value is restored.', 'photo-gallery'), 'error');
         }
         else {
-          echo WDWLibrary::message_id(0, __('Warning: "photo-gallery" folder already exists in uploads directory. Old value is restored.', BWG()->prefix), 'error');
+          echo WDWLibrary::message_id(0, __('Warning: "photo-gallery" folder already exists in uploads directory. Old value is restored.', 'photo-gallery'), 'error');
         }
         if ($row->old_images_directory) {
           $row->images_directory = $row->old_images_directory;
@@ -190,8 +193,13 @@ class OptionsController_bwg {
     }
     $save = update_option('wd_bwg_options', json_encode($row), 'no');
     if ( WDWLibrary::get('recreate') == "resize_image_thumb" ) {
-      $this->resize_image_thumb();
-      echo WDWLibrary::message_id(0, __('All thumbnails are successfully recreated.', BWG()->prefix));
+      $resize_status = $this->resize_image_thumb();
+      if ( !$resize_status ) {
+        echo WDWLibrary::message_id(31);
+      }
+      else {
+        echo WDWLibrary::message_id(0, __('All thumbnails are successfully recreated.', 'photo-gallery'));
+      }
     }
 
     if ( $save ) {
@@ -204,7 +212,7 @@ class OptionsController_bwg {
         mkdir(BWG()->abspath . $row->images_directory . '/photo-gallery', 0755);
       }
       else {
-        echo WDWLibrary::message_id(0, __('Item Succesfully Saved.', BWG()->prefix));
+        echo WDWLibrary::message_id(0, __('Item Succesfully Saved.', 'photo-gallery'));
       }
 
       if ( BWG()->is_pro ) {
@@ -242,19 +250,22 @@ class OptionsController_bwg {
     }
 
 	$error = false;
+
     if ( ini_get('allow_url_fopen') == 0 ) {
       $error = true;
-      $message = WDWLibrary::message_id(0, __('http:// wrapper is disabled in the server configuration by allow_url_fopen=0.', $this->prefix), 'error');
+      $message = WDWLibrary::message_id(0, __('http:// wrapper is disabled in the server configuration by allow_url_fopen=0.', 'photo-gallery'), 'error');
     }
     else {
-      list($width_watermark, $height_watermark, $type_watermark) = getimagesize($update_options['built_in_watermark_url']);
-      if ( $update_options['built_in_watermark_type'] == 'image' && (empty($width_watermark) OR empty($height_watermark) OR empty($type_watermark)) ) {
+      if ( !empty($update_options['built_in_watermark_url']) ) {
+        list($width_watermark, $height_watermark, $type_watermark) = getimagesize($update_options['built_in_watermark_url']);
+      }
+      if ( isset($update_options['built_in_watermark_type']) && $update_options['built_in_watermark_type'] == 'image' && (empty($width_watermark) OR empty($height_watermark) OR empty($type_watermark)) ) {
         $error = TRUE;
-        $message = WDWLibrary::message_id(0, __('Watermark could not be set. The image URL is incorrect.', $this->prefix), 'error');
+        $message = WDWLibrary::message_id(0, __('Watermark could not be set. The image URL is incorrect.', 'photo-gallery'), 'error');
       }
       if ( $error === FALSE ) {
         WDWLibrary::bwg_image_set_watermark(0, 0, $limitstart);
-        $message = WDWLibrary::message_id(0, __('All images are successfully watermarked.', $this->prefix), 'updated');
+        $message = WDWLibrary::message_id(0, __('All images are successfully watermarked.', 'photo-gallery'), 'updated');
       }
     }
     $json_data = array('error' => $error, 'message' => $message);
@@ -266,12 +277,19 @@ class OptionsController_bwg {
     WDWLibrary::bwg_image_recover_all(0, $limitstart);
   }
 
-  public function resize_image_thumb($params = array()) {
+  /**
+   * Resize image thumb.
+   *
+   * @param array $params
+   *
+   * @return bool
+   */
+  public function resize_image_thumb( $params = array() ) {
     global $wpdb;
     $max_width = WDWLibrary::get('img_option_width', 500, 'intval');
     $max_height = WDWLibrary::get('img_option_height', 500, 'intval');
     $limitstart = WDWLibrary::get('limitstart', 0, 'intval');
-
+    $resize_status = true;
     /*  Update options only first time of the loop  */
     if ( $limitstart == 0 ) {
       $this->model->update_options_by_key( array('upload_thumb_width' => $max_width,'upload_thumb_height' => $max_height ) );
@@ -284,8 +302,17 @@ class OptionsController_bwg {
       $file_path = str_replace("thumb", ".original", htmlspecialchars_decode(BWG()->upload_dir . $img_id->thumb_url, ENT_COMPAT | ENT_QUOTES));
       $new_file_path = htmlspecialchars_decode( BWG()->upload_dir . $img_id->thumb_url, ENT_COMPAT | ENT_QUOTES );
       if ( WDWLibrary::repair_image_original($file_path) ) {
-        WDWLibrary::resize_image( $file_path, $new_file_path, $max_width, $max_height );
+        $resize_status = WDWLibrary::resize_image( $file_path, $new_file_path, $max_width, $max_height );
       }
     }
+    if ( wp_doing_ajax() ) {
+      $message = ($resize_status) ? __('Thumbnails successfully recreated.', 'photo-gallery') : __('The webp support should be enabled for GD and/or ImageMagick.', 'photo-gallery');
+      echo json_encode( array(
+        'status' => $resize_status,
+        'message' => $message
+        ) );
+      exit;
+    }
+    return $resize_status;
   }
 }

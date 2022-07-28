@@ -19,19 +19,19 @@ class TenWebNewLibDeactivate {
     $this->deactivate_reasons = array(
       1 => array(
         'id' => self::REASON_PLUGIN_IS_HARD_TO_USE_TECHNICAL_PROBLEMS,
-        'text' => __('Technical problems / hard to use', $wd_options->prefix),
+        'text' => __('Technical problems / hard to use', 'photo-gallery'),
       ),
       2 => array(
         'id' => self::REASON_FREE_VERSION_IS_LIMITED,
-        'text' => __('Free version is limited', $wd_options->prefix),
+        'text' => __('Free version is limited', 'photo-gallery'),
       ),
       3 => array(
         'id' => self::REASON_UPGRADING_TO_PAID_VERSION,
-        'text' => __('Upgrading to paid version', $wd_options->prefix),
+        'text' => __('Upgrading to paid version', 'photo-gallery'),
       ),
       4 => array(
         'id' => self::REASON_TEMPORARY_DEACTIVATION,
-        'text' => __('Temporary deactivation', $wd_options->prefix),
+        'text' => __('Temporary deactivation', 'photo-gallery'),
       ),
     );
     add_action('admin_footer', array( $this, 'add_deactivation_feedback_dialog_box' ));

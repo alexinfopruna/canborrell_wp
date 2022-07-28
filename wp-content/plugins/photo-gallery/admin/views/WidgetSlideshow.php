@@ -64,7 +64,7 @@ class WidgetSlideshowView_bwg {
 	function form($params, $instance) {
 		extract($params);
 		$defaults = array(
-		  'title' => __('Photo Gallery Slideshow', BWG()->prefix),
+		  'title' => __('Photo Gallery Slideshow', 'photo-gallery'),
 		  'gallery_id' => 0,
 		  'width' => 200,
 		  'height' => 200,
@@ -79,13 +79,13 @@ class WidgetSlideshowView_bwg {
 		$instance = wp_parse_args((array) $instance, $defaults);
 		?>
 		<p>
-		  <label for="<?php echo $id_title; ?>"><?php _e('Title:', BWG()->prefix); ?></label>
+		  <label for="<?php echo $id_title; ?>"><?php _e('Title:', 'photo-gallery'); ?></label>
 		  <input class="widefat" id="<?php echo $id_title; ?>" name="<?php echo $name_title; ?>" type="text" value="<?php echo htmlspecialchars( $instance['title'] ); ?>"/>
 		</p>    
 		<p>
-			<label for="<?php echo $id_gallery_id; ?>"><?php _e('Galleries:', BWG()->prefix); ?></label><br>
+			<label for="<?php echo $id_gallery_id; ?>"><?php _e('Galleries:', 'photo-gallery'); ?></label><br>
 		  <select name="<?php echo $name_gallery_id; ?>" id="<?php echo $id_gallery_id; ?>" class="widefat">
-			<option value="0"><?php _e('Select', BWG()->prefix); ?></option>
+			<option value="0"><?php _e('Select', 'photo-gallery'); ?></option>
 			<?php
 			foreach ($gallery_rows as $gallery_row) {
 			  ?>
@@ -96,13 +96,13 @@ class WidgetSlideshowView_bwg {
 		  </select>
 		</p>
 		<p>
-		  <label for="<?php echo $id_effect; ?>"><?php _e('Slideshow effect:', BWG()->prefix); ?></label><br>
+		  <label for="<?php echo $id_effect; ?>"><?php _e('Slideshow effect:', 'photo-gallery'); ?></label><br>
 		  <select name="<?php echo $name_effect; ?>" id="<?php echo $id_effect; ?>" class="widefat">        
 			<?php
 			foreach ($slideshow_effects as $key => $slideshow_effect) {
 			  ?>
 			  <option value="<?php echo $key; ?>"
-                <?php echo (!BWG()->is_pro && $key != 'none' && $key != 'fade') ? 'disabled="disabled" title="' . __('This effect is disabled in free version.', BWG()->prefix) . '"' : ''; ?>
+                <?php echo (!BWG()->is_pro && $key != 'none' && $key != 'fade') ? 'disabled="disabled" title="' . __('This effect is disabled in free version.', 'photo-gallery') . '"' : ''; ?>
                 <?php if ($instance['effect'] == $key) echo 'selected="selected"'; ?>><?php echo $slideshow_effect; ?></option>
 			  <?php
 			}
@@ -110,41 +110,41 @@ class WidgetSlideshowView_bwg {
 		  </select>
 		</p>		
 		<p>
-		  <label><?php _e('Enable shuffle:', BWG()->prefix); ?></label><br>
-		  <input type="radio" name="<?php echo $name_shuffle; ?>" id="<?php echo $id_shuffle . "_1"; ?>" value="1" <?php if ($instance['shuffle']) echo 'checked="checked"'; ?> onclick='jQuery(this).nextAll(".bwg_hidden").first().attr("value", "1");' /><label for="<?php echo $id_shuffle . "_1"; ?>"><?php _e('Yes', BWG()->prefix); ?></label><br>
-		  <input type="radio" name="<?php echo $name_shuffle; ?>" id="<?php echo $id_shuffle . "_0"; ?>" value="0" <?php if (!$instance['shuffle']) echo 'checked="checked"'; ?> onclick='jQuery(this).nextAll(".bwg_hidden").first().attr("value", "0");' /><label for="<?php echo $id_shuffle . "_0"; ?>"><?php _e('No', BWG()->prefix); ?></label>
+		  <label><?php _e('Enable shuffle:', 'photo-gallery'); ?></label><br>
+		  <input type="radio" name="<?php echo $name_shuffle; ?>" id="<?php echo $id_shuffle . "_1"; ?>" value="1" <?php if ($instance['shuffle']) echo 'checked="checked"'; ?> onclick='jQuery(this).nextAll(".bwg_hidden").first().attr("value", "1");' /><label for="<?php echo $id_shuffle . "_1"; ?>"><?php _e('Yes', 'photo-gallery'); ?></label><br>
+		  <input type="radio" name="<?php echo $name_shuffle; ?>" id="<?php echo $id_shuffle . "_0"; ?>" value="0" <?php if (!$instance['shuffle']) echo 'checked="checked"'; ?> onclick='jQuery(this).nextAll(".bwg_hidden").first().attr("value", "0");' /><label for="<?php echo $id_shuffle . "_0"; ?>"><?php _e('No', 'photo-gallery'); ?></label>
 		  <input type="hidden" name="<?php echo $name_shuffle; ?>" id="<?php echo $id_shuffle; ?>" value="<?php echo $instance['shuffle']; ?>" class="bwg_hidden" />
 		</p>
 		<p>
-		  <label><?php _e('Enable autoplay:', BWG()->prefix); ?></label><br>
-		  <input type="radio" name="<?php echo $name_enable_autoplay; ?>" id="<?php echo $id_enable_autoplay . "_1"; ?>" value="1" <?php if ($instance['enable_autoplay']) echo 'checked="checked"'; ?> onclick='jQuery(this).nextAll(".bwg_hidden").first().attr("value", "1");' /><label for="<?php echo $id_enable_autoplay . "_1"; ?>"><?php _e('Yes', BWG()->prefix); ?></label><br>
-		  <input type="radio" name="<?php echo $name_enable_autoplay; ?>" id="<?php echo $id_enable_autoplay . "_0"; ?>" value="0" <?php if (!$instance['enable_autoplay']) echo 'checked="checked"'; ?> onclick='jQuery(this).nextAll(".bwg_hidden").first().attr("value", "0");' /><label for="<?php echo $id_enable_autoplay . "_0"; ?>"><?php _e('No', BWG()->prefix); ?></label>
+		  <label><?php _e('Enable autoplay:', 'photo-gallery'); ?></label><br>
+		  <input type="radio" name="<?php echo $name_enable_autoplay; ?>" id="<?php echo $id_enable_autoplay . "_1"; ?>" value="1" <?php if ($instance['enable_autoplay']) echo 'checked="checked"'; ?> onclick='jQuery(this).nextAll(".bwg_hidden").first().attr("value", "1");' /><label for="<?php echo $id_enable_autoplay . "_1"; ?>"><?php _e('Yes', 'photo-gallery'); ?></label><br>
+		  <input type="radio" name="<?php echo $name_enable_autoplay; ?>" id="<?php echo $id_enable_autoplay . "_0"; ?>" value="0" <?php if (!$instance['enable_autoplay']) echo 'checked="checked"'; ?> onclick='jQuery(this).nextAll(".bwg_hidden").first().attr("value", "0");' /><label for="<?php echo $id_enable_autoplay . "_0"; ?>"><?php _e('No', 'photo-gallery'); ?></label>
 		  <input type="hidden" name="<?php echo $name_enable_autoplay; ?>" id="<?php echo $id_enable_autoplay; ?>" value="<?php echo $instance['enable_autoplay']; ?>" class="bwg_hidden" />
 		</p>
 		 <p>
-		  <label><?php _e('Enable control buttons:', BWG()->prefix); ?></label><br>
-		  <input type="radio" name="<?php echo $name_enable_ctrl_btn; ?>" id="<?php echo $id_enable_ctrl_btn . "_1"; ?>" value="1" <?php if ($instance['enable_ctrl_btn']) echo 'checked="checked"'; ?> onclick='jQuery(this).nextAll(".bwg_hidden").first().attr("value", "1");' /><label for="<?php echo $id_enable_ctrl_btn . "_1"; ?>"><?php _e('Yes', BWG()->prefix); ?></label><br>
-		  <input type="radio" name="<?php echo $name_enable_ctrl_btn; ?>" id="<?php echo $id_enable_ctrl_btn . "_0"; ?>" value="0" <?php if (!$instance['enable_ctrl_btn']) echo 'checked="checked"'; ?> onclick='jQuery(this).nextAll(".bwg_hidden").first().attr("value", "0");' /><label for="<?php echo $id_enable_ctrl_btn . "_0"; ?>"><?php _e('No', BWG()->prefix); ?></label>
+		  <label><?php _e('Enable control buttons:', 'photo-gallery'); ?></label><br>
+		  <input type="radio" name="<?php echo $name_enable_ctrl_btn; ?>" id="<?php echo $id_enable_ctrl_btn . "_1"; ?>" value="1" <?php if ($instance['enable_ctrl_btn']) echo 'checked="checked"'; ?> onclick='jQuery(this).nextAll(".bwg_hidden").first().attr("value", "1");' /><label for="<?php echo $id_enable_ctrl_btn . "_1"; ?>"><?php _e('Yes', 'photo-gallery'); ?></label><br>
+		  <input type="radio" name="<?php echo $name_enable_ctrl_btn; ?>" id="<?php echo $id_enable_ctrl_btn . "_0"; ?>" value="0" <?php if (!$instance['enable_ctrl_btn']) echo 'checked="checked"'; ?> onclick='jQuery(this).nextAll(".bwg_hidden").first().attr("value", "0");' /><label for="<?php echo $id_enable_ctrl_btn . "_0"; ?>"><?php _e('No', 'photo-gallery'); ?></label>
 		  <input type="hidden" name="<?php echo $name_enable_ctrl_btn; ?>" id="<?php echo $id_enable_ctrl_btn; ?>" value="<?php echo $instance['enable_ctrl_btn']; ?>" class="bwg_hidden" />
 		</p>
 		<p>
-		  <label for="<?php echo $id_width; ?>"><?php _e('Dimensions:', BWG()->prefix); ?></label><br>
+		  <label for="<?php echo $id_width; ?>"><?php _e('Dimensions:', 'photo-gallery'); ?></label><br>
 		  <input class="widefat" style="width:25%;" id="<?php echo $id_width; ?>" name="<?php echo $name_width; ?>" type="text" value="<?php echo $instance['width']; ?>"/> x 
 		  <input class="widefat" style="width:25%;" id="<?php echo $id_height; ?>" name="<?php echo $name_height; ?>" type="text" value="<?php echo $instance['height']; ?>"/> px
 		</p>
 		<p <?php echo (BWG()->options->slideshow_enable_filmstrip ? '' : 'style="display: none;"'); ?>>
-		  <label for="<?php echo $id_filmstrip_height; ?>"><?php _e('Filmstrip height:', BWG()->prefix); ?></label><br>
+		  <label for="<?php echo $id_filmstrip_height; ?>"><?php _e('Filmstrip height:', 'photo-gallery'); ?></label><br>
 		  <input <?php echo BWG()->is_pro ? '' : 'disabled="disabled"'; ?> class="widefat" style="width: 25%;" id="<?php echo $id_filmstrip_height; ?>" name="<?php echo $name_filmstrip_height; ?>" type="text" value="<?php echo $instance['filmstrip_height']; ?>"/> px
       <?php if ( !BWG()->is_pro ) { ?>
         <p class="description" style="background-color: #e0e0e0; border: 1px solid #c3c3c3; border-radius: 2px; color: #666666; padding: 2px;"><?php echo BWG()->free_msg; ?></p>
       <?php } ?>
 		</p>
 		<p>
-		  <label for="<?php echo $id_interval; ?>"><?php _e('Time interval:', BWG()->prefix); ?></label><br>
+		  <label for="<?php echo $id_interval; ?>"><?php _e('Time interval:', 'photo-gallery'); ?></label><br>
 		  <input class="widefat" style="width:25%;" id="<?php echo $id_interval; ?>" name="<?php echo $name_interval; ?>" type="text" value="<?php echo $instance['interval']; ?>" /> sec.
 		</p>
 		<p>
-		  <label for="<?php echo $id_theme_id; ?>"><?php _e('Themes:', BWG()->prefix); ?></label><br>
+		  <label for="<?php echo $id_theme_id; ?>"><?php _e('Themes:', 'photo-gallery'); ?></label><br>
 		  <select <?php echo ( !BWG()->is_pro && get_option("wd_bwg_theme_version")) ? 'disabled="disabled"' : ''; ?> name="<?php echo $name_theme_id; ?>" id="<?php echo $id_theme_id; ?>" class="widefat">
 			<?php
 			foreach ($theme_rows as $theme_row) {

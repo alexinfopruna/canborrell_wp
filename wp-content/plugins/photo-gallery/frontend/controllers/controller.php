@@ -9,8 +9,13 @@ class BWGControllerSite {
     require_once BWG()->plugin_dir . "/frontend/models/model.php";
     $this->model = new BWGModelSite();
     require_once BWG()->plugin_dir . "/frontend/views/view.php";
-    require_once BWG()->plugin_dir . '/frontend/views/BWGView' . $view . '.php';
-    $view_class = 'BWGView' . $view;
+    if ( function_exists('amp_is_request') && amp_is_request() ) {
+      require_once BWG()->plugin_dir . '/frontend/views/BWGViewThumbnails.php';
+      $view_class = 'BWGViewThumbnails';
+    } else {
+      require_once BWG()->plugin_dir . '/frontend/views/BWGView' . $view . '.php';
+      $view_class = 'BWGView' . $view;
+    }
     $this->view = new $view_class();
 
     do_action('bwg_before_init_gallery');
@@ -29,13 +34,13 @@ class BWGControllerSite {
       if ($sort_by == 'random') {
         $params['sort_by'] = 'RAND()';
       } else {
-        if (in_array($sort_by, array('default', 'filename', 'size'))) {
+        if (in_array($sort_by, array('default', 'alt', 'date', 'filename', 'size'))) {
           $params['sort_by'] = $sort_by;
         }
       }
     }
-
-    if ( strpos($params['gallery_type'], 'album') !== FALSE ) { //Album views (compact/masonry/extended).
+    // Album views (compact/masonry/extended).
+    if ( strpos($params['gallery_type'], 'album') !== FALSE ) {
       // View type.
       $params['view_type'] = 'album';
       // Type in album view (album or gallery).
@@ -46,7 +51,7 @@ class BWGControllerSite {
       $params['album_gallery_id'] = WDWLibrary::get('album_gallery_id_' . $bwg, $params['album_id'], 'intval');
       $params['cur_alb_gal_id'] = $params['album_gallery_id'];
 
-      if (isset($params['compuct_album_image_thumb_width'])) { // Compact album view.
+      if ( $params['gallery_type'] == 'album_compact_preview' && isset($params['compuct_album_image_thumb_width'])) { // Compact album view.
         // Gallery type in album (thumbnail/masonry/mosaic).
         $params['gallery_view_type'] = $params['compuct_album_view_type'];
         $params['image_enable_page'] = $params['compuct_album_enable_page'];
@@ -57,7 +62,8 @@ class BWGControllerSite {
         $theme_row->back_font_style = $theme_row->album_compact_back_font_style;
         $theme_row->back_font_weight = $theme_row->album_compact_back_font_weight;
         $theme_row->back_font_color = $theme_row->album_compact_back_font_color;
-      } elseif (isset($params['extended_album_image_thumb_width'])) { // Extended album view.
+      }
+      elseif ( $params['gallery_type'] == 'album_extended_preview' && isset($params['extended_album_image_thumb_width'])) { // Extended album view.
         // Gallery type in album (thumbnail/masonry/mosaic).
         $params['gallery_view_type'] = $params['extended_album_view_type'];
         $params['image_enable_page'] = $params['extended_album_enable_page'];
@@ -68,7 +74,8 @@ class BWGControllerSite {
         $theme_row->back_font_style = $theme_row->album_extended_back_font_style;
         $theme_row->back_font_weight = $theme_row->album_extended_back_font_weight;
         $theme_row->back_font_color = $theme_row->album_extended_back_font_color;
-      } elseif (isset($params['masonry_album_thumb_width'])) {
+      }
+      elseif ( $params['gallery_type'] == 'album_masonry_preview' && isset($params['masonry_album_thumb_width'])) {
         $params['gallery_view_type'] = 'masonry';
         $params['image_enable_page'] = $params['masonry_album_enable_page'];
         $params['container_id'] = 'bwg_album_masonry_' . $bwg;
@@ -83,13 +90,13 @@ class BWGControllerSite {
       $params['showthumbs_name'] = $params['show_album_name'];
       if ($params['album_view_type'] == 'album') { // Album in album.
         $from = (isset($params['from']) ? esc_html($params['from']) : 0);
-        $album_row = $this->model->get_album_row_data($params['album_gallery_id'], $from === "widget");
+        $album_row = $this->model->get_album_row_data($params['album_gallery_id'], $from === "widget", $bwg);
         $params['album_row'] = $album_row;
         if (isset($album_row->published) && $album_row->published == 0) {
           return;
         }
         if (!$params['album_row']) {
-          echo WDWLibrary::message(__('There is no album selected or the gallery was deleted.', BWG()->prefix), 'wd_error');
+          echo WDWLibrary::message(__('There is no album selected or the gallery was deleted.', 'photo-gallery'), 'wd_error');
           return;
         }
         if ('xml_sitemap' == $from_shortcode) {
@@ -111,22 +118,24 @@ class BWGControllerSite {
         } elseif ($params['gallery_view_type'] == 'carousel') {
           $params['gallery_type'] = 'carousel';
         }
-
-        if (isset($params['compuct_album_image_thumb_width'])) { // Compact album view.
+        if ( $params['gallery_type'] == 'album_compact_preview' && isset($params['compuct_album_image_thumb_width']) ) { // Compact album view.
           $params['image_enable_page'] = $params['compuct_album_enable_page'];
           $params['images_per_page'] = $params['compuct_albums_per_page'];
           $params['items_col_num'] = $params['compuct_album_column_number'];
-        } elseif (isset($params['extended_album_image_thumb_width'])) { // Extended album view.
+        }
+        elseif ( $params['gallery_type'] == 'album_extended_preview' && isset($params['extended_album_image_thumb_width']) ) { // Extended album view.
           $params['image_enable_page'] = $params['extended_album_enable_page'];
           $params['images_per_page'] = $params['extended_albums_per_page'];
           $params['items_col_num'] = $params['extended_album_image_column_number'];
           $params['image_column_number'] = $params['extended_album_image_column_number'];
-        } elseif (isset($params['masonry_album_thumb_width'])) {
+        }
+        elseif ( $params['gallery_type'] == 'album_masonry_preview' && isset($params['masonry_album_thumb_width']) ) {
           $params['image_enable_page'] = $params['masonry_album_enable_page'];
           $params['images_per_page'] = $params['masonry_albums_per_page'];
           $params['items_col_num'] = $params['masonry_album_column_number'];
           $params['image_column_number'] = $params['masonry_album_image_column_number'];
-        } else {
+        }
+        else {
           $params['image_enable_page'] = $params['compuct_album_enable_page'];
           $params['images_per_page'] = $params['compuct_albums_per_page'];
           $params['items_col_num'] = $params['compuct_album_column_number'];
@@ -141,31 +150,28 @@ class BWGControllerSite {
       else { // Gallery views (thumbnail/masonry/mosaic).
         /* Set parameters for gallery view from album shortcode.*/
         /* album used all parmas for view */
-        if (isset($params['compuct_album_image_thumb_width'])) { // Compact album view.
+        if ( $params['gallery_type'] == 'album_compact_preview' && isset($params['compuct_album_image_thumb_width'])) { // Compact album view.
           $params['thumb_width'] = $params['compuct_album_image_thumb_width'];
           $params['thumb_height'] = $params['compuct_album_image_thumb_height'];
           $params['image_title'] = $params['compuct_album_image_title'];
-
           $params['image_column_number'] = $params['compuct_album_image_column_number'];
           $params['images_per_page'] = $params['compuct_album_images_per_page'];
-
           $params['mosaic_hor_ver'] = $params['compuct_album_mosaic_hor_ver'];
           $params['resizable_mosaic'] = $params['compuct_album_resizable_mosaic'];
           $params['mosaic_total_width'] = $params['compuct_album_mosaic_total_width'];
-
           $params['items_col_num'] = $params['compuct_album_column_number'];
-        } elseif (isset($params['extended_album_image_thumb_width'])) { // Extended album view.
+        }
+        elseif ($params['gallery_type'] == 'album_extended_preview' && isset($params['extended_album_image_thumb_width']) ) { // Extended album view.
           $params['thumb_width'] = $params['extended_album_image_thumb_width'];
           $params['thumb_height'] = $params['extended_album_image_thumb_height'];
           $params['image_title'] = $params['extended_album_image_title'];
-
           $params['image_column_number'] = $params['extended_album_image_column_number'];
           $params['images_per_page'] = $params['extended_album_images_per_page'];
-
           $params['mosaic_hor_ver'] = $params['extended_album_mosaic_hor_ver'];
           $params['resizable_mosaic'] = $params['extended_album_resizable_mosaic'];
           $params['mosaic_total_width'] = $params['extended_album_mosaic_total_width'];
-        } elseif (isset($params['masonry_album_thumb_width'])) {
+        }
+        elseif ( $params['gallery_type'] == 'album_masonry_preview' && isset($params['masonry_album_thumb_width']) ) {
           $params['thumb_width'] = $params['masonry_album_image_thumb_width'];
           $params['image_column_number'] = $params['masonry_album_image_column_number'];
           $params['images_per_page'] = $params['masonry_album_images_per_page'];
@@ -273,11 +279,12 @@ class BWGControllerSite {
         $params['container_id'] = 'bwg_' . $params['gallery_type'] . '_' . $bwg;
         $params['masonry_hor_ver'] = BWG()->options->masonry;
         $params['show_masonry_thumb_description'] = BWG()->options->show_masonry_thumb_description;
+        $params['show_thumb_description'] = BWG()->options->show_thumb_description;
 
         $gallery_row = $this->model->get_gallery_row_data($params['gallery_id']);
 
         if (empty($gallery_row) && $params['type'] == '' && $params["tag"] == 0) {
-          echo WDWLibrary::message(__('There is no gallery selected or the gallery was deleted.', BWG()->prefix), 'wd_error');
+          echo WDWLibrary::message(__('There is no gallery selected or the gallery was deleted.', 'photo-gallery'), 'wd_error');
           return;
         } else {
           $params['gallery_row'] = $gallery_row;
@@ -311,7 +318,7 @@ class BWGControllerSite {
         return;
       }
       if (empty($gallery_row) && $params['type'] == '' && $params["tag"] == 0) {
-        echo WDWLibrary::message(__('There is no gallery selected or the gallery was deleted.', BWG()->prefix), 'wd_error');
+        echo WDWLibrary::message(__('There is no gallery selected or the gallery was deleted.', 'photo-gallery'), 'wd_error');
         return;
       } else {
         $params['gallery_row'] = $gallery_row;
@@ -350,8 +357,13 @@ class BWGControllerSite {
     }
 
     if ( !isset( $params['current_url'] ) ) {
-      $params['current_url'] = trim((is_ssl() ? 'https://' : 'http://') . $_SERVER['HTTP_HOST'] . $_SERVER['REQUEST_URI']);
+      $params['current_url'] = sanitize_url( trim((is_ssl() ? 'https://' : 'http://') . $_SERVER['HTTP_HOST'] . $_SERVER['REQUEST_URI']) );
     }
+    $need_scroll = 0;
+    if( BWG()->options->front_ajax == "1" && (WDWLibrary::get('bwg_search_' . $bwg) != '' || WDWLibrary::get('filter_tag_' . $bwg) != "" || WDWLibrary::get("album_gallery_id_".$bwg) != "" || WDWLibrary::get("page_number_".$bwg)) != "" ) {
+      $need_scroll = 1;
+    }
+    $params['need_scroll'] = $need_scroll;
 
     $params_array = array(
       'action' => 'GalleryBox',
@@ -367,7 +379,12 @@ class BWGControllerSite {
 
     $params['params_array'] = $params_array;
     $params['theme_row'] = $theme_row;
-
+    //For compatibility with AMP
+    if (function_exists('amp_is_request') && amp_is_request()) {
+      $params['image_column_number'] = !empty($params['image_column_number']) ? $params['image_column_number'] : 1;
+      $params['image_title'] = !empty($params['image_title']) ? $params['image_title'] : '';
+      $params['ecommerce_icon'] = !empty($params['ecommerce_icon']) ? $params['ecommerce_icon'] : '';
+    }
     $this->display($params, $from_shortcode, $bwg);
   }
 

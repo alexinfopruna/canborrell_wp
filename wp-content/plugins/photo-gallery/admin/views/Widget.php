@@ -94,7 +94,7 @@ class WidgetView_bwg {
 	function form($params, $instance) {
 		extract($params);
 		$defaults = array(
-			'title' =>  __('Photo Gallery', BWG()->prefix),
+			'title' =>  __('Photo Gallery', 'photo-gallery'),
 			'type' => 'gallery',
 			'view_type' => 'thumbnails',
 			'gallery_id' => 0,
@@ -111,18 +111,18 @@ class WidgetView_bwg {
     }
     ?>    
 		<p>
-		  <label for="<?php echo $id_title; ?>"><?php _e('Title:', BWG()->prefix); ?></label>
+		  <label for="<?php echo $id_title; ?>"><?php _e('Title:', 'photo-gallery'); ?></label>
 		  <input class="widefat" id="<?php echo $id_title; ?>" name="<?php echo $name_title; ?>'" type="text" value="<?php echo htmlspecialchars( $instance['title'] ); ?>"/>
 		</p>
 		<p>
-		  <label for="<?php echo $id_show; ?>"><?php _e('Type:', BWG()->prefix); ?></label><br>
-		  <input type="radio" name="<?php echo $name_type; ?>" id="<?php echo $id_type . "_1"; ?>" value="gallery" class="sel_gallery" onclick="bwg_change_type(event, this)" <?php if ($instance['type'] == "gallery") echo 'checked="checked"'; ?> /><label for="<?php echo $id_type . "_1"; ?>"><?php _e('Gallery', BWG()->prefix); ?></label><br>
-		  <input type="radio" name="<?php echo $name_type; ?>" id="<?php echo $id_type . "_2"; ?>" value="album" class="sel_album" onclick="bwg_change_type(event, this)" <?php if ($instance['type'] == "album") echo 'checked="checked"'; ?> /><label for="<?php echo $id_type . "_2"; ?>"><?php _e('Gallery groups', BWG()->prefix); ?></label>
+		  <label for="<?php echo $id_show; ?>"><?php _e('Type:', 'photo-gallery'); ?></label><br>
+		  <input type="radio" name="<?php echo $name_type; ?>" id="<?php echo $id_type . "_1"; ?>" value="gallery" class="sel_gallery" onclick="bwg_change_type(event, this)" <?php if ($instance['type'] == "gallery") echo 'checked="checked"'; ?> /><label for="<?php echo $id_type . "_1"; ?>"><?php _e('Gallery', 'photo-gallery'); ?></label><br>
+		  <input type="radio" name="<?php echo $name_type; ?>" id="<?php echo $id_type . "_2"; ?>" value="album" class="sel_album" onclick="bwg_change_type(event, this)" <?php if ($instance['type'] == "album") echo 'checked="checked"'; ?> /><label for="<?php echo $id_type . "_2"; ?>"><?php _e('Gallery groups', 'photo-gallery'); ?></label>
 		</p>	
 		<p id="p_galleries" style="display:<?php echo ($instance['type'] == "gallery") ? "" : "none" ?>;">
-		  <label for="<?php echo $id_gallery_id; ?>"><?php _e('Galleries:', BWG()->prefix); ?></label><br>
+		  <label for="<?php echo $id_gallery_id; ?>"><?php _e('Galleries:', 'photo-gallery'); ?></label><br>
 		  <select name="<?php echo $name_gallery_id; ?>" id="<?php echo $id_gallery_id; ?>" class="widefat">
-			<option value="0"><?php _e('All images', BWG()->prefix); ?></option>
+			<option value="0"><?php _e('All images', 'photo-gallery'); ?></option>
 			<?php
 			foreach ($gallery_rows as $gallery_row) {
 			  ?>
@@ -133,17 +133,17 @@ class WidgetView_bwg {
 		  </select>
 		</p>
 		<p id="view_type_container" style="display: <?php echo $instance['type'] != 'album' ? 'block' : 'none'; ?>;">
-		  <label for="<?php echo $id_view_type; ?>"><?php _e('Gallery Type:', BWG()->prefix); ?></label><br>
-		  <input <?php echo BWG()->is_pro ? '' : 'disabled="disabled"'; ?> type="radio" name="<?php echo $name_view_type; ?>" id="<?php echo $id_view_type . "_1"; ?>" value="thumbnails" class="sel_thumbnail_gallery"  <?php if (isset($instance['view_type']) && $instance['view_type'] == "thumbnails") echo 'checked="checked"';  ?> /><label for="<?php echo $id_view_type . "_1"; ?>"><?php _e('Thumbnail', BWG()->prefix); ?></label><br>
-		  <input <?php echo BWG()->is_pro ? '' : 'disabled="disabled"'; ?> type="radio" name="<?php echo $name_view_type; ?>" id="<?php echo $id_view_type . "_2"; ?>" value="masonry" class="sel_masonry_gallery"  <?php if (isset($instance['view_type']) && $instance['view_type'] == "masonry") echo 'checked="checked"'; ?> /><label for="<?php echo $id_view_type . "_2"; ?>"><?php _e('Masonry', BWG()->prefix); ?></label>
+		  <label for="<?php echo $id_view_type; ?>"><?php _e('Gallery Type:', 'photo-gallery'); ?></label><br>
+		  <input <?php echo BWG()->is_pro ? '' : 'disabled="disabled"'; ?> type="radio" name="<?php echo $name_view_type; ?>" id="<?php echo $id_view_type . "_1"; ?>" value="thumbnails" class="sel_thumbnail_gallery"  <?php if (isset($instance['view_type']) && $instance['view_type'] == "thumbnails") echo 'checked="checked"';  ?> /><label for="<?php echo $id_view_type . "_1"; ?>"><?php _e('Thumbnail', 'photo-gallery'); ?></label><br>
+		  <input <?php echo BWG()->is_pro ? '' : 'disabled="disabled"'; ?> type="radio" name="<?php echo $name_view_type; ?>" id="<?php echo $id_view_type . "_2"; ?>" value="masonry" class="sel_masonry_gallery"  <?php if (isset($instance['view_type']) && $instance['view_type'] == "masonry") echo 'checked="checked"'; ?> /><label for="<?php echo $id_view_type . "_2"; ?>"><?php _e('Masonry', 'photo-gallery'); ?></label>
       <?php if ( !BWG()->is_pro ) { ?>
       <p class="description" style="display: <?php echo $instance['type'] != 'album' ? 'block' : 'none'; ?>; background-color: #e0e0e0; border: 1px solid #c3c3c3; border-radius: 2px; color: #666666; padding: 2px;"><?php echo BWG()->free_msg; ?></p>
       <?php } ?>
 		</p>
 		<p id="p_albums" style="display:<?php echo ($instance['type'] == "album") ? "" : "none" ?>;">
-		  <label for="<?php echo $id_album_id; ?>"><?php _e('Gallery Groups:', BWG()->prefix); ?></label><br>
+		  <label for="<?php echo $id_album_id; ?>"><?php _e('Gallery Groups:', 'photo-gallery'); ?></label><br>
 		  <select name="<?php echo $name_album_id; ?>" id="<?php echo $id_album_id; ?>" class="widefat">
-			<option value="0"><?php _e('All Galleries', BWG()->prefix); ?></option>
+			<option value="0"><?php _e('All Galleries', 'photo-gallery'); ?></option>
 			<?php
 			foreach ($album_rows as $album_row) {
 			  ?>
@@ -154,23 +154,23 @@ class WidgetView_bwg {
 		  </select>
 		</p>    
 		<p>
-		<label for="<?php echo $id_show; ?>"><?php _e('Sort:', BWG()->prefix); ?></label><br>
-		  <input type="radio" name="<?php echo $name_show; ?>" id="<?php echo $id_show . "_1"; ?>" value="random" <?php if ($instance['show'] == "random") echo 'checked="checked"'; ?> onclick='jQuery(this).nextAll(".bwg_hidden").first().attr("value", "random");' /><label for="<?php echo $id_show . "_1"; ?>"><?php _e('Random', BWG()->prefix); ?></label><br>
-		  <input type="radio" name="<?php echo $name_show; ?>" id="<?php echo $id_show . "_2"; ?>" value="first" <?php if ($instance['show'] == "first") echo 'checked="checked"'; ?> onclick='jQuery(this).nextAll(".bwg_hidden").first().attr("value", "first");' /><label for="<?php echo $id_show . "_2"; ?>"><?php _e('First', BWG()->prefix); ?></label><br>
-		  <input type="radio" name="<?php echo $name_show; ?>" id="<?php echo $id_show . "_3"; ?>" value="last" <?php if ($instance['show'] == "last") echo 'checked="checked"'; ?> onclick='jQuery(this).nextAll(".bwg_hidden").first().attr("value", "last");' /><label for="<?php echo $id_show . "_3"; ?>"><?php _e('Last', BWG()->prefix); ?></label>
+		<label for="<?php echo $id_show; ?>"><?php _e('Sort:', 'photo-gallery'); ?></label><br>
+		  <input type="radio" name="<?php echo $name_show; ?>" id="<?php echo $id_show . "_1"; ?>" value="random" <?php if ($instance['show'] == "random") echo 'checked="checked"'; ?> onclick='jQuery(this).nextAll(".bwg_hidden").first().attr("value", "random");' /><label for="<?php echo $id_show . "_1"; ?>"><?php _e('Random', 'photo-gallery'); ?></label><br>
+		  <input type="radio" name="<?php echo $name_show; ?>" id="<?php echo $id_show . "_2"; ?>" value="first" <?php if ($instance['show'] == "first") echo 'checked="checked"'; ?> onclick='jQuery(this).nextAll(".bwg_hidden").first().attr("value", "first");' /><label for="<?php echo $id_show . "_2"; ?>"><?php _e('First', 'photo-gallery'); ?></label><br>
+		  <input type="radio" name="<?php echo $name_show; ?>" id="<?php echo $id_show . "_3"; ?>" value="last" <?php if ($instance['show'] == "last") echo 'checked="checked"'; ?> onclick='jQuery(this).nextAll(".bwg_hidden").first().attr("value", "last");' /><label for="<?php echo $id_show . "_3"; ?>"><?php _e('Last', 'photo-gallery'); ?></label>
 		  <input type="hidden" name="<?php echo $name_show; ?>" id="<?php echo $id_show; ?>" value="<?php echo $instance['show']; ?>" class="bwg_hidden" />
 		</p>
 		<p>
-		  <label for="<?php echo $id_count; ?>"><?php _e('Count:', BWG()->prefix); ?></label><br>
+		  <label for="<?php echo $id_count; ?>"><?php _e('Count:', 'photo-gallery'); ?></label><br>
 		  <input class="widefat" style="width:25%;" id="<?php echo $id_count; ?>" name="<?php echo $name_count; ?>'" type="text" value="<?php echo $instance['count']; ?>"/>
 		</p>
 		<p>
-		  <label for="<?php echo $id_width; ?>"><?php _e('Dimensions:', BWG()->prefix); ?></label><br>
+		  <label for="<?php echo $id_width; ?>"><?php _e('Dimensions:', 'photo-gallery'); ?></label><br>
 		  <input class="widefat" style="width:25%;" id="<?php echo $id_width; ?>" name="<?php echo $name_width; ?>'" type="text" value="<?php echo $instance['width']; ?>"/> x 
 		  <input class="widefat" style="width:25%;" id="<?php echo $id_height; ?>" name="<?php echo $name_height; ?>'" type="text" value="<?php echo $instance['height']; ?>"/> px
 		</p>
 		<p>
-		  <label for="<?php echo $id_theme_id; ?>"><?php _e('Themes:', BWG()->prefix); ?></label><br>
+		  <label for="<?php echo $id_theme_id; ?>"><?php _e('Themes:', 'photo-gallery'); ?></label><br>
 		  <select name="<?php echo $name_theme_id; ?>" id="<?php echo $id_theme_id; ?>" class="widefat">
 			<?php
 			foreach ($theme_rows as $theme_row) {

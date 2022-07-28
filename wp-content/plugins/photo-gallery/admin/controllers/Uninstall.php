@@ -56,7 +56,7 @@ class UninstallController_bwg {
    */
   public function display() {
     $params = array();
-    $params['page_title'] = sprintf(__('Uninstall %s', BWG()->prefix), BWG()->nicename);
+    $params['page_title'] = sprintf(__('Uninstall %s', 'photo-gallery'), BWG()->nicename);
     $params['tables'] = $this->get_tables();
 
     $this->view->display($params);
@@ -97,7 +97,7 @@ class UninstallController_bwg {
     $this->model->delete_db_tables($params);
     // Deactivate all addons.
     WDWLibrary::deactivate_all_addons(BWG()->main_file);
-    $params['page_title'] = sprintf(__('Uninstall %s', BWG()->prefix), BWG()->nicename);
+    $params['page_title'] = sprintf(__('Uninstall %s', 'photo-gallery'), BWG()->nicename);
     $deactivate_url =
             add_query_arg(
                 array(

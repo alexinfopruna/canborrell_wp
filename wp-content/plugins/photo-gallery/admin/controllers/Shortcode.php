@@ -24,7 +24,7 @@ class ShortcodeController_bwg {
 
   public function display() {
     $params = array();
-    $params['gutenberg_callback'] = WDWLibrary::get('callback');
+    $params['gutenberg_callback'] = WDWLibrary::get('callback', '', 'esc_js');
     $params['gutenberg_id'] = WDWLibrary::get('edit', 0, 'intval');
     $params['elementor_callback'] = WDWLibrary::get('elementor_callback', 0, 'intval');
     $params['from_menu'] = $this->from_menu;
@@ -37,18 +37,18 @@ class ShortcodeController_bwg {
 
     $params['watermark_fonts'] = WDWLibrary::get_fonts();
     $params['gallery_types_name'] = array(
-      'thumbnails' => __('Thumbnails', BWG()->prefix),
-      'thumbnails_masonry' => __('Masonry', BWG()->prefix),
-      'thumbnails_mosaic' => __('Mosaic', BWG()->prefix),
-      'slideshow' => __('Slideshow', BWG()->prefix),
-      'image_browser' => __('Image Browser', BWG()->prefix),
-      'blog_style' => __('Blog Style', BWG()->prefix),
-      'carousel' => __('Carousel', BWG()->prefix),
+      'thumbnails' => __('Thumbnails', 'photo-gallery'),
+      'thumbnails_masonry' => __('Masonry', 'photo-gallery'),
+      'thumbnails_mosaic' => __('Mosaic', 'photo-gallery'),
+      'slideshow' => __('Slideshow', 'photo-gallery'),
+      'image_browser' => __('Image Browser', 'photo-gallery'),
+      'blog_style' => __('Blog Style', 'photo-gallery'),
+      'carousel' => __('Carousel', 'photo-gallery'),
     );
     $params['album_types_name'] = array(
-      'album_compact_preview' => __('Compact', BWG()->prefix),
-      'album_masonry_preview' => __('Masonry', BWG()->prefix),
-      'album_extended_preview' => __('Extended', BWG()->prefix),
+      'album_compact_preview' => __('Compact', 'photo-gallery'),
+      'album_masonry_preview' => __('Masonry', 'photo-gallery'),
+      'album_extended_preview' => __('Extended', 'photo-gallery'),
     );
 
     $this->view->display($params);

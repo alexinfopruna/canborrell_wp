@@ -9,66 +9,90 @@ class WDWLibrary {
   /**
    * Get request value.
    *
-   * @param string $key
-   * @param string $default_value
-   * @param string $callback
+   * @param $key
+   * @param $default_value
+   * @param $callback
+   * @param $type
    *
-   * @return string|array
+   * @return array|bool|mixed|string|null
    */
   public static function get($key, $default_value = '', $callback = 'sanitize_text_field', $type = 'DEFAULT') {
     switch ($type) {
       case 'REQUEST' :
         if (isset($_REQUEST[$key])) {
-          $value = $_REQUEST[$key];
+          if ( is_bool($_REQUEST[$key]) ) {
+            return rest_sanitize_boolean($_REQUEST[$key]);
+          }
+          elseif (is_array($_REQUEST[$key])) {
+            $value = array();
+            foreach ($_REQUEST[$key] as $valKey => $val) {
+              $value[$valKey] = self::validate_data($val, $callback);
+            }
+          }
+          else {
+            $value = self::validate_data($_REQUEST[$key], $callback);
+          }
         }
         break;
       case 'DEFAULT' :
       case 'POST' :
-        if (isset($_POST[$key])) {
-          $value = $_POST[$key];
+        if ( isset($_POST[$key]) ) {
+          if ( is_bool($_POST[$key]) ) {
+            return rest_sanitize_boolean($_POST[$key]);
+          }
+          elseif ( is_array($_POST[$key]) ) {
+            $value = array();
+            foreach ( $_POST[$key] as $valKey => $val ) {
+              $value[$valKey] = self::validate_data($val, $callback);
+            }
+          }
+          else {
+            $value = self::validate_data($_POST[$key], $callback);
+          }
         }
         if ( 'POST' === $type ) break;
       case 'GET' :
         if (isset($_GET[$key])) {
-          $value = $_GET[$key];
+          if ( is_bool($_GET[$key]) ) {
+            return rest_sanitize_boolean($_GET[$key]);
+          }
+          elseif ( is_array($_GET[$key]) ) {
+            $value = array();
+            foreach ( $_GET[$key] as $valKey => $val ) {
+              $value[$valKey] = self::validate_data($val, $callback);
+            }
+          }
+          else {
+            $value = self::validate_data($_GET[$key], $callback);
+          }
         }
         break;
     }
+
     if ( !isset($value) ) {
-      if( $default_value === NULL ) {
+      if ( $default_value === NULL ) {
         return NULL;
       } else {
         $value = $default_value;
       }
     }
 
-    if( is_bool($value) ) {
-      return $value;
-    }
-
-    if (is_array($value)) {
-      // $callback should be third parameter of the validate_data function, so there is need to add unused second parameter to validate_data function.
-      array_walk_recursive($value, array('self', 'validate_data'), $callback);
-    }
-    else {
-      self::validate_data($value, 0, $callback);
-    }
-
     return $value;
   }
 
   /**
-   * Validate data.
-   *
    * @param $value
-   * @param $key
    * @param $callback
+   *
+   * @return mixed|string
    */
-  private static function validate_data(&$value, $key, $callback) {
+  private static function validate_data($value, $callback) {
     $value = stripslashes($value);
     if ( $callback && function_exists($callback) ) {
       $value = $callback($value);
     }
+
+    return $value;
   }
 
   /**
@@ -84,164 +108,178 @@ class WDWLibrary {
     if ($message_id) {
       switch($message_id) {
         case 1: {
-          $message = __('Item successfully saved.', BWG()->prefix);
+          $message = __('Item successfully saved.', 'photo-gallery');
           $type = 'updated';
           break;
 
         }
         case 2: {
-          $message = __('Failed.', BWG()->prefix);
+          $message = __('Failed.', 'photo-gallery');
           $type = 'error';
           break;
 
         }
         case 3: {
-          $message = __('Item successfully deleted.', BWG()->prefix);
+          $message = __('Item successfully deleted.', 'photo-gallery');
           $type = 'updated';
           break;
 
         }
         case 4: {
-          $message = __("You can't delete default theme.", BWG()->prefix);
+          $message = __("You can't delete default theme.", 'photo-gallery');
           $type = 'error';
           break;
 
         }
         case 5: {
-          $message = __('Items Successfully Deleted.', BWG()->prefix);
+          $message = __('Items successfully deleted.', 'photo-gallery');
           $type = 'updated';
           break;
 
         }
         case 6: {
-          $message = __('You must set watermark type from Options page.', BWG()->prefix);
+          $message = __('You must set watermark type from Options page.', 'photo-gallery');
           $type = 'wd_error';
           break;
 
         }
         case 7: {
-          $message = __('The item is successfully set as default.', BWG()->prefix);
+          $message = __('The item is successfully set as default.', 'photo-gallery');
           $type = 'updated';
           break;
 
         }
         case 8: {
-          $message = __('Options successfully saved.', BWG()->prefix);
+          $message = __('Options successfully saved.', 'photo-gallery');
           $type = 'updated';
           break;
 
         }
         case 9: {
-          $message = __('Item successfully published.', BWG()->prefix);
+          $message = __('Item successfully published.', 'photo-gallery');
           $type = 'updated';
           break;
 
         }
         case 10: {
-          $message = __('Item successfully unpublished.', BWG()->prefix);
+          $message = __('Item successfully unpublished.', 'photo-gallery');
           $type = 'updated';
           break;
 
         }
         case 11: {
-          $message = __('Item successfully duplicated.', BWG()->prefix);
+          $message = __('Item successfully duplicated.', 'photo-gallery');
           $type = 'updated';
           break;
 
         }
         case 12: {
           // ToDO: delete
-          $message = __('Items Succesfully Unpublished.', BWG()->prefix);
+          $message = __('Items successfully unpublished.', 'photo-gallery');
           $type = 'updated';
           break;
 
         }
         case 13: {
-          $message = __('Ordering Succesfully Saved.', BWG()->prefix);
+          $message = __('Ordering successfully saved.', 'photo-gallery');
           $type = 'updated';
           break;
 
         }
         case 14: {
-          $message = __('A term with the name provided already exists.', BWG()->prefix);
+          $message = __('A term with the name provided already exists.', 'photo-gallery');
           $type = 'error';
           break;
 
         }
         case 15: {
-          $message = __('Name field is required.', BWG()->prefix);
+          $message = __('Name field is required.', 'photo-gallery');
           $type = 'error';
           break;
 
         }
         case 16: {
-          $message = __('The slug must be unique.', BWG()->prefix);
+          $message = __('The slug must be unique.', 'photo-gallery');
           $type = 'error';
           break;
 
         }
         case 17: {
-          $message = __('Changes must be saved.', BWG()->prefix);
+          $message = __('Changes must be saved.', 'photo-gallery');
           $type = 'error';
           break;
 
         }
          case 18: {
-          $message = __('Theme successfully copied.', BWG()->prefix);
+          $message = __('Theme successfully copied.', 'photo-gallery');
           $type = 'updated';
           break;
 
         }
         case 19: {
-          $message = __('Failed.', BWG()->prefix);
+          $message = __('Failed.', 'photo-gallery');
           $type = 'error';
           break;
         }
         case 20: {
-          $message = __('Items were reset successfully.', BWG()->prefix);
+          $message = __('Items were reset successfully.', 'photo-gallery');
           $type = 'updated';
           break;
         }
         case 21: {
-          $message = __('Watermark successfully set.', BWG()->prefix);
+          $message = __('Watermark successfully set.', 'photo-gallery');
           $type = 'updated';
           break;
         }
         case 22: {
-          $message = __('Items successfully rotated.', BWG()->prefix);
+          $message = __('Items successfully rotated.', 'photo-gallery');
           $type = 'updated';
           break;
         }
         case 23: {
-          $message = __('Items successfully recreated.', BWG()->prefix);
+          $message = __('Items successfully recreated.', 'photo-gallery');
           $type = 'updated';
           break;
         }
         case 24: {
-          $message = __('Items successfully resized.', BWG()->prefix);
+          $message = __('Items successfully resized.', 'photo-gallery');
           $type = 'updated';
           break;
         }
         case 25: {
-          $message = __('Items successfully edited.', BWG()->prefix);
+          $message = __('Items successfully edited.', 'photo-gallery');
           $type = 'updated';
           break;
         }
 		    case 26: {
-          $message = __('Watermark could not be set. The image URL is incorrect.', BWG()->prefix);
+          $message = __('Watermark could not be set. The image URL is incorrect.', 'photo-gallery');
           $type = 'error';
           break;
         }
         case 27: {
-          $message = __('http:// wrapper is disabled in the server configuration by allow_url_fopen=0.', BWG()->prefix);
+          $message = __('http:// wrapper is disabled in the server configuration by allow_url_fopen=0.', 'photo-gallery');
           $type = 'error';
           break;
         }
         case 28: {
-          $message = __('All items are successfully duplicated.', BWG()->prefix);
+          $message = __('All items are successfully duplicated.', 'photo-gallery');
           $type = 'updated';
           break;
-
+        }
+        case 29: {
+          $message = __('Connected successfully.', 'photo-gallery');
+          $type = 'updated';
+          break;
+        }
+        case 30: {
+          $message = __('Connect successfully deleted.', 'photo-gallery');
+          $type = 'updated';
+          break;
+        }
+        case 31: {
+          $message = __('The webp support should be enabled for GD and/or ImageMagick.', 'photo-gallery');
+          $type = 'error';
+          break;
         }
         default: {
           $message = '';
@@ -251,9 +289,9 @@ class WDWLibrary {
     }
     if ($message) {
       ob_start();
-      ?><div class="<?php echo $type; ?> inline">
+      ?><div class="<?php echo esc_html($type); ?> inline">
       <p>
-        <strong><?php echo $message; ?></strong>
+        <strong><?php echo esc_html($message); ?></strong>
       </p>
       </div><?php
       $message = ob_get_clean();
@@ -263,7 +301,7 @@ class WDWLibrary {
   }
 
   public static function message($message, $type) {
-    return '<div style="width:100%"><div class="' . $type . '"><p><strong>' . $message . '</strong></p></div></div>';
+    return '<div style="width:100%"><div class="' . esc_html($type) . '"><p><strong>' . esc_html($message) . '</strong></p></div></div>';
   }
 
   /**
@@ -288,10 +326,10 @@ class WDWLibrary {
     $order = (($orderby == $id) && ($order == 'asc')) ? 'desc' : 'asc';
     ob_start();
     ?>
-    <th id="order-<?php echo $id; ?>" class="<?php echo implode(' ', $class); ?>">
-      <a href="<?php echo add_query_arg( array('orderby' => $id, 'order' => $order), $page_url ); ?>"
-         title="<?php _e('Click to sort by this item', BWG()->prefix); ?>">
-        <span><?php echo $text; ?></span><span class="sorting-indicator"></span>
+    <th id="order-<?php echo esc_attr($id); ?>" class="<?php echo esc_html(implode(' ', $class)); ?>">
+      <a href="<?php echo esc_url(add_query_arg( array('orderby' => $id, 'order' => $order), $page_url )); ?>"
+         title="<?php _e('Click to sort by this item', 'photo-gallery'); ?>">
+        <span><?php echo esc_html($text); ?></span><span class="sorting-indicator"></span>
       </a>
     </th>
     <?php
@@ -305,13 +343,13 @@ class WDWLibrary {
    */
   public static function admin_images_ordering_choices() {
     return array(
-      'order_asc' => __('Default sorting', BWG()->prefix),
-      'filename_asc' => __('File name (Asc)', BWG()->prefix),
-      'filename_desc' => __('File name (Desc)', BWG()->prefix),
-      'alt_asc' => __('Alt/Title (Asc)', BWG()->prefix),
-      'alt_desc' => __('Alt/Title (Desc)', BWG()->prefix),
-      'description_asc' => __('Description (Asc)', BWG()->prefix),
-      'description_desc' => __('Description (Desc)', BWG()->prefix),
+      'order_asc' => __('Default sorting', 'photo-gallery'),
+      'filename_asc' => __('File name (Asc)', 'photo-gallery'),
+      'filename_desc' => __('File name (Desc)', 'photo-gallery'),
+      'alt_asc' => __('Alt/Title (Asc)', 'photo-gallery'),
+      'alt_desc' => __('Alt/Title (Desc)', 'photo-gallery'),
+      'description_asc' => __('Description (Asc)', 'photo-gallery'),
+      'description_desc' => __('Description (Desc)', 'photo-gallery'),
     );
   }
 
@@ -340,7 +378,7 @@ class WDWLibrary {
       $margin_right = 5;
     }
     ?>
-    <div class="<?php echo  $position_search; ?>  actions" style="clear:both;">
+    <div class="<?php echo  sanitize_html_class($position_search); ?>  actions" style="clear:both;">
       <script>
         function spider_search() {
           document.getElementById("page_number").value = "1";
@@ -365,41 +403,17 @@ class WDWLibrary {
         }
       </script>
       <div class="alignleft actions">
-        <label for="search_value" style="font-size:14px; width:50px; display:inline-block;"><?php echo $search_by; ?>:</label>
-        <input type="text" id="search_value" name="search_value" class="spider_search_value" onkeypress="return check_search_key(event, this);" value="<?php echo esc_html($search_value); ?>" style="width: 150px;margin-right:<?php echo $margin_right; ?>px; padding-top:10px; <?php echo (get_bloginfo('version') > '3.7') ? ' height: 33px;' : ''; ?>" />
+        <label for="search_value" style="font-size:14px; width:50px; display:inline-block;"><?php echo esc_html($search_by); ?>:</label>
+        <input type="text" id="search_value" name="search_value" class="spider_search_value" onkeypress="return check_search_key(event, this);" value="<?php echo esc_attr($search_value); ?>" style="width: 150px;margin-right:<?php echo $margin_right; ?>px; padding-top:10px; <?php echo (get_bloginfo('version') > '3.7') ? ' height: 33px;' : ''; ?>" />
       </div>
       <div class="alignleft actions">
-        <input type="button" value="" title="<?php _e('Search',BWG()->prefix); ?>" onclick="spider_search()" class="wd-search-btn action">
-        <input type="button" value="" title="<?php _e('Reset',BWG()->prefix); ?>" onclick="spider_reset()" class="wd-reset-btn action">
+        <input type="button" value="" title="<?php _e('Search', 'photo-gallery'); ?>" onclick="spider_search()" class="wd-search-btn action">
+        <input type="button" value="" title="<?php _e('Reset', 'photo-gallery'); ?>" onclick="spider_reset()" class="wd-reset-btn action">
       </div>
     </div>
     <?php
   }
 
-  public static function search_select($search_by, $search_select_id = 'search_select_value', $search_select_value, $playlists, $form_id) {
-    ?>
-      <script>
-        function spider_search_select() {
-          document.getElementById("page_number").value = "1";
-          document.getElementById("search_or_not").value = "search";
-          document.getElementById("<?php echo $form_id; ?>").submit();
-        }
-      </script>
-      <div class="alignleft actions" >
-        <select id="<?php echo $search_select_id; ?>" name="<?php echo $search_select_id; ?>" class="select_icon" onchange="spider_search_select();" style="width:150px; margin-left:5px;">        
-        <?php
-          foreach ($playlists as $id => $playlist) {
-            ?>
-            <option value="<?php echo $id; ?>" <?php echo (($search_select_value == $id) ? 'selected="selected"' : ''); ?>><?php echo $playlist; ?></option>
-            <?php
-          }
-        ?>
-        </select>
-      </div>
-    
-    <?php
-  }
-  
   public static function html_page_nav($count_items, $pager, $page_number, $form_id, $items_per_page = 20) {
     $limit = $items_per_page;
     if ($count_items) {
@@ -470,7 +484,7 @@ class WDWLibrary {
       <span class="displaying-num">
         <?php
         if ($count_items != 0) {
-          printf(_n('%s item', '%s items', $count_items, BWG()->prefix), $count_items);
+          printf(_n('%s item', '%s items', $count_items, 'photo-gallery'), $count_items);
         }
         ?>
       </span>
@@ -494,18 +508,18 @@ class WDWLibrary {
         }
       ?>
       <span class="pagination-links">
-        <a class="<?php echo $first_page; ?>" title="Go to the first page" href="javascript:spider_page(<?php echo $page_number; ?>,-2);">«</a>
-        <a class="<?php echo $prev_page; ?>" title="Go to the previous page" href="javascript:spider_page(<?php echo $page_number; ?>,-1);">‹</a>
+        <a class="<?php echo esc_html($first_page); ?>" title="Go to the first page" href="javascript:spider_page(<?php echo $page_number; ?>,-2);">«</a>
+        <a class="<?php echo esc_html($prev_page); ?>" title="Go to the previous page" href="javascript:spider_page(<?php echo $page_number; ?>,-1);">‹</a>
         <span class="paging-input">
           <span class="total-pages">
-          <input class="current_page" id="current_page" name="current_page" value="<?php echo $page_number; ?>" onkeypress="return check_enter_key(event, this)" title="Go to the page" type="text" size="1" />
-        </span> <?php echo __('of', BWG()->prefix); ?>
+          <input class="current_page" id="current_page" name="current_page" value="<?php echo esc_attr($page_number); ?>" onkeypress="return check_enter_key(event, this)" title="Go to the page" type="text" size="1" />
+        </span> <?php echo __('of', 'photo-gallery'); ?>
         <span class="total-pages">
-            <?php echo $items_county; ?>
+            <?php echo esc_html($items_county); ?>
           </span>
         </span>
-        <a class="<?php echo $next_page ?>" title="Go to the next page" href="javascript:spider_page(<?php echo $page_number; ?>,1);">›</a>
-        <a class="<?php echo $last_page ?>" title="Go to the last page" href="javascript:spider_page(<?php echo $page_number; ?>,2);">»</a>
+        <a class="<?php echo esc_html($next_page) ?>" title="Go to the next page" href="javascript:spider_page(<?php echo $page_number; ?>,1);">›</a>
+        <a class="<?php echo esc_html($last_page) ?>" title="Go to the last page" href="javascript:spider_page(<?php echo $page_number; ?>,2);">»</a>
         <?php
       }
       ?>
@@ -513,7 +527,7 @@ class WDWLibrary {
     </div>
     <?php if (!$pager) { ?>
     <input type="hidden" id="page_number"  name="page_number" value="<?php echo self::get('page_number', 1, 'intval'); ?>" />
-    <input type="hidden" id="search_or_not" name="search_or_not" value="<?php echo self::get('search_or_not'); ?>"/>
+    <input type="hidden" id="search_or_not" name="search_or_not" value="<?php echo self::get('search_or_not', '', 'esc_attr'); ?>"/>
     <?php
     }
   }
@@ -541,12 +555,12 @@ class WDWLibrary {
         }
       </script>
       <div class="alignleft actions">
-        <label for="search_value" style="font-size:14px; width:60px; display:inline-block;"><?php echo $search_by; ?>:</label>
-        <input type="text" id="search_value" name="search_value" class="spider_search_value" onkeypress="return check_search_key(event, this);" value="<?php echo esc_html($search_value); ?>" style="width: 150px;margin-right:5px;<?php echo (get_bloginfo('version') > '3.7') ? ' height: 33px;' : ''; ?>" />
+        <label for="search_value" style="font-size:14px; width:60px; display:inline-block;"><?php echo esc_html($search_by); ?>:</label>
+        <input type="text" id="search_value" name="search_value" class="spider_search_value" onkeypress="return check_search_key(event, this);" value="<?php echo esc_attr($search_value); ?>" style="width: 150px;margin-right:5px;<?php echo (get_bloginfo('version') > '3.7') ? ' height: 33px;' : ''; ?>" />
       </div>
       <div class="alignleft actions">
-        <input type="button" value="" title="<?php echo __('Search',BWG()->prefix); ?>" onclick="spider_search()" class="wd-search-btn action">
-        <input type="button" value="" title="<?php echo __('Reset',BWG()->prefix); ?>" onclick="spider_reset()" class="wd-reset-btn action">
+        <input type="button" value="" title="<?php echo __('Search', 'photo-gallery'); ?>" onclick="spider_search()" class="wd-search-btn action">
+        <input type="button" value="" title="<?php echo __('Reset', 'photo-gallery'); ?>" onclick="spider_reset()" class="wd-reset-btn action">
       </div>
     </div>
     <?php
@@ -596,7 +610,7 @@ class WDWLibrary {
           default:
             document.getElementById('page_number').value = 1;
         }
-        spider_ajax_save('<?php echo $form_id; ?>');
+        spider_ajax_save('<?php echo esc_html($form_id); ?>');
       }
       function check_enter_key(e, that) {
         if ( e.key == 'Enter' ) { /*Enter keycode*/
@@ -606,7 +620,7 @@ class WDWLibrary {
           else {
            document.getElementById('page_number').value = jQuery(that).val();
           }
-          spider_ajax_save('<?php echo $form_id; ?>');
+          spider_ajax_save('<?php echo esc_html($form_id); ?>');
           return false;
         }
        return true;		 
@@ -617,7 +631,7 @@ class WDWLibrary {
       <span class="displaying-num">
         <?php
         if ($count_items != 0) {
-          printf(_n('%s item', '%s items', $count_items, BWG()->prefix), $count_items);
+          printf(_n('%s item', '%s items', $count_items, 'photo-gallery'), $count_items);
         }
         ?>
       </span>
@@ -641,26 +655,26 @@ class WDWLibrary {
         }
       ?>
       <span class="pagination-links">
-        <a class="bwg-a <?php echo $first_page; ?>" title="Go to the first page" onclick="spider_page(<?php echo $page_number; ?>,-2)">«</a>
-        <a class="bwg-a <?php echo $prev_page; ?>" title="Go to the previous page" onclick="spider_page(<?php echo $page_number; ?>,-1)">‹</a>
+        <a class="bwg-a <?php echo esc_html($first_page); ?>" title="Go to the first page" onclick="spider_page(<?php echo $page_number; ?>,-2)">«</a>
+        <a class="bwg-a <?php echo esc_html($prev_page); ?>" title="Go to the previous page" onclick="spider_page(<?php echo $page_number; ?>,-1)">‹</a>
         <span class="paging-input">
           <span class="total-pages">
-          <input class="current_page" id="current_page" name="current_page" value="<?php echo $page_number; ?>" onkeypress="return check_enter_key(event, this)" title="Go to the page" type="text" size="1" />
-        </span> <?php echo __('of', BWG()->prefix); ?>
+          <input class="current_page" id="current_page" name="current_page" value="<?php echo esc_attr($page_number); ?>" onkeypress="return check_enter_key(event, this)" title="Go to the page" type="text" size="1" />
+        </span> <?php echo __('of', 'photo-gallery'); ?>
         <span class="total-pages">
-            <?php echo $items_county; ?>
+            <?php echo esc_html($items_county); ?>
           </span>
         </span>
-        <a class="bwg-a <?php echo $next_page ?>" title="Go to the next page" onclick="spider_page(<?php echo $page_number; ?>,1)">›</a>
-        <a class="bwg-a <?php echo $last_page ?>" title="Go to the last page" onclick="spider_page(<?php echo $page_number; ?>,2)">»</a>
+        <a class="bwg-a <?php echo esc_html($next_page) ?>" title="Go to the next page" onclick="spider_page(<?php echo $page_number; ?>,1)">›</a>
+        <a class="bwg-a <?php echo esc_html($last_page) ?>" title="Go to the last page" onclick="spider_page(<?php echo $page_number; ?>,2)">»</a>
         <?php
       }
       ?>
       </span>
     </div>
     <?php if (!$pager) { ?>
-    <input type="hidden" id="page_number" name="page_number" value="<?php echo self::get('page_number', 1, 'intval'); ?>" />
-    <input type="hidden" id="search_or_not" name="search_or_not" value="<?php echo self::get('search_or_not'); ?>"/>
+    <input type="hidden" id="page_number" name="page_number" value="<?php echo esc_attr(self::get('page_number', 1, 'intval')); ?>" />
+    <input type="hidden" id="search_or_not" name="search_or_not" value="<?php echo esc_attr(self::get('search_or_not')); ?>"/>
     <?php
     }
   }
@@ -748,24 +762,8 @@ class WDWLibrary {
     }
   }
 
-  public static function esc_script($method = '', $index = '', $default = '', $type = 'string') {
-    if ($method == 'post') {
-      $escaped_value = ((isset($_POST[$index]) && preg_match("/^[A-Za-z0-9_]+$/", $_POST[$index])) ? esc_js($_POST[$index]) : $default);
-    }
-    elseif ($method == 'get') {
-      $escaped_value = ((isset($_GET[$index]) && preg_match("/^[A-Za-z0-9_]+$/", $_GET[$index])) ? esc_js($_GET[$index]) : $default);
-    }
-    else {
-      $escaped_value = (preg_match("/^[a-zA-Z0-9]", $index) ? esc_js($index) : $default);
-    }
-    if ($type == 'int') {
-      $escaped_value = (int) $escaped_value;
-    }
-    return $escaped_value;
-  }
-
   public static function get_google_fonts() {
-    $google_fonts = array('ABeeZee' => 'ABeeZee', 'Abel' => 'Abel', 'Abril Fatface' => 'Abril Fatface', 'Aclonica' => 'Aclonica', 'Acme' => 'Acme', 'Actor' => 'Actor', 'Adamina' => 'Adamina', 'Advent Pro' => 'Advent Pro', 'Aguafina Script' => 'Aguafina Script', 'Akronim' => 'Akronim', 'Aladin' => 'Aladin', 'Aldrich' => 'Aldrich', 'Alef' => 'Alef', 'Alegreya' => 'Alegreya', 'Alegreya SC' => 'Alegreya SC', 'Alegreya Sans' => 'Alegreya Sans', 'Alex Brush' => 'Alex Brush', 'Alfa Slab One' => 'Alfa Slab One', 'Alice' => 'Alice', 'Alike' => 'Alike', 'Alike Angular' => 'Alike Angular', 'Allan' => 'Allan', 'Allerta' => 'Allerta', 'Allerta Stencil' => 'Allerta Stencil', 'Allura' => 'Allura', 'Almendra' => 'Almendra', 'Almendra display' => 'Almendra Display', 'Almendra sc' => 'Almendra SC', 'Amarante' => 'Amarante', 'Amaranth' => 'Amaranth', 'Amatic sc' => 'Amatic SC', 'Amethysta' => 'Amethysta', 'Amiri' => 'Amiri', 'Amita' => 'Amita', 'Anaheim' => 'Anaheim', 'Andada' => 'Andada', 'Andika' => 'Andika', 'Angkor' => 'Angkor', 'Annie Use Your Telescope' => 'Annie Use Your Telescope', 'Anonymous Pro' => 'Anonymous Pro', 'Antic' => 'Antic', 'Antic Didone' => 'Antic Didone', 'Antic Slab' => 'Antic Slab', 'Anton' => 'Anton', 'Arapey' => 'Arapey', 'Arbutus' => 'Arbutus', 'Arbutus slab' => 'Arbutus Slab', 'Architects daughter' => 'Architects Daughter', 'Archivo black' => 'Archivo Black', 'Archivo narrow' => 'Archivo Narrow', 'Arimo' => 'Arimo', 'Arizonia' => 'Arizonia', 'Armata' => 'Armata', 'Artifika' => 'Artifika', 'Arvo' => 'Arvo', 'Arya' => 'Arya', 'Asap' => 'Asap', 'Asar' => 'Asar', 'Asset' => 'Asset', 'Astloch' => 'Astloch', 'Asul' => 'Asul', 'Atomic age' => 'Atomic Age', 'Aubrey' => 'Aubrey', 'Audiowide' => 'Audiowide', 'Autour one' => 'Autour One', 'Average' => 'Average', 'Average Sans' => 'Average Sans', 'Averia Gruesa Libre' => 'Averia Gruesa Libre', 'Averia Libre' => 'Averia Libre', 'Averia Sans Libre' => 'Averia Sans Libre', 'Averia Serif Libre' => 'Averia Serif Libre', 'Bad Script' => 'Bad Script', 'Balthazar' => 'Balthazar', 'Bangers' => 'Bangers', 'Basic' => 'Basic', 'Battambang' => 'Battambang', 'Baumans' => 'Baumans', 'Bayon' => 'Bayon', 'Belgrano' => 'Belgrano', 'BenchNine' => 'BenchNine', 'Bentham' => 'Bentham', 'Berkshire Swash' => 'Berkshire Swash', 'Bevan' => 'Bevan', 'Bigelow Rules' => 'Bigelow Rules', 'Bigshot One' => 'Bigshot One', 'Bilbo' => 'Bilbo', 'Bilbo Swash Caps' => 'Bilbo Swash Caps', 'Biryani' => 'Biryani', 'Bitter' => 'Bitter', 'Black Ops One' => 'Black Ops One', 'Bokor' => 'Bokor', 'Bonbon' => 'Bonbon', 'Boogaloo' => 'Boogaloo', 'Bowlby One' => 'Bowlby One', 'bowlby One SC' => 'Bowlby One SC', 'Brawler' => 'Brawler', 'Bree Serif' => 'Bree Serif', 'Bubblegum Sans' => 'Bubblegum Sans', 'Bubbler One' => 'Bubbler One', 'Buda' => 'Buda', 'Buda Light 300' => 'Buda Light 300', 'Buenard' => 'Buenard', 'Butcherman' => 'Butcherman', 'Butterfly Kids' => 'Butterfly Kids', 'Cabin' => 'Cabin', 'Cabin Condensed' => 'Cabin Condensed', 'Cabin Sketch' => 'Cabin Sketch', 'Caesar Dressing' => 'Caesar Dressing', 'Cagliostro' => 'Cagliostro', 'Calligraffitti' => 'Calligraffitti', 'Cambay' => 'Cambay', 'Cambo' => 'Cambo', 'Candal' => 'Candal', 'Cantarell' => 'Cantarell', 'Cantata One' => 'Cantata One', 'Cantora One' => 'Cantora One', 'Capriola' => 'Capriola', 'Cardo' => 'Cardo', 'Carme' => 'Carme', 'Carrois Gothic' => 'Carrois Gothic', 'Carrois Gothic SC' => 'Carrois Gothic SC', 'Carter One' => 'Carter One', 'Caudex' => 'Caudex', 'Caveat Brush' => 'Caveat Brush', 'Cedarville cursive' => 'Cedarville Cursive', 'Ceviche One' => 'Ceviche One', 'Changa One' => 'Changa One', 'Chango' => 'Chango','Charmonman' => 'Charmonman', 'Chau philomene One' => 'Chau Philomene One', 'Chela One' => 'Chela One', 'Chelsea Market' => 'Chelsea Market', 'Chenla' => 'Chenla', 'Cherry Cream Soda' => 'Cherry Cream Soda', 'Chewy' => 'Chewy', 'Chicle' => 'Chicle', 'Chivo' => 'Chivo', 'Chonburi' => 'Chonburi', 'Cinzel' => 'Cinzel', 'Cinzel Decorative' => 'Cinzel Decorative', 'Clicker Script' => 'Clicker Script', 'Coda' => 'Coda', 'Coda Caption' => 'Coda Caption', 'Codystar' => 'Codystar', 'Combo' => 'Combo', 'Comfortaa' => 'Comfortaa', 'Coming soon' => 'Coming Soon', 'Concert One' => 'Concert One', 'Condiment' => 'Condiment', 'Content' => 'Content', 'Contrail One' => 'Contrail One', 'Convergence' => 'Convergence', 'Cookie' => 'Cookie', 'Copse' => 'Copse', 'Corben' => 'Corben', 'Courgette' => 'Courgette', 'Cousine' => 'Cousine', 'Coustard' => 'Coustard', 'Covered By Your Grace' => 'Covered By Your Grace', 'Crafty Girls' => 'Crafty Girls', 'Creepster' => 'Creepster', 'Crete Round' => 'Crete Round', 'Crimson Text' => 'Crimson Text', 'Croissant One' => 'Croissant One', 'Crushed' => 'Crushed', 'Cuprum' => 'Cuprum', 'Cutive' => 'Cutive', 'Cutive Mono' => 'Cutive Mono', 'Damion' => 'Damion', 'Dancing Script' => 'Dancing Script', 'Dangrek' => 'Dangrek', 'Dawning of a New Day' => 'Dawning of a New Day', 'Days One' => 'Days One', 'Dekko' => 'Dekko', 'Delius' => 'Delius', 'Delius Swash Caps' => 'Delius Swash Caps', 'Delius Unicase' => 'Delius Unicase', 'Della Respira' => 'Della Respira', 'Denk One' => 'Denk One', 'Devonshire' => 'Devonshire', 'Dhurjati' => 'Dhurjati', 'Didact Gothic' => 'Didact Gothic', 'Diplomata' => 'Diplomata', 'Diplomata SC' => 'Diplomata SC', 'Domine' => 'Domine', 'Donegal One' => 'Donegal One', 'Doppio One' => 'Doppio One', 'Dorsa' => 'Dorsa', 'Dosis' => 'Dosis', 'Dr Sugiyama' => 'Dr Sugiyama', 'Droid Sans' => 'Droid Sans', 'Droid Sans Mono' => 'Droid Sans Mono', 'Droid Serif' => 'Droid Serif', 'Duru Sans' => 'Duru Sans', 'Dynalight' => 'Dynalight', 'Eb Garamond' => 'EB Garamond', 'Eagle Lake' => 'Eagle Lake', 'Eater' => 'Eater', 'Economica' => 'Economica', 'Eczar' => 'Eczar', 'Ek Mukta' => 'Ek Mukta', 'Electrolize' => 'Electrolize', 'Elsie' => 'Elsie', 'Elsie Swash Caps' => 'Elsie Swash Caps', 'Emblema One' => 'Emblema One', 'Emilys Candy' => 'Emilys Candy', 'Engagement' => 'Engagement', 'Englebert' => 'Englebert', 'Enriqueta' => 'Enriqueta', 'Erica One' => 'Erica One', 'Esteban' => 'Esteban', 'Euphoria Script' => 'Euphoria Script', 'Ewert' => 'Ewert', 'Exo' => 'Exo', 'Exo 2' => 'Exo 2', 'Expletus Sans' => 'Expletus Sans', 'Fanwood Text' => 'Fanwood Text', 'Fascinate' => 'Fascinate', 'Fascinate Inline' => 'Fascinate Inline', 'Faster One' => 'Faster One', 'Fasthand' => 'Fasthand', 'Fauna One' => 'Fauna One', 'Federant' => 'Federant', 'Federo' => 'Federo', 'Felipa' => 'Felipa', 'Fenix' => 'Fenix', 'Finger Paint' => 'Finger Paint', 'Fira Mono' => 'Fira Mono', 'Fjalla One' => 'Fjalla One', 'Fjord One' => 'Fjord One', 'Flamenco' => 'Flamenco', 'Flavors' => 'Flavors', 'Fondamento' => 'Fondamento', 'Fontdiner swanky' => 'Fontdiner Swanky', 'Forum' => 'Forum', 'Francois One' => 'Francois One', 'Freckle Face' => 'Freckle Face', 'Fredericka the Great' => 'Fredericka the Great', 'Fredoka One' => 'Fredoka One', 'Freehand' => 'Freehand', 'Fresca' => 'Fresca', 'Frijole' => 'Frijole', 'Fruktur' => 'Fruktur', 'Fugaz One' => 'Fugaz One', 'GFS Didot' => 'GFS Didot', 'GFS Neohellenic' => 'GFS Neohellenic', 'Gabriela' => 'Gabriela', 'Gafata' => 'Gafata', 'Galdeano' => 'Galdeano', 'Galindo' => 'Galindo', 'Gentium Basic' => 'Gentium Basic', 'Gentium Book Basic' => 'Gentium Book Basic', 'Geo' => 'Geo', 'Geostar' => 'Geostar', 'Geostar Fill' => 'Geostar Fill', 'Germania One' => 'Germania One', 'Gidugu' => 'Gidugu', 'Gilda Display' => 'Gilda Display', 'Give You Glory' => 'Give You Glory', 'Glass Antiqua' => 'Glass Antiqua', 'Glegoo' => 'Glegoo', 'Gloria Hallelujah' => 'Gloria Hallelujah', 'Goblin One' => 'Goblin One', 'Gochi Hand' => 'Gochi Hand', 'Gorditas' => 'Gorditas', 'Goudy Bookletter 1911' => 'Goudy Bookletter 1911', 'Graduate' => 'Graduate', 'Grand Hotel' => 'Grand Hotel', 'Gravitas One' => 'Gravitas One', 'Great Vibes' => 'Great Vibes', 'Griffy' => 'Griffy', 'Gruppo' => 'Gruppo', 'Gudea' => 'Gudea', 'Gurajada' => 'Gurajada', 'Habibi' => 'Habibi', 'Halant' => 'Halant', 'Hammersmith One' => 'Hammersmith One', 'Hanalei' => 'Hanalei', 'Hanalei Fill' => 'Hanalei Fill', 'Handlee' => 'Handlee', 'Hanuman' => 'Hanuman', 'Happy Monkey' => 'Happy Monkey', 'Headland One' => 'Headland One', 'Henny Penny' => 'Henny Penny', 'Herr Von Muellerhoff' => 'Herr Von Muellerhoff', 'Hind' => 'Hind', 'Holtwood One  SC' => 'Holtwood One SC', 'Homemade Apple' => 'Homemade Apple', 'Homenaje' => 'Homenaje', 'IM Fell DW Pica' => 'IM Fell DW Pica', 'IM Fell DW Pica SC' => 'IM Fell DW Pica SC', 'IM Fell Double Pica' => 'IM Fell Double Pica', 'IM Fell Double Pica SC' => 'IM Fell Double Pica SC', 'IM Fell English' => 'IM Fell English', 'IM Fell English SC' => 'IM Fell English SC', 'IM Fell French Canon' => 'IM Fell French Canon', 'IM Fell French Canon SC' => 'IM Fell French Canon SC', 'IM Fell Great Primer' => 'IM Fell Great Primer', 'IM Fell Great Primer SC' => 'IM Fell Great Primer SC', 'Iceberg' => 'Iceberg', 'Iceland' => 'Iceland', 'Imprima' => 'Imprima', 'Inconsolata' => 'Inconsolata', 'Inder' => 'Inder', 'Indie Flower' => 'Indie Flower', 'Inika' => 'Inika', 'Inknut Antiqua' => 'Inknut Antiqua', 'Irish Grover' => 'Irish Grover', 'Istok Web' => 'Istok Web', 'Italiana' => 'Italiana', 'Italianno' => 'Italianno', 'Itim' => 'Itim', 'Jacques Francois' => 'Jacques Francois', 'Jacques Francois Shadow' => 'Jacques Francois Shadow', 'Jaldi' => 'Jaldi', 'Jim Nightshade' => 'Jim Nightshade', 'Jockey One' => 'Jockey One', 'Jolly Lodger' => 'Jolly Lodger', 'Josefin Sans' => 'Josefin Sans', 'Josefin Slab' => 'Josefin Slab', 'Joti One' => 'Joti One', 'Judson' => 'Judson', 'Julee' => 'Julee', 'Julius Sans One' => 'Julius Sans One', 'Junge' => 'Junge', 'Jura' => 'Jura', 'Just Another Hand' => 'Just Another Hand', 'Just Me Again Down Here' => 'Just Me Again Down Here', 'Kadwa' => 'Kadwa', 'Kameron' => 'Kameron', 'Kanit' => 'Kanit', 'Karla' => 'Karla', 'Kaushan Script' => 'Kaushan Script', 'Kavoon' => 'Kavoon', 'Keania One' => 'Keania One', 'kelly Slab' => 'Kelly Slab', 'Kenia' => 'Kenia', 'Khand' => 'Khand', 'Khmer' => 'Khmer', 'Khula' => 'Khula', 'Kite One' => 'Kite One', 'Knewave' => 'Knewave', 'Kotta One' => 'Kotta One', 'Koulen' => 'Koulen', 'Kranky' => 'Kranky', 'Kreon' => 'Kreon', 'Kristi' => 'Kristi', 'Krona One' => 'Krona One', 'Kurale' => 'Kurale', 'La Belle Aurore' => 'La Belle Aurore', 'Laila' => 'Laila', 'Lakki Reddy' => 'Lakki Reddy', 'Lancelot' => 'Lancelot', 'Lateef' => 'Lateef', 'Lato' => 'Lato', 'League Script' => 'League Script', 'Leckerli One' => 'Leckerli One', 'Ledger' => 'Ledger', 'Lekton' => 'Lekton', 'Lemon' => 'Lemon', 'Libre Baskerville' => 'Libre Baskerville', 'Life Savers' => 'Life Savers', 'Lilita One' => 'Lilita One', 'Lily Script One' => 'Lily Script One', 'Limelight' => 'Limelight', 'Linden Hill' => 'Linden Hill', 'Lobster' => 'Lobster', 'Lobster Two' => 'Lobster Two', 'Londrina Outline' => 'Londrina Outline', 'Londrina Shadow' => 'Londrina Shadow', 'Londrina Sketch' => 'Londrina Sketch', 'Londrina Solid' => 'Londrina Solid', 'Lora' => 'Lora', 'Love Ya Like A Sister' => 'Love Ya Like A Sister', 'Loved by the King' => 'Loved by the King', 'Lovers Quarrel' => 'Lovers Quarrel', 'Luckiest Guy' => 'Luckiest Guy', 'Lusitana' => 'Lusitana', 'Lustria' => 'Lustria', 'Macondo' => 'Macondo', 'Macondo Swash Caps' => 'Macondo Swash Caps', 'Magra' => 'Magra', 'Maiden Orange' => 'Maiden Orange', 'Mako' => 'Mako', 'Mandali' => 'Mandali', 'Marcellus' => 'Marcellus', 'Marcellus SC' => 'Marcellus SC', 'Marck Script' => 'Marck Script', 'Margarine' => 'Margarine', 'Marko One' => 'Marko One', 'Marmelad' => 'Marmelad', 'Martel' => 'Martel', 'Martel Sans' => 'Martel Sans', 'Marvel' => 'Marvel', 'Mate' => 'Mate', 'Mate SC' => 'Mate SC', 'Maven Pro' => 'Maven Pro', 'McLaren' => 'McLaren', 'Meddon' => 'Meddon', 'MedievalSharp' => 'MedievalSharp', 'Medula One' => 'Medula One', 'Megrim' => 'Megrim', 'Meie Script' => 'Meie Script', 'Merienda' => 'Merienda', 'Merienda One' => 'Merienda One', 'Merriweather' => 'Merriweather', 'Merriweather Sans' => 'Merriweather Sans', 'Metal' => 'Metal', 'Metal mania' => 'Metal Mania', 'Metamorphous' => 'Metamorphous', 'Metrophobic' => 'Metrophobic', 'Michroma' => 'Michroma', 'Milonga' => 'Milonga', 'Miltonian' => 'Miltonian', 'Miltonian Tattoo' => 'Miltonian Tattoo', 'Miniver' => 'Miniver', 'Miss Fajardose' => 'Miss Fajardose', 'Modak' => 'Modak', 'Modern Antiqua' => 'Modern Antiqua', 'Molengo' => 'Molengo', 'Molle' => 'Molle:400i', 'Monda' => 'Monda', 'Monofett' => 'Monofett', 'Monoton' => 'Monoton', 'Monsieur La Doulaise' => 'Monsieur La Doulaise', 'Montaga' => 'Montaga', 'Montez' => 'Montez', 'Montserrat' => 'Montserrat', 'Montserrat Alternates' => 'Montserrat Alternates', 'Montserrat Subrayada' => 'Montserrat Subrayada', 'Moul' => 'Moul', 'Moulpali' => 'Moulpali', 'Mountains of Christmas' => 'Mountains of Christmas', 'Mouse Memoirs' => 'Mouse Memoirs', 'Mr Bedfort' => 'Mr Bedfort', 'Mr Dafoe' => 'Mr Dafoe', 'Mr De Haviland' => 'Mr De Haviland', 'Mrs Saint Delafield' => 'Mrs Saint Delafield', 'Mrs Sheppards' => 'Mrs Sheppards', 'Muli' => 'Muli', 'Mystery Quest' => 'Mystery Quest', 'NTR' => 'NTR', 'Neucha' => 'Neucha', 'Neuton' => 'Neuton', 'New Rocker' => 'New Rocker', 'News Cycle' => 'News Cycle', 'Niconne' => 'Niconne', 'Nixie One' => 'Nixie One', 'Nobile' => 'Nobile', 'Nokora' => 'Nokora', 'Norican' => 'Norican', 'Nosifer' => 'Nosifer', 'Nothing You Could Do' => 'Nothing You Could Do', 'Noticia Text' => 'Noticia Text', 'Noto Sans' => 'Noto Sans', 'Noto Serif' => 'Noto Serif', 'Nova Cut' => 'Nova Cut', 'Nova Flat' => 'Nova Flat', 'Nova Mono' => 'Nova Mono', 'Nova Oval' => 'Nova Oval', 'Nova Round' => 'Nova Round', 'Nova Script' => 'Nova Script', 'Nova Slim' => 'Nova Slim', 'Nova Square' => 'Nova Square', 'Numans' => 'Numans', 'Nunito' => 'Nunito', 'Odor Mean Chey' => 'Odor Mean Chey', 'Offside' => 'Offside', 'Old standard tt' => 'Old Standard TT', 'Oldenburg' => 'Oldenburg', 'Oleo Script' => 'Oleo Script', 'Oleo Script Swash Caps' => 'Oleo Script Swash Caps', 'Open Sans' => 'Open Sans', 'Open Sans Condensed' => 'Open Sans Condensed:300', 'Oranienbaum' => 'Oranienbaum', 'Orbitron' => 'Orbitron', 'Oregano' => 'Oregano', 'Orienta' => 'Orienta', 'Original Surfer' => 'Original Surfer', 'Oswald' => 'Oswald', 'Over the Rainbow' => 'Over the Rainbow', 'Overlock' => 'Overlock', 'Overlock SC' => 'Overlock SC', 'Ovo' => 'Ovo', 'Oxygen' => 'Oxygen', 'Oxygen Mono' => 'Oxygen Mono', 'PT Mono' => 'PT Mono', 'PT Sans' => 'PT Sans', 'PT Sans Caption' => 'PT Sans Caption', 'PT Sans Narrow' => 'PT Sans Narrow', 'PT Serif' => 'PT Serif', 'PT Serif Caption' => 'PT Serif Caption', 'Pacifico' => 'Pacifico', 'Palanquin' => 'Palanquin', 'Palanquin Dark' => 'Palanquin Dark', 'Paprika' => 'Paprika', 'Parisienne' => 'Parisienne', 'Passero One' => 'Passero One', 'Passion One' => 'Passion One', 'Pathway Gothic One' => 'Pathway Gothic One', 'Patrick Hand' => 'Patrick Hand', 'Patrick Hand SC' => 'Patrick Hand SC', 'Patua One' => 'Patua One', 'Paytone One' => 'Paytone One', 'Peddana' => 'Peddana', 'Peralta' => 'Peralta', 'Permanent Marker' => 'Permanent Marker', 'Petit Formal Script' => 'Petit Formal Script', 'Petrona' => 'Petrona', 'Philosopher' => 'Philosopher', 'Piedra' => 'Piedra', 'Pinyon Script' => 'Pinyon Script', 'Pirata One' => 'Pirata One', 'Plaster' => 'Plaster', 'Play' => 'Play', 'Playball' => 'Playball', 'Playfair Display' => 'Playfair Display', 'Playfair Display SC' => 'Playfair Display SC', 'Podkova' => 'Podkova', 'Poiret One' => 'Poiret One', 'Poller One' => 'Poller One', 'Poly' => 'Poly', 'Pompiere' => 'Pompiere', 'Pontano Sans' => 'Pontano Sans', 'Poppins' => 'Poppins', 'Port Lligat Sans' => 'Port Lligat Sans', 'Port Lligat Slab' => 'Port Lligat Slab', 'Pragati Narrow' => 'Pragati Narrow', 'Prata' => 'Prata', 'Preahvihear' => 'Preahvihear', 'Press start 2P' => 'Press Start 2P', 'Princess Sofia' => 'Princess Sofia', 'Prociono' => 'Prociono', 'Prosto One' => 'Prosto One', 'Puritan' => 'Puritan', 'Purple Purse' => 'Purple Purse', 'Quando' => 'Quando', 'Quantico' => 'Quantico', 'Quattrocento' => 'Quattrocento', 'Quattrocento Sans' => 'Quattrocento Sans', 'Questrial' => 'Questrial', 'Quicksand' => 'Quicksand', 'Quintessential' => 'Quintessential', 'Qwigley' => 'Qwigley', 'Racing sans One' => 'Racing Sans One', 'Radley' => 'Radley', 'Rajdhani' => 'Rajdhani', 'Raleway' => 'Raleway', 'Raleway Dots' => 'Raleway Dots', 'Ramabhadra' => 'Ramabhadra', 'Ramaraja' => 'Ramaraja', 'Rambla' => 'Rambla', 'Rammetto One' => 'Rammetto One', 'Ranchers' => 'Ranchers', 'Rancho' => 'Rancho', 'Ranga' => 'Ranga', 'Rationale' => 'Rationale', 'Ravi Prakash' => 'Ravi Prakash', 'Redressed' => 'Redressed', 'Reenie Beanie' => 'Reenie Beanie', 'Revalia' => 'Revalia', 'Rhodium Libre' => 'Rhodium Libre', 'Ribeye' => 'Ribeye', 'Ribeye Marrow' => 'Ribeye Marrow', 'Righteous' => 'Righteous', 'Risque' => 'Risque', 'Roboto' => 'Roboto', 'Roboto Condensed' => 'Roboto Condensed', 'Roboto Mono' => 'Roboto Mono', 'Roboto Slab' => 'Roboto Slab', 'Rochester' => 'Rochester', 'Rock Salt' => 'Rock Salt', 'Rokkitt' => 'Rokkitt', 'Romanesco' => 'Romanesco', 'Ropa Sans' => 'Ropa Sans', 'Rosario' => 'Rosario', 'Rosarivo' => 'Rosarivo', 'Rouge Script' => 'Rouge Script', 'Rozha One' => 'Rozha One', 'Rubik' => 'Rubik', 'Rubik Mono One' => 'Rubik Mono One', 'Rubik One' => 'Rubik One', 'Ruda' => 'Ruda', 'Rufina' => 'Rufina', 'Ruge Boogie' => 'Ruge Boogie', 'Ruluko' => 'Ruluko', 'Rum Raisin' => 'Rum Raisin', 'Ruslan Display' => 'Ruslan Display', 'Russo One' => 'Russo One', 'Ruthie' => 'Ruthie', 'Rye' => 'Rye', 'Sacramento' => 'Sacramento', 'Sahitya' => 'Sahitya', 'Sail' => 'Sail', 'Salsa' => 'Salsa', 'Sanchez' => 'Sanchez', 'Sancreek' => 'Sancreek', 'Sansita One' => 'Sansita One', 'Sarina' => 'Sarina', 'Sarpanch' => 'Sarpanch', 'Satisfy' => 'Satisfy', 'Scada' => 'Scada', 'Schoolbell' => 'Schoolbell', 'Seaweed Script' => 'Seaweed Script', 'Sevillana' => 'Sevillana', 'Seymour One' => 'Seymour One', 'Shadows Into Light' => 'Shadows Into Light', 'Shadows Into Light Two' => 'Shadows Into Light Two', 'Shanti' => 'Shanti', 'Share' => 'Share', 'Share Tech' => 'Share Tech', 'Share Tech Mono' => 'Share Tech Mono', 'Shojumaru' => 'Shojumaru', 'Short Stack' => 'Short Stack', 'Siemreap' => 'Siemreap', 'Sigmar One' => 'Sigmar One', 'Signika' => 'Signika', 'Signika Negative' => 'Signika Negative', 'Simonetta' => 'Simonetta', 'Sintony' => 'Sintony', 'Sirin Stencil' => 'Sirin Stencil', 'Six Caps' => 'Six Caps', 'Skranji' => 'Skranji', 'Slabo 13px' => 'Slabo 13px', 'Slackey' => 'Slackey', 'Smokum' => 'Smokum', 'Smythe' => 'Smythe', 'Sniglet' => 'Sniglet', 'Snippet' => 'Snippet', 'Snowburst One' => 'Snowburst One', 'Sofadi One' => 'Sofadi One', 'Sofia' => 'Sofia', 'Sonsie One' => 'Sonsie One', 'Sorts Mill Goudy' => 'Sorts Mill Goudy', 'Source Code Pro' => 'Source Code Pro', 'Source Sans Pro' => 'Source Sans Pro', 'Source Serif Pro' => 'Source Serif Pro', 'Special Elite' => 'Special Elite', 'Spicy Rice' => 'Spicy Rice', 'Spinnaker' => 'Spinnaker', 'Spirax' => 'Spirax', 'Squada One' => 'Squada One', 'Sree Krushnadevaraya' => 'Sree Krushnadevaraya', 'Stalemate' => 'Stalemate', 'Stalinist One' => 'Stalinist One', 'Stardos Stencil' => 'Stardos Stencil', 'Stint Ultra Condensed' => 'Stint Ultra Condensed', 'Stint Ultra Expanded' => 'Stint Ultra Expanded', 'Stoke' => 'Stoke', 'Strait' => 'Strait', 'Sue Ellen Francisco' => 'Sue Ellen Francisco', 'Sumana' => 'Sumana', 'Sunshiney' => 'Sunshiney', 'Supermercado One' => 'Supermercado One', 'Sura' => 'Sura', 'Suranna' => 'Suranna', 'Suravaram' => 'Suravaram', 'Suwannaphum' => 'Suwannaphum', 'Swanky and Moo Moo' => 'Swanky and Moo Moo', 'Syncopate' => 'Syncopate', 'Tangerine' => 'Tangerine', 'Taprom' => 'Taprom', 'Tauri' => 'Tauri', 'Teko' => 'Teko', 'Telex' => 'Telex', 'Tenali Ramakrishna' => 'Tenali Ramakrishna', 'Tenor Sans' => 'Tenor Sans', 'Text Me One' => 'Text Me One', 'The Girl Next Door' => 'The Girl Next Door', 'Tienne' => 'Tienne', 'Tillana' => 'Tillana', 'Timmana' => 'Timmana', 'Tinos' => 'Tinos', 'Titan One' => 'Titan One', 'Titillium Web' => 'Titillium Web', 'Trade Winds' => 'Trade Winds', 'Trocchi' => 'Trocchi', 'Trochut' => 'Trochut', 'Trykker' => 'Trykker', 'Tulpen One' => 'Tulpen One', 'Ubuntu' => 'Ubuntu', 'Ubuntu Condensed' => 'Ubuntu Condensed', 'Ubuntu Mono' => 'Ubuntu Mono', 'Ultra' => 'Ultra', 'Uncial Antiqua' => 'Uncial Antiqua', 'Underdog' => 'Underdog', 'Unica One' => 'Unica One', 'UnifrakturCook' => 'UnifrakturCook:700', 'UnifrakturMaguntia' => 'UnifrakturMaguntia', 'Unkempt' => 'Unkempt', 'Unlock' => 'Unlock', 'Unna' => 'Unna', 'VT323' => 'VT323', 'Vampiro One' => 'Vampiro One', 'Varela' => 'Varela', 'Varela Round' => 'Varela Round', 'Vast Shadow' => 'Vast Shadow', 'Vibur' => 'Vibur', 'Vidaloka' => 'Vidaloka', 'Viga' => 'Viga', 'Voces' => 'Voces', 'Volkhov' => 'Volkhov', 'Vollkorn' => 'Vollkorn', 'Voltaire' => 'Voltaire', 'Waiting for the sunrise' => 'Waiting for the Sunrise', 'Wallpoet' => 'Wallpoet', 'Walter Turncoat' => 'Walter Turncoat', 'Warnes' => 'Warnes', 'Wellfleet' => 'Wellfleet', 'Wendy One' => 'Wendy One', 'Wire One' => 'Wire One', 'Work Sans' => 'Work Sans', 'Yanone Kaffeesatz' => 'Yanone Kaffeesatz', 'Yantramanav' => 'Yantramanav', 'Yellowtail' => 'Yellowtail', 'Yeseva One' => 'Yeseva One', 'Yesteryear' => 'Yesteryear', 'Zeyada' => 'Zeyada');
+    $google_fonts = array('ABeeZee'=>'ABeeZee','Abel'=>'Abel','Abhaya Libre'=>'Abhaya Libre','Abril Fatface'=>'Abril Fatface','Aclonica'=>'Aclonica','Acme'=>'Acme','Actor'=>'Actor','Adamina'=>'Adamina','Advent Pro'=>'Advent Pro','Aguafina Script'=>'Aguafina Script','Akronim'=>'Akronim','Aladin'=>'Aladin','Alata'=>'Alata','Alatsi'=>'Alatsi','Aldrich'=>'Aldrich','Alef'=>'Alef','Alegreya'=>'Alegreya','Alegreya SC'=>'Alegreya SC','Alegreya Sans'=>'Alegreya Sans','Alegreya Sans SC'=>'Alegreya Sans SC','Aleo'=>'Aleo','Alex Brush'=>'Alex Brush','Alfa Slab One'=>'Alfa Slab One','Alice'=>'Alice','Alike'=>'Alike','Alike Angular'=>'Alike Angular','Allan'=>'Allan','Allerta'=>'Allerta','Allerta Stencil'=>'Allerta Stencil','Allura'=>'Allura','Almarai'=>'Almarai','Almendra'=>'Almendra','Almendra Display'=>'Almendra Display','Almendra SC'=>'Almendra SC','Amarante'=>'Amarante','Amaranth'=>'Amaranth','Amatic SC'=>'Amatic SC','Amethysta'=>'Amethysta','Amiko'=>'Amiko','Amiri'=>'Amiri','Amita'=>'Amita','Anaheim'=>'Anaheim','Andada'=>'Andada','Andika'=>'Andika','Angkor'=>'Angkor','Annie Use Your Telescope'=>'Annie Use Your Telescope','Anonymous Pro'=>'Anonymous Pro','Antic'=>'Antic','Antic Didone'=>'Antic Didone','Antic Slab'=>'Antic Slab','Anton'=>'Anton','Arapey'=>'Arapey','Arbutus'=>'Arbutus','Arbutus Slab'=>'Arbutus Slab','Architects Daughter'=>'Architects Daughter','Archivo'=>'Archivo','Archivo Black'=>'Archivo Black','Archivo Narrow'=>'Archivo Narrow','Aref Ruqaa'=>'Aref Ruqaa','Arima Madurai'=>'Arima Madurai','Arimo'=>'Arimo','Arizonia'=>'Arizonia','Armata'=>'Armata','Arsenal'=>'Arsenal','Artifika'=>'Artifika','Arvo'=>'Arvo','Arya'=>'Arya','Asap'=>'Asap','Asap Condensed'=>'Asap Condensed','Asar'=>'Asar','Asset'=>'Asset','Assistant'=>'Assistant','Astloch'=>'Astloch','Asul'=>'Asul','Athiti'=>'Athiti','Atma'=>'Atma','Atomic Age'=>'Atomic Age','Aubrey'=>'Aubrey','Audiowide'=>'Audiowide','Autour One'=>'Autour One','Average'=>'Average','Average Sans'=>'Average Sans','Averia Gruesa Libre'=>'Averia Gruesa Libre','Averia Libre'=>'Averia Libre','Averia Sans Libre'=>'Averia Sans Libre','Averia Serif Libre'=>'Averia Serif Libre','B612'=>'B612','B612 Mono'=>'B612 Mono','Bad Script'=>'Bad Script','Bahiana'=>'Bahiana','Bahianita'=>'Bahianita','Bai Jamjuree'=>'Bai Jamjuree','Baloo'=>'Baloo','Baloo Bhai'=>'Baloo Bhai','Baloo Bhaijaan'=>'Baloo Bhaijaan','Baloo Bhaina'=>'Baloo Bhaina','Baloo Chettan'=>'Baloo Chettan','Baloo Da'=>'Baloo Da','Baloo Paaji'=>'Baloo Paaji','Baloo Tamma'=>'Baloo Tamma','Baloo Tammudu'=>'Baloo Tammudu','Baloo Thambi'=>'Baloo Thambi','Balthazar'=>'Balthazar','Bangers'=>'Bangers','Barlow'=>'Barlow','Barlow Condensed'=>'Barlow Condensed','Barlow Semi Condensed'=>'Barlow Semi Condensed','Barriecito'=>'Barriecito','Barrio'=>'Barrio','Basic'=>'Basic','Baskervville'=>'Baskervville','Battambang'=>'Battambang','Baumans'=>'Baumans','Bayon'=>'Bayon','Be Vietnam'=>'Be Vietnam','Bebas Neue'=>'Bebas Neue','Belgrano'=>'Belgrano','Bellefair'=>'Bellefair','Belleza'=>'Belleza','BenchNine'=>'BenchNine','Bentham'=>'Bentham','Berkshire Swash'=>'Berkshire Swash','Beth Ellen'=>'Beth Ellen','Bevan'=>'Bevan','Big Shoulders Display'=>'Big Shoulders Display','Big Shoulders Text'=>'Big Shoulders Text','Bigelow Rules'=>'Bigelow Rules','Bigshot One'=>'Bigshot One','Bilbo'=>'Bilbo','Bilbo Swash Caps'=>'Bilbo Swash Caps','BioRhyme'=>'BioRhyme','BioRhyme Expanded'=>'BioRhyme Expanded','Biryani'=>'Biryani','Bitter'=>'Bitter','Black And White Picture'=>'Black And White Picture','Black Han Sans'=>'Black Han Sans','Black Ops One'=>'Black Ops One','Blinker'=>'Blinker','Bokor'=>'Bokor','Bonbon'=>'Bonbon','Boogaloo'=>'Boogaloo','Bowlby One'=>'Bowlby One','Bowlby One SC'=>'Bowlby One SC','Brawler'=>'Brawler','Bree Serif'=>'Bree Serif','Bubblegum Sans'=>'Bubblegum Sans','Bubbler One'=>'Bubbler One','Buda'=>'Buda','Buenard'=>'Buenard','Bungee'=>'Bungee','Bungee Hairline'=>'Bungee Hairline','Bungee Inline'=>'Bungee Inline','Bungee Outline'=>'Bungee Outline','Bungee Shade'=>'Bungee Shade','Butcherman'=>'Butcherman','Butterfly Kids'=>'Butterfly Kids','Cabin'=>'Cabin','Cabin Condensed'=>'Cabin Condensed','Cabin Sketch'=>'Cabin Sketch','Caesar Dressing'=>'Caesar Dressing','Cagliostro'=>'Cagliostro','Cairo'=>'Cairo','Calistoga'=>'Calistoga','Calligraffitti'=>'Calligraffitti','Cambay'=>'Cambay','Cambo'=>'Cambo','Candal'=>'Candal','Cantarell'=>'Cantarell','Cantata One'=>'Cantata One','Cantora One'=>'Cantora One','Capriola'=>'Capriola','Cardo'=>'Cardo','Carme'=>'Carme','Carrois Gothic'=>'Carrois Gothic','Carrois Gothic SC'=>'Carrois Gothic SC','Carter One'=>'Carter One','Catamaran'=>'Catamaran','Caudex'=>'Caudex','Caveat'=>'Caveat','Caveat Brush'=>'Caveat Brush','Cedarville Cursive'=>'Cedarville Cursive','Ceviche One'=>'Ceviche One','Chakra Petch'=>'Chakra Petch','Changa'=>'Changa','Changa One'=>'Changa One','Chango'=>'Chango','Charm'=>'Charm','Charmonman'=>'Charmonman','Chathura'=>'Chathura','Chau Philomene One'=>'Chau Philomene One','Chela One'=>'Chela One','Chelsea Market'=>'Chelsea Market','Chenla'=>'Chenla','Cherry Cream Soda'=>'Cherry Cream Soda','Cherry Swash'=>'Cherry Swash','Chewy'=>'Chewy','Chicle'=>'Chicle','Chilanka'=>'Chilanka','Chivo'=>'Chivo','Chonburi'=>'Chonburi','Cinzel'=>'Cinzel','Cinzel Decorative'=>'Cinzel Decorative','Clicker Script'=>'Clicker Script','Coda'=>'Coda','Coda Caption'=>'Coda Caption','Codystar'=>'Codystar','Coiny'=>'Coiny','Combo'=>'Combo','Comfortaa'=>'Comfortaa','Coming Soon'=>'Coming Soon','Concert One'=>'Concert One','Condiment'=>'Condiment','Content'=>'Content','Contrail One'=>'Contrail One','Convergence'=>'Convergence','Cookie'=>'Cookie','Copse'=>'Copse','Corben'=>'Corben','Cormorant'=>'Cormorant','Cormorant Garamond'=>'Cormorant Garamond','Cormorant Infant'=>'Cormorant Infant','Cormorant SC'=>'Cormorant SC','Cormorant Unicase'=>'Cormorant Unicase','Cormorant Upright'=>'Cormorant Upright','Courgette'=>'Courgette','Courier Prime'=>'Courier Prime','Cousine'=>'Cousine','Coustard'=>'Coustard','Covered By Your Grace'=>'Covered By Your Grace','Crafty Girls'=>'Crafty Girls','Creepster'=>'Creepster','Crete Round'=>'Crete Round','Crimson Pro'=>'Crimson Pro','Crimson Text'=>'Crimson Text','Croissant One'=>'Croissant One','Crushed'=>'Crushed','Cuprum'=>'Cuprum','Cute Font'=>'Cute Font','Cutive'=>'Cutive','Cutive Mono'=>'Cutive Mono','DM Sans'=>'DM Sans','DM Serif Display'=>'DM Serif Display','DM Serif Text'=>'DM Serif Text','Damion'=>'Damion','Dancing Script'=>'Dancing Script','Dangrek'=>'Dangrek','Darker Grotesque'=>'Darker Grotesque','David Libre'=>'David Libre','Dawning of a New Day'=>'Dawning of a New Day','Days One'=>'Days One','Dekko'=>'Dekko','Delius'=>'Delius','Delius Swash Caps'=>'Delius Swash Caps','Delius Unicase'=>'Delius Unicase','Della Respira'=>'Della Respira','Denk One'=>'Denk One','Devonshire'=>'Devonshire','Dhurjati'=>'Dhurjati','Didact Gothic'=>'Didact Gothic','Diplomata'=>'Diplomata','Diplomata SC'=>'Diplomata SC','Do Hyeon'=>'Do Hyeon','Dokdo'=>'Dokdo','Domine'=>'Domine','Donegal One'=>'Donegal One','Doppio One'=>'Doppio One','Dorsa'=>'Dorsa','Dosis'=>'Dosis','Dr Sugiyama'=>'Dr Sugiyama','Duru Sans'=>'Duru Sans','Dynalight'=>'Dynalight','EB Garamond'=>'EB Garamond','Eagle Lake'=>'Eagle Lake','East Sea Dokdo'=>'East Sea Dokdo','Eater'=>'Eater','Economica'=>'Economica','Eczar'=>'Eczar','El Messiri'=>'El Messiri','Electrolize'=>'Electrolize','Elsie'=>'Elsie','Elsie Swash Caps'=>'Elsie Swash Caps','Emblema One'=>'Emblema One','Emilys Candy'=>'Emilys Candy','Encode Sans'=>'Encode Sans','Encode Sans Condensed'=>'Encode Sans Condensed','Encode Sans Expanded'=>'Encode Sans Expanded','Encode Sans Semi Condensed'=>'Encode Sans Semi Condensed','Encode Sans Semi Expanded'=>'Encode Sans Semi Expanded','Engagement'=>'Engagement','Englebert'=>'Englebert','Enriqueta'=>'Enriqueta','Erica One'=>'Erica One','Esteban'=>'Esteban','Euphoria Script'=>'Euphoria Script','Ewert'=>'Ewert','Exo'=>'Exo','Exo 2'=>'Exo 2','Expletus Sans'=>'Expletus Sans','Fahkwang'=>'Fahkwang','Fanwood Text'=>'Fanwood Text','Farro'=>'Farro','Farsan'=>'Farsan','Fascinate'=>'Fascinate','Fascinate Inline'=>'Fascinate Inline','Faster One'=>'Faster One','Fasthand'=>'Fasthand','Fauna One'=>'Fauna One','Faustina'=>'Faustina','Federant'=>'Federant','Federo'=>'Federo','Felipa'=>'Felipa','Fenix'=>'Fenix','Finger Paint'=>'Finger Paint','Fira Code'=>'Fira Code','Fira Mono'=>'Fira Mono','Fira Sans'=>'Fira Sans','Fira Sans Condensed'=>'Fira Sans Condensed','Fira Sans Extra Condensed'=>'Fira Sans Extra Condensed','Fjalla One'=>'Fjalla One','Fjord One'=>'Fjord One','Flamenco'=>'Flamenco','Flavors'=>'Flavors','Fondamento'=>'Fondamento','Fontdiner Swanky'=>'Fontdiner Swanky','Forum'=>'Forum','Francois One'=>'Francois One','Frank Ruhl Libre'=>'Frank Ruhl Libre','Freckle Face'=>'Freckle Face','Fredericka the Great'=>'Fredericka the Great','Fredoka One'=>'Fredoka One','Freehand'=>'Freehand','Fresca'=>'Fresca','Frijole'=>'Frijole','Fruktur'=>'Fruktur','Fugaz One'=>'Fugaz One','GFS Didot'=>'GFS Didot','GFS Neohellenic'=>'GFS Neohellenic','Gabriela'=>'Gabriela','Gaegu'=>'Gaegu','Gafata'=>'Gafata','Galada'=>'Galada','Galdeano'=>'Galdeano','Galindo'=>'Galindo','Gamja Flower'=>'Gamja Flower','Gayathri'=>'Gayathri','Gelasio'=>'Gelasio','Gentium Basic'=>'Gentium Basic','Gentium Book Basic'=>'Gentium Book Basic','Geo'=>'Geo','Geostar'=>'Geostar','Geostar Fill'=>'Geostar Fill','Germania One'=>'Germania One','Gidugu'=>'Gidugu','Gilda Display'=>'Gilda Display','Girassol'=>'Girassol','Give You Glory'=>'Give You Glory','Glass Antiqua'=>'Glass Antiqua','Glegoo'=>'Glegoo','Gloria Hallelujah'=>'Gloria Hallelujah','Goblin One'=>'Goblin One','Gochi Hand'=>'Gochi Hand','Gorditas'=>'Gorditas','Gothic A1'=>'Gothic A1','Goudy Bookletter 1911'=>'Goudy Bookletter 1911','Graduate'=>'Graduate','Grand Hotel'=>'Grand Hotel','Gravitas One'=>'Gravitas One','Great Vibes'=>'Great Vibes','Grenze'=>'Grenze','Griffy'=>'Griffy','Gruppo'=>'Gruppo','Gudea'=>'Gudea','Gugi'=>'Gugi','Gupter'=>'Gupter','Gurajada'=>'Gurajada','Habibi'=>'Habibi','Halant'=>'Halant','Hammersmith One'=>'Hammersmith One','Hanalei'=>'Hanalei','Hanalei Fill'=>'Hanalei Fill','Handlee'=>'Handlee','Hanuman'=>'Hanuman','Happy Monkey'=>'Happy Monkey','Harmattan'=>'Harmattan','Headland One'=>'Headland One','Heebo'=>'Heebo','Henny Penny'=>'Henny Penny','Hepta Slab'=>'Hepta Slab','Herr Von Muellerhoff'=>'Herr Von Muellerhoff','Hi Melody'=>'Hi Melody','Hind'=>'Hind','Hind Guntur'=>'Hind Guntur','Hind Madurai'=>'Hind Madurai','Hind Siliguri'=>'Hind Siliguri','Hind Vadodara'=>'Hind Vadodara','Holtwood One SC'=>'Holtwood One SC','Homemade Apple'=>'Homemade Apple','Homenaje'=>'Homenaje','IBM Plex Mono'=>'IBM Plex Mono','IBM Plex Sans'=>'IBM Plex Sans','IBM Plex Sans Condensed'=>'IBM Plex Sans Condensed','IBM Plex Serif'=>'IBM Plex Serif','IM Fell DW Pica'=>'IM Fell DW Pica','IM Fell DW Pica SC'=>'IM Fell DW Pica SC','IM Fell Double Pica'=>'IM Fell Double Pica','IM Fell Double Pica SC'=>'IM Fell Double Pica SC','IM Fell English'=>'IM Fell English','IM Fell English SC'=>'IM Fell English SC','IM Fell French Canon'=>'IM Fell French Canon','IM Fell French Canon SC'=>'IM Fell French Canon SC','IM Fell Great Primer'=>'IM Fell Great Primer','IM Fell Great Primer SC'=>'IM Fell Great Primer SC','Ibarra Real Nova'=>'Ibarra Real Nova','Iceberg'=>'Iceberg','Iceland'=>'Iceland','Imprima'=>'Imprima','Inconsolata'=>'Inconsolata','Inder'=>'Inder','Indie Flower'=>'Indie Flower','Inika'=>'Inika','Inknut Antiqua'=>'Inknut Antiqua','Inria Serif'=>'Inria Serif','Irish Grover'=>'Irish Grover','Istok Web'=>'Istok Web','Italiana'=>'Italiana','Italianno'=>'Italianno','Itim'=>'Itim','Jacques Francois'=>'Jacques Francois','Jacques Francois Shadow'=>'Jacques Francois Shadow','Jaldi'=>'Jaldi','Jim Nightshade'=>'Jim Nightshade','Jockey One'=>'Jockey One','Jolly Lodger'=>'Jolly Lodger','Jomhuria'=>'Jomhuria','Jomolhari'=>'Jomolhari','Josefin Sans'=>'Josefin Sans','Josefin Slab'=>'Josefin Slab','Joti One'=>'Joti One','Jua'=>'Jua','Judson'=>'Judson','Julee'=>'Julee','Julius Sans One'=>'Julius Sans One','Junge'=>'Junge','Jura'=>'Jura','Just Another Hand'=>'Just Another Hand','Just Me Again Down Here'=>'Just Me Again Down Here','K2D'=>'K2D','Kadwa'=>'Kadwa','Kalam'=>'Kalam','Kameron'=>'Kameron','Kanit'=>'Kanit','Kantumruy'=>'Kantumruy','Karla'=>'Karla','Karma'=>'Karma','Katibeh'=>'Katibeh','Kaushan Script'=>'Kaushan Script','Kavivanar'=>'Kavivanar','Kavoon'=>'Kavoon','Kdam Thmor'=>'Kdam Thmor','Keania One'=>'Keania One','Kelly Slab'=>'Kelly Slab','Kenia'=>'Kenia','Khand'=>'Khand','Khmer'=>'Khmer','Khula'=>'Khula','Kirang Haerang'=>'Kirang Haerang','Kite One'=>'Kite One','Knewave'=>'Knewave','KoHo'=>'KoHo','Kodchasan'=>'Kodchasan','Kosugi'=>'Kosugi','Kosugi Maru'=>'Kosugi Maru','Kotta One'=>'Kotta One','Koulen'=>'Koulen','Kranky'=>'Kranky','Kreon'=>'Kreon','Kristi'=>'Kristi','Krona One'=>'Krona One','Krub'=>'Krub','Kulim Park'=>'Kulim Park','Kumar One'=>'Kumar One','Kumar One Outline'=>'Kumar One Outline','Kurale'=>'Kurale','La Belle Aurore'=>'La Belle Aurore','Lacquer'=>'Lacquer','Laila'=>'Laila','Lakki Reddy'=>'Lakki Reddy','Lalezar'=>'Lalezar','Lancelot'=>'Lancelot','Lateef'=>'Lateef','Lato'=>'Lato','League Script'=>'League Script','Leckerli One'=>'Leckerli One','Ledger'=>'Ledger','Lekton'=>'Lekton','Lemon'=>'Lemon','Lemonada'=>'Lemonada','Lexend Deca'=>'Lexend Deca','Lexend Exa'=>'Lexend Exa','Lexend Giga'=>'Lexend Giga','Lexend Mega'=>'Lexend Mega','Lexend Peta'=>'Lexend Peta','Lexend Tera'=>'Lexend Tera','Lexend Zetta'=>'Lexend Zetta','Libre Barcode 128'=>'Libre Barcode 128','Libre Barcode 128 Text'=>'Libre Barcode 128 Text','Libre Barcode 39'=>'Libre Barcode 39','Libre Barcode 39 Extended'=>'Libre Barcode 39 Extended','Libre Barcode 39 Extended Text'=>'Libre Barcode 39 Extended Text','Libre Barcode 39 Text'=>'Libre Barcode 39 Text','Libre Baskerville'=>'Libre Baskerville','Libre Caslon Display'=>'Libre Caslon Display','Libre Caslon Text'=>'Libre Caslon Text','Libre Franklin'=>'Libre Franklin','Life Savers'=>'Life Savers','Lilita One'=>'Lilita One','Lily Script One'=>'Lily Script One','Limelight'=>'Limelight','Linden Hill'=>'Linden Hill','Literata'=>'Literata','Liu Jian Mao Cao'=>'Liu Jian Mao Cao','Livvic'=>'Livvic','Lobster'=>'Lobster','Lobster Two'=>'Lobster Two','Londrina Outline'=>'Londrina Outline','Londrina Shadow'=>'Londrina Shadow','Londrina Sketch'=>'Londrina Sketch','Londrina Solid'=>'Londrina Solid','Long Cang'=>'Long Cang','Lora'=>'Lora','Love Ya Like A Sister'=>'Love Ya Like A Sister','Loved by the King'=>'Loved by the King','Lovers Quarrel'=>'Lovers Quarrel','Luckiest Guy'=>'Luckiest Guy','Lusitana'=>'Lusitana','Lustria'=>'Lustria','M PLUS 1p'=>'M PLUS 1p','M PLUS Rounded 1c'=>'M PLUS Rounded 1c','Ma Shan Zheng'=>'Ma Shan Zheng','Macondo'=>'Macondo','Macondo Swash Caps'=>'Macondo Swash Caps','Mada'=>'Mada','Magra'=>'Magra','Maiden Orange'=>'Maiden Orange','Maitree'=>'Maitree','Major Mono Display'=>'Major Mono Display','Mako'=>'Mako','Mali'=>'Mali','Mallanna'=>'Mallanna','Mandali'=>'Mandali','Manjari'=>'Manjari','Mansalva'=>'Mansalva','Manuale'=>'Manuale','Marcellus'=>'Marcellus','Marcellus SC'=>'Marcellus SC','Marck Script'=>'Marck Script','Margarine'=>'Margarine','Markazi Text'=>'Markazi Text','Marko One'=>'Marko One','Marmelad'=>'Marmelad','Martel'=>'Martel','Martel Sans'=>'Martel Sans','Marvel'=>'Marvel','Mate'=>'Mate','Mate SC'=>'Mate SC','Maven Pro'=>'Maven Pro','McLaren'=>'McLaren','Meddon'=>'Meddon','MedievalSharp'=>'MedievalSharp','Medula One'=>'Medula One','Meera Inimai'=>'Meera Inimai','Megrim'=>'Megrim','Meie Script'=>'Meie Script','Merienda'=>'Merienda','Merienda One'=>'Merienda One','Merriweather'=>'Merriweather','Merriweather Sans'=>'Merriweather Sans','Metal'=>'Metal','Metal Mania'=>'Metal Mania','Metamorphous'=>'Metamorphous','Metrophobic'=>'Metrophobic','Michroma'=>'Michroma','Milonga'=>'Milonga','Miltonian'=>'Miltonian','Miltonian Tattoo'=>'Miltonian Tattoo','Mina'=>'Mina','Miniver'=>'Miniver','Miriam Libre'=>'Miriam Libre','Mirza'=>'Mirza','Miss Fajardose'=>'Miss Fajardose','Mitr'=>'Mitr','Modak'=>'Modak','Modern Antiqua'=>'Modern Antiqua','Mogra'=>'Mogra','Molengo'=>'Molengo','Molleitalic'=>'Molleitalic','Monda'=>'Monda','Monofett'=>'Monofett','Monoton'=>'Monoton','Monsieur La Doulaise'=>'Monsieur La Doulaise','Montaga'=>'Montaga','Montez'=>'Montez','Montserrat'=>'Montserrat','Montserrat Alternates'=>'Montserrat Alternates','Montserrat Subrayada'=>'Montserrat Subrayada','Moul'=>'Moul','Moulpali'=>'Moulpali','Mountains of Christmas'=>'Mountains of Christmas','Mouse Memoirs'=>'Mouse Memoirs','Mr Bedfort'=>'Mr Bedfort','Mr Dafoe'=>'Mr Dafoe','Mr De Haviland'=>'Mr De Haviland','Mrs Saint Delafield'=>'Mrs Saint Delafield','Mrs Sheppards'=>'Mrs Sheppards','Mukta'=>'Mukta','Mukta Mahee'=>'Mukta Mahee','Mukta Malar'=>'Mukta Malar','Mukta Vaani'=>'Mukta Vaani','Muli'=>'Muli','Mystery Quest'=>'Mystery Quest','NTR'=>'NTR','Nanum Brush Script'=>'Nanum Brush Script','Nanum Gothic'=>'Nanum Gothic','Nanum Gothic Coding'=>'Nanum Gothic Coding','Nanum Myeongjo'=>'Nanum Myeongjo','Nanum Pen Script'=>'Nanum Pen Script','Neucha'=>'Neucha','Neuton'=>'Neuton','New Rocker'=>'New Rocker','News Cycle'=>'News Cycle','Niconne'=>'Niconne','Niramit'=>'Niramit','Nixie One'=>'Nixie One','Nobile'=>'Nobile','Nokora'=>'Nokora','Norican'=>'Norican','Nosifer'=>'Nosifer','Notable'=>'Notable','Nothing You Could Do'=>'Nothing You Could Do','Noticia Text'=>'Noticia Text','Noto Sans'=>'Noto Sans','Noto Sans HK'=>'Noto Sans HK','Noto Sans JP'=>'Noto Sans JP','Noto Sans KR'=>'Noto Sans KR','Noto Sans SC'=>'Noto Sans SC','Noto Sans TC'=>'Noto Sans TC','Noto Serif'=>'Noto Serif','Noto Serif JP'=>'Noto Serif JP','Noto Serif KR'=>'Noto Serif KR','Noto Serif SC'=>'Noto Serif SC','Noto Serif TC'=>'Noto Serif TC','Nova Cut'=>'Nova Cut','Nova Flat'=>'Nova Flat','Nova Mono'=>'Nova Mono','Nova Oval'=>'Nova Oval','Nova Round'=>'Nova Round','Nova Script'=>'Nova Script','Nova Slim'=>'Nova Slim','Nova Square'=>'Nova Square','Numans'=>'Numans','Nunito'=>'Nunito','Nunito Sans'=>'Nunito Sans','Odibee Sans'=>'Odibee Sans','Odor Mean Chey'=>'Odor Mean Chey','Offside'=>'Offside','Old Standard TT'=>'Old Standard TT','Oldenburg'=>'Oldenburg','Oleo Script'=>'Oleo Script','Oleo Script Swash Caps'=>'Oleo Script Swash Caps','Open Sans'=>'Open Sans','Open Sans Condensed'=>'Open Sans Condensed','Oranienbaum'=>'Oranienbaum','Orbitron'=>'Orbitron','Oregano'=>'Oregano','Orienta'=>'Orienta','Original Surfer'=>'Original Surfer','Oswald'=>'Oswald','Over the Rainbow'=>'Over the Rainbow','Overlock'=>'Overlock','Overlock SC'=>'Overlock SC','Overpass'=>'Overpass','Overpass Mono'=>'Overpass Mono','Ovo'=>'Ovo','Oxygen'=>'Oxygen','Oxygen Mono'=>'Oxygen Mono','PT Mono'=>'PT Mono','PT Sans'=>'PT Sans','PT Sans Caption'=>'PT Sans Caption','PT Sans Narrow'=>'PT Sans Narrow','PT Serif'=>'PT Serif','PT Serif Caption'=>'PT Serif Caption','Pacifico'=>'Pacifico','Padauk'=>'Padauk','Palanquin'=>'Palanquin','Palanquin Dark'=>'Palanquin Dark','Pangolin'=>'Pangolin','Paprika'=>'Paprika','Parisienne'=>'Parisienne','Passero One'=>'Passero One','Passion One'=>'Passion One','Pathway Gothic One'=>'Pathway Gothic One','Patrick Hand'=>'Patrick Hand','Patrick Hand SC'=>'Patrick Hand SC','Pattaya'=>'Pattaya','Patua One'=>'Patua One','Pavanam'=>'Pavanam','Paytone One'=>'Paytone One','Peddana'=>'Peddana','Peralta'=>'Peralta','Permanent Marker'=>'Permanent Marker','Petit Formal Script'=>'Petit Formal Script','Petrona'=>'Petrona','Philosopher'=>'Philosopher','Piedra'=>'Piedra','Pinyon Script'=>'Pinyon Script','Pirata One'=>'Pirata One','Plaster'=>'Plaster','Play'=>'Play','Playball'=>'Playball','Playfair Display'=>'Playfair Display','Playfair Display SC'=>'Playfair Display SC','Podkova'=>'Podkova','Poiret One'=>'Poiret One','Poller One'=>'Poller One','Poly'=>'Poly','Pompiere'=>'Pompiere','Pontano Sans'=>'Pontano Sans','Poor Story'=>'Poor Story','Poppins'=>'Poppins','Port Lligat Sans'=>'Port Lligat Sans','Port Lligat Slab'=>'Port Lligat Slab','Pragati Narrow'=>'Pragati Narrow','Prata'=>'Prata','Preahvihear'=>'Preahvihear','Press Start 2P'=>'Press Start 2P','Pridi'=>'Pridi','Princess Sofia'=>'Princess Sofia','Prociono'=>'Prociono','Prompt'=>'Prompt','Prosto One'=>'Prosto One','Proza Libre'=>'Proza Libre','Public Sans'=>'Public Sans','Puritan'=>'Puritan','Purple Purse'=>'Purple Purse','Quando'=>'Quando','Quantico'=>'Quantico','Quattrocento'=>'Quattrocento','Quattrocento Sans'=>'Quattrocento Sans','Questrial'=>'Questrial','Quicksand'=>'Quicksand','Quintessential'=>'Quintessential','Qwigley'=>'Qwigley','Racing Sans One'=>'Racing Sans One','Radley'=>'Radley','Rajdhani'=>'Rajdhani','Rakkas'=>'Rakkas','Raleway'=>'Raleway','Raleway Dots'=>'Raleway Dots','Ramabhadra'=>'Ramabhadra','Ramaraja'=>'Ramaraja','Rambla'=>'Rambla','Rammetto One'=>'Rammetto One','Ranchers'=>'Ranchers','Rancho'=>'Rancho','Ranga'=>'Ranga','Rasa'=>'Rasa','Rationale'=>'Rationale','Ravi Prakash'=>'Ravi Prakash','Red Hat Display'=>'Red Hat Display','Red Hat Text'=>'Red Hat Text','Redressed'=>'Redressed','Reem Kufi'=>'Reem Kufi','Reenie Beanie'=>'Reenie Beanie','Revalia'=>'Revalia','Rhodium Libre'=>'Rhodium Libre','Ribeye'=>'Ribeye','Ribeye Marrow'=>'Ribeye Marrow','Righteous'=>'Righteous','Risque'=>'Risque','Roboto'=>'Roboto','Roboto Condensed'=>'Roboto Condensed','Roboto Mono'=>'Roboto Mono','Roboto Slab'=>'Roboto Slab','Rochester'=>'Rochester','Rock Salt'=>'Rock Salt','Rokkitt'=>'Rokkitt','Romanesco'=>'Romanesco','Ropa Sans'=>'Ropa Sans','Rosario'=>'Rosario','Rosarivo'=>'Rosarivo','Rouge Script'=>'Rouge Script','Rozha One'=>'Rozha One','Rubik'=>'Rubik','Rubik Mono One'=>'Rubik Mono One','Ruda'=>'Ruda','Rufina'=>'Rufina','Ruge Boogie'=>'Ruge Boogie','Ruluko'=>'Ruluko','Rum Raisin'=>'Rum Raisin','Ruslan Display'=>'Ruslan Display','Russo One'=>'Russo One','Ruthie'=>'Ruthie','Rye'=>'Rye','Sacramento'=>'Sacramento','Sahitya'=>'Sahitya','Sail'=>'Sail','Saira'=>'Saira','Saira Condensed'=>'Saira Condensed','Saira Extra Condensed'=>'Saira Extra Condensed','Saira Semi Condensed'=>'Saira Semi Condensed','Saira Stencil One'=>'Saira Stencil One','Salsa'=>'Salsa','Sanchez'=>'Sanchez','Sancreek'=>'Sancreek','Sansita'=>'Sansita','Sarabun'=>'Sarabun','Sarala'=>'Sarala','Sarina'=>'Sarina','Sarpanch'=>'Sarpanch','Satisfy'=>'Satisfy','Sawarabi Gothic'=>'Sawarabi Gothic','Sawarabi Mincho'=>'Sawarabi Mincho','Scada'=>'Scada','Scheherazade'=>'Scheherazade','Schoolbell'=>'Schoolbell','Scope One'=>'Scope One','Seaweed Script'=>'Seaweed Script','Secular One'=>'Secular One','Sedgwick Ave'=>'Sedgwick Ave','Sedgwick Ave Display'=>'Sedgwick Ave Display','Sevillana'=>'Sevillana','Seymour One'=>'Seymour One','Shadows Into Light'=>'Shadows Into Light','Shadows Into Light Two'=>'Shadows Into Light Two','Shanti'=>'Shanti','Share'=>'Share','Share Tech'=>'Share Tech','Share Tech Mono'=>'Share Tech Mono','Shojumaru'=>'Shojumaru','Short Stack'=>'Short Stack','Shrikhand'=>'Shrikhand','Siemreap'=>'Siemreap','Sigmar One'=>'Sigmar One','Signika'=>'Signika','Signika Negative'=>'Signika Negative','Simonetta'=>'Simonetta','Single Day'=>'Single Day','Sintony'=>'Sintony','Sirin Stencil'=>'Sirin Stencil','Six Caps'=>'Six Caps','Skranji'=>'Skranji','Slabo 13px'=>'Slabo 13px','Slabo 27px'=>'Slabo 27px','Slackey'=>'Slackey','Smokum'=>'Smokum','Smythe'=>'Smythe','Sniglet'=>'Sniglet','Snippet'=>'Snippet','Snowburst One'=>'Snowburst One','Sofadi One'=>'Sofadi One','Sofia'=>'Sofia','Solway'=>'Solway','Song Myung'=>'Song Myung','Sonsie One'=>'Sonsie One','Sorts Mill Goudy'=>'Sorts Mill Goudy','Source Code Pro'=>'Source Code Pro','Source Sans Pro'=>'Source Sans Pro','Source Serif Pro'=>'Source Serif Pro','Space Mono'=>'Space Mono','Special Elite'=>'Special Elite','Spectral'=>'Spectral','Spectral SC'=>'Spectral SC','Spicy Rice'=>'Spicy Rice','Spinnaker'=>'Spinnaker','Spirax'=>'Spirax','Squada One'=>'Squada One','Sree Krushnadevaraya'=>'Sree Krushnadevaraya','Sriracha'=>'Sriracha','Srisakdi'=>'Srisakdi','Staatliches'=>'Staatliches','Stalemate'=>'Stalemate','Stalinist One'=>'Stalinist One','Stardos Stencil'=>'Stardos Stencil','Stint Ultra Condensed'=>'Stint Ultra Condensed','Stint Ultra Expanded'=>'Stint Ultra Expanded','Stoke'=>'Stoke','Strait'=>'Strait','Stylish'=>'Stylish','Sue Ellen Francisco'=>'Sue Ellen Francisco','Suez One'=>'Suez One','Sulphur Point'=>'Sulphur Point','Sumana'=>'Sumana','Sunflower'=>'Sunflower','Sunshiney'=>'Sunshiney','Supermercado One'=>'Supermercado One','Sura'=>'Sura','Suranna'=>'Suranna','Suravaram'=>'Suravaram','Suwannaphum'=>'Suwannaphum','Swanky and Moo Moo'=>'Swanky and Moo Moo','Syncopate'=>'Syncopate','Tajawal'=>'Tajawal','Tangerine'=>'Tangerine','Taprom'=>'Taprom','Tauri'=>'Tauri','Taviraj'=>'Taviraj','Teko'=>'Teko','Telex'=>'Telex','Tenali Ramakrishna'=>'Tenali Ramakrishna','Tenor Sans'=>'Tenor Sans','Text Me One'=>'Text Me One','Thasadith'=>'Thasadith','The Girl Next Door'=>'The Girl Next Door','Tienne'=>'Tienne','Tillana'=>'Tillana','Timmana'=>'Timmana','Tinos'=>'Tinos','Titan One'=>'Titan One','Titillium Web'=>'Titillium Web','Tomorrow'=>'Tomorrow','Trade Winds'=>'Trade Winds','Trirong'=>'Trirong','Trocchi'=>'Trocchi','Trochut'=>'Trochut','Trykker'=>'Trykker','Tulpen One'=>'Tulpen One','Turret Road'=>'Turret Road','Ubuntu'=>'Ubuntu','Ubuntu Condensed'=>'Ubuntu Condensed','Ubuntu Mono'=>'Ubuntu Mono','Ultra'=>'Ultra','Uncial Antiqua'=>'Uncial Antiqua','Underdog'=>'Underdog','Unica One'=>'Unica One','UnifrakturCook'=>'UnifrakturCook','UnifrakturMaguntia'=>'UnifrakturMaguntia','Unkempt'=>'Unkempt','Unlock'=>'Unlock','Unna'=>'Unna','VT323'=>'VT323','Vampiro One'=>'Vampiro One','Varela'=>'Varela','Varela Round'=>'Varela Round','Vast Shadow'=>'Vast Shadow','Vesper Libre'=>'Vesper Libre','Vibes'=>'Vibes','Vibur'=>'Vibur','Vidaloka'=>'Vidaloka','Viga'=>'Viga','Voces'=>'Voces','Volkhov'=>'Volkhov','Vollkorn'=>'Vollkorn','Vollkorn SC'=>'Vollkorn SC','Voltaire'=>'Voltaire','Waiting for the Sunrise'=>'Waiting for the Sunrise','Wallpoet'=>'Wallpoet','Walter Turncoat'=>'Walter Turncoat','Warnes'=>'Warnes','Wellfleet'=>'Wellfleet','Wendy One'=>'Wendy One','Wire One'=>'Wire One','Work Sans'=>'Work Sans','Yanone Kaffeesatz'=>'Yanone Kaffeesatz','Yantramanav'=>'Yantramanav','Yatra One'=>'Yatra One','Yellowtail'=>'Yellowtail','Yeon Sung'=>'Yeon Sung','Yeseva One'=>'Yeseva One','Yesteryear'=>'Yesteryear','Yrsa'=>'Yrsa','ZCOOL KuaiLe'=>'ZCOOL KuaiLe','ZCOOL QingKe HuangYou'=>'ZCOOL QingKe HuangYou','ZCOOL XiaoWei'=>'ZCOOL XiaoWei','Zeyada'=>'Zeyada','Zhi Mang Xing'=>'Zhi Mang Xing','Zilla Slab'=>'Zilla Slab','Zilla Slab Highlight'=>'Zilla Slab Highlight');
     return $google_fonts;
   }
 
@@ -1100,16 +1098,29 @@ class WDWLibrary {
     $theme_id = self::get_default_theme_id();
     $shortcode_id = 0;
     if (!empty($type['post_type'])) {
+      $ob = new WD_BWG_Options();
       $shortcode = ' use_option_defaults="1" type="' . $type['post_type'] . '" theme_id="' . $theme_id . '" ';
       switch ($type['post_type']) {
         case 'gallery':
           $shortcode .= 'gallery_id="' . $id . '" tag="0" gallery_type="thumbnails"';
+          $options = $ob->get_default_shortcode_options_by_type('thumbnails');
+          foreach ( $options as $key => $val ) {
+            $shortcode .= ' ' . $key . '="' . $val . '"';
+          }
           break;
         case 'album':
           $shortcode .= 'album_id="' . $id . '" tag="0" gallery_type="album_compact_preview"';
+          $options = $ob->get_default_shortcode_options_by_type('album_compact');
+          foreach ( $options as $key => $val ) {
+            $shortcode .= ' ' . $key . '="' . $val . '"';
+          }
           break;
         case 'tag':
           $shortcode .= 'tag="' . $id . '" gallery_id="0" gallery_type="thumbnails"';
+          $options = $ob->get_default_shortcode_options_by_type('tag');
+          foreach ( $options as $key => $val ) {
+            $shortcode .= ' ' . $key . '="' . $val . '"';
+          }
           break;
         default:
           break;
@@ -1249,7 +1260,7 @@ class WDWLibrary {
       $filter_teg = trim( WDWLibrary::get('filter_tag_' . $bwg) );
 
       if ( !empty($filter_teg) ) {
-        $filter_teg_arr = explode(',', trim($filter_teg));
+        $filter_teg_arr = array_map('intval', explode(",", trim($filter_teg)));
         $_REQUEST[$tag_input_name] = $filter_teg_arr;
       }
     }
@@ -1312,14 +1323,14 @@ class WDWLibrary {
 
     $limit_str = '';
     if ( $images_per_page ) {
-      $limit_str .= 'LIMIT %d, %d';
+      $limit_str .= ' LIMIT %d, %d';
       $prepareArgs[] = $limit;
       $prepareArgs[] = $items_in_page;
     }
+    $join = $tag ? ' LEFT JOIN ' . $wpdb->prefix . 'bwg_image_tag as tag ON image.id=tag.image_id' : '';
 
-    $join = $tag ? 'LEFT JOIN ' . $wpdb->prefix . 'bwg_image_tag as tag ON image.id=tag.image_id' : '';
+    $filter_tags_name = self::get($tag_input_name, '', 'esc_sql', 'REQUEST');
 
-    $filter_tags_name = self::get($tag_input_name, '', 'sanitize_text_field', 'REQUEST');
     if ( $filter_tags_name ) {
       if ( !BWG()->options->tags_filter_and_or ) {
         // To find images which have at least one from tags filtered by.
@@ -1339,10 +1350,12 @@ class WDWLibrary {
     $where .= ' AND gallery.published = 1 ';
 
     if ( !empty($prepareArgs) ) {
-      $rows = $wpdb->get_results($wpdb->prepare('SELECT image.* FROM ' . $wpdb->prefix . 'bwg_image as image ' . $join . ' WHERE image.published=1 ' . $where . ' ORDER BY ' . str_replace('RAND()', 'RAND(' . $bwg_random_seed . ')', $sort_by) . ' ' . $sort_direction . ', image.id asc ' . $limit_str, $prepareArgs));
+      $sql = $wpdb->prepare('SELECT image.* FROM ' . $wpdb->prefix . 'bwg_image as image ' . $join . ' WHERE image.published=1 ' . $where . ' ORDER BY ' . str_replace('RAND()', 'RAND(' . $bwg_random_seed . ')', $sort_by) . ' ' . $sort_direction . ', image.id asc ' . $limit_str, $prepareArgs);
+      $rows = $wpdb->get_results($sql);
     }
     else {
-      $rows = $wpdb->get_results('SELECT image.* FROM ' . $wpdb->prefix . 'bwg_image as image ' . $join . ' WHERE image.published=1 ' . $where . ' ORDER BY ' . str_replace('RAND()', 'RAND(' . $bwg_random_seed . ')', $sort_by) . ' ' . $sort_direction . ', image.id asc ' . $limit_str);
+      $sql = 'SELECT image.* FROM ' . $wpdb->prefix . 'bwg_image as image ' . $join . ' WHERE image.published=1 ' . $where . ' ORDER BY ' . str_replace('RAND()', 'RAND(' . $bwg_random_seed . ')', $sort_by) . ' ' . $sort_direction . ', image.id asc ' . $limit_str;
+      $rows = $wpdb->get_results($sql);
     }
     if ( $images_per_page ) {
       array_splice($prepareArgs, -2);
@@ -1371,6 +1384,7 @@ class WDWLibrary {
             $row->image_url = self::image_url_version($row->image_url, $row->modified_date);
             $row->thumb_url = self::image_url_version($row->thumb_url, $row->modified_date);
             $thumb_urls[] = BWG()->upload_url . $row->thumb_url;
+            $row->description = htmlspecialchars_decode(str_replace(array("\r\n", "\n", "\r"), esc_html('<br />'), preg_replace('/[\x01-\x09\x0B-\x0C\x0E-\x1F]+/', '', $row->description)), ENT_COMPAT | ENT_QUOTES );
         } else {
             // To disable Jetpack Photon module.
             $thumb_urls[] = $row->thumb_url;
@@ -1388,37 +1402,58 @@ class WDWLibrary {
    * @param $gallery_id
    * @param int $image_id
    * @param string $limit
+   *
    * @return int
    */
-  public static function bwg_image_set_watermark( $gallery_id, $image_id = 0, $limit = '' ) {
+  public static function bwg_image_set_watermark( $gallery_id, $image_id = 0, $limit = '', $excludeIds = array() ) {
     global $wpdb;
     $message_id = 21;
     $options = new WD_BWG_Options();
     if ( $options->built_in_watermark_type != 'none' ) {
       $prepareArgs = array();
+      $modified_date_prepare_args = array();
       if ( $gallery_id ) {
           $where = ' `gallery_id`=%d';
           $prepareArgs[] = $gallery_id;
+          $modified_date_prepare_args[] = $gallery_id;
           if ( $image_id ) {
             $where .= ' AND `id`=%d';
             $prepareArgs[] = $image_id;
+            $modified_date_prepare_args[] = $image_id;
           }
-      } else {
+        if ( !empty($excludeIds) ) {
+          $where .= ' AND `id` NOT IN (' . self::escape_array($excludeIds) . ')';
+        }
+      }
+      else {
           $where = 1;
       }
       //$where = (($gallery_id) ? ' `gallery_id`=' . $gallery_id . ($image_id ? ' AND `id`=' . $image_id : '') : 1);
       $search = WDWLibrary::get( 's', '' );
-      if ( $search ) {
-        $where .= ' AND `filename` LIKE "%s"';
-        $prepareArgs[] = "%" . $search . "%";
+      if ( !empty($search) ) {
+				$where                        .= ' AND (`alt` LIKE %s';
+				$where                        .= ' OR `filename` LIKE %s';
+				$where                        .= ' OR `description` LIKE %s)';
+				$prepareArgs[]                = "%" . trim( $search ) . "%";
+				$prepareArgs[]                = "%" . trim( $search ) . "%";
+				$prepareArgs[]                = "%" . trim( $search ) . "%";
+				$modified_date_prepare_args[] = "%" . trim( $search ) . "%";
+				$modified_date_prepare_args[] = "%" . trim( $search ) . "%";
+				$modified_date_prepare_args[] = "%" . trim( $search ) . "%";
       }
       $limitstart = '';
       if ( !$limit ) {
         $limitstart = ' LIMIT 50 OFFSET %d';
         $prepareArgs[] = $limit;
       }
-      $images = $wpdb->get_results( $wpdb->prepare('SELECT * FROM `' . $wpdb->prefix . 'bwg_image` WHERE ' . $where . $limitstart, $prepareArgs) );
-
+      if ( empty($prepareArgs) ) {
+        $query = 'SELECT * FROM `' . $wpdb->prefix . 'bwg_image` WHERE ' . $where . $limitstart;
+        $images = $wpdb->get_results( $query );
+      }
+      else {
+        $query = $wpdb->prepare('SELECT * FROM `' . $wpdb->prefix . 'bwg_image` WHERE ' . $where . $limitstart, $prepareArgs);
+        $images = $wpdb->get_results( $query );
+      }
       if ( !empty( $images ) ) {
         switch ( $options->built_in_watermark_type ) {
           case 'text':
@@ -1426,7 +1461,11 @@ class WDWLibrary {
               if ( preg_match( '/EMBED/', $image->filetype ) == 1 ) {
                 continue;
               }
-              self::set_text_watermark( BWG()->upload_dir . $image->image_url, BWG()->upload_dir . $image->image_url, html_entity_decode( $options->built_in_watermark_text ), $options->built_in_watermark_font, $options->built_in_watermark_font_size, '#' . $options->built_in_watermark_color, $options->built_in_watermark_opacity, $options->built_in_watermark_position );
+              $set_text_watermark = self::set_text_watermark( BWG()->upload_dir . $image->image_url, BWG()->upload_dir . $image->image_url, html_entity_decode( $options->built_in_watermark_text ), $options->built_in_watermark_font, $options->built_in_watermark_font_size, '#' . $options->built_in_watermark_color, $options->built_in_watermark_opacity, $options->built_in_watermark_position );
+              if( ! $set_text_watermark ) {
+                $message_id = 6;
+                return $message_id;
+              }
             }
             break;
           case 'image':
@@ -1439,7 +1478,7 @@ class WDWLibrary {
             }
             break;
         }
-        self::update_image_modified_date( $where );
+        self::update_image_modified_date( $where, $modified_date_prepare_args );
       }
     }
     else {
@@ -1451,11 +1490,12 @@ class WDWLibrary {
   public static function set_text_watermark($original_filename, $dest_filename, $watermark_text, $watermark_font, $watermark_font_size, $watermark_color, $watermark_transparency, $watermark_position) {
     $original_filename = htmlspecialchars_decode($original_filename, ENT_COMPAT | ENT_QUOTES);
     $dest_filename = htmlspecialchars_decode($dest_filename, ENT_COMPAT | ENT_QUOTES);
-
     $watermark_transparency = 127 - ($watermark_transparency * 1.27);
     list($width, $height, $type) = getimagesize($original_filename);
+    if( $width == 0 || $height == 0 ) {
+      return FALSE;
+    }
     $watermark_image = imagecreatetruecolor($width, $height);
-
     $watermark_color = self::bwg_hex2rgb($watermark_color);
     $watermark_color = imagecolorallocatealpha($watermark_image, $watermark_color[0], $watermark_color[1], $watermark_color[2], $watermark_transparency);
     $watermark_font = BWG()->plugin_dir . '/fonts/' . $watermark_font;
@@ -1482,22 +1522,20 @@ class WDWLibrary {
         break;
     }
     @ini_set('memory_limit', '-1');
-    if ($type == 2) {
+    if ( $type == 2 ) {
       $image = imagecreatefromjpeg($original_filename);
       imagettftext($image, $watermark_font_size, 0, $left, $top, $watermark_color, $watermark_font, $watermark_text);
       imagejpeg ($image, $dest_filename, BWG()->options->jpeg_quality);
-      imagedestroy($image);
     }
-    elseif ($type == 3) {
+    elseif ( $type == 3 ) {
       $image = imagecreatefrompng($original_filename);
       imagettftext($image, $watermark_font_size, 0, $left, $top, $watermark_color, $watermark_font, $watermark_text);
       imageColorAllocateAlpha($image, 0, 0, 0, 127);
       imagealphablending($image, FALSE);
       imagesavealpha($image, TRUE);
       imagepng($image, $dest_filename, BWG()->options->png_quality);
-      imagedestroy($image);
     }
-    elseif ($type == 1) {
+    elseif ( $type == 1 ) {
       $image = imagecreatefromgif($original_filename);
       imageColorAllocateAlpha($watermark_image, 0, 0, 0, 127);
       imagecopy($watermark_image, $image, 0, 0, 0, 0, $width, $height);
@@ -1505,10 +1543,19 @@ class WDWLibrary {
       imagealphablending($watermark_image, FALSE);
       imagesavealpha($watermark_image, TRUE);
       imagegif($watermark_image, $dest_filename);
-      imagedestroy($image);
     }
+    elseif ( $type == 18 ) {
+      $image = imagecreatefromwebp($original_filename);
+      imageColorAllocateAlpha($image, 0, 0, 0, 127);
+      imagettftext($image, $watermark_font_size, 0, $left, $top, $watermark_color, $watermark_font, $watermark_text);
+      imagealphablending($image, FALSE);
+      imagesavealpha($image, TRUE);
+      imagewebp($image, $dest_filename, BWG()->options->png_quality);
+    }
+    imagedestroy($image);
     imagedestroy($watermark_image);
     @ini_restore('memory_limit');
+    return TRUE;
   }
 
   public static function set_image_watermark($original_filename, $dest_filename, $watermark_url, $watermark_height, $watermark_width, $watermark_position) {
@@ -1518,6 +1565,12 @@ class WDWLibrary {
       $watermark_url = htmlspecialchars_decode($watermark_url, ENT_COMPAT | ENT_QUOTES);
 
       @ini_set('memory_limit', '-1');
+      $image_path = pathinfo($original_filename, PATHINFO_EXTENSION);
+      /* Return false if image type is svg */
+      if( empty($original_filename) ||  empty($watermark_url) || (!empty($original_filename) && $image_path === 'svg') ) {
+        return false;
+      }
+
       list($width, $height, $type) = getimagesize($original_filename);
       list($width_watermark, $height_watermark, $type_watermark) = getimagesize($watermark_url);
 
@@ -1543,14 +1596,17 @@ class WDWLibrary {
           $left = ($width - $watermark_width) / 2;
           break;
       }
-      if ($type_watermark == 2) {
+      if ( $type_watermark == 2 ) {
         $watermark_image = imagecreatefromjpeg($watermark_url);
       }
-      elseif ($type_watermark == 3) {
+      elseif ( $type_watermark == 3 ) {
         $watermark_image = imagecreatefrompng($watermark_url);
       }
-      elseif ($type_watermark == 1) {
+      elseif ( $type_watermark == 1 ) {
         $watermark_image = imagecreatefromgif($watermark_url);
+      }
+      elseif ( $type_watermark == 18 ) {
+        $watermark_image = imagecreatefromwebp($watermark_url);
       }
       else {
         return false;
@@ -1562,73 +1618,93 @@ class WDWLibrary {
       imagealphablending($watermark_image_resized, FALSE);
       imagesavealpha($watermark_image_resized, TRUE);
       imagecopyresampled ($watermark_image_resized, $watermark_image, 0, 0, 0, 0, $watermark_width, $watermark_height, $width_watermark, $height_watermark);
-
-      if ($type == 2) {
+      if ( $type == 2) {
         $image = imagecreatefromjpeg($original_filename);
         imagecopy($image, $watermark_image_resized, $left, $top, 0, 0, $watermark_width, $watermark_height);
         if ($dest_filename <> '') {
-        imagejpeg ($image, $dest_filename, BWG()->options->jpeg_quality);
+          imagejpeg ($image, $dest_filename, BWG()->options->jpeg_quality);
         } else {
-        header('Content-Type: image/jpeg');
-        imagejpeg($image, null, BWG()->options->jpeg_quality);
+          header('Content-Type: image/jpeg');
+          imagejpeg($image, null, BWG()->options->jpeg_quality);
         };
-        imagedestroy($image);
       }
-      elseif ($type == 3) {
+      elseif ( $type == 3 ) {
         $image = imagecreatefrompng($original_filename);
         imagepalettetotruecolor($image);
         imagecopy($image, $watermark_image_resized, $left, $top, 0, 0, $watermark_width, $watermark_height);
         imagealphablending($image, FALSE);
         imagesavealpha($image, TRUE);
         imagepng($image, $dest_filename, BWG()->options->png_quality);
-        imagedestroy($image);
       }
-      elseif ($type == 1) {
+      elseif ( $type == 1 ) {
         $image = imagecreatefromgif($original_filename);
         $tempimage = imagecreatetruecolor($width, $height);
         imagecopy($tempimage, $image, 0, 0, 0, 0, $width, $height);
         imagecopy($tempimage, $watermark_image_resized, $left, $top, 0, 0, $watermark_width, $watermark_height);
         imagegif($tempimage, $dest_filename);
-        imagedestroy($image);
         imagedestroy($tempimage);
       }
+      elseif ( $type == 18 ) {
+        $image = imagecreatefromwebp($original_filename);
+        imagecopy($image, $watermark_image_resized, $left, $top, 0, 0, $watermark_width, $watermark_height);
+        imagealphablending($image, FALSE);
+        imagesavealpha($image, TRUE);
+        imagewebp($image, $dest_filename, BWG()->options->png_quality);
+      }
+      imagedestroy($image);
       imagedestroy($watermark_image);
       @ini_restore('memory_limit');
     }
   }
 
-  public static function bwg_image_recover_all($gallery_id, $limit = '') {
+  public static function bwg_image_recover_all( $gallery_id, $limit = '', $excludeIds = array() ) {
     $thumb_width = BWG()->options->upload_thumb_width;
     $width = BWG()->options->upload_img_width;
     global $wpdb;
     $prepareArgs = array();
+    $modified_date_prepare_args = array();
     $where = ($gallery_id) ? ' `gallery_id` = ' . $gallery_id : 1;
     if ( $gallery_id ) {
       $where = ' `gallery_id` = %d';
       $prepareArgs[] = $gallery_id;
-    } else {
+      $modified_date_prepare_args[] = $gallery_id;
+      if ( !empty($excludeIds) ) {
+        $where .= ' AND `id` NOT IN (' . self::escape_array($excludeIds) . ')';
+      }
+    }
+    else {
       $where = 1;
     }
     $search = WDWLibrary::get('s', '');
     if ( $search ) {
-      $where .= ' AND `filename` LIKE %s';
-      $prepareArgs[] = "%" . $search . "%";
+			$where                        .= ' AND (`alt` LIKE %s';
+			$where                        .= ' OR `filename` LIKE %s';
+			$where                        .= ' OR `description` LIKE %s)';
+			$prepareArgs[]                = "%" . trim( $search ) . "%";
+			$prepareArgs[]                = "%" . trim( $search ) . "%";
+			$prepareArgs[]                = "%" . trim( $search ) . "%";
+			$modified_date_prepare_args[] = "%" . trim( $search ) . "%";
+			$modified_date_prepare_args[] = "%" . trim( $search ) . "%";
+			$modified_date_prepare_args[] = "%" . trim( $search ) . "%";
     }
     $limitstart = '';
     if ( !$limit ) {
       $limitstart = ' LIMIT 50 OFFSET %d';
       $prepareArgs[] = $limit;
     }
-    $images = $wpdb->get_results($wpdb->prepare('SELECT * FROM `' . $wpdb->prefix . 'bwg_image` WHERE ' . $where . $limitstart, $prepareArgs));
+    $query = $wpdb->prepare('SELECT * FROM `' . $wpdb->prefix . 'bwg_image` WHERE ' . $where . $limitstart, $prepareArgs);
+    $images = $wpdb->get_results( $query );
     if ( !empty( $images ) ) {
       foreach ( $images as $image ) {
         if ( preg_match( '/EMBED/', $image->filetype ) == 1 ) {
+          require_once(BWG()->plugin_dir . '/framework/WDWLibraryEmbed.php');
+          WDWLibraryEmbed::recover_oembed( $image );
           continue;
         }
         self::recover_image( $image, $thumb_width, $width, ($gallery_id == 0 ? 'option_page' : 'gallery_page') );
       }
     }
-    self::update_image_modified_date( $where );
+    self::update_image_modified_date( $where, $modified_date_prepare_args );
   }
 
   /**
@@ -1657,6 +1733,8 @@ class WDWLibrary {
 
   public static function recover_image($image, $thumb_width, $width, $page) {
     if ( preg_match('/EMBED/', $image->filetype) == 1 ) {
+      require_once(BWG()->plugin_dir . '/framework/WDWLibraryEmbed.php');
+      WDWLibraryEmbed::recover_oembed( $image );
       return;
     }
     $filename = htmlspecialchars_decode(BWG()->upload_dir . $image->image_url, ENT_COMPAT | ENT_QUOTES);
@@ -1673,8 +1751,9 @@ class WDWLibrary {
           $width_orig = $get_size[ 'width' ];
           $height_orig = $get_size[ 'height' ];
           $original_image->set_quality( BWG()->options->image_quality );
-          self::recover_image_size( $width_orig, $height_orig, $width, $original_image, $filename );
-          self::recover_image_size( $width_orig, $height_orig, $thumb_width, $original_image, $thumb_filename);
+          $thumb_height = BWG()->options->upload_thumb_height;
+          self::recover_image_size( $width_orig, $height_orig, $width, 0, $original_image, $filename );
+          self::recover_image_size( $width_orig, $height_orig, $thumb_width, $thumb_height, $original_image, $thumb_filename);
 
           $resolution_thumb = self::get_thumb_size( $image->thumb_url );
 
@@ -1691,16 +1770,24 @@ class WDWLibrary {
     if ($page == 'gallery_page') {
       ?>
       <script language="javascript">
-        var image_src = window.parent.document.getElementById("image_thumb_<?php echo $image->id; ?>").src;
-        document.getElementById("image_thumb_<?php echo $image->id; ?>").src = image_src;
+        var image_src = window.parent.document.getElementById("image_thumb_<?php echo esc_html($image->id); ?>").src;
+        document.getElementById("image_thumb_<?php echo esc_html($image->id); ?>").src = image_src;
       </script>
       <?php
     }
   }
 
-  public static function recover_image_size($width_orig, $height_orig, $width, $original_image, $filename) {
+  public static function recover_image_size($width_orig, $height_orig, $width, $max_height, $original_image, $filename) {
+    if( $width == 0 ) return;
     $percent = $width_orig / $width;
     $height = $height_orig / $percent;
+
+    if ( $max_height != 0 && $height > $max_height ) {
+      $scale = $width_orig / $height_orig;
+      $height = $max_height;
+      $width = $height * $scale;
+    }
+
     $original_image->resize($width, $height, false);
     $original_image->save($filename);
   }
@@ -1719,7 +1806,7 @@ class WDWLibrary {
 
   public static function resize_image($source, $destination, $max_width, $max_height) {
     $image = wp_get_image_editor( $source );
-    if ( ! is_wp_error( $image ) ) {
+    if ( !is_wp_error( $image ) ) {
       $image_size = $image->get_size();
       $img_width = $image_size[ 'width' ];
       $img_height = $image_size[ 'height' ];
@@ -1749,7 +1836,7 @@ class WDWLibrary {
       if ( $source !== $destination ) {
         return copy( $source, $destination );
       }
-      return true;
+      return false;
     }
   }
 
@@ -1946,6 +2033,7 @@ class WDWLibrary {
       'images_per_page' => 0,
       'thumb_width' => BWG()->options->thumb_width,
       'thumb_height' => BWG()->options->thumb_height,
+      'gdpr_compliance' => (bool) BWG()->options->gdpr_compliance,
       'watermark_type' => (($from) ? BWG()->options->watermark_type : ($use_option_defaults ? BWG()->options->watermark_type : (isset($params['watermark_type']) ? $params['watermark_type'] : 'none'))),
       'watermark_text' => (($from) ? urlencode(BWG()->options->watermark_text) : ($use_option_defaults ? urlencode(BWG()->options->watermark_text) : (isset($params['watermark_text']) ? urlencode($params['watermark_text']) : ''))),
       'watermark_font_size' => (($from) ? BWG()->options->watermark_font_size : ($use_option_defaults ? BWG()->options->watermark_font_size : (isset($params['watermark_font_size']) ? $params['watermark_font_size'] : 12))),
@@ -1975,7 +2063,6 @@ class WDWLibrary {
     $defaults['popup_enable_comment'] = (bool) self::get_option_value('popup_enable_comment', 'popup_enable_comment', 'popup_enable_comment', $from || $use_option_defaults, $params);
     $defaults['popup_enable_email'] = (bool) self::get_option_value('popup_enable_email', 'popup_enable_email', 'popup_enable_email', $from || $use_option_defaults, $params);
     $defaults['popup_enable_captcha'] = (bool) self::get_option_value('popup_enable_captcha', 'popup_enable_captcha', 'popup_enable_captcha', $from || $use_option_defaults, $params);
-    $defaults['gdpr_compliance'] = (bool) self::get_option_value('gdpr_compliance', 'gdpr_compliance', 'gdpr_compliance', $from || $use_option_defaults, $params);
     $defaults['comment_moderation'] = (bool) self::get_option_value('comment_moderation', 'comment_moderation', 'comment_moderation', $from || $use_option_defaults, $params);
     $defaults['popup_enable_info'] = (bool) self::get_option_value('popup_enable_info', 'popup_enable_info', 'popup_enable_info', $from || $use_option_defaults, $params);
     $defaults['popup_info_always_show'] = (bool) self::get_option_value('popup_info_always_show', 'popup_info_always_show', 'popup_info_always_show', $from || $use_option_defaults, $params);
@@ -1983,6 +2070,7 @@ class WDWLibrary {
     $defaults['autohide_lightbox_navigation'] = (bool) self::get_option_value('autohide_lightbox_navigation', 'autohide_lightbox_navigation', 'autohide_lightbox_navigation', $from || $use_option_defaults, $params);
     $defaults['popup_hit_counter'] = (bool) self::get_option_value('popup_hit_counter', 'popup_hit_counter', 'popup_hit_counter', $from || $use_option_defaults, $params);
     $defaults['popup_enable_rate'] = (bool) self::get_option_value('popup_enable_rate', 'popup_enable_rate', 'popup_enable_rate', $from || $use_option_defaults, $params);
+    $defaults['popup_enable_zoom'] = (bool) self::get_option_value('popup_enable_zoom', 'popup_enable_zoom', 'popup_enable_zoom', $from || $use_option_defaults, $params);
     $defaults['popup_enable_fullsize_image'] = (bool) self::get_option_value('popup_enable_fullsize_image', 'popup_enable_fullsize_image', 'popup_enable_fullsize_image', $from || $use_option_defaults, $params);
     $defaults['popup_enable_download'] = (bool) self::get_option_value('popup_enable_download', 'popup_enable_download', 'popup_enable_download', $from || $use_option_defaults, $params);
     $defaults['show_image_counts'] = (bool) self::get_option_value('show_image_counts', 'show_image_counts', 'show_image_counts', $from || $use_option_defaults, $params);
@@ -2078,7 +2166,8 @@ class WDWLibrary {
         $defaults['enable_slideshow_shuffle'] = self::get_option_value('enable_slideshow_shuffle', 'enable_slideshow_shuffle', 'slideshow_enable_shuffle', $use_option_defaults, $params);
         $defaults['enable_slideshow_ctrl'] = self::get_option_value('enable_slideshow_ctrl', 'enable_slideshow_ctrl', 'slideshow_enable_ctrl', $use_option_defaults, $params);
         $defaults['autohide_slideshow_navigation'] = self::get_option_value('autohide_slideshow_navigation', 'autohide_slideshow_navigation', 'autohide_slideshow_navigation', $use_option_defaults, $params);
-        $defaults['enable_slideshow_filmstrip'] = self::get_option_value('enable_slideshow_filmstrip', 'enable_slideshow_filmstrip', 'slideshow_enable_filmstrip', $use_option_defaults, $params);
+        $defaults['slideshow_filmstrip_type'] = self::get_option_value('slideshow_filmstrip_type', 'slideshow_filmstrip_type', 'slideshow_filmstrip_type', $use_option_defaults, $params);
+        $defaults['slideshow_thumbnails_count'] = self::get_option_value('slideshow_thumbnails_count', 'slideshow_thumbnails_count', 'slideshow_thumbnails_count', $use_option_defaults, $params);
         $defaults['slideshow_filmstrip_height'] = self::get_option_value('slideshow_filmstrip_height', 'slideshow_filmstrip_height', 'slideshow_filmstrip_height', $use_option_defaults, $params);
         $defaults['slideshow_enable_title'] = self::get_option_value('slideshow_enable_title', 'slideshow_enable_title', 'slideshow_enable_title', $from || $use_option_defaults, $params);
         $defaults['slideshow_title_position'] = self::get_option_value('slideshow_title_position', 'slideshow_title_position', 'slideshow_title_position', $from || $use_option_defaults, $params);
@@ -2156,11 +2245,11 @@ class WDWLibrary {
         $defaults['compuct_album_enable_page'] = self::get_option_value('compuct_album_enable_page', 'compuct_album_enable_page', 'album_enable_page', $use_option_defaults, $params);
         $defaults['compuct_albums_per_page'] = self::get_option_value('compuct_albums_per_page', 'compuct_albums_per_page', 'albums_per_page', $use_option_defaults, $params);
         $defaults['compuct_album_images_per_page'] = self::get_option_value('compuct_album_images_per_page', 'compuct_album_images_per_page', 'album_images_per_page', $use_option_defaults, $params);
-		$defaults['album_sort_by'] = self::get_option_value('compact_album_sort_by', 'all_album_sort_by', 'compact_album_sort_by', $use_option_defaults, $params);
-		$defaults['album_order_by'] = self::get_option_value('compact_album_order_by', 'all_album_order_by', 'compact_album_order_by', $use_option_defaults, $params);
-		$defaults['sort_by'] = self::get_option_value('album_sort_by', 'sort_by', 'album_sort_by', $use_option_defaults, $params);
+        $defaults['album_sort_by'] = self::get_option_value('compact_album_sort_by', 'all_album_sort_by', 'compact_album_sort_by', $use_option_defaults, $params);
+        $defaults['album_order_by'] = self::get_option_value('compact_album_order_by', 'all_album_order_by', 'compact_album_order_by', $use_option_defaults, $params);
+        $defaults['sort_by'] = self::get_option_value('album_sort_by', 'sort_by', 'album_sort_by', $use_option_defaults, $params);
         $defaults['order_by'] = self::get_option_value('album_order_by', 'order_by', 'album_order_by', $use_option_defaults, $params);
-		$defaults['show_search_box'] = self::get_option_value('album_show_search_box', 'show_search_box', 'album_show_search_box', $use_option_defaults, $params);
+		    $defaults['show_search_box'] = self::get_option_value('album_show_search_box', 'show_search_box', 'album_show_search_box', $use_option_defaults, $params);
         $defaults['placeholder'] = self::get_option_value('album_placeholder', 'placeholder', 'album_placeholder', $use_option_defaults, $params);
         $defaults['search_box_width'] = self::get_option_value('album_search_box_width', 'search_box_width', 'album_search_box_width', $use_option_defaults, $params);
         $defaults['show_sort_images'] = self::get_option_value('album_show_sort_images', 'show_sort_images', 'album_show_sort_images', $use_option_defaults, $params);
@@ -2186,11 +2275,11 @@ class WDWLibrary {
         $defaults['masonry_album_enable_page'] = self::get_option_value('masonry_album_enable_page', 'masonry_album_enable_page', 'album_masonry_enable_page', $use_option_defaults, $params);
         $defaults['masonry_albums_per_page'] = self::get_option_value('masonry_albums_per_page', 'masonry_albums_per_page', 'albums_masonry_per_page', $use_option_defaults, $params);
         $defaults['masonry_album_images_per_page'] = self::get_option_value('masonry_album_images_per_page', 'masonry_album_images_per_page', 'album_masonry_images_per_page', $use_option_defaults, $params);
-		$defaults['album_sort_by'] = self::get_option_value('masonry_album_sort_by', 'all_album_sort_by', 'masonry_album_sort_by', $use_option_defaults, $params);
+		    $defaults['album_sort_by'] = self::get_option_value('masonry_album_sort_by', 'all_album_sort_by', 'masonry_album_sort_by', $use_option_defaults, $params);
         $defaults['album_order_by'] = self::get_option_value('masonry_album_order_by', 'all_album_order_by', 'masonry_album_order_by', $use_option_defaults, $params);
-		$defaults['sort_by'] = self::get_option_value('album_masonry_sort_by', 'sort_by', 'album_masonry_sort_by', $use_option_defaults, $params);
+		    $defaults['sort_by'] = self::get_option_value('album_masonry_sort_by', 'sort_by', 'album_masonry_sort_by', $use_option_defaults, $params);
         $defaults['order_by'] = self::get_option_value('album_masonry_order_by', 'order_by', 'album_masonry_order_by', $use_option_defaults, $params);
-		$defaults['show_search_box'] = self::get_option_value('album_masonry_show_search_box', 'show_search_box', 'album_masonry_show_search_box', $use_option_defaults, $params);
+		    $defaults['show_search_box'] = self::get_option_value('album_masonry_show_search_box', 'show_search_box', 'album_masonry_show_search_box', $use_option_defaults, $params);
         $defaults['placeholder'] = self::get_option_value('album_masonry_placeholder', 'placeholder', 'album_masonry_placeholder', $use_option_defaults, $params);
         $defaults['search_box_width'] = self::get_option_value('album_masonry_search_box_width', 'search_box_width', 'album_masonry_search_box_width', $use_option_defaults, $params);
         $defaults['show_sort_images'] = self::get_option_value('album_masonry_show_sort_images', 'show_sort_images', 'album_masonry_show_sort_images', $use_option_defaults, $params);
@@ -2213,18 +2302,18 @@ class WDWLibrary {
         $defaults['extended_album_enable_page'] = self::get_option_value('extended_album_enable_page', 'extended_album_enable_page', 'album_extended_enable_page', $use_option_defaults, $params);
         $defaults['extended_albums_per_page'] = self::get_option_value('extended_albums_per_page', 'extended_albums_per_page', 'albums_extended_per_page', $use_option_defaults, $params);
         $defaults['extended_album_images_per_page'] = self::get_option_value('extended_album_images_per_page', 'extended_album_images_per_page', 'album_extended_images_per_page', $use_option_defaults, $params);
-		$defaults['album_sort_by'] = self::get_option_value('extended_album_sort_by', 'all_album_sort_by', 'extended_album_sort_by', $use_option_defaults, $params);
-		$defaults['album_order_by'] = self::get_option_value('extended_album_order_by', 'all_album_order_by', 'extended_album_order_by', $use_option_defaults, $params);
-		$defaults['sort_by'] = self::get_option_value('album_extended_sort_by', 'sort_by', 'album_extended_sort_by', $use_option_defaults, $params);
+		    $defaults['album_sort_by'] = self::get_option_value('extended_album_sort_by', 'all_album_sort_by', 'extended_album_sort_by', $use_option_defaults, $params);
+		    $defaults['album_order_by'] = self::get_option_value('extended_album_order_by', 'all_album_order_by', 'extended_album_order_by', $use_option_defaults, $params);
+		    $defaults['sort_by'] = self::get_option_value('album_extended_sort_by', 'sort_by', 'album_extended_sort_by', $use_option_defaults, $params);
         $defaults['order_by'] = self::get_option_value('album_extended_order_by', 'order_by', 'album_extended_order_by', $use_option_defaults, $params);
-		$defaults['show_search_box'] = self::get_option_value('album_extended_show_search_box', 'show_search_box', 'album_extended_show_search_box', $use_option_defaults, $params);
+		    $defaults['show_search_box'] = self::get_option_value('album_extended_show_search_box', 'show_search_box', 'album_extended_show_search_box', $use_option_defaults, $params);
         $defaults['placeholder'] = self::get_option_value('album_extended_placeholder', 'placeholder', 'album_extended_placeholder', $use_option_defaults, $params);
         $defaults['search_box_width'] = self::get_option_value('album_extended_search_box_width', 'search_box_width', 'album_extended_search_box_width', $use_option_defaults, $params);
         $defaults['show_sort_images'] = self::get_option_value('album_extended_show_sort_images', 'show_sort_images', 'album_extended_show_sort_images', $use_option_defaults, $params);
         $defaults['show_tag_box'] = self::get_option_value('album_extended_show_tag_box', 'show_tag_box', 'album_extended_show_tag_box', $use_option_defaults, $params);
         $defaults['show_album_name'] = self::get_option_value('show_album_extended_name', 'show_album_name', 'show_album_extended_name', $use_option_defaults, $params);
         $defaults['show_gallery_description'] = self::get_option_value('album_extended_show_gallery_description', 'show_gallery_description', 'album_extended_show_gallery_description', $use_option_defaults, $params);
-		$defaults['extended_album_description_enable'] = self::get_option_value('extended_album_description_enable', 'extended_album_description_enable', 'extended_album_description_enable', $use_option_defaults, $params);
+		    $defaults['extended_album_description_enable'] = self::get_option_value('extended_album_description_enable', 'extended_album_description_enable', 'extended_album_description_enable', $use_option_defaults, $params);
         $defaults['extended_album_view_type'] = self::get_option_value('extended_album_view_type', 'extended_album_view_type', 'album_extended_view_type', $use_option_defaults, $params);
         $defaults['extended_album_image_title'] = self::get_option_value('extended_album_image_title', 'extended_album_image_title', 'album_extended_image_title_show_hover', $use_option_defaults, $params);
         $defaults['extended_album_mosaic_hor_ver'] = self::get_option_value('extended_album_mosaic_hor_ver', 'extended_album_mosaic_hor_ver', 'album_mosaic', $use_option_defaults, $params);
@@ -2306,7 +2395,7 @@ class WDWLibrary {
     $title = ($title != '') ? strtolower($title) : 'items';
     ob_start();
     ?><tr class="no-items">
-    <td class="colspanchange" <?php echo $colspan_count ? 'colspan="' . $colspan_count . '"' : ''?>><?php echo sprintf(__('No %s found.', BWG()->prefix), $title); ?></td>
+    <td class="colspanchange" <?php echo esc_attr($colspan_count) ? 'colspan="' . esc_attr($colspan_count) . '"' : ''?>><?php echo sprintf(__('No %s found.', 'photo-gallery'), $title); ?></td>
     </tr><?php
     return ob_get_clean();
   }
@@ -2330,7 +2419,7 @@ class WDWLibrary {
     $t_id = $tag->term_id; // Get the ID of the term you're editing
     $term = get_term($t_id, 'bwg_tag');
     ?>
-    <input type="hidden" name="old_tag" value="<?php echo isset($term->slug) ? $term->slug : ''; ?>" />
+    <input type="hidden" name="old_tag" value="<?php echo isset($term->slug) ? esc_attr($term->slug) : ''; ?>" />
     <?php
   }
 
@@ -2340,8 +2429,8 @@ class WDWLibrary {
 	public static function register_custom_taxonomies() {
 	  // Register bwg_tag taxonomy.
     self::create_bwg_tag();
-    // Add the fields to the bwg_tags taxonomy, using our callback function
-    add_action( 'edit_tag_form_fields', array('WDWLibrary', 'bwg_old_tag_edit_form_fields'), 10, 2 );
+    // Add the fields to the bwg_tag taxonomy, using our callback function
+    add_action('bwg_tag_edit_form_fields', array('WDWLibrary', 'bwg_old_tag_edit_form_fields'), 10, 2 );
     // Set Photo Gallery menu as parent for bwg_tag.
     add_action('parent_file', array('WDWLibrary', 'menu_highlight'));
     // Save/update bwg_tag.
@@ -2362,13 +2451,14 @@ class WDWLibrary {
       'show_in_nav_menus' => FALSE,
       'show_tagcloud' => TRUE,
       'hierarchical' => FALSE,
-      'label' => __('Gallery Tags', BWG()->prefix),
+      'label' => __('Gallery Tags', 'photo-gallery'),
       'query_var' => TRUE,
       'rewrite' => TRUE));
   }
 
   public static function update_bwg_tag($term_id) {
     $old_tag = self::get('old_tag','');
+
     // Create custom post (type is tag).
     $term = get_term($term_id, 'bwg_tag');
     $custom_post_params = array(
@@ -2484,7 +2574,12 @@ class WDWLibrary {
       $newPrepareArgs = $prepareArgs;
       array_unshift($newPrepareArgs , $time);
       $update = $wpdb->query( $wpdb->prepare('UPDATE `' . $wpdb->prefix . 'bwg_image` SET `modified_date` = "%d" WHERE ' . $where, $newPrepareArgs) );
-      $items = $wpdb->get_results( $wpdb->prepare('SELECT `gallery_id`, `thumb_url` FROM `' . $wpdb->prefix . 'bwg_image` WHERE ' . $where, $prepareArgs) );
+
+      if( !empty($prepareArgs) ) {
+        $items = $wpdb->get_results($wpdb->prepare('SELECT `gallery_id`, `thumb_url` FROM `' . $wpdb->prefix . 'bwg_image` WHERE ' . $where, $prepareArgs));
+      } else {
+        $items = $wpdb->get_results('SELECT `gallery_id`, `thumb_url` FROM `' . $wpdb->prefix . 'bwg_image` WHERE ' . $where);
+      }
       if ( !empty($items) ) {
         $thumbs_str = '';
         foreach ( $items as $item ) {
@@ -2492,8 +2587,8 @@ class WDWLibrary {
         }
         $thumbs_str = rtrim($thumbs_str,',');
 
-        $wpdb->query($wpdb->prepare('UPDATE `' . $wpdb->prefix . 'bwg_gallery` SET `modified_date` = "' . time() . '" WHERE `preview_image` IN (' . $thumbs_str . ') OR `random_preview_image` IN (' . $thumbs_str . ')', array('%d','%s','%s')));
-        $wpdb->query($wpdb->prepare('UPDATE `' . $wpdb->prefix . 'bwg_album` SET `modified_date` = "' . time() . '" WHERE `preview_image` IN (' . $thumbs_str . ') OR `random_preview_image` IN (' . $thumbs_str . ')', array('%d','%s','%s')));
+        $wpdb->query($wpdb->prepare('UPDATE `' . $wpdb->prefix . 'bwg_gallery` SET `modified_date` = %d WHERE `preview_image` IN (%s) OR `random_preview_image` IN (%s)', array(time(), $thumbs_str, $thumbs_str)));
+        $wpdb->query($wpdb->prepare('UPDATE `' . $wpdb->prefix . 'bwg_album` SET `modified_date` = %d WHERE `preview_image` IN (%s) OR `random_preview_image` IN (%s)', array(time(), $thumbs_str, $thumbs_str)));
       }
 
       return array('status' => $update, 'modified_date' => $time );
@@ -2546,12 +2641,20 @@ class WDWLibrary {
    * @return string
    */
   public static function get_thumb_size( $thumb_url ) {
+    $option = BWG()->options;
+    $max_width = self::get('upload_thumb_width', $option->upload_thumb_width);
+    $max_height = self::get('upload_thumb_height', $option->upload_thumb_height);
     $resolution_thumb = '';
     if ( file_exists( BWG()->upload_dir . $thumb_url ) ) {
       $thumb_image = wp_get_image_editor( BWG()->upload_dir . $thumb_url );
-      if ( !is_wp_error( $thumb_image ) ) {
+      if ( !is_wp_error( $thumb_image ) && !empty($thumb_image)) {
         $get_thumb_size = $thumb_image->get_size();
-        $resolution_thumb = $get_thumb_size["width"] . "x" . $get_thumb_size["height"];
+        $img_width = $get_thumb_size["width"];
+        $img_height = $get_thumb_size["height"];
+        $scale = min( $max_width / $img_width, $max_height / $img_height );
+        $new_width  = $img_width * $scale;
+        $new_height = $img_height * $scale;
+        $resolution_thumb = WDWLibrary::format_number($new_width, 2) . 'x' . WDWLibrary::format_number($new_height, 2);
       }
     }
     return $resolution_thumb;
@@ -2576,84 +2679,84 @@ class WDWLibrary {
     else {
       $image_actions = array(
         'image_resize' => array(
-          'title' => __('Resize', BWG()->prefix),
-          'bulk_action' => __('resized', BWG()->prefix),
+          'title' => __('Resize', 'photo-gallery'),
+          'bulk_action' => __('resized', 'photo-gallery'),
           'disabled' => (BWG()->wp_editor_exists ? '' : 'disabled="disabled"'),
         ),
         'image_recreate_thumbnail' => array(
-          'title' => __('Recreate thumbnail', BWG()->prefix),
-          'bulk_action' => __('recreated', BWG()->prefix),
+          'title' => __('Recreate thumbnail', 'photo-gallery'),
+          'bulk_action' => __('recreated', 'photo-gallery'),
           'disabled' => (BWG()->wp_editor_exists ? '' : 'disabled="disabled"'),
         ),
         'image_rotate_left' => array(
-          'title' => __('Rotate left', BWG()->prefix),
-          'bulk_action' => __('rotated left', BWG()->prefix),
+          'title' => __('Rotate left', 'photo-gallery'),
+          'bulk_action' => __('rotated left', 'photo-gallery'),
           'disabled' => (BWG()->wp_editor_exists ? '' : 'disabled="disabled"'),
         ),
         'image_rotate_right' => array(
-          'title' => __('Rotate right', BWG()->prefix),
-          'bulk_action' => __('rotated right', BWG()->prefix),
+          'title' => __('Rotate right', 'photo-gallery'),
+          'bulk_action' => __('rotated right', 'photo-gallery'),
           'disabled' => (BWG()->wp_editor_exists ? '' : 'disabled="disabled"'),
         ),
         'image_set_watermark' => array(
-          'title' => __('Set watermark', BWG()->prefix),
-          'bulk_action' => __('edited', BWG()->prefix),
+          'title' => __('Set watermark', 'photo-gallery'),
+          'bulk_action' => __('edited', 'photo-gallery'),
           'disabled' => (BWG()->wp_editor_exists ? '' : 'disabled="disabled"'),
         ),
         'image_reset' => array(
-          'title' => __('Reset', BWG()->prefix),
-          'bulk_action' => __('reset', BWG()->prefix),
+          'title' => __('Reset', 'photo-gallery'),
+          'bulk_action' => __('reset', 'photo-gallery'),
           'disabled' => '',
         ),
       );
     }
     $image_actions += array(
       'image_edit_alt' => array(
-        'title' => __('Edit Alt/Title', BWG()->prefix),
-        'bulk_action' => __('edited', BWG()->prefix),
+        'title' => __('Edit Alt/Title', 'photo-gallery'),
+        'bulk_action' => __('edited', 'photo-gallery'),
         'disabled' => '',
       ),
       'image_edit_description' => array(
-        'title' => __('Edit description', BWG()->prefix),
-        'bulk_action' => __('edited', BWG()->prefix),
+        'title' => __('Edit description', 'photo-gallery'),
+        'bulk_action' => __('edited', 'photo-gallery'),
         'disabled' => '',
       ),
       'image_edit_redirect' => array(
-        'title' => __('Edit redirect URL', BWG()->prefix),
-        'bulk_action' => __('edited', BWG()->prefix),
+        'title' => __('Edit redirect URL', 'photo-gallery'),
+        'bulk_action' => __('edited', 'photo-gallery'),
         'disabled' => '',
       ),
       'image_add_tag' => array(
-        'title' => __('Add/Remove tag', BWG()->prefix),
-        'bulk_action' => __('edited', BWG()->prefix),
+        'title' => __('Add/Remove tag', 'photo-gallery'),
+        'bulk_action' => __('edited', 'photo-gallery'),
         'disabled' => '',
       ),
       'image_publish' => array(
-        'title' => __('Publish', BWG()->prefix),
-        'bulk_action' => __('published', BWG()->prefix),
+        'title' => __('Publish', 'photo-gallery'),
+        'bulk_action' => __('published', 'photo-gallery'),
         'disabled' => '',
       ),
       'image_unpublish' => array(
-        'title' => __('Unpublish', BWG()->prefix),
-        'bulk_action' => __('unpublished', BWG()->prefix),
+        'title' => __('Unpublish', 'photo-gallery'),
+        'bulk_action' => __('unpublished', 'photo-gallery'),
         'disabled' => '',
       ),
       'image_delete' => array(
-        'title' => __('Delete', BWG()->prefix),
-        'bulk_action' => __('deleted', BWG()->prefix),
+        'title' => __('Delete', 'photo-gallery'),
+        'bulk_action' => __('deleted', 'photo-gallery'),
         'disabled' => '',
       ),
     );
 
     if ( function_exists('BWGEC') ) {
       $image_actions['set_image_pricelist'] = array(
-        'title' => __('Add pricelist', BWG()->prefix),
-        'bulk_action' => __('edited', BWG()->prefix),
+        'title' => __('Add pricelist', 'photo-gallery'),
+        'bulk_action' => __('edited', 'photo-gallery'),
         'disabled' => '',
       );
       $image_actions['remove_pricelist_all'] = array(
-        'title' => __('Remove pricelist', BWG()->prefix),
-        'bulk_action' => __('edited', BWG()->prefix),
+        'title' => __('Remove pricelist', 'photo-gallery'),
+        'bulk_action' => __('edited', 'photo-gallery'),
         'disabled' => '',
       );
     }
@@ -2669,6 +2772,7 @@ class WDWLibrary {
         case 'gif':
         case 'png':
         case 'svg':
+        case 'webp':
           return TRUE;
           break;
       }
@@ -2758,10 +2862,10 @@ class WDWLibrary {
           <div class="bwg-topbar bwg-topbar-content">
             <div class="bwg-topbar-content-container">
               <div class="bwg-topbar-content-title">
-                <?php _e('Photo Gallery Premium', BWG()->prefix); ?>
+                <?php _e('Photo Gallery Premium', 'photo-gallery'); ?>
               </div>
               <div class="bwg-topbar-content-body">
-                <?php _e('Get more stunning views with fully customizable themes, powerful lightbox and much more.', BWG()->prefix); ?>
+                <?php _e('Get more stunning views with fully customizable themes, powerful lightbox and much more.', 'photo-gallery'); ?>
               </div>
             </div>
             <div class="bwg-topbar-content-button-container">
@@ -2777,9 +2881,9 @@ class WDWLibrary {
               <?php
               if ( $show_guide_link ) {
                 ?>
-                <a href="<?php echo $user_guide_link; ?>" target="_blank" class="bwg-topbar_user_guid">
+                <a href="<?php echo esc_url($user_guide_link); ?>" target="_blank" class="bwg-topbar_user_guid">
                   <div class="bwg-topbar-links-item">
-                    <?php _e('User guide', BWG()->prefix); ?>
+                    <?php _e('User guide', 'photo-gallery'); ?>
                   </div>
                 </a>
                 <?php
@@ -2791,10 +2895,10 @@ class WDWLibrary {
             ?>
             <div class="bwg-topbar bwg-topbar-links bwg-topbar_support_forum">
               <div class="bwg-topbar-links-container">
-                <a href="<?php echo $support_forum_link; ?>" target="_blank" class="bwg-topbar_support_forum">
+                <a href="<?php echo esc_url($support_forum_link); ?>" target="_blank" class="bwg-topbar_support_forum">
                   <div class="bwg-topbar-links-item">
-                    <img src="<?php echo  BWG()->plugin_url . '/css/images/help.svg'; ?>" class="help_icon" />
-                    <?php _e('Ask a question', BWG()->prefix); ?>
+                    <img src="<?php echo  esc_url(BWG()->plugin_url . '/css/images/help.svg'); ?>" class="help_icon" />
+                    <?php _e('Ask a question', 'photo-gallery'); ?>
                   </div>
                 </a>
               </div>
@@ -2808,21 +2912,21 @@ class WDWLibrary {
       $menus = array(
         'manage' => array(
           'href' => add_query_arg( array('page' => 'manage' . BWG()->menu_postfix ), admin_url('admin.php')),
-          'name' => __('Forms', BWG()->prefix)
+          'name' => __('Forms', 'photo-gallery')
         ),
         'addons' => array(
           'href' => add_query_arg( array('page' => 'addons' . BWG()->menu_postfix ), admin_url('admin.php')),
-          'name' => __('Add-ons', BWG()->prefix)
+          'name' => __('Add-ons', 'photo-gallery')
         ),
         'pricing' => array(
           'href' => add_query_arg( array('page' => 'pricing' . BWG()->menu_postfix ), admin_url('admin.php')),
-          'name' => __('Premium Version', BWG()->prefix) .' <span class="bwg-upgrade">' . __('Upgrade', BWG()->prefix) . '</span>'
+          'name' => __('Premium Version', 'photo-gallery') .' <span class="bwg-upgrade">' . __('Upgrade', 'photo-gallery') . '</span>'
         ),
       );
       ?>
       <style>#wpbody-content>div:not(.wrap), .wrap .notice:not(#wd_bp_notice_cont) { display: none; }</style>
       <div class="bwg-head">
-        <div><img src="<?php echo BWG()->plugin_url . '/images/FormMaker.png'; ?>"></div>
+        <div><img src="<?php echo esc_url(BWG()->plugin_url . '/images/FormMaker.png'); ?>"></div>
         <ul class="bwg-breadcrumbs">
           <?php
           foreach ( $menus as $key => $item ) {
@@ -2831,7 +2935,7 @@ class WDWLibrary {
             }
             ?>
             <li class="bwg-breadcrumb-item">
-              <a class="bwg-breadcrumb-item-link<?php echo ( $key == $page ) ? ' bwg-breadcrumb-item-link-active' : ''; ?>" href="<?php echo $item['href']; ?>"><?php echo $item['name']; ?></a>
+              <a class="bwg-breadcrumb-item-link<?php echo ( $key == $page ) ? ' bwg-breadcrumb-item-link-active' : ''; ?>" href="<?php echo esc_url($item['href']); ?>"><?php echo esc_html($item['name']); ?></a>
             </li>
             <?php
           }
@@ -2913,8 +3017,8 @@ class WDWLibrary {
     ob_start();
     if ( $show_guide_link ) {
       ?>
-      <a href="<?php echo $user_guide_link; ?>" target="_blank" class="bwg-topbar_user_guid">
-        <img class="wd-question-mark" src="<?php echo BWG()->plugin_url . '/images/question_mark.svg';?>">
+      <a href="<?php echo esc_url($user_guide_link); ?>" target="_blank" class="bwg-topbar_user_guid">
+        <img class="wd-question-mark" src="<?php echo esc_url(BWG()->plugin_url . '/images/question_mark.svg');?>">
       </a>
       <?php
     }?>
@@ -2935,11 +3039,11 @@ class WDWLibrary {
     ob_start();
     ?>
       <div class="wd-list-view-header-free-right">
-        <p class="upgrade-header"><?php _e('Unleash the full benefits and features', BWG()->prefix); ?></p>
-        <p class="upgrade-text"><?php _e('of the Premium Plugin', BWG()->prefix); ?></p>
-        <a class="upgrade-button" href="<?php echo $premium_link; ?>" target="_blank"><?php _e( 'Upgrade Now', BWG()->prefix ); ?></a>
+        <p class="upgrade-header"><?php _e('Unleash the full benefits & ', 'photo-gallery'); ?></p>
+        <p class="upgrade-text"><?php _e('features of the Premium Plugin', 'photo-gallery'); ?></p>
+        <a class="upgrade-button" href="<?php echo esc_url($premium_link); ?>" target="_blank"><?php _e( 'Upgrade Now', BWG()->prefix ); ?></a>
       </div>
-      <a class="wd-list-view-ask-question" href="<?php echo $support_forum_link; ?>" target="_blank"><?php _e('Ask a question', BWG()->prefix); ?></a>
+      <a class="wd-list-view-ask-question" href="<?php echo esc_url($support_forum_link); ?>" target="_blank"><?php _e('Ask a question', 'photo-gallery'); ?></a>
     <?php
     echo ob_get_clean();
   }
@@ -2953,7 +3057,7 @@ class WDWLibrary {
     $support_forum_link = 'https://wordpress.org/support/plugin/photo-gallery/#new-post';
     ob_start();
     ?>
-    <a class="wd-list-view-ask-question" href="<?php echo $support_forum_link; ?>" target="_blank"><?php _e('Ask a question', BWG()->prefix); ?></a>
+    <a class="wd-list-view-ask-question" href="<?php echo esc_url($support_forum_link); ?>" target="_blank"><?php _e('Ask a question', 'photo-gallery'); ?></a>
     <?php
     echo ob_get_clean();
   }
@@ -3000,7 +3104,7 @@ class WDWLibrary {
     $rows = $wpdb->get_results($query);
 
     $galleries = array();
-    $galleries[0] = __('All images', BWG()->prefix);
+    $galleries[0] = __('All images', 'photo-gallery');
     foreach ( $rows as $row ) {
       $galleries[$row->id] = $row->name;
     }
@@ -3019,7 +3123,7 @@ class WDWLibrary {
     $rows = $wpdb->get_results($query);
 
     $gallery_groups = array();
-    $gallery_groups[0] = __('All galleries', BWG()->prefix);
+    $gallery_groups[0] = __('All galleries', 'photo-gallery');
     foreach ( $rows as $row ) {
       $gallery_groups[$row->id] = $row->name;
     }
@@ -3064,7 +3168,7 @@ class WDWLibrary {
     $rows = $wpdb->get_results($query);
 
     $tags = array();
-    $tags[0] = __('All tags', BWG()->prefix);
+    $tags[0] = __('All tags', 'photo-gallery');
     foreach ( $rows as $row ) {
       $tags[$row->term_id] = $row->name;
     }
@@ -3086,7 +3190,7 @@ class WDWLibrary {
   }
 
   public static function error_message_ids() {
-	  return array( 26, 27 );
+	  return array( 26, 27, 31 );
   }
 
   /**
@@ -3161,4 +3265,183 @@ class WDWLibrary {
 
     return $value;
   }
+
+  /**
+   * Delete empty entries from array.
+   *
+   * @param $var
+   *
+   * @return bool
+   */
+  public static function isArrayEntryEmpty ($var){
+    return ($var !== "");
+  }
+
+  /**
+   * Strip HTML and PHP tags from a string except allowed tags.
+   *
+   * @param $value
+   *
+   * @return string
+   */
+  public static function strip_tags($value) {
+    $allowed_tags = "<b>,<p>,<a>,<strong>,<span>,<br>,<ul>,<ol>,<li>,<i>,<h1>,<h2>,<h3>,<h4>,<h5>,<h6>,<img>,<blockquote>,<pre>,<section>,<div>,";
+
+    return strip_tags($value, $allowed_tags);
+  }
+
+  /**
+
+ * @param $tagtext
+ *
+ * @return array
+ */
+  public static function parse_tagtext_to_array($tagtext ) {
+    $data = array();
+    $tagtext_params = explode('" ', $tagtext);
+    foreach ( $tagtext_params as $tagtext_param ) {
+      $tagtext_param = str_replace('"', '', $tagtext_param);
+      $tagtext_elem = explode('=', $tagtext_param);
+      $data[str_replace(' ', '', $tagtext_elem[0])] = $tagtext_elem[1];
+    }
+
+    return $data;
+  }
+
+  /**
+   * Get svg file width and height
+   *
+   * @param $image url
+   *
+   * @return array
+   */
+  public static function get_svg_size( $image ) {
+    $xml = simplexml_load_file($image);
+    $attr = $xml->attributes();
+
+    $size = array(
+      'width' => floor(json_decode($attr->width)),
+      'height'=> floor(json_decode($attr->height)),
+    );
+
+    return $size;
+  }
+
+  /**
+   * Resizing on ratio.
+   *
+   * @param $srcWidth
+   * @param $srcHeight
+   * @param $maxWidth
+   * @param $maxHeight
+   *
+   * @return array
+   */
+  public static function bwg_resizing_ratio( $srcWidth, $srcHeight, $maxWidth, $maxHeight ) {
+    $width = $maxWidth / $srcWidth;
+    $height = $maxHeight / $srcHeight;
+    $ratio = array( $width, $height );
+    $ratio = min($ratio[0], $ratio[1]);
+    $data = array(
+      'width' => $srcWidth * $ratio,
+      'height' => $srcHeight * $ratio,
+    );
+
+    return $data;
+  }
+
+  /**
+   * Saving admin galleries, gallery edit, albums list page sorted value to wp_options.
+   *
+   * @param $params array list_type => edit/galleries/albums, gallery_id for edit case only, order_by for all cases
+  */
+  public static function set_sorting( $params = array() ) {
+
+    $gallery_id = isset( $params['gallery_id'] ) ? $params['gallery_id'] : 0;
+    $order_by   = isset( $params['order_by'] ) ? $params['order_by'] : 'order_asc';
+    $list_type  = isset( $params['list_type'] ) ? $params['list_type'] : '';
+
+    if ( $list_type == '' )  {
+      return;
+    }
+
+    $data = get_option('bwg_gallery_sorting');
+    $user_id = get_current_user_id();
+
+    if( $list_type == 'edit' && ((!empty($data[$user_id][$gallery_id]) && $data[$user_id][$gallery_id]['order_by'] == $order_by) || $gallery_id == 0 || $user_id == 0) ) {
+      return;
+    }
+    if ( $list_type == 'edit') {
+        $data[$user_id][$gallery_id]['order_by'] = $order_by;
+    } elseif ( $list_type == 'galleries' ) {
+        $data[$user_id]['galleries']['order_by'] = $order_by;
+    } elseif ( $list_type == 'albums' ) {
+        $data[$user_id]['albums']['order_by'] = $order_by;
+    }
+
+    update_option( 'bwg_gallery_sorting', $data, 1 );
+  }
+
+  /**
+   * Getting admin gallery list page sorted value from wp_options.
+   *
+   * @param $params array list_type => edit/galleries/albums, gallery_id for edit case only
+   *
+   * @return string
+  */
+  public static function get_sorting( $params = array() ) {
+    $gallery_id = isset($params['gallery_id']) ? $params['gallery_id'] : 0;
+    $list_type = isset($params['list_type']) ? $params['list_type'] : '';
+    $user_id = get_current_user_id();
+    $data = get_option('bwg_gallery_sorting');
+
+    if ( $list_type == 'edit' && !empty($data[$user_id][$gallery_id]['order_by']) ) {
+        return $data[$user_id][$gallery_id]['order_by'];
+    } elseif ($list_type == 'galleries' && !empty($data[$user_id]['galleries']['order_by']) ) {
+        return $data[$user_id]['galleries']['order_by'];
+    } elseif ($list_type == 'albums' && !empty($data[$user_id]['albums']['order_by']) ) {
+        return $data[$user_id]['albums']['order_by'];
+    }
+    return 'order_asc';
+  }
+  /**
+   * Escape array.
+   *
+   * @param array $args
+   *
+   * @return string
+   */
+  public static function escape_array( $args = array() ) {
+    global $wpdb;
+    $escaped = array();
+    foreach ( $args as $k => $v ) {
+      if ( is_numeric($v) ) {
+        $escaped[] = $wpdb->prepare('%d', $v);
+      }
+      else {
+        $escaped[] = $wpdb->prepare('%s', $v);
+      }
+    }
+
+    return implode(',', $escaped);
+  }
+
+  /**
+   * Format number.
+   *
+   * @param        $number
+   * @param int    $decimals
+   * @param string $decPoint
+   * @param string $thousandsSep
+   *
+   * @return string
+   */
+  public static function format_number( $number, $decimals = 0, $decPoint = '.' , $thousandsSep = '' ) {
+    $negation = ($number < 0) ? (-1) : 1;
+    $coefficient = 10 ** $decimals;
+    $number = $negation * floor((string)(abs($number) * $coefficient)) / $coefficient;
+
+    return number_format($number, $decimals, $decPoint, $thousandsSep);
+  }
 }
+

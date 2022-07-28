@@ -429,7 +429,6 @@ class BWGUpdate {
     if ( version_compare($version, '1.5.68' ) == -1 ) {
       $wpdb->query("ALTER TABLE " . $wpdb->prefix . "bwg_file_paths ADD `author` bigint(20) NOT NULL DEFAULT 1");
     }
-
     return;
   }
 }

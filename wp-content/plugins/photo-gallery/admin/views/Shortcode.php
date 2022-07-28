@@ -54,15 +54,14 @@ class ShortcodeView_bwg extends AdminView_bwg {
     <input type="hidden" id="currrent_id" name="currrent_id" value="" />
     <input type="hidden" id="title" name="title" value="" />
     <input type="hidden" id="bwg_insert" name="bwg_insert" value="" />
-
     <div class="<?php echo (isset($_GET['callback']) && $_GET['callback'] == 'wdg_cb_tw/bwg') ? 'bwg_tw-container' : '' ?>">
       <div class="bwg_tabs meta-box-sortables">
         <ul class="bwg-tabs">
           <li class="tabs">
-            <a href="#bwg_tab_galleries_content" class="bwg-tablink"><?php _e('Gallery', BWG()->prefix); ?></a>
+            <a href="#bwg_tab_galleries_content" class="bwg-tablink"><?php _e('Gallery', 'photo-gallery'); ?></a>
           </li>
           <li class="tabs">
-            <a href="#bwg_tab_albums_content" class="bwg-tablink"><?php _e('Gallery group', BWG()->prefix); ?></a>
+            <a href="#bwg_tab_albums_content" class="bwg-tablink"><?php _e('Gallery group', 'photo-gallery'); ?></a>
           </li>
         </ul>
         <div id="bwg_tab_galleries_content" style="display: none" class="bwg-section bwg-no-bottom-border wd-box-content">
@@ -73,7 +72,7 @@ class ShortcodeView_bwg extends AdminView_bwg {
                   <img class="view_type_img" src="<?php echo BWG()->plugin_url . '/images/thumbnails.svg'; ?>" />
                   <img class="view_type_img_active" src="<?php echo BWG()->plugin_url . '/images/thumbnails_active.svg'; ?>" />
                 </label>
-                <input type="radio" class="gallery_type_radio" id="thumbnails" name="gallery_type" value="thumbnails" /><label class="gallery_type_label" for="thumbnails"><?php echo __('Thumbnails', BWG()->prefix); ?></label>
+                <input type="radio" class="gallery_type_radio" id="thumbnails" name="gallery_type" value="thumbnails" /><label class="gallery_type_label" for="thumbnails"><?php echo __('Thumbnails', 'photo-gallery'); ?></label>
               </div>
             </span>
             <span class="gallery_type bwg-thumbnails_masonry" onClick="bwg_gallery_type('thumbnails_masonry')" data-img-url="<?php echo BWG()->plugin_url . '/images/upgrade_to_pro_masonry.png'; ?>" data-title="Masonry" data-demo-link="https://demo.10web.io/photo-gallery/masonry/?utm_source=photo_gallery&utm_medium=free_plugin">
@@ -83,7 +82,7 @@ class ShortcodeView_bwg extends AdminView_bwg {
                   <img class="view_type_img_active" src="<?php echo BWG()->plugin_url . '/images/thumbnails_masonry_active.svg'; ?>" />
                 </label>
                 <input type="radio" class="gallery_type_radio" id="thumbnails_masonry" name="gallery_type" value="thumbnails_masonry" />
-                <label class="gallery_type_label" for="thumbnails_masonry"><?php echo __('Masonry', BWG()->prefix); ?></label>
+                <label class="gallery_type_label" for="thumbnails_masonry"><?php echo __('Masonry', 'photo-gallery'); ?></label>
                 <?php if ( !BWG()->is_pro ) { ?>
                   <span class="pro_btn">Premium</span>
                 <?php } ?>
@@ -95,7 +94,7 @@ class ShortcodeView_bwg extends AdminView_bwg {
                   <img class="view_type_img" src="<?php echo BWG()->plugin_url . '/images/thumbnails_mosaic.svg'; ?>" />
                   <img class="view_type_img_active" src="<?php echo BWG()->plugin_url . '/images/thumbnails_mosaic_active.svg'; ?>" />
                 </label>
-                <input type="radio" class="gallery_type_radio" id="thumbnails_mosaic" name="gallery_type" value="thumbnails_mosaic" /><label class="gallery_type_label" for="thumbnails_mosaic"><?php echo __('Mosaic', BWG()->prefix); ?></label>
+                <input type="radio" class="gallery_type_radio" id="thumbnails_mosaic" name="gallery_type" value="thumbnails_mosaic" /><label class="gallery_type_label" for="thumbnails_mosaic"><?php echo __('Mosaic', 'photo-gallery'); ?></label>
                 <?php if ( !BWG()->is_pro ) { ?>
                   <span class="pro_btn">Premium</span>
                 <?php } ?>
@@ -107,7 +106,7 @@ class ShortcodeView_bwg extends AdminView_bwg {
                   <img class="view_type_img" src="<?php echo BWG()->plugin_url . '/images/slideshow.svg'; ?>" />
                   <img class="view_type_img_active" src="<?php echo BWG()->plugin_url . '/images/slideshow_active.svg'; ?>" />
                 </label>
-                <input type="radio" class="gallery_type_radio" id="slideshow" name="gallery_type" value="slideshow" /><label class="gallery_type_label" for="slideshow"><?php echo __('Slideshow', BWG()->prefix); ?></label>
+                <input type="radio" class="gallery_type_radio" id="slideshow" name="gallery_type" value="slideshow" /><label class="gallery_type_label" for="slideshow"><?php echo __('Slideshow', 'photo-gallery'); ?></label>
               </div>
             </span>
             <span class="gallery_type bwg-image_browser" onClick="bwg_gallery_type('image_browser')">
@@ -116,7 +115,7 @@ class ShortcodeView_bwg extends AdminView_bwg {
                   <img class="view_type_img" src="<?php echo BWG()->plugin_url . '/images/image_browser.svg'; ?>" />
                   <img class="view_type_img_active" src="<?php echo BWG()->plugin_url . '/images/image_browser_active.svg'; ?>" />
                 </label>
-                <input type="radio" class="gallery_type_radio" id="image_browser" name="gallery_type" value="image_browser" /><label class="gallery_type_label" for="image_browser"><?php echo __('Image Browser', BWG()->prefix); ?></label>
+                <input type="radio" class="gallery_type_radio" id="image_browser" name="gallery_type" value="image_browser" /><label class="gallery_type_label" for="image_browser"><?php echo __('Image Browser', 'photo-gallery'); ?></label>
               </div>
             </span>
             <span class="gallery_type bwg-blog_style" onClick="bwg_gallery_type('blog_style')" data-img-url="<?php echo BWG()->plugin_url . '/images/upgrade_to_pro_blog_style.png'; ?>" data-title="Blog Style" data-demo-link="https://demo.10web.io/photo-gallery/blog-style/?utm_source=photo_gallery&utm_medium=free_plugin">
@@ -125,7 +124,7 @@ class ShortcodeView_bwg extends AdminView_bwg {
                   <img class="view_type_img" src="<?php echo BWG()->plugin_url . '/images/blog_style.svg'; ?>" />
                   <img class="view_type_img_active" src="<?php echo BWG()->plugin_url . '/images/blog_style_active.svg'; ?>" />
                 </label>
-                <input type="radio" class="gallery_type_radio" id="blog_style" name="gallery_type" value="blog_style" /><label class="gallery_type_label" for="blog_style"><?php echo __('Blog Style', BWG()->prefix); ?></label>
+                <input type="radio" class="gallery_type_radio" id="blog_style" name="gallery_type" value="blog_style" /><label class="gallery_type_label" for="blog_style"><?php echo __('Blog Style', 'photo-gallery'); ?></label>
                 <?php if ( !BWG()->is_pro ) { ?>
                   <span class="pro_btn">Premium</span>
                 <?php } ?>
@@ -137,7 +136,7 @@ class ShortcodeView_bwg extends AdminView_bwg {
                   <img class="view_type_img" src="<?php echo BWG()->plugin_url . '/images/carousel.svg'; ?>" />
                   <img class="view_type_img_active" src="<?php echo BWG()->plugin_url . '/images/carousel_active.svg'; ?>" />
                 </label>
-                <input class="gallery_type_radio" type="radio" id="carousel" name="gallery_type" value="carousel" /><label class="gallery_type_label" for="carousel"><?php echo __('Carousel', BWG()->prefix); ?></label>
+                <input class="gallery_type_radio" type="radio" id="carousel" name="gallery_type" value="carousel" /><label class="gallery_type_label" for="carousel"><?php echo __('Carousel', 'photo-gallery'); ?></label>
                 <?php if ( !BWG()->is_pro ) { ?>
                   <span class="pro_btn">Premium</span>
                 <?php } ?>
@@ -145,7 +144,7 @@ class ShortcodeView_bwg extends AdminView_bwg {
             </span>
           </div>
           <div class="bwg_select_gallery_type" style="display:none;">
-            <label class="wd-label" for="gallery_types_name"><?php _e('View type', BWG()->prefix); ?></label>
+            <label class="wd-label" for="gallery_types_name"><?php _e('View type', 'photo-gallery'); ?></label>
             <select name="gallery_types_name" id="gallery_types_name" onchange="bwg_gallery_type(jQuery(this).val());">
               <?php
               foreach ( $gallery_types_name as $key => $album_type_name ) {
@@ -185,7 +184,7 @@ class ShortcodeView_bwg extends AdminView_bwg {
                   <img class="view_type_img" src="<?php echo BWG()->plugin_url . '/images/album_compact_preview.svg'; ?>" />
                   <img class="view_type_img_active" src="<?php echo BWG()->plugin_url . '/images/album_compact_preview_active.svg'; ?>" />
                 </label>
-                <input type="radio" class="album_type_radio" id="album_compact_preview" name="gallery_type" value="album_compact_preview" /><label class="album_type_label" for="album_compact_preview"><?php echo __('Compact', BWG()->prefix); ?></label>
+                <input type="radio" class="album_type_radio" id="album_compact_preview" name="gallery_type" value="album_compact_preview" /><label class="album_type_label" for="album_compact_preview"><?php echo __('Compact', 'photo-gallery'); ?></label>
               </div>
             </span>
             <span class="gallery_type bwg-album_masonry_preview" onClick="bwg_gallery_type('album_masonry_preview')" data-img-url="<?php echo BWG()->plugin_url . '/images/upgrade_to_pro_masonry.png'; ?>" data-title="Masonry" data-demo-link="https://demo.10web.io/photo-gallery/masonry/?utm_source=photo_gallery&utm_medium=free_plugin">
@@ -194,7 +193,7 @@ class ShortcodeView_bwg extends AdminView_bwg {
                   <img class="view_type_img" src="<?php echo BWG()->plugin_url . '/images/album_masonry_preview.svg'; ?>" />
                   <img class="view_type_img_active" src="<?php echo BWG()->plugin_url . '/images/album_masonry_preview_active.svg'; ?>" />
                 </label>
-                <input type="radio" class="album_type_radio" id="album_masonry_preview" name="gallery_type" value="album_masonry_preview" /><label class="album_type_label" for="album_masonry_preview"><?php echo __('Masonry', BWG()->prefix); ?></label>
+                <input type="radio" class="album_type_radio" id="album_masonry_preview" name="gallery_type" value="album_masonry_preview" /><label class="album_type_label" for="album_masonry_preview"><?php echo __('Masonry', 'photo-gallery'); ?></label>
                 <?php if ( !BWG()->is_pro ) { ?>
                   <span class="pro_btn">Premium</span>
                 <?php } ?>
@@ -206,12 +205,12 @@ class ShortcodeView_bwg extends AdminView_bwg {
                   <img class="view_type_img" src="<?php echo BWG()->plugin_url . '/images/album_extended_preview.svg'; ?>" />
                   <img class="view_type_img_active" src="<?php echo BWG()->plugin_url . '/images/album_extended_preview_active.svg'; ?>" />
                 </label>
-                <input type="radio" class="album_type_radio" id="album_extended_preview" name="gallery_type" value="album_extended_preview" /><label class="album_type_label" for="album_extended_preview"><?php echo __('Extended', BWG()->prefix); ?></label>
+                <input type="radio" class="album_type_radio" id="album_extended_preview" name="gallery_type" value="album_extended_preview" /><label class="album_type_label" for="album_extended_preview"><?php echo __('Extended', 'photo-gallery'); ?></label>
               </div>
             </span>
           </div>
           <div class="bwg_select_gallery_type" style="display:none;">
-            <label class="wd-label" for="gallery_types_name"><?php _e('View type', BWG()->prefix); ?></label>
+            <label class="wd-label" for="gallery_types_name"><?php _e('View type', 'photo-gallery'); ?></label>
             <select name="gallery_types_name" id="gallery_types_name" onchange="bwg_gallery_type(jQuery(this).val());">
               <?php
               foreach ( $album_types_name as $key => $album_type_name ) {
@@ -265,7 +264,7 @@ class ShortcodeView_bwg extends AdminView_bwg {
         <div class="bwg-pro-views bwg-section bwg-no-top-border bwg-flex-wrap">
           <div class="wd-box-content wd-width-33">
             <div class="wd-group" id="tr_gallery">
-              <label class="wd-label" for="gallery"><?php _e('Gallery', BWG()->prefix); ?></label>
+              <label class="wd-label" for="gallery"><?php _e('Gallery', 'photo-gallery'); ?></label>
               <div>
                 <select name="gallery" id="gallery">
                   <?php
@@ -277,10 +276,10 @@ class ShortcodeView_bwg extends AdminView_bwg {
                   ?>
                 </select>
               </div>
-              <p class="description"><?php _e('Select the gallery to display.', BWG()->prefix) ?></p>
+              <p class="description"><?php _e('Select the gallery to display.', 'photo-gallery') ?></p>
             </div>
             <div class="wd-group" id="tr_album">
-              <label class="wd-label" for="album"><?php _e('Gallery Group', BWG()->prefix); ?></label>
+              <label class="wd-label" for="album"><?php _e('Gallery Group', 'photo-gallery'); ?></label>
               <div>
                 <select name="album" id="album">
                   <?php
@@ -291,13 +290,13 @@ class ShortcodeView_bwg extends AdminView_bwg {
                   }
                   ?>
                 </select>
-                <p class="description"><?php _e('Select the gallery group to display.', BWG()->prefix); ?></p>
+                <p class="description"><?php _e('Select the gallery group to display.', 'photo-gallery'); ?></p>
               </div>
             </div>
           </div>
           <div class="wd-box-content wd-width-33" id="tr_tag">
             <div class="wd-group">
-              <label class="wd-label" for="tag"><?php _e('Tag', BWG()->prefix); ?></label>
+              <label class="wd-label" for="tag"><?php _e('Tag', 'photo-gallery'); ?></label>
               <div>
                 <select name="tag" id="tag">
                   <?php
@@ -309,12 +308,12 @@ class ShortcodeView_bwg extends AdminView_bwg {
                   ?>
                 </select>
               </div>
-              <p class="description"><?php _e('Filter gallery images by this tag.', BWG()->prefix) ?></p>
+              <p class="description"><?php _e('Filter gallery images by this tag.', 'photo-gallery') ?></p>
             </div>
           </div>
           <div class="wd-box-content wd-width-33">
             <div class="wd-group" id="tr_theme">
-              <label class="wd-label" for="theme"><?php _e('Theme', BWG()->prefix); ?></label>
+              <label class="wd-label" for="theme"><?php _e('Theme', 'photo-gallery'); ?></label>
               <div>
                 <select name="theme" id="theme">
                   <?php
@@ -326,24 +325,24 @@ class ShortcodeView_bwg extends AdminView_bwg {
                   ?>
                 </select>
               </div>
-              <p class="description"><?php _e('Choose the theme for your gallery.', BWG()->prefix) ?></p>
+              <p class="description"><?php _e('Choose the theme for your gallery.', 'photo-gallery') ?></p>
             </div>
           </div>
           <div class="wd-box-content wd-width-100">
             <div class="wd-group">
               <input id="use_option_defaults" class="wd-radio" value="1" name="use_option_defaults" type="checkbox" checked="checked" />
-              <label class="wd-label-radio" for="use_option_defaults"><?php _e('Use default options', BWG()->prefix); ?></label>
-              <p class="description"><?php _e('Mark this option to use default settings configured in Photo Gallery Options.', BWG()->prefix) ?><br><?php echo sprintf(__('You can change the default options %s.', BWG()->prefix), '<a id="options_link" data-href="' . admin_url('admin.php?page=options_' . BWG()->prefix) . '" href="' . admin_url('admin.php?page=options_' . BWG()->prefix) . '" target="_blank">' . __('here', BWG()->prefix) . '</a>'); ?></p>
+              <label class="wd-label-radio" for="use_option_defaults"><?php _e('Use default options', 'photo-gallery'); ?></label>
+              <p class="description"><?php _e('Mark this option to use default settings configured in Photo Gallery Options.', 'photo-gallery') ?><br><?php echo sprintf(__('You can change the default options %s.', 'photo-gallery'), '<a id="options_link" data-href="' . admin_url('admin.php?page=options_' . BWG()->prefix) . '" href="' . admin_url('admin.php?page=options_' . BWG()->prefix) . '" target="_blank">' . __('here', 'photo-gallery') . '</a>'); ?></p>
             </div>
           </div>
           <div id="custom_options_conainer" class="wd-box-content wd-width-100">
             <div class="postbox">
               <button class="button-link handlediv" type="button" aria-expanded="true">
-                <span class="screen-reader-text"><?php _e('Toggle panel:', BWG()->prefix); ?></span>
+                <span class="screen-reader-text"><?php _e('Toggle panel:', 'photo-gallery'); ?></span>
                 <span class="toggle-indicator" aria-hidden="false"></span>
               </button>
               <h2 class="hndle">
-                <span id="bwg_basic_metabox_title" data-title-gallery="<?php _e('Gallery', BWG()->prefix); ?>" data-title-album="<?php _e('Gallery group', BWG()->prefix); ?>"></span>
+                <span id="bwg_basic_metabox_title" data-title-gallery="<?php _e('Gallery', 'photo-gallery'); ?>" data-title-album="<?php _e('Gallery group', 'photo-gallery'); ?>"></span>
               </h2>
               <div class="inside bwg-flex-wrap">
                 <?php
@@ -354,11 +353,11 @@ class ShortcodeView_bwg extends AdminView_bwg {
             </div>
             <div class="postbox closed">
               <button class="button-link handlediv" type="button" aria-expanded="true">
-                <span class="screen-reader-text"><?php _e('Toggle panel:', BWG()->prefix); ?></span>
+                <span class="screen-reader-text"><?php _e('Toggle panel:', 'photo-gallery'); ?></span>
                 <span class="toggle-indicator" aria-hidden="false"></span>
               </button>
               <h2 class="hndle">
-                <span><?php _e('Action on image click', BWG()->prefix); ?></span>
+                <span><?php _e('Action on image click', 'photo-gallery'); ?></span>
               </h2>
               <div class="inside">
                 <?php
@@ -368,49 +367,51 @@ class ShortcodeView_bwg extends AdminView_bwg {
             </div>
             <div class="postbox closed">
               <button class="button-link handlediv" type="button" aria-expanded="true">
-                <span class="screen-reader-text"><?php _e('Toggle panel', BWG()->prefix); ?></span>
+                <span class="screen-reader-text"><?php _e('Toggle panel', 'photo-gallery'); ?></span>
                 <span class="toggle-indicator" aria-hidden="false"></span>
               </button>
               <h2 class="hndle">
-                <span><?php _e('Advanced', BWG()->prefix); ?></span>
+                <span><?php _e('Advanced', 'photo-gallery'); ?></span>
               </h2>
               <div class="inside bwg-flex-wrap">
                 <div class="wd-box-content wd-width-100" id="tr_watermark_type">
                   <div class="wd-group">
-                    <label class="wd-label"><?php _e('Advertisement type', BWG()->prefix); ?></label>
-                    <input type="radio" class="wd-radio" name="watermark_type" id="watermark_type_none" value="none" onClick="bwg_watermark('watermark_type_none')" <?php echo (BWG()->options->watermark_type == 'none') ? 'checked' : ''; ?> /><label for="watermark_type_none" class="wd-radio-label"><?php _e('None', BWG()->prefix); ?></label>
-                    <input type="radio" class="wd-radio" name="watermark_type" id="watermark_type_text" value="text" onClick="bwg_watermark('watermark_type_text')" <?php echo (BWG()->options->watermark_type == 'text') ? 'checked' : ''; ?> /><label for="watermark_type_text" class="wd-radio-label"><?php _e('Text', BWG()->prefix); ?></label>
-                    <input type="radio" class="wd-radio" name="watermark_type" id="watermark_type_image" value="image" onClick="bwg_watermark('watermark_type_image')" <?php echo (BWG()->options->watermark_type == 'image') ? 'checked' : ''; ?> /><label for="watermark_type_image" class="wd-radio-label"><?php _e('Image', BWG()->prefix); ?></label>
-                    <p class="description"><?php _e("Add Text or Image advertisement to your images with this option.", BWG()->prefix); ?></p>
+                    <label class="wd-label"><?php _e('Advertisement type', 'photo-gallery'); ?></label>
+                    <div class="bwg-flex">
+											<div><input type="radio" class="wd-radio" name="watermark_type" id="watermark_type_none" value="none" onClick="bwg_watermark('watermark_type_none')" <?php echo (BWG()->options->watermark_type == 'none') ? 'checked' : ''; ?> /><label for="watermark_type_none" class="wd-radio-label"><?php _e('None', 'photo-gallery'); ?></label></div>
+											<div><input type="radio" class="wd-radio" name="watermark_type" id="watermark_type_text" value="text" onClick="bwg_watermark('watermark_type_text')" <?php echo (BWG()->options->watermark_type == 'text') ? 'checked' : ''; ?> /><label for="watermark_type_text" class="wd-radio-label"><?php _e('Text', 'photo-gallery'); ?></label></div>
+											<div><input type="radio" class="wd-radio" name="watermark_type" id="watermark_type_image" value="image" onClick="bwg_watermark('watermark_type_image')" <?php echo (BWG()->options->watermark_type == 'image') ? 'checked' : ''; ?> /><label for="watermark_type_image" class="wd-radio-label"><?php _e('Image', 'photo-gallery'); ?></label></div>
+                    </div>
+                    <p class="description"><?php _e("Add Text or Image advertisement to your images with this option.", 'photo-gallery'); ?></p>
                   </div>
                 </div>
                 <div class="wd-box-content wd-width-33">
                   <div class="wd-box-content wd-width-100" id="tr_watermark_link">
                     <div class="wd-group">
-                      <label class="wd-label" for="watermark_link"><?php _e('Advertisement link', BWG()->prefix); ?></label>
+                      <label class="wd-label" for="watermark_link"><?php _e('Advertisement link', 'photo-gallery'); ?></label>
                       <input type="text" id="watermark_link" name="watermark_link" value="<?php echo BWG()->options->watermark_link; ?>" />
-                      <p class="description"><?php _e("Provide the link to be added to advertisement on images.", BWG()->prefix); ?>, e.g. http://www.example.com</p>
+                      <p class="description"><?php _e("Provide the link to be added to advertisement on images.", 'photo-gallery'); ?>, e.g. http://www.example.com</p>
                     </div>
                   </div>
                   <div class="wd-box-content wd-width-100" id="tr_watermark_url">
                     <div class="wd-group">
-                      <label class="wd-label" for="watermark_url"><?php _e('Advertisement URL', BWG()->prefix); ?></label>
+                      <label class="wd-label" for="watermark_url"><?php _e('Advertisement URL', 'photo-gallery'); ?></label>
                       <input type="text" id="watermark_url" name="watermark_url" value="<?php echo BWG()->options->watermark_url; ?>" />
-                      <p class="description"><?php _e("Provide the absolute URL of the image you would like to use as advertisement.", BWG()->prefix); ?></p>
+                      <p class="description"><?php _e("Provide the absolute URL of the image you would like to use as advertisement.", 'photo-gallery'); ?></p>
                     </div>
                   </div>
                   <div class="wd-box-content wd-width-100" id="tr_watermark_text">
                     <div class="wd-group">
-                      <label class="wd-label" for="watermark_text"><?php _e('Advertisement text', BWG()->prefix); ?></label>
+                      <label class="wd-label" for="watermark_text"><?php _e('Advertisement text', 'photo-gallery'); ?></label>
                       <input type="text" name="watermark_text" id="watermark_text" value="<?php echo BWG()->options->watermark_text; ?>" />
-                      <p class="description"><?php _e("Write the text to add to images as advertisement.", BWG()->prefix); ?></p>
+                      <p class="description"><?php _e("Write the text to add to images as advertisement.", 'photo-gallery'); ?></p>
                     </div>
                   </div>
                 </div>
                 <div class="wd-box-content wd-width-33">
                   <div class="wd-box-content wd-width-100" id="tr_watermark_font">
                     <div class="wd-group">
-                      <label class="wd-label" for="watermark_font"><?php _e('Advertisement font style', BWG()->prefix); ?></label>
+                      <label class="wd-label" for="watermark_font"><?php _e('Advertisement font style', 'photo-gallery'); ?></label>
                       <select name="watermark_font" id="watermark_font">
                         <?php
                         $google_fonts = WDWLibrary::get_google_fonts();
@@ -423,53 +424,55 @@ class ShortcodeView_bwg extends AdminView_bwg {
                         }
                         ?>
                       </select>
-                      <input type="radio" class="wd-radio" name="watermark_google_fonts" id="watermark_google_fonts1" onchange="bwg_change_fonts('watermark_font', jQuery(this).attr('id'))" value="1" <?php if ($is_google_fonts) echo 'checked="checked"'; ?> />
-                      <label for="watermark_google_fonts1" id="watermark_google_fonts1_lbl" class="wd-radio-label"><?php _e('Google fonts', BWG()->prefix); ?></label>
-                      <input type="radio" class="wd-radio" name="watermark_google_fonts" id="watermark_google_fonts0" onchange="bwg_change_fonts('watermark_font', '')" value="0" <?php if (!$is_google_fonts) echo 'checked="checked"'; ?> />
-                      <label for="watermark_google_fonts0" id="watermark_google_fonts0_lbl" class="wd-radio-label"><?php _e('Default', BWG()->prefix); ?></label>
-                      <p class="description"><?php _e("Select the font family of the advertisement text.", BWG()->prefix); ?></p>
+                      <div class="bwg-flex">
+												<div><input type="radio" class="wd-radio" name="watermark_google_fonts" id="watermark_google_fonts1" onchange="bwg_change_fonts('watermark_font', jQuery(this).attr('id'))" value="1" <?php if ($is_google_fonts) echo 'checked="checked"'; ?> />
+												<label for="watermark_google_fonts1" id="watermark_google_fonts1_lbl" class="wd-radio-label"><?php _e('Google fonts', 'photo-gallery'); ?></label></div>
+												<div><input type="radio" class="wd-radio" name="watermark_google_fonts" id="watermark_google_fonts0" onchange="bwg_change_fonts('watermark_font', '')" value="0" <?php if (!$is_google_fonts) echo 'checked="checked"'; ?> />
+												<label for="watermark_google_fonts0" id="watermark_google_fonts0_lbl" class="wd-radio-label"><?php _e('Default', 'photo-gallery'); ?></label></div>
+                      </div>
+                      <p class="description"><?php _e("Select the font family of the advertisement text.", 'photo-gallery'); ?></p>
                     </div>
                   </div>
                   <div class="wd-box-content wd-width-100" id="tr_watermark_font_size">
                     <div class="wd-group">
-                      <label class="wd-label" for="watermark_font_size"><?php _e('Advertisement font size', BWG()->prefix); ?></label>
+                      <label class="wd-label" for="watermark_font_size"><?php _e('Advertisement font size', 'photo-gallery'); ?></label>
                       <div class="bwg-flex">
                         <input type="text" name="watermark_font_size" id="watermark_font_size" value="<?php echo BWG()->options->watermark_font_size; ?>" class="spider_int_input" /><span>px</span>
                       </div>
-                      <p class="description"><?php _e("Specify the font size of the advertisement text.", BWG()->prefix); ?></p>
+                      <p class="description"><?php _e("Specify the font size of the advertisement text.", 'photo-gallery'); ?></p>
                     </div>
                   </div>
                   <div class="wd-box-content wd-width-100" id="tr_watermark_width_height">
                     <div class="wd-group">
-                      <label class="wd-label" for="watermark_width"><?php _e('Advertisement dimensions', BWG()->prefix); ?></label>
+                      <label class="wd-label" for="watermark_width"><?php _e('Advertisement dimensions', 'photo-gallery'); ?></label>
                       <div class="bwg-flex">
                         <input type="text" name="watermark_width" id="watermark_width" value="<?php echo BWG()->options->watermark_width; ?>" class="spider_int_input" /><span>x</span>
                         <input type="text" name="watermark_height" id="watermark_height" value="<?php echo BWG()->options->watermark_height; ?>" class="spider_int_input" /><span>px</span>
                       </div>
-                      <p class="description"><?php _e("Select the dimensions of the advertisement image.", BWG()->prefix); ?></p>
+                      <p class="description"><?php _e("Select the dimensions of the advertisement image.", 'photo-gallery'); ?></p>
                     </div>
                   </div>
                   <div class="wd-box-content wd-width-100" id="tr_watermark_color">
                     <div class="wd-group">
-                      <label class="wd-label" for="watermark_color"><?php _e('Advertisement color', BWG()->prefix); ?></label>
-                      <input type="text" name="watermark_color" id="watermark_color" value="<?php echo BWG()->options->watermark_color; ?>" class="color" />
-                      <p class="description"><?php _e("Choose the color for the advertisement text on images.", BWG()->prefix); ?></p>
+                      <label class="wd-label" for="watermark_color"><?php _e('Advertisement color', 'photo-gallery'); ?></label>
+                      <input type="text" name="watermark_color" id="watermark_color" value="<?php echo BWG()->options->watermark_color; ?>" class="jscolor" />
+                      <p class="description"><?php _e("Choose the color for the advertisement text on images.", 'photo-gallery'); ?></p>
                     </div>
                   </div>
                 </div>
                 <div class="wd-box-content wd-width-33">
                   <div class="wd-box-content wd-width-100" id="tr_watermark_opacity">
                     <div class="wd-group">
-                      <label class="wd-label" for="watermark_opacity"><?php _e('Advertisement opacity', BWG()->prefix); ?></label>
+                      <label class="wd-label" for="watermark_opacity"><?php _e('Advertisement opacity', 'photo-gallery'); ?></label>
                       <div class="bwg-flex">
                         <input type="text" name="watermark_opacity" id="watermark_opacity" value="<?php echo BWG()->options->watermark_opacity; ?>" class="spider_int_input" /><span>%</span>
                       </div>
-                      <p class="description"><?php echo __("Specify the opacity of the advertisement. The value must be between 0 to 100.", BWG()->prefix); ?></p>
+                      <p class="description"><?php echo __("Specify the opacity of the advertisement. The value must be between 0 to 100.", 'photo-gallery'); ?></p>
                     </div>
                   </div>
                   <div class="wd-box-content wd-width-100" id="tr_watermark_position">
                     <div class="wd-group">
-                      <label class="wd-label"><?php _e('Advertisement position', BWG()->prefix); ?></label>
+                      <label class="wd-label"><?php _e('Advertisement position', 'photo-gallery'); ?></label>
                       <table class="bws_position_table">
                         <tbody>
                         <tr>
@@ -489,7 +492,7 @@ class ShortcodeView_bwg extends AdminView_bwg {
                         </tr>
                         </tbody>
                       </table>
-                      <p class="description"><?php echo __("Mark the position where the advertisement should appear on images.", BWG()->prefix); ?></p>
+                      <p class="description"><?php echo __("Mark the position where the advertisement should appear on images.", 'photo-gallery'); ?></p>
                     </div>
                   </div>
                 </div>
@@ -504,13 +507,13 @@ class ShortcodeView_bwg extends AdminView_bwg {
         <div class="media-frame-toolbar">
           <div class="media-toolbar">
             <div class="media-toolbar-primary search-form">
-              <button class="button media-button button-primary button-large media-button-insert button-hero" type="button" id="insert" name="insert" <?php if($params['elementor_callback']) { ?> data-callback="elementor" <?php } ?> onClick="bwg_insert_shortcode('');"><?php _e('Insert into post', BWG()->prefix); ?></button>
+              <button class="button media-button button-primary button-large media-button-insert button-hero" type="button" id="insert" name="insert" <?php if($params['elementor_callback']) { ?> data-callback="elementor" <?php } ?> onClick="bwg_insert_shortcode('');"><?php _e('Insert into post', 'photo-gallery'); ?></button>
             </div>
-            <!--          needed to remove after dicessing with design team-->
+            <!--  @TODO. needed to remove after dicessing with design team-->
 <!--            --><?php //if ( !BWG()->is_pro ) { ?>
 <!--              <div class="media-toolbar-primary search-form" style="float: left;">-->
 <!--            <span class="media-button button-large">-->
-<!--              <a id="bwg_pro_version_link" class="bwg_link_shortcode" target="_blank" href="https://demo.10web.io/photo-gallery/--><?php //echo BWG()->utm_source; ?><!--">--><?php //_e('Please see ', BWG()->prefix) ?><!--<span id="bwg_pro_version">--><?php //_e('Thumbnails', BWG()->prefix) ?><!--</span> --><?php //_e('View in Premium version', BWG()->prefix) ?><!--</a>-->
+<!--              <a id="bwg_pro_version_link" class="bwg_link_shortcode" target="_blank" href="https://demo.10web.io/photo-gallery/--><?php //echo BWG()->utm_source; ?><!--">--><?php //_e('Please see ', 'photo-gallery') ?><!--<span id="bwg_pro_version">--><?php //_e('Thumbnails', 'photo-gallery') ?><!--</span> --><?php //_e('View in Premium version', 'photo-gallery') ?><!--</a>-->
 <!--            </span>-->
 <!--              </div>-->
 <!--            --><?php //} ?>
@@ -521,7 +524,7 @@ class ShortcodeView_bwg extends AdminView_bwg {
       else {
         $tagtext = '';
         $tagfunction = '';
-		$currrent_id = WDWLibrary::get('currrent_id', 0, 'intval');
+		    $currrent_id = WDWLibrary::get('currrent_id', 0, 'intval');
         if ( $currrent_id ) {
           $title = WDWLibrary::get('title');
           $tagtext = '[Best_Wordpress_Gallery id="' . $currrent_id . '"' . $title . ']';
@@ -532,7 +535,7 @@ class ShortcodeView_bwg extends AdminView_bwg {
         <div id="generate_button" class="wd-box-content wd-width-100">
           <div class="wd-box-content wd-width-50 bwg-flex">
             <select name="shortcode" id="shortcode" onchange="bwg_update_shortcode()">
-              <option value=""><?php _e('New shortcode', BWG()->prefix); ?></option>
+              <option value=""><?php _e('New shortcode', 'photo-gallery'); ?></option>
               <?php
               foreach ( $shortcodes as $shortcode ) {
                 ?>
@@ -541,22 +544,22 @@ class ShortcodeView_bwg extends AdminView_bwg {
               }
               ?>
             </select>
-            <button class="button media-button button-primary button-large media-button-insert" type="button" id="insert" name="insert" onClick="jQuery('#loading_div').show(); bwg_insert_shortcode('');"><?php _e('Generate', BWG()->prefix); ?></button>
+            <button class="button media-button button-primary button-large media-button-insert" type="button" id="insert" name="insert" onClick="jQuery('#loading_div').show(); bwg_insert_shortcode('');"><?php _e('Generate', 'photo-gallery'); ?></button>
           </div>
-          <p class="description"><?php _e('If you would like to edit an existing shortcode, use this dropdown box to select it.', BWG()->prefix) ?></p>
+          <p class="description"><?php _e('If you would like to edit an existing shortcode, use this dropdown box to select it.', 'photo-gallery') ?></p>
           <div class="wd-box-content wd-width-100 bwg-flex-wrap">
             <div class="wd-box-content wd-width-50">
               <div class="wd-group">
-                <label class="wd-label" for="bwg_shortcode"><?php _e('Shortcode', BWG()->prefix); ?></label>
+                <label class="wd-label" for="bwg_shortcode"><?php _e('Shortcode', 'photo-gallery'); ?></label>
                 <input type="text" id="bwg_shortcode" name="bwg_shortcode" value='<?php echo $tagtext; ?>' onclick="spider_select_value(this)" readonly="readonly" />
-                <p class="description"><?php _e('Add the selected gallery or gallery group to any WordPress page or post. Simply copy the generated shortcode and paste it in the content of page/post editor.', BWG()->prefix) ?></p>
+                <p class="description"><?php _e('Add the selected gallery or gallery group to any WordPress page or post. Simply copy the generated shortcode and paste it in the content of page/post editor.', 'photo-gallery') ?></p>
               </div>
             </div>
             <div class="wd-box-content wd-width-50">
               <div class="wd-group">
-                <label class="wd-label" for="bwg_function"><?php _e('PHP function', BWG()->prefix); ?></label>
+                <label class="wd-label" for="bwg_function"><?php _e('PHP function', 'photo-gallery'); ?></label>
                 <input type="text" id="bwg_function" name="bwg_function" value="<?php echo $tagfunction; ?>" onclick="spider_select_value(this)" readonly="readonly" />
-                <p class="description"><?php _e('Use generated PHP function to call the selected gallery or gallery group on a custom PHP template.', BWG()->prefix) ?></p>
+                <p class="description"><?php _e('Use generated PHP function to call the selected gallery or gallery group on a custom PHP template.', 'photo-gallery') ?></p>
               </div>
             </div>
           </div>
@@ -625,7 +628,7 @@ class ShortcodeView_bwg extends AdminView_bwg {
         params = get_params("Best_Wordpress_Gallery");
         if (!params) { // Insert.
           <?php if ($from_menu) { ?>
-          jQuery('#insert').text('<?php _e('Generate', BWG()->prefix); ?>');
+          jQuery('#insert').text('<?php _e('Generate', 'photo-gallery'); ?>');
           bwg_insert = 1;
           if (temp_shortcode_id !== 0) {
             shortcode_id = temp_shortcode_id;
@@ -643,7 +646,7 @@ class ShortcodeView_bwg extends AdminView_bwg {
           if (params['id']) {
             shortcode_id = params['id'];
             if (typeof shortcodes[shortcode_id] === 'undefined') {
-              alert("<?php echo addslashes(__('There is no shortcode with such ID!', BWG()->prefix)); ?>");
+              alert("<?php echo addslashes(__('There is no shortcode with such ID!', 'photo-gallery')); ?>");
               bwg_gallery_type('thumbnails');
               return 0;
             }
@@ -656,7 +659,7 @@ class ShortcodeView_bwg extends AdminView_bwg {
           else {
             var short_code = get_params("Best_Wordpress_Gallery");
           }
-          jQuery('#insert').text('<?php _e('Update', BWG()->prefix); ?>');
+          jQuery('#insert').text('<?php _e('Update', 'photo-gallery'); ?>');
           <?php if ($from_menu) { ?>
           content = jQuery("#bwg_shortcode").val();
           <?php } ?>
@@ -1004,11 +1007,17 @@ class ShortcodeView_bwg extends AdminView_bwg {
               else {
                 jQuery("#autohide_slideshow_navigation_0").prop('checked', true);
               }
-              if (short_code['enable_slideshow_filmstrip'] == 1) {
-                jQuery("#slideshow_enable_filmstrip_yes").prop('checked', true);
+              if (short_code['slideshow_filmstrip_type'] == '0') {
+                jQuery("#slideshow_filmstrip_none").prop('checked', true);
               }
-              else {
-                jQuery("#slideshow_enable_filmstrip_no").prop('checked', true);
+              else if (short_code['slideshow_filmstrip_type'] == '1') {
+                jQuery("#slideshow_filmstrip_fix_dimension").prop('checked', true);
+              }
+              else if( short_code['slideshow_filmstrip_type'] == '2') {
+                jQuery("#slideshow_filmstrip_fix_count").prop('checked', true);
+              }
+              if ( short_code['slideshow_thumbnails_count'] ) {
+                 jQuery( "#slideshow_thumbnails_count" ).val( short_code['slideshow_thumbnails_count'] );
               }
               if (short_code['slideshow_filmstrip_height']) {
                 jQuery( "#slideshow_filmstrip_height" ).val( short_code['slideshow_filmstrip_height'] );
@@ -1547,6 +1556,14 @@ class ShortcodeView_bwg extends AdminView_bwg {
             }
             jQuery("#popup_filmstrip_height").val(short_code['popup_filmstrip_height']);
           }
+
+          if (short_code['show_image_counts'] == 1) {
+            jQuery("#show_image_counts_current_image_number_1").prop('checked', true);
+          }
+          else {
+            jQuery("#show_image_counts_current_image_number_0").prop('checked', true);
+          }
+
           if (short_code['popup_enable_ctrl_btn'] != undefined) {
             if (short_code['popup_enable_ctrl_btn'] == 1) {
               jQuery("#popup_enable_ctrl_btn_1").prop('checked', true);
@@ -1624,6 +1641,12 @@ class ShortcodeView_bwg extends AdminView_bwg {
               else {
                 jQuery("#popup_enable_rate_0").prop('checked', true);
               }
+              if (short_code['popup_enable_zoom'] == 1 && short_code['popup_enable_zoom']) {
+                jQuery("#popup_enable_zoom_1").prop('checked', true);
+              }
+              else {
+                jQuery("#popup_enable_zoom_0").prop('checked', true);
+              }
               if (short_code['popup_enable_fullsize_image'] == 1) {
                 jQuery("#popup_enable_fullsize_image_1").prop('checked', true);
               }
@@ -1635,12 +1658,6 @@ class ShortcodeView_bwg extends AdminView_bwg {
               }
               else {
                 jQuery("#popup_enable_download_0").prop('checked', true);
-              }
-              if (short_code['show_image_counts'] == 1) {
-                jQuery("#show_image_counts_current_image_number_1").prop('checked', true);
-              }
-              else {
-                jQuery("#show_image_counts_current_image_number_0").prop('checked', true);
               }
               if (short_code['enable_loop'] == 1) {
                 jQuery("#enable_loop_1").prop('checked', true);
@@ -1819,8 +1836,8 @@ class ShortcodeView_bwg extends AdminView_bwg {
       }
 
       function bwg_insert_shortcode(content) {
+        jQuery(popup_cover_containers, parent.document).removeAttr("style");
         var page_builder_activated = bwg_before_shortcode_add_builder_editor();
-
         window.parent.window.jQuery(window.parent.document).trigger("onOpenShortcode");
         var gallery_type = jQuery("input[name=gallery_type]:checked").val();
         var theme = jQuery("#theme").val();
@@ -1925,7 +1942,8 @@ class ShortcodeView_bwg extends AdminView_bwg {
             tagtext += ' enable_slideshow_shuffle="' + jQuery("input[name=slideshow_enable_shuffle]:checked").val() + '"';
             tagtext += ' enable_slideshow_ctrl="' + jQuery("input[name=slideshow_enable_ctrl]:checked").val() + '"';
             tagtext += ' autohide_slideshow_navigation="' + jQuery("input[name=autohide_slideshow_navigation]:checked").val() + '"';
-            tagtext += ' enable_slideshow_filmstrip="' + jQuery("input[name=slideshow_enable_filmstrip]:checked").val() + '"';
+            tagtext += ' slideshow_filmstrip_type="' + jQuery("input[name=slideshow_filmstrip_type]:checked").val() + '"';
+            tagtext += ' slideshow_thumbnails_count="' + jQuery("#slideshow_thumbnails_count").val() + '"';
             tagtext += ' slideshow_filmstrip_height="' + jQuery("#slideshow_filmstrip_height").val() + '"';
             tagtext += ' slideshow_enable_title="' + jQuery("input[name=slideshow_enable_title]:checked").val() + '"';
             tagtext += ' slideshow_title_position="' + jQuery("input[name=slideshow_title_position]:checked").val() + '"';
@@ -2124,6 +2142,7 @@ class ShortcodeView_bwg extends AdminView_bwg {
         tagtext += ' autohide_lightbox_navigation="' + jQuery("input[name=autohide_lightbox_navigation]:checked").val() + '"';
         tagtext += ' popup_hit_counter="' + jQuery("input[name=popup_hit_counter]:checked").val() + '"';
         tagtext += ' popup_enable_rate="' + jQuery("input[name=popup_enable_rate]:checked").val() + '"';
+        tagtext += ' popup_enable_zoom="' + jQuery("input[name=popup_enable_zoom]:checked").val() + '"';
         tagtext += ' popup_enable_fullsize_image="' + jQuery("input[name=popup_enable_fullsize_image]:checked").val() + '"';
         tagtext += ' popup_enable_download="' + jQuery("input[name=popup_enable_download]:checked").val() + '"';
         tagtext += ' show_image_counts="' + jQuery("input[name=show_image_counts]:checked").val() + '"';
@@ -2229,7 +2248,7 @@ class ShortcodeView_bwg extends AdminView_bwg {
           if (bwg_insert) {
             jQuery('#shortcode').append('<option value="' + shortcode_id + '">[Best_Wordpress_Gallery id="' + shortcode_id + '"]</option>').val(shortcode_id);
           }
-          jQuery('#insert').text('<?php _e('Update', BWG()->prefix); ?>');
+          jQuery('#insert').text('<?php _e('Update', 'photo-gallery'); ?>');
           jQuery('#insert').attr('onclick', 'jQuery("#loading_div").show(); bwg_insert_shortcode(content);');
           jQuery("#bwg_shortcode").val(content);
           var str = "&#60;?php echo if( function_exists('photo_gallery') ) { photo_gallery(" + shortcode_id + "); } ?&#62;";
@@ -2258,11 +2277,11 @@ class ShortcodeView_bwg extends AdminView_bwg {
       jQuery(window).resize(function () {
         bwg_change_tab();
       });
-      var bwg_image_thumb = '<?php echo addslashes(__('Thumbnail dimensions', BWG()->prefix)); ?>';
-      var bwg_image_thumb_width = '<?php echo addslashes(__('Image thumbnail width ', BWG()->prefix)); ?>';
-      var bwg_max_column = '<?php echo addslashes(__('Number of image columns', BWG()->prefix)); ?>';
-      var bwg_image_thumb_height = '<?php echo addslashes(__('Image thumbnail height', BWG()->prefix)); ?>';
-      var bwg_number_of_image_rows = '<?php echo addslashes(__('Number of image rows', BWG()->prefix)); ?>';
+      var bwg_image_thumb = '<?php echo addslashes(__('Thumbnail dimensions', 'photo-gallery')); ?>';
+      var bwg_image_thumb_width = '<?php echo addslashes(__('Image thumbnail width ', 'photo-gallery')); ?>';
+      var bwg_max_column = '<?php echo addslashes(__('Number of image columns', 'photo-gallery')); ?>';
+      var bwg_image_thumb_height = '<?php echo addslashes(__('Image thumbnail height', 'photo-gallery')); ?>';
+      var bwg_number_of_image_rows = '<?php echo addslashes(__('Number of image rows', 'photo-gallery')); ?>';
     </script>
     <?php
     return ob_get_clean();

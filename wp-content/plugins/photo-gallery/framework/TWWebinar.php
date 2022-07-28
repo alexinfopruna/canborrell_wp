@@ -162,16 +162,16 @@ class TWPGWebinar {
       ?>
       <div class="tw-webinar-body">
         <div class="tw-webinar-title">
-          <?php echo $this->title; ?>
+          <?php echo esc_html($this->title); ?>
         </div>
         <div class="tw-webinar-description">
-          <?php echo $this->description; ?>
+          <?php echo esc_html($this->description); ?>
         </div>
       </div>
       <div class="tw-webinar-button">
-        <a href="<?php echo $this->button_link; ?>" target="_blank"><?php echo $this->button_text; ?></a>
+        <a href="<?php echo esc_url($this->button_link); ?>" target="_blank"><?php echo esc_html($this->button_text); ?></a>
       </div>
-      <button type="button" class="wd_tenweb_notice_dissmiss notice-dismiss" onclick="jQuery(this).closest('.tw-webinar-wrap').attr('style', 'display: none !important;'); jQuery.post('<?php echo $this->dismiss_url; ?>');">
+      <button type="button" class="wd_tenweb_notice_dissmiss notice-dismiss" onclick="jQuery(this).closest('.tw-webinar-wrap').attr('style', 'display: none !important;'); jQuery.post('<?php echo esc_url($this->dismiss_url); ?>');">
     </div>
     <?php
     $view = ob_get_clean();
