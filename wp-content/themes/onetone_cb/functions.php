@@ -43,7 +43,10 @@ add_filter('the_content', 'filter_the_content_in_the_main_loop');
 function filter_the_content_in_the_main_loop($content) {
 
   if (isset($_REQUEST['gallery']) && isset($_REQUEST['title'])) {
-    $galeria = bwg_shortcode(array('id' => $_REQUEST['gallery']));
+      $gale=new BWG();
+   // $galeria = bwg_shortcode(array('id' => $_REQUEST['gallery']));
+    //$galeria = $gale->shortcode(array('id' => $_REQUEST['gallery']));
+    $galeria = $gale->shortcode(array('id' => 2));
     $title = $_REQUEST['title'];
     $content = '<h1>' . $title . '</h1><div class="well cb-ajax-gallery">' . $galeria . '</div>' . $content;
 
