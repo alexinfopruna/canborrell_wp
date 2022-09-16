@@ -1,0 +1,767 @@
+# Translation of Themes - Twenty Twenty-Two in Catalan
+# This file is distributed under the same license as the Themes - Twenty Twenty-Two package.
+msgid ""
+msgstr ""
+"PO-Revision-Date: 2022-08-01 14:37:25+0000\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=n != 1;\n"
+"X-Generator: GlotPress/4.0.0-alpha.1\n"
+"Language: ca\n"
+"Project-Id-Version: Themes - Twenty Twenty-Two\n"
+
+#. Theme Name of the theme
+#, gp-priority: high
+msgid "Twenty Twenty-Two"
+msgstr "Twenty Twenty-Two"
+
+#. Description of the theme
+#, gp-priority: high
+msgid "Built on a solidly designed foundation, Twenty Twenty-Two embraces the idea that everyone deserves a truly unique website. The theme’s subtle styles are inspired by the diversity and versatility of birds: its typography is lightweight yet strong, its color palette is drawn from nature, and its layout elements sit gently on the page. The true richness of Twenty Twenty-Two lies in its opportunity for customization. The theme is built to take advantage of the Full Site Editing features introduced in WordPress 5.9, which means that colors, typography, and the layout of every single page on your site can be customized to suit your vision. It also includes dozens of block patterns, opening the door to a wide range of professionally designed layouts in just a few clicks. Whether you’re building a single-page website, a blog, a business website, or a portfolio, Twenty Twenty-Two will help you create a site that is uniquely yours."
+msgstr "Desenvolupat sobre una base dissenyada de manera sòlida, Twenty Twenty-Two adopta la idea que tothom mereix un lloc web realment únic. Els estils subtils del tema s'inspiren en la diversitat i versatilitat dels ocells: la seva tipografia és lleugera però robusta, la seva paleta de colors s'extreu de la natura i els seus elements de disseny s'assenten suaument a la pàgina. La veritable riquesa de Twenty Twenty-Two rau en les seves possibilitats de personalització. El tema està creat per aprofitar les característiques d'edició completa del lloc introduïdes al WordPress 5.9, el que significa que els colors, la tipografia i el disseny de cada pàgina del vostre lloc web es poden personalitzar per adaptar-se a la vostra visió. També inclou desenes de patrons de blocs, que obren la porta a una àmplia gamma de dissenys creats professionalment amb només uns quants clics. Tant si esteu creant un lloc web d'una sola pàgina, un blog, un lloc web empresarial o un portafoli, Twenty Twenty-Two us ajudarà a crear un lloc web exclusivament vostre."
+
+#: styles/blue.json
+msgctxt "Style variation name"
+msgid "Blue"
+msgstr "Blau"
+
+#: styles/swiss.json
+msgctxt "Duotone name"
+msgid "Default filter"
+msgstr "Filtre predeterminat"
+
+#: styles/swiss.json
+msgctxt "Font family name"
+msgid "Inter"
+msgstr "Inter"
+
+#: styles/pink.json
+msgctxt "Style variation name"
+msgid "Pink"
+msgstr "Rosa"
+
+#: styles/blue.json
+msgctxt "Font family name"
+msgid "DM Sans"
+msgstr "DM Sans"
+
+#: styles/pink.json
+msgctxt "Font family name"
+msgid "IBM Plex Mono"
+msgstr "IBM Plex Mono"
+
+#: styles/pink.json
+msgctxt "Font family name"
+msgid "IBM Plex Sans"
+msgstr "IBM Plex Sans"
+
+#: styles/swiss.json
+msgctxt "Style variation name"
+msgid "Swiss"
+msgstr "Suís"
+
+#: inc/patterns/hidden-404.php:14
+msgid "Search"
+msgstr "Cerca"
+
+#: inc/patterns/hidden-404.php:14
+msgctxt "label"
+msgid "Search"
+msgstr "Cerca"
+
+#: theme.json
+msgctxt "Template part name"
+msgid "Footer"
+msgstr "Peu de pàgina"
+
+#: theme.json
+msgctxt "Template part name"
+msgid "Header"
+msgstr "Capçalera"
+
+#: theme.json
+msgctxt "Custom template name"
+msgid "Blank"
+msgstr "Buit"
+
+#: theme.json styles/blue.json styles/pink.json styles/swiss.json
+msgctxt "Color name"
+msgid "Secondary"
+msgstr "Secundari"
+
+#: theme.json styles/blue.json styles/pink.json styles/swiss.json
+msgctxt "Color name"
+msgid "Primary"
+msgstr "Principal"
+
+#: theme.json styles/blue.json styles/pink.json styles/swiss.json
+msgctxt "Color name"
+msgid "Background"
+msgstr "Fons"
+
+#: theme.json styles/blue.json styles/pink.json styles/swiss.json
+msgctxt "Color name"
+msgid "Foreground"
+msgstr "Primer pla"
+
+#: theme.json
+msgctxt "Template part name"
+msgid "Header (Dark, small)"
+msgstr "Capçalera (Fosca, petita)"
+
+#: theme.json
+msgctxt "Template part name"
+msgid "Header (Dark, large)"
+msgstr "Capçalera (Fosca, gran)"
+
+#: theme.json
+msgctxt "Custom template name"
+msgid "Page (No Separators)"
+msgstr "Pàgina (sense separadors)"
+
+#: theme.json
+msgctxt "Custom template name"
+msgid "Single Post (No Separators)"
+msgstr "Entrada individual (sense separadors)"
+
+#: theme.json
+msgctxt "Custom template name"
+msgid "Page (Large Header)"
+msgstr "Pàgina (capçalera gran)"
+
+#: theme.json
+msgctxt "Duotone name"
+msgid "Primary and secondary"
+msgstr "Principal i secundari"
+
+#: theme.json
+msgctxt "Duotone name"
+msgid "Primary and tertiary"
+msgstr "Principal i terciari"
+
+#: theme.json
+msgctxt "Duotone name"
+msgid "Primary and background"
+msgstr "Principal i fons"
+
+#: theme.json
+msgctxt "Font family name"
+msgid "Source Serif Pro"
+msgstr "Source Serif Pro"
+
+#: theme.json
+msgctxt "Font family name"
+msgid "System Font"
+msgstr "Tipus de lletra del sistema"
+
+#: theme.json styles/blue.json styles/pink.json styles/swiss.json
+msgctxt "Color name"
+msgid "Tertiary"
+msgstr "Terciari"
+
+#: theme.json
+msgctxt "Duotone name"
+msgid "Foreground and background"
+msgstr "Primer pla i fons"
+
+#: theme.json
+msgctxt "Duotone name"
+msgid "Foreground and secondary"
+msgstr "Primer pla i secundari"
+
+#: theme.json
+msgctxt "Duotone name"
+msgid "Foreground and tertiary"
+msgstr "Primer pla i terciari"
+
+#: inc/patterns/page-sidebar-poster.php:52
+msgid "Location"
+msgstr "Ubicació"
+
+#: inc/patterns/page-sidebar-poster.php:40
+msgid "Date"
+msgstr "Data"
+
+#: inc/patterns/page-sidebar-blog-posts-right.php:80
+msgid "Tags"
+msgstr "Etiquetes"
+
+#: inc/patterns/hidden-404.php:9
+msgctxt "Error code for a webpage that is not found."
+msgid "404"
+msgstr "404"
+
+#: inc/patterns/general-wide-image-intro-buttons.php:31
+msgid "Learn More"
+msgstr "Aprèn més"
+
+#: inc/patterns/general-pricing-table.php:71
+msgctxt "Third item in a numbered list."
+msgid "3"
+msgstr "3"
+
+#: inc/patterns/general-pricing-table.php:43
+msgctxt "Second item in a numbered list."
+msgid "2"
+msgstr "2"
+
+#: inc/patterns/general-pricing-table.php:15
+msgctxt "First item in a numbered list."
+msgid "1"
+msgstr "1"
+
+#: inc/patterns/general-large-list-names.php:30
+msgid "Read more"
+msgstr "Llegeix més"
+
+#. Translators: WordPress link.
+#: inc/patterns/footer-blog.php:49 inc/patterns/footer-dark.php:17
+#: inc/patterns/footer-default.php:17 inc/patterns/footer-logo.php:17
+#: inc/patterns/footer-navigation.php:19
+#: inc/patterns/footer-query-images-title-citation.php:34
+#: inc/patterns/footer-query-title-citation.php:32
+msgid "Proudly powered by %s"
+msgstr "Gràcies al %s"
+
+#: inc/patterns/footer-blog.php:31
+#: inc/patterns/page-sidebar-blog-posts-right.php:74
+msgid "Categories"
+msgstr "Categories"
+
+#: inc/block-patterns.php:21
+msgid "Pages"
+msgstr "Pàgines"
+
+#: inc/block-patterns.php:20
+msgid "Query"
+msgstr "Consulta"
+
+#: inc/block-patterns.php:19
+msgid "Headers"
+msgstr "Capçaleres"
+
+#: inc/block-patterns.php:17
+msgid "Featured"
+msgstr "Destacades"
+
+#: inc/patterns/general-pricing-table.php:84
+msgid "$150"
+msgstr "150 $"
+
+#: inc/patterns/general-pricing-table.php:28
+msgid "$25"
+msgstr "25 $"
+
+#: inc/patterns/general-pricing-table.php:56
+msgid "$75"
+msgstr "75 $"
+
+#: inc/patterns/hidden-404.php:6
+msgid "404 content"
+msgstr "Contingut 404"
+
+#: inc/patterns/footer-about-title-logo.php:13 inc/patterns/footer-blog.php:13
+msgid "About us"
+msgstr "Quant a nosaltres"
+
+#: inc/patterns/general-list-events.php:79
+msgid "Amy Jensen"
+msgstr "Amy Jensen"
+
+#: inc/patterns/footer-navigation-copyright.php:20
+#: inc/patterns/footer-social-copyright.php:24
+msgid "© Site Title"
+msgstr "© Títol del lloc"
+
+#: inc/patterns/footer-blog.php:6
+msgid "Blog footer"
+msgstr "Peu de pàgina del blog"
+
+#: inc/patterns/page-sidebar-blog-posts.php:6
+msgid "Blog posts with left sidebar"
+msgstr "Entrades del blog amb una barra lateral a l'esquerra"
+
+#: inc/patterns/page-sidebar-blog-posts-right.php:6
+msgid "Blog posts with right sidebar"
+msgstr "Entrades del blog amb una barra lateral a la dreta"
+
+#: inc/patterns/page-about-media-left.php:17
+msgid "Doug"
+msgstr "Doug"
+
+#: inc/patterns/general-list-events.php:55
+msgid "Doug Stilton"
+msgstr "Doug Stilton"
+
+#: inc/patterns/page-about-solid-color.php:14
+msgid "Edvard<br>Smith"
+msgstr "Edvard<br>Smith"
+
+#: inc/patterns/general-list-events.php:103
+msgid "Emery Driscoll"
+msgstr "Emery Driscoll"
+
+#: inc/patterns/page-sidebar-poster.php:44
+msgid "February, 12 2021"
+msgstr "12 de febrer de 2021"
+
+#: inc/block-patterns.php:18
+msgid "Footers"
+msgstr "Peus de pàgina"
+
+#: inc/patterns/query-grid.php:6
+msgid "Grid of posts"
+msgstr "Graella d'entrades"
+
+#: inc/patterns/page-sidebar-grid-posts.php:6
+msgid "Grid of posts with left sidebar"
+msgstr "Graella d'entrades amb una barra lateral a l'esquerra"
+
+#: inc/patterns/footer-blog.php:50 inc/patterns/footer-dark.php:18
+#: inc/patterns/footer-default.php:18 inc/patterns/footer-logo.php:18
+#: inc/patterns/footer-navigation.php:20
+#: inc/patterns/footer-query-images-title-citation.php:35
+#: inc/patterns/footer-query-title-citation.php:33
+msgid "https://wordpress.org"
+msgstr "https://ca.wordpress.org"
+
+#: inc/patterns/general-image-with-caption.php:6
+msgid "Image with caption"
+msgstr "Imatge amb llegenda"
+
+#: inc/patterns/general-video-header-details.php:35
+msgid "Jesús Rodriguez<br>Doug Stilton<br>Emery Driscoll<br>Megan Perry<br>Rowan Price"
+msgstr "Jesús Rodriguez<br>Doug Stilton<br>Emery Driscoll<br>Megan Perry<br>Rowan Price"
+
+#: inc/patterns/general-large-list-names.php:21
+msgid "Jesús Rodriguez, Doug Stilton, Emery Driscoll, Megan Perry, Rowan Price, Angelo Tso, Edward Stilton, Amy Jensen, Boston Bell, Shay Ford, Lee Cunningham, Evelynn Ray, Landen Reese, Ewan Hart, Jenna Chan, Phoenix Murray, Mel Saunders, Aldo Davidson, Zain Hall."
+msgstr "Jesús Rodriguez, Doug Stilton, Emery Driscoll, Megan Perry, Rowan Price, Angelo Tso, Edward Stilton, Amy Jensen, Boston Bell, Shay Ford, Lee Cunningham, Evelynn Ray, Landen Reese, Ewan Hart, Jenna Chan, Phoenix Murray, Mel Saunders, Aldo Davidson, Zain Hall."
+
+#: inc/patterns/general-list-events.php:31
+msgid "Jesús Rodriguez"
+msgstr "Jesús Rodriguez"
+
+#: inc/patterns/page-about-simple-dark.php:18
+msgid "Jesús<br>Rodriguez"
+msgstr "Jesús<br>Rodriguez"
+
+#: inc/patterns/general-list-events.php:6
+msgid "List of events"
+msgstr "Llista d'esdeveniments"
+
+#: inc/patterns/general-pricing-table.php:19
+msgid "Pigeon"
+msgstr "Colom"
+
+#: inc/patterns/page-layout-two-columns.php:58
+msgid "POSTS"
+msgstr "ENTRADES"
+
+#: inc/patterns/general-pricing-table.php:6
+msgid "Pricing table"
+msgstr "Taula de preus"
+
+#: inc/patterns/general-pricing-table.php:47
+msgid "Sparrow"
+msgstr "Pardal"
+
+#: inc/patterns/general-video-header-details.php:41
+msgid "Angelo Tso<br>Edward Stilton<br>Amy Jensen<br>Boston Bell<br>Shay Ford"
+msgstr "Angelo Tso<br>Edward Stilton<br>Amy Jensen<br>Boston Bell<br>Shay Ford"
+
+#: inc/patterns/page-about-media-right.php:16
+msgid "Emery<br>Driscoll"
+msgstr "Emery<br>Driscoll"
+
+#: inc/patterns/query-image-grid.php:6
+msgid "Grid of image posts"
+msgstr "Graella d'entrades d'imatges"
+
+#: inc/patterns/general-image-with-caption.php:11
+msgid "Hummingbird"
+msgstr "Colibrí"
+
+#: inc/patterns/general-image-with-caption.php:10
+msgid "Hummingbird illustration"
+msgstr "Il·lustració d'un colibrí"
+
+#: inc/patterns/general-two-images-text.php:17
+#: inc/patterns/general-wide-image-intro-buttons.php:10
+#: inc/patterns/header-large-dark.php:29 inc/patterns/header-small-dark.php:25
+#: inc/patterns/hidden-bird.php:12 inc/patterns/hidden-heading-and-bird.php:19
+msgid "Illustration of a bird flying."
+msgstr "Il·lustració d'un ocell volant."
+
+#: inc/patterns/general-layered-images-with-duotone.php:9
+#: inc/patterns/header-image-background-overlay.php:11
+msgid "Painting of ducks in the water."
+msgstr "Pintura d'ànecs a l'aigua."
+
+#: inc/patterns/page-about-media-left.php:17
+msgid "Stilton"
+msgstr "Stilton"
+
+#: inc/patterns/general-two-images-text.php:42
+#: inc/patterns/general-wide-image-intro-buttons.php:35
+#: inc/patterns/page-layout-image-text-and-video.php:30
+msgid "Buy Tickets"
+msgstr "Compra tiquets"
+
+#: inc/patterns/footer-default.php:6
+msgid "Default footer"
+msgstr "Peu de pàgina predeterminat"
+
+#: inc/patterns/header-default.php:6
+msgid "Default header"
+msgstr "Capçalera predeterminada"
+
+#: inc/patterns/query-default.php:6
+msgid "Default posts"
+msgstr "Entrades predeterminades"
+
+#: inc/patterns/general-featured-posts.php:6
+msgid "Featured posts"
+msgstr "Entrades destacades"
+
+#: inc/patterns/page-about-links-dark.php:34
+#: inc/patterns/page-about-links.php:38
+msgid "Listen on Spotify"
+msgstr "Escolteu a Spotify"
+
+#: inc/patterns/general-list-events.php:25
+msgid "May 14th, 2022, 6 PM"
+msgstr "14 de maig de 2022 a les 18:00"
+
+#: inc/patterns/general-list-events.php:49
+msgid "May 16th, 2022, 6 PM"
+msgstr "16 de maig de 2022 a les 18:00"
+
+#: inc/patterns/general-list-events.php:73
+msgid "May 18th, 2022, 7 PM"
+msgstr "18 de maig de 2022 a les 19:00"
+
+#: inc/patterns/general-list-events.php:97
+msgid "May 20th, 2022, 6 PM"
+msgstr "20 de maig de 2022 a les 18:00"
+
+#: inc/patterns/page-layout-image-and-text.php:15
+msgctxt "Short for to be determined"
+msgid "TBD"
+msgstr "Per determinar"
+
+#: inc/patterns/general-two-images-text.php:6
+msgid "Two images with text"
+msgstr "Dues imatges amb text"
+
+#: inc/patterns/page-about-links-dark.php:26
+#: inc/patterns/page-about-links.php:30
+msgid "Watch our videos"
+msgstr "Mireu els nostres vídeos"
+
+#: inc/patterns/footer-about-title-logo.php:17 inc/patterns/footer-blog.php:17
+msgid "We are a rogue collective of bird watchers. We’ve been known to sneak through fences, climb perimeter walls, and generally trespass in order to observe the rarest of birds."
+msgstr "Som un col·lectiu canalla d'observadors d'ocells. Se sap que ens colem a través de les tanques, ens enfilem per parets perimetrals i, en general, ens infiltrem per observar els ocells més estranys."
+
+#: inc/patterns/page-layout-two-columns.php:21
+msgid "WELCOME"
+msgstr "US DONEM LA BENVINGUDA"
+
+#: inc/patterns/general-image-with-caption.php:15
+msgid "A beautiful bird featuring a surprising set of color feathers."
+msgstr "Un ocell preciós amb un sorprenent conjunt de plomes de colors."
+
+#: inc/patterns/footer-dark.php:6
+msgid "Dark footer with title and citation"
+msgstr "Peu de pàgina fosc amb un títol i una citació"
+
+#: inc/patterns/general-two-images-text.php:11
+msgid "Illustration of a bird sitting on a branch."
+msgstr "Il·lustració d'un ocell a una branca."
+
+#: inc/patterns/header-image-background.php:11
+msgid "Illustration of a flying bird"
+msgstr "Il·lustració d'un ocell volant"
+
+#: inc/patterns/general-layered-images-with-duotone.php:10
+#: inc/patterns/page-sidebar-blog-posts-right.php:58
+msgid "Illustration of a flying bird."
+msgstr "Il·lustració d'un ocell volant."
+
+#: inc/patterns/page-about-media-left.php:9
+#: inc/patterns/page-sidebar-poster.php:26
+msgid "Image of a bird on a branch"
+msgstr "Imatge d'un ocell a una branca."
+
+#: inc/patterns/query-irregular-grid.php:6
+msgid "Irregular grid of posts"
+msgstr "Graella irregular d'entrades"
+
+#: inc/patterns/page-about-large-image-and-buttons.php:59
+msgid "Join my mailing list"
+msgstr "Uniu-vos a la llista de correu"
+
+#: inc/patterns/general-subscribe.php:16
+msgid "Join our mailing list"
+msgstr "Uniu-vos a la llista de correu"
+
+#: inc/patterns/header-large-dark.php:6
+msgid "Large header with dark background"
+msgstr "Capçalera gran amb fons fosc"
+
+#: inc/patterns/general-large-list-names.php:6
+msgid "Large list of names"
+msgstr "Llista gran de noms"
+
+#: inc/patterns/page-about-large-image-and-buttons.php:17
+msgid "Purchase my work"
+msgstr "Compreu la meva feina"
+
+#: inc/patterns/page-layout-image-text-and-video.php:21
+msgid "Screening"
+msgstr "Projecció"
+
+#: inc/patterns/general-two-images-text.php:25
+msgid "SCREENING"
+msgstr "PROJECCIÓ"
+
+#: inc/patterns/page-about-large-image-and-buttons.php:43
+msgid "Read about me"
+msgstr "Llegiu sobre mi"
+
+#: inc/patterns/page-about-large-image-and-buttons.php:25
+msgid "Support my studio"
+msgstr "Recolzeu el meu estudi"
+
+#: inc/patterns/general-large-list-names.php:11
+#: inc/patterns/page-sidebar-poster.php:32
+msgid "An icon representing binoculars."
+msgstr "Una icona que representa uns prismàtics."
+
+#: inc/patterns/page-layout-image-text-and-video.php:42
+msgid "An illustration of a bird in flight"
+msgstr "Una il·lustració d'un ocell en vol"
+
+#: inc/patterns/page-about-media-right.php:9
+msgid "An image of a bird flying"
+msgstr "Una imatge d'un ocell volant"
+
+#: inc/patterns/header-centered-title-navigation-social.php:6
+msgid "Centered header with navigation, social links, and salmon background"
+msgstr "Capçalera centrada amb navegació, enllaços a xarxes socials i fons de color salmó"
+
+#: inc/patterns/general-divider-dark.php:6
+msgid "Divider with image and color (dark)"
+msgstr "Separador amb una imatge i color (fosc)"
+
+#: inc/patterns/general-divider-light.php:6
+msgid "Divider with image and color (light)"
+msgstr "Separador amb una imatge i color (clar)"
+
+#: inc/patterns/general-video-trailer.php:12
+#: inc/patterns/page-layout-image-text-and-video.php:49
+msgid "Extended Trailer"
+msgstr "Tràiler ampliat"
+
+#: inc/patterns/header-centered-logo.php:6
+msgid "Header with centered logo"
+msgstr "Capçalera amb logotip centrat"
+
+#: inc/patterns/header-centered-logo-black-background.php:6
+msgid "Header with centered logo and black background"
+msgstr "Capçalera amb logotip centrat i fons negre"
+
+#: inc/patterns/header-with-tagline.php:6
+msgid "Header with tagline"
+msgstr "Capçalera amb un lema"
+
+#: inc/patterns/header-image-background.php:6
+msgid "Header with image background"
+msgstr "Capçalera amb una imatge de fons"
+
+#: inc/patterns/hidden-bird.php:9 inc/patterns/hidden-heading-and-bird.php:10
+msgid "Heading and bird image"
+msgstr "Capçalera i una imatge d'un ocell"
+
+#: inc/patterns/general-video-trailer.php:16
+#: inc/patterns/general-wide-image-intro-buttons.php:22
+msgid "A film about hobbyist bird watchers, a catalog of different birds, paired with the noises they make. Each bird is listed by their scientific name so things seem more official."
+msgstr "Una pel·lícula sobre observadors d'ocells aficionats, un catàleg de diferents ocells, combinat amb els sorolls que fan. Cada ocell està llistat pel seu nom científic, de manera que tot sembla més oficial."
+
+#: inc/patterns/page-about-links.php:21
+msgid "A podcast about birds"
+msgstr "Un podcast sobre ocells"
+
+#: inc/patterns/general-pricing-table.php:75
+msgid "Falcon"
+msgstr "Falcó"
+
+#: inc/patterns/page-about-links-dark.php:13
+#: inc/patterns/page-about-links.php:10
+msgid "Logo featuring a flying bird"
+msgstr "Logotip amb un ocell volant"
+
+#: inc/patterns/header-stacked.php:6
+msgid "Logo and navigation header"
+msgstr "Logotip i capçalera de navegació"
+
+#: inc/patterns/header-logo-navigation-gray-background.php:6
+msgid "Logo and navigation header with gray background"
+msgstr "Logotip i capçalera de navegació amb fons gris"
+
+#: inc/patterns/page-layout-image-and-text.php:6
+msgid "Page layout with image and text"
+msgstr "Disseny de pàgina amb una imatge i un text"
+
+#: inc/patterns/page-layout-image-text-and-video.php:6
+msgid "Page layout with image, text and video"
+msgstr "Disseny de pàgina amb una imatge, un text i un vídeo"
+
+#: inc/patterns/page-layout-two-columns.php:6
+msgid "Page layout with two columns"
+msgstr "Disseny de pàgina amb dues columnes"
+
+#: inc/patterns/general-video-header-details.php:6
+msgid "Video with header and details"
+msgstr "Vídeo amb una capçalera i detalls"
+
+#: inc/patterns/page-layout-image-and-text.php:10
+msgid "<em>Watching Birds </em><br><em>in the Garden</em>"
+msgstr "<em>Mirant ocells </em><br><em>al jardí</em>"
+
+#: inc/patterns/page-about-links-dark.php:17
+msgid "A trouble of hummingbirds"
+msgstr "Un problema dels colibrís"
+
+#: inc/patterns/general-video-header-details.php:29
+msgid "Featuring"
+msgstr "Amb"
+
+#: inc/patterns/footer-logo.php:6
+msgid "Footer with logo and citation"
+msgstr "Peu de pàgina amb logotip i citació"
+
+#: inc/patterns/footer-navigation.php:6
+msgid "Footer with navigation and citation"
+msgstr "Peu de pàgina amb navegació i citació"
+
+#: inc/patterns/footer-navigation-copyright.php:6
+msgid "Footer with navigation and copyright"
+msgstr "Peu de pàgina amb navegació i copyright"
+
+#: inc/patterns/general-pricing-table.php:23
+msgid "Help support our growing community by joining at the Pigeon level. Your support will help pay our writers, and you’ll get access to our exclusive newsletter."
+msgstr "Ajudeu a donar suport a la nostra comunitat en creixement unint-vos al nivell Colom. El vostre suport ajudarà a pagar als nostres escriptors i tindreu accés al nostre butlletí exclusiu."
+
+#: inc/patterns/general-pricing-table.php:51
+msgid "Join at the Sparrow level and become a member of our flock! You’ll receive our newsletter, plus a bird pin that you can wear with pride when you’re out in nature."
+msgstr "Uniu-vos al nivell Pardal i feu-vos membre de la nostra bandada! Rebreu el nostre butlletí, a més d'un pin d'ocell que podeu portar amb orgull quan estigueu a la natura."
+
+#: inc/patterns/general-pricing-table.php:79
+msgid "Play a leading role for our community by joining at the Falcon level. This level earns you a seat on our board, where you can help plan future birdwatching expeditions."
+msgstr "Exerciu un paper de lideratge per a la nostra comunitat unint-vos al nivell Falcó. Aquest nivell us permet guanyar un seient a la nostra junta, on podeu ajudar a planificar futures expedicions d'observació d'ocells."
+
+#: inc/patterns/header-small-dark.php:6
+msgid "Small header with dark background"
+msgstr "Capçalera petita amb fons fosc"
+
+#: inc/patterns/page-about-large-image-and-buttons.php:33
+msgid "Take a class"
+msgstr "Feu una classe"
+
+#: inc/patterns/footer-social-copyright.php:6
+msgid "Footer with social links and copyright"
+msgstr "Peu de pàgina amb enllaços a xarxes socials i copyright"
+
+#: inc/patterns/footer-about-title-logo.php:6
+msgid "Footer with text, title, and logo"
+msgstr "Peu de pàgina amb un text, un títol i un logotip"
+
+#: inc/patterns/footer-title-tagline-social.php:6
+msgid "Footer with title, tagline, and social links on a dark background"
+msgstr "Peu de pàgina amb un títol, un lema i enllaços a xarxes socials sobre un fons fosc"
+
+#: inc/patterns/page-about-large-image-and-buttons.php:51
+msgid "Learn about my process"
+msgstr "Coneixeu el meu procés"
+
+#: inc/patterns/page-about-links-dark.php:30
+#: inc/patterns/page-about-links.php:34
+msgid "Listen on iTunes Podcasts"
+msgstr "Escolteu a iTunes Podcasts"
+
+#: inc/patterns/page-about-links-dark.php:38
+#: inc/patterns/page-about-links.php:42
+msgid "Support the show"
+msgstr "Recolzeu el programa"
+
+#: inc/patterns/query-text-grid.php:6
+msgid "Text-based grid of posts"
+msgstr "Graella d'entrades basada en text"
+
+#: inc/patterns/header-text-only-green-background.php:6
+msgid "Text-only header with green background"
+msgstr "Capçalera només de text amb fons verd"
+
+#: inc/patterns/header-text-only-salmon-background.php:6
+msgid "Text-only header with salmon background"
+msgstr "Capçalera només de text amb fons salmó"
+
+#: inc/patterns/header-text-only-with-tagline-black-background.php:6
+msgid "Text-only header with tagline and black background"
+msgstr "Capçalera només de text amb un lema i fons negre"
+
+#: inc/patterns/general-subscribe.php:11
+msgid "Watch birds<br>from your inbox"
+msgstr "Observeu els ocells<br>des de la vostra bústia d'entrada"
+
+#: inc/patterns/general-layered-images-with-duotone.php:6
+msgid "Layered images with duotone"
+msgstr "Imatges en capes amb bitò"
+
+#: inc/patterns/header-logo-navigation-offset-tagline.php:6
+msgid "Logo, navigation, and offset tagline Header"
+msgstr "Capçalera amb logotip, navegació i lema desplaçat"
+
+#: inc/patterns/header-logo-navigation-social-black-background.php:6
+msgid "Logo, navigation, and social links header with black background"
+msgstr "Capçalera amb logotip, navegació i enllaços a xarxes socials amb fons negre"
+
+#: inc/patterns/header-title-navigation-social.php:6
+msgid "Title, navigation, and social links header"
+msgstr "Capçalera amb títol, navegació i enllaços a xarxes socials"
+
+#: inc/patterns/page-sidebar-poster.php:6
+msgid "Poster with right sidebar"
+msgstr "Pòster amb barra lateral dreta"
+
+#: inc/patterns/query-simple-blog.php:6
+msgid "Simple blog posts"
+msgstr "Entrades senzilles del blog"
+
+#: inc/patterns/general-video-trailer.php:6
+msgid "Video trailer"
+msgstr "Tràiler del vídeo"
+
+#: inc/patterns/general-wide-image-intro-buttons.php:6
+msgid "Wide image with introduction and buttons"
+msgstr "Imatge àmplia amb introducció i botons"
+
+#: inc/patterns/footer-blog.php:23 inc/patterns/general-featured-posts.php:10
+msgid "Latest posts"
+msgstr "Darreres entrades"
+
+#. Theme URI of the theme
+#, gp-priority: low
+msgid "https://wordpress.org/themes/twentytwentytwo/"
+msgstr "https://ca.wordpress.org/themes/twentytwentytwo/"
+
+#. Author of the theme
+#, gp-priority: low
+msgid "the WordPress team"
+msgstr "L'equip del WordPress"
+
+#. Author URI of the theme
+#, gp-priority: low
+msgid "https://wordpress.org/"
+msgstr "https://ca.wordpress.org/"

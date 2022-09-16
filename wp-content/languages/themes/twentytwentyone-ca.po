@@ -1,0 +1,487 @@
+# Translation of Themes - Twenty Twenty-One in Catalan
+# This file is distributed under the same license as the Themes - Twenty Twenty-One package.
+msgid ""
+msgstr ""
+"PO-Revision-Date: 2022-08-31 12:14:16+0000\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=n != 1;\n"
+"X-Generator: GlotPress/4.0.0-alpha.1\n"
+"Language: ca\n"
+"Project-Id-Version: Themes - Twenty Twenty-One\n"
+
+#. Theme Name of the theme
+#: inc/block-patterns.php:24
+#, gp-priority: high
+msgid "Twenty Twenty-One"
+msgstr "Twenty Twenty-One"
+
+#: classes/class-twenty-twenty-one-customize-notice-control.php:40
+#: classes/class-twenty-twenty-one-dark-mode.php:178
+msgid "https://wordpress.org/support/article/twenty-twenty-one/#dark-mode-support"
+msgstr "https://wordpress.org/support/article/twenty-twenty-one/#dark-mode-support"
+
+#: inc/template-tags.php:241
+msgid "Older <span class=\"nav-short\">posts</span>"
+msgstr "<span class=\"nav-short\">Entrades</span> més antigues"
+
+#: inc/template-tags.php:230
+msgid "Newer <span class=\"nav-short\">posts</span>"
+msgstr "<span class=\"nav-short\">Entrades</span> més noves"
+
+#: classes/class-twenty-twenty-one-dark-mode.php:379
+msgid "Suggested text:"
+msgstr "Text suggerit:"
+
+#: classes/class-twenty-twenty-one-dark-mode.php:134
+msgid "Colors & Dark Mode"
+msgstr "Colors i mode fosc"
+
+#: inc/template-tags.php:77
+msgctxt "Label for sticky posts"
+msgid "Featured post"
+msgstr "Entrada destacada"
+
+#: inc/template-functions.php:424
+msgctxt "Post password form"
+msgid "Submit"
+msgstr "Envia"
+
+#: inc/template-functions.php:424
+msgctxt "Post password form"
+msgid "Password"
+msgstr "Contrasenya"
+
+#: inc/template-functions.php:183
+msgctxt "Added to posts and pages that are missing titles"
+msgid "Untitled"
+msgstr "Sense títol"
+
+#: inc/block-patterns.php:131
+msgctxt "Block pattern sample content"
+msgid "Cambridge, MA, 02139"
+msgstr "Barcelona, ES, 08001"
+
+#: inc/block-patterns.php:131
+msgctxt "Block pattern sample content"
+msgid "123 Main Street"
+msgstr "Carrer Principal, 123"
+
+#: inc/block-patterns.php:131
+msgctxt "Block pattern sample content"
+msgid "example@example.com"
+msgstr "exemple@exemple.com"
+
+#: classes/class-twenty-twenty-one-customize.php:138
+msgctxt "Customizer control"
+msgid "Background color"
+msgstr "Color de fons"
+
+#. translators: %: Page number.
+#: image.php:48 template-parts/content/content-page.php:36
+#: template-parts/content/content-single.php:30
+#: template-parts/content/content.php:36
+msgid "Page %"
+msgstr "Pàgina %"
+
+#: functions.php:187
+msgctxt "Font size"
+msgid "XXXL"
+msgstr "XXXL"
+
+#: functions.php:181
+msgctxt "Font size"
+msgid "XXL"
+msgstr "XXL"
+
+#: functions.php:175
+msgctxt "Font size"
+msgid "XL"
+msgstr "XL"
+
+#: functions.php:169
+msgctxt "Font size"
+msgid "L"
+msgstr "L"
+
+#: functions.php:163
+msgctxt "Font size"
+msgid "M"
+msgstr "M"
+
+#: functions.php:157
+msgctxt "Font size"
+msgid "S"
+msgstr "S"
+
+#: functions.php:151
+msgctxt "Font size"
+msgid "XS"
+msgstr "XS"
+
+#: comments.php:85
+msgid "Leave a comment"
+msgstr "Deixa un comentari"
+
+#. translators: %s: Comment count number.
+#: comments.php:39
+msgctxt "Comments title"
+msgid "%s comment"
+msgid_plural "%s comments"
+msgstr[0] "%s comentari"
+msgstr[1] "%s comentaris"
+
+#: classes/class-twenty-twenty-one-dark-mode.php:334
+msgid "On"
+msgstr "Activat"
+
+#: classes/class-twenty-twenty-one-dark-mode.php:331
+msgid "Off"
+msgstr "Desactivat"
+
+#. translators: %s: On/Off
+#: classes/class-twenty-twenty-one-dark-mode.php:321
+msgid "Dark Mode: %s"
+msgstr "Mode fosc: %s"
+
+#: comments.php:34
+msgid "1 comment"
+msgstr "1 comentari"
+
+#: inc/starter-content.php:73
+msgctxt "Theme starter content"
+msgid "Add block patterns"
+msgstr "Afegeix patrons de blocs"
+
+#: inc/block-patterns.php:121
+msgid "Reading"
+msgstr "Lectura"
+
+#: inc/block-patterns.php:121
+msgid "Young Woman in Mauve"
+msgstr "Dona jove en malva"
+
+#: inc/block-patterns.php:121
+msgid "The Garden at Bougival"
+msgstr "El jardí de Bougival"
+
+#: inc/starter-content.php:93
+msgctxt "Theme starter content"
+msgid "Overlap columns"
+msgstr "Columnes superposades"
+
+#: inc/block-patterns.php:121
+msgid "Villa with Orange Trees, Nice"
+msgstr "Vil·la amb tarongers, Niça"
+
+#: inc/starter-content.php:112
+msgctxt "Theme starter content"
+msgid "Need help?"
+msgstr "Necessiteu ajuda?"
+
+#: inc/block-patterns.php:74
+msgid "Playing in the Sand"
+msgstr "Jugant a la sorra"
+
+#. translators: %s: Parent post.
+#: image.php:61
+msgid "Published in %s"
+msgstr "Publicat a %s"
+
+#: classes/class-twenty-twenty-one-customize.php:108
+msgid "Summary"
+msgstr "Resum"
+
+#: inc/block-styles.php:98
+msgid "Thick"
+msgstr "Gruix"
+
+#. translators: %s: Author name.
+#: inc/template-tags.php:49 template-parts/post/author-bio.php:19
+msgid "By %s"
+msgstr "Per %s"
+
+#: comments.php:70
+msgid "Newer comments"
+msgstr "Comentaris més recents"
+
+#: comments.php:66
+msgid "Older comments"
+msgstr "Comentaris més antics"
+
+#: classes/class-twenty-twenty-one-customize.php:109
+msgid "Full text"
+msgstr "Text complet"
+
+#: 404.php:16 template-parts/content/content-none.php:30
+msgid "Nothing here"
+msgstr "No hi ha res aquí"
+
+#: functions.php:238
+msgid "Blue"
+msgstr "Blau"
+
+#: functions.php:233
+msgid "Green"
+msgstr "Verd"
+
+#: functions.php:228
+msgid "Gray"
+msgstr "Gris"
+
+#: functions.php:223 inc/block-styles.php:107
+msgid "Dark gray"
+msgstr "Gris fosc"
+
+#: functions.php:218
+msgid "Black"
+msgstr "Negre"
+
+#: functions.php:186
+msgid "Gigantic"
+msgstr "Gegant"
+
+#: functions.php:180
+msgid "Huge"
+msgstr "Enorme"
+
+#: functions.php:168
+msgid "Large"
+msgstr "Gran"
+
+#: functions.php:162
+msgid "Normal"
+msgstr "Normal"
+
+#: functions.php:156
+msgid "Small"
+msgstr "Petita"
+
+#. translators: %s: WordPress.
+#: footer.php:67
+msgid "Proudly powered by %s."
+msgstr "Gràcies al %s."
+
+#: footer.php:24 functions.php:77 inc/starter-content.php:165
+msgid "Secondary menu"
+msgstr "Menú secundari"
+
+#: comments.php:78
+msgid "Comments are closed."
+msgstr "Els comentaris estan tancats."
+
+#: inc/block-patterns.php:62
+msgid "Dribbble"
+msgstr "Dribbble"
+
+#: inc/block-patterns.php:62
+msgid "Instagram"
+msgstr "Instagram"
+
+#: inc/block-patterns.php:62
+msgid "Twitter"
+msgstr "Twitter"
+
+#: inc/block-patterns.php:58
+msgid "Links area"
+msgstr "Àrea d'enllaços"
+
+#: image.php:83
+msgctxt "Used before full size attachment link."
+msgid "Full size"
+msgstr "Mida completa"
+
+#. translators: %s: Publish date.
+#: inc/template-tags.php:29
+msgid "Published %s"
+msgstr "Publicada el %s"
+
+#: comments.php:61 image.php:45 inc/template-tags.php:224
+#: template-parts/content/content-page.php:33
+#: template-parts/content/content-single.php:27
+#: template-parts/content/content.php:33
+msgid "Page"
+msgstr "Pàgina"
+
+#: template-parts/header/site-nav.php:19
+msgid "Close"
+msgstr "Tanca"
+
+#: template-parts/header/site-nav.php:16
+msgid "Menu"
+msgstr "Menú"
+
+#: functions.php:76 inc/starter-content.php:154
+#: template-parts/header/site-nav.php:13
+msgid "Primary menu"
+msgstr "Menú principal"
+
+#: header.php:26
+msgid "Skip to content"
+msgstr "Vés al contingut"
+
+#: functions.php:361
+msgid "Footer"
+msgstr "Peu de pàgina"
+
+#: functions.php:299
+msgid "Yellow to red"
+msgstr "Groc a vermell"
+
+#: functions.php:294
+msgid "Red to yellow"
+msgstr "Vermell a groc"
+
+#: functions.php:289
+msgid "Yellow to green"
+msgstr "Groc a verd"
+
+#: functions.php:284
+msgid "Green to yellow"
+msgstr "Verd a groc"
+
+#: functions.php:263
+msgid "White"
+msgstr "Blanc"
+
+#: functions.php:258
+msgid "Yellow"
+msgstr "Groc"
+
+#: functions.php:253
+msgid "Orange"
+msgstr "Taronja"
+
+#: functions.php:248
+msgid "Red"
+msgstr "Vermell"
+
+#: functions.php:243
+msgid "Purple"
+msgstr "Lila"
+
+#: functions.php:309
+msgid "Red to purple"
+msgstr "Vermell a lila"
+
+#: functions.php:304
+msgid "Purple to red"
+msgstr "Lila a vermell"
+
+#: functions.php:279
+msgid "Yellow to purple"
+msgstr "Groc a lila"
+
+#: functions.php:274
+msgid "Purple to yellow"
+msgstr "Lila a groc"
+
+#. translators: %s: Parent post link.
+#: single.php:25
+msgid "<span class=\"meta-nav\">Published in</span><span class=\"post-title\">%s</span>"
+msgstr "<span class=\"meta-nav\">Publicat a</span><span class=\"post-title\">%s</span>"
+
+#: searchform.php:26
+msgctxt "submit button"
+msgid "Search"
+msgstr "Cerca"
+
+#. translators: %s: Search term.
+#: search.php:21 template-parts/content/content-none.php:22
+msgid "Results for \"%s\""
+msgstr "Resultats per a «%s»"
+
+#. translators: %s: List of tags.
+#: inc/template-tags.php:116 inc/template-tags.php:158
+msgid "Tagged %s"
+msgstr "Etiquetat %s"
+
+#. translators: %s: Post title. Only visible to screen readers.
+#: image.php:70 image.php:95 inc/template-tags.php:92 inc/template-tags.php:133
+#: template-parts/content/content-page.php:48
+msgid "Edit %s"
+msgstr "Edita %s"
+
+#: inc/block-styles.php:71
+msgid "Dividers"
+msgstr "Divisors"
+
+#: inc/block-styles.php:62
+msgid "Frame"
+msgstr "Marc"
+
+#: inc/block-styles.php:35 inc/block-styles.php:44 inc/block-styles.php:53
+#: inc/block-styles.php:80 inc/block-styles.php:89
+msgid "Borders"
+msgstr "Vores"
+
+#. translators: %s: List of categories.
+#: inc/template-tags.php:107 inc/template-tags.php:149
+msgid "Categorized as %s"
+msgstr "Categorizat com %s"
+
+#: single.php:39
+msgid "Next post"
+msgstr "Entrada següent"
+
+#. translators: %d: The number of search results.
+#: search.php:33
+msgid "We found %d result for your search."
+msgid_plural "We found %d results for your search."
+msgstr[0] "Hem trobat %d resultat en aquesta cerca."
+msgstr[1] "Hem trobat %d resultats en aquesta cerca."
+
+#: inc/block-styles.php:26
+msgid "Overlap"
+msgstr "Superposa"
+
+#: inc/block-patterns.php:128
+msgid "Contact information"
+msgstr "Informació de contacte"
+
+#: inc/block-patterns.php:120
+msgctxt "Block pattern description"
+msgid "A list of projects with thumbnail images."
+msgstr "Una llista de projectes amb imatges en miniatura."
+
+#: inc/block-patterns.php:62
+msgid "example@example.com"
+msgstr "exemple@exemple.com"
+
+#: inc/block-patterns.php:94
+msgid "Two images showcase"
+msgstr "Mostra de dos imatges"
+
+#: inc/block-patterns.php:85
+msgctxt "Block pattern description"
+msgid "Three images inside an overlapping columns block."
+msgstr "Tres imatges dins d'un bloc de columnes superposades."
+
+#: inc/block-patterns.php:82
+msgid "Overlapping images"
+msgstr "Imatges superposades"
+
+#: single.php:40
+msgid "Previous post"
+msgstr "Entrada anterior"
+
+#: classes/class-twenty-twenty-one-customize.php:75
+msgid "Display Site Title & Tagline"
+msgstr "Mostra el títol i el lema del lloc web"
+
+#. Author of the theme
+#, gp-priority: low
+msgid "the WordPress team"
+msgstr "L'equip del WordPress"
+
+#. Author URI of the theme
+#: footer.php:68
+#, gp-priority: low
+msgid "https://wordpress.org/"
+msgstr "https://ca.wordpress.org/"
+
+#. Theme URI of the theme
+#, gp-priority: low
+msgid "https://wordpress.org/themes/twentytwentyone/"
+msgstr "https://ca.wordpress.org/themes/twentytwentyone/"
