@@ -1,6 +1,27 @@
 var bwg_shortcode_type;
 
+/* Classes and ids of containers which are cover shortcode popup */
+var popup_cover_containers = '' +
+    '#adminmenuback:not(body.admin_page_shortcode_bwg #adminmenuback), ' +
+    '#adminmenuwrap:not(body.admin_page_shortcode_bwg #adminmenuwrap), ' +
+    '#wpadminbar:not(body.admin_page_shortcode_bwg #wpadminbar), ' +
+    '.interface-interface-skeleton__header, ' +
+    '.interface-interface-skeleton__secondary-sidebar, ' +
+    '.interface-interface-skeleton__footer, ' +
+    '.interface-interface-skeleton__sidebar';
 jQuery(function() {
+  /* Adding class to sections in gutenberb which are break full with of popup */
+  jQuery(popup_cover_containers, parent.document).css("display","none");
+  /* Trigger click to close gutenberg sidebar menu when click on PG shortcode (work with Classic & Gutenberg Editors) */
+  jQuery(".media-modal-close, #TB_closeWindowButton, .mce-window[aria-label='Photo Gallery'] .mce-close", parent.document).on("click", function() {
+    jQuery(popup_cover_containers, parent.document).removeAttr("style");
+  });
+  /* close gutenberg sidebar menu when press ESC button in Classic editor */
+  if ( jQuery("body", parent.document).hasClass('modal-open') ) {
+    jQuery(parent.document).on('keyup', function(e) {
+      if ( e.key == "Escape" ) jQuery(popup_cover_containers, parent.document).removeAttr("style");
+    });
+  }
   jQuery(".bwg_tw-container").parents().find(".wrap.wd-wrap-ajax").css({
     'height': 'calc(100% - 55px)'
   });
@@ -204,6 +225,7 @@ function bwg_shortcode_hide_show_params() {
   jQuery("#tr_album_masonry_search_box_placeholder").hide();
   jQuery("#tr_album_extended_search_box_width").hide();
   jQuery("#tr_album_extended_search_box_placeholder").hide();
+  jQuery("#tr_slideshow_thumbnails_count").hide();
   jQuery("#tr_slideshow_filmstrip_height").hide();
   jQuery("#tr_slideshow_title_position").hide();
   jQuery("#tr_slideshow_full_width_title").hide();
@@ -254,8 +276,11 @@ function bwg_shortcode_hide_show_params() {
     jQuery("#tr_album_extended_search_box_width").show();
     jQuery("#tr_album_extended_search_box_placeholder").show();
   }
-  if (jQuery('#slideshow_enable_filmstrip_yes').is(':checked')) {
+  if (jQuery('#slideshow_filmstrip_fix_dimension').is(':checked')) {
     jQuery("#tr_slideshow_filmstrip_height").show();
+  }
+  if (jQuery('#slideshow_filmstrip_fix_count').is(':checked')) {
+    jQuery("#tr_slideshow_thumbnails_count").show();
   }
   if (jQuery('#slideshow_enable_title_yes').is(':checked')) {
     jQuery("#tr_slideshow_title_position").show();
@@ -484,28 +509,18 @@ function bwg_gallery_type(gallery_type) {
 	    jQuery("#tr_ecommerce_icon_hover").css('display', '');
       jQuery("#tr_gallery").css('display', '');
       jQuery("#tr_tag").css('display', '');
-      jQuery(".wd-free-msg").show();
-      jQuery(".upgrade-to-pro-title").html( gallery_type_name + bwg_premium_text);
-      jQuery(".pro-views-img").attr('src',pro_img_url);
-      jQuery(".button-demo").attr('href', pro_demo_link );
-      if ( jQuery(".wd-free-msg").length != 0 ) {
-        jQuery("#insert").attr("style", "visibility: hidden;");
-        jQuery(".bwg-pro-views").hide();
-      }
+      jQuery(".wd-free-msg").hide();
+      jQuery("#insert").attr("style", "visibility: visible;");
+      jQuery(".bwg-section.bwg-pro-views").show();
       break;
     }
     case 'thumbnails_mosaic': {
   	  jQuery("#tr_ecommerce_icon_hover ").css('display', '');
       jQuery("#tr_gallery").css('display', '');
       jQuery("#tr_tag").css('display', '');
-      jQuery(".wd-free-msg").show();
-      jQuery(".upgrade-to-pro-title").html( gallery_type_name + bwg_premium_text);
-      jQuery(".pro-views-img").attr('src',pro_img_url);
-      jQuery(".button-demo").attr('href', pro_demo_link );
-      if ( jQuery(".wd-free-msg").length != 0 ) {
-        jQuery("#insert").attr("style", "visibility: hidden;");
-        jQuery(".bwg-pro-views").hide();
-      }
+      jQuery(".wd-free-msg").hide();
+      jQuery("#insert").attr("style", "visibility: visible;");
+      jQuery(".bwg-section.bwg-pro-views").show();
       break;
     }
     case 'slideshow': {
@@ -539,36 +554,26 @@ function bwg_gallery_type(gallery_type) {
       jQuery(".bwg-section.bwg-pro-views").show();
       break;
     }
-	case 'album_masonry_preview': {
+	  case 'album_masonry_preview': {
       jQuery("#tr_album").css('display', '');
-      jQuery(".wd-free-msg").show();
-      jQuery(".upgrade-to-pro-title").html( gallery_type_name + bwg_premium_text);
-      jQuery(".pro-views-img").attr('src',pro_img_url);
-      jQuery(".button-demo").attr('href', pro_demo_link );
-      if ( jQuery(".wd-free-msg").length != 0 ) {
-        jQuery("#insert").attr("style", "visibility: hidden;");
-        jQuery(".bwg-pro-views").hide();
-      }
+      jQuery(".wd-free-msg").hide();
+      jQuery("#insert").attr("style", "visibility: visible;");
+      jQuery(".bwg-section.bwg-pro-views").show();
       break;
     }		
     case 'blog_style': {
       jQuery("#tr_gallery").css('display', '');
       jQuery("#tr_tag").css('display', '');
-      jQuery(".wd-free-msg").show();
-      jQuery(".upgrade-to-pro-title").html( gallery_type_name + bwg_premium_text);
-      jQuery(".pro-views-img").attr('src',pro_img_url);
-      jQuery(".button-demo").attr('href', pro_demo_link );
-      if ( jQuery(".wd-free-msg").length != 0 ) {
-        jQuery("#insert").attr("style", "visibility: hidden;");
-        jQuery(".bwg-pro-views").hide();
-      }
+      jQuery(".wd-free-msg").hide();
+      jQuery("#insert").attr("style", "visibility: visible;");
+      jQuery(".bwg-section.bwg-pro-views").show();
       break;
     }
 	case 'carousel': {
 	  jQuery("#tr_gallery").css('display', '');
       jQuery("#tr_tag").css('display', '');
       jQuery(".wd-free-msg").show();
-      jQuery(".upgrade-to-pro-title").html( gallery_type_name + bwg_premium_text);
+      jQuery(".upgrade-to-pro-title").html( gallery_type_name + bwg_shortcode_premium_text.bwg_premium_text);
       jQuery(".pro-views-img").attr('src',pro_img_url);
       jQuery(".button-demo").attr('href', pro_demo_link );
       if ( jQuery(".wd-free-msg").length != 0 ) {

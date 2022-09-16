@@ -3,7 +3,7 @@
 Plugin Name: Popup contact form
 Description: Plugin allows user to create and add the popup contact forms easily on the website. That popup contact form let user to send the emails to site admin.
 Author: Gopi Ramasamy
-Version: 6.8
+Version: 7.1
 Plugin URI: http://www.gopiplus.com/work/2012/05/18/popup-contact-form-wordpress-plugin/
 Author URI: http://www.gopiplus.com/work/2012/05/18/popup-contact-form-wordpress-plugin/
 Donate link: http://www.gopiplus.com/work/2012/05/18/popup-contact-form-wordpress-plugin/
@@ -46,7 +46,7 @@ function PopupContact()
       <div id="PopupContact_BoxLabel">
         <textarea name="PopupContact_message" class="PopupContact_TextArea" rows="3" id="PopupContact_message"></textarea>
       </div>
-      <div id="PopupContact_BoxLabel"><br />
+      <div id="PopupContact_BoxLabel">
         <input type="button" name="button" class="PopupContact_Button" value="Submit" onClick="javascript:PopupContact_Submit(this.parentNode,'<?php echo home_url(); ?>');">
       </div>
     </form>
@@ -88,10 +88,16 @@ function PopupContact_widget($args)
 	$title = get_option('PopupContact_title');
 	if($display == "show")
 	{
-		extract($args);
-	    echo $before_widget;
-		PopupContact();
-		echo $after_widget;
+		//extract($args);
+	    //echo $before_widget;
+		//PopupContact();
+		//echo $after_widget;
+		
+		//[popup-contact-form id="1" title="Contact Us"]
+		$arr = array();
+		$arr["id"] 	= 2;
+		$arr["title"] = $title;
+		echo PopupContact_shortcode($arr);
 	}
 }
 	
@@ -106,12 +112,12 @@ function PopupContact_widget_init()
 {
 	if(function_exists('wp_register_sidebar_widget')) 
 	{
-		wp_register_sidebar_widget( __('Popup contact form', 'popup-contact-form'), __('Popup contact form', 'popup-contact-form'), 'PopupContact_widget');
+		wp_register_sidebar_widget( 'popup-contact-form', __('Popup contact form', 'popup-contact-form'), 'PopupContact_widget');
 	}
 	
 	if(function_exists('wp_register_widget_control')) 
 	{
-		wp_register_widget_control( __('Popup contact form', 'popup-contact-form'), array(__('Popup contact form', 'popup-contact-form'), 'widgets'), 'PopupContact_control');
+		wp_register_widget_control( 'popup-contact-form', array(__('Popup contact form', 'popup-contact-form'), 'widgets'), 'PopupContact_control');
 	} 
 }
 
@@ -277,5 +283,5 @@ add_action('wp_enqueue_scripts', 'PopupContact_add_javascript_files');
 add_action("plugins_loaded", "PopupContact_widget_init");
 register_activation_hook(__FILE__, 'PopupContact_install');
 register_deactivation_hook(__FILE__, 'PopupContact_deactivation');
-add_action('init', 'PopupContact_widget_init');
+//add_action('init', 'PopupContact_widget_init');
 ?>

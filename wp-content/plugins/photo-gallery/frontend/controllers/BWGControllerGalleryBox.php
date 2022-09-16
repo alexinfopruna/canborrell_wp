@@ -2,8 +2,8 @@
 class BWGControllerGalleryBox {
   public function execute() {
     $ajax_task = WDWLibrary::get('ajax_task');
-    if (method_exists($this, $ajax_task)) {
-	 $this->$ajax_task();
+    if ( method_exists($this, $ajax_task) ) {
+      $this->$ajax_task();
     }
     else {
       $this->display();
@@ -22,28 +22,33 @@ class BWGControllerGalleryBox {
 
   public function save_rate() {
     global $wpdb;
-    $image_id = WDWLibrary::get('image_id', 0, 'intval','POST');
+    $image_id = WDWLibrary::get('image_id', 0, 'intval', 'POST');
     $rate = WDWLibrary::get('rate');
-    $ip = BWG()->options->save_ip ? $_SERVER['REMOTE_ADDR'] : '';
+    $ip = BWG()->options->save_ip ? sanitize_text_field($_SERVER['REMOTE_ADDR']) : '';
     if ( !$ip || !$wpdb->get_var($wpdb->prepare('SELECT `image_id` FROM `' . $wpdb->prefix . 'bwg_image_rate` WHERE `ip`="%s" AND `image_id`="%d"', $ip, $image_id)) ) {
       $wpdb->insert($wpdb->prefix . 'bwg_image_rate', array(
         'image_id' => $image_id,
         'rate' => $rate,
         'ip' => $ip,
         'date' => date('Y-m-d H:i:s'),
-      ), array(
-		  '%d',
-		  '%f',
-		  '%s',
-		  '%s',
-		));
+    ), array(
+      '%d',
+      '%f',
+      '%s',
+      '%s',
+    ));
     }
     $rates = $wpdb->get_row($wpdb->prepare('SELECT AVG(`rate`) as `average`, COUNT(`rate`) as `rate_count` FROM ' . $wpdb->prefix . 'bwg_image_rate WHERE image_id="%d"', $image_id));
-    $wpdb->update($wpdb->prefix . 'bwg_image', array(
-      'avg_rating' => $rates->average,
-      'rate_count' => $rates->rate_count
-    ), array( 'id' => $image_id ),
-      array('%f','%d'),array('%d'));
+    $wpdb->update($wpdb->prefix . 'bwg_image',
+                  array(
+                    'avg_rating' => $rates->average,
+                    'rate_count' => $rates->rate_count,
+                  ),
+                  array( 'id' => $image_id ),
+                  array( '%f', '%d' ),
+                  array( '%d' )
+              );
+
     $this->display();
   }
 
@@ -65,46 +70,46 @@ class BWGControllerGalleryBox {
 		$image_id = WDWLibrary::get('comment_image_id', 0);
 		$name = trim(WDWLibrary::get('comment_name', ''));
 		$email = WDWLibrary::get('comment_email', '');
-		$comment = trim(WDWLibrary::get('comment_text', ''));
+		$comment = trim(WDWLibrary::get('comment_text', '', 'htmlentities'));
 		$moderation = trim(WDWLibrary::get('comment_moderation', 0));
 		$privacy_policy = WDWLibrary::get('privacy_policy', '');
 		$published = (current_user_can('manage_options') || !$moderation) ? 1 : 0;
 		
 		if ( empty($name) ) {
 				$error = true;
-				$error_messages['name'] = sprintf( __('The %s field is required.', BWG()->prefix), 'name' );
+				$error_messages['name'] = sprintf( __('The %s field is required.', 'photo-gallery'), 'name' );
 		}
 		if ( WDWLibrary::get('popup_enable_email') ) {
 			if ( empty($email) ) {
 				$error = true;
-				$error_messages['email'] = sprintf( __('The %s field is required.', BWG()->prefix), 'email' );
+				$error_messages['email'] = sprintf( __('The %s field is required.', 'photo-gallery'), 'email' );
 			}
 			elseif ( !is_email($email) ) {
 				$error = true;
-				$error_messages['email'] = sprintf( __('The %s field must contain a valid email address.', BWG()->prefix), 'email' );
+				$error_messages['email'] = sprintf( __('The %s field must contain a valid email address.', 'photo-gallery'), 'email' );
 			}
 		}
 		if ( empty($comment) ) {
 			$error = true;
-			$error_messages['textarea'] = sprintf( __('The %s field is required.', BWG()->prefix), 'comment' );
+			$error_messages['textarea'] = sprintf( __('The %s field is required.', 'photo-gallery'), 'comment' );
 		}
 		if ( WDWLibrary::get('popup_enable_captcha') ) {
 			 WDWLibrary::bwg_session_start();
 			 $captcha = WDWLibrary::get('comment_captcha');
-			 $session_captcha = (isset($_SESSION['bwg_captcha_code']) ? esc_html(stripslashes($_SESSION['bwg_captcha_code'])) : '');
+			 $session_captcha = (isset($_SESSION['bwg_captcha_code']) ? sanitize_text_field(stripslashes($_SESSION['bwg_captcha_code'])) : '');
 			 if ( empty($captcha) ) {
 				$error = true;
-				$error_messages['captcha'] = sprintf( __('The %s field is required.', BWG()->prefix), 'captcha' );
+				$error_messages['captcha'] = sprintf( __('The %s field is required.', 'photo-gallery'), 'captcha' );
 			 }
 			 elseif ( $captcha != $session_captcha ) {
 				$error = true;
-				$error_messages['captcha'] = __('Incorrect Security code.', BWG()->prefix);
+				$error_messages['captcha'] = __('Incorrect Security code.', 'photo-gallery');
 			 }
 		}
 		if ( WDWLibrary::get_privacy_policy_url() ) {
 			if ( empty($privacy_policy) ) {
 				$error = true;
-				$error_messages['privacy_policy'] = sprintf( __('The %s field is required.', BWG()->prefix), 'privacy policy' );
+				$error_messages['privacy_policy'] = sprintf( __('The %s field is required.', 'photo-gallery'), 'privacy policy' );
 			}
 		 }
 

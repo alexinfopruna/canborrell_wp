@@ -124,7 +124,7 @@ class WPML_LS_Templates {
 					$tpl    = array();
 					$config = $this->parse_template_config( $template_path );
 
-					$tpl['path']     = $template_path;
+					$tpl['path']     = [ $wpml_core_path, $template_path ];
 					$tpl['version']  = isset( $config['version'] ) ? $config['version'] : '1';
 					$tpl['name']     = isset( $config['name'] ) ? $config['name'] : null;
 					$tpl['name']     = $this->get_unique_name( $tpl['name'], $template_path );

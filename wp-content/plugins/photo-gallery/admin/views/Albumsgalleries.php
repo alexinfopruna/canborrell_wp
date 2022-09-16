@@ -76,8 +76,8 @@ class AlbumsgalleriesView_bwg extends AdminView_bwg {
           <td class="sortable manage-column column-cb check-column table_small_col">
             <input id="check_all" type="checkbox" />
           </td>
-          <?php echo WDWLibrary::ordering('name', $params['orderby'], $params['order'], __('Title', BWG()->prefix), $params['page_url'], 'column-primary'); ?>
-          <?php echo WDWLibrary::ordering('is_album', $params['orderby'], $params['order'], __('Type', BWG()->prefix), $params['page_url']); ?>
+          <?php echo WDWLibrary::ordering('name', $params['orderby'], $params['order'], __('Title', 'photo-gallery'), $params['page_url'], 'column-primary'); ?>
+          <?php echo WDWLibrary::ordering('is_album', $params['orderby'], $params['order'], __('Type', 'photo-gallery'), $params['page_url']); ?>
         </thead>
         <tbody id="tbody_albums_galleries">
         <?php
@@ -100,7 +100,7 @@ class AlbumsgalleriesView_bwg extends AdminView_bwg {
               <th class="table_small_col check-column">
                 <input id="check_<?php echo $iterator; ?>" name="check_<?php echo $iterator; ?>" type="checkbox" data-id="<?php echo $row->id; ?>" data-is-album="<?php echo htmlspecialchars(addslashes($row->is_album)); ?>" data-preview-image="<?php echo esc_url( $preview_image ); ?>" data-name="<?php echo esc_attr( $row->name ); ?>" data-status="<?php echo !$row->published ? 'dashicons-hidden' : 'bwg-hidden'; ?>" />
               </th>
-              <td class="column-primary column-title" data-colname="<?php _e('Title', BWG()->prefix); ?>">
+              <td class="column-primary column-title" data-colname="<?php _e('Title', 'photo-gallery'); ?>">
                 <strong class="has-media-icon">
                   <a class="wd-pointer" onclick="window.parent.bwg_add_album_gallery('<?php echo $row->id; ?>', '<?php echo $row->is_album; ?>', '<?php echo esc_url( $preview_image ); ?>', '<?php echo esc_attr( $row->name ); ?>','<?php echo !$row->published ? 'dashicons-hidden' : 'bwg-hidden' ?>')" id="a_<?php echo $iterator; ?>">
                     <span class="media-icon image-icon">
@@ -109,15 +109,15 @@ class AlbumsgalleriesView_bwg extends AdminView_bwg {
                     <?php echo esc_html( $row->name ); ?>
                   </a>
                   <?php if ( !$row->published ) { ?>
-                    — <span class="post-state"><?php _e('Unpublished', BWG()->prefix); ?></span>
+                    — <span class="post-state"><?php _e('Unpublished', 'photo-gallery'); ?></span>
                             <?php } ?>
                 </strong>
                 <button class="toggle-row" type="button">
-                  <span class="screen-reader-text"><?php _e('Show more details', BWG()->prefix); ?></span>
+                  <span class="screen-reader-text"><?php _e('Show more details', 'photo-gallery'); ?></span>
                 </button>
               </td>
-              <td id="type_<?php echo $iterator; ?>" class="table_medium_col_uncenter" data-colname="<?php _e('Type', BWG()->prefix); ?>">
-                <?php echo ($row->is_album ? __("Gallery group", BWG()->prefix) : __("Gallery", BWG()->prefix)) ; ?>
+              <td id="type_<?php echo $iterator; ?>" class="table_medium_col_uncenter" data-colname="<?php _e('Type', 'photo-gallery'); ?>">
+                <?php echo ($row->is_album ? __("Gallery group", 'photo-gallery') : __("Gallery", 'photo-gallery')) ; ?>
               </td>
             </tr>
             <?php
@@ -135,7 +135,7 @@ class AlbumsgalleriesView_bwg extends AdminView_bwg {
     <div class="media-frame-toolbar">
       <div class="media-toolbar">
         <div class="media-toolbar-primary search-form">
-          <button class="button media-button button-primary button-large media-button-insert" type="button" onclick="jQuery('#loading_div').show(); spider_get_items();"><?php _e('Add to Gallery Group', BWG()->prefix); ?></button>
+          <button class="button media-button button-primary button-large media-button-insert" type="button" onclick="jQuery('#loading_div').show(); spider_get_items();"><?php _e('Add to Gallery Group', 'photo-gallery'); ?></button>
         </div>
       </div>
 	  </div>

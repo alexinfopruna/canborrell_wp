@@ -2,10 +2,10 @@
 /**
  * Plugin Name: WPML Translation Management
  * Plugin URI: https://wpml.org/
- * Description: Add a complete translation process for WPML | <a href="https://wpml.org">Documentation</a> | <a href="https://wpml.org/version/translation-management-2-10-5/">WPML Translation Management 2.10.5 release notes</a>
+ * Description: Add a complete translation process for WPML | <a href="https://wpml.org">Documentation</a> | <a href="https://wpml.org/version/translation-management-2-10-8/">WPML Translation Management 2.10.8 release notes</a>
  * Author: OnTheGoSystems
  * Author URI: http://www.onthegosystems.com/
- * Version: 2.10.5
+ * Version: 2.10.8
  * Plugin Slug: wpml-translation-management
  *
  * @package WPML\TM
@@ -18,11 +18,10 @@ if ( defined( 'WPML_TM_VERSION' ) || get_option( '_wpml_inactive' ) ) {
 	return;
 }
 
-define( 'WPML_TM_VERSION', '2.10.5' );
+define( 'WPML_TM_VERSION', '2.10.8' );
 
 // Do not uncomment the following line!
-// If you need to use this constant, use it in the wp-config.php file
-// define( 'WPML_TM_DEV_VERSION', '2.0.3-dev' );
+// If you need to use this constant, use it in the wp-config.php file.
 if ( ! defined( 'WPML_TM_PATH' ) ) {
 	define( 'WPML_TM_PATH', dirname( __FILE__ ) );
 }
@@ -140,6 +139,7 @@ function wpml_tm_load( $sitepress = null ) {
 		'WPML_TM_Translation_Priorities_Factory',
 		'WPML_TM_Word_Count_Hooks_Factory',
 		'\WPML\TM\AdminBar\Hooks',
+		'\WPML\ATE\Proxies\Widget',
 	];
 	$action_filter_loader->load( $frontend_actions );
 
@@ -171,6 +171,7 @@ function wpml_tm_load( $sitepress = null ) {
 			'WPML_TM_Translation_Jobs_Fix_Summary_Factory',
 			'WPML_TM_Troubleshooting_Fix_Translation_Jobs_TP_ID_Factory',
 			\WPML\TM\Troubleshooting\SynchronizeSourceIdOfATEJobs\TriggerSynchronization::class,
+			\WPML\TM\Troubleshooting\ResetPreferredTranslationService::class,
 			'WPML_TM_Reset_Options_Filter_Factory',
 			\WPML\TM\User\Hooks::class,
 			\WPML\TM\Jobs\ExtraFieldDataInEditorFactory::class,
@@ -190,6 +191,7 @@ function wpml_tm_load( $sitepress = null ) {
 			'WPML_TM_REST_Batch_Sync_Factory',
 			'WPML_TM_REST_ATE_Sync_Jobs_Factory',
 			\WPML\TM\REST\FactoryLoader::class,
+			\WPML\TM\ATE\Factories\Proxy::class,
 		];
 		$action_filter_loader->load( $rest_actions );
 
@@ -202,7 +204,6 @@ function wpml_tm_load( $sitepress = null ) {
 			'WPML_TM_ATE_Post_Edit_Actions_Factory',
 			'WPML_TM_ATE_Translator_Message_Classic_Editor_Factory',
 			'WPML_TM_Old_Editor_Factory',
-			'WPML_TM_AMS_Check_Website_ID_Factory',
 			\WPML\TM\ATE\Log\Hooks::class,
 			\WPML\TM\ATE\Hooks\ReturnedJobActionsFactory::class,
 			ReportAjax::class,

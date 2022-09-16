@@ -357,7 +357,7 @@ jQuery(function () {
     "use strict";
 
     var wpmlTranslationServicesDialog = new WPMLTranslationServicesDialog();
-    var current_url = location.href;
+    var current_url = WPML_core.sanitize( location.href );
     var search_section = jQuery('.ts-admin-section-search');
 
     wpmlTranslationServicesDialog.init();
@@ -367,7 +367,7 @@ jQuery(function () {
 			s: search_section.find('.search-string' ).val()
 		};
 
-		window.location.href = current_url + '&' + jQuery.param( param );
+		window.location.href = WPML_core.sanitize( current_url + '&' + jQuery.param( param ) );
 	});
 
 	search_section.find( '.search-string' ).keypress(function (e) {
@@ -383,7 +383,7 @@ jQuery(function () {
 				paged: jQuery( this ).val()
 			};
 
-			window.location.href = current_url + '&' + jQuery.param( param );
+			window.location.href = WPML_core.sanitize( current_url + '&' + jQuery.param( param ) );
 		}
 	});
 });

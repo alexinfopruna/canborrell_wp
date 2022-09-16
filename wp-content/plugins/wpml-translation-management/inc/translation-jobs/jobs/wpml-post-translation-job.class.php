@@ -1,5 +1,6 @@
 <?php
 
+use WPML\FP\Obj;
 use WPML\TM\Jobs\FieldId;
 use WPML\TM\Jobs\TermMeta;
 use WPML\FP\Lst;
@@ -287,5 +288,14 @@ class WPML_Post_Translation_Job extends WPML_Element_Translation_Job {
 				}
 			}
 		}
+	}
+
+	/**
+	 * @param array $args
+	 *
+	 * @return array
+	 */
+	protected function filter_is_translator_args( array $args ) {
+		return Obj::assoc( 'post_id', $this->get_original_element_id(), $args );
 	}
 }

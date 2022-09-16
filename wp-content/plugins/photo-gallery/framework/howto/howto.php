@@ -135,6 +135,13 @@ wp_print_scripts('jquery-ui-tabs');
     margin-top: 20px;
     width: 100%;
   }
+  .wd-howto-divider-vertical-two {
+    border: #0000000d 1px solid;
+    display: inline;
+    margin: 0 10px;
+    height: 25px;
+    width: 0;
+  }
   #wd_howto_container .wd-howto-divider-vertical {
     border: #0000000d 1px solid;
     width: 0;
@@ -336,7 +343,7 @@ wp_print_scripts('jquery-ui-tabs');
   <div id="wd_howto_wrap" class="wd-howto-wrap">
     <div class="wd-howto-menu-overlay hidden" onclick="wd_toggle_mobile_menu()"></div>
     <div class="wd-howto-menu">
-      <div class="wd-howto-title"><?php _e('How to ...', BWG()->prefix); ?></div>
+      <div class="wd-howto-title"><?php _e('How to ...', 'photo-gallery'); ?></div>
       <ul>
         <?php
         foreach ($howto as $item => $value) {
@@ -354,7 +361,7 @@ wp_print_scripts('jquery-ui-tabs');
         <div id="wd-howto-<?php echo $item; ?>">
           <div class="wd-howto-title wd-howto-mobile">
             <span class="dashicons dashicons-menu" onclick="wd_toggle_mobile_menu()"></span>
-            <span class="wd-howto-title"><?php _e('How to ...', BWG()->prefix); ?></span>
+            <span class="wd-howto-title"><?php _e('How to ...', 'photo-gallery'); ?></span>
             <span class="dashicons dashicons-no-alt" onclick="wd_how_to_use(); return false;"></span>
             <div class="wd-howto-divider-horizontal"></div>
           </div>
@@ -405,7 +412,12 @@ wp_print_scripts('jquery-ui-tabs');
     </div>
   </div>
 </div>
-<button type="button" class="tw-button-secondary button-large bwg-howto-button" onclick="wd_how_to_use(); return false;">
-  <?php _e('How to use', BWG()->prefix); ?>
-</button>
+<?php
+if ( isset($_GET['page']) ) {
+  $get_gallery_type = basename(stripslashes(WDWLibrary::get('page','','sanitize_text_field','GET')));
+}
+$howto_title = ($get_gallery_type != "albums_bwg") ? __('Insert Gallery To', 'photo-gallery') : __('Insert Gallery Group To', 'photo-gallery');
+?>
+<div class="wd-howto-divider-vertical-two"></div>
+<button type="button" class="tw-button-secondary button-large bwg-howto-button" onclick="wd_how_to_use(); return false;"> <?php echo $howto_title; ?> </button>
 <?php

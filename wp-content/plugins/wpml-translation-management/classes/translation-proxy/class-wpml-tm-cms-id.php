@@ -70,7 +70,7 @@ class WPML_TM_CMS_ID extends WPML_TM_Record_User {
 
 		$type_parts = (bool) $original_element_row === true ? explode( '_', $original_element_row->element_type, 2 ) : false;
 
-		return count( $type_parts ) === 2
+		return is_array( $type_parts ) && count( $type_parts ) === 2
 			? $this->build_cms_id( $original_element_row->element_id, end( $type_parts ), $original_element_row->source_lang, $original_element_row->target_lang )
 			: false;
 	}

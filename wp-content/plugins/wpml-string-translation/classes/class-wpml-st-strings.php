@@ -1,5 +1,7 @@
 <?php
 
+use WPML\API\Sanitize;
+
 class WPML_ST_Strings {
 
 	const EMPTY_CONTEXT_LABEL = 'empty-context-domain';
@@ -53,7 +55,7 @@ class WPML_ST_Strings {
 		}
 
 		if ( array_key_exists( 'context', $_GET ) ) {
-			$context = filter_var( $_GET['context'], FILTER_SANITIZE_STRING );
+			$context = Sanitize::stringProp( 'context', $_GET );
 
 			if ( self::EMPTY_CONTEXT_LABEL === $context ) {
 				$context = '';
@@ -193,7 +195,7 @@ class WPML_ST_Strings {
 			array( '{column}', '{value}' ),
 			array(
 				esc_sql( $column ),
-				esc_sql( $search_filter ),
+				esc_sql( str_replace( "'", "&#039;", $search_filter ) ),
 			),
 			$pattern
 		);
@@ -265,7 +267,7 @@ class WPML_ST_Strings {
 	 */
 	private function get_search_filter() {
 		if ( array_key_exists( 'search', $_GET ) ) {
-			return $_GET['search'];
+			return stripcslashes( $_GET['search'] );
 		}
 
 		return false;

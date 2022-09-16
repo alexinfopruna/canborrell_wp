@@ -134,14 +134,14 @@ class BWGInsert {
       $theme1 = new WD_BWG_Theme(0, false, 'Light');
       $wpdb->insert($wpdb->prefix . 'bwg_theme', array(
         'id' => 1,
-        'name' => __('Light', BWG()->prefix),
+        'name' => __('Light', 'photo-gallery'),
         'options' => json_encode($theme1),
         'default_theme' => 1
       ));
       $theme2 = new WD_BWG_Theme(0, false, 'Dark');
       $wpdb->insert($wpdb->prefix . 'bwg_theme', array(
         'id' => 2,
-        'name' => __('Dark', BWG()->prefix),
+        'name' => __('Dark', 'photo-gallery'),
         'options' => json_encode($theme2),
         'default_theme' => 0
       ));

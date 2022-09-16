@@ -191,19 +191,23 @@
 				}
 			}
 
-			function wpml_media_duplicate_featured_images() {
-
+			function wpml_media_duplicate_featured_images( left = null ) {
 				if (jQuery('#duplicate_featured', form).is(':checked')) {
+					const nonce = document.getElementById( 'wpml_media_settings_nonce' );
 					jQuery.ajax(
 						{
 							url:      ajaxurl,
 							type:     'POST',
-							data:     {action: 'wpml_media_duplicate_featured_images'},
+							data:     {
+								action: 'wpml_media_duplicate_featured_images',
+								nonce: nonce ? nonce.value : '',
+								featured_images_left: left
+							},
 							dataType: 'json',
 							success:  function (ret) {
 								wpml_update_status(ret.message);
 								if (ret.left > 0) {
-									wpml_media_duplicate_featured_images();
+									wpml_media_duplicate_featured_images( ret.left );
 								} else {
 									wpml_media_mark_processed();
 								}
@@ -269,7 +273,6 @@
 				wpml_update_status('');
 				submitButton.attr('disabled', 'disabled');
 				jQuery(form).find('.content_default_progress').fadeIn();
-
 				jQuery.ajax(
 					{
 						url:      ajaxurl,
@@ -278,7 +281,8 @@
 							action:                 'wpml_media_set_content_defaults',
 							always_translate_media: jQuery('input[name=content_default_always_translate_media]', form).is(':checked'),
 							duplicate_media:        jQuery('input[name=content_default_duplicate_media]', form).is(':checked'),
-							duplicate_featured:     jQuery('input[name=content_default_duplicate_featured]', form).is(':checked')
+							duplicate_featured:     jQuery('input[name=content_default_duplicate_featured]', form).is(':checked'),
+							translate_media_library_texts:     jQuery('input[name=translate_media_library_texts]', form).is(':checked')
 						},
 						dataType: 'json',
 						success:  function (ret) {

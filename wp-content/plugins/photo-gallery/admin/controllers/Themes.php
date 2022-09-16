@@ -36,12 +36,12 @@ class ThemesController_bwg {
 
     $this->actions = array(
       'duplicate' => array(
-        'title' => __('Duplicate', BWG()->prefix),
-        $this->bulk_action_name => __('duplicated', BWG()->prefix),
+        'title' => __('Duplicate', 'photo-gallery'),
+        $this->bulk_action_name => __('duplicated', 'photo-gallery'),
       ),
       'delete' => array(
-        'title' => __('Delete', BWG()->prefix),
-        $this->bulk_action_name => __('deleted', BWG()->prefix),
+        'title' => __('Delete', 'photo-gallery'),
+        $this->bulk_action_name => __('deleted', 'photo-gallery'),
       ),
     );
 
@@ -85,7 +85,7 @@ class ThemesController_bwg {
     // Set params for view.
     $params = array();
     $params['page'] = $this->page;
-    $params['page_title'] = __('Themes', BWG()->prefix);
+    $params['page_title'] = __('Themes', 'photo-gallery');
     $params['actions'] = $this->actions;
     $params['order'] = WDWLibrary::get('order', 'desc');
     $params['orderby'] = WDWLibrary::get('orderby', 'default_theme');
@@ -129,7 +129,7 @@ class ThemesController_bwg {
       }
       if ( $successfully_updated ) {
         $block_action = $this->bulk_action_name;
-        $message = sprintf(_n('%s item successfully %s.', '%s items successfully %s.', $successfully_updated, BWG()->prefix), $successfully_updated, $this->actions[$task][$block_action]);
+        $message = sprintf(_n('%s item successfully %s.', '%s items successfully %s.', $successfully_updated, 'photo-gallery'), $successfully_updated, $this->actions[$task][$block_action]);
       }
     }
     WDWLibrary::redirect(add_query_arg(array(
@@ -213,6 +213,30 @@ class ThemesController_bwg {
   }
 
   /**
+   * Set default.
+   *
+   * @param      $id
+   * @param bool $bulk
+   * @param bool $all
+   */
+  public function setdefault( $id, $bulk = FALSE, $all = FALSE ) {
+    $this->model->update( array( 'default_theme' => 0 ), array( 'default_theme' => 1 ) );
+    $save = $this->model->update( array( 'default_theme' => 1 ), array( 'id' => $id ) );
+    if ( $save !== FALSE ) {
+      $message = 7;
+    }
+    else {
+      $message = 2;
+    }
+    $page = WDWLibrary::get('page');
+    WDWLibrary::redirect(add_query_arg(array(
+                                                'page' => $page,
+                                                'task' => 'display',
+                                                'message' => $message,
+                                              ), admin_url('admin.php')));
+  }
+
+  /**
    * Add.
    *
    * @param int  $id
@@ -229,8 +253,9 @@ class ThemesController_bwg {
    */
   public function edit( $id = 0, $bulk = FALSE ) {
     $reset = WDWLibrary::get('reset', FALSE);
+    $active_tab = WDWLibrary::get('active_tab', 'Thumbnail');
     // Get Theme data.
-    $row = $this->model->get_row_data($id, $reset);
+    $row = $this->model->get_row_data($id, $reset, $active_tab);
 		$current_type = WDWLibrary::get('current_type', 'Thumbnail');
 		$form_action  = add_query_arg( array(
                                 'page' => 'themes_' . BWG()->prefix,
@@ -239,30 +264,31 @@ class ThemesController_bwg {
 							), admin_url('admin.php') );
 
 		$tabs = array(
-			'Thumbnail' => __('Thumbnail', BWG()->prefix),
-			'Masonry' => __('Masonry', BWG()->prefix),
-			'Mosaic' => __('Mosaic', BWG()->prefix),
-			'Slideshow' => __('Slideshow', BWG()->prefix),
-			'Image_browser' => __('Image browser', BWG()->prefix),
-			'Compact_album' => __('Compact album', BWG()->prefix),
-			'Masonry_album' => __('Masonry album', BWG()->prefix),
-			'Extended_album' => __('Extended album', BWG()->prefix),
-			'Blog_style' => __('Blog style', BWG()->prefix),
-			'Lightbox' => __('Lightbox', BWG()->prefix),
-			'Navigation' => __('Navigation', BWG()->prefix),
-			'Carousel' => __('Carousel', BWG()->prefix),
+			'Thumbnail' => __('Thumbnail', 'photo-gallery'),
+			'Masonry' => __('Masonry', 'photo-gallery'),
+			'Mosaic' => __('Mosaic', 'photo-gallery'),
+			'Slideshow' => __('Slideshow', 'photo-gallery'),
+			'Image_browser' => __('Image browser', 'photo-gallery'),
+			'Compact_album' => __('Compact album', 'photo-gallery'),
+			'Masonry_album' => __('Masonry album', 'photo-gallery'),
+			'Extended_album' => __('Extended album', 'photo-gallery'),
+			'Blog_style' => __('Blog style', 'photo-gallery'),
+			'Lightbox' => __('Lightbox', 'photo-gallery'),
+			'Navigation' => __('Navigation', 'photo-gallery'),
+			'Carousel' => __('Carousel', 'photo-gallery'),
+			'Tags' => __('Tags', 'photo-gallery'),
 		);
 
 		$border_styles = array(
-			'none' => __('None', BWG()->prefix),
-			'solid' => __('Solid', BWG()->prefix),
-			'dotted' => __('Dotted', BWG()->prefix),
-			'dashed' => __('Dashed', BWG()->prefix),
-			'double' => __('Double', BWG()->prefix),
-			'groove' => __('Groove', BWG()->prefix),
-			'ridge' => __('Ridge', BWG()->prefix),
-			'inset' => __('Inset', BWG()->prefix),
-			'outset' => __('Outset', BWG()->prefix),
+			'none' => __('None', 'photo-gallery'),
+			'solid' => __('Solid', 'photo-gallery'),
+			'dotted' => __('Dotted', 'photo-gallery'),
+			'dashed' => __('Dashed', 'photo-gallery'),
+			'double' => __('Double', 'photo-gallery'),
+			'groove' => __('Groove', 'photo-gallery'),
+			'ridge' => __('Ridge', 'photo-gallery'),
+			'inset' => __('Inset', 'photo-gallery'),
+			'outset' => __('Outset', 'photo-gallery'),
 		);
 
 		$google_fonts = WDWLibrary::get_google_fonts();
@@ -280,49 +306,47 @@ class ThemesController_bwg {
 		);
 
 		$aligns = array(
-			'left' 	=> __('Left', BWG()->prefix),
-			'center' 	=> __('Center', BWG()->prefix),
-			'right' 	=> __('Right', BWG()->prefix),
+			'left' 	=> __('Left', 'photo-gallery'),
+			'center' 	=> __('Center', 'photo-gallery'),
+			'right' 	=> __('Right', 'photo-gallery'),
 		);
 
 		$font_weights = array(
-			'lighter' => __('Lighter', BWG()->prefix),
-			'normal' => __('Normal', BWG()->prefix),
-			'bold' => __('Bold', BWG()->prefix),
+			'lighter' => __('Lighter', 'photo-gallery'),
+			'normal' => __('Normal', 'photo-gallery'),
+			'bold' => __('Bold', 'photo-gallery'),
 		);
 
 		// ToDO: Remove after global update.
 		$hover_effects = array(
-			'none' => __('None', BWG()->prefix),
-			'rotate' => __('Rotate', BWG()->prefix),
-			'scale' => __('Scale', BWG()->prefix),
-			'skew' => __('Skew', BWG()->prefix),
+			'none' => __('None', 'photo-gallery'),
+			'rotate' => __('Rotate', 'photo-gallery'),
+			'scale' => __('Scale', 'photo-gallery'),
+			'skew' => __('Skew', 'photo-gallery'),
 		);
 
 		$thumbnail_hover_effects = array(
-		  'none' => __('None', BWG()->prefix),
-		  'rotate' => __('Rotate', BWG()->prefix),
-		  'scale' => __('Scale', BWG()->prefix),
-		  'zoom' => __('Zoom', BWG()->prefix),
-		  'skew' => __('Skew', BWG()->prefix),
+		  'none' => __('None', 'photo-gallery'),
+		  'rotate' => __('Rotate', 'photo-gallery'),
+		  'scale' => __('Scale', 'photo-gallery'),
+		  'zoom' => __('Zoom', 'photo-gallery'),
+		  'skew' => __('Skew', 'photo-gallery'),
 		);
 
 		$button_styles = array(
-			'bwg-icon-angle' => __('Angle', BWG()->prefix),
-			'bwg-icon-chevron' => __('Chevron', BWG()->prefix),
-			'bwg-icon-double' => __('Double', BWG()->prefix),
+			'bwg-icon-angle' => __('Angle', 'photo-gallery'),
+			'bwg-icon-chevron' => __('Chevron', 'photo-gallery'),
+			'bwg-icon-double' => __('Double', 'photo-gallery'),
 		);
 
 		$rate_icons = array(
-			'star' => __('Star', BWG()->prefix),
-			'bell' => __('Bell', BWG()->prefix),
-			'circle' => __('Circle', BWG()->prefix),
-			'flag' => __('Flag', BWG()->prefix),
-			'heart' => __('Heart', BWG()->prefix),
-			'square' => __('Square', BWG()->prefix),
+			'star' => __('Star', 'photo-gallery'),
+			'bell' => __('Bell', 'photo-gallery'),
+			'circle' => __('Circle', 'photo-gallery'),
+			'flag' => __('Flag', 'photo-gallery'),
+			'heart' => __('Heart', 'photo-gallery'),
+			'square' => __('Square', 'photo-gallery'),
 		);
-
-		$active_tab = WDWLibrary::get('active_tab', 'Thumbnail');
 
 		$params = array(
 			'id' => $id,
@@ -352,10 +376,12 @@ class ThemesController_bwg {
    * @param int $id
    */
   public function reset( $id = 0 ) {
+    $active_tab = WDWLibrary::get('active_tab', 'Thumbnail');
     WDWLibrary::redirect(add_query_arg(array(
                                          'page' => $this->page,
                                          'task' => 'edit',
                                          'current_id' => $id,
+                                         'active_tab' => $active_tab,
                                          'reset' => '1',
                                        ), admin_url('admin.php')));
   }
@@ -378,5 +404,53 @@ class ThemesController_bwg {
                                  'message' => $data['msg'],
                                ), $query_url);
     WDWLibrary::spider_redirect($query_url);
+  }
+
+  /**
+   * Save db by id.
+   *
+   * @param  int $id
+   *
+   * @return int $message_id
+   */
+	public function save_db( $id = 0 ) {
+		global $wpdb;
+    $row = new WD_BWG_Theme($id);
+    $theme_name = WDWLibrary::get('name', 'Theme');
+    foreach ($row as $name => $value) {
+      $name_var = $name;
+      if ( WD_BWG_Theme::font_style($name) ) {
+        if ( $_POST[WD_BWG_Theme::font_style($name)] != '1' ) {
+          $name_var = $name . '_default';
+        }
+      }
+      $post_name = WDWLibrary::get($name_var);
+
+      if ( !in_array($name, array('id', 'name', 'default_theme')) && ( isset($post_name) ) ) {
+        $row->$name = $post_name;
+      }
+    }
+    $themes = json_encode($row);
+
+    if ( $id == 0 ) {
+      $save = $wpdb->insert($wpdb->prefix . 'bwg_theme', array(
+        'name' => $theme_name,
+        'options' => $themes,
+        'default_theme' => 0,
+      ), array('%s','%s','%d'));
+      $id = $wpdb->insert_id;
+    }
+    else {
+      $save = $wpdb->update($wpdb->prefix . 'bwg_theme', array(
+        'name' => $theme_name,
+        'options' => $themes,
+      ), array( 'id' => $id ), array('%s','%s'), array('%d'));
+    }
+    $message_id = 2;
+    if ( $save !== FALSE ) {
+      $message_id = 1;
+    }
+
+    return array( 'id' => $id, 'msg' => $message_id );
   }
 }

@@ -11,7 +11,7 @@ class WidgetSlideshowController_bwg extends WP_Widget {
 	public function __construct() {
 		$widget_ops = array(
 		  'classname' => 'bwp_gallery_slideshow',
-		  'description' => __('Add Photo Gallery slideshow to Your widget area.', BWG()->prefix)
+		  'description' => __('Add Photo Gallery slideshow to Your widget area.', 'photo-gallery')
 		);
 		// Widget Control Settings.
 		$control_ops = array('id_base' => 'bwp_gallery_slideshow');
@@ -41,22 +41,22 @@ class WidgetSlideshowController_bwg extends WP_Widget {
    */
  	public function form( $instance ) {
 		$slideshow_effects = array(
-		  'none' => __('None', BWG()->prefix),
-		  'cubeH' => __('Cube Horizontal', BWG()->prefix),
-		  'cubeV' => __('Cube Vertical', BWG()->prefix),
-		  'fade' => __('Fade', BWG()->prefix),
-		  'sliceH' => __('Slice Horizontal', BWG()->prefix),
-		  'sliceV' => __('Slice Vertical', BWG()->prefix),
-		  'slideH' => __('Slide Horizontal', BWG()->prefix),
-		  'slideV' => __('Slide Vertical', BWG()->prefix),
-		  'scaleOut' => __('Scale Out', BWG()->prefix),
-		  'scaleIn' => __('Scale In', BWG()->prefix),
-		  'blockScale' => __('Block Scale', BWG()->prefix),
-		  'kaleidoscope' => __('Kaleidoscope', BWG()->prefix),
-		  'fan' => __('Fan', BWG()->prefix),
-		  'blindH' => __('Blind Horizontal', BWG()->prefix),
-		  'blindV' => __('Blind Vertical', BWG()->prefix),
-		  'random' => __('Random', BWG()->prefix),
+		  'none' => __('None', 'photo-gallery'),
+		  'cubeH' => __('Cube Horizontal', 'photo-gallery'),
+		  'cubeV' => __('Cube Vertical', 'photo-gallery'),
+		  'fade' => __('Fade', 'photo-gallery'),
+		  'sliceH' => __('Slice Horizontal', 'photo-gallery'),
+		  'sliceV' => __('Slice Vertical', 'photo-gallery'),
+		  'slideH' => __('Slide Horizontal', 'photo-gallery'),
+		  'slideV' => __('Slide Vertical', 'photo-gallery'),
+		  'scaleOut' => __('Scale Out', 'photo-gallery'),
+		  'scaleIn' => __('Scale In', 'photo-gallery'),
+		  'blockScale' => __('Block Scale', 'photo-gallery'),
+		  'kaleidoscope' => __('Kaleidoscope', 'photo-gallery'),
+		  'fan' => __('Fan', 'photo-gallery'),
+		  'blindH' => __('Blind Horizontal', 'photo-gallery'),
+		  'blindV' => __('Blind Vertical', 'photo-gallery'),
+		  'random' => __('Random', 'photo-gallery'),
 		);
 
 		// Set params for view.

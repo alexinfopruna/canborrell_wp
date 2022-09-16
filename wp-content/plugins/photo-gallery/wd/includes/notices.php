@@ -205,13 +205,13 @@ class TenWebNewLibNotices {
                                           ));
     $promo_close = add_query_arg(array( $wd_options->prefix . '_admin_notice_ignore' => 'ecommerce_promo' ));
     $notices['two_week_review'] = array(
-      'title' => __('Leave A Review?', $wd_options->prefix),
-      'msg' => sprintf(__('We hope you\'ve enjoyed using WordPress %s! Would you consider leaving us a review on WordPress.org?', $wd_options->prefix), $wd_options->plugin_title),
-      'link' => '<li><span class="dashicons dashicons-external"></span><a href="https://wordpress.org/support/plugin/' . $wd_options->plugin_wordpress_slug . '/reviews?filter=5&rate=5#new-post" target="_blank">' . __('Sure! I\'d love to!', $wd_options->prefix) . '</a></li>
-                         <li><span class="dashicons dashicons-smiley"></span><a href="' . $two_week_review_ignore . '"> ' . __('I\'ve already left a review', $wd_options->prefix) . '</a></li>
-                         <li><span class="dashicons dashicons-calendar-alt"></span><a href="' . $two_week_review_temp . '">' . __('Maybe Later', $wd_options->prefix) . '</a></li>
-                         <li><span class="dashicons dashicons-dismiss"></span><a href="' . $two_week_review_ignore . '">' . __('Never show again', $wd_options->prefix) . '</a></li>',
-      'later_link' => $two_week_review_temp,
+      'title' => __('Leave A Review?', 'photo-gallery'),
+      'msg' => sprintf(__('We hope you\'ve enjoyed using WordPress %s! Would you consider leaving us a review on WordPress.org?', 'photo-gallery'), $wd_options->plugin_title),
+      'link' => '<li><span class="dashicons dashicons-external"></span><a href="' . esc_url('https://wordpress.org/support/plugin/' . $wd_options->plugin_wordpress_slug . '/reviews?filter=5&rate=5#new-post') . '" target="_blank">' . __('Sure! I\'d love to!', 'photo-gallery') . '</a></li>
+                         <li><span class="dashicons dashicons-smiley"></span><a href="' . esc_url($two_week_review_ignore) . '"> ' . __('I\'ve already left a review', 'photo-gallery') . '</a></li>
+                         <li><span class="dashicons dashicons-calendar-alt"></span><a href="' . esc_url($two_week_review_temp) . '">' . __('Maybe Later', 'photo-gallery') . '</a></li>
+                         <li><span class="dashicons dashicons-dismiss"></span><a href="' . esc_url($two_week_review_ignore) . '">' . __('Never show again', 'photo-gallery') . '</a></li>',
+      'later_link' => esc_url($two_week_review_temp),
       'int' => 14,
     );
     $this->admin_notice($notices);

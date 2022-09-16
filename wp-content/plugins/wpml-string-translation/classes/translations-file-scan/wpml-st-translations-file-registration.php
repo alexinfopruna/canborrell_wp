@@ -1,5 +1,8 @@
 <?php
 
+use WPML\Element\API\Languages;
+use WPML\FP\Fns;
+
 class WPML_ST_Translations_File_Registration {
 
 	const PATH_PATTERN_SEARCH_MO  = '#(-)?([a-z]+)([_A-Z]*)\.mo$#i';
@@ -23,6 +26,9 @@ class WPML_ST_Translations_File_Registration {
 	/** @var array */
 	private $cache = array();
 
+	/** @var callable - string->string */
+	private $getWPLocale;
+
 	/**
 	 * @param WPML_ST_Translations_File_Dictionary        $file_dictionary
 	 * @param WPML_File                                   $wpml_file
@@ -39,6 +45,7 @@ class WPML_ST_Translations_File_Registration {
 		$this->wpml_file        = $wpml_file;
 		$this->components_find  = $components_find;
 		$this->active_languages = $active_languages;
+		$this->getWPLocale      = Fns::memorize( Languages::getWPLocale() );
 	}
 
 	public function add_hooks() {
@@ -63,14 +70,14 @@ class WPML_ST_Translations_File_Registration {
 
 	/**
 	 * @param string|false $translations translations in the JED format
-	 * @param string       $file
+	 * @param string|false $file
 	 * @param string       $handle
 	 * @param string       $original_domain
 	 *
 	 * @return string|false
 	 */
 	public function add_json_translations_to_import_queue( $translations, $file, $handle, $original_domain ) {
-		if ( ! isset( $this->cache[ $file ] ) ) {
+		if ( $file && ! isset( $this->cache[ $file ] ) ) {
 			$registration_domain  = WPML_ST_JED_Domain::get( $original_domain, $handle );
 			$this->cache[ $file ] = $this->save_file_info( $original_domain, $registration_domain, $file );
 		}

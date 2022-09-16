@@ -52,6 +52,12 @@ class AlbumsModel_bwg {
     }
     if ( !$total ) {
       $rows = $wpdb->get_results($wpdb->prepare($query, $prepareArgs));
+      if ( !empty($rows) ) {
+        foreach ( $rows as $row ) {
+          $row->preview_image = esc_url($row->preview_image);
+          $row->random_preview_image = esc_url($row->random_preview_image);
+        }
+      }
     }
     else {
       $rows = $wpdb->get_var($wpdb->prepare($query, $prepareArgs));
@@ -75,24 +81,37 @@ class AlbumsModel_bwg {
    *
    * @param      $id
    * @param bool $all
+   * @param array $excludeIds
    *
    * @return int
    */
-  public function delete( $id, $all = FALSE ) {
+  public function delete( $id, $all = FALSE, $excludeIds = array() ) {
     global $wpdb;
     $where = '';
     $alb_gal_where = '';
     $prepareArgs = array();
-
     if ( !$all ) {
       $where = ' WHERE id = %d';
       $alb_gal_where = ' AND alb_gal_id = %d';
       $prepareArgs[] = $id;
     }
-
     // Remove custom post.
     if ( $all ) {
-      $wpdb->query( $wpdb->prepare('DELETE FROM `' . $wpdb->prefix . 'posts` WHERE `post_type`=%s',"bwg_album") );
+      $posts_where = '';
+      if ( !empty($excludeIds) ) {
+        // get the albums that should not be deleted.
+        $aSlugs_tmp = $wpdb->get_results('SELECT `slug` FROM `' . $wpdb->prefix . 'bwg_album` WHERE `id` IN (' . WDWLibrary::escape_array($excludeIds) . ')');
+        if ( !empty($aSlugs_tmp) ) {
+          foreach ( $aSlugs_tmp as $val ) {
+            $aSlugs[] = $val->slug;
+          }
+          $posts_where = ' AND `post_name` NOT IN (' . WDWLibrary::escape_array($aSlugs) . ')';
+        }
+        $where = ' WHERE `id` NOT IN (' . WDWLibrary::escape_array($excludeIds) . ')';
+        $alb_gal_where = ' AND `alb_gal_id` NOT IN (' . WDWLibrary::escape_array($excludeIds) . ')';
+      }
+      $query = $wpdb->prepare('DELETE FROM `' . $wpdb->prefix . 'posts` WHERE `post_type`=%s'. $posts_where, 'bwg_album');
+      $wpdb->query( $query );
     }
     else {
       $row = $wpdb->get_row( $wpdb->prepare('SELECT `slug` FROM `' . $wpdb->prefix . 'bwg_album` WHERE id="%d"', $id) );
@@ -100,14 +119,18 @@ class AlbumsModel_bwg {
         WDWLibrary::bwg_remove_custom_post( array( 'slug' => $row->slug, 'post_type' => 'bwg_album') );
       }
     }
-
     if ( !empty($prepareArgs) ) {
         $delete = $wpdb->query($wpdb->prepare('DELETE FROM `' . $wpdb->prefix . 'bwg_album`' . $where, $prepareArgs));
         $wpdb->query($wpdb->prepare('DELETE FROM `' . $wpdb->prefix . 'bwg_album_gallery` WHERE is_album="1"' . $alb_gal_where, $prepareArgs));
-    } else {
-        $delete = $wpdb->query('DELETE FROM `' . $wpdb->prefix . 'bwg_album`' . $where, $prepareArgs);
-        $wpdb->query('DELETE FROM `' . $wpdb->prefix . 'bwg_album_gallery` WHERE is_album="1"' . $alb_gal_where, $prepareArgs);
     }
+    else {
+        $album_delete = 'DELETE FROM `' . $wpdb->prefix . 'bwg_album`' . $where;
+        $delete = $wpdb->query($album_delete);
+
+        $query = 'DELETE FROM `' . $wpdb->prefix . 'bwg_album_gallery` WHERE is_album="1"' . $alb_gal_where;
+        $wpdb->query( $query );
+    }
+
     if ( $delete ) {
       if ( $all ) {
         $message = 5;
@@ -128,24 +151,29 @@ class AlbumsModel_bwg {
    *
    * @param      $id
    * @param bool $all
+   * @param array $excludeIds
    *
    * @return int
    */
-  public function duplicate( $id, $all = FALSE ) {
+  public function duplicate( $id, $all = FALSE, $excludeIds = array() ) {
     global $wpdb;
     $message_id = 2;
     // Duplicate all itmes.
     if ( !$id && $all ) {
-      $results = $wpdb->get_results('SELECT
-												`a`.*,
-												`ag`.alb_gal_id,
-												`ag`.is_album,
-												`ag`.`order` AS `ag_order`
-											FROM
-												`' . $wpdb->prefix . 'bwg_album` `a`
-												LEFT JOIN `' . $wpdb->prefix . 'bwg_album_gallery` `ag`
-											ON
-												`a`.`id` = `ag`.`album_id`');
+      $query = 'SELECT
+                  `a`.*,
+                  `ag`.alb_gal_id,
+                  `ag`.is_album,
+                  `ag`.`order` AS `ag_order`
+                FROM
+                  `' . $wpdb->prefix . 'bwg_album` `a`
+                  LEFT JOIN `' . $wpdb->prefix . 'bwg_album_gallery` `ag`
+                ON
+                  `a`.`id` = `ag`.`album_id`';
+      if ( !empty($excludeIds) ) {
+        $query .= ' WHERE `a`.`id` NOT IN (' . WDWLibrary::escape_array($excludeIds) . ')';
+      }
+      $results = $wpdb->get_results( $query );
       if ( !empty($results) ) {
         $dublicatedAlbumId = 0;
         $album_id = 0;
@@ -321,6 +349,12 @@ class AlbumsModel_bwg {
     $row->author = ($user_data != FALSE ? $user_data->display_name : '');
     $row->name = stripslashes(esc_html($row->name));
     $row->description = stripslashes(esc_html($row->description));
+    if ( isset($row->preview_image) ) {
+      $row->preview_image = esc_url($row->preview_image);
+    }
+    if ( isset($row->random_preview_image) ) {
+      $row->random_preview_image = esc_url($row->random_preview_image);
+    }
 
     return $row;
   }
@@ -342,9 +376,22 @@ class AlbumsModel_bwg {
     $old_slug = WDWLibrary::get('old_slug');
 	  $published = WDWLibrary::get('published', 0, 'intval');
     $preview_image = WDWLibrary::get('preview_image', '', 'esc_url_raw');
-    $description = strip_tags(htmlspecialchars_decode(WDWLibrary::get('description', '', 'wp_filter_post_kses')),"<b>,<p>,<a>,<strong>,<span>,<br>,<ul>,<ol>,<li>,<i>");
+    $description = '';
+    // In description we allow the "<!--more-->" divider.
+    $tmp_description = htmlspecialchars_decode(WDWLibrary::get('description', '', 'wp_filter_post_kses'));
+    if ( !empty($tmp_description) ) {
+      if ( stripos($tmp_description, '<!--more-->') !== FALSE ) {
+        $desc_array = explode('<!--more-->', $tmp_description);
+        $desc_first = $desc_array[0];
+        $desc_second = $desc_array[1];
+        $description = WDWLibrary::strip_tags($desc_first) . '<!--more-->' . WDWLibrary::strip_tags($desc_second);
+      }
+      else {
+        $description = WDWLibrary::strip_tags($tmp_description);
+      }
+    }
     $albumgallery_ids = WDWLibrary::get('albumgallery_ids');
-    $modified_date = WDWLibrary::get('modified_date', time(),'intval');
+    $modified_date = WDWLibrary::get('modified_date', time(), 'intval');
     $data = array(
       'name' => $name,
       'slug' => $slug,

@@ -6,7 +6,7 @@ class BWGModelGalleryBox {
     return $row;
   }
 
-  public function get_image_rows_data($gallery_id, $bwg, $sort_by, $order_by = 'asc', $tag = 0) {
+  public function get_image_rows_data($gallery_id, $bwg, $sort_by, $order_by = 'asc', $tag = 0, $popup_enable_rate = 0 ) {
     global $wpdb;
     $bwg_sort_by_temp = WDWLibrary::get('filtersortby', '');
     if ( $bwg_sort_by_temp == '' ) {  /* for thumbnail view */
@@ -38,17 +38,16 @@ class BWGModelGalleryBox {
 
     $bwg_random_seed = WDWLibrary::get('bwg_random_seed','');
     $bwg_filter_tag_temp = WDWLibrary::get('filter_tag', 0);
-    if ( $bwg_filter_tag_temp == 0 ) {
+    if ( empty($bwg_filter_tag_temp) ) {
       $filter_tags = array();
       $bwg_filter_tag_temp = WDWLibrary::get('filter_tag_' . $bwg, 0);
-      if ( $bwg_filter_tag_temp != 0 ) {
-        $filter_tags = explode(",", $bwg_filter_tag_temp);
+      if ( !empty($bwg_filter_tag_temp) ) {
+        $filter_tags = array_map('intval', explode(",", $bwg_filter_tag_temp));
       }
     }
     else {
-      $filter_tags = explode(",", $bwg_filter_tag_temp);
+      $filter_tags = array_map('intval', explode(",", $bwg_filter_tag_temp));
     }
-
     $filter_search_name_temp = WDWLibrary::get('filter_search_name', '');
     $filter_search_name = '';
     if ( $filter_search_name_temp == '' ) {  /* for thumbnail view */
@@ -88,7 +87,7 @@ class BWGModelGalleryBox {
       $prepareArgs[] = $tag;
     }
 
-    $join = $tag ? 'LEFT JOIN ' . $wpdb->prefix . 'bwg_image_tag as tag ON image.id=tag.image_id' : '';
+    $join = $tag ? ' LEFT JOIN ' . $wpdb->prefix . 'bwg_image_tag as tag ON image.id=tag.image_id' : '';
 
     $join .= ' LEFT JOIN '. $wpdb->prefix .'bwg_gallery as gallery ON image.gallery_id = gallery.id ';
     $where .= ' AND gallery.published = 1 ';
@@ -97,12 +96,16 @@ class BWGModelGalleryBox {
       if ( !BWG()->options->tags_filter_and_or ) {
         // To find images which have at least one from tags filtered by.
         $compare_sign = "|";
+        $where .= ' AND CONCAT(",", tags.tags_combined, ",") REGEXP ",(' . implode( $compare_sign, $filter_tags ) . ')," ';
       }
       else {
         // To find images which have all tags filtered by.
         // For this case there is need to sort tags by ascending to compare with comma.
-        sort($filter_tags);
         $compare_sign = ",";
+        // To find images which have all tags filtered by.
+        foreach ( $filter_tags as $filter_tag ) {
+          $where .= ' AND tags.tags_combined REGEXP "' . $filter_tag . '" ';
+        }
       }
       if( $gallery_id ) {
           $join .= ' LEFT JOIN (SELECT GROUP_CONCAT(tag_id order by tag_id SEPARATOR ",") AS tags_combined, image_id FROM  ' . $wpdb->prefix . 'bwg_image_tag WHERE gallery_id=%d GROUP BY image_id) AS tags ON image.id=tags.image_id';
@@ -110,17 +113,19 @@ class BWGModelGalleryBox {
       } else {
           $join .= ' LEFT JOIN (SELECT GROUP_CONCAT(tag_id order by tag_id SEPARATOR ",") AS tags_combined, image_id FROM  ' . $wpdb->prefix . 'bwg_image_tag GROUP BY image_id) AS tags ON image.id=tags.image_id';
       }
-      $where .= ' AND CONCAT(",", tags.tags_combined, ",") REGEXP ",(' . implode($compare_sign, $filter_tags) . ')," ';
     }
 
-    $query = 'SELECT image.*, rates.rate FROM ' . $wpdb->prefix . 'bwg_image as image LEFT JOIN (SELECT rate, image_id FROM ' . $wpdb->prefix . 'bwg_image_rate WHERE ip="' . $_SERVER['REMOTE_ADDR'] . '") as rates ON image.id=rates.image_id ' . $join . ' WHERE image.published=1 ' . $where;
+    $rate_join = '';
+    if( $popup_enable_rate ) {
+      $rate_join = ' LEFT JOIN (SELECT rate, image_id FROM ' . $wpdb->prefix . 'bwg_image_rate WHERE ip="' . $_SERVER['REMOTE_ADDR'] . '") as rates ON image.id=rates.image_id ';
+    }
+    $query = 'SELECT image.*' . ($popup_enable_rate ? ', rates.rate' : '') . ' FROM ' . $wpdb->prefix . 'bwg_image as image' . $rate_join . $join . ' WHERE image.published=1 ' . $where;
     $query .=  ' ORDER BY ' . str_replace('RAND()', 'RAND(' . $bwg_random_seed . ')', $sort_by) . ' ' . $order_by . ', image.id asc';
     if( !empty($prepareArgs) ) {
         $rows = $wpdb->get_results($wpdb->prepare($query, $prepareArgs));
     } else {
         $rows = $wpdb->get_results($query);
     }
-
     $images = array();
     if ( !empty($rows) ) {
       foreach ( $rows as $row ) {
