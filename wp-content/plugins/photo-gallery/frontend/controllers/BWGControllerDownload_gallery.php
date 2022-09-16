@@ -6,6 +6,12 @@ class BWGControllerDownload_gallery {
   }
 
   public function display() {
+    $nonce = WDWLibrary::get('_wpnonce', '', 'sanitize_text_field', 'GET');
+    if( !wp_verify_nonce( $nonce, "bwg-download-nonce" ) ){
+      echo "Permission denied";
+      die;
+    }
+
     require_once BWG()->plugin_dir . "/frontend/views/BWGViewDownload_gallery.php";
     $view = new BWGViewDownload_gallery();
 

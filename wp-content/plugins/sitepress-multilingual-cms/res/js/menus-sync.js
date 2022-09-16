@@ -6,7 +6,7 @@ var WPML_core = WPML_core || {};
     jQuery(function () {
 
         jQuery("#icl_msync_cancel").click(function () {
-            location.href = location.href.replace(/#(.)$/, '');
+            location.href = WPML_core.sanitize(location.href).replace(/#(.)$/, '');
         });
 
         var icl_msync_confirm = jQuery('#icl_msync_confirm');

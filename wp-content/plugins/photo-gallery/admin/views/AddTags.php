@@ -44,7 +44,14 @@ class AddTagsView_bwg extends AdminView_bwg {
 	  ?>
 	<div class="wd-table-container">
 		<?php
-    $image_id = WDWLibrary::get('image_id', 0);
+        //for newly added images, id starts with pr_
+        //if Select all checked, id equal to 0
+        //for other cases id must be positive number
+        if ( strpos(WDWLibrary::get('image_id', 0), 'pr_') > -1 ) {
+          $image_id = WDWLibrary::get('image_id', 0);
+        } else {
+          $image_id = WDWLibrary::get('image_id', 0, 'intval');
+        }
     echo $this->title( array(
                'title' => $params['page_title'],
                'title_class' => 'wd-header',
@@ -56,18 +63,22 @@ class AddTagsView_bwg extends AdminView_bwg {
 		?>
 		<div class="wp-search-wrap">
 			<?php echo $this->search(); ?>
-			<div class="tablenav top">
-				<?php echo $this->pagination($params['page_url'], $params['total'], $params['items_per_page']); ?>
-			</div>
+      <div class="tablenav top">
+        <div class="tablenav-pages">
+          <div class="displaying-num">
+            <?php printf(_n('%s item', '%s items', $params['total'], 'photo-gallery'), $params['total']); ?>
+          </div>
+        </div>
+      </div>
 		</div>
       <div>
       <table class="adminlist table table-striped wp-list-table widefat fixed pages">
         <thead>
         <td id="cb" class="column-cb check-column">
-          <label class="screen-reader-text" for="cb-select-all-1"><?php _e('Select all', BWG()->prefix); ?></label>
+          <label class="screen-reader-text" for="cb-select-all-1"><?php _e('Select all', 'photo-gallery'); ?></label>
           <input id="check_all" type="checkbox" onclick="spider_check_all(this)" />
         </td>
-        <?php echo WDWLibrary::ordering('name', $params['orderby'], $params['order'], __('Name', BWG()->prefix), $params['page_url'], 'column-primary'); ?>
+        <?php echo WDWLibrary::ordering('name', $params['orderby'], $params['order'], __('Name', 'photo-gallery'), $params['page_url'], 'column-primary'); ?>
         </thead>
         <tbody id="tbody_arr">
         <?php
@@ -85,7 +96,7 @@ class AddTagsView_bwg extends AdminView_bwg {
                        data-id="<?php echo $row->id; ?>"
                        data-name="<?php echo $row->name; ?>" />
               </th>
-              <td class="column-primary column-title" data-colname="<?php _e('Name', BWG()->prefix); ?>">
+              <td class="column-primary column-title" data-colname="<?php _e('Name', 'photo-gallery'); ?>">
                 <a class="cursor-pointer" onclick="<?php echo $image_id ? 'window.parent.bwg_add_tag(\'' . $image_id . '\', [\'' . $row->id . '\'],[\'' . htmlspecialchars(addslashes($row->name)) . '\'])' : 'bwg_bulk_add_tags(\'' . $row->id . '\', \'' . 'add' . '\')'; ?>;" id="a_<?php echo $row->id; ?>">
                   <?php echo $row->name; ?>
                 </a>
@@ -102,12 +113,12 @@ class AddTagsView_bwg extends AdminView_bwg {
       </table>
     </div>
     </div>
-	<input id="image_id" name="image_id" type="hidden" value="<?php echo $image_id; ?>" />
+	<input id="image_id" name="image_id" type="hidden" value="<?php echo esc_attr($image_id); ?>" />
 	<div class="media-frame-toolbar">
 		<div class="media-toolbar">
 		  <div class="media-toolbar-primary search-form">
-      <button class="button media-button button button-large media-button-insert" type="button" onclick="<?php echo $image_id ? 'bwg_remove_tags(\'' . $image_id . '\')' : 'bwg_bulk_add_tags(\'' . '' . '\',\'' . 'remove' . '\')'; ?>"><?php _e('Remove from image', BWG()->prefix); ?></button>
-			<button class="button media-button button-primary button-large media-button-insert" type="button" onclick="<?php echo $image_id ? 'bwg_add_tags(\'' . $image_id . '\')' : 'bwg_bulk_add_tags(\'' . '' . '\',\'' . 'add' . '\')'; ?>"><?php _e('Add to image', BWG()->prefix); ?></button>
+            <button class="button media-button button button-large media-button-insert" type="button" onclick="<?php echo $image_id ? 'bwg_remove_tags(\'' . $image_id . '\')' : 'bwg_bulk_add_tags(\'' . '' . '\',\'' . 'remove' . '\')'; ?>"><?php _e('Remove from image', 'photo-gallery'); ?></button>
+			<button class="button media-button button-primary button-large media-button-insert" type="button" onclick="<?php echo $image_id ? 'bwg_add_tags(\'' . $image_id . '\')' : 'bwg_bulk_add_tags(\'' . '' . '\',\'' . 'add' . '\')'; ?>"><?php _e('Add to image', 'photo-gallery'); ?></button>
 		  </div>
 		</div>
 	</div>

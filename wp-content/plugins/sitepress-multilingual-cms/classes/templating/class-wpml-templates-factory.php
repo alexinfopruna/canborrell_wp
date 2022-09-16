@@ -1,10 +1,8 @@
 <?php
+use WPML\FP\Obj;
 
 use WPML\Core\Twig_Environment;
 use WPML\Core\Twig_Error_Syntax;
-use WPML\Core\Twig_Error_Runtime;
-use WPML\Core\Twig_Error_Loader;
-use WPML\Core\Twig_LoaderInterface;
 
 abstract class WPML_Templates_Factory {
 	const NOTICE_GROUP                 = 'template_factory';
@@ -132,6 +130,9 @@ abstract class WPML_Templates_Factory {
 				foreach ( $this->custom_filters as $custom_filter ) {
 					$this->twig->addFilter( $custom_filter );
 				}
+			}
+			if ( Obj::propOr( false, 'debug', $environment_args ) ) {
+				$this->twig->addExtension( new \WPML\Core\Twig\Extension\DebugExtension() );
 			}
 		}
 	}

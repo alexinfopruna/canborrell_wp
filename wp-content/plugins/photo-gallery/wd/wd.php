@@ -50,11 +50,11 @@ class TenWebLibNew {
       $parent_slug = NULL;
     }
     if ( $wd_options->display_overview ) {
-      $title = __('Premium', $wd_options->prefix);
+      $title = __('Premium', 'photo-gallery');
       if ( FALSE && !get_transient($wd_options->prefix . '_overview_visited') ) {
         $title .= ' <span class="update-plugins count-2" > <span class="plugin-count">1</span></span>';
       }
-      $overview_page = add_submenu_page($parent_slug, __('Premium', $wd_options->prefix), '<span style="color:#4481ea;">' . $title . '</span>', $capability, 'overview_' . $wd_options->prefix, array(
+      $overview_page = add_submenu_page($parent_slug, __('Premium', 'photo-gallery'), '<span style="color:#4481ea;">' . $title . '</span>', $capability, 'overview_' . $wd_options->prefix, array(
         $this,
         'display_overview_page',
       ));
@@ -74,7 +74,7 @@ class TenWebLibNew {
     $this->overview_instance->display_overview_page();
   }
 
-  // Includs
+  // Includes
   public function wd_includes() {
     $wd_options = $this->config;
     require_once $wd_options->wd_dir_includes . '/deactivate.php';
@@ -87,7 +87,7 @@ class TenWebLibNew {
 
   public function init_classes() {
     $wd_options = $this->config;
-    $current_url = $_SERVER['REQUEST_URI'];
+    $current_url = esc_url($_SERVER['REQUEST_URI']);
     if ( $wd_options->deactivate === TRUE ) {
       if ( strpos($current_url, "plugins.php") !== FALSE ) {
         new TenWebNewLibDeactivate($this->config);

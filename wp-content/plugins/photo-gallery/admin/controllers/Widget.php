@@ -11,7 +11,7 @@ class WidgetController_bwg extends WP_Widget {
 	public function __construct() {
 		$widget_ops = array(
 			'classname' => 'bwp_gallery',
-			'description' => __('Add Photo Gallery albums or galleries to Your widget area.', BWG()->prefix)
+			'description' => __('Add Photo Gallery albums or galleries to Your widget area.', 'photo-gallery')
 		);
 		// Widget Control Settings.
 		$control_ops = array('id_base' => 'bwp_gallery');

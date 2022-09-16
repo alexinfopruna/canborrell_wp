@@ -172,7 +172,7 @@ class WPML_TM_REST_Jobs extends WPML_REST_Base {
 					),
 					'type'         => array(
 						'required'          => false,
-						'validate_callback' => array( $this, 'validate_job_type' ),
+						'validate_callback' => [ WPML_TM_Job_Entity::class, 'is_type_valid' ],
 					),
 					'translatorId' => array(
 						'required'          => true,

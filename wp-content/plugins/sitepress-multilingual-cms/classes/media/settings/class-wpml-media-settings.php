@@ -76,8 +76,9 @@ class WPML_Media_Settings {
 						</tr>
 
 						<tr>
-							<td><a href="https://wpml.org/documentation/getting-started-guide/media-translation/" target="_blank"><?php esc_html_e( 'Media Translation Documentation', 'sitepress' ); ?></a></td>
+							<td><a href="https://wpml.org/documentation/getting-started-guide/media-translation/?utm_source=plugin&utm_medium=gui&utm_campaign=wpmlcore" target="_blank"><?php esc_html_e( 'Media Translation Documentation', 'sitepress' ); ?></a></td>
 							<td align="right">
+								<?php wp_nonce_field( 'wpml_media_settings_actions', 'wpml_media_settings_nonce' ); ?>
 								<input class="button-primary" name="start" type="submit" value="<?php esc_attr_e( 'Start', 'sitepress' ); ?> &raquo;"/>
 							</td>
 
@@ -126,6 +127,32 @@ class WPML_Media_Settings {
 							</td>
 						</tr>
 
+
+
+						<tr>
+							<td colspan="2">
+								<h4><?php esc_html_e( 'How to handle media library texts:', 'sitepress' ); ?></h4>
+							</td>
+						</tr>
+						<tr>
+							<td colspan="2">
+								<ul class="wpml_media_options_media_library_texts">
+									<?php
+									$settings         = get_option( '_wpml_media' );
+									$translateMediaLibraryTexts = \WPML\FP\Obj::propOr(false, 'translate_media_library_texts', $settings) ? 'checked="checked"' : '';
+									?>
+									<li>
+										<label><input type="checkbox" name="translate_media_library_texts"
+													  value="1" <?php echo $translateMediaLibraryTexts; ?> />&nbsp;<?php esc_html_e( 'Translate media library texts with posts', 'sitepress' ); ?></label>
+									</li>
+								</ul>
+							</td>
+						</tr>
+
+
+
+
+
 						<tr>
 							<td colspan="2" align="right">
 								<input class="button-secondary" name="set_defaults" type="submit" value="<?php esc_attr_e( 'Apply', 'sitepress' ); ?>"/>
@@ -138,6 +165,9 @@ class WPML_Media_Settings {
 								&nbsp;<span class="content_default_status"> </span>
 							</td>
 						</tr>
+
+
+
 
 					</table>
 

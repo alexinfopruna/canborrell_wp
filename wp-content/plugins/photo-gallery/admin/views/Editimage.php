@@ -26,33 +26,12 @@ class EditimageView_bwg {
       }
     }
     $image_id =  WDWLibrary::get('image_id', '0');
-    $image_url =  WDWLibrary::get('image_url', '');
-    $facebook_post = WDWLibrary::get('FACEBOOK_POST', '0');
-    $fb_post_url =  WDWLibrary::get('fb_post_url', '');
-    $app_id = BWG()->options->facebook_app_id;
+    $image_url =  WDWLibrary::get('image_url', '', 'esc_url');
 	?>
 	<div id="loading_div"></div>
     <div id="wd-content" style="width:100%; height:100%;">
       <div id="bwg_container_for_media_1" style="width:100%; height:100%; margin:0 auto; text-align:center; vertical-align:middle;">
-        <?php if ( !$facebook_post ) { ?>
 			<img id="image_display" src="<?php echo BWG()->upload_url . WDWLibrary::image_url_version($image_url, $modified_date); ?>" style="max-width:100%; max-height:100%; position: relative; transform: translateY(-50%); top: 50%;" />
-        <?php }
-		else { ?>
-          <div id="fb-root"></div>
-          <script>
-            (function (d, s, id) {
-              var js, fjs = d.getElementsByTagName(s)[0];
-              if (d.getElementById(id)) {
-                return;
-              }
-              js = d.createElement(s);
-              js.id = id;
-              js.src = "//connect.facebook.net/en_US/all.js#xfbml=1&version=v2.3&appId=<?php echo $app_id; ?>";
-              fjs.parentNode.insertBefore(js, fjs);
-            }(document, 'script', 'facebook-jssdk'));
-          </script>
-          <div class="fb-post" data-width="300" data-href="https://www.facebook.com/{user_name_or_id}/<?php echo $fb_post_url; ?>"></div>
-        <?php } ?>
       </div>
     </div>
     <script language="javascript" type="text/javascript" src="<?php echo BWG()->plugin_url . '/js/bwg_embed.js?ver=' . BWG()->plugin_version; ?>"></script>
@@ -60,57 +39,33 @@ class EditimageView_bwg {
       var file_type = window.parent.document.getElementById("input_filetype_<?php echo $image_id; ?>").value;
       var file_url = window.parent.document.getElementById("image_url_<?php echo $image_id; ?>").value;
       var is_embed = file_type.indexOf("EMBED_") > -1 ? true : false;
-      //for facebook
-      var is_facebook_post = file_type.indexOf("_FACEBOOK_POST") > -1 ? true : false;
+
       var is_instagram_post = file_type.indexOf("INSTAGRAM_POST") > -1 ? true : false;
       if (is_embed) {
         var embed_id = window.parent.document.getElementById("input_filename_<?php echo $image_id; ?>").value;
-        if (!is_facebook_post) {
-          window.document.getElementById("image_display").setAttribute('style', 'display: none;');
-          if (!is_instagram_post) {
-            window.document.getElementById("bwg_container_for_media_1").innerHTML = spider_display_embed(file_type, file_url, embed_id, {
-              class: "embed_display",
-              frameborder: "0",
-              allowfullscreen: "allowfullscreen",
-              style: "width:100%; height:100%; vertical-align:middle; text-align: center; margin: 0 auto;"
-            });
-          }
-          else {
-            window.document.getElementById("bwg_container_for_media_1").innerHTML = spider_display_embed(file_type, file_url, embed_id, {
-              class: "embed_display",
-              width: "<?php echo $instagram_post_width; ?>",
-              height: "<?php echo $instagram_post_height; ?>",
-              frameborder: "0",
-              allowfullscreen: "allowfullscreen",
-              style: "width:<?php echo $instagram_post_width; ?>px; height:<?php echo $instagram_post_height; ?>px; vertical-align:middle; text-align: center; margin: 0 auto;"
-            });
-          }
+        window.document.getElementById("image_display").setAttribute('style', 'display: none;');
+        if (!is_instagram_post) {
+          window.document.getElementById("bwg_container_for_media_1").innerHTML = spider_display_embed(file_type, file_url, embed_id, {
+            class: "embed_display",
+            frameborder: "0",
+            allowfullscreen: "allowfullscreen",
+            style: "width:100%; height:100%; vertical-align:middle; text-align: center; margin: 0 auto;"
+          });
+        }
+        else {
+          window.document.getElementById("bwg_container_for_media_1").innerHTML = spider_display_embed(file_type, file_url, embed_id, {
+            class: "embed_display",
+            width: "<?php echo $instagram_post_width; ?>",
+            height: "<?php echo $instagram_post_height; ?>",
+            frameborder: "0",
+            allowfullscreen: "allowfullscreen",
+            style: "width:<?php echo $instagram_post_width; ?>px; height:<?php echo $instagram_post_height; ?>px; vertical-align:middle; text-align: center; margin: 0 auto;"
+          });
         }
       }
       jQuery(window).on('load',function(){
       jQuery('#loading_div', window.parent.document).hide();
 	  });
-    </script>
-    <?php
-    die();
-  }
-
-  public function thumb_display() {
-    $popup_width = WDWLibrary::get('width', 1000, 'intval') - 30;
-    $image_width = $popup_width - 40;
-    $popup_height = WDWLibrary::get('width', 600, 'intval') - 50;
-    $image_height = $popup_height - 40;
-    $image_id = WDWLibrary::get('image_id', 0, 'intval');
-    $modified_date = WDWLibrary::get('modified_date', '');
-    ?>
-    <div style="display:table; width:100%; height:<?php echo $popup_height; ?>px;">
-      <div style="display:table-cell; text-align:center; vertical-align:middle;">
-        <img id="thumb_view" src="" style="max-width:<?php echo $image_width; ?>px; max-height:<?php echo $image_height; ?>px;" />
-      </div>
-    </div>
-    <script>
-      var image_url = "<?php echo BWG()->upload_url; ?>" + window.parent.document.getElementById("thumb_url_<?php echo $image_id; ?>").value;
-      window.document.getElementById("thumb_view").src = image_url + "<?php echo $modified_date ? '?bwg=' . $modified_date : ''; ?>";
     </script>
     <?php
     die();
@@ -210,9 +165,22 @@ class EditimageView_bwg {
         imagedestroy($img_r);
         imagedestroy($dst_r);
       }
+      elseif ( $type_orig == 18 ) {
+        $img_r = imagecreatefromwebp($exp_filename[0]);
+        $dst_r = ImageCreateTrueColor($thumb_width, $thumb_height);
+        imageColorAllocateAlpha($dst_r, 0, 0, 0, 127);
+        imagealphablending($dst_r, FALSE);
+        imagesavealpha($dst_r, TRUE);
+        imagecopyresampled($dst_r, $img_r, 0, 0, $x, $y, $thumb_width, $thumb_height, $w, $h);
+        imagealphablending($dst_r, FALSE);
+        imagesavealpha($dst_r, TRUE);
+        imagewebp($dst_r, $thumb_filename);
+        imagedestroy($img_r);
+        imagedestroy($dst_r);
+      }
       else {
         ?>
-        <div class="message"><strong><?php echo __("You can't crop this type of image.", BWG()->prefix); ?></strong></div>
+        <div class="message"><strong><?php echo __("You can't crop this type of image.", 'photo-gallery'); ?></strong></div>
         <?php
       }
       $where = ' `id` = ' . $image_id;
@@ -292,12 +260,12 @@ class EditimageView_bwg {
     </style>
 	<div style="padding:0 5px;">
 		<div class="message<?php echo ( $task == 'crop' )  ? ' croped' : '' ?>">
-      <span id="select_msg" class="notice notice-warning"><p><?php _e('Select the area for the thumbnail.', BWG()->prefix); ?></p></span>
+      <span id="select_msg" class="notice notice-warning"><p><?php _e('Select the area for the thumbnail.', 'photo-gallery'); ?></p></span>
     </div>
 		<form method="post" id="crop_image" action="<?php echo $form_action; ?>" class="wd-form wp-core-ui">
 			<div class="thumb_preview_td" style="padding: 5px;">
 				<input type="checkbox" id="chb" name="aspect_ratio" value="1" onclick="spider_crop_ratio()" checked="checked">
-				<label for="chb"><?php _e('Keep aspect ratio', BWG()->prefix); ?></label>
+				<label for="chb"><?php _e('Keep aspect ratio', 'photo-gallery'); ?></label>
 			</div>
 		  <?php wp_nonce_field('editimage_' . BWG()->prefix, 'bwg_nonce'); ?>
 		  <div style="max-height:<?php echo $image_height-200; ?>px; margin: 0 auto;">
@@ -308,7 +276,7 @@ class EditimageView_bwg {
 				</td>
 			  </tr>
 			</table>
-			<button type="button" class="button button-primary button-large button-hero spider_crop" style="margin-top: 10px" onclick="spider_crop(); return false;"><?php _e('Crop', BWG()->prefix); ?></button>
+			<button type="button" class="button button-primary button-large button-hero spider_crop" style="margin-top: 10px" onclick="spider_crop(); return false;"><?php _e('Crop', 'photo-gallery'); ?></button>
 		  </div>
 		  <input type="hidden" name="edit_type" id="edit_type" />
 		  <input id="x" type="hidden" name="x" value="" />
@@ -319,11 +287,11 @@ class EditimageView_bwg {
 		</form>
 
     <div id="croped_preview"  class="bwg-hidden wp-core-ui">
-      <span id="success_msg" class="notice notice-success"><p><?php _e('The thumbnail was successfully cropped.', BWG()->prefix); ?></p></span>
+      <span id="success_msg" class="notice notice-success"><p><?php _e('The thumbnail was successfully cropped.', 'photo-gallery'); ?></p></span>
       <div id="croped_image_cont" style="height: 445px; display: grid;">
         <img id='croped_image_thumb'>
       </div>
-      <button type="button" class="button button-secondary button-large spider_crop button-hero" onclick="bwg_reset_crop(); return false;"><?php _e('Edit', BWG()->prefix); ?></button>
+      <button type="button" class="button button-secondary button-large spider_crop button-hero" onclick="bwg_reset_crop(); return false;"><?php _e('Edit', 'photo-gallery'); ?></button>
     </div>
 	</div>
 	<script language="javascript">
@@ -441,6 +409,7 @@ class EditimageView_bwg {
 
   public function recover_image( $id, $thumb_width, $thumb_height ) {
     global $wpdb;
+    $status = TRUE;
     $image_data = $wpdb->get_row($wpdb->prepare('SELECT * FROM ' . $wpdb->prefix . 'bwg_image WHERE id="%d"', $id));
     if ( !$image_data ) {
       $image_data = new stdClass();
@@ -451,9 +420,14 @@ class EditimageView_bwg {
     $thumb_filename = htmlspecialchars_decode(BWG()->upload_dir . $image_data->thumb_url, ENT_COMPAT | ENT_QUOTES);
     $original_filename = str_replace('/thumb/', '/.original/', $thumb_filename);
     if ( WDWLibrary::repair_image_original($original_filename) ) {
-      WDWLibrary::resize_image( $original_filename, $filename, BWG()->options->upload_img_width, BWG()->options->upload_img_height );
-      WDWLibrary::resize_image( $original_filename, $thumb_filename, BWG()->options->upload_thumb_width, BWG()->options->upload_thumb_height );
+      $filename_status = WDWLibrary::resize_image( $original_filename, $filename, BWG()->options->upload_img_width, BWG()->options->upload_img_height );
+      $thumb_filename_status = WDWLibrary::resize_image( $original_filename, $thumb_filename, BWG()->options->upload_thumb_width, BWG()->options->upload_thumb_height );
+      if ( !$filename_status && !$thumb_filename_status ) {
+        $status = FALSE;
+      }
     }
+
+    return $status;
   }
 
   public function rotate($image_data = array()) {
@@ -467,6 +441,7 @@ class EditimageView_bwg {
     $contrast_val = WDWLibrary::get('contrast_val', 0, 'intval');
     $image_data = new stdClass();
     $modified_date = time();
+    $message = '';
     if ( WDWLibrary::get('image_url') ) {
       $image_data->image_url = WDWLibrary::get('image_url', '', 'esc_url_raw');
       $image_data->thumb_url = WDWLibrary::get('thumb_url', '', 'esc_url_raw');
@@ -547,6 +522,20 @@ class EditimageView_bwg {
         imagesavealpha($thumb_rotate, TRUE);
         imagegif($rotate, $filename);
         imagegif($thumb_rotate, $thumb_filename);
+        imagedestroy($source);
+        imagedestroy($rotate);
+        imagedestroy($thumb_source);
+        imagedestroy($thumb_rotate);
+      }
+      elseif ( $type_rotate == 18 ) {
+        $source = imagecreatefromwebp($filename);
+        $thumb_source = imagecreatefromwebp($thumb_filename);
+        imagealphablending($source, FALSE);
+        imagealphablending($thumb_source, FALSE);
+        $rotate = imagerotate($source, $edit_type, 0);
+        $thumb_rotate = imagerotate($thumb_source, $edit_type, 0);
+        imagewebp($rotate, $filename);
+        imagewebp($thumb_rotate, $thumb_filename);
         imagedestroy($source);
         imagedestroy($rotate);
         imagedestroy($thumb_source);
@@ -640,6 +629,26 @@ class EditimageView_bwg {
         imagedestroy($thumb_source);
         imagedestroy($thumb_flip);
       }
+      elseif ( $type_rotate == 18 ) {
+        $source = imagecreatefromwebp($filename);
+        $thumb_source = imagecreatefromwebp($thumb_filename);
+        imagealphablending($source, FALSE);
+        imagealphablending($thumb_source, FALSE);
+        imagesavealpha($source, TRUE);
+        imagesavealpha($thumb_source, TRUE);
+        $flip = bwg_image_flip($source, $edit_type);
+        $thumb_flip = bwg_image_flip($thumb_source, $edit_type);
+        imagealphablending($flip, FALSE);
+        imagealphablending($thumb_flip, FALSE);
+        imagesavealpha($flip, TRUE);
+        imagesavealpha($thumb_flip, TRUE);
+        imagewebp($flip, $filename);
+        imagewebp($thumb_flip, $thumb_filename);
+        imagedestroy($source);
+        imagedestroy($flip);
+        imagedestroy($thumb_source);
+        imagedestroy($thumb_flip);
+      }
     }
     elseif ( $edit_type == 'brightness' || $edit_type == 'contrast' || $edit_type == 'grayscale' || $edit_type == 'negative' || $edit_type == 'remove' || $edit_type == 'emboss' || $edit_type == 'smooth' ) {
       switch ( $edit_type ) {
@@ -713,6 +722,20 @@ class EditimageView_bwg {
         imagedestroy($source);
         imagedestroy($thumb_source);
       }
+      elseif ( $img_type == 18 ) {
+        $source = imagecreatefromwebp($filename);
+        $thumb_source = imagecreatefromwebp($thumb_filename);
+        imagealphablending($source, FALSE);
+        imagealphablending($thumb_source, FALSE);
+        imagesavealpha($source, TRUE);
+        imagesavealpha($thumb_source, TRUE);
+        imagefilter($source, $img_filter_type, $ratio);
+        imagefilter($thumb_source, $img_filter_type, $ratio);
+        imagewebp($source, $filename);
+        imagewebp($thumb_source, $thumb_filename);
+        imagedestroy($source);
+        imagedestroy($thumb_source);
+      }
     }
     elseif ( $edit_type == 'sepia' || $edit_type == 'dark_slate_grey' || $edit_type == 'saturate' ) {
       switch ( $edit_type ) {
@@ -776,13 +799,30 @@ class EditimageView_bwg {
         imagedestroy($source);
         imagedestroy($thumb_source);
       }
+      elseif ( $img_type == 18 ) {
+        $source = imagecreatefromwebp($filename);
+        $thumb_source = imagecreatefromwebp($thumb_filename);
+        imagealphablending($source, FALSE);
+        imagealphablending($thumb_source, FALSE);
+        imagesavealpha($source, TRUE);
+        imagesavealpha($thumb_source, TRUE);
+        imagefilter($source, $img_filter_type, $red, $green, $blue);
+        imagefilter($thumb_source, $img_filter_type, $red, $green, $blue);
+        imagewebp($source, $filename);
+        imagewebp($thumb_source, $thumb_filename);
+        imagedestroy($source);
+        imagedestroy($thumb_source);
+      }
     }
     elseif ( $edit_type == 'recover' ) {
       global $wpdb;
       $id = WDWLibrary::get('image_id', 0, 'intval');
       $thumb_width = BWG()->options->thumb_width;
       $thumb_height = BWG()->options->thumb_height;
-      $this->recover_image($id, $thumb_width, $thumb_height);
+      $recover_image = $this->recover_image($id, $thumb_width, $thumb_height);
+      if ( ! $recover_image ) {
+        $message = WDWLibrary::message_id(31);
+      }
     }
     @ini_restore('memory_limit');
     if ( !empty($edit_type) ) {
@@ -796,9 +836,14 @@ class EditimageView_bwg {
       $image_data->image_url = WDWLibrary::image_url_version($image_data->image_url, $updated_image['modified_date']);
       $image_data->thumb_url = WDWLibrary::image_url_version($image_data->thumb_url, $updated_image['modified_date']);
     }
+    // Register and include styles and scripts.
+    BWG()->register_admin_scripts();
+    wp_print_styles(BWG()->prefix . '_tables');
+    wp_print_scripts(BWG()->prefix . '_admin');
     wp_print_scripts('jquery');
     wp_print_scripts('jquery-ui-widget');
     wp_print_scripts('jquery-ui-slider');
+    echo ( !empty($message) ) ? $message . '<br>' : '';
     ?>
     <link type="text/css" rel="stylesheet" id="bwg_tables-css" href="<?php echo BWG()->front_url . '/css/bwg_edit_image.css'; ?>" media="all">
     <form method="post" id="bwg_rotate_image" action="<?php echo $form_action; ?>">
@@ -807,33 +852,33 @@ class EditimageView_bwg {
         <div class="cont_for_effect">
           <div class="effect_cont">
             <img class="effect" onclick="spider_rotate('grayscale', 'bwg_rotate_image')" src="<?php echo BWG()->plugin_url . '/images/effects/grayscale.png'; ?>" />
-            <p class="effect_title"><?php echo __('Grayscale', BWG()->prefix); ?></p>
+            <p class="effect_title"><?php echo __('Grayscale', 'photo-gallery'); ?></p>
           </div>
           <div class="effect_cont">
             <img class="effect" onclick="spider_rotate('negative', 'bwg_rotate_image')" src="<?php echo BWG()->plugin_url . '/images/effects/negative.png'; ?>" />
-            <p class="effect_title"><?php echo __('Negative', BWG()->prefix); ?></p>
+            <p class="effect_title"><?php echo __('Negative', 'photo-gallery'); ?></p>
           </div>
           <div class="effect_cont">
             <img class="effect" onclick="spider_rotate('remove', 'bwg_rotate_image')" src="<?php echo BWG()->plugin_url . '/images/effects/remove.png'; ?>" />
-            <p class="effect_title"><?php echo __('Removal', BWG()->prefix); ?></p>
+            <p class="effect_title"><?php echo __('Removal', 'photo-gallery'); ?></p>
           </div>
           <div class="effect_cont">
             <img class="effect" onclick="spider_rotate('sepia', 'bwg_rotate_image')" src="<?php echo BWG()->plugin_url . '/images/effects/sepia.png'; ?>" />
-            <p class="effect_title"><?php echo __('Sepia', BWG()->prefix); ?></p>
+            <p class="effect_title"><?php echo __('Sepia', 'photo-gallery'); ?></p>
           </div>
           <div class="effect_cont">
             <img class="effect" onclick="spider_rotate('dark_slate_grey', 'bwg_rotate_image')" src="<?php echo BWG()->plugin_url . '/images/effects/dark_slate_grey.png'; ?>" />
-            <p class="effect_title"><?php echo __('Slate', BWG()->prefix); ?></p>
+            <p class="effect_title"><?php echo __('Slate', 'photo-gallery'); ?></p>
           </div>
           <div class="effect_cont">
             <img class="effect" onclick="spider_rotate('saturate', 'bwg_rotate_image')" src="<?php echo BWG()->plugin_url . '/images/effects/saturate.png'; ?>" />
-            <p class="effect_title"><?php echo __('Saturate', BWG()->prefix); ?></p>
+            <p class="effect_title"><?php echo __('Saturate', 'photo-gallery'); ?></p>
           </div>
         </div>
         <div class="reset_cont">
-          <a class="reset_img" onclick="if (confirm('<?php echo addslashes(__('Do you want to reset the image?', BWG()->prefix)); ?>')){spider_rotate('recover', 'bwg_rotate_image');
+          <a class="reset_img" onclick="if (confirm('<?php echo addslashes(__('Do you want to reset the image?', 'photo-gallery')); ?>')){spider_rotate('recover', 'bwg_rotate_image');
             }else {return false;
-            } "><?php echo __('Reset image', BWG()->prefix); ?></a>
+            } "><?php echo __('Reset image', 'photo-gallery'); ?></a>
         </div>
         <div class="flip_cont">
           <img title="Flip Both" class="effect" onclick="spider_rotate('both', 'bwg_rotate_image')" src="<?php echo BWG()->plugin_url . '/images/effects/flip_both.png'; ?>" />
@@ -859,9 +904,9 @@ class EditimageView_bwg {
                     <div class="brightness_part_1">
                       <div class="brightness_butt">
                         <div class="contForBrightness">
-                          <div class="brightness_title"><?php echo __('Brightness', BWG()->prefix); ?></div>
+                          <div class="brightness_title"><?php echo __('Brightness', 'photo-gallery'); ?></div>
                           <img title="Press for brightness" class="brightnessEffect" onclick="spider_rotate('brightness', 'bwg_rotate_image')" src="<?php echo BWG()->plugin_url . '/images/effects/brightness.png'; ?>" />
-                          <div class="tooltip_for_press"><?php echo __('Press for result', BWG()->prefix); ?></div>
+                          <div class="tooltip_for_press"><?php echo __('Press for result', 'photo-gallery'); ?></div>
                         </div>
                       </div>
                       <div class="cont_for_val">
@@ -884,9 +929,9 @@ class EditimageView_bwg {
                       </div>
                       <div class="contrast_butt">
                         <div class="contForContrast">
-                          <div class="contrast_title"><?php echo __('Contrast', BWG()->prefix); ?></div>
+                          <div class="contrast_title"><?php echo __('Contrast', 'photo-gallery'); ?></div>
                           <img title="Press for Contrast" class="contrastEffect" onclick="spider_rotate('contrast', 'bwg_rotate_image')" src="<?php echo BWG()->plugin_url . '/images/effects/contrast.png'; ?>" />
-                          <div class="tooltip_for_press_contrast"><?php echo __('Press for result', BWG()->prefix); ?></div>
+                          <div class="tooltip_for_press_contrast"><?php echo __('Press for result', 'photo-gallery'); ?></div>
                         </div>
                       </div>
                     </div>
@@ -898,9 +943,9 @@ class EditimageView_bwg {
         </div>
       </div>
       <input type="hidden" name="edit_type" id="edit_type" />
-      <input type="hidden" name="image_id" id="image_id" value="<?php echo $image_id; ?>" />
-      <input type="hidden" name="brightness_val" id="brightness_val" value="<?php echo $brightness_val; ?>" />
-      <input type="hidden" name="contrast_val" id="contrast_val" value="<?php echo $contrast_val; ?>" />
+      <input type="hidden" name="image_id" id="image_id" value="<?php echo esc_attr($image_id); ?>" />
+      <input type="hidden" name="brightness_val" id="brightness_val" value="<?php echo esc_attr($brightness_val); ?>" />
+      <input type="hidden" name="contrast_val" id="contrast_val" value="<?php echo esc_attr($contrast_val); ?>" />
     </form>
     <script>
       jQuery(function () {

@@ -9,10 +9,11 @@ class AddTagsModel_bwg {
    *
    * @param      $params
    * @param bool $total
+   * @param bool $all is need to return all tags?
    *
    * @return array|null|object|string
    */
-  public function get_rows_data( $params, $total = FALSE ) {
+  public function get_rows_data( $params, $total = FALSE , $all = FALSE) {
 
     global $wpdb;
     $order = $params['order'];
@@ -41,9 +42,11 @@ class AddTagsModel_bwg {
     }
     if ( !$total ) {
       $query .= ' ORDER BY `' . $orderby . '` ' .$order;
+      if (!$all) {
       $query .= ' LIMIT %d, %d';
       $prepareArgs[] = $page_num;
       $prepareArgs[] = $page_per;
+      }
     }
 
     if ( !$total ) {

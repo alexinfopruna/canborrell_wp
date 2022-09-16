@@ -20,13 +20,13 @@ else {
 }
 require_once(BWG()->plugin_dir . '/filemanager/controller.php');
 $controller = new FilemanagerController();
-$upload_handler = new bwg_UploadHandler(array(
-                                          'upload_dir' => $controller->uploads_dir . (isset($_GET['dir']) ? str_replace('\\', '', (WDWLibrary::get('dir','','sanitize_text_field','GET'))) : '/'),
-                                          'upload_url' => $controller->uploads_url,
-                                          'accept_file_types' => '/\.(gif|jpe?g|png|svg|aac|m4a|f4a|oga|ogg|mp3|zip)$/i',
-                                        ));
+$upload_handler = new bwg_upl(array(
+			   'upload_dir' => $controller->uploads_dir . (isset($_GET['dir']) ? str_replace(array('\\', '../'), '', WDWLibrary::get('dir', '', 'sanitize_text_field', 'GET')) : '/'),
+			   'upload_url' => $controller->uploads_url,
+			   'accept_file_types' => '/\.(gif|jpe?g|png|svg|webp|aac|m4a|f4a|oga|ogg|mp3|zip)$/i',
+			 ));
 
-class bwg_UploadHandler {
+class bwg_upl {
   protected $options;
   // PHP File Upload error message codes:
   // http://php.net/manual/en/features.file-upload.errors.php
@@ -50,7 +50,6 @@ class bwg_UploadHandler {
   );
 
   function __construct( $options = NULL, $initialize = TRUE, $error_messages = NULL ) {
-
     $this->options = array(
       'media_library_folder' => 'imported_from_media_libray' . '/',
       'script_url' => $this->get_full_url() . '/',
@@ -201,7 +200,7 @@ class bwg_UploadHandler {
       return $url . '&download=1';
     }
     $version_path = empty($version) ? '' : rawurlencode($version) . '/';
-    $file_path = !empty($file->path) ? $file->path : '';
+    $file_path = !empty($file->path) ? $file->path . '/' : '';
     $url = $this->options['upload_url'] . $this->get_user_path() . $file_path . $version_path . rawurlencode($file->name);
 
     return $url;
@@ -415,7 +414,7 @@ class bwg_UploadHandler {
     // into different directories or replacing hidden system files.
     // Also remove control characters and spaces (\x00..\x20) around the filename:
     $name = trim(stripslashes($name), ".\x00..\x20");
-    $name = str_replace(array( " ", '%', '&' ), array( "_", '', '' ), $name);
+    $name = $this->media_name_clean($name);
     $tempname = explode(".", $name);
     if ( $tempname[0] == '' ) {
       $tempname[0] = 'unnamed-file';
@@ -451,16 +450,17 @@ class bwg_UploadHandler {
     if ( $exif === FALSE ) {
       return;
     }
-    if ( $exif['ExposureProgram'] == 7 ) {
+
+    if ( !empty($exif) && !empty($exif['ExposureProgram']) && $exif['ExposureProgram'] == 7 ) {
       /* 7 for portrait. */
-      if ( $exif['Orientation'] == 6 ) {
+      if ( isset($exif['Orientation']) && $exif['Orientation'] == 6 ) {
         return;
       }
       $rotate = 270;
     }
     else {
       /* 8 for landscape. */
-      if ( $exif['Orientation'] == 1 ) {
+      if ( isset($exif['Orientation']) && $exif['Orientation'] == 1 ) {
         return;
       }
       $rotate = 0;
@@ -500,25 +500,23 @@ class bwg_UploadHandler {
 
   protected function handle_image_file( $file_path, $file ) {
     $failed_versions = array();
-
-      foreach ( $this->options['image_versions'] as $version => $options ) {
-        if ( $this->create_scaled_image($file->name, $version, $options) ) {
-          if ( $version === '' && $this->options['orient_image'] ) {
-            // Rotate only base size image (not thumb and original).
-            $this->orient_image($file);
-          }
-          if ( !empty($version) ) {
-            $file->{$version . '_url'} = $this->get_download_url($file, $version);
-          }
-          else {
-            $file->size = $this->get_file_size($file_path, TRUE);
-          }
+    foreach ( $this->options['image_versions'] as $version => $options ) {
+      if ( $this->create_scaled_image($file->name, $version, $options) ) {
+        if ( $version === '' && $this->options['orient_image'] ) {
+          // Rotate only base size image (not thumb and original).
+          $this->orient_image($file);
+        }
+        if ( !empty($version) ) {
+          $file->{$version . '_url'} = $this->get_download_url($file, $version);
         }
         else {
-          $failed_versions[] = $version;
+          $file->size = $this->get_file_size($file_path, TRUE);
         }
       }
-
+      else {
+        $failed_versions[] = $version;
+      }
+    }
 
     switch ( count($failed_versions) ) {
       case 0:
@@ -531,38 +529,39 @@ class bwg_UploadHandler {
     }
 
     if ( !$file->error ) {
-	 global $wpdb;
-	 $file->filename = str_replace("_", " ", substr($file->name, 0, strrpos($file->name, '.')));
-	 $file_ex = explode('.', $file->name);
-	 $file->type = strtolower(end($file_ex));
-	 $file->thumb = $file->name;
-	 $file->size = (int) ($file->size / 1024) . ' KB';
-	 // ini_set('allow_url_fopen',1);
-	 $image_info = @getimagesize(htmlspecialchars_decode($file->url, ENT_COMPAT | ENT_QUOTES));
-	 if ( $file->type == 'svg' ) {
-	   $size = $this->get_svg_size($file->dir . $file->name);
-	   if ( !empty($size) ) {
-		$file->resolution = $size['width'] . " x " . $size['height'] . " px ";
-	   }
-	   else {
-		$file->resolution = "";
-	   }
-	 }
-	 else {
-	   $file->resolution = $image_info[0] . ' x ' . $image_info[1] . ' px';
-	 }
-	 if ( BWG()->options->read_metadata ) {
-	   $meta = WDWLibrary::read_image_metadata($file->dir . '/.original/' . $file->name);
-	   $file->alt = ($meta['title']) ? $meta['title'] : str_replace("_", " ", $file->filename);
-	   $file->credit = isset($meta['credit']) ? $meta['credit'] : '';
-	   $file->aperture = isset($meta['aperture']) ? $meta['aperture'] : '';
-	   $file->camera = isset($meta['camera']) ? $meta['camera'] : '';
-	   $file->caption = isset($meta['caption']) ? $meta['caption'] : '';
-	   $file->iso = isset($meta['iso']) ? $meta['iso'] : '';
-	   $file->orientation = isset($meta['orientation']) ? $meta['orientation'] : '';
-	   $file->copyright = isset($meta['copyright']) ? $meta['copyright'] : '';
-	   $file->tags = isset($meta['tags']) ? $meta['tags'] : '';
-	 }
+      global $wpdb;
+      $file->filename = str_replace("_", " ", substr($file->name, 0, strrpos($file->name, '.')));
+      $file_ex = explode('.', $file->name);
+      $file->type = strtolower(end($file_ex));
+      $file->thumb = $file->name;
+      $file->size = (int) ($file->size / 1024) . ' KB';
+      $file->url = (isset($file->url) && $file->url !== '') ? $file->url : $this->get_download_url($file);
+      // ini_set('allow_url_fopen',1);
+      $image_info = @getimagesize(htmlspecialchars_decode($file->url, ENT_COMPAT | ENT_QUOTES));
+      if ( $file->type == 'svg' ) {
+        $size = WDWLibrary::get_svg_size($file->url);
+        $file->resolution = '';
+        if ( !empty($size) ) {
+          $file->resolution = WDWLibrary::format_number($size['width']) . ' x ' . WDWLibrary::format_number($size['height']) . ' px';
+        }
+      }
+      else {
+        if ( !empty($image_info) ) {
+          $file->resolution = WDWLibrary::format_number($image_info[0]) . ' x ' . WDWLibrary::format_number($image_info[1]) . ' px';
+        }
+      }
+      if ( BWG()->options->read_metadata ) {
+        $meta = WDWLibrary::read_image_metadata($file->dir . '/.original/' . $file->name);
+        $file->alt = ($meta['title']) ? $meta['title'] : str_replace("_", " ", $file->filename);
+        $file->credit = isset($meta['credit']) ? $meta['credit'] : '';
+        $file->aperture = isset($meta['aperture']) ? $meta['aperture'] : '';
+        $file->camera = isset($meta['camera']) ? $meta['camera'] : '';
+        $file->caption = isset($meta['caption']) ? $meta['caption'] : '';
+        $file->iso = isset($meta['iso']) ? $meta['iso'] : '';
+        $file->orientation = isset($meta['orientation']) ? $meta['orientation'] : '';
+        $file->copyright = isset($meta['copyright']) ? $meta['copyright'] : '';
+        $file->tags = isset($meta['tags']) ? $meta['tags'] : '';
+      }
       $wpdb->insert($wpdb->prefix . 'bwg_file_paths', $this->set_file_info($file));
     }
   }
@@ -570,6 +569,7 @@ class bwg_UploadHandler {
   protected function handle_zip_file( $file_path, $file ) {
     $zip = new ZipArchive;
     $res = $zip->open($file_path);
+    $target_dir = substr($file_path, 0, strlen($file_path) - 4);
     if ( $res === TRUE ) {
       $allow_extract = TRUE;
       for ( $i = 0; $i < $zip->numFiles; $i++ ) {
@@ -582,11 +582,15 @@ class bwg_UploadHandler {
         }
       }
       if ( $allow_extract ) {
-        $target_dir = substr($file_path, 0, strlen($file_path) - 4);
         if ( !is_dir($target_dir) ) {
           mkdir($target_dir, 0755);
         }
         $zip->extractTo($target_dir);
+        $svg_files = glob($target_dir . '/*.svg');
+        foreach ( $svg_files as $svg ) {
+          $file_content = file_get_contents($svg);
+          file_put_contents($svg, preg_replace('#<script(.*?)>(.*?)</script>#is', '', $file_content));
+        }
       }
       else {
         $file->error = 'Zip file should contain only image files.';
@@ -637,11 +641,15 @@ class bwg_UploadHandler {
             $file->url = $this->get_download_url($file);
             list($img_width, $img_height) = @getimagesize(htmlspecialchars_decode($ex_file, ENT_COMPAT | ENT_QUOTES));
             if ( $this->options['max_width'] && $this->options['max_height'] ) {
-              // Zip Upload.
               $this->create_scaled_image($file->name, 'main', $this->options);
             }
-            if ( is_int($img_width) ) {
+            // Zip Upload.
+            if ( is_int($img_width) || $extension == 'svg' ) {
               $file->error = FALSE;
+              if ( $extension == 'svg' ) {
+                $file_content = file_get_contents($ex_file);
+                file_put_contents($ex_file, preg_replace('#<script(.*?)>(.*?)</script>#is', '', $file_content));
+              }
               $this->handle_image_file($ex_file, $file);
             }
           }
@@ -660,6 +668,7 @@ class bwg_UploadHandler {
     $file_type_array = explode('.', $name);
     $type = strtolower(end($file_type_array));
     $file = new stdClass();
+    $name = $this->media_name_clean($name);
     if ( WDWLibrary::allowed_upload_types($type) ) {
       $file->dir = $this->get_upload_path();
       $file->error = FALSE;
@@ -697,8 +706,8 @@ class bwg_UploadHandler {
       // Additional information.
       $file->path = '/' . $this->options['media_library_folder'];
       $file->filetype = $type;
-      $file->filename = str_replace('.' . $file->filetype, '', $file->name);
-      $file->alt = $file->filename;
+      $file->filename = str_replace('.' . $file->filetype, '', $this->media_name_clean($file->name));
+      $file->alt = $this->media_name_clean($file->filename);
       $file->reliative_url = $this->options['upload_url'] . '/' . $this->options['media_library_folder'] . $file->name;
       $file->url = '/' . $this->options['media_library_folder'] . $file->name;
       $file->thumb = $this->options['upload_url'] . '/' . $this->options['media_library_folder'] . 'thumb/' . $file->name;
@@ -708,19 +717,18 @@ class bwg_UploadHandler {
       $file->size = $file_size_kb . ' KB';
       $file->date_modified = date('Y-m-d H:i:s', filemtime($file_path));
       $image_info = @getimagesize(htmlspecialchars_decode($file_path, ENT_COMPAT | ENT_QUOTES));
-
       if ( $type == 'svg' ) {
-        $size = $this->get_svg_size($file->dir.$file->name);
-          if( !empty($size) ) {
-            $file->resolution = $size['width'] . " x " . $size['height'] . " px ";
-            $file->resolution_thumb = $size['width'] . "x" . $size['height'];
-          } else {
-            $file->resolution = "";
-            $file->resolution_thumb = "";
-          }
-      } else {
-          $file->resolution = $image_info[0] . ' x ' . $image_info[1] . ' px';
-          $file->resolution_thumb = WDWLibrary::get_thumb_size($file->thumb_url);
+        $file->resolution = "";
+        $file->resolution_thumb = "";
+        $size = WDWLibrary::get_svg_size($file->dir.$file->name);
+        if ( !empty($size) ) {
+          $file->resolution = WDWLibrary::format_number($size['width']) . ' x ' . WDWLibrary::format_number($size['height']) . ' px';
+          $file->resolution_thumb = WDWLibrary::format_number($size['width'], 2) . 'x' . WDWLibrary::format_number($size['height'], 2);
+        }
+      }
+      else {
+        $file->resolution = WDWLibrary::format_number($image_info[0]) . ' x ' . WDWLibrary::format_number($image_info[1]) . ' px';
+        $file->resolution_thumb = WDWLibrary::get_thumb_size($file->thumb_url);
       }
       if ( BWG()->options->read_metadata ) {
         $meta = WDWLibrary::read_image_metadata($upload_dir . '.original/' . $file->name);
@@ -731,14 +739,13 @@ class bwg_UploadHandler {
         $file->iso = isset($meta['iso']) ? $meta['iso'] : "";
         $file->orientation = isset($meta['orientation']) ? $meta['orientation'] : "";
         $file->copyright = isset($meta['copyright']) ? $meta['copyright'] : "";
-        $file->alt = $meta['title'] ? $meta['title'] : $file->filename;
+        $file->alt = $this->media_name_clean($meta['title'] ? $meta['title'] : $file->filename);
         $file->tags = isset($meta['tags']) ? $meta['tags'] : "";
       }
     }
     else {
       $file->error = TRUE;
     }
-
     return $file;
   }
 
@@ -764,15 +771,20 @@ class bwg_UploadHandler {
         }
         else {
           move_uploaded_file($uploaded_file, $file_path);
+          if ( strpos($type, 'svg') ) {
+            // Remove scripts from SVG files for security reasons.
+            $file_content = file_get_contents($file_path);
+            file_put_contents($file_path, preg_replace('#<script(.*?)>(.*?)</script>#is', '', $file_content));
+          }
         }
       }
       else {
         // Non-multipart uploads (PUT method support)
         file_put_contents($file_path, fopen('php://input', 'r'), $append_file ? FILE_APPEND : 0);
       }
-
       $file_size = $this->get_file_size($file_path, $append_file);
-      if ( $file_size === $file->size ) {
+      if ( strpos($type, 'svg') || $file_size === $file->size ) {
+        // Do not compare size if the file is svg (for the reason when script is deleted from file).
         if ( $this->options['max_width'] && $this->options['max_height'] ) {
           // Upload.
           $this->create_scaled_image($file->name, 'main', $this->options);
@@ -796,21 +808,7 @@ class bwg_UploadHandler {
       }
       $this->set_file_delete_properties($file);
     }
-
     return $file;
-  }
-
-  public function get_svg_size( $image ) {
-
-    $xml = simplexml_load_file($image);
-    $attr = $xml->attributes();
-
-    $size = array(
-      'width' => json_decode($attr->width),
-      'height'=> json_decode($attr->height),
-    );
-
-    return $size;
   }
 
   protected function readfile( $file_path ) {
@@ -961,8 +959,8 @@ class bwg_UploadHandler {
 
   public function post( $print_response = TRUE ) {
     global $wpdb;
-    $path = isset($_REQUEST['dir']) ? str_replace('\\', '', (WDWLibrary::get('dir','','sanitize_text_field','REQUEST'))) . '/' : '/';
-    if ( isset($_REQUEST['import']) && WDWLibrary::get('import',0,'intval','REQUEST') == 1 ) {
+    $path = isset($_REQUEST['dir']) ? str_replace(array('\\', '../'), '', WDWLibrary::get('dir', '', 'sanitize_text_field', 'REQUEST')) . '/' : '/';
+    if ( isset($_REQUEST['import']) && WDWLibrary::get('import', 0, 'intval','REQUEST') == 1 ) {
       $files = array();
       $file_names = json_decode(isset($_REQUEST['file_namesML']) ? stripslashes(WDWLibrary::get('file_namesML','','sanitize_text_field','REQUEST')) : array());
       if ( !empty($file_names) ) {
@@ -993,7 +991,7 @@ class bwg_UploadHandler {
     if ( isset($_REQUEST['_method']) && WDWLibrary::get('_method','','sanitize_text_field','REQUEST') === 'DELETE' ) {
       return $this->delete($print_response);
     }
-    $upload = isset($_FILES[$this->options['param_name']]) ? $_FILES[$this->options['param_name']] : NULL;
+    $upload = isset($_FILES[$this->options['param_name']]) ? $this->bwg_sanitize_file_data( $_FILES[$this->options['param_name']] ) : NULL;
     $files = array();
     // Parse the Content-Disposition header, if available:
     $file_name = isset($_SERVER['HTTP_CONTENT_DISPOSITION']) ? rawurldecode(preg_replace('/(^[^"]+")|("$)/', '', $_SERVER['HTTP_CONTENT_DISPOSITION'])) : NULL;
@@ -1022,6 +1020,28 @@ class bwg_UploadHandler {
       $files[] = $this->handle_file_upload(isset($upload['tmp_name']) ? $upload['tmp_name'] : NULL, $filename, $size ? $size : (isset($upload['size']) ? $upload['size'] : $_SERVER['CONTENT_LENGTH']), isset($upload['type']) ? $upload['type'] : $_SERVER['CONTENT_TYPE'], isset($upload['error']) ? $upload['error'] : NULL, NULL, $content_range, $path);
     }
     return $this->generate_response(array( $this->options['param_name'] => $files ), $print_response);
+  }
+
+  /**
+   * Sanitize File data
+   *
+   * @param $file_data array
+   *
+   * @return array
+   */
+  public function bwg_sanitize_file_data( $file_data ) {
+    foreach ( $file_data as $key=>$val ) {
+      if( $key == 'name' && !empty($val) ) {
+        $file_data[$key][0] = sanitize_file_name($val[0]);
+      } elseif( $key == 'tmp_name' && !empty($val) ) {
+        $file_data[$key][0] = realpath($val[0]);
+      } elseif ( $key == 'tmp_name' && !empty($val) ) {
+        $file_data[$key][0] = intval($val[0]);
+      } elseif ( !empty($val) ) {
+        $file_data[$key][0] = sanitize_text_field($val[0]);
+      }
+    }
+    return $file_data;
   }
 
   public function delete( $print_response = TRUE ) {
@@ -1088,44 +1108,81 @@ class bwg_UploadHandler {
     $data['author'] = get_current_user_id();
 
     if ( $data['type'] == 'svg') {
-        $size = $this->get_svg_size($info->dir.$data['name']);
-        if( !empty($size['width']) && !empty($size['height']) ) {
-            $data['resolution'] = $size['width'] . " x " . $size['height'] . " px ";
-            $data['resolution_thumb'] = $size['width'] . "x" . $size['height'];
-        } else {
-            $data['resolution'] = WDWLibrary::get('upload_img_width') . " x " . WDWLibrary::get('upload_img_height') . " px ";
-            $data['resolution_thumb'] = WDWLibrary::get('upload_thumb_width') . "x" . WDWLibrary::get('upload_thumb_height');
-        }
+      $size = WDWLibrary::get_svg_size($info->dir.$data['name']);
+      if( !empty($size['width']) && !empty($size['height']) ) {
+        $data['resolution'] = $size['width'] . " x " . $size['height'] . " px ";
+        $data['resolution_thumb'] = $size['width'] . "x" . $size['height'];
+      } else {
+        $data['resolution'] = WDWLibrary::get('upload_img_width') . " x " . WDWLibrary::get('upload_img_height') . " px ";
+        $data['resolution_thumb'] = WDWLibrary::get('upload_thumb_width') . "x" . WDWLibrary::get('upload_thumb_height');
+      }
+      $data['credit'] = '';
+      $data['aperture'] = '';
+      $data['camera'] = '';
+      $data['caption'] = '';
+      $data['iso'] = '';
+      $data['orientation'] = '';
+      $data['copyright'] = '';
+      $data['tags'] = '';
     } else {
-        $data['resolution'] = isset($info->resolution) ? $info->resolution : '';
-        $resolution_thumb = WDWLibrary::get_thumb_size("/" . $data['thumb']);
-        if ( $resolution_thumb == '' && !empty($data['resolution']) ) {
-          $temp = explode(" ", $data['resolution']);
-          $resolution_thumb = $temp[0] . "x" . $temp[2];
-        }
-        $data['resolution_thumb'] = $resolution_thumb;
+      $data['resolution'] = isset($info->resolution) ? $info->resolution : '';
+      $resolution_thumb = WDWLibrary::get_thumb_size( $data['path'] . $data['thumb'] );
+      if ( $resolution_thumb == '' && !empty($data['resolution']) ) {
+        $temp = explode(" ", $data['resolution']);
+        $max_width = WDWLibrary::get('upload_thumb_width');
+        $max_height = WDWLibrary::get('upload_thumb_height');
+        $resolution_thumb = $this->calc_thumb_resolution($max_width, $max_height, $temp[0], $temp[2]);
+      }
+      $data['resolution_thumb'] = $resolution_thumb;
 
-        $data['credit'] = isset($info->credit) ? $this->mime_decode($info->credit, $iconv_mime_decode_function_exist) : '';
-        $data['aperture'] = isset($info->aperture) ? $this->mime_decode($info->aperture, $iconv_mime_decode_function_exist) : '';
-        $data['camera'] = isset($info->camera) ? $this->mime_decode($info->camera, $iconv_mime_decode_function_exist) : '';
-        $data['caption'] = isset($info->caption) ? $this->mime_decode($info->caption, $iconv_mime_decode_function_exist) : '';
-        $data['iso'] = isset($info->iso) ? $this->mime_decode($info->iso, $iconv_mime_decode_function_exist) : '';
-        $data['orientation'] = isset($info->orientation) ? $info->orientation : '';
-        $data['copyright'] = isset($info->copyright) ? $this->mime_decode($info->copyright, $iconv_mime_decode_function_exist) : '';
-        $data['tags'] = isset($info->tags) ? $this->mime_decode($info->tags, $iconv_mime_decode_function_exist) : '';
+      $data['credit'] = isset($info->credit) ? $this->mime_decode($info->credit, $iconv_mime_decode_function_exist) : '';
+      $data['aperture'] = isset($info->aperture) ? $this->mime_decode($info->aperture, $iconv_mime_decode_function_exist) : '';
+      $data['camera'] = isset($info->camera) ? $this->mime_decode($info->camera, $iconv_mime_decode_function_exist) : '';
+      $data['caption'] = isset($info->caption) ? $this->mime_decode($info->caption, $iconv_mime_decode_function_exist) : '';
+      $data['iso'] = isset($info->iso) ? $this->mime_decode($info->iso, $iconv_mime_decode_function_exist) : '';
+      $data['orientation'] = isset($info->orientation) ? $info->orientation : '';
+      $data['copyright'] = isset($info->copyright) ? $this->mime_decode($info->copyright, $iconv_mime_decode_function_exist) : '';
+      $data['tags'] = isset($info->tags) ? $this->mime_decode($info->tags, $iconv_mime_decode_function_exist) : '';
 
     }
-
     return $data;
   }
 
-  private function mime_decode($value, $function_exist) {
+  /**
+  * Function is calculating dimensions related to the global settings dimensions
+   *
+   * @param int $max_width
+   * @param int $max_height
+   * @param int $img_width
+   * @param int $img_height
+   *
+   * @return string
+ */
+  private function calc_thumb_resolution( $max_width, $max_height, $img_width, $img_height ) {
+    if($img_width > $max_width || $img_height > $max_height) {
+      $scale = min($max_width / $img_width, $max_height / $img_height);
+      $new_width = $img_width * $scale;
+      $new_height = $img_height * $scale;
 
+      return intval($new_width) . ' x ' . intval($new_height);
+    }
+    return intval($img_width) . ' x ' . intval($img_height);
+  }
+
+
+  private function mime_decode($value, $function_exist) {
     if ( $value && $function_exist ) {
-	 $value = iconv_mime_decode($value, 2, 'UTF-8');
+      $value = iconv_mime_decode($value, 2, 'UTF-8');
     }
     return $value;
 
+  }
+
+  private function media_name_clean( $string = '' )  {
+    $code_entities_match = array(' ','%','&','+','^');
+    $code_entities_replace = array('_','','','','');
+    $string = str_replace($code_entities_match, $code_entities_replace, $string);
+    return $string;
   }
 }
 

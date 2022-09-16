@@ -1,4 +1,7 @@
 <?php
+
+use WPML\API\Sanitize;
+
 class WPML_Nav_Menu {
 	private $current_menu;
 	private $current_lang;
@@ -642,8 +645,8 @@ class WPML_Nav_Menu {
 		$debug_backtrace = $sitepress->get_backtrace( 5 ); // Ignore objects and limit to first 5 stack frames, since 4 is the highest index we use
 
 		if ( isset( $debug_backtrace[4] ) && $debug_backtrace[4]['function'] === '_wp_auto_add_pages_to_menu' && ! empty( $val['auto_add'] ) ) {
-			$post_lang = isset( $_POST['icl_post_language'] ) ? filter_var( $_POST['icl_post_language'], FILTER_SANITIZE_STRING ) : false;
-			$post_lang = ! $post_lang && isset( $_POST['lang'] ) ? filter_var( $_POST['lang'], FILTER_SANITIZE_STRING ) : $post_lang;
+			$post_lang = Sanitize::stringProp( 'icl_post_language', $_POST );
+			$post_lang = ! $post_lang && isset( $_POST['lang'] ) ? Sanitize::string( $_POST['lang'] ) : $post_lang;
 			$post_lang = ! $post_lang && $this->is_duplication_mode() ? $sitepress->get_current_language() : $post_lang;
 
 			if ( $post_lang ) {
@@ -676,7 +679,7 @@ class WPML_Nav_Menu {
 		if ( ! $args['menu'] ) {
 			$locations = get_nav_menu_locations();
 			if ( isset( $args['theme_location'] ) && isset( $locations[ $args['theme_location'] ] ) ) {
-				$args['menu'] = icl_object_id( $locations[ $args['theme_location'] ], 'nav_menu' );
+				$args['menu'] = self::convert_nav_menu_id( $locations[ $args['theme_location'] ] );
 			}
 		};
 
@@ -684,18 +687,18 @@ class WPML_Nav_Menu {
 			remove_filter( 'theme_mod_nav_menu_locations', array( $this->nav_menu_actions, 'theme_mod_nav_menu_locations' ) );
 			$locations = get_nav_menu_locations();
 			if ( isset( $args['theme_location'] ) && isset( $locations[ $args['theme_location'] ] ) ) {
-				$args['menu'] = icl_object_id( $locations[ $args['theme_location'] ], 'nav_menu' );
+				$args['menu'] = self::convert_nav_menu_id( $locations[ $args['theme_location'] ] );
 			}
 			add_filter( 'theme_mod_nav_menu_locations', array( $this->nav_menu_actions, 'theme_mod_nav_menu_locations' ) );
 		}
 
 		// $args[ "menu" ] can be an object consequently to widget's call
 		if ( is_object( $args['menu'] ) && ( ! empty( $args['menu']->term_id ) ) ) {
-				$args['menu'] = wp_get_nav_menu_object( icl_object_id( $args['menu']->term_id, 'nav_menu' ) );
+				$args['menu'] = wp_get_nav_menu_object( self::convert_nav_menu_id( $args['menu']->term_id ) );
 		}
 
 		if ( ( ! is_object( $args['menu'] ) ) && is_numeric( $args['menu'] ) ) {
-				$args['menu'] = wp_get_nav_menu_object( icl_object_id( $args['menu'], 'nav_menu' ) );
+				$args['menu'] = wp_get_nav_menu_object( self::convert_nav_menu_id( $args['menu'] ) );
 		}
 
 		if ( ( ! is_object( $args['menu'] ) ) && is_string( $args['menu'] ) ) {
@@ -705,7 +708,7 @@ class WPML_Nav_Menu {
 			}
 
 			if ( false !== $term ) {
-					$args['menu'] = wp_get_nav_menu_object( icl_object_id( $term->term_id, 'nav_menu' ) );
+					$args['menu'] = wp_get_nav_menu_object( self::convert_nav_menu_id( $term->term_id ) );
 			}
 		}
 
@@ -714,6 +717,19 @@ class WPML_Nav_Menu {
 		}
 
 		return $args;
+	}
+
+	/**
+	 * It will fallback to the original if the translation
+	 * does not exist. This is required for nav menus in
+	 * a "widget" context.
+	 *
+	 * @param int $navMenuId
+	 *
+	 * @return int
+	 */
+	private static function convert_nav_menu_id( $navMenuId ) {
+		return wpml_object_id_filter( $navMenuId, 'nav_menu', true );
 	}
 
 	function wp_nav_menu_items_filter( $items ) {

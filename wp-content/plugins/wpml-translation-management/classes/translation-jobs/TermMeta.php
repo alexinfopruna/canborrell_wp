@@ -160,7 +160,9 @@ class TermMeta {
 
 		$groupOptions = function ( $carry, $row ) use ( $extractFieldName, $extractOptions ) {
 			$fieldName = $extractFieldName( $row );
-			! isset( $carry[ $fieldName ] ) && $carry[ $fieldName ] = [];
+			if ( ! isset( $carry[ $fieldName ] ) ) {
+				$carry[ $fieldName ] = [];
+			}
 
 			$options = $extractOptions( $row, $fieldName );
 

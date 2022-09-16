@@ -231,9 +231,7 @@ class BWGUpdate {
       $wpdb->query("ALTER TABLE " . $wpdb->prefix . "bwg_gallery ADD `gallery_source` varchar(64) NOT NULL DEFAULT ''");
       $wpdb->query("ALTER TABLE " . $wpdb->prefix . "bwg_gallery ADD `update_flag` varchar(32) NOT NULL DEFAULT ''");
       $wpdb->query("ALTER TABLE " . $wpdb->prefix . "bwg_gallery ADD `autogallery_image_number` int(4) NOT NULL DEFAULT 12");
-      if ( BWG()->is_pro ) {
-        wp_schedule_event(time(), 'bwg_autoupdate_interval', 'bwg_schedule_event_hook');
-      }
+      wp_schedule_event(time(), 'bwg_autoupdate_interval', 'bwg_schedule_event_hook');
       /*auto-filling image meta description*/
       $wpdb->query("ALTER TABLE " . $wpdb->prefix . "bwg_option ADD `description_tb` tinyint(1) NOT NULL DEFAULT 1");
       /*convert old videos with "YOUTUBE" and "VIMEO" videos to new EMBED format*/
@@ -429,7 +427,6 @@ class BWGUpdate {
     if ( version_compare($version, '1.5.68' ) == -1 ) {
       $wpdb->query("ALTER TABLE " . $wpdb->prefix . "bwg_file_paths ADD `author` bigint(20) NOT NULL DEFAULT 1");
     }
-
     return;
   }
 }

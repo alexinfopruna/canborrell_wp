@@ -55,8 +55,8 @@ class ThemesModel_bwg {
     return $rows;
   }
   
-  public function get_row_data($id, $reset = FALSE) {
-    $row = new WD_BWG_Theme($id, $reset);
+  public function get_row_data($id, $reset = FALSE, $active_tab = 'Thumbnail') {
+    $row = new WD_BWG_Theme($id, $reset, false, $active_tab);
     return $row;
   }
 

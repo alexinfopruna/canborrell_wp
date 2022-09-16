@@ -139,91 +139,97 @@ class WDWLibraryEmbed {
     */
     if ( !$host ) {
       $parse = parse_url($url);
-      $host = ($parse['host'] == "www.instagram.com") ? 'INSTAGRAM' : FALSE;
+      $host = ( !empty($parse['host']) && $parse['host'] == "www.instagram.com") ? 'INSTAGRAM' : FALSE;
     }
-
     /*return json_encode($host); for test*/
     /*handling oembed cases*/    
     if ( $host ) {
       if ( $host == 'INSTAGRAM' ) {
-      $matches = array();
-      $filename = '';
-      $regex = "/^.*?instagram\.com\/p\/(.*?)[\/]?$/";
-      if ( preg_match($regex, $url, $matches) ) {
-        $filename = $matches[1];
-        if ( strtolower(substr($filename, -5)) == '/post' ) {
-          $filename = substr($filename, 0, -5);
+        $matches = array();
+        $filename = '';
+        $regex = "/^.*?instagram\.com\/p\/(.*?)[\/]?$/";
+        if ( preg_match($regex, $url, $matches) ) {
+          $filename = $matches[1];
+          if ( strtolower(substr($filename, -5)) == '/post' ) {
+            $filename = substr($filename, 0, -5);
+          }
         }
-      }
-      $description = !empty($instagram_data->caption) ? $instagram_data->caption : '';
-      // Content
-      if ( $host == 'INSTAGRAM' && strtolower(substr($url, -4)) != 'post' ) {
-        if ( !empty($instagram_data) ) {
-          $media_url = $instagram_data->media_url;
-          if ( $instagram_data->media_type == 'VIDEO' ) {
-            $embed_type = 'EMBED_OEMBED_INSTAGRAM_VIDEO';
-            $thumb_url = $instagram_data->thumbnail_url;
+        $description = !empty($instagram_data->caption) ? $instagram_data->caption : '';
+        // Content
+        if ( $host == 'INSTAGRAM' && strtolower(substr($url, -4)) != 'post' ) {
+          if ( !empty($instagram_data) ) {
+            $media_url = $instagram_data->media_url;
+            if ( $instagram_data->media_type == 'VIDEO' ) {
+              $embed_type = 'EMBED_OEMBED_INSTAGRAM_VIDEO';
+              $thumb_url = $instagram_data->thumbnail_url;
+            }
+            else {
+              if ( $instagram_data->media_type == 'IMAGE' ) {
+                $embed_type = 'EMBED_OEMBED_INSTAGRAM_IMAGE';
+                $thumb_url = $instagram_data->media_url;
+              }
+            }
+            list($media_width, $media_height) = @getimagesize($thumb_url);
+            $img_width = !empty($media_width) ? $media_width : '640';
+            $img_height = !empty($media_height) ? $media_height : '640';
           }
           else {
-            if ( $instagram_data->media_type == 'IMAGE' ) {
-              $embed_type = 'EMBED_OEMBED_INSTAGRAM_IMAGE';
-              $thumb_url = $instagram_data->media_url;
+            // Embed Media case.
+            $result = self::instagram_oembed_connect($url);
+            $result->embed_url = $url;
+            if ( !empty($result->error) ) {
+              return json_encode($result->error);
             }
+            $embed_type = 'EMBED_OEMBED_INSTAGRAM_POST';
+            $media_url = base64_encode($result->html);
+            $image_data = self::create_instagram_oembed_image( $result );
+            $thumb_url = $image_data->thumb_url;
+            $thumb_width = $image_data->thumb_width;
+            $thumb_height = $image_data->thumb_height;
+            $img_width = $image_data->img_width;
+            $img_height = $image_data->img_height;
           }
-          list($media_width, $media_height) = @getimagesize($thumb_url);
-          $img_width = !empty($media_width) ? $media_width : '640';
-          $img_height = !empty($media_height) ? $media_height : '640';
         }
-        else {
-          $result = self::instagram_oembed_connect($url);
-          if ( !empty($result->error) ) {
-            return json_encode($result->error);
+        // Whole post
+        if ( $host == 'INSTAGRAM' && strtolower(substr($url, -4)) == 'post' ) {
+          if ( !empty($instagram_data) ) {
+            $result = self::instagram_oembed_connect($instagram_data->permalink);
+            if ( !empty($result->error) ) {
+              return json_encode($result->error);
+            }
+            $embed_type = 'EMBED_OEMBED_INSTAGRAM_POST';
+            $media_url = base64_encode($result->html);
+            $thumb_url = $result->thumbnail_url;
+            $img_width = $result->thumbnail_width;
+            $img_height = $result->thumbnail_height;
           }
-          $embed_type = 'EMBED_OEMBED_INSTAGRAM_POST';
-          $media_url = base64_encode($result->html);
-          $thumb_url = $result->thumbnail_url;
-          $img_width = $result->thumbnail_width;
-          $img_height = $result->thumbnail_height;
         }
+
+        $embedData = array(
+          'name' => '',
+          'description' => htmlspecialchars($description),
+          'filename' => $filename,
+          'url' => $media_url,
+          'reliative_url' => $media_url,
+          'thumb_url' => $thumb_url,
+          'thumb' => $thumb_url,
+          'size' => '',
+          'filetype' => $embed_type,
+          'resolution' => $img_width . " x " . $img_height . " px",
+          'resolution_thumb' => $thumb_width . "x" . $thumb_height,
+          'redirect_url' => '',
+          'date_modified' => date("Y-m-d H:i:s"),
+        );
+
+        return json_encode($embedData);
       }
-      // Whole post
-      if ( $host == 'INSTAGRAM' && strtolower(substr($url, -4)) == 'post' ) {
-        if ( !empty($instagram_data) ) {
-          $result = self::instagram_oembed_connect($instagram_data->permalink);
-          if ( !empty($result->error) ) {
-            return json_encode($result->error);
-          }
-          $embed_type = 'EMBED_OEMBED_INSTAGRAM_POST';
-          $media_url = base64_encode($result->html);
-          $thumb_url = $result->thumbnail_url;
-          $img_width = $result->thumbnail_width;
-          $img_height = $result->thumbnail_height;
-        }
-      }
-      $embedData = array(
-        'name' => '',
-        'description' => htmlspecialchars($description),
-        'filename' => $filename,
-        'url' => $media_url,
-        'reliative_url' => $media_url,
-        'thumb_url' => $thumb_url,
-        'thumb' => $thumb_url,
-        'size' => '',
-        'filetype' => $embed_type,
-        'resolution' => $img_width . " x " . $img_height . " px",
-        'resolution_thumb' => $img_width . "x" . $img_height,
-        'redirect_url' => '',
-        'date_modified' => date("Y-m-d H:i:s"),
-      );
-      return json_encode($embedData);
-    }
-      $result = $oembed->fetch( $provider, $url);
+      $result = $oembed->fetch( $provider, $url, array('width' => BWG()->options->upload_thumb_width, 'height' => BWG()->options->upload_thumb_height));
       /*no data fetched for a known provider*/
       if ( !$result ) {
         return json_encode(array( "error", "please enter " . $host . " correct single media URL" ));
       }
       else { /*one of known oembed types*/
-        $embed_type = 'EMBED_OEMBED_'.$host;
+        $embed_type = 'EMBED_OEMBED_' . $host;
         switch ($embed_type) {
           case 'EMBED_OEMBED_YOUTUBE': {
             $youtube_regex = "#(?<=v=)[a-zA-Z0-9-]+(?=&)|(?<=v\/)[^&\n]+|(?<=v=)[^&\n]+|(?<=youtu.be/)+(.*)+#";
@@ -335,18 +341,18 @@ class WDWLibraryEmbed {
             return json_encode($embedData);
 		      }
           default:
-            return json_encode( array("error", __('The entered URL is incorrect. Please check the URL and try again.', BWG()->prefix) ) );
+            return json_encode( array("error", __('The entered URL is incorrect. Please check the URL and try again.', 'photo-gallery') ) );
           break;
         }
       }
-    }/*end of oembed cases*/
+    } /*end of oembed cases*/
     else {
       /*check for direct image url*/
       /*check if something else*/
       /*not implemented yet*/
-      return json_encode( array("error", __('The entered URL is incorrect. Please check the URL and try again.', BWG()->prefix) ) );
+      return json_encode( array("error", __('The entered URL is incorrect. Please check the URL and try again.', 'photo-gallery') ) );
     }
-    return json_encode( array("error", __('The entered URL is incorrect. Please check the URL and try again.', BWG()->prefix) ) );
+    return json_encode( array("error", __('The entered URL is incorrect. Please check the URL and try again.', 'photo-gallery') ) );
   }
 
   /**
@@ -454,7 +460,6 @@ class WDWLibraryEmbed {
         }
       case 'EMBED_OEMBED_INSTAGRAM_POST':
         $oembed_instagram_html = '<div ';
-        $id = '';
         foreach ($attrs as $attr => $value) {
           if (preg_match('/src/i', $attr) === 0) {
             if ($attr != '' && $value != '') {
@@ -466,14 +471,13 @@ class WDWLibraryEmbed {
           }
         }
         $oembed_instagram_html .= ">";
-        if ($file_url != '') {
+        if ( $file_url != '' ) {
           if ($is_visible) {
             $oembed_instagram_html .= '<div class="inner_instagram_iframe_' . $class . '"';
           } else {
             $oembed_instagram_html .= '<dev id="bwg_carousel_preload_' . $bwg . '_' . $image_key . '" class="inner_instagram_iframe_' . $class . '"';
           }
-          $oembed_instagram_html .= ' frameborder="0" scrolling="no" allowtransparency="false" allowfullscreen ' .
-            'style="max-width: 100% !important; max-height: 100% !important; width: 100%; height: 100%; margin:0; vertical-align:middle;">' . base64_decode($file_url) . '</div>';
+          $oembed_instagram_html .= 'style="max-width: 100% !important; max-height: 100% !important; width: 100%; height: 100%; margin:0; vertical-align:middle;">' . base64_decode($file_url) . '</div>';
         }
         $oembed_instagram_html .= "</div>";
         $html_to_insert .= $oembed_instagram_html;
@@ -904,7 +908,7 @@ class WDWLibraryEmbed {
   public static function instagram_oembed_connect( $url = '' ) {
     // oEmbed API 2020 connect.
     $data = new stdClass();
-    $instagram_oembed_url = 'https://graph.facebook.com/v9.0/instagram_oembed/?url=' . $url . '&omitscript=true&access_token=356432828483035|0e211da32da5f501d25541fa10f4d6c0';
+    $instagram_oembed_url = 'https://graph.facebook.com/v13.0/instagram_oembed/?url=' . $url . '&omitscript=true&access_token=1265910900599076|c95304d1141e25f4e7cc7f5165180208';
     $get_embed_data = wp_remote_get($instagram_oembed_url);
     if ( is_wp_error($get_embed_data) ) {
       $data->error = array( 'error', 'Instagram API connect failed.' );
@@ -914,6 +918,94 @@ class WDWLibraryEmbed {
     if ( empty($data) ) {
       $data->error = array( 'error', wp_remote_retrieve_body($get_embed_data) );
       return $data;
+    }
+
+    return $data;
+  }
+
+  /**
+   * Recover embed video/image files
+   * Currently function is working for vimeo
+   * TODO need to add other embed types
+   *
+   * @param object $image
+   *
+   */
+  public static function recover_oembed( $image ) {
+    global $wpdb;
+    if ( preg_match('/OEMBED_VIMEO/', $image->filetype) == 1 ) {
+      $embed_type = 'vimeo';
+    }
+    else {
+      return;
+    }
+
+    switch ( $embed_type ) {
+      case 'vimeo':
+        $vimeo_url = "https://vimeo.com/api/oembed.json?url=".$image->image_url;
+        $result = wp_remote_get($vimeo_url);
+
+        if( $result['response']['code'] == 200 ) {
+          $data = json_decode( $result['body'], 1 );
+
+          $update_data = array(
+            'thumb_url' => $data['thumbnail_url'],
+            'resolution_thumb' => $data['thumbnail_width'].' x '.$data['thumbnail_height'],
+            'resolution' => $data['thumbnail_width'].' x '.$data['thumbnail_height'],
+            'description' => $data['title'],
+          );
+          $wpdb->update(
+            $wpdb->prefix . 'bwg_image',
+            $update_data,
+            array('id'=>$image->id),
+            array('%s','%s','%s','%s'),
+            array('%d')
+          );
+        }
+        break;
+    }
+  }
+
+  /**
+   * Create instagram oembed image.
+   *
+   * @param array $args
+   *
+   * @return array $data
+   */
+  private static function create_instagram_oembed_image( $args = array() ) {
+    $data = new stdClass();
+    $data->thumb_url = $args->thumbnail_url;
+    $data->thumb_width = $args->thumbnail_width;
+    $data->thumb_height = $args->thumbnail_height;
+    $data->img_width = $args->thumbnail_width;
+    $data->img_height = $args->thumbnail_height;
+
+    if ( !empty($args) ) {
+      $media_source = file_get_contents($args->thumbnail_url);
+      if ( !empty($media_source) ) {
+        // get media id.
+        $media_ex = explode('/p/', $args->embed_url);
+        $media_name = trim($media_ex[1], '/');
+        // get media extension.
+        $thumbnail_url = explode('?', $args->thumbnail_url);
+        $extension = explode('.', $thumbnail_url[0]);
+        $media_name .= '.' . end($extension);
+        $media_path = BWG()->upload_dir . '/.original/' . $media_name;
+        // create media.
+        $save_media = file_put_contents($media_path, $media_source);
+        $copy_media = copy($media_path, str_replace('/.original/', '', $media_path));
+        // create media thumb.
+        if ( $save_media && $copy_media ) {
+          $thumb_filename = BWG()->upload_dir . '/thumb/' . $media_name;
+          if ( WDWLibrary::repair_image_original($media_path) ) {
+            WDWLibrary::resize_image($media_path, $thumb_filename, BWG()->options->upload_thumb_width, BWG()->options->upload_thumb_height);
+          }
+          $data->thumb_url = BWG()->upload_url . '/thumb/' . $media_name;
+          $data->thumb_width = BWG()->options->upload_thumb_width;
+          $data->thumb_height = BWG()->options->upload_thumb_height;
+        }
+      }
     }
 
     return $data;

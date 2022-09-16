@@ -34,14 +34,14 @@ class BWGViewImage_browser extends BWGViewSite {
       $show_watermark = TRUE;
       $params['watermark_width'] = 0;
       $watermark_a = 'bwg_watermark_text_' . $bwg;
-      $watermark_div = 'class="bwg_image_browser_watermark_text_' . $bwg . '"';
-      $watermark_image_or_text = $params["watermark_text"];
+      $watermark_div = '_text';
+      $watermark_image_or_text = esc_html($params["watermark_text"]);
     }
     elseif ( $params['watermark_type'] == 'image' ) {
       $show_watermark = TRUE;
-      $watermark_image_or_text = '<img class="bwg_image_browser_watermark_img_' . $bwg . '" src="' . urldecode($params['watermark_url']) . '" />';
+      $watermark_image_or_text = '<img class="bwg_image_browser_watermark_img_' . esc_attr($bwg) . '" src="' . urldecode($params['watermark_url']) . '" />';
       $watermark_a = '';
-      $watermark_div = 'class="bwg_image_browser_watermark_' . $bwg . '"';
+      $watermark_div = '';
       $params['watermark_font'] = '';
       $params['watermark_color'] = '';
       $params['watermark_font_size'] = '';
@@ -54,15 +54,15 @@ class BWGViewImage_browser extends BWGViewSite {
           wp_add_inline_style('bwg_frontend', $inline_style);
         }
         else {
-          echo '<style id="bwg-style-' . $bwg . '">' . $inline_style . '</style>';
+          echo wp_kses('<style id="bwg-style-' . esc_attr($bwg) . '">' . $inline_style . '</style>', array('style' => array('id' => true)));
         }
       }
 	  else {
-        echo '<style id="bwg-style-' . $bwg . '">' . $inline_style . '</style>';
+      echo wp_kses('<style id="bwg-style-' . esc_attr($bwg) . '">' . $inline_style . '</style>', array('style' => array('id' => true)));
       }
     }
     else {
-      echo '<style id="bwg-style-' . $bwg . '">' . $inline_style . '</style>';
+      echo wp_kses('<style id="bwg-style-' . esc_attr($bwg) . '">' . $inline_style . '</style>', array('style' => array('id' => true)));
     }
     $bwg_param = array(
       'is_pro' => BWG()->is_pro,
@@ -72,10 +72,11 @@ class BWGViewImage_browser extends BWGViewSite {
     $bwg_params = json_encode($bwg_param);
     ob_start();
     ?>
-	  <div id="bwg_<?php echo $params['gallery_type'] . '_' . $bwg ?>" class="image_browser_images_conteiner_<?php echo $bwg; ?> bwg-container"
-         data-params='<?php echo $bwg_params ?>'
-         data-lightbox-url="<?php echo addslashes(add_query_arg($params['params_array'], admin_url('admin-ajax.php'))); ?>">
-      <div class="image_browser_images_<?php echo $bwg; ?>">
+	  <div id="bwg_<?php echo esc_attr($params['gallery_type'] . '_' . $bwg) ?>" class="image_browser_images_conteiner_<?php echo esc_attr($bwg); ?> bwg-image_browser-images-wrapper bwg-container"
+         data-params='<?php echo esc_attr($bwg_params) ?>'
+         data-bwg="<?php echo esc_attr($bwg); ?>"
+         data-lightbox-url="<?php echo esc_url(addslashes(add_query_arg($params['params_array'], admin_url('admin-ajax.php')))); ?>">
+      <div class="image_browser_images_<?php echo esc_attr($bwg); ?>">
         <?php
         foreach ( $images as $image_row ) {
           $params['image_id'] = WDWLibrary::get('image_id', $image_row->id, 'intval');
@@ -83,28 +84,28 @@ class BWGViewImage_browser extends BWGViewSite {
           $is_embed_16x9 = ((preg_match('/EMBED/', $image_row->filetype) == 1 ? TRUE : FALSE) && (preg_match('/VIDEO/', $image_row->filetype) == 1 ? TRUE : FALSE) && !(preg_match('/INSTAGRAM/', $image_row->filetype) == 1 ? TRUE : FALSE));
           $is_embed_instagram_post = preg_match('/INSTAGRAM_POST/', $image_row->filetype) == 1 ? TRUE : FALSE;
           ?>
-          <div class="image_browser_image_buttons_conteiner_<?php echo $bwg; ?>">
-            <div class="image_browser_image_buttons_<?php echo $bwg; ?>">
+          <div class="image_browser_image_buttons_conteiner_<?php echo esc_attr($bwg); ?>">
+            <div class="image_browser_image_buttons_<?php echo esc_attr($bwg); ?>">
               <?php
               if ( $image_title && ($image_browser_image_title_align == 'top') ) {
                 ?>
-                <div class="bwg_image_browser_image_alt_<?php echo $bwg; ?>">
-                  <div class="bwg_image_alt_<?php echo $bwg; ?>" id="alt<?php echo $image_row->id; ?>">
-                    <?php echo html_entity_decode($image_row->alt); ?>
+                <div class="bwg_image_browser_image_alt_<?php echo esc_attr($bwg); ?>">
+                  <div class="bwg_image_alt_<?php echo esc_attr($bwg); ?>" id="alt<?php echo esc_attr($image_row->id); ?>">
+                    <?php echo WDWLibrary::strip_tags($image_row->alt); ?>
                   </div>
                 </div>
                 <?php
               }
               ?>
-              <div class="bwg_image_browser_image_<?php echo $bwg; ?>">
+              <div class="bwg_image_browser_image_<?php echo esc_attr($bwg); ?>">
                 <?php
                 if ( $show_watermark ) {
                   ?>
-                  <div class="bwg_image_browser_image_contain_<?php echo $bwg; ?>" id="bwg_image_browser_image_contain_<?php echo $image_row->id ?>">
-                    <div class="bwg_image_browser_watermark_contain_<?php echo $bwg; ?>">
-                      <div class="bwg_image_browser_watermark_cont_<?php echo $bwg; ?>">
-                        <div <?php echo $watermark_div; ?> >
-                          <a class="bwg_none_selectable <?php echo $watermark_a; ?>" id="watermark_a<?php echo $image_row->id; ?>" href="<?php echo urldecode($params['watermark_link']); ?>" target="_blank">
+                  <div class="bwg_image_browser_image_contain_<?php echo esc_attr($bwg); ?>" id="bwg_image_browser_image_contain_<?php echo esc_attr($image_row->id) ?>">
+                    <div class="bwg_image_browser_watermark_contain_<?php echo esc_attr($bwg); ?>">
+                      <div class="bwg_image_browser_watermark_cont_<?php echo esc_attr($bwg); ?>">
+                        <div class="bwg_image_browser_watermark<?php echo esc_attr($watermark_div.'_'. $bwg)?>"  >
+                          <a class="bwg_none_selectable <?php echo esc_attr($watermark_a); ?>" id="watermark_a<?php echo esc_attr($image_row->id); ?>" href="<?php echo esc_url($params['watermark_link']); ?>" target="_blank">
                             <?php echo $watermark_image_or_text; ?>
                           </a>
                         </div>
@@ -115,18 +116,19 @@ class BWGViewImage_browser extends BWGViewSite {
                 }
                 if ( !$is_embed ) {
                   ?>
-                  <a style="position:relative;" <?php echo($params['thumb_click_action'] == 'open_lightbox' ? (' class="bwg-a bwg_lightbox" data-image-id="' . $image_row->id . '"') : ('class="bwg-a" ' . ($params['thumb_click_action'] == 'redirect_to_url' && $image_row->redirect_url ? 'href="' . $image_row->redirect_url . '" target="' . ($params['thumb_link_target'] ? '_blank' : '') . '"' : ''))) ?>>
-                    <img class="skip-lazy bwg-item0 bwg_image_browser_img bwg_image_browser_img_<?php echo $bwg; ?> <?php if( $lazyload ) { ?> bwg_lazyload lazy_loader<?php } ?>"
-                         src="<?php if( !$lazyload ) { echo BWG()->upload_url . $image_row->image_url; } else { echo BWG()->plugin_url."/images/lazy_placeholder.gif"; } ?>"
-                         data-original="<?php echo BWG()->upload_url . $image_row->image_url; ?>"
-                         alt="<?php echo $image_row->alt; ?>" />
+                  <a style="position:relative;" <?php echo (esc_html($params['thumb_click_action']) == 'open_lightbox' ? (' class="bwg-a bwg_lightbox" data-image-id="' . esc_attr($image_row->id) . '" data-elementor-open-lightbox="no"') : ('class="bwg-a" ' . ($params['thumb_click_action'] == 'redirect_to_url' && $image_row->redirect_url ? 'href="' . esc_url($image_row->redirect_url) . '" target="' . ($params['thumb_link_target'] ? '_blank' : '') . '"' : ''))) ?>>
+                    <img class="skip-lazy bwg-item0 bwg_image_browser_img bwg_image_browser_img_<?php echo esc_attr($bwg); ?> <?php if( $lazyload ) { ?> bwg_lazyload lazy_loader<?php } ?>"
+                         src="<?php if( !$lazyload ) { echo esc_url(BWG()->upload_url . $image_row->image_url); } else { echo esc_url(BWG()->plugin_url."/images/lazy_placeholder.gif"); } ?>"
+                         data-src="<?php echo esc_url(BWG()->upload_url . $image_row->image_url); ?>"
+                         alt="<?php echo esc_attr($image_row->alt); ?>"
+                         title="<?php echo esc_attr($image_row->alt); ?>" />
                   </a>
                   <?php
                 }
                 else { /*$is_embed*/
                   if ( $is_embed_16x9 ) {
                     WDWLibraryEmbed::display_embed($image_row->filetype, $image_row->image_url, $image_row->filename, array(
-                      'id' => "bwg_embed_frame_16x9_" . $bwg,
+                      'id' => 'bwg_embed_frame_16x9_' . $bwg,
                       'width' => $params['image_browser_width'],
                       'height' => $params['image_browser_width'] * 0.5625,
                       'frameborder' => "0",
@@ -145,7 +147,7 @@ class BWGViewImage_browser extends BWGViewSite {
                         $instagram_post_height = $instagram_post_height[0];
                       }
                       WDWLibraryEmbed::display_embed($image_row->filetype, $image_row->image_url, $image_row->filename, array(
-                        'class' => "bwg_embed_frame_instapost_" . $bwg,
+                        'class' => 'bwg_embed_frame_instapost_' . $bwg,
                         'data-width' => $instagram_post_width,
                         'data-height' => $instagram_post_height,
                         'frameborder' => "0",
@@ -155,10 +157,10 @@ class BWGViewImage_browser extends BWGViewSite {
                     }
                     else {/*for instagram image, video and flickr enable lightbox onclick*/
                       ?>
-                      <a style="position:relative;" <?php echo($params['thumb_click_action'] == 'open_lightbox' ? (' class="bwg_lightbox bwg_lightbox_' . $bwg . '" data-image-id="' . $image_row->id . '"') : ($image_row->redirect_url ? 'href="' . $image_row->redirect_url . '" target="' . ($params['thumb_link_target'] ? '_blank' : '') . '"' : '')) ?>>
+                      <a style="position:relative;" <?php echo ( esc_html($params['thumb_click_action']) == 'open_lightbox' ? (' class="bwg_lightbox bwg_lightbox_' . esc_attr($bwg) . '" data-image-id="' . esc_attr($image_row->id) . '"') : ($image_row->redirect_url ? 'href="' . esc_url($image_row->redirect_url) . '" target="' . ($params['thumb_link_target'] ? '_blank' : '') . '"' : '')) ?>>
                         <?php
                         WDWLibraryEmbed::display_embed($image_row->filetype, $image_row->image_url, $image_row->filename, array(
-                          'id' => "bwg_embed_frame_" . $bwg,
+                          'id' => 'bwg_embed_frame_' . $bwg,
                           'width' => $params['image_browser_width'],
                           'height' => 'auto',
                           'frameborder' => "0",
@@ -177,18 +179,18 @@ class BWGViewImage_browser extends BWGViewSite {
               <?php
               if ( $image_title && ($image_browser_image_title_align == 'bottom') ) {
                 ?>
-                <div class="bwg_image_browser_image_alt_<?php echo $bwg; ?>">
-                  <div class="bwg_image_alt_<?php echo $bwg; ?>" id="alt<?php echo $image_row->id; ?>">
-                    <?php echo html_entity_decode($image_row->alt); ?>
+                <div class="bwg_image_browser_image_alt_<?php echo esc_attr($bwg); ?>">
+                  <div class="bwg_image_alt_<?php echo esc_attr($bwg); ?>" id="alt<?php echo esc_attr($image_row->id); ?>">
+                    <?php echo WDWLibrary::strip_tags($image_row->alt); ?>
                   </div>
                 </div>
                 <?php
               }
               if ( $enable_image_description && ($image_row->description != "") ) {
                 ?>
-                <div class="bwg_image_browser_image_desp_<?php echo $bwg; ?>">
-                  <div class="bwg_image_browser_image_description_<?php echo $bwg; ?>" id="alt<?php echo $image_row->id; ?>">
-                    <?php echo html_entity_decode($image_row->description); ?>
+                <div class="bwg_image_browser_image_desp_<?php echo esc_attr($bwg); ?>">
+                  <div class="bwg_image_browser_image_description_<?php echo esc_attr($bwg); ?>" id="alt<?php echo esc_attr($image_row->id); ?>">
+                    <?php echo WDWLibrary::strip_tags($image_row->description); ?>
                   </div>
                 </div>
                 <?php
@@ -212,7 +214,7 @@ class BWGViewImage_browser extends BWGViewSite {
     $theme_row->thumb_gal_title_shadow = $theme_row->image_browser_gal_title_shadow;
     $theme_row->thumb_gal_title_margin = $theme_row->image_browser_gal_title_margin;
     $theme_row->thumb_gal_title_align = $theme_row->image_browser_gal_title_align;
-    if ( $params['ajax'] ) { /* Ajax response after ajax call for filters and pagination.*/
+    if ( $ajax ) { /* Ajax response after ajax call for filters and pagination.*/
       parent::ajax_content($params, $bwg, $content);
     }
     else {
@@ -235,22 +237,22 @@ class BWGViewImage_browser extends BWGViewSite {
     $image_browser_images_conteiner = WDWLibrary::spider_hex2rgb($theme_row->image_browser_full_bg_color);
     $bwg_image_browser_image = WDWLibrary::spider_hex2rgb($theme_row->image_browser_bg_color);
     ?>
-      #bwg_container1_<?php echo $bwg; ?> #bwg_container2_<?php echo $bwg; ?> .image_browser_images_conteiner_<?php echo $bwg; ?> * {
+      #bwg_container1_<?php echo esc_attr($bwg); ?> #bwg_container2_<?php echo esc_attr($bwg); ?> .image_browser_images_conteiner_<?php echo esc_attr($bwg); ?> * {
         -moz-box-sizing: border-box;
         box-sizing: border-box;
       }
-      #bwg_container1_<?php echo $bwg; ?> #bwg_container2_<?php echo $bwg; ?> .image_browser_images_conteiner_<?php echo $bwg; ?>{
-		background-color: rgba(<?php echo $image_browser_images_conteiner['red']; ?>, <?php echo $image_browser_images_conteiner['green']; ?>, <?php echo $image_browser_images_conteiner['blue']; ?>, <?php echo number_format($theme_row->image_browser_full_transparent / 100, 2, ".", ""); ?>);
+      #bwg_container1_<?php echo esc_attr($bwg); ?> #bwg_container2_<?php echo esc_attr($bwg); ?> .image_browser_images_conteiner_<?php echo esc_attr($bwg); ?>{
+		background-color: rgba(<?php echo esc_html($image_browser_images_conteiner['red']); ?>, <?php echo esc_html($image_browser_images_conteiner['green']); ?>, <?php echo esc_html($image_browser_images_conteiner['blue']); ?>, <?php echo number_format($theme_row->image_browser_full_transparent / 100, 2, ".", ""); ?>);
 		text-align: center;
 		width: 100%;
-		border-style: <?php echo $theme_row->image_browser_full_border_style;?>;
-		border-width: <?php echo $theme_row->image_browser_full_border_width;?>px;
-		border-color: #<?php echo $theme_row->image_browser_full_border_color;?>;
-		padding: <?php echo $theme_row->image_browser_full_padding; ?>;
-		border-radius: <?php echo $theme_row->image_browser_full_border_radius; ?>;
+		border-style: <?php echo esc_html($theme_row->image_browser_full_border_style);?>;
+		border-width: <?php echo esc_html($theme_row->image_browser_full_border_width);?>px;
+		border-color: #<?php echo esc_html($theme_row->image_browser_full_border_color);?>;
+		padding: <?php echo esc_html($theme_row->image_browser_full_padding); ?>;
+		border-radius: <?php echo esc_html($theme_row->image_browser_full_border_radius); ?>;
 		position:relative;
       }
-      #bwg_container1_<?php echo $bwg; ?> #bwg_container2_<?php echo $bwg; ?> .image_browser_images_<?php echo $bwg; ?> {
+      #bwg_container1_<?php echo esc_attr($bwg); ?> #bwg_container2_<?php echo esc_attr($bwg); ?> .image_browser_images_<?php echo esc_attr($bwg); ?> {
 		display: inline-block;
 		-moz-box-sizing: border-box;
 		box-sizing: border-box;
@@ -259,103 +261,103 @@ class BWGViewImage_browser extends BWGViewSite {
 		max-width: 100%;
 		width: 100%;
       }
-      #bwg_container1_<?php echo $bwg; ?> #bwg_container2_<?php echo $bwg; ?> .image_browser_image_buttons_conteiner_<?php echo $bwg; ?> {
-		text-align: <?php echo $theme_row->image_browser_align; ?>;
+      #bwg_container1_<?php echo esc_attr($bwg); ?> #bwg_container2_<?php echo esc_attr($bwg); ?> .image_browser_image_buttons_conteiner_<?php echo esc_attr($bwg); ?> {
+		text-align: <?php echo esc_html($theme_row->image_browser_align); ?>;
       }
-      #bwg_container1_<?php echo $bwg; ?> #bwg_container2_<?php echo $bwg; ?> .image_browser_image_buttons_<?php echo $bwg; ?> {
+      #bwg_container1_<?php echo esc_attr($bwg); ?> #bwg_container2_<?php echo esc_attr($bwg); ?> .image_browser_image_buttons_<?php echo esc_attr($bwg); ?> {
 		display: inline-block;
 		width:100%;
       }
-      #bwg_container1_<?php echo $bwg; ?> #bwg_container2_<?php echo $bwg; ?> .bwg_image_browser_image_<?php echo $bwg; ?> {
-        background-color: rgba(<?php echo $bwg_image_browser_image['red']; ?>, <?php echo $bwg_image_browser_image['green']; ?>, <?php echo $bwg_image_browser_image['blue']; ?>, <?php echo number_format($theme_row->image_browser_transparent / 100, 2, ".", ""); ?>);
+      #bwg_container1_<?php echo esc_attr($bwg); ?> #bwg_container2_<?php echo esc_attr($bwg); ?> .bwg_image_browser_image_<?php echo esc_attr($bwg); ?> {
+        background-color: rgba(<?php echo esc_html($bwg_image_browser_image['red']); ?>, <?php echo esc_html($bwg_image_browser_image['green']); ?>, <?php echo esc_html($bwg_image_browser_image['blue']); ?>, <?php echo number_format($theme_row->image_browser_transparent / 100, 2, ".", ""); ?>);
 		text-align: center;
 		display: inline-block;
 		vertical-align: middle;
-		margin: <?php echo $theme_row->image_browser_margin; ?>;
-		padding: <?php echo $theme_row->image_browser_padding; ?>;
-		border-radius: <?php echo $theme_row->image_browser_border_radius; ?>;
-		border: <?php echo $theme_row->image_browser_border_width; ?>px <?php echo $theme_row->image_browser_border_style; ?> #<?php echo $theme_row->image_browser_border_color; ?>;
-		box-shadow: <?php echo $theme_row->image_browser_box_shadow; ?>;
-		max-width: <?php echo $params['image_browser_width']; ?>px;
+		margin: <?php echo esc_html($theme_row->image_browser_margin); ?>;
+		padding: <?php echo esc_html($theme_row->image_browser_padding); ?>;
+		border-radius: <?php echo esc_html($theme_row->image_browser_border_radius); ?>;
+		border: <?php echo esc_html($theme_row->image_browser_border_width); ?>px <?php echo esc_html($theme_row->image_browser_border_style); ?> #<?php echo esc_html($theme_row->image_browser_border_color); ?>;
+		box-shadow: <?php echo esc_html($theme_row->image_browser_box_shadow); ?>;
+		max-width: <?php echo esc_html($params['image_browser_width']); ?>px;
 		width: 100%;
 		/*z-index: 100;*/
 		position: relative;
       }
-      #bwg_container1_<?php echo $bwg; ?> #bwg_container2_<?php echo $bwg; ?> .bwg_image_alt_<?php echo $bwg; ?>{
+      #bwg_container1_<?php echo esc_attr($bwg); ?> #bwg_container2_<?php echo esc_attr($bwg); ?> .bwg_image_alt_<?php echo esc_attr($bwg); ?>{
 		display: table;
 		width: 100%;
-		font-size: <?php echo $theme_row->image_browser_img_font_size; ?>px;
-		font-family: <?php echo $theme_row->image_browser_img_font_family; ?>;
-		color: #<?php echo $theme_row->image_browser_img_font_color; ?>;
-		text-align:<?php echo $theme_row->image_browser_image_description_align; ?>;
+		font-size: <?php echo esc_html($theme_row->image_browser_img_font_size); ?>px;
+		font-family: <?php echo esc_html($theme_row->image_browser_img_font_family); ?>;
+		color: #<?php echo esc_html($theme_row->image_browser_img_font_color); ?>;
+		text-align:<?php echo esc_html($theme_row->image_browser_image_description_align); ?>;
 		padding-left: 8px;
         word-break: break-word;
       }
-      #bwg_container1_<?php echo $bwg; ?> #bwg_container2_<?php echo $bwg; ?> .bwg_image_browser_img_<?php echo $bwg; ?> {
+      #bwg_container1_<?php echo esc_attr($bwg); ?> #bwg_container2_<?php echo esc_attr($bwg); ?> .bwg_image_browser_img_<?php echo esc_attr($bwg); ?> {
         padding: 0 !important;
 		max-width: 100% !important;
 		height: inherit !important;
 		width: 100%;
       }
       @media only screen and (max-width : 320px) {
-		#bwg_container1_<?php echo $bwg; ?> #bwg_container2_<?php echo $bwg; ?> .displaying-num_<?php echo $bwg; ?> {
+		#bwg_container1_<?php echo esc_attr($bwg); ?> #bwg_container2_<?php echo esc_attr($bwg); ?> .displaying-num_<?php echo esc_attr($bwg); ?> {
 		  display: none;
 		}
-		#bwg_container1_<?php echo $bwg; ?> #bwg_container2_<?php echo $bwg; ?> .bwg_image_alt_<?php echo $bwg; ?> {
+		#bwg_container1_<?php echo esc_attr($bwg); ?> #bwg_container2_<?php echo esc_attr($bwg); ?> .bwg_image_alt_<?php echo esc_attr($bwg); ?> {
 		  font-size: 10px !important;
 		}
-		#bwg_container1_<?php echo $bwg; ?> #bwg_container2_<?php echo $bwg; ?> .bwg_watermark_text_<?php echo $bwg; ?>,
-		#bwg_container1_<?php echo $bwg; ?> #bwg_container2_<?php echo $bwg; ?> .bwg_watermark_text_<?php echo $bwg; ?>:hover {
+		#bwg_container1_<?php echo esc_attr($bwg); ?> #bwg_container2_<?php echo esc_attr($bwg); ?> .bwg_watermark_text_<?php echo esc_attr($bwg); ?>,
+		#bwg_container1_<?php echo esc_attr($bwg); ?> #bwg_container2_<?php echo esc_attr($bwg); ?> .bwg_watermark_text_<?php echo esc_attr($bwg); ?>:hover {
 		  font-size: 10px !important;
 		  text-decoration: none;
 		  margin: 4px;
-		  font-family: <?php echo $params['watermark_font']; ?>;
-		  color: #<?php echo $params['watermark_color']; ?> !important;
+		  font-family: <?php echo esc_html($params['watermark_font']); ?>;
+		  color: #<?php echo esc_html($params['watermark_color']); ?> !important;
 		  opacity: <?php echo number_format($params['watermark_opacity'] / 100, 2, ".", ""); ?>;
 		  text-decoration: none;
 		  position: relative;
 		  z-index: 10141;
 		}
-		#bwg_container1_<?php echo $bwg; ?> #bwg_container2_<?php echo $bwg; ?> .bwg_image_browser_image_description_<?php echo $bwg; ?> {
-		  color: #<?php echo $theme_row->image_browser_img_font_color; ?>;
+		#bwg_container1_<?php echo esc_attr($bwg); ?> #bwg_container2_<?php echo esc_attr($bwg); ?> .bwg_image_browser_image_description_<?php echo esc_attr($bwg); ?> {
+		  color: #<?php echo esc_html($theme_row->image_browser_img_font_color); ?>;
 		  display: table;
 		  width: 100%;
 		  text-align: left;
 		  font-size: 8px !important;
-		  font-family: <?php echo $theme_row->image_browser_img_font_family; ?>;
-		  padding: <?php echo $theme_row->image_browser_image_description_padding; ?>;
+		  font-family: <?php echo esc_html($theme_row->image_browser_img_font_family); ?>;
+		  padding: <?php echo esc_html($theme_row->image_browser_image_description_padding); ?>;
 		  /*word-break: break-all;*/
-		  border-style: <?php echo $theme_row->image_browser_image_description_border_style; ?>;
-		  background-color: #<?php echo $theme_row->image_browser_image_description_bg_color; ?>;
-		  border-radius: <?php echo $theme_row->image_browser_image_description_border_radius; ?>;
-		  border-width: <?php echo $theme_row->image_browser_image_description_border_width; ?>px;
+		  border-style: <?php echo esc_html($theme_row->image_browser_image_description_border_style); ?>;
+		  background-color: #<?php echo esc_html($theme_row->image_browser_image_description_bg_color); ?>;
+		  border-radius: <?php echo esc_html($theme_row->image_browser_image_description_border_radius); ?>;
+		  border-width: <?php echo esc_html($theme_row->image_browser_image_description_border_width); ?>px;
 		}
-		#bwg_container1_<?php echo $bwg; ?> #bwg_container2_<?php echo $bwg; ?> .tablenav-pages_<?php echo $bwg; ?> a {
+		#bwg_container1_<?php echo esc_attr($bwg); ?> #bwg_container2_<?php echo esc_attr($bwg); ?> .tablenav-pages_<?php echo esc_attr($bwg); ?> a {
 		  font-size: 10px !important;
 		}
       }
-      #bwg_container1_<?php echo $bwg; ?> #bwg_container2_<?php echo $bwg; ?> .bwg_image_browser_image_desp_<?php echo $bwg; ?> {
+      #bwg_container1_<?php echo esc_attr($bwg); ?> #bwg_container2_<?php echo esc_attr($bwg); ?> .bwg_image_browser_image_desp_<?php echo esc_attr($bwg); ?> {
 				display: table;
 				clear: both;
 				text-align: center;
-        padding: <?php echo $theme_row->image_browser_image_description_margin; ?>;
+        padding: <?php echo esc_html($theme_row->image_browser_image_description_margin); ?>;
 				width: 100%;
       }
-      #bwg_container1_<?php echo $bwg; ?> #bwg_container2_<?php echo $bwg; ?> .bwg_image_browser_image_description_<?php echo $bwg; ?> {
-        color: #<?php echo $theme_row->image_browser_img_font_color; ?>;
+      #bwg_container1_<?php echo esc_attr($bwg); ?> #bwg_container2_<?php echo esc_attr($bwg); ?> .bwg_image_browser_image_description_<?php echo esc_attr($bwg); ?> {
+        color: #<?php echo esc_html($theme_row->image_browser_img_font_color); ?>;
 		display: table;
 		width: 100%;
 		text-align: left;
-		font-size: <?php echo $theme_row->image_browser_img_font_size; ?>px;
-		font-family: <?php echo$theme_row->image_browser_img_font_family; ?>;
-		padding: <?php echo $theme_row->image_browser_image_description_padding; ?>;
+		font-size: <?php echo esc_html($theme_row->image_browser_img_font_size); ?>px;
+		font-family: <?php echo esc_html($theme_row->image_browser_img_font_family); ?>;
+		padding: <?php echo esc_html($theme_row->image_browser_image_description_padding); ?>;
 		word-break: break-word;
-		border-style: <?php echo $theme_row->image_browser_image_description_border_style; ?>;
-		background-color: #<?php echo $theme_row->image_browser_image_description_bg_color; ?>;
-		border-radius: <?php echo $theme_row->image_browser_image_description_border_radius; ?>;
-		border-width: <?php echo $theme_row->image_browser_image_description_border_width; ?>px;
+		border-style: <?php echo esc_html($theme_row->image_browser_image_description_border_style); ?>;
+		background-color: #<?php echo esc_html($theme_row->image_browser_image_description_bg_color); ?>;
+		border-radius: <?php echo esc_html($theme_row->image_browser_image_description_border_radius); ?>;
+		border-width: <?php echo esc_html($theme_row->image_browser_image_description_border_width); ?>px;
       }
-      #bwg_container1_<?php echo $bwg; ?> #bwg_container2_<?php echo $bwg; ?> .bwg_image_browser_image_alt_<?php echo $bwg; ?> {
+      #bwg_container1_<?php echo esc_attr($bwg); ?> #bwg_container2_<?php echo esc_attr($bwg); ?> .bwg_image_browser_image_alt_<?php echo esc_attr($bwg); ?> {
       	display:table;
         clear: both;
         text-align: center;
@@ -363,18 +365,18 @@ class BWGViewImage_browser extends BWGViewSite {
         width: 100%;
       }
       /*watermark*/
-      #bwg_container1_<?php echo $bwg; ?> #bwg_container2_<?php echo $bwg; ?> .bwg_watermark_text_<?php echo $bwg; ?>,
-      #bwg_container1_<?php echo $bwg; ?> #bwg_container2_<?php echo $bwg; ?> .bwg_watermark_text_<?php echo $bwg; ?>:hover {
+      #bwg_container1_<?php echo esc_attr($bwg); ?> #bwg_container2_<?php echo esc_attr($bwg); ?> .bwg_watermark_text_<?php echo esc_attr($bwg); ?>,
+      #bwg_container1_<?php echo esc_attr($bwg); ?> #bwg_container2_<?php echo esc_attr($bwg); ?> .bwg_watermark_text_<?php echo esc_attr($bwg); ?>:hover {
         text-decoration: none;
         margin: 4px;
-        font-size: <?php echo $params['watermark_font_size']; ?>px;
-        font-family: <?php echo $params['watermark_font']; ?>;
-        color: #<?php echo $params['watermark_color']; ?> !important;
+        font-size: <?php echo esc_html($params['watermark_font_size']); ?>px;
+        font-family: <?php echo esc_html($params['watermark_font']); ?>;
+        color: #<?php echo esc_html($params['watermark_color']); ?> !important;
         opacity: <?php echo number_format($params['watermark_opacity'] / 100, 2, ".", ""); ?>;
         position: relative;
         z-index: 10141;
       }
-      #bwg_container1_<?php echo $bwg; ?> #bwg_container2_<?php echo $bwg; ?> .bwg_image_browser_image_contain_<?php echo $bwg; ?>{
+      #bwg_container1_<?php echo esc_attr($bwg); ?> #bwg_container2_<?php echo esc_attr($bwg); ?> .bwg_image_browser_image_contain_<?php echo esc_attr($bwg); ?>{
         position: absolute;
         text-align: center;
         vertical-align: middle;
@@ -382,29 +384,29 @@ class BWGViewImage_browser extends BWGViewSite {
         height: 100%;
         cursor: pointer;
       }
-      #bwg_container1_<?php echo $bwg; ?> #bwg_container2_<?php echo $bwg; ?> .bwg_image_browser_watermark_contain_<?php echo $bwg; ?>{
+      #bwg_container1_<?php echo esc_attr($bwg); ?> #bwg_container2_<?php echo esc_attr($bwg); ?> .bwg_image_browser_watermark_contain_<?php echo esc_attr($bwg); ?>{
         display: table;
         vertical-align: middle;
         width: 100%;
         height: 100%;
       }	 
-      #bwg_container1_<?php echo $bwg; ?> #bwg_container2_<?php echo $bwg; ?> .bwg_image_browser_watermark_cont_<?php echo $bwg; ?>{
+      #bwg_container1_<?php echo esc_attr($bwg); ?> #bwg_container2_<?php echo esc_attr($bwg); ?> .bwg_image_browser_watermark_cont_<?php echo esc_attr($bwg); ?>{
         display: table-cell;
-        text-align: <?php echo $text_align; ?>;
+        text-align: <?php echo esc_html($text_align); ?>;
         position: relative;
-        vertical-align: <?php echo $vertical_align; ?>;
+        vertical-align: <?php echo esc_html($vertical_align); ?>;
       }
-      #bwg_container1_<?php echo $bwg; ?> #bwg_container2_<?php echo $bwg; ?> .bwg_image_browser_watermark_<?php echo $bwg; ?>{
+      #bwg_container1_<?php echo esc_attr($bwg); ?> #bwg_container2_<?php echo esc_attr($bwg); ?> .bwg_image_browser_watermark_<?php echo esc_attr($bwg); ?>{
 		display: inline-block;
 		overflow: hidden;
 		position: relative;
 		vertical-align: middle;
 		z-index: 10140;
-		width: <?php echo $params['watermark_width'];?>px;
-		max-width: <?php echo (($params['watermark_width']) / ($params['image_browser_width'])) * 100 ; ?>%;
+		width: <?php echo esc_html($params['watermark_width']);?>px;
+		max-width: <?php echo esc_html((($params['watermark_width']) / ($params['image_browser_width'])) * 100); ?>%;
 		margin: 10px 10px 10px 10px ;
       }
-      #bwg_container1_<?php echo $bwg; ?> #bwg_container2_<?php echo $bwg; ?> .bwg_image_browser_watermark_text_<?php echo $bwg; ?>{
+      #bwg_container1_<?php echo esc_attr($bwg); ?> #bwg_container2_<?php echo esc_attr($bwg); ?> .bwg_image_browser_watermark_text_<?php echo esc_attr($bwg); ?>{
         display: inline-block;
 		overflow: hidden;
 		position: relative;
@@ -412,13 +414,13 @@ class BWGViewImage_browser extends BWGViewSite {
 		z-index: 10140;
 		margin: 10px 10px 10px 10px;
       }
-      #bwg_container1_<?php echo $bwg; ?> #bwg_container2_<?php echo $bwg; ?> .bwg_image_browser_watermark_img_<?php echo $bwg; ?>{
+      #bwg_container1_<?php echo esc_attr($bwg); ?> #bwg_container2_<?php echo esc_attr($bwg); ?> .bwg_image_browser_watermark_img_<?php echo esc_attr($bwg); ?>{
         max-width: 100%;
         opacity: <?php echo number_format($params['watermark_opacity'] / 100, 2, ".", ""); ?>;
         position: relative;
         z-index: 10141;
       }
-      #bwg_container1_<?php echo $bwg; ?> #bwg_container2_<?php echo $bwg; ?> .bwg_none_selectable {
+      #bwg_container1_<?php echo esc_attr($bwg); ?> #bwg_container2_<?php echo esc_attr($bwg); ?> .bwg_none_selectable {
         -webkit-touch-callout: none;
         -webkit-user-select: none;
         -khtml-user-select: none;
@@ -427,16 +429,16 @@ class BWGViewImage_browser extends BWGViewSite {
         user-select: none;
        ecoration: none;
     }
-    #bwg_container1_<?php echo $bwg; ?> #bwg_container2_<?php echo $bwg; ?> .bwg_gal_title_<?php echo $bwg; ?> {
+    #bwg_container1_<?php echo esc_attr($bwg); ?> #bwg_container2_<?php echo esc_attr($bwg); ?> .bwg_gal_title_<?php echo esc_attr($bwg); ?> {
       background-color: rgba(0, 0, 0, 0);
-      color: #<?php echo $theme_row->image_browser_gal_title_font_color; ?>;
+      color: #<?php echo esc_html($theme_row->image_browser_gal_title_font_color); ?>;
       display: block;
-      font-family: <?php echo $theme_row->image_browser_gal_title_font_style; ?>;
-      font-size: <?php echo $theme_row->image_browser_gal_title_font_size; ?>px;
-      font-weight: <?php echo $theme_row->image_browser_gal_title_font_weight; ?>;
-      padding: <?php echo $theme_row->image_browser_gal_title_margin; ?>;
-      text-shadow: <?php echo $theme_row->image_browser_gal_title_shadow; ?>;
-      text-align: <?php echo $theme_row->image_browser_gal_title_align; ?>;
+      font-family: <?php echo esc_html($theme_row->image_browser_gal_title_font_style); ?>;
+      font-size: <?php echo esc_html($theme_row->image_browser_gal_title_font_size); ?>px;
+      font-weight: <?php echo esc_html($theme_row->image_browser_gal_title_font_weight); ?>;
+      padding: <?php echo esc_html($theme_row->image_browser_gal_title_margin); ?>;
+      text-shadow: <?php echo esc_html($theme_row->image_browser_gal_title_shadow); ?>;
+      text-align: <?php echo esc_html($theme_row->image_browser_gal_title_align); ?>;
     }
     <?php
     return ob_get_clean();

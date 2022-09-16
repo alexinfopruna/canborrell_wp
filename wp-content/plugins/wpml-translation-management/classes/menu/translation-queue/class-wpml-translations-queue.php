@@ -611,11 +611,12 @@ class WPML_Translations_Queue {
 						$post_id       = isset( $posts_in_trid[ $source_language_code ] ) ? $posts_in_trid[ $source_language_code ] : false;
 					}
 					$blog_translators = wpml_tm_load_blog_translators();
-					$args             = array(
+					$args             = [
 						'lang_from' => $source_language_code,
 						'lang_to'   => $language_code,
 						'job_id'    => $job_id,
-					);
+						'post_id'   => $post_id,
+					];
 					if ( $post_id && $blog_translators->is_translator(
 						$sitepress->get_current_user()->ID,
 						$args

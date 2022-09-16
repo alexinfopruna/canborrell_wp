@@ -126,7 +126,7 @@
 										},
 										success:  function () {
 											post_language_switcher.data('last_lang', new_post_language);
-											var url = jQuery(location).attr('href');
+											var url = WPML_core.sanitize(jQuery(location).attr('href'));
 											if (/lang=/.test(url)) {
 												url = url.replace(/([\?&])(lang=)[^&#]*/, '$1$2' + new_post_language);
 											} else {

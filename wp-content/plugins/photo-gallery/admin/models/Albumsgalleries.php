@@ -16,6 +16,15 @@ class AlbumsgalleriesModel_bwg {
     global $wpdb;
     $prepareArgs = array($params['album_id']);
     $where = '';
+    if ( !current_user_can('manage_options') && BWG()->options->gallery_role ) {
+      $where .= " author=%d ";
+      $prepareArgs[] = get_current_user_id();
+      // because there are 2 $where one after another and there are no more variables between there in the request and you need a clear number of arguments for preparing query
+      $prepareArgs[] = get_current_user_id();
+    }
+    else {
+      $where .= " author>=0 ";
+    }
     $limit = '';
     if($params['search']) {
       $where = '`name` LIKE "%s"';
@@ -38,7 +47,6 @@ class AlbumsgalleriesModel_bwg {
       return $wpdb->get_var( $wpdb->prepare($query, $prepareArgs) );
     }
     $rows = $wpdb->get_results( $wpdb->prepare($query, $prepareArgs) );
-
     return $rows;
   }
 

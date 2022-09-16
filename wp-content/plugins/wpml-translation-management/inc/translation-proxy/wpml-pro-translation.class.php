@@ -282,7 +282,7 @@ class WPML_Pro_Translation extends WPML_TM_Job_Factory_User {
 	 */
 	function cancel_translation( $rid, $cms_id ) {
 		/**
-		 * @var WPML_String_Translation $WPML_String_Translation
+		 * @var WPML_String_Translation|null $WPML_String_Translation
 		 * @var TranslationManagement   $iclTranslationManagement
 		 */
 		global $WPML_String_Translation, $iclTranslationManagement;

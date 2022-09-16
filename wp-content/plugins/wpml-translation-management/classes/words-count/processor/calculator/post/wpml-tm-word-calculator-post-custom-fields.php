@@ -84,7 +84,7 @@ class WPML_TM_Word_Calculator_Post_Custom_Fields implements IWPML_TM_Word_Calcul
 	private function get_translatable_fields_to_count( $post_id ) {
 		if ( ! $this->fields_to_count ) {
 			foreach ( $this->cf_settings as $cf => $mode ) {
-				if ( in_array( (int) $mode, array( WPML_TRANSLATE_CUSTOM_FIELD, WPML_COPY_ONCE_CUSTOM_FIELD ), true ) ) {
+				if ( (int) $mode === WPML_TRANSLATE_CUSTOM_FIELD ) {
 					$this->fields_to_count[] = $cf;
 				}
 			}

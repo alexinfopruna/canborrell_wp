@@ -10,6 +10,7 @@ use function \WPML\FP\curryN;
 use function \WPML\FP\pipe;
 use function \WPML\FP\invoke;
 use WPML\TM\Jobs\Utils;
+use WPML\FP\Relation;
 
 /**
  * Class WPML_Element_Translation_Package
@@ -488,6 +489,18 @@ class WPML_Element_Translation_Package extends WPML_Translation_Job_Helper {
 
 	public static function getTermMetaKeysToTranslate() {
 		$fieldTranslation = new WPML_Custom_Field_Setting_Factory( self::get_core_translation_management() );
-		return $fieldTranslation->get_term_meta_keys();
+
+		$settingsFactory      = self::get_core_translation_management()->settings_factory();
+
+		$translatableMetaKeys = pipe(
+			[ $settingsFactory, 'term_meta_setting' ],
+			invoke( 'status' ),
+			Relation::equals( WPML_TRANSLATE_CUSTOM_FIELD )
+		);
+
+		return wpml_collect( $fieldTranslation->get_term_meta_keys() )
+			->filter( $translatableMetaKeys )
+			->values()
+			->toArray();
 	}
 }

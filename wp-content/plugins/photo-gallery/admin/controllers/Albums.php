@@ -35,20 +35,20 @@ class AlbumsController_bwg {
     $this->page = WDWLibrary::get('page');
     $this->actions = array(
       'publish' => array(
-        'title' => __('Publish', BWG()->prefix),
-        $this->bulk_action_name => __('published', BWG()->prefix),
+        'title' => __('Publish', 'photo-gallery'),
+        $this->bulk_action_name => __('published', 'photo-gallery'),
       ),
       'unpublish' => array(
-        'title' => __('Unpublish', BWG()->prefix),
-        $this->bulk_action_name => __('unpublished', BWG()->prefix),
+        'title' => __('Unpublish', 'photo-gallery'),
+        $this->bulk_action_name => __('unpublished', 'photo-gallery'),
       ),
       'duplicate' => array(
-        'title' => __('Duplicate', BWG()->prefix),
-        $this->bulk_action_name => __('duplicate', BWG()->prefix),
+        'title' => __('Duplicate', 'photo-gallery'),
+        $this->bulk_action_name => __('duplicate', 'photo-gallery'),
       ),
       'delete' => array(
-        'title' => __('Delete', BWG()->prefix),
-        $this->bulk_action_name => __('deleted', BWG()->prefix),
+        'title' => __('Delete', 'photo-gallery'),
+        $this->bulk_action_name => __('deleted', 'photo-gallery'),
       ),
     );
     $user = get_current_user_id();
@@ -92,10 +92,18 @@ class AlbumsController_bwg {
     // Set params for view.
     $params = array();
     $params['page'] = $this->page;
-    $params['page_title'] = __('Gallery Groups', BWG()->prefix);
+    $params['page_title'] = __('Gallery Groups', 'photo-gallery');
     $params['actions'] = $this->actions;
     $params['order'] = WDWLibrary::get('order', 'asc');
-    $params['orderby'] = WDWLibrary::get('orderby', 'name');
+    $params['orderby'] = WDWLibrary::get('orderby', '');
+    if ( $params['orderby'] != '' ) {
+        WDWLibrary::set_sorting( array('list_type'=>'albums', 'order_by' => $params['orderby'].'_'.$params['order']) );
+    } else {
+        $sorting = WDWLibrary::get_sorting( array('list_type'=>'albums') );
+        $sorting = explode("_", $sorting);
+        $params['orderby'] = isset($sorting[0]) ? $sorting[0] : 'name';
+        $params['order'] = isset($sorting[1]) ? $sorting[1] : 'asc';
+    }
     // To prevent SQL injections.
     $params['order'] = ($params['order'] == 'desc') ? 'desc' : 'asc';
     if (!in_array($params['orderby'], array('name', 'author'))) {
@@ -142,7 +150,9 @@ class AlbumsController_bwg {
 
     if (method_exists($this, $task)) {
       if ($all) {
-        $message = $this->$task(0, TRUE, TRUE);
+        $get_excludeIds = WDWLibrary::get('ids_exclude', FALSE);
+        $excludeIds = ( !empty($get_excludeIds) ) ? explode(',', $get_excludeIds) : array();
+        $message = $this->$task( 0, TRUE, TRUE, $excludeIds );
         $url_arg['message'] = $message;
       }
       else {
@@ -157,7 +167,7 @@ class AlbumsController_bwg {
         }
         if ($successfully_updated) {
           $bulk_action = $this->bulk_action_name;
-          $message = sprintf(_n('%s item successfully %s.', '%s items successfully %s.', $successfully_updated, BWG()->prefix), $successfully_updated, $this->actions[$task][$bulk_action]);
+          $message = sprintf(_n('%s item successfully %s.', '%s items successfully %s.', $successfully_updated, 'photo-gallery'), $successfully_updated, $this->actions[$task][$bulk_action]);
         }
         $key = ($message === 2 ? 'message' : 'msg');
         $url_arg[$key] = $message;
@@ -202,7 +212,6 @@ class AlbumsController_bwg {
       'action' => 'addImages',
       'bwg_width' => '800',
       'bwg_height' => '550',
-      'extensions' => 'jpg,jpeg,png,gif,svg',
       'callback' => 'bwg_add_preview_image',
       BWG()->nonce => wp_create_nonce('addImages'),
       'TB_iframe' => '1',
@@ -238,11 +247,12 @@ class AlbumsController_bwg {
    * @param      $id
    * @param bool $bulk
    * @param bool $all
+   * @param array $excludeIds
    *
    * @return int
    */
-  public function delete( $id, $bulk = FALSE, $all = FALSE ) {
-    $message = $this->model->delete($id, $all);
+  public function delete( $id, $bulk = FALSE, $all = FALSE, $excludeIds = array() ) {
+    $message = $this->model->delete( $id, $all, $excludeIds );
     if ($bulk) {
       return $message;
     }
@@ -259,15 +269,20 @@ class AlbumsController_bwg {
    * @param      $id
    * @param bool $bulk
    * @param bool $all
+   * @param array $excludeIds
    *
    * @return int
    */
-  public function publish( $id, $bulk = FALSE, $all = FALSE ) {
+  public function publish( $id, $bulk = FALSE, $all = FALSE, $excludeIds = array() ) {
     global $wpdb;
     $where = ($all ? '' : ' WHERE id=%d');
     if ( $where != '' ) {
       $updated = $wpdb->query($wpdb->prepare('UPDATE `' . $wpdb->prefix . 'bwg_album` SET published=1' . $where, $id));
-    } else {
+    }
+    else {
+      if ( !empty($excludeIds) ) {
+        $where = ' WHERE `id` NOT IN (' . WDWLibrary::escape_array($excludeIds) . ')';
+      }
       $updated = $wpdb->query('UPDATE `' . $wpdb->prefix . 'bwg_album` SET published=1' . $where);
     }
     $message = 2;
@@ -292,17 +307,21 @@ class AlbumsController_bwg {
    * @param      $id
    * @param bool $bulk
    * @param bool $all
+   * @param array $excludeIds
    *
    * @return int
    */
-  public function unpublish( $id, $bulk = FALSE, $all = FALSE ) {
+  public function unpublish( $id, $bulk = FALSE, $all = FALSE, $excludeIds = array() ) {
     global $wpdb;
     $where = ($all ? '' : ' WHERE id=%d');
     if ( $where != '' ) {
       $updated = $wpdb->query($wpdb->prepare('UPDATE `' . $wpdb->prefix . 'bwg_album` SET published=0' . $where, $id));
-    } else {
+    }
+    else {
+      if ( !empty($excludeIds) ) {
+        $where = ' WHERE `id` NOT IN (' . WDWLibrary::escape_array($excludeIds) . ')';
+      }
       $updated = $wpdb->query('UPDATE `' . $wpdb->prefix . 'bwg_album` SET published=0' . $where);
-
     }
     $message = 2;
     if ($updated) {
@@ -326,11 +345,12 @@ class AlbumsController_bwg {
    * @param      $id
    * @param bool $bulk
    * @param bool $all
+   * @param array $excludeIds
    *
    * @return int
    */
-  public function duplicate( $id, $bulk = FALSE, $all = FALSE ) {
-    $message_id = $this->model->duplicate($id, $all);
+  public function duplicate( $id, $bulk = FALSE, $all = FALSE, $excludeIds = array() ) {
+    $message_id = $this->model->duplicate( $id, $all, $excludeIds );
     if ($bulk) {
       return $message_id;
     }

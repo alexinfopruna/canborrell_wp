@@ -115,6 +115,7 @@ class WPML_TM_Blog_Translators {
 			'lang_from'      => null,
 			'lang_to'        => null,
 			'job_id'         => null,
+			'post_id'        => null,
 			'admin_override' => true,
 		];
 		$args     = array_merge( $defaults, $args );

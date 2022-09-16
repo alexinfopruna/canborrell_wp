@@ -133,8 +133,14 @@ class WPML_TM_AMS_ATE_Console_Section implements IWPML_TM_Admin_Section {
 			return;
 		}
 
-		wp_enqueue_script( self::ATE_APP_ID, $this->endpoints->get_base_url( WPML_TM_ATE_AMS_Endpoints::SERVICE_AMS ) . '/mini_app/main.js', [], WPML_TM_VERSION, true );
-		$this->add_initialization_script();
+		$script_url = \add_query_arg(
+			[
+				\WPML\ATE\Proxies\Widget::QUERY_VAR_ATE_WIDGET_SCRIPT => \WPML\ATE\Proxies\Widget::SCRIPT_NAME,
+			],
+			\site_url()
+		);
+
+		\wp_enqueue_script( self::ATE_APP_ID, $script_url, [], WPML_TM_VERSION, true );
 	}
 
 	/**
@@ -143,9 +149,10 @@ class WPML_TM_AMS_ATE_Console_Section implements IWPML_TM_Admin_Section {
 	 * @return bool
 	 */
 	private function is_ate_console_tab() {
-		return array_key_exists( 'sm', $_GET ) && array_key_exists( 'page', $_GET )
-			   && filter_var( $_GET['sm'], FILTER_SANITIZE_STRING ) === self::SLUG
-			   && filter_var( $_GET['page'], FILTER_SANITIZE_STRING ) === WPML_TM_FOLDER . '/menu/main.php';
+		$sm   = filter_input( INPUT_GET, 'sm', FILTER_SANITIZE_STRING );
+		$page = filter_input( INPUT_GET, 'page', FILTER_SANITIZE_STRING );
+
+		return $sm && $page && self::SLUG === $sm && WPML_TM_FOLDER . '/menu/main.php' === $page;
 	}
 
 	/**
@@ -182,9 +189,9 @@ class WPML_TM_AMS_ATE_Console_Section implements IWPML_TM_Admin_Section {
 	}
 
 	/**
-	 * Initializes the React APP.
+	 * @return array<string,mixed>
 	 */
-	private function add_initialization_script() {
+	public function get_widget_constructor() {
 		$registration_data = $this->ams_api->get_registration_data();
 
 		$fields    = [ 'code', 'english_name', 'native_name', 'default_locale', 'encode_url', 'tag' ];
@@ -199,15 +206,26 @@ class WPML_TM_AMS_ATE_Console_Section implements IWPML_TM_Admin_Section {
 			'status'       => esc_js( $registration_data['status'] ),
 			'tm_email'     => esc_js( wp_get_current_user()->user_email ),
 			'website_uuid' => esc_js( $this->auth->get_site_id() ),
-			'site_key'     => esc_js( WP_Installer()->get_site_key( 'wpml' ) ),
+			'site_key'     => esc_js( apply_filters( 'otgs_installer_get_sitekey_wpml', null ) ),
 			'tab'          => self::TAB_SELECTOR,
 			'container'    => self::CONTAINER_SELECTOR,
 			'post_types'   => $this->get_post_types_data(),
 			'ui_language'  => esc_js( $this->get_user_admin_language() ),
 			'restNonce'    => wp_create_nonce( 'wp_rest' ),
+			'authCookie'   => [
+				'name'  => LOGGED_IN_COOKIE,
+				'value' => $_COOKIE[ LOGGED_IN_COOKIE ],
+			],
 			'languages'    => $languages,
 		];
 
-		wp_add_inline_script( self::ATE_APP_ID, 'LoadEateWidget(' . wp_json_encode( $app_constructor, JSON_PRETTY_PRINT ) . ');', 'after' );
+		return $app_constructor;
+	}
+
+	/**
+	 * @return string
+	 */
+	public function getWidgetScriptUrl() {
+		return $this->endpoints->get_base_url( WPML_TM_ATE_AMS_Endpoints::SERVICE_AMS ) . '/mini_app/main.js';
 	}
 }

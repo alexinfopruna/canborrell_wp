@@ -47,7 +47,7 @@ class AlbumsgalleriesController_bwg {
 	*/
 	public function display() {
     $params = array();
-    $params['page_title'] = __('Galleries / Gallery groups', BWG()->prefix);
+    $params['page_title'] = __('Galleries / Gallery groups', 'photo-gallery');
     $params['page_url'] = $this->page;
     $params['album_id'] = WDWLibrary::get('album_id', 0, 'intval');
     $params['order'] = WDWLibrary::get('order', 'asc');

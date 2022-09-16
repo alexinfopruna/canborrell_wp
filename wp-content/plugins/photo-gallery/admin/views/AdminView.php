@@ -74,7 +74,7 @@ class AdminView_bwg {
     $add_new_button = !empty($params['add_new_button']) ? $params['add_new_button'] : '';
     $how_to_button = !empty($params['how_to_button']) ? $params['how_to_button'] : false;
     $buttons = !empty($params['buttons']) ? $params['buttons'] : false;
-    $add_new_button_text = !empty($params['add_new_button_text']) ? $params['add_new_button_text'] : __('Add new', BWG()->prefix);
+    $add_new_button_text = !empty($params['add_new_button_text']) ? $params['add_new_button_text'] : __('Add new', 'photo-gallery');
     $popup_window = !empty($params['popup_window']) ? false : true;
 
     $attributes = '';
@@ -112,17 +112,12 @@ class AdminView_bwg {
           if ( $how_to_button ) {
             require BWG()->plugin_dir . '/framework/howto/howto.php';
           }
-          if( $buttons ){
+          if ( $buttons ) {
             echo $this->buttons($buttons, FALSE);
           }
           ?>
         </div>
       </div>
-      <?php
-      if (!BWG()->is_pro && $popup_window ) {
-        WDWLibrary::topbar_upgrade_ask_question();
-      }
-      ?>
     </div>
     <?php
     return ob_get_clean();
@@ -184,13 +179,15 @@ class AdminView_bwg {
    */
   protected function sorting() {
     $options = WDWLibrary::admin_images_ordering_choices();
+    $id = WDWLibrary::get('current_id', 0);
+    $order_by = WDWLibrary::get_sorting( array('gallery_id' => $id, 'list_type' => 'edit') );
     ob_start();
     ?>
     <select name="order_by" onchange="bwg_sort_images(this.value);">
       <?php
       foreach ( $options as $key => $option ) {
         ?>
-        <option value="<?php echo $key; ?>"><?php echo $option; ?></option>
+        <option value="<?php echo $key; ?>" <?php if ($order_by == $key) { echo 'selected'; } ?>><?php echo $option; ?></option>
         <?php
       }
       ?>
@@ -215,9 +212,9 @@ class AdminView_bwg {
         echo $this->sorting();
       }
       ?>
-      <input name="s" value="<?php echo $search; ?>" type="search" onkeypress="return input_search(event, this)" placeholder="<?php _e('Search', BWG()->prefix); ?>" />
+      <input name="s" value="<?php echo $search; ?>" type="search" onkeypress="return input_search(event, this)" placeholder="<?php _e('Search', 'photo-gallery'); ?>" />
       <?php // ToDo Search button comment is not deleted, it can be used again. ?>
-<!--      <input class="button" value="--><?php //echo __('Search', BWG()->prefix) . ' ' . ( !empty( $params['search_item_name'] ) ? $params['search_item_name'] : '' ); ?><!--" type="button" onclick="search(this)" />-->
+<!--      <input class="button" value="--><?php //echo __('Search', 'photo-gallery') . ' ' . ( !empty( $params['search_item_name'] ) ? $params['search_item_name'] : '' ); ?><!--" type="button" onclick="search(this)" />-->
     </div>
     <?php
     return ob_get_clean();
@@ -276,16 +273,16 @@ class AdminView_bwg {
         }
         else {
           ?>
-          <a data-paged="<?php echo 1; ?>" href="<?php echo add_query_arg(array('paged' => 1), $page_url); ?>" class="bwg-pagination-a-link wd-page first-page"><span class="screen-reader-text"><?php _e('First page', BWG()->prefix); ?></span><span class="bwg-pagination-prev-all" aria-hidden="true"></span></a>
-          <a data-paged="<?php echo ($page_number == 1 ? 1 : ($page_number - 1)); ?>" href="<?php echo add_query_arg(array('paged' => ($page_number == 1 ? 1 : ($page_number - 1))), $page_url); ?>" class="bwg-pagination-a-link wd-page previous-page"><span class="screen-reader-text"><?php _e('Previous page', BWG()->prefix); ?></span><span class="bwg-pagination-prev" aria-hidden="true"></span></a>
+          <a data-paged="<?php echo 1; ?>" href="<?php echo add_query_arg(array('paged' => 1), $page_url); ?>" class="bwg-pagination-a-link wd-page first-page"><span class="screen-reader-text"><?php _e('First page', 'photo-gallery'); ?></span><span class="bwg-pagination-prev-all" aria-hidden="true"></span></a>
+          <a data-paged="<?php echo ($page_number == 1 ? 1 : ($page_number - 1)); ?>" href="<?php echo add_query_arg(array('paged' => ($page_number == 1 ? 1 : ($page_number - 1))), $page_url); ?>" class="bwg-pagination-a-link wd-page previous-page"><span class="screen-reader-text"><?php _e('Previous page', 'photo-gallery'); ?></span><span class="bwg-pagination-prev" aria-hidden="true"></span></a>
           <?php
         }
         ?>
           <div class="paging-input">
-          <label for="current-page-selector" class="screen-reader-text"><?php _e('Current Page', BWG()->prefix); ?></label>
+          <label for="current-page-selector" class="screen-reader-text"><?php _e('Current Page', 'photo-gallery'); ?></label>
           <input type="text" class="bwg-current-page current-page" name="current_page" value="<?php echo $page_number; ?>" onkeypress="return input_pagination(event, this)" size="1" />
           <span class="tablenav-paging-text">
-             <?php _e('of', BWG()->prefix); ?>
+             <?php _e('of', 'photo-gallery'); ?>
             <span class="total-pages"><?php echo $pages_count; ?></span>
           </span>
         </div>
@@ -298,8 +295,8 @@ class AdminView_bwg {
           }
           else {
             ?>
-            <a data-paged="<?php echo ($page_number >= $pages_count ? $pages_count : ($page_number + 1)); ?>" href="<?php echo add_query_arg(array('paged' => ($page_number >= $pages_count ? $pages_count : ($page_number + 1))), $page_url); ?>" class="bwg-pagination-a-link wd-page next-page"><span class="screen-reader-text"><?php _e('Next page', BWG()->prefix); ?></span><span class="bwg-pagination-next" aria-hidden="true"></span></a>
-            <a data-paged="<?php echo $pages_count; ?>" href="<?php echo add_query_arg(array('paged' => $pages_count), $page_url); ?>" class="bwg-pagination-a-link wd-page last-page"><span class="screen-reader-text"><?php _e('Last page', BWG()->prefix); ?></span><span class="bwg-pagination-next-all" aria-hidden="true"></span></a>
+            <a data-paged="<?php echo ($page_number >= $pages_count ? $pages_count : ($page_number + 1)); ?>" href="<?php echo add_query_arg(array('paged' => ($page_number >= $pages_count ? $pages_count : ($page_number + 1))), $page_url); ?>" class="bwg-pagination-a-link wd-page next-page"><span class="screen-reader-text"><?php _e('Next page', 'photo-gallery'); ?></span><span class="bwg-pagination-next" aria-hidden="true"></span></a>
+            <a data-paged="<?php echo $pages_count; ?>" href="<?php echo add_query_arg(array('paged' => $pages_count), $page_url); ?>" class="bwg-pagination-a-link wd-page last-page"><span class="screen-reader-text"><?php _e('Last page', 'photo-gallery'); ?></span><span class="bwg-pagination-next-all" aria-hidden="true"></span></a>
             <?php
           }
           ?>
@@ -308,7 +305,7 @@ class AdminView_bwg {
       }
       ?>
       <div class="displaying-num">
-        <?php printf(_n('%s item', '%s items', $total, BWG()->prefix), $total); ?>
+        <?php printf(_n('%s item', '%s items', $total, 'photo-gallery'), $total); ?>
       </div>
     </div>
     <?php
@@ -334,18 +331,18 @@ class AdminView_bwg {
 	  if ( $select_all ) { ?>
 		<span class="button wd-check-all" onclick="spider_check_all_items(event)">
 		  <input type="checkbox" id="check_all_items" name="check_all_items" onclick="spider_check_all_items_checkbox(event)" />
-		  <span><?php _e('Select All', BWG()->prefix); ?></span>
+		  <span><?php _e('Select All', 'photo-gallery'); ?></span>
 	    </span>
 	  <?php } ?>
 		
-      <label for="bulk-action-selector-top" class="screen-reader-text"><?php _e('Select bulk action', BWG()->prefix); ?></label>
+      <label for="bulk-action-selector-top" class="screen-reader-text"><?php _e('Select bulk action', 'photo-gallery'); ?></label>
       <select name="<?php echo $name; ?>" id="bulk-action-selector-top">
-        <option value="-1"><?php _e('Bulk Actions', BWG()->prefix); ?></option>
+        <option value="-1"><?php _e('Bulk Actions', 'photo-gallery'); ?></option>
         <?php foreach ( $actions as $key => $action ) { ?>
           <option value="<?php echo $key; ?>" <?php echo isset($action['disabled']) ? $action['disabled'] : ''; ?>><?php echo $action['title']; ?></option>
         <?php } ?>
       </select>
-      <input type="button" id="doaction" class="button action" onclick="<?php echo (BWG()->is_demo ? 'alert(\'' . addslashes(__('This option is disabled in demo.', BWG()->prefix)) . '\')' : 'wd_bulk_action(this)'); ?>" value="<?php _e('Apply', BWG()->prefix); ?>" />
+      <input type="button" id="doaction" class="button action" onclick="<?php echo (BWG()->is_demo ? 'alert(\'' . addslashes(__('This option is disabled in demo.', 'photo-gallery')) . '\')' : 'wd_bulk_action(this)'); ?>" value="<?php _e('Apply', 'photo-gallery'); ?>" />
     </div>
     <?php
 
@@ -386,6 +383,29 @@ class AdminView_bwg {
       </div>
       <?php
     }
+
+    return ob_get_clean();
+  }
+
+  /**
+   * Booster top banner.
+   *
+   * @param array $params
+   *
+   * @return false|string
+   */
+  protected function booster_top_banner( $params = array() ) {
+    $class_name = ucfirst('speed');
+    $class_controller = $class_name . 'Controller_' . BWG()->prefix;
+    // load speed file.
+    foreach( array('controllers', 'models', 'views') as $folder) {
+      $file = BWG()->plugin_dir . '/admin/' . $folder . '/' . $class_name . '.php';
+      require_once( $file );
+    }
+    ob_start();
+
+    $controller = new $class_controller();
+    $controller->top_banner();
 
     return ob_get_clean();
   }
