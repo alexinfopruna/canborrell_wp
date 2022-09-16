@@ -77,7 +77,10 @@ switch (ICL_LANGUAGE_CODE){
                                 
                                 <div class="entry-main aborder">
                                                                <div class="panel panel-default">
-  <div class="panel-heading"><?php the_title();?></div>
+  <div class="panel-heading"><?php the_title();?>
+  <!--<img title="Ampliar" src="/wp-content/themes/onetone_cb/img/plat.png" alt="Foto"    width="80" height="80" border="0" />-->
+ 
+  </div>
   
   
 
