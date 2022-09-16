@@ -8,6 +8,9 @@ Author URI: http://themeforest.net/user/Veented
 Template: onetone
 */
 
+@import url('https://fonts.googleapis.com/css2?family=Dancing+Script:wght@700');
+
+
 .coronavirus{
 /*max-width:500px;*/
 margin: 10px auto;
@@ -1492,3 +1495,30 @@ float:left;
 
 .single-menus .post-main ul.dots{padding-top: 0}
 
+.type-menus .panel-heading {
+    background-color: #d1004d;
+    font-family: 'Dancing Script';
+    font-size: 48px;
+    padding:10px;
+ font-weight:bold;
+ background-image: url("/wp-content/themes/onetone_cb/img/cullera3.png");
+ BACKGROUND-SIZE: contain;
+ background-repeat: no-repeat;
+ background-position: right;
+ text-transform: none;
+}
+.menus-menu-vegetaria .type-menus .panel-heading {
+    background-color: #3c993c;
+}
+
+
+
+.menu-content b, .single-menus strong, #ressenya.caixa-preus, #ressenya i {
+
+    background: #e9e9e9;
+    color: #444;
+}
+
+.single-menus img{
+    border-radius: 50%;
+}
