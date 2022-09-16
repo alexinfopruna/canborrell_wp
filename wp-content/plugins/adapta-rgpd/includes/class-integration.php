@@ -402,11 +402,8 @@ jQuery(function ($) {
 				$settings = $this->plugin->argpd_settings;
 				if ( $settings->get_setting( 'cookies-reload' ) == 1 ) : ?>
 					$(".cookies-eu-accept").click(function(){
-						var min = 100000;
-						var max = 999999;
-					 	var random =  Math.floor(Math.random() * (max - min + 1)) + min;
 						setTimeout( function(){ 
-							window.location.href = window.location.href + "?reload=" + random; 
+							window.location.href = window.location.href; 
 						}, 500 );
 					});
 				<?php endif;

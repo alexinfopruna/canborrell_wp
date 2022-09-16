@@ -76,19 +76,22 @@ class ARGPD_Admin {
 		}
 
 		// add menu page.
-		add_action( 'admin_menu', array( $this, 'add_menu_page' ) );
+		add_action( 'admin_menu', array( $this, 'custom_menu' ) );
 
-		// action to save settings from setup.
+		// action to store settings from setup.
 		add_action( 'admin_post_argpd_setup', array( $this, 'setup' ) );
 
-		// Acción para guardar la configuración de la pestaña Textos Legales.
+		// action to store pages config.
 		add_action( 'admin_post_argpd_pages_setup', array( $this, 'pages_setup' ) );
 
-		// Acción para guardar la configuración de la pestaña Ley de Cookies.
+		// action to store cookies config.
 		add_action( 'admin_post_argpd_cookies_setup', array( $this, 'cookies_setup' ) );
 
 		// accept disclaimer.
 		add_action( 'admin_post_argpd_disclaimer', array( $this, 'accept_disclaimer' ) );
+
+		// action to store cookies config.
+		add_action( 'admin_post_argpd_addons_setup', array( $this, 'addons_setup' ) );
 
 		// add settings to plugin menu.
 		add_filter( 'plugin_action_links_' . $this->plugin->basename, array( $this, 'plugin_add_settings_link' ) );
@@ -100,7 +103,7 @@ class ARGPD_Admin {
 	 *
 	 * @since  0.0.0
 	 */
-	public function add_menu_page() {
+	public function custom_menu() {
 
 		add_menu_page(
 			$this->title,
@@ -110,6 +113,26 @@ class ARGPD_Admin {
 			array( $this, 'admin_page_display' ),
 			'dashicons-welcome-write-blog'
 		);
+
+		add_submenu_page(
+			$this->key,
+			__( 'Inicio', 'argpd' ),
+			__( 'Inicio', 'argpd' ),
+			'manage_options',
+			'argpd-home',
+			array( $this, 'admin_page_display' )
+		);
+
+		add_submenu_page(
+			$this->key,
+			__( 'Clave de API', 'argpd' ),
+			__( 'Clave de API', 'argpd' ),
+			'manage_options',
+			'argpd-addons',
+			array( $this, 'addons_page_display' )
+		);
+
+		remove_submenu_page($this->key, $this->key); 
 	}
 
 
@@ -119,12 +142,25 @@ class ARGPD_Admin {
 	 * @since  0.0.0
 	 */
 	public function admin_page_display() {
+		if ( ! current_user_can( 'manage_options' ) ) {
+			wp_die( esc_html__( 'You do not have sufficient permissions to access this page.', 'argpd' ) );
+		}
+		
+		$this->plugin->argpd_ui->options_ui();
+	}
 
+
+	/**
+	 * Add settings interface
+	 *
+	 * @since  0.0.0
+	 */
+	public function addons_page_display() {
 		if ( ! current_user_can( 'manage_options' ) ) {
 			wp_die( esc_html__( 'You do not have sufficient permissions to access this page.', 'argpd' ) );
 		}
 
-		$this->plugin->argpd_ui->options_ui();
+		$this->plugin->argpd_ui->addons_ui();
 	}
 
 
@@ -280,7 +316,7 @@ class ARGPD_Admin {
 			}
 		}
 		$this->plugin->argpd_settings->update_setting( 'scripts-reject', join( ',', $scripts_reject ) );
-        $this->plugin->argpd_settings->update_setting( 'lista-cookies', sanitize_textarea_field( $_POST['lista-cookies'] ), 'textarea_field' );
+        $this->plugin->argpd_settings->update_setting( 'lista-cookies', $_POST['cookies-list'], 'kses' );
         //
 		$this->plugin->argpd_settings->update_setting( 'cookies-linklabel', sanitize_text_field( $_POST['cookies-linklabel'] ) );
 		$this->plugin->argpd_settings->update_setting( 'cookies-btnlabel', sanitize_text_field( $_POST['cookies-btnlabel'] ) );
@@ -308,6 +344,35 @@ class ARGPD_Admin {
 			exit;
 		}
 	}
+
+
+	/**
+	 * Persist addons configuration.
+	 *
+	 * @since  1.3.5
+	 */
+	public function addons_setup() {
+
+		if ( ! current_user_can( 'manage_options' ) || ! check_admin_referer( 'argpd' ) ) {
+			wp_die( esc_html__( 'You do not have sufficient permissions to access this page.', 'argpd' ) );
+		}
+
+		$this->plugin->argpd_settings->update_setting( 'apikey', sanitize_text_field( $_POST['apikey'] ) );
+
+		$message = 'saved';
+		if ( wp_redirect(
+			add_query_arg(
+				array(
+					'page'    => 'argpd-addons',
+					'message' => $message,
+				),
+				admin_url( 'admin.php?page=argpd' )
+			)
+		) ) {
+			exit;
+		}
+	}
+
 
 	/**
 	 *

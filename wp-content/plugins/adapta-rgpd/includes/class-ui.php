@@ -51,7 +51,6 @@ class ARGPD_Ui {
 	 */
 	public function hooks() {
 
-		//return current_user_can( 'manage_options' ) || current_user_can( 'manage_network' );
 		if ( ! current_user_can( 'manage_options' ) ) {
 			return;
 		}
@@ -60,17 +59,17 @@ class ARGPD_Ui {
 		add_action( 'argpd_settings_tab', array( $this, 'argpd_ajustes_tab' ), 1 );
 		add_action( 'argpd_settings_content', array( $this, 'argpd_ajustes_content' ) );
 
-		// pestaña Integración.
+		// 'textos legales' tab.
 		add_action( 'argpd_settings_tab', array( $this, 'argpd_paginas_tab' ), 2 );
 		add_action( 'argpd_settings_content', array( $this, 'argpd_paginas_content' ) );
 
-		// Pestaña Cookies.
+		// cookies tab.
 		add_action( 'argpd_settings_tab', array( $this, 'argpd_cookies_tab' ), 2 );
 		add_action( 'argpd_settings_content', array( $this, 'argpd_cookies_content' ) );
 
-		// ayuda.
+		// ayuda tab.
 		add_action( 'argpd_settings_tab', array( $this, 'argpd_ayuda_tab' ), 4 );
-		add_action( 'argpd_settings_content', array( $this, 'argpd_ayuda_content' ) );
+		add_action( 'argpd_settings_content', array( $this, 'argpd_ayuda_content' ) );		
 
 		// ajax scripts.
 		add_action( 'admin_footer', array( $this, 'argpd_change_country' ) );
@@ -79,13 +78,9 @@ class ARGPD_Ui {
 		add_action( 'admin_footer', array( $this, 'create_page_events' ) );
 		add_action( 'wp_ajax_argpd_create_page', array( $this, 'create_page' ) );
 
-		// Alternar entre negocio y particular.
-		add_action( 'admin_footer', array( $this, 'argpd_toggle_bussines' ) );
-
-		// Buscar cookies.
-		add_action( 'admin_footer', array( $this, 'argpd_search_cookies' ) );
-
-		// Mostrar la preview del tema seleccionado.
+		// insert js at footer
+		add_action( 'admin_footer', array( $this, 'admin_scripts' ) );
+		add_action( 'admin_footer', array( $this, 'toggle_bussines_view' ) );		
 		add_action( 'admin_footer', array( $this, 'update_theme_preview' ) );
 	}
 
@@ -96,6 +91,7 @@ class ARGPD_Ui {
 	 * @since  1.0.1
 	 */
 	public function create_page() {
+		
 		check_ajax_referer( 'argpd_create_page', 'security' );
 
 		$id   = 0;
@@ -215,12 +211,14 @@ class ARGPD_Ui {
 		<?php
 	}
 
+
 	/**
 	 * Function wp-ajax to echo states
 	 *
 	 * @since  1.0.0
 	 */
-	public function argpd_search_cookies() {
+	public function admin_scripts() {
+		$settings = $this->plugin->argpd_settings;
 		?>
 
 <script type="text/javascript" >			
@@ -230,31 +228,76 @@ class ARGPD_Ui {
 
 		window.TestCookies = window.TestCookies || {};
 
-		TestCookies.getCookies= function () {
-			var result= [];
-			var cookies = document.cookie.split(";");
+		TestCookies.auth = function () {
+			return fetch('https://superapis.es/legaltech360/api/v1/auth', {
+				method: 'POST',
+				headers: {
+      				'Accept': 'application/json',
+      				'Content-Type': 'application/json',
+				},
+				body: JSON.stringify({"token": "<?php echo esc_attr( $settings->get_setting( 'apikey' ) ); ?>" })
+			})
+   			.then((resp) => resp.text())
+			.then((text) => {
+      			return text;
+    		})
+    		.catch(error => console.warn(error));			
+		}
+
+		TestCookies.getCookies= function (jwt) {
+			var payload = [];
+			
 			if (document.cookie && document.cookie != '') {
-				for (var i = 0; i < cookies.length; i++) {
-					var name_value = cookies[i].split("=");
-					name_value[0] = name_value[0].replace(/^ /, '');
-					result.push(name_value[0]);
+				var documentCookies = document.cookie.split(";");
+
+				documentCookies = documentCookies.filter(function(value, index, array){
+					return (!value.trim().startsWith("wp-settings-"))
+				});
+
+				for (var i = 0; i < documentCookies.length; i++) {
+					var name_value = documentCookies[i].split("=");
+					payload.push({'name': name_value[0].trim()});
 				}
 			}
-			
-			result= result.filter(function(value, index, array){
-				return (!value.startsWith("wp-settings-"))
-			});
-			
-			result.push("wp-settings-*");
-			return result;
+
+			return fetch('https://superapis.es/legaltech360/api/v1/opencookiedatabase/cookies', {
+				method: 'POST',
+				headers: {
+      				'Accept': 'application/json',
+      				'Content-Type': 'application/json',
+      				'Authorization': `Bearer ${jwt}`,
+				},
+				body: JSON.stringify(payload)
+			})
+			.then((resp) => resp.json())
+			.then((data) => {
+      			return data;
+    		})
+    		.catch(error => console.warn(error));
 		}
 
 		TestCookies.events= function(){
 			$( "#buscarCookies" ).on('click', function(e){
-				var cookies= TestCookies.getCookies();
-				var text= cookies.join("\n") + "\n";
-				$( "#lista-cookies").val(text);
-				$( "#lista-cookies").attr('rows', cookies.length + 1 );
+				TestCookies.auth().then( jwt => {
+					TestCookies.getCookies(jwt).then( resp => {
+						if ('undefined' !== typeof resp && resp.hasOwnProperty('result')) {
+							var result = resp.result.sort((a,b) => (a.name > b.name) ? 1 : ((b.name > a.name) ? -1 : 0))
+							var text = '<ul>';
+							result.forEach(item => {
+								text +='<li>';
+								text += (item.category == '')?`<strong>${item.name}</strong>`:`
+									<strong>${item.name}</strong>
+									<br/>${item.desc}
+									<br/>Categoría: ${item.category}.
+									<br/>Duración: ${item.retention}.
+									<br/>Política de privacidad: <a rel="nofollow" href=${item["privacy-url"]}>${item["privacy-url"]}</a>`;
+								text +='</li>';
+							})
+							text +='</ul>';
+							tinymce.get('cookies-list').setContent(text);
+						}
+					});
+				});
 			});
 		}
 
@@ -269,14 +312,14 @@ class ARGPD_Ui {
 		<?php
 	}
 
+
 	/**
-	 * Function para el cambio de visualizacion entre negocio y particular.
+	 * Toggle business visualization
 	 *
 	 * @since  1.2
 	 */
-	public function argpd_toggle_bussines() {
+	public function toggle_bussines_view() {
 		?>
-
 		<script type="text/javascript" >					
 			jQuery(document).ready(function($) {				
 				$('body').on('change', '#empresa-switch', function() {					
@@ -292,6 +335,7 @@ class ARGPD_Ui {
 		</script> 
 		<?php
 	}
+
 
 	/**
 	 * Updates the image of theme preview
@@ -404,21 +448,7 @@ class ARGPD_Ui {
 		<form method="post" action="admin-post.php" class="pt20">
 			<?php wp_nonce_field( 'argpd' ); ?>
 			<input type="hidden" value="argpd_setup" name="action"/>
-			
-			<div id="message" class="argpd-message">
-				<p>					
-				<span style="color:" class="dashicons-before dashicons-info"></span>
-				<?php
-					printf(
-						'%s <b>%s</b> %s',
-						esc_html__( 'Pulsa en', 'argpd' ),
-						esc_html__( 'Guardar cambios', 'argpd' ),
-						esc_html__( 'para actualizar automáticamente los textos legales.', 'argpd' )
-					);
-				?>
-				</p>		
-				
-			</div>
+
 			<div class="argpd-panel">
 			<table class="form-table">
 				<tbody>
@@ -583,7 +613,6 @@ class ARGPD_Ui {
 									/>
 						</td>
 					</tr>					
-
 
 					<!-- Domicilio -->
 					<tr>
@@ -1006,7 +1035,7 @@ class ARGPD_Ui {
 							</label>
 							<br/>
 
-							<!-- Clausula portabilidad -->
+							<!-- Clausula portabilidad --> 
 							<label for="clause-portabilidad">
 							<input 	name="clause-portabilidad" 
 									type="checkbox" 
@@ -1091,11 +1120,7 @@ class ARGPD_Ui {
 			<?php wp_nonce_field( 'argpd' ); ?>
 			<input type="hidden" value="argpd_pages_setup" name="action"/>
 			<div class="argpd-panel">
-				<h2 class="title"><?php esc_html_e( 'Páginas Legales', 'argpd' ); ?></h2>
-				<p>
-					<?php esc_html_e( 'Activa o desactiva cada texto legal y escoge en que página aparece.', 'argpd' ); ?>
-				</p>
-				
+				<h2 class="title"><?php esc_html_e( 'Páginas Legales', 'argpd' ); ?></h2>				
 				<table class="wp-list-table widefat fixed striped posts">
 					<thead>
 						<tr>
@@ -1367,6 +1392,9 @@ class ARGPD_Ui {
 						</tr>			
 					</tbody>
 				</table>
+				<p>
+					<?php esc_html_e( 'Textos revisados por profesionales legales y actualizados en 2022.', 'argpd' ); ?>
+				</p>
 
 	
 				<table class="form-table">
@@ -1628,6 +1656,7 @@ class ARGPD_Ui {
 		}
 
 		$settings = $this->plugin->argpd_settings;
+		$all_settings = $this->plugin->argpd_settings->get_settings();
 		?>
  
 		<form method="post" action="admin-post.php" class="pt20">
@@ -1798,36 +1827,44 @@ class ARGPD_Ui {
 				<hr/>
 				<table class="form-table">
 					<tbody>	
-						<?php /* detectar cookies <?php echo esc_html( str_replace( ' ', "\n", $settings->get_setting( 'lista-cookies' ) ) ); ?> */ ?>	
 						<tr>
 							<th scope="row">
 								<label for="cookies-linklabel">
 								<?php
 									printf(
 										'%s<br>%s',
-										esc_html__( 'Detector de', 'argpd' ),
-										esc_html__( 'Cookies', 'argpd' )
+										esc_html__( 'Listado', 'argpd' ),
+										esc_html__( 'de cookies', 'argpd' )
 									);
 								?>
 								</label>
 							</th>
 							<td>
 								<div>
-								<textarea id="lista-cookies" name="lista-cookies" cols="60" rows="10"
-								><?php echo esc_textarea( $settings->get_setting( 'lista-cookies' ) ); ?></textarea>
+								<?php
+										wp_editor( $all_settings['lista-cookies'], "cookies-list", array(
+											'textarea_rows' => 10,
+											'media_buttons' => false,
+											'quicktags' => false,
+										) );
+								?>
+
 								</div>
-								<a 	id="buscarCookies"
-									class="button button-primary"
-									style="background-color: #007CBA; border:none"
-									value="<?php esc_attr_e( 'Detectar cookies ahora', 'argpd' ); ?>" 
-									>											
-									<?php esc_html_e( 'Detectar cookies ahora', 'argpd' ); ?>
-								</a>
-								<p class="description">
-									Pulsa en "Detectar cookies ahora" para buscar cookies en tu web.
+								<div>
 									<br/>
-									El campo de texto es editable y el contenido guardado se muestra en el listado de Cookies.
+									<a 	id="buscarCookies"
+										class="button button-primary <?php ( $settings->get_setting( 'apikey' ) == "" ) && printf( 'button-disabled' ); ?>"
+										value="<?php esc_attr_e( 'Detectar cookies ahora', 'argpd' ); ?>" 
+										>											
+										<?php esc_html_e( 'Detectar cookies ahora', 'argpd' ); ?>
+									</a>
+								</div>
+								<?php if ( $settings->get_setting( 'apikey' ) == "" ) : ?>
+
+								<p class="description">
+									Para activar el detector de cookies obtén una clave de API. Para más detalles, consulta <a href="<?php echo esc_attr( admin_url( 'admin.php?page=argpd-addons' ) ); ?>">aquí</a>.
 								</p>
+								<?php endif ?>
 							</td>
 						</tr>
 					</tbody>
@@ -1983,23 +2020,119 @@ class ARGPD_Ui {
 		<?php
 	}
 
-
 	/**
 	 * Echo plugin settings view
 	 *
 	 * @since  0.0.0
 	 */
 	public function options_ui() {
-
 		global $argpd_active_tab;
 		$argpd_active_tab = ! empty( $_GET['tab'] ) ? sanitize_text_field( wp_unslash( $_GET['tab'] ) ) : 'ajustes';
+		$this->ui_header();
+
+		$settings = $this->plugin->argpd_settings;
+		if ( $settings->get_setting( 'renuncia' ) == 0 ) { return; }
+		?>
+		<div class="wrap">
+			<div>
+				<h2 class="nav-tab-wrapper">
+					<?php
+					do_action( 'argpd_settings_tab' );
+					?>
+				</h2>
+		
+				<?php
+					do_action( 'argpd_settings_content' );
+				?>
+			</div>
+			<?php
+				$this->ui_footer();
+			?>
+		</div>
+		<?php
+	}
+
+
+	/**
+	 * echo addons_ui page
+	 *
+	 * @since  1.3.5
+	 */
+	public function addons_ui() {
+
+		global $argpd_active_tab;
+		$argpd_active_tab = ! empty( $_GET['tab'] ) ? sanitize_text_field( wp_unslash( $_GET['tab'] ) ) : 'settings';
+
+		$this->ui_header();
+
+		$settings = $this->plugin->argpd_settings;
+		$all_settings = $this->plugin->argpd_settings->get_settings();
+		if ( $settings->get_setting( 'renuncia' ) == 0 ) { return; }
 		?>
 
-		<?php /* ARGPD messages */ ?>
+		<div class="wrap">			
+			<form method="post" action="admin-post.php" class="pt20">
+				<?php wp_nonce_field( 'argpd' ); ?>
+				<input type="hidden" value="argpd_addons_setup" name="action"/>
+				
+				<div class="argpd-panel">
+					<h2 class="title"><?php esc_html_e( 'LegalTech360', 'argpd' ); ?></h2>
+					<div>					
+						<hr/>
+						<table class="form-table">
+							<tbody>	
+								<tr>
+									<th scope="row">
+										<label for="option-apikey"><?php esc_html_e( 'Clave de la API', 'argpd' ); ?></label>
+									</th>
+									<td>
+										<div>
+											Consigue tu Clave API. Es GRATIS y podrás escanear tu sitio y obtener información detallada de las cookies instaladas, Local Storage, pixels y otras tecnologías de rastreo con sólo hacer click en un botón. Para más detalles, <a href="https://superadmin.es/adapta-rgpd/subscribete/"> clica aquí para conseguir tu clave</a>.
+										</div>
+										<div class="pt20">
+										<input 	type="text" 
+												name="apikey" 
+												id="js-apikey"
+												value="<?php echo esc_attr( $settings->get_setting( 'apikey' ) ); ?>" 
+												/>
+										</div>
+										<div>
+											<?php submit_button(); ?>
+										</div>
+									</td>
+								</tr>
+							</tbody>
+						</table>
+					</div>
+				</div>
+			</form>
+		</div>
 		<?php
+		$this->ui_footer();
+	}
 
-			$message       = __( 'Algo fue mal.', 'argpd' );
-			$message_class = 'notice-success';
+
+	/**
+	 * Echo plugin settings view
+	 *
+	 * @since  1.3.5
+	 */
+	public function ui_footer() { 
+		?>
+		<hr/>
+		<p style="font-size: 1.1em; text-align: center">
+			★ <a title="superadmin.es - Hosting Premium WordPress Administrado" href="https://superadmin.es" target="blank">Superadmin.es</a> ★ 
+			<br/>Hosting Premium WordPress Administrado
+		</p
+	<?php }
+	/**
+	 * Echo plugin settings view
+	 *
+	 * @since  1.3.5
+	 */
+	public function ui_header() { 
+		$message       = __( 'Algo fue mal.', 'argpd' );
+		$message_class = 'notice-success';
 
 		if ( isset( $_GET['message'] ) ) {
 			switch ( $_GET['message'] ) {
@@ -2012,26 +2145,25 @@ class ARGPD_Ui {
 					break;
 			}
 			?>
-				<div id="message" 
-					 class="notice <?php echo esc_attr( $message_class ); ?> is-dismissible"
-					 >
-					 <p><?php echo esc_html( $message ); ?></p>
-					 <button type="button" 
-							  class="notice-dismiss"
-							  >
-							  <span class="screen-reader-text">
-								  Descartar este aviso.
-							  </span>
-					</button>
-				</div>
+			<div id="message" 
+				 class="notice <?php echo esc_attr( $message_class ); ?> is-dismissible"
+				 >
+				 <p><?php echo esc_html( $message ); ?></p>
+				 <button type="button" 
+						  class="notice-dismiss"
+						  >
+						  <span class="screen-reader-text">
+							  Descartar este aviso.
+						  </span>
+				</button>
+			</div>
 		<?php } ?>
-		
 		
 		<div class="wrap">		
 			<h1>Cumple con la RGPD</h1>
 			
 			<p style="font-size: 1.1em">
-				<b>¡Tu opinión es importante!</b><br/>Gracias por tu valoración de <span><b><a href="https://wordpress.org/support/plugin/adapta-rgpd/reviews?rate=5#new-post">★★★★★</a></b></span>&nbsp;que sirve para mejorar el plugin.
+				<b>¡Ayuda a mejorar el plugin!</b> Danos tu valoración de ★★★★★ <span><b><a href="https://wordpress.org/support/plugin/adapta-rgpd/reviews?rate=5#new-post">aquí</a>.</b></span>&nbsp;
 			</p
 
 			<?php
@@ -2054,35 +2186,12 @@ class ARGPD_Ui {
 							</p>
 						</form>
 					</div>
-				</div>
-				
-
-			<?php } else { ?>
-
-			<div>
-				<h2 class="nav-tab-wrapper">
-					<?php
-					do_action( 'argpd_settings_tab' );
-					?>
-				</h2>
-		
-				<?php
-					do_action( 'argpd_settings_content' );
-				?>
-			</div>
-			<?php } ?>
-			<hr>
-
-			<p style="font-size: 1.1em; text-align: center">
-				★ <a title="superadmin.es - Hosting Premium WordPress Administrado" href="https://superadmin.es" target="blank">Superadmin.es</a> ★ 
-				<br/>Hosting Premium WordPress Administrado
-			</p
-
+				</div>		
+			<?php }
+			?>
 		</div>
 		<?php
 	}
-
-
 
 
 	/**
@@ -2178,5 +2287,4 @@ class ARGPD_Ui {
 		}
 		return $collection;
 	}
-
 }

@@ -272,8 +272,8 @@ class ARGPD_Pages {
 		$settings = $this->plugin->argpd_settings->get_settings();
 
 		if ( $check_disabled || ! $settings['cookies-disabled'] ) {
-			//$settings['site-url'] = get_site_url();	
-			$settings['cookies-html'] = nl2br ( esc_textarea( $settings[ 'lista-cookies'] ) );
+			//$settings['cookies-html'] = nl2br ( esc_textarea( $settings[ 'lista-cookies'] ) );
+			$settings['cookies-html'] =  nl2br ( $settings[ 'lista-cookies'] );
 			return $this->compiler->render( 'page-cookies-policy', $settings );
 		}
 	}

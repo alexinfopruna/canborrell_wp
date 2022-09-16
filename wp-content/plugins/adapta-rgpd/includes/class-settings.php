@@ -174,8 +174,22 @@ class ARGPD_Settings {
 		'option-wc-promo'		    => 0,
 		// Mensaje para el consentimiento promocional.
 		'wc-consent-promo'   		=> '',
+		// LegalTech360 api key.
+		'apikey' 					=> '',
 	);
 
+
+	CONST ALLOWED_HTML = array(
+		'a' => array(
+			'href' => array(),
+			'title' => array()
+		),
+		'br' => array(),
+		'em' => array(),
+		'strong' => array(),
+		'ul' => array(),
+		'li' => array(),
+	);
 
 	/**
 	 * Property settings array
@@ -383,10 +397,12 @@ class ARGPD_Settings {
 			$this->settings['wc-consent-promo'] = __( 'Acepto recibir ofertas, noticias y otras recomendaciones sobre productos o servicios', 'argpd' );
 		}
 
-		// Registra si el sitio web tiene SSL activado
 		if ( is_ssl() ) {
 			$this->settings['is-ssl'] = 1;
 		}
+
+		
+		$this->settings['lista-cookies'] = $this->get_setting('lista-cookies', 'kses');		
 	}
 
 	/**
@@ -566,13 +582,20 @@ class ARGPD_Settings {
 	 *
 	 * @return bool|mixed|void
 	 */
-	public function get_setting( $name = '', $default = false ) {
-
+	public function get_setting( $name = '', $type = 'text_field' ) {
 		if ( empty( $name ) ) {
 			return false;
 		}
 
-		return $this->settings[ $name ];
+		$value = $this->settings[ $name ]; 
+
+		switch ( $type ) {
+			case 'kses':
+				$value = wp_kses( $value ,self::ALLOWED_HTML);
+				break;
+		}		
+
+		return $value;
 	}
 
 	/**
@@ -584,17 +607,14 @@ class ARGPD_Settings {
 	 * @return bool If the setting was updated or not
 	 */
 	public function update_setting( $name = '', $value = '', $type = 'text_field' ) {
-
 		if ( empty( $name ) ) {
 			return false;
 		}
 
-		$network_id = null;
-		if ( is_multisite() ) {
-			$network_id = get_current_blog_id();
-		}
-
 		switch ( $type ) {
+			case 'kses':
+				$value = wp_kses( $value ,self::ALLOWED_HTML);
+				break;
 			case 'kses_data':
 				$value = wp_kses_data( $value );
 				break;
@@ -605,16 +625,19 @@ class ARGPD_Settings {
 				$value = trim( sanitize_text_field( $value ) );
 		}
 
-		// $value = trim ( ( $textarea ) ? sanitize_textarea_field( $value ) : sanitize_text_field( $value ) );
 		$old_settings = $this->settings;
 
 		$this->settings[ $name ] = $value;
 		( 'provincia-code' == $name || 'pais' == $name ) && $this->convert_regional_codes();
 
+		$network_id = null;
+		if ( is_multisite() ) {
+			$network_id = get_current_blog_id();
+		}
+
 		if ( update_network_option( $network_id, sprintf( '%s_%s', $this->key, 'settings' ), $this->settings ) ) {
 			return true;
 		} else {
-			// restaurar viejos settings.
 			$this->settings = $old_settings;
 		}
 		return false;

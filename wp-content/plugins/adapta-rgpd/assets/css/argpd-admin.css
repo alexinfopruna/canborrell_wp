@@ -1,5 +1,6 @@
-/* description */
+/* Licensed under the MIT/X11 License (http://opensource.org/licenses/MIT) */
 
+/* description */
 .argpd-panel {
   background: #fff;
   border: 1px solid #ccc;
@@ -165,9 +166,14 @@ div.argpd-message span {
   padding: 20px 0 0 0!important;
 }
 
+.pt10 {
+  padding-top: 10px;
+}
+
 .pt20 {
   padding-top: 20px;
 }
+
 .pb20 {
   padding-bottom: 20px;
 }

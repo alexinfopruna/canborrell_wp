@@ -43,10 +43,7 @@ add_action(
 
 		$assets = wp_parse_args( $assets, array(
 			'src' => wpcf7_plugin_url( 'includes/js/index.js' ),
-			'dependencies' => array(
-				'wp-api-fetch',
-				'wp-polyfill',
-			),
+			'dependencies' => array(),
 			'version' => WPCF7_VERSION,
 			'in_footer' => ( 'header' !== wpcf7_load_js() ),
 		) );
@@ -54,7 +51,10 @@ add_action(
 		wp_register_script(
 			'contact-form-7',
 			$assets['src'],
-			$assets['dependencies'],
+			array_merge(
+				$assets['dependencies'],
+				array( 'swv' )
+			),
 			$assets['version'],
 			$assets['in_footer']
 		);
@@ -111,7 +111,12 @@ add_action(
 function wpcf7_enqueue_scripts() {
 	wp_enqueue_script( 'contact-form-7' );
 
-	$wpcf7 = array();
+	$wpcf7 = array(
+		'api' => array(
+			'root' => esc_url_raw( get_rest_url() ),
+			'namespace' => 'contact-form-7/v1',
+		),
+	);
 
 	if ( defined( 'WP_CACHE' ) and WP_CACHE ) {
 		$wpcf7['cached'] = 1;
