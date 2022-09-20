@@ -203,6 +203,8 @@ $order
 
     $plin = $restriccio->restriccions_hores;
     $this->pliiin($plin);
+    if ($restriccio->restriccions_active=="")$restriccio->restriccions_active=0;
+
 if (!($restriccio->restriccions_active))$restriccio->restriccions_active=0;
     
     $query = "UPDATE  RestriccioHoresTaula 
