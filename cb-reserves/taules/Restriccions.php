@@ -313,6 +313,7 @@ $order
       $restriccio->restriccions_nens = "Tot";
     if ($restriccio->restriccions_adults == "Senar")
       $restriccio->restriccions_nens = "Tot";
+if (!($restriccio->restriccions_active))$restriccio->restriccions_active=0;
 
     $plin = $restriccio->restriccions_hores;
     $this->pliiin($plin);

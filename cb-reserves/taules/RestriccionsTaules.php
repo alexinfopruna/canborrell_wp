@@ -195,7 +195,6 @@ $order
   }
 
   public function updateRestriccio($restriccio) {
-
     $restriccio->restriccions_dies = $this->dies2dec($restriccio->restriccions_dies);
     $restriccio->restriccions_hores = $this->dies2dec($restriccio->restriccions_hores);
     if ($restriccio->restriccions_datafi < $restriccio->restriccions_data)
