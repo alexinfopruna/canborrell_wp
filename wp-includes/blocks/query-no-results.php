@@ -22,7 +22,6 @@ function render_block_core_query_no_results( $attributes, $content, $block ) {
 	$page_key = isset( $block->context['queryId'] ) ? 'query-' . $block->context['queryId'] . '-page' : 'query-page';
 	$page     = empty( $_GET[ $page_key ] ) ? 1 : (int) $_GET[ $page_key ];
 
-	// Override the custom query with the global query if needed.
 	$use_global_query = ( isset( $block->context['query']['inherit'] ) && $block->context['query']['inherit'] );
 	if ( $use_global_query ) {
 		global $wp_query;
@@ -31,7 +30,6 @@ function render_block_core_query_no_results( $attributes, $content, $block ) {
 		$query_args = build_query_vars_from_query_block( $block, $page );
 		$query      = new WP_Query( $query_args );
 	}
-
 	if ( $query->have_posts() ) {
 		return '';
 	}

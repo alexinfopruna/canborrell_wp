@@ -706,7 +706,6 @@ function get_block_templates( $query = array(), $template_type = 'wp_template' )
 			$is_not_custom   = false === array_search(
 				wp_get_theme()->get_stylesheet() . '//' . $template_file['slug'],
 				wp_list_pluck( $query_result, 'id' ),
-				true
 			);
 			$fits_slug_query =
 				! isset( $query['slug__in'] ) || in_array( $template_file['slug'], $query['slug__in'], true );

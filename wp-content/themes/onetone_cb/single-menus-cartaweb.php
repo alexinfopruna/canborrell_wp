@@ -139,7 +139,9 @@ switch (ICL_LANGUAGE_CODE){
           <a href="#menus"> <button type="button" class="btn btn-primary veure-menus"><?php echo __("Veure tots els menús",'themedomain')?></button></a>
                                     
                                                                            <div class="panel panel-default">
-  <div class="panel-heading"><?php the_title();?></div>
+  <div class="panel-heading"><?php the_title();?>
+  
+   </div>
   <div class="panel-body menu-content">
     <a><img title="Ampliar" src="/wp-content/uploads/assets/plats/f_plats_7pt.jpg" alt="Foto"    width="80" height="80" border="0" /></a> <a><img title="Ampliar" src="/wp-content/uploads/assets/plats/f_plats_15pt.jpg" alt="Foto" width="80" height="80" border="0" /></a> <a><img title="Ampliar" src="/wp-content/uploads/assets/plats/f_plats_14pt.jpg" alt="Foto" width="80" height="80" border="0" /></a>
     

@@ -43,7 +43,7 @@ function mailer($addr, $subject, $body, $altbody = null, $attach = null, $test =
 
   /* SENSE IMATGE CAPSALERA */
   if ($addr == MAIL_RESTAURANT)
-    $body = str_replace('<img src="//www.can-borrell.com/img/lg_sup.png" alt="img" width="303" height="114" border="0" title="INICI" />', "", $body);
+    $body = str_replace('<img src="//www.can-borrell.com/cb_reserves/img/lg_sup.png" alt="img" width="303" height="114" border="0" title="INICI" />', "", $body);
  
   include(ROOT . INC_FILE_PATH . "mailer_profile.php");
   if ($addr == MAIL_RESTAURANT && isset($_POST['client_email']))    $mail->From = $_POST['client_email'];
@@ -99,7 +99,7 @@ function mailer($addr, $subject, $body, $altbody = null, $attach = null, $test =
   if ($cco) {
     $mail->ClearAllRecipients();
     $mail->AddAddress($cco);
-    $bodycco = str_replace('<img src="//www.can-borrell.com/img/lg_sup.png" alt="img" width="303" height="114" border="0" title="INICI" />', "<br><br>---- COPIA RESTAURANT ----<br><br>", $body);
+    $bodycco = str_replace('<img src="//www.can-borrell.com/cb_reserves/img/lg_sup.png" alt="img" width="303" height="114" border="0" title="INICI" />', "<br><br>---- COPIA RESTAURANT ----<br><br>", $body);
     $mail->Body = $bodycco;
     $exito2 = $mail->Send();
 
