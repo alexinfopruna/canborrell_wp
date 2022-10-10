@@ -324,11 +324,20 @@ function updateMenus() {
         $(".col-isqui-carta .info.caixa").html(l("INFO_CARTA_NADAL"));
         $("#bt-menu span").html(l("Menús Nadal"));
         $("#carta_MENUS tr").hide();
+        /*
         $("#carta_MENUS tr[producte_id=2002]").show(); //N3
         $("#carta_MENUS tr[producte_id=2004]").show(); //infantil
         $("#carta_MENUS tr[producte_id=2011]").show(); //infantil
         $("#carta_MENUS tr[producte_id=2023]").show(); //junior
         $("#carta_MENUS tr[producte_id=2024]").show(); //n1
+        */
+        
+        $("#carta_MENUS tr[producte_id=2001]").show(); //N1
+        $("#carta_MENUS tr[producte_id=2003]").show(); //n2
+        $("#carta_MENUS tr[producte_id=2012]").show(); //n3
+        $("#carta_MENUS tr[producte_id=2007]").show(); //n4
+        $("#carta_MENUS tr[producte_id=2036]").show(); //inf
+        $("#carta_MENUS tr[producte_id=2037]").show(); //jun
  
         /*
                 $("#carta_ tr").hide();

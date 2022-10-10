@@ -2504,6 +2504,7 @@ EOHTML;
     
     $amaga_crea_taules = ($data == $this->data_BASE?"amagat":"");
     $checked = $this->taulesDisponibles->recupera_creaTaules() ? 'checked="checked"' : '';
+    //die("................$checked");
     $checkedterrassa = $this->recupera_estatTerrassa($data) ? 'checked="checked"' : '';
     $radio .= '<br/><br/><div class="check-creatales '.$amaga_crea_taules.'"><input type="checkbox" id="creaTaules" ' . $checked . ' style="'.$option_crea_taules.'"/> Creació automàtica de taules al formulari Online de reserves petites. <b>Només afecta el dia i torn actual!</b></div>';
     $radio .= '<br/><br/><div class="check-creatales '.$amaga_crea_taules.'"><input type="checkbox" id="opcioTerrassa" ' . $checkedterrassa . ' style="'.$option_crea_taules.'"/> Opció terrassa disponible. <b>Només afecta el dia i torn actual!</b></div>';

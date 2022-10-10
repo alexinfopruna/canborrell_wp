@@ -497,14 +497,15 @@ $translateDirectJS['CAP_TAULA'] = "Sorry, no tables available for the requested 
 $translateJS['CALÇOTADA_NO_COMBINABLE'] = 'The calçotada menu can only be combined with menu nº1. \\nIf you select confirm, the non-combinable menus will be removed from the selection';
 $translateJS['N4_NO_COMBINABLE'] = 'Menu No. 4 has not been combined with any other menu. All diners should ask for the same. \\nIf you select confirm, the non-combinable menus will be removed from the selection';
 
-$translateJS['INFO_CARTA_NADAL']="Els dies especials de nadal cal que escolliu els menús que us oferim. N`heu d`escollir tants com comensals"
-                      . "<br><br><b>(el menú de calçotada se puede combinar con los menús nº1 i nº2)</b>"
+        $translateJS['INFO_CARTA_NADAL']="Los dias especiales de navidad tenéis que escoger entre los menús que os ofrecemos. Tenéis que escoger tantos menús como comensales "
+                . "<br><br><b>(el menú de calçotada se puede combinar con los menús nº1 i nº2)</b>"
                 . "<br><br><b>SUPLEMENTOS (para quien no quiera parrillada)</b><br>"
-                . "<ul><li>Costilla de Ternera a la brasa (10.60€)</li>"
-                . "<li>Espalda cordero a la brasa (9.10€)</li>"
-                . "<li>Bacallà a la llauna (8.10€)</li>"
-                . "<li>Caracoles a la llauna (8.70€)</li>"
-                . "<li>Dorada a la brasa  (6.90€)</li><br>";
+                . "<ul><li>Costilla de Ternera a la brasa (8.40€)</li>"
+                . "<li>Espalda cordero a la brasa (7.95€)</li>"
+                . "<li>Bacallà a la llauna (4.10€)</li>"
+                . "<li>Caracoles a la llauna (6.40€)</li>"
+                . "<li>Dorada a la brasa  (6.80€)</li>"
+                . "<li>Lubina a la brasa  (6.80€)</li><br>";
 
         $translateJS['INFO_CARTA']=$translate['INFO_CARTA'];
 

@@ -34,7 +34,7 @@ function calendari_reserves_panel() {
 function calendari_reserves_add_menu() {
   if (function_exists('add_options_page')) {
     //add_menu_page
-    add_options_page('calendari_reserves', 'calendari_reserves', 8, basename(__FILE__), 'calendari_reserves_panel');
+    add_options_page('calendari_reserves', 'calendari_reserves', "editor", basename(__FILE__), 'calendari_reserves_panel');
   }
 }
 

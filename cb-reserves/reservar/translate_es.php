@@ -487,12 +487,13 @@ $translateJS['N4_NO_COMBINABLE'] = 'El menú nº 4 no se puede combinar con ning
         $translateJS['INFO_CARTA_NADAL']="Los dias especiales de navidad tenéis que escoger entre los menús que os ofrecemos. Tenéis que escoger tantos menús como comensales "
                 . "<br><br><b>(el menú de calçotada se puede combinar con los menús nº1 i nº2)</b>"
                 . "<br><br><b>SUPLEMENTOS (para quien no quiera parrillada)</b><br>"
-                . "<ul><li>Costilla de Ternera a la brasa (10.60€)</li>"
-                . "<li>Espalda cordero a la brasa (9.10€)</li>"
-                . "<li>Bacallà a la llauna (8.10€)</li>"
-                . "<li>Caracoles a la llauna (8.70€)</li>"
-                . "<li>Dorada a la brasa  (6.90€)</li><br>";
-        
+                          . "<ul><li>Costilla de Ternera a la brasa (8.40€)</li>"
+                . "<li>Espalda cordero a la brasa (7.95€)</li>"
+                . "<li>Bacallà a la llauna (4.10€)</li>"
+                . "<li>Caracoles a la llauna (6.40€)</li>"
+                . "<li>Dorada a la brasa  (6.80€)</li>"
+                . "<li>Lubina a la brasa  (6.80€)</li><br>";
+
         $translateJS['INFO_CARTA']=$translate['INFO_CARTA'];
 
 

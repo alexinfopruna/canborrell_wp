@@ -808,6 +808,7 @@ final class BWG {
       $params['id'] = (int) $params['id'];
       global $wpdb;
       $shortcode = $wpdb->get_var($wpdb->prepare("SELECT tagtext FROM " . $wpdb->prefix . "bwg_shortcode WHERE id='%d'", $params['id']));
+      
       if ($shortcode) {
         $shortcode_params = explode('" ', $shortcode);
         foreach ($shortcode_params as $shortcode_param) {
@@ -2128,3 +2129,7 @@ BWG();
 function photo_gallery( $id ) {
   echo BWG()->shortcode(array( 'id' => $id ));
 }
+
+function bwg_shortcode($params) {
+BWG()->shortcode($params,TRUE);
+  }
