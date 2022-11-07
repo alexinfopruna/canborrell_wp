@@ -100,9 +100,35 @@ $(function () {
 
     $(".menys").click(function () {
         var input = $(this).parent().find("input");
+
         var n = parseInt(input.val());
-        if (n > 0)
-            input.val(parseInt(n) - 1);
+        if (n >0) n--;
+        input.val(parseInt(n));
+        input.trigger("change");
+        
+        
+        var pid= $(this).parent().attr('producte_id');
+   
+        if (pid==2037 || pid==2036) {           
+            var na = parseInt($("input[name='adults']").val());
+            var nj = parseInt($("input[name='nens10_14']").val());
+            var nn = parseInt($("input[name='nens4_9']").val());
+        let menusjunior = parseInt($("input[nid='2036']").val());
+        let menusnens = parseInt($("input[nid='2037']").val());
+
+
+            na = na ? na : 0;
+            nj = nj ? nj : 0;
+            nn = nn ? nn : 0;
+            if ((nj+nn) > (menusnens+menusjunior))  {
+                n++;
+                n += (nj+nn)-(menusnens+menusjunior);
+               // alert("Heu de demanar obligatoriament un menú per cada infant");
+                alert(l("INFO_MENU_NENS"));
+            }
+        }        
+        
+        input.val(parseInt(n));
         input.trigger("change");
         //alert("-");
     });

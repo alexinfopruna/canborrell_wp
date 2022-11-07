@@ -381,11 +381,25 @@ function comportamentQuantsSou()
 
     //NENS
     $("input[name=selectorNens]").change(function () {
-        NENS = $("input[name='selectorNens']:checked").val();
-        ADULTS = $("input[name='selectorComensals']:checked").val();
+        NENS = parseInt($("input[name='selectorNens']:checked").val());
+        ADULTS = parseInt($("input[name='selectorComensals']:checked").val());
 
 
         $("input[name='nens4_9']").val(NENS);
+        
+        
+       if (NENS>0){
+            alert(l("INFO_MENU_NENS"));
+            let menusnens = parseInt($("input[nid='2037']").val());
+            let menusjunior = parseInt($("input[nid='2036']").val());
+            
+            if ((menusnens+menusjunior) < NENS) $("input[nid='2037']").val(NENS);
+            $("input[nid='2037']").trigger("change");
+            updateMenu();
+        }
+        
+        
+        
 
         if (!ADULTS)
             $.scrollTo("#titol_SelectorComensals", 600, {offset: -100});
