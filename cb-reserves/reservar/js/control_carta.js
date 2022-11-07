@@ -121,7 +121,7 @@ $(function () {
             nj = nj ? nj : 0;
             nn = nn ? nn : 0;
             if ((nj+nn) > (menusnens+menusjunior))  {
-                n++;
+                
                 n += (nj+nn)-(menusnens+menusjunior);
                // alert("Heu de demanar obligatoriament un menú per cada infant");
                 alert(l("INFO_MENU_NENS"));
