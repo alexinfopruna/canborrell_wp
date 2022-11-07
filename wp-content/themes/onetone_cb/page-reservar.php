@@ -432,8 +432,8 @@ header("Pragma: no-cache");
   </style>                
 
   <script type="text/javascript" src="/cb-reserves/reservar/js/jquery.simplemodal.js"></script>
-  <script type="text/javascript" src="/cb-reserves/reservar/js/control_carta.js"></script>
-  <script type="text/javascript" src="/cb-reserves/reservar/js/form_reserves.js?211204"></script>		
+  <script type="text/javascript" src="/cb-reserves/reservar/js/control_carta.js?22111122"></script>
+  <script type="text/javascript" src="/cb-reserves/reservar/js/form_reserves.js?2211"></script>		
   <script type="text/javascript" src="/cb-reserves/reservar/js/popups_ajuda.js"></script>
 
   <script>
