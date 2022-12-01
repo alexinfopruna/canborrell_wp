@@ -524,7 +524,7 @@ Agua y refrescos<br/>
 <B>ENTRANTES</B>
 <UL>
 CAL&Ccedil;OTS (temporada)<br/>
-Incluye repetici&oacute;n (hasta 25 Uds./comensal)<br/>
+Incluye repetici&oacute;n <br/>
 &nbsp;<br/>
 Jud&iacute;as con tocino<br/>
 Patatas fritas<br/>
