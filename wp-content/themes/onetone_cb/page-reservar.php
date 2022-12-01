@@ -885,7 +885,7 @@ if ($testTPV) {
                                                                           <div class=" ui-corner-all" >
 
                                                                               
-                      <div id="blockCalcots" class="hidden">
+                      <div id="blockCalcots" class="<?php echo (!defined("calsoton") || !calsoton)?"hidden":""?>">
                                                 <div id="selectorCalcots" class="fr-col-dere selector">
                                                     <h3><?php l("QUANTS_CALCOTS") ?></h3>
                                                     <span style="font-style:italic;"><?php l("INFO_CALCOTS") ?></span>
