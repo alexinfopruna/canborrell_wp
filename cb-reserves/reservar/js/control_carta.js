@@ -124,7 +124,8 @@ $(function () {
                 
                 n += (nj+nn)-(menusnens+menusjunior);
                // ZZZalert("Heu de demanar obligatoriament un menú per cada infant");
-                alert(l("INFO_MENU_NENS"));
+                //alert(l("INFO_MENU_NENS"));
+                help(l("INFO_MENU_NENS"));
             }
         }        
         
@@ -364,6 +365,7 @@ function updateMenus() {
         $("#carta_MENUS tr[producte_id=2007]").show(); //n4
         $("#carta_MENUS tr[producte_id=2036]").show(); //inf
         $("#carta_MENUS tr[producte_id=2037]").show(); //jun
+        $("#carta_MENUS tr[producte_id=2010]").show(); //jun
  
         /*
                 $("#carta_ tr").hide();

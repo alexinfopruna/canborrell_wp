@@ -389,7 +389,8 @@ function comportamentQuantsSou()
         
         
        if (NENS>0){
-            alert(l("INFO_MENU_NENS"));
+            //alert(l("INFO_MENU_NENS"));
+            help(l("INFO_MENU_NENS"));
             let menusnens = parseInt($("input[nid='2037']").val());
             let menusjunior = parseInt($("input[nid='2036']").val());
             
