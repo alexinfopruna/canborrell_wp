@@ -508,7 +508,7 @@ $translateJS['N4_NO_COMBINABLE'] = 'Menu No. 4 has not been combined with any ot
                 . "<li>Lubina a la brasa  (6.80€)</li><br>";
 
         $translateJS['INFO_CARTA']=$translate['INFO_CARTA'];
-        $translateJS['INFO_MENU_NENS']="It is mandatory to request a menu for each child, later, in the menus section";
+        $translateJS['INFO_MENU_NENS']='<p class="alert alert-info"><span class="glyphicon glyphicon-info-sign f1"></span>It is mandatory to request a menu for each child, later, in the menus section</p>';
 
 require_once('translate.php');
 ?>

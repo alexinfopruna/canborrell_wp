@@ -412,7 +412,8 @@ $translateJS['N4_NO_COMBINABLE'] = "El menú nº 4 no es pot combinar amb cap al
 
 
         $translateJS['INFO_CARTA']=$translate['INFO_CARTA'];
-        $translateJS['INFO_MENU_NENS']="Seleccionant nens us comprometeu a demanar un menú (infantil o júnior) per cada infant a la secció de menús, més endavant";
+                $translateJS['INFO_MENU_NENS']='<p class="alert alert-info"><span class="glyphicon glyphicon-info-sign f1"></span>Seleccionant nens us comprometeu a demanar un menú (infantil o júnior) per cada infant a la secció de menús, més endavant</p>';
+
    //     $translateJS['INFO_CARTA']="Si ho desitges pots triar els plats que demanareu per tenir una idea del preu, evitar que us trobeu algun plat exhaurit i accelerar el servei quan vingueu al restaurant.<br/><br/><b>Aquesta selecció no et compromet en absolut</b>.<br/><br/> Un cop al restaurant podràs modificar o anul·lar la comanda i, en qualsevol cas, us cobrarem únicament els plats i beugudes que us servim.";;
         
 require_once('translate.php');

@@ -495,7 +495,7 @@ $translateJS['N4_NO_COMBINABLE'] = 'El menú nº 4 no se puede combinar con ning
                 . "<li>Lubina a la brasa  (6.80€)</li><br>";
 
         $translateJS['INFO_CARTA']=$translate['INFO_CARTA'];
-        $translateJS['INFO_MENU_NENS']="Seleccionando niños os comprometéis a pedir un menú (infantil o júnior) para cada uno en la sección de menús, más adelante";
+        $translateJS['INFO_MENU_NENS']='<p class="alert alert-info"><span class="glyphicon glyphicon-info-sign f1"></span>Seleccionando niños os comprometéis a pedir un menú (infantil o júnior) para cada uno en la sección de menús, más adelante</p>';
 
 
 require_once('translate.php');
