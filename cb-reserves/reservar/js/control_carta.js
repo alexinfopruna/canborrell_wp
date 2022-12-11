@@ -123,7 +123,7 @@ $(function () {
             if ((nj+nn) > (menusnens+menusjunior))  {
                 
                 n += (nj+nn)-(menusnens+menusjunior);
-               // alert("Heu de demanar obligatoriament un menú per cada infant");
+               // ZZZalert("Heu de demanar obligatoriament un menú per cada infant");
                 alert(l("INFO_MENU_NENS"));
             }
         }        
