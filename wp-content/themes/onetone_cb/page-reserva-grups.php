@@ -416,7 +416,8 @@ function reservar_enqueue_styles() {
 
                                                                           <input type="radio" id="comGrups" name="selectorComensals" value="grups"  /><label for="comGrups" ><?php l('<=' . ($PERSONES_GRUP - 1)); ?></label>
                                                                           <?php
-                                                                          for ($i = $PERSONES_GRUP; $i < $PERSONES_GRUP + 15; $i++) {
+                                                                          //for ($i = $PERSONES_GRUP; $i < $PERSONES_GRUP + 15; $i++) {
+                                                                          for ($i = $PERSONES_GRUP; $i < $MAX_COMENSALS_GRUP; $i++) {
                                                                             $checked = ($i == $na ? ' checked="checked' : '');
                                                                             print '<input type="radio" id="com' . $i . '" name="selectorComensals" value="' . $i . '" ' . $checked . ' class="adults "/><label for="com' . $i . '">' . $i . '</label>';
                                                                           }
