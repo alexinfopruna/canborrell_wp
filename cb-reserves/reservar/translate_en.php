@@ -92,8 +92,7 @@ that may be related to the Covid-19 virus, please take the measures ruled by the
 $translate['Sol·licitud de reserva per a GRUPS'] = 'Reservation request for GROUPS';
 $translate['Tens algun dubte?'] = 'Any question?';
 
-$translate["gossos"] = "
-We accept pets inside the restaurant up to 8Kg. If it is bigger you can have lunch outside";
+$translate["gossos"] = "We accept pets inside the restaurant up to 8Kg.";
 
 
 

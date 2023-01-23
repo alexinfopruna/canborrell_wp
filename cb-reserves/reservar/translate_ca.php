@@ -216,7 +216,7 @@ $translate["RESERVA_IMPAGADA"] = "No hem rebut confirmació del pagament de la p
 $translate["Can Borrell: Reserva Anul·lada: No es rep i senyal"] = "Can Borrell: Reserva Anul·lada: No rebem paga i senyal";
 
 
-$translate["gossos"] = "Admetem mascotes al'interior del restaurant fins a 8Kg. Si és més gran podeu dinar a l'exterior ";
+$translate["gossos"] = "Admetem mascotes al'interior del restaurant fins a 8Kg.";
 
 $translate['RESERVA_CORONA'] = "Seguint el protocol COVID establert per la Generalitat de Catalunya, el certificat COVID digital serà obligatori per poder accedir al restaurant.<br><b> </b>";
 /*

@@ -705,7 +705,7 @@ function updateMenus() {
         $("#carta_MENUS tr").show();
     }
 
-
+    updateMenusSectionButtons();
 }
 
 /********************************************************************************************************************/
@@ -1072,7 +1072,8 @@ function tanca_dlg() {
 }
 
 function updateMenusSectionButtons(){
-         shouldElementBeVisible =  $("input[name='adults']").val()<=14;
+         //shouldElementBeVisible =  $("input[name='adults']").val()<=14;
+         shouldElementBeVisible = false;
     $("#bt-carta").toggle(shouldElementBeVisible);
     $("#bt-no-carta").toggle(shouldElementBeVisible);
 }
