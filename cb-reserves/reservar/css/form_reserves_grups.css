@@ -267,3 +267,10 @@ padding: .4em .8em;
 }
 
 
+.fr-seccio-submit button{
+    background:#3c7824;
+}
+
+.fr-seccio-submit button:hover{
+    background:#BD7E22;
+}

@@ -66,12 +66,12 @@ ni en el cas que canvieu el nombre de comensals en confirmar la reserva.'
 
 .'<br/><br/>Gracies per utilitzar aquest servei.<br/><br/>';
 
-$translate['ANULAT____INFO_COMANDA_GRUPS']="Per les reserves de més de 20 persones has d'escollir, com a mínim, un menú/plat per cada comensal (comptant adults, juniors nens)<br>"
+$translate['ANULAT____INFO_COMANDA_GRUPS']="Per les reserves de més de 12 persones has d'escollir, com a mínim, un menú/plat per cada comensal (comptant adults, juniors nens)<br>"
     . "Per més de 20 comensals no està disponible la carta, i és necessari que indiqueu exclussivament menús";
 $translate['INFO_COMANDA_GRUPS']="Seleccioneu els plats o menús que prendreu. Tingueu present que haureu de triar tots carta o tots menús i que <b>no es poden combinar menús i carta en una mateixa reserva </b><br>"
     . "<br>"
-    . "<ul><li>Si sou <b>fins a 20</b> comensals, la selecció de plats <b>és opcional</b>, però si ho desitgeu, per facilitar-nos la nostra feina, podeu triar plats de la carta o menús complerts, però <b>no podeu combinar carta i menús</b></li>"
-    . "<li>Si sou <b>més de 20</b>, per poder completar la reserva <b>és imprescindible</b> que seleccioneu tants menús com comensals (inclosos els nens). La carta no estarà disponible. </li></ul>";
+    . "<ul><li>Si sou <b>fins a 12</b> comensals, la selecció de plats <b>és opcional</b>, però si ho desitgeu, per facilitar-nos la nostra feina, podeu triar plats de la carta o menús complerts, però <b>no podeu combinar carta i menús</b></li>"
+    . "<li>Si sou <b>més de 12</b>, per poder completar la reserva <b>és imprescindible</b> que seleccioneu tants menús com comensals (inclosos els nens). La carta no estarà disponible. </li></ul>";
 
 $translate['MENUS_COMENSALS']="Has d'escollir tants menús com comensals (adults + juniors + nens)";
 $translate['CARTA_FINS_20']="Fins a 21 comensals la selecció de plats de la carta és opcional i la podreu fer directament al restaurant si ho preferiu";
