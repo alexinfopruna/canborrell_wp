@@ -1,8 +1,6 @@
 <?php
-
-if (!defined('ROOT'))  define('ROOT', "../taules/");
-echo getcwd();
-echo "**********";
+$root= getcwd()."/../taules/";
+if (!defined('ROOT'))  define('ROOT', $root);
 echo ROOT;die();
 require(ROOT . "gestor_reserves.php");
 $gestor = new gestor_reserves();
