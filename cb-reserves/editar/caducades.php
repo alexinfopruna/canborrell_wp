@@ -1,7 +1,7 @@
 <?php
 $root= getcwd()."/../taules/";
 if (!defined('ROOT'))  define('ROOT', $root);
-echo ROOT;die();
+//echo ROOT;die();
 require(ROOT . "gestor_reserves.php");
 $gestor = new gestor_reserves();
 require(ROOT . "Gestor_pagaments.php");
