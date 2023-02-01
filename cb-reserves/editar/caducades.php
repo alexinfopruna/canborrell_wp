@@ -128,7 +128,7 @@ function recordatori($canborrell, $dies) {
     echo "<br/><br/>" . $query_reserves . "<br/><br/>";
 
     if (SMS_ACTIVAT)
-       //$update = "TEST"; 
+       $update = "TEST"; 
        $update = mysqli_query($canborrell, $query_reserves) or die(((is_object($GLOBALS["___mysqli_ston"])) ? mysqli_error($GLOBALS["___mysqli_ston"]) : (($___mysqli_res = mysqli_connect_error()) ? $___mysqli_res : false)));
   }
 
@@ -196,7 +196,7 @@ function mail_cli($id = false, $plantilla = "templates/recordatori_cli.lbi") {
   $avui = date("d/m/Y");
   $ara = date("H:i");
 
-  $file = $plantilla;
+  $file = ROOT.'../editar/'.$plantilla;
   $t = new Template('.', 'comment');
   $t->set_file("page", $file);
   $dat_limit = data_llarga($fila['data_limit'], $lang);
