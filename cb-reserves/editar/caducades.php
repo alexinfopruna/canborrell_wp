@@ -106,7 +106,7 @@ function recordatori($canborrell, $dies) {
     }
     
     $plantilla = "templates/recordatori_cli.lbi";
-    //mail_cli($row["id_reserva"], $plantilla);
+    mail_cli($row["id_reserva"], $plantilla);
     $mensa .= "ID Reserva: " . $row["id_reserva"] . " amb data límit per pagar: " . data_llarga($row['data_limit']) . " \\n";
 
     if ($dies <= 1) {
@@ -115,7 +115,7 @@ function recordatori($canborrell, $dies) {
 
       print_log("RECORDATORI enviaSMS({$row['tel']},{$row['preu_reserva']},$lafecha,{$row["id_reserva"]});");
       if (TRUE) {
-        //enviaSMS($row['tel'], $row['preu_reserva'], $lafecha, $row["id_reserva"], $row["lang"]);
+        enviaSMS($row['tel'], $row['preu_reserva'], $lafecha, $row["id_reserva"], $row["lang"]);
         $mensa .= "SMS ENVIAT: " . $row['tel'] . " \\n";
       }
       else {
@@ -128,8 +128,8 @@ function recordatori($canborrell, $dies) {
     echo "<br/><br/>" . $query_reserves . "<br/><br/>";
 
     if (SMS_ACTIVAT)
-       $update = "TEST"; 
-       //$update = mysqli_query($canborrell, $query_reserves) or die(((is_object($GLOBALS["___mysqli_ston"])) ? mysqli_error($GLOBALS["___mysqli_ston"]) : (($___mysqli_res = mysqli_connect_error()) ? $___mysqli_res : false)));
+       //$update = "TEST"; 
+       $update = mysqli_query($canborrell, $query_reserves) or die(((is_object($GLOBALS["___mysqli_ston"])) ? mysqli_error($GLOBALS["___mysqli_ston"]) : (($___mysqli_res = mysqli_connect_error()) ? $___mysqli_res : false)));
   }
 
   if ($nr > 0)
