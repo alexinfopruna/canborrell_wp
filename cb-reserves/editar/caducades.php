@@ -318,7 +318,7 @@ echo "<br><br><br>".$html."<br><br><br>";
 
 function enviaSMS($numMobil, $importReserva, $diaReserva, $idReserva, $lang) {
   global $txt;
-  $mensa = $txt[92][$lang];
+  $mensa = "HOLAAA";//$txt[92][$lang];
   echo "............$mensa.........";
   $mensa = str_replace("%diaReserva", $diaReserva, $mensa);
   $mensa = str_replace("%importReserva", $importReserva, $mensa);
@@ -345,7 +345,7 @@ function enviaSMS($numMobil, $importReserva, $diaReserva, $idReserva, $lang) {
 
   echo "<br/>";
   echo "<br/>";
-  echo "SMS RECORDATORI $id";
+  echo "SMS RECORDATORI $idReserva";
   echo "<br/>";
   echo $html;
   echo "<br/>";
