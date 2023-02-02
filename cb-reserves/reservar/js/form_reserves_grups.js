@@ -828,7 +828,7 @@ function validacio()
         //var totalComansals = parseInt($("#totalComensals").val());
         var totalComansals = totalPersones();
         var value = parseInt(value);
-        if (totalComansals<=20) return true;
+        if (totalComansals<=12) return true;
         //shouldElementBeVisible =  $("input[name='adults']").val()<=20;
     //    if (shouldElementBeVisible && SELECT_CARTA) return true;
         return (value >= totalComansals);
