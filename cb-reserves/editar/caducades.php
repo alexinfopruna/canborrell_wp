@@ -1,7 +1,6 @@
 <?php
-$root= getcwd()."/../taules/";
-if (!defined('ROOT'))  define('ROOT', $root);
-//echo ROOT;die();
+
+if (!defined('ROOT'))  define('ROOT', "../taules/");
 require(ROOT . "gestor_reserves.php");
 $gestor = new gestor_reserves();
 require(ROOT . "Gestor_pagaments.php");
@@ -22,8 +21,8 @@ echo "<br/>*********************************************************************
 echo "<br/><br/>" . date("D d-m-Y H:i:s") . " Execució  /home/hostings/webs/can-borrell.com/www/htdocs/cb-reserves/editar/caducades.php <br/><br/>";
 echo "<br/><br/><br/>";
 
-echo "SMS ";
-//enviaSMS("606782798", "666", "11/02", 4771, "ca");
+echo "SMS";
+echo enviaSMS("606782798", "666", "11/02", 4771, "ca");
 die("FIN");
 ?>
 <?php
@@ -118,9 +117,9 @@ function recordatori($canborrell, $dies) {
       preg_match("/([0-9]{2,4})-([0-9]{1,2})-([0-9]{1,2})/", $row['data'], $mifecha);
       $lafecha = $mifecha[3] . "/" . $mifecha[2];
 
-      print_log("RECORDATORI enviaSMS({$row['tel']},{$row['preu_reserva']},$lafecha,{$row["id_reserva"        enviaSMS($row['tel'], $row['preu_reserva'], $lafecha, $row["id_reserva"], $row["lang"]);
-]});");
+      print_log("RECORDATORI enviaSMS({$row['tel']},{$row['preu_reserva']},$lafecha,{$row["id_reserva"]});");
       if (TRUE) {
+        enviaSMS($row['tel'], $row['preu_reserva'], $lafecha, $row["id_reserva"], $row["lang"]);
         $mensa .= "SMS ENVIAT: " . $row['tel'] . " \\n";
       }
       else {
@@ -133,6 +132,7 @@ function recordatori($canborrell, $dies) {
     echo "<br/><br/>" . $query_reserves . "<br/><br/>";
 
     if (SMS_ACTIVAT)
+       $update = "TEST"; 
        $update = mysqli_query($canborrell, $query_reserves) or die(((is_object($GLOBALS["___mysqli_ston"])) ? mysqli_error($GLOBALS["___mysqli_ston"]) : (($___mysqli_res = mysqli_connect_error()) ? $___mysqli_res : false)));
   }
 
@@ -200,7 +200,7 @@ function mail_cli($id = false, $plantilla = "templates/recordatori_cli.lbi") {
   $avui = date("d/m/Y");
   $ara = date("H:i");
 
-  $file = ROOT.'../editar/'.$plantilla;
+  $file = $plantilla;
   $t = new Template('.', 'comment');
   $t->set_file("page", $file);
   $dat_limit = data_llarga($fila['data_limit'], $lang);
