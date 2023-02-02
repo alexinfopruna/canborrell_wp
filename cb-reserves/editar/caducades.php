@@ -22,7 +22,7 @@ echo "<br/><br/>" . date("D d-m-Y H:i:s") . " Execució  /home/hostings/webs/can
 echo "<br/><br/><br/>";
 
 echo "SMS";
-echo enviaSMS("606782798", "666", "11/02", 4771, "ca");
+echo enviaSMS("606782798", "666", "11/02", 4771, "cat");
 die("FIN");
 ?>
 <?php
@@ -132,7 +132,6 @@ function recordatori($canborrell, $dies) {
     echo "<br/><br/>" . $query_reserves . "<br/><br/>";
 
     if (SMS_ACTIVAT)
-       $update = "TEST"; 
        $update = mysqli_query($canborrell, $query_reserves) or die(((is_object($GLOBALS["___mysqli_ston"])) ? mysqli_error($GLOBALS["___mysqli_ston"]) : (($___mysqli_res = mysqli_connect_error()) ? $___mysqli_res : false)));
   }
 
@@ -168,7 +167,7 @@ function historic($canborrell) {
     $reserves = mysqli_query($canborrell, $query_reserves) or die(((is_object($GLOBALS["___mysqli_ston"])) ? mysqli_error($GLOBALS["___mysqli_ston"]) : (($___mysqli_res = mysqli_connect_error()) ? $___mysqli_res : false)));
 
   return $bodi;
-  //exit();
+  //exit();lelangg
 }
 
 function mail_cli($id = false, $plantilla = "templates/recordatori_cli.lbi") {
@@ -341,8 +340,8 @@ function enviaSMS($numMobil, $importReserva, $diaReserva, $idReserva, $lang) {
 
   $sendService = new EsendexSendService($username, $password, $accountReference);
   //echo $lang."   ---------------------- TEEEST: $body  ---------------------------<br>";
-  if (SMS_ACTIVAT && ENVIA_SMS)
-    $result = $sendService->SendMessage($recipients, $body, $type);
+  if (ENVIA_SMS)
+    echo $result = $sendService->SendMessage($recipients, $body, $type);
 
   echo "<br/>";
   echo "<br/>";
