@@ -326,8 +326,9 @@ function enviaSMS($numMobil, $importReserva, $diaReserva, $idReserva, $lang) {
 
 
   // Test Variables - assign values accordingly:
-  $username = "restaurant@can-borrell.com";   // Your Username (normally an email address).
-  $password = "1909";   // Your Password.
+  $username = $essedex_user = "restaurant@can-borrell.com";   // Your Username (normally an email address).
+  //$password = "1909";   // Your Password.
+  $password = $essedex_pwd = "Alkaline:17";   // Your Password.
   $accountReference = "EX0062561";  // Your Account Reference (either your virtual mobile number, or EX account number).
   $originator = "Rest.Can Borrell";  // An alias that the message appears to come from (alphanumeric characters only, and must be less than 11 characters).
   $recipients = $numMobil;  // The mobile number(s) to send the message to (comma-separated).
@@ -338,10 +339,25 @@ function enviaSMS($numMobil, $importReserva, $diaReserva, $idReserva, $lang) {
   //$messageIDs = array($idReserva);		// A single or comma-separated list of sent message IDs.
   $messageStatus;   // The status of a sent message.
 
-  $sendService = new EsendexSendService($username, $password, $accountReference);
+  //$sendService = new EsendexSendService($username, $password, $accountReference);
   //echo $lang."   ---------------------- TEEEST: $body  ---------------------------<br>";
   //if (ENVIA_SMS)
-     $result = $sendService->SendMessage($recipients, $body, $type);
+    // $result = $sendService->SendMessage($recipients, $body, $type);
+     
+     
+      try {
+        $sendService = new EsendexSendService($essedex_user, $essedex_pwd, $accountReference);
+        $result = $sendService->SendMessage($recipients, $body, $type);
+        $pr = print_r($result, TRUE);
+        $this->xgreg_log(">>> ENVIA SMS: REAL: " . $pr . " ***  " . $result['Result'], 1);
+        $this->xgreg_log(">>> ENVIA SMS: REAL: " . $pr . " ***  " . $result['Result'], 1, '/log/logMAILSMS.txt');
+      }
+      catch (Exception $e) {
+        $this->xgreg_log(">>> ERROR: " . $result['Result'], 1, '/log/logMAILSMS.txt');
+        $result['Result'] = "SMS: ERROR DE CONNEXIO AL HOST: " . $result['Result'];
+      }     
+     
+     
        
   $pr = print_r($result, TRUE);
 
