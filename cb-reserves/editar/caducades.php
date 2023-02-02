@@ -316,8 +316,12 @@ echo "<br><br><br>".$html."<br><br><br>";
   return ($fila['id_reserva']);
 }
 
+
 function enviaSMS($numMobil, $importReserva, $diaReserva, $idReserva, $lang) {
-  global $txt;
+  global $txt, $gestor;
+  
+  //echo $gestor->enviaSMS($idReserva);
+  //die();
   $html = $mensa = "HOLAAA";//$txt[92][$lang];
   echo "............$mensa.........";
   $mensa = str_replace("%diaReserva", $diaReserva, $mensa);
