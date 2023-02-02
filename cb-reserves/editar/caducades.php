@@ -341,7 +341,8 @@ function enviaSMS($numMobil, $importReserva, $diaReserva, $idReserva, $lang) {
   $sendService = new EsendexSendService($username, $password, $accountReference);
   //echo $lang."   ---------------------- TEEEST: $body  ---------------------------<br>";
   if (ENVIA_SMS)
-    echo $result = $sendService->SendMessage($recipients, $body, $type);
+     $result = $sendService->SendMessage($recipients, $body, $type);
+        $pr = print_r($result, TRUE);
 
   echo "<br/>";
   echo "<br/>";
