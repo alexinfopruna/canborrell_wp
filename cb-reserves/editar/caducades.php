@@ -340,11 +340,12 @@ function enviaSMS($numMobil, $importReserva, $diaReserva, $idReserva, $lang) {
 
   $sendService = new EsendexSendService($username, $password, $accountReference);
   //echo $lang."   ---------------------- TEEEST: $body  ---------------------------<br>";
-  if (ENVIA_SMS)
+  //if (ENVIA_SMS)
      $result = $sendService->SendMessage($recipients, $body, $type);
-        $pr = print_r($result, TRUE);
+       
+  $pr = print_r($result, TRUE);
 
-  echo "<br/>";
+  echo "ENVIA_SMS: ".ENVIA_SMS."<br/>";
   echo "<br/>";
   echo "SMS RECORDATORI $idReserva";
   echo "<br/>";
