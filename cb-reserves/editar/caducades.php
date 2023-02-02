@@ -22,7 +22,8 @@ echo "<br/><br/>" . date("D d-m-Y H:i:s") . " Execució  /home/hostings/webs/can
 echo "<br/><br/><br/>";
 
 echo "SMS";
-echo enviaSMS("606782798", "666", "11/02", 4771, "cat");
+echo $gestor->enviaSMS(4771);
+//echo enviaSMS("606782798", "666", "11/02", 4771, "cat");
 die("FIN");
 ?>
 <?php
