@@ -22,7 +22,7 @@ echo "<br/>*********************************************************************
 echo "<br/><br/>" . date("D d-m-Y H:i:s") . " Execució  /home/hostings/webs/can-borrell.com/www/htdocs/cb-reserves/editar/caducades.php <br/><br/>";
 echo "<br/><br/><br/>";
 
-echo "SMS "
+echo "SMS ";
 //enviaSMS("606782798", "666", "11/02", 4771, "ca");
 die("FIN");
 ?>
