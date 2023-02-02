@@ -3051,7 +3051,7 @@ ORDER BY `estat_hores_data` DESC";
     if (strlen($numMobil) != 9 || !is_numeric($numMobil)) {
       return true;
     }
-    if (substr($numMobil, 0, 1) != '6' && substr($numMobil, 0, 1) != '7' && $numMobil != '999212121') {
+    if (substr($numMobil, 0, 1) != '6' && substr($numMobil, 0, 1) != '7' ) {
       return true;
     }
 

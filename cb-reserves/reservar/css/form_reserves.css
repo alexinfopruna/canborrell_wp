@@ -173,7 +173,7 @@
 
 	}
 	
-	#submit{float:right;right:0px;padding:10px;font-size:1.2em;}
+	#submit{float:right;right:0px;padding:10px;font-size:1.2em;    background-color: green;}
 	.resum{margin-bottom:10px;color:#570600;}
 	.resum b{font-size:1.2em;}
 	
