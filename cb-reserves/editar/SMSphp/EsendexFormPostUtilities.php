@@ -120,8 +120,8 @@ class EsendexFormPostUtilities
 		$response = "";
 		$index = count( $results );
 
-                print_r($results);
-                die();
+                //print_r($results);
+                //die();
                 
 		while( $i < $index )
 		{
