@@ -120,6 +120,9 @@ class EsendexFormPostUtilities
 		$response = "";
 		$index = count( $results );
 
+                print_r($results);
+                
+                
 		while( $i < $index )
 		{
 			if( !is_array( $results[$i] ) )
