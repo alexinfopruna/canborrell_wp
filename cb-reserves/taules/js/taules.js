@@ -1326,7 +1326,7 @@ function esborra_clients_llei() {
 }
 function recordatoris() {
     //var desti = "gestor_reserves.php?a=recordatori_petites_3dies";
-    var desti = "../editar/cadicades.php"
+    var desti = "../editar/caducades.php"
     $.post(desti, function (datos) {
         //  if (datos.substr(0,4)!='test') alert("recordatori_petites_3dies "+datos);
 
