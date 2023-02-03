@@ -20,6 +20,10 @@ $mensaini = "";
 echo "<br/>**********************************************************************************************<br/>";
 echo "<br/><br/>" . date("D d-m-Y H:i:s") . " Execució  /home/hostings/webs/can-borrell.com/www/htdocs/cb-reserves/editar/caducades.php <br/><br/>";
 echo "<br/><br/><br/>";
+
+
+$gestor->enviaSMS(96976, "CADUCADES");
+die("CADUCADES DIE");
 ?>
 <?php
 

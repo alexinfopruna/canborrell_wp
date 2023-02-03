@@ -153,9 +153,9 @@ require(ROOT . '../reservar/translate_grups_' . $gestor->lng . '.php');
 function reservar_enqueue_styles() {
   global $lang, $gestor;
   ?>
-  <link type="text/css" href="/cb-reserves/taules/css/blitzer/jquery-ui-1.8.9.custom.css" rel="stylesheet" />	
+  <link type="text/css" href="/cb-reserves/taules/css/blitzer/jquery-ui-1.8.9.custom.css?223" rel="stylesheet" />	
   <link type="text/css" href="/cb-reserves/reservar/css/form_reserves_grups.css" rel="stylesheet" />	
-  <link type="text/css" href="/cb-reserves/reservar/css/form_reserves_grups_mob.css" rel="stylesheet" />	
+  <link type="text/css" href="/cb-reserves/reservar/css/form_reserves_grups_mob.css?223" rel="stylesheet" />	
   <link type="text/css" href="/cb-reserves/reservar/css/jquery.tooltip.css" rel="stylesheet" />	
   <link type="text/css" href="/cb-reserves/reservar/css/osx.css" rel="stylesheet" />
   <link type="text/css" href="/cb-reserves/reservar/css/glyphicons.css" rel="stylesheet" />

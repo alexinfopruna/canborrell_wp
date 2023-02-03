@@ -150,7 +150,7 @@ require_once(ROOT . '../reservar/translate_ca.php');
     <link rel="shortcut icon" type="image/ico" href="/gear-favicon.ico" />
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
 <title>Gestió de reserves</title>
-<link href="reserves.css" rel="stylesheet" type="text/css" />
+<link href="reserves.css?223" rel="stylesheet" type="text/css" />
 <link href="../css/estils.css" rel="stylesheet" type="text/css" />
   <link type="text/css" href="/cb-reserves/taules/css/blitzer/jquery-ui-1.8.9.forms.css" rel="stylesheet" />	
   <link type="text/css" href="/cb-reserves/reservar/css/form_reserves_mob.css" rel="stylesheet" />		
