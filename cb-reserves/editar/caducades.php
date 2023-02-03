@@ -203,7 +203,7 @@ function mail_cli($id = false, $plantilla = ROOT."../editar/templates/recordator
   $avui = date("d/m/Y");
   $ara = date("H:i");
 
-  echo $file = $plantilla;
+  echo $file = ROOT."../editar/$plantilla";
   $t = new Template('.', 'comment');
   $t->set_file("page", $file);
   $dat_limit = data_llarga($fila['data_limit'], $lang);
