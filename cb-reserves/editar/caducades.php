@@ -123,7 +123,6 @@ function recordatori($canborrell, $dies) {
 
       print_log("RECORDATORI enviaSMS({$row['tel']},{$row['preu_reserva']},$lafecha,{$row["id_reserva"]});");
       if (TRUE) {
-echo "RRRRRRRRRRRRRRRRRRRR";
         enviaSMS($row['tel'], $row['preu_reserva'], $lafecha, $row["id_reserva"], $row["lang"]);
         $mensa .= "SMS ENVIAT: " . $row['tel'] . " \\n";
       }
@@ -137,9 +136,11 @@ echo "RRRRRRRRRRRRRRRRRRRR";
     $query_reserves = "UPDATE reserves SET num_1=$ENVIAT WHERE id_reserva=" . $row["id_reserva"];
     echo "<br/><br/>" . $query_reserves . "<br/><br/>";
 
-    if (SMS_ACTIVAT )
+    if (SMS_ACTIVAT){
       $update = mysqli_query($canborrell, $query_reserves) or die(((is_object($GLOBALS["___mysqli_ston"])) ? mysqli_error($GLOBALS["___mysqli_ston"]) : (($___mysqli_res = mysqli_connect_error()) ? $___mysqli_res : false)));
-  }
+     }
+  
+    }
 
   if ($nr > 0)
     $bodi = $mensa;
