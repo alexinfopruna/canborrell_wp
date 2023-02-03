@@ -174,7 +174,7 @@ function historic($canborrell) {
   //exit();
 }
 
-function mail_cli($id = false, $plantilla = "templates/recordatori_cli.lbi") {
+function mail_cli($id = false, $plantilla = ROOT."../editar/templates/recordatori_cli.lbi") {
   require_once("mailer.php");
   global $camps, $mmenu, $txt, $database_canborrell, $canborrell, $lang, $gestor;
 
@@ -203,7 +203,7 @@ function mail_cli($id = false, $plantilla = "templates/recordatori_cli.lbi") {
   $avui = date("d/m/Y");
   $ara = date("H:i");
 
-  $file = $plantilla;
+  echo $file = $plantilla;
   $t = new Template('.', 'comment');
   $t->set_file("page", $file);
   $dat_limit = data_llarga($fila['data_limit'], $lang);
