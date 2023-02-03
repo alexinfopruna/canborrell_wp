@@ -22,8 +22,7 @@ echo "<br/><br/>" . date("D d-m-Y H:i:s") . " Execució  /home/hostings/webs/can
 echo "<br/><br/><br/>";
 
 
-$gestor->enviaSMS(96976, "CADUCADES");
-die("CADUCADES DIE");
+
 ?>
 <?php
 
@@ -322,7 +321,7 @@ echo "<br><br><br>".$html."<br><br><br>";
 }
 
 function enviaSMS($numMobil, $importReserva, $diaReserva, $idReserva, $lang) {
-  global $txt;
+  global $txt, $gestor;
   $mensa = $txt[92][$lang];
   echo "............$mensa.........";
   $mensa = str_replace("%diaReserva", $diaReserva, $mensa);
@@ -331,23 +330,12 @@ function enviaSMS($numMobil, $importReserva, $diaReserva, $idReserva, $lang) {
 
 
   // Test Variables - assign values accordingly:
-  $username = "restaurant@can-borrell.com";   // Your Username (normally an email address).
-  $password = "1909";   // Your Password.
-  $accountReference = "EX0062561";  // Your Account Reference (either your virtual mobile number, or EX account number).
-  $originator = "Rest.Can Borrell";  // An alias that the message appears to come from (alphanumeric characters only, and must be less than 11 characters).
   $recipients = $numMobil;  // The mobile number(s) to send the message to (comma-separated).
   $body = $mensa;   // The body of the message to send (must be less than 160 characters).
-  $type = "Text";   // The type of the message in the body (e.g. Text, SmartMessage, Binary or Unicode).
-  $validityPeriod = 0;  // The amount of time in hours until the message expires if it cannot be delivered.
-  $result;   // The result of a service request.
-  //$messageIDs = array($idReserva);		// A single or comma-separated list of sent message IDs.
   $messageStatus;   // The status of a sent message.
 
-  $sendService = new EsendexSendService($username, $password, $accountReference);
-  //echo $lang."   ---------------------- TEEEST: $body  ---------------------------<br>";
   if (SMS_ACTIVAT && ENVIA_SMS)
-    $result = $sendService->SendMessage($recipients, $body, $type);
-
+    $result = $gestor->enviaSMS($numMobil, $body);
   echo "<br/>";
   echo "<br/>";
   echo "SMS RECORDATORI $id";
