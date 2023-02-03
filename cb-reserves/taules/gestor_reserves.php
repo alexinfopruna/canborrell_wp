@@ -2175,7 +2175,7 @@ EOHTML;
   function recordatori_petites_3dies() {
 
 	//ANULAT. PROBLEMA RECORDATORIS
-    return "ANULAT. PROBLEMA RECORDATORIS";
+    //return "ANULAT. PROBLEMA RECORDATORIS";
 
     $html = " ... ";
     $query = "SELECT * FROM " . T_RESERVES . " WHERE (adults + nens10_14 + nens4_9)>=6 AND estat=100 AND  data <= ADDDATE(CURDATE(), INTERVAL 35 DAY) AND data>=CURDATE() AND  num_1=0";
