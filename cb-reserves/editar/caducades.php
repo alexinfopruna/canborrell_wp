@@ -21,7 +21,8 @@ echo "<br/>*********************************************************************
 echo "<br/><br/>" . date("D d-m-Y H:i:s") . " Execució  /home/hostings/webs/can-borrell.com/www/htdocs/cb-reserves/editar/caducades.php <br/><br/>";
 echo "<br/><br/><br/>";
 
-
+//echo $gestor->enviaSMS(4782,"EOOOO");
+//die();
 
 ?>
 <?php
@@ -116,12 +117,13 @@ function recordatori($canborrell, $dies) {
     mail_cli($row["id_reserva"], $plantilla);
     $mensa .= "ID Reserva: " . $row["id_reserva"] . " amb data límit per pagar: " . data_llarga($row['data_limit']) . " \\n";
 
-    if ($dies <= 1) {
+    if ($dies <= 3) {
       preg_match("/([0-9]{2,4})-([0-9]{1,2})-([0-9]{1,2})/", $row['data'], $mifecha);
       $lafecha = $mifecha[3] . "/" . $mifecha[2];
 
       print_log("RECORDATORI enviaSMS({$row['tel']},{$row['preu_reserva']},$lafecha,{$row["id_reserva"]});");
       if (TRUE) {
+echo "RRRRRRRRRRRRRRRRRRRR";
         enviaSMS($row['tel'], $row['preu_reserva'], $lafecha, $row["id_reserva"], $row["lang"]);
         $mensa .= "SMS ENVIAT: " . $row['tel'] . " \\n";
       }
@@ -135,7 +137,7 @@ function recordatori($canborrell, $dies) {
     $query_reserves = "UPDATE reserves SET num_1=$ENVIAT WHERE id_reserva=" . $row["id_reserva"];
     echo "<br/><br/>" . $query_reserves . "<br/><br/>";
 
-    if (SMS_ACTIVAT)
+    if (SMS_ACTIVAT && FALSE)
       $update = mysqli_query($canborrell, $query_reserves) or die(((is_object($GLOBALS["___mysqli_ston"])) ? mysqli_error($GLOBALS["___mysqli_ston"]) : (($___mysqli_res = mysqli_connect_error()) ? $___mysqli_res : false)));
   }
 
@@ -323,7 +325,9 @@ echo "<br><br><br>".$html."<br><br><br>";
 function enviaSMS($numMobil, $importReserva, $diaReserva, $idReserva, $lang) {
   global $txt, $gestor;
   $mensa = $txt[92][$lang];
-  echo "............$mensa.........";
+
+//print_r($txt);
+  echo "..$idReserva...$lang.......$mensa.........";
   $mensa = str_replace("%diaReserva", $diaReserva, $mensa);
   $mensa = str_replace("%importReserva", $importReserva, $mensa);
   $mensa = str_replace("%idReserva", $idReserva, $mensa);
@@ -335,7 +339,7 @@ function enviaSMS($numMobil, $importReserva, $diaReserva, $idReserva, $lang) {
   $messageStatus;   // The status of a sent message.
 
   if (SMS_ACTIVAT && ENVIA_SMS)
-    $result = $gestor->enviaSMS($idReserva, $body);
+    echo $result = $gestor->enviaSMS($idReserva, $body);
   echo "<br/>";
   echo "<br/>";
   echo "SMS RECORDATORI $id";
