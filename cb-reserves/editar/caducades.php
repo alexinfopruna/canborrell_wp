@@ -335,7 +335,7 @@ function enviaSMS($numMobil, $importReserva, $diaReserva, $idReserva, $lang) {
   $messageStatus;   // The status of a sent message.
 
   if (SMS_ACTIVAT && ENVIA_SMS)
-    $result = $gestor->enviaSMS($numMobil, $body);
+    $result = $gestor->enviaSMS($idReserva, $body);
   echo "<br/>";
   echo "<br/>";
   echo "SMS RECORDATORI $id";
