@@ -2178,7 +2178,7 @@ EOHTML;
     //return "ANULAT. PROBLEMA RECORDATORIS";
 
     $html = " ... ";
-    $query = "SELECT * FROM " . T_RESERVES . " WHERE (adults + nens10_14 + nens4_9)>=6 AND estat=100 AND  data <= ADDDATE(CURDATE(), INTERVAL 35 DAY) AND data>=CURDATE() AND  num_1=0";
+    $query = "SELECT * FROM " . T_RESERVES . " WHERE (adults + nens10_14 + nens4_9)>=6 AND estat=100 AND  data <= ADDDATE(CURDATE(), INTERVAL 3 DAY) AND data>=CURDATE() AND  num_1=0";
     $reserves = mysqli_query($this->connexioDB, $query) or die(((is_object($GLOBALS["___mysqli_ston"])) ? mysqli_error($GLOBALS["___mysqli_ston"]) : (($___mysqli_res = mysqli_connect_error()) ? $___mysqli_res : false)));
     $nr = mysqli_num_rows($reserves);
 
