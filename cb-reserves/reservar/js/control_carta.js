@@ -428,8 +428,12 @@ function excepcio_nadal(dat) {
             }
         });
     } else {
-        //alert("remove rules");	
-        $("#te-comanda").rules("remove");
+        try{
+            $("#te-comanda").rules("remove");
+        }catch(error) {
+            
+        }
+        
     }
 
     return excepcio;

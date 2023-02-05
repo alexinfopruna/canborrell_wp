@@ -1329,8 +1329,9 @@ function recordatoris() {
     var desti = "../editar/caducades.php"
     $.post(desti, function (datos) {
         //  if (datos.substr(0,4)!='test') alert("recordatori_petites_3dies "+datos);
-
+        //alert("Recordatori");
     });
+     
 }
 
 /**
@@ -1347,7 +1348,6 @@ function comprova_refresh()
             timer(false);
             refresh();
             timer(true);
-
         }
     });
     var img = $("#imgCalendari").attr("src").split("?")[0];
