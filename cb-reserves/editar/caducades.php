@@ -21,9 +21,9 @@ echo "<br/>*********************************************************************
 echo "<br/><br/>" . date("D d-m-Y H:i:s") . " Execució  /home/hostings/webs/can-borrell.com/www/htdocs/cb-reserves/editar/caducades.php <br/><br/>";
 echo "<br/><br/><br/>";
 
+//echo $gestor->enviaSMS(4782,"EOOOO");
+//die();
 
-$gestor->enviaSMS(96976, "CADUCADES");
-die("CADUCADES DIE");
 ?>
 <?php
 
@@ -117,7 +117,7 @@ function recordatori($canborrell, $dies) {
     mail_cli($row["id_reserva"], $plantilla);
     $mensa .= "ID Reserva: " . $row["id_reserva"] . " amb data límit per pagar: " . data_llarga($row['data_limit']) . " \\n";
 
-    if ($dies <= 1) {
+    if ($dies <= 3) {
       preg_match("/([0-9]{2,4})-([0-9]{1,2})-([0-9]{1,2})/", $row['data'], $mifecha);
       $lafecha = $mifecha[3] . "/" . $mifecha[2];
 
@@ -136,9 +136,11 @@ function recordatori($canborrell, $dies) {
     $query_reserves = "UPDATE reserves SET num_1=$ENVIAT WHERE id_reserva=" . $row["id_reserva"];
     echo "<br/><br/>" . $query_reserves . "<br/><br/>";
 
-    if (SMS_ACTIVAT)
+    if (SMS_ACTIVAT){
       $update = mysqli_query($canborrell, $query_reserves) or die(((is_object($GLOBALS["___mysqli_ston"])) ? mysqli_error($GLOBALS["___mysqli_ston"]) : (($___mysqli_res = mysqli_connect_error()) ? $___mysqli_res : false)));
-  }
+     }
+  
+    }
 
   if ($nr > 0)
     $bodi = $mensa;
@@ -175,7 +177,7 @@ function historic($canborrell) {
   //exit();
 }
 
-function mail_cli($id = false, $plantilla = "templates/recordatori_cli.lbi") {
+function mail_cli($id = false, $plantilla = ROOT."../editar/templates/recordatori_cli.lbi") {
   require_once("mailer.php");
   global $camps, $mmenu, $txt, $database_canborrell, $canborrell, $lang, $gestor;
 
@@ -204,7 +206,7 @@ function mail_cli($id = false, $plantilla = "templates/recordatori_cli.lbi") {
   $avui = date("d/m/Y");
   $ara = date("H:i");
 
-  $file = $plantilla;
+  echo $file = getcwd()."/../editar/$plantilla";
   $t = new Template('.', 'comment');
   $t->set_file("page", $file);
   $dat_limit = data_llarga($fila['data_limit'], $lang);
@@ -322,32 +324,23 @@ echo "<br><br><br>".$html."<br><br><br>";
 }
 
 function enviaSMS($numMobil, $importReserva, $diaReserva, $idReserva, $lang) {
-  global $txt;
+  global $txt, $gestor;
   $mensa = $txt[92][$lang];
-  echo "............$mensa.........";
+
+//print_r($txt);
+  echo "..$idReserva...$lang.......$mensa.........";
   $mensa = str_replace("%diaReserva", $diaReserva, $mensa);
   $mensa = str_replace("%importReserva", $importReserva, $mensa);
   $mensa = str_replace("%idReserva", $idReserva, $mensa);
 
 
   // Test Variables - assign values accordingly:
-  $username = "restaurant@can-borrell.com";   // Your Username (normally an email address).
-  $password = "1909";   // Your Password.
-  $accountReference = "EX0062561";  // Your Account Reference (either your virtual mobile number, or EX account number).
-  $originator = "Rest.Can Borrell";  // An alias that the message appears to come from (alphanumeric characters only, and must be less than 11 characters).
   $recipients = $numMobil;  // The mobile number(s) to send the message to (comma-separated).
   $body = $mensa;   // The body of the message to send (must be less than 160 characters).
-  $type = "Text";   // The type of the message in the body (e.g. Text, SmartMessage, Binary or Unicode).
-  $validityPeriod = 0;  // The amount of time in hours until the message expires if it cannot be delivered.
-  $result;   // The result of a service request.
-  //$messageIDs = array($idReserva);		// A single or comma-separated list of sent message IDs.
   $messageStatus;   // The status of a sent message.
 
-  $sendService = new EsendexSendService($username, $password, $accountReference);
-  //echo $lang."   ---------------------- TEEEST: $body  ---------------------------<br>";
   if (SMS_ACTIVAT && ENVIA_SMS)
-    $result = $sendService->SendMessage($recipients, $body, $type);
-
+    echo $result = $gestor->enviaSMS($idReserva, $body);
   echo "<br/>";
   echo "<br/>";
   echo "SMS RECORDATORI $id";

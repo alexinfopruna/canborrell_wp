@@ -1273,7 +1273,7 @@ function upercase(selector)
 function cron_js() {
     comprova_backup();
     esborra_clients_llei();
-    recordatori_petites_3dies();
+    recordatoris();
 }
 
 
@@ -1324,12 +1324,14 @@ function esborra_clients_llei() {
             alert("ESBORRA CLIENTS LLEI " + datos);
     });
 }
-function recordatori_petites_3dies() {
-    var desti = "gestor_reserves.php?a=recordatori_petites_3dies";
+function recordatoris() {
+    //var desti = "gestor_reserves.php?a=recordatori_petites_3dies";
+    var desti = "../editar/caducades.php"
     $.post(desti, function (datos) {
         //  if (datos.substr(0,4)!='test') alert("recordatori_petites_3dies "+datos);
-
+        //alert("Recordatori");
     });
+     
 }
 
 /**
@@ -1346,7 +1348,6 @@ function comprova_refresh()
             timer(false);
             refresh();
             timer(true);
-
         }
     });
     var img = $("#imgCalendari").attr("src").split("?")[0];

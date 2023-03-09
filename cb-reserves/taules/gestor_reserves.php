@@ -2178,7 +2178,7 @@ EOHTML;
     return "ANULAT. PROBLEMA RECORDATORIS";
 
     $html = " ... ";
-    $query = "SELECT * FROM " . T_RESERVES . " WHERE (adults + nens10_14 + nens4_9)>=6 AND estat=100 AND  data <= ADDDATE(CURDATE(), INTERVAL 35 DAY) AND data>=CURDATE() AND  num_1=0";
+    $query = "SELECT * FROM " . T_RESERVES . " WHERE (adults + nens10_14 + nens4_9)>=6 AND estat=100 AND  data <= ADDDATE(CURDATE(), INTERVAL 3 DAY) AND data>=CURDATE() AND  num_1=0";
     $reserves = mysqli_query($this->connexioDB, $query) or die(((is_object($GLOBALS["___mysqli_ston"])) ? mysqli_error($GLOBALS["___mysqli_ston"]) : (($___mysqli_res = mysqli_connect_error()) ? $___mysqli_res : false)));
     $nr = mysqli_num_rows($reserves);
 
@@ -2197,7 +2197,6 @@ EOHTML;
     while ($row = mysqli_fetch_array($reserves)) {
       $args = array();
       $persones = $row['adults'] + $row['nens10_14'] + $row['nens4_9'];
-//$persones.='p';
       $id_reserva = $row["id_reserva"];
       $data = $this->cambiaf_a_normal($row['data']);
       $hora = $row['hora'];
@@ -2209,15 +2208,14 @@ EOHTML;
       $args[1] = $data;
       $args[2] = $hora;
       $args[3] = $persones;
-//2222 recordatori_petites_3dies     
       $missatge = "Recordi: reserva %s, el %s - %s per a %s personas.Es IMPRESCINDIBLE que ens comuniqui qualsevol canvi abans de les 11:00h: 936929723 - 936910605";
       $missatge = gestor_reserves::SMS_language($missatge, $lang, $args);
 
-      $this->enviaSMS($id_reserva, $missatge);
-      //echo "<br/>ENVIAT: ".$missatge;
+      //$this->enviaSMS($id_reserva, $missatge);
+      echo "<br/>ENVIAT: ".$missatge;
 
       $query_reserves = "UPDATE " . T_RESERVES . " SET num_1=1 WHERE id_reserva=" . $row["id_reserva"];
-      $update = mysqli_query($this->connexioDB, $query_reserves) or die(((is_object($GLOBALS["___mysqli_ston"])) ? mysqli_error($GLOBALS["___mysqli_ston"]) : (($___mysqli_res = mysqli_connect_error()) ? $___mysqli_res : false)));
+      //$update = mysqli_query($this->connexioDB, $query_reserves) or die(((is_object($GLOBALS["___mysqli_ston"])) ? mysqli_error($GLOBALS["___mysqli_ston"]) : (($___mysqli_res = mysqli_connect_error()) ? $___mysqli_res : false)));
 
       $html .= $id_reserva . ", ";
     }
