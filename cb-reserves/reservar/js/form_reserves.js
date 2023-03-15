@@ -1034,7 +1034,7 @@ function validacio()
                         number: true,
                         minlength: 9
                     },
-            client_email: {required: true, email: true, remote: "../../taules/verify_email.php"},
+            client_email: {required: true, email: true, remote: "../../taules/cb-reserves/verify_email.php"},
             client_nom: "required",
             client_cognoms: "required"
         },
