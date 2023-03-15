@@ -1,7 +1,9 @@
 <?php
+
+
 	if (!defined('ROOT')) define('ROOT', "../taules/");
                             
-                            
+include_once(ROOT.'../editar/fpdf/fpdf.php');                            
 require (ROOT."gestor_reserves.php");
 $gestor=new gestor_reserves();
 if (!$gestor->valida_sessio(64))  
@@ -9,6 +11,25 @@ if (!$gestor->valida_sessio(64))
   header("Location: login.php");
   die();
 }                            
+/***********************************************/
+//require_once(ROOT . INC_FILE_PATH . "template.inc");
+
+
+require(ROOT.DB_CONNECTION_FILE); 
+if (isset($_REQUEST["id"])){
+    $lang="cat";
+    $id=$_REQUEST["id"];
+    $query="SELECT * FROM reserves WHERE id_reserva=$id";
+    ((bool)mysqli_query( $canborrell, "USE " . $database_canborrell));
+    $Result = mysqli_query( $canborrell, $query) or die(((is_object($GLOBALS["___mysqli_ston"])) ? mysqli_error($GLOBALS["___mysqli_ston"]) : (($___mysqli_res = mysqli_connect_error()) ? $___mysqli_res : false)));
+    $fila=mysqli_fetch_assoc($Result);
+    $attach=$gestor->factura_proforma($id,true);
+    
+    //die("ID ".$_REQUEST["id"]);
+}
+
+
+
 	require_once(ROOT."Gestor.php");
 
 	$cfg=new Configuracio();

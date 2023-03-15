@@ -789,7 +789,6 @@ FROM client
     //$idr = ((is_null($___mysqli_res = mysqli_insert_id($this->connexioDB))) ? false : $___mysqli_res);
     $idr = mysqli_insert_id($this->connexioDB);
 
-//echo $insertSQL ;die();
 
     //INSERT INTO ESTAT TAULES 
     //recupera estat
@@ -1603,9 +1602,10 @@ WHERE  `client`.`client_id` =$idc;
     $extres['data_limit'] = "";
     $extres['cdata_reserva'] = $translate["cdata_reserva"];
     $extres['menu'] = $translate["menu"];
-
+    $extres['proforma'] = $this->factura_proforma($idr,true);
     if ($mail) {
       $this->enviaMail($idr, "../editar/templates/mail_cli_", NULL, $extres);
+       
     }
 
     $persones = $row['adults'] + $row['nens10_14'] + $row['nens4_9'] . 'p';
@@ -1663,10 +1663,9 @@ WHERE  `client`.`client_id` =$idc;
 
     $result = mysqli_query($this->connexioDB, $query) or die(((is_object($GLOBALS["___mysqli_ston"])) ? mysqli_error($GLOBALS["___mysqli_ston"]) : (($___mysqli_res = mysqli_connect_error()) ? $___mysqli_res : false)));
     $row = mysqli_fetch_assoc($result);
-
-
-    $estat = $row['estat'];
-    $mail = $row['client_email'];
+    $estat=0;
+    if (isset($row['estat']))  $estat = $row['estat'];
+    if (isset($row['client_email'])) $mail = $row['client_email'];
 
 
     return ($estat == 2);

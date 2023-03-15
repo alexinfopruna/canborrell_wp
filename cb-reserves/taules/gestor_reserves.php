@@ -485,7 +485,6 @@ class gestor_reserves extends Gestor {
       $args[] = $coberts;
       $args[] = $idr;
       $lang = $this->getLanguage();
-//11111 inserta_reserva()
       $mensa = "Recordi: reserva al Restaurant Can Borrell. %s %s (%s).Preguem comuniqui qualsevol canvi: 936929723/936910605.Gràcies.(ID%s)";
       $mensa = gestor_reserves::SMS_language($mensa, $lang, $args);
 
@@ -2896,8 +2895,7 @@ ORDER BY `estat_hores_data` DESC";
   /*   * ************************************* */
 
   public function enviaMail($idr, $plantilla = "confirmada_", $recipient = null, $extres = null) {
-
-    $subject = isset($extres['subject']) ? $extres['subject'] : 'No subject';
+      $subject = isset($extres['subject']) ? $extres['subject'] : 'No subject';
     $ts = $this->insert_id();
 
     $this->reg_log(">>>> ENVIA EMAIL >>>> enviaMail($idr, $plantilla, $recipient )", 1);
@@ -2909,8 +2907,9 @@ ORDER BY `estat_hores_data` DESC";
     }
 
     require_once(ROOT . "../editar/mailer.php");
-    require_once(ROOT . INC_FILE_PATH . "template.inc");
-
+    //echo "debugssss";
+    if (!class_exists("Template")) require_once(ROOT . INC_FILE_PATH . "template.inc");
+//echo "debugrrrr";
     $taula = (floor($idr) > SEPARADOR_ID_RESERVES) ? T_RESERVES : 'reserves';
     $query = "SELECT * FROM $taula
     LEFT JOIN client ON $taula.client_id=client.client_id
@@ -2976,7 +2975,9 @@ ORDER BY `estat_hores_data` DESC";
     else
       $subject = "..::Reserva Can Borrell::..";
     try {
-      $result = $r = mailer_reserva($idr, $plantilla, $recipient, $subject, $html, $altbdy, null, false, MAIL_CCO);
+        
+      $proforma = (isset($extres['proforma'])?$extres['proforma']:null);
+      $result = $r = mailer_reserva($idr, $plantilla, $recipient, $subject, $html, $altbdy, $proforma, false, MAIL_CCO);
       $mail = "Enviament $plantilla RESERVA PETITA ONLINE($r): $idr -- $recipient";
     }
     catch (Exception $e) {
@@ -3686,6 +3687,156 @@ echo "VAL: ".$val." *** ";
     $this->xgreg_log("cancelPagaISenyal: <span class='idr'>$idr</span>", 0, LOG_FILE_TPVPK);
     return true;
   }
+  
+  
+  public function factura_proforma($idr, $out=false)
+{
+      define('RELATIVE_PATH',ROOT.'../editar/fpdf/');
+        include(ROOT.INC_FILE_PATH."valors.php");
+	include_once (ROOT.'../editar/fpdf/html2fpdf.php');	
+	//include_once(ROOT.'../editar/fpdf/fpdf.php');	
+
+        
+	require_once(ROOT."Carta.php");
+	$carta=new Carta();
+	
+    $query="SELECT * FROM reserves WHERE id_reserva=$idr";
+    //((bool)mysqli_query( $canborrell, "USE " . $this->connexioDB));
+    $Result = mysqli_query( $this->connexioDB, $query) or die(((is_object($GLOBALS["___mysqli_ston"])) ? mysqli_error($GLOBALS["___mysqli_ston"]) : (($___mysqli_res = mysqli_connect_error()) ? $___mysqli_res : false)));
+    $fila=mysqli_fetch_assoc($Result);
+	
+        
+        $lang=$fila['lang'];
+	// CALCULA PREU
+
+	$avui=date("d/m/Y");
+	$file=ROOT."../editar/templates/factura_cli.lbi";
+        //echo "11111";
+        if (!class_exists('Template')) {require_once(ROOT . INC_FILE_PATH . "template.inc");}
+	$t=new Template('.','comment');
+        //echo "22222";
+	$t->set_file("page", $file);
+	$t->set_var("titol","FACTURA PROFORMA");
+	$t->set_var("id_reserva",date("Y")."-".$fila['id_reserva']);
+	$t->set_var("cdata_reserva",$txt[89][$lang]);    
+        $t->set_var("data",$avui);
+	$t->set_var("cif",$fila['factura_cif']);
+	$t->set_var("cnom",$txt[91][$lang]);    
+        $t->set_var("nom",$fila['factura_nom']);
+	$t->set_var("cadresa",$txt[84][$lang]);    
+        $t->set_var("adresa",$fila['factura_adresa']);
+
+	
+	$menuAdults=$menuId[(int)$fila['menu']];
+	$menuJR=$menuId[$fila['txt_1']];
+	$menuINF=$menuId[$fila['txt_2']];
+	 //+ 	$ini_array[$menuJR]*$fila['nens10_14'] +  	$ini_array[$menuINF]*$fila['nens4_9'];
+
+
+	$m=(int)$fila['menu'];
+	$n=$mmenu[$m]['cat'];
+	$t->set_var('menu',$n." (".$carta->preuPlat($menuAdults)."&euro;)");	$t->set_var('totadults',sprintf("%01.2f",$carta->preuPlat($menuAdults)*$fila['adults']));
+	$t->set_var('cadults',$camps[2][$lang]);   $t->set_var('adults',(int)$fila['adults']);
+	if ($fila['nens10_14']>0)
+	{
+		$t->set_var('cnens10_14',$camps[3][$lang]);  
+		$t->set_var('nens10_14',(int)$fila['nens10_14']." x ".$fila['txt_1']." (".$carta->preuPlat($menuJR)."&euro;) = ".sprintf("%01.2f &euro;",$carta->preuPlat($menuJR)*$fila['nens10_14']));  
+	}	
+	
+	if ($fila['nens4_9']>0) 
+	{
+		$t->set_var('cnens4_9',$camps[4][$lang]);
+		$t->set_var('nens4_9',(int)$fila['nens4_9']." x ".$fila['txt_2']." (".$carta->preuPlat($menuINF)."&euro;) = ".sprintf("%01.2f &euro;",$carta->preuPlat($menuINF)*$fila['nens4_9']));  
+	}
+			
+	$t->set_var("cpreu_reserva",$txt[85][$lang]);$t->set_var("preu_reserva",$this->calcula_preu($fila['adults']+$fila['nens10_14']+$fila['nens4_9']));
+	$t->set_var("cpreu_subtotal",$txt[86][$lang]); $t->set_var("preu_subtotal",$preu=$this->calcula_preu_real($fila));
+	$t->set_var("cpreu_iva",$txt[87][$lang]);   $t->set_var("preu_iva",sprintf("%01.2f",$preu*IVA/100));
+	$t->set_var("cpreu_total",$txt[88][$lang]); $t->set_var("preu_total",sprintf("%01.2f",$preu*(1+IVA/100)));
+	
+	$t->set_var("nota1",$txt[82][$lang]);
+	$t->set_var("nota2",$txt[83][$lang]);
+	$t->set_var("nota3",$txt[90][$lang]);
+	$t->parse("OUT", "page");
+       // echo "debug  1111"; 
+	$html=$t->get("OUT");   
+	if ($out)$t->p("OUT");
+	$pdf = new HTML2FPDF(); // Creamos una instancia de la clase HTML2FPDF
+	$pdf -> AddPage(); // Creamos una página
+	$html=fpdf_text($html); //CHARSET
+	$pdf -> WriteHTML($html);//Volcamos el HTML contenido en la variable $html para crear el contenido del PDF
+	$carpeta_factures=INC_FILE_PATH."factures/";
+	$nompdf=$carpeta_factures.NOM_FACTURA.date("Y")."-".$fila['id_reserva'].".pdf";
+	$pdf -> Output($nompdf,"F");//Volcamos el pdf generado con nombre 'doc.pdf'. En este caso con el parametro 'D' forzamos la descarga del mismo.
+//echo "debug  zz3333"; 
+	return $nompdf;
+}
+
+
+private function calcula_preu($persones=null)
+{
+       // include(ROOT.INC_FILE_PATH."valors.php");
+  //  24/11/2009 REBAIXES: les reserves eren 6euros (<25pers) i 10euros (>25)
+  //  ara queda per 4 i 7
+  
+  if ($persones==null) $persones=$_POST['adults']+$_POST['nens10_14']+$_POST['nens4_9'];
+  
+  if ($persones<=25)
+  {
+    $preu=1*$persones; //abans 4
+  }
+  else
+  {
+    $preu=1*$persones; //abans 7
+  }
+  $preu=sprintf("%01.2f",$preu);
+  
+  return $preu;
+// return($preu."(ANULAT)");
+}
+
+
+private function calcula_preu_real($fila)
+{
+        $menuId[0]=2001;
+$menuId[1]=2024;
+$menuId[2]=2003;
+$menuId[3]=2023;
+$menuId[4]=2012;
+$menuId[9]=2007;
+$menuId[5]=2010;
+$menuId[6]=2013;
+$menuId[7]=2016;
+$menuId["infantil"]=2037;
+$menuId["inf_comu"]=2017;
+$menuId["inf_casa"]=2021;
+$menuId["junior"]=2036;
+$menuId["jr_comu"]=2018;
+$menuId["jr_casa"]=2022;
+$menuId["NO"]=0;
+	require_once(ROOT."Carta.php");
+	$carta=new Carta();
+	
+	//global $menuId;
+	
+	
+	$menuAdults=$menuId[(int)$fila['menu']];
+	$menuJR=isset($menuId[$fila['txt_1']])?$menuId[$fila['txt_1']]:'';
+	$menuINF=isset($menuId[$fila['txt_2']])?$menuId[$fila['txt_2']]:'';
+	$preu= $carta->preuPlat($menuAdults)*$fila['adults'] + 	$carta->preuPlat($menuJR)*$fila['nens10_14'] +  	$carta->preuPlat($menuINF)*$fila['nens4_9'];
+	$reserva=$fila['preu_reserva'];
+	$preu=($preu >= $reserva)? $preu:$reserva;
+	$preu=sprintf("%01.2f",$preu);
+	return $preu;//."(ANULAT)";
+
+}
+
+
+private function fpdf_text($str){
+	return iconv('UTF-8', 'windows-1252', $str);
+}
+
+
 
   /*   * ********************************************************************************************************************* */
   /*   * ********************************************************************************************************************* */
@@ -3714,14 +3865,6 @@ echo "VAL: ".$val." *** ";
 
 
 
-    11
-   * 
-   * 
-   * 
-   * 
-   *  * 
-   * 
-   * 
    */
 
   /*   * ********************************************************************************************************************* */

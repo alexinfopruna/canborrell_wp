@@ -23,10 +23,11 @@ function mysqli_result($result, $row, $field = 0) {
 
 
 spl_autoload_register(function ($class_name) {
+    return;
     if ($class_name=="Jetpack") return;
   $ruta=defined('ROOT')?ROOT:"../";
   
-    include $ruta.$class_name . '.php';
+  if (file_exists($ruta.$class_name . '.php'))    include $ruta.$class_name . '.php';
 });
 
 
