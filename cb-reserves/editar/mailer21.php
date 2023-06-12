@@ -1,7 +1,6 @@
 <?php
 
 require_once (ROOT . INC_FILE_PATH . "PHPMailer-master/PHPMailerAutoload.php");
-//require_once (ROOT.'../../wp-includes/PHPMailer/PHPMailer.php');
 require_once(ROOT . INC_FILE_PATH . 'alex.inc');
 
 if (!defined('CONFIG')) {
@@ -41,6 +40,7 @@ function mailer($addr, $subject, $body, $altbody = null, $attach = null, $test =
   $mail = new phpmailer();
   //echo "POOORT: ".$mail->Port;die();
   $mail->CharSet = 'UTF-8';
+
   /* SENSE IMATGE CAPSALERA */
   if ($addr == MAIL_RESTAURANT)
     $body = str_replace('<img src="//www.can-borrell.com/cb-reserves/img/lg_sup.png" alt="img" width="303" height="114" border="0" title="INICI" />', "", $body);
@@ -79,15 +79,9 @@ function mailer($addr, $subject, $body, $altbody = null, $attach = null, $test =
     return FALSE;
   }
   else {
-      echo "HOST: ".$mail->Host;
-      $mail->Password="Alkaline17";
-      echo "PASS: ".$mail->Password;
-      echo "Enviant....";
     $exito = $mail->Send();
-   
     if (!$exito) {
-echo "!FALLA";
-echo  $mail->ErrorInfo;
+
       $err = $mail->ErrorInfo;
       //print_log("<span style='color:red'>MAILER ERROR:$err - </span> Enviat mail TO:$addr $cco SUBJECT: $subject");
       error_log("<li><span style='color:red'>MAILER ERROR:$err - </span> Enviat mail TO:$addr $cco SUBJECT: $subject </li>", 3, ROOT . INC_FILE_PATH . '/log/logMAILSMS.txt');
@@ -96,8 +90,6 @@ echo  $mail->ErrorInfo;
       //return FALSE;
     }
     else {
-        echo "exito";
-
       error_log("<li><span style='color:green'>MAILER SUCCESS:</span>: Enviat mail TO:$addr SUBJECT: $subject</li>", 3, ROOT . INC_FILE_PATH . '/log/logMAILSMS.txt');
      // error_log('<li>' . $body . '</li>, 3, ROOT . INC_FILE_PATH . '/log/logMAILSMS.txt');
       //return TRUE;

@@ -1,5 +1,65 @@
 <?php
+use PHPMailer\PHPMailer\PHPMailer;
+use PHPMailer\PHPMailer\Exception;
 
+  if (!defined('ROOT'))    define('ROOT', "../taules/");
+  if (!defined('INC_FILE_PATH'))    define('INC_FILE_PATH', "../../../canBorrell_inc_PROD/");
+
+require_once(ROOT . INC_FILE_PATH . 'alex.inc');
+
+if (!defined('CONFIG')) {
+
+  require_once(ROOT . "php/Configuracio.php");
+  $conf = new Configuracio();
+}
+
+
+require '/var/www/can-borrell.com/canBorrell_inc_PROD/phpmailerlast/PHPMailer-master/src/Exception.php';
+require '/var/www/can-borrell.com/canBorrell_inc_PROD/phpmailerlast/PHPMailer-master/src/PHPMailer.php';
+require '/var/www/can-borrell.com/canBorrell_inc_PROD/phpmailerlast/PHPMailer-master/src/SMTP.php';
+
+
+//echo "result: ".mailer("alexmaildos@gmail.com","prova3","prova body3");
+//echo "FINAL";
+//die();
+/*
+// TEST PER ENVIAR UN MAIL DE PROVA 
+
+
+$emailFrom="reserves@can-borrell.com";
+$emailFromName="Reserves CB";
+$emailTo="alexmaildos@gmail.com";
+$emailToName="infopruna";
+
+
+$mail = new PHPMailer;
+ $mail->isSMTP();
+  $mail->Host = "smtp.office365.com";
+  $mail->SMTPSecure = 'tls';
+  $mail->Port =587;
+  $mail->SMTPAuth = true;
+  $mail->Username = "reserves@can-borrell.com";
+  $mail->Password = "Res@Bor_2023";
+  //$mail->From = "restaurant@can-borrell.com"; = "reserves@can-borrell.com
+  //$mail->FromName = "Reserves Can Borrell";
+
+$mail->SMTPDebug = 2; // 0 = off (for production use) - 1 = client messages - 2 = client and server messages
+
+$mail->setFrom($emailFrom, $emailFromName);
+$mail->addAddress($emailTo, $emailToName);
+$mail->Subject = 'PHPMailer GMail SMTP test';
+$mail->msgHTML("test body"); //$mail->msgHTML(file_get_contents('contents.html'), __DIR__); //Read an HTML message body from an external file, convert refer$
+$mail->AltBody = 'HTML messaging not supported';
+// $mail->addAttachment('images/phpmailer_mini.png'); //Attach an image file
+
+if(!$mail->send()){
+    echo "Mailer Error: " . $mail->ErrorInfo;
+}else{
+    echo "Message sent!";
+}
+
+/********************************************************************************************************************************************/
+/*
 require_once (ROOT . INC_FILE_PATH . "PHPMailer-master/PHPMailerAutoload.php");
 require_once(ROOT . INC_FILE_PATH . 'alex.inc');
 
@@ -8,7 +68,7 @@ if (!defined('CONFIG')) {
   require_once(ROOT . "php/Configuracio.php");
   $conf = new Configuracio();
 }
-
+*/
 function mailer_reserva($idr, $template, $addr, $subject, $body, $altbody, $attach = null, $test = false, $cco = null) {
   $query = "INSERT INTO `email` ( `reserva_id`, `email_recipients`, `email_subject`, `email_body`, `email_resultat`,   `email_categoria`) "
       . "VALUES (  '$idr', '$addr', '$subject', '" . base64_encode($body) . "' , '0',  '$template');";
@@ -45,7 +105,9 @@ function mailer($addr, $subject, $body, $altbody = null, $attach = null, $test =
   if ($addr == MAIL_RESTAURANT)
     $body = str_replace('<img src="//www.can-borrell.com/cb-reserves/img/lg_sup.png" alt="img" width="303" height="114" border="0" title="INICI" />', "", $body);
  
-  include(ROOT . INC_FILE_PATH . "mailer_profile.php");
+//  include(ROOT . INC_FILE_PATH . "mailer_profile.php");
+  include(ROOT . INC_FILE_PATH . "mailer_profile_office.php");
+
   if ($addr == MAIL_RESTAURANT && isset($_POST['client_email']))    $mail->From = $_POST['client_email'];
 
 
