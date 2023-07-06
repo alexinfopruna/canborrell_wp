@@ -1,7 +1,16 @@
 <?php
 
-require_once (ROOT . INC_FILE_PATH . "PHPMailer-master/PHPMailerAutoload.php");
+//require_once (ROOT . INC_FILE_PATH . "PHPMailer-master/PHPMailerAutoload.php");
 //require_once (ROOT.'../../wp-includes/PHPMailer/PHPMailer.php');
+
+require_once ROOT.'../editar/html2pdf-master/vendor/autoload.php';
+//require_once dirname(__FILE__).'/../src/Html2Pdf.php';
+// die("wwww");
+use Spipu\Html2Pdf\Html2Pdf;
+use Spipu\Html2Pdf\Exception\Html2PdfException;
+use Spipu\Html2Pdf\Exception\ExceptionFormatter;
+
+
 require_once(ROOT . INC_FILE_PATH . 'alex.inc');
 
 if (!defined('CONFIG')) {
