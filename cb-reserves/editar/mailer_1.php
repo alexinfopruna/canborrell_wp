@@ -1,7 +1,16 @@
 <?php
 
-require_once (ROOT . INC_FILE_PATH . "PHPMailer-master/PHPMailerAutoload.php");
+//require_once (ROOT . INC_FILE_PATH . "PHPMailer-master/PHPMailerAutoload.php");
 //require_once (ROOT.'../../wp-includes/PHPMailer/PHPMailer.php');
+
+require_once ROOT.'../editar/html2pdf-master/vendor/autoload.php';
+//require_once dirname(__FILE__).'/../src/Html2Pdf.php';
+// die("wwww");
+use Spipu\Html2Pdf\Html2Pdf;
+use Spipu\Html2Pdf\Exception\Html2PdfException;
+use Spipu\Html2Pdf\Exception\ExceptionFormatter;
+
+
 require_once(ROOT . INC_FILE_PATH . 'alex.inc');
 
 if (!defined('CONFIG')) {
@@ -72,7 +81,6 @@ function mailer($addr, $subject, $body, $altbody = null, $attach = null, $test =
     $f = fopen(ROOT . INC_FILE_PATH . "log/test_mail.html", 'a');
     fwrite($f, "ENVIAT AMB EXIT: <br>\n" . $o);
     fwrite($f, $o);
- //   echo $o;
     return;
 
     error_log("</ul>", 3, ROOT . INC_FILE_PATH . '/log/logMAILSMS.txt');
@@ -80,7 +88,6 @@ function mailer($addr, $subject, $body, $altbody = null, $attach = null, $test =
   }
   else {
       echo "HOST: ".$mail->Host;
-      //$mail->Password="Alkaline17";
       echo "PASS: ".$mail->Password;
       echo "Enviant....";
     $exito = $mail->Send();

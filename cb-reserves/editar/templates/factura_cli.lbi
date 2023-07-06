@@ -15,8 +15,14 @@
 	.Estilo4{font-size:1em;}
 </style>
 </head>
+<<<<<<< HEAD
 <body><!-- templates/{self}  -->
 <!-- factura-cli 23 -->
+=======
+<body>
+
+<!-- factura-cli --> 
+>>>>>>> error_cadaus_guardaEstatMenjador
 <table width="650" border="0" align="center" cellpadding="0" cellspacing="0" bgcolor="#F7F9FB">
   <tr>
     <td width="471"><span  style="color:#990000"><strong>RESTAURANT MASIA CAN BORRELL</strong><br />
@@ -57,7 +63,7 @@
   </tr>
   <tr>
     <td align="right" bgcolor="#CFDBE7" style="color:white">{cadults}</td>
-    <td width="320" align="right" bgcolor="#E6ECF2" ><div align="right">{adults}&nbsp;x {menu} = {totadults}&euro;</div></td>
+    <td width="320" align="right" bgcolor="#E6ECF2" >{adults}&nbsp;x {menu} = {totadults}&euro;</td>
   </tr>
   <tr>
     <td align="right" bgcolor="#CFDBE7" style="color:white">{cnens10_14}</td>
@@ -65,31 +71,29 @@
   </tr>
   <tr>
     <td align="right" bgcolor="#CFDBE7" style="color:white">{cnens4_9}</td>
-    <td width="320" align="right" bgcolor="#E6ECF2" ><div align="right">&nbsp;{nens4_9} </div></td>
+    <td width="320" align="left" bgcolor="#E6ECF2" ><div align="right">&nbsp;{nens4_9} </div></td>
   </tr>
   <tr>
     <td align="right" bgcolor="#CFDBE7" style="color:white">&nbsp;{cpreu_subtotal}</td>
-    <td width="320" align="right" bgcolor="#F7F9FB" ><div align="left" >
+    <td width="320" align="left" bgcolor="#F7F9FB" ><div align="left" >
       <div align="right" >&nbsp;{preu_subtotal}&euro;</div>
     </div></td>
   </tr>
   <tr>
     <td align="right" bgcolor="#CFDBE7" style="color:white">&nbsp;{cpreu_iva}</td>
-    <td width="320" align="right" bgcolor="#F7F9FB" ><div align="left" >
+    <td width="320" align="left" bgcolor="#F7F9FB" ><div align="left" >
       <div align="right" >&nbsp;{preu_iva}&euro;</div>
     </div></td>
   </tr>
   <tr>
     <td align="right" bgcolor="#CFDBE7" style="color:white"><strong>&nbsp;{cpreu_total}*</strong></td>
-    <td align="right" bgcolor="#F7F9FB" ><div align="left" >
-      <div align="right" ><strong>&nbsp;{preu_total}&euro;</strong></div>
-    </div></td>
+    <td align="right" bgcolor="#F7F9FB" ><strong>&nbsp;{preu_total}&euro;</strong></td>
+      
   </tr>
   <tr>
     <td align="right" bgcolor="#CFDBE7" style="color:white">&nbsp;{cpreu_reserva}*</td>
-    <td align="right" bgcolor="#F7F9FB" ><div align="left" >
-      <div align="right" >&nbsp;{preu_reserva}&euro;</div>
-    </div></td>
+    <td align="right" bgcolor="#F7F9FB" >
+      {preu_reserva}&euro;    </td>
   </tr>
 </table>
 <p align="center" >{nota1}</p>
