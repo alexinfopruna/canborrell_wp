@@ -80,7 +80,7 @@ function mailer($addr, $subject, $body, $altbody = null, $attach = null, $test =
   }
   else {
       echo "HOST: ".$mail->Host;
-      $mail->Password="Alkaline17";
+      //$mail->Password="Alkaline17";
       echo "PASS: ".$mail->Password;
       echo "Enviant....";
     $exito = $mail->Send();
