@@ -45,7 +45,7 @@ function mailer($addr, $subject, $body, $altbody = null, $attach = null, $test =
   if ($addr == MAIL_RESTAURANT)
     $body = str_replace('<img src="//www.can-borrell.com/cb_reserves/img/lg_sup.png" alt="img" width="303" height="114" border="0" title="INICI" />', "", $body);
  
-  include(ROOT . INC_FILE_PATH . "mailer_profile.php");
+  include(ROOT . INC_FILE_PATH . "mailer_profile_office.php");
   if ($addr == MAIL_RESTAURANT && isset($_POST['client_email']))    $mail->From = $_POST['client_email'];
 
 
