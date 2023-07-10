@@ -496,17 +496,24 @@ function fpdf_text($str){
 
 function factura23($fila,$doc_root,$out=false)
 {    
+
+
+
 	require_once(ROOT."Carta.php");
 	$carta=new Carta();
-	
+
 	global $txt,$lang, $camps,$mmenu;
         $IVA=10;
 	// CALCULA PREU
 	$avui=date("d/m/Y");
-	$file=ROOT."../editar/templates/factura_cli.lbi";
-	
+	$file=ROOT."/editar/templates/factura_cli.lbi";
+	$file="/cb-reserves/editar/templates/factura_cli.lbi";
+echo dirname(__FILE__);
+	$file="/var/www/can-borrell.com/htdocs/cb-reserves/editar/templates/factura_cli.lbi";
+
 	$t=new Template('.','comment');
 	$t->set_file("page", $file);
+
 	$t->set_var("titol","FACTURA PROFORMA");
 	$t->set_var("id_reserva",date("Y")."-".$fila['id_reserva']);
 	$t->set_var("cdata_reserva",$txt[89][$lang]);    $t->set_var("data",$avui);
@@ -531,7 +538,7 @@ function factura23($fila,$doc_root,$out=false)
 	{
 		$t->set_var('cnens10_14',$camps[3][$lang]);  
 		$t->set_var('nens10_14',(int)$fila['nens10_14']." x ".$fila['txt_1']." (".$carta->preuPlat($menuJR)."&euro;) = ".sprintf("%01.2f &euro;",$carta->preuPlat($menuJR)*$fila['nens10_14']));  
-		$t->set_var('nens10_14',"aaaaaaaaaaaaaaaaa");  
+		 
 	}	
 	
 	if ( $fila['nens4_9']>0) 

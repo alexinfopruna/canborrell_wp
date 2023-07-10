@@ -10,7 +10,8 @@ require_once( ROOT . INC_FILE_PATH.'alex.inc');valida_admin('editar.php');
 
 
 require(ROOT.DB_CONNECTION_FILE); 
-require_once(ROOT . INC_FILE_PATH.'valors.php'); 
+//require_once(ROOT . INC_FILE_PATH.'valors.php'); 
+require_once('valors23.php');
 require_once('mailer.php');
  
 //$lang='cat';

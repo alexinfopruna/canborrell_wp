@@ -1,5 +1,5 @@
 <?php 
-$id=3908;
+$id=5002;
 if (!defined('ROOT')) define('ROOT', "../taules/");
 require_once(ROOT."Gestor.php");
 require(ROOT."gestor_reserves.php");
@@ -23,6 +23,8 @@ echo "Enviant...";
 		$datat=data_llarga($fila['data'],$lang).", ".$fila['hora']."h";
         $copia=Gestor::lv("Reserva Grups PAGADA");
         $subject=Gestor::lv("Can-Borrell: NOTIFICACIÓ DE PAGAMENT REBUDA")." ".$fila['id_reserva'];
+
+
 		if ($fila['factura']) 
 		{
                     echo "A veeer";
