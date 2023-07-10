@@ -993,7 +993,7 @@ if (!isset($_SESSION['uSer'])) {
    
     if( intval($_SESSION['uSer']->id) ==2 && $tpv_ok_callback=="reserva_pk_tpv_ok_callback") $trans=7;
    if( $tpv_ok_callback=="reserva_pk_tpv_ok_callback") $trans=7;
-   else $trans=7;
+   else $trans=7; // reserva de grups
     
     // Se crea Objeto
     $miObj = new RedsysAPI;
@@ -1015,8 +1015,6 @@ if (!isset($_SESSION['uSer'])) {
     $miObj->setParameter("Ds_Merchant_ConsumerLanguage", $idioma);
     $miObj->setParameter("Ds_Merchant_PayMethods", $paymethods);
     $miObj->setParameter("Ds_Merchant_MerchantData", $tpv_ok_callback);
-
-
 
     // Se generan los parámetros de la petición
     $request = "";
