@@ -219,7 +219,7 @@ echo $query ."   $database_canborrell  *** ".$lang;die();
         $subject=Gestor::lv("Can-Borrell: NOTIFICACIÓ DE PAGAMENT REBUDA")." ".$fila['id_reserva'];
 		if ($fila['factura']) 
 		{
-			$attach=factura($fila,"../",false);
+			$attach=factura23($fila,"../",false);
 			//echo "SIII ATACH: ".$attach;
 		}
 		else
