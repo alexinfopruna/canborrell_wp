@@ -50,6 +50,7 @@ function mailer($addr, $subject, $body, $altbody = null, $attach = null, $test =
   $mail = new phpmailer();
   //echo "POOORT: ".$mail->Port;die();
   $mail->CharSet = 'UTF-8';
+  
   /* SENSE IMATGE CAPSALERA */
   if ($addr == MAIL_RESTAURANT)
     $body = str_replace('<img src="//www.can-borrell.com/cb-reserves/img/lg_sup.png" alt="img" width="303" height="114" border="0" title="INICI" />', "", $body);
