@@ -512,8 +512,11 @@ function factura23($fila,$doc_root,$out=false)
 		$t->set_var('cnens4_9',$camps[4][$lang]);
 		$t->set_var('nens4_9',(int)$fila['nens4_9']." x ".$fila['txt_2']." (".$carta->preuPlat($menuINF)."&euro;) = ".sprintf("%01.2f &euro;",$carta->preuPlat($menuINF)*$fila['nens4_9']));  
 	}
-			
-	$t->set_var("cpreu_reserva",$txt[85][$lang]);$t->set_var("preu_reserva",calcula_preu($fila['adults']+$fila['nens10_14']+$fila['nens4_9']));
+        
+        $preu_reserva = $fila['preu_reserva'];
+	$preu_reserva = sprintf("%01.2f",$preu_reserva);
+	//$t->set_var("cpreu_reserva",$txt[85][$lang]);$t->set_var("preu_reserva",calcula_preu($fila['adults']+$fila['nens10_14']+$fila['nens4_9']));
+	$t->set_var("cpreu_reserva",$txt[85][$lang]);$t->set_var("preu_reserva",$preu_reserva);
 	$t->set_var("cpreu_subtotal",$txt[86][$lang]); $t->set_var("preu_subtotal",$preu=calcula_preu_real($fila,$doc_root));
 	$t->set_var("cpreu_iva",$txt[87][$lang]);   $t->set_var("preu_iva",sprintf("%01.2f",$preu*$IVA/100));
 	$t->set_var("cpreu_total",$txt[88][$lang]); $t->set_var("preu_total",sprintf("%01.2f",$preu*(1+$IVA/100)));
@@ -525,9 +528,9 @@ function factura23($fila,$doc_root,$out=false)
 	$t->set_var("nota3",$txt[90][$lang]);
 	$t->parse("OUT", "page");
 	$content = $html=$t->get("OUT");
-        
+        /*
 	if ($out)$t->p("OUT");
-            echo $html;
+            echo $html;*/
     try {
         $html2pdf = new Html2Pdf('P', 'A4', 'fr');
         
