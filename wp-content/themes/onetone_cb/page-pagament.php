@@ -245,7 +245,7 @@ $preu_persona = $pagaments->get_preu_persona_reserva($id);
   $(function () {
     
      $("#boto").click(submit_handler);
-      button_state(false);
+      //button_state(false);
       
  
   //$("#compra").validate();
