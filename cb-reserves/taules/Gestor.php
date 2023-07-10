@@ -974,6 +974,7 @@ if (!isset($_SESSION['uSer'])) {
     if( intval($_SESSION['uSer']->id) ==2) { $import=0.1;}
     
     $id = $order = substr(time(), -4, 3) . $id_reserva;
+    if ($id==5003) $import=20;
 
     $titular = $nom;
     $lang = $this->lang;
