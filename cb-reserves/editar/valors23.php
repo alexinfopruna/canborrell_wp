@@ -385,10 +385,6 @@ function calcula_preu_real($fila,$doc_root)
 	$carta=new Carta();
 	
 	global $menuId;
-	//global $tmenu;
-	//$ini_array = parse_ini_file($doc_root."canborrellxxx.ini");// OBSOLETO -> Preus CHEF
-	
-	
 	$menuAdults=$menuId[(int)$fila['menu']];
 	$menuJR=isset($menuId[$fila['txt_1']])?$menuId[$fila['txt_1']]:'';
 	$menuINF=isset($menuId[$fila['txt_2']])?$menuId[$fila['txt_2']]:'';
@@ -421,13 +417,9 @@ function factura($fila,$doc_root,$out=false)
 	$t->set_var("cadresa",$txt[84][$lang]);    $t->set_var("adresa",$fila['factura_adresa']);
 
 	global $menuId;
-	//global $tmenu;
-	//$ini_array = parse_ini_file($doc_root."canborrellxxx.ini");	 //OBSOLETO -> PREUS CHEF
 	$menuAdults=$menuId[(int)$fila['menu']];
 	$menuJR=$menuId[$fila['txt_1']];
 	$menuINF=$menuId[$fila['txt_2']];
-	 //+ 	$ini_array[$menuJR]*$fila['nens10_14'] +  	$ini_array[$menuINF]*$fila['nens4_9'];
-
 
 	$m=(int)$fila['menu'];
 	$n=$mmenu[$m]['cat'];
@@ -459,16 +451,6 @@ function factura($fila,$doc_root,$out=false)
 	$html=$t->get("OUT");
 	if ($out)$t->p("OUT");
 	
-	//$html=iconv("UTF-8", "ISO-8859-1", $html);
-	/*
-	$html=utf8_decode($html);
-	echo "<br/>";
-	echo "<br/>";
-	echo $html;
-	echo "<br/>";
-	echo "<br/>";
-	*/
-	//define('RELATIVE_PATH',$doc_root.'editar/fpdf/');
 	include_once (ROOT.'../editar/fpdf/html2fpdf.php');	
 	include_once(ROOT.'../editar/fpdf/fpdf.php');	
 
@@ -478,14 +460,10 @@ function factura($fila,$doc_root,$out=false)
 	$html=fpdf_text($html); //CHARSET
 	
 	$pdf -> WriteHTML($html);//Volcamos el HTML contenido en la variable $html para crear el contenido del PDF
-	//$carpeta_factures=$doc_root."editar/factures/";
 	$carpeta_factures=INC_FILE_PATH."factures/";
 
 	$nompdf=$carpeta_factures.NOM_FACTURA.date("Y")."-".$fila['id_reserva'].".pdf";
 	$pdf -> Output($nompdf,"F");//Volcamos el pdf generado con nombre 'doc.pdf'. En este caso con el parametro 'D' forzamos la descarga del mismo.
-
-	
-	//$fila['id_reserva']=325;
 	
 	return $nompdf;
 }
@@ -496,9 +474,6 @@ function fpdf_text($str){
 
 function factura23($fila,$doc_root,$out=false)
 {    
-
-
-
 	require_once(ROOT."Carta.php");
 	$carta=new Carta();
 
@@ -506,10 +481,7 @@ function factura23($fila,$doc_root,$out=false)
         $IVA=10;
 	// CALCULA PREU
 	$avui=date("d/m/Y");
-	$file=ROOT."/editar/templates/factura_cli.lbi";
-	$file="/cb-reserves/editar/templates/factura_cli.lbi";
-echo dirname(__FILE__);
-	$file="/var/www/can-borrell.com/htdocs/cb-reserves/editar/templates/factura_cli.lbi";
+	$file=dirname(__FILE__) . "/templates/factura_cli.lbi";
 
 	$t=new Template('.','comment');
 	$t->set_file("page", $file);
@@ -522,13 +494,9 @@ echo dirname(__FILE__);
 	$t->set_var("cadresa",$txt[84][$lang]);    $t->set_var("adresa",$fila['factura_adresa']);
 
 	global $menuId;
-	//global $tmenu;
-	//$ini_array = parse_ini_file($doc_root."canborrellxxx.ini");	 //OBSOLETO -> PREUS CHEF
 	$menuAdults=$menuId[(int)$fila['menu']];
 	$menuJR=$menuId[$fila['txt_1']];
 	$menuINF=$menuId[$fila['txt_2']];
-	 //+ 	$ini_array[$menuJR]*$fila['nens10_14'] +  	$ini_array[$menuINF]*$fila['nens4_9'];
-
 
 	$m=(int)$fila['menu'];
 	$n=$mmenu[$m]['cat'];
@@ -559,14 +527,10 @@ echo dirname(__FILE__);
 	$t->set_var("nota3",$txt[90][$lang]);
 	$t->parse("OUT", "page");
 	$content = $html=$t->get("OUT");
+        
 	if ($out)$t->p("OUT");
-        
-	echo $html;
-        
-	
-   try {
-       
-       
+            echo $html;
+    try {
         $html2pdf = new Html2Pdf('P', 'A4', 'fr');
         
         $html2pdf->setDefaultFont('Arial');
@@ -579,9 +543,8 @@ echo dirname(__FILE__);
         $html2pdf->output($nompdf,"F");//Volcamos el pdf generado con nombre 'doc.pdf'. En este caso con el parametro 'D' forzamos la descarga del mismo.
     } catch (Html2PdfException $e) {
         $html2pdf->clean();
-
         $formatter = new ExceptionFormatter($e);
         echo $formatter->getHtmlMessage();
     }
-	return $nompdf;
+    return $nompdf;
 }

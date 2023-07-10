@@ -1,6 +1,11 @@
 <?php
-use PHPMailer\PHPMailer\PHPMailer;
-use PHPMailer\PHPMailer\Exception;
+//use PHPMailer\PHPMailer\PHPMailer;
+//use PHPMailer\PHPMailer\Exception;
+require_once ROOT.'../editar/html2pdf-master/vendor/autoload.php';
+use Spipu\Html2Pdf\Html2Pdf;
+use Spipu\Html2Pdf\Exception\Html2PdfException;
+use Spipu\Html2Pdf\Exception\ExceptionFormatter;
+
 
   if (!defined('ROOT'))    define('ROOT', "../taules/");
   if (!defined('INC_FILE_PATH'))    define('INC_FILE_PATH', "../../../canBorrell_inc_PROD/");
@@ -18,57 +23,6 @@ require '/var/www/can-borrell.com/canBorrell_inc_PROD/phpmailerlast/PHPMailer-ma
 require '/var/www/can-borrell.com/canBorrell_inc_PROD/phpmailerlast/PHPMailer-master/src/PHPMailer.php';
 require '/var/www/can-borrell.com/canBorrell_inc_PROD/phpmailerlast/PHPMailer-master/src/SMTP.php';
 
-
-//echo "result: ".mailer("alexmaildos@gmail.com","prova3","prova body3");
-//echo "FINAL";
-//die();
-/*
-// TEST PER ENVIAR UN MAIL DE PROVA 
-
-
-$emailFrom="reserves@can-borrell.com";
-$emailFromName="Reserves CB";
-$emailTo="alexmaildos@gmail.com";
-$emailToName="infopruna";
-
-
-$mail = new PHPMailer;
- $mail->isSMTP();
-  $mail->Host = "smtp.office365.com";
-  $mail->SMTPSecure = 'tls';
-  $mail->Port =587;
-  $mail->SMTPAuth = true;
-  $mail->Username = "reserves@can-borrell.com";
-  $mail->Password = "Res@Bor_2023";
-  //$mail->From = "restaurant@can-borrell.com"; = "reserves@can-borrell.com
-  //$mail->FromName = "Reserves Can Borrell";
-
-$mail->SMTPDebug = 2; // 0 = off (for production use) - 1 = client messages - 2 = client and server messages
-
-$mail->setFrom($emailFrom, $emailFromName);
-$mail->addAddress($emailTo, $emailToName);
-$mail->Subject = 'PHPMailer GMail SMTP test';
-$mail->msgHTML("test body"); //$mail->msgHTML(file_get_contents('contents.html'), __DIR__); //Read an HTML message body from an external file, convert refer$
-$mail->AltBody = 'HTML messaging not supported';
-// $mail->addAttachment('images/phpmailer_mini.png'); //Attach an image file
-
-if(!$mail->send()){
-    echo "Mailer Error: " . $mail->ErrorInfo;
-}else{
-    echo "Message sent!";
-}
-
-/********************************************************************************************************************************************/
-/*
-require_once (ROOT . INC_FILE_PATH . "PHPMailer-master/PHPMailerAutoload.php");
-require_once(ROOT . INC_FILE_PATH . 'alex.inc');
-
-if (!defined('CONFIG')) {
-  if (!defined('ROOT'))    define('ROOT', "../taules/");
-  require_once(ROOT . "php/Configuracio.php");
-  $conf = new Configuracio();
-}
-*/
 function mailer_reserva($idr, $template, $addr, $subject, $body, $altbody, $attach = null, $test = false, $cco = null) {
   $query = "INSERT INTO `email` ( `reserva_id`, `email_recipients`, `email_subject`, `email_body`, `email_resultat`,   `email_categoria`) "
       . "VALUES (  '$idr', '$addr', '$subject', '" . base64_encode($body) . "' , '0',  '$template');";
@@ -98,7 +52,6 @@ function mailer($addr, $subject, $body, $altbody = null, $attach = null, $test =
   if (!isset($altbody) || is_null($altbody))    $altbody = "Su cliente de correo no puede interpretar correctamente este mensaje. Por favor, póngase en contacto con el restaurante llamando al 936 929 723 o al 936 910 605. Disculpe las molestias";
 
   $mail = new phpmailer();
-  //echo "POOORT: ".$mail->Port;die();
   $mail->CharSet = 'UTF-8';
 
   /* SENSE IMATGE CAPSALERA */
@@ -134,7 +87,6 @@ function mailer($addr, $subject, $body, $altbody = null, $attach = null, $test =
     $f = fopen(ROOT . INC_FILE_PATH . "log/test_mail.html", 'a');
     fwrite($f, "ENVIAT AMB EXIT: <br>\n" . $o);
     fwrite($f, $o);
- //   echo $o;
     return;
 
     error_log("</ul>", 3, ROOT . INC_FILE_PATH . '/log/logMAILSMS.txt');
@@ -145,16 +97,10 @@ function mailer($addr, $subject, $body, $altbody = null, $attach = null, $test =
     if (!$exito) {
 
       $err = $mail->ErrorInfo;
-      //print_log("<span style='color:red'>MAILER ERROR:$err - </span> Enviat mail TO:$addr $cco SUBJECT: $subject");
       error_log("<li><span style='color:red'>MAILER ERROR:$err - </span> Enviat mail TO:$addr $cco SUBJECT: $subject </li>", 3, ROOT . INC_FILE_PATH . '/log/logMAILSMS.txt');
-     // error_log("</ul>", 3, ROOT . INC_FILE_PATH . '/log/logMAILSMS.txt');
-
-      //return FALSE;
     }
     else {
       error_log("<li><span style='color:green'>MAILER SUCCESS:</span>: Enviat mail TO:$addr SUBJECT: $subject</li>", 3, ROOT . INC_FILE_PATH . '/log/logMAILSMS.txt');
-     // error_log('<li>' . $body . '</li>, 3, ROOT . INC_FILE_PATH . '/log/logMAILSMS.txt');
-      //return TRUE;
     }
 
   if ($cco == $addr)    $cco = NULL;
@@ -169,7 +115,6 @@ function mailer($addr, $subject, $body, $altbody = null, $attach = null, $test =
         error_log('<li>' . $bodycco . '</li>', 3, ROOT . INC_FILE_PATH . '/log/logMAILSMS.txt');
   }
   }    
-
   
         error_log( '</ul>', 3, ROOT . INC_FILE_PATH . '/log/logMAILSMS.txt');
   
