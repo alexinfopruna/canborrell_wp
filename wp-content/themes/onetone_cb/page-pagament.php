@@ -245,7 +245,7 @@ $preu_persona = $pagaments->get_preu_persona_reserva($id);
   $(function () {
     
      $("#boto").click(submit_handler);
-      button_state(true);
+      button_state(false);
       
  
   //$("#compra").validate();
@@ -654,15 +654,15 @@ $preu_persona = $pagaments->get_preu_persona_reserva($id);
                                                 <td  colspan="2" class="Estilo2"><?php l("Realitzar un nou pagament") ?></td>
                                             </tr>
 
-                                            <tr style="display:none">
+                                            <tr>
                                                 <td   class="Estilo2"><?php l("Indica el nom del pagador"); ?>
                                                     <i><?php l('Per facilitar-vos la gestió dels pagaments introdueix un nom que identifiqui el pagador. Per exemple: Família Puig o Josep i Maria'); ?></i>
                                                 </td>
                                                 <td   class="llista"><div  class="estat">
-                                                        <div  class="Estilo2"><input name="nom" id="nom" type="text" placeholder="Introdueix un nom" value="Titular" required></div>
+                                                        <div  class="Estilo2"><input name="nom" id="nom" type="text" placeholder="Introdueix un nom" required></div>
                                                     </div></td>
                                             </tr>
-                                            <tr  style="display:none">
+                                            <tr>
                                                 <td   class="Estilo2"><?php l("Coberts que vols pagar"); ?>
                                                     <i><?php l('Pots pagar tos els coberts que desitgis. Si sou un grup d\'amics o famílies podeu repartir els coberts de la manera que més us convingui fent múltiples pagaments fins a 3 dies abans de la reserva. La reserva es serà efectiva pels coberts que s\'hagin abonat'); ?></i>
 
@@ -672,7 +672,7 @@ $preu_persona = $pagaments->get_preu_persona_reserva($id);
                                                     </div>
                                                     <i><?php echo $preu_persona."€ ";l(" persona"); ?></i>
                                                 </td>
-                                            </tr >
+                                            </tr>
                                             <tr class="preu">
                                                 <td   class="Estilo2"><?php l("Import a pagar"); ?></td>
                                                 <td   class="llista"><div  class="estat">
