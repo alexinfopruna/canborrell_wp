@@ -692,7 +692,7 @@ $preu_persona = $pagaments->get_preu_persona_reserva($id);
                                       $response = isset($_GET["testTPV"]) ? $_GET["testTPV"] : -1;
 
                                       if (isset($_REQUEST["testTPV"]) && $_REQUEST["testTPV"] == 'testTPV')
-                                        echo '<div id="form_test" class="form_tpv_test">TEST<br>BONA  4548812049400004  12/20   123  123456<br><div  class="form_tpv"> ' . $gestor->generaTESTTpvSHA256($id_reserva, $preu, $nom, $responaseok_callback_alter) . "</div></div>";
+                                        echo '<div id="form_test" class="form_tpv_test">TEST<br>BONA  4548810000000003  12/49   123  123456<br><div  class="form_tpv"> ' . $gestor->generaTESTTpvSHA256($id_reserva, $preu, $nom, $responaseok_callback_alter) . "</div></div>";
                                       else
                                         echo '<div id="form_tpv" class="form_tpv_real"> <div  class="form_tpv">' . $gestor->generaFormTpvSHA256($id_reserva, $preu, $nom, $responaseok_callback_alter) . "</div></div>";
                                       ?>  

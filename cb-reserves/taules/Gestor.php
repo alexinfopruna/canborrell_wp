@@ -1066,6 +1066,7 @@ public function generaTESTTpvSHA256($id_reserva, $import, $nom, $tpv_ok_callback
  
   $_LOG_FILE_TPVPK = "TPV256_test.php";
   $import=20;
+  $trans=7;
   
     $this->xgreg_log("generaFormTpvSHA256 $id_reserva $import $nom", 0, LOG_FILE_TPVPK, TRUE);
 
@@ -1110,17 +1111,7 @@ public function generaTESTTpvSHA256($id_reserva, $import, $nom, $tpv_ok_callback
     $request = "";
     $params = $miObj->createMerchantParameters();
     $signature = $miObj->createMerchantSignature($clave256);
-/*
-    $form = " <p>4548812049400004 12 20 123 123456</p>";
-    $form .= '<form id="compra" name="compra" action="' . $url . '" method="post" target2="_blank" target="frame-tpv"  style="display:nonexxx" class="generaTESTTpvSHA256">
-              <div class="ds_input">odr <input id="dsorder"  type="text" name="Ds_odr" value="' . $id . '"/></div>
-              <div class="ds_input">Ds_Merchant_SignatureVersion <input type="text" name="Ds_SignatureVersion" value="' . $version . '"/></div>
-              <div class="ds_input">Ds_Merchant_MerchantParameters <input type="text" name="Ds_MerchantParameters" value="' . $params . '"/></div>
-              <div class="ds_input">Ds_Merchant_Signature <input type="text" name="Ds_Signature" value="' . $signature . '"/></div>
-              
-                <button id="boto" type="submit" name="Submit" value="' . $this->l('Realizar Pago', false) . '" class="btn btn-success boto_disabled">' . $this->l('Realizar Pago', false) . '</button>
-</form>';
-  */ 
+
     $form = " <p>4548812049400004 12 20 123 123456</p>";
        $form.= '<form id="compra" name="compra" action="' . $url . '" method="post" style="display:nonexxx" class="generaFormTpvSHA256" target="POPUPW"    onsubmit="POPUPW = window.open(\'about:blank\',\'POPUPW\',   \'width=600,height=400\');">
               <div class="ds_input">odr <input  id="dsorder"  type="text" name="Ds_odr" value="' . $id . '"/></div>
@@ -1130,9 +1121,6 @@ public function generaTESTTpvSHA256($id_reserva, $import, $nom, $tpv_ok_callback
               <!--<input id="boto" type="submit" name="Submit" value="' . $this->l('Realizar Pago', false) . '" onclickxx="javascript:calc();" />-->
                 <button id="boto" type="submit" name="Submit" value="' . $this->l('Realizar Pago', false) . '" class="btn btn-success boto_disabled">' . $this->l('Realizar Pago', false) . '</button>
 </form>';
-
-    
-    
     return $form;
   }
   
