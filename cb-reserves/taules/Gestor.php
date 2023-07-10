@@ -993,6 +993,7 @@ if (!isset($_SESSION['uSer'])) {
    
     if( intval($_SESSION['uSer']->id) ==2 && $tpv_ok_callback=="reserva_pk_tpv_ok_callback") $trans=7;
    if( $tpv_ok_callback=="reserva_pk_tpv_ok_callback") $trans=7;
+   else $trans=7;
     
     // Se crea Objeto
     $miObj = new RedsysAPI;
@@ -1022,18 +1023,7 @@ if (!isset($_SESSION['uSer'])) {
     $params = $miObj->createMerchantParameters();
     $signature = $miObj->createMerchantSignature($clave256);
 
-    /*
-      echo   'amount: '.     $amount.'<br>';
-      echo   'order: '.     strval($id).'<br>';
-      echo   'fuc: '.     $fuc.'<br>';
-      echo   'url: '.     $url.'<br>';
-      echo   '$producte: '.     $producte.'<br>';
-      echo   '$urlMerchant: '.     $urlMerchant.'<br>';
-      echo   '$urlMerchant: '.     $tpv_ok_callback.'<br>';
-      echo '<br><br>';
-     */
-    
-    /**/
+
     $form_grups = '<form id="compra" name="compra" action="' . $url . '" method="post" target2="_blank" target="frame-tpv"  style="display:nonexxx" class="generaFormTpvSHA256">
               <div class="ds_input">odr <input  id="dsorder"  type="text" name="Ds_odr" value="' . $id . '"/></div>
               <div class="ds_input">Ds_Merchant_SignatureVersion <input type="text" name="Ds_SignatureVersion" value="' . $version . '"/></div>
@@ -1044,7 +1034,7 @@ if (!isset($_SESSION['uSer'])) {
 </form>';
     
     
-       $form= '<form id="compra" name="compra" action="' . $url . '" method="post" style="display:nonexxx"  class="generaFormTpvSHA256" target="_blank"    onsubmitxxx="POPUPW=popupw()">
+       $form=      '<form id="compra" name="compra" action="' . $url . '" method="post" style="display:nonexxx"  class="generaFormTpvSHA256" target="_blank"    onsubmitxxx="POPUPW=popupw()">
               <div class="ds_input">odr <input  id="dsorder"  type="text" name="Ds_odr" value="' . $id . '"/></div>
               <div class="ds_input">Ds_Merchant_SignatureVersion <input type="text" name="Ds_SignatureVersion" value="' . $version . '"/></div>
               <div class="ds_input">Ds_Merchant_MerchantParameters <input type="text" name="Ds_MerchantParameters" value="' . $params . '"/></div>
@@ -1054,7 +1044,7 @@ if (!isset($_SESSION['uSer'])) {
 </form>';
     
  
-       if ($trans!=7) $form=$form_grups;
+       if( $tpv_ok_callback!="reserva_pk_tpv_ok_callback") $form=$form_grups;
        
     
     $form .= "<!-- ".$tpv_ok_callback;
