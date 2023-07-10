@@ -1,6 +1,4 @@
 <?php
-
-
 if (!defined('MAIL_RESTAURANT')) define('MAIL_RESTAURANT','restaurant@can-borrell.com');
    include ROOT.'/../editar/html2pdf-master/src/Html2Pdf.php';
    use Spipu\Html2Pdf\Html2Pdf;

@@ -1,6 +1,4 @@
 <?php
-//use PHPMailer\PHPMailer\PHPMailer;
-//use PHPMailer\PHPMailer\Exception;
 require_once ROOT.'../editar/html2pdf-master/vendor/autoload.php';
 use Spipu\Html2Pdf\Html2Pdf;
 use Spipu\Html2Pdf\Exception\Html2PdfException;
@@ -18,10 +16,11 @@ if (!defined('CONFIG')) {
   $conf = new Configuracio();
 }
 
-
-require '/var/www/can-borrell.com/canBorrell_inc_PROD/phpmailerlast/PHPMailer-master/src/Exception.php';
-require '/var/www/can-borrell.com/canBorrell_inc_PROD/phpmailerlast/PHPMailer-master/src/PHPMailer.php';
-require '/var/www/can-borrell.com/canBorrell_inc_PROD/phpmailerlast/PHPMailer-master/src/SMTP.php';
+require ROOT.INC_FILE_PATH.'phpmailerlast/PHPMailer-master/src/Exception.php';
+require ROOT.INC_FILE_PATH.'phpmailerlast/PHPMailer-master/src/PHPMailer.php';
+require ROOT.INC_FILE_PATH.'phpmailerlast/PHPMailer-master/src/SMTP.php';
+use PHPMailer\PHPMailer\PHPMailer;
+use PHPMailer\PHPMailer\Exception;
 
 function mailer_reserva($idr, $template, $addr, $subject, $body, $altbody, $attach = null, $test = false, $cco = null) {
   $query = "INSERT INTO `email` ( `reserva_id`, `email_recipients`, `email_subject`, `email_body`, `email_resultat`,   `email_categoria`) "
@@ -51,7 +50,7 @@ function mailer($addr, $subject, $body, $altbody = null, $attach = null, $test =
 
   if (!isset($altbody) || is_null($altbody))    $altbody = "Su cliente de correo no puede interpretar correctamente este mensaje. Por favor, póngase en contacto con el restaurante llamando al 936 929 723 o al 936 910 605. Disculpe las molestias";
 
-  $mail = new phpmailer();
+  $mail = new PHPMailer();
   $mail->CharSet = 'UTF-8';
 
   /* SENSE IMATGE CAPSALERA */

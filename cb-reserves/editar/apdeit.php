@@ -34,7 +34,6 @@ valida_admin('editar.php');
 
 $reserva = $gestor->load_reserva($id_reserva, 'reserves');
 $lang_r=Gestor::codelang($reserva['lang']);
-//require_once(ROOT."../editar/translate_editar_$lang_r.php");
 require_once(ROOT."../editar/translate_editar_$lang_r.php");
 
 
@@ -47,7 +46,6 @@ case "Pendent":
 
   case "Confirmar":
     $estat=2;
-    //$SMS="TU RESERVA {ID} PARA EL DIA {DIA} ESTA CONFIRMADA.HEMOS ENVIADO MAIL CON INTRUCCIONES PARA EL PAGO.SI NO RECIBES MAIL REVISA SPAM O CANTACTANOS: restaurant@can-borrell.com";
 
     $SMS=Gestor::lv("LA RESERVA {ID} PER AL DIA {DIA} ESTA CONFIRMADA.HEM ENVIAT MAIL AMB INTRUCCIONS PER AL PAGAMENT.");
     $SMS.=Gestor::lv("SI NO REPS MAIL REVISA SPAM O CANTACTAN'S: restaurant@can-borrell.com");
