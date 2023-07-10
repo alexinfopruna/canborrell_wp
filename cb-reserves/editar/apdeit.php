@@ -154,10 +154,6 @@ function mail_SMS_cli($id=false,$SMS=null)
 	$fila=mysqli_fetch_assoc($Result);
                             $id = $fila['id_reserva'];
  	$lang=$lang_cli=$fila['lang'];
-  /*    * *                       
-print_r($fila);                            
-echo $query ."   $database_canborrell  *** ".$lang;die();
-*/  
    
  	/*** ENVIA SMS ***/ 	
  	$SMS=str_replace('{ID}', $id, $SMS);
@@ -231,10 +227,7 @@ echo $query ."   $database_canborrell  *** ".$lang;die();
 	
           case 4: // RESERVA DENEGADA
 		$v=30;
-            /*
-		$aki="<a href='/#contact?id=".$fila["id_reserva"]."&lang=$lang_cli' class='dins'>AQUÍ</a>";
-        $altbdy="Lamentamos informarle que la reserva que solicitó para el restaurante Can Borrell ha sido denegada por encontrarse el comedor lleno.\n\n Para más información, por favor, póngase en contacto con el restaurante llamando al 936 929 723 o al 936 910 605. \n\nDisculpe las molestias";
-    $copia=Gestor::lv("Reserva Grups DENEGADA");*/
+
             $aki ="";
     $subject=Gestor::lv("Can-Borrell: RESERVA DENEGADA")." ".$fila['id_reserva'];
 	  break;
