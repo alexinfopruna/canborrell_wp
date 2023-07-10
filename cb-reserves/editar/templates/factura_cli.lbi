@@ -2,7 +2,7 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
 
-        <link type="text/css" href="https://www.can-borrell.com/cb-reserves/css/blau.css" rel="stylesheet"/>
+<link type="text/css" href="https://www.can-borrell.com/cb-reserves/css/blau.css" rel="stylesheet"/>
         
 
 
@@ -15,14 +15,9 @@
 	.Estilo4{font-size:1em;}
 </style>
 </head>
-<<<<<<< HEAD
-<body><!-- templates/{self}  -->
 <!-- factura-cli 23 -->
-=======
 <body>
-
 <!-- factura-cli --> 
->>>>>>> error_cadaus_guardaEstatMenjador
 <table width="650" border="0" align="center" cellpadding="0" cellspacing="0" bgcolor="#F7F9FB">
   <tr>
     <td width="471"><span  style="color:#990000"><strong>RESTAURANT MASIA CAN BORRELL</strong><br />
@@ -98,4 +93,6 @@
 </table>
 <p align="center" >{nota1}</p>
 <p align="center"><span >(*) {nota2} <span >({preu_reserva}&euro;</span>), {nota3} </span></p>
-</body></html>
+</body>
+
+</html>
