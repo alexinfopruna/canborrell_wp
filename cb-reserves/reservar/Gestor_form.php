@@ -1604,8 +1604,14 @@ WHERE  `client`.`client_id` =$idc;
     $extres['cdata_reserva'] = $translate["cdata_reserva"];
     $extres['menu'] = $translate["menu"];
     
-    $extres['attachment']="ATTACH!!!!";
-    $extres['subject'] .="ATTACH!!!!ATTACH!!!!ATTACH!!!!ATTACH!!!!ATTACH!!!!";
+    require_once(ROOT.'../editar/valors23.php');
+
+    if ($row['factura']) 
+    {
+            $extres['attach']=factura23($row,"../",false);
+            echo "SIII ATACH: ".$extres['attach'];
+            die();
+    }
     
     if ($mail) {
       $this->enviaMail($idr, "../editar/templates/mail_cli_", NULL, $extres);
