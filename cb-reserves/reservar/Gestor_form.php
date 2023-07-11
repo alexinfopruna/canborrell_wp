@@ -1534,16 +1534,6 @@ WHERE  `client`.`client_id` =$idc;
 
     $estat = $row['estat'];
     $mail = $row['client_email'];
-    /* ANULAT: PAGAMENTS PARCIALS
-      if ($estat != 2) { // NO ESTÀ CONFIRMADA PER PAGAR
-      $msg = "PAGAMENT INAPROPIAT RESERVA PETITA???: " . $idr . " estat: $estat  $mail";
-      $this->xgreg_log($msg, 1, LOG_FILE_TPVPK, FALSE); // LOG
-      echo "ERROR ESTAT!=2";
-      $extres['subject'] = "Can-Borrell: !!!! $msg!!!";
-      $mail = $this->enviaMail($idr, "../reservar/paga_i_senyal_", MAIL_RESTAURANT, $extres);
-      return FALSE;
-      }
-     */
 
     $referer = $_SERVER['REMOTE_ADDR'];
     $import = $amount / 100;
@@ -1612,6 +1602,10 @@ WHERE  `client`.`client_id` =$idc;
             echo "SIII ATACH: ".$extres['attach'];
             die();
     }
+    
+             echo "SIII ATACH: ".$extres['attach'];
+            die();
+   
     
     if ($mail) {
       $this->enviaMail($idr, "../editar/templates/mail_cli_", NULL, $extres);
