@@ -470,6 +470,10 @@ function fpdf_text($str){
 	return iconv('UTF-8', 'windows-1252', $str);
 }
 
+
+/* Genera PDF dela factura proforma
+Retorna la ruta al fitxer creat
+ *  */
 function factura23($fila,$doc_root,$out=false)
 {    
 	require_once(ROOT."Carta.php");
@@ -538,7 +542,7 @@ function factura23($fila,$doc_root,$out=false)
         $html2pdf->writeHTML($content);
         
         $carpeta_factures=INC_FILE_PATH."factures/";
-        $carpeta_factures=ROOT."factures/";
+        //$carpeta_factures=ROOT."factures/";
 	$nompdf=$carpeta_factures.NOM_FACTURA.date("Y")."-".$fila['id_reserva'].".pdf";
         
         $html2pdf->output($nompdf,"F");//Volcamos el pdf generado con nombre 'doc.pdf'. En este caso con el parametro 'D' forzamos la descarga del mismo.

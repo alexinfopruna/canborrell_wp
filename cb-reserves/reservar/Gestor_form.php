@@ -1603,7 +1603,10 @@ WHERE  `client`.`client_id` =$idc;
     $extres['data_limit'] = "";
     $extres['cdata_reserva'] = $translate["cdata_reserva"];
     $extres['menu'] = $translate["menu"];
-
+    
+    $extres['attachment']="ATTACH!!!!";
+    $extres['subject'] .="ATTACH!!!!ATTACH!!!!ATTACH!!!!ATTACH!!!!ATTACH!!!!";
+    
     if ($mail) {
       $this->enviaMail($idr, "../editar/templates/mail_cli_", NULL, $extres);
     }

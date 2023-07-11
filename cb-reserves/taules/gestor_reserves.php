@@ -2901,6 +2901,7 @@ ORDER BY `estat_hores_data` DESC";
 
     $subject = isset($extres['subject']) ? $extres['subject'] : 'No subject';
     $ts = $this->insert_id();
+    $attach=null;
 
     $this->reg_log(">>>> ENVIA EMAIL >>>> enviaMail($idr, $plantilla, $recipient )", 1);
     $this->xgreg_log(">>>> ENVIA EMAIL >>>> enviaMail(<span class='idr'>$idr</span>, $plantilla, $recipient, $subject )", 0, '/log/logMAILSMS.txt');
@@ -2927,8 +2928,14 @@ ORDER BY `estat_hores_data` DESC";
       return "err10";
 
     $row['aixoesunarray'] = 1;
-    if ($extres)
+    if ($extres){
       $row = array_merge($row, $extres);
+      
+      if (isset($extres['attach'])) $attach=$extres['attach'];
+      
+    }
+    
+    $row['observacions']=$row['observacions']."ATTAAAAACH!!!";
 //Gestor::printr($row);
     $avui = date("d/m/Y");
     $ara = date("H:i");
@@ -2948,7 +2955,6 @@ ORDER BY `estat_hores_data` DESC";
     $t->set_var('avui', date("l d M Y"));
     $t->set_var('id_reserva', $idr);
     $t->set_var('data', $row['data']);
-    $t->set_var('hora', $row['hora']);
     $t->set_var('hora', $row['hora']);
 
     $t->set_var('adults', $row['adults']);
@@ -2978,7 +2984,7 @@ ORDER BY `estat_hores_data` DESC";
     else
       $subject = "..::Reserva Can Borrell::..";
     try {
-      $result = $r = mailer_reserva($idr, $plantilla, $recipient, $subject, $html, $altbdy, null, false, MAIL_CCO);
+      $result = $r = mailer_reserva($idr, $plantilla, $recipient, $subject, $html, $altbdy, $attach, false, MAIL_CCO);
       $mail = "Enviament $plantilla RESERVA PETITA ONLINE($r): $idr -- $recipient";
     }
     catch (Exception $e) {
