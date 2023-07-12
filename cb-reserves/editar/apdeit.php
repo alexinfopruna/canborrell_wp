@@ -325,7 +325,7 @@ function mail_SMS_cli($id=false,$SMS=null)
 							
 			$t->parse("OUT", "page");
 			$html=$t->get("OUT");
-			/$t->p("OUT");die();
+			$t->p("OUT");die();
 			//
 	$recipient=$fila['email'];
     //$subject="..::Reserva Can Borrell::..";
