@@ -1376,8 +1376,10 @@ WHERE  `client`.`client_id` =$idc;
         /** MULTIPAGO */
         $import = $amount / 100;
         require_once(ROOT . "Gestor_pagaments.php");
+        
         $pagaments = new Gestor_pagaments();
         $pagaments->valida_pagament($param['Ds_Order'], $idr, $import, $response);
+
 
         $this->$callback($idr, $amount, $data, $hora);
       }
@@ -1521,7 +1523,7 @@ WHERE  `client`.`client_id` =$idc;
     $this->xgreg_log("reserva_grups_tpv_ok_callback ++ $idrl", 1, LOG_FILE_TPVPK, FALSE);
 
     $idr = substr($idrl, -4);
-    $query = "SELECT estat, client_email, data, hora, tel, lang, adults, nens10_14, nens4_9, preu_reserva, data_limit "
+    $query = "SELECT * "
         . "FROM reserves "
         . "LEFT JOIN client ON client.client_id=reserves.client_id "
         . "WHERE id_reserva=$idr";
@@ -1539,6 +1541,7 @@ WHERE  `client`.`client_id` =$idc;
     $import = $amount / 100;
     $resposta = "<br>(" . $pdata . " " . $phora . ")TPV>>" . $import . "€ ";
 
+
     /*     * *****ATENCIO ******************** */
     /*     * *****ATENCIO ******************** */
     /*     * *****ATENCIO ******************** */
@@ -1551,7 +1554,7 @@ WHERE  `client`.`client_id` =$idc;
 
 
     include('translate_' . $this->lng . '.php');
-    echo $query . " >>> " . $result;
+    //echo $query . " >>> " . $result;
 //
     $extres['subject'] = $translate["MAIL_GRUPS_PAGAT_subject"] . " " . $idr;
     $extres['titol'] = $translate["MAIL_GRUPS_PAGAT_titol"];
@@ -1594,17 +1597,13 @@ WHERE  `client`.`client_id` =$idc;
     $extres['cdata_reserva'] = $translate["cdata_reserva"];
     $extres['menu'] = $translate["menu"];
     
-    require_once(ROOT.'../editar/valors23.php');
-
+    include(ROOT.'../editar/valors23.php');
+	
     if ($row['factura']) 
     {
             $extres['attach']=factura23($row,"../",false);
-            echo "SIII ATACH: ".$extres['attach'];
-            die();
     }
-    
-             echo "SIII ATACH: ".$extres['attach'];
-            die();
+            
    
     
     if ($mail) {

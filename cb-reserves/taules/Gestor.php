@@ -971,16 +971,16 @@ if (!isset($_SESSION['uSer'])) {
 
   public function generaFormTpvSHA256($id_reserva, $import, $nom, $tpv_ok_callback_alter = NULL) {
     $this->xgreg_log("generaFormTpvSHA256 $id_reserva $import $nom", 0, LOG_FILE_TPVPK, TRUE);
-    if( intval($_SESSION['uSer']->id) ==2) { $import=0.1;}
+    if( intval($_SESSION['permisos']) == 255) { $import=0.1;}
     
+//echo $_SESSION['permisos'];die();
+//$import = 0.1;
     $id = $order = substr(time(), -4, 3) . $id_reserva;
-    if ($id==5003) $import=20;
 
     $titular = $nom;
     $lang = $this->lang;
     $idioma = ($lang == "cat") ? "003" : "001";
     $amount = $import * 100;
-    //echo "IMPORT $import";die();
 
     //include(ROOT . INC_FILE_PATH . TPV_CONFIG_FILE); //NECESSITO TENIR A PUNT 4id i $lang
     include(ROOT . INC_FILE_PATH . TPV_CONFIG_FILE); //NECESSITO TENIR A PUNT 4id i $lang

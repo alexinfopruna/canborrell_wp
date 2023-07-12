@@ -1,12 +1,13 @@
 <?php
-require_once ROOT.'../editar/html2pdf-master/vendor/autoload.php';
-use Spipu\Html2Pdf\Html2Pdf;
-use Spipu\Html2Pdf\Exception\Html2PdfException;
-use Spipu\Html2Pdf\Exception\ExceptionFormatter;
+//require_once ROOT.'../editar/html2pdf-master/vendor/autoload.php';
+//use Spipu\Html2Pdf\Html2Pdf;
+//use Spipu\Html2Pdf\Exception\Html2PdfException;
+//use Spipu\Html2Pdf\Exception\ExceptionFormatter;
 
 
   if (!defined('ROOT'))    define('ROOT', "../taules/");
   if (!defined('INC_FILE_PATH'))    define('INC_FILE_PATH', "../../../canBorrell_inc_PROD/");
+
 
 require_once(ROOT . INC_FILE_PATH . 'alex.inc');
 
@@ -23,11 +24,13 @@ use PHPMailer\PHPMailer\PHPMailer;
 use PHPMailer\PHPMailer\Exception;
 
 function mailer_reserva($idr, $template, $addr, $subject, $body, $altbody, $attach = null, $test = false, $cco = null) {
+
+
   $query = "INSERT INTO `email` ( `reserva_id`, `email_recipients`, `email_subject`, `email_body`, `email_resultat`,   `email_categoria`) "
       . "VALUES (  '$idr', '$addr', '$subject', '" . base64_encode($body) . "' , '0',  '$template');";
   $qry_result = mysqli_query($GLOBALS["___mysqli_ston"], $query) or die(((is_object($GLOBALS["___mysqli_ston"])) ? mysqli_error($GLOBALS["___mysqli_ston"]) : (($___mysqli_res = mysqli_connect_error()) ? $___mysqli_res : false)));
   $idt = mysqli_insert_id($GLOBALS["___mysqli_ston"]);
-//echo $body;
+
   $res = mailer($addr, $subject, $body, $altbody, $attach, $test, $cco);
   $resultat = $res ? '1' : '0';
 
