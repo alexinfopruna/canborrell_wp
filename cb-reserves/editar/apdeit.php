@@ -137,7 +137,7 @@ function mail_SMS_cli($id=false,$SMS=null)
   $d=false;
   
    Gestor::xgreg_log("<span class='mail'>ENVIA SMS+MAIL: <span class='idr'>$id</span></span>",0,'/log/logGRUPS.txt');
-  
+        include ROOT.'../editar/translate_factura.php';
 	global $camps, $mmenu,$txt,$translate, $database_canborrell, $canborrell,$lang;
 	if (!isset($_SESSION)) session_start();
 	
@@ -325,11 +325,11 @@ function mail_SMS_cli($id=false,$SMS=null)
 							
 			$t->parse("OUT", "page");
 			$html=$t->get("OUT");
-			//$t->p("OUT");die();
+			/$t->p("OUT");die();
 			//
 	$recipient=$fila['email'];
     //$subject="..::Reserva Can Borrell::..";
-    if (!isset($attach))$attach=null;
+    if (!isset($attach)) $attach=null;
     
     $r = FALSE;
     $r=mailer_reserva($id, $copia, $recipient, $subject , $html, $altbdy,$attach,false,MAIL_CCO);

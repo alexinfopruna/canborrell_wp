@@ -144,7 +144,7 @@ function factura23($fila,$doc_root,$out=false)
 
 	global $lang, $camps,$mmenu;
 //print_r($txt);
-        $lang="cat";
+        $lang=$lang_cli=$fila['lang'];
 	$IVA=10;
 	// CALCULA PREU
 	$avui=date("d/m/Y");
