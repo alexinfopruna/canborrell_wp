@@ -1558,7 +1558,7 @@ WHERE  `client`.`client_id` =$idc;
 //
     $extres['subject'] = $translate["MAIL_GRUPS_PAGAT_subject"] . " " . $idr;
     $extres['titol'] = $translate["MAIL_GRUPS_PAGAT_titol"];
-    $extres['text1'] = $translate["MAIL_GRUPS_PAGAT_text1"] . number_format($import, 2);
+    $extres['text1'] = $translate["MAIL_GRUPS_PAGAT_text1"];
     $extres['text2'] = $translate["MAIL_GRUPS_PAGAT_text2"];
     $reserva_id = $idr;
     require_once (ROOT . "../taules/Gestor_pagaments.php");
