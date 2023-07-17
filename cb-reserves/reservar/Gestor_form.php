@@ -1569,16 +1569,16 @@ WHERE  `client`.`client_id` =$idc;
     $data_limit = Gestor::cambiaf_a_normal($row['data_limit']);
     $pendent = number_format($total - $pagat, 2);
     $coberts_reservats = $row['adults'] + $row['nens10_14'] + $row['nens4_9'];
-
+    $multipago="";
+/*
     $multipago = $translate["MAIL_GRUPS_PAGAT_text3"];
     $multipago = str_replace("{pagat}", $pagat, $multipago);
-    //$multipago = str_replace("{coberts_pagats}", $coberts_pagats, $multipago);
-    //$multipago = str_replace("{total}", $total, $multipago);
-    //$multipago = str_replace("{pendent}", $pendent, $multipago);
-    //$multipago = str_replace("{coberts_reservats}", $coberts_reservats, $multipago);
-    //$multipago = str_replace("{data_limit}", $data_limit, $multipago);
-    $extres['text1']="";
-    $extres['text1'] .= "€<br>" . $multipago . "<br>";
+    $multipago = str_replace("{coberts_pagats}", $coberts_pagats, $multipago);
+    $multipago = str_replace("{total}", $total, $multipago);
+    $multipago = str_replace("{pendent}", $pendent, $multipago);
+    $multipago = str_replace("{coberts_reservats}", $coberts_reservats, $multipago);
+    $multipago = str_replace("{data_limit}", $data_limit, $multipago);*/
+    $extres['text1'] .= $pagat."€<br>" . $multipago . "<br>";
     //$boto = $this->botoPagament($reserva_id, $row['tel'], $this->lang);
     //$extres['text1'] .= $boto . "<br>";
     $extres['contacti'] = $translate["MAIL_GRUPS_PAGAT_contacti"];
