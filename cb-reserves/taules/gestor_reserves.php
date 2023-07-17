@@ -2934,12 +2934,8 @@ ORDER BY `estat_hores_data` DESC";
       if (isset($extres['attach'])) $attach=$extres['attach'];
       
     }
-    
-    $row['observacions']=$row['observacions']."ATTAAAAACH!!!";
-//Gestor::printr($row);
     $avui = date("d/m/Y");
     $ara = date("H:i");
-
 
     $file = ROOT . $plantilla . $this->lng . ".lbi";
     // echo $file."  ".__FILE__;die();
