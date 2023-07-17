@@ -7,7 +7,7 @@ use Spipu\Html2Pdf\Exception\ExceptionFormatter;
 
 /******************************************************************************************************/
 
-include ROOT.'../editar/factura_factura.php';
+include ROOT.'../editar/translate_factura.php';
 
 /******************************************************************************************************/
 /******************************************************************************************************/
@@ -40,6 +40,8 @@ function calcula_preu_real($fila,$doc_root)
 	$carta=new Carta();
 	
 	global $menuId;
+        include ROOT.'../editar/translate_factura.php';
+
 	$menuAdults=$menuId[(int)$fila['menu']];
 	$menuJR=isset($menuId[$fila['txt_1']])?$menuId[$fila['txt_1']]:'';
 	$menuINF=isset($menuId[$fila['txt_2']])?$menuId[$fila['txt_2']]:'';
@@ -135,6 +137,7 @@ Retorna la ruta al fitxer creat
 function factura23($fila,$doc_root,$out=false)
 {    
 	include ROOT.'../editar/translate_factura.php';
+ 	$g=new gestor_reserves();
 
 
 	require_once(ROOT."Carta.php");
@@ -143,7 +146,6 @@ function factura23($fila,$doc_root,$out=false)
 
 
 	global $lang, $camps,$mmenu;
-//print_r($txt);
         $lang=$lang_cli=$fila['lang'];
 	$IVA=10;
 	// CALCULA PREU
@@ -161,15 +163,23 @@ function factura23($fila,$doc_root,$out=false)
 	$t->set_var("cnom",$txt[91][$lang]);    $t->set_var("nom",$fila['factura_nom']);
 	$t->set_var("cadresa",$txt[84][$lang]);    $t->set_var("adresa",$fila['factura_adresa']);
 
-	global $menuId;
+        if (!isset($fila['menu'])) $fila['menu']=0;
+        $comanda=$g->plats_comanda($fila['id_reserva']);
+
+/*          
 	$menuAdults=$menuId[(int)$fila['menu']];
 	$menuJR=$menuId[$fila['txt_1']];
 	$menuINF=$menuId[$fila['txt_2']];
 
 	$m=(int)$fila['menu'];
 	$n=$mmenu[$m]['cat'];
-	$t->set_var('menu',$n." (".$carta->preuPlat($menuAdults)."&euro;)");	$t->set_var('totadults',sprintf("%01.2f",$carta->preuPlat($menuAdults)*$fila['adults']));
-	$t->set_var('cadults',$camps[2][$lang]);   $t->set_var('adults',(int)$fila['adults']);
+ */
+        
+        //plats_comanda($idr) 
+	//$t->set_var('menu',$n." (".$carta->preuPlat($menuAdults)."&euro;)");	$t->set_var('totadults',sprintf("%01.2f",$carta->preuPlat($menuAdults)*$fila['adults']));
+	$t->set_var('menu',$comanda);
+
+    //    $t->set_var('cadults',$camps[2][$lang]);   $t->set_var('adults',(int)$fila['adults']);
 	if ( $fila['nens10_14']>0)
 	{
 		$t->set_var('cnens10_14',$camps[3][$lang]);  

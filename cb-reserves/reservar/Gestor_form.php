@@ -1666,6 +1666,7 @@ WHERE  `client`.`client_id` =$idc;
     $result = mysqli_query($this->connexioDB, $query) or die(((is_object($GLOBALS["___mysqli_ston"])) ? mysqli_error($GLOBALS["___mysqli_ston"]) : (($___mysqli_res = mysqli_connect_error()) ? $___mysqli_res : false)));
     $row = mysqli_fetch_assoc($result);
 
+    if (!mysqli_num_rows($result))  return (0);
 
     $estat = $row['estat'];
     $mail = $row['client_email'];

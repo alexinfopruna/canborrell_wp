@@ -58,8 +58,9 @@
   </tr>
   <tr>
     <td align="right" bgcolor="#CFDBE7" style="color:white">{cadults}</td>
-    <td width="320" align="right" bgcolor="#E6ECF2" >{adults}&nbsp;x {menu} = {totadults}&euro;</td>
+    <td width="320" align="right" bgcolor="#E6ECF2" >{adults}&nbsp; {menu} </td>
   </tr>
+<!--
   <tr>
     <td align="right" bgcolor="#CFDBE7" style="color:white">{cnens10_14}</td>
     <td width="320" align="right" bgcolor="#E6ECF2" ><div align="right">&nbsp;{nens10_14}</div></td>
@@ -68,6 +69,7 @@
     <td align="right" bgcolor="#CFDBE7" style="color:white">{cnens4_9}</td>
     <td width="320" align="left" bgcolor="#E6ECF2" ><div align="right">&nbsp;{nens4_9} </div></td>
   </tr>
+-->
   <tr>
     <td align="right" bgcolor="#CFDBE7" style="color:white">&nbsp;{cpreu_subtotal}</td>
     <td width="320" align="left" bgcolor="#F7F9FB" ><div align="left" >
