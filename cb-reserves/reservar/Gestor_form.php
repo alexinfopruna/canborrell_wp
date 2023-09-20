@@ -1376,8 +1376,10 @@ WHERE  `client`.`client_id` =$idc;
         /** MULTIPAGO */
         $import = $amount / 100;
         require_once(ROOT . "Gestor_pagaments.php");
+        
         $pagaments = new Gestor_pagaments();
         $pagaments->valida_pagament($param['Ds_Order'], $idr, $import, $response);
+
 
         $this->$callback($idr, $amount, $data, $hora);
       }
@@ -1521,7 +1523,7 @@ WHERE  `client`.`client_id` =$idc;
     $this->xgreg_log("reserva_grups_tpv_ok_callback ++ $idrl", 1, LOG_FILE_TPVPK, FALSE);
 
     $idr = substr($idrl, -4);
-    $query = "SELECT estat, client_email, data, hora, tel, lang, adults, nens10_14, nens4_9, preu_reserva, data_limit "
+    $query = "SELECT * "
         . "FROM reserves "
         . "LEFT JOIN client ON client.client_id=reserves.client_id "
         . "WHERE id_reserva=$idr";
@@ -1534,20 +1536,11 @@ WHERE  `client`.`client_id` =$idc;
 
     $estat = $row['estat'];
     $mail = $row['client_email'];
-    /* ANULAT: PAGAMENTS PARCIALS
-      if ($estat != 2) { // NO ESTÀ CONFIRMADA PER PAGAR
-      $msg = "PAGAMENT INAPROPIAT RESERVA PETITA???: " . $idr . " estat: $estat  $mail";
-      $this->xgreg_log($msg, 1, LOG_FILE_TPVPK, FALSE); // LOG
-      echo "ERROR ESTAT!=2";
-      $extres['subject'] = "Can-Borrell: !!!! $msg!!!";
-      $mail = $this->enviaMail($idr, "../reservar/paga_i_senyal_", MAIL_RESTAURANT, $extres);
-      return FALSE;
-      }
-     */
 
     $referer = $_SERVER['REMOTE_ADDR'];
     $import = $amount / 100;
     $resposta = "<br>(" . $pdata . " " . $phora . ")TPV>>" . $import . "€ ";
+
 
     /*     * *****ATENCIO ******************** */
     /*     * *****ATENCIO ******************** */
@@ -1561,11 +1554,11 @@ WHERE  `client`.`client_id` =$idc;
 
 
     include('translate_' . $this->lng . '.php');
-    echo $query . " >>> " . $result;
+    //echo $query . " >>> " . $result;
 //
     $extres['subject'] = $translate["MAIL_GRUPS_PAGAT_subject"] . " " . $idr;
     $extres['titol'] = $translate["MAIL_GRUPS_PAGAT_titol"];
-    $extres['text1'] = $translate["MAIL_GRUPS_PAGAT_text1"] . number_format($import, 2);
+    $extres['text1'] = $translate["MAIL_GRUPS_PAGAT_text1"];
     $extres['text2'] = $translate["MAIL_GRUPS_PAGAT_text2"];
     $reserva_id = $idr;
     require_once (ROOT . "../taules/Gestor_pagaments.php");
@@ -1576,17 +1569,18 @@ WHERE  `client`.`client_id` =$idc;
     $data_limit = Gestor::cambiaf_a_normal($row['data_limit']);
     $pendent = number_format($total - $pagat, 2);
     $coberts_reservats = $row['adults'] + $row['nens10_14'] + $row['nens4_9'];
-
+    $multipago="";
+/*
     $multipago = $translate["MAIL_GRUPS_PAGAT_text3"];
     $multipago = str_replace("{pagat}", $pagat, $multipago);
     $multipago = str_replace("{coberts_pagats}", $coberts_pagats, $multipago);
     $multipago = str_replace("{total}", $total, $multipago);
     $multipago = str_replace("{pendent}", $pendent, $multipago);
     $multipago = str_replace("{coberts_reservats}", $coberts_reservats, $multipago);
-    $multipago = str_replace("{data_limit}", $data_limit, $multipago);
-    $extres['text1'] .= "€<br>" . $multipago . "<br>";
-    $boto = $this->botoPagament($reserva_id, $row['tel'], $this->lang);
-    $extres['text1'] .= $boto . "<br>";
+    $multipago = str_replace("{data_limit}", $data_limit, $multipago);*/
+    $extres['text1'] .= $pagat."€<br>" . $multipago . "<br>";
+    //$boto = $this->botoPagament($reserva_id, $row['tel'], $this->lang);
+    //$extres['text1'] .= $boto . "<br>";
     $extres['contacti'] = $translate["MAIL_GRUPS_PAGAT_contacti"];
     $mydata = $this->cambiaf_a_mysql($pdata);
     $extres['datat'] = $this->data_llarga($row['data'], $this->lang) . ", " . $row['hora'] . "h";
@@ -1603,7 +1597,16 @@ WHERE  `client`.`client_id` =$idc;
     $extres['data_limit'] = "";
     $extres['cdata_reserva'] = $translate["cdata_reserva"];
     $extres['menu'] = $translate["menu"];
-
+    
+    include(ROOT.'../editar/valors23.php');
+	
+    if ($row['factura']) 
+    {
+            $extres['attach']=factura23($row,"../",false);
+    }
+            
+   
+    
     if ($mail) {
       $this->enviaMail($idr, "../editar/templates/mail_cli_", NULL, $extres);
     }
@@ -1664,6 +1667,7 @@ WHERE  `client`.`client_id` =$idc;
     $result = mysqli_query($this->connexioDB, $query) or die(((is_object($GLOBALS["___mysqli_ston"])) ? mysqli_error($GLOBALS["___mysqli_ston"]) : (($___mysqli_res = mysqli_connect_error()) ? $___mysqli_res : false)));
     $row = mysqli_fetch_assoc($result);
 
+    if (!mysqli_num_rows($result))  return (0);
 
     $estat = $row['estat'];
     $mail = $row['client_email'];

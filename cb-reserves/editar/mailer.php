@@ -1,20 +1,36 @@
 <?php
+//require_once ROOT.'../editar/html2pdf-master/vendor/autoload.php';
+//use Spipu\Html2Pdf\Html2Pdf;
+//use Spipu\Html2Pdf\Exception\Html2PdfException;
+//use Spipu\Html2Pdf\Exception\ExceptionFormatter;
 
-require_once (ROOT . INC_FILE_PATH . "PHPMailer-master/PHPMailerAutoload.php");
+
+  if (!defined('ROOT'))    define('ROOT', "../taules/");
+  if (!defined('INC_FILE_PATH'))    define('INC_FILE_PATH', "../../../canBorrell_inc_PROD/");
+
+
 require_once(ROOT . INC_FILE_PATH . 'alex.inc');
 
 if (!defined('CONFIG')) {
-  if (!defined('ROOT'))    define('ROOT', "../taules/");
+
   require_once(ROOT . "php/Configuracio.php");
   $conf = new Configuracio();
 }
 
+require ROOT.INC_FILE_PATH.'phpmailerlast/PHPMailer-master/src/Exception.php';
+require ROOT.INC_FILE_PATH.'phpmailerlast/PHPMailer-master/src/PHPMailer.php';
+require ROOT.INC_FILE_PATH.'phpmailerlast/PHPMailer-master/src/SMTP.php';
+use PHPMailer\PHPMailer\PHPMailer;
+use PHPMailer\PHPMailer\Exception;
+
 function mailer_reserva($idr, $template, $addr, $subject, $body, $altbody, $attach = null, $test = false, $cco = null) {
+
+
   $query = "INSERT INTO `email` ( `reserva_id`, `email_recipients`, `email_subject`, `email_body`, `email_resultat`,   `email_categoria`) "
       . "VALUES (  '$idr', '$addr', '$subject', '" . base64_encode($body) . "' , '0',  '$template');";
   $qry_result = mysqli_query($GLOBALS["___mysqli_ston"], $query) or die(((is_object($GLOBALS["___mysqli_ston"])) ? mysqli_error($GLOBALS["___mysqli_ston"]) : (($___mysqli_res = mysqli_connect_error()) ? $___mysqli_res : false)));
   $idt = mysqli_insert_id($GLOBALS["___mysqli_ston"]);
-//echo $body;
+
   $res = mailer($addr, $subject, $body, $altbody, $attach, $test, $cco);
   $resultat = $res ? '1' : '0';
 
@@ -37,15 +53,16 @@ function mailer($addr, $subject, $body, $altbody = null, $attach = null, $test =
 
   if (!isset($altbody) || is_null($altbody))    $altbody = "Su cliente de correo no puede interpretar correctamente este mensaje. Por favor, póngase en contacto con el restaurante llamando al 936 929 723 o al 936 910 605. Disculpe las molestias";
 
-  $mail = new phpmailer();
-  //echo "POOORT: ".$mail->Port;die();
+  $mail = new PHPMailer();
   $mail->CharSet = 'UTF-8';
 
   /* SENSE IMATGE CAPSALERA */
   if ($addr == MAIL_RESTAURANT)
     $body = str_replace('<img src="//www.can-borrell.com/cb-reserves/img/lg_sup.png" alt="img" width="303" height="114" border="0" title="INICI" />', "", $body);
  
-  include(ROOT . INC_FILE_PATH . "mailer_profile.php");
+//  include(ROOT . INC_FILE_PATH . "mailer_profile.php");
+  include(ROOT . INC_FILE_PATH . "mailer_profile_office.php");
+
   if ($addr == MAIL_RESTAURANT && isset($_POST['client_email']))    $mail->From = $_POST['client_email'];
 
 
@@ -72,7 +89,6 @@ function mailer($addr, $subject, $body, $altbody = null, $attach = null, $test =
     $f = fopen(ROOT . INC_FILE_PATH . "log/test_mail.html", 'a');
     fwrite($f, "ENVIAT AMB EXIT: <br>\n" . $o);
     fwrite($f, $o);
- //   echo $o;
     return;
 
     error_log("</ul>", 3, ROOT . INC_FILE_PATH . '/log/logMAILSMS.txt');
@@ -83,16 +99,10 @@ function mailer($addr, $subject, $body, $altbody = null, $attach = null, $test =
     if (!$exito) {
 
       $err = $mail->ErrorInfo;
-      //print_log("<span style='color:red'>MAILER ERROR:$err - </span> Enviat mail TO:$addr $cco SUBJECT: $subject");
       error_log("<li><span style='color:red'>MAILER ERROR:$err - </span> Enviat mail TO:$addr $cco SUBJECT: $subject </li>", 3, ROOT . INC_FILE_PATH . '/log/logMAILSMS.txt');
-     // error_log("</ul>", 3, ROOT . INC_FILE_PATH . '/log/logMAILSMS.txt');
-
-      //return FALSE;
     }
     else {
       error_log("<li><span style='color:green'>MAILER SUCCESS:</span>: Enviat mail TO:$addr SUBJECT: $subject</li>", 3, ROOT . INC_FILE_PATH . '/log/logMAILSMS.txt');
-     // error_log('<li>' . $body . '</li>, 3, ROOT . INC_FILE_PATH . '/log/logMAILSMS.txt');
-      //return TRUE;
     }
 
   if ($cco == $addr)    $cco = NULL;
@@ -107,7 +117,6 @@ function mailer($addr, $subject, $body, $altbody = null, $attach = null, $test =
         error_log('<li>' . $bodycco . '</li>', 3, ROOT . INC_FILE_PATH . '/log/logMAILSMS.txt');
   }
   }    
-
   
         error_log( '</ul>', 3, ROOT . INC_FILE_PATH . '/log/logMAILSMS.txt');
   

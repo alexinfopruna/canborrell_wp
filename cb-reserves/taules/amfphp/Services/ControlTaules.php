@@ -149,6 +149,8 @@ class ControlTaules {
     $this->xgreg_log('AMFPHP guardaEstatMenjador <span class="idr">'.$data.'</span>'); 
     $this->recuperaSesion($data, $torn);
 
+    if (!$actiu) $actiu=0;
+	  
     //	echo $data;
     //	die();
 

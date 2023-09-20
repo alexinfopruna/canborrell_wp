@@ -126,26 +126,20 @@ else {
 
 
 $were.=" AND (num_2<>666 OR num_2<=>NULL) ";  //// AMAGA L'HISTORIC!!!!
-//$were.=" AND (estat_taules.reserva_id>0) ";  //// AMAGA L'HISTORIC!!!!
-//$were.=" AND (num_2<>666) ";  //// AMAGA L'HISTORIC!!!!
 
 $query_reserves = "SELECT DISTINCT id_reserva, estat, data, hora, nom, tel, email, adults, nens4_9, nens10_14, preu_reserva , ADDDATE(data_limit,1) AS dlimit, (email.reserva_id IS NOT NULL ) AS emails, estat_taula_nom FROM reserves ";
 $join_mail = " LEFT JOIN email ON email.reserva_id = id_reserva  AND email_resultat>0 ";
-//$join_sms = " LEFT JOIN sms ON sms.sms_reserva_id = id_reserva ";
-//$join_taules = " LEFT JOIN estat_taules ON estat_taula_nom = CONCAT(id_reserva, 'G') AND estat_taules.reserva_id>0 ";
 $join_taules = " LEFT JOIN estat_taules ON estat_taules.reserva_id = id_reserva ";
 $group_mail = "";// GROUP BY  email.reserva_id ";
-//$group_sms = " GROUP BY  sms.sms_reserva_id  ";
-//$join_mail ="";$group_mail="";
 $order = "ORDER BY IF(data < NOW(),1,0), IF(estat = 1,0,1),IF(estat = 2,0,1), IF(estat = 3,0,1),IF(estat = 7,0,1),estat, data ";
-//$order="ORDER BY estat, data ";
 $query_reserves .=  $join_mail . $join_taules . $were  . $group_mail.  $order;
 $query_limit_reserves = sprintf("%s LIMIT %d, %d", $query_reserves, $startRow_reserves, $maxRows_reserves);
 $reserves = mysqli_query($canborrell, $query_limit_reserves) or die(((is_object($GLOBALS["___mysqli_ston"])) ? mysqli_error($GLOBALS["___mysqli_ston"]) : (($___mysqli_res = mysqli_connect_error()) ? $___mysqli_res : false)));
 $row_reserves = mysqli_fetch_assoc($reserves);
+//echo $query_limit_reserves;
 
 //foreach($row_reserves as $k=>$v) echo "$k > $v";
-
+//die();
 if (isset($_GET['totalRows_reserves'])) {
   $totalRows_reserves = $_GET['totalRows_reserves'];
 }

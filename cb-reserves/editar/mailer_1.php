@@ -1,7 +1,11 @@
 <?php
 
-require_once (ROOT . INC_FILE_PATH . "PHPMailer-master/PHPMailerAutoload.php");
-//require_once (ROOT.'../../wp-includes/PHPMailer/PHPMailer.php');
+require_once ROOT.'../editar/html2pdf-master/vendor/autoload.php';
+use Spipu\Html2Pdf\Html2Pdf;
+use Spipu\Html2Pdf\Exception\Html2PdfException;
+use Spipu\Html2Pdf\Exception\ExceptionFormatter;
+
+
 require_once(ROOT . INC_FILE_PATH . 'alex.inc');
 
 if (!defined('CONFIG')) {
@@ -15,7 +19,6 @@ function mailer_reserva($idr, $template, $addr, $subject, $body, $altbody, $atta
       . "VALUES (  '$idr', '$addr', '$subject', '" . base64_encode($body) . "' , '0',  '$template');";
   $qry_result = mysqli_query($GLOBALS["___mysqli_ston"], $query) or die(((is_object($GLOBALS["___mysqli_ston"])) ? mysqli_error($GLOBALS["___mysqli_ston"]) : (($___mysqli_res = mysqli_connect_error()) ? $___mysqli_res : false)));
   $idt = mysqli_insert_id($GLOBALS["___mysqli_ston"]);
-//echo $body;
   $res = mailer($addr, $subject, $body, $altbody, $attach, $test, $cco);
   $resultat = $res ? '1' : '0';
 
@@ -39,13 +42,13 @@ function mailer($addr, $subject, $body, $altbody = null, $attach = null, $test =
   if (!isset($altbody) || is_null($altbody))    $altbody = "Su cliente de correo no puede interpretar correctamente este mensaje. Por favor, póngase en contacto con el restaurante llamando al 936 929 723 o al 936 910 605. Disculpe las molestias";
 
   $mail = new phpmailer();
-  //echo "POOORT: ".$mail->Port;die();
   $mail->CharSet = 'UTF-8';
+  
   /* SENSE IMATGE CAPSALERA */
   if ($addr == MAIL_RESTAURANT)
     $body = str_replace('<img src="//www.can-borrell.com/cb-reserves/img/lg_sup.png" alt="img" width="303" height="114" border="0" title="INICI" />', "", $body);
  
-  include(ROOT . INC_FILE_PATH . "mailer_profile.php");
+  include(ROOT . INC_FILE_PATH . "mailer_profile_office.php");
   if ($addr == MAIL_RESTAURANT && isset($_POST['client_email']))    $mail->From = $_POST['client_email'];
 
 
@@ -72,7 +75,6 @@ function mailer($addr, $subject, $body, $altbody = null, $attach = null, $test =
     $f = fopen(ROOT . INC_FILE_PATH . "log/test_mail.html", 'a');
     fwrite($f, "ENVIAT AMB EXIT: <br>\n" . $o);
     fwrite($f, $o);
- //   echo $o;
     return;
 
     error_log("</ul>", 3, ROOT . INC_FILE_PATH . '/log/logMAILSMS.txt');
@@ -80,7 +82,6 @@ function mailer($addr, $subject, $body, $altbody = null, $attach = null, $test =
   }
   else {
       echo "HOST: ".$mail->Host;
-      $mail->Password="Alkaline17";
       echo "PASS: ".$mail->Password;
       echo "Enviant....";
     $exito = $mail->Send();
@@ -89,18 +90,12 @@ function mailer($addr, $subject, $body, $altbody = null, $attach = null, $test =
 echo "!FALLA";
 echo  $mail->ErrorInfo;
       $err = $mail->ErrorInfo;
-      //print_log("<span style='color:red'>MAILER ERROR:$err - </span> Enviat mail TO:$addr $cco SUBJECT: $subject");
       error_log("<li><span style='color:red'>MAILER ERROR:$err - </span> Enviat mail TO:$addr $cco SUBJECT: $subject </li>", 3, ROOT . INC_FILE_PATH . '/log/logMAILSMS.txt');
-     // error_log("</ul>", 3, ROOT . INC_FILE_PATH . '/log/logMAILSMS.txt');
-
-      //return FALSE;
     }
     else {
         echo "exito";
 
       error_log("<li><span style='color:green'>MAILER SUCCESS:</span>: Enviat mail TO:$addr SUBJECT: $subject</li>", 3, ROOT . INC_FILE_PATH . '/log/logMAILSMS.txt');
-     // error_log('<li>' . $body . '</li>, 3, ROOT . INC_FILE_PATH . '/log/logMAILSMS.txt');
-      //return TRUE;
     }
 
   if ($cco == $addr)    $cco = NULL;
@@ -115,14 +110,9 @@ echo  $mail->ErrorInfo;
         error_log('<li>' . $bodycco . '</li>', 3, ROOT . INC_FILE_PATH . '/log/logMAILSMS.txt');
   }
   }    
-
-  
         error_log( '</ul>', 3, ROOT . INC_FILE_PATH . '/log/logMAILSMS.txt');
-  
   return $exito;
 }
-
-
 
 function utf8mail($to,$s,$body,$from_name="x",$from_a = "info@x.com")
 {
@@ -136,5 +126,4 @@ function utf8mail($to,$s,$body,$from_name="x",$from_a = "info@x.com")
     $headers.= "X-Mailer: PHP/" . phpversion();
     return mail($to, $s, $body, $headers);
 }
-
 ?>

@@ -179,8 +179,12 @@ if (mysqli_num_rows($Result) <= 0) {
   $gestor->xgreg_log($titol['cat'], 1);
 }
 
+//$translate['COMPRA_SEGURA']['esp'] = "Para realizar el pago a través de esta pasarela bancaria, es necesario que hayas activado la tarjeta para COMPRA SEGURA A INTERNET en tu banco.\\n\\nCon esta activación te facilitarán un código de cuatro cifras que se requiere al final del proceso.\\n\\nDisculpa las moléstias";
+//$translate['COMPRA_SEGURA']['cat'] = "Per poder realitzar el pagament a través d´aquesta passarel·la bancaria, cal que hagis activat la tarja per a COMPRA SEGURA A INTERNET al teu banc. \\n\\nAmb aquesta activació et facilitaran un codi de quatre xifres que és requerit al final del procès.\\n\\nDisculpa les molèsties";
+//$translate['COMPRA_SEGURA']['en'] = "To make a payment using this bank gateway, you must activate the card for SECURE ONLINE PURCHASE in your bank.\\n\\nWith this activated you are given a code of four digits, needed to complete the process.\\n\\nSorry for the inconvenience";
 $translate['COMPRA_SEGURA']['esp'] = "Para realizar el pago a través de esta pasarela bancaria, es necesario que hayas activado la tarjeta para COMPRA SEGURA A INTERNET en tu banco.\\n\\nCon esta activación te facilitarán un código de cuatro cifras que se requiere al final del proceso.\\n\\nDisculpa las moléstias";
-$translate['COMPRA_SEGURA']['cat'] = "Per poder realitzar el pagament a través d´aquesta passarel·la bancaria, cal que hagis activat la tarja per a COMPRA SEGURA A INTERNET al teu banc. \\n\\nAmb aquesta activació et facilitaran un codi de quatre xifres que és requerit al final del procès.\\n\\nDisculpa les molèsties";
+$translate['COMPRA_SEGURA']['cat'] = "A continuació cal que autoritzis la fiança per garantitzar l'assistència el dia de la reserva. L'import va en funció del nombre de comensals. AQUEST IMPORT NO ES DESCOMPTARÀ del teu compte, NO ES FARÀ CAP CÀRREC.
+Només en cas de NO COMPAREXENÇA el dia de la reserva es farà efectiu el càrrec de l'import";
 $translate['COMPRA_SEGURA']['en'] = "To make a payment using this bank gateway, you must activate the card for SECURE ONLINE PURCHASE in your bank.\\n\\nWith this activated you are given a code of four digits, needed to complete the process.\\n\\nSorry for the inconvenience";
 
 $data_limit = Gestor::cambiaf_a_normal($fila['data_limit']);
@@ -691,10 +695,8 @@ $preu_persona = $pagaments->get_preu_persona_reserva($id);
                                       $id_reserva = ((int) $_GET["id"]) + 100000;
                                       $response = isset($_GET["testTPV"]) ? $_GET["testTPV"] : -1;
 
-                                      /** */
-                                    //  echo $_REQUEST["testTPV"];die();
                                       if (isset($_REQUEST["testTPV"]) && $_REQUEST["testTPV"] == 'testTPV')
-                                        echo '<div id="form_test" class="form_tpv_test">TEST<br>BONA  4548812049400004  12/20   123  123456<br><div  class="form_tpv"> ' . $gestor->generaTESTTpvSHA256($id_reserva, $preu, $nom, $responaseok_callback_alter) . "</div></div>";
+                                        echo '<div id="form_test" class="form_tpv_test">TEST<br>BONA  4548810000000003  12/49   123  123456<br><div  class="form_tpv"> ' . $gestor->generaTESTTpvSHA256($id_reserva, $preu, $nom, $responaseok_callback_alter) . "</div></div>";
                                       else
                                         echo '<div id="form_tpv" class="form_tpv_real"> <div  class="form_tpv">' . $gestor->generaFormTpvSHA256($id_reserva, $preu, $nom, $responaseok_callback_alter) . "</div></div>";
                                       ?>  

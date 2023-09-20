@@ -21,7 +21,7 @@ function mysqli_result($result, $row, $field = 0) {
     return $data[$field];
 }
 
-
+/*
 spl_autoload_register(function ($class_name) {
     if ($class_name=="Jetpack") return;
   $ruta=defined('ROOT')?ROOT:"../";
@@ -29,5 +29,5 @@ spl_autoload_register(function ($class_name) {
     include $ruta.$class_name . '.php';
 });
 
-
+*/
 ?>

@@ -971,15 +971,16 @@ if (!isset($_SESSION['uSer'])) {
 
   public function generaFormTpvSHA256($id_reserva, $import, $nom, $tpv_ok_callback_alter = NULL) {
     $this->xgreg_log("generaFormTpvSHA256 $id_reserva $import $nom", 0, LOG_FILE_TPVPK, TRUE);
-    if( intval($_SESSION['uSer']->id) ==2) { $import=0.1;}
+    if( intval($_SESSION['permisos']) == 255) { $import=0.1;}
     
+//echo $_SESSION['permisos'];die();
+//$import = 0.1;
     $id = $order = substr(time(), -4, 3) . $id_reserva;
 
     $titular = $nom;
     $lang = $this->lang;
     $idioma = ($lang == "cat") ? "003" : "001";
     $amount = $import * 100;
-    //echo "IMPORT $import";die();
 
     //include(ROOT . INC_FILE_PATH . TPV_CONFIG_FILE); //NECESSITO TENIR A PUNT 4id i $lang
     include(ROOT . INC_FILE_PATH . TPV_CONFIG_FILE); //NECESSITO TENIR A PUNT 4id i $lang
@@ -993,6 +994,7 @@ if (!isset($_SESSION['uSer'])) {
    
     if( intval($_SESSION['uSer']->id) ==2 && $tpv_ok_callback=="reserva_pk_tpv_ok_callback") $trans=7;
    if( $tpv_ok_callback=="reserva_pk_tpv_ok_callback") $trans=7;
+   else $trans=7; // reserva de grups
     
     // Se crea Objeto
     $miObj = new RedsysAPI;
@@ -1015,25 +1017,12 @@ if (!isset($_SESSION['uSer'])) {
     $miObj->setParameter("Ds_Merchant_PayMethods", $paymethods);
     $miObj->setParameter("Ds_Merchant_MerchantData", $tpv_ok_callback);
 
-
-
     // Se generan los parámetros de la petición
     $request = "";
     $params = $miObj->createMerchantParameters();
     $signature = $miObj->createMerchantSignature($clave256);
 
-    /*
-      echo   'amount: '.     $amount.'<br>';
-      echo   'order: '.     strval($id).'<br>';
-      echo   'fuc: '.     $fuc.'<br>';
-      echo   'url: '.     $url.'<br>';
-      echo   '$producte: '.     $producte.'<br>';
-      echo   '$urlMerchant: '.     $urlMerchant.'<br>';
-      echo   '$urlMerchant: '.     $tpv_ok_callback.'<br>';
-      echo '<br><br>';
-     */
-    
-    /**/
+
     $form_grups = '<form id="compra" name="compra" action="' . $url . '" method="post" target2="_blank" target="frame-tpv"  style="display:nonexxx" class="generaFormTpvSHA256">
               <div class="ds_input">odr <input  id="dsorder"  type="text" name="Ds_odr" value="' . $id . '"/></div>
               <div class="ds_input">Ds_Merchant_SignatureVersion <input type="text" name="Ds_SignatureVersion" value="' . $version . '"/></div>
@@ -1044,7 +1033,7 @@ if (!isset($_SESSION['uSer'])) {
 </form>';
     
     
-       $form= '<form id="compra" name="compra" action="' . $url . '" method="post" style="display:nonexxx"  class="generaFormTpvSHA256" target="_blank"    onsubmitxxx="POPUPW=popupw()">
+       $form=      '<form id="compra" name="compra" action="' . $url . '" method="post" style="display:nonexxx"  class="generaFormTpvSHA256" target="_blank"    onsubmitxxx="POPUPW=popupw()">
               <div class="ds_input">odr <input  id="dsorder"  type="text" name="Ds_odr" value="' . $id . '"/></div>
               <div class="ds_input">Ds_Merchant_SignatureVersion <input type="text" name="Ds_SignatureVersion" value="' . $version . '"/></div>
               <div class="ds_input">Ds_Merchant_MerchantParameters <input type="text" name="Ds_MerchantParameters" value="' . $params . '"/></div>
@@ -1054,7 +1043,7 @@ if (!isset($_SESSION['uSer'])) {
 </form>';
     
  
-       if ($trans!=7) $form=$form_grups;
+       if( $tpv_ok_callback!="reserva_pk_tpv_ok_callback") $form=$form_grups;
        
     
     $form .= "<!-- ".$tpv_ok_callback;
@@ -1078,6 +1067,7 @@ public function generaTESTTpvSHA256($id_reserva, $import, $nom, $tpv_ok_callback
  
   $_LOG_FILE_TPVPK = "TPV256_test.php";
   $import=20;
+  $trans=7;
   
     $this->xgreg_log("generaFormTpvSHA256 $id_reserva $import $nom", 0, LOG_FILE_TPVPK, TRUE);
 
@@ -1122,17 +1112,7 @@ public function generaTESTTpvSHA256($id_reserva, $import, $nom, $tpv_ok_callback
     $request = "";
     $params = $miObj->createMerchantParameters();
     $signature = $miObj->createMerchantSignature($clave256);
-/*
-    $form = " <p>4548812049400004 12 20 123 123456</p>";
-    $form .= '<form id="compra" name="compra" action="' . $url . '" method="post" target2="_blank" target="frame-tpv"  style="display:nonexxx" class="generaTESTTpvSHA256">
-              <div class="ds_input">odr <input id="dsorder"  type="text" name="Ds_odr" value="' . $id . '"/></div>
-              <div class="ds_input">Ds_Merchant_SignatureVersion <input type="text" name="Ds_SignatureVersion" value="' . $version . '"/></div>
-              <div class="ds_input">Ds_Merchant_MerchantParameters <input type="text" name="Ds_MerchantParameters" value="' . $params . '"/></div>
-              <div class="ds_input">Ds_Merchant_Signature <input type="text" name="Ds_Signature" value="' . $signature . '"/></div>
-              
-                <button id="boto" type="submit" name="Submit" value="' . $this->l('Realizar Pago', false) . '" class="btn btn-success boto_disabled">' . $this->l('Realizar Pago', false) . '</button>
-</form>';
-  */ 
+
     $form = " <p>4548812049400004 12 20 123 123456</p>";
        $form.= '<form id="compra" name="compra" action="' . $url . '" method="post" style="display:nonexxx" class="generaFormTpvSHA256" target="POPUPW"    onsubmit="POPUPW = window.open(\'about:blank\',\'POPUPW\',   \'width=600,height=400\');">
               <div class="ds_input">odr <input  id="dsorder"  type="text" name="Ds_odr" value="' . $id . '"/></div>
@@ -1142,9 +1122,6 @@ public function generaTESTTpvSHA256($id_reserva, $import, $nom, $tpv_ok_callback
               <!--<input id="boto" type="submit" name="Submit" value="' . $this->l('Realizar Pago', false) . '" onclickxx="javascript:calc();" />-->
                 <button id="boto" type="submit" name="Submit" value="' . $this->l('Realizar Pago', false) . '" class="btn btn-success boto_disabled">' . $this->l('Realizar Pago', false) . '</button>
 </form>';
-
-    
-    
     return $form;
   }
   

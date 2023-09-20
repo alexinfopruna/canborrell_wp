@@ -26,30 +26,24 @@ include(ROOT . INC_FILE_PATH . $tpv_config_file); //NECESSITO TENIR A PUNT 4id i
 include ROOT . INC_FILE_PATH . 'API_PHP/redsysHMAC256_API_PHP_5.2.0/apiRedsys.php';
 
 $miObj = new RedsysAPI;
-//$conecta = ROOT."../reservar/Gestor_form.php?a=respostaTPV_SHA256";
-$conecta = "http://".$_SERVER['HTTP_HOST'] ."/cb-reserves/reservar/Gestor_form.php?a=respostaTPV_SHA256";
-//$conecta = "http://cbwp-localhost/cb-reserves/reservar/Gestor_form.php?a=respostaTPV_SHA256";
+$conecta = "https://".$_SERVER['HTTP_HOST'] ."/cb-reserves/reservar/Gestor_form.php?a=respostaTPV_SHA256";
 
 
-//$url = isset($_REQUEST['purl']) ? $_REQUEST['purl'] : "http://sis-d.redsys.es/sis/realizarPago";
-$id_reserva = isset($_REQUEST['pidr']) ? $_REQUEST['pidr'] : '****';
-//$lidr = $order = substr(time(), -4, 3) . $id_reserva;
+$id_reserva = isset($_REQUEST['pidr']) ? $_REQUEST['pidr'] : '5004';
 $lidr = $order = "999" . $id_reserva;
 
 if ( isset($_REQUEST['order'])) $lidr = $order = $_REQUEST['order'];
 
 $amount = isset($_REQUEST['pamount']) ? $_REQUEST['pamount'] : 1500;
 $response = isset($_REQUEST['presponse']) ? $_REQUEST['presponse'] : 99;
-$callback = isset($_REQUEST['pcallback']) ? $_REQUEST['pcallback'] : "reserva_pk_tpv_ok_callback";
+$callback = isset($_REQUEST['pcallback']) ? $_REQUEST['pcallback'] : "reserva_grups_tpv_ok_callback";
 $ddate = date("d-m-Y");
 $dhour = date("H:i");
-//echo $callback;die();
 if (isset($_REQUEST['Decode'])){
   $params = $miObj->decodeMerchantParameters($_REQUEST['Ds_Merchant_MerchantParameters']  );
   $param = json_decode($params, TRUE);
   $amount = $param['Ds_Amount'];
   $lidr = $param['Ds_Order'];
-//  $fuc = $param['$fuc']
   $moneda = $param['Ds_Currency'];
   $trans = $param['Ds_TransactionType'];
   $terminal = $param['Ds_Terminal'];
