@@ -184,7 +184,7 @@ if (mysqli_num_rows($Result) <= 0) {
 //$translate['COMPRA_SEGURA']['en'] = "To make a payment using this bank gateway, you must activate the card for SECURE ONLINE PURCHASE in your bank.\\n\\nWith this activated you are given a code of four digits, needed to complete the process.\\n\\nSorry for the inconvenience";
 $translate['COMPRA_SEGURA']['esp'] = "Para realizar el pago a través de esta pasarela bancaria, es necesario que hayas activado la tarjeta para COMPRA SEGURA A INTERNET en tu banco.\\n\\nCon esta activación te facilitarán un código de cuatro cifras que se requiere al final del proceso.\\n\\nDisculpa las moléstias";
 $translate['COMPRA_SEGURA']['cat'] = "A continuació cal que autoritzis la fiança per garantitzar l´assistència el dia de la reserva. L´import va en funció del nombre de comensals. AQUEST IMPORT NO ES DESCOMPTARÀ del teu compte, NO ES FARÀ CAP CÀRREC.
-Només en cas de NO COMPAREXENÇA el dia de la reserva es farà efectiu el càrrec de l'import";
+Només en cas de NO COMPAREXENÇA el dia de la reserva es farà efectiu el càrrec de l´import";
 $translate['COMPRA_SEGURA']['en'] = "To make a payment using this bank gateway, you must activate the card for SECURE ONLINE PURCHASE in your bank.\\n\\nWith this activated you are given a code of four digits, needed to complete the process.\\n\\nSorry for the inconvenience";
 
 $data_limit = Gestor::cambiaf_a_normal($fila['data_limit']);
