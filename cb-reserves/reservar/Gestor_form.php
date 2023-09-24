@@ -1539,7 +1539,8 @@ WHERE  `client`.`client_id` =$idc;
 
     $referer = $_SERVER['REMOTE_ADDR'];
     $import = $amount / 100;
-    $resposta = "<br>(" . $pdata . " " . $phora . ")TPV>>" . $import . "€ ";
+    //$resposta = "<br>(" . $pdata . " " . $phora . ")TPV>>" . $import . "€ ";
+    $resposta = "**PENDENT!** TPV-grups: " . $import . "Euros (" . $pdata . " " . $phora . ")";
 
 
     /*     * *****ATENCIO ******************** */
