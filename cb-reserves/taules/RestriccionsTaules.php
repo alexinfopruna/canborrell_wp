@@ -52,6 +52,8 @@ class RestriccionsTaules extends gestor_reserves {
   }
 
   protected function dies2dec($binArray) {
+    $binArray=array_map(fn ($v) => $v===false ? 0 : $v,$binArray);
+
     $strBin = implode($binArray);
     return $num = bindec($strBin);
   }
