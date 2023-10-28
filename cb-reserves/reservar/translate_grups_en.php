@@ -5,10 +5,10 @@ if (!isset($PERSONES_GRUP)) $PERSONES_GRUP=12;
 
 
 $translate['ANULAT___INFO_COMANDA_GRUPS']="In group reservations you should choose, at least, one menu for each diner (counting adults, juniors and children)<br>"
-    . "For more than 12 people you can not choose from dish-menu and you must select set-menus for all of you";
+    . "For more than 17 people you can not choose from dish-menu and you must select set-menus for all of you";
 $translate['INFO_COMANDA_GRUPS']="Select the dishes or menus you will take. Keep in mind that you will have to choose all dishes or all full menus. <b> Full menus and dishes can not be combined in the same reservation </b> <br> "
-    . "<br><ul> <li> If you are <b> up to 12 </b> diners, the selection of dishes <b> is optional </b>, but if you want to make it easier for us, you can choose dishes from the menu or full menus, but <b> it is not possible to combine dishes and full menus </b> </li> "
-    . "<li> If you are <b> more than 12 </b>, you need to select as many <b>full menus (dishes not allowed)</b> as guests (including children) to complete the reservation   </li> </ul>";
+    . "<br><ul> <li> If you are <b> up to 17 </b> diners, the selection of dishes <b> is optional </b>, but if you want to make it easier for us, you can choose dishes from the menu or full menus, but <b> it is not possible to combine dishes and full menus </b> </li> "
+    . "<li> If you are <b> more than 17 </b>, you need to select as many <b>full menus (dishes not allowed)</b> as guests (including children) to complete the reservation   </li> </ul>";
 $translate['Escull els menús']="Choose menus";
  $translate['Veure els menús']='See menus';
  $translate['Menús']='Set menus';

@@ -1072,8 +1072,8 @@ function tanca_dlg() {
 }
 
 function updateMenusSectionButtons(){
-         //shouldElementBeVisible =  $("input[name='adults']").val()<=14;
-         shouldElementBeVisible = false;
+         shouldElementBeVisible = totalPersones()<=17;
+         //shouldElementBeVisible = false;
     $("#bt-carta").toggle(shouldElementBeVisible);
     $("#bt-no-carta").toggle(shouldElementBeVisible);
 }
