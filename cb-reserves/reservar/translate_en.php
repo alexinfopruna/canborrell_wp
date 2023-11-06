@@ -499,12 +499,12 @@ $translateJS['N4_NO_COMBINABLE'] = 'Menu No. 4 has not been combined with any ot
         $translateJS['INFO_CARTA_NADAL']="Los dias especiales de navidad tenéis que escoger entre los menús que os ofrecemos. Tenéis que escoger tantos menús como comensales "
                 . "<br><br><b>(el menú de calçotada se puede combinar con los menús nº1 i nº2)</b>"
                 . "<br><br><b>SUPLEMENTOS (para quien no quiera parrillada)</b><br>"
-                . "<ul><li>Costilla de Ternera a la brasa (8.40€)</li>"
-                . "<li>Espalda cordero a la brasa (7.95€)</li>"
-                . "<li>Bacallà a la llauna (4.10€)</li>"
-                . "<li>Caracoles a la llauna (6.40€)</li>"
-                . "<li>Dorada a la brasa  (6.80€)</li>"
-                . "<li>Lubina a la brasa  (6.80€)</li><br>";
+                . "<ul><li>Costilla de Ternera a la brasa (9.50€)</li>"
+                . "<li>Espalda cordero a la brasa (10.40€)</li>"
+                . "<li>Bacallà a la llauna (8.50€)</li>"
+                . "<li>Caracoles a la llauna (8.50€)</li>"
+                . "<li>Dorada a la brasa  (8.50€)</li>"
+                . "<li>Lubina a la brasa  (8.50€)</li><br>";
 
         $translateJS['INFO_CARTA']=$translate['INFO_CARTA'];
         $translateJS['INFO_MENU_NENS']='<p class="alert alert-info"><span class="glyphicon glyphicon-info-sign f1"></span>It is mandatory to request a menu for each child, later, in the menus section</p>';

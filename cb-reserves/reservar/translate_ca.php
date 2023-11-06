@@ -403,12 +403,12 @@ $translateJS['N4_NO_COMBINABLE'] = "El menú nº 4 no es pot combinar amb cap al
         $translateJS['INFO_CARTA_NADAL']="Els dies especials de nadal cal que escolliu els menús que us oferim. N`heu d`escollir tants com comensals."
                 . "<br><br><b>(el menú de calçotada es pot combinar amb els menús nº 1 i nº2)</b>"
                 . "<br><br><b>SUPLEMENTS (pels que no volen fer graellada)</b><br>"
-                . "<ul><li>Costella de vedella a la brasa (8.40€)</li>"
-                . "<li>Espatlla de xai a la brasa (7.95€)</li>"
-                . "<li>Bacallà a la llauna (4.10€)</li>"
-                . "<li>Cargols a la llauna (6.40€)</li>"
-                . "<li>Moixarra a la brasa  (6.80€)</li>"
-                . "<li>Llobarro a la brasa  (6.80€)</li><br>";
+                . "<ul><li>Costella de vedella a la brasa (9.50€)</li>"
+                . "<li>Espatlla de xai a la brasa (10.40€)</li>"
+                . "<li>Bacallà a la llauna (8.50€)</li>"
+                . "<li>Cargols a la llauna (8.50€)</li>"
+                . "<li>Moixarra a la brasa  (8.50€)</li>"
+                . "<li>Llobarro a la brasa  (8.50€)</li><br>";
 
 
         $translateJS['INFO_CARTA']=$translate['INFO_CARTA'];
