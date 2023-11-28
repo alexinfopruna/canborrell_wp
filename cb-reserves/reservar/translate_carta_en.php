@@ -68,7 +68,8 @@ $translate['PERNIL SERRÁ'] = 'Ham  <em>Jamón serrano  </em>';
 $translate['LLONGANISSA'] = 'Long pork sausage  <em>Longaniza  </em>';
 $translate['XORIÇO'] = 'Chorizo sausage  <em>Chorizo  </em>';
 
-$translate['Menu grupo nº 4'] = 'Menu grup nº 4 <i style="color:blue">No combinable: Cal que tots els comensals demanin el mateix</i>';
+$translate['Menu grupo nº 4'] = 'Menu grup nº 4 <i style="color:blue">Not combinable: All the assistants must ask for the same</i>';
+$translate['Menu de calçotada(hasta 25u aprox por comensal)'] = 'Menú de calçotada(up to 25u aprox)<i style="color:blue"> No combinable: Cal que tots demanin el mateix</i>';
 
 $translate['CELLER'] = 'WINE CELLAR<em>CELLER</em>';
 $translate['POSTRES'] = 'DESSERT<em>POSTRES</em>';

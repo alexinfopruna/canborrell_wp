@@ -669,7 +669,7 @@ if ($testTPV) {
                                                                       <!------------------- AVIS MODIFICACIONS ---------------------------->
                                                                       <div id="avis-modificacions-overlay" class="ui-widget-overlay dspnn" > </div> 
                                                                       <div id="avis-modificacions" class="transition-1s" style="" >
-                                                                          <?php l('AVIS_MODIFICACIONS'); ?>
+                                                                          <?php $txt=lv('AVIS_MODIFICACIONS'); echo str_replace('{import_no_assitencia}', $gestorf->configVars("import_no_assitencia"),$txt); ?>
                                                                       </div> 
                                                                       <!------------------- FI AVIS MODIFICACIONS ---------------------------->
 
