@@ -171,13 +171,16 @@ $translate['RESERVA_PASTIS']='<span class="pastis">Vols pastís de celebració?<
 $translate['INFO_PASTIS']="Comentaris pel pastís (Què celebreu?, Si és un aniversari, quants anys?)";
 
 $translate['AVIS_MODIFICACIONS']='<span style="color:red"><b>Atenció:</b>
-                                    </span>Fins a 24 hores abans de la data reservada <b>podeu comunicar qualsevol variació</b> 
+                                    </span>Fins a 2 hores abans de l\'hora reservada <b>podeu comunicar qualsevol variació</b> 
                                     en el nombre de coberts fes-nos-ho saber a restaurant@can-borrell.com</b>. 
 <br/>
-                                    Amb menys de 24 hores d\'antelació <b>no admetrem cap modificació</b> 
+                                    Amb menys de 2 hores d\'antelació <b>no admetrem cap modificació</b> 
                                     a la reserva i disposareu exclusivament de les places que teniu confirmades. 
                                     <br/>Abans d\'aquest dia, també podeu editar la reserva en aquest mateix apartat.
-                                    <span class="tanca-avis" style=""><a href="#">tanca</a></span>';
+                                    <span class="tanca-avis" style=""><a href="#">tanca</a></span>
+                                    <br><div style="background-color:#feffb2;padding:4px;margin:12px 0;"><span style="color:red">
+                                    <b>IMPORTANT: </b></span><b>Es cobraran {import_no_assitencia}€ per cada comensal 
+                                    que no assisteixi al dinar.</b></div>';
 
 
 /************ MAIL CONFIRMA PAGAMENT GRUPS ****************/
@@ -395,8 +398,8 @@ $translateDirectJS['PAGAMENT REBUT']="Hem rebut l\'autorització. La teva reserv
 $translateDirectJS['EL PAGAMENT HA ESTAT ANULAT']="Malauradament no s\'ha completat el procés d\'autorització. \\n\\nGràcies per utilitzar aquest servei";
 //echo " ***************** ".$translate["MAIL_GRUPS_PAGAT_subject"];
 
-$translateJS['CALÇOTADA_NO_COMBINABLE'] = "";//"El menú calçotada només es pot combinar amb el menú nº1. \\nSi selecciones confirmar s\'eliminaran de la selecció els menús no combinables";
-$translateJS['N4_NO_COMBINABLE'] = "El menú nº 4 no es pot combinar amb cap altre. Tots els comensales han de demanar el mateix.  \\nSi selecciones confirmar s\'eliminarán de la selecció els menús no combinables";
+$translateJS['CALÇOTADA_NO_COMBINABLE'] = "El menú calçotada no es pot combinar amb cap altre. Tots els comensales han de demanar el mateix.  \\n\\nSi selecciones confirmar s\'eliminarán de la selecció els menús no combinables";
+$translateJS['N4_NO_COMBINABLE'] = "El menú nº 4 no es pot combinar amb cap altre. Tots els comensales han de demanar el mateix.  \\n\\nSi selecciones confirmar s\'eliminarán de la selecció els menús no combinables";
 
        // $translateJS['INFO_CARTA_NADAL']='Los dias especiales de navidad tenéis que escoger entre los menús que os ofrecemo. Tenéis que escoger tantos menús como comensales ';
        // $translateJS['INFO_CARTA_NADAL']='Els dies especials de nadal cal que escolliu els menús que us oferim. N`heu d`escollir tants com comensals';

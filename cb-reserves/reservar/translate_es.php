@@ -233,7 +233,14 @@ $translate['RESERVA_PASTIS']='<span class="pastis">¿Quieres pastel de celebraci
 $translate['INFO_PASTIS']="<br/><br/>Comentarios pel pastel (¿Qué celebráis?, ¿Si es un cumpleaños, cuántos años?)";
 
 $translate['AVIS_MODIFICACIONS']='<span style = "color: red"> <b>Atención: </b> </span> Hasta 24 horas antes de la reserva <b> podrá comunicar cualquier variación </b> en el número de cubiertos llamando de 10 a 11 de la mañana al <b> 935 803 632 </b> o al<b> 936 929 723 </b>.
-<br/> Con menos de 24 horas de antelación <b> no admitiremos ninguna modificación </b> en la reserva y dispondrà exclusivamente de las plazas que tiene confirmadas. <br/> Antes de ese día, también puede editar la reserva en este mismo apartado. <span class = "tanca-avis" style = ""> <a href="#"> cierra </a> </span>';
+<br/> Con menos de 24 horas de antelación <b> no admitiremos ninguna modificación </b> 
+en la reserva y dispondrà exclusivamente de las plazas que tiene confirmadas. <br/> 
+Antes de ese día, también puede editar la reserva en este mismo apartado. 
+
+<br><div style="background-color:#feffb2;padding:4px;margin:12px 0;"><span style="color:red"><b>IMPORTANTE: </b></span><b>Se cobrarán {import_no_assitencia}€ por cada comensal 
+                                    que no asista al restaurant.</b></div>
+
+<span class = "tanca-avis" style = ""> <a href="#"> cierra </a> </span>';
 
 
 
@@ -480,7 +487,7 @@ $translateDirectJS['err20'] = '<b>Ya tienes una reserva hecha en Can Borrell!</b
 $translate['err21'] = '<b>No podem fer-te la reserva on-line a causa d´una reserva anterior!!</b><br/><br/>Si us plau, per reservar contacta amb el restaurant:restaurant@can-borrell.com';
 $translateDirectJS['CAP_TAULA']="No tenemos ninguna mesa disponible para la fecha/cubiertos/cochecitos que nos pides.<br/><br/>Inténtalo para otra fecha";
 
-$translateJS['CALÇOTADA_NO_COMBINABLE'] = '';//'El menú calçotada solo se puede combinar con el menú nº1. \\nSi seleccionas confirmar se eliminarán de la selección los menús no combinables';
+$translateJS['CALÇOTADA_NO_COMBINABLE'] = 'El menú calçotada no se puede combinar con ningún otro menú. Todos los comensales deberán pedir el mismo.  \\nSi seleccionas confirmar se eliminarán de la selección los menús no combinables';
 $translateJS['N4_NO_COMBINABLE'] = 'El menú nº 4 no se puede combinar con ningún otro menú. Todos los comensales deberán pedir el mismo.  \\nSi seleccionas confirmar se eliminarán de la selección los menús no combinables';
 
 

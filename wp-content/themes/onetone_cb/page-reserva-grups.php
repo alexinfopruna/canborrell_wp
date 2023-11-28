@@ -427,11 +427,10 @@ function reservar_enqueue_styles() {
                                                                           }
                                                                           ?>
 
-                                                                      </div>
-
-                                                                      <div>
-
-                                                                          <div id="jnc" style="float:left">
+                                                                      </div>                                                          
+                                                                       <div id="AVIS_MODIFICACIONS" class="transition-1s" style="" >
+                                                                          <?php $txt=lv('AVIS_MODIFICACIONS'); echo str_replace('{import_no_assitencia}', $gestor->configVars("import_no_assitencia"),$txt); ?>
+                                                                      </div>                                                                          <div id="jnc" style="float:left">
 
                                                                               <!-- ******  JUNIOR  ********   -->
                                                                               <h4  id="titol_SelectorJuniors"><?php l('Juniors (de 10 a 14 anys):'); ?></h4>

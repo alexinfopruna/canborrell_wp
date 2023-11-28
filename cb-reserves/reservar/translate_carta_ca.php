@@ -84,6 +84,7 @@ $translate['PERNIL SERRÁ'] = 'Pernil país';
 $translate['XORIÇO'] = 'Xoriço';
 $translate['Menu grupo nº 4'] = 'Menu grup nº 4 <i style="color:blue">No combinable: Cal que tots els comensals demanin el mateix</i>';
 $translate['HORARI_ENTREPANS'] = 'Els entrepans només es serveixen de 10:00h a 12:00h';
+$translate['Menu de calçotada(hasta 25 u aprox por comensal)'] = 'Menú de calçotada(fins a 25u aprox)<i style="color:blue"> No combinable: Cal que tots demanin el mateix</i>';
 
 
  

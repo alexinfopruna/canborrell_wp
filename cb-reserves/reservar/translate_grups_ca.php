@@ -628,6 +628,24 @@ Incloent-hi els complements (mongetes i patates fregides all i oli pa torrat amb
                               $translate['titol_menu_2022']=$translate['titol_menu_jun_casament']='Men&uacute; Boda (ni&ntilde;os de 10 a 14 a&ntilde;os)';
                               $translate['menu_2022']=$translate['menu_jun_casament']='{preu_2022} Euros ';
 	
+                              
+                              
+                              
+$translate['AVIS_MODIFICACIONS']='<span style="color:red"><b>Atenció:</b>
+                                    </span>Fins a 2 hores abans de l\'hora reservada <b>podeu comunicar qualsevol variació</b> 
+                                    en el nombre de coberts fes-nos-ho saber a restaurant@can-borrell.com</b>. 
+<br/>
+                                    Amb menys de 2 hores d\'antelació <b>no admetrem cap modificació</b> 
+                                    a la reserva i disposareu exclusivament de les places que teniu confirmades. 
+                                    <br/>Abans d\'aquest dia, també podeu editar la reserva en aquest mateix apartat.
+                                    <span class="tanca-avis" style=""><a href="#">tanca</a></span>
+                                    <br><div style="background-color:#feffb2;padding:4px;margin:12px 0;"><span style="color:red">
+                                    <b>IMPORTANT: </b></span><b>Es cobraran {import_no_assitencia}€ per cada comensal 
+                                    que no assisteixi al dinar.</b></div>';
+                              
+                              
+                              
+                              
 $translateJS['MENUS_COMENSALS']="Has d\'escollir tants menús com comensals (adults + juniors + nens)";
  
 /*******************************************************     ERRORS   ***********************************/	

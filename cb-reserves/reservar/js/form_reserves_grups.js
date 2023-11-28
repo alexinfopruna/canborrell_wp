@@ -82,7 +82,10 @@ $(function () {
         window.location.href = "/reservar/realitzar-reserva/?lang=" + lang;
         return false;
     });
-
+    $("#selectorComensals input[value!=grups]").click(function () {
+        help($("#AVIS_MODIFICACIONS").html());
+        return false;
+    });
     $("#cb_factura").click(function () {
         if ($("#cb_factura:checked").val() == "on")
             $(".factura").show();
@@ -1072,7 +1075,7 @@ function tanca_dlg() {
 }
 
 function updateMenusSectionButtons(){
-         shouldElementBeVisible = totalPersones()<=17;
+         shouldElementBeVisible = totalPersones()<=15;
          //shouldElementBeVisible = false;
     $("#bt-carta").toggle(shouldElementBeVisible);
     $("#bt-no-carta").toggle(shouldElementBeVisible);
