@@ -253,9 +253,14 @@ $translate['RESERVA_PASTIS'] = '<span class="pastis">Would you like a celebratio
 $translate['INFO_PASTIS'] = "<br/><br/>Comments about the cake? (What are you celebrating? If it’s a birthday, how many years?)";
 
 $translate['AVIS_MODIFICACIONS'] = '<span style = "color: red"> 
- <b> Attention: </b> </span>Until 24 hours before the reservation time <b> you can inform us of any change</b>  in the number of places by calling from 10 to 11 o’clock in the morning 
-  <b>935 803 632</b> or <b>936 929 723</b>.<br/> Later than 24 hours <b>we cannot make any changes</b> to the reservation and only the places reserved will be available. 
+ <b> Attention: </b> </span>Until 2 hours before the reservation time <b> you can inform us of any change</b>  in the number of places by calling from 10 to 11 o’clock in the morning 
+  <b>935 803 632</b> or <b>936 929 723</b>.<br/> Later than 2 hours <b>we cannot make any changes</b> to the reservation and only the places reserved will be available. 
   <br/>Before the day, you can also edit your reservation using the same section of our web page. 
+  
+                                    <br><div style="background-color:#feffb2;padding:4px;margin:12px 0;"><span style="color:red">
+                                    <b>IMPORTANT: </b></span><b>Es cobraran {import_no_assitencia}€ per cada comensal 
+                                    que no assisteixi al dinar.</b></div>
+
   <span class = "tanca-avis" style = ""> <a href="#">close</a> </span>';
 
 
