@@ -431,7 +431,11 @@ function reservar_enqueue_styles() {
 
                                                                       </div>                                                          
                                                                        <div id="AVIS_MODIFICACIONS" class="transition-1s" style="" >
-                                                                          <?php $txt=lv('AVIS_MODIFICACIONS'); echo str_replace('{import_no_assitencia}', $gestor->configVars("import_no_assitencia"),$txt); ?>
+                                                                          <?php $txt=lv('AVIS_MODIFICACIONS'); 
+                                                                          $txt = str_replace('{import_no_assitencia}', $gestor->configVars("import_no_assitencia"),$txt); 
+                                                                          $txt = str_replace(' 2 ', ' 12 ',$txt); 
+                                                                          echo $txt;
+                                                                          ?>
                                                                       </div>                                                                          <div id="jnc" style="float:left">
 
                                                                               <!-- ******  JUNIOR  ********   -->
