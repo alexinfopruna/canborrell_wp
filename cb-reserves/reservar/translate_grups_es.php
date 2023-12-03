@@ -622,7 +622,7 @@ Macarrones, pollo rebozado o croquetas con patatas, refresco y helado<br/>
 	$translate['titol_menu_2022']=$translate['titol_menu_jun_casament']='Men&uacute; Boda (ni&ntilde;os de 10 a 14 a&ntilde;os)';
 	$translate['menu_2022']=$translate['menu_jun_casament']='{preu_2022} Euros ';
 	
-        $translate['AVIS_MODIFICACIONS']='<span style = "color: red"> <b>Atención: </b> </span> Hasta 24 horas antes de la reserva <b> podrá comunicar cualquier variación </b> en el número de cubiertos llamando de 10 a 11 de la mañana al <b> 935 803 632 </b> o al<b> 936 929 723 </b>.
+        $translate['AVIS_MODIFICACIONS']='<span style = "color: red"> <b>Atención: </b> </span> Hasta 12 horas antes de la reserva <b> podrá comunicar cualquier variación </b> en el número de cubiertos llamando de 10 a 11 de la mañana al <b> 935 803 632 </b> o al<b> 936 929 723 </b>.
 <br/> Con menos de 24 horas de antelación <b> no admitiremos ninguna modificación </b> 
 en la reserva y dispondrà exclusivamente de las plazas que tiene confirmadas. <br/> 
 Antes de ese día, también puede editar la reserva en este mismo apartado. 
