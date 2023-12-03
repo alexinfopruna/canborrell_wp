@@ -632,7 +632,7 @@ Incloent-hi els complements (mongetes i patates fregides all i oli pa torrat amb
                               
                               
 $translate['AVIS_MODIFICACIONS']='<span style="color:red"><b>Atenció:</b>
-                                    </span>Fins a 2 hores abans de l\'hora reservada <b>podeu comunicar qualsevol variació</b> 
+                                    </span>Fins a 12 hores abans de l\'hora reservada <b>podeu comunicar qualsevol variació</b> 
                                     en el nombre de coberts fes-nos-ho saber a restaurant@can-borrell.com</b>. 
 <br/>
                                     Amb menys de 2 hores d\'antelació <b>no admetrem cap modificació</b> 

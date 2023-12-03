@@ -622,7 +622,7 @@ Macarrones, pollo rebozado o croquetas con patatas, refresco y helado<br/>
 	
         
         $translate['AVIS_MODIFICACIONS'] = '<span style = "color: red"> 
-         <b> Attention: </b> </span>Until 2 hours before the reservation time <b> you can inform us of any change</b>  in the number of places by calling from 10 to 11 o’clock in the morning 
+         <b> Attention: </b> </span>Until 12 hours before the reservation time <b> you can inform us of any change</b>  in the number of places by calling from 10 to 11 o’clock in the morning 
           <b>935 803 632</b> or <b>936 929 723</b>.<br/> Later than 2 hours <b>we cannot make any changes</b> to the reservation and only the places reserved will be available. 
           <br/>Before the day, you can also edit your reservation using the same section of our web page. 
 

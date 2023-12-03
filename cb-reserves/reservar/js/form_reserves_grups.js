@@ -82,10 +82,12 @@ $(function () {
         window.location.href = "/reservar/realitzar-reserva/?lang=" + lang;
         return false;
     });
+    
     $("#selectorComensals input[value!=grups]").click(function () {
         help($("#AVIS_MODIFICACIONS").html());
-        return false;
+        //return false;
     });
+    
     $("#cb_factura").click(function () {
         if ($("#cb_factura:checked").val() == "on")
             $(".factura").show();
