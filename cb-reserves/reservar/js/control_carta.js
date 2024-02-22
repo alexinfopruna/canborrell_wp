@@ -50,7 +50,7 @@ $(function () {
         //var totalPersones = parseInt(totalPersones());
         var totalPersones = parseInt($("#totalComensals").val());
         // alert(totalPersones);
-        if (totalPersones <= 14) {
+        if (totalPersones <= PERSONES_MENU_OBLIGAT) {
             updateCarta();
             comportamentClient();
         }
@@ -391,6 +391,7 @@ function updateMenus() {
                 $(".col-isqui-carta .info.caixa").html(l("INFO_CARTA"));
         $("#bt-menu span").html(l("Menús"));
        // $("#bt-menu span").hide();
+
         $("#bt-no-carta").show(); 
        
 

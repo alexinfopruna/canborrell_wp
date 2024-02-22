@@ -833,7 +833,7 @@ function validacio()
         //var totalComansals = parseInt($("#totalComensals").val());
         var totalComansals = totalPersones();
         var value = parseInt(value);
-        if (totalComansals<=12) return true;
+        if (totalComansals<=PERSONES_MENU_OBLIGAT) return true;
         //shouldElementBeVisible =  $("input[name='adults']").val()<=20;
     //    if (shouldElementBeVisible && SELECT_CARTA) return true;
         return (value >= totalComansals);
@@ -1077,7 +1077,7 @@ function tanca_dlg() {
 }
 
 function updateMenusSectionButtons(){
-         shouldElementBeVisible = totalPersones()<=15;
+         shouldElementBeVisible = totalPersones()<= PERSONES_MENU_OBLIGAT;
          //shouldElementBeVisible = false;
     $("#bt-carta").toggle(shouldElementBeVisible);
     $("#bt-no-carta").toggle(shouldElementBeVisible);
