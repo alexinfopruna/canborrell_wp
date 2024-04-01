@@ -2,6 +2,7 @@
 
 if (!defined('ROOT')) 
   define("ROOT", "../taules/");
+require_once(ROOT . "gestor_reserves.php");
 
 require_once(ROOT . "Gestor.php");
 require_once(ROOT . "EstatTaula.php");
@@ -877,7 +878,7 @@ ORDER BY  `estat_hores_hora` ASC ";
     ORDER BY estat_crea_taules_timestamp DESC";
     $Result1 = mysqli_query($this->connexioDB, $query) or die(((is_object($GLOBALS["___mysqli_ston"])) ? mysqli_error($GLOBALS["___mysqli_ston"]) : (($___mysqli_res = mysqli_connect_error()) ? $___mysqli_res : false)));
     if (!mysqli_num_rows($Result1))
-      return CREA_TAULES;
+       return (date('N', strtotime($mydata)) >= 6)?FALSE:CREA_TAULES;
     else
       return (mysqli_result($Result1, 0) == 1);
   }

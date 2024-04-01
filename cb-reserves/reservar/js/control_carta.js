@@ -50,7 +50,7 @@ $(function () {
         //var totalPersones = parseInt(totalPersones());
         var totalPersones = parseInt($("#totalComensals").val());
         // alert(totalPersones);
-        if (totalPersones <= 14) {
+        if (totalPersones <= PERSONES_MENU_OBLIGAT) {
             updateCarta();
             comportamentClient();
         }
@@ -120,7 +120,7 @@ $(function () {
             na = na ? na : 0;
             nj = nj ? nj : 0;
             nn = nn ? nn : 0;
-            if ((nj+nn) > (menusnens+menusjunior))  {
+            if (MENU_NENS_OBLIGAT && (nj+nn) > (menusnens+menusjunior))  {
                 
                 n += (nj+nn)-(menusnens+menusjunior);
                // ZZZalert("Heu de demanar obligatoriament un menú per cada infant");
@@ -391,6 +391,7 @@ function updateMenus() {
                 $(".col-isqui-carta .info.caixa").html(l("INFO_CARTA"));
         $("#bt-menu span").html(l("Menús"));
        // $("#bt-menu span").hide();
+
         $("#bt-no-carta").show(); 
        
 
