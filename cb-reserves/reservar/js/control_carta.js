@@ -120,7 +120,7 @@ $(function () {
             na = na ? na : 0;
             nj = nj ? nj : 0;
             nn = nn ? nn : 0;
-            if ((nj+nn) > (menusnens+menusjunior))  {
+            if (MENU_NENS_OBLIGAT && (nj+nn) > (menusnens+menusjunior))  {
                 
                 n += (nj+nn)-(menusnens+menusjunior);
                // ZZZalert("Heu de demanar obligatoriament un menú per cada infant");

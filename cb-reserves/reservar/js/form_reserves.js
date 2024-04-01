@@ -388,7 +388,7 @@ function comportamentQuantsSou()
         $("input[name='nens4_9']").val(NENS);
         
         
-       if (NENS>0){
+       if (NENS>0 && MENU_NENS_OBLIGAT){
             //alert(l("INFO_MENU_NENS"));
             help(l("INFO_MENU_NENS"));
             let menusnens = parseInt($("input[nid='2037']").val());
