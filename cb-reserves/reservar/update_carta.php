@@ -4,6 +4,8 @@
 
 
 <?php
+if ($perm<127) {header("Location: ../panel/login.php");die();}
+
 //echo "UPDATE";die();
 /* * *
  * CAPITALIZE

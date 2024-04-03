@@ -4,6 +4,7 @@ if (!defined('DB_CONNECTION_FILE')) define('DB_CONNECTION_FILE', "../Connections
 
 require_once(ROOT."Gestor.php");
 require(ROOT."../Connections/".DB_CONNECTION_FILE);
+if ($perm<127) {header("Location: ../panel/login.php");die();}
 
 ?>
 <html>

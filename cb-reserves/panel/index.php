@@ -5,13 +5,28 @@ define("LOG_LIST", "listlogs.php");
 define("LINS", "&l=ALL");
 require_once(ROOT."gestor_reserves.php");
 $gestor=new gestor_reserves();   
-if (!$gestor->valida_sessio(64))  
+
+   
+
+
+define("SUPER_ADMIN",$gestor->valida_sessio(255)?true:false);
+define("ADMIN",$gestor->valida_sessio(127)?true:false);
+define("CAIXA",$gestor->valida_sessio(63)?true:false);
+
+//echo("PERM...".Gestor::user_perm());   die();  
+$perm = Gestor::user_perm();
+
+if ($perm<63)  
 {
 	header("Location: login.php");
 	die();
 }
-define("SUPER_ADMIN",$gestor->valida_sessio(255)?true:false);
-define("ADMIN",$gestor->valida_sessio(63)?true:false);
+
+elseif ($perm<127){         
+    header("Location: ../taules/taules.php");
+    die();
+}
+
 define("LOG_FILE_TPV",LOG_FILE_TPVPK);
 
 if (isset($_GET['exit'])) 
@@ -43,7 +58,7 @@ if (isset($_GET['exit']))
       } 
         return sprintf('(%s) %s',  $commitDate->format('Y-m-d H:m:s'), $commitHash." ".$branch);
     }
-
+    
 ?>
 <!DOCTYPE HTML>
 <HTML>
