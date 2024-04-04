@@ -27,7 +27,7 @@ $gestor=new gestor_reserves();
 echo $gestor->dumpJSVars(true);
 $gestor->xgreg_log("EDBASE");
 
-if ($perm<127) {header("Location: ../taules/taules.php");die();}
+if (Gestor::user_perm()<127) {header("Location: ../taules/taules.php");die();}
 
 ?>
 <script>

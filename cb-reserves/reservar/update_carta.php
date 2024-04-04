@@ -4,7 +4,7 @@
 
 
 <?php
-if ($perm<127) {header("Location: ../panel/login.php");die();}
+if (Gestor::user_perm()<127) {header("Location: ../taules/taules.php");die();}
 
 //echo "UPDATE";die();
 /* * *

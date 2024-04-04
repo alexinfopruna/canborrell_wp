@@ -920,7 +920,7 @@ class gestor_reserves extends Gestor {
   public function reserves_orfanes() {
 //$data = date("Y-m-d");
       
-if ($perm<127) {header("Location: ../taules/taules.php");die();}
+if (Gestor::user_perm()<127) {header("Location: ../taules/taules.php");die();}
 
     $query = "SELECT * "
         . "FROM reservestaules "
@@ -937,7 +937,6 @@ if ($perm<127) {header("Location: ../taules/taules.php");die();}
       and reserva_id>0
       )";
      * */
-
     $result = $this->log_mysql_query($query, $this->connexioDB) or die(((is_object($GLOBALS["___mysqli_ston"])) ? mysqli_error($GLOBALS["___mysqli_ston"]) : (($___mysqli_res = mysqli_connect_error()) ? $___mysqli_res : false)));
     $num = mysqli_num_rows($result);
     if ($num)
