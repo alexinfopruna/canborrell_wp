@@ -1041,6 +1041,8 @@ ORDER BY  `estat_hores_hora` ASC ";
 
 }
 
+//
+
 /* * ****************************************************************************** */
 /* * ****************************************************************************** */
 /* * ****************************************************************************** */
@@ -1053,7 +1055,7 @@ if (!defined('LLISTA_DIES_BLANCA'))  define("LLISTA_DIES_BLANCA", ROOT . INC_FIL
 
 if (!empty($_GET['d']) && !empty($_GET['t']) && !empty($_GET['p'])) { //PER FER-LI TEST
            $gr=new gestor_reserves();
-
+if ($perm<127) {header("Location: ../panel/login.php");die();}
   $g = new TaulesDisponibles($gr);
   $g->data = $_GET['d'];
   $g->torn = $_GET['t'];
@@ -1086,8 +1088,10 @@ if (!empty($_GET['d']) && !empty($_GET['t']) && !empty($_GET['p'])) { //PER FER-
   echo "<br/>
 			-------------------------------------------------------------------<br/>
 			-------------------------------------------------------------------<br/>
-			HORES2:" . $g->recupera_hores(true);
-  echo $out = $g->dump();
+			HORES2:" . $g->recupera_hores(true);echo 1111;die();
+
+  echo $out = $g->dump();echo 1111;die();
+
   echo "<br/>";
   $g->torn = 3;
   echo "<br/>

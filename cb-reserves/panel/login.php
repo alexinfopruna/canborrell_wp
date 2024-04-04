@@ -7,7 +7,6 @@ if (!isset($_SESSION)) session_start();
 $_SESSION['config']="config.xml";
 
 require_once(ROOT."gestor_reserves.php");
-
 $gestor=new gestor_reserves();
 if ($gestor->valida_login()) header("Location: ". $RedirectLoginSuccess );
 

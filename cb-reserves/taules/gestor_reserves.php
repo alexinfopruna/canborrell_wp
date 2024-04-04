@@ -4,6 +4,7 @@ if (!defined('ROOT'))
   define('ROOT', "");
 
 require_once(ROOT . "Gestor.php");
+
 if (!defined('LLISTA_DIES_NEGRA'))
   define("LLISTA_DIES_NEGRA", ROOT . INC_FILE_PATH . "llista_dies_negra.txt");
 if (!defined('LLISTA_NITS_NEGRA'))
@@ -24,7 +25,6 @@ if (!isset($_SESSION['torn']))
   $_SESSION['torn'] = 1;
 
 setlocale(LC_ALL, 'ca_CA');
-
 //class gestor_reserves
 class gestor_reserves extends Gestor {
 
@@ -919,6 +919,8 @@ class gestor_reserves extends Gestor {
 
   public function reserves_orfanes() {
 //$data = date("Y-m-d");
+      
+if ($perm<127) {header("Location: ../taules/taules.php");die();}
 
     $query = "SELECT * "
         . "FROM reservestaules "

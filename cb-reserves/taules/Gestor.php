@@ -157,6 +157,7 @@ class Gestor {
 
   /*   * ******      VALIDA_SESSIO     *********** */
   public function valida_sessio($permisos = PERMISOS, $user = -1, $permis_admin = null) {
+      //echo $permisos;die();
     if ($permisos == 0)
       return true;
     if (!$permis_admin)
@@ -216,6 +217,18 @@ class Gestor {
     return $valid;
     }
    */
+  
+  public static function user_perm(){
+          if (!isset($_SESSION))
+      session_start();
+   // print_r($_SESSION['uSer_serialized']);
+   // print_r($_SESSION['uSer']);
+         
+    
+    if (isset ($_SESSION['uSer_serialized'])) return unserialize($_SESSION['uSer_serialized'])->permisos;
+    else return false;
+
+  }
 
   /*   * ******      VALIDA_LOGIN     *********** */
 
