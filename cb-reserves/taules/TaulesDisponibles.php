@@ -1055,7 +1055,7 @@ if (!defined('LLISTA_DIES_BLANCA'))  define("LLISTA_DIES_BLANCA", ROOT . INC_FIL
 
 if (!empty($_GET['d']) && !empty($_GET['t']) && !empty($_GET['p'])) { //PER FER-LI TEST
            $gr=new gestor_reserves();
-if ($perm<127) {header("Location: ../panel/login.php");die();}
+if (Gestor::user_perm()<127) {header("Location: ../taules/taules.php");die();}
   $g = new TaulesDisponibles($gr);
   $g->data = $_GET['d'];
   $g->torn = $_GET['t'];

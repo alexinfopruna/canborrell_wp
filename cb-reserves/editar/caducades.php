@@ -23,7 +23,7 @@ echo "<br/><br/><br/>";
 
 
 //$gestor->enviaSMS(96976, "CADUCADES");
-//die("CADUCADES DIE");
+die("CADUCADES DIE");
 ?>
 <?php
 
