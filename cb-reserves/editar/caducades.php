@@ -114,7 +114,7 @@ function recordatori($canborrell, $dies) {
     
     $plantilla = "templates/recordatori_cli.lbi";
     // if ($dies == 1)      $plantilla = "templates/recordatori_1dia_cli.lbi";
-    ////mail_cli($row["id_reserva"], $plantilla);
+    mail_cli($row["id_reserva"], $plantilla);
     echo "RECORDATORI mail_cli({$row['tel']},{$row['preu_reserva']},$lafecha,{$row["id_reserva"]});";
 
     $mensa .= "ID Reserva: " . $row["id_reserva"] . " amb data límit per pagar: " . data_llarga($row['data_limit']) . " \\n";
@@ -125,7 +125,7 @@ function recordatori($canborrell, $dies) {
 
       print_log("RECORDATORI enviaSMS({$row['tel']},{$row['preu_reserva']},$lafecha,{$row["id_reserva"]});");
       if (TRUE) {
-        ////enviaSMS($row['tel'], $row['preu_reserva'], $lafecha, $row["id_reserva"], $row["lang
+          enviaSMS($row['tel'], $row['preu_reserva'], $lafecha, $row["id_reserva"], $row["lang"]);
           echo "RECORDATORI enviaSMS({$row['tel']},{$row['preu_reserva']},$lafecha,{$row["id_reserva"]});";
         $mensa .= "SMS ENVIAT: " . $row['tel'] . " \\n";
       }
