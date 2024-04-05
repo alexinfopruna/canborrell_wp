@@ -22,7 +22,7 @@ echo "<br/><br/>" . date("D d-m-Y H:i:s") . " Execució  /home/hostings/webs/can
 echo "<br/><br/><br/>";
 
 
-//$gestor->enviaSMS(96976, "CADUCADES");
+//enviaSMS("606782798", "12.01","2024-04-05","5421.02 ","cat");
 //die("CADUCADESsss DIE");
 ?>
 <?php
@@ -206,9 +206,10 @@ function mail_cli($id = false, $plantilla = "templates/recordatori_cli.lbi") {
 
   $avui = date("d/m/Y");
   $ara = date("H:i");
-
-  $file = $plantilla;
+  $file = getcwd()."/".$plantilla;
   $t = new Template('.', 'comment');
+  echo file_exists($plantilla)?"EXISTE":"NO EXISTE";
+
   $t->set_file("page", $file);
   $dat_limit = data_llarga($fila['data_limit'], $lang);
   $dlim = "";
@@ -327,15 +328,16 @@ echo "<br><br><br>".$html."<br><br><br>";
 function enviaSMS($numMobil, $importReserva, $diaReserva, $idReserva, $lang) {
   global $txt;
   $mensa = $txt[92][$lang];
+
   echo "............$mensa.........";
   $mensa = str_replace("%diaReserva", $diaReserva, $mensa);
   $mensa = str_replace("%importReserva", $importReserva, $mensa);
   $mensa = str_replace("%idReserva", $idReserva, $mensa);
 
-
+echo 111;
   // Test Variables - assign values accordingly:
-  $username = "restaurant@can-borrell.com";   // Your Username (normally an email address).
-  $password = "1909";   // Your Password.
+  $essendex_user = $username = "restaurant@can-borrell.com";   // Your Username (normally an email address).
+  $essendex_pwd = $password = "iridioArgon:17";   // Your Password.
   $accountReference = "EX0062561";  // Your Account Reference (either your virtual mobile number, or EX account number).
   $originator = "Rest.Can Borrell";  // An alias that the message appears to come from (alphanumeric characters only, and must be less than 11 characters).
   $recipients = $numMobil;  // The mobile number(s) to send the message to (comma-separated).
@@ -345,17 +347,18 @@ function enviaSMS($numMobil, $importReserva, $diaReserva, $idReserva, $lang) {
   $result;   // The result of a service request.
   //$messageIDs = array($idReserva);		// A single or comma-separated list of sent message IDs.
   $messageStatus;   // The status of a sent message.
-
+echo 222;
   $sendService = new EsendexSendService($username, $password, $accountReference);
   //echo $lang."   ---------------------- TEEEST: $body  ---------------------------<br>";
-  if (SMS_ACTIVAT && ENVIA_SMS)
+  //if (SMS_ACTIVAT && ENVIA_SMS)
     $result = $sendService->SendMessage($recipients, $body, $type);
-
+echo 333;
+echo $result?"S":"N";
   echo "<br/>";
   echo "<br/>";
-  echo "SMS RECORDATORI $id";
+  echo "SMS RECORDATORI $idReserva";
   echo "<br/>";
-  echo $html;
+  echo $body;
   echo "<br/>";
   echo "<br/>";
   echo "<br/>";
