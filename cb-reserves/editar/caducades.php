@@ -350,9 +350,6 @@ function enviaSMS($numMobil, $importReserva, $diaReserva, $idReserva, $lang) {
   echo "<br/>";
   echo "<br/>";
   echo "<br/>";
-
-  //print_log("ENVIAT SMS: $numMobil RESERVA $idReserva");
-  //print_log("RESULTAT ENVIO: ".$result['Result']." / ".$result['MessageIDs']);
 }
 
 ?>
