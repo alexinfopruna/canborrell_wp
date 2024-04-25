@@ -357,9 +357,6 @@ echo $result?"S":"N";
   echo "<br/>";
   echo "<br/>";
   echo "<br/>";
-
-  //print_log("ENVIAT SMS: $numMobil RESERVA $idReserva");
-  //print_log("RESULTAT ENVIO: ".$result['Result']." / ".$result['MessageIDs']);
 }
 
 ?>
