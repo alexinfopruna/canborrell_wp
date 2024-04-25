@@ -197,7 +197,6 @@ function mail_cli($id = false, $plantilla = "templates/recordatori_cli.lbi") {
 
   $avui = date("d/m/Y");
   $ara = date("H:i");
-  echo file_exists($plantilla)?"EXISTE":"NO EXISTE";
   $file = $plantilla;
   $t = new Template('.', 'comment');
   $t->set_file("page", $file);
@@ -205,17 +204,17 @@ function mail_cli($id = false, $plantilla = "templates/recordatori_cli.lbi") {
   $dlim = "";
   $dlim = $dat_limit;
   
-  echo " ----------<br>";
-  echo " ----------<br>";
-  echo " ----------<br>";
+  echo "\n ----------<br>";
+  echo "\n ----------<br>";
+  echo "\n ----------<br>";
   echo $lang;
-  echo "....";
+  echo "\n....";
   echo $aki;
-  echo "....";
+  echo "\n....";
   echo $dat_limit;
-  echo " ----------<br>";
-  echo " ----------<br>";
-  echo " ----------<br>";
+  echo "\n ----------<br>";
+  echo "\n ----------<br>";
+  echo "\n ----------<br>";
    
   ///////////// TEXTES
   if ($v == 50) {
@@ -290,22 +289,14 @@ function mail_cli($id = false, $plantilla = "templates/recordatori_cli.lbi") {
 
   $t->parse("OUT", "page");
   $html = $t->get("OUT");
-echo "<br><br><br>".$html."<br><br><br>";
-  //$t->p("OUT");
   $recipient = $fila['email'];
   $subject = "..::Reserva Can Borrell: Recordatori reserva" . " " . $fila['id_reserva'];
 
   if (SMS_ACTIVAT)
     $r = mailer_reserva($id, $plantilla, $recipient, $subject, $html, $altbdy, null, false, MAIL_CCO);
   else {
-    echo "<br/>";
-    echo "<br/>";
-    echo "MAIL RECORDATORI $id";
-    echo "<br/>";
-    echo $html;
-    echo "<br/>";
-    echo "<br/>";
-    echo "<br/>";
+      echo "\n\n\MAIL RECORDATORI $id";
+
   }
   $nreserva = $fila['id_reserva'];
   print_log("Enviament RECORDATORI($r): $nreserva -- $recipient, $subject: $copia");
@@ -338,18 +329,12 @@ function enviaSMS($numMobil, $importReserva, $diaReserva, $idReserva, $lang) {
   $messageStatus;   // The status of a sent message.
 
   $sendService = new EsendexSendService($username, $password, $accountReference);
-  //echo $lang."   ---------------------- TEEEST: $body  ---------------------------<br>";
   if (SMS_ACTIVAT && ENVIA_SMS)
     $result = $sendService->SendMessage($recipients, $body, $type);
 
-  echo "<br/>";
-  echo "<br/>";
-  echo "SMS RECORDATORI $id";
-  echo "<br/>";
-  echo $html;
-  echo "<br/>";
-  echo "<br/>";
-  echo "<br/>";
+
+  echo "\n\n\nSMS RECORDATORI $id";
+
 }
 
 ?>
