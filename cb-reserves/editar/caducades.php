@@ -17,8 +17,8 @@ include_once( "SMSphp/EsendexSendService.php" );
 
 $mensaini = "";
 
-echo "<br/>**********************************************************************************************<br/>";
-echo "<br/><br/>" . date("D d-m-Y H:i:s") . " Execució  /home/hostings/webs/can-borrell.com/www/htdocs/cb-reserves/editar/caducades.php <br/><br/>";
+echo "\n\n\n\n<br/>**********************************************************************************************<br/>";
+echo "\n\n\n\n<br/><br/>" . date("D d-m-Y H:i:s") . " Execució  /home/hostings/webs/can-borrell.com/www/htdocs/cb-reserves/editar/caducades.php <br/><br/>";
 echo "<br/><br/><br/>";
 
 
@@ -54,20 +54,20 @@ function GetSQLValueString($theValue, $theType, $theDefinedValue = "", $theNotDe
 /* * *************************************************************************** */
 // CADUCADES
 include("sms_caducades.php");
-echo "<br/>-------------------------------------------------------------------------------------------<br/>";
+echo "\n\n\n\n<br/>-------------------------------------------------------------------------------------------<br/>";
 
 $mensaini = sms_caducades();
-echo "<br/>-------------------------------------------------------------------------------------------<br/>";
+echo "\n\n\n\n<br/>-------------------------------------------------------------------------------------------<br/>";
 
 $mensaini .= historic($canborrell);
-echo "<br/>-------------------------------------------------------------------------------------------<br/>";
+echo "\n\n\n\n<br/>-------------------------------------------------------------------------------------------<br/>";
 
 $mensaini .= recordatori($canborrell, 0);
 $mensaini .= recordatori($canborrell, 1);
 $mensaini .= recordatori($canborrell, 3);
-echo "<br/>-------------------------------------------------------------------------------------------<br/>";
+echo "\n\n\n\n<br/>-------------------------------------------------------------------------------------------<br/>";
 
-$mensaini .= $gestor->recordatori_petites_3dies();
+////$mensaini .= $gestor->recordatori_petites_3dies();
 
 echo "<br/>-------------------------------------------------------------------------------------------<br/>";
 if (!empty($mensaini)) {
@@ -99,7 +99,7 @@ function recordatori($canborrell, $dies) {
   $mensa = "\\n\\n\\nS´HAN ENVIAT ELS SEGÜENTS RECORDATORIS $sms(abans $dies dies):\\n\\n\\n";
 
   while ($row = mysqli_fetch_array($reserves)) {
-    echo "<br>*************************************<br>";
+    echo "\n\n\n\n<br>*************************************<br>";
     echo"";
     echo $row["id_reserva"] . " >> " . $row["data"] . "" . " (" . $row["estat"] . ") >>>>> " . $row['data_limit'] . "    num_1:" . $row['num_1'] . "    num_2:" . $row["num_2"];
 
@@ -108,14 +108,11 @@ function recordatori($canborrell, $dies) {
       echo "Multipago....";
        continue;
     }
-    ///
-    //echo "APrAAA";
-    //continue;
-    
+
     $plantilla = "templates/recordatori_cli.lbi";
     // if ($dies == 1)      $plantilla = "templates/recordatori_1dia_cli.lbi";
     mail_cli($row["id_reserva"], $plantilla);
-    echo "RECORDATORI mail_cli({$row['tel']},{$row['preu_reserva']},$lafecha,{$row["id_reserva"]});";
+    echo "\n\n\n\nRECORDATORI mail_cli({$row['tel']},{$row['preu_reserva']},$lafecha,{$row["id_reserva"]});";
 
     $mensa .= "ID Reserva: " . $row["id_reserva"] . " amb data límit per pagar: " . data_llarga($row['data_limit']) . " \\n";
 
@@ -124,16 +121,10 @@ function recordatori($canborrell, $dies) {
       $lafecha = $mifecha[3] . "/" . $mifecha[2];
 
       print_log("RECORDATORI enviaSMS({$row['tel']},{$row['preu_reserva']},$lafecha,{$row["id_reserva"]});");
-      if (TRUE) {
-          enviaSMS($row['tel'], $row['preu_reserva'], $lafecha, $row["id_reserva"], $row["lang"]);
-          echo "RECORDATORI enviaSMS({$row['tel']},{$row['preu_reserva']},$lafecha,{$row["id_reserva"]});";
+        enviaSMS($row['tel'], $row['preu_reserva'], $lafecha, $row["id_reserva"], $row["lang"]);
+        echo "\n\n\n\nRECORDATORI enviaSMS({$row['tel']},{$row['preu_reserva']},$lafecha,{$row["id_reserva"]});";
         $mensa .= "SMS ENVIAT: " . $row['tel'] . " \\n";
-      }
-      else {
-        print_log("ENVIO SMS DESCTIVAT: " . $row['tel']);
-        $mensa .= "ENVIO SMS DESCTIVAT: \\n";
-        //echo "ENVIO SMS DESCTIVAT: ".$row['tel'];
-      }
+
     }
 
     $query_reserves = "UPDATE reserves SET num_1=$ENVIAT WHERE id_reserva=" . $row["id_reserva"];
@@ -206,7 +197,7 @@ function mail_cli($id = false, $plantilla = "templates/recordatori_cli.lbi") {
 
   $avui = date("d/m/Y");
   $ara = date("H:i");
-
+  echo file_exists($plantilla)?"EXISTE":"NO EXISTE";
   $file = $plantilla;
   $t = new Template('.', 'comment');
   $t->set_file("page", $file);
