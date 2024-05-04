@@ -87,49 +87,91 @@ $translate['CARTA_FINS_20']="Fins a 21 comensals la selecció de plats de la car
 /*******************************************************************************************/
 	$translate['titol_menu_2001']=$translate['titol_menu_1']='Menú nº1';
 	$translate['menu_2001']=$translate['menu_1']='
-<B>ENTRANTS</B>
-<UL>
-Amanida<BR>
-Escalivada<BR>
-G&iacute;rgoles<BR>
-Esp&agrave;rrecs brasa<BR>
-Carxofes<BR>
-Mongetes amb cansalada<BR>
-Patates fregides<BR>
-All i Oli<BR>
-Pa torrat amb tom&agrave;quet<BR>
-&nbsp;<BR>
-</UL>
-<B>GRAELLADA</B>
-<UL>
-Xai<BR>
-Conill<BR>
-Pollastre<BR>
-Botifarra<BR>
-Botifarra negra<BR>
-&nbsp;<BR>
-</UL>
-<B>CELLER</B>
-<UL>
-Vi de la Casa<BR>
-Gasosa<BR>
-Aigua<BR>
-Refresc<BR>
-&nbsp;<BR>
-</UL>
-<B>POSTRES</B>
-<UL>
-<li>Fruits secs (músic) pica-pica a la taula</li>
+<b>ENTRANTS</b><br>
+<i>Tot repartit a taula</i><p></p>
+<ul>
+<li>Amanida</li>
+<li>Escalivada</li>
+<li>Gírgoles</li>
+<li>Espàrrecs brasa  (temporada)</li>
+<li>Carxofes (temporada)</li>
+<li>Mongetes amb cansalada</li>
+<li>Patates fregides</li>
+<li>All i Oli</li>
+<li>Pa torrat amb tomàquet</li>
+</ul>
+<style>
+.dots { 
+  background: url("dot.gif") repeat-x bottom; 
+}
+.field {
+  background-color: #FFFFFF;
+} 
+.field2 {
+ float: right;
+} 
+ul.plat1 {
+float:left;
+}
+.complements{
+  font-size:0.7em;
+  width:350px;
+border:#444 solid 1px;
+border-radius:5px;
+float:right;
+padding:10px;
+margin:10px;
+}
+</style>
+<p><b>GRAELLADA</b><br>
+<i>Individual</i></p>
+<ul class="plat1">
+<li>Xai 2 peces</li>
+<li>Conill 1/4</li>
+<li>Botifarra 1/2</li>
+</ul>
+<div class="complements">
+<h6>COMPLEMENTS</h6>
+<p>  Si no voleu graellada, podeu afegir complements:</p>
+<ul class="dots">
+<li class="field">Costella de vedella a la brasa <span class="field field2" style="font-size:0.8em"><span class="preu">9.50</span>€</span></li>
+<li><span class="field">Espatlla de xai a la brasa</span> <span class="field field2" style="font-size:0.8em"><span class="preu">10.40</span>€</span></li>
+<li><span class="field">Peus de porc</span> <span class="field field2" style="font-size:0.8em"><span class="preu">10.25</span>€</span></li>
+<li><span class="field">Bacallà a la llauna</span> <span class="field field2" style="font-size:0.8em"><span class="preu">8.50</span>€</span></li>
+<li><span class="field">Cargols a la llauna</span> <span class="field field2" style="font-size:0.8em"><span class="preu">8.50</span>€</span></li>
+<li><span class="field">Moixarra a la brasa</span> <span class="field field2" style="font-size:0.8em"><span class="preu">8.50</span>€</span></li>
+<li><span class="field">Llobarro a la brasa</span> <span class="field field2" style="font-size:0.8em"><span class="preu">8.50</span>€</span></li>
+</ul>
+</div>
+<div class="cb"></div>
+<p><b>CELLER</b></p>
+<ul>
+<li>Vi de la Casa</li>
+<li>Gasosa</li>
+<li>Refresc</li>
+<li>Aigua</li>
+<li>1 cervessa inclosa</li>
+</ul>
+<p><b>POSTRES</b></p>
+<ul>
 <li>Crema catalana</li>
 <li>Flam casolà</li>
-<li>Copa sorbet llimona</li>
-</UL>
-<B>CAF&Egrave;S, TALLATS o CIGALONS</B><BR>
-
-<P>&nbsp;<BR>
-<B>PREU</B>
-{preu_2001} Euros/unitat adults (IVA incl&ograve;s)<BR>
-{preu_2002} Euros/unitat adults amb cava (IVA incl&ograve;s)<BR>
+<li>Gelats</li>
+</ul>
+<p><b>CAFÈS, TALLATS</b></p>
+<div id="ressenya" class="caixa-preus caixa-negre caixa-left">
+<h6><span class="preu">{preu_2001}</span> Euros/unitat adults (IVA inclòs)</h6>
+<h6><span class="preu">{preu_2002}</span> Euros/unitat adults amb cava (IVA inclòs)</h6>
+<p><span style="font-size:0.8em"></span></p>
+<hr>
+<h6 class="infantil"><span style="font-weight:bold"> – Menú Infantil</span> (nens de 4 a 9 anys)<br>
+<i>Macarrons, pollastre arrebossat o croquetes amb patates, refresc i gelat</i><br>
+<span class="preu">{preu_2037}</span> Euros/unitat (IVA inclòs)</h6>
+<h6 class="infantil"><span style="font-weight:bold"> – Menú Junior</span> (de 10 a 14 anys)<br>
+<i>Macarrons o entremès, pollastre o botifarra amb patates, refresc i gelat</i><br>
+<span class="preu">{preu_2036}</span> Euros/unitat (IVA inclòs)</h6>
+<p>
+</p></div>
 ';
 
 /*******************************************************************************************/
@@ -137,107 +179,157 @@ Refresc<BR>
 /*******************************************************************************************/
 	$translate['titol_menu_2025']=$translate['titol_menu_2024']=$translate['titol_menu_1c']='MEN&Uacute; Nº 1 CELEBRACI&Oacute;';
 	$translate['menu_2025']=$translate['menu_2024']=$translate['menu_1c']='
-<B>ENTRANTS</B>
-<UL>
-Amanida<BR>
-Escalivada<BR>
-G&iacute;rgoles<BR>
-Esp&agrave;rrecs brasa<BR>
-Carxofes<BR>
-Mongetes amb cansalada<BR>
-Patates fregides<BR>
-All i Oli<BR>
-Pa torrat amb tom&agrave;quet<BR>
-&nbsp;<BR>
-</UL>
-<B>GRAELLADA</B>
-<UL>
-Xai<BR>
-Conill<BR>
-Pollastre<BR>
-Botifarra<BR>
-Botifarra negra<BR>
-&nbsp;<BR>
-</UL>
-<B>CELLER</B>
-<UL>
-Vi de la Casa<BR>
-Gasosa<BR>
-Aigua<BR>
-Refresc<BR>
-&nbsp;<BR>
-</UL>
-<B>POSTRES</B>
-<UL>
-Pastís i cava
-&nbsp;<BR>
-</UL>
-<B>CAF&Egrave;S, TALLATS o CIGALONS</B><BR>
-
-<P>&nbsp;<BR>
-<B>PREU</B>
-<UL>
-{preu_2024} Euros/unitat adults sense cava (IVA incl&ograve;s)<BR>
-{preu_2025} Euros/unitat adults amb cava (IVA incl&ograve;s)<BR>
-</UL>';
+<div id="menu-2024" class="menu-content">
+<b>ENTRANTS</b><br>
+<i>Tot repartit a la taula</i><br>
+<ul><p></p>
+<li>Amanida</li>
+<li>Escalivada</li>
+<li>Gírgoles</li>
+<li>Espàrrecs brasa (temporada)</li>
+<li>Carxofes (temporada)</li>
+<li>Mongetes amb cansalada</li>
+<li>Patates fregides</li>
+<li>All i Oli</li>
+<li>Pa torrat amb tomàquet</li>
+<p></p></ul><br>
+<b>GRAELLADA</b><br>
+<i>Individual</i><p></p>
+<p></p><ul class="plat1"><p></p>
+<li>Xai 2 peces</li>
+<li>Conill 1/4</li>
+<li>Botifarra 1/2</li>
+<p></p></ul><p></p>
+<div class="complements">
+<h6>COMPLEMENTS</h6>
+<p>  Si no voleu graellada, podeu afegir complements:</p>
+<ul class="dots">
+<li class="field">Costella de vedella a la brasa <span class="field field2" style="font-size:0.8em"><span class="preu">9.50</span>€</span></li>
+<li><span class="field">Espatlla de xai a la brasa</span> <span class="field field2" style="font-size:0.8em"><span class="preu">10.40</span>€</span></li>
+<li><span class="field">Peus de porc</span> <span class="field field2" style="font-size:0.8em"><span class="preu">10.25</span>€</span></li>
+<li><span class="field">Bacallà a la llauna</span> <span class="field field2" style="font-size:0.8em"><span class="preu">8.50</span>€</span></li>
+<li><span class="field">Cargols a la llauna</span> <span class="field field2" style="font-size:0.8em"><span class="preu">8.50</span>€</span></li>
+<li><span class="field">Moixarra a la brasa</span> <span class="field field2" style="font-size:0.8em"><span class="preu">8.50</span>€</span></li>
+<li><span class="field">Llobarro a la brasa</span> <span class="field field2" style="font-size:0.8em"><span class="preu">8.50</span>€</span></li>
+</ul>
+</div>
+<div class="cb"></div>
+<p><b>CELLER</b><br>
+</p><ul><p></p>
+<li>Vi de la Casa</li>
+<li>Gasosa</li>
+<li>Refresc</li>
+<li>Aigua</li>
+<li>1 cervessa inclosa</li>
+<p></p></ul><br>
+<b>POSTRES</b><br>
+<ul><p></p>
+<li>Pastís celebració massini</li>
+<p></p></ul><br>
+<b>CAFÈS, TALLATS</b><p></p>
+<div id="ressenya" class="caixa-preus caixa-negre caixa-left">
+<h6><span class="preu">{preu_2025}</span> Euros/unitat adults amb cava (IVA inclòs)</h6>
+<hr>
+<h6 class="infantil"><span style="font-weight:bold"> – Menú Infantil</span> (nens de 4 a 9 anys)<br>
+<i>Macarrons, pollastre arrebossat o croquetes amb patates, refresc i gelat</i><br>
+<span class="preu">{preu_2037}</span> Euros/unitat (IVA inclòs)</h6>
+<h6 class="infantil"><span style="font-weight:bold"> – Menú Junior</span> (de 10 a 14 anys)<br>
+<i>Macarrons o entremès, pollastre o botifarra amb patates, refresc i gelat</i><br>
+<span class="preu">{preu_2036}</span> Euros/unitat (IVA inclòs)</h6>
+</div>
+';
 
 /*******************************************************************************************/
 // MENU 2
 /*******************************************************************************************/
 	$translate['titol_menu_2003']=$translate['titol_menu_2']='MEN&Uacute; Nº 2';
 	$translate['menu_2003']=$translate['menu_2']='
-<B>ENTRANTS</B>
-<UL>
-Llonganissa<BR>
-Xori&ccedil;o<BR>
-Pat&eacute; de Jabugo<BR>
-Amanida<BR>
-Escalivada<BR>
-All i Oli<BR>
-Pa torrat amb tom&agrave;quet<BR>
-&nbsp;<BR>
-</UL>
-<B>SEGONS</B>
-<UL>
-Mongetes amb cansalada<BR>
-Patates fregides<BR>
-G&iacute;rgoles a la brasa<BR>
-Esp&agrave;rrecs a la brasa<BR>
-Carxofes a la brasa<BR>
-&nbsp;<BR>
-</UL>
-<B>GRAELLADA</B>
-<UL>
-Xai<BR>
-Conill<BR>
-Pollastre<BR>
-Botifarra negra<BR>
-Botifarra<BR>
-&nbsp;<BR>
-</UL>
-<B>CELLER</B>
-<UL>
-Vi de la Casa<BR>
-Gasosa<BR>
-Aigua<BR>
-Refresc<BR>
-&nbsp;<BR>
-</UL>
-<B>POSTRES</B>
-<UL>
-<li>Fruits secs (músic) pica-pica a la taula</li>
+<i>Tot repartit a taula</i><p></p>
+<ul>
+<li>Llonganissa</li>
+<li>Xoriço</li>
+<li>Paté</li>
+<li>Amanida</li>
+<li>Escalivada</li>
+<li>All i Oli</li>
+<li>Pa torrat amb tomàquet</li>
+</ul>
+<p><b>SEGONS</b></p>
+<ul>
+<li>Mongetes amb cansalada</li>
+<li>Patates fregides</li>
+</ul>
+<style>
+.dots { 
+  background: url("dot.gif") repeat-x bottom; 
+}
+.field {
+  background-color: #FFFFFF;
+} 
+.field2 {
+ float: right;
+} 
+ul.plat1 {
+float:left;
+}
+.complements{
+  font-size:0.7em;
+  width:350px;
+border:#444 solid 1px;
+border-radius:5px;
+float:right;
+padding:10px;
+margin:10px;
+}
+</style>
+<p><b>GRAELLADA</b><br>
+<i>Individual</i></p>
+<ul class="plat1">
+<li>Xai 2 peces</li>
+<li>Conill 1/4</li>
+<li>Botifarra 1/2</li>
+</ul>
+<div class="complements">
+<h6>COMPLEMENTS</h6>
+<p>  Si no voleu graellada, podeu afegir complements:</p>
+<ul class="dots">
+<li class="field">Costella de vedella a la brasa <span class="field field2" style="font-size:0.8em"><span class="preu">9.50</span>€</span></li>
+<li><span class="field">Espatlla de xai a la brasa</span> <span class="field field2" style="font-size:0.8em"><span class="preu">10.40</span>€</span></li>
+<li><span class="field">Peus de porc</span> <span class="field field2" style="font-size:0.8em"><span class="preu">10.25</span>€</span></li>
+<li><span class="field">Bacallà a la llauna</span> <span class="field field2" style="font-size:0.8em"><span class="preu">8.50</span>€</span></li>
+<li><span class="field">Cargols a la llauna</span> <span class="field field2" style="font-size:0.8em"><span class="preu">8.50</span>€</span></li>
+<li><span class="field">Moixarra a la brasa</span> <span class="field field2" style="font-size:0.8em"><span class="preu">8.50</span>€</span></li>
+<li><span class="field">Llobarro a la brasa</span> <span class="field field2" style="font-size:0.8em"><span class="preu">8.50</span>€</span></li>
+</ul>
+</div>
+<div class="cb"></div>
+<p><b>CELLER</b></p>
+<ul>
+<li>Vi de la Casa</li>
+<li>Gasosa</li>
+<li>Refresc</li>
+<li>Aigua</li>
+<li>1 cervessa inclosa</li>
+</ul>
+<p><b>POSTRES</b></p>
+<ul>
 <li>Crema catalana</li>
 <li>Flam casolà</li>
-<li>Copa sorbet llimona</li>
-</UL>
-<B>CAF&Egrave;S, TALLATS o CIGALONS</B><BR>
-
-<P>&nbsp;<BR>
-<B>PREU</B>
-<UL>
-{preu_2003} Euros/unitat adults sense cava (IVA incl&ograve;s)<BR>
-{preu_2004} Euros/unitat adults amb cava (IVA incl&ograve;s)<BR>
-</UL>
+<li>Gelats</li>
+</ul>
+<p><b>CAFÈS, TALLATS</b></p>
+<div class="carta-fotos"></div>
+<div id="ressenya" class="caixa-preus caixa-negre caixa-left">
+<h6><span class="preu">{preu_2003}</span> Euros/unitat adults (IVA inclòs)</h6>
+<h6><span class="preu">{preu_2004}</span> Euros/unitat adults amb cava (IVA inclòs)</h6>
+<hr>
+<h6 class="infantil"><span style="font-weight: bold;"> – Menú Infantil</span> (nens de 4 a 9 anys)<br>
+<i>Macarrons, pollastre arrebossat o croquetes amb patates, refresc i gelat</i><br>
+<span class="preu">{preu_2037}</span> Euros/unitat (IVA inclòs)</h6>
+<h6 class="infantil"><span style="font-weight: bold;"> – Menú Junior</span> (de 10 a 14 anys)<br>
+<i>Macarrons o entremès, pollastre o botifarra amb patates, refresc i gelat</i><br>
+<span class="preu">{preu_2037}</span> Euros/unitat (IVA inclòs)</h6>
+</div>
 ';
 
 /*******************************************************************************************/
@@ -245,56 +337,68 @@ Refresc<BR>
 /*******************************************************************************************/
 	$translate['titol_menu_2027']=$translate['titol_menu_2023']=$translate['titol_menu_2c']='MEN&Uacute; Nº 2 CELEBRACIÓ';
 	$translate['menu_2027']=$translate['menu_2023']=$translate['menu_2c']='
-<B>ENTRANTS</B>
-<UL>
-Llonganissa<BR>
-Xori&ccedil;o<BR>
-Pat&eacute; de Jabugo<BR>
-Amanida<BR>
-Escalivada<BR>
-All i Oli<BR>
-Pa torrat amb tom&agrave;quet<BR>
-&nbsp;<BR>
-</UL>
-<B>SEGONS</B>
-<UL>
-Mongetes amb cansalada<BR>
-Patates fregides<BR>
-G&iacute;rgoles a la brasa<BR>
-Esp&agrave;rrecs a la brasa<BR>
-Carxofes a la brasa<BR>
-&nbsp;<BR>
-</UL>
-<B>GRAELLADA</B>
-<UL>
-Xai<BR>
-Conill<BR>
-Pollastre<BR>
-Botifarra negra<BR>
-Botifarra<BR>
-&nbsp;<BR>
-</UL>
-<B>CELLER</B>
-<UL>
-Vi de la Casa<BR>
-Gasosa<BR>
-Aigua<BR>
-Refresc<BR>
-&nbsp;<BR>
-</UL>
-<B>POSTRES</B>
-<UL>
-Pastís i cava
-&nbsp;<BR>
-</UL>
-<B>CAF&Egrave;S, TALLATS o CIGALONS</B><BR>
-
-<P>&nbsp;<BR>
-<B>PREU</B>
-<UL>
-{preu_2023} Euros/unitat adults sense cava (IVA incl&ograve;s)<BR>
-{preu_2027} Euros/unitat adults amb cava (IVA incl&ograve;s)<BR>
-</UL>
+<div id="menu-2027" class="menu-content">
+<b>ENTRANTS</b><br>
+<i>Tot repartit a taula</i><p></p>
+<p></p><ul><p></p>
+<li>Llonganissa</li>
+<li>Xoriço</li>
+<li>Paté</li>
+<li>Amanida</li>
+<li>Escalivada</li>
+<li>All i Oli</li>
+<li>Pa torrat amb tomàquet</li>
+<p></p></ul><br>
+<b>SEGONS</b><br>
+<ul><p></p>
+<li>Mongetes amb cansalada</li>
+<li>Patates fregides</li>
+<p></p></ul><br>
+<b>GRAELLADA</b><br>
+<i>Individual</i><p></p>
+<ul class="plat1">
+<li>Xai 2 peces</li>
+<li>Conill 1/4</li>
+<li>Botifarra 1/2</li>
+</ul>
+<div class="complements">
+<h6>COMPLEMENTS</h6>
+<p>  Si no voleu graellada, podeu afegir complements:</p>
+<ul class="dots">
+<li class="field">Costella de vedella a la brasa <span class="field field2" style="font-size:0.8em"><span class="preu">9.50</span>€</span></li>
+<li><span class="field">Espatlla de xai a la brasa</span> <span class="field field2" style="font-size:0.8em"><span class="preu">10.40</span>€</span></li>
+<li><span class="field">Peus de porc</span> <span class="field field2" style="font-size:0.8em"><span class="preu">10.25</span>€</span></li>
+<li><span class="field">Bacallà a la llauna</span> <span class="field field2" style="font-size:0.8em"><span class="preu">8.50</span>€</span></li>
+<li><span class="field">Cargols a la llauna</span> <span class="field field2" style="font-size:0.8em"><span class="preu">8.50</span>€</span></li>
+<li><span class="field">Moixarra a la brasa</span> <span class="field field2" style="font-size:0.8em"><span class="preu">8.50</span>€</span></li>
+<li><span class="field">Llobarro a la brasa</span> <span class="field field2" style="font-size:0.8em"><span class="preu">8.50</span>€</span></li>
+</ul>
+</div>
+<div class="cb"></div>
+<p><b>CELLER</b><br>
+</p><ul><p></p>
+<li>Vi de la Casa</li>
+<li>Gasosa</li>
+<li>Refresc</li>
+<li>Aigua</li>
+<li>1 cervessa inclosa</li>
+<p></p></ul><br>
+<b>POSTRES</b><br>
+<ul><p></p>
+<li>Pastís celebració massini</li>
+<p></p></ul><br>
+<b>CAFÈS, TALLATS</b><p></p>
+<div id="ressenya" class="caixa-preus caixa-negre caixa-left">
+<h6><span class="preu">{preu_2027}</span> Euros/unitat adults amb cava (IVA inclòs)</h6>
+<hr>
+<h6 class="infantil"><span style="font-weight:bold"> – Menú Infantil</span> (nens de 4 a 9 anys)<br>
+<i>Macarrons, pollastre arrebossat o croquetes amb patates, refresc i gelat</i><br>
+<span class="preu">{preu_2037}</span> Euros/unitat (IVA inclòs)</h6>
+<h6 class="infantil"><span style="font-weight:bold"> – Menú Junior</span> (de 10 a 14 anys)<br>
+<i>Macarrons o entremès, pollastre o botifarra amb patates, refresc i gelat</i><br>
+<span class="preu">{preu_2036}</span> Euros/unitat (IVA inclòs)</h6>
+</div>
+</div>
 ';
 
 /*******************************************************************************************/
@@ -302,47 +406,58 @@ Pastís i cava
 /*******************************************************************************************/
 	$translate['titol_menu_2012']=$translate['titol_menu_3']='MEN&Uacute; Nº 3';
 	$translate['menu_2012']=$translate['menu_3']='
-<B>ENTRANTS</B>
-<UL>
-Amanida<BR>
-Assortit de pat&eacute;s<BR>
-Llonganissa de pag&eacute;s<BR>
-Xori&ccedil;o de Salamanca<BR>
-Pa torrat amb tom&agrave;quet i alls<BR>
-All i Oli<BR>
-&nbsp;<BR>
-</UL>
-<B>GRAELLADA</B>
-<UL>
-Butifarra a la brasa<BR>
-Pollastre a la brasa<BR>
-Secret de porc<BR>
-Patates fregides<BR>
-Mongetes amb cansalada<BR>
-&nbsp;<BR>
-</UL>
-<B>CELLER</B>
-<UL>
-Vi de la Casa<BR>
-Gasosa<BR>
-Aigua<BR>
-Refresc<BR>
-&nbsp;<BR>
-</UL>
-<B>POSTRES</B>
-<UL>
-<li>Fruits secs (músic) pica-pica a la taula</li>
+<div id="menu-2001" class="menu-content"><b>ENTRANTS</b><br>
+<i>Tot repartit a taula</i><p></p>
+<ul>
+<li>Amanida</li>
+<li>Escalivada</li>
+<li>Assortit de patés</li>
+<li>Llonganissa de pagés</li>
+<li>Xoriço de Salamanca</li>
+<li>Pa torrat amb tomàquet i alls</li>
+<li>All i Oli</li>
+</ul>
+<p><b>GRAELLADA</b><br>
+<i>Individual</i></p>
+<ul class="plat1">
+<li>Botifarra a la brasa 1/2</li>
+<li>Pollastre a la brasa 1/4</li>
+<li>Conill a la brasa 1/4</li>
+<li>Patates fregides</li>
+<li>Mongeta amb cansalada</li>
+</ul>
+<div class="complements">
+<h6>COMPLEMENTS</h6>
+<p>  Si no voleu graellada, podeu afegir complements:</p>
+<ul class="dots">
+<li class="field">Costella de vedella a la brasa <span class="field field2" style="font-size:0.8em"><span class="preu">9.50</span>€</span></li>
+<li><span class="field">Espatlla de xai a la brasa</span> <span class="field field2" style="font-size:0.8em"><span class="preu">10.40</span>€</span></li>
+<li><span class="field">Peus de porc</span> <span class="field field2" style="font-size:0.8em"><span class="preu">10.25</span>€</span></li>
+<li><span class="field">Bacallà a la llauna</span> <span class="field field2" style="font-size:0.8em"><span class="preu">8.50</span>€</span></li>
+<li><span class="field">Cargols a la llauna</span> <span class="field field2" style="font-size:0.8em"><span class="preu">8.50</span>€</span></li>
+<li><span class="field">Moixarra a la brasa</span> <span class="field field2" style="font-size:0.8em"><span class="preu">8.50</span>€</span></li>
+<li><span class="field">Llobarro a la brasa</span> <span class="field field2" style="font-size:0.8em"><span class="preu">8.50</span>€</span></li>
+</ul>
+</div>
+<div class="cb"></div>
+<p><b>CELLER</b></p>
+<ul>
+<li>Vi de la Casa</li>
+<li>Gasosa</li>
+<li>Refresc</li>
+<li>Aigua</li>
+<li>1 cervessa inclosa</li>
+</ul>
+<p><b>POSTRES</b></p>
+<ul>
 <li>Crema catalana</li>
 <li>Flam casolà</li>
-<li>Copa sorbet llimona</li>
-</UL>
-<B>CAF&Egrave;S, TALLATS o CIGALONS</B><BR>
+<li>Gelats</li>
+</ul>
+<p><b>CAFÈS, TALLATS</b></p>
+<div id="ressenya" class="caixa-preus caixa-negre caixa-left"><span class="preu">{preu_2012}</span> Euros (IVA inclòs)</div>
+</div>
 
-<P>&nbsp;<BR>
-<B>PREU</B>
-<UL>
-{preu_2012} Euros (IVA incl&ograve;s)</UL>
-</UL>
 ';
 
 /*******************************************************************************************/
@@ -350,59 +465,103 @@ Refresc<BR>
 /*******************************************************************************************/
 	$translate['titol_menu_2007']=$translate['titol_menu_4']='MEN&Uacute; Nº 4';
 	$translate['menu_2007']=$translate['menu_4']='
-<B>ENTRANTS</B>
-<UL>
-  <p><strong>Variat de verdures a la brasa</strong><br/>
-        <i>(Plat per comensal)</i><br/> <br/>
-		Escalivada <br/>
-		Girgoles<br/>
-		Esparrecs<br/>
-        Carxofes temporada<br/>
-    &nbsp;
-  </p>
-  </UL>
-<B>CARNS A LA BRASA</B><br/>
-<i>(Ració individual a escollir)</i><br/><br/>
-<UL>
-  Conill<br>
-    Botifarra<br>
-      Pollastre<br>
-        Llom<br>
-          Galta de porc<br>
-            Peus de porc
-            <BR>
-  &nbsp;
-  </UL>
-<B>GUARNICIONS</B>
-<UL>
-  Mongetes amb cansalada <BR>
-  Patates fregides <BR>
-  All i oli<br>
-  Pa torrat amb tom&agrave;quet
-</UL>
-<B><br>
-CELLER</B>
-<UL>
-  <p>Vi de la casa <BR>
-    Gasosa<BR>
-    Aigua<br>
-    Refresc<BR>
-  &nbsp;</p>
-  </UL>
-<B>POSTRES</B>
-<UL>
-<li>Fruits secs (músic) pica-pica a la taula</li>
+<div id="menu-2007" class="menu-content">
+<ul>
+<li>Variat de verdures a la brasa amb romesco<br>
+<code>(Plat per comensal)</code><p></p>
+<ul>
+<li>Pebrot</li>
+<li>Albergínia</li>
+<li>Carbassó</li>
+<li>Esparrecs</li>
+<li>Carxofes (temporada)</li>
+</ul>
+</li>
+</ul>
+<p><b>CARNS A LA BRASA</b></p>
+<p><i><code>(Ració individual a escollir)</code></i></p>
+<ul class="plat1">
+<li>Conill brasa</li>
+<li>Botifarra brasa</li>
+<li>Pollastre brasa</li>
+<li>Galta de porc brasa</li>
+<li>Peus de porc brasa</li>
+<li>Secret de porc brasa</li>
+</ul>
+<p>&nbsp;</p>
+<p><!--
+
+
+<div class="complements">
+  
+
+<h6>COMPLEMENTS</h6>
+
+
+  Si no voleu graellada, podeu afegir complements:
+  
+
+<ul class="dots">
+    
+
+<li class="field">Costella de vedella a la brasa <span class="field field2" style="font-size:0.8em">[cb_preu_plat id=2051]€</span></li>
+
+
+    
+
+<li><span class="field">Espatlla de xai a la brasa</span> <span class="field field2" style="font-size:0.8em">[cb_preu_plat id=2050]€</span></li>
+
+
+    
+
+<li><span class="field">Bacallà a la llauna</span> <span class="field field2" style="font-size:0.8em">[cb_preu_plat id=2055]€</span></li>
+
+
+    
+
+<li><span class="field">Cargols a la llauna</span> <span class="field field2" style="font-size:0.8em">[cb_preu_plat id=2052]€</span></li>
+
+
+    
+
+<li><span class="field">Moixarra a la brasa</span> <span class="field field2" style="font-size:0.8em">[cb_preu_plat id=2053]€</span></li>
+
+
+    
+
+<li><span class="field">Llobarro a la brasa</span> <span class="field field2" style="font-size:0.8em">[cb_preu_plat id=2054]€</span></li>
+
+
+  </ul>
+
+
+</div>
+
+--></p>
+<div class="cb"></div>
+<p><b>GUARNICIONS (ració individual)</b></p>
+<ul>
+<li>Mongetes amb cansalada</li>
+<li>Patates fregides</li>
+<li>All i oli</li>
+<li>Pa torrat amb tomàquet</li>
+</ul>
+<p><b>CELLER</b></p>
+<ul>
+<li>Vi de la Casa o sangria</li>
+<li>Gasosa</li>
+<li>Refresc</li>
+<li>Aigua</li>
+</ul>
+<p><b>POSTRES</b></p>
+<ul>
 <li>Crema catalana</li>
 <li>Flam casolà</li>
-<li>Copa sorbet llimona</li>
-</UL>
-<B>CAF&Egrave;S, TALLATS o CIGALONS</B><BR>
-
-<P>&nbsp;<BR>
-    <B>PREU</B>
-<UL>
-    {preu_2007} Euros<!--/unitat adults sense cava --> (IVA incl&ograve;s)<BR>
-</UL>
+<li>Gelats</li>
+</ul>
+<p><b>CAFÈS, TALLATS</b></p>
+<div id="ressenya" class="caixa-preus caixa-negre caixa-left"><span class="preu">{preu_2007}</span> Euros (IVA inclòs)</div>
+</div>
 ';
 
 /*******************************************************************************************/
@@ -410,60 +569,56 @@ CELLER</B>
 /*******************************************************************************************/
 	$translate['titol_menu_2013']=$translate['titol_menu_comunio']='MEN&Uacute; COMUNIÓ';
 	$translate['menu_2013']=$translate['menu_comunio']='
-<B>VERMUT</B>
-<P>
-<B>APERITU</B>
-<UL>
-Llagostins<BR>
-Patates xips<BR>
-Atmetlles salades<BR>
-Olives farcides<BR>
-Calamars a la romana<BR>
-Tacs truita<BR>
-Sorbet<BR>
-&nbsp;<BR>
-</UL>
-<B>PRIMERS</B>
-<UL>
-Entremesos individual<BR>
-Amanida i Pat&eacute;s<BR>
-Pa torrat amb tom&agrave;quet<BR>
-&nbsp;<BR>
-</UL>
-<B>SEGONS (Graellada)</B>
-<UL>
-Patates fregides<BR>
-Be<BR>
-Botifarra negra<BR>
-Conill<BR>
-Pollastre<BR>
-Botifarra<BR>
-All i Oli<BR>
-&nbsp;<BR>
-</UL>
-<B>PAST&Iacute;S DE CELEBRACI&Oacute;</B>
-<P>&nbsp;<BR>
-<B>CELLER</B>
-<UL>
-Vi Cabernet negre o rosat<BR>
-Cava Brut Reserva Sard&agrave;<BR>
-Aigua i refrescs<BR>
-&nbsp;<BR>
-</UL>
-<B>CAF&Egrave;S, TALLATS o CIGALONS</B><BR>
-
-<P>&nbsp;<BR>
-<B>PREU</B>
-<UL>
-{preu_2013} Euros (IVA incl&ograve;s)<BR>
-&nbsp;<BR>
-<!--
-<B>Nens:</B><BR>
-{preu_2017} Euros nens de 4 a 9 anys (IVA incl&ograve;s)<BR>
-{preu_2018} Euros nens de 10 a 14 anys (IVA incl&ograve;s)
-</UL>
-<B>Incl&oacute;s centre de flors</B><BR>
--->
+<div id="menu-2001" class="menu-content">
+<p><b>VERMUT</b></p>
+<ul>
+<li>Cervessa</li>
+<li>Refresc</li>
+</ul>
+<p>&nbsp;</p>
+<p><b>APERITU</b></p>
+<ul>
+<li>Patates xips</li>
+<li>Atmetlles salades</li>
+<li>Olives farcides</li>
+<li>Calamars a la romana</li>
+<li>Tacs truita</li>
+</ul>
+<p><b>PRIMERS</b></p>
+<ul>
+<li>Entremesos individual</li>
+<li>Amanida i paté</li>
+<li>Pa torrat amb tomàquet</li>
+</ul>
+<p><b>SEGONS (Graellada)</b></p>
+<ul>
+<li>Patates fregides</li>
+<li>Be</li>
+<li>Conill</li>
+<li>Pollastre</li>
+<li>Botifarra</li>
+<li>Botifarra negra</li>
+<li>All i Oli</li>
+</ul>
+<p><b>PASTÍS DE CELEBRACIÓ</b></p>
+<p>&nbsp;</p>
+<p><b>CELLER</b></p>
+<ul>
+<li>Vi Cabernet negre o rosat</li>
+<li>Cava brut reserva</li>
+<li>Aigua i refrescs</li>
+</ul>
+<p><b>CAFÈS, TALLATS</b></p>
+<p>&nbsp;</p>
+<div id="ressenya" class="caixa-preus caixa-negre caixa-left">
+<h6><span class="preu">{preu_2013}</span> Euros (IVA inclòs)</h6>
+<hr>
+<h6 class="infantil"><span style="font-weight: bold;"> – Menú Infantil</span> (nens de 4 a 9 anys)<br>
+<span class="preu">{preu_2017}</span> Euros/unitat (IVA inclòs)</h6>
+<h6 class="infantil"><span style="font-weight: bold;"> – Menú Junior</span> (de 10 a 14 anys)<br>
+<span class="preu">{preu_2018}</span> Euros/unitat (IVA inclòs)</h6>
+</div>
+</div>
 ';
 
 /*******************************************************************************************/
@@ -471,111 +626,130 @@ Aigua i refrescs<BR>
 /*******************************************************************************************/
 	$translate['titol_menu_2016']=$translate['titol_menu_casament']='MEN&Uacute; CASAMENT';
 	$translate['menu_2016']=$translate['menu_casament']='
-<B>APERITU</B>
-<UL>
-Llagostins<BR>
-Patates xips<BR>
-Atmetlles salades<BR>
-Olives farcides<BR>
-Calamars a la romana<BR>
-Tacs truita<BR>
-Sorbet<BR>
-&nbsp;<BR>
-</UL>
-<B>PRIMERS</B>
-<UL>
-Entremesos<BR>
-Amanida<BR>
-Escalivada<BR>
-Esp&agrave;rrecs<BR>
-G&iacute;rgoles<BR>
-Pa torrat amb tom&agrave;quet<BR>
-&nbsp;<BR>
-</UL>
-<B>SEGONS (Graellada)</B>
-<UL>
-Xai<BR>
-Botifarra negra<BR>
-Conill<BR>
-Pollastre<BR>
-Botifarra<BR>
-All i Oli<BR>
-&nbsp;<BR>
-</UL>
-<B>PAST&Iacute;S DE CASAMENT</B>
-<P>&nbsp;<BR>
-<B>CELLER</B>
-<UL>
-Vi Cabernet negre o rosat<BR>
-Cava Brut Reserva Sard&agrave;<BR>
-Aigua i refrescs<BR>
-&nbsp;<BR>
-</UL>
-<B>CAF&Egrave;S, TALLATS o CIGALONS</B><BR>
-
-<P>&nbsp;<BR>
-<B>PREU</B>
-<UL>
-{preu_2016} Euros (IVA incl&ograve;s)<BR>
-&nbsp;<BR>
-</UL>
-<B>Guarnici&oacute; de flors</B><BR>
+<div id="menu-2001" class="menu-content">
+<p><b>APERITIU</b></p>
+<ul>
+<li>Llagostins</li>
+<li>Patates xips</li>
+<li>Atmetlles salades</li>
+<li>Olives farcides</li>
+<li>Calamars a la romana</li>
+<li>Tacs truita</li>
+<li>Sorbet</li>
+</ul>
+<p><b>PRIMERS</b></p>
+<ul>
+<li>Entremesos</li>
+<li>Amanida</li>
+<li>Escalivada</li>
+<li>Espàrrecs</li>
+<li>Gírgoles</li>
+<li>Pa torrat amb tomàquet</li>
+</ul>
+<p><b>SEGONS (Graellada)</b></p>
+<ul>
+<li>Xai</li>
+<li>Conill</li>
+<li>Pollastre</li>
+<li>Botifarra</li>
+<li>Botifarra negra</li>
+<li>All i Oli</li>
+</ul>
+<p><b>PASTÍS DE CASAMENT</b></p>
+<p>&nbsp;</p>
+<p><b>CELLER</b></p>
+<ul>
+<li>Vi Cabernet negre o rosat</li>
+<li>Cava Brut Reserva Sardà</li>
+<li>Aigua i refrescs</li>
+</ul>
+<p><b>CAFÈS, TALLATS</b></p>
+<p>&nbsp;</p>
+<p><b>Guarnició de flors</b></p>
+<div id="ressenya" class="caixa-preus caixa-negre caixa-left">
+<h6><span class="preu">{preu_2016}</span> Euros (IVA inclòs)</h6>
+<hr>
+<h6 class="infantil"><span style="font-weight: bold;"> – Menú Infantil</span> (nens de 4 a 9 anys)</h6>
+<span class="preu">{preu_2021}</span> Euros/unitat (IVA inclòs)<p></p>
+<h6 class="infantil"><span style="font-weight: bold;"> – Menú Junior</span> (de 10 a 14 anys)</h6>
+<span class="preu">{preu_2022}</span> Euros/unitat (IVA inclòs)<p></p>
+</div>
+</div>
 ';
 
 /*******************************************************************************************/
 // MENU calsots
 /*******************************************************************************************/
-	$translate['titol_menu_2010']=$translate['titol_menu_calsots']='MEN&Uacute; CALÇOTADA';
-	$translate['menu_2010']=$translate['menu_calsots']='
-<B>ENTRANTS</B>
-<UL>
-CAL&Ccedil;OTS (temporada)<BR>
-Inclou repetici&oacute; (fins a 25 Uds./comen&ccedil;al)<BR>
-&nbsp;<BR>
-Mongetes amb cansalada<BR>
-Patates fregides<BR>
-All i oli<BR>
-Pa torrat amb tom&agrave;quet<BR>
-&nbsp;<BR>
-</UL>
-<B>GRAELLADA</B>
-<UL>
-Xai<BR>
-Conill<BR>
-Pollastre<BR>
-Botifarra<BR>
-Botifarra negra<BR>
-&nbsp;<BR>
-</UL>
-<B>CELLER</B>
-<UL>
-Vi de la Casa<BR>
-Gasosa<BR>
-Aigua<BR>
-Refresc<BR>
-&nbsp;<BR>
-</UL>
-<B>POSTRES</B>
-<UL>
-<li>Fruits secs (músic) pica-pica a la taula</li>
+$translate['titol_menu_2010']=$translate['titol_menu_calsots']='MEN&Uacute; CALÇOTADA';
+$translate['menu_2010']=$translate['menu_calsots']='
+<div id="menu-2010" class="menu-content">
+<b>ENTRANTS</b><br>
+<ul><p></p>
+<li>CALÇOTS (temporada)<br>
+    <i><code>Sense límit de calçots</code><br>
+<code>No combinable amb altres menús (tots heu de demanar calçotada)</code><br>
+</i>
+</li>
+<li>Mongetes amb cansalada</li>
+<li>Patates fregides</li>
+<li>All i oli</li>
+<li>Pa torrat amb tomàquet</li>
+<p></p></ul><br>
+<b>GRAELLADA (individual)</b><br>
+<ul class="plat1"><p></p>
+<li>Xai (2 peces)</li>
+<li>Conill (1/4)</li>
+<li>Botifarra (1/2)</li>
+<p></p></ul><p></p>
+<div class="complements">
+<h6>COMPLEMENTS</h6>
+<p>  Si no voleu graellada, podeu afegir complements:</p>
+<ul class="dots">
+<li class="field">Costella de vedella a la brasa <span class="field field2" style="font-size:0.8em"><span class="preu">9.50</span>€</span></li>
+<li><span class="field">Espatlla de xai a la brasa</span> <span class="field field2" style="font-size:0.8em"><span class="preu">10.40</span>€</span></li>
+<li><span class="field">Peus de porc</span> <span class="field field2" style="font-size:0.8em"><span class="preu">4.00</span>€</span></li>
+<li><span class="field">Bacallà a la llauna</span> <span class="field field2" style="font-size:0.8em"><span class="preu">8.50</span>€</span></li>
+<li><span class="field">Cargols a la llauna</span> <span class="field field2" style="font-size:0.8em"><span class="preu">8.50</span>€</span></li>
+<li><span class="field">Moixarra a la brasa</span> <span class="field field2" style="font-size:0.8em"><span class="preu">8.50</span>€</span></li>
+<li><span class="field">Llobarro a la brasa</span> <span class="field field2" style="font-size:0.8em"><span class="preu">8.50</span>€</span></li>
+</ul>
+</div>
+<div class="cb"></div>
+<p><b>CELLER</b></p>
+<ul>
+<li>Vi de la Casa</li>
+<li>Gasosa</li>
+<li>Refresc</li>
+<li>Aigua</li>
+<li>1 Cervessa inclosa</li>
+</ul>
+<p><b>POSTRES</b></p>
+<ul>
 <li>Crema catalana</li>
 <li>Flam casolà</li>
 <li>Copa sorbet llimona</li>
-</UL>
-<B>CAF&Egrave;S, TALLATS o CIGALONS</B><BR>
-
-<P>&nbsp;<BR>
-<B>PREU</B>
-<UL>
-{preu_2010} Euros (IVA incl&ograve;s)<BR>
-</UL>
-';
+</ul>
+<p><b>CAFÈS, TALLATS</b></p>
+<div id="ressenya" class="caixa-preus caixa-negre caixa-left">
+<h6><span class="preu">{preu_2010}</span> Euros/unitat adults (IVA inclòs)</h6>
+<h6><span class="preu">{preu_2011}</span> Euros/unitat adults amb cava(IVA inclòs)</h6>
+<hr>
+<h6 class="infantil"><span style="font-weight:bold"> – Menú Infantil</span> (nens de 4 a 9 anys)<br>
+<i>Macarrons, pollastre arrebossat o croquetes amb patates, refresc i gelat</i><br>
+<span class="preu">{preu_2037}</span> Euros/unitat (IVA inclòs)</h6>
+<h6 class="infantil"><span style="font-weight:bold"> – Menú Junior</span> (de 10 a 14 anys)<br>
+<i>Macarrons o entremès, pollastre o botifarra amb patates, refresc i gelat</i><br>
+<span class="preu">{preu_2036}</span> Euros/unitat (IVA inclòs)</h6>
+</div>
+</div>';
 
 /*******************************************************************************************/
 // MENU VEGETARIÀ
 /*******************************************************************************************/
 	$translate['titol_menu_990060']=$translate['titol_menu_vegetaria']='MEN&Uacute; VEGETARIÀ';
-	$translate['menu_990060']=$translate['menu_vegetaria']='En aquest Menú es pot escollir de primer i de segon els següents plats: 
+	$translate['menu_990060']=$translate['menu_vegetaria']='
+<div id="menu-2008" class="menu-content">
+<p><b>En aquest Menú es pot escollir un dels següents plats:</b></p>
 <ul>
 <li>Xatonada</li>
 <li>Amanida</li>
@@ -583,17 +757,31 @@ Refresc<BR>
 <li>Espàrrecs</li>
 <li>Escalivada</li>
 <li>Carxofes (temporada)</li>
-<li>Calçots (temporada) </li>
+<p> 	<!-- 
+
+<li>Calçots (temporada)</li>
+
+  --></p>
 <li>Graellada de verdures</li>
-<BR>
-
-Incloent-hi els complements (mongetes i patates fregides all i oli pa torrat amb tomàquet i alls, beguda i cafès
-<BR><BR>
-<B>PREU</B>
-
-
-
-{preu_990060} Euros (IVA incl&ograve;s)<BR>
+</ul>
+<p><strong>Incloent-hi els complements</strong></p>
+<ul>
+<li>Mongetes</li>
+<li>Patates fregides</li>
+<li>Allioli</li>
+<li>pa torrat amb tomàquet i alls</li>
+</ul>
+<p><b>POSTRES</b></p>
+<ul>
+<li>Fruita</li>
+<li>Crema catalana</li>
+<li>Flam casolà</li>
+<li>Gelat</li>
+</ul>
+<p><strong>Beguda i cafès</strong></p>
+<div id="ressenya" class="caixa-preus caixa-negre caixa-left"><span class="preu">{preu_2008}</span> Euros (IVA inclòs)
+</div>
+</div>
 ';
 
 
@@ -607,15 +795,33 @@ Incloent-hi els complements (mongetes i patates fregides all i oli pa torrat amb
   /*******************************************************************************************/
                               $translate['titol_menu_2037']=$translate['titol_menu_infantil']='Men&uacute; Infantil (ni&ntilde;os de 4 a 9 a&ntilde;os)';
                               $translate['menu_2037']=$translate['menu_infantil']='
-  Macarrones, pollo rebozado o croquetas con patatas, refresco y helado<br/>
-  {preu_2037} Euros/unidad (IVA incluido)<br/>
-  &nbsp;<br/>';
+<div id="menu-2037" class="menu-content">
+<ul>
+<li>Macarrons</li>
+<li>Pollastre arrebossat o Croquetes amb patates</li>
+<li>Refresc</li>
+<li>Gelat</li>
+</ul>
+<div id="ressenya" class="caixa-preus caixa-negre caixa-left"><span class="preu">{preu_2037}</span> Euros (IVA inclòs)
+</div>
+</div>';
 
                               $translate['titol_menu_2036']=$translate['titol_menu_junior']='Men&uacute; Junior (de 10 a 14 a&ntilde;os)';
-                              $translate['menu_2036']=$translate['menu_junior']='Macarrones o entrem&eacute;s, pollo o butifarra con patatas, refresco y helado<br/>
-  {preu_2036} Euros/unidad (IVA incluido)';
+                              $translate['menu_2036']=$translate['menu_junior']='
+<div id="menu-2001" class="menu-content">
+<ul>
+<li>Macarrons o entremès</li>
+<li>Pollastre o botifarra amb patates</li>
+<li>Refresc</li>
+<li>Gelat</li>
+</ul>
+<div id="ressenya" class="caixa-preus caixa-negre caixa-left">
+<span class="preu">{preu_2036}</span> Euros (IVA inclòs)
+</div>
+</div>';
 
-                              $translate['titol_menu_2017']=$translate['titol_menu_inf_comunio']='Men&uacute; Comunión (ni&ntilde;os de 4 a 9 a&ntilde;os)';
+                              $translate['titol_menu_2017']=$translate['titol_menu_inf_comunio']='
+Men&uacute; Comunión (ni&ntilde;os de 4 a 9 a&ntilde;os)';
                               $translate['menu_2017']=$translate['menu_inf_comunio']='{preu_2017} Euros';
 
                               $translate['titol_menu_2018']=$translate['titol_menu_jun_comunio']='Men&uacute; Comunión (ni&ntilde;os de 10 a 14 a&ntilde;os)';

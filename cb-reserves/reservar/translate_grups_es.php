@@ -101,51 +101,68 @@ ni en el caso de que modifiquéis el número de comensales al confirmar la reser
 /*******************************************************************************************/
 	$translate['titol_menu_2001']=$translate['titol_menu_1']='Menú nº1';
 	$translate['menu_2001']=$translate['menu_1']='
-	<B>ENTRANTES</B>
-<UL>
-Ensalada<br/>
-Escalivada<br/>
-G&iacute;rgolas<br/>
-Esp&aacute;rragos a la brasa<br/>
-Alcachofas<br/>
-Jud&iacute;as con tocino<br/>
-Patatas fritas<br/>
-Alioli<br/>
-Pan tostado con tomate<br/>
-&nbsp;<br/>
-</UL>
-<B>PARRILLADA</B>
-<UL>
-Cordero<br/>
-Conejo<br/>
-Pollo<br/>
-Butifarra<br/>
-Lomo<br/>
-&nbsp;<br/>
-</UL>
-<B>BODEGA</B>
-<UL>
-Vino de la Casa<br/>
-Gaseosa<br/>
-Agua<br/>Refreco<br/>
-&nbsp;<br/>
-</UL>
-<B>POSTRES</B>
-<UL>
-Tarta Selva trufa<br/>
-Tarta de limón<br/>
-Tarta whisky<br/>
-Copa sorbete limón<br/>
-Crema catalana<br/>
-&nbsp;<br/>
-</UL>
-<B>CAF&Eacute;S, CORTADOS o CARAJILLOS</B><br/>
-<br/>
-<B>PRECIO</B>
-<UL>
-{preu_2001} Euros/unidad adultos (IVA incluido)<br/>
-{preu_2002} Euros/unidad adultos con cava (IVA incluido)<br/>
-</UL>
+	<div id="menu-2001" class="menu-content">
+<p><strong>ENTRANTES</strong><br>
+<i>Todo repartido en mesa</i></p>
+<ul>
+<li>Ensalada</li>
+<li>Escalivada</li>
+<li>Gírgolas</li>
+<li>Espárragos a la brasa (temporada)</li>
+<li>Alcachofas (temporada)</li>
+<li>Judías con tocino</li>
+<li>Patatas fritas</li>
+<li>Alioli</li>
+<li>Pan tostado con tomate</li>
+</ul>
+<p>&nbsp;</p>
+<p><strong>PARRILLADA</strong></p>
+<ul class="plat1">
+<i>Individual</i><p></p>
+<li>Cordero 2 piezas</li>
+<li>Conejo 1/4</li>
+<li>Butifarra 1/2</li>
+</ul>
+<p>&nbsp;</p>
+<div class="complements">
+<h6>COMPLEMENTOS</h6>
+<p>  Si no quereis parrillada, podéis añadir complementos:</p>
+<ul class="dots">
+<li class="field">Costilla de ternera a la brasa  <span class="field field2" style="font-size:0.8em"><span class="preu">9.50</span>€</span></li>
+<li><span class="field">Espalda de cordero a la brasa</span> <span class="field field2" style="font-size:0.8em"><span class="preu">10.40</span>€</span></li>
+<li><span class="field">Pies de cerdo</span> <span class="field field2" style="font-size:0.8em"><span class="preu">10.25</span>€</span></li>
+<li><span class="field">Bacalao a la “llauna”</span> <span class="field field2" style="font-size:0.8em"><span class="preu">8.50</span>€</span></li>
+<li><span class="field">Caracoles a la “llauna”</span> <span class="field field2" style="font-size:0.8em"><span class="preu">8.50</span>€</span></li>
+<li><span class="field">Dorada a la brasa</span> <span class="field field2" style="font-size:0.8em"><span class="preu">8.50</span>€</span></li>
+<li><span class="field">Lubina a la brasa</span> <span class="field field2" style="font-size:0.8em"><span class="preu">8.50</span>€</span></li>
+</ul>
+</div>
+<div class="cb"></div>
+<p><strong>BODEGA</strong></p>
+<ul>
+<li>Vino de la Casa</li>
+<li>Gaseosa</li>
+<li>Refresc</li>
+<li>Agua</li>
+<li>1 cerveza incluida</li>
+</ul>
+<p>&nbsp;</p>
+<p><b>POSTRES</b></p>
+<ul>
+<li>Crema catalana</li>
+<li>Flan casero</li>
+<li>Helados</li>
+</ul>
+<p>&nbsp;</p>
+<p><strong>CAFÉS, CORTADOS</strong></p>
+<div id="ressenya" class="caixa-preus caixa-negre caixa-left">
+<h6><span class="preu">{preu_2001}</span> Euros/unitat adults (IVA incluido)</h6>
+<h6><span class="preu">{preu_2002}</span> Euros/unitat adults amb cava (IVA incluido)</h6>
+<hr>
+<h6 class="infantil"><span style="font-weight: bold;"> – Menú Infantil</span> (niños de 4 a 9 años) <br><i>Macarrones, pollo rebozado o croquetas con patatas, refresco y helado</i>&nbsp;<br><span class="preu">{preu_2037}</span> Euros/unidad (IVA incluido)</h6>
+<h6 class="infantil"><span style="font-weight: bold;"> – Menú Junior</span> (de 10 a 14 años) <br>Macarrones o entremés, pollo o butifarra con patatas, refresco y helado&nbsp;<br><span class="preu">{preu_2036}</span> Euros/unidad (IVA incluido)</h6>
+</div>
+</div>
 ';
 
 /*******************************************************************************************/
@@ -153,106 +170,138 @@ Crema catalana<br/>
 /*******************************************************************************************/
 	$translate['titol_menu_2025']=$translate['titol_menu_2024']=$translate['titol_menu_1c']='MEN&Uacute; Nº 1 CELEBRACI&Oacute;N';
 	$translate['menu_2025']=$translate['menu_1c']=$translate['menu_2024']='
-<FONT CLASS="titol"><B>MEN&Uacute; Nº 1 CELEBRACI&Oacute;N</B></FONT>
-<HR SIZE="1">
-&nbsp;<br/>
-<B>ENTRANTES</B>
-<UL>
-Ensalada<br/>
-Escalivada<br/>
-G&iacute;rgolas<br/>
-Esp&aacute;rragos a la brasa<br/>
-Alcachofas<br/>
-Jud&iacute;as con tocino<br/>
-Patatas fritas<br/>
-Alioli<br/>
-Pan tostado con tomate<br/>
-&nbsp;<br/>
-</UL>
-<B>PARRILLADA</B>
-<UL>
-Cordero<br/>
-Conejo<br/>
-Pollo<br/>
-Butifarra<br/>
-Lomo<br/>
-&nbsp;<br/>
-</UL>
-<B>BODEGA</B>
-<UL>
-Vino de la Casa<br/>
-Gaseosa<br/>
-Agua<br/>Refreco<br/>
-&nbsp;<br/>
-</UL>
-<B>POSTRES</B>
-<UL>
-Pastel y cava
-&nbsp;<br/>
-</UL>
-<B>CAF&Eacute;S, CORTADOS o CARAJILLOS</B><br/>
-<br/>
-<B>PRECIO</B>
-<UL>
-{preu_2024} Euros/unidad adultos sin cava (IVA incluido)<br/>
-{preu_2025} Euros/unidad adultos con cava (IVA incluido)<br/>
-</UL>';
+<div id="menu-2001" class="menu-content">
+<p><strong>ENTRANTES</strong><br>
+ 	<i>Todo repartido en la mesa</i></p>
+<ul>
+<li>Ensalada</li>
+<li>Escalivada</li>
+<li>Gírgolas</li>
+<li>Espárragos a la brasa  (temporada)</li>
+<li>Alcachofas  (temporada)</li>
+<li>Judías con tocino</li>
+<li>Patatas fritas</li>
+<li>Alioli</li>
+<li>Pan tostado con tomate</li>
+</ul>
+<p>&nbsp;</p>
+<p><strong>PARRILLADA</strong><br>
+ 	<i>Individual</i></p>
+<ul class="plat1">
+<li>Cordero 2 piezas</li>
+<li>Conejo 1/4</li>
+<li>Butifarra 1/2</li>
+</ul>
+<div class="complements">
+<h6>COMPLEMENTOS</h6>
+<p>  Si no quereis parrillada, podéis añadir complementos:</p>
+<ul class="dots">
+<li class="field">Costilla de ternera a la brasa  <span class="field field2" style="font-size:0.8em"><span class="preu">9.50</span>€</span></li>
+<li><span class="field">Espalda de cordero a la brasa</span> <span class="field field2" style="font-size:0.8em"><span class="preu">10.40</span>€</span></li>
+<li><span class="field">Pies de cerdo</span> <span class="field field2" style="font-size:0.8em"><span class="preu">10.25</span>€</span></li>
+<li><span class="field">Bacalao a la “llauna”</span> <span class="field field2" style="font-size:0.8em"><span class="preu">8.50</span>€</span></li>
+<li><span class="field">Caracoles a la “llauna”</span> <span class="field field2" style="font-size:0.8em"><span class="preu">8.50</span>€</span></li>
+<li><span class="field">Dorada a la brasa</span> <span class="field field2" style="font-size:0.8em"><span class="preu">8.50</span>€</span></li>
+<li><span class="field">Lubina a la brasa</span> <span class="field field2" style="font-size:0.8em"><span class="preu">8.50</span>€</span></li>
+</ul>
+</div>
+<div class="cb"></div>
+<p>&nbsp;</p>
+<p><strong>BODEGA</strong></p>
+<ul>
+<li>Vino de la Casa</li>
+<li>Gaseosa</li>
+<li>Refresco</li>
+<li>Agua</li>
+<li>1 cerveza incluida</li>
+</ul>
+<p>&nbsp;</p>
+<p><strong>POSTRES</strong></p>
+<ul>
+<li>Tarta celebración massini</li>
+</ul>
+<p>&nbsp;</p>
+<p><strong>CAFÉS, CORTADOS</strong></p>
+<div id="ressenya" class="caixa-preus caixa-negre caixa-left">
+<h6><span class="preu">{preu_2025}</span> Euros/unitat adults amb cava (IVA incluido)</h6>
+<hr>
+<h6 class="infantil"><span style="font-weight: bold;"> – Menú Infantil</span> (niños de 4 a 9 años) Macarrones, pollo rebozado o croquetas con patatas, refresco y helado&nbsp;<span class="preu">{preu_2037}</span> Euros/unidad (IVA inclòs)</h6>
+<h6 class="infantil"><span style="font-weight: bold;"> – Menú Junior</span> (de 10 a 14 años) Macarrones o entremés, pollo o butifarra con patatas, refresco y helado <span class="preu">{preu_2036}</span> Euros/unidad (IVA inclòs)</h6>
+</div>
+</div>
+';
 
 /*******************************************************************************************/
 // MENU 2
 /*******************************************************************************************/
 	$translate['titol_menu_2003']=$translate['titol_menu_2']='MEN&Uacute; Nº 2';
 	$translate['menu_2003']=$translate['menu_2']='
-<B>ENTRANTES</B>
-<UL>
-Longaniza<br/>
-Chorizo<br/>
-Pat&eacute; de Jabugo<br/>
-Ensalada<br/>
-Escalivada<br/>
-Alioli<br/>
-Pan tostado con tomate<br/>
-&nbsp;<br/>
-</UL>
-<B>SEGUNDOS</B>
-<UL>
-Jud&iacute;as con tocino<br/>
-Patatas fritas<br/>
-G&iacute;rgolas a la brasa<br/>
-Esp&aacute;rragos a la brasa<br/>
-Alcachofas a la brasa<br/>
-&nbsp;<br/>
-</UL>
-<B>PARRILLADA</B>
-<UL>
-Cordero<br/>
-Conejo<br/>
-Pollo<br/>
-Lomo<br/>
-Butifarra<br/>
-&nbsp;<br/>
-</UL>
-<B>BODEGA</B>
-<UL>
-Vino de la Casa<br/>
-Gaseosa<br/>
-Agua<br/>Refreco<br/>
-&nbsp;<br/>
-</UL>
-<B>POSTRES</B>
-<UL>
-Tarta whisky<br/>
-Flan biscuit<br/>
-Crema catalana<br/
-&nbsp;<br/>
-</UL>
-<B>CAF&Eacute;S, CORTADOS o CARAJILLOS</B><br/>
-<P>&nbsp;<br/>
-<B>PRECIO</B>
-<UL>
-{preu_2003} Euros/unidad adultos sin cava (IVA incluido)<br/>
-{preu_2004} Euros/unidad adultos con cava (IVA incluido)<br/>
-</UL>
+
+<div id="menu-2003" class="menu-content">
+<p><i>Todo repartido en mesa</i></p>
+<ul>
+<li>Longaniza</li>
+<li>Chorizo</li>
+<li>Paté</li>
+<li>Ensalada</li>
+<li>Escalivada</li>
+<li>All i Oli</li>
+<li>Pan tostado con tomate</li>
+</ul>
+<p><strong>SEGUNDOS</strong></p>
+<ul class="plat1">
+<li>Judias con panceta</li>
+<li>Patatas fritas</li>
+</ul>
+<div class="cb"></div>
+<p><strong>PARRILLADA</strong><br>
+<i>Individual</i></p>
+<ul class="plat1">
+<li>Cordero 2 piezas</li>
+<li>Conejo 1/4</li>
+<li>Butifarra 1/2</li>
+</ul>
+<div class="complements">
+<h6>COMPLEMENTOS</h6>
+<p>Si no quereis parrillada, podéis añadir complementos:</p>
+<ul class="dots">
+<li class="field">Costilla de ternera a la brasa <span class="field field2" style="font-size: 0.8em;"><span class="preu">9.50</span>€</span></li>
+<li><span class="field">Espalda de cordero a la brasa</span> <span class="field field2" style="font-size: 0.8em;"><span class="preu">10.40</span>€</span></li>
+<li><span class="field">Pies de cerdo</span> <span class="field field2" style="font-size: 0.8em;"><span class="preu">10.25</span>€</span></li>
+<li><span class="field">Bacalao a la “llauna”</span> <span class="field field2" style="font-size: 0.8em;"><span class="preu">8.50</span>€</span></li>
+<li><span class="field">Caracoles a la “llauna”</span> <span class="field field2" style="font-size: 0.8em;"><span class="preu">8.50</span>€</span></li>
+<li><span class="field">Dorada a la brasa</span> <span class="field field2" style="font-size: 0.8em;"><span class="preu">8.50</span>€</span></li>
+<li><span class="field">Lubina a la brasa</span> <span class="field field2" style="font-size: 0.8em;"><span class="preu">8.50</span>€</span></li>
+</ul>
+</div>
+<div class="cb"></div>
+<p><strong>BODEGA</strong></p>
+<ul>
+<li>Vino de la Casa</li>
+<li>Refresco</li>
+<li>Gaseosa</li>
+<li>Agua</li>
+<li>1 cerveza incluida</li>
+</ul>
+<p><b>POSTRES</b></p>
+<ul>
+<li>Crema catalana</li>
+<li>Flan casero</li>
+<li>Helados</li>
+</ul>
+<p><strong>CAFÉS, CORTADOS</strong></p>
+<div id="ressenya" class="caixa-preus caixa-negre caixa-left">
+<h6><span class="preu">{preu_2003}</span> Euros/unidad adultos (IVA incluido)</h6>
+<h6><span class="preu">{preu_2004}</span> Euros/unidad adultos con&nbsp;cava (IVA incluido)</h6>
+<hr>
+<h6 class="infantil"><span style="font-weight: bold;"> – Menú Infantil</span> (niños de 4 a 9 años)<br>
+Macarrones, pollo rebozado o croquetas con patatas, refresco y helado<br>
+<span class="preu">{preu_2037}</span> Euros/unidad (IVA incluido)</h6>
+<h6 class="infantil"><span style="font-weight: bold;"> – Menú Junior</span> (de 10 a 14 años)<br>
+Macarrones o entremés, pollo o butifarra con patatas, refresco y helado<br>
+<span class="preu">{preu_2036}</span> Euros/unidad (IVA incluido)</h6>
+</div>
+</div>
 ';
 
 /*******************************************************************************************/
@@ -260,54 +309,67 @@ Crema catalana<br/
 /*******************************************************************************************/
 	$translate['titol_menu_2027']=$translate['titol_menu_2023']=$translate['titol_menu_2c']='MEN&Uacute; Nº 2 CELEBRACIÓN';
 	$translate['menu_2027']=$translate['menu_2023']=$translate['menu_2c']=' 
-<B>ENTRANTES</B>
-<UL>
-Longaniza<br/>
-Chorizo<br/>
-Pat&eacute; de Jabugo<br/>
-Ensalada<br/>
-Escalivada<br/>
-Alioli<br/>
-Pan tostado con tomate<br/>
-&nbsp;<br/>
-</UL>
-<B>SEGUNDOS</B>
-<UL>
-Jud&iacute;as con tocino<br/>
-Patatas fritas<br/>
-G&iacute;rgolas a la brasa<br/>
-Esp&aacute;rragos a la brasa<br/>
-Alcachofas a la brasa<br/>
-&nbsp;<br/>
-</UL>
-<B>PARRILLADA</B>
-<UL>
-Cordero<br/>
-Conejo<br/>
-Pollo<br/>
-Lomo<br/>
-Butifarra<br/>
-&nbsp;<br/>
-</UL>
-<B>BODEGA</B>
-<UL>
-Vino de la Casa<br/>
-Gaseosa<br/>
-Agua<br/>Refreco<br/>
-&nbsp;<br/>
-</UL>
-<B>POSTRES</B>
-<UL>
-Pastel y cava
-&nbsp;<br/>
-</UL>
-<B>CAF&Eacute;S, CORTADOS o CARAJILLOS</B><br/>
-<br/>
-<B>PRECIO</B>
-<UL>
-{preu_2023} Euros/unidad adultos sin cava (IVA incluido)<br/>
-{preu_2027} Euros/unidad adultos con cava (IVA incluido)<br/>
-</UL>
+<div id="menu-2001" class="menu-content">
+<strong>ENTRANTES</strong><br>
+<i>Todo repartido en mesa</i><p></p>
+<ul>
+<li>Longaniza</li>
+<li>Chorizo</li>
+<li>Paté</li>
+<li>Ensalada</li>
+<li>Escalivada</li>
+<li>Alioli</li>
+<li>Pan tostado con tomate</li>
+</ul>
+<p><strong>SEGUNDOS</strong></p>
+<ul>
+<li>Judías con tocino</li>
+<li>Patatas fritas</li>
+</ul>
+<p>&nbsp;</p>
+<p><strong>PARRILLADA</strong><br>
+<i>Individual</i></p>
+<ul class="plat1">
+<li>Cordero 2 piezas</li>
+<li>Conejo 1/4</li>
+<li>Butifarra 1/2</li>
+</ul>
+<div class="complements">
+<h6>COMPLEMENTOS</h6>
+<p>  Si no quereis parrillada, podéis añadir complementos:</p>
+<ul class="dots">
+<li class="field">Costilla de ternera a la brasa  <span class="field field2" style="font-size:0.8em"><span class="preu">9.50</span>€</span></li>
+<li><span class="field">Espalda de cordero a la brasa</span> <span class="field field2" style="font-size:0.8em"><span class="preu">10.40</span>€</span></li>
+<li><span class="field">Pies de cerdo</span> <span class="field field2" style="font-size:0.8em"><span class="preu">10.25</span>€</span></li>
+<li><span class="field">Bacalao a la “llauna”</span> <span class="field field2" style="font-size:0.8em"><span class="preu">8.50</span>€</span></li>
+<li><span class="field">Caracoles a la “llauna”</span> <span class="field field2" style="font-size:0.8em"><span class="preu">8.50</span>€</span></li>
+<li><span class="field">Dorada a la brasa</span> <span class="field field2" style="font-size:0.8em"><span class="preu">8.50</span>€</span></li>
+<li><span class="field">Lubina a la brasa</span> <span class="field field2" style="font-size:0.8em"><span class="preu">8.50</span>€</span></li>
+</ul>
+</div>
+<div class="cb"></div>
+<p>&nbsp;</p>
+<p><strong>BODEGA</strong></p>
+<ul>
+<li>Vino de la Casa</li>
+<li>Gaseosa</li>
+<li>Refresco</li>
+<li>Agua</li>
+<li>1 cerveza incluida</li>
+</ul>
+<p>&nbsp;</p>
+<p><strong>POSTRES</strong></p>
+<ul>
+<li>Tarta celebración massini</li>
+</ul>
+<p><strong>CAFÉS, CORTADOS</strong></p>
+<div id="ressenya" class="caixa-preus caixa-negre caixa-left">
+<h6><span class="preu">{preu_2027}</span> Euros/unidad adultos con&nbsp;cava (IVA incluido)</h6>
+<hr>
+<h6 class="infantil"><span style="font-weight: bold;"> – Menú Infantil</span> (nens de 4 a 9 años) <br>Macarrones, pollo rebozado o croquetas con patatas, refresco y helado&nbsp;<span class="preu">{preu_2037}</span> Euros/unidad (IVA incluido)</h6>
+<h6 class="infantil"><span style="font-weight: bold;"> – Menú Junior</span> (de 10 a 14 años)  <br>Macarrones o entremés, pollo o butifarra con patatas, refresco y helado&nbsp;<span class="preu">{preu_2036}</span> Euros/unidad (IVA incluido)</h6>
+</div>
+</div>
 ';
 
 /*******************************************************************************************/
@@ -315,43 +377,87 @@ Pastel y cava
 /*******************************************************************************************/
 	$translate['titol_menu_2012']=$translate['titol_menu_3']='MEN&Uacute; Nº 3';
 	$translate['menu_2012']=$translate['menu_3']='
-<B>ENTRANTES</B>
-<UL>
-Ensalada<br/>
-Surtido de pat&eacute;s<br/>
-Llonganiza de pay&eacute;s<br/>
-Chorizo de Salamanca<br/>
-Pan tostado con tomate y ajos<br/>
-Alioli<br/>
-&nbsp;<br/>
-</UL>
-<B>PARRILLADA</B>
-<UL>
-Butifarra a la brasa<br/>
-Pollo a la brasa<br/>
-Secreto de cerdo<br/>
-Patatas fritas<br/>
-&nbsp;<br/>
-</UL>
-<B>BODEGA</B>
-<UL>
-Vino de la Casa<br/>
-Gaseosa<br/>
-Agua<br/>Refreco<br/>
-&nbsp;<br/>
-</UL>
-<B>POSTRES</B>
-<UL>
-Tarta de lim&oacute;n<br/>
-Tarta Selva trufa<br/>
-&nbsp;<br/>
-</UL>
-<B>CAF&Eacute;S, CORTADOS o CARAJILLOS</B><br/>
-<br/>
-<B>PRECIO</B>
-<UL>
-{preu_2012} Euros (IVA incluido)
-</UL>
+<div id="menu-2012" class="menu-content">
+<style>
+.dots { 
+  background: url("dot.gif") repeat-x bottom; 
+}
+.field {
+  background-color: #FFFFFF;
+} 
+.field2 {
+ float: right;
+} 
+ul.plat1 {
+float:left;
+}
+.complements{
+  font-size:0.7em;
+  width:350px;
+border:#444 solid 1px;
+border-radius:5px;
+float:right;
+padding:10px;
+margin:10px;
+}
+</style>
+<p><strong>ENTRANTES</strong></p>
+<div id="menu-2003" class="menu-content">
+<i>Todo repartido en mesa</i><p></p>
+<ul>
+<li>Ensalada</li>
+<li>Escalivada</li>
+<li>Longaniza de payés</li>
+<li>Chorizo de salamanca</li>
+<li>Surtido de patés</li>
+<li>All i Oli</li>
+<li>Pan tostado con tomate</li>
+</ul>
+<p><strong>PARRILLADA</strong><br>
+<i>Individual</i></p>
+<ul class="plat1">
+<li>Butifarra a la brasa 1/2</li>
+<li>Pollo a la brasa 1/4</li>
+<li>Conejo a la brasa 1/4</li>
+<li>Patatas fritas</li>
+<li>Judias con tocino</li>
+</ul>
+<p>&nbsp;</p>
+<div class="complements">
+<h6>COMPLEMENTOS</h6>
+<p>  Si no quereis parrillada, podéis añadir complementos:</p>
+<ul class="dots">
+<li class="field">Costilla de ternera a la brasa  <span class="field field2" style="font-size:0.8em"><span class="preu">9.50</span>€</span></li>
+<li><span class="field">Espalda de cordero a la brasa</span> <span class="field field2" style="font-size:0.8em"><span class="preu">10.40</span>€</span></li>
+<li><span class="field">Pies de cerdo</span> <span class="field field2" style="font-size:0.8em"><span class="preu">10.25</span>€</span></li>
+<li><span class="field">Bacalao a la “llauna”</span> <span class="field field2" style="font-size:0.8em"><span class="preu">8.50</span>€</span></li>
+<li><span class="field">Caracoles a la “llauna”</span> <span class="field field2" style="font-size:0.8em"><span class="preu">8.50</span>€</span></li>
+<li><span class="field">Dorada a la brasa</span> <span class="field field2" style="font-size:0.8em"><span class="preu">8.50</span>€</span></li>
+<li><span class="field">Lubina a la brasa</span> <span class="field field2" style="font-size:0.8em"><span class="preu">8.50</span>€</span></li>
+</ul>
+</div>
+<div class="cb"></div>
+<p><strong>BODEGA</strong></p>
+<ul>
+<li>Vino de la Casa</li>
+<li>Gaseosa</li>
+<li>Refresco</li>
+<li>Agua</li>
+<li>1 cerveza incluida</li>
+</ul>
+<p>&nbsp;</p>
+<p><b>POSTRES</b></p>
+<ul>
+<li>Crema catalana</li>
+<li>Flan casero</li>
+<li>Helados</li>
+</ul>
+<p>&nbsp;</p>
+<p><strong>CAFÉS, CORTADOS</strong></p>
+<div id="ressenya" class="caixa-preus caixa-negre caixa-left"><span class="preu">{preu_2012}</span> Euros (IVA incluido)
+</div>
+</div>
+</div>
 ';
 
 /*******************************************************************************************/
@@ -359,58 +465,110 @@ Tarta Selva trufa<br/>
 /*******************************************************************************************/
 	$translate['titol_menu_2007']=$translate['titol_menu_4']='MEN&Uacute; Nº 4';
 	$translate['menu_2007']=$translate['menu_4']='
-<B>ENTRANTES</B>
-<UL>
-  <strong>Variado de verduras</strong><br/>
-  <i>(Plato por comensal) </i><br/><br/>
-	Escalivada<br/>
-	Girgolas<br/>
-	Esp&aacute;rragos <br/>
-	Alcahofas temporada<br/>
-  &nbsp;<br/>
-</UL>
-<B>CARNES A LA BRASA </B><br/>
-<i>(Raci&oacute;n individual a escoger)</i><br/><br/>
-<UL>
-  Conejo<br/>
-    Butifarra<br/>
-    Pollo<br/>
-    Lomo<br/>
-    Quijada de cerdo<br/>
-    Pies de cerdo
-    <br/>
-  </UL>
-<B>GUARNICIONES</B>
-<UL>
-  Judias con tocino <br/>
-  Patatas fritas <br/>
-  Alioli<br/>
-  Pan tostado con tomate
-</UL>
-<B>BODEGA</B>
-<UL>
-  Vino de la Casa<br/>
-  Gaseosa<br/>
-  Agua<br/>Refreco<br/>
-  &nbsp;<br/>
-</UL>
-<B>POSTRES</B>
-<UL>
-  Mus de lim&oacute;n<br/>
-  Tarta Selva trufa<br/>
-  Vastigo Turr&oacute;n<br/>
-  Falm 
-  <br/>
-  &nbsp;<br/>
-</UL>
-<B>CAF&Eacute;S, CORTADOS </B><br/>
+<div id="menu-2001" class="menu-content">
+<hr>
+<div class="alert alert-info">Este menú sólo estará disponible hasta 20 comensales. Si querrás más de este número avísanos con antelación</div>
+<p>&nbsp;</p>
+<p><strong>ENTRANTES</strong></p>
+<ul>
+<li>Variado de verduras<br>
+<span style="color: #999999;"><em><code>(Plato por comensal)&nbsp;</code></em></span><p></p>
+<ul>
+<li>Pimiento</li>
+<li>Berenjena</li>
+<li>Calabacín</li>
+<li>Espárragos</li>
+<li>Alcahofas (temporada)</li>
+</ul>
+</li>
+</ul>
+<p>&nbsp;</p>
+<p><strong>CARNES A LA BRASA&nbsp;</strong></p>
+<p><em><code>(Ración individual a escoger)</code></em></p>
+<ul class="plat1">
+<li>Conejo</li>
+<li>Butifarra</li>
+<li>Pollo</li>
+<li>Quijada de cerdo</li>
+<li>Pies de cerdo</li>
+<li>Secreto de cerdo a la brasa</li>
+</ul>
+<p>&nbsp;</p>
+<p><!--
 
-<br/>
-</B>
-<B>PRECIO</B>
-<UL>
-  {preu_2007} Euros (IVA incluido)
-</UL>
+
+<div class="complements">
+  
+
+<h6>COMPLEMENTOS</h6>
+
+
+  Si no quereis parrillada, podéis añadir complementos:
+  
+
+<ul class="dots">
+    
+
+<li class="field">Costilla de ternera a la brasa  <span class="field field2" style="font-size:0.8em">[cb_preu_plat id=2051]€</span></li>
+
+
+    
+
+<li><span class="field">Espalda de cordero a la brasa</span> <span class="field field2" style="font-size:0.8em">[cb_preu_plat id=2050]€</span></li>
+
+
+    
+
+<li><span class="field">Bacalao a la "llauna"</span> <span class="field field2" style="font-size:0.8em">[cb_preu_plat id=2055]€</span></li>
+
+
+    
+
+<li><span class="field">Caracoles a la "llauna"</span> <span class="field field2" style="font-size:0.8em">[cb_preu_plat id=2052]€</span></li>
+
+
+    
+
+<li><span class="field">Dorada a la brasa</span> <span class="field field2" style="font-size:0.8em">[cb_preu_plat id=2053]€</span></li>
+
+
+    
+
+<li><span class="field">Lubina a la brasa</span> <span class="field field2" style="font-size:0.8em">[cb_preu_plat id=2054]€</span></li>
+
+
+  </ul>
+
+
+</div>
+
+
+--></p>
+<div class="cb"></div>
+<p><strong>GUARNICIONES</strong></p>
+<ul>
+<li>Judías con tocino</li>
+<li>Patatas fritas</li>
+<li>Alioli</li>
+<li>Pan tostado con tomate</li>
+</ul>
+<p>&nbsp;</p>
+<p><strong>BODEGA</strong></p>
+<ul>
+<li>Vino de la Casa</li>
+<li>Gaseosa</li>
+<li>Refresco</li>
+<li>Agua</li>
+</ul>
+<p><b>POSTRES</b></p>
+<ul>
+<li>Crema catalana</li>
+<li>Flan casero</li>
+<li>Helados</li>
+</ul>
+<p><strong>CAFÉS, CORTADOS</strong></p>
+<div id="ressenya" class="caixa-preus caixa-negre caixa-left"><span class="preu">{preu_2007}</span> Euros (IVA incluido)</div>
+</div>
 ';
 
 /*******************************************************************************************/
@@ -418,52 +576,55 @@ Tarta Selva trufa<br/>
 /*******************************************************************************************/
 	$translate['titol_menu_2013']=$translate['titol_menu_comunio']='MEN&Uacute; COMUNION';
 	$translate['menu_2013']=$translate['menu_comunio']='
-<B>VERMUT</B>
-<P>
-<B>APERITVO</B>
-<UL>
-Lagostinos<br/>
-Patatas chips<br/>
-Almendras saladas<br/>
-Aceitunas rellenas<br/>
-Calamares a la romana<br/>
-Tacos tortilla<br/>
-Sorbete<br/>
-&nbsp;<br/>
-</UL>
-<B>PRIMEROS</B>
-<UL>
-Entremeses individual<br/>
-Ensalada y Pat&eacute;s<br/>
-Pan tostado con tomate<br/>
-&nbsp;<br/>
-</UL>
-<B>SEGUNDOS (Parrillada)</B>
-<UL>
-Patatas fritas<br/>
-Cordero<br/>
-Lomo<br/>
-Conejo<br/>
-Pollo<br/>
-Butifarra<br/>
-Alioli<br/>
-&nbsp;<br/>
-</UL>
-<B>PASTEL DE CELEBRACI&Oacute;N</B>
-<P>&nbsp;<br/>
-<B>BODEGA</B>
-<UL>
-Vino Cabernet tinto o rosado<br/>
-Cava Brut Reserva Sard&agrave;<br/>
-Agua y refrescos<br/>
-&nbsp;<br/>
-</UL>
-<B>CAF&Eacute;S, CORTADOS o CARAJILLOS</B><br/>
-<P>&nbsp;<br/>
-<B>PRECIO</B>
-<UL>
-{preu_2013} Euros (IVA incluido)<br/>
-</UL>
+<div id="menu-2001" class="menu-content">
+<p><strong>VERMUT</strong></p>
+<ul>
+<li>Cerveza</li>
+<li>Refresco</li>
+</ul>
+<p><strong>APERITIVO</strong></p>
+<ul>
+<li>Patatas chips</li>
+<li>Almendras saladas</li>
+<li>Aceitunas rellenas</li>
+<li>Calamares a la romana</li>
+<li>Tacos tortilla</li>
+</ul>
+<p>&nbsp;</p>
+<p><strong>PRIMEROS</strong></p>
+<ul>
+<li>Entremeses individual</li>
+<li>Ensalada y Patés</li>
+<li>Pan tostado con tomate</li>
+</ul>
+<p>&nbsp;</p>
+<p><strong>SEGUNDOS (Parrillada)</strong></p>
+<ul>
+<li>Patatas fritas</li>
+<li>Cordero</li>
+<li>Butifarra negra</li>
+<li>Conejo</li>
+<li>Pollo</li>
+<li>Butifarra</li>
+<li>Alioli</li>
+</ul>
+<p>&nbsp;</p>
+<p><strong>PASTEL DE CELEBRACIÓN</strong><br>
+<strong>BODEGA</strong></p>
+<ul>
+<li>Vino Cabernet tinto o rosado</li>
+<li>Cava Brut Reserva</li>
+<li>Agua y refrescos</li>
+</ul>
+<p><strong>CAFÉS, CORTADOS</strong><br>
+<b>Incluido centro de flores</b></p>
+<div id="ressenya" class="caixa-preus caixa-negre caixa-left">
+<h6><span class="preu">{preu_2013}</span> Euros (IVA incluido)</h6>
+<hr>
+<h6 class="infantil"><span style="font-weight: bold;"> – Menú Infantil</span> (niños de 4 a 9 años) <span class="preu">{preu_2017}</span> Euros/unidad (IVA incluido)</h6>
+<h6 class="infantil"><span style="font-weight: bold;"> – Menú Junior</span> (de 10 a 14 años) <span class="preu">{preu_2018}</span> Euros/unidad (IVA incluido)</h6>
+</div>
+</div>
 ';
 
 /*******************************************************************************************/
@@ -471,52 +632,55 @@ Agua y refrescos<br/>
 /*******************************************************************************************/
 	$translate['titol_menu_2016']=$translate['titol_menu_casament']='MEN&Uacute; BODA';
 	$translate['menu_2016']=$translate['menu_casament']='
-<B>APERITVO</B>
-<UL>
-Lagostinos<br/>
-Patatas chips<br/>
-Almendras saladas<br/>
-Aceitunas rellenas<br/>
-Calamares a la romana<br/>
-Tacos tortilla<br/>
-Sorbete<br/>
-&nbsp;<br/>
-</UL>
-<B>PRIMEROS</B>
-<UL>
-Entremeses<br/>
-Ensalada<br/>
-Escalivada<br/>
-Esp&aacute;rragos<br/>
-G&iacute;rgolas<br/>
-Pan tostado con tomate<br/>
-&nbsp;<br/>
-</UL>
-<B>SEGUNDOS (Parrillada)</B>
-<UL>
-Cordero<br/>
-Lomo<br/>
-Conejo<br/>
-Pollo<br/>
-Butifarra<br/>
-Alioli<br/>
-&nbsp;<br/>
-</UL>
-<B>PASTEL DE BODA</B>
-<P>&nbsp;<br/>
-<B>BODEGA</B>
-<UL>
-Vino Cabernet tinto o rosado<br/>
-Cava Brut Reserva Sard&agrave;<br/>
-Agua y refrescos<br/>
-&nbsp;<br/>
-</UL>
-<B>CAF&Eacute;S, CORTADOS o CARAJILLOS</B><br/>
-<br/>
-<B>PRECIO</B>
-<UL>
-{preu_2016} Euros (IVA incluido)<br/>
-</UL>
+<div id="menu-2001" class="menu-content">
+<p><strong>APERITVO</strong></p>
+<ul>
+<li>Lagostinos</li>
+<li>Patatas chips</li>
+<li>Almendras saladas</li>
+<li>Aceitunas rellenas</li>
+<li>Calamares a la romana</li>
+<li>Tacos tortilla</li>
+<li>Sorbete</li>
+</ul>
+<p>&nbsp;</p>
+<p><strong>PRIMEROS</strong></p>
+<ul>
+<li>Entremeses</li>
+<li>Ensalada</li>
+<li>Escalivada</li>
+<li>Espárragos</li>
+<li>Gírgolas</li>
+<li>Pan tostado con tomate</li>
+</ul>
+<p>&nbsp;</p>
+<p><strong>SEGUNDOS (Parrillada)</strong></p>
+<ul>
+<li>Cordero</li>
+<li>Butifarra negra</li>
+<li>Conejo</li>
+<li>Pollo</li>
+<li>Butifarra</li>
+<li>Alioli</li>
+</ul>
+<p>&nbsp;</p>
+<p><strong>PASTEL DE BODA</strong><br>
+<strong>BODEGA</strong></p>
+<ul>
+<li>Vino Cabernet tinto o rosado</li>
+<li>Cava Brut Reserva Sardà</li>
+<li>Agua y refrescos</li>
+</ul>
+<p>&nbsp;</p>
+<p><strong>CAFÉS, CORTADOS</strong><br>
+<b>Guarnición de flores</b></p>
+<div id="ressenya" class="caixa-preus caixa-negre caixa-left">
+<h6><span class="preu">{preu_2016}</span> Euros (IVA incluido)</h6>
+<hr>
+<h6 class="infantil"><span style="font-weight: bold;"> – Menú Infantil</span> (niños de 4 a 9 años) <span class="preu">{preu_2021}</span> Euros/unitdad (IVA incluido)</h6>
+<h6 class="infantil"><span style="font-weight: bold;"> – Menú Junior</span> (de 10 a 14 años) <span class="preu">{preu_2022}</span> Euros/unitdad (IVA incluido)</h6>
+</div>
+</div>
 ';
 
 /*******************************************************************************************/
@@ -524,46 +688,66 @@ Agua y refrescos<br/>
 /*******************************************************************************************/
 	$translate['titol_menu_2010']=$translate['titol_menu_calsots']='MEN&Uacute; CALÇOTADA';
 	$translate['menu_2010']=$translate['menu_calsots']='
-<B>ENTRANTES</B>
-<UL>
-CAL&Ccedil;OTS (temporada)<br/>
-Incluye repetici&oacute;n <br/>
-&nbsp;<br/>
-Jud&iacute;as con tocino<br/>
-Patatas fritas<br/>
-Alioli<br/>
-Pan tostado con tomate<br/>
-&nbsp;<br/>
-</UL>
-<B>PARRILLADA</B>
-<UL>
-Cordero<br/>
-Conejo<br/>
-Pollo<br/>
-Butifarra<br/>
-Lomo<br/>
-&nbsp;<br/>
-</UL>
-<B>BODEGA</B>
-<UL>
-Vino de la Casa<br/>
-Gaseosa<br/>
-Agua<br/>Refreco<br/>
-&nbsp;<br/>
-</UL>
-<B>POSTRES</B>
-<UL>
-Pastel de crema catalana de la casa<br/>
-Tarta whisky<br/>
-Copa sorbete de limón<br/>
-&nbsp;<br/>
-</UL>
-<B>CAF&Eacute;S, CORTADOS o CARAJILLOS</B><br/>
-&nbsp;<br/>
-<B>PRECIO</B>
-<UL>
-{preu_2010} Euros (IVA incluido)<br/>
-</UL>
+<div id="menu-2010" class="menu-content">
+<p><b>ENTRANTES</b></p>
+<ul>
+<li>CALÇOTS (temporada)<br>
+    <i><code>Sin límite de calçots</code><p></p>
+</i><p><i><code>No combinable con otros menús (todos debéis pedir calçotada)</code><br>
+</i></p>
+</li>
+<li>Judías con tocino</li>
+<li>Patatas fritas</li>
+<li>Alioli</li>
+<li>Pan tostado con tomate</li>
+</ul>
+<p><b>PARRILLADA (individual)</b></p>
+<ul class="plat1">
+<li>Cordero (2 piezas)</li>
+<li>Conejo (1/4)</li>
+<li>Butifarra (1/2)</li>
+</ul>
+<div class="complements">
+<h6>COMPLEMENTOS</h6>
+<p>  Si no quereis parrillada, podéis añadir complementos:</p>
+<ul class="dots">
+<li class="field">Costilla de ternera a la brasa  <span class="field field2" style="font-size:0.8em"><span class="preu">9.50</span>€</span></li>
+<li><span class="field">Espalda de cordero a la brasa</span> <span class="field field2" style="font-size:0.8em"><span class="preu">10.40</span>€</span></li>
+<li><span class="field">Pies de cerdo</span> <span class="field field2" style="font-size:0.8em"><span class="preu">4.00</span>€</span></li>
+<li><span class="field">Bacalao a la “llauna”</span> <span class="field field2" style="font-size:0.8em"><span class="preu">8.50</span>€</span></li>
+<li><span class="field">Caracoles a la “llauna”</span> <span class="field field2" style="font-size:0.8em"><span class="preu">8.50</span>€</span></li>
+<li><span class="field">Dorada a la brasa</span> <span class="field field2" style="font-size:0.8em"><span class="preu">8.50</span>€</span></li>
+<li><span class="field">Lubina a la brasa</span> <span class="field field2" style="font-size:0.8em"><span class="preu">8.50</span>€</span></li>
+</ul>
+</div>
+<div class="cb"></div>
+<p><b>BODEGA</b></p>
+<ul>
+<li>Vino de la Casa</li>
+<li>Gaseosa</li>
+<li>Refresc</li>
+<li>Agua</li>
+<li>1 Cerveza incluida</li>
+</ul>
+<p><b>POSTRES</b></p>
+<ul>
+<li>Crema catalana</li>
+<li>Flan casero</li>
+<li>Copa sorbete limón</li>
+</ul>
+<p><b>CAFÉS, CORTADOS</b></p>
+<div id="ressenya" class="caixa-preus caixa-negre caixa-left">
+<h6><span class="preu">{preu_2010}</span> Euros/unitat adults (IVA inclòs)</h6>
+<h6><span class="preu">{preu_2011}</span> Euros/unitat adults con cava (IVA inclòs)</h6>
+<hr>
+<h6 class="infantil"><span style="font-weight: bold;"> – Menú Infantil</span> (niños de 4 a 9 años)<br>
+Macarrones, pollo rebozado o croquetas con patatas, refresco y helado<br>
+<span class="preu">{preu_2037}</span> Euros/unidad (IVA incluido)</h6>
+<h6 class="infantil"><span style="font-weight: bold;"> – Menú Junior</span> (de 10 a 14 años)<br>
+Macarrones o entremés, pollo o butifarra con patatas, refresco y helado<br>
+<span class="preu">{preu_2036}</span> Euros/unidad (IVA incluido)</h6>
+</div>
+</div>
 ';
 
 
@@ -571,7 +755,9 @@ Copa sorbete de limón<br/>
 // MENU VEGETARIÀ
 /*******************************************************************************************/
 	$translate['titol_menu_990060']=$translate['titol_menu_vegetaria']='MEN&Uacute; VEGETARIÀ';
-	$translate['menu_990060']=$translate['menu_vegetaria']='En este manú se puede elegir de primero y de segundo los siguientes platos: 
+	$translate['menu_990060']=$translate['menu_vegetaria']='
+<div id="menu-2008" class="menu-content">
+<p><b>En este menú se puede elegir uno de los siguientes platos:</b></p>
 <ul>
 <li>Xatonada</li>
 <li>Ensalada</li>
@@ -579,15 +765,26 @@ Copa sorbete de limón<br/>
 <li>Espárragos</li>
 <li>Escalivada</li>
 <li>Alcachofas (temporada)</li>
-<li>calçots (temporada) </li>
+<li>calçots (temporada)</li>
 <li>Parrillada de verduras</li>
-<BR>
-Incluyendo los acompañamientos (judias y patatas frits allioli pan tostado con tomate y ajo, bebida y cafés
-<BR><BR>
-<B>PRECIO</B>
-
-
-{preu_2008} Euros (IVA incluido)<BR>
+</ul>
+<p><b>Incluyendo los acompañamientos</b></p>
+<ul>
+<li>Judías</li>
+<li>Patatas fritas</li>
+<li>All i oli</li>
+</ul>
+<p><b>POSTRES</b></p>
+<ul>
+<li>Fruta</li>
+<li>Crema catalana</li>
+<li>Flan casero</li>
+<li>Helado</li>
+</ul>
+<p><b>Bebida y café </b></p>
+<div id="ressenya" class="caixa-preus caixa-negre caixa-left"><span class="preu">{preu_2008}</span> Euros (IVA incluido)
+</div>
+</div>
 ';
 
 

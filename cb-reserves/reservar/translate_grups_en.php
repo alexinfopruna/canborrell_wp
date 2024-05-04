@@ -94,50 +94,69 @@ this applies even if you change the number of diners when confirming the reserva
 /*******************************************************************************************/
 	$translate['titol_menu_2001']=$translate['titol_menu_1']='Menú nº1';
 	$translate['menu_2001']=$translate['menu_1']='
-	<B>ENTRANTES</B>
-<UL>
-Ensalada<br/>
-Escalivada<br/>
-G&iacute;rgolas<br/>
-Esp&aacute;rragos a la brasa<br/>
-Alcachofas<br/>
-Jud&iacute;as con tocino<br/>
-Patatas fritas<br/>
-Alioli<br/>
-Pan tostado con tomate<br/>
-&nbsp;<br/>
-</UL>
-<B>PARRILLADA</B>
-<UL>
-Cordero<br/>
-Conejo<br/>
-Pollo<br/>
-Butifarra<br/>
-Butifarra negra<br/>
-&nbsp;<br/>
-</UL>
-<B>BODEGA</B>
-<UL>
-Vino de la Casa<br/>
-Gaseosa<br/>
-Agua<BR>Refresco<BR>
-&nbsp;<br/>
-</UL>
-<B>POSTRES</B>
-<UL>
-<li>Fruitos secos (músico) pica-pica en mesa</li>
-<li>Crema catalana</li>
-<li>Flan casero</li>
-<li>Copa sorbete limón</li>
-</UL>
-<B>CAF&Eacute;S, CORTADOS o CARAJILLOS</B><br/>
-
-<br/>
-<B>PRICE</B>
-<UL>
-{preu_2001} Euros/unidad adultos (including VAT)<br/>
-{preu_2002} Euros/unidad adultos con cava (including VAT)<br/>
-</UL>
+	<div id="menu-2001" class="menu-content">
+<p><strong>STARTERS <em>ENTRANTS</em></strong><br>
+<i>All shared in table</i></p>
+<ul>
+<li>Green salad <em>Amanida</em></li>
+<li>Escalivada (roast aubergine, onion and pepper) <em>Escalivada</em></li>
+<li>Roast mushrooms <em>Gírgoles</em></li>
+<li>Roast asparagus (in season) <em>Espàrrecs brasa</em></li>
+<li>Roast artichokes (in season)<em>Carxofes (temporada)</em></li>
+<li>Haricot beans with salted pork <em>Mongetes amb cansalada</em></li>
+<li>Fried Potatoes <em>Patates fregides</em></li>
+<li>All i Oli (garlic mayonnaise)<em> All i Oli</em></li>
+<li>Toasted bread with tomato <em>Pa torrat amb tomàquet</em></li>
+</ul>
+<p><strong>GRILLED MEAT <em>GRAELLADA</em></strong><br>
+<i>Single</i></p>
+<ul class="plat1">
+<li>Lamb 2 pieces<em>Xai</em> </li>
+<li>Rabbit 1/4<em>Conill</em></li>
+<li>Catalan sausage 1/2<em>Botifarra</em></li>
+</ul>
+<div class="complements">
+<h6>ACCESSORIES</h6>
+<p>  If you do not want barbecue, you can add accessories:</p>
+<ul class="dots">
+<li class="field">Roast veal chop <em>Costella de vedella a la brasa</em>  <span class="field field2" style="font-size:0.8em"><span class="preu">9.50</span>€</span></li>
+<li><span class="field">Roast lamb back <em>Espatlla de xai a la brasa</em></span> <span class="field field2" style="font-size:0.8em"><span class="preu">10.40</span>€</span></li>
+<li><span class="field">Roast pork feet <em>Espatlla de xai a la brasa</em></span> <span class="field field2" style="font-size:0.8em"><span class="preu">10.25</span>€</span></li>
+<li><span class="field">Roast cod <em>Bacallà a la llauna&gt;</em></span> <span class="field field2" style="font-size:0.8em"><span class="preu">8.50</span>€</span></li>
+<li><span class="field">Roast snails <em>Cargols a la llauna</em></span> <span class="field field2" style="font-size:0.8em"><span class="preu">8.50</span>€</span></li>
+<li><span class="field">Roast gilthead <em>Moixarra a la brasa</em></span> <span class="field field2" style="font-size:0.8em"><span class="preu">8.50</span>€</span></li>
+<li><span class="field">Roast sea bass <em>Lubina a la brasa</em></span> <span class="field field2" style="font-size:0.8em"><span class="preu">8.50</span>€</span></li>
+</ul>
+</div>
+<div class="cb"></div>
+<p><strong>WINE CELLAR <em>CELLER</em></strong></p>
+<ul>
+<li>House wine <em>Vi de la Casa</em></li>
+<li>Soda water <em>Gasosa</em></li>
+<li>Soft drink <em>Refresc</em></li>
+<li>Mineral water <em>Aigua</em></li>
+<li>1 beer included</li>
+</ul>
+<p><strong>DESSERTS <em>POSTRES</em></strong></p>
+<ul>
+<li>Crême caramel <em>Flam casolà </em></li>
+<li>ice cream <em>Gelats</em></li>
+<li>Catalan Custard Cream <em>Crema catalana</em></li>
+</ul>
+<p><strong>COFFEES<em> CAFÈS, TALLATS</em></strong></p>
+<div id="ressenya" class="caixa-preus caixa-negre caixa-left">
+<h6><span class="preu">{preu_2001}</span> Euros / Per Adult (vat. included)</h6>
+<h6><span class="preu">{preu_2002}</span> Euros / Per Adult with cava&nbsp;(vat. included)</h6>
+<p><span style="font-size: 0.8em;">&nbsp;</span></p>
+<hr>
+<h6 class="infantil"><span style="font-weight: bold;"> – Menú Infantil</span> (nens de 4 a 9 anys)<br>
+<i>Macarrons, pollastre arrebossat o croquetes amb patates, refresc i gelat</i><br>
+<span class="preu">{preu_2037}</span> Euros/unit (vat. included)</h6>
+<h6 class="infantil"><span style="font-weight: bold;"> – Menú Junior</span> (de 10 a 14 anys)<br>
+<i>Macarrons o entremès, pollastre o botifarra amb patates, refresc i gelat</i><br>
+<span class="preu">{preu_2036}</span> Euros/unit (vat. included)</h6>
+</div>
+</div>
 ';
 
 /*******************************************************************************************/
@@ -145,108 +164,144 @@ Agua<BR>Refresco<BR>
 /*******************************************************************************************/
 	$translate['titol_menu_2025']=$translate['titol_menu_2024']=$translate['titol_menu_1c']='MEN&Uacute; Nº 1 CELEBRACI&Oacute;N';
 	$translate['menu_2025']=$translate['menu_1c']=$translate['menu_2024']='
-<FONT CLASS="titol"><B>MEN&Uacute; Nº 1 CELEBRACI&Oacute;N</B></FONT>
-<HR SIZE="1">
-&nbsp;<br/>
-<B>ENTRANTES</B>
-<UL>
-Ensalada<br/>
-Escalivada<br/>
-G&iacute;rgolas<br/>
-Esp&aacute;rragos a la brasa<br/>
-Alcachofas<br/>
-Jud&iacute;as con tocino<br/>
-Patatas fritas<br/>
-Alioli<br/>
-Pan tostado con tomate<br/>
-&nbsp;<br/>
-</UL>
-<B>PARRILLADA</B>
-<UL>
-Cordero<br/>
-Conejo<br/>
-Pollo<br/>
-Butifarra<br/>
-Butifarra negra<br/>
-&nbsp;<br/>
-</UL>
-<B>BODEGA</B>
-<UL>
-Vino de la Casa<br/>
-Gaseosa<br/>
-Agua<BR>Refresco<BR>
-&nbsp;<br/>
-</UL>
-<B>POSTRES</B>
-<UL>
-Pastel y cava
-&nbsp;<br/>
-</UL>
-<B>CAF&Eacute;S, CORTADOS o CARAJILLOS</B><br/>
-
-<br/>
-<B>PRICE</B>
-<UL>
-{preu_2024} Euros/unidad adultos sin cava (including VAT)<br/>
-{preu_2025} Euros/unidad adultos con cava (including VAT)<br/>
-</UL>';
+<div id="menu-2001" class="menu-content">
+<p><strong>STARTERS <em>ENTRANTS</em></strong><br>
+<i>All shared in table</i></p>
+<ul>
+<li>Salad <em>Amanida</em></li>
+<li>Escalivada (roast aubergine, onion and pepper) <em>Escalivada</em></li>
+<li>Roast mushrooms <em>Gírgoles</em></li>
+<li>Roast asparagus (in season) <em> Espàrrecs brasa  (temporada)</em></li>
+<li>Artichokes (in season) <em>Carxofes (temporada)</em></li>
+<li>Haricot beans with salt pork <em>Mongetes amb cansalada</em></li>
+<li>Potatoes <em>Patates fregides</em></li>
+<li>All i Oli (garlic mayonnaise) <em>All i Oli</em></li>
+<li>Toasted bread with tomato <em>Pa torrat amb tomàquet</em></li>
+</ul>
+<p>&nbsp;</p>
+<p><strong>GRILLED MEAT <em>GRAELLADA</em></strong><br>
+<i>Single</i></p>
+<ul class="plat1">
+<li>Lamb <em>Xai</em></li>
+<li>Rabbit <em>Conill</em></li>
+<li>Roast catalan sausage <em>Botifarra</em></li>
+</ul>
+<div class="complements">
+<h6>ACCESSORIES</h6>
+<p>  If you do not want barbecue, you can add accessories:</p>
+<ul class="dots">
+<li class="field">Roast veal chop <em>Costella de vedella a la brasa</em>  <span class="field field2" style="font-size:0.8em"><span class="preu">9.50</span>€</span></li>
+<li><span class="field">Roast lamb back <em>Espatlla de xai a la brasa</em></span> <span class="field field2" style="font-size:0.8em"><span class="preu">10.40</span>€</span></li>
+<li><span class="field">Roast pork feet <em>Espatlla de xai a la brasa</em></span> <span class="field field2" style="font-size:0.8em"><span class="preu">10.25</span>€</span></li>
+<li><span class="field">Roast cod <em>Bacallà a la llauna&gt;</em></span> <span class="field field2" style="font-size:0.8em"><span class="preu">8.50</span>€</span></li>
+<li><span class="field">Roast snails <em>Cargols a la llauna</em></span> <span class="field field2" style="font-size:0.8em"><span class="preu">8.50</span>€</span></li>
+<li><span class="field">Roast gilthead <em>Moixarra a la brasa</em></span> <span class="field field2" style="font-size:0.8em"><span class="preu">8.50</span>€</span></li>
+<li><span class="field">Roast sea bass <em>Lubina a la brasa</em></span> <span class="field field2" style="font-size:0.8em"><span class="preu">8.50</span>€</span></li>
+</ul>
+</div>
+<div class="cb"></div>
+<p><strong>WINE CELLAR <em>CELLER</em></strong></p>
+<ul>
+<li>House wine <em>Vi de la Casa</em></li>
+<li>Soda water <em>Gasosa</em></li>
+<li>Soft drink <em>Refresc</em></li>
+<li>Mineral Water <em>Aigua</em></li>
+<li>Beer included <em>Cerveza</em></li>
+</ul>
+<p>&nbsp;</p>
+<p><strong>DESSERTS <em>POSTRES</em></strong></p>
+<ul>
+<li>Celebration Massini cake<em> Pastís massini</em></li>
+</ul>
+<p><strong>COFFEES<em>CAFÈS, TALLATS</em></strong></p>
+<div id="ressenya" class="caixa-preus caixa-negre caixa-left">
+<h6><span class="preu">{preu_2025}</span> Euros/ Per Adult with cava (vat. included)</h6>
+<hr>
+<h6 class="infantil"><span style="font-weight: bold;"> -Children’s Menu (children ages 4 to 9) </span><br>
+Macaroni, fried chicken breast or croquettes with potatoes, soft drink and ice cream<br>
+<span class="preu">{preu_2037}</span> Euros/unit (vat. included)</h6>
+<h6 class="infantil"><span style="font-weight: bold;"> – Menú Junior</span> (de 10 a 14 anys)<br>
+Macaroni or appetizer, chicken or roast catalan sausage with potatoes, soft drink and ice cream<br>
+<span class="preu">{preu_2036}</span> Euros/unit (vat. included)</h6>
+</div>
+</div>
+';
 
 /*******************************************************************************************/
 // MENU 2
 /*******************************************************************************************/
 	$translate['titol_menu_2003']=$translate['titol_menu_2']='MEN&Uacute; Nº 2';
 	$translate['menu_2003']=$translate['menu_2']='
-<B>ENTRANTES</B>
-<UL>
-Longaniza<br/>
-Chorizo<br/>
-Pat&eacute; de Jabugo<br/>
-Ensalada<br/>
-Escalivada<br/>
-Alioli<br/>
-Pan tostado con tomate<br/>
-&nbsp;<br/>
-</UL>
-<B>SEGUNDOS</B>
-<UL>
-Jud&iacute;as con tocino<br/>
-Patatas fritas<br/>
-G&iacute;rgolas a la brasa<br/>
-Esp&aacute;rragos a la brasa<br/>
-Alcachofas a la brasa<br/>
-&nbsp;<br/>
-</UL>
-<B>PARRILLADA</B>
-<UL>
-Cordero<br/>
-Conejo<br/>
-Pollo<br/>
-Butifarra negra<br/>
-Butifarra<br/>
-&nbsp;<br/>
-</UL>
-<B>BODEGA</B>
-<UL>
-Vino de la Casa<br/>
-Gaseosa<br/>
-Agua<BR>Refresco<BR>
-&nbsp;<br/>
-</UL>
-<B>POSTRES</B>
-<UL>
-<li>Fruitos secos (músico) pica-pica en mesa</li>
-<li>Crema catalana</li>
-<li>Flan casero</li>
-<li>Copa sorbete limón</li>
-</UL>
-<B>CAF&Eacute;S, CORTADOS o CARAJILLOS</B><br/>
-
-<P>&nbsp;<br/>
-<B>PRICE</B>
-<UL>
-{preu_2003} Euros/unidad adultos sin cava (including VAT)<br/>
-{preu_2004} Euros/unidad adultos con cava (including VAT)<br/>
-</UL>
+<div id="menu-2001" class="menu-content">
+<div class="carta-fotos">
+<p><strong>STARTERS <em>ENTRANTS</em></strong><br>
+<i>All shared in table</i></p>
+<ul>
+<li>Long pork sausage <em>Llonganissa</em></li>
+<li>Chorizo sausage <em>Xoriço</em></li>
+<li>Jabugo Paté<em> Paté de Jabugo</em></li>
+<li>Salad <em>Amanida</em></li>
+<li>Escalivada (roast aubergine, onion and pepper) <em>Escalivada</em></li>
+<li>All i Oli (garlic mayonnaise) <em>All i Oli</em></li>
+<li>Toasted bread with tomato <em>Pa torrat amb tomàquet</em></li>
+</ul>
+<p>&nbsp;</p>
+<p><strong>SECOND COURSES <em>SEGONS</em></strong></p>
+<ul>
+<li>Haricot beans with salted pork <em>Mongetes amb cansalada</em></li>
+<li>Fried potatoes <em>Patates fregides</em></li>
+</ul>
+<p>&nbsp;</p>
+<div class="cb"></div>
+<p><strong>GRILLED MEAT <em>GRAELLADA</em></strong><br>
+<i>Single</i></p>
+<ul class="plat1">
+<li>Lamb 2 pieces<em>Xai</em></li>
+<li>Rabbit 1/4<em>Conill</em></li>
+<li>Roast catalan sausage 1/2<em>Botifarra</em></li>
+</ul>
+<div class="complements">
+<h6>ACCESSORIES</h6>
+<p>  If you do not want barbecue, you can add accessories:</p>
+<ul class="dots">
+<li class="field">Roast veal chop <em>Costella de vedella a la brasa</em>  <span class="field field2" style="font-size:0.8em"><span class="preu">9.50</span>€</span></li>
+<li><span class="field">Roast lamb back <em>Espatlla de xai a la brasa</em></span> <span class="field field2" style="font-size:0.8em"><span class="preu">10.40</span>€</span></li>
+<li><span class="field">Roast pork feet <em>Espatlla de xai a la brasa</em></span> <span class="field field2" style="font-size:0.8em"><span class="preu">10.25</span>€</span></li>
+<li><span class="field">Roast cod <em>Bacallà a la llauna&gt;</em></span> <span class="field field2" style="font-size:0.8em"><span class="preu">8.50</span>€</span></li>
+<li><span class="field">Roast snails <em>Cargols a la llauna</em></span> <span class="field field2" style="font-size:0.8em"><span class="preu">8.50</span>€</span></li>
+<li><span class="field">Roast gilthead <em>Moixarra a la brasa</em></span> <span class="field field2" style="font-size:0.8em"><span class="preu">8.50</span>€</span></li>
+<li><span class="field">Roast sea bass <em>Lubina a la brasa</em></span> <span class="field field2" style="font-size:0.8em"><span class="preu">8.50</span>€</span></li>
+</ul>
+</div>
+<div class="cb"></div>
+<p><strong>WINE CELLAR CELLER</strong></p>
+<ul>
+<li>House wine <em>Vi de la Casa</em></li>
+<li>Soda water <em>Gasosa</em></li>
+<li>Soft drink <em>Refresc</em></li>
+<li>Mineral Water <em>Aigua</em></li>
+<li>1 beer included <em>1 Cerveza</em></li>
+</ul>
+<p><strong>DESSERTS <em>POSTRES</em></strong></p>
+<ul>
+<li>Crême caramel <em>Flam casolà </em></li>
+<li>Ice cream<em>Gelats</em></li>
+<li>Catalan Custard Cream <em>Crema catalana</em></li>
+</ul>
+<p><strong>COFFEES<em>CAFÈS, TALLATS</em></strong></p>
+</div>
+<div id="ressenya" class="caixa-preus caixa-negre caixa-left">
+<h6><span class="preu">{preu_2003}</span> Euros/ Per Adult (vat. included)</h6>
+<h6><span class="preu">{preu_2004}</span> Euros/ Per Adult with cava (vat. included)</h6>
+<hr>
+<h6 class="infantil"><span style="font-weight: bold;">– Children’s Menu (children ages 4 to 9) </span><br>
+Macaroni, fried chicken breast or croquettes with potatoes, soft drink and ice cream<br>
+<span class="preu">{preu_2036}</span> Euros (vat. included)</h6>
+<h6 class="infantil"><span style="font-weight: bold;">– Junior Menu (children ages 10 to 14) </span><br>
+Macaroni or appetizer, chicken or roast catalan sausage with potatoes, soft drink and ice cream<br>
+<span class="preu">{preu_2037}</span> Euros (vat. included)</h6>
+</div>
+</div>
 ';
 
 /*******************************************************************************************/
@@ -254,55 +309,68 @@ Agua<BR>Refresco<BR>
 /*******************************************************************************************/
 	$translate['titol_menu_2027']=$translate['titol_menu_2023']=$translate['titol_menu_2c']='MEN&Uacute; Nº 2 CELEBRACIÓN';
 	$translate['menu_2027']=$translate['menu_2023']=$translate['menu_2c']=' 
-<B>ENTRANTES</B>
-<UL>
-Longaniza<br/>
-Chorizo<br/>
-Pat&eacute; de Jabugo<br/>
-Ensalada<br/>
-Escalivada<br/>
-Alioli<br/>
-Pan tostado con tomate<br/>
-&nbsp;<br/>
-</UL>
-<B>SEGUNDOS</B>
-<UL>
-Jud&iacute;as con tocino<br/>
-Patatas fritas<br/>
-G&iacute;rgolas a la brasa<br/>
-Esp&aacute;rragos a la brasa<br/>
-Alcachofas a la brasa<br/>
-&nbsp;<br/>
-</UL>
-<B>PARRILLADA</B>
-<UL>
-Cordero<br/>
-Conejo<br/>
-Pollo<br/>
-Butifarra negra<br/>
-Butifarra<br/>
-&nbsp;<br/>
-</UL>
-<B>BODEGA</B>
-<UL>
-Vino de la Casa<br/>
-Gaseosa<br/>
-Agua<BR>Refresco<BR>
-&nbsp;<br/>
-</UL>
-<B>POSTRES</B>
-<UL>
-Pastel y cava
-&nbsp;<br/>
-</UL>
-<B>CAF&Eacute;S, CORTADOS o CARAJILLOS</B><br/>
-
-<br/>
-<B>PRICE</B>
-<UL>
-{preu_2023} Euros/unidad adultos sin cava (including VAT)<br/>
-{preu_2027} Euros/unidad adultos con cava (including VAT)<br/>
-</UL>
+<div id="menu-2001" class="menu-content">
+<p><strong>STARTERS <em>ENTRANTS</em></strong><br>
+<i>All shared in table</i></p>
+<ul>
+<li>Long pork sausage <em>Llonganissa</em></li>
+<li>Chorizo sausage <em>Xoriço</em></li>
+<li>Jabugo Paté <em>Paté de Jabugo</em></li>
+<li>Salad <em>Amanida</em></li>
+<li>Escalivada (roast aubergine, onion and pepper) <em>Escalivada</em></li>
+<li>All i Oli (garlic mayonnaise) <em>All i Oli</em></li>
+<li>Toasted bread with tomato <em>Pa torrat amb tomàquet</em></li>
+</ul>
+<p><strong>SECOND COURSES <em>SEGONS</em></strong></p>
+<ul>
+<li>Haricot beans with salted pork <em>Mongetes amb cansalada</em></li>
+<li>Fried Potatoes <em>Patates fregides</em></li>
+</ul>
+<div class="cb"></div>
+<p><strong>GRILLED MEAT <em>GRAELLADA</em></strong><br>
+<i>Single</i></p>
+<ul class="plat1">
+<li>Lamb 2 pieces<em>Xai</em></li>
+<li>Rabbit 1/4<em>Conill</em></li>
+<li>Roast catalan sausage 1/2<em>Botifarra</em></li>
+</ul>
+<div class="complements">
+<h6>ACCESSORIES</h6>
+<p>  If you do not want barbecue, you can add accessories:</p>
+<ul class="dots">
+<li class="field">Roast veal chop <em>Costella de vedella a la brasa</em>  <span class="field field2" style="font-size:0.8em"><span class="preu">9.50</span>€</span></li>
+<li><span class="field">Roast lamb back <em>Espatlla de xai a la brasa</em></span> <span class="field field2" style="font-size:0.8em"><span class="preu">10.40</span>€</span></li>
+<li><span class="field">Roast pork feet <em>Espatlla de xai a la brasa</em></span> <span class="field field2" style="font-size:0.8em"><span class="preu">10.25</span>€</span></li>
+<li><span class="field">Roast cod <em>Bacallà a la llauna&gt;</em></span> <span class="field field2" style="font-size:0.8em"><span class="preu">8.50</span>€</span></li>
+<li><span class="field">Roast snails <em>Cargols a la llauna</em></span> <span class="field field2" style="font-size:0.8em"><span class="preu">8.50</span>€</span></li>
+<li><span class="field">Roast gilthead <em>Moixarra a la brasa</em></span> <span class="field field2" style="font-size:0.8em"><span class="preu">8.50</span>€</span></li>
+<li><span class="field">Roast sea bass <em>Lubina a la brasa</em></span> <span class="field field2" style="font-size:0.8em"><span class="preu">8.50</span>€</span></li>
+</ul>
+</div>
+<div class="cb"></div>
+<p><strong>WINE CELLAR <em>CELLER</em></strong></p>
+<ul>
+<li>House wine <em>Vi de la Casa</em></li>
+<li>Soda water <em>Gasosa</em></li>
+<li>Soft drink <em>Refresc</em></li>
+<li>Mineral water <em>Aigua</em></li>
+<li>1 beer included <em>1 Cerveza</em></li>
+</ul>
+<p><strong>DESSERTS <em>POSTRES</em></strong></p>
+<ul>
+<li>celebration Massini cake <em>Pastís celebració massini</em></li>
+</ul>
+<p><strong>COFFEES <em>TALLATS</em></strong></p>
+<div id="ressenya" class="caixa-preus caixa-negre caixa-left">
+<h6><span class="preu">{preu_2027}</span> Euros / adult with cava (vat. Included)</h6>
+<h6 class="infantil"><span style="font-weight: bold;">– Children’s Menu (children ages 4 to 9) </span><br>
+Macaroni, fried chicken breast or croquettes with potatoes, soft drink and ice cream<br>
+<span class="preu">{preu_2037}</span> Euros/unit (vat. included)</h6>
+<h6 class="infantil"><span style="font-weight: bold;">– Junior Menu (children ages 10 to 14)</span><br>
+Macaroni or appetizer, chicken or roast catalan sausage with potatoes, soft drink and ice cream<br>
+<span class="preu">{preu_2036}</span> Euros/unit (vat. included)</h6>
+</div>
+</div>
 ';
 
 /*******************************************************************************************/
@@ -310,45 +378,61 @@ Pastel y cava
 /*******************************************************************************************/
 	$translate['titol_menu_2012']=$translate['titol_menu_3']='MEN&Uacute; Nº 3';
 	$translate['menu_2012']=$translate['menu_3']='
-<B>ENTRANTES</B>
-<UL>
-Ensalada<br/>
-Surtido de pat&eacute;s<br/>
-Llonganiza de pay&eacute;s<br/>
-Chorizo de Salamanca<br/>
-Pan tostado con tomate y ajos<br/>
-Alioli<br/>
-&nbsp;<br/>
-</UL>
-<B>PARRILLADA</B>
-<UL>
-Butifarra a la brasa<br/>
-Pollo a la brasa<br/>
-Secreto de cerdo<br/>
-Patatas fritas<br/>
-&nbsp;<br/>
-</UL>
-<B>BODEGA</B>
-<UL>
-Vino de la Casa<br/>
-Gaseosa<br/>
-Agua<BR>Refresco<BR>
-&nbsp;<br/>
-</UL>
-<B>POSTRES</B>
-<UL>
-<li>Fruitos secos (músico) pica-pica en mesa</li>
-<li>Crema catalana</li>
-<li>Flan casero</li>
-<li>Copa sorbete limón</li>
-</UL>
-<B>CAF&Eacute;S, CORTADOS o CARAJILLOS</B><br/>
-
-<br/>
-<B>PRICE</B>
-<UL>
-{preu_2012} Euros (including VAT)
-</UL>
+<div id="menu-2012" class="menu-content">
+<p><strong>STARTERS <em>ENTRANTS</em></strong><br>
+All shared in table</p>
+<ul>
+<li>Salad <em>Amanida</em></li>
+<li>Escalivada (Roasted red peppers and aubergine) <em>Escalivada </em></li>
+<li>Assorted pates <em>Assortit de patés</em></li>
+<li>Long pork sausage <em>Llonganissa de pagès</em></li>
+<li>Chorizo sausage from Salamanca <em>Xoriço de Salamanca</em></li>
+<li>Toasted bread with tomato and garlic <em>Pa torrat amb tomàquet i alls</em></li>
+<li>All i Oli (garlic mayonnaise) <em>All i Oli</em></li>
+</ul>
+<p><strong>ROAST MEAT <em>GRAELLADA</em></strong><br>
+<i>Single</i></p>
+<ul class="plat1">
+<li>Roast catalan sausage 1/2<em>Butifarra a la brasa</em></li>
+<li>Roast chicken 1/4<em>Pollastre a la brasa</em></li>
+<li>Roast rabbit 1/4<em>Conill a la brasa</em></li>
+<li>Fried Potatoes Patates fregides</li>
+<li>Haricot beans with salt pork <em>Mongeta amb cansalada</em></li>
+</ul>
+<div class="complements">
+<h6>ACCESSORIES</h6>
+<p>  If you do not want barbecue, you can add accessories:</p>
+<ul class="dots">
+<li class="field">Roast veal chop <em>Costella de vedella a la brasa</em>  <span class="field field2" style="font-size:0.8em"><span class="preu">9.50</span>€</span></li>
+<li><span class="field">Roast lamb back <em>Espatlla de xai a la brasa</em></span> <span class="field field2" style="font-size:0.8em"><span class="preu">10.40</span>€</span></li>
+<li><span class="field">Roast pork feet <em>Espatlla de xai a la brasa</em></span> <span class="field field2" style="font-size:0.8em"><span class="preu">10.25</span>€</span></li>
+<li><span class="field">Roast cod <em>Bacallà a la llauna&gt;</em></span> <span class="field field2" style="font-size:0.8em"><span class="preu">8.50</span>€</span></li>
+<li><span class="field">Roast snails <em>Cargols a la llauna</em></span> <span class="field field2" style="font-size:0.8em"><span class="preu">8.50</span>€</span></li>
+<li><span class="field">Roast gilthead <em>Moixarra a la brasa</em></span> <span class="field field2" style="font-size:0.8em"><span class="preu">8.50</span>€</span></li>
+<li><span class="field">Roast sea bass <em>Lubina a la brasa</em></span> <span class="field field2" style="font-size:0.8em"><span class="preu">8.50</span>€</span></li>
+</ul>
+</div>
+<div class="cb"></div>
+<p><strong>WINE CELLAR <em>CELLER</em></strong></p>
+<ul>
+<li>House wine<em>Vi de la Casa</em></li>
+<li>Soda water <em>Gasosa</em></li>
+<li>Soft drink <em>Refresc</em></li>
+<li>Mineral water <em>Aigua</em></li>
+<li>1 beer included <em>1 Cerveza</em></li>
+</ul>
+<p><strong>DESSERTS <em>POSTRES</em></strong></p>
+<ul>
+<li>Crême caramel <em>Flam casolà </em></li>
+<li>Ice cream<em>Gelats</em></li>
+<li>Catalan Custard Cream <em>Crema catalana</em></li>
+</ul>
+<p><strong>COFFEES <em>CAFÈS, TALLATS </em></strong></p>
+<div id="ressenya" class="caixa-preus caixa-negre caixa-left">
+<h6><span class="preu">{preu_2012}</span> Euros adults (vat. included)</h6>
+<h6 class="infantil"></h6>
+</div>
+</div>
 ';
 
 /*******************************************************************************************/
@@ -356,56 +440,109 @@ Agua<BR>Refresco<BR>
 /*******************************************************************************************/
 	$translate['titol_menu_2007']=$translate['titol_menu_4']='MEN&Uacute; Nº 4';
 	$translate['menu_2007']=$translate['menu_4']='
-<B>ENTRANTES</B>
-<UL>
-  <strong>Variado de verduras</strong><br/>
-  <i>(Plato por comensal) </i><br/><br/>
-	Escalivada<br/>
-	Girgolas<br/>
-	Esp&aacute;rragos <br/>
-	Alcahofas temporada<br/>
-  &nbsp;<br/>
-</UL>
-<B>CARNES A LA BRASA </B><br/>
-<i>(Raci&oacute;n individual a escoger)</i><br/><br/>
-<UL>
-  Conejo<br/>
-    Butifarra<br/>
-    Pollo<br/>
-    Lomo<br/>
-    Quijada de cerdo<br/>
-    Pies de cerdo
-    <br/>
-  </UL>
-<B>GUARNICIONES</B>
-<UL>
-  Judias con tocino <br/>
-  Patatas fritas <br/>
-  Alioli<br/>
-  Pan tostado con tomate
-</UL>
-<B>BODEGA</B>
-<UL>
-  Vino de la Casa<br/>
-  Gaseosa<br/>
-  Agua<BR>Refresco<BR>
-  &nbsp;<br/>
-</UL>
-<B>POSTRES</B>
-<UL>
-<li>Fruitos secos (músico) pica-pica en mesa</li>
-<li>Crema catalana</li>
-<li>Flan casero</li>
-<li>Copa sorbete limón</li>
-</UL>
-<B>CAF&Eacute;S, CORTADOS </B><br/>
+<div id="menu-2001" class="menu-content">
+<hr>
+<div class="alert alert-info">This menu will only be available up to 20 people. If you would like more of this number, please notify us in advance</div>
+<p>&nbsp;</p>
+<p><strong>STARTERS <em>ENTRANTS</em></strong></p>
+<ul>
+<li>Assortment&nbsp;of grilled/roasted vegetables&nbsp;with “romesco” sauce<em> Variat de verdures a la brasa<br>
+</em><code>(per person)</code><p></p>
+<ul>
+<li>Aubergine <em>Alberginia</em></li>
+<li>Pepper <em>Pebrot</em></li>
+<li>Courgette <em>Carbassó</em></li>
+<li>Asparagus <em>Esparrecs</em></li>
+<li>Artichokes (in season) <em>Carxofes (temporada)</em></li>
+</ul>
+</li>
+</ul>
+<p><strong>GRILLED MEATS <em>CARNS A LA BRASA</em></strong><br>
+<code>(Individual serving of your choice)</code></p>
+<ul class="plat1">
+<li>Rabbit <em>Conill</em></li>
+<li>Catalan sausage <em>Botifarra</em></li>
+<li>Chicken <em>Pollastre</em></li>
+<li>Pork “secret”<em>Secret de pork</em></li>
+<li>Pork jaw <em>Galta de porc</em></li>
+<li>Pork feet <em>Peus de porc&nbsp;</em></li>
+</ul>
+<p>&nbsp;</p>
+<p><!--
 
-<br/>
-</B>
-<B>PRICE</B>
-<UL>
-  {preu_2007} Euros (including VAT)
-</UL>
+
+<div class="complements">
+  
+
+<h6>ACCESSORIES</h6>
+
+
+  If you do not want barbecue, you can add accessories:
+  
+
+<ul class="dots">
+    
+
+<li class="field">Roast veal chop <em>Costella de vedella a la brasa</em>  <span class="field field2" style="font-size:0.8em">[cb_preu_plat id=2051]€</span></li>
+
+
+    
+
+<li><span class="field">Roast lamb back <em>Espatlla de xai a la brasa</em></span> <span class="field field2" style="font-size:0.8em">[cb_preu_plat id=2050]€</span></li>
+
+
+    
+
+<li><span class="field">Roast cod <em>Bacallà a la llauna></em></span> <span class="field field2" style="font-size:0.8em">[cb_preu_plat id=2055]€</span></li>
+
+
+    
+
+<li><span class="field">Roast snails <em>Cargols a la llauna</em></span> <span class="field field2" style="font-size:0.8em">[cb_preu_plat id=2052]€</span></li>
+
+
+    
+
+<li><span class="field">Roast gilthead <em>Moixarra a la brasa</em></span> <span class="field field2" style="font-size:0.8em">[cb_preu_plat id=2053]€</span></li>
+
+
+    
+
+<li><span class="field">Roast sea bass <em>Lubina a la brasa</em></span> <span class="field field2" style="font-size:0.8em">[cb_preu_plat id=2054]€</span></li>
+
+
+  </ul>
+
+
+</div>
+
+
+--></p>
+<div class="cb"></div>
+<p><strong>SIDE DISHES <em>GUARNICIONS</em></strong></p>
+<ul>
+<li>Haricot beans with salted pork <em>Mongetes amb cansalada</em></li>
+<li>Fried Potatoes <em>Patates fregides&nbsp;</em></li>
+<li>All i Oli (garlic mayonnaise) <em>All i Oli</em></li>
+<li>Toasted bread with tomato <em>Pa torrat amb tomàquet</em></li>
+</ul>
+<p><strong>WINE CELLAR <em>CELLER</em></strong></p>
+<ul>
+<li>House wine or Sangria <em>Vi de la Casa o Sangria</em></li>
+<li>Soda water <em>Gasosa</em></li>
+<li>Mineral water <em>Aigua</em></li>
+<li>Soft Drink <em>Refrescs</em></li>
+</ul>
+<p><strong>DESSERTS <em>POSTRES</em></strong></p>
+<ul>
+<li>Crême caramel <em>Flam casolà </em></li>
+<li>Ice cream <em>Gelats</em></li>
+<li>Catalan Custard Cream <em>Crema catalana</em></li>
+</ul>
+<p><strong>COFFEES <em>CAFÈS, TALLATS</em></strong></p>
+<p>&nbsp;</p>
+<div id="ressenya" class="caixa-preus caixa-negre caixa-left"><span class="preu">{preu_2007}</span> Euros (vat. included)</div>
+</div>
 ';
 
 /*******************************************************************************************/
@@ -413,53 +550,56 @@ Agua<BR>Refresco<BR>
 /*******************************************************************************************/
 	$translate['titol_menu_2013']=$translate['titol_menu_comunio']='MEN&Uacute; COMUNION';
 	$translate['menu_2013']=$translate['menu_comunio']='
-<B>VERMUT</B>
-<P>
-<B>APERITVO</B>
-<UL>
-Lagostinos<br/>
-Patatas chips<br/>
-Almendras saladas<br/>
-Aceitunas rellenas<br/>
-Calamares a la romana<br/>
-Tacos tortilla<br/>
-Sorbete<br/>
-&nbsp;<br/>
-</UL>
-<B>PRIMEROS</B>
-<UL>
-Entremeses individual<br/>
-Ensalada y Pat&eacute;s<br/>
-Pan tostado con tomate<br/>
-&nbsp;<br/>
-</UL>
-<B>SEGUNDOS (Parrillada)</B>
-<UL>
-Patatas fritas<br/>
-Cordero<br/>
-Butifarra negra<br/>
-Conejo<br/>
-Pollo<br/>
-Butifarra<br/>
-Alioli<br/>
-&nbsp;<br/>
-</UL>
-<B>PASTEL DE CELEBRACI&Oacute;N</B>
-<P>&nbsp;<br/>
-<B>BODEGA</B>
-<UL>
-Vino Cabernet tinto o rosado<br/>
-Cava Brut Reserva Sard&agrave;<br/>
-Agua y refrescos<br/>
-&nbsp;<br/>
-</UL>
-<B>CAF&Eacute;S, CORTADOS o CARAJILLOS</B><br/>
-
-<P>&nbsp;<br/>
-<B>PRICE</B>
-<UL>
-{preu_2013} Euros (including VAT)<br/>
-</UL>
+<div id="menu-2001" class="menu-content">
+<p><strong>VERMOUTH <em>VERMUT</em></strong></p>
+<ul>
+<li>Beer</li>
+<li>Soft drink</li>
+</ul>
+<p>&nbsp;</p>
+<p><strong>APERITIFS <em>APERITU</em></strong></p>
+<ul>
+<li>Chips <em>Patates xips</em></li>
+<li>Salted almonds <em>Atmetlles salades</em></li>
+<li>Stuffed olives <em>Olives farcides</em></li>
+<li>Deep fried squid rings <em>Calamars a la romana</em></li>
+<li>Omelette peices <em>Tacs truita</em></li>
+</ul>
+<p><strong>STARTERS <em>PRIMERS</em></strong></p>
+<ul>
+<li>Individual appetisers <em>Entremesos individual</em></li>
+<li>Salad and pates <em>Amanida i Patés</em></li>
+<li>Toasted bread with tomato <em>Pa torrat amb tomàquet</em></li>
+</ul>
+<p><strong>SECOND COURSE (GRILLED) <em>SEGONS (Graellada)</em></strong></p>
+<ul>
+<li>Fried Potatoes <em>Patates fregides</em></li>
+<li>Lamb <em>Be</em></li>
+<li>Catalan black sausage <em>Botifarra negra</em></li>
+<li>Rabbit <em>Conill</em></li>
+<li>Chicken <em>Pollastre</em></li>
+<li>Catalan sausage <em>Botifarra</em></li>
+<li>All i Oli (garlic mayonnaise) <em>All i Oli</em></li>
+</ul>
+<p><strong>CELEBRATION CAKE <em>PASTÍS DE CELEBRACIÓ</em></strong></p>
+<p>&nbsp;</p>
+<p><strong>WINE CELLAR <em>CELLER</em></strong></p>
+<ul>
+<li>Cabernet red or rosé <em>Vi Cabernet negre o rosat</em></li>
+<li>Brut reserva <em>Cava Brut Reserva</em></li>
+<li>Water and Soft drinks <em>Aigua i refrescs</em></li>
+</ul>
+<p><strong>COFFEES<em>TALLATS</em></strong></p>
+<p>&nbsp;</p>
+<div id="ressenya" class="caixa-preus caixa-negre caixa-left">
+<h6><span class="preu">{preu_2013}</span> Euros / adult &nbsp;(vat. Included)</h6>
+<hr>
+<h6 class="infantil"><span style="font-weight: bold;">– Children’s Menu (children ages 4 to 9) </span><br>
+<span class="preu">{preu_2017}</span> Euros/unit (vat. included)</h6>
+<h6 class="infantil"><span style="font-weight: bold;">– Junior Menu (children ages 10 to 14)</span><br>
+<span class="preu">{preu_2018}</span> Euros/unit (vat. included)</h6>
+</div>
+</div>
 ';
 
 /*******************************************************************************************/
@@ -467,53 +607,56 @@ Agua y refrescos<br/>
 /*******************************************************************************************/
 	$translate['titol_menu_2016']=$translate['titol_menu_casament']='MEN&Uacute; BODA';
 	$translate['menu_2016']=$translate['menu_casament']='
-<B>APERITVO</B>
-<UL>
-Lagostinos<br/>
-Patatas chips<br/>
-Almendras saladas<br/>
-Aceitunas rellenas<br/>
-Calamares a la romana<br/>
-Tacos tortilla<br/>
-Sorbete<br/>
-&nbsp;<br/>
-</UL>
-<B>PRIMEROS</B>
-<UL>
-Entremeses<br/>
-Ensalada<br/>
-Escalivada<br/>
-Esp&aacute;rragos<br/>
-G&iacute;rgolas<br/>
-Pan tostado con tomate<br/>
-&nbsp;<br/>
-</UL>
-<B>SEGUNDOS (Parrillada)</B>
-<UL>
-Cordero<br/>
-Butifarra negra<br/>
-Conejo<br/>
-Pollo<br/>
-Butifarra<br/>
-Alioli<br/>
-&nbsp;<br/>
-</UL>
-<B>PASTEL DE BODA</B>
-<P>&nbsp;<br/>
-<B>BODEGA</B>
-<UL>
-Vino Cabernet tinto o rosado<br/>
-Cava Brut Reserva Sard&agrave;<br/>
-Agua y refrescos<br/>
-&nbsp;<br/>
-</UL>
-<B>CAF&Eacute;S, CORTADOS o CARAJILLOS</B><br/>
-
-<br/>
-<B>PRICE</B>
-<UL>
-{preu_2016} Euros (including VAT)<br/>
-</UL>
+<div class="panel-body"><strong>APERITIFS <em>APERITU</em></strong>
+<ul>
+<li>Prawns <em>Llagostins</em></li>
+<li>Chips<em> Patates xips</em></li>
+<li>Salted almonds <em>Atmetlles salades</em></li>
+<li>Stuffed olives <em>Olives farcides</em></li>
+<li>Deep fried squid rings <em>Calamars a la romana</em></li>
+<li>Omelette peices <em>Tacs truita</em></li>
+<li>Sorbet <em>Sorbet</em></li>
+</ul>
+<p>&nbsp;</p>
+<p><strong>STARTERS <em>PRIMERS</em></strong></p>
+<ul>
+<li>Appetisers <em>Entremesos</em></li>
+<li>Salad <em>Amanida</em></li>
+<li>Escalivada (roast aubergine, onion and pepper) <em>Escalivada</em></li>
+<li>Asparagus <em>Espàrrecs</em></li>
+<li>Roast mushrooms <em>Gírgoles</em></li>
+<li>Toasted bread with tomato <em>Pa torrat amb tomàquet</em></li>
+</ul>
+<p><strong>SECOND COURSE (GRILLED) <em>SEGONS (Graellada)</em></strong></p>
+<ul>
+<li>Lamb <em>Xai</em></li>
+<li>Catalan black sausage <em>Botifarra negra</em></li>
+<li>Rabbit <em>Conill</em></li>
+<li>Chicken <em>Pollastre</em></li>
+<li>Catalan sausage <em>Botifarra</em></li>
+<li>All i Oli (garlic mayonnaise) <em>All i Oli</em></li>
+</ul>
+<p><strong>WEDDING CAKE <em>PASTÍS DE CASAMENT</em></strong></p>
+<p>&nbsp;</p>
+<p><strong>WINE CELLAR <em>CELLER</em></strong></p>
+<ul>
+<li>Cabernet red or rosé <em>Vi Cabernet negre o rosat</em></li>
+<li>Brut reserva Sardà <em>Cava Brut Reserva Sardà</em></li>
+<li>Water and Soft drinks <em>Aigua i refrescs</em></li>
+</ul>
+<p>&nbsp;</p>
+<p><strong>COFFEES <em>TALLATS</em></strong></p>
+<p>&nbsp;</p>
+<p><strong>Includes floral center piece<em> Inclós centre de flors&nbsp;</em></strong></p>
+<div id="ressenya" class="caixa-preus caixa-negre caixa-left">
+<h6><span class="preu">{preu_2016}</span> Euros / adult &nbsp;(vat. Included)</h6>
+<hr>
+<h6 class="infantil"><span style="font-weight: bold;">– Children’s Menu (children ages 4 to 9) </span><br>
+<span class="preu">{preu_2011}</span> Euros/unit (vat. included)</h6>
+<h6 class="infantil"><span style="font-weight: bold;">– Junior Menu (children ages 10 to 14)</span><br>
+<span class="preu">{preu_2022}</span> Euros/unit (vat. included)</h6>
+</div>
+</div>
 ';
 
 /*******************************************************************************************/
@@ -521,47 +664,69 @@ Agua y refrescos<br/>
 /*******************************************************************************************/
 	$translate['titol_menu_2010']=$translate['titol_menu_calsots']='MEN&Uacute; CALÇOTADA';
 	$translate['menu_2010']=$translate['menu_calsots']='
-<B>ENTRANTES</B>
-<UL>
-CAL&Ccedil;OTS (temporada)<br/>
-Incluye repetici&oacute;n <br/>
-&nbsp;<br/>
-Jud&iacute;as con tocino<br/>
-Patatas fritas<br/>
-Alioli<br/>
-Pan tostado con tomate<br/>
-&nbsp;<br/>
-</UL>
-<B>PARRILLADA</B>
-<UL>
-Cordero<br/>
-Conejo<br/>
-Pollo<br/>
-Butifarra<br/>
-Butifarra negra<br/>
-&nbsp;<br/>
-</UL>
-<B>BODEGA</B>
-<UL>
-Vino de la Casa<br/>
-Gaseosa<br/>
-Agua<BR>Refresco<BR>
-&nbsp;<br/>
-</UL>
-<B>POSTRES</B>
-<UL>
-<li>Fruitos secos (músico) pica-pica en mesa</li>
-<li>Crema catalana</li>
-<li>Flan casero</li>
-<li>Copa sorbete limón</li>
-</UL>
-<B>CAF&Eacute;S, CORTADOS o CARAJILLOS</B><br/>
-
-&nbsp;<br/>
-<B>PRICE</B>
-<UL>
-{preu_2010} Euros (including VAT)<br/>
-</UL>
+<div class="panel-body"><div class="alert alert-warning">
+   <span class="glyphicon glyphicon-info-sign" style="font-size:1em">  The calçotada menu cannot be combined with other menus. <b>All assistants must ask for the same.</b>   </span>
+</div>
+<p><strong>STARTERS <em>ENTRANTS</em></strong></p>
+<ul>
+<li>CALÇOTS , soft&nbsp;spring&nbsp;onions (in season)<br>
+    <i><code>No calçots limit</code><br>
+<code>Cannot be combined with other menus (all of you must order calçotada)</code><br>
+</i>
+</li>
+<li>Haricot beans with salted pork <em>Mongetes amb cansalada</em></li>
+<li>Fried Potatoes <em>Patates fregides&nbsp;</em></li>
+<li>All i Oli (garlic mayonnaise)<em> All i Oli</em></li>
+<li>Toasted bread with tomato <em>Pa torrat amb tomàquet</em></li>
+</ul>
+<p>&nbsp;</p>
+<p><strong>GRILLED MEAT <em>GRAELLADA</em> (individual)</strong></p>
+<ul class="plat1">
+<li>Lamb <em>Xai</em> (2 pieces)</li>
+<li>Rabbit <em>Conill</em> (1/4)</li>
+<li>Catalan sausage <em>Botifarra</em> (1/2)</li>
+</ul>
+<div class="complements">
+<h6>ACCESSORIES</h6>
+<p>  If you do not want barbecue, you can add accessories:</p>
+<ul class="dots">
+<li class="field">Roast veal chop <em>Costella de vedella a la brasa</em>  <span class="field field2" style="font-size:0.8em"><span class="preu">9.50</span>€</span></li>
+<li><span class="field">Roast lamb back <em>Espatlla de xai a la brasa</em></span> <span class="field field2" style="font-size:0.8em"><span class="preu">10.40</span>€</span></li>
+<li><span class="field">Roast pork feet <em>Peus de porc</em></span> <span class="field field2" style="font-size:0.8em"><span class="preu">4.00</span>€</span></li>
+<li><span class="field">Roast cod <em>Bacallà a la llauna&gt;</em></span> <span class="field field2" style="font-size:0.8em"><span class="preu">8.50</span>€</span></li>
+<li><span class="field">Roast snails <em>Cargols a la llauna</em></span> <span class="field field2" style="font-size:0.8em"><span class="preu">8.50</span>€</span></li>
+<li><span class="field">Roast gilthead <em>Moixarra a la brasa</em></span> <span class="field field2" style="font-size:0.8em"><span class="preu">8.50</span>€</span></li>
+<li><span class="field">Roast sea bass <em>Lubina a la brasa</em></span> <span class="field field2" style="font-size:0.8em"><span class="preu">8.50</span>€</span></li>
+</ul>
+</div>
+<div class="cb"></div>
+<p><strong>WINE CELLAR <em>CELLER</em></strong></p>
+<ul>
+<li>House wine <em>Vi de la Casa</em></li>
+<li>Soda water <em>Gasosa</em></li>
+<li>Soft drink <em>Refresc</em></li>
+<li>Mineral water <em>Aigua</em></li>
+<li>1 Beer included</li>
+</ul>
+<p><strong>DESSERTS <em>POSTRES</em></strong></p>
+<ul>
+<li>Crême caramel <em>Flam casolà </em></li>
+<li>Lemon sorbet <em>Copa sorbet llimona</em></li>
+<li>Catalan Custard Cream <em>Crema catalana</em></li>
+</ul>
+<p><strong>COFFEES  <em>TALLATS </em></strong></p>
+<p>&nbsp;</p>
+<div id="ressenya" class="caixa-preus caixa-negre caixa-left">
+<h6><span class="preu">{preu_2010}</span> Euros/ adults (vat. included)</h6>
+<h6><span class="preu">{preu_2011}</span> Euros/ adults with CAVA(vat. included)</h6>
+<h6 class="infantil"><span style="font-weight: bold;">-Children’s Menu (children ages 4 to 9) </span><br>
+Macaroni, fried chicken breast or croquettes with potatoes, soft drink and ice cream<br>
+<span class="preu">{preu_2037}</span> Euros/unit (vat. included)</h6>
+<h6 class="infantil"><span style="font-weight: bold;">– Menú Junior</span> (de 10 a 14 anys)<br>
+Macaroni or appetizer, chicken or roast catalan sausage with potatoes, soft drink and ice cream<br>
+<span class="preu">{preu_2036}</span> Euros/unit (vat. included)</h6>
+</div>
+</div>
 ';
 
 
@@ -569,23 +734,45 @@ Agua<BR>Refresco<BR>
 // MENU VEGETARIÀ
 /*******************************************************************************************/
 	$translate['titol_menu_990060']=$translate['titol_menu_vegetaria']='MEN&Uacute; VEGETARIÀ';
-	$translate['menu_990060']=$translate['menu_vegetaria']='En este manú se puede elegir de primero y de segundo los siguientes platos: 
+	$translate['menu_990060']=$translate['menu_vegetaria']='
+<div id="menu-2008" class="menu-content">
+<p>&nbsp;</p>
+<p>On this menu you can choose one from the&nbsp;following:</p>
 <ul>
-<li>Xatonada</li>
-<li>Ensalada</li>
-<li>Girgolas</li>
-<li>Espárragos</li>
-<li>Escalivada</li>
-<li>Alcachofas (temporada)</li>
-<li>calçots (temporada) </li>
-<li>Parrillada de verduras</li>
-<BR>
-Incluyendo los acompañamientos (judias y patatas frits allioli pan tostado con tomate y ajo, bebida y cafés
-<BR><BR>
-<B>PRICE</B>
+<li>Xatonada (Endive, cod and anchovy salad served with dressing) <em>Xatonada</em></li>
+<li>Salad <em>Amanida</em></li>
+<li>Oyster mushrooms <em>Gírgoles</em></li>
+<li>Asparagus <em>Espàrrecs</em></li>
+<li>Escalivada (Roasted red peppers and aubergine) <em>Escalivada</em></li>
+<li>Roast artichokes (in season) <em>Carxofes (temporada)</em></li>
+<p> 	<!-- 
 
+<li>Calçots, (<span style="line-height: 1.5;">Barbecued spring onions, served with Romesco&nbsp;sauce) -&nbsp;</span>(in season) <em>Calçots (temporada)</em></li>
 
-{preu_990060} Euros (including VAT)<BR>
+ --></p>
+<li>Grilled vegetables <em>Graellada de verdures&nbsp;</em></li>
+</ul>
+<p>&nbsp;</p>
+<p><strong>Accompaniment with</strong></p>
+<ul>
+<li>Beans <em>Mongetes</em></li>
+<li>Chips&nbsp;<em>Patates fregides&nbsp;</em></li>
+<li>All i Oli (garlic mayonnaise)&nbsp;<em>All i Oli</em></li>
+<li>Tomato and garlic toasted bread <em>Pa torrat amb tomàquet</em></li>
+</ul>
+<p><strong>DESSERTS <em>POSTRES</em></strong></p>
+<ul>
+<li>Seasonal fruit</li>
+<li>Crême caramel <em>Flam casolà </em></li>
+<li>Lemon Mus<em>Mus de llimona</em></li>
+<li>Icecream<em>Helado</em></li>
+</ul>
+<p><strong>Drinks and coffees </strong></p>
+<p>&nbsp;</p>
+<div id="ressenya" class="caixa-preus caixa-negre caixa-left">
+<span class="preu">{preu_2008}</span> Euros/ Per Adult (vat. included)<p></p>
+</div>
+</div>
 ';
 
 
@@ -597,15 +784,25 @@ Incluyendo los acompañamientos (judias y patatas frits allioli pan tostado con 
 /*******************************************************************************************/
 // INFANTILS / JUNIORS
 /*******************************************************************************************/
-	$translate['titol_menu_2037']=$translate['titol_menu_infantil']='Men&uacute; Infantil (ni&ntilde;os de 4 a 9 a&ntilde;os)';
+	$translate['titol_menu_2037']=$translate['titol_menu_infantil']='
+Men&uacute; Infantil (ni&ntilde;os de 4 a 9 a&ntilde;os)';
 	$translate['menu_2037']=$translate['menu_infantil']='
-Macarrones, pollo rebozado o croquetas con patatas, refresco y helado<br/>
-{preu_2037} Euros/unidad (IVA incluido)<br/>
-&nbsp;<br/>';
+<div id="menu-2001" class="menu-content">
+<ul>
+<li>Macaroni</li>
+<li>Fried chicken breast or croquettes with potatoes</li>
+<li>Soft drink</li>
+<li>Ice cream</li>
+</ul>
+<div id="ressenya" class="caixa-preus caixa-negre caixa-left"><span class="preu">{preu_2037}</span> Euros (vat. included)
+</div>
+</div>
+';
 
 	$translate['titol_menu_2036']=$translate['titol_menu_junior']='Men&uacute; Junior (de 10 a 14 a&ntilde;os)';
 	$translate['menu_2036']=$translate['menu_junior']='Macarrones o entrem&eacute;s, pollo o butifarra con patatas, refresco y helado<br/>
-{preu_2036} Euros/unidad (IVA incluido)';
+{preu_2036} Euros/unidad (IVA incluido)
+';
 
 	$translate['titol_menu_2017']=$translate['titol_menu_inf_comunio']='Men&uacute; Comunión (ni&ntilde;os de 4 a 9 a&ntilde;os)';
 	$translate['menu_2017']=$translate['menu_inf_comunio']='{preu_2017} Euros';
