@@ -11,7 +11,6 @@ use OTGS\Installer\Collect\Support\Macroable;
  * @method static callable|bool gt( ...$a, ...$b ) - Curried :: a->b->bool
  * @method static callable|bool gte( ...$a, ...$b ) - Curried :: a->b->bool
  * @method static callable|bool propEq( ...$prop, ...$value, ...$obj ) - Curried :: String → a → array → bool
- * @method static callable|array sortWith( ...$comparators, ...$array ) - Curried :: [(a, a) → int] → [a] → [a]
  */
 class Relation {
 
@@ -49,19 +48,6 @@ class Relation {
 		self::macro( 'propEq', curryN( 3, function ( $prop, $value, $obj ) {
 			return Obj::prop( $prop, $obj ) === $value;
 		} ) );
-
-		self::macro( 'sortWith', curryN( 2, function ( $comparators, $array ) {
-			$compareFn = function( $a, $b ) use ( $comparators ) {
-				foreach ( $comparators as $comparator ) {
-					$v = $comparator( $a, $b );
-					if ( $v !== 0 ) {
-						return $v;
-					}
-				}
-				return 0;
-			};
-			return Lst::sort( $compareFn, $array );
-		}));
 
 	}
 }

@@ -3,6 +3,7 @@
 use WPML\FP\Obj;
 use WPML\FP\Fns;
 use WPML\FP\Relation;
+use WPML\TM\ATE\AutoTranslate\Endpoint\GetJobsCount;
 use WPML\TM\ATE\AutoTranslate\Endpoint\SyncLock;
 use WPML\TM\ATE\Jobs;
 use WPML\TM\Menu\TranslationQueue\PostTypeFilters;
@@ -14,11 +15,15 @@ use WPML\TM\API\Basket;
 use WPML\TM\API\Translators;
 use WPML\Element\API\Languages;
 use function WPML\FP\pipe;
+use function WPML\FP\System\sanitizeString;
+use function WPML\Container\make;
 
 class WPML_TM_Jobs_List_Script_Data {
 
 	const TM_JOBS_PAGE = 'tm-jobs';
 	const TRANSLATION_QUEUE_PAGE = 'translation-queue';
+
+	private $exportAllToXLIFFLimit;
 
 	/** @var WPML_TM_Rest_Jobs_Language_Names */
 	private $language_names;
@@ -63,12 +68,18 @@ class WPML_TM_Jobs_List_Script_Data {
 		}
 
 		if ( ! $services ) {
-			$services = new WPML_TM_Jobs_List_Services( WPML_TM_Rest_Jobs_Translation_Service::create() );
+			$services = new WPML_TM_Jobs_List_Services( new  WPML_TM_Rest_Jobs_Translation_Service() );
 		}
 
 		if ( ! $translated_by_filters ) {
 			$translated_by_filters = new WPML_TM_Jobs_List_Translated_By_Filters( $services, $translators );
 		}
+
+		if ( ! defined( 'WPML_EXPORT_ALL_TO_XLIFF_LIMIT' ) ) {
+			define( 'WPML_EXPORT_ALL_TO_XLIFF_LIMIT', 1700 );
+		}
+
+		$this->exportAllToXLIFFLimit = WPML_EXPORT_ALL_TO_XLIFF_LIMIT;
 
 		$this->translated_by_filter = $translated_by_filters;
 		$this->translators          = $translators;
@@ -89,9 +100,12 @@ class WPML_TM_Jobs_List_Script_Data {
 
 		$isATEEnabled = \WPML_TM_ATE_Status::is_enabled_and_activated();
 
+		/** @var Jobs $jobs */
+		$jobs = make( Jobs::class );
+
 		$data = [
 			'isATEEnabled'        => $isATEEnabled,
-			'ateJobsToSync'       => $isATEEnabled ? Jobs::getJobsToSync() : [],
+			'hasAnyJobsToSync'    => $isATEEnabled ? $jobs->hasAnyToSync() : false,
 			'languages'           => $this->language_names->get_active_languages(),
 			'translatedByFilters' => $this->translated_by_filter->get(),
 			'localTranslators'    => $this->translators->get(),
@@ -100,11 +114,12 @@ class WPML_TM_Jobs_List_Script_Data {
 			'translationService'  => $translation_service,
 			'siteKey'             => WP_Installer::instance()->get_site_key( 'wpml' ),
 			'batchUrl'            => OTG_TRANSLATION_PROXY_URL . '/projects/%d/external',
-			'endpoints'           => [
+			'endpoints' => [
 				'syncLock'                   => SyncLock::class,
 				'approveTranslationsReviews' => ApproveTranslations::class,
 				'cancelTranslationReviews'   => Cancel::class,
 				'resign'                     => Resign::class,
+				'getJobsCount'               => GetJobsCount::class,
 			],
 			'types'               => $this->getTypesForFilter(),
 			'queryFilters'        => $this->getFiltersFromUrl(),
@@ -120,6 +135,7 @@ class WPML_TM_Jobs_List_Script_Data {
 				'nonce'               => wp_create_nonce( 'xliff-export' ),
 				'translationQueueURL' => UIPage::getTranslationQueue(),
 				'xliffDefaultVersion' => $tmXliffVersion > 0 ? $tmXliffVersion : 12,
+				'xliffExportAllLimit' => $this->exportAllToXLIFFLimit,
 			];
 
 			$data['hasTranslationServiceJobs'] = $this->hasTranslationServiceJobs();
@@ -196,9 +212,29 @@ class WPML_TM_Jobs_List_Script_Data {
 
 	private function getFiltersFromUrl() {
 		$filters = [];
+		$getProp = sanitizeString();
+
+		if ( Obj::propOr( false, 'element_type', $_GET ) ) {
+			$filters['element_type'] = $getProp( Obj::prop( 'element_type', $_GET ) );
+		}
+
+		if ( Obj::propOr( false, 'targetLanguages', $_GET ) ) {
+			$filters['targetLanguages'] = explode(
+				',',
+				urldecode(
+					$getProp(
+						Obj::prop( 'targetLanguages', $_GET )
+					)
+				)
+			);
+		}
 
 		if ( Obj::propOr( false, 'status', $_GET ) ) {
-			$filters['status'] = [ Obj::prop( 'status', $_GET ) ];
+			$filters['status'] = [ $getProp( Obj::prop( 'status', $_GET ) ) ];
+		}
+
+		if ( Obj::propOr( false, 'only_automatic', $_GET ) ) {
+			$filters['translated_by'] = 'automatic';
 		}
 
 		return $filters;

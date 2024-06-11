@@ -130,8 +130,8 @@ public function display($params = array(), $bwg = 0, $ajax = FALSE) {
         if ( !wp_script_is('bwg_embed', 'done') ) {
         wp_print_scripts('bwg_embed');
         }
-        if ( !wp_script_is('jquery-mobile', 'done') ) {
-        wp_print_scripts('jquery-mobile');
+        if ( !wp_script_is('bwg_mobile', 'done') ) {
+        wp_print_scripts('bwg_mobile');
         }
       }
       else {
@@ -275,7 +275,7 @@ public function display($params = array(), $bwg = 0, $ajax = FALSE) {
                     $resolution_w = intval($resolution_arr[0]);
                     $resolution_h = intval($resolution_arr[2]);
                     if ( $resolution_w != 0 && $resolution_h != 0 ) {
-                      $scale = $scale = max($slideshow_filmstrip_width / $resolution_w, $slideshow_filmstrip_height / $resolution_h);
+                      $scale = max($slideshow_filmstrip_width / $resolution_w, $slideshow_filmstrip_height / $resolution_h);
                       $image_thumb_width = $resolution_w * $scale;
                       $image_thumb_height = $resolution_h * $scale;
                     }
@@ -302,7 +302,10 @@ public function display($params = array(), $bwg = 0, $ajax = FALSE) {
                   $image_thumb_height = $res[1];
                 }
               }
-              $scale = max($slideshow_filmstrip_width / $image_thumb_width, $slideshow_filmstrip_height / $image_thumb_height);
+              $scale = 1;
+              if ( !is_null($image_thumb_width) && !is_null($image_thumb_height) ) {
+                $scale = max($slideshow_filmstrip_width / $image_thumb_width, $slideshow_filmstrip_height / $image_thumb_height);
+              }
               $image_thumb_width *= $scale;
               $image_thumb_height *= $scale;
               $thumb_left = ($slideshow_filmstrip_width - $image_thumb_width) / 2;
@@ -310,8 +313,7 @@ public function display($params = array(), $bwg = 0, $ajax = FALSE) {
               ?>
               <div id="bwg_filmstrip_thumbnail_<?php echo esc_attr($key.'_'.$bwg); ?>"
                 class="bwg_slideshow_filmstrip_thumbnail_<?php echo esc_attr($bwg); ?> <?php echo(($image_row->id == $current_image_id) ? 'bwg_slideshow_thumb_active_' . esc_attr($bwg) : 'bwg_slideshow_thumb_deactive_' . esc_attr($bwg)); ?>"
-                data-style="width:<?php echo esc_html($slideshow_filmstrip_width); ?>px; height:<?php echo esc_html($slideshow_filmstrip_height); ?>px;"
-              >
+                data-style="width:<?php echo esc_html($slideshow_filmstrip_width); ?>px; height:<?php echo esc_html($slideshow_filmstrip_height); ?>px;">
                 <img class="bwg_filmstrip_thumbnail_img bwg_slideshow_filmstrip_thumbnail_img_<?php echo esc_attr($bwg); ?>"
                   style="width:<?php echo esc_html($image_thumb_width); ?>px; height:<?php echo esc_html($image_thumb_height); ?>px; margin-left: <?php echo esc_html($thumb_left); ?>px; margin-top: <?php echo esc_html($thumb_top); ?>px;"
                   data-style="width:<?php echo esc_html($image_thumb_width); ?>px; height:<?php echo esc_html($image_thumb_height); ?>px; margin-left: <?php echo esc_html($thumb_left); ?>px; margin-top: <?php echo esc_html($thumb_top); ?>px;"

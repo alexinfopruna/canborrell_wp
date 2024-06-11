@@ -327,6 +327,25 @@ class GalleriesModel_bwg {
   }
 
   /**
+   * Count the images total size in the gallery.
+   *
+   * @param $gallery_id
+   *
+   * @return void
+   */
+  public function get_images_total_size( $gallery_id ) {
+    global $wpdb;
+    $sizes = $wpdb->get_col($wpdb->prepare('Select `size` FROM `' . $wpdb->prefix . 'bwg_image` WHERE `gallery_id` = %d AND `size`<>""', $gallery_id));
+
+    if ( empty($sizes) ) {
+      return;
+    }
+    $sizes = array_map('WDWLibrary::convertToBytes', $sizes);
+
+    return WDWLibrary::formatBytes(array_sum($sizes));
+  }
+
+  /**
    * Get images rows data or total count.
    *
    * @param      $gallery_id
@@ -337,7 +356,6 @@ class GalleriesModel_bwg {
    */
   public function get_image_rows_data( $gallery_id, $params, $total = FALSE ) {
     global $wpdb;
-    $rows = array();
     $order = $params['order'];
     $orderby = $params['orderby'];
     $page_per = $params['items_per_page'];
@@ -536,8 +554,7 @@ class GalleriesModel_bwg {
       $row->modified_date = time();
     }
     $user_data = get_userdata($row->author);
-    $row->author = ($user_data != FALSE ? $user_data->display_name : '');
-
+    $row->author = ($user_data != FALSE && isset($user_data->display_name) ? $user_data->display_name : '');
     return $row;
   }
 
@@ -690,7 +707,7 @@ class GalleriesModel_bwg {
     $save = TRUE;
     $author = get_current_user_id();
     $all = WDWLibrary::get('check_all_items', FALSE);
-    $is_last_ajax = WDWLibrary::get('is_last_ajax', 0);
+    $is_last_ajax = WDWLibrary::get('is_last_ajax', 0, 'intval');
     $image_message = '';
     $checked_items_count = WDWLibrary::get('checked_items_count', 0, 'intval');
     $action_image_id = array();
@@ -859,7 +876,7 @@ class GalleriesModel_bwg {
     }
     $need_iteration = WDWLibrary::get('need_iteration', 0, 'intval');
     /* Update ordering of gallery all images during the save action if there is not iterations or it is last iteration.  */
-    if ( $is_last_ajax == 'true' || !$need_iteration ) {
+    if ( $is_last_ajax == 1 || !$need_iteration ) {
       $wpdb->query('SET @i := 0');
       $wpdb->query($wpdb->prepare('UPDATE `' . $wpdb->prefix . 'bwg_image` SET `order` = (@i := @i + 1) WHERE `gallery_id` = "%d" ORDER BY `order` ASC', $gallery_id));
     }
@@ -1287,6 +1304,9 @@ class GalleriesModel_bwg {
       if ( $resolution_thumb != '' ) {
         WDWLibrary::update_thumb_dimansions($resolution_thumb, "id = $image_data->id");
       }
+
+      // Update the rotated image resolution.
+      WDWLibrary::update_image_resolution($height_rotate, $width_rotate, $image_data->id);
     }
     WDWLibrary::update_image_modified_date($where, $prepareArgs);
 
@@ -1407,7 +1427,7 @@ class GalleriesModel_bwg {
         $thumb_filename = BWG()->upload_dir . $image->thumb_url;
         $original_filename = str_replace('/thumb/', '/.original/', $thumb_filename);
         if ( WDWLibrary::repair_image_original($original_filename) ) {
-          $resize_status = WDWLibrary::resize_image($original_filename, $file_path, $image_width, $image_height);
+          $resize_status = WDWLibrary::resize_image($original_filename, $file_path, $image_width, $image_height, $image->id);
         }
       }
     }

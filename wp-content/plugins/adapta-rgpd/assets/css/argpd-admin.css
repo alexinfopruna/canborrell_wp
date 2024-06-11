@@ -186,3 +186,55 @@ div.argpd-message span {
   font-weight: bold;
   padding-bottom: 10px;
 }
+
+/* 
+  raw consent popup box 
+*/
+.argpd-popup {
+  position: fixed;
+  z-index: 1;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  overflow: auto;
+  background-color: rgba(0, 0, 0, 0.4);
+  display: none;
+}
+
+.argpd-popup .content {
+    background-color: white;
+    margin: 10% auto;
+    padding: 20px;
+    border: 1px solid #888888;
+    width: 30%;
+    font-weight: bolder;
+}
+
+.argpd-popup .content pre {
+  overflow-y:scroll;
+  max-width:640px; 
+  height:480px; 
+  border:0.5px solid lightgray; 
+  padding:5px; white-space:pre-wrap;
+}
+
+.argpd-popup .content .js-close-raw-popup {
+    display: block;
+    margin: 0 auto;
+    color: #2271b1;
+    cursor: pointer;
+}
+
+.argpd-popup.show {
+    display: block;
+}
+
+.js-open-raw-popup {
+  color: #2271b1;  
+  cursor: pointer;
+}
+
+.api-message {
+  color: red;
+}

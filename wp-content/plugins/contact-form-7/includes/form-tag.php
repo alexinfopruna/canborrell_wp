@@ -35,7 +35,7 @@ class WPCF7_FormTag implements ArrayAccess {
 	 * Returns true if the type has a trailing asterisk.
 	 */
 	public function is_required() {
-		return ( '*' === substr( $this->type, -1 ) );
+		return str_ends_with( $this->type, '*' );
 	}
 
 
@@ -57,7 +57,8 @@ class WPCF7_FormTag implements ArrayAccess {
 	 *               whose value part matches this pattern will be returned.
 	 * @param bool $single Optional. If true, only the first matching option
 	 *             will be returned. Default false.
-	 * @return string|array The option value or an array of option values.
+	 * @return string|array|bool The option value or an array of option values.
+	 *                           False if there is no option matches the pattern.
 	 */
 	public function get_option( $option_name, $pattern = '', $single = false ) {
 		$preset_patterns = array(
@@ -114,7 +115,21 @@ class WPCF7_FormTag implements ArrayAccess {
 	 * Retrieves the id option value from the form-tag.
 	 */
 	public function get_id_option() {
-		return $this->get_option( 'id', 'id', true );
+		static $used = array();
+
+		$option = $this->get_option( 'id', 'id', true );
+
+		if (
+			! $option or
+			str_starts_with( $option, 'wpcf7' ) or
+			in_array( $option, $used, true )
+		) {
+			return false;
+		}
+
+		$used[] = $option;
+
+		return $option;
 	}
 
 
@@ -123,7 +138,8 @@ class WPCF7_FormTag implements ArrayAccess {
 	 *
 	 * @param string|array $default_classes Optional. Preset classes as an array
 	 *                     or a whitespace-separated list. Default empty string.
-	 * @return string A whitespace-separated list of classes.
+	 * @return string|bool A whitespace-separated list of classes.
+	 *                     False if there is no class to return.
 	 */
 	public function get_class_option( $default_classes = '' ) {
 		if ( is_string( $default_classes ) ) {
@@ -132,10 +148,15 @@ class WPCF7_FormTag implements ArrayAccess {
 
 		$options = array_merge(
 			(array) $default_classes,
-			(array) $this->get_option( 'class', 'class' )
+			(array) $this->get_option( 'class' )
 		);
 
+		$options = array_map( 'sanitize_html_class', $options );
 		$options = array_filter( array_unique( $options ) );
+
+		if ( empty( $options ) ) {
+			return false;
+		}
 
 		return implode( ' ', $options );
 	}
@@ -147,7 +168,7 @@ class WPCF7_FormTag implements ArrayAccess {
 	 * @param string $default_value Optional default value.
 	 * @return string The option value.
 	 */
-	public function get_size_option( $default_value = '' ) {
+	public function get_size_option( $default_value = false ) {
 		$option = $this->get_option( 'size', 'int', true );
 
 		if ( $option ) {
@@ -172,7 +193,7 @@ class WPCF7_FormTag implements ArrayAccess {
 	 * @param string $default_value Optional default value.
 	 * @return string The option value.
 	 */
-	public function get_maxlength_option( $default_value = '' ) {
+	public function get_maxlength_option( $default_value = false ) {
 		$option = $this->get_option( 'maxlength', 'int', true );
 
 		if ( $option ) {
@@ -199,7 +220,7 @@ class WPCF7_FormTag implements ArrayAccess {
 	 * @param string $default_value Optional default value.
 	 * @return string The option value.
 	 */
-	public function get_minlength_option( $default_value = '' ) {
+	public function get_minlength_option( $default_value = false ) {
 		$option = $this->get_option( 'minlength', 'int', true );
 
 		if ( $option ) {
@@ -216,7 +237,7 @@ class WPCF7_FormTag implements ArrayAccess {
 	 * @param string $default_value Optional default value.
 	 * @return string The option value.
 	 */
-	public function get_cols_option( $default_value = '' ) {
+	public function get_cols_option( $default_value = false ) {
 		$option = $this->get_option( 'cols', 'int', true );
 
 		if ( $option ) {
@@ -243,7 +264,7 @@ class WPCF7_FormTag implements ArrayAccess {
 	 * @param string $default_value Optional default value.
 	 * @return string The option value.
 	 */
-	public function get_rows_option( $default_value = '' ) {
+	public function get_rows_option( $default_value = false ) {
 		$option = $this->get_option( 'rows', 'int', true );
 
 		if ( $option ) {
@@ -389,7 +410,7 @@ class WPCF7_FormTag implements ArrayAccess {
 				if ( $contact_form = WPCF7_ContactForm::get_current() ) {
 					$val = $contact_form->shortcode_attr( $this->name );
 
-					if ( strlen( $val ) ) {
+					if ( isset( $val ) and strlen( $val ) ) {
 						if ( $args['multiple'] ) {
 							$values[] = $val;
 						} else {

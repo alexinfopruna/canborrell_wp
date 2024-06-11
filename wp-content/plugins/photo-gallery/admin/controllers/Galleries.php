@@ -371,8 +371,7 @@ class GalleriesController_bwg {
     $params['facebook_post_gallery'] = (!$params['instagram_post_gallery']) ? ($params['row']->gallery_type == 'facebook_post' ? TRUE : FALSE) : FALSE;
     $params['gallery_type'] = ($params['row']->gallery_type == 'instagram' || $params['row']->gallery_type == 'instagram_post') ? 'instagram' : (($params['row']->gallery_type == 'facebook_post' || $params['row']->gallery_type == 'facebook') ? 'facebook' : $params['row']->gallery_type);
 
-    $params['booster_is_active'] = ( is_plugin_active('tenweb-speed-optimizer/tenweb_speed_optimizer.php') ) ? TRUE : FALSE;
-    $params['booster_page_url'] = add_query_arg(array( 'page' => 'speed_' . BWG()->prefix ), admin_url('admin.php'));
+    $params['booster_page_url'] = add_query_arg(array( 'page' => 'twbbwg_photo-gallery' ), admin_url('admin.php'));
 
     // Image display params.
     $params['actions'] = WDWLibrary::image_actions( $params['gallery_type'] );
@@ -402,10 +401,14 @@ class GalleriesController_bwg {
     $params['message'] = $message;
     $params['total'] = $this->model->image_total($id, $params);
     $params['rows'] = $this->model->get_image_rows_data($id, $params);
+    // Get the Booster status to show the banner.
+    $data = WDWLibrary::get_booster_data();
+    // Get the total size of the images in gallery to show banner. Do not show banner if Booster is connected.
+    $params['total_size'] = $data['booster_is_connected'] ? 0 : $this->model->get_images_total_size($id);
     $params['pager'] = 0;
     $params['facebook_embed'] = $this->get_facebook_embed();
 
-    $gallery_types = array('' => __('Mixed', 'photo-gallery'), 'instagram' => __('Instagram only', 'photo-gallery'));
+    $gallery_types = array('' => __('Mixed', 'photo-gallery'));
     if ( has_action('init_display_facebook_gallery_options_bwg') && $id != 0 ) {
       $gallery_types['facebook'] = __('Facebook', 'photo-gallery');
     }

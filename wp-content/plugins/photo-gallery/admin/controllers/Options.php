@@ -3,6 +3,7 @@
 /**
  * Class OptionsController_bwg
  */
+#[\AllowDynamicProperties]
 class OptionsController_bwg {
 
   public $prefix;
@@ -82,14 +83,6 @@ class OptionsController_bwg {
      */
   public function display($params = array()) {
     $row = new WD_BWG_Options();
-    // Set Instagram access token.
-    if ( isset( $_GET['bwg_access_token'] ) ) {
-      ob_end_clean();
-      $success = $this->model->set_instagram_access_token( false );
-      if ( $success ) {
-        wp_redirect( add_query_arg( array('page' => $this->page .'&instagram_token=' . time() ), admin_url('admin.php')) );
-      }
-    }
 
     $params['row']  = $row;
     $params['row']->lightbox_shortcode = 0;
@@ -99,13 +92,6 @@ class OptionsController_bwg {
 													'action' => 'options_' . BWG()->prefix,
 													BWG()->nonce => wp_create_nonce(BWG()->nonce),
 												), admin_url('admin-ajax.php') );
-
-    $params['instagram_return_url'] = 'https://api.instagram.com/oauth/authorize/?app_id=6999276113447603&scope=user_profile,user_media&redirect_uri=https://instagram-api.10web.io/instagram/photo-gallery/&state=' . urlencode( admin_url('admin.php?options_bwg')) . '&response_type=code';
-    $params['instagram_reset_href'] =  add_query_arg( array(
-														'page' => $this->page,
-														'task' => 'reset_instagram_access_token',
-														BWG()->nonce => wp_create_nonce(BWG()->nonce),
-													), admin_url('admin.php') );
 
     $this->view->display($params);
   }
@@ -123,27 +109,8 @@ class OptionsController_bwg {
 													'action' => 'options_' . BWG()->prefix,
 													BWG()->nonce => wp_create_nonce(BWG()->nonce),
 												), admin_url('admin-ajax.php') );
-    $params['instagram_return_url'] = 'https://api.instagram.com/oauth/authorize/?app_id=6999276113447603&scope=user_profile,user_media&redirect_uri=https://instagram-api.10web.io/instagram/photo-gallery/&state=' . urlencode( admin_url('admin.php?options_bwg')) . '&response_type=code';
-    $params['instagram_reset_href'] =  add_query_arg( array(
-			'page' => $this->page,
-			'task' => 'reset_instagram_access_token',
-			BWG()->nonce => wp_create_nonce(BWG()->nonce),
-		), admin_url('admin.php'));
     echo WDWLibrary::message_id(0, __('Default values restored. Changes must be saved.', 'photo-gallery'), 'notice notice-warning');
     $this->view->display($params);
-  }
-
-  /**
-   * Reset instagram access token.
-   *
-   * @param array $params
-   */
-  function reset_instagram_access_token ( $params = array() ) {
-    ob_end_clean();
-    $success = $this->model->set_instagram_access_token();
-    if ( $success ) {
-      wp_redirect( add_query_arg( array( 'page' => $this->page . '&instagram_token=reset'), admin_url( 'admin.php' ) ) );
-    }
   }
 
   public function save( $params = array() ) {
@@ -180,14 +147,7 @@ class OptionsController_bwg {
     }
 
     foreach ($row as $name => $value) {
-      if ($name == 'autoupdate_interval') {
-        $autoupdate_interval_hour = WDWLibrary::get('autoupdate_interval_hour', 0, 'intval');
-        $autoupdate_interval_min = WDWLibrary::get('autoupdate_interval_min', 1, 'intval');
-        $autoupdate_interval = ( isset($autoupdate_interval_hour) && isset($autoupdate_interval_min) ? ($autoupdate_interval_hour * 60 + $autoupdate_interval_min) : null);
-        /*minimum autoupdate interval is 1 min*/
-        $row->autoupdate_interval = isset($autoupdate_interval) && $autoupdate_interval >= 1 ? $autoupdate_interval : 30;
-      }
-      else if ( $name != 'images_directory' ) {
+      if ( $name != 'images_directory' ) {
         $row->$name = WDWLibrary::get($name, $row->$name);
       }
     }
@@ -214,14 +174,6 @@ class OptionsController_bwg {
       else {
         echo WDWLibrary::message_id(0, __('Item Succesfully Saved.', 'photo-gallery'));
       }
-
-      // Clear hook for scheduled events.
-      wp_clear_scheduled_hook('bwg_schedule_event_hook');
-      // Refresh filter according to new time interval.
-      remove_filter('cron_schedules', array( BWG(), 'autoupdate_interval' ));
-      add_filter('cron_schedules', array( BWG(), 'autoupdate_interval' ));
-      // Then add new schedule with the same hook name.
-      wp_schedule_event(time(), 'bwg_autoupdate_interval', 'bwg_schedule_event_hook');
     }
   }
 

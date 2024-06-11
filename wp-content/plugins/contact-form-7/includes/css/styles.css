@@ -140,6 +140,10 @@ form.submitting .wpcf7-spinner {
 	}
 }
 
+.wpcf7 [inert] {
+	opacity: 0.5;
+}
+
 .wpcf7 input[type="file"] {
 	cursor: pointer;
 }
@@ -156,4 +160,13 @@ form.submitting .wpcf7-spinner {
 .wpcf7 input[type="email"],
 .wpcf7 input[type="tel"] {
 	direction: ltr;
+}
+
+.wpcf7-reflection > output {
+	display: list-item;
+	list-style: none;
+}
+
+.wpcf7-reflection > output[hidden] {
+	display: none;
 }

@@ -6,13 +6,18 @@ $vendorDir = dirname(dirname(__FILE__));
 $baseDir = dirname($vendorDir);
 
 return array(
+    'Composer\\InstalledVersions' => $vendorDir . '/composer/InstalledVersions.php',
+    'WPML\\Media\\Classes\\WPML_Media_Attachment_By_URL_Query' => $baseDir . '/classes/class-wpml-media-attachment-by-url-query.php',
     'WPML\\Media\\Classes\\WPML_Media_Classic_Audio_Parser' => $baseDir . '/classes/media-translation/class-wpml-media-classic-audio-parser.php',
     'WPML\\Media\\Classes\\WPML_Media_Classic_Element_Parser' => $baseDir . '/classes/media-translation/class-wpml-media-classic-element-parser.php',
     'WPML\\Media\\Classes\\WPML_Media_Classic_Video_Parser' => $baseDir . '/classes/media-translation/class-wpml-media-classic-video-parser.php',
     'WPML\\Media\\Classes\\WPML_Media_Element_Parser' => $baseDir . '/classes/media-translation/class-wpml-media-element-parser.php',
+    'WPML\\Media\\Classes\\WPML_Media_Element_Translation_Factory' => $baseDir . '/classes/media-translation/class-wpml-media-element-translation-factory.php',
     'WPML\\Media\\Classes\\WPML_Media_File_Parser' => $baseDir . '/classes/media-translation/class-wpml-media-file-parser.php',
     'WPML\\Media\\Classes\\WPML_Media_Href_Parser' => $baseDir . '/classes/media-translation/class-wpml-media-href-parser.php',
     'WPML\\Media\\Classes\\WPML_Media_Image_Parser' => $baseDir . '/classes/media-translation/class-wpml-media-image-parser.php',
+    'WPML\\Media\\Classes\\WPML_Non_Embedded_Pdf_Parser' => $baseDir . '/classes/media-translation/class-non-embedded-pdf-parser.php',
+    'WPML\\Media\\Factories\\WPML_Media_Attachment_By_URL_Query_Factory' => $baseDir . '/classes/class-wpml-media-attachment-by-url-query-factory.php',
     'WPML\\Media\\Factories\\WPML_Media_Element_Parser_Factory' => $baseDir . '/classes/media-translation/factories/class-wpml-media-element-parser-factory.php',
     'WPML\\Media\\Widgets\\Block\\DisplayTranslation' => $baseDir . '/classes/Widgets/Block/DisplayTranslation.php',
     'WPML_Cache_Directory' => $vendorDir . '/wpml-shared/wpml-lib-cache/src/cache/class-wpml-cache-directory.php',
@@ -79,7 +84,6 @@ return array(
     'WPML_Media_Submitted_Basket_Notice_Factory' => $baseDir . '/classes/media-selector/class-wpml-media-submitted-basket-notice-factory.php',
     'WPML_Media_Translated_Images_Update' => $baseDir . '/classes/media-translation/class-wpml-media-translated-images-update.php',
     'WPML_Media_Translation_Status' => $baseDir . '/classes/media-translation/class-wpml-media-translation-status.php',
-    'WPML_Media_Translation_Status_Factory' => $baseDir . '/classes/media-translation/class-wpml-media-translation-status-factory.php',
     'WPML_Media_Translations_UI' => $baseDir . '/classes/menus/wpml-media-translations-ui.php',
     'WPML_Media_Upgrade' => $baseDir . '/inc/wpml-media-upgrade.class.php',
     'WPML_Media_Usage' => $baseDir . '/classes/media-usage/class-wpml-media-usage.php',

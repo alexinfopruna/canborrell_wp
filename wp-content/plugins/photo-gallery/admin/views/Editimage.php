@@ -89,11 +89,11 @@ class EditimageView_bwg {
     $modified_date = time();
     if ( WDWLibrary::get('image_url') ) {
       $image_data = new stdClass();
-      $image_data->image_url = WDWLibrary::get('image_url', '');
-      $image_data->thumb_url = WDWLibrary::get('thumb_url', '');
-        if( WDWLibrary::get('data-image-url', '') != '' ) {
-            $image_data->image_url = WDWLibrary::get('data-image-url', '');
-            $image_data->thumb_url = WDWLibrary::get('data-thumb-url', '');
+      $image_data->image_url = WDWLibrary::get('image_url');
+      $image_data->thumb_url = WDWLibrary::get('thumb_url');
+        if( WDWLibrary::get('data-image-url') != '' ) {
+            $image_data->image_url = WDWLibrary::get('data-image-url');
+            $image_data->thumb_url = WDWLibrary::get('data-thumb-url');
         }
       $filename = htmlspecialchars_decode(BWG()->upload_dir . $image_data->image_url, ENT_COMPAT | ENT_QUOTES);
       $thumb_filename = htmlspecialchars_decode(BWG()->upload_dir . $image_data->thumb_url, ENT_COMPAT | ENT_QUOTES);
@@ -122,7 +122,6 @@ class EditimageView_bwg {
                                    ), admin_url('admin-ajax.php'));
     }
     $image_data->image_url = WDWLibrary::image_url_version($image_data->image_url, $modified_date);
-    @ini_set('memory_limit', '-1');
     $exp_filename = explode("?", $filename);
     list( $width_orig, $height_orig, $type_orig ) = getimagesize($exp_filename[0]);
     if ( $task == 'crop' ) {
@@ -189,8 +188,7 @@ class EditimageView_bwg {
       $updated_image = WDWLibrary::update_image_modified_date( $where );
       $image_data->image_url = WDWLibrary::image_url_version($image_data->image_url, $updated_image['modified_date']);
     }
-    @ini_restore('memory_limit');
-	 // Register and include styles and scripts.
+	  // Register and include styles and scripts.
     BWG()->register_admin_scripts();
     wp_print_styles(BWG()->prefix . '_tables');
     wp_print_scripts(BWG()->prefix . '_admin');
@@ -262,7 +260,7 @@ class EditimageView_bwg {
 		<div class="message<?php echo ( $task == 'crop' )  ? ' croped' : '' ?>">
       <span id="select_msg" class="notice notice-warning"><p><?php _e('Select the area for the thumbnail.', 'photo-gallery'); ?></p></span>
     </div>
-		<form method="post" id="crop_image" action="<?php echo $form_action; ?>" class="wd-form wp-core-ui">
+		<form method="post" id="crop_image" action="<?php echo esc_url($form_action); ?>" class="wd-form wp-core-ui">
 			<div class="thumb_preview_td" style="padding: 5px;">
 				<input type="checkbox" id="chb" name="aspect_ratio" value="1" onclick="spider_crop_ratio()" checked="checked">
 				<label for="chb"><?php _e('Keep aspect ratio', 'photo-gallery'); ?></label>
@@ -272,7 +270,7 @@ class EditimageView_bwg {
 		   <table class="crop_and_preview" cellpadding="0" cellspacing="0">
 			  <tr>
 				<td class="thumb_preview_td" style="vertical-align: middle; max-width: <?php echo ($popup_width - $thumb_width) - 40; ?>px; height:409px;" max-width: <?php echo ($popup_height - $thumb_height) - 75; ?>px;">
-				  <img id="image_view" data-mod-date = "<?php echo $updated_image['modified_date'] ?>" src="<?php echo BWG()->upload_url . $image_data->image_url; ?>" data-image-url="<?php echo $image_data->image_url ?>" data-thumb-url="<?php echo $image_data->thumb_url ?>" style="max-width:800px; max-height: 400px; visibility: hidden" />
+				  <img id="image_view" data-mod-date = "<?php echo $updated_image['modified_date'] ?>" src="<?php echo esc_url(BWG()->upload_url . $image_data->image_url); ?>" data-image-url="<?php echo $image_data->image_url ?>" data-thumb-url="<?php echo $image_data->thumb_url ?>" style="max-width:800px; max-height: 400px; visibility: hidden" />
 				</td>
 			  </tr>
 			</table>
@@ -472,7 +470,6 @@ class EditimageView_bwg {
                                    ), admin_url('admin-ajax.php'));
     }
     $image_data->image_url = WDWLibrary::image_url_version($image_data->image_url, $modified_date);
-    @ini_set('memory_limit', '-1');
     list($width_rotate, $height_rotate, $type_rotate) = getimagesize($filename);
     if ( $edit_type == '270' || $edit_type == '90' ) {
       if ( $type_rotate == 2 ) {
@@ -824,7 +821,6 @@ class EditimageView_bwg {
         $message = WDWLibrary::message_id(31);
       }
     }
-    @ini_restore('memory_limit');
     if ( !empty($edit_type) ) {
       $resolution_thumb = WDWLibrary::get_thumb_size( $image_data->thumb_url );
       if ( $resolution_thumb != '' ) {
@@ -846,7 +842,7 @@ class EditimageView_bwg {
     echo ( !empty($message) ) ? $message . '<br>' : '';
     ?>
     <link type="text/css" rel="stylesheet" id="bwg_tables-css" href="<?php echo BWG()->front_url . '/css/bwg_edit_image.css'; ?>" media="all">
-    <form method="post" id="bwg_rotate_image" action="<?php echo $form_action; ?>">
+      <form method="post" id="bwg_rotate_image" action="<?php echo esc_url($form_action); ?>">
       <?php wp_nonce_field('editimage_' . BWG()->prefix, 'bwg_nonce'); ?>
       <div class="main_cont" style="height: <?php echo $popup_height; ?>px;">
         <div class="cont_for_effect">

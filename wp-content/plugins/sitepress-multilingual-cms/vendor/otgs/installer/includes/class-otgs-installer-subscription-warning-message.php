@@ -24,7 +24,8 @@ class Subscription_Warning_Message {
 		$subscription     = Obj::path( [ 'repositories', $repositoryId, 'subscription' ], $this->settings );
 		$subscriptionData = Obj::prop( 'data', $subscription );
 		$repositoryData   = Obj::path( [ 'repositories', $repositoryId, 'data' ], $this->settings );
-		$repositoryURL    = Obj::prop( 'url', $repositoryData ) . '/account/?utm_source=plugin&utm_medium=gui&utm_campaign=wpmlinstaller';
+		$product          = Obj::prop( 'product-name', $repositoryData);
+		$repositoryURL    = Obj::prop( 'url', $repositoryData ) . '/account/?utm_source=plugin&utm_medium=gui&utm_campaign=installer&utm_term=expiring-soon';
 
 		$subscriptionId        = $subscriptionId ?: Obj::propOr( 'subscription_type', $subscriptionData );
 		$expires               = Obj::prop( 'expires', $subscriptionData );
@@ -61,14 +62,14 @@ class Subscription_Warning_Message {
 				// defaults
 				$daysWarning = 30;
 
-				$customMessage = "<a style='margin-left:0px;' href='{$repositoryURL}' target='_blank'>" . __( 'Renew now or signup for automatic renewals', 'installer' ) . '</a>' . ' ' . __( 'to continue receiving support and updates and never risk losing your renewal discount.', 'installer' ) . '<br>';
+				$customMessage = "<a style='margin-left:0px;' href='{$repositoryURL}' target='_blank'>" . __( 'Renew today', 'installer' ) . '</a>' . ' ' . __( 'to protect your site from breaking changes in future WordPress releases.', 'installer' ) . '<br>';
 			}
 
 			if ( strtotime( $expires ) < strtotime( sprintf( '+%d day', $daysWarning ) ) ) {
 				if ( $doesntHaveAutoRenewal || ! Obj::has( 'hasAutoRenewal', $subscriptionData ) ) {
-					$daysToExpiration = ceil( ( strtotime( $expires ) - time() ) / 86400 );
+					$daysToExpiration = (int) ceil( ( strtotime( $expires ) - time() ) / 86400 );
 
-					$message = sprintf( _n( 'Your subscription expires in %d day.', 'Your subscription expires in %d days.', $daysToExpiration, 'installer' ), $daysToExpiration );
+					$message = sprintf( _n( 'Your %s account expires in %d day.', 'Your %s account expires in %d days.', $daysToExpiration, 'installer' ), $product, $daysToExpiration );
 
 					return $message . ' ' . $customMessage;
 				}

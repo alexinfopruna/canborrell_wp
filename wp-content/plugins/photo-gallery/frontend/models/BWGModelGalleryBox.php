@@ -22,7 +22,7 @@ class BWGModelGalleryBox {
     if ( $sort_by == 'size' || $sort_by == 'resolution' ) {
       $sort_by = ' CAST(image.' . $sort_by . ' AS SIGNED) ';
     }
-    elseif ( $sort_by == 'casual' ) {
+    elseif ( $sort_by == 'casual' || $sort_by == 'random' ) {
       $sort_by = 'RAND()';
     }
     elseif (($sort_by != 'alt') && ($sort_by != 'date') && ($sort_by != 'filetype') && ($sort_by != 'filename')) {
@@ -36,7 +36,7 @@ class BWGModelGalleryBox {
       $order_by = 'desc';
     }
 
-    $bwg_random_seed = WDWLibrary::get('bwg_random_seed','');
+    $bwg_random_seed = WDWLibrary::get('bwg_random_seed','','intval');
     $bwg_filter_tag_temp = WDWLibrary::get('filter_tag', 0);
     if ( empty($bwg_filter_tag_temp) ) {
       $filter_tags = array();

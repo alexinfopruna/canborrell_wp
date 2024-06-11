@@ -14,8 +14,10 @@ class BWGViewSite {
       if ( $embed_instagram_post || ( isset($params['gallery_row']->gallery_type)
         && in_array($params['gallery_row']->gallery_type, array( 'instagram', 'instagram_post' )) ) ) {
         if ( !wp_script_is('instagram-embed', 'done') ) {
-          wp_print_scripts('instagram-embed');
+          wp_register_script( 'instagram-embed', 'https://www.instagram.com/embed.js' );
+          wp_print_scripts( 'instagram-embed' );
         }
+
       }
     }
     if ( !WDWLibrary::elementor_is_active() && BWG()->options->use_inline_stiles_and_scripts ) {
@@ -47,8 +49,8 @@ class BWGViewSite {
           }
         }
       }
-      if ( !wp_script_is('jquery-mobile', 'done') ) {
-        wp_print_scripts('jquery-mobile');
+      if ( !wp_script_is('bwg_mobile', 'done') ) {
+        wp_print_scripts('bwg_mobile');
       }
       if ( !wp_script_is('bwg_frontend', 'done') ) {
         wp_print_scripts('bwg_frontend');
@@ -194,7 +196,7 @@ class BWGViewSite {
           ?>
         <div id="bwg_spider_popup_loading_<?php echo esc_attr($bwg); ?>" class="bwg_spider_popup_loading"></div>
         <div id="spider_popup_overlay_<?php echo esc_attr($bwg); ?>" class="spider_popup_overlay" onclick="spider_destroypopup(1000)"></div>
-        <input type="hidden" id="bwg_random_seed_<?php echo esc_attr($bwg); ?>" value="<?php echo isset($GLOBALS['bwg_random_seed_' . $bwg]) ? esc_attr($GLOBALS['bwg_random_seed_' . $bwg]) : '' ?>">
+        <input type="hidden" id="bwg_random_seed_<?php echo esc_attr($bwg); ?>" value="<?php echo isset($GLOBALS['bwg_random_seed_' . $bwg]) ? intval($GLOBALS['bwg_random_seed_' . $bwg]) : '' ?>">
           <?php
         }
         ?>
@@ -291,12 +293,8 @@ class BWGViewSite {
   }
 
   public function loading($bwg = 0, $image_enable_page = 0, $gallery_type = '' ) {
-    $load_type_class = "bwg_loading_div_1";
-    if ( ($image_enable_page == 2 || $image_enable_page == 3) ) {
-      $load_type_class = "bwg_load_more_ajax_loading";
-    }
-     ?>
-    <div id="ajax_loading_<?php echo esc_attr($bwg); ?>" class="<?php echo esc_attr($load_type_class); ?>">
+    ?>
+    <div id="ajax_loading_<?php echo esc_attr($bwg); ?>" class="bwg_loading_div_1">
       <div class="bwg_loading_div_2">
         <div class="bwg_loading_div_3">
           <div id="loading_div_<?php echo esc_attr($bwg); ?>" class="bwg_spider_ajax_loading">
@@ -467,12 +465,12 @@ class BWGViewSite {
           <span class="bwg_search_loupe_container1 bwg-hidden">
              <i title="<?php echo esc_html__('SEARCH...', 'photo-gallery'); ?>" class="bwg-icon-search bwg_search" onclick="bwg_ajax('<?php echo esc_attr($form_id); ?>', '<?php echo esc_attr($current_view); ?>', '<?php echo esc_html($cur_gal_id); ?>', <?php echo esc_html($album_gallery_id); ?>, '', '<?php echo esc_html($type); ?>', 1)"></i>
           </span>
-          <input id="bwg_search_input_<?php echo esc_attr($current_view); ?>" class="bwg_search_input" type="text" onkeypress="bwg_key_press(this); return bwg_check_search_input_enter(this, event);" name="bwg_search_<?php echo esc_attr($current_view); ?>" value="<?php echo esc_attr($bwg_search); ?>" placeholder="<?php echo esc_attr($placeholder); ?>" />
+          <input id="bwg_search_input_<?php echo esc_attr($current_view); ?>" class="bwg_search_input" type="search" onkeypress="bwg_key_press(this); return bwg_check_search_input_enter(this, event);" name="bwg_search_<?php echo esc_attr($current_view); ?>" value="<?php echo esc_attr($bwg_search); ?>" placeholder="<?php echo esc_attr($placeholder); ?>" />
           <span class="bwg_search_reset_container <?php echo esc_attr($bwg_search_reset); ?>">
           <i title="<?php echo esc_html__('Reset', 'photo-gallery'); ?>" class="bwg-icon-times bwg_reset" onclick="bwg_clear_search_input('<?php echo esc_attr($current_view); ?>'); <?php echo esc_html($bwg_ajax_reset);?> "></i>
         </span>
           <input id="bwg_images_count_<?php echo esc_attr($current_view); ?>" class="bwg_search_input" type="hidden" name="bwg_images_count_<?php echo esc_attr($current_view); ?>" value="<?php echo esc_attr($images_count); ?>">
-            <span class="search_placeholder_title" onclick="bwg_search_focus(this)" <?php echo esc_html($bwg_search_focus); ?>>
+            <span class="search_placeholder_title" onclick="bwg_search_focus(this)" <?php echo (BWG()->options->front_ajax == "1" && !empty($bwg_search)) ? 'style="display:none;"' : ''; ?>>
                 <span class="bwg_search_loupe_container">
                   <i title="<?php echo esc_html__('SEARCH...', 'photo-gallery'); ?>" class="bwg-icon-search bwg_search"></i>
                 </span>
@@ -845,7 +843,7 @@ class BWGViewSite {
               $last_page = "last-page disabled";
             }
 
-            $REQUEST_URI = isset($REQUEST_URI) ? sanitize_url($REQUEST_URI) : '';
+            $REQUEST_URI = isset($_SERVER['REQUEST_URI']) ? sanitize_url($_SERVER['REQUEST_URI']) : '';
             $REQUEST_URI_first = add_query_arg(array( "page_number_" . $current_view => 1 ), $REQUEST_URI);
             $REQUEST_URI_prev =  add_query_arg(array( "page_number_" . $current_view => $page_number - 1 ), $REQUEST_URI);
             ?>

@@ -188,7 +188,6 @@ class WPML_Media_Post_Images_Translation implements IWPML_Action {
 	 * @return array
 	 */
 	public function translate_images_in_content( array $postarr, stdclass $job ) {
-
 		$postarr['post_content'] = $this->images_updater->replace_images_with_translations(
 			$postarr['post_content'],
 			$job->language_code,

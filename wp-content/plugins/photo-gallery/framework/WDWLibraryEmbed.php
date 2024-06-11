@@ -7,11 +7,12 @@ class WDWLibraryEmbed {
 
   public function __construct() {}
 
-	public function get_provider($oembed, $url, $args = '') {
+	public static function get_provider($oembed, $url, $args = array()) {
 		$provider = false;
 		if (!isset($args['discover'])) {
 			$args['discover'] = true;
 		}
+    $oembed->providers["#https?://((m|www)\.)?youtube\.com/shorts.*#i"] = array("https://www.youtube.com/oembed", 1);
 		foreach ($oembed->providers as $matchmask => $data ) {
 			list( $providerurl, $regex ) = $data;
 			// Turn the asterisk-type provider URLs into regex
@@ -121,7 +122,7 @@ class WDWLibraryEmbed {
       include( BWG()->abspath . WPINC . '/class-oembed.php' );
     // get an oembed object
     $oembed = _wp_oembed_get_object();
-    if (method_exists($oembed, 'get_provider')) {
+    if (method_exists($oembed, 'get_provider') && strpos($url, "youtube.com/shorts") === false) {
       // Since 4.0.0
       $provider = $oembed->get_provider($url);
     }
@@ -172,9 +173,13 @@ class WDWLibraryEmbed {
             list($media_width, $media_height) = @getimagesize($thumb_url);
             $img_width = !empty($media_width) ? $media_width : '640';
             $img_height = !empty($media_height) ? $media_height : '640';
+            $thumb_width = $img_width;
+            $thumb_height = $img_height;
+
           }
           else {
             // Embed Media case.
+
             $result = self::instagram_oembed_connect($url);
             $result->embed_url = $url;
             if ( !empty($result->error) ) {
@@ -202,6 +207,8 @@ class WDWLibraryEmbed {
             $thumb_url = $result->thumbnail_url;
             $img_width = $result->thumbnail_width;
             $img_height = $result->thumbnail_height;
+            $thumb_width = $result->thumbnail_width;
+            $thumb_height = $result->thumbnail_height;
           }
         }
 
@@ -232,8 +239,10 @@ class WDWLibraryEmbed {
         $embed_type = 'EMBED_OEMBED_' . $host;
         switch ($embed_type) {
           case 'EMBED_OEMBED_YOUTUBE': {
-            $youtube_regex = "#(?<=v=)[a-zA-Z0-9-]+(?=&)|(?<=v\/)[^&\n]+|(?<=v=)[^&\n]+|(?<=youtu.be/)+(.*)+#";
+            $youtube_regex = "#((?<=v=)[a-zA-Z0-9-]+(?=&)|(?<=v\/)[^&\n]+|(?<=youtube.com\/shorts\/)+|(?<=v=)[^&\n]+|(?<=youtu.be\/))+(.*)+#";
             $matches = array();
+            /* Usable in case of short video shared link copy */
+            $url = str_replace("?feature=share", "", $url);
             preg_match($youtube_regex , $url , $matches);
             $filename = $matches[0];
 
@@ -255,6 +264,15 @@ class WDWLibraryEmbed {
           }
           break;
           case 'EMBED_OEMBED_VIMEO': {
+            /* Case when dimensions in the end of url difference then thumb dimmensions */
+            if ( strpos($result->thumbnail_url, '-d_'.$result->thumbnail_width . "x" . $result->thumbnail_height ) === false ) {
+              $thumbnail_url = explode( '-d_', $result->thumbnail_url );
+              if ( !empty($thumbnail_url[1]) ) {
+                $dimansions = explode( 'x', $thumbnail_url[1] );
+                $result->thumbnail_width = isset($dimansions[0]) ? $dimansions[0] : $result->thumbnail_width;
+                $result->thumbnail_height = isset($dimansions[1]) ? $dimansions[1] : $result->thumbnail_height;
+              }
+            }
             $embedData = array(
               'name' => '',
               'description' => htmlspecialchars($result->title),
@@ -269,7 +287,6 @@ class WDWLibraryEmbed {
               'resolution' => $result->thumbnail_width . " x " . $result->thumbnail_height,
               'resolution_thumb' => $result->thumbnail_width . " x " . $result->thumbnail_height,
               'redirect_url' => '');
-
             return json_encode($embedData);
 		      }
           break;
@@ -649,6 +666,49 @@ class WDWLibraryEmbed {
     return json_encode($instagram_album_data);
   }
 
+  /**
+   * Get all instagram embeds from DB
+   *
+   * @return array
+  */
+  public static function bwg_get_instagram_embeds() {
+    global $wpdb;
+    $query = "SELECT i.id, i.filename FROM " . $wpdb->prefix . "bwg_image i ";
+    $query .= "LEFT JOIN " .$wpdb->prefix . "bwg_gallery g ";
+    $query .= "ON i.gallery_id = g.id ";
+    $query .= "WHERE i.filetype='EMBED_OEMBED_INSTAGRAM_POST' AND g.gallery_type!='instagram_post' AND g.gallery_type!='instagram'";
+    $instagram_embeds = $wpdb->get_results( $query, ARRAY_A );
+    return $instagram_embeds;
+  }
+
+  /**
+   * Update Instagram Ebeds
+   *
+   * @param $instagram_embeds array
+  */
+  public static function bwg_refresh_instagram_embed( $instagram_embeds ) {
+    global $wpdb;
+    foreach ( $instagram_embeds as $embed ) {
+      $id = $embed['id'];
+      $url = 'https://instagram.com/p/'.$embed['filename'];
+      $result = self::instagram_oembed_connect($url);
+      if ( !empty($result->error) ) {
+        continue;
+      }
+      $media_url = base64_encode($result->html);
+      $thumb_url = $result->thumbnail_url;
+      $wpdb->update($wpdb->prefix . 'bwg_image',
+                            array(
+                              'image_url' => $media_url,
+                              'thumb_url' => $thumb_url
+                            ),
+                            array('id' => $id),
+                            array('%s','%s'),
+                            array('%d')
+      );
+    }
+  }
+
   public static function check_instagram_galleries(){
     global $wpdb;
     $instagram_galleries = $wpdb->get_results( "SELECT id, gallery_type, gallery_source, update_flag, autogallery_image_number  FROM " . $wpdb->prefix . "bwg_gallery WHERE gallery_type='instagram' OR gallery_type='instagram_post'", OBJECT );
@@ -678,7 +738,6 @@ class WDWLibraryEmbed {
     $type = $args->gallery_type;
     $update_flag = $args->update_flag;
     $autogallery_image_number = $args->autogallery_image_number;
-
 	  $is_instagram = false;
     if ( $type == 'instagram' ) {
       $is_instagram = TRUE;
@@ -734,6 +793,9 @@ class WDWLibraryEmbed {
           }
         }
       }
+      if ( empty($image_new->resolution_thumb) ) {
+        $image_new->resolution_thumb = $image_new->resolution;
+      }
       if ( $to_add ) {
         /*if image does not exist, insert*/
         $new_order++;
@@ -776,7 +838,11 @@ class WDWLibraryEmbed {
               "slug" => sanitize_title($image_new->name),
               "description" => $image_new->description,
               "alt" => $image_new->name,
-              "date" => $image_new->date_modified);
+              "date" => $image_new->date_modified,
+              'image_url' => $image_new->url,
+              'thumb_url' => $image_new->thumb_url
+            );
+
             array_push($images_update, $image_update);
             $is_dated = false;
           }
@@ -822,13 +888,18 @@ class WDWLibraryEmbed {
 			  'slug' => self::spider_replace4byte($image['slug']),
 			  'description' => self::spider_replace4byte($image['description']),
 			  'alt' => self::spider_replace4byte($image['alt']),
-			  'date' => $image['date']
-			  ),
+			  'date' => $image['date'],
+        'image_url' => $image['image_url'],
+        'thumb_url' => $image['thumb_url']
+        ),
         array('id' => $image['id']),
-        array('%s','%s','%s','%s','%s'),
+        array('%s','%s','%s','%s','%s','%s','%s'),
         array('%d')
       );
 		}
+    }
+    if ( empty($image['resolution_thumb']) ) {
+      $image['resolution_thumb'] = $image['resolution'];
     }
 		/*add new images*/
     foreach ( $images_insert as $image ) {
@@ -947,6 +1018,16 @@ class WDWLibraryEmbed {
 
         if( $result['response']['code'] == 200 ) {
           $data = json_decode( $result['body'], 1 );
+
+          /* Case when dimensions in the end of url difference then thumb dimmensions */
+          if ( strpos($data['thumbnail_url'], '-d_' . $data['thumbnail_width'] . "x" . $data['thumbnail_height'] ) === false ) {
+            $thumbnail_url = explode( '-d_', $data['thumbnail_url'] );
+            if ( !empty($thumbnail_url[1]) ) {
+              $dimansions = explode( 'x', $thumbnail_url[1] );
+              $data['thumbnail_width'] = isset($dimansions[0]) ? $dimansions[0] : $data['thumbnail_width'];
+              $data['thumbnail_height'] = isset($dimansions[1]) ? $dimansions[1] : $data['thumbnail_height'];
+            }
+          }
 
           $update_data = array(
             'thumb_url' => $data['thumbnail_url'],

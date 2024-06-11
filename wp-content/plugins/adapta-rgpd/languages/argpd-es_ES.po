@@ -2,9 +2,9 @@
 # This file is distributed under the same license as the Adapta RGPD package.
 msgid ""
 msgstr ""
-"Project-Id-Version: Adapta RGPD 1.3.6\n"
+"Project-Id-Version: Adapta RGPD 1.3.7\n"
 "Report-Msgid-Bugs-To: https://wordpress.org/support/plugin/adapta-rgpd\n"
-"POT-Creation-Date: 2022-08-25 08:00:15+00:00\n"
+"POT-Creation-Date: 2022-11-04 12:11:29+00:00\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -82,329 +82,329 @@ msgstr ""
 
 #: includes/class-admin.php:146 includes/class-admin.php:160
 #: includes/class-admin.php:175 includes/class-admin.php:206
-#: includes/class-admin.php:294 includes/class-admin.php:357
-#: includes/class-admin.php:386
+#: includes/class-admin.php:289 includes/class-admin.php:355
+#: includes/class-admin.php:384
 msgid "You do not have sufficient permissions to access this page."
 msgstr ""
 
-#: includes/class-admin.php:424
+#: includes/class-admin.php:422
 msgid "Settings"
 msgstr ""
 
-#: includes/class-integration.php:469
+#: includes/class-integration.php:509
 msgid "Moderar los comentarios."
 msgstr ""
 
-#: includes/class-integration.php:480
+#: includes/class-integration.php:520
 msgid "Para poder comentar debes aceptar la política de privacidad."
 msgstr ""
 
-#: includes/class-integration.php:573
+#: includes/class-integration.php:613
 msgid "Menú para los textos legales - RGPD"
 msgstr ""
 
-#: includes/class-integration.php:594 includes/class-ui.php:1144 views/mustache
+#: includes/class-integration.php:634 includes/class-ui.php:1144 views/mustache
 msgid "Aviso Legal"
 msgstr ""
 
-#: includes/class-integration.php:599 includes/class-ui.php:1210 views/mustache
+#: includes/class-integration.php:639 includes/class-ui.php:1210 views/mustache
 msgid "Política de Privacidad"
 msgstr ""
 
-#: includes/class-integration.php:604 includes/class-ui.php:1276 views/mustache
+#: includes/class-integration.php:644 includes/class-ui.php:1276 views/mustache
 msgid "Política de Cookies"
 msgstr ""
 
-#: includes/class-integration.php:608
+#: includes/class-integration.php:648
 msgid "Configuración de Cookies"
 msgstr ""
 
-#: includes/class-integration.php:760
+#: includes/class-integration.php:800
 msgid "Cumplir con la prestación contratada."
 msgstr ""
 
-#: includes/class-integration.php:762
+#: includes/class-integration.php:802
 msgid "Ejecución del contrato con el interesado."
 msgstr ""
 
-#: includes/class-integration.php:794 includes/class-integration.php:827
-#: includes/class-integration.php:845
+#: includes/class-integration.php:834 includes/class-integration.php:867
+#: includes/class-integration.php:885
 msgid "Sí"
 msgstr ""
 
-#: includes/class-integration.php:826 includes/class-integration.php:844
+#: includes/class-integration.php:866 includes/class-integration.php:884
 msgid "Aceptar promociones"
 msgstr ""
 
-#: includes/class-integration.php:827 includes/class-integration.php:845
+#: includes/class-integration.php:867 includes/class-integration.php:885
 msgid "No"
 msgstr ""
 
-#: includes/class-settings.php:213
+#: includes/class-settings.php:214
 msgid "Simple"
 msgstr ""
 
-#: includes/class-settings.php:214
+#: includes/class-settings.php:215
 msgid "Con borde"
 msgstr ""
 
-#: includes/class-settings.php:215
+#: includes/class-settings.php:216
 msgid "Borde + Números"
 msgstr ""
 
-#: includes/class-settings.php:216
+#: includes/class-settings.php:217
 msgid "Compacto en una línea"
 msgstr ""
 
-#: includes/class-settings.php:217
+#: includes/class-settings.php:218
 msgid "Compacto con botón ver más"
 msgstr ""
 
-#: includes/class-settings.php:221
+#: includes/class-settings.php:222
 msgid "Clásico"
 msgstr ""
 
-#: includes/class-settings.php:222
+#: includes/class-settings.php:223
 msgid "Clásico en parte superior"
 msgstr ""
 
-#: includes/class-settings.php:223
+#: includes/class-settings.php:224
 msgid "Moderno Claro"
 msgstr ""
 
-#: includes/class-settings.php:224
+#: includes/class-settings.php:225
 msgid "Moderno Oscuro"
 msgstr ""
 
-#: includes/class-settings.php:225
+#: includes/class-settings.php:226
 msgid "Moderno en columnas"
 msgstr ""
 
-#: includes/class-settings.php:230
+#: includes/class-settings.php:231
 msgid "Argentina"
 msgstr ""
 
-#: includes/class-settings.php:231
+#: includes/class-settings.php:232
 msgid "Andorra"
 msgstr ""
 
-#: includes/class-settings.php:232
+#: includes/class-settings.php:233
 msgid "Alemania"
 msgstr ""
 
-#: includes/class-settings.php:233
+#: includes/class-settings.php:234
 msgid "Austria"
 msgstr ""
 
-#: includes/class-settings.php:234
+#: includes/class-settings.php:235
 msgid "Bélgica"
 msgstr ""
 
-#: includes/class-settings.php:235
+#: includes/class-settings.php:236
 msgid "Bulgaria"
 msgstr ""
 
-#: includes/class-settings.php:236
+#: includes/class-settings.php:237
 msgid "Bolivia"
 msgstr ""
 
-#: includes/class-settings.php:237
+#: includes/class-settings.php:238
 msgid "Brasil"
 msgstr ""
 
-#: includes/class-settings.php:238
+#: includes/class-settings.php:239
 msgid "Canadá"
 msgstr ""
 
-#: includes/class-settings.php:239
+#: includes/class-settings.php:240
 msgid "Colombia"
 msgstr ""
 
-#: includes/class-settings.php:240
+#: includes/class-settings.php:241
 msgid "Chile"
 msgstr ""
 
-#: includes/class-settings.php:241
+#: includes/class-settings.php:242
 msgid "Costa Rica"
 msgstr ""
 
-#: includes/class-settings.php:242
+#: includes/class-settings.php:243
 msgid "Chipre"
 msgstr ""
 
-#: includes/class-settings.php:243
+#: includes/class-settings.php:244
 msgid "Cuba"
 msgstr ""
 
-#: includes/class-settings.php:244
+#: includes/class-settings.php:245
 msgid "Dinamarca"
 msgstr ""
 
-#: includes/class-settings.php:245
+#: includes/class-settings.php:246
 msgid "Ecuador"
 msgstr ""
 
-#: includes/class-settings.php:246
+#: includes/class-settings.php:247
 msgid "El Salvador"
 msgstr ""
 
-#: includes/class-settings.php:247
+#: includes/class-settings.php:248
 msgid "Eslovaquia"
 msgstr ""
 
-#: includes/class-settings.php:248
+#: includes/class-settings.php:249
 msgid "Eslovenia"
 msgstr ""
 
-#: includes/class-settings.php:249
+#: includes/class-settings.php:250
 msgid "Estonia"
 msgstr ""
 
-#: includes/class-settings.php:250
+#: includes/class-settings.php:251
 msgid "España"
 msgstr ""
 
-#: includes/class-settings.php:251
+#: includes/class-settings.php:252
 msgid "Estados Unidos"
 msgstr ""
 
-#: includes/class-settings.php:252
+#: includes/class-settings.php:253
 msgid "Finlandia"
 msgstr ""
 
-#: includes/class-settings.php:253
+#: includes/class-settings.php:254
 msgid "Francia"
 msgstr ""
 
-#: includes/class-settings.php:254
+#: includes/class-settings.php:255
 msgid "Grecia"
 msgstr ""
 
-#: includes/class-settings.php:255
+#: includes/class-settings.php:256
 msgid "Guatemala"
 msgstr ""
 
-#: includes/class-settings.php:256
+#: includes/class-settings.php:257
 msgid "Haití"
 msgstr ""
 
-#: includes/class-settings.php:257
+#: includes/class-settings.php:258
 msgid "Honduras"
 msgstr ""
 
-#: includes/class-settings.php:258
+#: includes/class-settings.php:259
 msgid "Hungría"
 msgstr ""
 
-#: includes/class-settings.php:259
+#: includes/class-settings.php:260
 msgid "Italia"
 msgstr ""
 
-#: includes/class-settings.php:260
+#: includes/class-settings.php:261
 msgid "Irlanda"
 msgstr ""
 
-#: includes/class-settings.php:261
+#: includes/class-settings.php:262
 msgid "Letonia"
 msgstr ""
 
-#: includes/class-settings.php:262
+#: includes/class-settings.php:263
 msgid "Lituania"
 msgstr ""
 
-#: includes/class-settings.php:263
+#: includes/class-settings.php:264
 msgid "Luxemburgo"
 msgstr ""
 
-#: includes/class-settings.php:264
+#: includes/class-settings.php:265
 msgid "Malta"
 msgstr ""
 
-#: includes/class-settings.php:265
+#: includes/class-settings.php:266
 msgid "México"
 msgstr ""
 
-#: includes/class-settings.php:266
+#: includes/class-settings.php:267
 msgid "Nicaragua"
 msgstr ""
 
-#: includes/class-settings.php:267
+#: includes/class-settings.php:268
 msgid "Países Bajos"
 msgstr ""
 
-#: includes/class-settings.php:268
+#: includes/class-settings.php:269
 msgid "Perú"
 msgstr ""
 
-#: includes/class-settings.php:269
+#: includes/class-settings.php:270
 msgid "Panamá"
 msgstr ""
 
-#: includes/class-settings.php:270
+#: includes/class-settings.php:271
 msgid "Paraguay"
 msgstr ""
 
-#: includes/class-settings.php:271
+#: includes/class-settings.php:272
 msgid "Polonia"
 msgstr ""
 
-#: includes/class-settings.php:272
+#: includes/class-settings.php:273
 msgid "Portugal"
 msgstr ""
 
-#: includes/class-settings.php:273
+#: includes/class-settings.php:274
 msgid "Reino Unido"
 msgstr ""
 
-#: includes/class-settings.php:274
+#: includes/class-settings.php:275
 msgid "República Checa"
 msgstr ""
 
-#: includes/class-settings.php:275
+#: includes/class-settings.php:276
 msgid "República Dominicana"
 msgstr ""
 
-#: includes/class-settings.php:276
+#: includes/class-settings.php:277
 msgid "Rumania"
 msgstr ""
 
-#: includes/class-settings.php:277
+#: includes/class-settings.php:278
 msgid "Suecia"
 msgstr ""
 
-#: includes/class-settings.php:278
+#: includes/class-settings.php:279
 msgid "Federación Rusa"
 msgstr ""
 
-#: includes/class-settings.php:279
+#: includes/class-settings.php:280
 msgid "Confederación Suiza"
 msgstr ""
 
-#: includes/class-settings.php:280
+#: includes/class-settings.php:281
 msgid "Uruguay"
 msgstr ""
 
-#: includes/class-settings.php:281
+#: includes/class-settings.php:282
 msgid "Venezuela"
 msgstr ""
 
-#: includes/class-settings.php:356
+#: includes/class-settings.php:357
 msgid "Aceptar"
 msgstr ""
 
-#: includes/class-settings.php:360
+#: includes/class-settings.php:361
 msgid "Rechazar"
 msgstr ""
 
-#: includes/class-settings.php:365 views/mustache
-msgid "Configurar y más información"
-msgstr ""
-
-#: includes/class-settings.php:367
+#: includes/class-settings.php:366
 msgid "Más información"
 msgstr ""
 
-#: includes/class-settings.php:397
+#: includes/class-settings.php:368 views/mustache
+msgid "Configurar y más información"
+msgstr ""
+
+#: includes/class-settings.php:398
 msgid ""
 "Acepto recibir ofertas, noticias y otras recomendaciones sobre productos o "
 "servicios"
@@ -648,8 +648,8 @@ msgstr ""
 msgid "Página en la que aparece"
 msgstr ""
 
-#: includes/class-ui.php:1129 includes/class-ui.php:1994
-#: includes/class-ui.php:2012
+#: includes/class-ui.php:1129 includes/class-ui.php:2010
+#: includes/class-ui.php:2028
 msgid "Ayuda"
 msgstr ""
 
@@ -711,7 +711,8 @@ msgid "Guía para adecuar los formularios"
 msgstr ""
 
 #: includes/class-ui.php:1484 includes/class-ui.php:1813
-#: includes/class-ui.php:1910 includes/class-ui.php:1968
+#: includes/class-ui.php:1910 includes/class-ui.php:1926
+#: includes/class-ui.php:1984
 msgid "Recomendado."
 msgstr ""
 
@@ -870,40 +871,49 @@ msgstr ""
 #: includes/class-ui.php:1908
 msgid ""
 "Bloquea los scripts conocidos de analítica como Google analytics, Recaptcha, "
-"Facebook analytics, ... y de redes sociales como Twitter o Disqus."
+"Facebook analytics, ... y de redes sociales como Twitter o Disqus mientras "
+"no haya consentimiento."
 msgstr ""
 
-#: includes/class-ui.php:1945
+#: includes/class-ui.php:1921
+msgid "Bloquea iframes"
+msgstr ""
+
+#: includes/class-ui.php:1924
+msgid "Bloquea iframes mientras no haya consentimiento."
+msgstr ""
+
+#: includes/class-ui.php:1961
 msgid "Ningún script detectado."
 msgstr ""
 
-#: includes/class-ui.php:1949
+#: includes/class-ui.php:1965
 msgid ""
 "Desactiva los scripts marcados mientras el usuario no dé el consentimiento "
 "para instalar cookies."
 msgstr ""
 
-#: includes/class-ui.php:1965
+#: includes/class-ui.php:1981
 msgid "Recarga la página cuando el usuario acepte las cookies"
 msgstr ""
 
-#: includes/class-ui.php:2079
+#: includes/class-ui.php:2095
 msgid "LegalTech360"
 msgstr ""
 
-#: includes/class-ui.php:2086
+#: includes/class-ui.php:2102
 msgid "Clave de la API"
 msgstr ""
 
-#: includes/class-ui.php:2134
+#: includes/class-ui.php:2150
 msgid "Algo fue mal."
 msgstr ""
 
-#: includes/class-ui.php:2140
+#: includes/class-ui.php:2156
 msgid "Los cambios se han guardado."
 msgstr ""
 
-#: includes/class-ui.php:2143
+#: includes/class-ui.php:2159
 msgid "La página ya existe."
 msgstr ""
 
@@ -1714,9 +1724,7 @@ msgid ""
 "Formularios de contacto: El Titular solicita datos personales entre los que "
 "pueden estar: nombre y apellidos, dirección de correo electrónico, número de "
 "teléfono y dirección de sitio web con la finalidad de responder las "
-"consultas de los Usuarios{{#es-tienda}}, ofrecer información y "
-"demostraciones de los productos y servicios del Titular, incluidos "
-"presupuestos{{/es-tienda}}."
+"consultas de los Usuarios"
 msgstr ""
 
 #: views/mustache
@@ -1980,6 +1988,10 @@ msgstr ""
 
 #: views/mustache
 msgid "No puede ejercitar el derecho a la portabilidad de los datos."
+msgstr ""
+
+#: views/mustache
+msgid "No se ceden o comunican datos a terceros para prestar este servicio."
 msgstr ""
 
 #: views/mustache
@@ -2545,6 +2557,12 @@ msgstr ""
 
 #: views/mustache
 msgid "la dirección de correo postal:"
+msgstr ""
+
+#: views/mustache
+msgid ""
+"ofrecer información y demostraciones de los productos y servicios del "
+"Titular, incluidos presupuestos"
 msgstr ""
 
 #: views/mustache

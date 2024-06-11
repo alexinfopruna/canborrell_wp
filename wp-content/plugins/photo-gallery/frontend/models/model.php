@@ -79,13 +79,12 @@ class BWGModelSite {
    * Inner Gallery Groups data will not be included in sitemap.
   */
   public function get_image_rows_data_from_album($album_id) {
-
     global $wpdb;
-    $format = '';
-    if( $album_id ) {
+    if ( $album_id ) {
       $where = 'image.gallery_id IN (SELECT alb_gal_id FROM `' . $wpdb->prefix . 'bwg_album_gallery` as albgal WHERE albgal.album_id=%d AND (SELECT gal.published from `' . $wpdb->prefix . 'bwg_gallery` as gal WHERE gal.id=albgal.alb_gal_id))';
       $format = intval( $album_id );
-    } else {
+    }
+    else {
       $where = '(SELECT gal.published from `' . $wpdb->prefix . 'bwg_gallery` as gal WHERE gal.id=image.gallery_id)=%d';
       $format = 1;
     }
@@ -96,9 +95,10 @@ class BWGModelSite {
 
   public function get_tags_rows_data($gallery_id) {
     global $wpdb;
-    if( $gallery_id ) {
+    if ( $gallery_id ) {
       $row = $wpdb->get_results($wpdb->prepare('Select t1.* FROM ' . $wpdb->prefix . 'terms AS t1 LEFT JOIN ' . $wpdb->prefix . 'term_taxonomy AS t2 ON t1.term_id = t2.term_id' . ($gallery_id ? ' LEFT JOIN (SELECT DISTINCT tag_id , gallery_id  FROM ' . $wpdb->prefix . 'bwg_image_tag) AS t3 ON t1.term_id=t3.tag_id' : '') . ' WHERE taxonomy="bwg_tag"' . ($gallery_id ? ' AND t3.gallery_id="%d"' : '') . ' ORDER BY t1.name  ASC', $gallery_id));
-    } else {
+    }
+    else {
       $row = $wpdb->get_results('Select t1.* FROM ' . $wpdb->prefix . 'terms AS t1 LEFT JOIN ' . $wpdb->prefix . 'term_taxonomy AS t2 ON t1.term_id = t2.term_id' . ($gallery_id ? ' LEFT JOIN (SELECT DISTINCT tag_id , gallery_id  FROM ' . $wpdb->prefix . 'bwg_image_tag) AS t3 ON t1.term_id=t3.tag_id' : '') . ' WHERE taxonomy="bwg_tag"' . ($gallery_id ? ' AND t3.gallery_id="%d"' : '') . ' ORDER BY t1.name  ASC');
     }
     return $row;

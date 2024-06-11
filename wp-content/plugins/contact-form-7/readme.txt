@@ -1,10 +1,11 @@
 === Contact Form 7 ===
 Contributors: takayukister
 Donate link: https://contactform7.com/donate/
-Tags: contact, form, contact form, feedback, email, ajax, captcha, akismet, multilingual
-Requires at least: 5.9
-Tested up to: 6.0
-Stable tag: 5.6.3
+Tags: contact form, schema-woven validation
+Requires at least: 6.3
+Requires PHP: 7.4
+Tested up to: 6.5
+Stable tag: 5.9.5
 License: GPLv2 or later
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
 
@@ -36,7 +37,7 @@ If you activate certain features in this plugin, the contact form submitter's pe
 * reCAPTCHA ([Google](https://policies.google.com/?hl=en))
 * Akismet ([Automattic](https://automattic.com/privacy/))
 * Constant Contact ([Endurance International Group](https://www.endurance.com/privacy))
-* [Sendinblue](https://www.sendinblue.com/legal/privacypolicy/)
+* [Brevo](https://www.brevo.com/legal/privacypolicy/)
 * [Stripe](https://stripe.com/privacy)
 
 = Recommended plugins =
@@ -77,50 +78,56 @@ Do you have questions or issues with Contact Form 7? Use these support channels 
 
 For more information, see [Releases](https://contactform7.com/category/releases/).
 
-= 5.6.3 =
+= 5.9.5 =
 
-[https://contactform7.com/contact-form-7-563/](https://contactform7.com/contact-form-7-563/)
+[https://contactform7.com/contact-form-7-595/](https://contactform7.com/contact-form-7-595/)
 
-= 5.6.2 =
+= 5.9.4 =
 
-[https://contactform7.com/contact-form-7-562/](https://contactform7.com/contact-form-7-562/)
+[https://contactform7.com/contact-form-7-594/](https://contactform7.com/contact-form-7-594/)
 
-= 5.6.1 =
+= 5.9.3 =
 
-[https://contactform7.com/contact-form-7-561/](https://contactform7.com/contact-form-7-561/)
+[https://contactform7.com/contact-form-7-593/](https://contactform7.com/contact-form-7-593/)
 
-= 5.6 =
+= 5.9.2 =
 
-[https://contactform7.com/contact-form-7-56/](https://contactform7.com/contact-form-7-56/)
+[https://contactform7.com/contact-form-7-592/](https://contactform7.com/contact-form-7-592/)
 
-= 5.5.6 =
+= 5.9 =
 
-[https://contactform7.com/contact-form-7-556/](https://contactform7.com/contact-form-7-556/)
+[https://contactform7.com/contact-form-7-59/](https://contactform7.com/contact-form-7-59/)
 
-= 5.5.5 =
+= 5.8.7 =
 
-[https://contactform7.com/contact-form-7-555/](https://contactform7.com/contact-form-7-555/)
+[https://contactform7.com/contact-form-7-587/](https://contactform7.com/contact-form-7-587/)
 
-= 5.5.4 =
+= 5.8.6 =
 
-[https://contactform7.com/contact-form-7-554/](https://contactform7.com/contact-form-7-554/)
+[https://contactform7.com/contact-form-7-586/](https://contactform7.com/contact-form-7-586/)
 
-= 5.5.3 =
+= 5.8.5 =
 
-[https://contactform7.com/contact-form-7-553/](https://contactform7.com/contact-form-7-553/)
+[https://contactform7.com/contact-form-7-585/](https://contactform7.com/contact-form-7-585/)
 
-= 5.5.2 =
+= 5.8.4 =
 
-* REST API: Removes argument schema reference that causes error when the form has 'id' field.
-* Changes method names that are reserved in PHP 5.6.
+[https://contactform7.com/contact-form-7-584/](https://contactform7.com/contact-form-7-584/)
 
-= 5.5.1 =
+= 5.8.3 =
 
-* Fixed: Reserved keyword was used in PHP class constant name.
-* Fixed: Uncaught TypeError on `in_array()` call.
+[https://contactform7.com/contact-form-7-583/](https://contactform7.com/contact-form-7-583/)
 
-= 5.5 =
+= 5.8.2 =
 
-[https://contactform7.com/contact-form-7-55/](https://contactform7.com/contact-form-7-55/)
+[https://contactform7.com/contact-form-7-582/](https://contactform7.com/contact-form-7-582/)
+
+= 5.8.1 =
+
+[https://contactform7.com/contact-form-7-581/](https://contactform7.com/contact-form-7-581/)
+
+= 5.8 =
+
+[https://contactform7.com/contact-form-7-58/](https://contactform7.com/contact-form-7-58/)
 
 == Upgrade Notice ==

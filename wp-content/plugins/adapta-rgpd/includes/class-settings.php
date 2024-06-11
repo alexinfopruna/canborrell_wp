@@ -19,8 +19,6 @@ if ( ! defined( 'ABSPATH' ) ) {
  * @since  0.0.0
  */
 class ARGPD_Settings {
-
-
 	/**
 	 * Parent plugin class.
 	 *
@@ -91,104 +89,107 @@ class ARGPD_Settings {
 		'cookies-disabled'             => 0,
 		'privacidad-disabled'          => 0,
 		'custom-cookies-page-disabled' => 0,
-		'cookies-label'             => '',
-		'cookies-btnlabel'          => '',
-		'cookies-rejectlabel'       => '',
-		'cookies-linklabel'         => '',
-		'cookies-theme'             => 'modern-light',
-		'cookies-unconsent'         => 0,
-		'cookies-reload'            => 0,
-		'cookies-fixed'             => 0,
-		'consentimiento-label'      => '',
-		'informbox-theme'           => 'simple',
-		'robots-index'              => 0,
-		'is-ssl'                    => 0,
+		'cookies-label'                => '',
+		'cookies-btnlabel'             => '',
+		'cookies-rejectlabel'          => '',
+		'cookies-linklabel'            => '',
+		'cookies-theme'                => 'modern-light',
+		'cookies-filter-known-scripts' => 0,
+		'cookies-reload'               => 0,
+		'cookies-sticky-button'        => 0,
+		'cookies-settings-button'      => 0, // button to manage cookie options
+		'remove-iframes'               => 0,
+		'consentimiento-label'         => '',
+		'informbox-theme'              => 'simple',
+		'robots-index'                 => 0,
+		'is-ssl'                       => 0,
 		// owner.
-		'dominio'                   => '',
-		'titular'                   => '',
-		'id-fiscal'                 => '',
-		'id-fiscal-nombre'          => 'NIF',
-		'colegio'                   => '',
-		'mercantil-ciudad'          => '',
-		'mercantil-tomo'            => '',
-		'mercantil-libro'           => '',
-		'mercantil-folio'           => '',
-		'mercantil-seccion'         => '',
-		'mercantil-hoja'            => '',
-		'mercantil-inscripcion'     => '',
-		'domicilio'                 => '',
-		'provincia'                 => '',
-		'provincia-code'            => '',
-		'pais'                      => 'ES',
-		'pais-nombre'               => '',
-		'pais-ue'                   => 1,
-		'correo'                    => '',
-		'telefono'                  => '',
-		'es-empresa'                => 0,
-		'es-tienda'                 => 0,
-		'edad-ue'                   => 18,
-		'edad-otros'                => 13,
+		'dominio'                      => '',
+		'titular'                      => '',
+		'id-fiscal'                    => '',
+		'id-fiscal-nombre'             => 'NIF',
+		'colegio'                      => '',
+		'mercantil-ciudad'             => '',
+		'mercantil-tomo'               => '',
+		'mercantil-libro'              => '',
+		'mercantil-folio'              => '',
+		'mercantil-seccion'            => '',
+		'mercantil-hoja'               => '',
+		'mercantil-inscripcion'        => '',
+		'domicilio'                    => '',
+		'provincia'                    => '',
+		'provincia-code'               => '',
+		'pais'                         => 'ES',
+		'pais-nombre'                  => '',
+		'pais-ue'                      => 1,
+		'correo'                       => '',
+		'telefono'                     => '',
+		'es-empresa'                   => 0,
+		'es-tienda'                    => 0,
+		'edad-ue'                      => 18,
+		'edad-otros'                   => 13,
 		// settings.
-		'finalidad'                 => '',
-		'hosting-info'              => '',
+		'finalidad'                    => '',
+		'hosting-info'                 => '',
 		// options.
-		'option-comments'           => 0,
-		'option-cookies'            => 0,
-		'option-forms'              => 0,
-		'option-footer'             => 0,
+		'option-comments'              => 0,
+		'option-cookies'               => 0,
+		'option-forms'                 => 0,
+		'option-footer'                => 0,
+		'option-store-consents'        => 0,
 		// clauses.
-		'clause-exclusion'          => 0,
-		'clause-thirdparty'         => 0,
-		'clause-edad'               => 0,
-		'clause-terceros'           => 0,
-		'clause-protegidos'         => 0,
-		'clause-portabilidad'       => 0,
-		'clause-fuero'              => 1,
-		'clause-errores'            => 1,
-		'thirdparty-dclick'         => 0,
-		'thirdparty-adsense'        => 0,
-		'thirdparty-advertising'    => 0,
-		'thirdparty-analytics'      => 0,
-		'thirdparty-ganalytics'     => 0,
-		'thirdparty-fanalytics'     => 0,
-		'thirdparty-social'         => 0,
-		'thirdparty-mailchimp'      => 0,
-		'thirdparty-mailerlite'     => 0,
-		'thirdparty-mailrelay'      => 0,
-		'thirdparty-amazon'         => 0,
-		'thirdparty-sendinblue'     => 0,
-		'thirdparty-mailpoet'       => 0,
-		'thirdparty-activecampaign' => 0,
-		'thirdparty-getresponse'    => 0,
+		'clause-exclusion'             => 0,
+		'clause-thirdparty'            => 0,
+		'clause-edad'                  => 0,
+		'clause-terceros'              => 0,
+		'clause-protegidos'            => 0,
+		'clause-portabilidad'          => 0,
+		'clause-fuero'                 => 1,
+		'clause-errores'               => 1,
+		'thirdparty-dclick'            => 0,
+		'thirdparty-adsense'           => 0,
+		'thirdparty-advertising'       => 0, // deprecated to purpose-advertisement.
+		'thirdparty-analytics'         => 0, // deprecated to purpose-analytics.
+		'thirdparty-ganalytics'        => 0,
+		'thirdparty-social'            => 0,
+		'thirdparty-mailchimp'         => 0,
+		'thirdparty-mailerlite'        => 0,
+		'thirdparty-mailrelay'         => 0,
+		'thirdparty-amazon'            => 0,
+		'thirdparty-sendinblue'        => 0,
+		'thirdparty-mailpoet'          => 0,
+		'thirdparty-activecampaign'    => 0,
+		'thirdparty-getresponse'       => 0,
 		// first layer privacy statement
-		'purpose'           		=> '',
-		'communication'       		=> '',
-		'legitimacy' 				=> '',
-		// 
-		'lista-cookies'             => '',
-		'scripts-reject'            => '',
+		'purpose'                      => '',
+		'communication'                => '',
+		'legitimacy'                   => '',
+		//
+		'lista-cookies'                => '',
+		'scripts-reject'               => '',
 		// WooCommerce
-		// Control para la visualización de la capa informativa en el carrito de compra.
-		'option-wc-top-layer'		=> 0,
-		// Control para la visualización del consentimiento promocional.
-		'option-wc-promo'		    => 0,
-		// Mensaje para el consentimiento promocional.
-		'wc-consent-promo'   		=> '',
-		// LegalTech360 api key.
-		'apikey' 					=> '',
+		'option-wc-top-layer'          => 0,  // Control para la visualización de la capa informativa en el carrito de compra.
+		'option-wc-promo'              => 0,  // woocommerce promotional consent option
+		'wc-consent-promo'             => '', // Mensaje para el consentimiento promocional.
+		'apikey'                       => '',
+		'purpose-necessary'            => 0,
+		'purpose-non-necessary'        => 0,
+		'purpose-analytics'            => 0, // thirdparty-analytics.
+		'purpose-marketing'            => 0,
+		'purpose-advertisement'        => 0, // thirdparty-advertising.
 	);
 
 
-	CONST ALLOWED_HTML = array(
-		'a' => array(
-			'href' => array(),
-			'title' => array()
+	const ALLOWED_HTML = array(
+		'a'      => array(
+			'href'  => array(),
+			'title' => array(),
 		),
-		'br' => array(),
-		'em' => array(),
+		'br'     => array(),
+		'em'     => array(),
 		'strong' => array(),
-		'ul' => array(),
-		'li' => array(),
+		'ul'     => array(),
+		'li'     => array(),
 	);
 
 	/**
@@ -225,11 +226,11 @@ class ARGPD_Settings {
 			'modern-flex'  => __( 'Moderno en columnas', 'argpd' ),
 		);
 
-
 		$this->countries = array(
 			'AR' => __( 'Argentina', 'argpd' ),
 			'AD' => __( 'Andorra', 'argpd' ),
 			'DE' => __( 'Alemania', 'argpd' ),
+			'AU' => __( 'Australia', 'argpd' ),
 			'AT' => __( 'Austria', 'argpd' ),
 			'BE' => __( 'Bélgica', 'argpd' ),
 			'BG' => __( 'Bulgaria', 'argpd' ),
@@ -238,11 +239,13 @@ class ARGPD_Settings {
 			'CA' => __( 'Canadá', 'argpd' ),
 			'CO' => __( 'Colombia', 'argpd' ),
 			'CL' => __( 'Chile', 'argpd' ),
+			'CN' => __( 'China', 'argpd' ),
 			'CR' => __( 'Costa Rica', 'argpd' ),
 			'CY' => __( 'Chipre', 'argpd' ),
 			'CU' => __( 'Cuba', 'argpd' ),
 			'DK' => __( 'Dinamarca', 'argpd' ),
 			'EC' => __( 'Ecuador', 'argpd' ),
+			'AE' => __( 'Emiratos Árabes Unidos', 'argpd' ),
 			'SV' => __( 'El Salvador', 'argpd' ),
 			'SK' => __( 'Eslovaquia', 'argpd' ),
 			'SI' => __( 'Eslovenia', 'argpd' ),
@@ -265,6 +268,7 @@ class ARGPD_Settings {
 			'MX' => __( 'México', 'argpd' ),
 			'NI' => __( 'Nicaragua', 'argpd' ),
 			'NL' => __( 'Países Bajos', 'argpd' ),
+			'NO' => __( 'Noruega', 'argpd' ),
 			'PE' => __( 'Perú', 'argpd' ),
 			'PA' => __( 'Panamá', 'argpd' ),
 			'PY' => __( 'Paraguay', 'argpd' ),
@@ -282,7 +286,6 @@ class ARGPD_Settings {
 		);
 
 		$this->plugin = $plugin;
-
 		$this->init_settings();
 	}
 
@@ -293,7 +296,6 @@ class ARGPD_Settings {
 	 * @since  0.0.0
 	 */
 	public function init_settings() {
-
 		$this->settings = self::SETTINGS;
 
 		$network_id = null;
@@ -307,17 +309,23 @@ class ARGPD_Settings {
 			foreach ( $options as $name => $value ) {
 				$this->settings[ $name ] = $value;
 			}
-		} else {
-			// delete old options.
-			foreach ( $this->settings as $name => $value ) {
-				$existing = get_network_option( $network_id, sprintf( '%s_%s', $this->key, $name ) );
-				$this->update_setting( $name, $existing );
-				delete_network_option( $network_id, sprintf( '%s_%s', $this->key, $name ) );
+
+			// Migrate and delete decrepated options.
+			$old_settings = array(
+				'cookies-unconsent' => 'cookies-filter-known-scripts',
+				'cookies-fixed'     => 'cookies-sticky-button',
+			);
+
+			foreach ( $old_settings as $deprecated => $replaced ) {
+				if ( array_key_exists( $deprecated, $options ) ) {
+					$this->update_setting( $replaced, $this->settings[ $deprecated] );
+					$this->del_setting( $deprecated );
+				}
 			}
 		}
 
-		// Obtener la dirección del sitio web.
-		$dominio = $this->settings['dominio'];
+		// Get site url.
+		$dominio                   = $this->settings['dominio'];
 		$this->settings['dominio'] = esc_url( strlen( $dominio ) == 0 ? get_site_url() : $dominio );
 
 		// Obtener las paginas legales y los permalinks.
@@ -329,19 +337,19 @@ class ARGPD_Settings {
 		}
 
 		$this->settings['avisolegalURL'] = '';
-		$avisolegal_id = intval( $this->settings['avisolegalID'] );
+		$avisolegal_id                   = intval( $this->settings['avisolegalID'] );
 		if ( is_int( $avisolegal_id ) && $avisolegal_id > 0 ) {
 			$this->settings['avisolegalURL'] = get_permalink( $avisolegal_id );
 		}
 
 		$this->settings['privacidadURL'] = '';
-		$privacidad_id = intval( $this->settings['privacidadID'] );
+		$privacidad_id                   = intval( $this->settings['privacidadID'] );
 		if ( is_int( $privacidad_id ) && $privacidad_id > 0 ) {
 			$this->settings['privacidadURL'] = get_permalink( $privacidad_id );
 		}
 
 		$this->settings['custom-cookies-page-url'] = '';
-		$custom_cookies_page_id = intval( $this->settings['custom-cookies-page-id'] );
+		$custom_cookies_page_id                    = intval( $this->settings['custom-cookies-page-id'] );
 		if ( is_int( $custom_cookies_page_id ) && $custom_cookies_page_id > 0 ) {
 			$this->settings['custom-cookies-page-url'] = get_permalink( $custom_cookies_page_id );
 		}
@@ -362,9 +370,9 @@ class ARGPD_Settings {
 
 		// configure cookies-linklabel default value.
 		if ( ! strlen( $this->settings['cookies-linklabel'] ) ) {
-			$this->settings['cookies-linklabel'] = __( 'Configurar y más información', 'argpd' );
+			$this->settings['cookies-linklabel'] = __( 'Más información', 'argpd' );
 			if ( $custom_cookies_page_id > 0 ) {
-				$this->settings['cookies-linklabel'] = __( 'Más información', 'argpd' );
+				$this->settings['cookies-linklabel'] = __( 'Configurar y más información', 'argpd' );
 			}
 		}
 
@@ -379,10 +387,12 @@ class ARGPD_Settings {
 
 		if ( $this->settings['thirdparty-adsense'] || $this->settings['thirdparty-amazon'] || $this->settings['thirdparty-dclick'] ) {
 			$this->settings['thirdparty-advertising'] = 1;
+			$this->settings['purpose-advertisement']  = 1;
 		}
 
-		if ( $this->settings['thirdparty-fanalytics'] || $this->settings['thirdparty-ganalytics'] ) {
+		if ( $this->settings['thirdparty-ganalytics'] ) {
 			$this->settings['thirdparty-analytics'] = 1;
+			$this->settings['purpose-analytics']    = 1;
 		}
 
 		if ( $this->settings['thirdparty-advertising'] || $this->settings['thirdparty-analytics'] ) {
@@ -401,8 +411,7 @@ class ARGPD_Settings {
 			$this->settings['is-ssl'] = 1;
 		}
 
-		
-		$this->settings['lista-cookies'] = $this->get_setting('lista-cookies', 'kses');		
+		$this->settings['lista-cookies'] = $this->get_setting( 'lista-cookies', 'kses' );
 	}
 
 	/**
@@ -477,13 +486,11 @@ class ARGPD_Settings {
 		$this->update_setting( 'clause-portabilidad', 0 );
 		$this->update_setting( 'clause-fuero', 0 );
 		$this->update_setting( 'clause-errores', 0 );
-
 		$this->update_setting( 'thirdparty-dclick', 0 );
 		$this->update_setting( 'thirdparty-advertising', 0 );
 		$this->update_setting( 'thirdparty-adsense', 0 );
 		$this->update_setting( 'thirdparty-analytics', 0 );
 		$this->update_setting( 'thirdparty-ganalytics', 0 );
-		$this->update_setting( 'thirdparty-fanalytics', 0 );
 		$this->update_setting( 'thirdparty-social', 0 );
 		$this->update_setting( 'thirdparty-mailchimp', 0 );
 		$this->update_setting( 'thirdparty-mailrelay', 0 );
@@ -493,12 +500,9 @@ class ARGPD_Settings {
 		$this->update_setting( 'thirdparty-activecampaign', 0 );
 		$this->update_setting( 'thirdparty-getresponse', 0 );
 		$this->update_setting( 'thirdparty-mailerlite', 0 );
-
 		$this->update_setting( 'es-tienda', 0 );
-
 		$this->update_setting( 'option-wc-top-layer', 0 );
 		$this->update_setting( 'option-wc-promo', 0 );
-		// $this->settings = self::SETTINGS;
 	}
 
 
@@ -573,6 +577,19 @@ class ARGPD_Settings {
 		return array();
 	}
 
+	/**
+	 * Remove a setting.
+	 *
+	 * @since  1.3.7
+	 */
+	public function del_setting( $name = '' ) {
+		if ( empty( $name ) ) {
+			return false;
+		}
+
+		unset( $this->settings[ $name ] );
+		return update_network_option( $network_id, sprintf( '%s_%s', $this->key, 'settings' ), $this->settings );
+	}
 
 	/**
 	 * Returns the value of given setting key, based on if network settings are enabled or not
@@ -587,13 +604,13 @@ class ARGPD_Settings {
 			return false;
 		}
 
-		$value = $this->settings[ $name ]; 
+		$value = $this->settings[ $name ];
 
 		switch ( $type ) {
 			case 'kses':
-				$value = wp_kses( $value ,self::ALLOWED_HTML);
+				$value = wp_kses( $value, self::ALLOWED_HTML );
 				break;
-		}		
+		}
 
 		return $value;
 	}
@@ -613,7 +630,7 @@ class ARGPD_Settings {
 
 		switch ( $type ) {
 			case 'kses':
-				$value = wp_kses( $value ,self::ALLOWED_HTML);
+				$value = wp_kses( $value, self::ALLOWED_HTML );
 				break;
 			case 'kses_data':
 				$value = wp_kses_data( $value );

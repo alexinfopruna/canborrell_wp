@@ -128,7 +128,7 @@
         addClickListener(acceptButton, function () {
           removeBanner();
           _this.setConsent(true);
-          _this.launchFunction();
+          _this.launchFunction(true);
         });
       }
 

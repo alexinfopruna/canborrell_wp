@@ -27,23 +27,11 @@ class OptionsView_bwg extends AdminView_bwg {
 
   public function body($params = array()) {
     $row = $params['row'];
-	  $instagram_return_url = $params['instagram_return_url'];
-    $instagram_reset_href = $params['instagram_reset_href'];
     $options_url_ajax = $params['options_url_ajax'];
     $imgcount = $params['imgcount'];
     if (!$row) {
       echo WDWLibrary::message_id(2);
       return;
-    }
-    // Show Instagram connected message.
-    if ( WDWLibrary::get('instagram_token') || WDWLibrary::get('code') ) {
-      echo '<div class="bwg-hidden">';
-        $message = WDWLibrary::message_id(29);
-        if( WDWLibrary::get('instagram_token') == 'reset' ) {
-          $message = WDWLibrary::message_id(30);
-        }
-        echo $message;
-      echo '</div>';
     }
 
     $permissions = $params['permissions'];
@@ -76,7 +64,6 @@ class OptionsView_bwg extends AdminView_bwg {
       )
     );
     ?>
-    <?php echo $this->booster_top_banner(); ?>
     <div class="bwg_tabs">
       <div id="search_in_tablet">
         <div id="div_search_in_options_tablets">
@@ -147,8 +134,8 @@ class OptionsView_bwg extends AdminView_bwg {
                 <div class="wd-group">
                   <label class="wd-label" for="images_directory"><?php _e('Images directory', 'photo-gallery'); ?></label>
                   <div class="bwg-flex">
-                    <input id="images_directory" name="images_directory" type="text" style="display:inline-block; width:100%;" value="<?php echo esc_url($row->images_directory); ?>" />
-                    <input type="hidden" id="old_images_directory" name="old_images_directory" value="<?php echo esc_url($row->old_images_directory); ?>" />
+                    <input id="images_directory" name="images_directory" type="text" style="display:inline-block; width:100%;" value="<?php echo esc_attr($row->images_directory); ?>" />
+                    <input type="hidden" id="old_images_directory" name="old_images_directory" value="<?php echo esc_attr($row->old_images_directory); ?>" />
                   </div>
                   <p class="description"><?php _e('Provide the path of an existing folder inside the WordPress directory of your website to store uploaded images.<br />The content of the previous directory will be moved to the new one.', 'photo-gallery'); ?></p>
                 </div>
@@ -645,6 +632,9 @@ class OptionsView_bwg extends AdminView_bwg {
       </div>
       <div id="bwg_tab_advanced_content" class="search-div bwg-section wd-box-content">
         <div class="bwg-section bwg-flex-wrap">
+          <?php
+          if ( defined("GP_BWG") ) {
+            ?>
           <div class="wd-box-content wd-width-100 meta-box-sortables">
             <div class="postbox">
               <button class="button-link handlediv" type="button" aria-expanded="true">
@@ -656,78 +646,14 @@ class OptionsView_bwg extends AdminView_bwg {
               </h2>
               <div class="inside bwg-flex-wrap">
                 <div class="wd-box-content wd-width-100 bwg-flex-wrap">
-                  <div class="wd-box-content wd-width-100">
-                    <div class="wd-group wd-width-50">
-                      <label class="wd-label" for="autoupdate_interval_hour"><?php _e('Gallery autoupdate interval', 'photo-gallery'); ?></label>
-                      <div class="bwg-flex">
-                        <input  type="number" id="autoupdate_interval_hour" name="autoupdate_interval_hour" min="0" max="24" value="<?php echo floor($row->autoupdate_interval / 60); ?>" />
-                        <span><?php _e('hour', 'photo-gallery'); ?></span>
-                        <input type="number" id="autoupdate_interval_min" name="autoupdate_interval_min" min="0" max="59" value="<?php echo floor($row->autoupdate_interval % 60); ?>" />
-                        <span><?php _e('min', 'photo-gallery'); ?></span>
-                      </div>
-                      <p class="description"><?php _e('Set the interval when Instagram galleries will be updated, and will display new posts of your Instagram or Facebook account.', 'photo-gallery') ?></p>
-                    </div>
-                  </div>
-                  <div class="wd-box-content wd-width-50">
-                    <div class="wd-box-title">
-                      <strong><?php _e('Instagram', 'photo-gallery'); ?></strong>
-                    </div>
-                    <div class="wd-box-content wd-width-100">
-                      <div class="wd-group" id="login_with_instagram">
-                        <input id="instagram_access_token" name="instagram_access_token" type="hidden" size="30" value="<?php echo esc_attr($row->instagram_access_token); ?>" readonly />
-                        <?php if ( empty($row->instagram_access_token) ) { ?>
-                          <a href="<?php echo $instagram_return_url; ?>" class="bwg-connect-instagram">
-                            <?php _e('Connect an Instagram Account', 'photo-gallery') ?>
-                          </a>
-                          <p class="bwg-clear description"><?php _e('Press this button to sign in to your Instagram account. This lets you incorporate Instagram API to your website.', 'photo-gallery') ?></p>
-                        <?php }
-                        else {
-                        ?>
-                          <ul class="bwg-accounts-list">
-                            <li class="bwg-account-list-<?php echo sanitize_html_class($row->instagram_user_id); ?>">
-                              <div class="bwg-account-block">
-                                <div>
-                                  <div class="bwg-account-user-info">
-                                    <h4 class="bwg-account-name"><?php echo esc_html($row->instagram_username); ?></h4>
-                                  </div>
-                                </div>
-                                <div>
-                                  <a href="<?php echo $instagram_reset_href; ?>" onClick="if (confirm('<?php echo addslashes(__('Are you sure you want to reset access token, after resetting it you will need to log in with Instagram again for using plugin', 'photo-gallery')); ?>')){ return true; } else { return false; }">
-                                  <span class="button bwg-account-remove"><?php _e('Remove', 'photo-gallery') ?></span>
-                                  </a>
-                                </div>
-                              </div>
-                              <div class="bwg-account-accesstoken" style="display: block;">
-                                <div>
-                                  <p class="bwg-input-group">
-                                    <label><?php _e('User ID:', 'photo-gallery') ?></label>
-                                    <input type="text" value="<?php echo esc_attr($row->instagram_user_id); ?>" readonly="readonly"
-                                           onclick="this.focus();this.select()"
-                                           title="To copy, click the field then press Ctrl + C (PC) or Cmd + C (Mac).">
-                                  </p>
-                                </div>
-                              </div>
-                            </li>
-                          </ul>
-                        <?php } ?>
-                      </div>
-                    </div>
-                  </div>
-                  <?php if ( has_action('init_display_facebook_options_bwg') ) { ?>
-                  <div class="wd-box-content wd-width-50">
-                    <div class="wd-box-title">
-                      <strong><?php _e('Facebook', 'photo-gallery'); ?></strong>
-                    </div>
-                    <?php
-                      do_action('init_display_facebook_options_bwg', $row );
-                    ?>
-                  </div>
-                  <?php } ?>
                   <?php do_action('bwg_advanced_sections_social', $row ); ?>
                 </div>
               </div>
             </div>
           </div>
+            <?php
+          }
+          ?>
           <div class="wd-box-content wd-width-100 meta-box-sortables">
             <div class="postbox closed">
               <button class="button-link handlediv" type="button" aria-expanded="true">
@@ -1231,18 +1157,6 @@ class OptionsView_bwg extends AdminView_bwg {
         bwg_pagination_description(jQuery('#album_masonry_enable_page_<?php echo $row->album_masonry_enable_page; ?>'));
         bwg_pagination_description(jQuery('#album_extended_enable_page_<?php echo $row->album_extended_enable_page; ?>'));
       });
-		<?php if ( WDWLibrary::get('instagram_token') || WDWLibrary::get('code') ) { ?>
-      jQuery(window).on('load',function(){
-        var advanced_tab_index = 5;
-        jQuery( ".bwg_tabs" ).tabs({ active: advanced_tab_index });
-        jQuery("#wpbody .wrap .updated.inline").prependTo(jQuery("#wpbody .wrap"));
-        var uri = window.location.toString();
-        if (uri.indexOf("&instagram_token") > 0) {
-          var clean_uri = uri.substring(0, uri.indexOf("&instagram_token"));
-          window.history.replaceState({}, document.title, clean_uri);
-        }
-      });
-		<?php } ?>
     </script>
     <?php
   }

@@ -258,7 +258,7 @@ class WPML_Media_Save_Translation implements IWPML_Action {
 
 			$file = $media_file_upload['upload'];
 
-			// delete previous media file + sizes
+			// delete previous media file + sizes.
 			$media_file = $this->media_file_factory->create( $attachment_id );
 			$media_file->delete();
 
@@ -291,7 +291,19 @@ class WPML_Media_Save_Translation implements IWPML_Action {
 			 */
 			do_action( 'wpml_updated_attached_file', $attachment_id, $file, $translated_language_code );
 
-			wp_update_attachment_metadata( $attachment_id, wp_generate_attachment_metadata( $attachment_id, $file['file'] ) );
+			$attachment_metadata = wp_generate_attachment_metadata( $attachment_id, $file['file'] );
+
+			$current_attachment_metadata = wp_get_attachment_metadata( $attachment_id );
+
+			if ( $current_attachment_metadata && isset( $current_attachment_metadata['sizes'] ) ) {
+				$attachment_metadata['sizes'] = $current_attachment_metadata['sizes'];
+			}
+
+			wp_update_attachment_metadata( $attachment_id, $attachment_metadata );
+
+			if ( 'application/pdf' === $file['type'] ) {
+				wp_delete_file( $media_file_upload['thumb'] );
+			}
 
 			$this->mark_media_as_translated( $original_attachment_id, $translated_language_code );
 			do_action( 'wpml_added_media_file_translation', $original_attachment_id, $file, $translated_language_code );

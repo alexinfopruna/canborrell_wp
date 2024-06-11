@@ -1,7 +1,6 @@
 <?php
 
 class WDWLibrary {
-
   public static $shortcode_ids = array();
 
   public static $thumb_dimansions;
@@ -289,7 +288,8 @@ class WDWLibrary {
     }
     if ($message) {
       ob_start();
-      ?><div class="<?php echo esc_html($type); ?> inline">
+      ?>
+      <div class="<?php echo esc_html($type); ?> inline">
       <p>
         <strong><?php echo esc_html($message); ?></strong>
       </p>
@@ -748,8 +748,8 @@ class WDWLibrary {
 
   public static function get_share_page() {
     $share_page = get_posts(array('post_type' => 'bwg_share'));
-    if ($share_page) {
-      return get_permalink(current($share_page));
+    if ( $share_page ) {
+      $share_page = current($share_page);
     }
     else {
       $bwg_post_args = array(
@@ -758,8 +758,9 @@ class WDWLibrary {
         'post_type' => 'bwg_share'
       );
       $share_page = wp_insert_post($bwg_post_args);
-      return get_permalink($share_page);
     }
+
+    return get_permalink($share_page);
   }
 
   public static function get_google_fonts() {
@@ -1254,7 +1255,6 @@ class WDWLibrary {
     global $wpdb;
     $bwg_search = trim(self::get('bwg_search_' . $bwg));
     $prepareArgs = array();
-
     if ( BWG()->options->front_ajax == "1" ) {
       $sort_by = trim( WDWLibrary::get('sort_by_' . $bwg, $sort_by ) );
       $filter_teg = trim( WDWLibrary::get('filter_tag_' . $bwg) );
@@ -1298,25 +1298,24 @@ class WDWLibrary {
 
     $items_in_page = $images_per_page;
     $limit = 0;
-    $page_number = self::get('page_number_' . $bwg, 0, 'intval');
 
+    $page_number = self::get('page_number_' . $bwg, 0, 'intval');
     if ( !empty($page_number) ) {
       if ( $page_number > 1 ) {
         $items_in_page = $load_more_image_count;
       }
       $limit = ( ($page_number - 2) * $items_in_page ) + $images_per_page;
-      $bwg_random_seed = self::get('bwg_random_seed_' . $bwg);
+      $bwg_random_seed = self::get('bwg_random_seed_' . $bwg, '', 'intval');
     }
     else {
       $bwg_random_seed = rand();
       $GLOBALS['bwg_random_seed_' . $bwg] = $bwg_random_seed;
     }
-
-    if($gallery_id) {
+    if ( $gallery_id ) {
       $where .= ' AND image.gallery_id = %d ';
       $prepareArgs[] = $gallery_id;
     }
-    if($tag) {
+    if ( $tag ) {
       $where .= ' AND tag.tag_id = %d ';
       $prepareArgs[] = $tag;
     }
@@ -1330,7 +1329,6 @@ class WDWLibrary {
     $join = $tag ? ' LEFT JOIN ' . $wpdb->prefix . 'bwg_image_tag as tag ON image.id=tag.image_id' : '';
 
     $filter_tags_name = self::get($tag_input_name, '', 'esc_sql', 'REQUEST');
-
     if ( $filter_tags_name ) {
       $join .= ' LEFT JOIN (SELECT GROUP_CONCAT(tag_id order by tag_id SEPARATOR ",") AS tags_combined, image_id FROM  ' . $wpdb->prefix . 'bwg_image_tag' . ($gallery_id ?  $wpdb->prepare(' WHERE gallery_id=%d', $gallery_id) : '') . ' GROUP BY image_id) AS tags ON image.id=tags.image_id';
       if ( !BWG()->options->tags_filter_and_or ) {
@@ -1519,7 +1517,6 @@ class WDWLibrary {
         $left = ($width - $watermark_sizes['width']) / 2;
         break;
     }
-    @ini_set('memory_limit', '-1');
     if ( $type == 2 ) {
       $image = imagecreatefromjpeg($original_filename);
       imagettftext($image, $watermark_font_size, 0, $left, $top, $watermark_color, $watermark_font, $watermark_text);
@@ -1552,7 +1549,6 @@ class WDWLibrary {
     }
     imagedestroy($image);
     imagedestroy($watermark_image);
-    @ini_restore('memory_limit');
     return TRUE;
   }
 
@@ -1561,8 +1557,6 @@ class WDWLibrary {
       $original_filename = htmlspecialchars_decode($original_filename, ENT_COMPAT | ENT_QUOTES);
       $dest_filename = htmlspecialchars_decode($dest_filename, ENT_COMPAT | ENT_QUOTES);
       $watermark_url = htmlspecialchars_decode($watermark_url, ENT_COMPAT | ENT_QUOTES);
-
-      @ini_set('memory_limit', '-1');
       $image_path = pathinfo($original_filename, PATHINFO_EXTENSION);
       /* Return false if image type is svg */
       if( empty($original_filename) ||  empty($watermark_url) || (!empty($original_filename) && $image_path === 'svg') ) {
@@ -1651,7 +1645,6 @@ class WDWLibrary {
       }
       imagedestroy($image);
       imagedestroy($watermark_image);
-      @ini_restore('memory_limit');
     }
   }
 
@@ -1796,12 +1789,27 @@ class WDWLibrary {
 
   public static function update_thumb_dimansions( $resolution_thumb, $where ) {
     global $wpdb;
-    $update = $wpdb->query($wpdb->prepare('UPDATE `' . $wpdb->prefix . 'bwg_image` SET `resolution_thumb` = "%s"  WHERE ' . $where, $resolution_thumb));
+    $wpdb->query($wpdb->prepare('UPDATE `' . $wpdb->prefix . 'bwg_image` SET `resolution_thumb` = "%s"  WHERE ' . $where, $resolution_thumb));
   }
 
-  public static function resize_image($source, $destination, $max_width, $max_height) {
-    $image = wp_get_image_editor( $source );
-    if ( !is_wp_error( $image ) ) {
+  /**
+   * Update the specified image resolution.
+   *
+   * @param $width
+   * @param $height
+   * @param $id
+   *
+   * @return void
+   */
+  public static function update_image_resolution( $width, $height, $id ) {
+    $resolution = intval($width) . ' x ' . intval($height) . ' px';
+    global $wpdb;
+    $wpdb->query($wpdb->prepare('UPDATE `' . $wpdb->prefix . 'bwg_image` SET `resolution` = "%s"  WHERE `id` = %d', $resolution, $id));
+  }
+
+  public static function resize_image( $source, $destination, $max_width, $max_height, $image_id = 0 ) {
+    $image = wp_get_image_editor($source);
+    if ( !is_wp_error($image) ) {
       $image_size = $image->get_size();
       $img_width = $image_size[ 'width' ];
       $img_height = $image_size[ 'height' ];
@@ -1811,7 +1819,12 @@ class WDWLibrary {
           if(self::detect_thumb($destination)) {
             self::$thumb_dimansions = intval($img_width)."x".intval($img_height);
           }
-          return copy( $source, $destination );
+          // Update the resized image resolution.
+          if ( $image_id ) {
+            self::update_image_resolution($img_width, $img_height, $image_id);
+          }
+
+          return copy($source, $destination);
         }
         return true;
       }
@@ -1821,9 +1834,18 @@ class WDWLibrary {
         if(self::detect_thumb($destination)) {
           self::$thumb_dimansions = intval($new_width)."x".intval($new_height);
         }
-        $image->set_quality( BWG()->options->image_quality );
-        $image->resize( $new_width, $new_height, false );
-        $saved = $image->save( $destination );
+        $image->set_quality(BWG()->options->image_quality);
+        $image->resize($new_width, $new_height);
+        /* Function available since WP 5.3.0 version */
+        if ( method_exists($image, 'maybe_exif_rotate') ) {
+          $image->maybe_exif_rotate();
+        }
+        $saved = $image->save($destination);
+        // Update the resized image resolution.
+        if ( $image_id ) {
+          self::update_image_resolution($new_width, $new_height, $image_id);
+        }
+
         return !is_wp_error($saved);
       }
     }
@@ -2449,6 +2471,7 @@ class WDWLibrary {
       'hierarchical' => FALSE,
       'label' => __('Gallery Tags', 'photo-gallery'),
       'query_var' => TRUE,
+      'show_in_rest' => TRUE,
       'rewrite' => TRUE));
   }
 
@@ -3422,10 +3445,188 @@ class WDWLibrary {
    *
    * @return int
    */
+  public static function get_images_total_count() {
+    global $wpdb;
+    $count = $wpdb->get_var("SELECT COUNT(id) FROM `" . $wpdb->prefix . "bwg_file_paths`");
+
+    return intval($count);
+  }
+
+  /**
+   * Get images count.
+   *
+   * @return int
+   */
   public static function get_gallery_images_count() {
     global $wpdb;
-    $row = $wpdb->get_col( 'SELECT id AS qty FROM `' . $wpdb->prefix . 'bwg_image`' );
+    $row = $wpdb->get_col('SELECT id AS qty FROM `' . $wpdb->prefix . 'bwg_image`');
 
     return intval(count($row));
   }
+
+  /**
+   * Convert all images sizes to bytes.
+   *
+   * @return integer total amount by bytes
+   */
+  public static function get_images_total_size() {
+    global $wpdb;
+    $sizes = $wpdb->get_col('Select `size` FROM `' . $wpdb->prefix . 'bwg_image` WHERE  `size`<>""');
+    if ( !empty($sizes) ) {
+      $sizes = array_sum(array_map('WDWLibrary::convertToBytes', $sizes));
+    }
+    else {
+      $sizes = 0;
+    }
+
+    return $sizes;
+  }
+
+  /**
+   * Convert B, KM, MB, GB, TB, PB to bytes.
+   *
+   * @param string $from
+   *
+   * @return array|float|int|string|string[]|null
+   */
+  public static function convertToBytes( $from ) {
+    $units = array( 'B', 'KB', 'MB', 'GB', 'TB', 'PB' );
+    $number = substr($from, 0, -2);
+    $suffix = strtoupper(substr($from, -2));
+    if ( is_numeric(substr($suffix, 0, 1)) ) {
+      return preg_replace('/[^\d]/', '', $from);
+    }
+    $flipped = array_flip($units);
+
+    if ( !isset($flipped[$suffix]) ) {
+      return NULL;
+    }
+
+    return floatval($number) * (1024 ** $flipped[$suffix]);
+  }
+
+  /**
+   * Convert bytes to B, KM, MB, GB, TB, PB.
+   *
+   * @param $bytes
+   * @param $precision
+   *
+   * @return string
+   */
+  public static function formatBytes( $bytes, $precision = 2 ) {
+    $units = array( 'B', 'KB', 'MB', 'GB', 'TB', 'PB' );
+    $bytes = max($bytes, 0);
+    $pow = floor(($bytes ? log($bytes) : 0) / log(1024));
+    $pow = min($pow, count($units) - 1);
+    $bytes /= pow(1024, $pow);
+
+    return round($bytes, $precision) . ' ' . $units[$pow];
+  }
+
+  /**
+   * Convert all images sizes to bytes.
+   *
+   * @param $bytes
+   * @param $precision
+   *
+   * @return integer
+  */
+  public static function get_gallery_images_total_bytes() {
+    global $wpdb;
+    $sizes = $wpdb->get_col('Select `size` FROM `' . $wpdb->prefix . 'bwg_image` WHERE  `size`<>""');
+    if ( !empty($sizes) ) {
+        $sizes = array_sum(array_map('WDWLibrary::convertToBytes', $sizes));
+    } else {
+        $sizes = 0;
+    }
+    return $sizes;
+
+  }
+
+  /**
+   * Get Booster statsu data.
+   *
+   * @return array
+   */
+  public static function get_booster_data() {
+    $data = array(
+      'subscription_id' => get_transient('tenweb_subscription_id'),
+      'booster_plugin_status' => 0,
+      'booster_is_connected' => FALSE,
+      'tenweb_is_paid' => FALSE,
+    );
+    $booster_plugin_status = get_option('bwg_speed');
+    if ( !empty($booster_plugin_status) && isset($booster_plugin_status['booster_plugin_status']) ) {
+      $data['booster_plugin_status'] = $booster_plugin_status['booster_plugin_status'];
+    }
+    if ( (defined('TENWEB_CONNECTED_SPEED') && class_exists('\Tenweb_Authorization\Login') && \Tenweb_Authorization\Login::get_instance()->check_logged_in() && \Tenweb_Authorization\Login::get_instance()->get_connection_type() == TENWEB_CONNECTED_SPEED) || (defined('TENWEB_SO_HOSTED_ON_10WEB') && TENWEB_SO_HOSTED_ON_10WEB) ) {
+      // booster is connectd part.
+      $data['booster_is_connected'] = TRUE;
+      // 10Web is paid.
+      $data['tenweb_is_paid'] = (method_exists('\TenWebOptimizer\OptimizerUtils', 'is_paid_user') && TenWebOptimizer\OptimizerUtils::is_paid_user()) ? TRUE : FALSE;
+    }
+
+    return $data;
+  }
+
+  public static function media_name_clean( $string = '' )  {
+    $code_entities_match = array(' ','%','&','+','^');
+    $code_entities_replace = array('_','','','','');
+    $string = str_replace($code_entities_match, $code_entities_replace, $string);
+    return $string;
+  }
+
+  /**
+   * Generate gallery to pro button.
+  */
+  public static function gallery_to_pro_button() {
+    $premium_link = WDWLibrary::pro_button_link();
+    if ( $premium_link ) {
+      ob_start();
+      ?>
+      <a class="bwg_gallery_to_pro_button" href="<?php echo esc_url($premium_link); ?>" target="_blank">
+        <?php _e('Upgrade to Pro', 'photo-gallery'); ?>
+      </a>
+      <?php
+      echo ob_get_clean();
+    }
+  }
+
+  public static function pro_button_link($slug = 'From Gallery') {
+    if ( ( defined('TENWEB_CONNECTED_SPEED') &&
+        class_exists('\Tenweb_Authorization\Login') &&
+        \Tenweb_Authorization\Login::get_instance()->check_logged_in() &&
+        \Tenweb_Authorization\Login::get_instance()->get_connection_type() == TENWEB_CONNECTED_SPEED ) ||
+      ( defined('TENWEB_SO_HOSTED_ON_10WEB') && TENWEB_SO_HOSTED_ON_10WEB ) ) {
+      $url = 'https://my.10web.io/upgrade-plan?send_event=1&tenweb_action=' . $slug;
+    }
+    elseif ( class_exists('\TenWebOptimizer\OptimizerUtils') ) {
+      $magic_data = get_option("bwg_magic_data");
+      $url = 'https://my.10web.io/sign-up?subscr_id=321&plugin_id=101&navigate_to=upgrade-plan&tenweb_action=' . $slug;
+      if ( !empty($magic_data['magic_data']) ) {
+        $url .= '&magic_data=' . $magic_data['magic_data'];
+      }
+    }
+    else {
+      $url = 'https://my.10web.io/sign-up?subscr_id=321&plugin_id=101&navigate_to=upgrade-plan&tenweb_action=' . $slug;
+    }
+
+    return $url;
+  }
+
+    /**
+     * Validate path using regex allowed characters.
+     *
+     * @param $path string
+     *
+     * @return string
+    */
+    public static function validate_path( $path = '' ) {
+        $path = trim($path);
+        if( preg_match('/^[^*?"\'()<>|:]*$/', $path) ) {
+            return $path;
+        }
+        return '';
+    }
 }
+

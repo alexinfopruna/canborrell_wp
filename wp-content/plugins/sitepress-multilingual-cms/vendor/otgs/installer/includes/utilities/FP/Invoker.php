@@ -38,6 +38,8 @@ class _Invoker {
 	 * @return mixed
 	 */
 	public function __invoke( $instance ) {
-		return call_user_func_array( [ $instance, $this->fnName ], $this->args );
+		/** @var callable $callback */
+		$callback = [ $instance, $this->fnName ];
+		return call_user_func_array( $callback, $this->args );
 	}
 }
