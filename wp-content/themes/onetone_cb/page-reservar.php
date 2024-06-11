@@ -433,7 +433,7 @@ header("Pragma: no-cache");
 
   <script type="text/javascript" src="/cb-reserves/reservar/js/jquery.simplemodal.js"></script>
   <script type="text/javascript" src="/cb-reserves/reservar/js/control_carta.js?08122"></script>
-  <script type="text/javascript" src="/cb-reserves/reservar/js/form_reserves.js?08122"></script>		
+  <script type="text/javascript" src="/cb-reserves/reservar/js/form_reserves.js?14051838"></script>		
   <script type="text/javascript" src="/cb-reserves/reservar/js/popups_ajuda.js"></script>
 
   <script>
@@ -814,7 +814,7 @@ if ($testTPV) {
                                                               <div class="col-isqui flexw">
                                                                   
                                                                     <?php
-                                                                             $opcio_terrassa = OPCIO_TERRASSA;
+                                                                             $opcio_terrassa = OPCIO_TERRASSA ;
                                                                           ?>
                                                                          <div id='opcio_terrassa' style="<?php echo $opcio_terrassa>0?"":"display:none"?>">
                                                                           <h4 id="titol_SelectorCadiraRodes"><?php l('Vols que la taula sigui a la terrassa?'); ?>:</h4>
