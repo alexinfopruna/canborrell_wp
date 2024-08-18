@@ -3782,6 +3782,30 @@ echo "VAL: ".$val." *** ";
     }
   }
 
+
+
+  public function restore_config()
+  {
+
+    $tim = date("Y_m_d_H_i_s", time());
+    $query = "RENAME TABLE config TO config_" . $tim;
+    
+    try {
+      $Result1 = mysqli_query($this->connexioDB, $query);
+      echo "Copiada la configuració actual a config_".$tim;
+    }
+  catch (Exception $e) {
+      // duplicate entry exception
+      echo "No s'ha pogut copiar la taula config";
+  }
+
+
+    echo "<br><br>"; 
+    $query = "CREATE TABLE config AS SELECT * FROM config_bk";
+    $Result1 = mysqli_query($this->connexioDB, $query) or die(((is_object($GLOBALS["___mysqli_ston"])) ? mysqli_error($GLOBALS["___mysqli_ston"]) : (($___mysqli_res = mysqli_connect_error()) ? $___mysqli_res : false)));
+    echo "<br><br>restaurada la configuració des de config_bk";
+  }
+
   /*   * ********************************************************************************************************************* */
 }
 
