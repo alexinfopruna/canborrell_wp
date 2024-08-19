@@ -221,13 +221,15 @@ $(function(){$("#panel").accordion({collapsible:true,active:false,heightStyle: "
 		<!-- -->
     <!-- -->
     <a target="_blank" href="../taules/gestor_reserves.php?a=reserves_orfanes&p=1" class=" bt ui-button ui-widget ui-state-default ui-corner-all ui-button-text-only">Reserves perdudes</a>
+    <a target="_blank" href="./restore_config.php" class=" bt ui-button ui-widget ui-state-default ui-corner-all ui-button-text-only">Recupera config</a>
+
+
     <!-- -->
 <?php if (SUPER_ADMIN){?>		
 		<a target="_blank" href="../taules/TaulesDisponibles.php?d=2012-02-29&t=1&p=7&c=0" class=" bt ui-button ui-widget ui-state-default ui-corner-all ui-button-text-only">Test TaulesDisponibles</a>
 		<a target="_blank" href="../reservar/testTPV256.php" class=" bt ui-button ui-widget ui-state-default ui-corner-all ui-button-text-only">Test TPV</a>
 		<a target="_blank" href="../taules/gestor_reserves.php?a=testPHPerror" class=" bt ui-button ui-widget ui-state-default ui-corner-all ui-button-text-only">Genera error de PHP</a>
 		<a target="_blank" href="./config/test_mail.php" class=" bt ui-button ui-widget ui-state-default ui-corner-all ui-button-text-only">Envia email</a>
-		<a target="_blank" href="./restore_config.php" class=" bt ui-button ui-widget ui-state-default ui-corner-all ui-button-text-only">Recupera config</a>
 
 
                                                           
