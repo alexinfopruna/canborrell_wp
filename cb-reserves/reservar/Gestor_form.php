@@ -582,7 +582,11 @@ FROM client
 
 
 
-
+//mirem si ja té una reserva activa i futura
+if ($this->multipleReserva($_POST['client_mobil'], $_POST['client_mail'])){
+  $resposta['error'] = " Ja tens una reserva creada. No en pots crear més ";// . $t; //print_r($hr,true);
+  return $this->jsonErr(3, $resposta);
+}
 
 
       
@@ -602,7 +606,7 @@ FROM client
     }
 
     $_POST['lang'] = $_SESSION["lang"];
-    $_POST['observacions'] = $_POST['observacions']; //????
+    //$_POST['observacions'] = $_POST['observacions']; //????
     $_POST['reserva_info'] = 1;
 
     if (!isset($_POST['selectorComensals']) || $_POST['selectorComensals'] == 0) {
@@ -1994,15 +1998,20 @@ echo "reservaImpagada 2";
     echo "reservaImpagada 4 >> "-$mail;
   }
 
-  public function multipleReserva($id_client) {
-    if (!$id_client) {
-      return False;
+  public function multipleReserva($client_mobil, $client_mail) {
+    $result = json_decode($this->recuperaClient($client_mobil,$client_mail));
+ 
+    
+    if (!isset($result->{'client_id'})) {
+      return false;
     }
-    $query = "select * FROM reservestaules where client_id=".$id_client." and estat=100 and data>=CURDATE()";
+
+    $client_id = $result->{'client_id'};
+    $query = "select * FROM reservestaules where client_id=".$client_id." and estat=100 and data>=CURDATE()";
 
     
     $Result1 = mysqli_query($this->connexioDB, $query) or die(((is_object($GLOBALS["___mysqli_ston"])) ? mysqli_error($GLOBALS["___mysqli_ston"]) : (($___mysqli_res = mysqli_connect_error()) ? $___mysqli_res : false)));
-      return mysqli_num_rows($Result1);
+      return mysqli_num_rows($Result1)?true:false;
   }
 }
 
