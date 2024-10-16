@@ -3782,8 +3782,50 @@ echo "VAL: ".$val." *** ";
     }
   }
 
-  /*   * ********************************************************************************************************************* */
+
+
+public function restore_config()
+  {
+
+    $tim = date("Y_m_d_H_i_s", time());
+    $query = "RENAME TABLE config TO config_" . $tim;
+    
+    try {
+      $Result1 = mysqli_query($this->connexioDB, $query);
+      echo "Copiada la configuració actual a config_".$tim;
+    }
+  catch (Exception $e) {
+      // duplicate entry exception
+      echo "ERROR!! No s'ha pogut copiar la taula config";
+      die();
+  }
+
+
+    echo "<br><br>"; 
+    $query = "CREATE TABLE config AS SELECT * FROM config_bk";
+    $Result1 = mysqli_query($this->connexioDB, $query) or die((is_object($GLOBALS["___mysqli_ston"])) ? mysqli_error($GLOBALS["___mysqli_ston"]) : (($___mysqli_res = mysqli_connect_error()) ? $___mysqli_res : false));
+    echo "<br><br>restaurada la configuració des de config_bk";
+
+    echo "<br><br>Es mostra la configuració abans de restaurar. Pot ser convenient guardar aquestes dades en un fitxer";
+
+    $query = "SELECT * FROM config_" . $tim;
+    $result2 = mysqli_query($this->connexioDB, $query) or die((is_object($GLOBALS["___mysqli_ston"])) ? mysqli_error($GLOBALS["___mysqli_ston"]) : (($___mysqli_res = mysqli_connect_error()) ? $___mysqli_res : false));
+
+    echo '<table cellpadding="0" cellspacing="0" class="db-table">';
+    echo '<tr><th>Field</th><th>Type</th><th>Null</th><th>Key</th><th>Default<th>Extra</th></tr>';
+    while($row2 = mysqli_fetch_row($result2)) {
+        echo '<tr>';
+        foreach($row2 as $key=>$value) {
+            echo '<td>',$value,'</td>';
+        }
+        echo '</tr>';
+    }
+    echo '</table><br />';
 }
+  }
+
+  /*   * ********************************************************************************************************************* */
+
 
 function scan_sort_dir($dir) {
   $ignored = array('.', '..', '.svn', '.htaccess');
