@@ -1994,6 +1994,16 @@ echo "reservaImpagada 2";
     echo "reservaImpagada 4 >> "-$mail;
   }
 
+  public function multipleReserva($id_client) {
+    if (!$id_client) {
+      return False;
+    }
+    $query = "select * FROM reservestaules where client_id=".$id_client." and estat=100 and data>=CURDATE()";
+
+    
+    $Result1 = mysqli_query($this->connexioDB, $query) or die(((is_object($GLOBALS["___mysqli_ston"])) ? mysqli_error($GLOBALS["___mysqli_ston"]) : (($___mysqli_res = mysqli_connect_error()) ? $___mysqli_res : false)));
+      return mysqli_num_rows($Result1);
+  }
 }
 
 //END CLASS
