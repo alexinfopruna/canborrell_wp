@@ -129,7 +129,7 @@ class Gestor_form extends gestor_reserves {
 
     $query = "SELECT * FROM reserves 
 		LEFT JOIN client ON reserves.client_id=client.client_id
-		WHERE data>= NOW() + INTERVAL 24 HOUR
+		WHERE data>= CURDATE() + INTERVAL 24 HOUR
 		AND reserves.id_reserva='" . $id_reserva . "' AND client_mobil='" . $mob . "'";
 
     $this->qry_result = mysqli_query($this->connexioDB, $query) or die(((is_object($GLOBALS["___mysqli_ston"])) ? mysqli_error($GLOBALS["___mysqli_ston"]) : (($___mysqli_res = mysqli_connect_error()) ? $___mysqli_res : false)));
@@ -498,8 +498,8 @@ SELECT client.`client_id`,`client_nom`,`client_conflictes`,`client_email`,`clien
 (reserves.id_reserva OR reservestaules.id_reserva) as reservat, reservestaules.estat
 
 FROM client 
-		LEFT JOIN reserves ON client.client_id=reserves.client_id AND reserves.data>=NOW()AND (reserves.estat=1 OR reserves.estat=2 OR reserves.estat=3 OR reserves.estat=7 OR reserves.estat=100)
-		LEFT JOIN " . T_RESERVES . " ON client.client_id=" . T_RESERVES . ".client_id AND " . T_RESERVES . ".data>=NOW()
+		LEFT JOIN reserves ON client.client_id=reserves.client_id AND reserves.data>=CURDATE()AND (reserves.estat=1 OR reserves.estat=2 OR reserves.estat=3 OR reserves.estat=7 OR reserves.estat=100)
+		LEFT JOIN " . T_RESERVES . " ON client.client_id=" . T_RESERVES . ".client_id AND " . T_RESERVES . ".data>=CURDATE()
 
 	WHERE client_mobil='$num' 
 	OR LOWER(client_email)='$mail'
