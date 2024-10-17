@@ -1717,23 +1717,38 @@ SQL;
 
     return $mensa;
   }
+/*
+   public function reserva_entra_avui($data, $torn) {
+     $data_reserva = new DateTime($data . ' ' . $torn);
+     $ara= new DateTime("now");
+     $max_date = new DateTime($data . ' ' . MAX_HORA_RESERVA_ONLINE);
+    
+     $entra = $ara <= $max_date;
+    
+    
+     $ara->modify("+1 hour");
+     $ara->modify("+" . MARGE_DIES_RESERVA_ONLINE . " days");
+     $entra2 = $data_reserva > $ara;
+     return ($entra && $entra2);
+   }
+*/
+  public function reserva_entra_avui($data, $torn) {   
+    $entra=true;
 
-  public function reserva_entra_avui($data, $torn) {
-    $data_reserva = new DateTime($data . ' ' . $torn);
     $ara= new DateTime("now");
-    $max_date = new DateTime($data . ' ' . MAX_HORA_RESERVA_ONLINE);
-   // $max_date = new DateTime();
-    
-    $entra = $ara <= $max_date;
-    
-    
-    $ara->modify("+1 hour");
-    $ara->modify("+" . MARGE_DIES_RESERVA_ONLINE . " days");
-   // $ara->modify("+" . "1" . " days");
-    $entra2 = $data_reserva > $ara;
-    // echo $data_reserva->format('c')." / ".$ara->format('c');
-    //  echo $entra&&$entra2?"----ENTRA":"----NO_ENTRA";
-    return ($entra && $entra2);
+    $strara=$ara->format('Y-m-d');
+    if ($strara==$data){
+      $max_date = new DateTime($ara->format('Y-m-d') . ' ' . MAX_HORA_RESERVA_ONLINE);
+      $entra = $ara < $max_date  ;
+    }
+    else{
+      $ara->modify("+" . MARGE_DIES_RESERVA_ONLINE . " days");
+      $strara=$ara->format('Y-m-d');
+
+      $entra = $strara<=$data;
+
+    }
+    return ($entra);
   }
  
 
