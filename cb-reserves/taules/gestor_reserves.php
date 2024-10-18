@@ -3014,7 +3014,6 @@ ORDER BY `estat_hores_data` DESC";
       $this->xgreg_log(">>> ENVIA SMS: SIN PERMISOS!!!", 1);
       $this->xgreg_log(">>> ENVIA SMS: SIN PERMISOS!!!", 1, '/log/logMAILSMS.txt');
     }
-    include_once( ROOT . "../editar/SMSphp/EsendexSendService.php" );
 
     if (!isset($res)) {
       $this->xgreg_log(">>> ENVIA SMS: FALTA RESERVA o MENSA!!!", 1);
@@ -3036,7 +3035,6 @@ ORDER BY `estat_hores_data` DESC";
       $this->xgreg_log(">>> ENVIA SMS: FALTA NUM MOBIL!!!", 1, '/log/logMAILSMS.txt');
       return false;
     }
-//echo "RRR";die();
     if (!$missatge) {
       $persones = $row['adults'] + $row['nens10_14'] + $row['nens4_9'];
       $persones .= 'p';
@@ -3060,32 +3058,22 @@ ORDER BY `estat_hores_data` DESC";
 
 
     $mensa = $this->SQLVal($missatge);
-// Test Variables - assign values accordingly:
     $recipients = $numMobil;    // The mobile number(s) to send the message to (comma-separated).
     $body = $mensa;     // The body of the message to send (must be less than 160 characters).
     $idReserva = $res;
-/*
-    $username = "restaurant@can-borrell.com";     // Your Username (normally an email address).
-//ANTIC $password = "NDX5631";      // Your Password.
-    $password = "Alkaline:17";     // Your Password 26/2/2013.
-    $accountReference = "EX0062561";    // Your Account Reference (either your virtual mobile number, or EX account number).
 
- *     $originator = "Rest.Can Borrell";   // An alias that the message appears to come from (alphanumeric characters only, and must be less than 11 characters).
- */
-        require_once ROOT . INC_FILE_PATH . 'essendex_config.php';
-//echo $essedex_user . $essedex_pwd;die();
-    
+    require_once ROOT . INC_FILE_PATH . 'essendex_config.php';
     
     $type = "Text";     // The type of the message in the body (e.g. Text, SmartMessage, Binary or Unicode).
     $validityPeriod = 0;    // The amount of time in hours until the message expires if it cannot be delivered.
     $result;      // The result of a service request.
-    $messageIDs = array($idReserva);    // A single or comma-separated list of sent message IDs.
-    $messageStatus;     // The status of a sent message.
+    $messageIDs = array($idReserva);    // A single or comma-separated list of sstatus of a sent message.
 
     $result['Result'] = "NO ENVIAT!!!";
     $result['Message'] = "";
     if (ENVIA_SMS == "1" && $recipients != '999212121') {
       try {
+        include_once( ROOT . "../editar/SMSphp/EsendexSendService.php" );
         $sendService = new EsendexSendService($essedex_user, $essedex_pwd, $accountReference);
         $result = $sendService->SendMessage($recipients, $body, $type);
         $pr = print_r($result, TRUE);
@@ -3114,6 +3102,8 @@ ORDER BY `estat_hores_data` DESC";
 
     return true;
   }
+
+  
 
   public static function SMS_language($mensa, $lang = 'ca', $args = NULL) {
 

@@ -10,17 +10,25 @@ error_reporting(E_ALL);
 $message = new \Esendex\Model\DispatchMessage(
     "canborrell", // Send from
     "606782798", // Send to any valid number
-    "My Web App is SMS enabled!",
+    "can borrell ".date("Y-m-d h:i:s",time()),
     \Esendex\Model\Message::SmsType
 );
 $authentication = new \Esendex\Authentication\LoginAuthentication(
     "EX0062561", // Your Esendex Account Reference
     "restaurant@can-borrell.com", // Your login email address
-    "1909"
-   // "iridioArgon:17" // Your password
+    "iridioArgon:17" // Your password
 );
-$service = new \Esendex\DispatchService($authentication);
-$result = $service->send($message);
 
-print $result->id();
-print $result->uri();
+try{
+    $service = new \Esendex\DispatchService($authentication);
+    $result = $service->send($message);
+
+    print $result->id();
+    print $result->uri();
+} catch (Exception $e) {
+    echo "ERROR $e";
+
+}
+
+
+
