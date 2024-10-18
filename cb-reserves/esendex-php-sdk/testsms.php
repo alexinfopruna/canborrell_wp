@@ -16,7 +16,8 @@ $message = new \Esendex\Model\DispatchMessage(
 $authentication = new \Esendex\Authentication\LoginAuthentication(
     "EX0062561", // Your Esendex Account Reference
     "restaurant@can-borrell.com", // Your login email address
-    "iridioArgon:17" // Your password
+    "1909"
+   // "iridioArgon:17" // Your password
 );
 $service = new \Esendex\DispatchService($authentication);
 $result = $service->send($message);
