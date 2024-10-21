@@ -205,10 +205,11 @@ class gestor_reserves extends Gestor {
     $mensa = Gestor::lv("Restaurant Can Borrell: La seva reserva per al %s a les %s HA ESTAT ANUL·LADA. Si desitja contactar amb nosaltres: 936929723 - 936910605. Gràcies.(ID%s)");
     $mensa = sprintf($mensa, $dataSMS, $hora, $id_reserva);
 
-
     if (!$permuta) {
       $this->enviaSMS($id_reserva, $mensa);
       $this->paperera_reserves($id_reserva);
+
+      
 //ENVIA MAIL
       global $translate;
       $lang = $this->lng;
@@ -3030,7 +3031,9 @@ ORDER BY `estat_hores_data` DESC";
     WHERE id_Reserva = $res";
     $Result1 = mysqli_query($this->connexioDB, $query) or die(((is_object($GLOBALS["___mysqli_ston"])) ? mysqli_error($GLOBALS["___mysqli_ston"]) : (($___mysqli_res = mysqli_connect_error()) ? $___mysqli_res : false)));
     $row = mysqli_fetch_array($Result1);
-    if (!$row['client_mobil']) {
+    //echo $query;
+    //print_r($row);die();
+    if (!isset($row['client_mobil'])) {
       $this->xgreg_log(">>> ENVIA SMS: FALTA NUM MOBIL!!!", 1);
       $this->xgreg_log(">>> ENVIA SMS: FALTA NUM MOBIL!!!", 1, '/log/logMAILSMS.txt');
       return false;
@@ -3062,28 +3065,16 @@ ORDER BY `estat_hores_data` DESC";
     $body = $mensa;     // The body of the message to send (must be less than 160 characters).
     $idReserva = $res;
 
-    require_once ROOT . INC_FILE_PATH . 'essendex_config.php';
-    
-    $type = "Text";     // The type of the message in the body (e.g. Text, SmartMessage, Binary or Unicode).
-    $validityPeriod = 0;    // The amount of time in hours until the message expires if it cannot be delivered.
-    $result;      // The result of a service request.
-    $messageIDs = array($idReserva);    // A single or comma-separated list of sstatus of a sent message.
-
-    $result['Result'] = "NO ENVIAT!!!";
-    $result['Message'] = "";
     if (ENVIA_SMS == "1" && $recipients != '999212121') {
-      try {
-        include_once( ROOT . "../editar/SMSphp/EsendexSendService.php" );
-        $sendService = new EsendexSendService($essedex_user, $essedex_pwd, $accountReference);
-        $result = $sendService->SendMessage($recipients, $body, $type);
+
+        // require_once ROOT . INC_FILE_PATH . 'essendex_config.php';   
+        // include_once( ROOT . "../editar/SMSphp/EsendexSendService.php" );
+        // $sendService = new EsendexSendService($essedex_user, $essedex_pwd, $accountReference);
+        // $result = $sendService->SendMessage($recipients, $body, "Text");
+        $result = $this->esendex24($recipients, $body);
         $pr = print_r($result, TRUE);
-        $this->xgreg_log(">>> ENVIA SMS: REAL: " . $pr . " ***  " . $result['Result'], 1);
-        $this->xgreg_log(">>> ENVIA SMS: REAL: " . $pr . " ***  " . $result['Result'], 1, '/log/logMAILSMS.txt');
-      }
-      catch (Exception $e) {
-        $this->xgreg_log(">>> ERROR: " . $result['Result'], 1, '/log/logMAILSMS.txt');
-        $result['Result'] = "SMS: ERROR DE CONNEXIO AL HOST: " . $result['Result'];
-      }
+        $this->xgreg_log(">>> ENVIA SMS: REAL: " . $pr . " ***  SMS OK " , 1);
+        $this->xgreg_log(">>> ENVIA SMS: REAL: " . $pr . " ***  SMS OK" , 1, '/log/logMAILSMS.txt');
     }
     else {
       $this->reg_log(">>> ENVIA SMS: SIMULAT", 1);
@@ -3091,11 +3082,11 @@ ORDER BY `estat_hores_data` DESC";
       $t = "SIMULAT >>>>>  ";
     }
 
-    $rs = ($result['Result'] == "NO ENVIAT!!!") ? "ERROR" : "EXIT";
+    $rs = (!isset($result)) ? "ERROR" : "EXIT";
     $this->reg_log(">>> SMS RESULTAT: <span class='$rs'>$rs</span>", 1);
     $this->xgreg_log(">>> SMS RESULTAT: <span class='$rs'>$rs</span>", 1, '/log/logMAILSMS.txt');
 
-    $r = '<span style="color:red;font-size:11px;"><em> -(tel: ' . $numMobil . ') RESULTAT:  ' . $result['Result'] . '</em></span>';
+    $r = '<span style="color:red;font-size:11px;"><em> -(tel: ' . $numMobil . ') RESULTAT:  ' . $rs . '</em></span>';
     $t = ((isset($GLOBALS["___mysqli_ston"]) && is_object($GLOBALS["___mysqli_ston"])) ? mysqli_real_escape_string($GLOBALS["___mysqli_ston"], $mensa . $r) : ((trigger_error("[MySQLConverterToo] Fix the mysql_escape_string() call! This code does not work.", E_USER_ERROR)) ? "" : ""));
     $query = "INSERT INTO sms (sms_reserva_id, sms_numero, sms_missatge) VALUES ($res, $numMobil, '$t')";
     $Result1 = $this->log_mysql_query($query, $this->connexioDB) or die(((is_object($GLOBALS["___mysqli_ston"])) ? mysqli_error($GLOBALS["___mysqli_ston"]) : (($___mysqli_res = mysqli_connect_error()) ? $___mysqli_res : false)));
@@ -3103,6 +3094,39 @@ ORDER BY `estat_hores_data` DESC";
     return true;
   }
 
+  public static function esendex24($num,$msg){
+    require ROOT . INC_FILE_PATH . 'essendex_config.php';   
+    require(ROOT.'../esendex-php-sdk/vendor/autoload.php'); 
+
+
+
+    $message = new \Esendex\Model\DispatchMessage(
+        "canborrell", // Send from
+        $num, // Send to any valid number
+        $msg,
+        \Esendex\Model\Message::SmsType
+    );
+
+    $authentication = new \Esendex\Authentication\LoginAuthentication(
+        $accountReference, // Your Esendex Account Reference
+        $essedex_user, // Your login email address
+        $essedex_pwd // Your password
+    );
+    $result="";
+    try{
+      $service = new \Esendex\DispatchService($authentication);
+      $result = $service->send($message);
+      //echo "ESENDEX-----ENVIANT: $num - $msg";
+
+    } catch (Exception $e) {
+      $result=null;
+      //$result['Message'] = "";  
+      //$this->xgreg_log(">>> ERROR: SMS NO ENVIAT!!!", 1, '/log/logMAILSMS.txt');
+      //$result['Result'] = "SMS: ERROR DE CONNEXIO AL HOST: NO ENVIAT!!!";
+    }
+
+    return $result;
+  }
   
 
   public static function SMS_language($mensa, $lang = 'ca', $args = NULL) {

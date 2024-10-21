@@ -72,7 +72,7 @@ function esborra_clients_llei($t)
      
 
     //$sms_mensa="RESTAURANT CAN BORRELL: A SOLICITUD SUYA, HEMOS ELIMINADO SUS DATOS DE NUESTRA BASE DE DATOS";
-    $sms_mensa="RESTAURANT CAN BORRELL: SEGONS SOLICITUD, HEM ESBORRAT LES TEVES ES DE LA NOSTRA BASE DE DADES";
+    $sms_mensa="RESTAURANT CAN BORRELL: SEGONS SOLICITUD, HEM ESBORRAT LES TEVES DADES DE LA NOSTRA BASE DE DADES";
 			
     //$sms_mensa = $this->lv("RESTAURANT CAN BORRELL: SEGONS SOLICITUD, HEM ESBORRAT LES TEVES ES DE LA NOSTRA BASE DE DADES");
    // $sms_mensa = sprintf($mensa, $lafecha,$row["id_reserva"]);
@@ -107,23 +107,26 @@ function enviaSMS_esborrat($numMobil,$mensa, $lang='ca')
   include(ROOT."../editar/translate_editar_$lang_r.php");
   $mensa = Gestor::lv($mensa);
   
-  include_once( "../editar/SMSphp/EsendexSendService.php" );
+  //include_once( "../editar/SMSphp/EsendexSendService.php" );
 
   // Test Variables - assign values accordingly:
-  $username = "restaurant@can-borrell.com";			// Your Username (normally an email address).
-  $password = "1909";			// Your Password.
-  $accountReference = "EX0062561";		// Your Account Reference (either your virtual mobile number, or EX account number).
-  $originator = "Rest.Can Borrell";		// An alias that the message appears to come from (alphanumeric characters only, and must be less than 11 characters).
-  $recipients = $numMobil;		// The mobile number(s) to send the message to (comma-separated).
-  $body = $mensa;			// The body of the message to send (must be less than 160 characters).
-  $type = "Text";			// The type of the message in the body (e.g. Text, SmartMessage, Binary or Unicode).
-  $validityPeriod = 0;		// The amount of time in hours until the message expires if it cannot be delivered.
-  $result;			// The result of a service request.
-  $messageIDs = array($idReserva);		// A single or comma-separated list of sent message IDs.
-  $messageStatus;			// The status of a sent message.
+  // $username = "restaurant@can-borrell.com";			// Your Username (normally an email address).
+  // $password = "1909";			// Your Password.
+  // $accountReference = "EX0062561";		// Your Account Reference (either your virtual mobile number, or EX account number).
+  // $originator = "Rest.Can Borrell";		// An alias that the message appears to come from (alphanumeric characters only, and must be less than 11 characters).
+  // $recipients = $numMobil;		// The mobile number(s) to send the message to (comma-separated).
+  // $body = $mensa;			// The body of the message to send (must be less than 160 characters).
+  // $type = "Text";			// The type of the message in the body (e.g. Text, SmartMessage, Binary or Unicode).
+  // $validityPeriod = 0;		// The amount of time in hours until the message expires if it cannot be delivered.
+  // $result;			// The result of a service request.
+  // $messageIDs = array($idReserva);		// A single or comma-separated list of sent message IDs.
+  // $messageStatus;			// The status of a sent message.
 
-  $sendService = new EsendexSendService( $username, $password, $accountReference );
-  $result = $sendService->SendMessage( $recipients, $body, $type );
+  // $sendService = new EsendexSendService( $username, $password, $accountReference );
+  // $result = $sendService->SendMessage( $recipients, $body, $type );
+
+
+  $result = gestor_reserves::esendex24($numMobil,$mensa);
 
   global $gestor;
   $gestor->xgreg_log("ENVIAT SMS ESBORRA_CLIENT: $numMobil RESERVA $idReserva", 1);

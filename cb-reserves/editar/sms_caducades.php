@@ -76,44 +76,35 @@ function sms_caducades()
 
 function enviaSMS_caducades($numMobil,$mensa)
 {
-	include_once( "SMSphp/EsendexSendService.php" );
+	// include_once( "SMSphp/EsendexSendService.php" );
 	
-	// Test Variables - assign values accordingly:
-	$username = "restaurant@can-borrell.com";			// Your Username (normally an email address).
-	$password = "1909";			// Your Password.
-	$accountReference = "EX0062561";		// Your Account Reference (either your virtual mobile number, or EX account number).
-	$originator = "Rest.Can Borrell";		// An alias that the message appears to come from (alphanumeric characters only, and must be less than 11 characters).
-	$recipients = $numMobil;		// The mobile number(s) to send the message to (comma-separated).
-	$body = $mensa;			// The body of the message to send (must be less than 160 characters).
-	$type = "Text";			// The type of the message in the body (e.g. Text, SmartMessage, Binary or Unicode).
-	$validityPeriod = 0;		// The amount of time in hours until the message expires if it cannot be delivered.
-	$result;			// The result of a service request.
-	//$messageIDs = array();		// A single or comma-separated list of sent message IDs.
-	$messageStatus;			// The status of a sent message.
+	// // Test Variables - assign values accordingly:
+	// $username = "restaurant@can-borrell.com";			// Your Username (normally an email address).
+	// $password = "1909";			// Your Password.
+	// $accountReference = "EX0062561";		// Your Account Reference (either your virtual mobile number, or EX account number).
+	// $originator = "Rest.Can Borrell";		// An alias that the message appears to come from (alphanumeric characters only, and must be less than 11 characters).
+	// $recipients = $numMobil;		// The mobile number(s) to send the message to (comma-separated).
+	// $body = $mensa;			// The body of the message to send (must be less than 160 characters).
+	// $type = "Text";			// The type of the message in the body (e.g. Text, SmartMessage, Binary or Unicode).
+	// $validityPeriod = 0;		// The amount of time in hours until the message expires if it cannot be delivered.
+	// $result;			// The result of a service request.
+	// //$messageIDs = array();		// A single or comma-separated list of sent message IDs.
+	// $messageStatus;			// The status of a sent message.
 	
-	$sendService = new EsendexSendService( $username, $password, $accountReference );
+	// $sendService = new EsendexSendService( $username, $password, $accountReference );
 	if (SMS_ACTIVAT && ENVIA_SMS) {
-            $result = $sendService->SendMessage( $recipients, $body, $type );
-	print_log("ENVIAT SMS CADUCADA: $numMobil RESERVA $numMobil");
-	print_log("RESULTAT ENVIO: ".$result['Result']." / ".$result['MessageIDs']);
-        
-        }
-        else{
+		$result = gestor_reserves::esendex24($numMobil,$mensa);
 
-            print_log("TEST SMS CADUCADA (no enviat): $numMobil RESERVA $numMobil");
-        }
+		print_log("ENVIAT SMS CADUCADA: $numMobil RESERVA $numMobil");
+		print_log("RESULTAT ENVIO: ".$result['Result']." / ".$result['MessageIDs']);
+        
+    }
+    else{
+
+        print_log("TEST SMS CADUCADA (no enviat): $numMobil RESERVA $numMobil");
+    }
 	
 	
 	
 }	
-/*
-
-function print_log($t)
-{
-	echo "<br/>PRINT_LOG: ".$t;
-}
-
-define (SMS_ACTIVAT,true);
-sms_caducades();
-*/
 ?>
