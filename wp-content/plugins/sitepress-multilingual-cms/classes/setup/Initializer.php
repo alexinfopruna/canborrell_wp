@@ -14,9 +14,12 @@ use WPML\FP\Wrapper;
 use WPML\LIB\WP\Option as WPOption;
 use WPML\LIB\WP\User;
 use WPML\Setup\Endpoint\CheckTMAllowed;
-use WPML\Setup\Endpoint\TranslationServices;
-use WPML\TM\Menu\TranslationServices\Endpoints\Activate;
-use WPML\TM\Menu\TranslationServices\Endpoints\Deactivate;
+use WPML\Setup\Endpoint\CurrentStep;
+use WPML\TM\ATE\TranslateEverything\Pause\View as PauseTranslateEverything;
+use WPML\TM\ATE\TranslateEverything\TranslatableData\View as TranslatableData;
+use WPML\TM\ATE\TranslateEverything\TranslatableData\DataPreSetup;
+
+use WPML\TM\Menu\TranslationMethod\TranslationMethodSettings;
 use WPML\TranslationMode\Endpoint\SetTranslateEverything;
 use WPML\TranslationRoles\UI\Initializer as TranslationRolesInitializer;
 use WPML\UIPage;
@@ -30,10 +33,14 @@ class Initializer {
 	public static function getData() {
 		$currentStep = Option::getCurrentStep();
 
+		if ( CurrentStep::STEP_HIGH_COSTS_WARNING === $currentStep ) {
+			// The user stopped the wizard on the high costs warning step.
+			// In this case we need to start the wizard one step before.
+			$currentStep = CurrentStep::STEP_TRANSLATION_SETTINGS;
+		}
+
 		$siteUrl = self::getSiteUrl();
 
-		$defaultServiceName = self::getDefaultTranslationServiceName();
-		Option::setDefaultTranslationMode( ! empty( $defaultServiceName ) );
 
 		$defaultLang  = self::getDefaultLang();
 		$originalLang = Option::getOriginalLang();
@@ -48,10 +55,6 @@ class Initializer {
 			self::savePredefinedSiteKey( OTGS_INSTALLER_SITE_KEY_WPML );
 		}
 
-		$translationMethod = Option::shouldTranslateEverything( Option::getTranslateEverythingDefaultInSetup( ! empty( $defaultServiceName ) ) )
-			? 'automatic'
-			: 'manual';
-
 		return [
 			'name' => 'wpml_wizard',
 			'data' => [
@@ -65,21 +68,21 @@ class Initializer {
 					'licenseStep'            => Endpoint\LicenseStep::class,
 					'translationStep'        => Endpoint\TranslationStep::class,
 					'setTranslateEverything' => SetTranslateEverything::class,
+					'pauseTranslateEverything' => PauseTranslateEverything::class,
 					'recommendedPlugins'     => Endpoint\RecommendedPlugins::class,
 					'finishStep'             => Endpoint\FinishStep::class,
 					'addLanguages'           => Endpoint\AddLanguages::class,
 					'upload'                 => Upload::class,
-					'getTranslationServices' => TranslationServices::class,
-					'activateService'        => Activate::class,
-					'deactivateService'      => Deactivate::class,
 					'checkTMAllowed'         => CheckTMAllowed::class,
+					'translatableData'         => TranslatableData::class,
 				], TranslationRolesInitializer::getEndPoints() ),
 				'languages'            => [
-					'list'               => Obj::values( Languages::withFlags( Languages::getAll( $userLang ) ) ),
-					'secondaries'        => Fns::map( Languages::getLanguageDetails(), Option::getTranslationLangs() ),
-					'original'           => Languages::getLanguageDetails( $originalLang ),
-					'customFlagsDir'     => self::getCustomFlagsDir(),
-					'predefinedFlagsDir' => \WPML_Flags::get_wpml_flags_url(),
+					'list'                  => Obj::values( Languages::withFlags( Languages::getAll( $userLang ) ) ),
+					'secondaries'           => Fns::map( Languages::getLanguageDetails(), Option::getTranslationLangs() ),
+					'original'              => Languages::getLanguageDetails( $originalLang ),
+					'customFlagsDir'        => self::getCustomFlagsDir(),
+					'predefinedFlagsDir'    => \WPML_Flags::get_wpml_flags_url(),
+					'flagsByLocalesFileUrl' => \WPML_Flags::get_wpml_flags_by_locales_url(),
 				],
 				'siteAddUrl'           => 'https://wpml.org/account/sites/?add=' . urlencode( $siteUrl ) . '&wpml_version=' . self::getWPMLVersion(),
 				'siteKey'              => self::getSiteKey(),
@@ -100,28 +103,33 @@ class Initializer {
 				'languagesMenuUrl'         => admin_url( UIPage::getLanguages() ),
 				'adminUserName'            => User::getCurrent()->display_name,
 				'translation'              => Lst::concat(
-					[
-						'whoModes'           => Option::getTranslationMode(),
-						'defaultServiceName' => $defaultServiceName,
-						'method'             => $translationMethod,
-						'reviewMode'         => Option::getReviewMode(),
-					],
-					TranslationRolesInitializer::getTranslationData()
+					TranslationMethodSettings::getModeSettingsData(),
+					TranslationRolesInitializer::getTranslationData( null, false )
 				),
+
+				'license'                  => [
+					'actions'  => [
+						'registerSiteKey' => Endpoint\LicenseStep::ACTION_REGISTER_SITE_KEY,
+						'getSiteType'     => Endpoint\LicenseStep::ACTION_GET_SITE_TYPE,
+					],
+					'siteType' => [
+						'production'  => \OTGS_Installer_Subscription::SITE_KEY_TYPE_PRODUCTION,
+						'development' => \OTGS_Installer_Subscription::SITE_KEY_TYPE_DEVELOPMENT,
+					],
+				],
+
+				'translatableData'         => [
+					'actions' => [
+						'listTranslatables' => TranslatableData::ACTION_LIST_TRANSLATABLES,
+						'fetchData'         => TranslatableData::ACTION_FETCH_DATA,
+					],
+					'types'   => [
+						'postTypes'  => DataPreSetup::KEY_POST_TYPES,
+						'taxonomies' => DataPreSetup::KEY_TAXONOMIES,
+					],
+				],
 			],
 		];
-	}
-
-	/**
-	 * Get the actual service name, or empty string if there's no default service.
-	 *
-	 * @return string
-	 */
-	private static function getDefaultTranslationServiceName() {
-		return Maybe::fromNullable( \TranslationProxy::get_tp_default_suid() )
-			->map( [ \TranslationProxy_Service::class, 'get_service_by_suid'] )
-			->map( Obj::prop('name') )
-			->getOrElse('');
 	}
 
 	/**

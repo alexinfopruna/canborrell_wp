@@ -81,6 +81,13 @@ class Editor {
 			return $jobObject;
 		};
 
+		$dataOfTranslationCreatedInNativeEditorViaConnection = $this->manualJobs->maybeGetDataIfTranslationCreatedInNativeEditorViaConnection( $params );
+		if ( $dataOfTranslationCreatedInNativeEditorViaConnection ) {
+			update_post_meta( $dataOfTranslationCreatedInNativeEditorViaConnection['originalPostId'], \WPML_TM_Post_Edit_TM_Editor_Mode::POST_META_KEY_USE_NATIVE, 'yes' );
+
+			return $this->displayWPNative( $dataOfTranslationCreatedInNativeEditorViaConnection );
+		}
+
 		return Either::of( $params )
 		             ->map( [ $this->manualJobs, 'createOrReuse' ] )
 		             ->filter( Logic::isTruthy() )
@@ -175,13 +182,32 @@ class Editor {
 	}
 
 	/**
+	 * @param array $dataOfTranslationCreatedInNativeEditorViaConnection
+	 *
+	 * @return array
+	 */
+	private function displayWPNative( array $dataOfTranslationCreatedInNativeEditorViaConnection ) {
+		$url = 'post.php?' . http_build_query(
+				[
+					'lang'      => $dataOfTranslationCreatedInNativeEditorViaConnection['targetLanguageCode'],
+					'action'    => 'edit',
+					'post_type' => str_replace( 'post_', '', $dataOfTranslationCreatedInNativeEditorViaConnection['postType'] ),
+					'post'      => $dataOfTranslationCreatedInNativeEditorViaConnection['translatedPostId']
+				]
+			);
+
+
+		return [ 'editor' => \WPML_TM_Editors::WP, 'jobObject' => null, 'url' => $url ];
+	}
+
+	/**
 	 * @param \WPML_Element_Translation_Job $jobObject
 	 *
 	 * @return void
 	 */
 	private function maybeSetReviewStatus( $jobObject ) {
 		if ( Relation::propEq( 'review_status', ReviewStatus::NEEDS_REVIEW, $jobObject->to_array() ) ) {
-			Jobs::setReviewStatus( $jobObject->get_id(), SetupOption::shouldTranslateEverything() ? ReviewStatus::EDITING : null );
+			Jobs::setReviewStatus( $jobObject->get_id(), SetupOption::shouldBeReviewed() ? ReviewStatus::EDITING : null );
 		}
 	}
 
@@ -298,7 +324,7 @@ class Editor {
 		if ( array_key_exists( 'return_url', $params ) ) {
 			$return_url = filter_var( $params['return_url'], FILTER_SANITIZE_URL );
 
-			$return_url_parts = wp_parse_url( $return_url );
+			$return_url_parts = wp_parse_url( (string) $return_url );
 
 			$admin_url       = get_admin_url();
 			$admin_url_parts = wp_parse_url( $admin_url );

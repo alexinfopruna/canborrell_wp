@@ -122,6 +122,7 @@ class EsendexFormPostUtilities
 
 		while( $i < $index )
 		{
+			print_r($response);
 			if( !is_array( $results[$i] ) )
 			{
 				$equalsPosition = strpos( $results[$i], "=" );

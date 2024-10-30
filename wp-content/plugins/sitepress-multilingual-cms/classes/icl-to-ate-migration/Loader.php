@@ -11,7 +11,7 @@ use WPML\ICLToATEMigration\Endpoints\TranslationMemory\StartMigration;
 use WPML\ICLToATEMigration\Endpoints\Translators\GetFromICL;
 use WPML\ICLToATEMigration\Endpoints\Translators\Save;
 use WPML\LIB\WP\Hooks;
-use WPML\TM\WP\App\Resources;
+use WPML\Core\WP\App\Resources;
 use WPML\UIPage;
 use function WPML\Container\make;
 
@@ -54,6 +54,7 @@ class Loader implements \IWPML_Backend_Action {
 	public static function getData() {
 		$originalLanguageCode = Languages::getDefaultCode();
 		$userLanguageCode     = Languages::getUserLanguageCode()->getOrElse( $originalLanguageCode );
+		$languages            = Languages::withFlags( Languages::getAll( $userLanguageCode ) );
 
 		return [
 			'name' => 'wpmlIclToAteMigration',
@@ -67,7 +68,7 @@ class Loader implements \IWPML_Backend_Action {
 					'DeactivateICL'                        => DeactivateICL::class,
 				],
 				'languages'      => [
-					'list'        => Obj::values( Languages::withFlags( Languages::getAll( $userLanguageCode ) ) ),
+					'list'        => $languages ? Obj::values( $languages ) : [],
 					'secondaries' => Languages::getSecondaryCodes(),
 					'original'    => $originalLanguageCode,
 				],

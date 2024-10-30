@@ -10,11 +10,12 @@ function spider_display_embed(embed_type, file_url, embed_id, attrs) {
   switch(embed_type) {
     case 'EMBED_OEMBED_YOUTUBE_VIDEO':
       var oembed_youtube_html ='<iframe ';
-      if(embed_id!=''){
-        oembed_youtube_html += ' src="' + '//www.youtube.com/embed/'+ embed_id + '?enablejsapi=1&wmode=transparent"';
+      if ( embed_id != '' ) {
+        embed_id = embed_id.replace("?t", "?start");
+        oembed_youtube_html += ' src="' + '//www.youtube.com/embed/'+ embed_id + (embed_id.indexOf("?") !== -1 ? "&" : "?") + 'enablejsapi=1&wmode=transparent"';
       }
       for (attr in attrs) {
-        if(!(/src/i).test(attr)){
+        if (!(/src/i).test(attr)) {
           if(attr != '' && attrs[attr] != ''){
             oembed_youtube_html += ' '+ attr + '="' + attrs[attr] + '"';
           }

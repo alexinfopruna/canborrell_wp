@@ -34,13 +34,15 @@ function wpcf7_unship_uploaded_file( $file, $args = '' ) {
 	}
 
 	if ( isset( $args['schema'] ) and isset( $args['name'] ) ) {
-		$result = $args['schema']->validate( array(
+		$context = array(
 			'file' => true,
 			'field' => $args['name'],
-		) );
+		);
 
-		if ( is_wp_error( $result ) ) {
-			return $result;
+		foreach ( $args['schema']->validate( $context ) as $result ) {
+			if ( is_wp_error( $result ) ) {
+				return $result;
+			}
 		}
 	}
 
@@ -189,7 +191,7 @@ function wpcf7_acceptable_filetypes( $types = 'default', $format = 'regex' ) {
 		);
 	} else {
 		$types = array_map(
-			function ( $type ) {
+			static function ( $type ) {
 				if ( is_string( $type ) ) {
 					return preg_split( '/[\s|,]+/', strtolower( $type ) );
 				}
@@ -203,7 +205,7 @@ function wpcf7_acceptable_filetypes( $types = 'default', $format = 'regex' ) {
 
 	if ( 'attr' === $format or 'attribute' === $format ) {
 		$types = array_map(
-			function ( $type ) {
+			static function ( $type ) {
 				if ( false === strpos( $type, '/' ) ) {
 					return sprintf( '.%s', trim( $type, '.' ) );
 				} elseif ( preg_match( '%^([a-z]+)/[*]$%i', $type, $matches ) ) {
@@ -225,7 +227,7 @@ function wpcf7_acceptable_filetypes( $types = 'default', $format = 'regex' ) {
 
 	} elseif ( 'regex' === $format ) {
 		$types = array_map(
-			function ( $type ) {
+			static function ( $type ) {
 				if ( false === strpos( $type, '/' ) ) {
 					return preg_quote( trim( $type, '.' ) );
 				} elseif ( $type = wpcf7_convert_mime_to_ext( $type ) ) {
@@ -260,9 +262,28 @@ function wpcf7_init_uploads() {
 	if ( is_dir( $dir ) and is_writable( $dir ) ) {
 		$htaccess_file = path_join( $dir, '.htaccess' );
 
-		if ( ! file_exists( $htaccess_file )
-		and $handle = @fopen( $htaccess_file, 'w' ) ) {
-			fwrite( $handle, "Deny from all\n" );
+		if ( file_exists( $htaccess_file ) ) {
+			list( $first_line_comment ) = (array) file(
+				$htaccess_file,
+				FILE_IGNORE_NEW_LINES | FILE_SKIP_EMPTY_LINES
+			);
+
+			if ( '# Apache 2.4+' === $first_line_comment ) {
+				return;
+			}
+		}
+
+		if ( $handle = @fopen( $htaccess_file, 'w' ) ) {
+			fwrite( $handle, "# Apache 2.4+\n" );
+			fwrite( $handle, "<IfModule authz_core_module>\n" );
+			fwrite( $handle, "    Require all denied\n" );
+			fwrite( $handle, "</IfModule>\n" );
+			fwrite( $handle, "\n" );
+			fwrite( $handle, "# Apache 2.2\n" );
+			fwrite( $handle, "<IfModule !authz_core_module>\n" );
+			fwrite( $handle, "    Deny from all\n" );
+			fwrite( $handle, "</IfModule>\n" );
+
 			fclose( $handle );
 		}
 	}

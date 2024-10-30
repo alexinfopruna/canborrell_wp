@@ -85,7 +85,7 @@ if ( $post ) :
 <input type="hidden" id="post_ID" name="post_ID" value="<?php echo (int) $post_id; ?>" />
 <input type="hidden" id="wpcf7-locale" name="wpcf7-locale" value="<?php echo esc_attr( $post->locale() ); ?>" />
 <input type="hidden" id="hiddenaction" name="action" value="save" />
-<input type="hidden" id="active-tab" name="active-tab" value="<?php echo isset( $_GET['active-tab'] ) ? (int) $_GET['active-tab'] : '0'; ?>" />
+<input type="hidden" id="active-tab" name="active-tab" value="<?php echo (int) ( $_GET['active-tab'] ?? '0' ); ?>" />
 
 <div id="poststuff">
 <div id="post-body" class="metabox-holder columns-2">
@@ -102,8 +102,7 @@ if ( $post ) :
 		'id' => 'title',
 		'spellcheck' => 'true',
 		'autocomplete' => 'off',
-		'disabled' =>
-			current_user_can( 'wpcf7_edit_contact_form', $post_id ) ? '' : 'disabled',
+		'disabled' => ! current_user_can( 'wpcf7_edit_contact_form', $post_id ),
 	);
 
 	echo sprintf( '<input %s />', wpcf7_format_atts( $posttitle_atts ) );

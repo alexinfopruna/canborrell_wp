@@ -1,6 +1,6 @@
 <?php
-if ( ! defined( 'ABSPATH' ) ) { 
-	exit; 
+if ( ! defined( 'ABSPATH' ) ) {
+	exit;
 }
 
 /**
@@ -78,20 +78,13 @@ class ARGPD_Admin {
 		// add menu page.
 		add_action( 'admin_menu', array( $this, 'custom_menu' ) );
 
-		// action to store settings from setup.
+		// actions to store settings.
 		add_action( 'admin_post_argpd_setup', array( $this, 'setup' ) );
-
-		// action to store pages config.
 		add_action( 'admin_post_argpd_pages_setup', array( $this, 'pages_setup' ) );
-
-		// action to store cookies config.
 		add_action( 'admin_post_argpd_cookies_setup', array( $this, 'cookies_setup' ) );
-
-		// accept disclaimer.
 		add_action( 'admin_post_argpd_disclaimer', array( $this, 'accept_disclaimer' ) );
-
-		// action to store cookies config.
 		add_action( 'admin_post_argpd_addons_setup', array( $this, 'addons_setup' ) );
+		add_action( 'admin_post_argpd_consents_setup', array( $this, 'consents_setup' ) );
 
 		// add settings to plugin menu.
 		add_filter( 'plugin_action_links_' . $this->plugin->basename, array( $this, 'plugin_add_settings_link' ) );
@@ -116,11 +109,20 @@ class ARGPD_Admin {
 
 		add_submenu_page(
 			$this->key,
-			__( 'Inicio', 'argpd' ),
-			__( 'Inicio', 'argpd' ),
+			__( 'Ajustes', 'argpd' ),
+			__( 'Ajustes', 'argpd' ),
 			'manage_options',
 			'argpd-home',
 			array( $this, 'admin_page_display' )
+		);
+
+		add_submenu_page(
+			$this->key,
+			__( 'Consentimientos', 'argpd' ),
+			__( 'Consentimientos', 'argpd' ),
+			'manage_options',
+			'argpd-consents',
+			array( $this, 'consents_page_display' )
 		);
 
 		add_submenu_page(
@@ -132,7 +134,7 @@ class ARGPD_Admin {
 			array( $this, 'addons_page_display' )
 		);
 
-		remove_submenu_page($this->key, $this->key); 
+		remove_submenu_page( $this->key, $this->key );
 	}
 
 
@@ -145,7 +147,7 @@ class ARGPD_Admin {
 		if ( ! current_user_can( 'manage_options' ) ) {
 			wp_die( esc_html__( 'You do not have sufficient permissions to access this page.', 'argpd' ) );
 		}
-		
+
 		$this->plugin->argpd_ui->options_ui();
 	}
 
@@ -153,7 +155,7 @@ class ARGPD_Admin {
 	/**
 	 * Add settings interface
 	 *
-	 * @since  0.0.0
+	 * @since  1.3.5
 	 */
 	public function addons_page_display() {
 		if ( ! current_user_can( 'manage_options' ) ) {
@@ -165,24 +167,34 @@ class ARGPD_Admin {
 
 
 	/**
+	 * Add consents view
+	 *
+	 * @since  1.3.7
+	 */
+	public function consents_page_display() {
+		if ( ! current_user_can( 'manage_options' ) ) {
+			wp_die( esc_html__( 'You do not have sufficient permissions to access this page.', 'argpd' ) );
+		}
+
+		$this->plugin->argpd_ui->consents_ui();
+	}
+
+
+	/**
 	 * Accept Disclaimer
 	 *
 	 * @since  0.0.0
 	 */
 	public function accept_disclaimer() {
-
 		if ( ! current_user_can( 'manage_options' ) || ! check_admin_referer( 'argpd' ) ) {
 			wp_die( esc_html__( 'You do not have sufficient permissions to access this page.', 'argpd' ) );
 		}
 
-		// update disclaimer setting.
 		$this->plugin->argpd_settings->update_setting( 'renuncia', 1 );
 
-		// create default pages.
 		$this->plugin->pages->create_all();
 
-		// redirect.
-		wp_redirect(
+		wp_safe_redirect(
 			add_query_arg(
 				array(
 					'page'    => 'argpd',
@@ -193,7 +205,6 @@ class ARGPD_Admin {
 		);
 	}
 
-
 	/**
 	 *
 	 * Save settings from pages setup
@@ -201,49 +212,42 @@ class ARGPD_Admin {
 	 * @since  0.0.0
 	 */
 	public function pages_setup() {
-
 		if ( ! current_user_can( 'manage_options' ) || ! check_admin_referer( 'argpd' ) ) {
 			wp_die( esc_html__( 'You do not have sufficient permissions to access this page.', 'argpd' ) );
 		}
 
-	    $this->plugin->argpd_settings->update_setting( 'avisolegalID', intval( $_POST['avisolegal'] ) );
-        $this->plugin->argpd_settings->update_setting( 'privacidadID', intval( $_POST['privacidad'] ) );
-        $this->plugin->argpd_settings->update_setting( 'cookiesID', intval( $_POST['cookies'] ) );
-        $this->plugin->argpd_settings->update_setting( 'custom-cookies-page-id', intval( $_POST['custom-cookies-page-id'] ) );
+		$this->plugin->argpd_settings->update_setting( 'avisolegalID', intval( $_POST['avisolegal'] ) );
+		$this->plugin->argpd_settings->update_setting( 'privacidadID', intval( $_POST['privacidad'] ) );
+		$this->plugin->argpd_settings->update_setting( 'cookiesID', intval( $_POST['cookies'] ) );
+		$this->plugin->argpd_settings->update_setting( 'custom-cookies-page-id', intval( $_POST['custom-cookies-page-id'] ) );
 
-		// ¿Aviso Legal activo?
 		$disabled = isset( $_POST['avisolegal-enabled'] ) ? 0 : 1;
 		$this->plugin->argpd_settings->update_setting( 'avisolegal-disabled', $disabled );
 		if ( $disabled ) {
 			$this->plugin->argpd_settings->update_setting( 'avisolegalID', 0 );
 		}
 
-		// ¿Política de Cookies activa?
 		$disabled = isset( $_POST['cookies-enabled'] ) ? 0 : 1;
 		$this->plugin->argpd_settings->update_setting( 'cookies-disabled', $disabled );
 		if ( $disabled ) {
 			$this->plugin->argpd_settings->update_setting( 'cookiesID', 0 );
 		}
 
-		// ¿Política de Privacidad activa?
 		$disabled = isset( $_POST['privacidad-enabled'] ) ? 0 : 1;
 		$this->plugin->argpd_settings->update_setting( 'privacidad-disabled', $disabled );
 		if ( $disabled ) {
 			$this->plugin->argpd_settings->update_setting( 'privacidadID', 0 );
 		}
 
-		// ¿Preferencias de cookies activa?
 		$disabled = isset( $_POST['custom-cookies-page-enabled'] ) ? 0 : 1;
 		$this->plugin->argpd_settings->update_setting( 'custom-cookies-page-disabled', $disabled );
 		if ( $disabled ) {
 			$this->plugin->argpd_settings->update_setting( 'custom-cookies-page-id', 0 );
 		}
 
-		// Indexación en buscadores.
 		$enabled = isset( $_POST['robots-index'] ) ? 1 : 0;
 		$this->plugin->argpd_settings->update_setting( 'robots-index', $enabled );
 
-		// Primera capa informativa.
 		$option_comments = isset( $_POST['option-comments'] ) ? 1 : 0;
 		$this->plugin->argpd_settings->update_setting( 'option-comments', $option_comments );
 
@@ -259,18 +263,12 @@ class ARGPD_Admin {
 		$option_wc_promo = isset( $_POST['option-wc-promo'] ) ? 1 : 0;
 		$this->plugin->argpd_settings->update_setting( 'option-wc-promo', $option_wc_promo );
 
-		// Texto para solicitar el consentimiento
-		$this->plugin->argpd_settings->update_setting( 'consentimiento-label', sanitize_text_field( $_POST['consentimiento-label'] ) );
+		$this->plugin->argpd_settings->update_setting( 'consentimiento-label', sanitize_text_field( wp_unslash ( $_POST['consentimiento-label'] ) ) );
+		$this->plugin->argpd_settings->update_setting( 'wc-consent-promo', sanitize_text_field( wp_unslash ( $_POST['wc-consent-promo'] ) ) );
+		$this->plugin->argpd_settings->update_setting( 'informbox-theme', sanitize_text_field( wp_unslash ( $_POST['informbox-theme'] ) ) );
 
-		// Texto para solicitar el consentimiento promocional
-		$this->plugin->argpd_settings->update_setting( 'wc-consent-promo', sanitize_text_field( $_POST['wc-consent-promo'] ) );
-		
-		// Diseño
-		$this->plugin->argpd_settings->update_setting( 'informbox-theme', sanitize_text_field( $_POST['informbox-theme'] ) );
-
-		// Redirecciona con mensaje de confirmación.
 		$message = 'saved';
-		if ( wp_redirect(
+		if ( wp_safe_redirect(
 			add_query_arg(
 				array(
 					'page'    => 'argpd',
@@ -289,7 +287,6 @@ class ARGPD_Admin {
 	 * @since  0.0.0
 	 */
 	public function cookies_setup() {
-
 		if ( ! current_user_can( 'manage_options' ) || ! check_admin_referer( 'argpd' ) ) {
 			wp_die( esc_html__( 'You do not have sufficient permissions to access this page.', 'argpd' ) );
 		}
@@ -297,42 +294,44 @@ class ARGPD_Admin {
 		$option_cookies = isset( $_POST['option-cookies'] ) ? 1 : 0;
 		$this->plugin->argpd_settings->update_setting( 'option-cookies', $option_cookies );
 
-		$cookies_unconsent = isset( $_POST['cookies-unconsent'] ) ? 1 : 0;
-		$this->plugin->argpd_settings->update_setting( 'cookies-unconsent', $cookies_unconsent );
+		$cookies_filter_known_scripts = isset( $_POST['cookies-filter-known-scripts'] ) ? 1 : 0;
+		$this->plugin->argpd_settings->update_setting( 'cookies-filter-known-scripts', $cookies_filter_known_scripts );
 
 		$cookies_reload = isset( $_POST['cookies-reload'] ) ? 1 : 0;
 		$this->plugin->argpd_settings->update_setting( 'cookies-reload', $cookies_reload );
 
-		$cookies_fixed = isset( $_POST['cookies-fixed'] ) ? 1 : 0;
-		$this->plugin->argpd_settings->update_setting( 'cookies-fixed', $cookies_fixed );
+		$cookies_fixed = isset( $_POST['cookies-sticky-button'] ) ? 1 : 0;
+		$this->plugin->argpd_settings->update_setting( 'cookies-sticky-button', $cookies_fixed );
+
+		$cookies_settings_button = isset( $_POST['cookies-settings-button'] ) ? 1 : 0;
+		$this->plugin->argpd_settings->update_setting( 'cookies-settings-button', $cookies_settings_button );
+
+		$remove_iframes = isset( $_POST['remove-iframes'] ) ? 1 : 0;
+		$this->plugin->argpd_settings->update_setting( 'remove-iframes', $remove_iframes );
+
+		$this->plugin->argpd_settings->update_setting( 'lista-cookies', $_POST['cookies-list'], 'kses' );
+		$this->plugin->argpd_settings->update_setting( 'cookies-linklabel', sanitize_text_field( wp_unslash( $_POST['cookies-linklabel'] ) ) );
+		$this->plugin->argpd_settings->update_setting( 'cookies-btnlabel', sanitize_text_field( wp_unslash( $_POST['cookies-btnlabel'] ) ) );
+		$this->plugin->argpd_settings->update_setting( 'cookies-rejectlabel', sanitize_text_field( wp_unslash( $_POST['cookies-rejectlabel'] ) ) );
+		$this->plugin->argpd_settings->update_setting( 'cookies-label', wp_kses_data( $_POST['cookies-label'] ), 'kses_data' );
+		$this->plugin->argpd_settings->update_setting( 'cookies-theme', sanitize_text_field( wp_unslash( $_POST['cookies-theme'] ) ) );
+		
+		$cookies_id = wp_unslash( $_POST['cookies-id'] );
+		$this->plugin->argpd_settings->update_setting( 'cookiesID', $cookies_id > 0 ? intval( $cookies_id ) : 0 );
 
 		// Scripts to reject.
-		$scripts_reject= [];
-		foreach ( $_POST as $k => &$v) { 		
-			if (strpos($k, 'scripts-reject') === 0) {
-				$k= trim( sanitize_text_field ( $k ) );
-				$i= substr( $k, 15 );
+		$scripts_reject = [];
+		foreach ( $_POST as $k => &$v ) {
+			if ( strpos( $k, 'scripts-reject' ) === 0 ) {
+				$k = trim( sanitize_text_field( wp_unslash( $k ) ) );
+				$i = substr( $k, 15 );
 				array_push( $scripts_reject, $i );
 			}
 		}
 		$this->plugin->argpd_settings->update_setting( 'scripts-reject', join( ',', $scripts_reject ) );
-        $this->plugin->argpd_settings->update_setting( 'lista-cookies', $_POST['cookies-list'], 'kses' );
-        //
-		$this->plugin->argpd_settings->update_setting( 'cookies-linklabel', sanitize_text_field( $_POST['cookies-linklabel'] ) );
-		$this->plugin->argpd_settings->update_setting( 'cookies-btnlabel', sanitize_text_field( $_POST['cookies-btnlabel'] ) );
-		$this->plugin->argpd_settings->update_setting( 'cookies-rejectlabel', sanitize_text_field( $_POST['cookies-rejectlabel'] ) );
-		$this->plugin->argpd_settings->update_setting( 'cookies-label', wp_kses_data( $_POST['cookies-label'] ), 'kses_data' );
 
-		$this->plugin->argpd_settings->update_setting( 'cookies-theme', sanitize_text_field( $_POST['cookies-theme'] ) );
-
-		$cookies_id = $_POST['cookies-id'];
-		if ( isset( $cookies_id ) ) {
-			$this->plugin->argpd_settings->update_setting( 'cookiesID', $cookies_id > 0 ? intval( $cookies_id ) : 0 );
-		}
-
-		// Redirecciona con mensaje de confirmación.
 		$message = 'saved';
-		if ( wp_redirect(
+		if ( wp_safe_redirect(
 			add_query_arg(
 				array(
 					'page'    => 'argpd',
@@ -345,22 +344,20 @@ class ARGPD_Admin {
 		}
 	}
 
-
 	/**
 	 * Persist addons configuration.
 	 *
 	 * @since  1.3.5
 	 */
 	public function addons_setup() {
-
 		if ( ! current_user_can( 'manage_options' ) || ! check_admin_referer( 'argpd' ) ) {
 			wp_die( esc_html__( 'You do not have sufficient permissions to access this page.', 'argpd' ) );
 		}
 
-		$this->plugin->argpd_settings->update_setting( 'apikey', sanitize_text_field( $_POST['apikey'] ) );
+		$this->plugin->argpd_settings->update_setting( 'apikey', sanitize_text_field( wp_unslash( $_POST['apikey'] ) ) );
 
 		$message = 'saved';
-		if ( wp_redirect(
+		if ( wp_safe_redirect(
 			add_query_arg(
 				array(
 					'page'    => 'argpd-addons',
@@ -373,6 +370,32 @@ class ARGPD_Admin {
 		}
 	}
 
+	/**
+	 * Persist consents configuration.
+	 *
+	 * @since  1.3.7
+	 */
+	public function consents_setup() {
+		if ( ! current_user_can( 'manage_options' ) || ! check_admin_referer( 'argpd' ) ) {
+			wp_die( esc_html__( 'You do not have sufficient permissions to access this page.', 'argpd' ) );
+		}
+
+		$option_store_consents = isset( $_POST['option-store-consents'] ) ? 1 : 0;
+		$this->plugin->argpd_settings->update_setting( 'option-store-consents', $option_store_consents );
+
+		$message = 'saved';
+		if ( wp_safe_redirect(
+			add_query_arg(
+				array(
+					'page'    => 'argpd-consents',
+					'message' => $message,
+				),
+				admin_url( 'admin.php?page=argpd' )
+			)
+		) ) {
+			exit;
+		}
+	}
 
 	/**
 	 *
@@ -381,7 +404,6 @@ class ARGPD_Admin {
 	 * @since  0.0.0
 	 */
 	public function setup() {
-
 		if ( ! current_user_can( 'manage_options' ) || ! check_admin_referer( 'argpd' ) ) {
 			wp_die( esc_html__( 'You do not have sufficient permissions to access this page.', 'argpd' ) );
 		}
@@ -393,7 +415,7 @@ class ARGPD_Admin {
 		// save every setting.
 		foreach ( $settings as $name => $text ) {
 			if ( isset( $_POST[ $name ] ) ) {
-				$this->plugin->argpd_settings->update_setting( $name, sanitize_text_field( $_POST[ $name ] ) );
+				$this->plugin->argpd_settings->update_setting( $name, sanitize_text_field( wp_unslash( $_POST[ $name ] ) ) );
 			}
 		}
 
@@ -401,9 +423,8 @@ class ARGPD_Admin {
 		$disabled = isset( $_POST['es-empresa'] ) ? 1 : 0;
 		$this->plugin->argpd_settings->update_setting( 'es-empresa', $disabled );
 
-		// set message and redirect.
 		$message = 'saved';
-		wp_redirect(
+		wp_safe_redirect(
 			add_query_arg(
 				array(
 					'page'    => 'argpd',
@@ -418,6 +439,7 @@ class ARGPD_Admin {
 	 *
 	 * Add settings to plugin menu
 	 *
+	 * @param string $links links.
 	 * @since  0.0.0
 	 */
 	public function plugin_add_settings_link( $links ) {

@@ -7,7 +7,11 @@ class WPML_Media_Attachments_Query implements IWPML_Action {
 
 
 	public function add_hooks() {
-		add_action( 'pre_get_posts', array( $this, 'adjust_attachment_query' ), 10 );
+		add_action( 'pre_get_posts', array( $this, 'adjust_attachment_query_action' ), 10 );
+	}
+
+	public function adjust_attachment_query_action( $query ) {
+		return $this->adjust_attachment_query( $query );
 	}
 
 	/**

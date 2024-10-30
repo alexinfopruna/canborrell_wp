@@ -108,7 +108,7 @@ if (isset($_POST["opcio_filtre"])) {
   if ($_POST["opcio_filtre"][5])
     $were.="WHERE (estat=6 " . $_POST["opcio_filtre"][1] . $_POST["opcio_filtre"][2] . $_POST["opcio_filtre"][3] . $_POST["opcio_filtre"][4] . $_POST["opcio_filtre"][6] . ")";
   else
-    $were.="WHERE (DATA>=NOW()) AND (FALSE " . $_POST["opcio_filtre"][1] . $_POST["opcio_filtre"][2] . $_POST["opcio_filtre"][3] . $_POST["opcio_filtre"][4] . $_POST["opcio_filtre"][6] . ")";
+    $were.="WHERE (DATA>=CURDATE()) AND (FALSE " . $_POST["opcio_filtre"][1] . $_POST["opcio_filtre"][2] . $_POST["opcio_filtre"][3] . $_POST["opcio_filtre"][4] . $_POST["opcio_filtre"][6] . ")";
 
   $codi = $_POST["opcio_filtre"][1] ? "1" : "0";
   $codi.=$_POST["opcio_filtre"][2] ? "1" : "0";
@@ -131,7 +131,7 @@ $query_reserves = "SELECT DISTINCT id_reserva, estat, data, hora, nom, tel, emai
 $join_mail = " LEFT JOIN email ON email.reserva_id = id_reserva  AND email_resultat>0 ";
 $join_taules = " LEFT JOIN estat_taules ON estat_taules.reserva_id = id_reserva ";
 $group_mail = "";// GROUP BY  email.reserva_id ";
-$order = "ORDER BY IF(data < NOW(),1,0), IF(estat = 1,0,1),IF(estat = 2,0,1), IF(estat = 3,0,1),IF(estat = 7,0,1),estat, data ";
+$order = "ORDER BY IF(data < CURDATE(),1,0), IF(estat = 1,0,1),IF(estat = 2,0,1), IF(estat = 3,0,1),IF(estat = 7,0,1),estat, data ";
 $query_reserves .=  $join_mail . $join_taules . $were  . $group_mail.  $order;
 $query_limit_reserves = sprintf("%s LIMIT %d, %d", $query_reserves, $startRow_reserves, $maxRows_reserves);
 $reserves = mysqli_query($canborrell, $query_limit_reserves) or die(((is_object($GLOBALS["___mysqli_ston"])) ? mysqli_error($GLOBALS["___mysqli_ston"]) : (($___mysqli_res = mysqli_connect_error()) ? $___mysqli_res : false)));

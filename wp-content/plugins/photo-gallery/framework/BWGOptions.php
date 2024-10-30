@@ -1,6 +1,7 @@
 <?php
 defined('ABSPATH') || die('Access Denied');
 
+#[\AllowDynamicProperties]
 class WD_BWG_Options {
 
   // General

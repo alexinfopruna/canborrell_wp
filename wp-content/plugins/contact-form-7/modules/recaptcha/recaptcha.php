@@ -8,7 +8,7 @@
 wpcf7_include_module_file( 'recaptcha/service.php' );
 
 
-add_action( 'wpcf7_init', 'wpcf7_recaptcha_register_service', 15, 0 );
+add_action( 'wpcf7_init', 'wpcf7_recaptcha_register_service', 40, 0 );
 
 /**
  * Registers the reCAPTCHA service.
@@ -44,7 +44,7 @@ function wpcf7_recaptcha_enqueue_scripts() {
 		$url = 'https://www.recaptcha.net/recaptcha/api.js';
 	}
 
-	wp_enqueue_script( 'google-recaptcha',
+	wp_register_script( 'google-recaptcha',
 		add_query_arg(
 			array(
 				'render' => $service->get_sitekey(),
@@ -53,7 +53,7 @@ function wpcf7_recaptcha_enqueue_scripts() {
 		),
 		array(),
 		'3.0',
-		true
+		array( 'in_footer' => true )
 	);
 
 	$assets = array();
@@ -64,21 +64,22 @@ function wpcf7_recaptcha_enqueue_scripts() {
 	}
 
 	$assets = wp_parse_args( $assets, array(
-		'src' => wpcf7_plugin_url( 'modules/recaptcha/index.js' ),
-		'dependencies' => array(
-			'google-recaptcha',
-			'wp-polyfill',
-		),
+		'dependencies' => array(),
 		'version' => WPCF7_VERSION,
-		'in_footer' => true,
 	) );
 
 	wp_register_script(
 		'wpcf7-recaptcha',
-		$assets['src'],
-		$assets['dependencies'],
+		wpcf7_plugin_url( 'modules/recaptcha/index.js' ),
+		array_merge(
+			$assets['dependencies'],
+			array(
+				'google-recaptcha',
+				'wp-polyfill',
+			)
+		),
 		$assets['version'],
-		$assets['in_footer']
+		array( 'in_footer' => true )
 	);
 
 	wp_enqueue_script( 'wpcf7-recaptcha' );
@@ -134,8 +135,7 @@ function wpcf7_recaptcha_verify_response( $spam, $submission ) {
 		return $spam;
 	}
 
-	$token = isset( $_POST['_wpcf7_recaptcha_response'] )
-		? trim( $_POST['_wpcf7_recaptcha_response'] ) : '';
+	$token = trim( $_POST['_wpcf7_recaptcha_response'] ?? '' );
 
 	if ( $service->verify( $token ) ) { // Human
 		$spam = false;

@@ -2,9 +2,11 @@
 
 namespace WPML\MediaTranslation;
 
+use WPML\Media\Option;
+
 class MediaTranslationEditorLayout implements \IWPML_Action {
 	public function add_hooks() {
-		if ( \WPML_Media_Duplication_Setup::isTranslateMediaLibraryTextsEnabled() ) {
+		if ( Option::getTranslateMediaLibraryTexts() ) {
 			add_filter( 'wpml_tm_job_layout', [ $this, 'group_media_fields' ] );
 			add_filter( 'wpml_tm_adjust_translation_fields', [ $this, 'set_custom_labels' ] );
 		}
@@ -42,7 +44,7 @@ class MediaTranslationEditorLayout implements \IWPML_Action {
 					'fields'     => $media_field,
 				];
 
-				$image       = wp_get_attachment_image_src( $attachment_id, [ 100, 100 ] );
+				$image       = wp_get_attachment_image_src( (int) $attachment_id, [ 100, 100 ] );
 				$image_field = [
 					'field_type' => 'wcml-image',
 					'divider'    => $media_field !== end( $media_fields ),

@@ -60,7 +60,6 @@ class ThemesView_bwg extends AdminView_bwg {
       echo $this->pagination($page_url, $total, $items_per_page);
       ?>
     </div>
-    <?php echo $this->booster_top_banner(); ?>
     <table class="adminlist table table-striped wp-list-table widefat fixed pages">
       <thead>
       <tr>

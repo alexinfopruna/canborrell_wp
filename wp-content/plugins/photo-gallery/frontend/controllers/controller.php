@@ -96,7 +96,9 @@ class BWGControllerSite {
           return;
         }
         if (!$params['album_row']) {
-          echo WDWLibrary::message(__('There is no album selected or the gallery was deleted.', 'photo-gallery'), 'wd_error');
+          if ('xml_sitemap' != $from_shortcode) {
+            echo WDWLibrary::message(__('There is no album selected or the gallery was deleted.', 'photo-gallery'), 'wd_error');
+          }
           return;
         }
         if ('xml_sitemap' == $from_shortcode) {
@@ -280,7 +282,9 @@ class BWGControllerSite {
         $gallery_row = $this->model->get_gallery_row_data($params['gallery_id']);
 
         if (empty($gallery_row) && $params['type'] == '' && $params["tag"] == 0) {
-          echo WDWLibrary::message(__('There is no gallery selected or the gallery was deleted.', 'photo-gallery'), 'wd_error');
+          if ('xml_sitemap' != $from_shortcode) {
+            echo WDWLibrary::message(__('There is no gallery selected or the gallery was deleted.', 'photo-gallery'), 'wd_error');
+          }
           return;
         } else {
           $params['gallery_row'] = $gallery_row;
@@ -317,7 +321,9 @@ class BWGControllerSite {
         return;
       }
       if (empty($gallery_row) && $params['type'] == '' && $params["tag"] == 0) {
-        echo WDWLibrary::message(__('There is no gallery selected or the gallery was deleted.', 'photo-gallery'), 'wd_error');
+        if ('xml_sitemap' != $from_shortcode) {
+          echo WDWLibrary::message(__('There is no gallery selected or the gallery was deleted.', 'photo-gallery'), 'wd_error');
+        }
         return;
       } else {
         $params['gallery_row'] = $gallery_row;
@@ -359,7 +365,7 @@ class BWGControllerSite {
     }
 
     if ( !isset( $params['current_url'] ) ) {
-      $params['current_url'] = sanitize_url( trim((is_ssl() ? 'https://' : 'http://') . $_SERVER['HTTP_HOST'] . $_SERVER['REQUEST_URI']) );
+      $params['current_url'] = isset($_SERVER['REQUEST_URI']) ? sanitize_url($_SERVER['REQUEST_URI']) : '';
     }
     $need_scroll = 0;
     if( BWG()->options->front_ajax == "1" && (WDWLibrary::get('bwg_search_' . $bwg) != '' || WDWLibrary::get('filter_tag_' . $bwg) != "" || WDWLibrary::get("album_gallery_id_".$bwg) != "" || WDWLibrary::get("page_number_".$bwg)) != "" ) {

@@ -27,6 +27,13 @@ class ARGPD_Ui {
 	 */
 	protected $plugin = null;
 
+	/**
+	 * Parent plugin class.
+	 *
+	 * @var    string
+	 * @since  1.3.7
+	 */
+	const WP_DATATABLE_VERSION = '1.13.1';
 
 	/**
 	 * Constructor.
@@ -36,11 +43,9 @@ class ARGPD_Ui {
 	 * @param string $plugin Plugin name.
 	 */
 	public function __construct( $plugin ) {
-
-		// set parent plugin.
 		$this->plugin = $plugin;
 
-		// initiate our hooks.
+		$this->register();
 		$this->hooks();
 	}
 
@@ -50,39 +55,72 @@ class ARGPD_Ui {
 	 * @since  0.0.0
 	 */
 	public function hooks() {
-
 		if ( ! current_user_can( 'manage_options' ) ) {
 			return;
 		}
+		
+		add_action( 'argpd_settings_tab', array( $this, 'argpd_ajustes_tab' ), 10 );
+		add_action( 'argpd_settings_tab', array( $this, 'argpd_paginas_tab' ), 10 );
+		add_action( 'argpd_settings_tab', array( $this, 'argpd_cookies_tab' ), 10 );
+		add_action( 'argpd_settings_tab', array( $this, 'argpd_ayuda_tab' ), 10 );
+		add_action( 'argpd_settings_content', array( $this, 'argpd_ajustes_content' ), 10 );	
+		add_action( 'argpd_settings_content', array( $this, 'argpd_paginas_content' ), 10 );
+		add_action( 'argpd_settings_content', array( $this, 'argpd_cookies_content' ), 10 );	
+		add_action( 'argpd_settings_content', array( $this, 'argpd_ayuda_content' ), 10 );		
 
-		// config tab.
-		add_action( 'argpd_settings_tab', array( $this, 'argpd_ajustes_tab' ), 1 );
-		add_action( 'argpd_settings_content', array( $this, 'argpd_ajustes_content' ) );
-
-		// 'textos legales' tab.
-		add_action( 'argpd_settings_tab', array( $this, 'argpd_paginas_tab' ), 2 );
-		add_action( 'argpd_settings_content', array( $this, 'argpd_paginas_content' ) );
-
-		// cookies tab.
-		add_action( 'argpd_settings_tab', array( $this, 'argpd_cookies_tab' ), 2 );
-		add_action( 'argpd_settings_content', array( $this, 'argpd_cookies_content' ) );
-
-		// ayuda tab.
-		add_action( 'argpd_settings_tab', array( $this, 'argpd_ayuda_tab' ), 4 );
-		add_action( 'argpd_settings_content', array( $this, 'argpd_ayuda_content' ) );		
-
-		// ajax scripts.
-		add_action( 'admin_footer', array( $this, 'argpd_change_country' ) );
+		// ajax scripts.		
 		add_action( 'wp_ajax_argpd_get_states', array( $this, 'argpd_get_states' ) );
-
-		add_action( 'admin_footer', array( $this, 'create_page_events' ) );
+		add_action( 'wp_ajax_consents_load_data', array( $this, 'ajax_consents_load_data' ) );		
 		add_action( 'wp_ajax_argpd_create_page', array( $this, 'create_page' ) );
 
-		// insert js at footer
+		// print scripts to the footer.
 		add_action( 'admin_footer', array( $this, 'admin_scripts' ) );
-		add_action( 'admin_footer', array( $this, 'toggle_bussines_view' ) );		
+		add_action( 'admin_footer', array( $this, 'change_country' ) );
+		add_action( 'admin_footer', array( $this, 'toggle_bussines_view' ) );
 		add_action( 'admin_footer', array( $this, 'update_theme_preview' ) );
+
+		// enqueue admin styles and scripts.
+		add_action( 'admin_enqueue_scripts', array( $this, 'enqueue_admin_assets' ) );
 	}
+
+
+	/**
+    * Register styles and scripts.
+    *
+    * @since  0.0.0
+    */
+	public function register() {
+		wp_register_style(
+			'wp-datatable-style',
+			$this->plugin->url . 'assets/css/jquery.dataTables.min.css?v=' . $this::WP_DATATABLE_VERSION,
+			array(),
+			$this->plugin->version
+		);
+
+		wp_register_script(
+			'wp-datatable-script',
+			$this->plugin->url . 'assets/js/jquery.dataTables.min.js?v=' . $this::WP_DATATABLE_VERSION,
+			array(),
+			$this->plugin->version
+		);
+	}
+
+
+    /**
+     * Register scripts and Styles.
+     *
+     * @param string $hook is the hookname.
+     * @since  0.0.0
+     */
+    public function enqueue_admin_assets( $hook ) {
+        // Load assets only on plugin page ?page=argpd-consents.
+        if ( 'adapta-rgpd_page_argpd-consents' != $hook ) {
+            return;
+        }
+
+        wp_enqueue_style( 'wp-datatable-style' );
+        wp_enqueue_script( 'wp-datatable-script' );
+    }
 
 
 	/**
@@ -91,7 +129,6 @@ class ARGPD_Ui {
 	 * @since  1.0.1
 	 */
 	public function create_page() {
-		
 		check_ajax_referer( 'argpd_create_page', 'security' );
 
 		$id   = 0;
@@ -117,55 +154,17 @@ class ARGPD_Ui {
 		wp_die();
 	}
 
-	/**
-	 * Javascript events to create page
-	 *
-	 * @since  1.0.1
-	 */
-	public function create_page_events() { ?>
-
-		<script type="text/javascript" >			
-			
-			var ajaxurl = '<?php echo esc_attr( admin_url( 'admin-ajax.php' ) ); ?>';
-
-			jQuery(document).ready(function($) {				
-				
-				$('.crear-pagina').on('click', function(e){
-					var pagename= e.target.id;
-					if(pagename != '') {
-						var data = {
-							action: 'argpd_create_page',
-							page: pagename,
-							'security': '<?php echo esc_attr( wp_create_nonce( 'argpd_create_page' ) ); ?>'
-						}
-						$.post(ajaxurl, data, function(response) {    						
-							  if (!isNaN(parseFloat(response)) && isFinite(response) && response>0){
-								  location.replace(location.href+"&message=saved");
-							  } else {
-								  location.replace(location.href+"&message=");
-							  }
-						});
-					}
-				});
-			});
-		</script> 
-		<?php
-	}
 
 	/**
 	 * Function wp-ajax to echo states
 	 *
 	 * @since  1.0.0
 	 */
-	public function argpd_change_country() {
+	public function change_country() {
 		?>
-
-		<script type="text/javascript" >			
-			
+		<script type="text/javascript" >
 			var ajaxurl = '<?php echo esc_attr( admin_url( 'admin-ajax.php' ) ); ?>';
-
-			jQuery(document).ready(function($) {
-				
+			jQuery(document).ready(function($) {			
 				$('body').on('change', '.countries', function() {    				
 					  var countryid = $(this).val();
 					  if(countryid != '') {
@@ -213,7 +212,7 @@ class ARGPD_Ui {
 
 
 	/**
-	 * Function wp-ajax to echo states
+	 * Print admin scripts to the footer.
 	 *
 	 * @since  1.0.0
 	 */
@@ -222,13 +221,14 @@ class ARGPD_Ui {
 		?>
 
 <script type="text/javascript" >			
-			
 	jQuery(document).ready(function($) {
 		'use strict';
 
-		window.TestCookies = window.TestCookies || {};
+		window.AdminScripts = window.AdminScripts || {};
 
-		TestCookies.auth = function () {
+		AdminScripts.ajaxurl = '<?php echo esc_attr( admin_url( 'admin-ajax.php' ) ); ?>';
+
+		AdminScripts.auth = function () {
 			return fetch('https://superapis.es/legaltech360/api/v1/auth', {
 				method: 'POST',
 				headers: {
@@ -244,9 +244,8 @@ class ARGPD_Ui {
     		.catch(error => console.warn(error));			
 		}
 
-		TestCookies.getCookies= function (jwt) {
+		AdminScripts.getCookies= function (jwt) {
 			var payload = [];
-			
 			if (document.cookie && document.cookie != '') {
 				var documentCookies = document.cookie.split(";");
 
@@ -276,10 +275,31 @@ class ARGPD_Ui {
     		.catch(error => console.warn(error));
 		}
 
-		TestCookies.events= function(){
-			$( "#buscarCookies" ).on('click', function(e){
-				TestCookies.auth().then( jwt => {
-					TestCookies.getCookies(jwt).then( resp => {
+		AdminScripts.getQuotas= function (jwt) {
+			return fetch('https://superapis.es/legaltech360/api/v1/datacontrollers/datacontroller', {
+				method: 'GET',
+				headers: {
+      				'Accept': 'application/json',
+      				'Content-Type': 'application/json',
+      				'Authorization': `Bearer ${jwt}`,
+				},
+			})
+			.then((resp) => resp.json())
+			.then((data) => {
+      			return data;
+    		})
+    		.catch(error => console.warn(error));
+		}		
+
+		AdminScripts.events= function(){
+			// search cookies event.
+			$( "#js-search-cookies" ).on('click', function(e){
+				AdminScripts.auth().then( jwt => {
+					if ( typeof(jwt) == "undefined" ) {						
+						$('.api-message').append('La clave API no es correcta');
+						return;
+					}
+					AdminScripts.getCookies(jwt).then( resp => {
 						if ('undefined' !== typeof resp && resp.hasOwnProperty('result')) {
 							var result = resp.result.sort((a,b) => (a.name > b.name) ? 1 : ((b.name > a.name) ? -1 : 0))
 							var text = '<ul>';
@@ -299,19 +319,200 @@ class ARGPD_Ui {
 					});
 				});
 			});
+
+			// search consent by uuid.
+			$( "#js-search-by-consent-uuid" ).on('click', function(e){
+				var uuid = $('#js-consent-uuid').val();
+
+			    const data = new FormData();
+        		data.append( 'action', 'consents_load_data' );
+        		data.append( 'security', '<?php echo esc_attr( wp_create_nonce( 'consents_load_data' ) ); ?>' );
+				data.append( 'filter', uuid );
+
+				fetch(AdminScripts.ajaxurl, {
+					method: 'POST',
+					credentials: 'same-origin',
+					body: data
+				})
+				.then((resp) => resp.json())
+				.then((data) => {
+      				var dataTable = $('#argpd-table-consents').DataTable();
+					dataTable.clear();
+					dataTable.rows.add(data.result).draw();
+    			})
+    			.catch(error => console.warn(error));
+			});
+
+			// create legal page
+			$('.js-create-legal-page').on('click', function(e){
+				var pagename= e.target.id;
+				if(pagename != '') {
+					var data = {
+						action: 'argpd_create_page',
+						page: pagename,
+						'security': '<?php echo esc_attr( wp_create_nonce( 'argpd_create_page' ) ); ?>'
+					}
+					$.post(AdminScripts.ajaxurl, data, function(response) {    						
+						  if (!isNaN(parseFloat(response)) && isFinite(response) && response>0){
+							  location.replace(location.href+"&message=saved");
+						  } else {
+							  location.replace(location.href+"&message=");
+						  }
+					});
+				}
+			});
+		} // AdminScripts.events
+
+		// Check api quota.
+		AdminScripts.quota = function() {
+			if ( $( "#argpd-table-consents" ).length == 0 ) {
+				return;
+			}
+
+			AdminScripts.auth().then( jwt => {
+				if ( typeof(jwt) == "undefined" ) {
+					$('.api-message').append('La clave API no es correcta');
+					return;
+				}
+				AdminScripts.getQuotas(jwt).then( resp => {
+					if ('undefined' !== typeof resp && resp.hasOwnProperty('result')) {
+						var result = resp.result;
+						var current = result.hasOwnProperty('monthly-consents')?result['monthly-consents']:0;						
+						var quota = result.hasOwnProperty('monthly-quota')?result['monthly-quota']:0;
+						$("#js-quota").text(quota);
+						$("#js-current").text(current);
+					}
+				});
+			});			
 		}
 
-		TestCookies.init= function(){
-			TestCookies.events();
+		// Print consents table.
+		AdminScripts.dataTable = function() {
+			if ( $( "#argpd-table-consents" ).length == 0 ) {
+				return;
+			}
+
+			const ajaxurl = '<?php echo esc_attr( admin_url( 'admin-ajax.php' ) ); ?>';
+			var data= {
+				'action': 'consents_load_data',            
+				'security': '<?php echo esc_attr( wp_create_nonce( 'consents_load_data' ) ); ?>'
+			}
+
+			$.fn.dataTable.ext.errMode = 'throw';
+			$('#argpd-table-consents').DataTable( {
+				"ajax": {
+					"url": ajaxurl,
+					"data": data,
+					"dataSrc": 'result',
+				},
+				"drawCallback" : function(settings, json ) {					
+					// event to open raw content popup
+					$( ".js-open-raw-popup" ).on('click', function() {
+						var raw = $(this).data("raw");
+						$( '#raw-consent-content' ).text(JSON.stringify(raw, null, "\t"));
+  						$( '#argpd-raw-consent-popup' ).addClass("show");
+					});
+
+					// event to open raw content popup
+					$( ".js-close-raw-popup" ).on('click', function() {
+						$( '#argpd-raw-consent-popup' ).removeClass("show");
+					});
+				},
+				"columnDefs": [
+					{
+				 	"targets": 0,
+				 	"data": "id",
+				 	"render": function (data, type, row) {
+				 		if (null == data) return '';
+				 		return '<span style="word-break: break-all;">' + data + '</span>';
+				 		},
+				 	},
+					{
+				 	"targets": 5,
+				 	"data": "id",
+				 	"render": function (data, type, row) {
+				 		if (null == data) return '';
+				 		return data.length > 40 ?
+				 			 '<span title="'+data+'">' + data.substr( 0, 24 ) + '</span>' : data;
+				 		},
+				 	},								 	
+					{
+				 	"targets": [6, 7, 8, 9, 10],
+				 	"data": "id",
+				 	"render": function (data, type, row) {
+				 		if (null == data) return '';
+				 		return data ? 
+				 			'<span class="dashicons dashicons-yes"></span>':'<span class="dashicons dashicons-no"></span>';
+				 		},
+				 	},
+					{
+						"targets": 11,
+						"data": "id",
+						"render": function (data, type, row) {
+							return '<span class="js-open-raw-popup" data-raw=\'' + data + '\'><span class="dashicons dashicons-info-outline"></span></span>';
+						},
+					},
+				],
+				"columns": [
+					{ "data": "id" },
+					{ "data": "date" },
+					{ "data": "username" },									
+					{ "data": "ip" },									
+					{ "data": "ua" },
+					{ "data": "uri" },
+					{ "data": "purpose-necessary" },
+					{ "data": "purpose-non-necessary" },
+					{ "data": "purpose-analytics" },
+					{ "data": "purpose-marketing" },
+					{ "data": "purpose-advertisement" },
+					{ "data": "raw" },
+				],
+				"aaSorting": [ 
+					[1, 'desc'],
+				],
+				"searching": false,
+				"language": {
+					"decimal":        "",
+					"emptyTable":     "Sin datos",
+					"info":           "Mostrando los consentimientos de la _START_ a la _END_ de un total de _TOTAL_",
+					"infoEmpty":      "Mostrando 0 a 0 de 0 consentimientos",
+					"infoFiltered":   "(filtered from _MAX_ total entries)",
+					"infoPostFix":    "",
+					"thousands":      ",",
+					"lengthMenu":     "Mostrar _MENU_ entradas",
+					"loadingRecords": "Cargando...",
+					"processing":     "Cargando...",
+					"search":         "Buscar:",
+					"zeroRecords":    "Ningún resultado",
+					"paginate": {
+						"first":      "Primera",
+						"last":       "Última",
+						"next":       "Siguiente",
+						"previous":   "Anterior"
+					},
+					"aria": {
+						"sortAscending":  ": activate to sort column ascending",
+						"sortDescending": ": activate to sort column descending"
+					}
+				},
+        		"dom": 'Bfrtip',
+       			"buttons": [
+       			],       			
+			});
+		};
+		
+		AdminScripts.init = function(){
+			AdminScripts.dataTable();
+			AdminScripts.quota();
+			AdminScripts.events();			
 		}
 
-		TestCookies.init();
+		AdminScripts.init();
 	});
 
 </script> 
 		<?php
 	}
-
 
 	/**
 	 * Toggle business visualization
@@ -335,7 +536,6 @@ class ARGPD_Ui {
 		</script> 
 		<?php
 	}
-
 
 	/**
 	 * Updates the image of theme preview
@@ -371,16 +571,14 @@ class ARGPD_Ui {
 							break;
 						case "modern-flex":
 							img_name = "moderno-oscuro-columnas.png";
-							break;						
+							break;
 					}
 					$('#theme-preview').attr("src", ruta + img_name);	
 				}
-
 			});
 		</script>
 		<?php
 	}
-
 
 	/**
 	 * Function wp-ajax to get states by country
@@ -409,7 +607,6 @@ class ARGPD_Ui {
 		wp_die();
 	}
 
-
 	/**
 	 * Echo 'Titular' tab of plugin settings
 	 *
@@ -425,7 +622,6 @@ class ARGPD_Ui {
 		</a>
 		<?php
 	}
-
 
 	/**
 	 * Muestra el contenido de la pestaña Responsable.
@@ -818,16 +1014,6 @@ class ARGPD_Ui {
 						<td>
 							<fieldset>
 								<b>Análisis web</b><br/>
-								<label for="thirdparty-fanalytics">
-									<input 	name="thirdparty-fanalytics" 
-											type="checkbox" 
-											id="thirdparty-fanalytics" 
-											value="1"
-											<?php ( $settings->get_setting( 'thirdparty-fanalytics' ) == 1 ) && printf( 'checked' ); ?>
-											>											
-											Facebook Analytics
-								</label>
-								<br/>								
 								<label for="thirdparty-ganalytics">
 									<input 	name="thirdparty-ganalytics" 
 											type="checkbox" 
@@ -1183,7 +1369,7 @@ class ARGPD_Ui {
 								if ( ! $match && $settings->get_setting( 'avisolegal-disabled' ) == 0 ) {
 									?>
 								<p class="description avisolegal-description">
-									Escoge la página dónde aparecerá <br/>el Aviso Legal, <a id="crear-pagina-legal" class="crear-pagina" style="cursor:pointer">crea una nueva</a> o usa el <br/>shortcode [argpd_aviso-legal/]
+									Escoge la página dónde aparecerá <br/>el Aviso Legal, <a id="crear-pagina-legal" class="js-create-legal-page" style="cursor:pointer">crea una nueva</a> o usa el <br/>shortcode [argpd_aviso-legal/]
 								</p>
 								<?php } ?>
 							</td>
@@ -1248,7 +1434,7 @@ class ARGPD_Ui {
 								if ( ! $match && $settings->get_setting( 'privacidad-disabled' ) == 0 ) {
 									?>
 								<p class="description privacidad-description">
-									Selecciona la página dónde aparecerá <br/>la Política de Privacidad, <a id="crear-pagina-privacidad" class="crear-pagina" style="cursor:pointer">crea una nueva</a> o usa el <br/>shortcode [argpd_politica-privacidad/]
+									Selecciona la página dónde aparecerá <br/>la Política de Privacidad, <a id="crear-pagina-privacidad" class="js-create-legal-page" style="cursor:pointer">crea una nueva</a> o usa el <br/>shortcode [argpd_politica-privacidad/]
 								</p>
 								<?php } ?>
 
@@ -1315,7 +1501,7 @@ class ARGPD_Ui {
 								if ( ! $match && $settings->get_setting( 'cookies-disabled' ) == 0 ) {
 									?>
 									<p class="description cookies-description">
-										Selecciona la página dónde aparecerá <br/>la Política de Cookies, <a id="crear-pagina-cookies" class="crear-pagina" style="cursor:pointer">crea una nueva</a> o usa el <br/>shortcode [argpd_politica-cookies/]
+										Selecciona la página dónde aparecerá <br/>la Política de Cookies, <a id="crear-pagina-cookies" class="js-create-legal-page" style="cursor:pointer">crea una nueva</a> o usa el <br/>shortcode [argpd_politica-cookies/]
 									</p>
 								<?php } ?>
 							</td>
@@ -1380,7 +1566,7 @@ class ARGPD_Ui {
 								if ( ! $match && $settings->get_setting( 'custom-cookies-page-disabled' ) == 0 ) {
 									?>
 									<p class="custom-cookies-page-description">
-										Selecciona la página dónde aparecerá <br/>la Personalización de Cookies o <a id="create-custom-cookies-page" class="crear-pagina" style="cursor:pointer">créala</a>.
+										Selecciona la página dónde aparecerá <br/>la Personalización de Cookies o <a id="create-custom-cookies-page" class="js-create-legal-page" style="cursor:pointer">créala</a>.
 									</p>
 								<?php } ?>
 							</td>
@@ -1721,7 +1907,7 @@ class ARGPD_Ui {
 											id="cookies-linklabel" 
 											size="25"
 											value="<?php echo esc_attr( $settings->get_setting( 'cookies-linklabel' ) ); ?>"
-											placeholder="Más información"
+											placeholder="Configurar y más información"
 											>
 													
 									<p class="argpd-label pt20"><?php esc_html_e( 'Texto para el botón Aceptar:', 'argpd' ); ?></p>
@@ -1800,17 +1986,32 @@ class ARGPD_Ui {
 									<br/><br/>
 									<img id="theme-preview" src="" width="500px">
 									<br/><br/>
-									<label  for="cookies-fixed">
-										<input 	name="cookies-fixed" 
+									
+									<label  for="cookies-settings-button">
+										<input 	name="cookies-settings-button" 
 												type="checkbox" 
-												id="cookies-fixed"
+												id="cookies-settings-button"
 												value="1"							
-												<?php ( $settings->get_setting( 'cookies-fixed' ) == 1 ) && printf( 'checked' ); ?>
+												<?php ( $settings->get_setting( 'cookies-settings-button' ) == 1 ) && printf( 'checked' ); ?>
 												>
-												<?php esc_html_e( 'Botón flotante para mostrar el Banner de Cookies.', 'argpd' ); ?> 
+												<?php esc_html_e( 'Botón para &laquo;Configurar cookies&raquo;', 'argpd' ); ?> 
 												<br/>
 												<p class="description">
-													<?php esc_html_e( 'Recomendado.', 'argpd' ); ?>
+													<?php esc_html_e( 'Recomendado', 'argpd' ); ?>
+												</p>
+									</label>
+
+									<label  for="cookies-sticky-button">
+										<input 	name="cookies-sticky-button" 
+												type="checkbox" 
+												id="cookies-sticky-button"
+												value="1"							
+												<?php ( $settings->get_setting( 'cookies-sticky-button' ) == 1 ) && printf( 'checked' ); ?>
+												>
+												<?php esc_html_e( 'Botón flotante para mostrar el Banner de Cookies', 'argpd' ); ?> 
+												<br/>
+												<p class="description">
+													<?php esc_html_e( 'Recomendado', 'argpd' ); ?>
 												</p>
 									</label>
 								</td>
@@ -1829,7 +2030,7 @@ class ARGPD_Ui {
 					<tbody>	
 						<tr>
 							<th scope="row">
-								<label for="cookies-linklabel">
+								<label for="js-search-cookies">
 								<?php
 									printf(
 										'%s<br>%s',
@@ -1852,15 +2053,15 @@ class ARGPD_Ui {
 								</div>
 								<div>
 									<br/>
-									<a 	id="buscarCookies"
+									<a 	id="js-search-cookies"
 										class="button button-primary <?php ( $settings->get_setting( 'apikey' ) == "" ) && printf( 'button-disabled' ); ?>"
 										value="<?php esc_attr_e( 'Detectar cookies ahora', 'argpd' ); ?>" 
 										>											
 										<?php esc_html_e( 'Detectar cookies ahora', 'argpd' ); ?>
 									</a>
 								</div>
+								<p class="api-message"></p>
 								<?php if ( $settings->get_setting( 'apikey' ) == "" ) : ?>
-
 								<p class="description">
 									Para activar el detector de cookies obtén una clave de API. Para más detalles, consulta <a href="<?php echo esc_attr( admin_url( 'admin.php?page=argpd-addons' ) ); ?>">aquí</a>.
 								</p>
@@ -1895,23 +2096,39 @@ class ARGPD_Ui {
 							<td>
 								<div>
 									<div>
-										<label  for="cookies-unconsent">
-											<input 	name="cookies-unconsent" 
+										<label for="cookies-filter-known-scripts">
+											<input 	name="cookies-filter-known-scripts" 
 													type="checkbox" 
-													id="cookies-unconsent"
+													id="cookies-filter-known-scripts"
 													value="1"							
-													<?php ( $settings->get_setting( 'cookies-unconsent' ) == 1 ) && printf( 'checked' ); ?>
+													<?php ( $settings->get_setting( 'cookies-filter-known-scripts' ) == 1 ) && printf( 'checked' ); ?>
 													>
 													<?php esc_html_e( 'Bloquea scripts conocidos', 'argpd' ); ?>
 										</label>
 										<p class="description">
-											<?php esc_html_e( 'Bloquea los scripts conocidos de analítica como Google analytics, Recaptcha, Facebook analytics, ... y de redes sociales como Twitter o Disqus.', 'argpd' ); ?>
+											<?php esc_html_e( 'Bloquea los scripts conocidos de analítica como Google analytics, Recaptcha, Facebook analytics, ... y de redes sociales como Twitter o Disqus mientras no haya consentimiento.', 'argpd' ); ?>
 											<br/>											
 											<?php esc_html_e( 'Recomendado.', 'argpd' ); ?>
 										</p>
 									</div>
+									<div>
+										<label  for="remove-iframes">
+											<input 	name="remove-iframes" 
+													type="checkbox" 
+													id="remove-iframes"
+													value="1"							
+													<?php ( $settings->get_setting( 'remove-iframes' ) == 1 ) && printf( 'checked' ); ?>
+													>
+													<?php esc_html_e( 'Bloquea iframes', 'argpd' ); ?>
+										</label>
+										<p class="description">
+											<?php esc_html_e( 'Bloquea iframes mientras no haya consentimiento.', 'argpd' ); ?>
+											<br/>											
+											<?php esc_html_e( 'Recomendado.', 'argpd' ); ?>
+										</p>
+									</div>									
 									
-									<br/><br/><b>Bloquea scripts registrados por plugins instalados</b><br/><br/>
+									<br/><br/><b><?php esc_html_e( 'Bloquea scripts registrados por plugins instalados', 'argpd' ); ?></b><br/><br/>
 										<?php
 										$collection = $this->collect_assets();
 										foreach ( $collection as $el => &$i ) {
@@ -1953,7 +2170,7 @@ class ARGPD_Ui {
 
 								</div>
 								
-								<br/><br/><b>Avanzado</b><br/><br/>
+								<br/><br/><b><?php esc_html_e( 'Avanzado', 'argpd' ); ?></b><br/><br/>
 								<div>
 									<label  for="cookies-reload">
 									<input 	name="cookies-reload" 
@@ -2059,7 +2276,6 @@ class ARGPD_Ui {
 	 * @since  1.3.5
 	 */
 	public function addons_ui() {
-
 		global $argpd_active_tab;
 		$argpd_active_tab = ! empty( $_GET['tab'] ) ? sanitize_text_field( wp_unslash( $_GET['tab'] ) ) : 'settings';
 
@@ -2076,7 +2292,7 @@ class ARGPD_Ui {
 				<input type="hidden" value="argpd_addons_setup" name="action"/>
 				
 				<div class="argpd-panel">
-					<h2 class="title"><?php esc_html_e( 'LegalTech360', 'argpd' ); ?></h2>
+					<h2 class="title"><?php esc_html_e( 'Clave de la API', 'argpd' ); ?></h2>
 					<div>					
 						<hr/>
 						<table class="form-table">
@@ -2087,7 +2303,7 @@ class ARGPD_Ui {
 									</th>
 									<td>
 										<div>
-											Consigue tu Clave API. Es GRATIS y podrás escanear tu sitio y obtener información detallada de las cookies instaladas, Local Storage, pixels y otras tecnologías de rastreo con sólo hacer click en un botón. Para más detalles, <a href="https://superadmin.es/adapta-rgpd/subscribete/"> clica aquí para conseguir tu clave</a>.
+											Consigue tu Clave API. Podrás escanear tu sitio y obtener información detallada de las cookies instaladas, Local Storage, pixels y otras tecnologías de rastreo con sólo hacer click en un botón y, la versión plus recoger consentimientos de tus visitantes. Para más detalles, <a href="https://superadmin.es/adapta-rgpd/subscribete/"> clica aquí para conseguir tu clave</a>.
 										</div>
 										<div class="pt20">
 										<input 	type="text" 
@@ -2111,6 +2327,148 @@ class ARGPD_Ui {
 		$this->ui_footer();
 	}
 
+
+	/**
+	 * echo addons_ui page
+	 *
+	 * @since  1.3.5
+	 */
+	public function consents_ui() {
+		global $argpd_active_tab;
+		$argpd_active_tab = ! empty( $_GET['tab'] ) ? sanitize_text_field( wp_unslash( $_GET['tab'] ) ) : 'settings';
+
+		$this->ui_header();
+
+		$settings = $this->plugin->argpd_settings;
+		$all_settings = $this->plugin->argpd_settings->get_settings();
+		if ( $settings->get_setting( 'renuncia' ) == 0 ) { return; }
+		?>
+
+		<div class="wrap">			
+			<form method="post" action="admin-post.php" class="pt20">
+				<?php wp_nonce_field( 'argpd' ); ?>
+				<input type="hidden" value="argpd_consents_setup" name="action"/>
+				<div class="argpd-panel">
+					<h2 class="title"><?php esc_html_e( 'Consentimientos', 'argpd' ); ?></h2>
+					<div>					
+						<hr/>
+						<table class="form-table">
+							<tbody>
+								<tr>	
+									<th>						
+										<label for="option-store-consents"><?php esc_html_e( 'Recoger consentimientos', 'argpd' ); ?></label>
+									</th>
+									<td>
+										<?php										
+										$disabled = strlen ( $settings->get_setting( 'apikey' ) ) == 0;
+										if ( $disabled ) {
+											$atts = 'disabled';
+										} else {
+											$atts = $settings->get_setting( 'option-store-consents' ) == 1  ? ( 'checked' ) : '';
+										}
+										?>
+										<label class="argpd-switch">
+										  <input type="checkbox" id="option-store-consents-switch" name="option-store-consents" <?php echo esc_attr( $atts ); ?>>
+										  <span class="argpd-slider argpd-round"></span>
+										</label>
+										
+										<a href="https://superadmin.es/adapta-rgpd/documentacion-del-consentimiento/" target="_blank">
+										<span style="text-decoration: none" class="dashicons dashicons-editor-help"></span>
+										<?php esc_html_e('Documentación del consentimiento', 'argpd'); ?>
+
+										<?php if ( $disabled ) : ?>
+										<p class="description">
+											Para activar el gestor de consentimientos obtén una clave de API. Para más detalles, consulta <a href="<?php echo esc_attr( admin_url( 'admin.php?page=argpd-addons' ) ); ?>">aquí</a>.
+										</p>
+										<?php endif ?>
+									</td>
+								</tr>
+								<tr>
+									<td>
+										<?php submit_button(); ?>
+									</td>
+								</tr>
+							</tbody>
+						</table>
+					</div>
+					<?php if ( !$disabled && $settings->get_setting( 'option-store-consents' ) == 1 ) : ?>
+						<br/><h2>Registro de consentimientos <small>(<span id="js-current">0</span> de <span id="js-quota">0</span> en los últimos 30 días)</small></h2>
+						<p class="api-message"></p>
+						<div>
+							<table class="form-table">
+								<tbody>	
+									<tr>
+										<td>
+											<div class="pt20">
+											<input 	type="text" 
+													name="consent" 
+													id="js-consent-uuid"
+													/>
+											</div>
+											<br/>
+											<div>
+												<a 	id="js-search-by-consent-uuid"
+													class="button button-primary"
+													>											
+													<?php esc_html_e( 'Buscar', 'argpd' ); ?>
+												</a>
+											</div>
+										</td>
+									</tr>
+								</tbody>
+							</table>
+						</div>
+
+						<div>			
+							<table id="argpd-table-consents" class="display" style="width:100%">
+								<thead>
+									<tr>
+										<th class="dt-head-left" style="text-align: center; max-width: 150px"><?php esc_html_e( 'Id', 'argpd' ); ?></th>
+										<th class="dt-head-left" style="text-align: center; max-width: 120px"><?php esc_html_e( 'Fecha', 'argpd' ); ?></th>
+										<th class="dt-head-left" style="text-align: center; max-width: 60px"><?php esc_html_e( 'Usuario', 'argpd' ); ?></th>
+										<th class="dt-head-left" style="text-align: center; max-width: 60px"><?php esc_html_e( 'Ip', 'argpd' ); ?></th>		
+										<th class="dt-head-left" style="text-align: center; max-width: 120px"><?php esc_html_e( 'User agent', 'argpd' ); ?></th>
+										<th class="dt-head-left" style="text-align: center; max-width: 60px"><?php esc_html_e( 'Url', 'argpd' ); ?></th>
+										<th class="dt-head-left" style="text-align: center; max-width: 40px"><?php esc_html_e( 'Nec.', 'argpd' ); ?></th>
+										<th class="dt-head-left" style="text-align: center; max-width: 40px"><?php esc_html_e( 'No nec.', 'argpd' ); ?></th>
+										<th class="dt-head-left" style="text-align: center; max-width: 40px"><?php esc_html_e( 'Anltca', 'argpd' ); ?></th>
+										<th class="dt-head-left" style="text-align: center; max-width: 40px"><?php esc_html_e( 'Markt.', 'argpd' ); ?></th>
+										<th class="dt-head-left" style="text-align: center; max-width: 40px"><?php esc_html_e( 'Promoc.', 'argpd' ); ?></th>
+										<th class="dt-head-left" style="text-align: center; max-width: 40px"><?php esc_html_e( 'Raw', 'argpd' ); ?></th>
+									</tr>
+								</thead>
+								<tbody></tbody>
+								<tfoot>
+									<tr>
+										<th class="dt-head-left" style="text-align: center; max-width: 150px"><?php esc_html_e( 'Id', 'argpd' ); ?></th>
+										<th class="dt-head-left" style="text-align: center; max-width: 120px"><?php esc_html_e( 'Fecha', 'argpd' ); ?></th>
+										<th class="dt-head-left" style="text-align: center; max-width: 60px"><?php esc_html_e( 'Usuario', 'argpd' ); ?></th>				
+										<th class="dt-head-left" style="text-align: center; max-width: 60px"><?php esc_html_e( 'IP', 'argpd' ); ?></th>		
+										<th class="dt-head-left" style="text-align: center; max-width: 120px"><?php esc_html_e( 'User agent', 'argpd' ); ?></th>
+										<th class="dt-head-left" style="text-align: center; max-width: 60px"><?php esc_html_e( 'Url', 'argpd' ); ?></th>
+										<th class="dt-head-left" style="text-align: center; max-width: 40px"><?php esc_html_e( 'Nec.', 'argpd' ); ?></th>
+										<th class="dt-head-left" style="text-align: center; max-width: 40px"><?php esc_html_e( 'No nec.', 'argpd' ); ?></th>
+										<th class="dt-head-left" style="text-align: center; max-width: 40px"><?php esc_html_e( 'Anltca', 'argpd' ); ?></th>
+										<th class="dt-head-left" style="text-align: center; max-width: 40px"><?php esc_html_e( 'Markt.', 'argpd' ); ?></th>
+										<th class="dt-head-left" style="text-align: center; max-width: 40px"><?php esc_html_e( 'Promoc.', 'argpd' ); ?></th>
+										<th class="dt-head-left" style="text-align: center; max-width: 40px"><?php esc_html_e( 'Raw', 'argpd' ); ?></th>
+									</tr>
+								</tfoot>
+							</table>
+ 							<div id="argpd-raw-consent-popup" class="argpd-popup">
+    						    <div class="content">
+    						    	<pre id="raw-consent-content"></pre>
+    						        <span class="js-close-raw-popup"><?php esc_html_e( 'Cerrar', 'argpd' ); ?></span>
+    						    </div>
+    						</div>
+						</div>
+					<?php endif ?>
+				</div>
+			</form>
+		</div>
+		<?php
+		$this->ui_footer();
+	}
 
 	/**
 	 * Echo plugin settings view
@@ -2286,5 +2644,66 @@ class ARGPD_Ui {
 			}
 		}
 		return $collection;
+	}
+
+	/**
+	 * Get shifts data via Ajax.
+	 *
+	 * @since  0.0.0
+	 */
+	public function ajax_consents_load_data() {
+		check_ajax_referer( 'consents_load_data', 'security' );		
+
+		$settings = $this->plugin->argpd_settings;
+		$option_store_consents = $settings->get_setting( 'option-store-consents' );
+		$apikey = $settings->get_setting( 'apikey' );
+		$jwt_token = "";
+
+		if ($option_store_consents && strlen($apikey) > 0 ) {
+			// get auth
+			$args = array(
+				'method' => 'POST',
+			    'headers' => array(
+			   	'Content-Type' => 'application/json'
+			    ),
+			   'body' => json_encode(array('token' => $apikey )),
+			);
+			$response = wp_remote_post ("https://superapis.es/legaltech360/api/v1/auth", $args);
+			if ( is_wp_error( $response ) ) {
+			   wp_die();
+			} else {
+			   $jwt_token = $response['body'];
+			}
+
+			if ( strlen( $jwt_token ) == 0 ) {
+				wp_die();
+			}
+
+			// retrieve consents.
+			$args = array(
+				'method' => 'GET',
+			    'headers' => array(
+			   	'Content-Type' => 'application/json',
+			   	'Authorization' => 'Bearer ' . $jwt_token,
+			   	'Origin' => esc_url ( get_site_url() ),
+			    ),
+			);
+
+			$url = "https://superapis.es/legaltech360/api/v1/consents/consent";
+			$filter = trim( sanitize_text_field ( $_REQUEST['filter'] ) );
+
+			if ( strlen( $filter ) ) {
+				$url = sprintf( "%s/%s", $url, $filter );
+			}
+			
+
+			$response = wp_remote_post ($url, $args);
+			if ( is_wp_error( $response ) ) {
+			   wp_die();
+			} else {
+			   echo $response['body'];
+			}			
+		}
+		wp_die();
 	}
 }

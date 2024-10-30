@@ -27,18 +27,29 @@ class BWGViewAlbum_compact_preview extends BWGViewSite {
     require_once BWG()->plugin_dir . '/frontend/views/BWGView' . $gallery_type . '.php';
     $view_class = 'BWGView' . $gallery_type;
     $this->gallery_view = new $view_class();
-	$theme_row = $params['theme_row'];
+	  $theme_row = $params['theme_row'];
 
-	$from = (isset($params['from']) ? esc_html($params['from']) : 0);
-    $breadcrumb_arr = array(
-		0 => array(
-				'id' => $params['album_gallery_id'],
-				'page' => WDWLibrary::get('page_number_' . $bwg, 1, 'intval')
-			)
-		);
+  	$from = (isset($params['from']) ? esc_html($params['from']) : 0);
+
     $breadcrumb = WDWLibrary::get('bwg_album_breadcrumb_' . $bwg);
-	  $breadcrumb = !empty($breadcrumb) ? $breadcrumb : json_encode($breadcrumb_arr);
-    $params['breadcrumb_arr'] = json_decode($breadcrumb);
+    if ( !empty($breadcrumb) ) {
+      $breadcrumb_arr = json_decode($breadcrumb);
+      $params['breadcrumb_arr'] = array();
+      // Validation json data.
+      foreach ( $breadcrumb_arr as $key => $breadcrumb ) {
+        $params['breadcrumb_arr'][$key]['id'] = intval($breadcrumb->id);
+        $params['breadcrumb_arr'][$key]['page'] = intval($breadcrumb->page);
+      }
+    }
+    else {
+      $params['breadcrumb_arr'] = array(
+        0 => array(
+          'id' => $params['album_gallery_id'],
+          'page' => WDWLibrary::get('page_number_' . $bwg, 1, 'intval'),
+        ),
+      );
+    }
+    $breadcrumb = json_encode($params['breadcrumb_arr']);
 
     /* Set theme parameters for Gallery/Gallery group title/description.*/
     $theme_row->thumb_gal_title_font_size = $theme_row->album_compact_gal_title_font_size;

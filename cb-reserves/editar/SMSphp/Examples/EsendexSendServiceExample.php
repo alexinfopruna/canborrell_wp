@@ -14,16 +14,19 @@ http://www.esendex.com/support
 Esendex
 http://www.esendex.com
 */
+ini_set('display_errors', 1);
+ini_set('display_startup_errors', 1);
+error_reporting(E_ALL);
 
 include_once( "../EsendexSendService.php" );
 
 // Test Variables - assign values accordingly:
-$username = "";			// Your Username (normally an email address).
-$password = "";			// Your Password.
-$accountReference = "";		// Your Account Reference (either your virtual mobile number, or EX account number).
-$originator = "";		// An alias that the message appears to come from (alphanumeric characters only, and must be less than 11 characters).
-$recipients = "";		// The mobile number(s) to send the message to (comma-separated).
-$body = "";			// The body of the message to send (must be less than 160 characters).
+$username = "restaurant@can-borrell.com";			// Your Username (normally an email address).
+$password = "iridioArgon:17";			// Your Password.
+$accountReference = "EX0062561";		// Your Account Reference (either your virtual mobile number, or EX account number).
+$originator = "Rest.Can Borrell";		// An alias that the message appears to come from (alphanumeric characters only, and must be less than 11 characters).
+$recipients = "606782798";		// The mobile number(s) to send the message to (comma-separated).
+$body = "Holaaa";			// The body of the message to send (must be less than 160 characters).
 $type = "Text";			// The type of the message in the body (e.g. Text, SmartMessage, Binary or Unicode).
 $validityPeriod = 0;		// The amount of time in hours until the message expires if it cannot be delivered.
 $result;			// The result of a service request.
@@ -74,4 +77,6 @@ if ( !is_null( $messageIDs ) && sizeof( $messageIDs ) > 0 )
 		print( "<b>$messageID</b>: ".$messageStatus['MessageStatus']."<br/><br/>" );
 	}
 }
+
+echo "FINAL";
 ?>

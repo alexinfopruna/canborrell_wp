@@ -11,7 +11,11 @@ class WPML_Media_String_Images_Translation_Factory implements IWPML_Backend_Acti
 		$media_localization_settings = WPML_Media::get_setting( 'media_files_localization' );
 
 		if ( $media_localization_settings['strings'] ) {
-			$image_translator = new WPML_Media_Image_Translate( $sitepress, new WPML_Media_Attachment_By_URL_Factory() );
+			$image_translator = new WPML_Media_Image_Translate(
+				$sitepress,
+				new WPML_Media_Attachment_By_URL_Factory(),
+				new \WPML\Media\Factories\WPML_Media_Attachment_By_URL_Query_Factory()
+			);
 			$image_updater    = new WPML_Media_Translated_Images_Update( new \WPML\Media\Factories\WPML_Media_Element_Parser_Factory(), $image_translator, new WPML_Media_Sizes() );
 			$string_factory   = new WPML_ST_String_Factory( $wpdb );
 

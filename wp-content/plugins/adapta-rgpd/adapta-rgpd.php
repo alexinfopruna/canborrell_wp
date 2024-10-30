@@ -3,7 +3,7 @@
  * Plugin Name: Adapta RGPD
  * Plugin URI:  https://superadmin.es/adapta-rgpd
  * Description: Herramienta de ayuda para el cumplimiento del RGPD para empresas que realicen un tratamiento de datos personales de escaso riesgo.
- * Version:     1.3.6
+ * Version:     1.3.9
  * Author:      Superadmin
  * Author URI:  https://superadmin.es
  * Donate link: https://superadmin.es
@@ -14,7 +14,7 @@
  * @link    https://superadmin.es
  *
  * @package ARGPD
- * @version 1.3.6
+ * @version 1.3.9
  */
 
 /**
@@ -70,7 +70,7 @@ final class Adapta_RGPD {
 	 * @var    string
 	 * @since  0.0.0
 	 */
-	const VERSION = '1.3.6';
+	const VERSION = '1.3.9';
 
 	/**
 	 * URL of plugin directory.

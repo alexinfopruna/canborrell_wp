@@ -171,3 +171,6 @@
   -moz-transition: -moz-transform 0.4s, opacity 0.1s;
   transition: transform 0.4s, opacity 0.1s;
 }
+#adminmenu li.toplevel_page_galleries_bwg a.wp-has-current-submenu img {
+  filter: brightness(0) invert(1);
+}

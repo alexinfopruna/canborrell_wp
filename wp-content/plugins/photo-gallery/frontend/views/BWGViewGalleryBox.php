@@ -12,7 +12,8 @@ class BWGViewGalleryBox {
     require_once(BWG()->plugin_dir . '/framework/WDWLibraryEmbed.php');
 
     $bwg = WDWLibrary::get('current_view', 0, 'intval');
-    $current_url =  WDWLibrary::get('current_url', '', 'sanitize_url');
+    $current_url = WDWLibrary::get('current_url', '', 'sanitize_url');
+    $current_url = str_replace(array('"', "'"), array('', ""), $current_url);
     $theme_id = WDWLibrary::get('theme_id', 0, 'intval');
     $current_image_id = WDWLibrary::get('image_id', 0, 'intval', 'GET');
     $gallery_id = WDWLibrary::get('gallery_id', 0, 'intval', 'GET');
@@ -675,7 +676,7 @@ class BWGViewGalleryBox {
                       $resolution_w = intval($resolution_arr[0]);
                       $resolution_h = intval($resolution_arr[2]);
                       if($resolution_w != 0 && $resolution_h != 0){
-                        $scale = $scale = max($image_filmstrip_width / $resolution_w, $image_filmstrip_height / $resolution_h);
+                        $scale = max($image_filmstrip_width / $resolution_w, $image_filmstrip_height / $resolution_h);
                         $image_thumb_width = $resolution_w * $scale;
                         $image_thumb_height = $resolution_h * $scale;
                       }
@@ -697,7 +698,10 @@ class BWGViewGalleryBox {
                 }
 				        $_image_filmstrip_width  = $image_filmstrip_width - $filmstrip_thumb_right_left_space;
                 $_image_filmstrip_height = $image_filmstrip_height - $filmstrip_thumb_top_bottom_space;
-                $scale = max($image_filmstrip_width / $image_thumb_width, $image_filmstrip_height / $image_thumb_height);
+                $scale = 1;
+                if ( !is_null($image_thumb_width) && !is_null($image_thumb_height) ) {
+                  $scale = max($image_filmstrip_width / $image_thumb_width, $image_filmstrip_height / $image_thumb_height);
+                }
                 $image_thumb_width *= $scale;
                 $image_thumb_height *= $scale;
 				        $thumb_left = ($_image_filmstrip_width - $image_thumb_width) / 2;
@@ -752,7 +756,7 @@ class BWGViewGalleryBox {
       <?php
       }
       ?>
-      <div id="bwg_image_container" class="bwg_image_container">
+      <div id="bwg_image_container" class="bwg_image_container" data-action="<?php echo esc_url($popup_url); ?>">
         <?php if ( $params['enable_addthis'] && $params['addthis_profile_id'] ) { ?>
           <div class="bwg_addThis addthis_inline_share_toolbox"></div>
           <?php
@@ -760,7 +764,7 @@ class BWGViewGalleryBox {
         echo $this->loading();
         $share_url = '';
         ?>
-      <div class="bwg_btn_container <?php echo !$params['popup_enable_ctrl_btn'] ? 'bwg_no_ctrl_btn' : '' ?>">
+        <div class="bwg_btn_container <?php echo !$params['popup_enable_ctrl_btn'] ? 'bwg_no_ctrl_btn' : '' ?>">
         <div class="bwg_ctrl_btn_container">
 					<?php
           if ($params['show_image_counts']) {
@@ -771,9 +775,13 @@ class BWGViewGalleryBox {
             </span>
             <?php
           }
-          if( $params['popup_enable_ctrl_btn'] ) {
-					$share_url = add_query_arg(array('curr_url' => urlencode($current_url), 'image_id' => $current_image_id), WDWLibrary::get_share_page()) . '#bwg' . $gallery_id . '/' . $current_image_id;
-					?>
+          if ( $params['popup_enable_ctrl_btn'] ) {
+            $share_url = add_query_arg(array(
+                                       'gallery_id' => $gallery_id,
+                                       'image_id' => $current_image_id,
+                                       'curr_url' => esc_url($current_url),
+                                     ), WDWLibrary::get_share_page());
+            ?>
             <i title="<?php echo __('Play', 'photo-gallery'); ?>" class="bwg-icon-play bwg_ctrl_btn bwg_play_pause"></i>
             <?php if ($params['popup_enable_fullscreen']) {
               if (!$params['popup_fullscreen']) {
@@ -861,7 +869,7 @@ class BWGViewGalleryBox {
         <?php
         }
         ?>
-      </div>
+        </div>
         <div class="bwg_image_info_container1">
           <div class="bwg_image_info_container2">
             <span class="bwg_image_info_spun">
@@ -876,11 +884,13 @@ class BWGViewGalleryBox {
           <div class="bwg_image_hit_container2">
             <span class="bwg_image_hit_spun">
               <div class="bwg_image_hit">
-                <div class="bwg_image_hits"><?php echo __('Hits: ', 'photo-gallery'); ?><span><?php echo $current_image_hit_count; ?></span></div>
+                <div class="bwg_image_hits"><?php echo __('Hits: ', 'photo-gallery'); ?><span><?php echo intval($current_image_hit_count); ?></span></div>
               </div>
             </span>
           </div>
         </div>
+        <input id="rate_ajax_task" name="ajax_task" type="hidden" value="" />
+        <input id="rate_image_id" name="image_id" type="hidden" value="<?php echo esc_attr($image_id); ?>" />
         <?php
         if ( $params['popup_enable_rate'] ) {
           $data_rated = array(
@@ -896,13 +906,11 @@ class BWGViewGalleryBox {
               <span class="bwg_image_rate_spun">
                 <span class="bwg_image_rate">
                   <span class="bwg_image_rate_disabled"></span>
-                  <form id="bwg_rate_form" method="post" action="<?php echo $popup_url; ?>">
+                  <div id="bwg_rate_form">
                     <span id="bwg_star" class="bwg_star" data-score="<?php echo $current_avg_rating; ?>"></span>
                     <span id="bwg_rated" data-params='<?php echo $data_rated; ?>' class="bwg_rated"><?php echo __('Rated.', 'photo-gallery'); ?></span>
                     <span id="bwg_hint" class="bwg_hint"></span>
-                    <input id="rate_ajax_task" name="ajax_task" type="hidden" value="" />
-                    <input id="rate_image_id" name="image_id" type="hidden" value="<?php echo $image_id; ?>" />
-                  </form>
+                  </div>
                 </span>
               </span>
             </div>
@@ -1357,7 +1365,11 @@ class BWGViewGalleryBox {
       'image_filmstrip_width'                 => $image_filmstrip_width,
       'image_filmstrip_height'                => $image_filmstrip_height,
       'lightbox_info_margin'                  => $theme_row->lightbox_info_margin,
-      'bwg_share_url'                         => add_query_arg(array('curr_url' => urlencode($current_url), 'image_id' => ''), WDWLibrary::get_share_page()),
+      'bwg_share_url'                         => add_query_arg(array(
+                                                                 'gallery_id' => $gallery_id,
+                                                                 'image_id' => '',
+                                                                 'curr_url' => esc_url($current_url),
+                                                               ), WDWLibrary::get_share_page()),
       'bwg_share_image_url'                   => urlencode(BWG()->upload_url),
       'slideshow_interval'                    => $params['popup_interval'],
       'open_with_fullscreen'                  => $params['popup_fullscreen'],
@@ -1368,7 +1380,6 @@ class BWGViewGalleryBox {
       'is_pro'                                => BWG()->is_pro,
       'enable_addthis'                        => $params['enable_addthis'],
       'addthis_profile_id'                    => $params['addthis_profile_id'],
-      'share_url'                             => $share_url,
       'current_pos'                           => $current_pos,
       'current_image_key'                     => $current_image_key,
       'slideshow_effect_duration'             => $params['popup_effect_duration'],

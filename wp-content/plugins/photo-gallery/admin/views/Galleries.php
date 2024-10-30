@@ -7,7 +7,6 @@ class GalleriesView_bwg extends AdminView_bwg {
 
   public function __construct() {
     wp_enqueue_script(BWG()->prefix . '_jquery.ui.touch-punch.min');
-    wp_enqueue_script(BWG()->prefix . '_speed');
     parent::__construct();
   }
 
@@ -55,7 +54,6 @@ class GalleriesView_bwg extends AdminView_bwg {
       echo $this->pagination($params['page_url'], $params['total'], $params['items_per_page']);
       ?>
     </div>
-    <?php echo $this->booster_top_banner(); ?>
     <table class="images_table adminlist table table-striped wp-list-table widefat fixed pages media bwg-gallery-lists">
       <thead class="alternate">
 		    <td class="col_drag" data-page-number="<?php echo $params['page_num']; ?>" data-ordering-url="<?php echo $params['galleries_ordering_ajax_url']; ?>"></td>
@@ -242,14 +240,18 @@ class GalleriesView_bwg extends AdminView_bwg {
           <input type="text" id="name" name="name" class="bwg_requried" value="<?php echo !empty($row->name) ? esc_html($row->name) : ''; ?>">
         </div>
         <div class="bwg-page-actions">
-					<button class="tw-button-primary button-large" onclick="if (spider_check_required('name', 'Title') || bwg_check_instagram_gallery_input('<?php echo BWG()->options->instagram_access_token ?>') ) {return false;};
+          <?php
+          if ( !BWG()->is_pro ) {
+            WDWLibrary::gallery_to_pro_button();
+          }
+          ?>
+					<button class="tw-button-primary button-large" onclick="if (spider_check_required('name', 'Title') ) {return false;};
 						spider_set_input_value('task', 'save');
 						spider_set_input_value('ajax_task', '');
 						spider_set_input_value('bulk-action-selector-top', '-1');
 						spider_ajax_save('<?php echo BWG()->prefix . '_gallery'; ?>');return false;">
 		  			<?php echo ($params['id']) ? __('Update', 'photo-gallery') : __('Publish', 'photo-gallery'); ?>
 					</button>
-
 					<?php /* Preview Section */
 					if ( $params['id'] && $params['preview_action'] ) { ?>
 						<div class="tw-button-secondary bwg-preview-button " onclick="bwg_preview_section(this);"><?php _e('Preview', 'photo-gallery'); ?></div>
@@ -368,7 +370,7 @@ class GalleriesView_bwg extends AdminView_bwg {
                   <div class="wd-box-content">
                     <div class="wd-group">
                       <label class="wd-label" for="gallery_type"><?php _e('Gallery content type', 'photo-gallery'); ?></label>
-                      <select <?php echo ( !empty($params['rows'][0]) ) ? 'disabled' : ''; ?> name="gallery_type" id="gallery_type" onchange="bwg_gallery_type('<?php echo BWG()->options->instagram_access_token ?>');">
+                      <select <?php echo ( !empty($params['rows'][0]) ) ? 'disabled' : ''; ?> name="gallery_type" id="gallery_type" onchange="bwg_gallery_type('');">
                         <?php
                         foreach ($params['gallery_types'] as $id => $type) {
                           ?>
@@ -386,46 +388,7 @@ class GalleriesView_bwg extends AdminView_bwg {
                       <p class="description"><?php _e('Gallery type cannot be changed, as it is not empty. If you would like to show images from another source, please create a new gallery.', 'photo-gallery'); ?></p>
 					  <?php } ?>
                     </div>
-                    <!-- instagram gallery -->
-                    <div id="add_instagram_gallery" class="bwg-gallery-type-options" <?php echo($params['gallery_type'] == 'instagram' ? '' : 'style="display:none"'); ?>>
-                      <div class="wd-group" id='tr_autogallery_image_number'>
-                        <label class="wd-label" for="autogallery_image_number"><?php _e('Number of Instagram recent posts to add to gallery', 'photo-gallery'); ?> </label>
-                        <input type="number" id="autogallery_image_number" name="autogallery_image_number" value="<?php echo $row->autogallery_image_number; ?>" />
-                      </div>
-                      <div class="wd-group" id='tr_instagram_post_gallery'>
-                        <label class="wd-label"><?php _e('Instagram embed type', 'photo-gallery'); ?></label>
-                        <input type="radio" class="inputbox" id="instagram_post_gallery_0" name="instagram_post_gallery" <?php echo ($params['instagram_post_gallery'] ? '' : 'checked="checked"'); ?> value="0" />
-                        <label for="instagram_post_gallery_0"><?php _e('Content', 'photo-gallery'); ?></label>&nbsp;<br>
-                        <input type="radio" class="inputbox" id="instagram_post_gallery_1" name="instagram_post_gallery" <?php echo ($params['instagram_post_gallery'] ? 'checked="checked"' : ''); ?> value="1" />
-                        <label for="instagram_post_gallery_1"><?php _e('Whole post', 'photo-gallery'); ?></label>
-                      </div>
-                      <div class="wd-group" id='tr_update_flag'>
-                        <label class="wd-label"><?php _e('Gallery autoupdate option', 'photo-gallery'); ?> </label>
-                        <input type="radio" class="inputbox" id="update_flag_0" name="update_flag" <?php echo($row->update_flag == '' ? 'checked="checked"' : ''); ?> value="" />
-                        <label for="update_flag_0"><?php _e('No update', 'photo-gallery'); ?></label>&nbsp;<br>
-                        <input type="radio" class="inputbox" id="update_flag_1" name="update_flag" <?php echo($row->update_flag == 'add' ? 'checked="checked"' : ''); ?> value="add" />
-                        <label for="update_flag_1"><?php _e('Add new media, keep old ones published.', 'photo-gallery'); ?></label>&nbsp;<br>
-                        <input type="radio" class="inputbox" id="update_flag_2" name="update_flag" <?php echo($row->update_flag == 'replace' ? 'checked="checked"' : ''); ?> value="replace" />
-                        <label for="update_flag_2"><?php _e('Add new media, unpublish old ones.', 'photo-gallery'); ?></label>&nbsp;
-                      </div>
-                      <div class="wd-group" id='tr_instagram_gallery_add_button' <?php echo(($params['total']) ? 'style="display:none"' : ''); ?>>
-                        <input id="instagram_gallery_add_button" class="button-primary" type="button" onclick="bwg_add_instagram_gallery('<?php echo BWG()->options->instagram_access_token ?>');" value="<?php _e('Add Instagram Gallery', 'photo-gallery'); ?>" />
-                      </div>
-                    </div>
-                    <div id="add_facebook_gallery" class="bwg-gallery-type-options" <?php echo($params['gallery_type'] == 'facebook' ? '' : 'style="display:none"'); ?>>
-                      <?php
-                      if ( has_action('init_display_facebook_gallery_options_bwg') ) {
-                        do_action('init_display_facebook_gallery_options_bwg', $params);
-                      }
-                      else {
-                        $link = '<a href="' . BWG()->plugin_link . BWG()->utm_source . '" target="_blank">' . __('Photo Gallery Facebook Integration', 'photo-gallery') . '</a>';
-                        echo '<div class="error inline"><p>' . sprintf(__("Please install %s add-on to use this feature.", 'photo-gallery'), $link) . '</p></div>';
-                      }
-                      ?>
-                    </div>
-                    <?php
-                    do_action('bwg_gallery_type_options', $params);
-                    ?>
+                    <?php do_action('bwg_gallery_type_options', $params); ?>
                   </div>
                 </div>
               </div>
@@ -439,8 +402,34 @@ class GalleriesView_bwg extends AdminView_bwg {
     <?php
   }
 
+  public function total_size_banner($total_size) {
+    ?>
+    <div class="bwg-total-size-banner-cont">
+      <?php
+      if ($total_size) {
+        ?>
+      <div class="bwg-total-size-banner">
+        <div>
+          <span class="bwg-total-size-banner-note">
+            <b><?php echo sprintf(__("Total size: %s", 'photo-gallery'), $total_size); ?></b>
+            <?php esc_html_e('Heavy images negatively affect your website loading time and user experience. Optimize images to get better performance.', 'photo-gallery'); ?>
+          </span>
+        </div>
+        <div>
+          <a href="<?php echo esc_url(add_query_arg(array( 'page' => 'twbbwg_photo-gallery' ), admin_url('admin.php'))); ?>" class="bwg-total-size-banner-button">
+            <?php esc_html_e('Optimize now', 'photo-gallery'); ?>
+          </a>
+        </div>
+      </div>
+        <?php
+      }
+      ?>
+    </div>
+    <?php
+  }
+
   public function image_display( $params = array() ) {
-    if( $params['row'] ) {
+    if ( $params['row'] ) {
       $is_google_photos = ($params['row']->gallery_type == 'google_photos') ? TRUE : FALSE;
     }
     $ids_string = '';
@@ -460,17 +449,9 @@ class GalleriesView_bwg extends AdminView_bwg {
         var bwg_ajax_url_nonce = "<?php echo wp_nonce_url(admin_url('admin-ajax.php'), '', 'bwg_nonce'); ?>";
       </script>
       <input id="show_add_embed" class="button button-secondary button-large" title="<?php _e('Embed Media', 'photo-gallery'); ?>" style="<?php if ( $params['gallery_type'] != '' ) { echo 'display:none'; } ?>" type="button" onclick="jQuery('.opacity_add_embed').show(); jQuery('#add_embed_help').hide(); return false;" value="<?php _e('Embed Media', 'photo-gallery'); ?>" />
-      <input id="show_bulk_embed" class="button button-secondary button-large" title="<?php _e('Social Bulk Embed', 'photo-gallery'); ?>" style="<?php if ( $params['gallery_type'] != '' ) { echo 'display:none'; } ?>" type="button" onclick="jQuery('.opacity_bulk_embed').show(); return false;" value="<?php _e('Social Bulk Embed', 'photo-gallery'); ?>" />
-      <span class="bwg-optimize-btn">
-      <?php
-      if ( WDWLibrary::get_gallery_images_count() ) {
-        ?>
-      <a class="button button-primary button-large bwg-optimize-image-button" href="<?php echo esc_url($params['booster_page_url']); ?>"><?php _e('Optimize Images', 'photo-gallery'); ?></a>
-        <?php
-      }
-      ?>
-      </span>
     </div>
+    <div class="clear"></div>
+    <?php $this->total_size_banner($params['total_size']); ?>
     <div class="clear"></div>
     <div class="opacity_image_alt opacity_image_description opacity_image_redirect opacity_resize_image opacity_add_embed opacity_image_desc opacity_bulk_embed bwg_opacity_media"
          onclick="
@@ -484,7 +465,7 @@ class GalleriesView_bwg extends AdminView_bwg {
 
     <!-- Media Embed -->
     <div id="add_embed" class="opacity_add_embed bwg_add_embed">
-      <input type="text" id="embed_url" name="embed_url" value="" placeholder="<?php _e('Enter YouTube, Vimeo, Instagram, Flickr or Dailymotion URL here.', 'photo-gallery'); ?>"/>
+      <input type="text" id="embed_url" name="embed_url" value="" placeholder="<?php _e('Enter YouTube, Vimeo, Flickr or Dailymotion URL here.', 'photo-gallery'); ?>"/>
       <input class="button button-primary button-large" type="button" onclick="if (bwg_get_embed_info('embed_url')) {jQuery('.opacity_add_embed').hide();} return false;" value="<?php _e('Add to gallery', 'photo-gallery'); ?>" />
       <input class="button button-secondary button-large" type="button" onclick="jQuery('.opacity_add_embed').hide(); return false;" value="<?php _e('Cancel', 'photo-gallery'); ?>" />
       <p class="description"></p>
@@ -497,10 +478,6 @@ class GalleriesView_bwg extends AdminView_bwg {
         <div>
           <p class="spider_description_title"><?php _e('<b>Vimeo</b> URL example:', 'photo-gallery'); ?></p>
           <input type="text" value="https://vimeo.com/69726973" disabled="disabled">
-        </div>
-        <div>
-          <p class="spider_description_title"><?php _e('<b>Instagram</b> URL example:', 'photo-gallery'); ?></p>
-          <input type="text" value="https://instagram.com/p/ykvv0puS4u" disabled="disabled">
         </div>
         <?php
         if ( !empty($params['facebook_embed']['media']) && !empty($params['facebook_embed']['media']['body']) ) {
@@ -515,52 +492,6 @@ class GalleriesView_bwg extends AdminView_bwg {
           <p class="spider_description_title"><?php _e('<b>Dailymotion</b> URL example:', 'photo-gallery'); ?></p>
           <input type="text" value="http://www.dailymotion.com/video/x2w0jzl_cortoons-tv-tropty-episodio-2_fun" disabled="disabled">
         </div>
-      </div>
-    </div>
-    <!-- Social Bulk Embed -->
-    <div id="bulk_embed" class="opacity_bulk_embed bwg_bulk_embed">
-      <input class="button button-secondary button-large" type="button" onclick="jQuery('.opacity_bulk_embed').hide(); jQuery('#loading_div').hide(); return false;" value="<?php _e('Cancel', 'photo-gallery'); ?>" style="float: right; margin-left: 5px;" />
-      <input class="button button-primary button-large" type="button" onclick="bwg_bulk_embed('instagram', '<?php echo BWG()->options->instagram_access_token ?>');" value="<?php _e('Add to gallery', 'photo-gallery'); ?>" style="float: right; margin-left: 5px;" />
-      <div class="spider_description"></div>
-      <div>
-        <?php
-        if ( !empty($params['facebook_embed']['bulk']) && !empty($params['facebook_embed']['bulk']['head']) ) {
-          echo $params['facebook_embed']['bulk']['head'];
-        }
-        ?>
-        <div id="instagram_bulk_params">
-          <div id='popup_tr_instagram_gallery_source'>
-            <div class="spider_label_galleries">
-              <label for="popup_instagram_gallery_source">Instagram <?php echo __('username:', 'photo-gallery'); ?> </label>
-            </div>
-            <div>
-              <input type="text" id="popup_instagram_gallery_source" name="popup_instagram_gallery_source" value="" size="64" class="bwg_requried" />
-            </div>
-          </div>
-          <div id='popup_tr_instagram_image_number'>
-            <div class="spider_label_galleries">
-              <label for="popup_instagram_image_number"><?php echo __('Number of Instagram recent posts to add to gallery:', 'photo-gallery'); ?> </label>
-            </div>
-            <div>
-              <input type="number" id="popup_instagram_image_number" name="popup_instagram_image_number" value="12" />
-            </div>
-          </div>
-          <div id='popup_tr_instagram_post_gallery'>
-            <div class="spider_label_galleries">
-              <label>Instagram <?php echo __('embed type:', 'photo-gallery'); ?> </label></div>
-            <div>
-              <input type="radio" class="inputbox" id="popup_instagram_post_gallery_0" name="popup_instagram_post_gallery" checked="checked" value="0">
-              <label for="popup_instagram_post_gallery_0"><?php echo __('Content', 'photo-gallery'); ?></label>&nbsp;
-              <input type="radio" class="inputbox" id="popup_instagram_post_gallery_1" name="popup_instagram_post_gallery" value="1">
-              <label for="popup_instagram_post_gallery_1"><?php echo __('Whole post', 'photo-gallery'); ?></label>
-            </div>
-          </div>
-        </div>
-        <?php
-        if ( !empty($params['facebook_embed']['bulk']) && !empty($params['facebook_embed']['bulk']['body']) ) {
-          echo $params['facebook_embed']['bulk']['body'];
-        }
-		    ?>
       </div>
     </div>
     <!-- Resize -->
@@ -762,30 +693,54 @@ class GalleriesView_bwg extends AdminView_bwg {
             <th class="col_num"><?php echo $temp ? 'tempnum' : ++$i; ?></th>
             <td class="column-primary column-title" data-colname="<?php _e('Filename', 'photo-gallery'); ?>">
               <strong class="has-media-icon">
-                <?php if ( !$is_oembed_instagram_post ) { ?>
-                  <a class="thickbox thickbox-preview" onclick="jQuery('#loading_div').show();" href="<?php echo $image_link; ?>">
-                <?php } ?>
-                  <span class="media-icon image-icon">
-                    <img id="image_thumb_<?php echo $row->id; ?>" class="preview-image gallery_image_thumb <?php echo $temp ? '' : 'bwg_no_border' ?>"
-                        <?php echo $temp ? 'tempthumb_src=""' : ''; ?>
-                         data-embed="<?php echo $is_embed; ?>"
-                         data-instagram="<?php echo $is_instagram; ?>"
-                         data-type="<?php echo $row->filetype; ?>"
-                         data-src="<?php echo $temp ? '' : $image_url ?>"
-                         title="<?php echo $row->filename; ?>"
-                         alt="<?php echo $row->filename; ?>"/>
+                  <span class="bwg-media-icon">
+                    <span class="media-icon image-icon">
+                      <img id="image_thumb_<?php echo $row->id; ?>"
+                           class="preview-image gallery_image_thumb <?php echo $temp ? '' : 'bwg_no_border' ?>"
+                          <?php echo $temp ? 'tempthumb_src=""' : ''; ?>
+                           data-embed="<?php echo $is_embed; ?>"
+                           data-instagram="<?php echo $is_instagram; ?>"
+                           data-type="<?php echo $row->filetype; ?>"
+                           data-src="<?php echo $temp ? '' : $image_url ?>"
+                           title="<?php echo $row->filename; ?>"
+                           alt="<?php echo $row->filename; ?>"/>
+
+                    </span>
+                    <?php
+                    if ( isset($row->size) && $row->size ) {
+                      ?>
+                    <span class="bwg-total-size">
+                      <span><?php echo sprintf(__("Total size: %s", 'photo-gallery'), '<b>' . $row->size . '</b>'); ?></span>
+                      <a
+                        href="<?php echo(BWG()->is_demo ? 'javascript:alert(\'' . addslashes(__('This option is disabled in demo.', 'photo-gallery')) . '\');' : $params['booster_page_url']); ?>">
+                        <?php _e('Optimize now', 'photo-gallery'); ?>
+                      </a>
+                    </span>
+                      <?php
+                    }
+                    ?>
                   </span>
-                  <?php echo $row->filename; ?>
+                  <?php if (!$is_oembed_instagram_post) { ?>
+                  <a class="thickbox thickbox-preview" onclick="jQuery('#loading_div').show();"
+                     href="<?php echo $image_link; ?>">
+                    <?php } ?>
+                    <?php echo $row->filename; ?><?php if (!$is_oembed_instagram_post) { ?>
+                  </a>
+                  <?php } ?>
                   <i class="wd-info dashicons dashicons-info" data-id="wd-info-<?php echo $row->id; ?>"></i>
                   <div id="wd-info-<?php echo $row->id; ?>" class="wd-hide">
                     <p><?php echo __("Date", 'photo-gallery') . ': ' . ($temp ? $row->date : date("d F Y, H:i", strtotime($row->date))); ?></p>
                     <p><?php echo __("Resolution", 'photo-gallery') . ': ' . $row->resolution; ?></p>
+                    <?php
+                    if (isset($row->size) && $row->size) {
+                      ?>
                     <p><?php echo __("Size", 'photo-gallery') . ': ' . $row->size; ?></p>
+                      <?php
+                    }
+                    ?>
                     <p><?php echo __("Type", 'photo-gallery') . ': ' . $row->filetype; ?></p>
                   </div>
-                <?php if ( !$is_oembed_instagram_post ) { ?>
-                  </a>
-                <?php } ?>
+
                 <?php if ( !$row->published ) { ?>
                   — <span class="post-state"><?php _e('Unpublished', 'photo-gallery'); ?></span>
                 <?php } ?>
@@ -800,13 +755,6 @@ class GalleriesView_bwg extends AdminView_bwg {
                 <span><a onclick="spider_set_input_value('ajax_task', 'image_<?php echo $row->published ? 'unpublish' : 'publish'; ?>');
                     spider_set_input_value('image_current_id', '<?php echo $row->id; ?>');
                     spider_ajax_save('bwg_gallery');"><?php echo($row->published ? __('Unpublish', 'photo-gallery') : __('Publish', 'photo-gallery')); ?></a> |</span>
-                <?php
-                if ( WDWLibrary::get_gallery_images_count() ) {
-                  ?>
-                <span class="bwg-optimize-image-button"><a href="<?php echo ( BWG()->is_demo ? 'javascript:alert(\'' . addslashes(__('This option is disabled in demo.', 'photo-gallery')) . '\');' : $params['booster_page_url'] ); ?>"><?php _e('Optimize', 'photo-gallery'); ?></a> |</span>
-                  <?php
-                }
-                ?>
                 <span class="trash"><a onclick="if (confirm('<?php echo addslashes(__('Do you want to delete selected item?', 'photo-gallery')); ?>')) {
                     spider_set_input_value('ajax_task', 'image_delete');
                     spider_set_input_value('image_current_id', '<?php echo $row->id; ?>');

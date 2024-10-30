@@ -2,8 +2,8 @@
 Contributors: webdorado,wdsupport,photogallerysupport,10web
 Tags: gallery, photo gallery, image gallery, responsive gallery, wordpress gallery plugin, photo albums, gallery slider, gallery lightbox, wordpress photo gallery plugin, fullscreen gallery, watermarking, video gallery
 Requires at least: 4.6
-Tested up to: 6.0
-Stable tag: 1.7.4
+Tested up to: 6.5
+Stable tag: 1.8.24
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -272,6 +272,125 @@ Choose whether to display random or the first/last specific number of images.
 **Theme.** Choose the theme, which will be applied to the gallery/album.
 
 == Changelog ==
+
+= 1.8.24 =
+* Fixed: Security fix.
+
+= 1.8.23 =
+* Fixed: SVG sanitize fix.
+
+= 1.8.22 =
+* Fixed: SVG sanitize security issue.
+* Fixed: File upload arguments validation.
+
+= 1.8.21 =
+* Fixed: Security vulnerability.
+
+= 1.8.20 =
+* Fixed: Security vulnerability.
+
+= 1.8.19 =
+* Fixed: Security vulnerability.
+* Fixed: Dynamic property warning.
+
+= 1.8.18 =
+* Removed: Instagram integration.
+* Fixed: Sort in widget.
+
+= 1.8.17 =
+* Fixed: Do not add OpenSans font to all admin pages.
+* Fixed: Adding YouTube video at a specific time.
+* Fixed: Error in Yoast sitemap.
+
+= 1.8.16 =
+* Fixed: Broken access control vulnerabilities.
+
+= 1.8.15 =
+* Fixed: Security vulnerability.
+
+= 1.8.14 =
+* Fixed: Widget deprecation.
+* Fixed: Filmstrip error.
+* Fixed: YouTube embed.
+
+= 1.8.13 =
+* Fixed: Removed outdated jQuery.mobile library.
+* Fixed: Random ordering is not working with enabled Show "Order by" dropdown list option.
+
+= 1.8.12 =
+* Fixed: Rewrite rules on activation.
+* Fixed: Search submit issue on Android devices.
+* Fixed: YouTube embed with short URLs.
+
+= 1.8.11 =
+* Changed: Removed onboarding flow.
+
+= 1.8.10 =
+* Changed: Onboarding flow.
+
+= 1.8.9 =
+* Added: Onboarding popup.
+* Fixed: Back button in Gallery groups.
+
+= 1.8.8 =
+* Improved: Sharing the images.
+
+= 1.8.7 =
+* Fixed: Open redirect vulnerability.
+
+= 1.8.6 =
+* Added: Support for YouTube shorts.
+* Fixed: Tags filter with pagination.
+* Fixed: Image upload functionality on WP version lower than 5.3.0.
+* Fixed: Carousel view after the resize.
+* Fixed: Bulk action list styles.
+
+= 1.8.5 =
+* Added: Check page speed score from Elementor.
+* Fixed: Bug on getting plugin/theme path.
+* Fixed: Bug on illegal string offset.
+* Fixed: Remove unnecessary js from frontend.
+
+= 1.8.4 =
+* Fixed: Dismissible CTAs.
+
+= 1.8.3 =
+* Fixed: Security issue.
+* Fixed: Open Redirect vulnerability.
+* Fixed: Cross site vulnerability.
+* Fixed: 10Web Booster integration.
+
+= 1.8.2 =
+* Improved: 10Web Booster integration.
+
+= 1.8.1 =
+* Fixed: Open Redirect and XSS Reflected vulnerability.
+* Fixed: Tags cloud widget with specified number of items.
+* Fixed: Gallery tags availability in standard tags cloud widget.
+* Fixed: Images ordering on adding new images.
+
+= 1.8.0 =
+* Improved: File upload.
+* Improved: Image rotation according EXIF on upload.
+* Fixed: Update button position on shortcode popup.
+* Fixed: Remove special chars on image rename.
+* Fixed: Dimensions in the info tooltip for the images after rotate.
+* Fixed: The Mosaic view with infinite scroll pagination.
+* Fixed: Loading should be small on clicking load more button.
+* Fixed: Hits option.
+* Fixed: Vimeo videos thumbnails.
+* Fixed: Instagram embed galleries.
+* Fixed: Whole post type of the Instagram media.
+* Fixed: Resize issue with embedded media in Slideshow view.
+* Fixed: Instagram gallery in Elementor preview.
+
+= 1.7.6 =
+* Fixed: PHP version compatibility.
+
+= 1.7.5 =
+* Improved: Added page leaving popup to gallery edit page.
+* Improved: Speed optimization page.
+* Fixed: Compatibility with Elementor latest version.
 
 = 1.7.4 =
 * Fixed: Uploading images with changed wp_content directory from config.

@@ -13,7 +13,7 @@
  * * El prefix de les taules de la base de dades
  * * L'ABSPATH
  *
- * @link https://codex.wordpress.org/Editing_wp-config.php
+ * @link  https://developer.wordpress.org/advanced-administration/wordpress/wp-config/
  *
  * @package WordPress
  */
@@ -75,7 +75,7 @@ $table_prefix = 'wp_';
  * Per informació sobre altres constants que es poden utilitzar per depurar,
  * visiteu el còdex.
  *
- * @link https://codex.wordpress.org/Debugging_in_WordPress
+ * @link https://developer.wordpress.org/advanced-administration/debug/debug-wordpress/
  */
 define('WP_DEBUG', false);
 

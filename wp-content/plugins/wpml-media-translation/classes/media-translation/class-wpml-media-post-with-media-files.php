@@ -2,6 +2,7 @@
 
 use WPML\FP\Fns;
 use WPML\LIB\WP\Post;
+use WPML\Media\Classes\WPML_Media_Element_Translation_Factory;
 
 class WPML_Media_Post_With_Media_Files {
 
@@ -27,6 +28,11 @@ class WPML_Media_Post_With_Media_Files {
 	private $cf_settings_factory;
 
 	/**
+	 * @var \WPML\Media\Classes\WPML_Media_Attachment_By_URL_Query
+	 */
+	private $mediaAttachmentByURLQuery;
+
+	/**
 	 * WPML_Media_Post_With_Media_Files constructor.
 	 *
 	 * @param $post_id
@@ -34,19 +40,22 @@ class WPML_Media_Post_With_Media_Files {
 	 * @param WPML_Media_Attachment_By_URL_Factory $attachment_by_url_factory
 	 * @param SitePress $sitepress
 	 * @param WPML_Custom_Field_Setting_Factory $cf_settings_factory
+	 * @param \WPML\Media\Factories\WPML_Media_Attachment_By_URL_Query_Factory $mediaAttachmentByURLQueryFactory
 	 */
 	public function __construct(
 		$post_id,
 		\WPML\Media\Factories\WPML_Media_Element_Parser_Factory $media_parser_factory,
 		WPML_Media_Attachment_By_URL_Factory $attachment_by_url_factory,
 		SitePress $sitepress,
-		WPML_Custom_Field_Setting_Factory $cf_settings_factory
+		WPML_Custom_Field_Setting_Factory $cf_settings_factory,
+		\WPML\Media\Factories\WPML_Media_Attachment_By_URL_Query_Factory $mediaAttachmentByURLQueryFactory
 	) {
 		$this->post_id                   = $post_id;
 		$this->media_parser_factory      = $media_parser_factory;
 		$this->attachment_by_url_factory = $attachment_by_url_factory;
 		$this->sitepress                 = $sitepress;
 		$this->cf_settings_factory       = $cf_settings_factory;
+		$this->mediaAttachmentByURLQuery = $mediaAttachmentByURLQueryFactory->create();
 	}
 
 	public function get_media_ids() {
@@ -57,8 +66,10 @@ class WPML_Media_Post_With_Media_Files {
 			$content_to_parse   = apply_filters( 'wpml_media_content_for_media_usage', $post->post_content, $post );
 			$media_parsers       = $this->media_parser_factory->create( $content_to_parse );
 
+			$this->prefetchDataForFutureAttachmentByUrlGetIdCalls( $media_parsers );
+
 			foreach ( $media_parsers as $media_parser ) {
-				$media_ids = array_merge( $media_ids, $this->_get_ids_from_media_array( $media_parser, $media_parser->getMediaElements() ) );
+				$media_ids = $this->unique_array_merge( $media_ids, $this->_get_ids_from_media_array( $media_parser, $media_parser->getMediaElements() ) );
 
 				if ( $featured_image = get_post_meta( $this->post_id, '_thumbnail_id', true ) ) {
 					$media_ids[] = $featured_image;
@@ -71,21 +82,32 @@ class WPML_Media_Post_With_Media_Files {
 				$media_parsers         = $this->media_parser_factory->create( $custom_fields_content );
 
 				foreach ( $media_parsers as $media_parser ) {
-					$media_ids = array_merge( $media_ids, $this->_get_ids_from_media_array( $media_parser, $media_parser->getMediaElements() ) );
+					$media_ids = $this->unique_array_merge( $media_ids, $this->_get_ids_from_media_array( $media_parser, $media_parser->getMediaElements() ) );
 				}
 			}
 
 			if ( $gallery_media_ids = $this->get_gallery_media_ids( $content_to_parse ) ) {
 				$media_ids = array_unique( array_values( array_merge( $media_ids, $gallery_media_ids ) ) );
+				$media_ids = $this->unique_array_merge( $media_ids, $gallery_media_ids );
 			}
 
 			if ( $attached_media_ids = $this->get_attached_media_ids( $this->post_id ) ) {
-				$media_ids = array_unique( array_values( array_merge( $media_ids, $attached_media_ids ) ) );
+				$media_ids = $this->unique_array_merge( $media_ids, $attached_media_ids );
 			}
 
 		}
 
 		return Fns::filter( Post::get(), apply_filters( 'wpml_ids_of_media_used_in_post', $media_ids, $this->post_id ) );
+	}
+
+	/**
+	 * @param array $first_array
+	 * @param array $second_array
+	 *
+	 * @return array
+	 */
+	private function unique_array_merge( $first_array, $second_array) {
+		return array_unique( array_values( array_merge( $first_array, $second_array ) ) );
 	}
 
 	/**
@@ -101,7 +123,10 @@ class WPML_Media_Post_With_Media_Files {
 				$media_ids[] = $media['attachment_id'];
 			} else {
 				$attachment_by_url = $this->attachment_by_url_factory->create(
-					$media_parser->getMediaSrcFromAttributes( $media['attributes'] ), wpml_get_current_language() );
+					$media_parser->getMediaSrcFromAttributes( $media['attributes'] ),
+					wpml_get_current_language(),
+					$this->mediaAttachmentByURLQuery
+				);
 				if ( $attachment_by_url->get_id() ) {
 					$media_ids[] = $attachment_by_url->get_id();
 				}
@@ -109,6 +134,65 @@ class WPML_Media_Post_With_Media_Files {
 		}
 
 		return $media_ids;
+	}
+
+	/**
+	 * @param WPML_Media_Element_Parser[] $mediaParsers
+	 */
+	private function prefetchDataForFutureAttachmentByUrlGetIdCalls( $mediaParsers ) {
+		$urls = [];
+		foreach ( $mediaParsers as $mediaParser ) {
+			foreach( $mediaParser->getMediaElements() as $media ) {
+				if ( isset( $media['attachment_id'] ) ) {
+					continue;
+				}
+
+				$urls[] = $mediaParser->getMediaSrcFromAttributes( $media['attributes'] );
+			}
+		}
+
+		$this->mediaAttachmentByURLQuery->prefetchAllIdsFromGuids(
+			wpml_get_current_language(),
+			array_merge(
+				array_map(
+					function( $url ) {
+						return WPML_Media_Attachment_By_URL::getUrl( $url );
+					},
+					$urls
+				),
+				array_map(
+					function( $url ) {
+						return WPML_Media_Attachment_By_URL::getUrlNotScaled( $url );
+					},
+					$urls
+				)
+			)
+		);
+		$this->mediaAttachmentByURLQuery->prefetchAllIdsFromMetas(
+			wpml_get_current_language(),
+			array_merge(
+				array_map(
+					function( $url ) {
+						return WPML_Media_Attachment_By_URL::getUrlRelativePath( $url );
+					},
+					$urls
+				),
+				array_map(
+					function( $url ) {
+						return WPML_Media_Attachment_By_URL::getUrlRelativePathOriginal(
+							WPML_Media_Attachment_By_URL::getUrlRelativePath( $url )
+						);
+					},
+					$urls
+				),
+				array_map(
+					function( $url ) {
+						return WPML_Media_Attachment_By_URL::getUrlRelativePathScaled( $url );
+					},
+					$urls
+				)
+			)
+		);
 	}
 
 	/**
@@ -150,7 +234,7 @@ class WPML_Media_Post_With_Media_Files {
 
 		foreach ( $post_media as $attachment_id ) {
 
-			$post_element = new WPML_Post_Element( $attachment_id, $this->sitepress );
+			$post_element = WPML_Media_Element_Translation_Factory::create( $attachment_id );
 			foreach ( $languages as $language ) {
 				$translation = $post_element->get_translation( $language );
 				if ( null === $translation || ! $this->media_file_is_translated( $attachment_id, $translation->get_id() ) ) {

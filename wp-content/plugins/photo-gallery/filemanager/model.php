@@ -225,28 +225,20 @@ class FilemanagerModel {
         $value = str_replace($dir, '', $item);
         $value = explode(DIRECTORY_SEPARATOR, $value);
         $name = end($value);
-        /*
-        $paths = $value;
-        array_pop($paths);
-        $implode_path = implode('/', $paths);
-        $path = !empty($implode_path) ? '/'. $implode_path . '/' : '/';
-        */
+        $author = $wpdb->get_var($wpdb->prepare("SELECT `author` FROM `" . $wpdb->prefix . "bwg_file_paths` WHERE `name` = '%s'", $name));
+        $file = array();
+        $file['path'] = $path;
+        $file['name'] = $name;
+        $file['author'] = !empty($author) ? $author : 1;
         if ( is_dir($item) == TRUE ) {
-          $file = array();
           $file['is_dir'] = 1;
-          $file['path'] = $path;
-          $file['name'] = $name;
           $file['filename'] = str_replace("_", " ", $name);
           $file['alt'] = str_replace("_", " ", $name);
           $file['thumb'] = '/filemanager/images/dir.png';
-          $file['author'] = !empty($wpdb->get_var("SELECT `author` FROM `" . $wpdb->prefix . "bwg_file_paths` WHERE `name` = '$name'")) ? $wpdb->get_var("SELECT `author` FROM `" . $wpdb->prefix . "bwg_file_paths` WHERE `name` = '$name'") : 1;
           $dirs[] = $file;
         }
         else {
-          $file = array();
           $file['is_dir'] = 0;
-          $file['path'] = $path;
-          $file['name'] = $name;
           $filename = substr($name, 0, strrpos($name, '.'));
           $file['filename'] = str_replace("_", " ", $filename);
           $file_extension = explode('.', $name);
@@ -287,10 +279,9 @@ class FilemanagerModel {
           $file['copyright'] = !empty($exif['copyright']) ? $exif['copyright'] : '';
           $file['tags'] = !empty($exif['tags']) ? $exif['tags'] : '';
           $file['date_modified'] = date("Y-m-d H:i:s", filemtime($item));
-          $author = $wpdb->prepare($wpdb->get_var("SELECT `author` FROM `" . $wpdb->prefix . "bwg_file_paths` WHERE `name` = '%s'"), $name);
-          $file['author'] = !empty($author) ? $author : 1;
           $files[] = $file;
         }
+
       }
       $data = array_merge($dirs, $files);
       $insert = 0;

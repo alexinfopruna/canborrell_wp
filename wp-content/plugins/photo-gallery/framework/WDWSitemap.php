@@ -75,7 +75,7 @@ final class WDWSitemap {
         foreach ( $images as $image ) {
           if ( strpos($image->filetype, 'EMBED') === FALSE ) {
             $this->images[] = array(
-              'src' => BWG()->upload_url . $image->image_url_raw,
+              'src' => BWG()->upload_url . (isset($image->image_url_raw) ? $image->image_url_raw : $image->image_url),
               'title' => $image->alt,
               'alt' => $image->alt
             );

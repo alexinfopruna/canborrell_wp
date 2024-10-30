@@ -27,7 +27,7 @@ $mensaini="";
 testmensamailsms.php?id=XXXXXX
 
 <?php
-echo mail_cli($_REQUEST['id']);
+//echo mail_cli($_REQUEST['id']);
 
 
 

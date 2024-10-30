@@ -45,7 +45,7 @@ $gestor = new gestor_reserves();
 /* * *************************************************************************** */
 $gestor->xgreg_log("PÀGINA PAGAMENT GRUPS: <span class='idr'>$id</span>");
 //CADUCADES
-$query_reserves = "UPDATE reserves SET estat=6 WHERE ADDDATE(data_limit,INTERVAL 1 DAY) < NOW() AND data_limit>'2008-01-01' AND estat=2";
+$query_reserves = "UPDATE reserves SET estat=6 WHERE ADDDATE(data_limit,INTERVAL 1 DAY) < CURDATE() AND data_limit>'2008-01-01' AND estat=2";
 $reserves = mysqli_query($canborrell, $query_reserves) or die(((is_object($GLOBALS["___mysqli_ston"])) ? mysqli_error($GLOBALS["___mysqli_ston"]) : (($___mysqli_res = mysqli_connect_error()) ? $___mysqli_res : false)));
 
 if ($id)

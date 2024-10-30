@@ -310,8 +310,14 @@ class ARGPD_Pages {
 	public function custom_cookies_page_render($check_disabled=false) {
 		$settings = $this->plugin->argpd_settings->get_settings();
 
+    	if (isset($_COOKIE["argpd_consentUUID"])) {
+    		$consent_uuid  = sanitize_text_field($_COOKIE["argpd_consentUUID"]);
+    		$settings['uuid'] = $consent_uuid;
+    		
+    		// NOT IMPLEMENTED YET. Request API stored consents.
+    	} 
 
-		if ( isset( $_COOKIE['hasConsents'] ) ) {
+    	if ( isset( $_COOKIE['hasConsents'] ) ) {
 			$has_consents = wp_kses_data( $_COOKIE['hasConsents'] );
 			$consents = explode( " ", $has_consents );
 			if ( in_array("ANLTCS", $consents) ){

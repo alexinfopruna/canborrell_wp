@@ -25,7 +25,6 @@
   margin: auto;
   right: 0;
   left: 0;
-  padding-top: 40px;
 }
 
 .tw-container .tw-container-wrap-800-540 {
@@ -51,8 +50,9 @@
 }
 
 .tw-container .tw-container-wrap iframe {
-  height: 100%;
+  height: calc(100% - 52px);
   width: 100%;
+  margin-top: 52px;
 }
 .tw-gb-select {
   width: 100%;

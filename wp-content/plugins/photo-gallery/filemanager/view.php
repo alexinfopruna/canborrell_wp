@@ -74,8 +74,8 @@ class FilemanagerView {
       var messageEnterNewName = "<?php echo __('Enter new name', 'photo-gallery'); ?>";
       var messageFilesUploadComplete = "<?php echo __('Processing uploaded files...', 'photo-gallery'); ?>";
       var root = "<?php echo addslashes($this->controller->get_uploads_dir()); ?>";
-      var dir = "<?php echo(isset($_REQUEST['dir']) ? str_replace(array('\\', '../'), '', WDWLibrary::get('dir', '', 'sanitize_text_field', 'REQUEST')) : ''); ?>";
-      var dirUrl = "<?php echo $this->controller->get_uploads_url() . (isset($_REQUEST['dir']) ? str_replace(array('\\', '../'), '', WDWLibrary::get('dir', '', 'sanitize_text_field', 'REQUEST')) . '/' : ''); ?>";
+      var dir = "<?php echo(isset($_REQUEST['dir']) ? str_replace(array('\\', '..'), '', WDWLibrary::validate_path(WDWLibrary::get('dir', '', 'sanitize_text_field', 'REQUEST'))) : ''); ?>";
+      var dirUrl = "<?php echo $this->controller->get_uploads_url() . (isset($_REQUEST['dir']) ? str_replace(array('\\', '..'), '',  WDWLibrary::validate_path(WDWLibrary::get('dir', '', 'sanitize_text_field', 'REQUEST'))) . '/' : ''); ?>";
       var callback = "<?php echo (isset($_REQUEST['callback']) ? WDWLibrary::get('callback','','esc_js','REQUEST') : ''); ?>";
       var sortBy = "<?php echo $sort_by; ?>";
       var sortOrder = "<?php echo $sort_order; ?>";
@@ -249,7 +249,7 @@ class FilemanagerView {
 				<div class="bwg-select-file-text"><?php _e('Drag files here', 'photo-gallery'); ?><br><?php _e('or', 'photo-gallery'); ?><br><span class="button"><?php _e('Select Files', 'photo-gallery'); ?></span></div>
 				<?php
 				  $query_url = wp_nonce_url( admin_url('admin-ajax.php'), 'bwg_upl', 'bwg_nonce' );
-				  $query_url = add_query_arg(array('action' => 'bwg_upl', 'dir' => (isset($_REQUEST['dir']) ? str_replace(array('\\', '../'), '', WDWLibrary::get('dir', '', 'sanitize_text_field', 'REQUEST')) : '') . '/'), $query_url);
+				  $query_url = add_query_arg(array('action' => 'bwg_upl', 'dir' => (isset($_REQUEST['dir']) ? str_replace(array('\\', '..'), '', WDWLibrary::get('dir', '', 'sanitize_text_field', 'REQUEST')) : '') . '/'), $query_url);
 				?>
                 <input id="jQueryUploader" type="file" name="files[]"
 				   data-url="<?php echo $query_url; ?>"
@@ -276,7 +276,7 @@ class FilemanagerView {
       <input type="hidden" name="sort_by" value="<?php echo $sort_by; ?>" />
       <input type="hidden" name="sort_order" value="<?php echo $sort_order; ?>" />
       <input type="hidden" name="items_view" value="<?php echo $items_view; ?>" />
-      <input type="hidden" name="dir" value="<?php echo (isset($_REQUEST['dir']) ? str_replace(array('\\', '../'), '', WDWLibrary::get('dir', '', 'sanitize_text_field', 'REQUEST')) : ''); ?>" />
+      <input type="hidden" name="dir" value="<?php echo (isset($_REQUEST['dir']) ? str_replace(array('\\', '..'), '', WDWLibrary::get('dir', '', 'sanitize_text_field', 'REQUEST')) : ''); ?>" />
       <input type="hidden" name="file_names" value="" />
       <input type="hidden" name="file_namesML" value="" />
       <input type="hidden" name="file_new_name" value="" />

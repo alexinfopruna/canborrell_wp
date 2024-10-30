@@ -5,24 +5,6 @@
  */
 class OptionsModel_bwg {
   /**
-   * Set or reset Instagram credentials and access token
-   *
-   * @param bool $reset
-   *
-   * @return bool
-   */
-  function set_instagram_access_token( $reset = TRUE ) {
-    $row = new WD_BWG_Options();
-    $row->instagram_access_token = $reset ? '' : WDWLibrary::get('bwg_access_token');
-    $row->instagram_access_token_start_in = $reset ? '' : time();;
-    $row->instagram_access_token_expires_in = $reset ? '' : WDWLibrary::get('expires_in');
-    $row->instagram_user_id = $reset ? '' : WDWLibrary::get('user_id');
-    $row->instagram_username = $reset ? '' : WDWLibrary::get('username');
-    $upd = update_option('wd_bwg_options', json_encode($row));
-    return $upd;
-  }
-
-  /**
    * Get images count.
    *
    * @return int $imgcount

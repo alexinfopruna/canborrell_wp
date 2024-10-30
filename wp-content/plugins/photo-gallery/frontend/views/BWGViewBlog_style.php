@@ -2,9 +2,6 @@
 class BWGViewBlog_style extends BWGViewSite {
 
   public function display($params = array(), $bwg = 0, $ajax = FALSE) {
-    $HTTP_HOST = isset($_SERVER['HTTP_HOST']) ? sanitize_url($_SERVER['HTTP_HOST']) : '';
-    $REQUEST_URI = isset($_SERVER['REQUEST_URI']) ? sanitize_url($_SERVER['REQUEST_URI']) : '';
-    $current_url = esc_url( (is_ssl() ? 'https://' : 'http://') . $HTTP_HOST . $REQUEST_URI );
     $theme_row = $params['theme_row'];
     $image_rows = $params['image_rows'];
     $image_rows = $image_rows['images'];
@@ -137,7 +134,12 @@ class BWGViewBlog_style extends BWGViewSite {
                 <?php
               }
               if (($params['popup_enable_comment'] or $params['popup_enable_facebook'] or $params['popup_enable_twitter'] or $params['popup_enable_pinterest'] or $params['popup_enable_tumblr']) and ($params['popup_enable_ctrl_btn'])) {
-                $share_url = add_query_arg(array('curr_url' => urlencode($current_url), 'image_id' => $image_row->id), WDWLibrary::get_share_page()) . '#bwg' . $params['gallery_id'] . '/' . $image_row->id;
+                $current_url = WDWLibrary::get('current_url', isset($_SERVER['REQUEST_URI']) ? sanitize_url($_SERVER['REQUEST_URI']) : '', 'sanitize_url');
+                $share_url = add_query_arg(array(
+                                             'gallery_id' => $params['gallery_id'],
+                                             'image_id' => $image_row->id,
+                                             'curr_url' => $current_url,
+                                           ), WDWLibrary::get_share_page());
                 $share_image_url = str_replace('%252F', '%2F', urlencode($is_embed ? $image_row->thumb_url : BWG()->upload_url . rawurlencode($image_row->image_url_raw)));
                 ?>
                 <div id="bwg_blog_style_share_buttons_<?php echo esc_attr($image_row->id); ?>" class="bwg_blog_style_share_buttons_<?php echo esc_attr($bwg); ?>">
@@ -154,14 +156,14 @@ class BWGViewBlog_style extends BWGViewSite {
                     noreferrer - to prevent passing the referrer information to the target website by removing the referral info from the HTTP header.*/
                   if ($params['popup_enable_facebook']) {
                     ?>
-                    <a rel="noopener noreferrer" id="bwg_facebook_a_<?php echo esc_attr($image_row->id); ?>" href="https://www.facebook.com/sharer/sharer.php?u=<?php echo urlencode($share_url); ?>"  target="_blank" title="<?php echo __('Share on Facebook', 'photo-gallery'); ?>">
+                    <a rel="noopener noreferrer" id="bwg_facebook_a_<?php echo esc_attr($image_row->id); ?>" href="https://www.facebook.com/sharer/sharer.php?u=<?php echo urlencode($share_url); ?>" target="_blank" title="<?php echo __('Share on Facebook', 'photo-gallery'); ?>">
                       <i title="<?php echo __('Share on Facebook', 'photo-gallery'); ?>" class="bwg-icon-facebook-square bwg_facebook"></i>
                     </a>
                     <?php
                   }
                   if ($params['popup_enable_twitter']) {
                     ?>
-                    <a rel="noopener noreferrer" href="https://twitter.com/intent/tweet?url=<?php echo urlencode($current_url . '#bwg' . $params['gallery_id'] . '/' . $image_row->id); ?>" target="_blank" title="<?php echo __('Share on Twitter', 'photo-gallery'); ?>">
+                    <a rel="noopener noreferrer" href="https://twitter.com/intent/tweet?url=<?php echo urlencode($share_url); ?>" target="_blank" title="<?php echo __('Share on Twitter', 'photo-gallery'); ?>">
                       <i title="<?php echo __('Share on Twitter', 'photo-gallery'); ?>" class="bwg-icon-twitter-square bwg_twitter"></i>
                     </a>
                     <?php

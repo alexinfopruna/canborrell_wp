@@ -11,7 +11,7 @@ use WPML\FP\Str;
 class WPML_Media_Image_Parser extends WPML_Media_Element_Parser {
 
 	protected static $getFromCssBackgroundImagesRegex = '/<\w+[^>]+style\s?=\s?"[^"]*?background-image:url\(\s?([^\s\)]+)\s?\)/';
-	protected static $mediaElementsRegex = [
+	protected static $mediaElementsRegex              = [
 		'/<img ([^>]+)>/s',
 		'/<video ([^>]+)>/s',
 		'/<audio ([^>]+)>/s',
@@ -49,8 +49,18 @@ class WPML_Media_Image_Parser extends WPML_Media_Element_Parser {
 	 */
 	public function validate() {
 		return (
-			Str::includes( '<!-- wp:image', $this->blockText )
-			&& function_exists( 'parse_blocks' ) || Str::includes( '<img', $this->blockText )
+			( function_exists( 'parse_blocks' ) &&
+				( Str::includes( '<!-- wp:image', $this->blockText )
+					|| Str::includes( '<!-- wp:video', $this->blockText )
+					|| Str::includes( '<!-- wp:audio', $this->blockText )
+				)
+			)
+			||
+			Str::includes( '<img', $this->blockText )
+			||
+			Str::includes( '<video', $this->blockText )
+			||
+			Str::includes( '<audio', $this->blockText )
 		);
 	}
 
@@ -85,7 +95,7 @@ class WPML_Media_Image_Parser extends WPML_Media_Element_Parser {
 		if ( preg_match_all( self::$getFromCssBackgroundImagesRegex, $text, $matches ) ) {
 			foreach ( $matches[1] as $src ) {
 				$images[] = [
-					'attributes' => [ 'src' => $src ]
+					'attributes' => [ 'src' => $src ],
 				];
 			}
 		}

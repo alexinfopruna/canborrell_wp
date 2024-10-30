@@ -67,7 +67,7 @@ class WPML_TM_Rest_Jobs_Criteria_Parser {
 			}
 		}
 
-		foreach ( [ 'local_job_ids', 'title', 'target_language', 'batch_name' ] as $key ) {
+		foreach ( [ 'ids', 'local_job_ids', 'title', 'target_language', 'batch_name' ] as $key ) {
 			$value = (string) $request->get_param( $key );
 			if ( strlen( $value ) ) {
 				$params->{'set_' . $key}( explode( ',', $value ) );
@@ -77,20 +77,17 @@ class WPML_TM_Rest_Jobs_Criteria_Parser {
 		if ( $request->get_param( 'status' ) !== null ) {
 			$statuses = Fns::map( Cast::toInt(), explode( ',', $request->get_param( 'status' ) ) );
 
-			if ( $statuses === [ ICL_TM_NEEDS_REVIEW ] ) {
-				$params->set_needs_review( true );
-			} else {
-				$params->set_status( Fns::reject( Relation::equals( ICL_TM_NEEDS_REVIEW ), $statuses ) );
-
-				if ( ! Lst::includes( ICL_TM_NEEDS_REVIEW, $statuses ) ) {
-					$params->set_needs_review( false );
-				}
-			}
+			$params->set_status( Fns::reject( Relation::equals( ICL_TM_NEEDS_REVIEW ), $statuses ) );
+			$params->set_needs_review( Lst::includes( ICL_TM_NEEDS_REVIEW, $statuses ) );
 		}
 		$params->set_exclude_cancelled();
 
 		if ( $request->get_param( 'needs_update' ) ) {
 			$params->set_needs_update( new WPML_TM_Jobs_Needs_Update_Param( $request->get_param( 'needs_update' ) ) );
+		}
+
+		if ( $request->get_param( 'only_automatic' ) ) {
+			$params->set_exclude_manual( true );
 		}
 
 		$date_range_values = array( 'sent', 'deadline' );
@@ -99,8 +96,8 @@ class WPML_TM_Rest_Jobs_Criteria_Parser {
 			$to   = $request->get_param( $date_range_value . '_to' );
 
 			if ( $from || $to ) {
-				$from = $from ? new DateTime( $from ) : $from;
-				$to   = $to ? new DateTime( $to ) : $to;
+				$from = $from ? new DateTime( $from ) : null;
+				$to   = $to ? new DateTime( $to ) : null;
 
 				if ( $from && $to && $from > $to ) {
 					continue;
@@ -112,7 +109,19 @@ class WPML_TM_Rest_Jobs_Criteria_Parser {
 
 		if ( $request->get_param( 'pageName' ) === \WPML_TM_Jobs_List_Script_Data::TRANSLATION_QUEUE_PAGE ) {
 			global $wpdb;
-			$where[] = $wpdb->prepare( '(translate_job.translator_id = %d OR translate_job.translator_id = 0 OR translate_job.translator_id IS NULL)', User::getCurrentId() );
+
+			/**
+			 * On Translation Queue page, in general, you should only see the jobs assigned to you or unassigned.
+			 * Although, we want to make an exception for automatic jobs which require review. Those jobs shall not have assigned translator,
+			 * but due to some old bugs, a user can have corrupted data in the database. We want him to be able to see them even if due to the bug,
+			 * they are assigned to somebody else.
+			 */
+			$translatorCond = "(
+				(translate_job.translator_id = %d OR translate_job.translator_id = 0 OR translate_job.translator_id IS NULL) 
+				OR (automatic = 1 OR review_status = 'NEEDS_REVIEW') 
+			)";
+			$where[] = $wpdb->prepare( $translatorCond, User::getCurrentId() );
+
 			if ( ! $request->get_param( 'includeTranslationServiceJobs' ) ) {
 				$where[] = 'translation_status.translation_service = "local"';
 			}

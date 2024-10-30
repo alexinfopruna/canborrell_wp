@@ -48,7 +48,7 @@ $were="WHERE TRUE ";
 $were.=" AND num_2=666 ";  //// MOSTRA L'HISTORIC!!!!
 
 $query_reserves = "SELECT *  FROM reserves ";
-$order="ORDER BY IF(data < NOW(),1,0), IF(estat = 1,0,1),IF(estat = 2,0,1), IF(estat = 3,0,1),IF(estat = 7,0,1),estat, data";
+$order="ORDER BY IF(data < CURDATE(),1,0), IF(estat = 1,0,1),IF(estat = 2,0,1), IF(estat = 3,0,1),IF(estat = 7,0,1),estat, data";
 
 $query_reserves .= $were.$order;
 

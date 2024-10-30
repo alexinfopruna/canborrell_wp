@@ -129,7 +129,7 @@ class Gestor_form extends gestor_reserves {
 
     $query = "SELECT * FROM reserves 
 		LEFT JOIN client ON reserves.client_id=client.client_id
-		WHERE data>= NOW() + INTERVAL 24 HOUR
+		WHERE data>= CURDATE() + INTERVAL 24 HOUR
 		AND reserves.id_reserva='" . $id_reserva . "' AND client_mobil='" . $mob . "'";
 
     $this->qry_result = mysqli_query($this->connexioDB, $query) or die(((is_object($GLOBALS["___mysqli_ston"])) ? mysqli_error($GLOBALS["___mysqli_ston"]) : (($___mysqli_res = mysqli_connect_error()) ? $___mysqli_res : false)));
@@ -498,8 +498,8 @@ SELECT client.`client_id`,`client_nom`,`client_conflictes`,`client_email`,`clien
 (reserves.id_reserva OR reservestaules.id_reserva) as reservat, reservestaules.estat
 
 FROM client 
-		LEFT JOIN reserves ON client.client_id=reserves.client_id AND reserves.data>=NOW()AND (reserves.estat=1 OR reserves.estat=2 OR reserves.estat=3 OR reserves.estat=7 OR reserves.estat=100)
-		LEFT JOIN " . T_RESERVES . " ON client.client_id=" . T_RESERVES . ".client_id AND " . T_RESERVES . ".data>=NOW()
+		LEFT JOIN reserves ON client.client_id=reserves.client_id AND reserves.data>=CURDATE()AND (reserves.estat=1 OR reserves.estat=2 OR reserves.estat=3 OR reserves.estat=7 OR reserves.estat=100)
+		LEFT JOIN " . T_RESERVES . " ON client.client_id=" . T_RESERVES . ".client_id AND " . T_RESERVES . ".data>=CURDATE()
 
 	WHERE client_mobil='$num' 
 	OR LOWER(client_email)='$mail'
@@ -1717,23 +1717,38 @@ SQL;
 
     return $mensa;
   }
+/*
+   public function reserva_entra_avui($data, $torn) {
+     $data_reserva = new DateTime($data . ' ' . $torn);
+     $ara= new DateTime("now");
+     $max_date = new DateTime($data . ' ' . MAX_HORA_RESERVA_ONLINE);
+    
+     $entra = $ara <= $max_date;
+    
+    
+     $ara->modify("+1 hour");
+     $ara->modify("+" . MARGE_DIES_RESERVA_ONLINE . " days");
+     $entra2 = $data_reserva > $ara;
+     return ($entra && $entra2);
+   }
+*/
+  public function reserva_entra_avui($data, $torn) {   
+    $entra=true;
 
-  public function reserva_entra_avui($data, $torn) {
-    $data_reserva = new DateTime($data . ' ' . $torn);
     $ara= new DateTime("now");
-    $max_date = new DateTime($data . ' ' . MAX_HORA_RESERVA_ONLINE);
-   // $max_date = new DateTime();
-    
-    $entra = $ara <= $max_date;
-    
-    
-    $ara->modify("+1 hour");
-    $ara->modify("+" . MARGE_DIES_RESERVA_ONLINE . " days");
-   // $ara->modify("+" . "1" . " days");
-    $entra2 = $data_reserva > $ara;
-    // echo $data_reserva->format('c')." / ".$ara->format('c');
-    //  echo $entra&&$entra2?"----ENTRA":"----NO_ENTRA";
-    return ($entra && $entra2);
+    $strara=$ara->format('Y-m-d');
+    if ($strara==$data){
+      $max_date = new DateTime($ara->format('Y-m-d') . ' ' . MAX_HORA_RESERVA_ONLINE);
+      $entra = $ara < $max_date  ;
+    }
+    else{
+      $ara->modify("+" . MARGE_DIES_RESERVA_ONLINE . " days");
+      $strara=$ara->format('Y-m-d');
+
+      $entra = $strara<=$data;
+
+    }
+    return ($entra);
   }
  
 
