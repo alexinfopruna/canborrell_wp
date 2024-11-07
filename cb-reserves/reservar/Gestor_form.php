@@ -601,7 +601,7 @@ FROM client
       $_POST['observacions'] = '';
 //echo 111;
     if (!isset($_POST['client_mail']))      $_POST['client_mail'] = null;
-//    echo 2222;echo $_POST['client_mail'];echo 3333;
+    echo 2222;echo $_POST['client_mail'];echo 3333;
     $result = json_decode($this->recuperaClient($_POST['client_mobil'], $_POST['client_mail']));
     echo($_POST['client_mobil'] + $_POST['client_mail']);
 //   print_r($result);
@@ -611,7 +611,7 @@ FROM client
       return $this->jsonErr($result->{'err'}, $resposta);
     }
     
-//    die("gestor_foem611");
+    die("gestor_foem611");
 
     $_POST['lang'] = $_SESSION["lang"];
     $_POST['reserva_info'] = 1;
