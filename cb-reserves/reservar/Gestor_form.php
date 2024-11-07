@@ -486,7 +486,7 @@ ORDER BY carta_subfamilia_order,carta_plats_nom_es , carta_plats_nom_ca";
 // FUNCIONS	CLIENT
   /*   * ******************************************************************************************************* */
   /*   * ******************************************************************************************************* */
-  public function recuperaClient($num, $mail = null) {
+  public function recuperaClient($num, $mail = null, $debug  = false) {
     //$num="999";
 
     if (empty($mail))
@@ -506,13 +506,15 @@ FROM client
 	
 	ORDER BY id_reserva_grup DESC , id_reserva DESC , client.client_id ASC";
 
-
+  if ($debug) echo $query;
     $Result1 = mysqli_query($this->connexioDB, $query) or die(((is_object($GLOBALS["___mysqli_ston"])) ? mysqli_error($GLOBALS["___mysqli_ston"]) : (($___mysqli_res = mysqli_connect_error()) ? $___mysqli_res : false)));
     if ($tot = mysqli_num_rows($Result1) == 0)
       return 'false';
 
     $row['err'] = FALSE;
     while ($row = mysqli_fetch_array($Result1)  ) {
+      if ($debug) print_r($row);
+
       if ($row['reservat']) {
         if ($row['id_reserva_grup'])
           $row['data'] = $row['data_grup'];
@@ -542,6 +544,8 @@ FROM client
     return json_encode($row);
   }
 
+
+  
   /*   * ******************************************************************************************************* */
   /*   * ******************************************************************************************************* */
 
