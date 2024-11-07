@@ -127,7 +127,7 @@
   </tr>
 <tr style="height: 10px;">
 <td> </td>
-    <td><div align="center">Si vol accedir accedir al sistema de reserves faci click <a href="https://can-borrell.com/editar/editar.php?id={id_reserva}" class="dins" style="color: #666">&lt;aquí&gt;</a> </div></td>
+    <td><div align="center">Si vol accedir accedir al sistema de reserves faci click <a href="https://can-borrell.com/cb-reserves/editar/editar.php?id={id_reserva}" class="dins" style="color: #666">&lt;aquí&gt;</a> </div></td>
     <td> </td>
   </tr>
 <tr style="height: 10px;">

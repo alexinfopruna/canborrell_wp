@@ -381,7 +381,7 @@ function mail_restaurant($id=false)
 	$id = $fila['id_reserva'];
 	$avui=date("d/m/Y");
 	$ara=date("H:i");
-	$file="templates/pagat_rest.lbi";
+	$file = getcwd(). "/templates/pagat_rest.lbi";
 	
 	
 			$t=new Template('.','comment');

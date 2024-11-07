@@ -137,12 +137,12 @@
     </tr>
     <tr>
       <td></td>
-      <td class="Estilo5"><div align="center"><a href="https://www.can-borrell.com/editar/confirma.php?id={confirlink}" class="dins">{confirma}</a></div></td>
+      <td class="Estilo5"><div align="center"><a href="https://www.can-borrell.com/cb-reserves/editar/confirma.php?id={confirlink}" class="dins">{confirma}</a></div></td>
       <td></td>
     </tr>
     <tr>
       <td></td>
-      <td class="Estilo5"><div align="center" ><a href="https://www.can-borrell.com/editar/cancela.php?id={cancelink}" class="dins">{cancela}</a></div></td>
+      <td class="Estilo5"><div align="center" ><a href="https://www.can-borrell.com/cb-reserves/editar/cancela.php?id={cancelink}" class="dins">{cancela}</a></div></td>
       <td></td>
     </tr>
     <tr>
