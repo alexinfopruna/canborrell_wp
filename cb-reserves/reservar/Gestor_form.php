@@ -599,19 +599,19 @@ FROM client
       $_POST['client_mobil'] = 'xxx';
     if (!isset($_POST['observacions']))
       $_POST['observacions'] = '';
-echo 111;
+//echo 111;
     if (!isset($_POST['client_mail']))      $_POST['client_mail'] = null;
-    echo 2222;
+//    echo 2222;echo $_POST['client_mail'];echo 3333;
     $result = json_decode($this->recuperaClient($_POST['client_mobil'], $_POST['client_mail']));
     echo($_POST['client_mobil'] + $_POST['client_mail']);
-    print_r($result);
+//   print_r($result);
     if (isset($result->{'err'}) && $result->{'err'}) {
       $this->xgreg_log("ERROR SUBMIT->CLIENT REPETIT" . $result->{'err'}, 1);
       
       return $this->jsonErr($result->{'err'}, $resposta);
     }
     
-    die("gestor_foem611");
+//    die("gestor_foem611");
 
     $_POST['lang'] = $_SESSION["lang"];
     $_POST['reserva_info'] = 1;
