@@ -504,7 +504,7 @@ FROM client
 	WHERE client_mobil='$num' 
 	OR LOWER(client_email)='$mail'
 	
-	ORDER BY id_reserva_grup DESC , id_reserva DESC , client.client_id DESC";
+	ORDER BY id_reserva_grup DESC , id_reserva DESC , client.client_id ASC";
 
   if ($debug) echo $query;
     $Result1 = mysqli_query($this->connexioDB, $query) or die(((is_object($GLOBALS["___mysqli_ston"])) ? mysqli_error($GLOBALS["___mysqli_ston"]) : (($___mysqli_res = mysqli_connect_error()) ? $___mysqli_res : false)));
@@ -608,7 +608,6 @@ FROM client
       return $this->jsonErr($result->{'err'}, $resposta);
     }
 
-    die("wwwwwwwwwwww");
 
     $_POST['lang'] = $_SESSION["lang"];
     $_POST['reserva_info'] = 1;
@@ -628,7 +627,7 @@ FROM client
 
     $PERSONES_GRUP = $this->configVars("persones_grup");
     if ($total_coberts < 2 || $total_coberts > $PERSONES_GRUP)
-      return $this->jsonErr(codi: 7, $resposta); // "err7 adults";
+      return $this->jsonErr(7, $resposta); // "err7 adults";
 
 
 
