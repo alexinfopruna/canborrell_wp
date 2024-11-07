@@ -599,9 +599,11 @@ FROM client
       $_POST['client_mobil'] = 'xxx';
     if (!isset($_POST['observacions']))
       $_POST['observacions'] = '';
-
+echo 111;
     if (!isset($_POST['client_mail']))      $_POST['client_mail'] = null;
+    echo 2222;
     $result = json_decode($this->recuperaClient($_POST['client_mobil'], $_POST['client_mail']));
+    echo($_POST['client_mobil'] + $_POST['client_mail']);
     print_r($result);
     if (isset($result->{'err'}) && $result->{'err'}) {
       $this->xgreg_log("ERROR SUBMIT->CLIENT REPETIT" . $result->{'err'}, 1);
