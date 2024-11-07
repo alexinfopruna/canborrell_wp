@@ -607,7 +607,8 @@ FROM client
       
       return $this->jsonErr($result->{'err'}, $resposta);
     }
-
+    
+    die("gestor_foem611");
 
     $_POST['lang'] = $_SESSION["lang"];
     $_POST['reserva_info'] = 1;
