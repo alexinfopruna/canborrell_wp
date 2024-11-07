@@ -609,7 +609,7 @@ FROM client
     }
 
 
-    return $this->jsonErr(codi: 7, $resposta); // "err7 adults";
+    return $this->jsonErr( 7, $resposta); // "err7 adults";
 
 
     $_POST['lang'] = $_SESSION["lang"];
