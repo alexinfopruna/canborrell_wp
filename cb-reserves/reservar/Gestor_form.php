@@ -504,25 +504,28 @@ FROM client
 	WHERE client_mobil='$num' 
 	OR LOWER(client_email)='$mail'
 	
-	ORDER BY id_reserva_grup DESC , id_reserva DESC , client.client_id DESC";
+	ORDER BY id_reserva_grup DESC , id_reserva DESC , client.client_id ASC";
 
 
-    
     $Result1 = mysqli_query($this->connexioDB, $query) or die(((is_object($GLOBALS["___mysqli_ston"])) ? mysqli_error($GLOBALS["___mysqli_ston"]) : (($___mysqli_res = mysqli_connect_error()) ? $___mysqli_res : false)));
-    if (mysqli_num_rows($Result1) == 0)
+    if ($tot = mysqli_num_rows($Result1) == 0)
       return 'false';
 
     $row['err'] = FALSE;
-    $row = mysqli_fetch_array($Result1);
-    if ($row['reservat']) {
-      if ($row['id_reserva_grup'])
-        $row['data'] = $row['data_grup'];
-      $row['data'] = $this->cambiaf_a_normal($row['data']);
-      $row['err'] = "20";
-      
-      if ($row['estat']==2) $row['err'] = "22";
-    }
+    while ($row = mysqli_fetch_array($Result1)  ) {
+      if ($row['reservat']) {
+        if ($row['id_reserva_grup'])
+          $row['data'] = $row['data_grup'];
+        $row['data'] = $this->cambiaf_a_normal($row['data']);
+        $row['err'] = "20";
 
+        if ($row['estat'] == 2)
+          $row['err'] = "22";
+
+        break;
+      }
+    }
+//print_r($row);echo "WWWWW";
     //GARJOLA
     if ($this->garjola($num, $mail)) {
       if ($row['id_reserva_grup'])
@@ -602,7 +605,6 @@ FROM client
     }
 
     $_POST['lang'] = $_SESSION["lang"];
-    $_POST['observacions'] = $_POST['observacions']; //????
     $_POST['reserva_info'] = 1;
 
     if (!isset($_POST['selectorComensals']) || $_POST['selectorComensals'] == 0) {
