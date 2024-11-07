@@ -602,6 +602,7 @@ FROM client
 
     if (!isset($_POST['client_mail']))      $_POST['client_mail'] = null;
     $result = json_decode($this->recuperaClient($_POST['client_mobil'], $_POST['client_mail']));
+    print_r($result);
     if (isset($result->{'err'}) && $result->{'err'}) {
       $this->xgreg_log("ERROR SUBMIT->CLIENT REPETIT" . $result->{'err'}, 1);
       
