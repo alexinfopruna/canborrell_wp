@@ -608,9 +608,7 @@ FROM client
       return $this->jsonErr($result->{'err'}, $resposta);
     }
 
-
-    return $this->jsonErr( 7, $resposta); // "err7 adults";
-
+    die("wwwwwwwwwwww");
 
     $_POST['lang'] = $_SESSION["lang"];
     $_POST['reserva_info'] = 1;
