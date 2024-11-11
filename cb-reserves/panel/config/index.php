@@ -255,40 +255,19 @@ function parse_type_int($type, $val, $label, $descripcio) {
             <template is="dom-bind" id="scope">
                 <h1> Configuració del sistema de reserves </h1>
                 <div id="overlay" class="overlay" style="display:none"></div>
-                <!--
-                <iron-ajax 
-                    id="dataAjax" 
-                    method="get"
-                    handle-as="json"
-                    contentType="application/json"
-                    url="Gestor_config.php?a=set_value"
-                    last-response={{data}}
-                    on-response="postComplete"></iron-ajax>
-
-                <paper-dialog id="dialog2">
-                    <h2>Dialog Title</h2>
-                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute
-                        irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
-                </paper-dialog>
--->
-
-
                 <div class="cb-llistat ui-corner-all">
                     <table >
 
                         <?php
-                      //  $row = array("config_var" => "teeest", "config_val" => "45478", "config_type" => "TST", "config_descripcio" => "teeest");
-                       // array_unshift($rows, $row);
 
                         foreach ($rows as $k => $v) {
                           $widget = parse_type($v['config_type'], $v['config_val'], $v['config_var'], $v['config_descripcio']);
+                          
 
                           echo $row = "<tr>"
-                          //. "<td>" . $v['config_var'] . "</td>"
+
                           . "<td>" . $widget . "<br><span class='descripcio'> {$v['config_descripcio']}</span></td>"
-                          //   . "<td>" . $v['config_val'] . "</td>"
-                          // . "<td>" . $v['config_descripcio'] . "</td>"
-                          // . "<td>" . $v['config_type'] . "</td>"
+
                           . "</tr>";
                         }
                         ?>
@@ -309,18 +288,13 @@ function parse_type_int($type, $val, $label, $descripcio) {
               var p = document.querySelector('#timePicker_' + dialog);
               var dt = moment(p.time, ["h:mm A"]).format("HH:mm");
 
-              //var t = document.querySelector('time_'+dialog);
               scope["time_" + dialog] = dt;
 
-              // var normalizedEvent = Polymer.dom(a);
               var label = p.getAttribute("label");
               var val = dt;
               var t = document.querySelector('#scope');
-              //var ajaxRequest = t.$.dataAjax;
-              //ajaxRequest.body = {label: val}
-              //ajaxRequest.url = "Gestor_config.php?a=set_value&b=" + label + "&c=" + val
+
               var url = "Gestor_config.php?a=set_value&b=" + label + "&jq=1&c=" + val
-              //ajaxRequest.generateRequest();
               $("#popup").html(url+"...");
               $.post(url,respostaAjax);
 
@@ -328,33 +302,20 @@ function parse_type_int($type, $val, $label, $descripcio) {
 
           (function (document) {
               'use strict';
-              
               document.addEventListener('WebComponentsReady', function () {
-                  var t = document.querySelector('#scope');
-                  /*
-                  var ajaxRequest = t.$.dataAjax;
-                  var dialog;
-                  for (dialog = 1; dialog <= tims; dialog++) {
-                      var p = document.querySelector('#timePicker_' + dialog);
-                      console.log(p);
-                      var dt = moment(p.getAttribute("time"), ["h:mm A"]).format("HH:mm");
-                      //var dt = moment("11:00 PM", ["h:mm A"]).format("HH:mm");
-                      //alert(dt);
-                      scope["time_" + dialog] = dt;
-                  }
-                  */
-                  // make the iron-ajax call
+               // $( document ).ready(function() {
+                var t = document.querySelector('#scope');
+          
+
+                  
+
                   t.postData_bool = function (a) {
                       document.getElementById("overlay").style.display = 'block';
                       var normalizedEvent = Polymer.dom(a);
                       var label = normalizedEvent.localTarget.getAttribute("label");
                       var val = normalizedEvent.localTarget.checked;
 
-                      //ajaxRequest.body = {label: val}
-                      //ajaxRequest.url = "Gestor_config.php?a=set_value&b=" + label + "&c=" + val
-                      //ajaxRequest.generateRequest();
                       var url = "Gestor_config.php?a=set_value&b=" + label + "&jq=1&c=" + val
-                      //ajaxRequest.generateRequest();
                       $("#popup").html(url+"...");
                       $.post(url,respostaAjax);
                   }
@@ -365,11 +326,8 @@ function parse_type_int($type, $val, $label, $descripcio) {
                       var label = normalizedEvent.localTarget.getAttribute("label");
                       var val = normalizedEvent.localTarget.value;
 
-                      //ajaxRequest.body = {label: val}
-                      //ajaxRequest.url = "Gestor_config.php?a=set_value&b=" + label + "&c=" + val
-                      //ajaxRequest.generateRequest();
+
                       var url = "Gestor_config.php?a=set_value&b=" + label + "&jq=1&c=" + val
-                      //ajaxRequest.generateRequest();
                       $("#popup").html(url+"...");
                       $.post(url,respostaAjax);                 
                   }
@@ -389,17 +347,11 @@ function parse_type_int($type, $val, $label, $descripcio) {
                       //ajaxRequest.url = "Gestor_config.php?a=set_value&b=" + label + "&c=" + val
                       //ajaxRequest.generateRequest();
                       var url = "Gestor_config.php?a=set_value&b=" + label + "&jq=1&c=" + val
-                      //ajaxRequest.generateRequest();
                       $("#popup").html(url+"...");
                       $.post(url,respostaAjax);                  
                   }
                   //callback on request complete
-                  /*
-                  t.postComplete = function () {
-                      document.getElementById("overlay").style.display = 'none';
-                      // alert('whoa! request complete');
-                  }
-                  */
+
               });
           })(document);
 
