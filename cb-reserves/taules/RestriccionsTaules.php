@@ -130,7 +130,7 @@ class RestriccionsTaules extends gestor_reserves {
     $where .= $were_data;
 
     $group = "";
-    $order = " order by  restriccions_taula_id ASC ";
+    $order = " order by  restriccions_taula_id * 1 ASC ";
     //$order = " order by  restriccions_id DESC ";
 
     $query = "SELECT * FROM
