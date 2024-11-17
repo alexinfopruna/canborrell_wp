@@ -1,5 +1,5 @@
 var browser_malo = (navigator.appVersion.indexOf("MSIE 7.") != -1);
-
+////
 //var TIMER_INTERVAL = 110000;
 var TIMER_INTERVAL = 110000;
 var GRUPS=false;
@@ -396,9 +396,9 @@ function comportamentQuantsSou()
     $("input[name='selectorAccesible']").on("click", function(){
         $("[for=cadira0]").toggle(this.value === "on" && this.checked);
         if ($("#form-reserves").valid()) {
-            // monta_calendari("#calendari");
+             monta_calendari("#calendari");
 
-            //  comportamentDia();
+              comportamentDia();
             //  recargaHores();
             // updateMenusSectionButtons();
             
