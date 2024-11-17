@@ -4,6 +4,16 @@
 
 
 <?php
+header('Content-Type: text/html; charset=UTF-8');
+define("ROOT", "../taules/");
+define("LOG_IMPORT", "log/import.txt");
+
+if (!defined('ROOT')) {
+  $root = '../taules/';
+  define('ROOT', $root);
+}
+require_once(ROOT . "Gestor.php");
+
 if (Gestor::user_perm()<127) {header("Location: ../taules/taules.php");die();}
 
 //echo "UPDATE";die();
@@ -18,11 +28,7 @@ if (!isset($_GET['confirm'])) {
   exit();
 }
 
-header('Content-Type: text/html; charset=UTF-8');
-define("ROOT", "../taules/");
-define("LOG_IMPORT", "log/import.txt");
 
-require_once(ROOT . "Gestor.php");
 
 class Reglog extends Gestor {
 
