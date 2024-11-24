@@ -13,9 +13,7 @@ define("SUPER_ADMIN",$gestor->valida_sessio(255)?true:false);
 define("ADMIN",$gestor->valida_sessio(127)?true:false);
 define("CAIXA",$gestor->valida_sessio(63)?true:false);
 
-//echo("PERM...".Gestor::user_perm());   die();  
 $perm = Gestor::user_perm();
-
 if ($perm<63)  
 {
 	header("Location: login.php");
@@ -58,7 +56,7 @@ if (isset($_GET['exit']))
       } 
         return sprintf('(%s) %s',  $commitDate->format('Y-m-d H:m:s'), $commitHash." ".$branch);
     }
-    
+
 ?>
 <!DOCTYPE HTML>
 <HTML>
@@ -69,7 +67,7 @@ if (isset($_GET['exit']))
 <TITLE> PANEL DE CONTROL Masia Can Borrell </TITLE>
 
 <link type="text/css" href="../taules/css/blitzer/jquery-ui-1.8.9.custom.css" rel="stylesheet" />	
-<link type="text/css" href="../reservar/css/custom-theme/jquery.ui.all.css" rel="stylesheet" />	
+<link type="text/css" href="../reservar/css/custom-theme/jquery.ui.all.css" rel="stylesheet" />	 
 	
 <link type="text/css" href="../reservar/css/form_reserves.css" rel="stylesheet" />	
 
@@ -96,7 +94,7 @@ if (isset($_GET['exit']))
                             
 </style>
 
-               <?php echo Gestor::loadJQuery("2.0.3"); ?>
+               <?php echo Gestor::loadJQuery("2.0.3","1.10.3",false); ?>
 <script>
 $(function(){$("#panel").accordion({collapsible:true,active:false,heightStyle: "content",fillSpace: false,clearStyle: false,autoHeight: true});
 /*	
@@ -114,7 +112,6 @@ $(function(){$("#panel").accordion({collapsible:true,active:false,heightStyle: "
 </script>
 </head>
 <body>
-
 <h1>PANEL DE CONTROL DEL SISTEMA DE RESERVES</h1>
 <p style="text-align:right;font-size:9px;padding:15px;"><i ><?php  echo get_version(); ?></i></p>
 <A HREF="<?php echo $_SERVER['PHP_SELF'];?>?exit" class="ui-button" style="border:#666 solid 1px;background:white;padding:3px;color:#666;float:right;margin-right:15px;">Tanca sessió</a>
@@ -206,7 +203,7 @@ $(function(){$("#panel").accordion({collapsible:true,active:false,heightStyle: "
 -->
 <h4><a href="#">Eines avançades</a></h4>
 <div id="ONLINE" class="caixa">
-		<a target="_blank" href="http://<?php echo $_SERVER['HTTP_HOST'];?>/panel/infoConn.php" class=" bt ui-button ui-widget ui-state-default ui-corner-all ui-button-text-only">INFO servidor</a>
+		<a target="_blank" href="http://<?php echo $_SERVER['HTTP_HOST'];?>/cb-reserves/panel/infoConn.php" class=" bt ui-button ui-widget ui-state-default ui-corner-all ui-button-text-only">INFO servidor</a>
 		<!-- 
 		<a target="_blank" href="../taules/DBTable/FormConfigAdmin.php" class=" bt ui-button ui-widget ui-state-default ui-corner-all ui-button-text-only">CONFIGURACIO AVANÇADA DEL SISTEMA</a>
 		-->

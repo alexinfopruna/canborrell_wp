@@ -250,19 +250,17 @@ class Gestor {
       if (!isset($_SESSION))
         session_start();
 
-if (!isset($_SESSION['uSer'])) {
-  $_SESSION['uSer'] =  unserialize($_SESSION['uSer_serialized']);
-}
+      if (!isset($_SESSION['uSer'])) {
+        $_SESSION['uSer'] =  unserialize($_SESSION['uSer_serialized']);
+      }
 
       $this->usuari  = $_SESSION['uSer'] = $usuari;
       $_SESSION['uSer_serialized']  = serialize($usuari);
       $_SESSION['loGin'] = $loginUsername;
       $_SESSION['permisos'] = $row['permisos'];
       $_SESSION['admin_id'] = intval($row['admin_id']);
-
-      setcookie("tok", "", time() - 3600);
-      setcookie("tok", $_SESSION['uSer']->tok, time() + 6000);
-
+      //setcookie("tok", "", time() - 3600);
+      //setcookie("tok", $_SESSION['uSer']->tok, time() + 6000);
       return true;
     }
 
@@ -1242,9 +1240,9 @@ public function generaTESTTpvSHA256($id_reserva, $import, $nom, $tpv_ok_callback
     treu el codi html per carregar jquery + jquery ui del cdn de jquery
    */
 
-  public static function loadJQuery($jqversion = "2.0.3", $uiversion = "1.10.4", $cdn = TRUE) {
-
+  public static function loadJQuery($jqversion = "2.0.3", $uiversion = "1.10.3", $cdn = TRUE) {
     $ROOT = ROOT;
+    $cdn = !DEBUG;
     if (!$cdn){
       $html = <<< EOHTML
 <!-- ************************************************* -->            
