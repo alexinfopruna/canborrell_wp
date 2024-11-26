@@ -171,7 +171,8 @@ class Restriccions extends gestor_reserves {
     $group = "";
     //$order =" ORDER BY  restriccions_active DESC, restriccions_data DESC, restriccions_adults, restriccions_nens  DESC ";
     //   $order =" ORDER BY   restriccions_id DESC";
-    $order = " order by  restriccions_cotxets , restriccions_adults , restriccions_nens DESC ";
+    //  $order = " order by  restriccions_cotxets , restriccions_adults , restriccions_nens DESC ";
+    $order = " order by  restriccions_adults , restriccions_nens DESC ";
 
     $query = "SELECT * FROM
 (
