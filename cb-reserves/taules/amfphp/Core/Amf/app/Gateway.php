@@ -131,12 +131,19 @@ class Gateway {
 	function service() {
 		
 		//Set the parameters for the charset handler
-		CharsetHandler::setMethod($this->_charsetMethod);
-		CharsetHandler::setPhpCharset($this->_charsetPhp);
-		CharsetHandler::setSqlCharset($this->_charsetSql);
+		// CharsetHandler::setMethod($this->_charsetMethod);
+		// CharsetHandler::setPhpCharset($this->_charsetPhp);
+		// CharsetHandler::setSqlCharset($this->_charsetSql);
 		
 		//Attempt to call charset handler to catch any uninstalled extensions
 		$ch = new CharsetHandler('flashtophp');
+
+		$ch->setMethod($this->_charsetMethod);
+		$ch->setPhpCharset($this->_charsetPhp);
+		$ch->setSqlCharset($this->_charsetSql);
+
+
+		
 		$ch->transliterate('?');
 		
 		$ch2 = new CharsetHandler('sqltophp');
@@ -151,7 +158,7 @@ class Gateway {
 		if(isset($GLOBALS["HTTP_RAW_POST_DATA"]) && $GLOBALS["HTTP_RAW_POST_DATA"] != "")
 		{
 			//Start NetDebug
-			NetDebug::initialize();
+			// NetDebug::initialize();
 			
 			error_reporting($GLOBALS['amfphp']['errorLevel']);
 			

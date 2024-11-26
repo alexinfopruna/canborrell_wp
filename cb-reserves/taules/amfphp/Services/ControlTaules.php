@@ -1,12 +1,12 @@
 <?php
 define('AMF', true);
 define('ROOT', "../");
-include(ROOT . "php/define.php");
 
 include("vo/com/canBorrell/EstatTaulesVO.php");
 include("vo/com/canBorrell/EstatMenjadorVO.php");
 include("vo/com/canBorrell/TaulaVO.php");
 include("vo/com/canBorrell/UsuariVO.php");
+include(ROOT . "php/define.php");
 
 include(ROOT . "php/Configuracio.php");
 $config = new Configuracio();
@@ -74,15 +74,16 @@ class ControlTaules {
   /*   * ****************************************************************************************************************************** */
 
   function guardaEstat($data, $torn, array $taules) {
-    $this->recuperaSesion($data, $torn);
 
     require (ROOT . DB_CONNECTION_FILE );
+    $this->recuperaSesion($data, $torn);
+
     ((bool) mysqli_query($canborrell, "USE " . $database_canborrell));
 
     $str = "";
     $values = "";
     $coma = "";
-    $this->xgreg_log('AMFPHP guardaEstat <span class="idr">'.$data.'</span>'); 
+    //$this->xgreg_log('AMFPHP guardaEstat <span class="idr">'.$data.'</span>'); 
 
     for ($i = 0; $i < count($taules); $i++) {
       $nid = 0;
@@ -113,7 +114,7 @@ class ControlTaules {
        $Result1 = $this->log_mysql_query($query, $canborrell); // or die(((is_object($GLOBALS["___mysqli_ston"])) ? mysqli_error($GLOBALS["___mysqli_ston"]) : (($___mysqli_res = mysqli_connect_error()) ? $___mysqli_res : false)));
      while ($row = mysqli_fetch_array($Result1)) {
        $estat='<pre>'.print_r($row,TRUE).'</pre>';
-    $this->xgreg_log('Estat anterior: <br>'.$estat,1); 
+    //$this->xgreg_log('Estat anterior: <br>'.$estat,1); 
        
      }
     
@@ -146,7 +147,7 @@ class ControlTaules {
   /*   * ****************************************************************************************************************************** */
 
   function guardaEstatMenjador($data, $torn, $menjador, $actiu) {
-    $this->xgreg_log('AMFPHP guardaEstatMenjador <span class="idr">'.$data.'</span>'); 
+    //$this->xgreg_log('AMFPHP guardaEstatMenjador <span class="idr">'.$data.'</span>'); 
     $this->recuperaSesion($data, $torn);
 
     if (!$actiu) $actiu=0;
@@ -400,43 +401,9 @@ ORDER BY estat_taules_timestamp DESC";
   /////////////////////////////////////////////////////////////////////////	
   /////////////////////////////////////////////////////////////////////////	
 
-  function ANULAAATreg_log($text, $file = LOG_FILE) {
-    $file = ROOT . INC_FILE_PATH . $file;
-    if (!file_exists($file))
-      return false;
-
-    $sep = EOL . "************************************************************************************" . EOL;
-    $sep.="************************************************************************************" . EOL;
-    $ip = isset($ips[$_SERVER['REMOTE_ADDR']]) ? $ips[$_SERVER['REMOTE_ADDR']] : $_SERVER['REMOTE_ADDR'];
-    $text.=$sep . date(DATE_ATOM) . " ($ip)>>> " . $text . BR;
-    error_log($text . EOL, 3, $file);
-
-    $fs = filesize($file);
-    if ($fs > 2000000) {
-
-      error_log("RENAME_LOG: " . $file . date("_d-m-Y_h_i_s") . EOL, 3, $file);
-      error_log("RENAME_LOG: " . $file . date("_d-m-Y_h_i_s") . EOL, 3, $file);
-      error_log("RENAME_LOG: " . $file . date("_d-m-Y_h_i_s") . EOL, 3, $file);
-
-      $extra.="_" . date("d_m_Y_h_i_s");
-      $path_parts = pathinfo($file);
-
-      $parts = explode(".", $file);
-      $nparts = count($parts);
-      if ($nparts > 1)
-        $nom = $parts[$nparts - 2];
-
-
-      $rename = ROOT . $nom . $extra . "." . $path_parts['extension'];
-
-
-      copy($file, $rename);
-      $f = fopen($file, "w");
-      fclose($f);
-    }
-  }
   
   function xgreg_log($text, $type=0, $file = false, $reqest = true) {
+    return;
     if (!is_numeric($type)){
       // COMPATIBILITAT PER ERROR EN ELS PARAMETRES
       $reqest = $file; 
@@ -474,7 +441,7 @@ ORDER BY estat_taules_timestamp DESC";
     if ($this->stringMultiSearch($query, LOG_QUERYS)) {
 
       $ip = isset($ips[$_SERVER['REMOTE_ADDR']]) ? $ips[$_SERVER['REMOTE_ADDR']] : $_SERVER['REMOTE_ADDR'];
-      error_log('<li  class="query amfphp a2" >   '.$query.'</li>', 3, $file);
+      //error_log('<li  class="query amfphp a2" >   '.$query.'</li>', 3, $file);
 
       $query = str_replace("\n", " ", $query);
       $query = str_replace("\r", " ", $query);
@@ -483,7 +450,7 @@ ORDER BY estat_taules_timestamp DESC";
       $query = trim($query);
       if (substr($query, -1) != ";")        $query = $query . ";";
       //error_log($query . EOL . EOL, 3, $file);
-      $this->rename_big_file(LOG_QUERYS_FILE, 2000000);
+      //$this->rename_big_file(LOG_QUERYS_FILE, 2000000);
     }
 
     $r = mysqli_query($conn, $query);

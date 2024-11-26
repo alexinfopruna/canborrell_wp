@@ -15,7 +15,7 @@ class DateWrapper
 	/** 
 	 * Contructor
 	 */
-	function DateWrapper($input = "")
+	function __constructor($input = "")
 	{
 		if(is_int($input) || is_float($input))
 		{
