@@ -1,14 +1,15 @@
-<?xml version="1.0">
+<?xml version="1.0"?>
+<!DOCTYPE cross-domain-policy SYSTEM
+"http://www.adobe.com/xml/dtds/cross-domain-policy.dtd">
 <cross-domain-policy>
-
-<allow-access-from domain="cb.localhost"  secure="false"/>
-<allow-access-from domain="192.168.100.30"  secure="false"/>
-<allow-access-from domain="cbdev.localhost"  secure="false"/>
-<allow-access-from domain="localhost"  secure="false"/>
-<allow-access-from domain="cbdev-localhost"  secure="false"/>
-<allow-access-from domain="cbwp-localhost" secure="false"/>
-<allow-access-from domain="*"  secure="false"/>
-<allow-access-from domain="*.can-borrell.com"  secure="false"/>
-<allow-access-from domain="www.can-borrell.com"  secure="false"/>
-<allow-access-from domain="can-borrell.com"  secure="false"/>
+    <allow-access-from domain="cb.localhost"  secure="false"/>
+    <allow-access-from domain="192.168.100.30"  secure="false"/>
+    <allow-access-from domain="cbdev.localhost"  secure="false"/>
+    <allow-access-from domain="localhost"  secure="false"/>
+    <allow-access-from domain="cbdev-localhost"  secure="false"/>
+    <allow-access-from domain="cbwp-localhost" secure="false"/>
+    <allow-access-from domain="*"  secure="false"/>
+    <allow-access-from domain="*.can-borrell.com"  secure="false"/>
+    <allow-access-from domain="www.can-borrell.com"  secure="false"/>
+    <allow-access-from domain="can-borrell.com"  secure="false"/>
 </cross-domain-policy>
