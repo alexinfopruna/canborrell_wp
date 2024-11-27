@@ -23,7 +23,8 @@ class ControlTaules {
 
     $tornB = $torn;
     if ($torn == 1)
-      $tornB = 2;if ($torn == 2)
+      $tornB = 2;
+    if ($torn == 2)
       $tornB = 1;
     if ($tornB != $torn)
       $cercaTornB = " OR estat_taula_data = '$mydata' AND estat_taula_torn = $tornB AND reserva_id>0";

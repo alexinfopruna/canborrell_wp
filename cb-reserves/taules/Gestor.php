@@ -1251,9 +1251,9 @@ public function generaTESTTpvSHA256($id_reserva, $import, $nom, $tpv_ok_callback
 <!-- *********      LOOOOOOOOOCAAAAAAL      ********** -->            
 <!-- *********      LOOOOOOOOOCAAAAAAL      ********** -->            
 <!-- ************************************************* -->            
-<!-- ************************************************* -->
- <script  type="text/javascript" src="{$ROOT}js/jquery-{$jqversion}.min.js"></script>
- <script  type="text/javascript" src="{$ROOT}js/jquery-ui-{$uiversion}.custom/js/jquery-ui-{$uiversion}.custom.min.js"></script>
+<!-- ***********************{$ROOT}************************** -->
+ <script  type="text/javascript" src="/{$ROOT}js/jquery-{$jqversion}.min.js"></script>
+ <script  type="text/javascript" src="/{$ROOT}js/jquery-ui-{$uiversion}.custom/js/jquery-ui-{$uiversion}.custom.min.js"></script>
 <!-- ************************************************* -->            
 <!-- *********      LOOOOOOOOOCAAAAAAL      ********** -->            
 <!-- *********      LOOOOOOOOOCAAAAAAL      ********** -->            
