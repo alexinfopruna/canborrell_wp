@@ -1243,6 +1243,7 @@ public function generaTESTTpvSHA256($id_reserva, $import, $nom, $tpv_ok_callback
   public static function loadJQuery($jqversion = "2.0.3", $uiversion = "1.10.3", $cdn = TRUE) {
     $ROOT = ROOT;
     $cdn = !DEBUG;
+ 
     if (!$cdn){
       $html = <<< EOHTML
 <!-- ************************************************* -->            
@@ -1252,8 +1253,8 @@ public function generaTESTTpvSHA256($id_reserva, $import, $nom, $tpv_ok_callback
 <!-- *********      LOOOOOOOOOCAAAAAAL      ********** -->            
 <!-- ************************************************* -->            
 <!-- ***********************{$ROOT}************************** -->
- <script  type="text/javascript" src="/{$ROOT}js/jquery-{$jqversion}.min.js"></script>
- <script  type="text/javascript" src="/{$ROOT}js/jquery-ui-{$uiversion}.custom/js/jquery-ui-{$uiversion}.custom.min.js"></script>
+ <script  type="text/javascript" src="{$ROOT}js/jquery-{$jqversion}.min.js"></script>
+ <script  type="text/javascript" src="{$ROOT}js/jquery-ui-{$uiversion}.custom/js/jquery-ui-{$uiversion}.custom.min.js"></script>
 <!-- ************************************************* -->            
 <!-- *********      LOOOOOOOOOCAAAAAAL      ********** -->            
 <!-- *********      LOOOOOOOOOCAAAAAAL      ********** -->            
@@ -1261,7 +1262,7 @@ public function generaTESTTpvSHA256($id_reserva, $import, $nom, $tpv_ok_callback
 <!-- ************************************************* -->            
 <!-- ************************************************* --> 
 EOHTML;
-
+   
  return $html;
     }
 

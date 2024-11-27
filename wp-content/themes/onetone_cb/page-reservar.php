@@ -3,10 +3,6 @@
   Template Name: Reserves grups
  */
 
-
-
-
-
 defined('ROOT') or define('ROOT', 'cb-reserves/taules/');
 require_once (ROOT . "Gestor.php");
 
@@ -182,10 +178,12 @@ if ($padding_top)
   $container_css .= 'padding-top:' . $padding_top . ';';
 if ($padding_bottom)
   $container_css .= 'padding-bottom:' . $padding_bottom . ';';
-//echo $gestorf->taulesDisponibles->es_finde_o_festiu("2019-2-21")?"S":"N";
-/*
-$llista = $gestorf->llegir_dies_DB("small","white");
-var_dump($llista);*/
+
+//   echo $gestorf->taulesDisponibles->es_finde_o_festiu("2024-12-31")?"S":"N";
+
+// $llista = $gestorf->llegir_dies_DB("small","white");
+// var_dump($llista);
+// die("DIE page_reservar 190");
 
 /* * *********************************************************** */
 /* * *********************************************************** */
@@ -814,7 +812,9 @@ if ($testTPV) {
                                                               <div class="col-isqui flexw">
                                                                   
                                                                     <?php
-                                                                             $opcio_terrassa = OPCIO_TERRASSA ;
+                                                                            $finde_o_festiu = $gestorf->taulesDisponibles->es_finde_o_festiu($row['data']);
+
+                                                                             $opcio_terrassa = OPCIO_TERRASSA && $finde_o_festiu ;
                                                                           ?>
                                                                          <div id='opcio_terrassa' style="<?php echo $opcio_terrassa>0?"":"display:none"?>">
                                                                           <h4 id="titol_SelectorCadiraRodes"><?php l('Vols que la taula sigui a la terrassa?'); ?>:</h4>
