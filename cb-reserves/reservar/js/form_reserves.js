@@ -553,7 +553,10 @@ function recargaHores()
 
     // només mostra opcio terrassa en finde o festiu...
     date = $("#calendari").val();
-    var isWeekend = yourDateObject.getDay()%6==0;
+    var newdate = date.split("/").reverse().join("/");
+    date = new Date(newdate)
+
+    var isWeekend = date.getDay()%6==0;
     festiu = llistablanca(date)
     if (!isWeekend && !festiu) $("#selectorTerrassa").hide();
 
