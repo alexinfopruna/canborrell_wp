@@ -1243,7 +1243,7 @@ public function generaTESTTpvSHA256($id_reserva, $import, $nom, $tpv_ok_callback
   public static function loadJQuery($jqversion = "2.0.3", $uiversion = "1.10.3", $cdn = TRUE) {
     $ROOT = ROOT;
     //$cdn = !DEBUG;
-    $cdn=false;
+    $cdn=true;
     if (!$cdn){
       $html = <<< EOHTML
 <!-- ************************************************* -->            
