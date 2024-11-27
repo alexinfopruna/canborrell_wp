@@ -812,12 +812,12 @@ if ($testTPV) {
                                                               <div class="col-isqui flexw">
                                                                   
                                                                     <?php
-                                                                            $finde_o_festiu = $gestorf->taulesDisponibles->es_finde_o_festiu($row['data']);
+                                                                            //$finde_o_festiu = $gestorf->taulesDisponibles->es_finde_o_festiu($row['data']);
                                                                     ?>
                                                                     <!-- ** <?php echo $row['data']; echo $finde_o_festiu?"finde":"no fide" ?>    *** -->
                                                                     <?php
                                                                             
-                                                                            $opcio_terrassa = OPCIO_TERRASSA && $finde_o_festiu ;
+                                                                            $opcio_terrassa = OPCIO_TERRASSA ;
                                                                           ?>
                                                                          <div id='opcio_terrassa' style="<?php echo $opcio_terrassa>0?"":"display:none"?>">
                                                                           <h4 id="titol_SelectorCadiraRodes"><?php l('Vols que la taula sigui a la terrassa?'); ?>:</h4>
