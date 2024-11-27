@@ -105,7 +105,7 @@
 	//You can set this constant appropriately to disable traces and debugging headers
 	//You will also have the constant available in your classes, for changing
 	//the mysql server info for example
-	define("PRODUCTION_SERVER", false);
+	define("PRODUCTION_SERVER", true);
 	
 	//Include things that need to be global, for integrating with other frameworks
 	include "globals.php";
@@ -130,7 +130,8 @@
 	$gateway->setCharsetHandler("none", "UTF-8", "UTF-8");//ALEX
 	
 	//Error types that will be rooted to the NetConnection debugger
-	$gateway->setErrorHandling(E_ALL ^ E_NOTICE);
+	//$gateway->setErrorHandling(E_ALL ^ E_NOTICE);
+	$gateway->setErrorHandling(0);
 	
 	if(PRODUCTION_SERVER)
 	{
