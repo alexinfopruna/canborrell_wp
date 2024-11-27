@@ -814,7 +814,7 @@ if ($testTPV) {
                                                                     <?php
                                                                             $finde_o_festiu = $gestorf->taulesDisponibles->es_finde_o_festiu($row['data']);
                                                                     ?>
-                                                                    <!-- ** <?php echo $finde_o_festiu?"finde":"no fide" ?>    *** -->
+                                                                    <!-- ** <?php echo $row['data']; echo $finde_o_festiu?"finde":"no fide" ?>    *** -->
                                                                     <?php
                                                                             
                                                                             $opcio_terrassa = OPCIO_TERRASSA && $finde_o_festiu ;
