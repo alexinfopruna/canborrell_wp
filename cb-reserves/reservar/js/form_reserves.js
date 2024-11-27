@@ -551,7 +551,7 @@ function recargaHores()
     $("#selectorTerrassa").hide();
     if (comensals >= MINIM_PERSONES_TERRASSA) $("#selectorTerrassa").show();
 
-    // només mostra opcio terrassa en finde o festiu
+    // només mostra opcio terrassa en finde o festiu...
     date = $("#calendari").val();
     var isWeekend = yourDateObject.getDay()%6==0;
     festiu = llistablanca(date)
