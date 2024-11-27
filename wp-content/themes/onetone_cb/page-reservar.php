@@ -813,7 +813,6 @@ if ($testTPV) {
                                                                   
                                                                     <?php
                                                                             $finde_o_festiu = $gestorf->taulesDisponibles->es_finde_o_festiu($row['data']);
-
                                                                              $opcio_terrassa = OPCIO_TERRASSA && $finde_o_festiu ;
                                                                           ?>
                                                                          <div id='opcio_terrassa' style="<?php echo $opcio_terrassa>0?"":"display:none"?>">
