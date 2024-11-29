@@ -232,7 +232,6 @@ $(function () {
     $("#radio").change(function (e) {
         $.ajax({url: "gestor_reserves.php?a=canvi_torn&p=" + $("input[name='radio']:checked").val(), success: function () {
                 recargaAccordioReserves();
-                alert("DDDD");
                 getFlashMovie("flash").canviData($("#calendari").val());
 //			getFlashMovie("flash").canviTorn($("input[name='radio']:checked").val());	
             }});
