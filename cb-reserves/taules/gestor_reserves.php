@@ -2451,7 +2451,7 @@ EOHTML;
     
     ORDER BY estat_hores_hora, estat_hores_data DESC";
     $Result1 = mysqli_query($this->connexioDB, $query) or die(((is_object($GLOBALS["___mysqli_ston"])) ? mysqli_error($GLOBALS["___mysqli_ston"]) : (($___mysqli_res = mysqli_connect_error()) ? $___mysqli_res : false)));
-echo $query;
+//echo $query;
     $req = ' class="ckbx_hora" ';
 
     $n = 0;
