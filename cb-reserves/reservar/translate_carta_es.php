@@ -69,10 +69,10 @@ $translate['NEGRA A LA BRASA - BUTIF'] = 'Butifarra negra a la brasa';
 //$translate['PERNIL SERRÁ'] = 'Ham  <em>Jamón serrano  </em>';
 //$translate['LLONGANISSA'] = 'Long pork sausage  <em>Longaniza  </em>';
 //$translate['XORIÇO'] = 'Chorizo sausage  <em>Chorizo  </em>';
-$translate['MENU GRUPO Nº 4'] = 'MENU GRUPO Nº 4 <i style="color:blue">No combinable: Cal que tots els comensals demanin el mateix</i>';
+$translate['MENU GRUPO Nº 4'] = 'MENU GRUPO Nº 4 ';
 $translate['HORARI_ENTREPANS'] = 'Los bocadillos sólo se sirven de 10:00h a 12:00h';
-$translate['Menu de calçotada(hasta 25 u aprox por comensal)'] = 'Menú de calçotada(hasta a 25u aprox)<i style="color:blue"> No combinable: Todos deben pedir lo mismo</i>';
-$translate['MENU DE CALÇOTADA(hasta 25 u aprox por comensal)'] = 'MENU DE CALÇOTADA(hasta a 25u aprox)<i style="color:blue"> No combinable: Todos deben pedir lo mismo</i>';
+$translate['Menu de calçotada(hasta 25 u aprox por comensal)'] = 'Menú de calçotada(hasta a 25u aprox)';
+$translate['MENU DE CALÇOTADA(hasta 25 u aprox por comensal)'] = 'MENU DE CALÇOTADA(hasta a 25u aprox)';
 
 
  

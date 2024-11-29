@@ -82,9 +82,9 @@ $translate['ALL I OLI ( Rció per Pers'] = 'All i oli (Ració per persona)';
 $translate['PERNIL SERRÁ'] = 'Pernil país';
 //$translate['LLONGANISSA'] = 'Long pork sausage  <em>Longaniza  </em>';
 $translate['XORIÇO'] = 'Xoriço';
-$translate['Menu grupo nº 4'] = 'Menu grup nº 4 <i style="color:blue">No combinable: Cal que tots els comensals demanin el mateix</i>';
+$translate['Menu grupo nº 4'] = 'Menu grup nº 4';
 $translate['HORARI_ENTREPANS'] = 'Els entrepans només es serveixen de 10:00h a 12:00h';
-$translate['Menu de calçotada(hasta 25 u aprox por comensal)'] = 'Menú de calçotada(fins a 25u aprox)<i style="color:blue"> No combinable: Cal que tots demanin el mateix</i>';
+$translate['Menu de calçotada(hasta 25 u aprox por comensal)'] = 'Menú de calçotada(fins a 25u aprox)';
 
 
  
