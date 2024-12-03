@@ -9,12 +9,11 @@ if (!isset($PERSONES_GRUP))
 
 
 /**/
-//$translate['ENTRANTES'] = 'Home Macaroni  <em>Macarrones de la casa  </em>';
-//$translate['MACARRONS'] = 'Home Macaroni  <em>Macarrones de la casa  </em>';
-//$translate['SOPA DE LA CASA'] = 'Home soup  <em>Sopa de la casa  </em>';
-//$translate['AMANIDA VERDA'] = 'Green salad  <em>Ensalda verde  </em>';
-//$translate['ESCALIVADA'] = 'Escalivada (roast aubergine, onion and pepper)  <em>Escalivada  </em>';
-//$translate['ESPARRECS BLADERS A LA BR'] = 'Espàrrecs balders a la brasa  </em>';
+$translate['MACARRONS'] = 'Macarrones de la casa';
+$translate['SOPA DE LA CASA'] = 'Sopa de la casa';
+$translate['AMANIDA VERDA'] = 'Ensalda verde';
+$translate['ESCALIVADA'] = 'Escalivada';
+$translate['ESPARRECS BLADERS A LA BR'] = 'Espárragos trigueros a la brasa';
 //$translate['Espárragos blancos'] = 'White asparagus  <em>Espárragos blancos  </em>';
 //$translate['GIRGOLES A LA BRASA'] = 'Roast mushrooms  <em>Setas a la brasa  </em>';
 $translate['CALÇOTS (12 UN APRX)'] = 'Calçots (temporada) ';
