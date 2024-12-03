@@ -30,6 +30,9 @@ $translate['CARGOLS A LA LLAUNA'] = 'Roast snails  <em>Caracoles a la "llauna"  
 $translate['CANALONES'] = 'Canalons  <em>Canalones  </em>';
 $translate['TORRADA AMB ESCALIVADA I '] = 'Toast bread whith Escalivada and anchovy  </em>';
 $translate['PARRILLADA DE VERDURES A '] = 'Grilled vegetables  <em>Parrillada de verduras  </em>';
+$translate['Amanida amb formatge tendre'] = 'zzzzz  <em>zzzzz  </em>';
+
+
 
 
 $translate['CARNS']='MEAT <em>CARNES  </em>';
