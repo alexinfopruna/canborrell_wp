@@ -7,7 +7,7 @@ if (!isset($PERSONES_GRUP))
 
 // MENU
 
-
+$translate['BOTELLAS'] = 'Vins';
 /**/
 //$translate['ENTRANTES'] = 'Home Macaroni  <em>Macarrones de la casa  </em>';
 //$translate['MACARRONS'] = 'Home Macaroni  <em>Macarrones de la casa  </em>';

@@ -9,6 +9,7 @@ if (!isset($PERSONES_GRUP))
 
 
 /**/
+$translate['BOTELLAS'] = 'Vinos';
 $translate['MACARRONS'] = 'Macarrones de la casa';
 $translate['SOPA DE LA CASA'] = 'Sopa de la casa';
 $translate['AMANIDA VERDA'] = 'Ensalda verde';
