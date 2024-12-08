@@ -7,6 +7,7 @@ if (!isset($PERSONES_GRUP))
 
 // MENU
 $translate['BOTELLAS'] = 'Wines<em>Vinos</em>';
+$translate['Amanida amb Formatge Tendre'] = 'Feta cheese salad  <em>Ensalada con queso Feta</em>';
 $translate['ENTRANTS'] = 'STARTERS    <em>ENTRANTS</em>';
 $translate['MACARRONS'] = 'Home Macaroni  <em>Macarrones de la casa  </em>';
 $translate['SOPA DE LA CASA'] = 'Home soup  <em>Sopa de la casa  </em>';
@@ -37,7 +38,7 @@ $translate['Amanida amb formatge tendre'] = 'zzzzz  <em>zzzzz  </em>';
 
 $translate['CARNS']='MEAT <em>CARNES  </em>';
 $translate['XAI A LA BRASA (3 PECES)']='Roast lamb (3 pieces)  <em>Cordero a la brasa (3 piezas)  </em>';
-$translate['COSTELLA DE XAI A LA BRAS'] = 'Roast lamb chops (unity)  <em>Costilla de cordero a la brasa (unidad)  </em>';
+$translate['COSTELLA DE XAI A LA BRASA'] = 'Roast lamb chops (unity)  <em>Costilla de cordero a la brasa (unidad)  </em>';
 $translate['ESPATLLA DE XAI'] = 'Roast lamb back  <em>Espalda de cordero  </em>';
 $translate['CONILL A LA BRASA'] = 'Roast rabbit /1/2 piece)  <em>Conejo a la brasa (1/2 pieza)  </em>';
 $translate['BOTIFFARA A LA BRASA'] = 'Roast catalan sausage  <em>Butifarra a la brasa  </em>';

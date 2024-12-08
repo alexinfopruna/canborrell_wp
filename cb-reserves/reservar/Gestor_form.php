@@ -1,12 +1,4 @@
 <?php
-/*
-    if (!isset($_SESSION))
-      session_start();
-
-$_SESSION = array();
-session_destroy();
-*/
-
 define('MAX_RESERVATION_TIME', "11:59");
 
 if (!defined('ROOT'))
@@ -14,7 +6,6 @@ if (!defined('ROOT'))
 
 if (!defined('ROOT')) {
   $root = '../taules/';
-  // $root = '../cb-reserves/taules/';
   define('ROOT', $root);
 }
 
@@ -27,10 +18,8 @@ if (isset($_REQUEST['a']))
 require_once(ROOT . "Gestor.php");
 
 
-//if (!defined('LLISTA_DIES_NEGRA'))  define("LLISTA_DIES_NEGRA", ROOT . INC_FILE_PATH . "bloq.txt");
 if (!defined('LLISTA_DIES_NEGRA'))
   define("LLISTA_DIES_NEGRA", ROOT . INC_FILE_PATH . "llista_dies_negra.txt");
-//if (!defined('LLISTA_DIES_NEGRA_RES_PETITES'))  define("LLISTA_DIES_NEGRA_RES_PETITES", ROOT . INC_FILE_PATH . "llista_dies_negra_online.txt");
 if (!defined('LLISTA_DIES_NEGRA_RES_PETITES'))
   define("LLISTA_DIES_NEGRA_RES_PETITES", ROOT . INC_FILE_PATH . "llista_dies_negra.txt");
 if (!defined('LLISTA_NITS_NEGRA'))
@@ -359,7 +348,6 @@ class Gestor_form extends gestor_reserves {
       $idr = -1;
     //CONTROL DIES NOMES CARTA
 
-
     if ($es_menu)
       $were = ' carta_plats.carta_plats_subfamilia_id=20 ';
     else
@@ -420,8 +408,6 @@ ORDER BY carta_subfamilia_order,carta_plats_nom_es , carta_plats_nom_ca";
   /*   * ******************************************************************************************************* */
 
   public function seccioCarta($ar, $k, $class) {
-
-
     global $translate;
     ob_start();
     //  include('translate_carta_' . $this->lng . '.php');
@@ -1864,7 +1850,7 @@ SQL;
 
     return $rjson;
   }
-
+      
   /*   * **************************************************************************************** */
   /*   * **************************************************************************************** */
   /*   * **************************************************************************************** */
@@ -1875,8 +1861,15 @@ SQL;
   /*   * **************************************************************************************** */
 
   public function recuperaCartaWeb($idr = -1, $es_menu = false) {
-
+    if (isset($_GET['lang']) && isset($_GET["DEBUG"])){
+      $this->setLang($_GET['lang']);
+      echo "// \$lang = '$this->lng'\n<br>";
+    }
     $lng = $leng = $this->lng;
+    global $translate;
+    
+
+    include('translate_carta_' . $this->lng . '.php');
     if ($idr < 1)
       $idr = -1;
     //CONTROL DIES NOMES CARTA
@@ -1909,9 +1902,6 @@ $CONTROLA_ARTICLES_ACTIUS
 
 WHERE $were
 ORDER BY carta_subfamilia_order,carta_plats_nom_es , carta_plats_nom_ca";
-
-    //
-//ORDER BY (carta_subfamilia_id=2),carta_subfamilia_id";
 //echo $query;
     $Result1 = mysqli_query($this->connexioDB, $query) or die(((is_object($GLOBALS["___mysqli_ston"])) ? mysqli_error($GLOBALS["___mysqli_ston"]) : (($___mysqli_res = mysqli_connect_error()) ? $___mysqli_res : false)));
 
@@ -1919,13 +1909,10 @@ ORDER BY carta_subfamilia_order,carta_plats_nom_es , carta_plats_nom_ca";
       if (empty($row['carta_plats_nom_ca']))
         $row['carta_plats_nom_ca'] = $row['carta_plats_nom_en'] = $row['carta_plats_nom_es'];
       $plat = array('id' => $row['carta_plats_id'], 'nom' => $row['carta_plats_nom_' . $lng], 'preu' => $row['carta_plats_preu'], 'quantitat' => $row['comanda_plat_quantitat']);
+      $plat = array('id' => $row['carta_plats_id'], 'nom' => $row['carta_plats_nom_ca' ], 'preu' => $row['carta_plats_preu'], 'quantitat' => $row['comanda_plat_quantitat']);
       $arCarta[$row['carta_subfamilia_nom_' . $lng]][] = $plat;
-    }
 
-//    echo "<pre>";
-//print_r($arCarta);
-//    echo "</pre>";
-    /*     * ******************************************************************************************************* */
+    }
 
     $class = $es_menu ? "cmenu" : "ccarta";
     $obreLlista = '<style>h4 em {display:block;text-align:center}</style> [ms_tabs style="simple" title_color="" class="" id=""]' . PHP_EOL;
@@ -1944,24 +1931,27 @@ ORDER BY carta_subfamilia_order,carta_plats_nom_es , carta_plats_nom_ca";
       $nom = l($key, FALSE);
 
       $nom = ucfirst(strtolower($nom));
-
       $obreSeccio = " [ms_tab title='$nom' icon='xfa-leaf']" . PHP_EOL;
       $obreSeccio .= '<p><b>' . $nom . '</b></p>' . PHP_EOL;
-      $seccio =$entrepans . $this->seccioCartaWeb($arCarta, $key, $class);
+      
+      $seccio = $entrepans . $this->seccioCartaWeb($arCarta, $key, $class);
+      
       $tancaSeccio = '[/ms_tab]' . PHP_EOL . PHP_EOL;
 
       $carta .= $obreSeccio . PHP_EOL . $seccio . PHP_EOL . $tancaSeccio;
     }
-
-    //print_r($arCarta);
     return $obreLlista . $carta . $tancaLlista;
   }
 
   /*   * ******************************************************************************************************* */
 
   public function seccioCartaWeb($ar, $k, $class) {
-    $obreTaula = '<ul class="carta">' . PHP_EOL;
+    global $translate;
 
+    require('translate_carta_' . $this->lng . '.php');
+
+    $obreTaula = '<ul class="carta">' . PHP_EOL;
+/************* /echo "<pre>";print_r($ar[$k]);echo "</pre>";/*************/
     $tr = '';
     foreach ($ar[$k] as $key => $val) {
       $menuEspecial = $this->menuEspecial($val['id']) ? " menu-especial" : "";
@@ -1974,9 +1964,12 @@ ORDER BY carta_subfamilia_order,carta_plats_nom_es , carta_plats_nom_ca";
 
       $nom = $val['nom'];
 
-      // echo "****************** $noms";
+ 
       $nom = l($nom, FALSE);
       $nom = ucfirst(strtolower($nom));
+
+      //echo "******$nom***********\n ";
+      //echo $translate['Amanida amb Formatge Tendre'] ;
 
       $tr .= '<li producte_id="' . $val['id'] . '" class="item-carta ' . $menuEspecial . '">';
       $tr .= '<table><tr><td>'.$nom.'</td><td class="cartapreu"><span class="fr">' . $preu . '</span></td></tr></table>';
