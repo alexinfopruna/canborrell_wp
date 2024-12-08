@@ -1912,10 +1912,10 @@ ORDER BY carta_subfamilia_order,carta_plats_nom_es , carta_plats_nom_ca";
       $plat = array('id' => $row['carta_plats_id'], 'nom' => $row['carta_plats_nom_ca' ], 'preu' => $row['carta_plats_preu'], 'quantitat' => $row['comanda_plat_quantitat']);
       $arCarta[$row['carta_subfamilia_nom_' . $lng]][] = $plat;
 
-      echo "\$translate['".$row['carta_plats_nom_ca']."'] = '".$row['carta_plats_nom_es' ]."';<br>\n";
+      //echo "\$translate['".$row['carta_plats_nom_ca']."'] = '".$row['carta_plats_nom_es' ]."';<br>\n";
 
     }
-echo "-------------------------------------------------------------------------------------------------------<br>";
+//echo "-------------------------------------------------------------------------------------------------------<br>";
     $class = $es_menu ? "cmenu" : "ccarta";
     $obreLlista = '<style>h4 em {display:block;text-align:center}</style> [ms_tabs style="simple" title_color="" class="" id=""]' . PHP_EOL;
     $llista = "";
