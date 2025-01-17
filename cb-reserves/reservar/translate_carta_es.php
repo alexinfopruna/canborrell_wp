@@ -90,7 +90,7 @@ $translate['GIRGOLES A LA BRASA'] = 'Setas a la brasa';
 $translate['HELADO DE VAINILLA'] = 'Helado de vainilla';
 $translate['HORARI_ENTREPANS'] = 'Los bocadillos sólo se sirven de 10:00h a 12:00h';
 $translate['Jose Pariente (verdejo) Rueda'] = 'Jose Pariente (verdejo) Rueda';
-$translate['JUVE CAMPS BRUT NATURE'] = 'Juve camps brut nature'
+$translate['JUVE CAMPS BRUT NATURE'] = 'Juve camps brut nature';
 $translate['LIMON HELADO'] = 'Limon helado';
 
 $translate['LLOBARRO A LA BRASA'] = 'Lubina a la brasa';
