@@ -12,7 +12,7 @@ if (!isset($PERSONES_GRUP))
   
   $translate['Amanida amb Formatge Tendre'] = 'Feta cheese salad <em>Ensalada con queso Feta</em>';
   
-  $translate['Amanida amb Tomaquet,Ceva i Tonyina'] = 'Tomato, onion, and tuna salad'<em>Ensalada con Tomate, Cebolla y Atún</em>;
+  $translate['Amanida amb Tomaquet,Ceva i Tonyina'] = 'Tomato, onion, and tuna salad <em>Ensalada con Tomate, Cebolla y Atún</em>';
   $translate['Amanida Catalana amb Embotits'] = 'Catalan salad with assorted cold cuts <em>Ensalada Catalana con Embutidos </em>';
   $translate['Amanida Escarola Tebia amb Formatge de Cabra'] = 'Endive salad with goat cheese <em>Ensalada de Escarola Tibia con Queso de Cabra</em>';
   $translate['AMANIDA VERDA'] = 'Green salad <em>Ensalda verde </em>';
