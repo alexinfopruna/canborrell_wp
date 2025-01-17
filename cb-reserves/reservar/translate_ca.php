@@ -100,8 +100,6 @@ Podeu exercir els vostres drets d\'accés, rectificació, cancel·lació i oposi
 	
 	$translate['INFO_CARTA']='Si ho desitges pots triar els plats que demanareu per tenir una idea del preu, evitar que us trobeu algun plat exhaurit i accelerar el servei quan vingueu al restaurant.<br/><br/><b>Aquesta selecció no et compromet en absolut</b>.<br/><br/> Un cop al restaurant podràs modificar o anul·lar la comanda i, en qualsevol cas, us cobrarem únicament els plats i beugudes que us servim.';
 
-        ///ui-corner-all info caixa
-        //  $translate['INFO_CARTA']=
         
 	$translate['PREU']='Preu (IVA inclòs)';
 	

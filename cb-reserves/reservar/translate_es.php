@@ -144,7 +144,7 @@ $translate['ALERTA_INFO_INICIAL_GRUPS']='<p  class="alert alert-info "><span cla
   Este formulario permite <b> SOLICITAR </b> una reserva que el restaurante tendrá que CONFIRMAR o DENEGAR. </p>
 
 <p  class="alert alert-info "><span class=" glyphicon glyphicon-info-sign f1"></span>
-673 / 5.000
+
 Al final del proceso le pediremos los datos de una tarjeta bancaria que <b>SÓLO serán utilizadas en caso de no comparecencia</b> el día de la reserva. No se hará ningún cargo y los datos serán gestionados por la entidad bancaria. El restaurante no tiene acceso a los datos de la tarjeta, y <b>no realizará ningún cargo</b>.
 </p>
  <p class="alert alert-warning "><span class=" glyphicon glyphicon-exclamation-sign f1"></span>

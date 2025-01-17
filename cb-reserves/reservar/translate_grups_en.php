@@ -784,8 +784,7 @@ Macaroni or appetizer, chicken or roast catalan sausage with potatoes, soft drin
 /*******************************************************************************************/
 // INFANTILS / JUNIORS
 /*******************************************************************************************/
-	$translate['titol_menu_2037']=$translate['titol_menu_infantil']='
-Men&uacute; Infantil (ni&ntilde;os de 4 a 9 a&ntilde;os)';
+	$translate['titol_menu_2037']=$translate['titol_menu_infantil']='Children\'s Menu (4 to 9 years old)';
 	$translate['menu_2037']=$translate['menu_infantil']='
 <div id="menu-2001" class="menu-content">
 <ul>
@@ -799,22 +798,22 @@ Men&uacute; Infantil (ni&ntilde;os de 4 a 9 a&ntilde;os)';
 </div>
 ';
 
-	$translate['titol_menu_2036']=$translate['titol_menu_junior']='Men&uacute; Junior (de 10 a 14 a&ntilde;os)';
-	$translate['menu_2036']=$translate['menu_junior']='Macarrones o entrem&eacute;s, pollo o butifarra con patatas, refresco y helado<br/>
-{preu_2036} Euros/unidad (IVA incluido)
-';
+	$translate['titol_menu_2036']=$translate['titol_menu_junior']='Junior Menu (10 to 14 years old)';
+	$translate['menu_2036']=$translate['menu_junior']='Macaroni, grilled chicken or butifarra with natural fried potatoes
+Water or soft drink, and ice cream<br/>
+{preu_2036} Euros/unit (IVA included)';
 
-	$translate['titol_menu_2017']=$translate['titol_menu_inf_comunio']='Men&uacute; Comunión (ni&ntilde;os de 4 a 9 a&ntilde;os)';
+	$translate['titol_menu_2017']=$translate['titol_menu_inf_comunio']='Communion Men&uacute; (ni&ntilde;os de 4 a 9 a&ntilde;os)';
 	$translate['menu_2017']=$translate['menu_inf_comunio']='{preu_2017} Euros';
 	
-	$translate['titol_menu_2018']=$translate['titol_menu_jun_comunio']='Men&uacute; Comunión (ni&ntilde;os de 10 a 14 a&ntilde;os)';
+	$translate['titol_menu_2018']=$translate['titol_menu_jun_comunio']='Communion Men&uacute; (ni&ntilde;os de 10 a 14 a&ntilde;os)';
 	$translate['menu_2018']=$translate['menu_jun_comunio']='{preu_2018} Euros';
 	
 
-	$translate['titol_menu_2021']=$translate['titol_menu_inf_casament']='Men&uacute; Boda (ni&ntilde;os de 4 a 9 a&ntilde;os)';
+	$translate['titol_menu_2021']=$translate['titol_menu_inf_casament']='Wedding Men&uacute; (ni&ntilde;os de 4 a 9 a&ntilde;os)';
 	$translate['menu_2021']=$translate['menu_inf_casament']='{preu_2021} Euros ';
 	
-	$translate['titol_menu_2022']=$translate['titol_menu_jun_casament']='Men&uacute; Boda (ni&ntilde;os de 10 a 14 a&ntilde;os)';
+	$translate['titol_menu_2022']=$translate['titol_menu_jun_casament']='Wedding Men&uacute; (ni&ntilde;os de 10 a 14 a&ntilde;os)';
 	$translate['menu_2022']=$translate['menu_jun_casament']='{preu_2022} Euros ';
 	
         
