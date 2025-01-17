@@ -115,7 +115,7 @@ Podeu exercir els vostres drets d\'accés, rectificació, cancel·lació i oposi
 	$translate['ALERTA_INFO_INICIAL_GRUPS']='<p  class="alert alert-info "><span class=" glyphicon glyphicon-info-sign f1"></span> 
                               Aquest formulari permet <b>SOL·LICITAR</b> una reserva que el restaurant haurà de CONFIRMAR o DENEGAR. </p>
                               <p  class="alert alert-info "><span class=" glyphicon glyphicon-info-sign f1"></span>
-                              Al final del procés us demanarem les dades d\una targeta bancària que <b>NOMÉS seran utilitzades en cas de no compareixènça</b> el dia de la reserva. No es farà cap càrrec i les dades serà gestionades per l\'entita bancària. El restaurant no té accés a les dades de la targeta, i <b>no realitzarà cap càrrec</b>.  
+                              Al final del procés us demanarem les dades d\'una targeta bancària que <b>NOMÉS seran utilitzades en cas de no compareixènça</b> el dia de la reserva. No es farà cap càrrec i les dades serà gestionades per l\'entitat bancària. El restaurant no té accés a les dades de la targeta, i <b>no realitzarà cap càrrec</b>.  
 			</p>
                                                                                     <p  class="alert alert-warning "><span class=" glyphicon glyphicon-exclamation-sign f1"></span>  
 <b>Cap sol·licitud de reserva tindrà validesa si no s\'han facilitat les dades de la targeta</b> abans de la data que us indicarem.</p>';
