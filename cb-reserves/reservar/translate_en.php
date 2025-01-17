@@ -161,10 +161,10 @@ This form allows you to<b> REQUEST </b>a reservation that the restaurant will ha
 
 
 <p  class="alert alert-info "><span class=" glyphicon glyphicon-info-sign f1"></span> 
-Remember that filling in and sending off this form is the first step in a process that ends in a <b>credit card payment</b> of a deposit which will be discounted from your final bill, 
-therefore there is <b>no extra cost involved</b>.</p> 
-<p class="alert alert-danger"><span class=" glyphicon glyphicon-exclamation-sign f1"></span> <b>
-No reservation request is valid unless the payment is made before the date given.</b></p>';
+At the end of the process we will ask you for your bank card details which <b>will ONLY be used in the event of a no-show</b> on the day of the reservation. No charge will be made and the details will be managed by the bank. The restaurant does not have access to the card details, and <b>will not make any charge</b>.
+</p>
+<p class="alert alert-warning "><span class=" glyphicon glyphicon-exclamation-sign f1"></span>
+<b>No reservation request will be valid if the card details have not been provided</b> before the date we will indicate to you.</p>';
 
 
 $translate['ALERTA_INFO_UPDATE'] = '<b> The reservation has been EDITED </b>. <br/> <br/>

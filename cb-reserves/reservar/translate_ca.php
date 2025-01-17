@@ -114,12 +114,11 @@ Podeu exercir els vostres drets d\'accés, rectificació, cancel·lació i oposi
 	
 	$translate['ALERTA_INFO_INICIAL_GRUPS']='<p  class="alert alert-info "><span class=" glyphicon glyphicon-info-sign f1"></span> 
                               Aquest formulari permet <b>SOL·LICITAR</b> una reserva que el restaurant haurà de CONFIRMAR o DENEGAR. </p>
-                              <p  class="alert alert-info "><span class=" glyphicon glyphicon-info-sign f1"></span> 
-			Recordeu que el fet d\'omplir i enviar aquest formulari és el primer pas d\'un procès que acaba 
-			amb un <b>pagament mitjançant targeta de crèdit</b> d\'una paga i senyal que serà descomptada del preu final, de manera que <b>no representarà cap despesa extra</b>. 
+                              <p  class="alert alert-info "><span class=" glyphicon glyphicon-info-sign f1"></span>
+                              Al final del procés us demanarem les dades d\una targeta bancària que <b>NOMÉS seran utilitzades en cas de no compareixènça</b> el dia de la reserva. No es farà cap càrrec i les dades serà gestionades per l\'entita bancària. El restaurant no té accés a les dades de la targeta, i <b>no realitzarà cap càrrec</b>.  
 			</p>
                                                                                     <p  class="alert alert-warning "><span class=" glyphicon glyphicon-exclamation-sign f1"></span>  
-<b>Cap sol·licitud de reserva tindrà validesa si no s\'ha fet el pagament</b> abans de la data que us indicarem.</p>';
+<b>Cap sol·licitud de reserva tindrà validesa si no s\'han facilitat les dades de la targeta</b> abans de la data que us indicarem.</p>';
 $translate['google_maps']='<div class="alert alert-danger"><span class=" glyphicon glyphicon-exclamation-sign f1" style="color:red"></span> <b>ATENCIÓ:</b> <br/>Les indicacions que proporciona <b>Google maps són errònies</b>. Per arribar al restaurant seguiu <a href="https://www.google.com/maps/d/viewer?mid=1hCH2vgWQlsAYjkur26vrCBkHs_o&hl=ca&ll=41.46209031620546%2C2.1290506341933906&z=14" target="_blank" style="color:red;font-weight:bold;">aquest mapa</a> fins a l\'inici de la pista forestal.</div>';
 $translate['google_maps']='';
                             $translate['ALERTA_INFO_INICIAL']='<p  class="alert alert-info "><span class=" glyphicon glyphicon-info-sign f1"></span> Omplint i enviant aquest formulari 
