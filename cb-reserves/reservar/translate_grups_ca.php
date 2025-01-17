@@ -486,7 +486,6 @@ margin:10px;
 <li>Pollastre brasa</li>
 <li>Galta de porc brasa</li>
 <li>Peus de porc brasa</li>
-<li>Secret de porc brasa</li>
 </ul>
 <p>&nbsp;</p>
 <p><!--
