@@ -1,22 +1,14 @@
 <?php
 
-
+echo json_encode(true);
+die();
 
 if (!isset($_REQUEST['client_email'])){
     echo '<form>Valida email:  <input type="text" name="client_email" placeholder="Escriu email"><input type="submit" value="Submit"></form> ';
     die();
 }
 
-// Check which indexes appear only once
-$unique_indexes = array_keys(array_filter(array_count_values(array_keys($_REQUEST)), function($count) {
-    return $count === 1;
-}));
 
-echo json_encode($unique_indexes);
-die();
-
-echo json_encode($result);
-die();
 
 //ANULAT: problema amb telefonica.net
 
