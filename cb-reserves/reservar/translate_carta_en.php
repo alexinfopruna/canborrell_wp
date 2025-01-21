@@ -220,6 +220,7 @@ if (!isset($PERSONES_GRUP))
   $translate['XORIÇO'] = 'Chorizo sausage <em>Chorizo </em>';
   $translate['ZUMO DE NARANJA NATURAL'] = 'STRAWBERRIES AND CREAM (IN SEASON) <em>FRESONES CON NATA (TEMPORADA)</em>';
   
+  $translate['VALENCIANO'] = 'Valenciano (Orange juice with ice cream) <em>Valenciano </em>';
 
 require_once('translate.php');
 ?>

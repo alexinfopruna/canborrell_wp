@@ -84,9 +84,8 @@ El número de comensales
 </ul>
 
 <br/><br/>
-El importe de la paga y señal será descontado del precio final, de manera que no representará un gasto extra, 
-ni en el caso de que modifiquéis el número de comensales al confirmar la reserva.'						
-.'<div class = "info-paga-i-senyal"> Atención: Si no puedes venir el día de la reserva <b>puedes recuperar la paga y señal si nos avisas con 48 horas de \ antelación</b>. En caso contrario, el \ importe abonado no será devuelto </div> '
+Te pediremos una <b>preautorización</b> de tu tarjeta de crédito para confirmar tu reserva. <b>Esta operación no supone ningún cargo en tu tarjeta</b> Sólo se realizará el cargo en caso de no comparecer el día de la reserva.
+No se realizará ningún cargo si cancelas la reserva con 48 horas de antelación.';
 .'<br/><br/>Gracias por utilizar este servicio.<br/><br/>';
 
 
