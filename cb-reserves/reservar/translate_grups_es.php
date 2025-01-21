@@ -85,7 +85,7 @@ El número de comensales
 
 <br/><br/>
 Te pediremos una <b>preautorización</b> de tu tarjeta de crédito para confirmar tu reserva. <b>Esta operación no supone ningún cargo en tu tarjeta</b> Sólo se realizará el cargo en caso de no comparecer el día de la reserva.
-No se realizará ningún cargo si cancelas la reserva con 48 horas de antelación.';
+No se realizará ningún cargo si cancelas la reserva con 48 horas de antelación.'
 .'<br/><br/>Gracias por utilizar este servicio.<br/><br/>';
 
 

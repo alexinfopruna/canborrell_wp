@@ -59,7 +59,7 @@ Sempre contestem les sol·licituds en un plaç d´un dia.
 		
 <br/><br/>
 Et demanarem una <b>preautorització</b> de la targeta de crèdit per confirmar la reserva. <b>Aquesta operació no suposa cap càrrec a la teva targeta</b> Només es realitzarà el càrrec en cas de no comparèixer el dia de la reserva.
-No es realitzarà cap càrrec si cancel·les la reserva amb 48 hores d\'antelació.';
+No es realitzarà cap càrrec si cancel·les la reserva amb 48 hores d\'antelació.'
         
 .'<br/><br/>Gracies per utilitzar aquest servei.<br/><br/>';
 
