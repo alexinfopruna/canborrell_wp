@@ -123,8 +123,8 @@ $translate['google_maps']='';
 			<b>realitzaràs una reserva formal al restaurant, per un dia i hora concrets</b>. 
 			</p>
 			<p  class="alert alert-warning "><span class=" glyphicon glyphicon-exclamation-sign f1"> </span> Aquest no és un formulari de contacte per fer consultes. 
-			Si el que desitges és plantejar-nos algun dubte, desplega la solapa "Contactar amb el restaurant", 
-			a sota del menú.</p>';
+			Si el que desitges és plantejar-nos algun dubte, desplega la solapa "Tens algun dubte?", 
+			a la barra de l\'esquerra.</p>';
 			$translate['ALERTA_INFO']='<b>La teva reserva ha estat CONFIRMADA</b>.<br/><br/>
 					T\'hem enviat un SMS recordatori al número de mòbil que ens has indicat.<br/><br/>'.$translate['google_maps'].'
 					

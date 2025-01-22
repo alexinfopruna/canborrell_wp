@@ -154,7 +154,8 @@ $translate['ALERTA_INFO_INICIAL'] = '<p  class="alert alert-info "><span class="
 		</p>
 		<p  class="alert alert-danger "><span class=" glyphicon glyphicon-exclamation-sign f1"></span>  
                                                         This is not a contact form for inquires. If you have a query or wish to make a suggestion click on the overlap
-		“Contact the restaurant”, at the end of the menu.</p> ';
+		"Any questions?", 
+            on the left bar.</p> ';
 
 $translate['ALERTA_INFO_INICIAL_GRUPS'] = '<p  class="alert alert-info "><span class=" glyphicon glyphicon-info-sign f1"></span> 
 This form allows you to<b> REQUEST </b>a reservation that the restaurant will have to CONFIRM or DENY.  </p>

@@ -138,7 +138,7 @@ $translate['ALERTA_INFO_INICIAL']='<p  class="alert alert-info "><span class=" g
 		</p>
 		<p  class="alert alert-danger "><span class=" glyphicon glyphicon-exclamation-sign f1"></span>  Este no es un formulario de contacto para realizar consultas. 
 		Si lo que deseas es plantearnos alguna duda o sugerencia, 
-		despliega la solapa "Contactar con el restaurante", debajo del menú. </p> ';
+		despliega la solapa "Tienes alguna duda?, en la barra de la izquierda. </p> ';
 
 $translate['ALERTA_INFO_INICIAL_GRUPS']='<p  class="alert alert-info "><span class=" glyphicon glyphicon-info-sign f1"></span> 
   Este formulario permite <b> SOLICITAR </b> una reserva que el restaurante tendrá que CONFIRMAR o DENEGAR. </p>

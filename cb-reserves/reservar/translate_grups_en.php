@@ -76,7 +76,8 @@ The number of diners
 </ul>
 
 <br/><br/>
-We will request a <b>pre-authorization</b> of your credit card to confirm your reservation. <b>This operation does not involve any charge to your card</b> The charge will only be made in case of no-show on the day of the reservation.
+We will request a <b>pre-authorization</b> of your credit card to confirm your reservation. <b>This operation does not involve any charge to your card</b> 
+The charge will only be made in case you don\'t come on the day of the reservation.
 No charge will be made if you cancel your reservation 48 hours in advance.'
 .'<br/><br/>Thank you for using this service.<br/><br/>';
 
