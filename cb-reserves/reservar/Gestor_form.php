@@ -1095,11 +1095,11 @@ FROM client
       ob_end_clean();
 
       $extres['subject'] = $this->l("Can-Borrell: RESERVA CANCELADA ", FALSE) . $_POST['id_reserva'];
-      $mail = $this->enviaMail($idr, "cancelada_", FALSE, $extres);
+      //$mail = $this->enviaMail($idr, "cancelada_", FALSE, $extres);
       $data = $row['data'];
       $hora = $row['hora'];
       $SMS = $this->enviaSMS($idr, "CANCELADA tu reserva $idr para el $data a las $hora");
-      $mail = $this->enviaMail($idr, "cancelada_", MAIL_RESTAURANT, $extres);
+      //$mail = $this->enviaMail($idr, "cancelada_", MAIL_RESTAURANT, $extres);
 
       /*       * */
       $deleteSQL = "DELETE FROM " . T_RESERVES . " WHERE id_reserva=$idr";
