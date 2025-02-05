@@ -68,5 +68,6 @@ function fromAS3_flash_ready()
 <a href="#" id="bt_edit_hores" torn="1" class="edbase">Editar hores TORN1</a>
 <a href="#" id="bt_edit_hores2" torn="2" class="edbase">Editar hores TORN2</a>
 <a href="#" id="bt_edit_hores3" torn="3" class="edbase">Editar hores TORN3</a>
+<a href="#" id="bt_edit_horesg" torn="4" class="edbase">Editar hores GRUPS</a>
 </body>
 </html>
