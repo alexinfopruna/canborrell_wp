@@ -2432,6 +2432,9 @@ EOHTML;
       $data = $this->data_BASE;
 //$torn=1;
     }
+    elseif($base=="01-01-2010"){
+      $data = $base;
+    }
     else {
       $data = $_SESSION['data'];
       $torn = $_SESSION['torn'];
