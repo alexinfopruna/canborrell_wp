@@ -814,7 +814,7 @@ ORDER BY  `estat_hores_hora` ASC ";
         $checked = "";
       }
 
-      $preradio = '<p>'.$query.'</p><input type="radio" id="' . 'h' . $row['estat_hores_id'] . '" name="selectorHora" value="' . $row['estat_hores_hora'] . '" ' . $checked . ' maxc="' . $row['estat_hores_max'] . '" comensals="' . $comensals . '" torn="' . $torn . '"  ' . $disabled . '/>
+      $preradio = '<input type="radio" id="' . 'h' . $row['estat_hores_id'] . '" name="selectorHora" value="' . $row['estat_hores_hora'] . '" ' . $checked . ' maxc="' . $row['estat_hores_max'] . '" comensals="' . $comensals . '" torn="' . $torn . '"  ' . $disabled . '/>
 			<label for="' . 'h' . $row['estat_hores_id'] . '">' . $row['estat_hores_hora'] . '</label>';
       $radio.=$preradio;
     }
