@@ -3118,7 +3118,11 @@ ORDER BY `estat_hores_data` DESC";
       $service = new \Esendex\DispatchService($authentication);
       $result = $service->send($message);
 
-      
+      $headerService = new \Esendex\MessageHeaderService($authentication);
+      $message = $headerService->message($result->id);
+      echo "Message ID: " . $message->id() . "\n";
+      print_r($message->status());
+      //echo "ESENDEX-----ENVIANT: $num - $msg";
 
     } catch (Exception $e) {
       $result=null;
