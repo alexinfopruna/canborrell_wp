@@ -16,6 +16,7 @@ wp-content/plugins/hello.php
 cb-reserves/Connections/
 cb-reserves/taules/print/print.png
 cb-reserves/editar/mensaini.txt
+cb-reserves/canBorrell_inc_LOCAL
 
 /.htaccess
 /license.txt

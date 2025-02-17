@@ -1,9 +1,7 @@
 <?php
-//if ($_REQUEST['pass']!='joseprov') die("USUARI NO AUTORITZAT!");
 if (!defined('ROOT')) define('ROOT', "../taules/");
 require_once(ROOT."gestor_reserves.php");
 $gestor=new gestor_reserves();
-//if (!$gestor->valida_sessio())die("USUARI NO AUTORITZAT!");
 
 
 /***************************************************************************/
@@ -13,33 +11,32 @@ function sms_caducades()
 {
 	require(ROOT.'../Connections/DBConnection.php'); 
 	/******************************************************************************/	
-   //  $query_reserves = "SELECT * FROM reserves WHERE data_limit <= ADDDATE(CURDATE(), INTERVAL 0 DAY) AND data_limit >=CURDATE() AND data >=CURDATE()  AND estat=2 AND data>=CURDATE() AND  (num_1<1000 OR num_1<=>NULL) AND  (num_2<>666 OR num_2<=>NULL)";
      $query_reserves = "SELECT * FROM reserves WHERE data_limit < CURDATE() AND data_limit>'2008-01-01' AND estat=2";
     $reserves = mysqli_query($canborrell, $query_reserves) or die(((is_object($GLOBALS["___mysqli_ston"])) ? mysqli_error($GLOBALS["___mysqli_ston"]) : (($___mysqli_res = mysqli_connect_error()) ? $___mysqli_res : false)));
   $nr = mysqli_num_rows($reserves);
-  echo "<br/><br/>CADUCADES (SMS)<br/>";
+  echo "<br/><br/>***CADUCADES (SMS)<br/>";
   echo $query_reserves;
   echo "<br/><br/><br/>";
     if (!$nr) return "NO HI HA CADUCADES";
 	$mensa="";
-	//$mensa="ENVIEM SMS RESERVES CADUCADES. TROBATS $nr REGISTRES";
-    while ($row=mysqli_fetch_array($reserves))
+
+	while ($row=mysqli_fetch_array($reserves))
     {
       $args = array();
                                                                                     $lang =  $row['lang'];
 			preg_match( "/([0-9]{2,4})-([0-9]{1,2})-([0-9]{1,2})/", $row['data'], $mifecha); 
 			$lafecha=$mifecha[3]."/".$mifecha[2]; 
 
-			//$sms_mensa="SU SOLICITUD DE RESERVA EN CAN BORRELL PARA EL $lafecha (ID".$row["id_reserva"].") HA CADUCADO. Can Borrell NO GARANTIZA LA DISPONIBILIDAD DE MESA PARA EL GRUPO!!";
+
 			
                                                                                     $args[]=$lafecha;
                                                                                     $args[]=$row["id_reserva"];
                                                                                     $sms_mensa = "LA SOL·LICITUD DE RESERVA A CAN BORRELL PER AL %s (ID%s HA CADUCAT. Can Borrell NO GARANTITZA LA DISPONIBILITAT DE TAULA PER AL GRUP!!";
                                                                                     $sms_mensa = gestor_reserves::SMS_language($sms_mensa,$row['lang'],$args);
 
-//$sms_mensa = $this->lv("LA SOL·LICITUD DE RESERVA A CAN BORRELL PER AL %s (ID%s HA CADUCAT. Can Borrell NO GARANTITZA LA DISPONIBILITAT DE TAULA PER AL GRUP!!");
-                                                                                    //$sms_mensa = sprintf($mensa, $lafecha,$row["id_reserva"]);
 
+
+																					
 
                                                                                     if (SMS_ACTIVAT) 
 			{
@@ -68,7 +65,7 @@ function sms_caducades()
 		
 		//MARCA RESERVES COM A CADUCADES
 		$query_reserves = "UPDATE reserves SET estat=6 WHERE data_limit < CURDATE() AND data_limit>'2008-01-01' AND estat=2";
-		if (SMS_ACTIVAT) $reserves = mysqli_query( $canborrell, $query_reserves) or die(((is_object($GLOBALS["___mysqli_ston"])) ? mysqli_error($GLOBALS["___mysqli_ston"]) : (($___mysqli_res = mysqli_connect_error()) ? $___mysqli_res : false)));
+		$reserves = mysqli_query( $canborrell, $query_reserves) or die(((is_object($GLOBALS["___mysqli_ston"])) ? mysqli_error($GLOBALS["___mysqli_ston"]) : (($___mysqli_res = mysqli_connect_error()) ? $___mysqli_res : false)));
 		
 		return $mensa;
 }   
@@ -96,15 +93,10 @@ function enviaSMS_caducades($numMobil,$mensa)
 		$result = gestor_reserves::esendex24($numMobil,$mensa);
 
 		print_log("ENVIAT SMS CADUCADA: $numMobil RESERVA $numMobil");
-		print_log("RESULTAT ENVIO: ".$result['Result']." / ".$result['MessageIDs']);
-        
+		//print_log("RESULTAT ENVIO: ".$result['Result']." / ".$result['MessageIDs']);    
     }
     else{
-
         print_log("TEST SMS CADUCADA (no enviat): $numMobil RESERVA $numMobil");
     }
-	
-	
-	
 }	
 ?>

@@ -130,6 +130,6 @@ function enviaSMS_esborrat($numMobil,$mensa, $lang='ca')
 
   global $gestor;
   $gestor->xgreg_log("ENVIAT SMS ESBORRA_CLIENT: $numMobil RESERVA $idReserva", 1);
-  $gestor->xgreg_log("RESULTAT ENVIO: ".$result['Result']." / ".$result['MessageIDs'], 1);
+  //$gestor->xgreg_log("RESULTAT ENVIO: ".$result['Result']." / ".$result['MessageIDs'], 1);
 }
 ?>

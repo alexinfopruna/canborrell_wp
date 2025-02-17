@@ -15,9 +15,14 @@ $(function(){
 	
 	$(".edbase, #bt_edit_hores").click(function(){
 			var data=$("#calendari").val();
+
 			
 			if (!data) data="BASE";
 			var torn=$(this).attr("torn");
+			if (torn=="4") {
+				data="01-01-2010";
+				torn=1;
+			}
 			if (!torn) torn="undefined";
 			$( "#form_hores" ).dialog("open");
 			$.get("gestor_reserves.php?a=edita_hores&p="+data+"&q="+torn, function(data) {

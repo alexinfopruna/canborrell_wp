@@ -77,6 +77,7 @@ function l($text,$echo=true)
 {
 	global $translate;
 	global $notrans;
+	global $lang;
 	if (TRANSLATE_DEBUG)
 	{
 		/*
@@ -94,9 +95,32 @@ function l($text,$echo=true)
 			if ($translate[$text]=="=")	$trans=$text;
 			else $trans=$translate[$text];
 		}
+		elseif (isset($translate[$textup=strtoupper($text)])) 
+		{
+			if ($translate[$textup]=="=")	$trans=$text;
+			else $trans=$translate[$textup];
+		}
 		else $trans=$text;
 	}
-	//echo "---$text - ".(isset($translate[$text])?"ok":"ko")." > ";
+/**** */
+	if (isset($_GET["DEBUG"])){
+		$found =  isset($translate[$text]);
+		$comm = $found ?"":"//";
+		if (!$found ) {
+			$textup =$text;
+			//$textup = strtoupper($text);
+			if (isset($translate[$textup]))	{
+				echo "$comm \$translate['$text'] = '$translate[$textup]';<br>\n";
+			}
+			else echo "$comm \$translate['$text'] = '--------------';<br>\n";
+	
+		}else	echo "$comm \$translate['$text'] = '$translate[$text]';<br>\n";
+	}
+
+/******/
+
+
+
 	if ($echo) echo $trans;
 	
 	return ($trans);

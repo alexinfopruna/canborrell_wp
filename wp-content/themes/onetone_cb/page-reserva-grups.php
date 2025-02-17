@@ -2,6 +2,7 @@
 /*
   Template Name: Reserves grups
  */
+
 defined('ROOT') or define('ROOT', 'cb-reserves/taules/');
 require_once (ROOT . "Gestor.php");
 require_once (ROOT . "Usuari.php");

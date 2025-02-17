@@ -29,7 +29,7 @@ class MessageBody {
 	/**
 	 * AMFBody is the Contstructor method for the class
 	 */
-	function MessageBody ($targetURI = "", $responseIndex = "", $value = "") {
+	function __constructor ($targetURI = "", $responseIndex = "", $value = "") {
 		$GLOBALS['amfphp']['lastMethodCall'] = $responseIndex;
 		$this->responseIndex = $responseIndex;
 		$this->targetURI = $targetURI;

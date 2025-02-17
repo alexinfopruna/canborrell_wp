@@ -8,9 +8,10 @@ $_SESSION['config']="config.xml";
 
 require_once(ROOT."gestor_reserves.php");
 $gestor=new gestor_reserves();
-if ($gestor->valida_login()) header("Location: ". $RedirectLoginSuccess );
 
-$estil="winterblues.css";?>
+if ($gestor->valida_login()) header("Location: ". $RedirectLoginSuccess );
+$estil="winterblues.css";
+?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "//www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="//www.w3.org/1999/xhtml">
 <head>

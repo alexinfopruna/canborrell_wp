@@ -76,9 +76,9 @@ switch (ICL_LANGUAGE_CODE){
                                     </div>                                                 
                                 </div>
                                 <?php endif;?>
-        <a href="https://www.can-borrell.com/wp-content/uploads/2024/11/CARTA-TRIPTIC-BEGUDESPOSTRES-2024_<?php echo $lang;?>.pdf" target="_blank" id="print-link"> 
+<!--        <a href="https://www.can-borrell.com/wp-content/uploads/2024/11/CARTA-TRIPTIC-BEGUDESPOSTRES-2024_<?php echo $lang;?>.pdf" target="_blank" id="print-link"> 
               <button type="button" class="btn btn-primary veure-menus" download>
-               &#x1F5A8;   <?php echo __("Descarrega/Imprimeix carta",'themedomain')?></button></a>
+               &#x1F5A8;   <?php echo __("Descarrega/Imprimeix carta",'themedomain')?></button></a>-->
  
                                 
                                 <div class="entry-main aborder">

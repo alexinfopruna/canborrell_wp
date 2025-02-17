@@ -2432,6 +2432,9 @@ EOHTML;
       $data = $this->data_BASE;
 //$torn=1;
     }
+    elseif($base=="01-01-2010"){
+      $data = $base;
+    }
     else {
       $data = $_SESSION['data'];
       $torn = $_SESSION['torn'];
@@ -3114,7 +3117,8 @@ ORDER BY `estat_hores_data` DESC";
     try{
       $service = new \Esendex\DispatchService($authentication);
       $result = $service->send($message);
-      //echo "ESENDEX-----ENVIANT: $num - $msg";
+
+      
 
     } catch (Exception $e) {
       $result=null;

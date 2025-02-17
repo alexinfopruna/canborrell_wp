@@ -32,7 +32,7 @@ class AMFBaseSerializer {
 	 * 
 	 * @param object $stream The AMFOutputStream
 	 */
-	function AMFBaseSerializer() {
+	function __constructor() {
 		$this->isBigEndian = AMFPHP_BIG_ENDIAN;
 		$this->outBuffer = ""; // the buffer
 		$this->charsetHandler = new CharsetHandler('phptoflash');

@@ -39,7 +39,7 @@ class MessageHeader {
 	/**
 	 * AMFHeader is the Constructor function for the AMFHeader data type.
 	 */
-	function MessageHeader($name = "", $required = false, $value = null) {
+	function __constructor($name = "", $required = false, $value = null) {
 		$this->name = $name;
 		$this->required = $required;
 		$this->value = $value;

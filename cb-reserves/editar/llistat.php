@@ -172,7 +172,7 @@ else
         <link rel="shortcut icon" type="image/ico" href="/gear-favicon.ico" />
 
         <link type="text/css" href="../taules/css/blitzer/jquery-ui-1.8.9.custom.css" rel="stylesheet" />	
-        <?php echo Gestor::loadJQuery("2.0.3"); ?>
+        <?php echo Gestor::loadJQuery("2.0.3");?>
         <script>
           $(function () {
               $(".cerca").click(function (e) {

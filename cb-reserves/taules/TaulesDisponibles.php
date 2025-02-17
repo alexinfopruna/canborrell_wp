@@ -780,7 +780,7 @@ ORDER BY  `estat_hores_hora` ASC ";
 		WHERE 
 		estat_hores_actiu=1
 		AND
-		(estat_hores_data = '" . $this->data_BASE . "' AND estat_hores_torn = '$torn')
+		(estat_hores_data = '2010-01-01' AND estat_hores_torn = '$torn')
 		
 /*************** NOMES DEPEN DE LA BASE	
 		OR (estat_hores_data='$mydata' AND estat_hores_torn = '$torn' )	AND estat_hores_hora NOT IN
@@ -868,17 +868,17 @@ ORDER BY  `estat_hores_hora` ASC ";
     $torn = $this->torn;
 
     /** ATENCIO: Excepció creataules actiu de DL a DV no festiu */
+      if (!$this->es_finde_o_festiu($mydata)) return true;
     
     
-
-  //  if (!$this->es_finde_o_festiu($mydata)) return true;
     $query = "SELECT estat_crea_taules_actiu FROM estat_crea_taules
     WHERE 
     (estat_crea_taules_data='$mydata' AND estat_crea_taules_torn = '$torn' ) 
     ORDER BY estat_crea_taules_timestamp DESC";
     $Result1 = mysqli_query($this->connexioDB, $query) or die(((is_object($GLOBALS["___mysqli_ston"])) ? mysqli_error($GLOBALS["___mysqli_ston"]) : (($___mysqli_res = mysqli_connect_error()) ? $___mysqli_res : false)));
     if (!mysqli_num_rows($Result1))
-       return (date('N', strtotime($mydata)) >= 6)?FALSE:CREA_TAULES;
+      //return (date('N', strtotime($mydata)) >= 6)?FALSE:CREA_TAULES;
+      return CREA_TAULES;
     else
       return (mysqli_result($Result1, 0) == 1);
   }

@@ -110,7 +110,7 @@ class AMFBaseDeserializer {
 	 * 
 	 * @param object $is The referenced input stream
 	 */
-	function AMFBaseDeserializer($rd) {
+	function __constructor($rd) {
 		$this->isBigEndian = AMFPHP_BIG_ENDIAN;
 		$this->current_byte = 0;
 		$this->raw_data = $rd;  // store the stream in this object

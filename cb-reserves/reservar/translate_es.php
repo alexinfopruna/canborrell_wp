@@ -138,16 +138,17 @@ $translate['ALERTA_INFO_INICIAL']='<p  class="alert alert-info "><span class=" g
 		</p>
 		<p  class="alert alert-danger "><span class=" glyphicon glyphicon-exclamation-sign f1"></span>  Este no es un formulario de contacto para realizar consultas. 
 		Si lo que deseas es plantearnos alguna duda o sugerencia, 
-		despliega la solapa "Contactar con el restaurante", debajo del menú. </p> ';
+		despliega la solapa "Tienes alguna duda?, en la barra de la izquierda. </p> ';
 
 $translate['ALERTA_INFO_INICIAL_GRUPS']='<p  class="alert alert-info "><span class=" glyphicon glyphicon-info-sign f1"></span> 
   Este formulario permite <b> SOLICITAR </b> una reserva que el restaurante tendrá que CONFIRMAR o DENEGAR. </p>
 
-<p  class="alert alert-info "><span class=" glyphicon glyphicon-info-sign f1"></span> Recuerde que el hecho de rellenar y enviar este formulario es el primer paso de un proceso que termina
-con un <b> pago mediante tarjeta de crédito </b> de una paga y señal que será descontada del importe final, 
-		de manera que <b>no representará un gasto extra</b>.</p>
- <p class="alert alert-danger"><span class=" glyphicon glyphicon-exclamation-sign f1"></span> <b> Ninguna solicitud de reserva tendrá validez si no se ha satisfecho el pago</b> antes de la fecha que os indicaremos.</p>';
+<p  class="alert alert-info "><span class=" glyphicon glyphicon-info-sign f1"></span>
 
+Al final del proceso le pediremos los datos de una tarjeta bancaria que <b>SÓLO serán utilizadas en caso de no comparecencia</b> el día de la reserva. No se hará ningún cargo y los datos serán gestionados por la entidad bancaria. El restaurante no tiene acceso a los datos de la tarjeta, y <b>no realizará ningún cargo</b>.
+</p>
+ <p class="alert alert-warning "><span class=" glyphicon glyphicon-exclamation-sign f1"></span>
+<b>Ninguna solicitud de reserva tendrá validez si no se han facilitado los datos de la tarjeta</b> antes de la fecha que le indicaremos.</p>';
 
 
 $translate['ALERTA_INFO_UPDATE']='<b> La Reserva ha sido MODIFICADA </b>. <br/> <br/>
