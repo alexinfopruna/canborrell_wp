@@ -3120,7 +3120,7 @@ ORDER BY `estat_hores_data` DESC";
 
       $headerService = new \Esendex\MessageHeaderService($authentication);
       echo "RESULT: ";
-      print_r($result);
+      print_r($result->id);
       //$message = $headerService->message($result->id);
       //echo "Message ID: " . $message->id() . "\n";
       //print_r($message->status());
