@@ -166,10 +166,9 @@ $txt[9]['cat']="Si té qualsevol dubte posi's en contacte amb nosaltres a <a hre
 $txt[9]['esp']="Si tiene cualquier duda póngase en contacto con nosotros en <a href='mailto:".MAIL_RESTAURANT."' class='dins'>".MAIL_RESTAURANT."</a> ";
 $txt[9]['en']="If you have any questions, please contact us at <a href='mailto:".MAIL_RESTAURANT."' class='dins'>".MAIL_RESTAURANT."</a> ";
 
-$txt[40]['cat']="Per finalitzar el procès de reserva, cal que realitzi el pagament de l'import de la reserva. Per reserves online, el restaurant només admet pagaments amb tarja de crèdit.
-<br/>Faci click al botó i el transferirem directament al terminal de comerç electrònic.";
-$txt[40]['esp']="Para finalizar el proceso de reserva, es necesario que realice el pago del importe de la reserva. Para reservas online, el restaurant sólo adminte pagos con tarjeta de crédito. Haga click sobre el botón y le transferiremos directamente al terminal de comercio electrónico'";
-$txt[40]['en']="To finalize the reservation process, it is necessary that you make the payment of the amount of the reservation. For online reservations, the restaurant only manages credit card payments. Click on the button and we will transfer you directly to the e-commerce terminal";
+$txt[40]['cat']="Per finalitzar el procès de reserva, cal que autoritzi el pre-pagament de l'import de la reserva. Aquesta operació no suposa cap càrrec. Només es carregarà l'import en cas de no compareixença.<br/>Faci click al botó i el transferirem directament al terminal de comerç electrònic.";
+$txt[40]['esp']="Para finalizar el proceso de reserva, es necesario que autorice el pre-pago del importe de la reserva. Esta operación no supone ningún cargo. únicamente se realizará el cargo en caso de no comparecer. Haga click sobre el botón y le transferiremos directamente al terminal de comercio electrónico'";
+$txt[40]['en']="To finalize the reservation process, it is necessary that you authorize the pre-payment of the amount of the reservation. The charge will only be made in the event of a no-show. Click on the button and we will transfer you directly to the e-commerce terminal";
 
 
 $txt[41]['cat']="";
