@@ -64,8 +64,8 @@ function sms_caducades()
 
 		
 		//MARCA RESERVES COM A CADUCADES
-		$query_reserves = "UPDATE reserves SET estat=6 WHERE data_limit < CURDATE() AND data_limit>'2008-01-01' AND estat=2";
-		if (SMS_ACTIVAT) $reserves = mysqli_query( $canborrell, $query_reserves) or die(((is_object($GLOBALS["___mysqli_ston"])) ? mysqli_error($GLOBALS["___mysqli_ston"]) : (($___mysqli_res = mysqli_connect_error()) ? $___mysqli_res : false)));
+		//$query_reserves = "UPDATE reserves SET estat=6 WHERE data_limit < CURDATE() AND data_limit>'2008-01-01' AND estat=2";
+		//$reserves = mysqli_query( $canborrell, $query_reserves) or die(((is_object($GLOBALS["___mysqli_ston"])) ? mysqli_error($GLOBALS["___mysqli_ston"]) : (($___mysqli_res = mysqli_connect_error()) ? $___mysqli_res : false)));
 		
 		return $mensa;
 }   
