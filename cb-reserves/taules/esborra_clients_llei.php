@@ -96,6 +96,7 @@ function esborra_clients_llei($t)
 
 function enviaSMS_esborrat($numMobil,$mensa, $lang='ca')
 {
+    return;
     $idReserva=0;
   //return;
   /********************/
