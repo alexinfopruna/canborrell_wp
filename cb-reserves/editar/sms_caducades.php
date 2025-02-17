@@ -1,9 +1,7 @@
 <?php
-//if ($_REQUEST['pass']!='joseprov') die("USUARI NO AUTORITZAT!");
 if (!defined('ROOT')) define('ROOT', "../taules/");
 require_once(ROOT."gestor_reserves.php");
 $gestor=new gestor_reserves();
-//if (!$gestor->valida_sessio())die("USUARI NO AUTORITZAT!");
 
 
 /***************************************************************************/
@@ -95,15 +93,10 @@ function enviaSMS_caducades($numMobil,$mensa)
 		$result = gestor_reserves::esendex24($numMobil,$mensa);
 
 		print_log("ENVIAT SMS CADUCADA: $numMobil RESERVA $numMobil");
-		print_log("RESULTAT ENVIO: ".$result['Result']." / ".$result['MessageIDs']);
-        
+		//print_log("RESULTAT ENVIO: ".$result['Result']." / ".$result['MessageIDs']);    
     }
     else{
-
         print_log("TEST SMS CADUCADA (no enviat): $numMobil RESERVA $numMobil");
     }
-	
-	
-	
 }	
 ?>
