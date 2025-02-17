@@ -14,7 +14,7 @@ function sms_caducades()
      $query_reserves = "SELECT * FROM reserves WHERE data_limit < CURDATE() AND data_limit>'2008-01-01' AND estat=2";
     $reserves = mysqli_query($canborrell, $query_reserves) or die(((is_object($GLOBALS["___mysqli_ston"])) ? mysqli_error($GLOBALS["___mysqli_ston"]) : (($___mysqli_res = mysqli_connect_error()) ? $___mysqli_res : false)));
   $nr = mysqli_num_rows($reserves);
-  echo "<br/><br/>CADUCADES (SMS)<br/>";
+  echo "<br/><br/>***CADUCADES (SMS)<br/>";
   echo $query_reserves;
   echo "<br/><br/><br/>";
     if (!$nr) return "NO HI HA CADUCADES";
