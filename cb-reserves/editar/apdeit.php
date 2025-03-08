@@ -207,6 +207,7 @@ function mail_SMS_cli($id=false,$SMS=null)
  	  break;
 	
           case 3: // PAGAMENT OK
+		  case 7: // PAGADA
 		$v=20;
 		$preu=$fila['preu_reserva'];
 		$datat=data_llarga($fila['data'],$lang).", ".$fila['hora']."h";
