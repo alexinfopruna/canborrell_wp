@@ -353,11 +353,17 @@ td{border:white solid 3px;}
                   </table>
               </div></td>
         </tr>
-        <?php if ($row_DetailRS1['factura']){?>
 		<tr>
+          <td align="right" bgcolor="#333333" class="Estilo2 Estilo4">Factura proforma</td>
+          <td align="right" bgcolor="#CCCCCC" class="llista Estilo4"><div align="left"><span class="estat"><?php echo $row_DetailRS1['factura']?"SI":"NO";  ?></span></div></td>
+        </tr>
+        <?php if ($row_DetailRS1['factura']){?>
+
+        <tr>
           <td align="right" bgcolor="#333333" class="Estilo2 Estilo4">dades facuració </td>
           <td align="right" bgcolor="#CCCCCC" class="llista Estilo4"><div align="left"><span class="estat"><?php echo $row_DetailRS1['factura_cif']."<br/>".$row_DetailRS1['factura_nom']."<br/>".$row_DetailRS1['factura_adresa']?></span></div></td>
         </tr>
+
 		<?php }?>
         <tr>
           <td align="right" bgcolor="#333333" class="Estilo2 Estilo4">data l&iacute;mit pagament </td>

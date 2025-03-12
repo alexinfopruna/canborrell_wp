@@ -22,7 +22,7 @@ if (isset($_POST["bloq"]))
     
   $dat=$_POST["datab"];
   $dat.="\n";
-      $gestor->xgreg_log("<span class='grups'>Bloqueja dia GRUPS: <span class='idr'>".$_POST["bloq"]."</span> > $dat </span>",0,'/log/logGRUPS.txt');
+      $gestor->xgreg_log("<span class='grups'>Bloqueja dia GRUPS: <span class='idr'>".$_POST["bloq"]."</span> > $dat </span>",0,'log/logGRUPS.txt');
   
   	$gestor = @fopen($fitxer, "a");
 	if ($gestor) 
@@ -56,7 +56,7 @@ if (isset($_POST["dbloq"]))
        $y=strtok( "\n\t\r");
        $dat=$d."-".$m."-".$y;
     
-      $gestor->xgreg_log("<span class='grups'>Desbloqueja dia GRUPS: <span class='idr'>".$_POST["bloq"]."</span> > $dat </span>",0,'/log/logGRUPS.txt');
+      $gestor->xgreg_log("<span class='grups'>Desbloqueja dia GRUPS: <span class='idr'>".$_POST["bloq"]."</span> > $dat </span>",0,'log/logGRUPS.txt');
        
        
     $key = array_search($d, $dies[$m]);  
