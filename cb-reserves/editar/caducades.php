@@ -12,6 +12,8 @@ define('SMS_ACTIVAT', $sms_activat);
 
 require(ROOT . DB_CONNECTION_FILE);
 require_once(ROOT . INC_FILE_PATH . 'valors.php');
+include ROOT.'../editar/translate_factura.php';  
+
 require_once(ROOT . INC_FILE_PATH . 'alex.inc');
 //include_once( "SMSphp/EsendexSendService.php" );
 
@@ -21,9 +23,6 @@ echo "\n\n\n\n<br/>*************************************************************
 echo "\n\n\n\n<br/><br/>" . date("D d-m-Y H:i:s") . " Execució  /home/hostings/webs/can-borrell.com/www/htdocs/cb-reserves/editar/caducades.php <br/><br/>";
 echo "<br/><br/><br/>";
 
-
-//enviaSMS("606782798", "12.01","2024-04-05","5421.02 ","cat");
-//die("CADUCADESsss DIE");
 ?>
 <?php
 
@@ -67,7 +66,6 @@ $mensaini .= recordatori($canborrell, 1);
 $mensaini .= recordatori($canborrell, 3);
 echo "\n\n\n\n<br/>-------------------------------------------------------------------------------------------<br/>";
 
-////$mensaini .= $gestor->recordatori_petites_3dies();
 
 echo "<br/>-------------------------------------------------------------------------------------------<br/>";
 if (!empty($mensaini)) {
@@ -86,8 +84,6 @@ function recordatori($canborrell, $dies) {
   $pagaments = new Gestor_pagaments();
   $sms="";
   $query_reserves = "SELECT * FROM reserves WHERE data_limit <= ADDDATE(CURDATE(), INTERVAL $dies DAY) AND data_limit >=CURDATE() AND data >=CURDATE()  AND (estat=2 OR estat=3 OR estat=7) AND data>=CURDATE() AND  (num_1<$ENVIAT OR num_1<=>NULL) AND  (num_2<>666 OR num_2<=>NULL)";
-  //$query_reserves = "SELECT * FROM reserves WHERE data_limit <= ADDDATE(CURDATE(), INTERVAL $dies DAY) AND data_limit >=CURDATE() AND data >=CURDATE()  AND estat=2 AND data>=CURDATE() AND  (num_1<$ENVIAT OR num_1<=>NULL) AND  (num_2<>666 OR num_2<=>NULL)";
-  //$query_reserves = "SELECT * FROM reserves WHERE data_limit <= ADDDATE(CURDATE(), INTERVAL $dies DAY) AND data_limit >=CURDATE() AND data >=CURDATE()  AND estat=2 AND data>=CURDATE() AND  (num_2<>666 OR num_2<=>NULL)";
   echo "<br/><br/>RECORDATORI<br/>";
   echo $query_reserves;
   echo "<br/><br/><br/>";

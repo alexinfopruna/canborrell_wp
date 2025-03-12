@@ -23,6 +23,8 @@ if (!$gestor->valida_sessio()) {
 
 require(ROOT . DB_CONNECTION_FILE);
 
+
+
 require_once(ROOT . INC_FILE_PATH . 'valors.php');
 require_once(ROOT . INC_FILE_PATH . 'alex.inc');
 require_once(ROOT . "Gestor_pagaments.php");
@@ -73,15 +75,15 @@ if (!empty($_POST['pdel'])) {
   $aLista = array_keys($_POST['pdel']);
 
   $check = Gestor::log_array($aLista);
-  Gestor::xgreg_log("<span class='grups'>ESBORRA RESERVES MULTIPLE CHECK: </span>", 0, '/log/logGRUPS.txt');
-  Gestor::xgreg_log("$check", 1, '/log/logGRUPS.txt');
+  Gestor::xgreg_log("<span class='grups'>ESBORRA RESERVES MULTIPLE CHECK: </span>", 0, 'log/logGRUPS.txt');
+  Gestor::xgreg_log("$check", 1, 'log/logGRUPS.txt');
 
   $query = "DELETE FROM reserves where id_reserva IN (" . implode(',', $aLista) . ") AND estat=5";
   $result = mysqli_query($canborrell, $query);
-  Gestor::xgreg_log("$query", 1, '/log/logGRUPS.txt');
+  Gestor::xgreg_log("$query", 1, 'log/logGRUPS.txt');
   $query = "UPDATE reserves SET estat=5 where id_reserva IN (" . implode(',', $aLista) . ")";
   $result = mysqli_query($canborrell, $query);
-  Gestor::xgreg_log("$query", 1, '/log/logGRUPS.txt');
+  Gestor::xgreg_log("$query", 1, 'log/logGRUPS.txt');
 }
 // APLICA FILTRE
 if ((!isset($_POST["opcio_filtre"])) && (isset($_COOKIE['codi_filtre']))) {

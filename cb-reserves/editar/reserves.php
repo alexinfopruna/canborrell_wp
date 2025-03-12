@@ -99,7 +99,7 @@ $idr = $id = ((is_null($___mysqli_res = mysqli_insert_id($canborrell))) ? false 
 //print_log("Recepció de reserva: ".$_POST['id_reserva'].": ".$_POST['client_nom']." ".$_POST['client_cognoms']);
 
 
-$gestor->xgreg_log(">>> <span class='grups'>Recepció de reserva GRUPS: <span class='idr'>$idr</span> > {$_POST['tel']} </span>", 0, '/log/logGRUPS.txt');
+$gestor->xgreg_log(">>> <span class='grups'>Recepció de reserva GRUPS: <span class='idr'>$idr</span> > {$_POST['tel']} </span>", 0, 'log/logGRUPS.txt');
 
 ///////////////////////////////////////////////////////
 // GUARDA COMANDA
@@ -137,7 +137,7 @@ else {
 
 ///////////////////////////////////////////////////////////////////////
 function mail_plantilla($id = false) {
-  Gestor::xgreg_log(">>> <span class='grups'>Enviament mail reserva GRUPS: <span class='idr'>" . $id . "</span></span>", 1, '/log/logGRUPS.txt');
+  Gestor::xgreg_log(">>> <span class='grups'>Enviament mail reserva GRUPS: <span class='idr'>" . $id . "</span></span>", 1, 'log/logGRUPS.txt');
 
 
   global $lang, $camps, $mmenu, $txt, $database_canborrell, $canborrell;
@@ -243,7 +243,7 @@ function mail_plantilla($id = false) {
   $r = mailer_reserva($id, 'pre_reserva_rest', $recipient, $subject, $html, $altbdy);
   //echo $html;
   //print_log("Enviament mail reserva ".$fila['id_reserva']." ($r): $recipient, $subject");
-  $gestor->xgreg_log(">>> <span class='grups'>Enviament mail reserva GRUPS: <span class='idr'>" . $fila['id_reserva'] . "</span> >  ($r): $recipient, $subject</span>", 1, '/log/logGRUPS.txt');
+  $gestor->xgreg_log(">>> <span class='grups'>Enviament mail reserva GRUPS: <span class='idr'>" . $fila['id_reserva'] . "</span> >  ($r): $recipient, $subject</span>", 1, 'log/logGRUPS.txt');
 
   ((mysqli_free_result($Result) || (is_object($Result) && (get_class($Result) == "mysqli_result"))) ? true : false);
   return ($fila['id_reserva']);

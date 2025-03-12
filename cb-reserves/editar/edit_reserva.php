@@ -10,7 +10,8 @@ $id=$_GET["id"];
 
 function GetSQLValueString($theValue, $theType, $theDefinedValue = "", $theNotDefinedValue = "") 
 {
-  $theValue = (!get_magic_quotes_gpc()) ? addslashes($theValue) : $theValue;
+  //$theValue = (!get_magic_quotes_gpc()) ? addslashes($theValue) : $theValue;
+  $theValue =  addslashes($theValue);
 
   switch ($theType) {
     case "text":
@@ -70,7 +71,7 @@ if ((isset($_POST["MM_update"])) && ($_POST["MM_update"] == "form1")) {
   
   
  
-  $updateSQL = sprintf("UPDATE reserves SET num_1=000, data=%s, nom=%s, tel=%s, fax=%s, email=%s, lang=%s,hora=%s, menu=%s, adults=%s, nens10_14=%s, nens4_9=%s, cotxets=%s, observacions=%s, resposta=%s, txt_1=%s, txt_2=%s,estat=%s, preu_reserva=%s WHERE id_reserva=%s",
+  $updateSQL = sprintf("UPDATE reserves SET num_1=000, data=%s, nom=%s, tel=%s, fax=%s, email=%s, lang=%s,hora=%s, menu=%s, adults=%s, nens10_14=%s, nens4_9=%s, cotxets=%s, observacions=%s, resposta=%s, txt_1=%s, txt_2=%s,estat=%s, factura=%s, preu_reserva=%s WHERE id_reserva=%s",
                        GetSQLValueString($data, "date"),
                        GetSQLValueString($_POST['nom'], "text"),
                        GetSQLValueString($_POST['tel'], "text"),
@@ -88,6 +89,7 @@ if ((isset($_POST["MM_update"])) && ($_POST["MM_update"] == "form1")) {
                        GetSQLValueString($_POST['txt_1'], "text"),
                        GetSQLValueString($_POST['txt_2'], "text"),
                        GetSQLValueString($_POST['estat'], "int"),
+                       GetSQLValueString($_POST['factura'], "int"),                       
                        GetSQLValueString($_POST['preu_reserva'], "double"),
                        GetSQLValueString($_POST['id_reserva'], "int"));
 
@@ -95,11 +97,11 @@ if ((isset($_POST["MM_update"])) && ($_POST["MM_update"] == "form1")) {
   $Result1 = mysqli_query( $canborrell, $updateSQL) or die(((is_object($GLOBALS["___mysqli_ston"])) ? mysqli_error($GLOBALS["___mysqli_ston"]) : (($___mysqli_res = mysqli_connect_error()) ? $___mysqli_res : false)));
   //print_log("Modificació valors: ".$_POST['id_reserva']);
   $res=$_POST['id_reserva'];
-   echo $Result1. "  WWW   $updateSQL";
+  // echo $Result1. "  WWW   $updateSQL";
 
-   Gestor::xgreg_log("<span class='grups'>Modificació reserva GRUPS: <span class='idr'>$res</span></span>",0,'/log/logGRUPS.txt');
+   Gestor::xgreg_log("<span class='grups'>Modificació reserva GRUPS: <span class='idr'>$res</span></span>",0,'log/logGRUPS.txt');
    $anterior = Gestor::log_array($row_Recordset1);
-   Gestor::xgreg_log("Valor anterior:<br>$anterior",1,'/log/logGRUPS.txt');
+   Gestor::xgreg_log("Valor anterior:<br>$anterior",1,'log/logGRUPS.txt');
   $coberts = $_POST['adults'] + $_POST['nens10_14'] + $_POST['nens4_9'];
    if ($_POST['estat']!=$row_Recordset1['estat']) $avis="\\n\\nL`estat de la reserva passarà de ".$estat[$row_Recordset1['estat']]." a ".$estat[$_POST['estat']];
 $preu_persona = $pagaments->get_preu_persona_reserva();
@@ -365,6 +367,25 @@ td a:hover {color:white}
         </tr>
       </table></td>
     </tr>
+
+
+    <tr valign="baseline">
+      <td align="right" valign="top" nowrap bgcolor="#333333" class="Estilo2"><span class="Estilo8">Factura proforma:</span></td>
+      <td width="300" valign="baseline" bgcolor="#CCCCCC" class="llista">
+      <table>
+        <tr>
+          <td class="llista"><input   checked="checked" type="radio" name="factura" value="0" style="background:#CCCCCC;" <?php if (!(strcmp((int)$row_Recordset1['factura'],0))) {echo "CHECKED";} ?>>
+            No</td>
+        </tr>
+        <tr>
+          <td class="llista"><input type="radio" name="factura" value="1" style="background:#CCCCCC;" <?php if (!(strcmp((int)$row_Recordset1['factura'],1))) {echo "CHECKED";} ?>>
+            Si</td>
+        </tr>
+
+      </table></td>
+    </tr>
+
+
     <tr valign="baseline">
       <td align="right" valign="top" nowrap bgcolor="#333333" class="Estilo2"><span class="Estilo8">Preu_reserva:</span></td>
       <td width="300" bgcolor="#CCCCCC" class="llista"><input name="preu_reserva" type="text" value="<?php echo $row_Recordset1['preu_reserva']; ?>" size="32"></td>

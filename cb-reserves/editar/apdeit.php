@@ -87,9 +87,9 @@ if (($func=="Eliminar")&&($id==$P_ID))
    $result=mysqli_query($canborrell, $query2);
    // print_log("Reserva Esborrada: $id");
     
-   Gestor::xgreg_log("<span class='grups'>Reserva Esborrada: <span class='idr'>$id</span></span>",0,'/log/logGRUPS.txt');
-      Gestor::xgreg_log("<span class='grups'>$query</span>",1,'/log/logGRUPS.txt');
-         Gestor::xgreg_log("<span class='grups'>$query2</span>",1,'/log/logGRUPS.txt');
+   Gestor::xgreg_log("<span class='grups'>Reserva Esborrada: <span class='idr'>$id</span></span>",0,'log/logGRUPS.txt');
+      Gestor::xgreg_log("<span class='grups'>$query</span>",1,'log/logGRUPS.txt');
+         Gestor::xgreg_log("<span class='grups'>$query2</span>",1,'log/logGRUPS.txt');
    header("location: llistat.php");
 
 }
@@ -101,8 +101,8 @@ else{
 		if (empty($d_limit)) $d_limit=date('Y-m-d');
 		$query='UPDATE reserves SET estat='.$estat.', num_1=0, data_limit="'.$d_limit.'" WHERE id_reserva='.$id;
 		//print_log("Reserva modificada: $id / estat=$estat / data limit=$d_limit ---- $query");
-		Gestor::xgreg_log("<span class='grups'>Reserva modificada: <span class='idr'>$id</span> / estat=$estat / data limit=$d_limit ---- </span>",0,'/log/logGRUPS.txt');
-		Gestor::xgreg_log("<span class='grups'>$query</span>",1,'/log/logGRUPS.txt');
+		Gestor::xgreg_log("<span class='grups'>Reserva modificada: <span class='idr'>$id</span> / estat=$estat / data limit=$d_limit ---- </span>",0,'log/logGRUPS.txt');
+		Gestor::xgreg_log("<span class='grups'>$query</span>",1,'log/logGRUPS.txt');
 		
 		//echo $query;
 		$result=mysqli_query($canborrell, $query);  
@@ -136,7 +136,7 @@ function mail_SMS_cli($id=false,$SMS=null)
   $copia = "Sense plantilla ";
   $d=false;
   
-   Gestor::xgreg_log("<span class='mail'>ENVIA SMS+MAIL: <span class='idr'>$id</span></span>",0,'/log/logGRUPS.txt');
+   Gestor::xgreg_log("<span class='mail'>ENVIA SMS+MAIL: <span class='idr'>$id</span></span>",0,'log/logGRUPS.txt');
 
 	global $camps, $mmenu,$txt,$translate, $database_canborrell, $canborrell,$lang;
         include ROOT.'../editar/translate_factura.php';        
@@ -162,7 +162,7 @@ function mail_SMS_cli($id=false,$SMS=null)
  	//echo "ID: $id / SMS: $SMS";
  	$g=new gestor_reserves();
                       
-       Gestor::xgreg_log("<span class='grups'>Enviament SMS(Pendent...): <span class='idr'>$id</span></span>",1,'/log/logGRUPS.txt');
+       Gestor::xgreg_log("<span class='grups'>Enviament SMS(Pendent...): <span class='idr'>$id</span></span>",1,'log/logGRUPS.txt');
    Gestor::xgreg_log("<span class='grups'>Enviament SMS: <span class='idr'>$id</span></span>",0,'/log/logMAILSMS.txt');
                        /*******************************************************/
                        /*******************************************************/
@@ -339,10 +339,10 @@ function mail_SMS_cli($id=false,$SMS=null)
     $nreserva=$fila['id_reserva'];
     $att=$attach?" -- FACTURA: $attach":"";
     //print_log("Enviament mail($r): $nreserva -- $recipient, $subject: $copia $att");
-    Gestor::xgreg_log("<span class='grups'>Enviament mail($envio): <span class='idr'>$nreserva</span> -- $recipient, $subject: $copia $att</span>",1,'/log/logGRUPS.txt');
+    Gestor::xgreg_log("<span class='grups'>Enviament mail($envio): <span class='idr'>$nreserva</span> -- $recipient, $subject: $copia $att</span>",1,'log/logGRUPS.txt');
 
     if ($r) $resultats['mail_cli'] = TRUE;
-    if (!$r) echo "ERROR en l'enviament del mail!!!!!";
+    //if (!$r) echo "ERROR en l'enviament del mail!!!!!";
     
     ((mysqli_free_result($Result) || (is_object($Result) && (get_class($Result) == "mysqli_result"))) ? true : false);
 	//return ($fila['id_reserva']);
@@ -455,7 +455,7 @@ function mail_restaurant($id=false)
     $r=$r?"<span class='EXIT'>EXIT</span>":"<span class='ERROR'>ERROR</span>";
     $nreserva=$fila['id_reserva'];
     //  print_log("Enviament mail($r): $nreserva -- $recipient, $subject");
-   Gestor::xgreg_log("<span class='grups'>Enviament mail($r): <span class='idr'>$nreserva</span> -- $recipient, $subject: $copia $att</span>",1,'/log/logGRUPS.txt');
+   Gestor::xgreg_log("<span class='grups'>Enviament mail($r): <span class='idr'>$nreserva</span> -- $recipient, $subject: $copia $att</span>",1,'log/logGRUPS.txt');
 	
     ((mysqli_free_result($Result) || (is_object($Result) && (get_class($Result) == "mysqli_result"))) ? true : false);
 	return ($fila['id_reserva']);
