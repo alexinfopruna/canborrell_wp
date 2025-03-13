@@ -255,7 +255,7 @@ $translate["Can-Borrell: RESERVA CANCELADA "]="Can-Borrell: RESERVA CANCELADA ";
 
 $translate["MAIL_GRUPS_PAGAT_subject"]="Can-Borrell: CONFIRMACIÓN DE PAGO DE RESERVA PARA GRUPO";
 $translate["MAIL_GRUPS_PAGAT_titol"]="CONFIRMACIÓN DE PAGO DE RESERVA";
-$translate["MAIL_GRUPS_PAGAT_text1"]="Nos complace informarle que hemos recibido correctamente el pago de ";
+$translate["MAIL_GRUPS_PAGAT_text1"]="Nos complace informarle que hemos recibido correctamente la autorizació para el pre-pago de ";
 $translate['MAIL_GRUPS_PAGAT_text2']="Le esperamos el próximo ";
 $translate['MAIL_GRUPS_PAGAT_text3'] = "<i style='font-size:11px'><p> Hasta el momento se han abonado {pagat}€ ({coberts_pagats} cubiertos) de un total de {total}€ ({coberts_reservats} cubiertos).<br>"
     . "Para completar todos los cubiertos reservados todavía debéis pagar {pendent}€</p> "

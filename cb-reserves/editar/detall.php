@@ -383,6 +383,9 @@ td{border:white solid 3px;}
           <input id="Pagada" type="submit" name="Submit" value="Pagada" />
           <input id="Eliminar" type="submit" name="Submit" value="Eliminar" />
           <input id="Pendent" type="submit" name="Submit" value="Pendent" />
+          <input type="button" value="Reenvia pro-forma" onclick="location.href='apdeit.php?resend=<?php echo $row_DetailRS1['id_reserva']; ?>'" />
+        
+
           <input type="hidden" name="P_ID" value="<?php echo $row_DetailRS1['id_reserva']; ?>" />
           <input type="hidden" name="estat" id="estat" value="<?php echo (int)$row_DetailRS1['estat']; ?>" />
           <input type="hidden" value="" id="data_limit" name="data_limit" style="width: 100%; border:0px; font-weight:bold; background-color:#F8F8F0; color:#999966;" val="OB" alt="Si us plau, tri&iuml; una data." readonly="READONLY" />
