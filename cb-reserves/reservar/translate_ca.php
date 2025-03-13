@@ -184,7 +184,7 @@ $translate['AVIS_MODIFICACIONS']='<span style="color:red"><b>Atenció:</b>
 $translate["Can-Borrell: CONFIRMACIÓ PAGA I SENYAL"]="Can-Borrell: CONFIRMACIÓ DE RESERVA ONLINE";
 $translate["MAIL_GRUPS_PAGAT_subject"]="Can-Borrell: CONFIRMACIÓ DE PAGAMENT DE RESERVA PER GRUP";
 $translate["MAIL_GRUPS_PAGAT_titol"]="CONFIRMACIÓ DE PAGAMENT DE RESERVA";
-$translate["MAIL_GRUPS_PAGAT_text1"]="Ens complau informar-lo que hem rebut correctament el pagament de ";
+$translate["MAIL_GRUPS_PAGAT_text1"]="Ens complau informar-lo que hem rebut correctament l'autorització de pre-pagament de ";
 $translate['MAIL_GRUPS_PAGAT_text2']="<br><br>L'esperem el proper ";
 $translate['MAIL_GRUPS_PAGAT_contacti'] = "Si té qualsevol dubte posi's en contacte amb nosaltres a <a href='mailto:".MAIL_RESTAURANT."' class='dins'>".MAIL_RESTAURANT."</a> ";
 
