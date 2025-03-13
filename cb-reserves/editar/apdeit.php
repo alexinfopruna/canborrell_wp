@@ -17,7 +17,7 @@ require_once('mailer.php');
 //$lang='cat';
 ((bool)mysqli_query( $canborrell, "USE " . $database_canborrell));
 
-if (!isset($_POST["Submit"])){ // es resend proforma des de modificar vslors
+if (isset($_GET['resend'])){ // es resend proforma des de modificar vslors
 	$id = $_GET['id'] = $_POST['P_ID'] = $_GET['resend'];
 	$_GET['sub'] = $func = $_POST["Submit"]  ="Pagada";
 }
