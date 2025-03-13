@@ -188,7 +188,7 @@ function mail_SMS_cli($id=false,$SMS=null)
                                                         $b64=base64_encode($fila["id_reserva"]."&".$fila['tel']."&".$lng);
                                                         $link = 'https://' . $_SERVER['HTTP_HOST'] . '/reservar/pagament?rid='.$b64.'&lang='.$lng;
                                                         //$link_text = $translate['Realitzar pagament'];
-                                                        $link_text = Gestor::lv('Realitzar autorització de pagament');
+                                                        $link_text = Gestor::lv('Realitzar autorització de pre-pagament');
          
   $aki = '<div><!--[if mso]>
     <v:roundrect xmlns:v="urn:schemas-microsoft-com:vml" xmlns:w="urn:schemas-microsoft-com:office:word" href="'.$link.'" style="height:38px;v-text-anchor:middle;width:200px;" arcsize="48%" strokecolor="#e6e6e8" fillcolor="#e1ff8a">
