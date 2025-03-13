@@ -383,19 +383,20 @@ td{border:white solid 3px;}
           <input id="Pagada" type="submit" name="Submit" value="Pagada" />
           <input id="Eliminar" type="submit" name="Submit" value="Eliminar" />
           <input id="Pendent" type="submit" name="Submit" value="Pendent" />
-          <input type="button" value="Reenvia pro-forma" onclick="location.href='apdeit.php?resend=<?php echo $row_DetailRS1['id_reserva']; ?>'" />
+          <input id="resend" type="button" value="Reenvia pro-forma" onclick="location.href='apdeit.php?resend=<?php echo $row_DetailRS1['id_reserva']; ?>'" />
         
 
           <input type="hidden" name="P_ID" value="<?php echo $row_DetailRS1['id_reserva']; ?>" />
           <input type="hidden" name="estat" id="estat" value="<?php echo (int)$row_DetailRS1['estat']; ?>" />
+          <input type="hidden" name="factura" id="factura" value="<?php echo (int)$row_DetailRS1['factura']; ?>" />
           <input type="hidden" value="" id="data_limit" name="data_limit" style="width: 100%; border:0px; font-weight:bold; background-color:#F8F8F0; color:#999966;" val="OB" alt="Si us plau, tri&iuml; una data." readonly="READONLY" />
         </div>
       </form>
       <p>&nbsp;</p>
     <script language="JavaScript" type="text/javascript">
-	var estat=0;
+	var factura=estat=0;
 	estat=document.getElementById("estat").value;
-	//alert (estat);
+	factura=document.getElementById("factura").value;
 /*
   		document.getElementById("Confirmar").style.display = "none";  
   		document.getElementById("Denegar").style.display = "none";  
@@ -409,7 +410,7 @@ td{border:white solid 3px;}
   		document.getElementById("Confirmar").style.display = "none";  
   		document.getElementById("Denegar").style.display = "none";  
   		document.getElementById("Cancelar").style.display = "none";  
-  		//document.getElementById("Eliminar").style.display = "none";  
+  		document.getElementById("resend").style.display = "none";  
   		document.getElementById("Pendent").style.display = "none";  
  	  
 	  break;
@@ -418,13 +419,13 @@ td{border:white solid 3px;}
   		//document.getElementById("Confirmar").style.display = "none";  
   		//document.getElementById("Denegar").style.display = "none";  
   		//document.getElementById("Pagada").style.display = "none";  
-  		//document.getElementById("Eliminar").style.display = "none";  
+  		document.getElementById("resend").style.display = "none";  
   		document.getElementById("Pendent").style.display = "none";  
 	  break;
 	  case "2":
   		document.getElementById("Confirmar").style.display = "none";  
   		document.getElementById("Denegar").style.display = "none";  
-  		//document.getElementById("Pagada").style.display = "none";  
+  		document.getElementById("resend").style.display = "none";  
   		document.getElementById("Eliminar").style.display = "none";  
   		document.getElementById("Pendent").style.display = "none";  
 	  break;
@@ -436,6 +437,9 @@ td{border:white solid 3px;}
   		document.getElementById("Pagada").style.display = "none";  
   		document.getElementById("Eliminar").style.display = "none";  
   		document.getElementById("Pendent").style.display = "none";  
+      if (!factura || factura=="0") document.getElementById("resend").style.display = "none";
+      //document.getElementById("resend").style.display = "none";  
+
 	  break;
 	  case "4":
   		document.getElementById("Confirmar").style.display = "none";  
@@ -443,16 +447,18 @@ td{border:white solid 3px;}
   		document.getElementById("Pagada").style.display = "none";  
   		document.getElementById("Eliminar").style.display = "none";  
   		document.getElementById("Pendent").style.display = "none";  
+      document.getElementById("resend").style.display = "none";  
+
 	  break;
 	  case "5":
 	  break;
   		//document.getElementById("Confirmar").style.display = "none";  
   		//document.getElementById("Denegar").style.display = "none";  
   		document.getElementById("Pagada").style.display = "none";  
-  		//document.getElementById("Eliminar").style.display = "none";  
+  		document.getElementById("resend").style.display = "none";  
   		//document.getElementById("Pendent").style.display = "none";  
 	  case "6":
-  		//document.getElementById("Confirmar").style.display = "none";  
+  		document.getElementById("resend").style.display = "none";  
   		document.getElementById("Denegar").style.display = "none";  
   		document.getElementById("Pagada").style.display = "none";  
   		//document.getElementById("Eliminar").style.display = "none";  
