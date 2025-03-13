@@ -180,15 +180,15 @@ $txt[50]['cat']="RECORDATORI DE PAGAMENT DE RESERVA";
 //$txt[51]['cat']="Li recordem que per confirmar la seva reserva al Restaurant Can Borrell ha d'efectuar el pagament abans del<br>";
 //$txt[52]['cat']="Si desitja realitzar el pagament amb tarja de crèdit faci click ";
 $txt[51]['cat']="Li recordem que per confirmar la seva reserva al Restaurant Can Borrell ha d'efectuar una autorització de retenció de l'import abans del<br>";
-$txt[52]['cat']="Aquesta operació no implica cap càrrec al seu compte. Simplement es fa una retenció temporal fins al dia de la reserva. <b>NOMÉS EN CAS DE NO COMPARÈIXER</b>, sense avís previ, es farà efectiu el càrrec. Si desitja realitzar l'autorització faci click ";
+$txt[52]['cat']="<br>Aquesta operació no implica cap càrrec al seu compte. Simplement es fa una retenció temporal fins al dia de la reserva. <b>NOMÉS EN CAS DE NO COMPARÈIXER</b>, sense avís previ, es farà efectiu el càrrec. <br><br>Si desitja realitzar l'autorització faci click ";
 
 $txt[50]['esp']="RECORDATORIO DE PAGO DE RESERVA";
 $txt[51]['esp']="Le recordamos que para confirmar su reserva en el Restaurante Can Borrell ha de realizar una autorización de retención del importe antes del<br>";
-$txt[52]['esp']="Esta operación no implica ningún cargo en su cuenta. Simplemente se realiza una retención temporal hasta el día de la reserva. <b>SÓLO EN CASO DE NO COMPARECER</b>, sin previo aviso, se hará efectivo el cargo. Si desea realizar la autorización haga click ";
+$txt[52]['esp']="<br>Esta operación no implica ningún cargo en su cuenta. Simplemente se realiza una retención temporal hasta el día de la reserva. <b>SÓLO EN CASO DE NO COMPARECER</b>, sin previo aviso, se hará efectivo el cargo. <br><br>Si desea realizar la autorización haga click ";
 
 $txt[50]['en']="RESERVATION PAYMENT REMINDER";
 $txt[51]['en']="We remind you that in order to confirm your reservation at the Can Borrell Restaurant, you must make an authorization to retain the amount before<br>";
-$txt[52]['en']="This operation does not imply any charge to your account. It simply makes a temporary hold until the day of the reservation. <b>ONLY IN CASE OF NO SHOW</b>, without prior notice, the charge will be made. If you wish to make the authorization, click";
+$txt[52]['en']="<br>This operation does not imply any charge to your account. It simply makes a temporary hold until the day of the reservation. <b>ONLY IN CASE OF NO SHOW</b>, without prior notice, the charge will be made. <br><br>If you wish to make the authorization, click";
 
 $txt[75]['cat']="";
 $txt[75]['esp']="";
