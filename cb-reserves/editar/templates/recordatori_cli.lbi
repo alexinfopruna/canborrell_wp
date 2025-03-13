@@ -53,7 +53,7 @@
     </tr>
 <tr style="height: 10px;">
 <td></td>
-      <td><div align="center">{text2}{aki}</div></td>
+      <td><div align="center">{text2}{aki}<br></div></td>
     <td align="center" class="estat"> </td> </tr>
 <tr style="height: 10px;">
 <td width="13"></td>
