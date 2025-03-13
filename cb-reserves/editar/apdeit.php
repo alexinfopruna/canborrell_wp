@@ -17,6 +17,10 @@ require_once('mailer.php');
 //$lang='cat';
 ((bool)mysqli_query( $canborrell, "USE " . $database_canborrell));
 
+if (!isset($_POST["Submit"])){ // es resend proforma des de modificar vslors
+	$id = $_GET['id'] = $_POST['P_ID'] = $_GET['resend'];
+	$_GET['sub'] = $func = $_POST["Submit"]  ="Pagada";
+}
 
 $id = $id_reserva = $_GET['id'];
 
@@ -24,7 +28,8 @@ $P_ID = isset($_POST['P_ID'])?$_POST['P_ID']:FALSE;
 if (isset($_GET["sub"]) && $_GET["sub"]=="Confirmar") $_POST["Submit"]="Confirmar";
 $func=$_POST["Submit"];
 //die("TOT BEEE");
-if (isset($_GET['resend'])) $func="Confirmar";
+
+if (isset($_GET['resend'])) $func="Pagada";
 if ($id!=$P_ID) return;
 $SMS=null;
 
@@ -94,24 +99,18 @@ if (($func=="Eliminar")&&($id==$P_ID))
 
 }
 else{
-  
 	if (!isset($_GET['resend']))
 	{    
 		$d_limit=$_POST['data_limit'];
 		if (empty($d_limit)) $d_limit=date('Y-m-d');
 		$query='UPDATE reserves SET estat='.$estat.', num_1=0, data_limit="'.$d_limit.'" WHERE id_reserva='.$id;
-		//print_log("Reserva modificada: $id / estat=$estat / data limit=$d_limit ---- $query");
 		Gestor::xgreg_log("<span class='grups'>Reserva modificada: <span class='idr'>$id</span> / estat=$estat / data limit=$d_limit ---- </span>",0,'log/logGRUPS.txt');
 		Gestor::xgreg_log("<span class='grups'>$query</span>",1,'log/logGRUPS.txt');
 		
-		//echo $query;
 		$result=mysqli_query($canborrell, $query);  
-			//mysql_free_result($result);
-
 		$m=mail_SMS_cli($id,$SMS); 
 	}else{
 		$id = $_GET['resend'];
-		//$result=mysqli_query($canborrell, $query); 
 		$m=mail_SMS_cli($id , $SMS); 
 	}
 
@@ -135,7 +134,6 @@ function mail_SMS_cli($id=false,$SMS=null)
   $resultats = array('mail_cli'=>FALSE,'mail_rest'=>FALSE,'sms'=>FALSE);
   $copia = "Sense plantilla ";
   $d=false;
-  
    Gestor::xgreg_log("<span class='mail'>ENVIA SMS+MAIL: <span class='idr'>$id</span></span>",0,'log/logGRUPS.txt');
 
 	global $camps, $mmenu,$txt,$translate, $database_canborrell, $canborrell,$lang;
@@ -177,7 +175,7 @@ function mail_SMS_cli($id=false,$SMS=null)
                            
  	error_log("</ul>",3, ROOT . INC_FILE_PATH .'/log/logMAILSMS.txt');
  	
- 	
+
 	switch ((int)$fila['estat'])
 	{
           case 2: // RESRVA CONFIRMADA

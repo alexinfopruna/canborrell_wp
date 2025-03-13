@@ -168,12 +168,14 @@ function factura23($fila,$doc_root,$out=false)
 
 /*          
 	$menuAdults=$menuId[(int)$fila['menu']];
-	$menuJR=$menuId[$fila['txt_1']];
-	$menuINF=$menuId[$fila['txt_2']];
 
 	$m=(int)$fila['menu'];
 	$n=$mmenu[$m]['cat'];
  */
+
+ $menuJR=$menuId[$fila['txt_1']];
+ $menuINF=$menuId[$fila['txt_2']];
+
         
         //plats_comanda($idr) 
 	//$t->set_var('menu',$n." (".$carta->preuPlat($menuAdults)."&euro;)");	$t->set_var('totadults',sprintf("%01.2f",$carta->preuPlat($menuAdults)*$fila['adults']));
@@ -209,6 +211,11 @@ function factura23($fila,$doc_root,$out=false)
 	$t->parse("OUT", "page");
 	$content = $html=$t->get("OUT");
 echo $content;
+echo "***************************************************";
+echo "***************************************************";
+echo "***************************************************";
+echo "***************************************************";
+$nompdf="";
     try {
         $html2pdf = new Html2Pdf('P', 'A4', 'fr');
         $html2pdf->setDefaultFont('Arial');
