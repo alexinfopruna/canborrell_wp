@@ -195,7 +195,7 @@ function mail_SMS_cli($id=false,$SMS=null)
       <w:anchorlock/>
       <center style="color:#fafafb;font-family:sans-serif;font-size:13px;font-weight:bold;">'.$link_text.'</center>
     </v:roundrect>
-  <![endif]--><a href="'.$link.'" style="background-color:#e1ff8a;border:1px solid #e6e6e8;border-radius:18px;color:#2f353e;display:inline-block;font-family:sans-serif;font-size:13px;font-weight:bold;line-height:38px;text-align:center;text-decoration:none;width:200px;-webkit-text-size-adjust:none;mso-hide:all;">'.$link_text.'</a>'
+  <![endif]--><a href="'.$link.'" style="background-color:#e1ff8a;border:1px solid #e6e6e8;border-radius:18px;color:#2f353e;display:inline-block;font-family:sans-serif;font-size:13px;font-weight:bold;line-height:38px;text-align:center;text-decoration:none;width:350px;-webkit-text-size-adjust:none;mso-hide:all;">'.$link_text.'</a>'
       . '<br/><br/>'
       . '</div>';
                                                         
