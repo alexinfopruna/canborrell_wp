@@ -123,19 +123,19 @@ $txt[2]['en']="THE RESERVATION WILL NOT BE EFFECTIVE UNTIL YOU RECEIVE THE MAIL 
 
 $txt[10]['cat']="CONFIRMACIÓ RESERVA";
 //$txt[11]['cat']="Ens complau informar-lo que la seva reserva ha estat confirmada. Per finalitzar el procès accedeixi al sistema de pagament fent click sobre el botó";
-$txt[11]['cat']="Ens complau informar-lo que la seva reserva ha estat confirmada. Per finalitzar el procès de reserva, cal que autoritzi el pre-pagament de l'import de la reserva. Aquesta operació no suposa cap càrrec. Només es carregarà l'import en cas de no compareixença.<br/>Faci click al botó i el transferirem directament al terminal de comerç electrònic.";
+$txt[11]['cat']="Ens complau informar-lo que la seva reserva ha estat confirmada. <br><br>Per finalitzar el procès de reserva, cal que autoritzi el pre-pagament de l'import de la reserva. Aquesta operació no suposa cap càrrec. <b>Només es carregarà l'import en cas de no compareixença</b>.<br/>Faci click al botó i el transferirem directament al terminal de comerç electrònic.";
 $txt[12]['cat']="El pagament es pot realitzar fins el ";
 $txt[13]['cat']=". <b>Després d'aquesta data la reserva deixa de ser vàlida</b>.";
 
 $txt[10]['esp']="CONFIRMACIÓN RESERVA";
 //$txt[11]['esp']="Nos complace informarle que su reserva ha sido confirmada, Para finalizar el proceso acceda al sistema de pago haciendo click en el botón ";
-$txt[11]['esp']="Nos complace informarle que su reserva ha sido confirmada. Para finalizar el proceso de reserva, es necesario que autorice el pre-pago del importe de la reserva. Esta operación no supone ningún cargo. únicamente se realizará el cargo en caso de no comparecer. Haga click sobre el botón y le transferiremos directamente al terminal de comercio electrónico'";
+$txt[11]['esp']="Nos complace informarle que su reserva ha sido confirmada. <br><br>Para finalizar el proceso de reserva, es necesario que autorice el pre-pago del importe de la reserva. Esta operación no supone ningún cargo. <b>únicamente se realizará el cargo en caso de no comparecer</b>. Haga click sobre el botón y le transferiremos directamente al terminal de comercio electrónico'";
 $txt[12]['esp']="El pago se podré realizar hasta el ";
 $txt[13]['esp']=". <b>Pasada esta fecha la reserva dejará de ser válida</b>.";
 
 $txt[10]['en']="RESERVATION CONFIRMATION";
 //$txt[11]['en']="We are pleased to inform you that your reservation has been confirmed. To finish the process, access the payment system by clicking the button";
-$txt[11]['en']="We are pleased to inform you that your reservation has been confirmed. To finalize the reservation process, it is necessary that you authorize the pre-payment of the amount of the reservation. The charge will only be made in the event of a no-show. Click on the button and we will transfer you directly to the e-commerce terminal";
+$txt[11]['en']="We are pleased to inform you that your reservation has been confirmed. <br><br>To finalize the reservation process, it is necessary that you authorize the pre-payment of the amount of the reservation. <b>The charge will only be made in the event of a no-show</b>. Click on the button and we will transfer you directly to the e-commerce terminal";
 $txt[12]['en']="Payment can be made up to ";
 $txt[13]['en']=". <b>After this date the reservation will no longer be valid</b>.";
 
