@@ -306,7 +306,7 @@ $translate["RESERVA_CANCELADA"] = "Your reservation is canceled";
 /* * **************************** SMS ************************************* */
 $translate["Recuerde: reserva en Restaurant Can Borrell el %s a las %s (%s).Rogamos comunique cualquier cambio: 936929723 - 936910605.Gracias.(ID:%s)"] = "Remenber: reservation at Restaurant Can Borrell on %s at %s (%s).We ask you to inform us of any changes: 936929723 - 936910605.Thank's.(ID:%s)";
 
-$translate["Restaurant Can Borrell, reserva MODIFICADA: L'esperem el %s a les %s. Preguem comuniqui qualsevol canvi al web o tel.936929723 - 936910605. Gràcies.(ID:%s)"] = "Restaurant Can Borrell, reservation UPDATED: See you on %s at %s. We ask you to inform us of any changes by web o tels.936929723 - 936910605. Thank's.(ID:%s)";
+$translate["Restaurant Can Borrell, reserva MODIFICADA: L'esperem el %s a les %s. Preguem comuniqui qualsevol canvi al web o tel.936929723 - 936910605. Gràcies.(ID:%s)"] = "Restaurant Can Borrell, reservation UPDATED: See you on %s at %s. Modifications 12H IN ADVANCE by web o tels.936929723 - 936910605. Thank's.(ID:%s)";
 
 
 $translate["RESERVA_IMPAGADA"] = "We have not received confirmation of the payment of the banking gateway. "
