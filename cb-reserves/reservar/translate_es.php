@@ -286,7 +286,7 @@ $translate["Recuerde: reserva en Restaurant Can Borrell el %s a las %s (%s).Roga
     = "Recuerde: reserva en Restaurant Can Borrell el %s a las %s (%s).Rogamos comunique cualquier cambio: restaurant@can-borrell.com.Gracias.(ID:%s)";
 
 $translate["Restaurant Can Borrell, reserva MODIFICADA: L'esperem el %s a les %s. Preguem comuniqui qualsevol canvi al web o restaurant@can-borrell.com. Gràcies.(ID:%s)"] 
-    = "Restaurant Can Borrell, reserva MODIFICADA: Le esperamos el %s a las %s. Rogamos comunique cualquier cambio en la web o restaurant@can-borrell.com. Gracias.(ID:%s)";
+    = "Restaurant Can Borrell, reserva MODIFICADA: Le esperamos el %s a las %s.  Modificaciones con 12 HORAS DE ANTELACION en la web o restaurant@can-borrell.com. Gracias.(ID:%s)";
 
 
 $translate["RESERVA_IMPAGADA"] = "No hemos recibido confirmación del pago de la pasarela bancaria. "

@@ -3046,7 +3046,8 @@ ORDER BY `estat_hores_data` DESC";
       $data = $this->cambiaf_a_normal($row['data']);
       $hora = $row['hora'];
 
-      $missatge = "Recuerde: reserva en Restaurant Can Borrell el $data a las $hora ($persones).Rogamos comunique cualquier cambio: 936929723 - 936910605.Gracias.(ID:$res)";
+      //$missatge = "Recuerde: reserva en Restaurant Can Borrell el $data a las $hora ($persones).Rogamos comunique cualquier cambio: 936929723 - 936910605.Gracias.(ID:$res)";
+      $missatge = "Recuerde: reserva en Restaurant Can Borrell el $data a las $hora ($persones).Modificaciones 12H DE ANTELACION 936929723 - 936910605.Gracias.(ID:$res)";
     }
 
     $numMobil = $row['client_mobil'];
