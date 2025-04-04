@@ -71,7 +71,13 @@ $(function () {
     $("#selectorNens").buttonset();
     $("#selectorCotxets").buttonset();
     $("#selectorCadiraRodes").buttonset();
+    $("#selectorCadiraRodes").find("label").unbind("mouseup");
 
+    $("[for=cadira0]").hide();
+    $("input[name='selectorAccesible']").on("click", function(){
+        $("[for=cadira0]").toggle(this.value === "on" && this.checked);
+    });
+    
     $("#selectorHora").buttonset();
     $("#selectorHoraSopar").buttonset();
     //$(".llista-menus").buttonset();
@@ -269,7 +275,8 @@ function comportamentQuantsSou()
     $("#selectorComensals").change(function () {
         $("input[name='adults']").val($("input[name='selectorComensals']:checked").val());
         var comensals = totalPersones();
-        if (comensals >= PERSONES_GRUP) {
+        if (comensals >= PERSONES_GRUP && $("#form-reserves").valid()) 
+         {
             monta_calendari("#calendari");
              comportamentDia();
              recargaHores();
@@ -284,6 +291,20 @@ function comportamentQuantsSou()
 
         return false;
     });
+
+    $("#selectorCadiraRodes").change(function () {
+       if ($("#form-reserves").valid()) {
+            monta_calendari("#calendari");
+             comportamentDia();
+             recargaHores();
+            updateMenusSectionButtons();
+            $.scrollTo("#titol_SelectorJuniors", 600);
+
+            }
+        return false;
+    });
+
+
 
     $("input[name='adults']").change(function () {
         var val;

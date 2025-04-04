@@ -653,6 +653,7 @@ FROM client
     $coberts = $_POST['adults'] + $_POST['nens10_14'] + $_POST['nens4_9'];
     $cotxets = $_POST['selectorCotxets'];
 
+    $_POST['selectorAccesible'] =  $_POST['selectorAccesible']=="on" ? true : false;
     if (!isset($_POST['selectorAccesible']))
       $_POST['selectorAccesible'] = false;
     if (!isset($_POST['selectorCadiraRodes']))

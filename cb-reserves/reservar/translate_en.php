@@ -229,8 +229,13 @@ $translate['Sol·licitar reserva'] = "Reservation request";
 $translate['ESBORRA_DADES'] = "<em>I would like my information to be removed from the Can Borrell database after my reservation date (for future reservations you will re-enter your information)</em>";
 $translate['Cadira de rodes'] = "Reduced mobility";
 $translate['Portem una cadira de rodes'] = "We will bring a wheelchair";
-$translate['Movilitat reduïda'] = "Reduced mobility";
-$translate['Algú amb movilitat reduïda'] = "Reduced mobility";
+$translate['Mobilitat reduïda'] = "Reduced mobility";
+$translate['Algú amb mobilitat reduïda'] = "Reduced mobility";
+
+$translate['Indica si alguna persona li cal accés adaptat']="Need access for handicapped person?";
+$translate['Mobilitat reduïda']="Handicapped person";
+$translate['Ningú amb mobilitat reduïda']="No handicapped person";
+
 
 $translate['Per la data seleccionada és necessari escollir els menús'] = "For this date you need to select menus";
 $translate['Per la data seleccionada és necessari escollir menú per tots els comensals'] = "For this date you must select menus for all customers";

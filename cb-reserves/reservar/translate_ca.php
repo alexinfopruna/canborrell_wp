@@ -144,9 +144,9 @@ Gràcies per utilitzar aquest servei</div>';
 
 $translate['ESBORRA_DADES']="<em>Desitjo que les meves dades siguin eliminades de la base de dades de Can Borrell després de la data de la reserva (per reserves futures els tornaràs a introduïr)</em>";
 
-$translate['Cadira de rodes']="Movilitat reduïda";
-$translate['Movilitat reduïda']="Mobilidad reducida";
-$translate['Algú amb movilitat reduïda']="Movilitat reduïda";
+$translate['Cadira de rodes']="Mobilitat reduïda";
+$translate['Mobilitat reduïda']="Mobilitat reduïda";
+$translate['Algú amb mobilitat reduïda']="Mobilitat reduïda";
 $translate['Necessites ajuda?']="Necessites ajuda?";
 $translate['Contrassenya (ID)']="ID de reserva";
 

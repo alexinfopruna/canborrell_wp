@@ -177,8 +177,23 @@ $(function () {
     $("#selectorCalcots").buttonset();
     $("#selectorCalcots").find("label").unbind("mouseup");
     
+    $("[for=cadira0]").hide();
+
+    $("input[name='selectorAccesible']").on("click", function(){
+        $("[for=cadira0]").toggle(this.value === "on" && this.checked);
+    });
     
-    
+    $("#selectorCadiraRodes").change(function () {
+        if ($("#form-reserves").valid()) {
+             monta_calendari("#calendari");
+              comportamentDia();
+              recargaHores();
+             updateMenusSectionButtons();
+             $.scrollTo("#titol_SelectorJuniors", 600);
+ 
+             }
+         return false;
+     });
     
    //$("#selectorTerrassa").buttonset();
     $("#selectorTerrassa").find("label").unbind("mouseup");
@@ -226,6 +241,8 @@ $("#terrassa").change(function () {
     });
 
     validacio();
+
+
 
     /********  AMAGA PANELLS ********/
     if (!IDR && !DEBUG)
@@ -1036,6 +1053,7 @@ function validacio()
                 min: 2,
                 max: PERSONES_GRUP - 1
             },
+            selectorAccesible: "required",
             selectorCalcotsxxx: "required",
             valida_calendari: "required",
             hora: "required",
@@ -1056,6 +1074,8 @@ function validacio()
                 min: l("Selecciona, com a a mínim, dos adults"),
                 max: l("Si sou més de " + (PERSONES_GRUP - 1) + " comensals, selecciona la reserva per GRUPS")
             },
+            selectorAccesible: l("Indica si alguna persona li cal accés adaptat"),
+
             selectorCalcots: "Selecciona les racions de calçots",
             valida_calendari: l("Cal que indiquis el dia"),
             hora: l("Selecciona l´hora"),
@@ -1437,9 +1457,9 @@ function avis_modificacions(e) {
 
     var adults = $("input[name='selectorComensals']:checked").val()
 
-    help($("#avis-modificacions").html());
+    help($("#avis-modificacions").html() );
 
-    if ($(".fr-seccio-dia").is(":hidden"))
+    if ($(".fr-seccio-dia").is(":hidden") && ($("#form-reserves").valid()))
     {
         monta_calendari("#calendari");
         $(".fr-seccio-dia").show();
@@ -1451,6 +1471,7 @@ function avis_modificacions(e) {
         updateCalendari();
         comportamentDia();
     }
+
 
 
     if (typeof RDATA != 'undefined') {
