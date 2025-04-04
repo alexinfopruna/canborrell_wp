@@ -4,7 +4,7 @@
 
 function llegir_dies($fitxer)
 {
-  echo $fitxer;
+  //echo $fitxer;
    for ($i=0;$i<12;$i++) $dies[$i]= array();
 
 	$gestor = @fopen($fitxer, "r");
@@ -30,9 +30,8 @@ function llegir_dies($fitxer)
 		return $dies;
     }
     else
-    {
-        
-		return $dies;       
+    {       
+		  return $dies;       
     }
 }  
 

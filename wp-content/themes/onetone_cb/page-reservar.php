@@ -743,10 +743,19 @@ if ($testTPV) {
                                                                           <div id="selectorCadiraRodes" class="col_dere">
                                                                               <?php
                                                                               $estat = $gestorf->decodeInfo($row['reserva_info']);
+
+                                                                        
+
+                                                                              $chek1 = ($estat['accesible'] == 0 ? 'checked="checked"':'');
+                                                                              $chek2 = ($estat['accesible'] == 1 ? 'checked="checked"':'');
+
                                                                               $chek0 = ($estat['cadiraRodes'] == 0 ? '' : 'checked="checked"');
-                                                                              $chek1 = ($estat['accesible'] == 0 ? '' : 'checked="checked"');
+                                                                              if (!$EDITA_RESERVA) $chek0=$chek2=$chek1='';     //TODO CHECK
+                                                                              //TODO CHECK
+
                                                                               ?>
-                                                                              <input type="checkbox" id="accesible" name="selectorAccesible" value="on"  <?php echo $chek1 ?> /><label for="accesible"><?php l("Algú amb movilitat reduïda"); ?></label>
+                                                                              <input type="radio" id="accesibleOff" name="selectorAccesible" value="off"  required  <?php echo $chek2 ?> /><label for="accesibleOff"><?php l("Ningú amb mobilitat reduïda"); ?></label>
+                                                                              <input type="radio" id="accesibleOn" name="selectorAccesible" value="on" required  <?php echo $chek1 ?> /><label for="accesibleOn"><?php l("Algú amb mobilitat reduïda"); ?></label>
                                                                               <input type="checkbox" id="cadira0" name="selectorCadiraRodes" value="on"  <?php echo $chek0 ?> /><label for="cadira0"><?php l("Portem una cadira de rodes"); ?></label>
                                                                           </div>
                                                                           

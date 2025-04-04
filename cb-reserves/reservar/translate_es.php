@@ -211,8 +211,11 @@ $translate['Sol·licitar reserva']="Solicitar reserva";
 $translate['ESBORRA_DADES']="<em>Deseo que mis datos sean eliminados de la base de datos de Can Borrell tras la fecha de la reserva (para reservas futuras los volverás a introducir)</em>";
 $translate['Cadira de rodes']="Mobilidad reducida";
 $translate['Portem una cadira de rodes']="Llevaremos una silla de ruedas";
-$translate['Movilitat reduïda']="Mobilidad reducida";
-$translate['Algú amb movilitat reduïda']="Mobilidad reducida";
+
+$translate['Indica si alguna persona li cal accés adaptat']="Indica si alguna persona tiene movilidad reducida o silla de ruedas";
+$translate['Mobilitat reduïda']="Mobilidad reducida";
+$translate['Algú amb mobilitat reduïda']="Mobilidad reducida";
+$translate['Ningú amb mobilitat reduïda']="Nadie con mobilidad reducida";
 
 $translate['Per la data seleccionada és necessari escollir els menús']="Para esta fecha es necesario seleccionar los menú";
 $translate['Per la data seleccionada és necessari escollir menú per tots els comensals']="Para la fecha seleccionada es necesario seccionar menú para todos los comensales";
