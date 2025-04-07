@@ -1,0 +1,101 @@
+
+  .ecp-button {
+    transform: rotate(270deg);
+    position: fixed;
+    z-index: 999999;
+    display: block;
+    min-width: 150px;
+    max-width: 250px;
+    text-align: center;
+    cursor: pointer;
+}
+
+.ecp-button a {
+	text-decoration: none;
+    display: block;
+    padding: 10px;
+}
+
+.ecp-button:hover {
+	opacity: 0.8;
+}
+
+.ecp-button.right {
+    bottom: 50%;
+    border-radius: 5px 5px 0px 0px;
+}
+
+.ecp-button.left {
+    bottom: 50%;
+    border-radius: 0px 0px 5px 5px;
+}
+
+/* Modal CSS */
+
+.ecp-modal {
+	height: auto;
+	z-index: 9999;
+
+	visibility: hidden;
+	backface-visibility: hidden;
+	-webkit-backface-visibility: hidden;
+	-moz-backface-visibility: hidden;
+	transform: translateX(-50%) translateY(-50%);
+	-webkit-transform: translateX(-50%) translateY(-50%);
+	-moz-transform: translateX(-50%) translateY(-50%);
+	-ms-transform: translateX(-50%) translateY(-50%);
+
+}
+
+.ecp-show {
+	visibility: visible;
+}
+
+.ecp-overlay {
+	top: 0;
+	left: 0;
+	opacity: 0;
+	width: 100%;
+	height: 100%;
+	z-index: 999;
+	-webkit-transition: all 0.3s;
+	-moz-transition: all 0.3s;
+	transition: all 0.3s;
+	position: fixed;
+	visibility: hidden;
+}
+
+.ecp-show ~ .ecp-overlay {
+	opacity: 1;
+	visibility: visible;
+}
+
+/* Content styles */
+
+.ecp-show .ecp-content form {
+	overflow: hidden;
+}
+
+.ecp-show .ecp-content h3 {
+	margin: 0;
+	text-align: center;
+	padding: 15px 0;
+	position: relative;
+}
+
+.ecp-content span.ecp-close {
+    position: absolute;
+    top: -15px;
+    right: -15px;
+    width: 30px;
+    height: 30px;
+    background: url("../img/close.png") no-repeat scroll 0 0;
+    z-index: 1500;
+    display: block;
+    cursor: pointer;
+}
+
+.ecp-show .ecp-content > div {
+	padding: 10px 15px 5px;
+	margin: 0;
+}

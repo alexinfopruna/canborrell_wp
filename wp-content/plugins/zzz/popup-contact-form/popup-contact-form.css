@@ -1,0 +1,151 @@
+/**
+ *     Popup contact form
+ *     Copyright (C) 2011 - 2021 www.gopiplus.com
+ *     http://www.gopiplus.com/work/2012/05/18/popup-contact-form-wordpress-plugin/
+ * 
+ *     This program is free software: you can redistribute it and/or modify
+ *     it under the terms of the GNU General Public License as published by
+ *     the Free Software Foundation, either version 3 of the License, or
+ *     (at your option) any later version.
+ * 
+ *     This program is distributed in the hope that it will be useful,
+ *     but WITHOUT ANY WARRANTY; without even the implied warranty of
+ *     MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ *     GNU General Public License for more details.
+ * 
+ *     You should have received a copy of the GNU General Public License
+ *     along with this program.  If not, see <http://www.gnu.org/licenses/>.
+ */
+
+#PopupContact_BoxContainer
+{
+	height:500px;
+	width:500px;
+	background:#FFFFFF;
+	border:1px solid #000;
+	padding:0;
+	position:absolute;
+	z-index:999;
+	cursor:default;   
+	-moz-border-radius: 10px;
+	-webkit-border-radius: 10px;
+	-khtml-border-radius: 10px;
+	border-radius: 10px;   
+	display:none;
+}
+
+#PopupContact_BoxContainerHeader
+{
+	height:30px;
+	background:#4D4D4D;
+	border-top-right-radius:10px;
+	-moz-border-radius-topright:10px;
+	-webkit-border-top-right-radius:10px;
+	-khtml-border-top-right-radius: 10px;
+	border-top-left-radius:10px;
+	-moz-border-radius-topleft:10px;
+	-webkit-border-top-left-radius:10px;
+	-khtml-border-top-left-radius: 10px;
+}
+
+#PopupContact_BoxContainerHeader a
+{
+   color:#FFFFFF;
+   font-family:Verdana,Arial;
+   font-size:10pt;
+   font-weight:bold;
+}
+
+#PopupContact_BoxTitle
+{
+   float:left;
+   width:180px;
+   margin:5px;
+   color:#FFFFFF;
+   font-family:Verdana,Arial;
+   font-size:12pt;
+   font-weight:bold;  
+}
+
+#PopupContact_BoxClose
+{
+   float:right;
+   width:50px;
+   margin-bottom:5px;
+}
+
+#PopupContact_BoxContainerBody
+{
+   margin:15px; 
+}
+
+#PopupContact_BoxContainerBody h2
+{
+   font-family : Arial, sans-serif;
+   font-size: 14pt;
+   font-weight:bold;
+   color:#333;    
+}
+
+#PopupContact_BoxContainerBody p
+{
+   font-family : Arial, sans-serif;
+   font-size: 12pt;
+   color:#333;
+}
+
+#PopupContact_BoxContainerFooter
+{
+   position: fixed; 
+   top:0; 
+   left:0; 
+   bottom:0; 
+   right:0;
+   /*background-color:#000000;*/
+   opacity: .3;
+   -moz-opacity: .3;
+   filter: alpha(opacity=30);
+   /*border:1px solid #cecece;*/
+   z-index:1;
+   display:none;
+}
+
+#PopupContact_BoxLabel 
+{
+	font-family : Arial, sans-serif;
+	font-weight: bold;
+	color:#000000;
+	padding-top:4px;
+}
+#PopupContact_BoxLabel_Page
+{
+	font-family : Arial, sans-serif;
+	font-weight: bold;
+	color:#000000;
+	padding-top:10px;
+	line-height:0.5em;
+	font-size:14px;
+}
+#PopupContact_BoxAlert 
+{
+	font-family : Arial, sans-serif;
+	font-size:1.0em;
+	color:#FF0000;
+	padding-top:4px;
+}
+.PopupContact_TextBox 
+{
+	/*width:160px;*/
+	color:#000000 !important;
+}
+.PopupContact_TextArea 
+{
+	/*width:270px;
+	height:90px;*/
+	color:#000000 !important;
+}
+.PopupContact_Button 
+{
+	color:#000000;
+	width:100px;
+}

@@ -419,6 +419,7 @@ function totalPersones()
 function comportamentDia()
 {
     if ($(".fr-seccio-dia").is(":hidden")) {
+        $(".fr-seccio-dia").show();
         $(".fr-seccio-dia").slideDown("slow", function () {
             SECCIO = "fr-seccio-dia";
         });

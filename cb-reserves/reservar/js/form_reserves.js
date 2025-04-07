@@ -179,21 +179,7 @@ $(function () {
     
     $("[for=cadira0]").hide();
 
-    $("input[name='selectorAccesible']").on("click", function(){
-        $("[for=cadira0]").toggle(this.value === "on" && this.checked);
-    });
-    
-    $("#selectorCadiraRodes").change(function () {
-        if ($("#form-reserves").valid()) {
-             monta_calendari("#calendari");
-              comportamentDia();
-              recargaHores();
-             updateMenusSectionButtons();
-             $.scrollTo("#titol_SelectorJuniors", 600);
- 
-             }
-         return false;
-     });
+
     
    //$("#selectorTerrassa").buttonset();
     $("#selectorTerrassa").find("label").unbind("mouseup");
@@ -391,10 +377,36 @@ function comportamentQuantsSou()
 
     });
 
-    $("input[name=selectorComensals]").change(function (e) {
+   // $("input[name=selectorComensals]").change(function (e) {
+        $("input[name=selectorComensals]").on("mouseup", function(){
         avis_modificacions(e);
+        monta_calendari("#calendari");
+        comportamentDia();
+        totalPersones();
+       // $("input[name=selectorComensals]").trigger("change");
+        //recargaHores();
+       //updateMenusSectionButtons();
+       
+        //  if ($("#form-reserves").valid()) {
+        //     $(".fr-seccio-dia").show();
+        //     $.scrollTo("#titol_SelectorJuniors", 600);
+        //  }
     });
 
+    $("input[name='selectorAccesible']").on("click", function(){
+        $("[for=cadira0]").toggle(this.value === "on" && this.checked);
+        if ($("#form-reserves").valid()) {
+            // monta_calendari("#calendari");
+
+            //  comportamentDia();
+            //  recargaHores();
+            // updateMenusSectionButtons();
+            
+            $(".fr-seccio-dia").show();
+            $.scrollTo(".fr-seccio-dia", 600, {offset: -100});
+
+            }        
+    });
 
     //NENS
     $("input[name=selectorNens]").change(function () {
@@ -406,7 +418,6 @@ function comportamentQuantsSou()
         
         
        if (NENS>0 && MENU_NENS_OBLIGAT){
-            //alert(l("INFO_MENU_NENS"));
             help(l("INFO_MENU_NENS"));
             let menusnens = parseInt($("input[nid='2037']").val());
             let menusjunior = parseInt($("input[nid='2036']").val());
@@ -429,6 +440,21 @@ function comportamentQuantsSou()
     $("input[name=selectorCotxets]").change(function () {
         help(l("NENS_COTXETS"));
     });
+
+
+    
+    // $("#selectorCadiraRodes").change(function () {
+    //     if ($("#form-reserves").valid()) {
+    //          monta_calendari("#calendari");
+    //           comportamentDia();
+    //           recargaHores();
+    //          updateMenusSectionButtons();
+    //          $(".fr-seccio-dia").show();
+    //          $.scrollTo("#titol_SelectorJuniors", 600);
+ 
+    //          }
+    //      return false;
+    //  });
 }
 
 /********************************************************************************************************************
@@ -1450,6 +1476,8 @@ function avis_modificacions(e) {
     // $("input[name=selectorComensals]").unbind("change");
     var secc = SECCIO;
     // SECCIO = null;
+
+
     if (AVIS_MODIFICACIONS)
         return;
     AVIS_MODIFICACIONS = true;
@@ -1463,6 +1491,8 @@ function avis_modificacions(e) {
     {
         monta_calendari("#calendari");
         $(".fr-seccio-dia").show();
+        $.scrollTo(".fr-seccio-dia", 600, {offset: -100});
+
         SECCIO = "fr-seccio-dia";
 
         $("#progress-pas-1").addClass("fet");
@@ -1508,7 +1538,6 @@ function setCalendDate(date) {
     monta_calendari("#calendari");
 
     var dt = new Date(date);
-    // alert(date);
     $(".fr-seccio-dia").show();
     SECCIO = "fr-seccio-dia";
     updateCalendari();
@@ -1516,9 +1545,6 @@ function setCalendDate(date) {
     comportamentQuantsSou();
 
     window.scrollTo(0, 0);
-    // comportamentDia();
-
-
 }
 
 function popupw(){
@@ -1570,4 +1596,8 @@ function PopupCenter() {
     if (window.focus) newWindow.focus();
     
     return newWindow;*/
+}
+
+function updateMenusSectionButtons(){
+  return true;
 }
