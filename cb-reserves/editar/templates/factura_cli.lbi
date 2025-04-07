@@ -25,7 +25,7 @@
       Carretera d'Horta a Cerdanyola (BV-1415), km. 3<br />
       08171 Sant Cugat del Vall&egrave;s</span></td>
     <td width="280" align="right"><div align="right"><span > restaurant@can-borrell.com<br />
-      t.93 692 97 23<br />
+      t.93 692 97 23<br>
       t.93 691 06 05<br>
       www.can-borrell.com</span></div></td>
   </tr>
@@ -60,16 +60,7 @@
     <td align="right" bgcolor="#CFDBE7" style="color:white">{cadults}</td>
     <td width="320" align="right" bgcolor="#E6ECF2" >{adults}&nbsp; {menu} </td>
   </tr>
-<!--
-  <tr>
-    <td align="right" bgcolor="#CFDBE7" style="color:white">{cnens10_14}</td>
-    <td width="320" align="right" bgcolor="#E6ECF2" ><div align="right">&nbsp;{nens10_14}</div></td>
-  </tr>
-  <tr>
-    <td align="right" bgcolor="#CFDBE7" style="color:white">{cnens4_9}</td>
-    <td width="320" align="left" bgcolor="#E6ECF2" ><div align="right">&nbsp;{nens4_9} </div></td>
-  </tr>
--->
+
   <tr>
     <td align="right" bgcolor="#CFDBE7" style="color:white">&nbsp;{cpreu_subtotal}</td>
     <td width="320" align="left" bgcolor="#F7F9FB" ><div align="left" >

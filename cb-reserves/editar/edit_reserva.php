@@ -381,7 +381,18 @@ td a:hover {color:white}
           <td class="llista"><input type="radio" name="factura" value="1" style="background:#CCCCCC;" <?php if (!(strcmp((int)$row_Recordset1['factura'],1))) {echo "CHECKED";} ?>>
             Si</td>
         </tr>
+        <?php if (!(strcmp((int)$row_Recordset1['factura'],1))) { ?>
+        <tr>
+          <td class="llista">
+          <!-- <form>
+  <input type="hidden" name="P_ID" value="<?php  echo $row_Recordset1['id_reserva']; ?>" />
 
+  <button type="submit"> Send </button>
+</form> -->
+          
+          <button type="button" onclick="location.href='apdeit.php?resend=<?php echo $row_Recordset1['id_reserva']; ?>'">Reenvia pro-forma</button></td>
+        </tr>
+        <?php } ?>
       </table></td>
     </tr>
 

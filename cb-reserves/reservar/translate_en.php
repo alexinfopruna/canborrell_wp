@@ -275,7 +275,7 @@ $translate["MAIL_GRUPS_PAGAT_subject"] = "Can Borrell: CONFIRMATION OF GROUP RES
 $translate["MAIL_GRUPS_PAGAT_titol"] = "CONFIRMATION OF RESERVATION PAYMENT";
 
 
-$translate["MAIL_GRUPS_PAGAT_text1"] = "We are happy to inform you that we have correctly received your payment of ";
+$translate["MAIL_GRUPS_PAGAT_text1"] = "We are happy to inform you that we have correctly received your authorization for the pre-payment of ";
 $translate['MAIL_GRUPS_PAGAT_text2'] = "See you in Can Borrell ";
 
 $translate['MAIL_GRUPS_PAGAT_text3'] = "<i style = 'font-size: 11px'> <p> So far € {pagat} € ({hedges_payments} covered} have been paid out of a total of {total} € ({covered-covered} covered) "
