@@ -1,0 +1,446 @@
+/* Effect 1: Fade in and scale up */
+.ecp-effect-1 .ecp-content {
+	-webkit-transform: scale(0.7);
+	-moz-transform: scale(0.7);
+	-ms-transform: scale(0.7);
+	transform: scale(0.7);
+	opacity: 0;
+	-webkit-transition: all 0.3s;
+	-moz-transition: all 0.3s;
+	transition: all 0.3s;
+}
+
+.ecp-show.ecp-effect-1 .ecp-content {
+	-webkit-transform: scale(1);
+	-moz-transform: scale(1);
+	-ms-transform: scale(1);
+	transform: scale(1);
+	opacity: 1;
+}
+
+/* Effect 2: Slide from the right */
+.ecp-effect-2 .ecp-content {
+	-webkit-transform: translateX(20%);
+	-moz-transform: translateX(20%);
+	-ms-transform: translateX(20%);
+	transform: translateX(20%);
+	opacity: 0;
+	-webkit-transition: all 0.3s cubic-bezier(0.25, 0.5, 0.5, 0.9);
+	-moz-transition: all 0.3s cubic-bezier(0.25, 0.5, 0.5, 0.9);
+	transition: all 0.3s cubic-bezier(0.25, 0.5, 0.5, 0.9);
+}
+
+.ecp-show.ecp-effect-2 .ecp-content {
+	-webkit-transform: translateX(0);
+	-moz-transform: translateX(0);
+	-ms-transform: translateX(0);
+	transform: translateX(0);
+	opacity: 1;
+}
+
+/* Effect 3: Slide from the bottom */
+.ecp-effect-3 .ecp-content {
+	-webkit-transform: translateY(20%);
+	-moz-transform: translateY(20%);
+	-ms-transform: translateY(20%);
+	transform: translateY(20%);
+	opacity: 0;
+	-webkit-transition: all 0.3s;
+	-moz-transition: all 0.3s;
+	transition: all 0.3s;
+}
+
+.ecp-show.ecp-effect-3 .ecp-content {
+	-webkit-transform: translateY(0);
+	-moz-transform: translateY(0);
+	-ms-transform: translateY(0);
+	transform: translateY(0);
+	opacity: 1;
+}
+
+/* Effect 4: Newspaper */
+.ecp-effect-4 .ecp-content {
+	-webkit-transform: scale(0) rotate(720deg);
+	-moz-transform: scale(0) rotate(720deg);
+	-ms-transform: scale(0) rotate(720deg);
+	transform: scale(0) rotate(720deg);
+	opacity: 0;
+}
+
+.ecp-show.ecp-effect-4 ~ .ecp-overlay,
+.ecp-effect-4 .ecp-content {
+	-webkit-transition: all 0.5s;
+	-moz-transition: all 0.5s;
+	transition: all 0.5s;
+}
+
+.ecp-show.ecp-effect-4 .ecp-content {
+	-webkit-transform: scale(1) rotate(0deg);
+	-moz-transform: scale(1) rotate(0deg);
+	-ms-transform: scale(1) rotate(0deg);
+	transform: scale(1) rotate(0deg);
+	opacity: 1;
+}
+
+/* Effect 5: fall */
+.ecp-effect-5.ecp-modal {
+	-webkit-perspective: 1300px;
+	-moz-perspective: 1300px;
+	perspective: 1300px;
+}
+
+.ecp-effect-5 .ecp-content {
+	-webkit-transform-style: preserve-3d;
+	-moz-transform-style: preserve-3d;
+	transform-style: preserve-3d;
+	-webkit-transform: translateZ(600px) rotateX(20deg); 
+	-moz-transform: translateZ(600px) rotateX(20deg); 
+	-ms-transform: translateZ(600px) rotateX(20deg); 
+	transform: translateZ(600px) rotateX(20deg); 
+	opacity: 0;
+}
+
+.ecp-show.ecp-effect-5 .ecp-content {
+	-webkit-transition: all 0.3s ease-in;
+	-moz-transition: all 0.3s ease-in;
+	transition: all 0.3s ease-in;
+	-webkit-transform: translateZ(0px) rotateX(0deg);
+	-moz-transform: translateZ(0px) rotateX(0deg);
+	-ms-transform: translateZ(0px) rotateX(0deg);
+	transform: translateZ(0px) rotateX(0deg); 
+	opacity: 1;
+}
+
+/* Effect 6: side fall */
+.ecp-effect-6.ecp-modal {
+	-webkit-perspective: 1300px;
+	-moz-perspective: 1300px;
+	perspective: 1300px;
+}
+
+.ecp-effect-6 .ecp-content {
+	-webkit-transform-style: preserve-3d;
+	-moz-transform-style: preserve-3d;
+	transform-style: preserve-3d;
+	-webkit-transform: translate(30%) translateZ(600px) rotate(10deg); 
+	-moz-transform: translate(30%) translateZ(600px) rotate(10deg);
+	-ms-transform: translate(30%) translateZ(600px) rotate(10deg);
+	transform: translate(30%) translateZ(600px) rotate(10deg); 
+	opacity: 0;
+}
+
+.ecp-show.ecp-effect-6 .ecp-content {
+	-webkit-transition: all 0.3s ease-in;
+	-moz-transition: all 0.3s ease-in;
+	transition: all 0.3s ease-in;
+	-webkit-transform: translate(0%) translateZ(0) rotate(0deg);
+	-moz-transform: translate(0%) translateZ(0) rotate(0deg);
+	-ms-transform: translate(0%) translateZ(0) rotate(0deg);
+	transform: translate(0%) translateZ(0) rotate(0deg);
+	opacity: 1;
+}
+
+/* Effect 7:  slide and stick to top */
+.ecp-effect-7{
+	top: 0;
+	-webkit-transform: translateX(-50%);
+	-moz-transform: translateX(-50%);
+	-ms-transform: translateX(-50%);
+	transform: translateX(-50%);
+}
+
+.ecp-effect-7 .ecp-content {
+	-webkit-transform: translateY(-200%);
+	-moz-transform: translateY(-200%);
+	-ms-transform: translateY(-200%);
+	transform: translateY(-200%);
+	-webkit-transition: all .3s;
+	-moz-transition: all .3s;
+	transition: all .3s;
+	opacity: 0;
+}
+
+.ecp-show.ecp-effect-7 .ecp-content {
+	-webkit-transform: translateY(0%);
+	-moz-transform: translateY(0%);
+	-ms-transform: translateY(0%);
+	transform: translateY(0%);
+	border-radius: 0 0 3px 3px;
+	opacity: 1;
+}
+
+/* Effect 8: 3D flip horizontal */
+.ecp-effect-8.ecp-modal {
+	-webkit-perspective: 1300px;
+	-moz-perspective: 1300px;
+	perspective: 1300px;
+}
+
+.ecp-effect-8 .ecp-content {
+	-webkit-transform-style: preserve-3d;
+	-moz-transform-style: preserve-3d;
+	transform-style: preserve-3d;
+	-webkit-transform: rotateY(-70deg);
+	-moz-transform: rotateY(-70deg);
+	-ms-transform: rotateY(-70deg);
+	transform: rotateY(-70deg);
+	-webkit-transition: all 0.3s;
+	-moz-transition: all 0.3s;
+	transition: all 0.3s;
+	opacity: 0;
+}
+
+.ecp-show.ecp-effect-8 .ecp-content {
+	-webkit-transform: rotateY(0deg);
+	-moz-transform: rotateY(0deg);
+	-ms-transform: rotateY(0deg);
+	transform: rotateY(0deg);
+	opacity: 1;
+}
+
+/* Effect 9: 3D flip vertical */
+.ecp-effect-9.ecp-modal {
+	-webkit-perspective: 1300px;
+	-moz-perspective: 1300px;
+	perspective: 1300px;
+}
+
+.ecp-effect-9 .ecp-content {
+	-webkit-transform-style: preserve-3d;
+	-moz-transform-style: preserve-3d;
+	transform-style: preserve-3d;
+	-webkit-transform: rotateX(-70deg);
+	-moz-transform: rotateX(-70deg);
+	-ms-transform: rotateX(-70deg);
+	transform: rotateX(-70deg);
+	-webkit-transition: all 0.3s;
+	-moz-transition: all 0.3s;
+	transition: all 0.3s;
+	opacity: 0;
+}
+
+.ecp-show.ecp-effect-9 .ecp-content {
+	-webkit-transform: rotateX(0deg);
+	-moz-transform: rotateX(0deg);
+	-ms-transform: rotateX(0deg);
+	transform: rotateX(0deg);
+	opacity: 1;
+}
+
+/* Effect 10: 3D sign */
+.ecp-effect-10.ecp-modal {
+	-webkit-perspective: 1300px;
+	-moz-perspective: 1300px;
+	perspective: 1300px;
+}
+
+.ecp-effect-10 .ecp-content {
+	-webkit-transform-style: preserve-3d;
+	-moz-transform-style: preserve-3d;
+	transform-style: preserve-3d;
+	-webkit-transform: rotateX(-60deg);
+	-moz-transform: rotateX(-60deg);
+	-ms-transform: rotateX(-60deg);
+	transform: rotateX(-60deg);
+	-webkit-transform-origin: 50% 0;
+	-moz-transform-origin: 50% 0;
+	transform-origin: 50% 0;
+	opacity: 0;
+	-webkit-transition: all 0.3s;
+	-moz-transition: all 0.3s;
+	transition: all 0.3s;
+}
+
+.ecp-show.ecp-effect-10 .ecp-content {
+	-webkit-transform: rotateX(0deg);
+	-moz-transform: rotateX(0deg);
+	-ms-transform: rotateX(0deg);
+	transform: rotateX(0deg);
+	opacity: 1;
+}
+
+/* Effect 11: Super scaled */
+.ecp-effect-11 .ecp-content {
+	-webkit-transform: scale(2);
+	-moz-transform: scale(2);
+	-ms-transform: scale(2);
+	transform: scale(2);
+	opacity: 0;
+	-webkit-transition: all 0.3s;
+	-moz-transition: all 0.3s;
+	transition: all 0.3s;
+}
+
+.ecp-show.ecp-effect-11 .ecp-content {
+	-webkit-transform: scale(1);
+	-moz-transform: scale(1);
+	-ms-transform: scale(1);
+	transform: scale(1);
+	opacity: 1;
+}
+
+/* Effect 12:  Just me */
+.ecp-effect-12 .ecp-content {
+	-webkit-transform: scale(0.8);
+	-moz-transform: scale(0.8);
+	-ms-transform: scale(0.8);
+	transform: scale(0.8);
+	opacity: 0;
+	-webkit-transition: all 0.3s;
+	-moz-transition: all 0.3s;
+	transition: all 0.3s;
+}
+
+.ecp-show.ecp-effect-12 ~ .ecp-overlay {
+	background: #e74c3c;
+} 
+
+.ecp-effect-12 .ecp-content h3,
+.ecp-effect-12 .ecp-content {
+	background: transparent;
+}
+
+.ecp-show.ecp-effect-12 .ecp-content {
+	-webkit-transform: scale(1);
+	-moz-transform: scale(1);
+	-ms-transform: scale(1);
+	transform: scale(1);
+	opacity: 1;
+}
+
+/* Effect 13: 3D slit */
+.ecp-effect-13.ecp-modal {
+	-webkit-perspective: 1300px;
+	-moz-perspective: 1300px;
+	perspective: 1300px;
+}
+
+.ecp-effect-13 .ecp-content {
+	-webkit-transform-style: preserve-3d;
+	-moz-transform-style: preserve-3d;
+	transform-style: preserve-3d;
+	-webkit-transform: translateZ(-3000px) rotateY(90deg);
+	-moz-transform: translateZ(-3000px) rotateY(90deg);
+	-ms-transform: translateZ(-3000px) rotateY(90deg);
+	transform: translateZ(-3000px) rotateY(90deg);
+	opacity: 0;
+}
+
+.ecp-show.ecp-effect-13 .ecp-content {
+	-webkit-animation: slit .7s forwards ease-out;
+	-moz-animation: slit .7s forwards ease-out;
+	animation: slit .7s forwards ease-out;
+}
+
+@-webkit-keyframes slit {
+	50% { -webkit-transform: translateZ(-250px) rotateY(89deg); opacity: .5; -webkit-animation-timing-function: ease-out;}
+	100% { -webkit-transform: translateZ(0) rotateY(0deg); opacity: 1; }
+}
+
+@-moz-keyframes slit {
+	50% { -moz-transform: translateZ(-250px) rotateY(89deg); opacity: .5; -moz-animation-timing-function: ease-out;}
+	100% { -moz-transform: translateZ(0) rotateY(0deg); opacity: 1; }
+}
+
+@keyframes slit {
+	50% { transform: translateZ(-250px) rotateY(89deg); opacity: 1; animation-timing-function: ease-in;}
+	100% { transform: translateZ(0) rotateY(0deg); opacity: 1; }
+}
+
+/* Effect 14:  3D Rotate from bottom */
+.ecp-effect-14.ecp-modal {
+	-webkit-perspective: 1300px;
+	-moz-perspective: 1300px;
+	perspective: 1300px;
+}
+
+.ecp-effect-14 .ecp-content {
+	-webkit-transform-style: preserve-3d;
+	-moz-transform-style: preserve-3d;
+	transform-style: preserve-3d;
+	-webkit-transform: translateY(100%) rotateX(90deg);
+	-moz-transform: translateY(100%) rotateX(90deg);
+	-ms-transform: translateY(100%) rotateX(90deg);
+	transform: translateY(100%) rotateX(90deg);
+	-webkit-transform-origin: 0 100%;
+	-moz-transform-origin: 0 100%;
+	transform-origin: 0 100%;
+	opacity: 0;
+	-webkit-transition: all 0.3s ease-out;
+	-moz-transition: all 0.3s ease-out;
+	transition: all 0.3s ease-out;
+}
+
+.ecp-show.ecp-effect-14 .ecp-content {
+	-webkit-transform: translateY(0%) rotateX(0deg);
+	-moz-transform: translateY(0%) rotateX(0deg);
+	-ms-transform: translateY(0%) rotateX(0deg);
+	transform: translateY(0%) rotateX(0deg);
+	opacity: 1;
+}
+
+/* Effect 15:  3D Rotate in from left */
+.ecp-effect-15.ecp-modal {
+	-webkit-perspective: 1300px;
+	-moz-perspective: 1300px;
+	perspective: 1300px;
+}
+
+.ecp-effect-15 .ecp-content {
+	-webkit-transform-style: preserve-3d;
+	-moz-transform-style: preserve-3d;
+	transform-style: preserve-3d;
+	-webkit-transform: translateZ(100px) translateX(-30%) rotateY(90deg);
+	-moz-transform: translateZ(100px) translateX(-30%) rotateY(90deg);
+	-ms-transform: translateZ(100px) translateX(-30%) rotateY(90deg);
+	transform: translateZ(100px) translateX(-30%) rotateY(90deg);
+	-webkit-transform-origin: 0 100%;
+	-moz-transform-origin: 0 100%;
+	transform-origin: 0 100%;
+	opacity: 0;
+	-webkit-transition: all 0.3s;
+	-moz-transition: all 0.3s;
+	transition: all 0.3s;
+}
+
+.ecp-show.ecp-effect-15 .ecp-content {
+	-webkit-transform: translateZ(0px) translateX(0%) rotateY(0deg);
+	-moz-transform: translateZ(0px) translateX(0%) rotateY(0deg);
+	-ms-transform: translateZ(0px) translateX(0%) rotateY(0deg);
+	transform: translateZ(0px) translateX(0%) rotateY(0deg);
+	opacity: 1;
+}
+
+/* Effect 16:  Blur */
+.ecp-show.ecp-effect-16 ~ .ecp-overlay {
+	background: rgba(180,46,32,0.5);
+}
+
+.ecp-show.ecp-effect-16 ~ body {
+	-webkit-filter: blur(3px);
+	-moz-filter: blur(3px);
+	filter: blur(3px);
+}
+
+.ecp-effect-16 .ecp-content {
+	-webkit-transform: translateY(-5%);
+	-moz-transform: translateY(-5%);
+	-ms-transform: translateY(-5%);
+	transform: translateY(-5%);
+	opacity: 0;
+}
+
+.ecp-show.ecp-effect-16 ~ body,
+.ecp-effect-16 .ecp-content {
+	-webkit-transition: all 0.3s;
+	-moz-transition: all 0.3s;
+	transition: all 0.3s;
+}
+
+.ecp-show.ecp-effect-16 body {
+	-webkit-transform: translateY(0);
+	-moz-transform: translateY(0);
+	-ms-transform: translateY(0);
+	transform: translateY(0);
+	opacity: 1;
+}
