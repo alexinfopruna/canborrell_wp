@@ -37,7 +37,6 @@ require_once(ROOT . "TaulesDisponibles.php");
 
 require_once(ROOT . "RestrictionController.php");
 /* * ******************************************************************************************************* */
-
 class Gestor_form extends gestor_reserves {
 
   var $data_BASE = "2011-01-01";
@@ -2056,6 +2055,7 @@ if (isset($accio) && !empty($accio)) {
     if (isset($_SESSION['uSer_serialized'])) {
       $_SESSION['uSer'] = unserialize($_SESSION['uSer_serialized']);
     }
+
 
 
     

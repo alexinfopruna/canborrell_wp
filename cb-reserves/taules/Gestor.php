@@ -65,6 +65,7 @@ class Gestor {
   protected $lang = "esp";
   public $lng = "es";
   public $lng_default = "es";
+  public $usuari;
   protected $ordre;
   protected $database_name;
   protected $connexioDB;
@@ -448,7 +449,9 @@ class Gestor {
   public static function out($t) {
     if (is_array($t)) print_r($t);
     if (mb_detect_encoding($t) != "UTF-8")
-      $t = utf8_encode($t);
+      //  $t = utf8_encode($t);
+     // $t = array_map(fn($item) => mb_convert_encoding($item, "UTF-8", mb_detect_encoding($item)), $t);
+     $t = mb_convert_encoding($t, 'UTF-8', 'ISO-8859-1'); 
     echo $t;
   }
 
