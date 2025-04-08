@@ -158,7 +158,7 @@ function monta_calendari(selector)
 	var limit_passat=(arxiu=="del" || historic)?-10000:0;
 	//limit_passat=-50000;
 	$(selector).datepicker({
-		defaultDate:date_session,
+		defaultDate:new Date(date_session),
 		beforeShowDay:function(date){		
 			var r=new Array(3);
 			if ((date.getDay()==1 || date.getDay()==2 || llistanegra(date)) && (!llistablanca(date)))

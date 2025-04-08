@@ -102,7 +102,10 @@ else
 		<span class="data-llarga ui-corner-all">
 		<?php 
 		setlocale(LC_ALL, 'ca_ES');
-		echo strftime("%A %d de %B de %Y",strtotime($row_reserva['data']));
+		//echo strftime("%A %d de %B de %Y",strtotime($row_reserva['data']));
+
+		$dateModified = new DateTime($row_reserva['data']);  
+		echo $modificada = $dateModified->format('l d \d\e F \d\e Y');  
 		?>
 		</span>
 		<input type="hidden" name="data" value="<?php  out ($gestor->cambiaf_a_normal($row_reserva['data']))  ?>" size="10" tabindex="-1" class="{required:true}"  title="Selecciona una data" readonly="readonly"/>
@@ -317,9 +320,16 @@ else
 		if ($id)
 		{
 			setlocale(LC_ALL, 'ca_ES');
-			$creada= strftime("%A %d de %B de %Y a les %H:%M:%S",strtotime($row_reserva['data_creacio']));
+			//$creada= strftime("%A %d de %B de %Y a les %H:%M:%S",strtotime($row_reserva['data_creacio']));
+			$date = new DateTime($row_reserva['data_creacio']);  
+			$creada = $date->format('l d \d\e F \d\e Y \a les H:i:s');  
+
 			$creada_por=$gestor->usuari($row_reserva['usuari_creacio']);
-			$modificada= strftime("%A %d de %B de %Y a les %H:%M:%S",strtotime($row_reserva['estat_taules_timestamp']));
+			//$modificada= strftime("%A %d de %B de %Y a les %H:%M:%S",strtotime($row_reserva['estat_taules_timestamp']));
+			$date = new DateTime($row_reserva['estat_taules_timestamp']);  
+			$modificada = $date->format('l d \d\e F \d\e Y \a les H:i:s');  
+			
+			
 			$modificada_por=$gestor->usuari($row_reserva['estat_taula_usuari_modificacio']);
 			
 			echo '<div id="info-reserva">';

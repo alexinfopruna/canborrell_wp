@@ -46,10 +46,17 @@
 
 <?php
 // corregeix si és DL o DM o dia passat
-if (isset($_SESSION['data']) && $_SESSION['data']<date("Y-m-d")) $_SESSION['data']=date("Y-m-d");
-$date=date("d/m/Y");
-if (strftime('%w',strtotime(date("Y-m-d")))==1) $date= date("d/m/Y", strtotime('+2 day')) ; 
-if (strftime('%w',strtotime(date("Y-m-d")))==2) $date= date("d/m/Y", strtotime('+1 day')) ; 
+if (isset($_SESSION['data']) && $_SESSION['data']< date("Y-m-d")) $_SESSION['data'] = date("Y-m-d");
+//die($_SESSION ['data']);
+//$date=date("d/m/Y");
+$currentDate = new DateTime();  
+if ($currentDate->format('N') == 2) $currentDate->modify('+1 day');  
+if ($currentDate->format('N') == 1) $currentDate->modify('+2 day');
+
+
+// Output the current date (modified or n
+//if (strftime('%w',strtotime(date("Y-m-d")))==1) $date= date("d/m/Y", strtotime('+2 day')) ; 
+//if (strftime('%w',strtotime(date("Y-m-d")))==2) $date= date("d/m/Y", strtotime('+1 day')) ; 
 
 if (!isset($_SESSION['torn'])) $_SESSION['torn']=1;
 
@@ -69,27 +76,24 @@ if ($_SERVER['HTTP_HOST']=="localhost" ) $bg = "local";
 
 <script>
 	<?php 
-                            /*
-		$llista_negra=llegir_dies(LLISTA_DIES_NEGRA);
-		$llista_blanca=llegir_dies(LLISTA_DIES_BLANCA);
-		print crea_llista_js($llista_negra,"LLISTA_NEGRA"); 
-                            */
-                                                        print $gestor->crea_llista_js_DB("small","black","LLISTA_NEGRA");
+
+        print $gestor->crea_llista_js_DB("small","black","LLISTA_NEGRA");
 		print "\n\n";	
 		//print crea_llista_js($llista_blanca,"LLISTA_BLANCA");  
 		
-                                                        print $gestor->crea_llista_js_DB("small","white","LLISTA_BLANCA");
-		$data=isset($_SESSION['data'])?$gestor->cambiaf_a_normal($_SESSION['data']):$date;
-		die($_SESSION['data']);
+        print $gestor->crea_llista_js_DB("small","white","LLISTA_BLANCA");
+		//$data=isset($_SESSION['data'])?$gestor->cambiaf_a_normal($_SESSION['data']):$date;
+		$data=isset($_SESSION['data'])?$gestor->cambiaf_a_normal($_SESSION['data']):$currentDate->format('Y-m-d');
+	
 		print "date_session='".$data."';\n";
 		print "var permisos='".$_SESSION['permisos']."';\n";
                                                         /*     * */
-                                                        $id=0;
-                                                        if (isset($_SESSION['uSer'])){
-                                                          $sessuser = $_SESSION['uSer'];
-                                                          $id=intval($sessuser->id);
-                                                        }
-                                                        
+		$id=0;
+		if (isset($_SESSION['uSer'])){
+			$sessuser = $_SESSION['uSer'];
+			$id=intval($sessuser->id);
+		}
+		
 		print "var user='".$id."';\n";
                                                     
                                                          
