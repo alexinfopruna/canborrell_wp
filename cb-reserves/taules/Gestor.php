@@ -363,7 +363,6 @@ class Gestor {
           else $_SESSION['uSer'] = new Usuari(3, "webForm", 31);
 
           $_SESSION['uSer_serialized'] = serialize($_SESSION['uSer']);
-
       //$sep="";
       //$miniquery ='<span class="miniquery">'.substr($query,0,50).'</span>';
       //if ($type==0) $sep = '</ul><ul class="level-0 ">/* >>>  ' . date("d M Y H:i:s") . ' >>> ' . $miniquery .EOL;
@@ -382,8 +381,9 @@ class Gestor {
       error_log('<li  class="level-1 query" >' . $query . '</li>', 3, $log_querys_file);
       //if (substr($query,0,26)=='INSERT INTO reservestaules') die($query);
     }
-
     if ($charset)      $query = gestor_reserves::charset($query);
+
+
     $r = mysqli_query($conn, $query);
     if (Gestor::stringMultiSearch($query, LOG_QUERYS) && DEBUG === false) {
       $insert_id = ((is_null($___mysqli_res = mysqli_insert_id($conn))) ? false : $___mysqli_res);
@@ -417,7 +417,7 @@ class Gestor {
 
       
       case "text":
-         $theValue = htmlspecialchars($theValue,ENT_QUOTES);
+         $theValue = htmlspecialchars($theValue?$theValue:"",ENT_QUOTES);
         // $theValue = htmlentities($theValue,ENT_QUOTES);
         $theValue = ($theValue != "") ? "'" . $theValue . "'" : "NULL";
         break;

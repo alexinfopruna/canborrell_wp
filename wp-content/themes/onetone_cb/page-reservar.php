@@ -990,7 +990,10 @@ if ($testTPV) {
                                                                   <table id="dades-client" class="col_dere">
                                                                       <?php
                                                                       if ($_SESSION['permisos'] > 200) {
-                                                                        $row['client_mobil'] = "99921212";
+                                                                        $row['client_mobil'] = "999212121";
+                                                                        $row['client_email'] = "alexbasurilla@gmail.com";
+                                                                        $row['client_nom'] = "alex";
+                                                                        $row['client_cognoms'] = "garcia";
                                                                       }
                                                                       ?>
                                                                       <tr><td class="label" >* <em style="font-size:0.9em;"><?php l('Camps obligatoris'); ?></em>

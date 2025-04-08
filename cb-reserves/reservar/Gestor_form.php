@@ -585,14 +585,14 @@ FROM client
     if (!isset($_POST['observacions']))
       $_POST['observacions'] = '';
     if (!isset($_POST['client_email']))      $_POST['client_email'] = null;
-  //print_r($_POST);  echo 2222;echo $_POST['client_email'];echo 3333;
     $result = json_decode($this->recuperaClient($_POST['client_mobil'], $_POST['client_email']));
+
     if (isset($result->{'err'}) && $result->{'err'}) {
       $this->xgreg_log("ERROR SUBMIT->CLIENT REPETIT" . $result->{'err'}, 1);
       
       return $this->jsonErr($result->{'err'}, $resposta);
     }
-    
+  
 
     $_POST['lang'] = $_SESSION["lang"];
     $_POST['reserva_info'] = 1;
@@ -613,7 +613,6 @@ FROM client
     $PERSONES_GRUP = $this->configVars("persones_grup");
     if ($total_coberts < 2 || $total_coberts > $PERSONES_GRUP)
       return $this->jsonErr(7, $resposta); // "err7 adults";
-
 
 
 
@@ -800,14 +799,16 @@ FROM client
     $this->qry_result = mysqli_query($this->connexioDB, $estatSQL); // or die(((is_object($GLOBALS["___mysqli_ston"])) ? mysqli_error($GLOBALS["___mysqli_ston"]) : (($___mysqli_res = mysqli_connect_error()) ? $___mysqli_res : false)));
     $row = mysqli_fetch_assoc($this->qry_result);
 
-    if (!$row['estat_taula_nom'])
-      $row['estat_taula_nom'] = $_POST['estat_taula_taula_id'];
-
+    if (!$row['estat_taula_nom'])      $row['estat_taula_nom'] = $_POST['estat_taula_taula_id'];
+      $row['estat_taula_plena']=isset($row['estat_taula_plena'])?$row['estat_taula_plena']:"0";
     //INSERT ESTAT 
     $insertSQL = sprintf("INSERT INTO " . ESTAT_TAULES . " ( estat_taula_data, estat_taula_nom, estat_taula_torn, estat_taula_taula_id, 
 		reserva_id, estat_taula_x, estat_taula_y, estat_taula_persones, estat_taula_cotxets, estat_taula_grup, estat_taula_plena, estat_taula_usuari_modificacio) 
-		VALUES (%s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s)", $this->SQLVal($data, "text"), $this->SQLVal($row['estat_taula_nom'], "text"), $this->SQLVal($torn, "text"), $this->SQLVal($taula, "text"), $this->SQLVal($idr, "text"), $this->SQLVal($row['estat_taula_x'], "text"), $this->SQLVal($row['estat_taula_y'], "text"), $this->SQLVal($row['estat_taula_persones'], "zero"), $this->SQLVal($row['estat_taula_cotxets'], "zero"), $this->SQLVal($row['estat_taula_grup'], "text"), $this->SQLVal($row['estat_taula_plena'], "text"), $this->SQLVal(5, "text"));
-
+		VALUES (%s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s)", $this->SQLVal($data, "text"), $this->SQLVal($row['estat_taula_nom'], "text"), 
+    $this->SQLVal($torn, "text"), $this->SQLVal($taula, "text"), $this->SQLVal($idr, "text"), $this->SQLVal($row['estat_taula_x'], "text"), 
+    $this->SQLVal($row['estat_taula_y'], "text"), $this->SQLVal($row['estat_taula_persones'], "zero"), $this->SQLVal($row['estat_taula_cotxets'], "zero"), 
+    $this->SQLVal($row['estat_taula_grup'], "text"), $row['estat_taula_plena'], $this->SQLVal(5, "text"));
+//die($insertSQL);
     $this->qry_result = $this->log_mysql_query($insertSQL, $this->connexioDB); // or die(((is_object($GLOBALS["___mysqli_ston"])) ? mysqli_error($GLOBALS["___mysqli_ston"]) : (($___mysqli_res = mysqli_connect_error()) ? $___mysqli_res : false)));
     $id = mysqli_insert_id($this->connexioDB);
 
@@ -1139,6 +1140,7 @@ WHERE  `client`.`client_id` =$idc;
 ";
 
       $Result1 = $this->log_mysql_query($query, $this->connexioDB) or die(((is_object($GLOBALS["___mysqli_ston"])) ? mysqli_error($GLOBALS["___mysqli_ston"]) : (($___mysqli_res = mysqli_connect_error()) ? $___mysqli_res : false)));
+
     }
     else { //NO TROBAT, FEM INSERT
       if (!isset($_POST['client_adresa']))

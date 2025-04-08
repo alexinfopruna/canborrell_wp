@@ -242,6 +242,7 @@ class gestor_reserves extends Gestor {
   /*   * ************************************* */
 
   public function paperera_reserves($id_reserva) {
+    return true;
     $this->xgreg_log("paperera_reserves($id_reserva)", 1);
     
     
