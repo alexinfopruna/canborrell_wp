@@ -396,9 +396,8 @@ function comportamentQuantsSou()
     $("input[name='selectorAccesible']").on("click", function(){
         $("[for=cadira0]").toggle(this.value === "on" && this.checked);
         if ($("#form-reserves").valid()) {
-            // monta_calendari("#calendari");
-
-            //  comportamentDia();
+            monta_calendari("#calendari");
+            comportamentDia();
             //  recargaHores();
             // updateMenusSectionButtons();
             

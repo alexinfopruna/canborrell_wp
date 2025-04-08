@@ -182,7 +182,7 @@ $hores = $this->interseccio_hores($rules);
     $nr = mysqli_num_rows($Result1); 
     if (!$nr) return null; // SI NO HI HA RESTRICCIONS SON TOTES
     //die($query);
-    $hores = array();
+    $hores =  8589934591; //TOTES_HORES;
     while ($row = $Result1->fetch_assoc()) {
       $hores = $hores | $row['restriccions_hores'];
     }

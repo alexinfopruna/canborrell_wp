@@ -1236,7 +1236,7 @@ if (Gestor::user_perm()<127) {header("Location: ../taules/taules.php");die();}
 
       $deleted = $row['deleted'] ? ' style="background:red" ' : '';
       
-      $obs = trim($row['observacions']);
+      $obs = trim($row['observacions']?$row['observacions']:"");
       if (!empty($obs)) {
         $sobret = '<div style="position:relative;left:0" class="ui-icon ' . ($row['reserva_info'] & 16 ? "ui-icon-mail-open" : "ui-icon-mail-closed") . '" title="Observacions del client">' . (strlen($row['observacions']) + 5) . '</div>';
       }

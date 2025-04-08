@@ -63,6 +63,7 @@ if ($_SERVER['HTTP_HOST']=="localhost" ) $bg = "local";
 // CONSTANTS LOADCONFIG PER JS
 /*****************************************/	
   echo $gestor->dumpJSVars(true);
+  
 ?>
 
 
@@ -76,8 +77,10 @@ if ($_SERVER['HTTP_HOST']=="localhost" ) $bg = "local";
                                                         print $gestor->crea_llista_js_DB("small","black","LLISTA_NEGRA");
 		print "\n\n";	
 		//print crea_llista_js($llista_blanca,"LLISTA_BLANCA");  
+		
                                                         print $gestor->crea_llista_js_DB("small","white","LLISTA_BLANCA");
 		$data=isset($_SESSION['data'])?$gestor->cambiaf_a_normal($_SESSION['data']):$date;
+		die($_SESSION['data']);
 		print "date_session='".$data."';\n";
 		print "var permisos='".$_SESSION['permisos']."';\n";
                                                         /*     * */

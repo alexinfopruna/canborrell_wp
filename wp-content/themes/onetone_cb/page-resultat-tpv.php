@@ -8,18 +8,18 @@
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width">
         <link rel="profile" href="http://gmpg.org/xfn/11">
-        <link rel="pingback" href="http://cbwp-localhost/xmlrpc.php">
-        <link rel='stylesheet' id='dashicons-css'  href='http://cbwp-localhost/wp-includes/css/dashicons.min.css?ver=4.6.1' type='text/css' media='all' />
-        <link rel='stylesheet' id='admin-bar-css'  href='http://cbwp-localhost/wp-includes/css/admin-bar.min.css?ver=4.6.1' type='text/css' media='all' />
-        <link rel='stylesheet' id='jqueryui-css'  href='http://cbwp-localhost/cb-reserves/css/jquery-ui.css?ver=4.6.1' type='text/css' media='all' />
-        <link rel='stylesheet' id='iwmp-styles-css'  href='http://cbwp-localhost/wp-content/plugins/iw-magnific-popup/includes/assets/magnific-popup.css?ver=4.6.1' type='text/css' media='all' />
-        <link rel='stylesheet' id='font-awesome-css'  href='http://cbwp-localhost/wp-content/plugins/magee-shortcodes/assets/font-awesome/css/font-awesome.css?ver=4.4.0' type='text/css' media='' />
-        <link rel='stylesheet' id='bootstrap-css'  href='http://cbwp-localhost/wp-content/plugins/magee-shortcodes/assets/bootstrap/css/bootstrap.min.css?ver=3.3.4' type='text/css' media='' />
+        <link rel="pingback" href="/xmlrpc.php">
+        <link rel='stylesheet' id='dashicons-css'  href='/wp-includes/css/dashicons.min.css?ver=4.6.1' type='text/css' media='all' />
+        <link rel='stylesheet' id='admin-bar-css'  href='/wp-includes/css/admin-bar.min.css?ver=4.6.1' type='text/css' media='all' />
+        <link rel='stylesheet' id='jqueryui-css'  href='/cb-reserves/css/jquery-ui.css?ver=4.6.1' type='text/css' media='all' />
+        <link rel='stylesheet' id='iwmp-styles-css'  href='/wp-content/plugins/iw-magnific-popup/includes/assets/magnific-popup.css?ver=4.6.1' type='text/css' media='all' />
+        <link rel='stylesheet' id='font-awesome-css'  href='/wp-content/plugins/magee-shortcodes/assets/font-awesome/css/font-awesome.css?ver=4.4.0' type='text/css' media='' />
+        <link rel='stylesheet' id='bootstrap-css'  href='/wp-content/plugins/magee-shortcodes/assets/bootstrap/css/bootstrap.min.css?ver=3.3.4' type='text/css' media='' />
 
-        <link rel='stylesheet' id='parent-style-css'  href='http://cbwp-localhost/wp-content/themes/onetone/style.css?ver=4.6.1' type='text/css' media='all' />
+        <link rel='stylesheet' id='parent-style-css'  href='/wp-content/themes/onetone/style.css?ver=4.6.1' type='text/css' media='all' />
         <link rel='stylesheet' id='onetone-Yanone-Kaffeesatz-css'  href='//fonts.googleapis.com/css?family=Open+Sans%3A300%2C400%2C700%7CYanone+Kaffeesatz%7CLustria&#038;ver=4.6.1' type='text/css' media='' />
-        <link rel='stylesheet' id='owl.carousel-css'  href='http://cbwp-localhost/wp-content/themes/onetone/plugins/owl-carousel/assets/owl.carousel.css?ver=4.6.1' type='text/css' media='' />
-        <link rel='stylesheet' id='onetone-main-css'  href='http://cbwp-localhost/wp-content/themes/onetone_cb/style.css?ver=1.1.0' type='text/css' media='all' />
+        <link rel='stylesheet' id='owl.carousel-css'  href='/wp-content/themes/onetone/plugins/owl-carousel/assets/owl.carousel.css?ver=4.6.1' type='text/css' media='' />
+        <link rel='stylesheet' id='onetone-main-css'  href='wp-content/themes/onetone_cb/style.css?ver=1.1.0' type='text/css' media='all' />
 
 
         <link href="https://fonts.googleapis.com/css?family=Poppins" rel="stylesheet">

@@ -682,11 +682,23 @@ class Gestor {
 
     if ($lafecha == "//")
       return "";
+      
+    $dateTime = DateTime::createFromFormat('d/m/Y', $lafecha);  
+    if ($dateTime) {  
+      $newFormat = $dateTime->format('Y/m/d');  
+      return $newFormat; // Outputs: 2025/04/08  
+  } else {  
+      return "0000/00/00";  
+  } 
 
-    $lafecha = strftime($format, mktime(0, 0, 0, $mifecha[2], $mifecha[3], $mifecha[1]));
 
-    return $lafecha;
+   // $lafecha = strftime($format, mktime(0, 0, 0, $mifecha[2], $mifecha[3], $mifecha[1]));
+
+   // return $lafecha;
   }
+  
+
+
 
   /*   * ************************************************************************************** */
 

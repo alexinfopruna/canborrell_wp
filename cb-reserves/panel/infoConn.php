@@ -27,7 +27,7 @@ Info sistema
 </style>
 </head>
 <body>
-    <a href="/cb-reserves/panel/infoConn.php">http://cbwp-localhost/cb-reserves/panel/infoConn.php</a>
+    <a href="/cb-reserves/panel/infoConn.php">/cb-reserves/panel/infoConn.php</a>
         <p>
       
             <?php

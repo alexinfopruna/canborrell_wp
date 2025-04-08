@@ -43,7 +43,7 @@ class TaulesDisponibles extends Gestor {
   private $arResultatTaula = null; //RESULTAT PER OBJ. Taula
   private $arHores = array(); //RESULTAT HORES DISPONIBLES
   private $arTxtError;
-
+  public $arError; 
   /*   * ************************************* */
   /*   * ************************************* */
   /*   * ******      CONSTRUCTOR     *********** */
