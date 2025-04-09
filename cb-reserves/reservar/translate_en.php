@@ -229,8 +229,13 @@ $translate['Sol·licitar reserva'] = "Reservation request";
 $translate['ESBORRA_DADES'] = "<em>I would like my information to be removed from the Can Borrell database after my reservation date (for future reservations you will re-enter your information)</em>";
 $translate['Cadira de rodes'] = "Reduced mobility";
 $translate['Portem una cadira de rodes'] = "We will bring a wheelchair";
-$translate['Movilitat reduïda'] = "Reduced mobility";
-$translate['Algú amb movilitat reduïda'] = "Reduced mobility";
+$translate['Mobilitat reduïda'] = "Reduced mobility";
+$translate['Algú amb mobilitat reduïda'] = "Reduced mobility";
+
+$translate['Indica si alguna persona li cal accés adaptat']="Need access for handicapped person?";
+$translate['Mobilitat reduïda']="Handicapped person";
+$translate['Ningú amb mobilitat reduïda']="No handicapped person";
+
 
 $translate['Per la data seleccionada és necessari escollir els menús'] = "For this date you need to select menus";
 $translate['Per la data seleccionada és necessari escollir menú per tots els comensals'] = "For this date you must select menus for all customers";
@@ -306,7 +311,7 @@ $translate["RESERVA_CANCELADA"] = "Your reservation is canceled";
 /* * **************************** SMS ************************************* */
 $translate["Recuerde: reserva en Restaurant Can Borrell el %s a las %s (%s).Rogamos comunique cualquier cambio: 936929723 - 936910605.Gracias.(ID:%s)"] = "Remenber: reservation at Restaurant Can Borrell on %s at %s (%s).We ask you to inform us of any changes: 936929723 - 936910605.Thank's.(ID:%s)";
 
-$translate["Restaurant Can Borrell, reserva MODIFICADA: L'esperem el %s a les %s. Preguem comuniqui qualsevol canvi al web o tel.936929723 - 936910605. Gràcies.(ID:%s)"] = "Restaurant Can Borrell, reservation UPDATED: See you on %s at %s. We ask you to inform us of any changes by web o tels.936929723 - 936910605. Thank's.(ID:%s)";
+$translate["Restaurant Can Borrell, reserva MODIFICADA: L'esperem el %s a les %s. Preguem comuniqui qualsevol canvi al web o tel.936929723 - 936910605. Gràcies.(ID:%s)"] = "Restaurant Can Borrell, reservation UPDATED: See you on %s at %s. Modifications 12H IN ADVANCE by web o tels.936929723 - 936910605. Thank's.(ID:%s)";
 
 
 $translate["RESERVA_IMPAGADA"] = "We have not received confirmation of the payment of the banking gateway. "

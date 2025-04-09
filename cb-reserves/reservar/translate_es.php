@@ -211,8 +211,11 @@ $translate['Sol·licitar reserva']="Solicitar reserva";
 $translate['ESBORRA_DADES']="<em>Deseo que mis datos sean eliminados de la base de datos de Can Borrell tras la fecha de la reserva (para reservas futuras los volverás a introducir)</em>";
 $translate['Cadira de rodes']="Mobilidad reducida";
 $translate['Portem una cadira de rodes']="Llevaremos una silla de ruedas";
-$translate['Movilitat reduïda']="Mobilidad reducida";
-$translate['Algú amb movilitat reduïda']="Mobilidad reducida";
+
+$translate['Indica si alguna persona li cal accés adaptat']="Indica si alguna persona tiene movilidad reducida o silla de ruedas";
+$translate['Mobilitat reduïda']="Mobilidad reducida";
+$translate['Algú amb mobilitat reduïda']="Mobilidad reducida";
+$translate['Ningú amb mobilitat reduïda']="Nadie con mobilidad reducida";
 
 $translate['Per la data seleccionada és necessari escollir els menús']="Para esta fecha es necesario seleccionar los menú";
 $translate['Per la data seleccionada és necessari escollir menú per tots els comensals']="Para la fecha seleccionada es necesario seccionar menú para todos los comensales";
@@ -286,7 +289,7 @@ $translate["Recuerde: reserva en Restaurant Can Borrell el %s a las %s (%s).Roga
     = "Recuerde: reserva en Restaurant Can Borrell el %s a las %s (%s).Rogamos comunique cualquier cambio: restaurant@can-borrell.com.Gracias.(ID:%s)";
 
 $translate["Restaurant Can Borrell, reserva MODIFICADA: L'esperem el %s a les %s. Preguem comuniqui qualsevol canvi al web o restaurant@can-borrell.com. Gràcies.(ID:%s)"] 
-    = "Restaurant Can Borrell, reserva MODIFICADA: Le esperamos el %s a las %s. Rogamos comunique cualquier cambio en la web o restaurant@can-borrell.com. Gracias.(ID:%s)";
+    = "Restaurant Can Borrell, reserva MODIFICADA: Le esperamos el %s a las %s.  Modificaciones con 12 HORAS DE ANTELACION en la web o restaurant@can-borrell.com. Gracias.(ID:%s)";
 
 
 $translate["RESERVA_IMPAGADA"] = "No hemos recibido confirmación del pago de la pasarela bancaria. "

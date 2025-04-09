@@ -1,5 +1,5 @@
 var browser_malo = (navigator.appVersion.indexOf("MSIE 7.") != -1);
-
+////
 //var TIMER_INTERVAL = 110000;
 var TIMER_INTERVAL = 110000;
 var GRUPS=false;
@@ -177,8 +177,9 @@ $(function () {
     $("#selectorCalcots").buttonset();
     $("#selectorCalcots").find("label").unbind("mouseup");
     
-    
-    
+    $("[for=cadira0]").hide();
+
+
     
    //$("#selectorTerrassa").buttonset();
     $("#selectorTerrassa").find("label").unbind("mouseup");
@@ -226,6 +227,8 @@ $("#terrassa").change(function () {
     });
 
     validacio();
+
+
 
     /********  AMAGA PANELLS ********/
     if (!IDR && !DEBUG)
@@ -374,10 +377,36 @@ function comportamentQuantsSou()
 
     });
 
-    $("input[name=selectorComensals]").change(function (e) {
+   // $("input[name=selectorComensals]").change(function (e) {
+        $("input[name=selectorComensals]").on("mouseup", function(){
         avis_modificacions(e);
+        monta_calendari("#calendari");
+        comportamentDia();
+        totalPersones();
+       // $("input[name=selectorComensals]").trigger("change");
+        //recargaHores();
+       //updateMenusSectionButtons();
+       
+        //  if ($("#form-reserves").valid()) {
+        //     $(".fr-seccio-dia").show();
+        //     $.scrollTo("#titol_SelectorJuniors", 600);
+        //  }
     });
 
+    $("input[name='selectorAccesible']").on("click", function(){
+        $("[for=cadira0]").toggle(this.value === "on" && this.checked);
+        if ($("#form-reserves").valid()) {
+             monta_calendari("#calendari");
+
+              comportamentDia();
+            //  recargaHores();
+            // updateMenusSectionButtons();
+            
+            $(".fr-seccio-dia").show();
+            $.scrollTo(".fr-seccio-dia", 600, {offset: -100});
+
+            }        
+    });
 
     //NENS
     $("input[name=selectorNens]").change(function () {
@@ -389,7 +418,6 @@ function comportamentQuantsSou()
         
         
        if (NENS>0 && MENU_NENS_OBLIGAT){
-            //alert(l("INFO_MENU_NENS"));
             help(l("INFO_MENU_NENS"));
             let menusnens = parseInt($("input[nid='2037']").val());
             let menusjunior = parseInt($("input[nid='2036']").val());
@@ -412,6 +440,21 @@ function comportamentQuantsSou()
     $("input[name=selectorCotxets]").change(function () {
         help(l("NENS_COTXETS"));
     });
+
+
+    
+    // $("#selectorCadiraRodes").change(function () {
+    //     if ($("#form-reserves").valid()) {
+    //          monta_calendari("#calendari");
+    //           comportamentDia();
+    //           recargaHores();
+    //          updateMenusSectionButtons();
+    //          $(".fr-seccio-dia").show();
+    //          $.scrollTo("#titol_SelectorJuniors", 600);
+ 
+    //          }
+    //      return false;
+    //  });
 }
 
 /********************************************************************************************************************
@@ -1036,6 +1079,7 @@ function validacio()
                 min: 2,
                 max: PERSONES_GRUP - 1
             },
+            selectorAccesible: "required",
             selectorCalcotsxxx: "required",
             valida_calendari: "required",
             hora: "required",
@@ -1056,6 +1100,8 @@ function validacio()
                 min: l("Selecciona, com a a mínim, dos adults"),
                 max: l("Si sou més de " + (PERSONES_GRUP - 1) + " comensals, selecciona la reserva per GRUPS")
             },
+            selectorAccesible: l("Indica si alguna persona li cal accés adaptat"),
+
             selectorCalcots: "Selecciona les racions de calçots",
             valida_calendari: l("Cal que indiquis el dia"),
             hora: l("Selecciona l´hora"),
@@ -1430,6 +1476,8 @@ function avis_modificacions(e) {
     // $("input[name=selectorComensals]").unbind("change");
     var secc = SECCIO;
     // SECCIO = null;
+
+
     if (AVIS_MODIFICACIONS)
         return;
     AVIS_MODIFICACIONS = true;
@@ -1437,12 +1485,14 @@ function avis_modificacions(e) {
 
     var adults = $("input[name='selectorComensals']:checked").val()
 
-    help($("#avis-modificacions").html());
+    help($("#avis-modificacions").html() );
 
-    if ($(".fr-seccio-dia").is(":hidden"))
+    if ($(".fr-seccio-dia").is(":hidden") && ($("#form-reserves").valid()))
     {
         monta_calendari("#calendari");
         $(".fr-seccio-dia").show();
+        $.scrollTo(".fr-seccio-dia", 600, {offset: -100});
+
         SECCIO = "fr-seccio-dia";
 
         $("#progress-pas-1").addClass("fet");
@@ -1451,6 +1501,7 @@ function avis_modificacions(e) {
         updateCalendari();
         comportamentDia();
     }
+
 
 
     if (typeof RDATA != 'undefined') {
@@ -1487,7 +1538,6 @@ function setCalendDate(date) {
     monta_calendari("#calendari");
 
     var dt = new Date(date);
-    // alert(date);
     $(".fr-seccio-dia").show();
     SECCIO = "fr-seccio-dia";
     updateCalendari();
@@ -1495,9 +1545,6 @@ function setCalendDate(date) {
     comportamentQuantsSou();
 
     window.scrollTo(0, 0);
-    // comportamentDia();
-
-
 }
 
 function popupw(){
@@ -1549,4 +1596,8 @@ function PopupCenter() {
     if (window.focus) newWindow.focus();
     
     return newWindow;*/
+}
+
+function updateMenusSectionButtons(){
+  return true;
 }

@@ -41,10 +41,10 @@ $translate["Recordi: reserva %s, el %s - %s per a %s personas.Es IMPRESCINDIBLE 
 
 
 $translate["Recordi: reserva al Restaurant Can Borrell. %s %s (%s).Preguem comuniqui qualsevol canvi: 936929723/936910605.Gràcies.(ID%s)"] 
-    = "Recuerde: reserva en Restaurant Can Borrell. %s %s (%s).Rogamos comunique cualquier cambio: restaurant@can-borrell.com (ID$%s)";
+    = "Recuerde: reserva en Restaurant Can Borrell. %s %s (%s). Solo se aceptan modificaciones con 12 HORAS DE ANTELACION: restaurant@can-borrell.com (ID$%s)";
 
 $translate["\n***\nConservi quest SMS com a comprovant de la paga y senyal de %s€ que li serà descomptada. També hem enviat un email que pot imprimir"] 
-    = "\n***\nConserve este SMS como comprobante de la paga y señal de %s€ que le será descontada. También hemos enviado un email que puede imprimir";
+    = "";
 
 
 $translate[""] 
