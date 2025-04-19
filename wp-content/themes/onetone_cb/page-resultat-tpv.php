@@ -33,7 +33,7 @@
 }
         </style>
         <!--[if lt IE 9]>
-        <script src="http://cbwp-localhost/wp-content/themes/onetone/js/html5.js"></script>
+        <script src="https://cbwp-localhost/wp-content/themes/onetone/js/html5.js"></script>
         <![endif]-->
         <title>Resultat TPV &#8211; Restaurant Can Borrell</title
     </head>

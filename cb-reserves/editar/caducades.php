@@ -196,6 +196,7 @@ function mail_cli($id = false, $plantilla = "templates/recordatori_cli.lbi") {
   $ara = date("H:i");
 
   $file = getcwd()."/".$plantilla;
+	$file = ROOT."../editar/$plantilla";
 
 
   $t = new Template('.', 'comment');

@@ -780,7 +780,8 @@ ORDER BY  `estat_hores_hora` ASC ";
 		WHERE 
 		estat_hores_actiu=1
 		AND
-		(estat_hores_data = '2010-01-01' AND estat_hores_torn = '$torn')
+		(estat_hores_data = '2010-01-01' AND estat_hores_torn = '$torn') OR
+    (estat_hores_data = '2011-01-01' AND estat_hores_torn = '$torn')
 		
 /*************** NOMES DEPEN DE LA BASE	
 		OR (estat_hores_data='$mydata' AND estat_hores_torn = '$torn' )	AND estat_hores_hora NOT IN

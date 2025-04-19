@@ -33,6 +33,7 @@ $rows = $cfg->array_vars($were);
 
 function parse_type($type, $val, $label, $descripcio) {
   $widget = $val;
+  if (is_null($type)) return false;
   $typ = substr(strtoupper($type), 0, 3);
   //if (substr($type,0,3) == "INT") parse_type_int($type);
 

@@ -161,6 +161,7 @@ function mail_plantilla($id = false) {
   $ara = date("H:i");
   /////// ATENCIO
   $file = getcwd(). "/templates/pre_reserva_rest.lbi";
+  $file = ROOT."../editar/templates/pre_reserva_rest.lbi";
 
 
   $t = new Template('.', 'comment');

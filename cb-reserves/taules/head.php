@@ -85,6 +85,7 @@ if ($_SERVER['HTTP_HOST']=="localhost" ) $bg = "local";
 		//$data=isset($_SESSION['data'])?$gestor->cambiaf_a_normal($_SESSION['data']):$date;
 		$data=isset($_SESSION['data'])?$gestor->cambiaf_a_normal($_SESSION['data']):$currentDate->format('Y-m-d');
 	
+		if (!isset($_SESSION['permisos'])) $_SESSION['permisos']=false;
 		print "date_session='".$data."';\n";
 		print "var permisos='".$_SESSION['permisos']."';\n";
                                                         /*     * */

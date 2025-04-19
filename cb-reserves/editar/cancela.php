@@ -90,7 +90,8 @@ function mail_restaurant($id=false)
 	$avui=date("d/m/Y");
 	$ara=date("H:i");
 	$file=getcwd(). "/templates/cancel_rest.lbi";
-	
+	$file = ROOT."../editar/templates/cancel_rest.lbi";
+
 	
 			$t=new Template('.','comment');
 			$t->set_file("page", $file);

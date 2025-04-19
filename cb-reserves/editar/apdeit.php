@@ -243,6 +243,7 @@ function mail_SMS_cli($id=false,$SMS=null)
 	$avui=date("d/m/Y");
 	$ara=date("H:i");
 	$file = getcwd(). "/templates/mail_cli.lbi";
+	$file = ROOT."../editar/templates/mail_cli.lbi";
 
 	
 			$t=new Template('.','comment');
@@ -381,7 +382,8 @@ function mail_restaurant($id=false)
 	$avui=date("d/m/Y");
 	$ara=date("H:i");
 	$file = getcwd(). "/templates/pagat_rest.lbi";
-	
+	$file = ROOT."../editar/templates/pagat_rest.lbi";
+
 	
 			$t=new Template('.','comment');
 			$t->set_file("page", $file);

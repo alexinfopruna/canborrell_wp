@@ -472,7 +472,6 @@ ORDER BY carta_subfamilia_order,carta_plats_nom_es , carta_plats_nom_ca";
   /*   * ******************************************************************************************************* */
   /*   * ******************************************************************************************************* */
   public function recuperaClient($num, $mail = null, $debug  = false) {
-    //$num="999";
 
     if (empty($mail))
       $mail = "nuul@nuul" . time();
@@ -512,13 +511,11 @@ FROM client
         break;
       }
     }
-//print_r($row);echo "WWWWW";
     //GARJOLA
     if ($this->garjola($num, $mail)) {
       if ($row['id_reserva_grup'])
         $row['data'] = $row['data_grup'];
       $row['data'] = $this->cambiaf_a_normal($row['data']);
-      //$row['err']="21"." $num $mail";
       $row['err'] = "21";
     }
     /* TRAMPA PER FER PROVES!!!!	 */
@@ -549,7 +546,6 @@ FROM client
       if (strtolower(substr($_POST['id_reserva'], 0, 2)) == 'id')
         $_POST['id_reserva'] = substr($_POST['id_reserva'], 2, 20);
       if ($_POST['id_reserva'] > 3000) {
-        //$this->xgreg_log("Submit update reserva grups");
         return $this->salvaUpdate(); // GUARDA UPDATE
       }
       else {
@@ -769,7 +765,6 @@ FROM client
       $_POST['INFO_PASTIS'] = NULL;
 
     $estat = $this->paga_i_senyal($coberts) ? 2 : 100;
-    //$import_reserva=$this->configVars("import_paga_i_senyal");
     $import_reserva = 0;
 
     $insertSQL = sprintf("INSERT INTO " . T_RESERVES . " ( id_reserva, client_id, data, hora, adults, 
@@ -781,7 +776,6 @@ FROM client
     //$idr = ((is_null($___mysqli_res = mysqli_insert_id($this->connexioDB))) ? false : $___mysqli_res);
     $idr = mysqli_insert_id($this->connexioDB);
 
-//echo $insertSQL ;die();
 
     //INSERT INTO ESTAT TAULES 
     //recupera estat
@@ -808,7 +802,6 @@ FROM client
     $this->SQLVal($torn, "text"), $this->SQLVal($taula, "text"), $this->SQLVal($idr, "text"), $this->SQLVal($row['estat_taula_x'], "text"), 
     $this->SQLVal($row['estat_taula_y'], "text"), $this->SQLVal($row['estat_taula_persones'], "zero"), $this->SQLVal($row['estat_taula_cotxets'], "zero"), 
     $this->SQLVal($row['estat_taula_grup'], "text"), $row['estat_taula_plena'], $this->SQLVal(5, "text"));
-//die($insertSQL);
     $this->qry_result = $this->log_mysql_query($insertSQL, $this->connexioDB); // or die(((is_object($GLOBALS["___mysqli_ston"])) ? mysqli_error($GLOBALS["___mysqli_ston"]) : (($___mysqli_res = mysqli_connect_error()) ? $___mysqli_res : false)));
     $id = mysqli_insert_id($this->connexioDB);
 
@@ -836,9 +829,7 @@ FROM client
 
     $persones = $pers = $_POST['selectorComensals'] + $_POST['selectorJuniors'] + $_POST['selectorNens'];
     $persones .= 'p';
-    //$mensa = "Recuerde: reserva en Restaurant Can Borrell el $data a las $hora ($persones).Rogamos comunique cualquier cambio: 936929723 - 936910605.Gracias.(ID:$idr)";
-    //$mensa = $this->lv("Recordi: reserva al Restaurant Can Borrell el %s a les %s (%s).Preguem comuniqui qualsevol canvi: 936929723 - 936910605.Gràcies.(ID:%s)");
-
+ 
     $args[] = $data;
     $args[] = $hora;
     $args[] = $persones;
@@ -870,8 +861,7 @@ FROM client
       $TPV = FALSE; // Cas que recuperem reserva
     if ($TPV) {
       $nom = $_POST['client_nom'] . ' ' . $_POST['client_cognoms'];
-      //$t=print_r($_REQUEST,TRUE);
-      //   $resposta['lx'] = " ... ".$_REQUEST["testTPV"]." *** ".$t;
+
       global $COBERTS;
       $COBERTS = $pers;
       $import_paga_i_senyal = $this->import_paga_i_senyal_pk($pers);

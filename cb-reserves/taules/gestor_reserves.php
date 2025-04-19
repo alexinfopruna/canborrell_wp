@@ -2830,8 +2830,8 @@ WHERE `estat_hores_hora`='$hora'
 AND (`estat_hores_data`='$data' OR `estat_hores_data`='$data_BASE')
 ORDER BY `estat_hores_data` DESC";
     $Result1 = mysqli_query($this->connexioDB, $query) or die(((is_object($GLOBALS["___mysqli_ston"])) ? mysqli_error($GLOBALS["___mysqli_ston"]) : (($___mysqli_res = mysqli_connect_error()) ? $___mysqli_res : false)));
-
     $row = mysqli_fetch_array($Result1);
+    if (!$row) return false;
     return $row['estat_hores_torn'];
 //return ($hora>"15")?(($hora>"19")?3:2):1;
   }
@@ -3852,6 +3852,7 @@ function scan_sort_dir($dir) {
   foreach (scandir($dir) as $file) {
     if (in_array($file, $ignored))
       continue;
+
     $files[$file] = filemtime($dir . '/' . $file);
   }
 

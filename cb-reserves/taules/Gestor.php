@@ -447,7 +447,9 @@ class Gestor {
   /*   * ************************************************************************************** */
 
   public static function out($t) {
+    if (!isset($t)) $t="";
     if (is_array($t)) print_r($t);
+    if (is_null($t)) return false;
     if (mb_detect_encoding($t) != "UTF-8")
       //  $t = utf8_encode($t);
      // $t = array_map(fn($item) => mb_convert_encoding($item, "UTF-8", mb_detect_encoding($item)), $t);

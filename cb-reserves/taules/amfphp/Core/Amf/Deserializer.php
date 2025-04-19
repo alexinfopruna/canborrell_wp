@@ -669,6 +669,8 @@ class Amfphp_Core_Amf_Deserializer {
     protected function readBuffer($len) {
         $data = '';
         for ($i = 0; $i < $len; $i++) {
+            //$data .= $this->rawData[$i + $this->currentByte];
+
             $data .= $this->rawData
                     {$i + $this->currentByte};
         }
