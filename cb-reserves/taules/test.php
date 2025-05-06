@@ -60,7 +60,20 @@ class Test extends gestor_reserves {
 </style>
 </head>
 <body bgcolor="#ffffff">
-
+<br/>
+<b>Fatal error</b>
+:  Uncaught mysqli_sql_exception: Column 'estat_hores_actiu' cannot be null in D:\Usuaris\alex\Dwww\CB_docker-compose-lamp\www\cb-reserves\taules\Gestor.php:387
+Stack trace:
+#0 D:\Usuaris\alex\Dwww\CB_docker-compose-lamp\www\cb-reserves\taules\Gestor.php(387): mysqli_query(Object(mysqli), 'INSERT INTO est...')
+#1 D:\Usuaris\alex\Dwww\CB_docker-compose-lamp\www\cb-reserves\taules\gestor_reserves.php(2553): Gestor::log_mysql_query('INSERT INTO est...', Object(mysqli))
+#2 D:\Usuaris\alex\Dwww\CB_docker-compose-lamp\www\cb-reserves\taules\peticions_ajax.php(146): gestor_reserves-&gt;update_hora('13:15', '0', '0', 'BASE', '1', 'estat_hores_for...')
+#3 D:\Usuaris\alex\Dwww\CB_docker-compose-lamp\www\cb-reserves\taules\gestor_reserves.php(3868): include('D:\\Usuaris\\alex...')
+#4 {main}
+  thrown in <b>D:\Usuaris\alex\Dwww\CB_docker-compose-lamp\www\cb-reserves\taules\Gestor.php</b>
+on line <b>387</b>
+<br/>
+DELETE FROM estat_hores_form WHERE    
+    (estat_hores_data='2011-01-01' AND estat_hores_hora='13:15' AND estat_hores_torn = '1')
 
 
 <br/>

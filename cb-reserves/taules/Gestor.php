@@ -385,6 +385,7 @@ class Gestor {
 
 
     $r = mysqli_query($conn, $query);
+    echo $query;
     if (Gestor::stringMultiSearch($query, LOG_QUERYS) && DEBUG === false) {
       $insert_id = ((is_null($___mysqli_res = mysqli_insert_id($conn))) ? false : $___mysqli_res);
       $affected = mysqli_affected_rows($conn);

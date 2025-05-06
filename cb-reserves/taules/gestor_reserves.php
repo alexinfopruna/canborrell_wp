@@ -2541,13 +2541,24 @@ EOHTML;
     if ($hora == "00:00")
       $torn += 100;
 
+
+      if (!isset($activa) || !$activa)   $activa = "'0'";
+
+      // $insertSQL = sprintf("INSERT INTO $table 
+      // (estat_hores_data, estat_hores_torn, estat_hores_hora, estat_hores_actiu, estat_hores_max) 
+      // VALUES (%s, %s, %s, %s, %s)", $this->SQLVal($data, "text"), $this->SQLVal($torn, "text"), $this->SQLVal($hora, "text"), $activa, $this->SQLVal($max, "text"));
+//echo "--- $activa ---";
+//die($insertSQL);
+
     $query = "DELETE FROM $table WHERE    
     (estat_hores_data='$data' AND estat_hores_hora='$hora' AND estat_hores_torn = '$torn')";
     $Result1 = $this->log_mysql_query($query, $this->connexioDB) or die(((is_object($GLOBALS["___mysqli_ston"])) ? mysqli_error($GLOBALS["___mysqli_ston"]) : (($___mysqli_res = mysqli_connect_error()) ? $___mysqli_res : false)));
+    
+
     if ($activa == "0" || true) {
       $insertSQL = sprintf("INSERT INTO $table 
         (estat_hores_data, estat_hores_torn, estat_hores_hora, estat_hores_actiu, estat_hores_max) 
-        VALUES (%s, %s, %s, %s, %s)", $this->SQLVal($data, "text"), $this->SQLVal($torn, "text"), $this->SQLVal($hora, "text"), $this->SQLVal($activa, "text"), $this->SQLVal($max, "text"));
+        VALUES (%s, %s, %s, %s, %s)", $this->SQLVal($data, "text"), $this->SQLVal($torn, "text"), $this->SQLVal($hora, "text"), $activa, $this->SQLVal($max, "text"));
 
 
       $Result1 = $this->log_mysql_query($insertSQL, $this->connexioDB) or die(((is_object($GLOBALS["___mysqli_ston"])) ? mysqli_error($GLOBALS["___mysqli_ston"]) : (($___mysqli_res = mysqli_connect_error()) ? $___mysqli_res : false)));

@@ -9,10 +9,17 @@ require_once(ROOT."Gestor.php");
 /****************************************************************************************/
 class GestorCercador extends Gestor
 {
-	public function GestorCercador()
-	{
+	public function __construct($db_connection_file = DB_CONNECTION_FILE, $usuari_minim = 16) {
+		
 
             if (!isset($usuari_minim)) $usuari_minim=NULL;
 				parent::__construct(DB_CONNECTION_FILE,$usuari_minim);
-	}
+		  }
+
+	// public function GestorCercador()
+	// {
+
+    //         if (!isset($usuari_minim)) $usuari_minim=NULL;
+	// 			parent::__construct(DB_CONNECTION_FILE,$usuari_minim);
+	// }
 }

@@ -21,7 +21,9 @@ class DBTable extends Gestor {
   public $PAG_INI;
   public $PAG_FI;
 
-  public function DBTable($table_query) {
+  //public function DBTable($table_query) {
+  	public function __construct($table_query) {
+
     $were = "";
     $order = "";
     $usuari_minim = 63;
