@@ -242,7 +242,6 @@ class gestor_reserves extends Gestor {
   /*   * ************************************* */
 
   public function paperera_reserves($id_reserva) {
-    return true;
     $this->xgreg_log("paperera_reserves($id_reserva)", 1);
     
     
@@ -322,7 +321,7 @@ class gestor_reserves extends Gestor {
     }
 
     $_POST['id_reserva'] = $row['id_reserva'];
-    $_POST['data'] = $row['data'];
+    $_POST['data'] = $data = $row['data'];
     $_POST['hora'] = $row['hora'];
     $_POST['adults'] = $row['adults'];
     $_POST['nens4_9'] = $row['nens4_9'];
@@ -434,7 +433,7 @@ class gestor_reserves extends Gestor {
 //die();
     $this->qry_result = mysqli_query($this->connexioDB, $estatSQL) or die(((is_object($GLOBALS["___mysqli_ston"])) ? mysqli_error($GLOBALS["___mysqli_ston"]) : (($___mysqli_res = mysqli_connect_error()) ? $___mysqli_res : false)));
     $row = mysqli_fetch_assoc($this->qry_result);
-    if (empty($row['estat_taula_plena']))
+    if (empty($row['estat_taula_plena']) || is_null($row['estat_taula_plena']))
       $row['estat_taula_plena'] = "0";
     if (!$row['estat_taula_nom']) {
       $row['estat_taula_nom'] = $_POST['estat_taula_taula_id'];
@@ -448,7 +447,18 @@ class gestor_reserves extends Gestor {
 
     $insertSQL = sprintf("INSERT INTO " . ESTAT_TAULES . " ( estat_taula_data, estat_taula_nom, estat_taula_torn, estat_taula_taula_id, 
     reserva_id, estat_taula_x, estat_taula_y, estat_taula_persones, estat_taula_cotxets, estat_taula_grup, estat_taula_plena, estat_taula_usuari_modificacio) 
-    VALUES (%s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s)", $this->SQLVal($_POST['data'], "datePHP"), $this->SQLVal($row['estat_taula_nom'], "text"), $this->SQLVal($torn, "text"), $this->SQLVal($_POST['estat_taula_taula_id'], "text"), $this->SQLVal($idr, "text"), $this->SQLVal($row['estat_taula_x'], "text"), $this->SQLVal($row['estat_taula_y'], "text"), $this->SQLVal($row['estat_taula_persones'], "zero"), $this->SQLVal($row['estat_taula_cotxets'], "zero"), $this->SQLVal($row['estat_taula_grup'], "text"), $this->SQLVal($row['estat_taula_plena'], "text"), $this->SQLVal($_SESSION['admin_id'], "text"));
+    VALUES (%s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s)", 
+    $this->SQLVal($_POST['data'], "datePHP"), 
+    $this->SQLVal($row['estat_taula_nom'], "text"), 
+    $this->SQLVal($torn, "text"), 
+    $this->SQLVal($_POST['estat_taula_taula_id'], "text"), 
+    $this->SQLVal($idr, "text"), $this->SQLVal($row['estat_taula_x'], "text"), 
+    $this->SQLVal($row['estat_taula_y'], "text"), 
+    $this->SQLVal($row['estat_taula_persones'], "zero"), 
+    $this->SQLVal($row['estat_taula_cotxets'], "zero"), 
+    $this->SQLVal($row['estat_taula_grup'], "text"), 
+    $this->SQLVal($row['estat_taula_plena'], "text"), 
+    $this->SQLVal($_SESSION['admin_id'], "text"));
     echo $insertSQL;
     echo "<br><br>";
     $b = $this->qry_result = $this->log_mysql_query($insertSQL, $this->connexioDB) or die(((is_object($GLOBALS["___mysqli_ston"])) ? mysqli_error($GLOBALS["___mysqli_ston"]) : (($___mysqli_res = mysqli_connect_error()) ? $___mysqli_res : false)));
@@ -1008,9 +1018,21 @@ if (Gestor::user_perm()<127) {header("Location: ../taules/taules.php");die();}
     }
 
     $insertSQL = sprintf("INSERT INTO " . ESTAT_TAULES . " ( estat_taula_data, estat_taula_nom, estat_taula_torn, estat_taula_taula_id, 
-    reserva_id, estat_taula_x, estat_taula_y, estat_taula_persones, estat_taula_cotxets, estat_taula_grup, estat_taula_plena, estat_taula_usuari_modificacio) 
-    VALUES (%s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s)", $this->SQLVal($row['data'], "datePHP"), $this->SQLVal('!!!!!', "text"), $this->SQLVal($torn, "text"), $this->SQLVal($time, "text"), $this->SQLVal($row['id_reserva'], "text"), $this->SQLVal(300, "text"), $this->SQLVal(390, "text"), $this->SQLVal($row['adults'] + $row['nens10_14'] + $row['nens4_9'], "zero"), $this->SQLVal($row['cotxets'], "zero"), $this->SQLVal(0, "text"), $this->SQLVal(0, "text"), $this->SQLVal($_SESSION['uSer']->id, "text"));
-
+    reserva_id, estat_taula_x, estat_taula_y, estat_taula_persones, estat_taula_cotxets, 
+    estat_taula_grup, estat_taula_plena, estat_taula_usuari_modificacio) 
+    VALUES (%s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s)", 
+    $this->SQLVal($row['data'], "datePHP"), 
+    $this->SQLVal('!!!!!', "text"), 
+    $this->SQLVal($torn, "text"), 
+    $this->SQLVal($time, "text"), 
+    $this->SQLVal($row['id_reserva'], "text"), 
+    $this->SQLVal(300, "text"), 
+    $this->SQLVal(390, "text"), 
+    $this->SQLVal($row['adults'] + $row['nens10_14'] + $row['nens4_9'], "zero"), 
+    $this->SQLVal($row['cotxets'], "zero"), 
+    $this->SQLVal("0", "text"), 
+    "0", 
+    $this->SQLVal($_SESSION['uSer']->id, "text"));
     $b = $this->qry_result = $this->log_mysql_query($insertSQL, $this->connexioDB) or die(((is_object($GLOBALS["___mysqli_ston"])) ? mysqli_error($GLOBALS["___mysqli_ston"]) : (($___mysqli_res = mysqli_connect_error()) ? $___mysqli_res : false)));
 //$id = ((is_null($___mysqli_res = mysqli_insert_id($GLOBALS["___mysqli_ston"]))) ? false : $___mysqli_res);
     $id = mysqli_insert_id($this->connexioDB);
@@ -1237,7 +1259,7 @@ if (Gestor::user_perm()<127) {header("Location: ../taules/taules.php");die();}
 
       $deleted = $row['deleted'] ? ' style="background:red" ' : '';
       
-      $obs = trim($row['observacions']?$row['observacions']:"");
+      $obs = trim($row['observacions']);
       if (!empty($obs)) {
         $sobret = '<div style="position:relative;left:0" class="ui-icon ' . ($row['reserva_info'] & 16 ? "ui-icon-mail-open" : "ui-icon-mail-closed") . '" title="Observacions del client">' . (strlen($row['observacions']) + 5) . '</div>';
       }
@@ -2286,7 +2308,7 @@ EOHTML;
   /*   * *******   guarda_missatge_dia   ********************************************************************************* */
   /*   * ****************************************************************************************************************************** */
 
-  public function guarda_missatge_dia($text = "", $c="") {
+  public function guarda_missatge_dia($text = "", $c) {
     if (!isset($_SESSION))
       session_start();
 
@@ -2541,24 +2563,13 @@ EOHTML;
     if ($hora == "00:00")
       $torn += 100;
 
-
-      if (!isset($activa) || !$activa)   $activa = "'0'";
-
-      // $insertSQL = sprintf("INSERT INTO $table 
-      // (estat_hores_data, estat_hores_torn, estat_hores_hora, estat_hores_actiu, estat_hores_max) 
-      // VALUES (%s, %s, %s, %s, %s)", $this->SQLVal($data, "text"), $this->SQLVal($torn, "text"), $this->SQLVal($hora, "text"), $activa, $this->SQLVal($max, "text"));
-//echo "--- $activa ---";
-//die($insertSQL);
-
     $query = "DELETE FROM $table WHERE    
     (estat_hores_data='$data' AND estat_hores_hora='$hora' AND estat_hores_torn = '$torn')";
     $Result1 = $this->log_mysql_query($query, $this->connexioDB) or die(((is_object($GLOBALS["___mysqli_ston"])) ? mysqli_error($GLOBALS["___mysqli_ston"]) : (($___mysqli_res = mysqli_connect_error()) ? $___mysqli_res : false)));
-    
-
     if ($activa == "0" || true) {
       $insertSQL = sprintf("INSERT INTO $table 
         (estat_hores_data, estat_hores_torn, estat_hores_hora, estat_hores_actiu, estat_hores_max) 
-        VALUES (%s, %s, %s, %s, %s)", $this->SQLVal($data, "text"), $this->SQLVal($torn, "text"), $this->SQLVal($hora, "text"), $activa, $this->SQLVal($max, "text"));
+        VALUES (%s, %s, %s, %s, %s)", $this->SQLVal($data, "text"), $this->SQLVal($torn, "text"), $this->SQLVal($hora, "text"), $this->SQLVal($activa, "text"), $this->SQLVal($max, "text"));
 
 
       $Result1 = $this->log_mysql_query($insertSQL, $this->connexioDB) or die(((is_object($GLOBALS["___mysqli_ston"])) ? mysqli_error($GLOBALS["___mysqli_ston"]) : (($___mysqli_res = mysqli_connect_error()) ? $___mysqli_res : false)));
@@ -2841,8 +2852,8 @@ WHERE `estat_hores_hora`='$hora'
 AND (`estat_hores_data`='$data' OR `estat_hores_data`='$data_BASE')
 ORDER BY `estat_hores_data` DESC";
     $Result1 = mysqli_query($this->connexioDB, $query) or die(((is_object($GLOBALS["___mysqli_ston"])) ? mysqli_error($GLOBALS["___mysqli_ston"]) : (($___mysqli_res = mysqli_connect_error()) ? $___mysqli_res : false)));
+
     $row = mysqli_fetch_array($Result1);
-    if (!$row) return false;
     return $row['estat_hores_torn'];
 //return ($hora>"15")?(($hora>"19")?3:2):1;
   }
@@ -3863,7 +3874,6 @@ function scan_sort_dir($dir) {
   foreach (scandir($dir) as $file) {
     if (in_array($file, $ignored))
       continue;
-
     $files[$file] = filemtime($dir . '/' . $file);
   }
 
