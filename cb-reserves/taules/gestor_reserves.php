@@ -338,8 +338,7 @@ class gestor_reserves extends Gestor {
     $_POST['client_id'] = $row['client_id'];
     $_POST['client_mobil'] = $row['client_mobil'];
     $_POST['client_id'] = $row['client_id'];
-    $_POST['client_id'] = $row['client_id'];
-    $_POST['client_id'] = $row['client_id'];
+
     $_POST['observacions'] = $row['observacions'] . " *** Creada AUTO-GRUP " . $row['id_reserva'];
     $_POST['RESERVA_PASTIS'] = $row['RESERVA_PASTIS'];
     $_POST['INFO_PASTIS'] = $row['INFO_PASTIS'];
@@ -457,7 +456,7 @@ class gestor_reserves extends Gestor {
     $this->SQLVal($row['estat_taula_persones'], "zero"), 
     $this->SQLVal($row['estat_taula_cotxets'], "zero"), 
     $this->SQLVal($row['estat_taula_grup'], "text"), 
-    $this->SQLVal($row['estat_taula_plena'], "text"), 
+    $row['estat_taula_plena'], 
     $this->SQLVal($_SESSION['admin_id'], "text"));
     echo $insertSQL;
     echo "<br><br>";
