@@ -567,8 +567,8 @@ class gestor_reserves extends Gestor {
     /*
      * 
      */
-    if (!$_POST['nens4_9'] || is_null($_POST['nens4_9']) || $_POST['nens4_9'] == "")      $_POST['nens4_9'] = "0";
-    if (!$_POST['nens10_14'] || is_null($_POST['nens10_14']) || $_POST['nens10_14'] == "")      $_POST['nens10_14'] = "0";
+    //if (!$_POST['nens4_9'] || is_null($_POST['nens4_9']) || $_POST['nens4_9'] == "")      $_POST['nens4_9'] = "0";
+    //if (!$_POST['nens10_14'] || is_null($_POST['nens10_14']) || $_POST['nens10_14'] == "")      $_POST['nens10_14'] = "0";
 
     $updateSQL = sprintf("UPDATE " . T_RESERVES . " SET  id_reserva=%s, client_id=%s, data=%s, hora=%s, adults=%s,nens4_9=%s, 
       nens10_14 = %s, cotxets = % s, reserva_pastis= %s, reserva_info_pastis = %s, observacions = %s, 
