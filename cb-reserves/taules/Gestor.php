@@ -418,7 +418,8 @@ class Gestor {
 
       
       case "text":
-         $theValue = htmlspecialchars($theValue?$theValue:"",ENT_QUOTES);
+         $theValue = htmlspecialchars($theValue,ENT_QUOTES);
+        // $theValue = htmlspecialchars($theValue?$theValue:"",ENT_QUOTES);
         // $theValue = htmlentities($theValue,ENT_QUOTES);
         $theValue = ($theValue != "") ? "'" . $theValue . "'" : "NULL";
         break;
