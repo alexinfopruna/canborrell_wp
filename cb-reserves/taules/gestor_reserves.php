@@ -567,8 +567,8 @@ class gestor_reserves extends Gestor {
     /*
      * 
      */
-    if (!$_POST['nens4_9'] || is_null($_POST['nens4_9']))      $_POST['nens4_9'] = "0";
-    if (!$_POST['nens10_14'] || is_null($_POST['nens10_14']))      $_POST['nens10_14'] = "0";
+    if (!$_POST['nens4_9'] || is_null($_POST['nens4_9']) || $_POST['nens4_9'] == "")      $_POST['nens4_9'] = "0";
+    if (!$_POST['nens10_14'] || is_null($_POST['nens10_14']) || $_POST['nens10_14'] == "")      $_POST['nens10_14'] = "0";
 
     $updateSQL = sprintf("UPDATE " . T_RESERVES . " SET  id_reserva=%s, client_id=%s, data=%s, hora=%s, adults=%s,nens4_9=%s, 
       nens10_14 = %s, cotxets = % s, reserva_pastis= %s, reserva_info_pastis = %s, observacions = %s, 
@@ -576,9 +576,9 @@ class gestor_reserves extends Gestor {
       $this->SQLVal($_POST['id_reserva'], "text"), $this->SQLVal($_POST['client_id'], "text"), 
       $this->SQLVal($_POST['data'], "datePHP"), $this->SQLVal($_POST['hora'], "text"), 
       $this->SQLVal($_POST['adults'], "text"), 
-      $_POST['nens4_9'], 
-      $_POST['nens10_14'], 
-      $_POST['cotxets'], 
+      $this->SQLVal($_POST['nens4_9'], "text"), 
+      $this->SQLVal($_POST['nens10_14'], "text"), 
+      $this->SQLVal($_POST['cotxets'], "text"), 
       $this->SQLVal($_POST['RESERVA_PASTIS'] == 'on' ? 1 : 0, "zero"), 
       $this->SQLVal($_POST['INFO_PASTIS'], "text"), $this->SQLVal($_POST['observacions'], "text"), 
       $this->SQLVal($_POST['resposta'], "text"), $this->SQLVal($_POST['reserva_info'], "int"), 
