@@ -243,6 +243,9 @@ $preu_persona = $pagaments->get_preu_persona_reserva($id);
   var preu_unit = <?php echo $preu_persona ?>;
   var fcallback = "<?php echo $responaseok_callback_alter ?>";
   var import_pendent = "<?php echo $pagaments->get_import_pendent($id); ?>";
+  var coberts =     <?php echo $comensals ?>;            
+  var nom = "sense_nom";            
+
   var coberts_pendents =  Math.ceil(import_pendent / preu_unit );
   PAGAMENTS_PARCIALS = <?php echo (defined('PAGAMENTS_PARCIALS') && PAGAMENTS_PARCIALS == true)?"true":"false";  ?>;
   $(function () {
@@ -357,9 +360,9 @@ $preu_persona = $pagaments->get_preu_persona_reserva($id);
           var t = setInterval(ctimer, TIMER_INTERVAL, idr);
           
           var rand = "...";
-          var coberts = $("#ncoberts").val();
+          //var coberts = $("#ncoberts").val();
           var preu = preu_unit * coberts ;
-          var nom = $("#nom").val();
+          //var nom = $("#nom").val();
           if (nom=="") nom = "sense_nom"
           var order = $("#dsorder").val();
           var desti = "/cb-reserves/taules/Gestor_pagaments.php?a=afegir_pagament&b=" + order + "&c=" + idr + "&d=" + preu + "&e=" + preu_unit +  "&f=" + nom  ;
