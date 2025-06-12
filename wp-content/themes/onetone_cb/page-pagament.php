@@ -243,7 +243,7 @@ $preu_persona = $pagaments->get_preu_persona_reserva($id);
   var preu_unit = <?php echo $preu_persona ?>;
   var fcallback = "<?php echo $responaseok_callback_alter ?>";
   var import_pendent = "<?php echo $pagaments->get_import_pendent($id); ?>";
-  var coberts =     <?php echo $comensals ?>;            
+  var coberts =     <?php echo $fila['coberts'] ?>;            
   var nom = "sense_nom";            
 
   var coberts_pendents =  Math.ceil(import_pendent / preu_unit );
