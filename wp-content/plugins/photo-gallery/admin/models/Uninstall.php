@@ -39,7 +39,7 @@ class UninstallModel_bwg {
   public function delete_db_tables($params) {
     global $wpdb;
     // Delete terms.
-    $terms = get_terms('bwg_tag', array( 'orderby' => 'count', 'hide_empty' => 0 ));
+    $terms = get_terms( array( 'taxonomy'   => 'bwg_tag', 'orderby' => 'count', 'hide_empty' => 0 ) );
     foreach ( $terms as $term ) {
       wp_delete_term($term->term_id, 'bwg_tag');
     }

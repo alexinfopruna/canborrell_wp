@@ -3,11 +3,10 @@
  * Plugin Name: Photo Gallery
  * Plugin URI: https://10web.io/plugins/wordpress-photo-gallery/?utm_source=photo_gallery&utm_medium=free_plugin
  * Description: This plugin is a fully responsive gallery plugin with advanced functionality.  It allows having different image galleries for your posts and pages. You can create unlimited number of galleries, combine them into albums, and provide descriptions and tags.
- * Version: 1.8.24
+ * Version: 1.8.35
  * Author: Photo Gallery Team
  * Author URI: https://10web.io/plugins/?utm_source=photo_gallery&utm_medium=free_plugin
  * Text Domain: photo-gallery
- * License: GNU/GPLv3 http://www.gnu.org/licenses/gpl-3.0.html
  */
 
 defined('ABSPATH') || die('Access Denied');
@@ -108,8 +107,8 @@ final class BWG {
     $this->plugin_url = plugins_url(plugin_basename(dirname(__FILE__)));
     $this->front_url = $this->plugin_url;
     $this->main_file = plugin_basename(__FILE__);
-    $this->plugin_version = '1.8.24';
-    $this->db_version = '1.8.24';
+    $this->plugin_version = '1.8.35';
+    $this->db_version = '1.8.35';
     $this->prefix = 'bwg';
     $this->nicename = __('Photo Gallery', 'photo-gallery');
     require_once($this->plugin_dir . '/framework/WDWLibrary.php');
@@ -215,9 +214,6 @@ final class BWG {
       add_action('admin_notices', array($this, 'check_addons_compatibility'));
     }
   	add_action('plugins_loaded', array($this, 'plugins_loaded'));
-
-    // Load a plugin translated strings.
-    load_plugin_textdomain( 'photo-gallery', false, plugin_basename(dirname(__FILE__)) . '/languages' );
 
     if ( !$this->is_pro ) {
       add_filter("plugin_row_meta", array($this, 'add_plugin_meta_links'), 10, 2);
@@ -450,8 +446,10 @@ final class BWG {
    */
   public function dismiss_notice() {
     $nonce = isset($_POST['nonce']) ? sanitize_text_field($_POST['nonce']) : '';
-    if ( ! wp_verify_nonce( $nonce, 'ajax-nonce' ) ) {
-      return false;
+    if ( !wp_verify_nonce($nonce, 'ajax-nonce')
+      || !function_exists('current_user_can')
+      || !current_user_can('manage_options') ) {
+      die('Permission Denied.');
     }
     $action = WDWLibrary::get('action');
     $allowed_pages = array(
@@ -1448,7 +1446,7 @@ final class BWG {
    * Languages localization.
    */
   public function language_load() {
-    load_plugin_textdomain($this->prefix, FALSE, basename(dirname(__FILE__)) . '/languages');
+      load_plugin_textdomain( 'photo-gallery', false, plugin_basename(dirname(__FILE__)) . '/languages' );
   }
 
   public function init_free_users_lib() {

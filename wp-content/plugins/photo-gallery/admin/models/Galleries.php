@@ -725,17 +725,31 @@ class GalleriesModel_bwg {
           continue;
         }
         $filename = WDWLibrary::get('input_filename_' . $image_id);
+        $description = WDWLibrary::get('image_description_' . $image_id, '', 'wp_filter_post_kses');
+        $description = WDWLibrary::strip_tags(htmlspecialchars_decode($description, ENT_QUOTES));
         $description = str_replace(array(
-                                     '\\',
-                                     '\t'
-                                   ), '', WDWLibrary::get('image_description_' . $image_id, '', 'wp_filter_post_kses'));
-        $description = WDWLibrary::strip_tags(htmlspecialchars_decode($description));
-        $alt = str_replace(array(
-                             '\\',
-                             '\t'
-                           ), '', WDWLibrary::get('image_alt_text_' . $image_id, '', 'wp_filter_post_kses'));
+          '=',
+          '&lt;',
+          '&amp;',
+          '&gt;',
+          '\\',
+          '\t',
+          '"'
+        ), '', $description);
+
+
+        $alt = WDWLibrary::get('image_alt_text_' . $image_id, '', 'wp_filter_post_kses');
         $alt = preg_replace("/<a[^>]*>|<\/a>/", '', $alt);
-        $alt = WDWLibrary::strip_tags(htmlspecialchars_decode($alt));
+        $alt = WDWLibrary::strip_tags(htmlspecialchars_decode($alt, ENT_QUOTES));
+        $alt = str_replace(array(
+          '=',
+          '&lt;',
+          '&amp;',
+          '&gt;',
+          '\\',
+          '\t',
+          '"'
+        ), '', $alt);
         $date = WDWLibrary::get('input_date_modified_' . $image_id, date('Ymd'));
         $size = WDWLibrary::get('input_size_' . $image_id);
         $resolution = WDWLibrary::get('input_resolution_' . $image_id);

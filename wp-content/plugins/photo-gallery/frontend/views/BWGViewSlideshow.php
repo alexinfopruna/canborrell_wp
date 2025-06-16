@@ -641,12 +641,12 @@ public function inline_styles($bwg, $theme_row, $params, $image_width, $image_he
 	  height: <?php echo esc_html($image_height); ?>px;
   }
   #bwg_container1_<?php echo esc_attr($bwg); ?> #bwg_container2_<?php echo esc_attr($bwg); ?> .bwg_slideshow_image_<?php echo esc_attr($bwg); ?> {
-	  max-width: <?php echo esc_html($image_width - ($filmstrip_direction == 'vertical' ? $slideshow_filmstrip_width : 0)); ?>px;
-	  max-height: <?php echo esc_html($image_height - ($filmstrip_direction == 'horizontal' ? $slideshow_filmstrip_height : 0)); ?>px;
+	  max-width: <?php echo esc_html(floatval($image_width) - ($filmstrip_direction == 'vertical' ? floatval($slideshow_filmstrip_width) : 0)); ?>px;
+	  max-height: <?php echo esc_html(floatval($image_height) - ($filmstrip_direction == 'horizontal' ? floatval($slideshow_filmstrip_height) : 0)); ?>px;
   }
   #bwg_container1_<?php echo esc_attr($bwg); ?> #bwg_container2_<?php echo esc_attr($bwg); ?> .bwg_slideshow_embed_<?php echo esc_attr($bwg); ?> {
-    width: <?php echo esc_html($image_width - ($filmstrip_direction == 'vertical' ? $slideshow_filmstrip_width : 0)); ?>px;
-    height: <?php echo esc_html($image_height - ($filmstrip_direction == 'horizontal' ? $slideshow_filmstrip_height : 0)); ?>px;
+    width: <?php echo esc_html(floatval($image_width) - ($filmstrip_direction == 'vertical' ? floatval($slideshow_filmstrip_width) : 0)); ?>px;
+    height: <?php echo esc_html(floatval($image_height) - ($filmstrip_direction == 'horizontal' ? floatval($slideshow_filmstrip_height) : 0)); ?>px;
   }
   #bwg_container1_<?php echo esc_attr($bwg); ?> #bwg_container2_<?php echo esc_attr($bwg); ?> #bwg_slideshow_play_pause_<?php echo esc_attr($bwg); ?> {
 	  background: transparent url("<?php echo esc_url(BWG()->plugin_url . '/images/blank.gif'); ?>") repeat scroll 0 0;
@@ -672,7 +672,7 @@ public function inline_styles($bwg, $theme_row, $params, $image_width, $image_he
 	  height: <?php echo esc_html($theme_row->slideshow_rl_btn_height); ?>px;
 	  font-size: <?php echo esc_html($theme_row->slideshow_rl_btn_size); ?>px;
 	  width: <?php echo esc_html($theme_row->slideshow_rl_btn_width); ?>px;
-	  opacity: <?php echo number_format($theme_row->slideshow_close_btn_transparent / 100, 2, ".", ""); ?>;
+	  opacity: <?php echo number_format(floatval($theme_row->slideshow_close_btn_transparent) / 100, 2, ".", ""); ?>;
   }
   #bwg_container1_<?php echo esc_attr($bwg); ?> #bwg_container2_<?php echo esc_attr($bwg); ?> #spider_slideshow_left-ico_<?php echo esc_attr($bwg); ?>:hover,
   #bwg_container1_<?php echo esc_attr($bwg); ?> #bwg_container2_<?php echo esc_attr($bwg); ?> #spider_slideshow_right-ico_<?php echo esc_attr($bwg); ?>:hover {
@@ -715,13 +715,13 @@ public function inline_styles($bwg, $theme_row, $params, $image_width, $image_he
   /* Filmstrip dimension */
   #bwg_container1_<?php echo esc_attr($bwg); ?> #bwg_container2_<?php echo esc_attr($bwg); ?> .bwg_slideshow_filmstrip_<?php echo esc_attr($bwg); ?> {
 	  <?php echo esc_html($left_or_top); ?>: 20px;
-	  <?php echo esc_html($width_or_height); ?>: <?php echo esc_html(($filmstrip_direction == 'horizontal' ? $image_width - 40 : $image_height - 40)); ?>px;
+	  <?php echo esc_html($width_or_height); ?>: <?php echo esc_html(($filmstrip_direction == 'horizontal' ? floatval($image_width) - 40 : floatval($image_height) - 40)); ?>px;
 	  /*z-index: 10106;*/
   }
   #bwg_container1_<?php echo esc_attr($bwg); ?> #bwg_container2_<?php echo esc_attr($bwg); ?> .bwg_slideshow_filmstrip_thumbnails_<?php echo esc_attr($bwg); ?> {
     <?php echo esc_html($left_or_top); ?>: 0px;
-    width: <?php echo esc_html(($filmstrip_direction == 'horizontal' ? ($slideshow_filmstrip_width + $filmstrip_thumb_margin_hor) * count($image_rows) : $slideshow_filmstrip_width)); ?>px;
-    height: <?php echo esc_html(($filmstrip_direction == 'horizontal' ? $slideshow_filmstrip_height : ($slideshow_filmstrip_height + $filmstrip_thumb_margin_hor) * count($image_rows))); ?>px;
+    width: <?php echo esc_html(($filmstrip_direction == 'horizontal' ? (floatval($slideshow_filmstrip_width) + floatval($filmstrip_thumb_margin_hor)) * count($image_rows) : floatval($slideshow_filmstrip_width))); ?>px;
+    height: <?php echo esc_html(($filmstrip_direction == 'horizontal' ? floatval($slideshow_filmstrip_height) : (floatval($slideshow_filmstrip_height) + floatval($filmstrip_thumb_margin_hor)) * count($image_rows))); ?>px;
   }
   #bwg_container1_<?php echo esc_attr($bwg); ?> #bwg_container2_<?php echo esc_attr($bwg); ?> .bwg_slideshow_filmstrip_thumbnail_<?php echo esc_attr($bwg); ?> {
     width: <?php echo esc_html($slideshow_filmstrip_width); ?>px;
@@ -734,7 +734,7 @@ public function inline_styles($bwg, $theme_row, $params, $image_width, $image_he
 	  border: <?php echo esc_html($theme_row->slideshow_filmstrip_thumb_active_border_width); ?>px solid #<?php echo esc_html($theme_row->slideshow_filmstrip_thumb_active_border_color); ?>;
   }
   #bwg_container1_<?php echo esc_attr($bwg); ?> #bwg_container2_<?php echo esc_attr($bwg); ?> .bwg_slideshow_thumb_deactive_<?php echo esc_attr($bwg); ?> {
-    opacity: <?php echo number_format($theme_row->slideshow_filmstrip_thumb_deactive_transparent / 100, 2, ".", ""); ?>;
+    opacity: <?php echo number_format(floatval($theme_row->slideshow_filmstrip_thumb_deactive_transparent) / 100, 2, ".", ""); ?>;
   }
   #bwg_container1_<?php echo esc_attr($bwg); ?> #bwg_container2_<?php echo esc_attr($bwg); ?> .bwg_slideshow_filmstrip_left_<?php echo esc_attr($bwg); ?>,
   #bwg_container1_<?php echo esc_attr($bwg); ?> #bwg_container2_<?php echo esc_attr($bwg); ?> .bwg_slideshow_filmstrip_left_disabled_<?php echo esc_attr($bwg); ?> {
@@ -803,7 +803,7 @@ public function inline_styles($bwg, $theme_row, $params, $image_width, $image_he
   #bwg_container1_<?php echo esc_attr($bwg); ?> #bwg_container2_<?php echo esc_attr($bwg); ?> .bwg_slideshow_watermark_image_<?php echo esc_attr($bwg); ?> {
 	  max-height: <?php echo esc_html($watermark_height); ?>px;
 	  max-width: <?php echo esc_html($watermark_width); ?>px;
-	  opacity: <?php echo number_format($watermark_opacity / 100, 2, ".", ""); ?>;
+	  opacity: <?php echo number_format(floatval($watermark_opacity) / 100, 2, ".", ""); ?>;
   }
   #bwg_container1_<?php echo esc_attr($bwg); ?> #bwg_container2_<?php echo esc_attr($bwg); ?> .bwg_slideshow_watermark_text_<?php echo esc_attr($bwg); ?>,
   #bwg_container1_<?php echo esc_attr($bwg); ?> #bwg_container2_<?php echo esc_attr($bwg); ?> .bwg_slideshow_watermark_text_<?php echo esc_attr($bwg); ?>:hover {
@@ -825,7 +825,7 @@ public function inline_styles($bwg, $theme_row, $params, $image_width, $image_he
 	  <?php } else { ?>
 		margin: 5px;
 	  <?php } ?>
-	  <?php if (!$slideshow_filmstrip_type && $slideshow_title_position[0] == $theme_row->slideshow_filmstrip_pos) echo esc_html($theme_row->slideshow_filmstrip_pos) . ':' . ($theme_row->slideshow_dots_height + 4) . 'px;'; ?>
+	  <?php if (!$slideshow_filmstrip_type && $slideshow_title_position[0] == $theme_row->slideshow_filmstrip_pos) echo esc_html($theme_row->slideshow_filmstrip_pos) . ':' . (floatval($theme_row->slideshow_dots_height) + 4) . 'px;'; ?>
   }
   #bwg_container1_<?php echo esc_attr($bwg); ?> #bwg_container2_<?php echo esc_attr($bwg); ?> .bwg_slideshow_description_text_<?php echo esc_attr($bwg); ?> {
 	  font-size: <?php echo esc_html($theme_row->slideshow_description_font_size); ?>px;
@@ -853,8 +853,8 @@ public function inline_styles($bwg, $theme_row, $params, $image_width, $image_he
 	  <?php echo esc_html($theme_row->slideshow_filmstrip_pos); ?>: 0;
   }
   #bwg_container1_<?php echo esc_attr($bwg); ?> #bwg_container2_<?php echo esc_attr($bwg); ?> .bwg_slideshow_dots_thumbnails_<?php echo esc_attr($bwg); ?> {
-	  height: <?php echo esc_html(($theme_row->slideshow_dots_height + $theme_row->slideshow_dots_margin * 2)); ?>px;
-	  width: <?php echo esc_html(($theme_row->slideshow_dots_width + $theme_row->slideshow_dots_margin * 2) * count($image_rows)); ?>px;
+	  height: <?php echo esc_html((floatval($theme_row->slideshow_dots_height) + floatval($theme_row->slideshow_dots_margin) * 2)); ?>px;
+	  width: <?php echo esc_html((floatval($theme_row->slideshow_dots_width) + floatval($theme_row->slideshow_dots_margin) * 2) * count($image_rows)); ?>px;
   }
   #bwg_container1_<?php echo esc_attr($bwg); ?> #bwg_container2_<?php echo esc_attr($bwg); ?> .bwg_slideshow_dots_active_<?php echo esc_attr($bwg); ?> {
 	  background: #<?php echo esc_html($theme_row->slideshow_dots_active_background_color); ?>;

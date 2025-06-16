@@ -138,7 +138,7 @@ class WidgetView_bwg {
 		</p>
 		<p id="p_albums" style="display:<?php echo ($instance['type'] == "album") ? "" : "none" ?>;">
 		  <label for="<?php echo esc_attr($id_album_id); ?>"><?php esc_html_e('Gallery Groups:', 'photo-gallery'); ?></label><br>
-		  <select name="<?php echo esc_attr($name_album_id); ?>" id="<?php echo esc_attr($id_album_i); ?>" class="widefat">
+		  <select name="<?php echo esc_attr($name_album_id); ?>" id="<?php echo esc_attr($id_album_id); ?>" class="widefat">
 			<option value="0"><?php esc_html_e('All Galleries', 'photo-gallery'); ?></option>
 			<?php
 			foreach ($album_rows as $album_row) {

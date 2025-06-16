@@ -13,7 +13,7 @@ class EditimageView_bwg {
 
     $instagram_post_width  = WDWLibrary::get('instagram_post_width', $image_width, 'intval');
     $instagram_post_height = WDWLibrary::get('instagram_post_height', $image_height, 'intval');
-    $modified_date = WDWLibrary::get('modified_date', '');
+    $modified_date = WDWLibrary::get('modified_date', '', 'esc_html');
     $FeedbackSocialProofHeight = 176;
     if ( $instagram_post_width ) {
       if ( $image_height / ($instagram_post_height + $FeedbackSocialProofHeight) < $image_width / $instagram_post_width ) {
@@ -25,7 +25,7 @@ class EditimageView_bwg {
         $instagram_post_width = $image_width;
       }
     }
-    $image_id =  WDWLibrary::get('image_id', '0');
+    $image_id =  WDWLibrary::get('image_id', '0', 'intval');
     $image_url =  WDWLibrary::get('image_url', '', 'esc_url');
 	?>
 	<div id="loading_div"></div>
@@ -78,8 +78,8 @@ class EditimageView_bwg {
     $image_width = $popup_width - $thumb_width - 70;
     $popup_height = ((int) WDWLibrary::get('height', 600)) - 75;
     $image_height = $popup_height - 70;
-    $image_id = WDWLibrary::get('image_id','0');
-    $edit_type =  WDWLibrary::get('edit_type','');
+    $image_id = WDWLibrary::get('image_id','0', 'intval');
+    $edit_type =  WDWLibrary::get('edit_type','', 'esc_html');
     $task = WDWLibrary::get('task');
 	  $aspect_ratio = WDWLibrary::get('aspect_ratio', 0);
     $x = (int) WDWLibrary::get('x', 0);

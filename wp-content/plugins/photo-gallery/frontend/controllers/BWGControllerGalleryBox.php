@@ -62,6 +62,9 @@ class BWGControllerGalleryBox {
    * Add comment.
    */
 	public function add_comment() {
+		if (!BWG()->is_pro) {
+			return false;
+		}
 		global $wpdb;
 		$error = false;
 		$json =  array();
@@ -74,7 +77,12 @@ class BWGControllerGalleryBox {
 		$moderation = trim(WDWLibrary::get('comment_moderation', 0));
 		$privacy_policy = WDWLibrary::get('privacy_policy', '');
 		$published = (current_user_can('manage_options') || !$moderation) ? 1 : 0;
-		
+
+		if (!wp_verify_nonce($_POST['bwg_nonce'], 'comment')) {
+			$error = true;
+			$error_messages['nonce'] = __('Security check failed.', 'photo-gallery');
+		}
+
 		if ( empty($name) ) {
 				$error = true;
 				$error_messages['name'] = sprintf( __('The %s field is required.', 'photo-gallery'), 'name' );

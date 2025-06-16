@@ -481,7 +481,7 @@ class BWGViewBlog_style extends BWGViewSite {
       #bwg_container1_<?php echo esc_attr($bwg); ?> #bwg_container2_<?php echo esc_attr($bwg); ?> .bwg_blog_style_watermark_img_<?php echo esc_attr($bwg); ?>{
 				max-width: 100%;
 				<?php if ( !empty($params['watermark_opacity']) ) { ?>
-				opacity: <?php echo number_format($params['watermark_opacity'] / 100, 2, ".", ""); ?>;
+				opacity: <?php echo number_format(floatval($params['watermark_opacity']) / 100, 2, ".", ""); ?>;
 				<?php } ?>
 				position: relative;
 				z-index: 10141;

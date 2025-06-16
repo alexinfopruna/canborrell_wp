@@ -106,28 +106,28 @@ class GalleriesView_bwg extends AdminView_bwg {
             </th>
             <td class="column-primary column-title" data-colname="<?php _e('Title', 'photo-gallery'); ?>">
               <strong class="has-media-icon">
-                <a href="<?php echo $edit_url; ?>">
+                <a href="<?php echo esc_url($edit_url); ?>">
                   <span class="media-icon image-icon">
-                    <img class="preview-image" title="<?php echo $row->name; ?>" src="<?php echo $preview_image; ?>" width="60" height="60" />
+                    <img class="preview-image" title="<?php echo esc_html($row->name); ?>" src="<?php echo esc_url($preview_image); ?>" width="60" height="60" />
                   </span>
-                  <?php echo $row->name; ?>
+                  <?php echo esc_html($row->name); ?>
                 </a>
                 <?php if ( !$row->published ) { ?>
                   — <span class="post-state"><?php _e('Unpublished', 'photo-gallery'); ?></span>
                 <?php } ?>
               </strong>
               <div class="row-actions">
-                <span><a href="<?php echo $edit_url; ?>"><?php _e('Edit', 'photo-gallery'); ?></a> |</span>
-                <span><a href="<?php echo $publish_url; ?>"><?php echo($row->published ? __('Unpublish', 'photo-gallery') : __('Publish', 'photo-gallery')); ?></a> |</span>
-                <span class="trash"><a onclick="if (!confirm('<?php echo addslashes(__('Do you want to delete selected item?', 'photo-gallery')); ?>')) {return false;}" href="<?php echo $delete_url; ?>"><?php _e('Delete', 'photo-gallery'); ?></a> |</span>
-                <span><a href="<?php echo $duplicate_url; ?>"><?php _e('Duplicate', 'photo-gallery'); ?></a> |</span>
+                <span><a href="<?php echo esc_url($edit_url); ?>"><?php _e('Edit', 'photo-gallery'); ?></a> |</span>
+                <span><a href="<?php echo esc_url($publish_url); ?>"><?php echo($row->published ? __('Unpublish', 'photo-gallery') : __('Publish', 'photo-gallery')); ?></a> |</span>
+                <span class="trash"><a onclick="if (!confirm('<?php echo addslashes(__('Do you want to delete selected item?', 'photo-gallery')); ?>')) {return false;}" href="<?php echo esc_url($delete_url); ?>"><?php _e('Delete', 'photo-gallery'); ?></a> |</span>
+                <span><a href="<?php echo esc_url($duplicate_url); ?>"><?php _e('Duplicate', 'photo-gallery'); ?></a> |</span>
                 <span><a target="_blank" href="<?php echo $preview_url; ?>"><?php _e('Preview', 'photo-gallery'); ?></a></span>
               </div>
               <button class="toggle-row" type="button">
                 <span class="screen-reader-text"><?php _e('Show more details', 'photo-gallery'); ?></span>
               </button>
             </td>
-            <td class="col_count" data-colname="<?php _e('Images count', 'photo-gallery'); ?>"><?php echo $row->images_count; ?></td>
+            <td class="col_count" data-colname="<?php _e('Images count', 'photo-gallery'); ?>"><?php echo intval($row->images_count); ?></td>
             <td data-colname="<?php _e('Author', 'photo-gallery'); ?>" class="col-author"><?php echo ($user) ? $user->display_name : ''; ?></td>
           </tr>
           <?php
@@ -258,10 +258,10 @@ class GalleriesView_bwg extends AdminView_bwg {
 						<div class="bwg-preview-section">
 							<p><?php _e('Preview gallery in:', 'photo-gallery'); ?></p>
 							<?php  foreach ( $get_gallery_types as $key => $value ) { ?>
-								<div class="bwg-preview-gallery-type" onclick="window.open('<?php echo $value['preview_url']; ?>')">
+								<div class="bwg-preview-gallery-type" onclick="window.open('<?php echo esc_url($value['preview_url']); ?>')">
 									<div class="bwg-preview-gallery-type-icon"></div>
 									<div class="bwg-preview-gallery-type-title">
-										<?php echo $value["title"]; ?>
+										<?php echo esc_html($value["title"]); ?>
 									</div>
 								</div>
 						 	<?php } ?>
@@ -280,7 +280,7 @@ class GalleriesView_bwg extends AdminView_bwg {
     <div class="wd-table meta-box-sortables">
       <div class="wd-table-col wd-table-col-100 wd-table-col-left">
         <div class="wd-box-section">
-          <div class="postbox <?php echo $current_id ? 'closed' : '' ?>">
+          <div class="postbox <?php echo intval($current_id) ? 'closed' : '' ?>">
             <button class="button-link handlediv" type="button" aria-expanded="true">
               <span class="screen-reader-text"><?php _e('Toggle panel:', 'photo-gallery'); ?></span>
               <span class="toggle-indicator" aria-hidden="true"></span>
@@ -292,7 +292,7 @@ class GalleriesView_bwg extends AdminView_bwg {
               <div class="wd-box-content">
                 <div class="wd-group">
                   <label class="wd-label" for="url"><?php _e('Preview image', 'photo-gallery'); ?> </label>
-                  <a href="<?php echo $params['add_preview_image_action']; ?>"
+                  <a href="<?php echo esc_url($params['add_preview_image_action']); ?>"
                      class="button thickbox thickbox-preview"
                      id="button_preview_image"
                      title="<?php _e('Add Preview Image', 'photo-gallery'); ?>"
@@ -335,7 +335,7 @@ class GalleriesView_bwg extends AdminView_bwg {
                   <div class="wd-box-content">
                     <div class="wd-group">
                       <label class="wd-label" for="author"><?php _e('Author', 'photo-gallery'); ?></label>
-                      <span><?php echo $row->author; ?></span>
+                      <span><?php echo esc_html($row->author); ?></span>
                     </div>
                     <div class="wd-group">
                       <label class="wd-label" for="slug"><?php _e('Slug', 'photo-gallery'); ?></label>
@@ -356,7 +356,7 @@ class GalleriesView_bwg extends AdminView_bwg {
                         }
                         else {
                           ?>
-                          <textarea cols="36" rows="5" id="description" name="description" class="wd-resize-vertical"><?php echo $row->description; ?></textarea>
+                          <textarea cols="36" rows="5" id="description" name="description" class="wd-resize-vertical"><?php echo esc_html($row->description); ?></textarea>
                           <?php
                         }
                         ?>
@@ -375,13 +375,13 @@ class GalleriesView_bwg extends AdminView_bwg {
                         foreach ($params['gallery_types'] as $id => $type) {
                           ?>
                           <option value="<?php echo $id; ?>" <?php echo(($params['gallery_type'] == $id) ? 'selected="selected"' : ''); ?>>
-                            <?php echo $type; ?>
+                            <?php echo esc_html($type); ?>
                           </option>
                           <?php
                         }
                         ?>
                       </select>
-                      <input type="text" id="gallery_type_old" name="gallery_type_old" value="<?php echo $row->gallery_type; ?>" style='display:none;' />
+                      <input type="text" id="gallery_type_old" name="gallery_type_old" value="<?php echo esc_html($row->gallery_type); ?>" style='display:none;' />
 					  <?php if ( empty($params['rows'][0]) ) { ?>
                       <p class="description"><?php _e('Select the type of gallery content. Mixed galleries can include all supported items. Alternatively, you can showcase images from one specific source only.', 'photo-gallery'); ?></p>
 					  <?php } else { ?>
@@ -435,7 +435,7 @@ class GalleriesView_bwg extends AdminView_bwg {
     $ids_string = '';
     ?>
     <div class="buttons_div_left">
-      <a href="<?php echo $params['add_images_action']; ?>" id="add_image_bwg"
+      <a href="<?php echo esc_url($params['add_images_action']); ?>" id="add_image_bwg"
          class="button button-primary button-large thickbox thickbox-preview"
          title="<?php _e("Add Images", 'photo-gallery'); ?>"
          style="margin-bottom:5px; <?php if ( $params['gallery_type'] != '' ) { echo 'display:none'; } ?>">
@@ -684,7 +684,7 @@ class GalleriesView_bwg extends AdminView_bwg {
             <?php if( !$is_google_photos ) { ?>
             <th class="<?php if ($params['orderby'] == 'order') echo 'connectedSortable'; ?> col_drag handles ui-sortable-handle">
               <div title="<?php _e('Drag to re-order', 'photo-gallery'); ?>" class="wd-drag handle dashicons dashicons-move <?php if ($params['orderby'] != 'order') echo 'wd-hide'; ?>"></div>
-              <input class="wd-hide wd-order" id="order_input_<?php echo $row->id; ?>" name="order_input_<?php echo $row->id; ?>" type="text" size="1" value="<?php echo $row->order; ?>" />
+              <input class="wd-hide wd-order" id="order_input_<?php echo $row->id; ?>" name="order_input_<?php echo $row->id; ?>" type="text" size="1" value="<?php echo esc_attr($row->order); ?>" />
             </th>
             <th class="check-column">
               <input type="checkbox" id="check_<?php echo $row->id; ?>" name="check[<?php echo $row->id; ?>]" onclick="spider_check_all(this)" />
@@ -698,12 +698,12 @@ class GalleriesView_bwg extends AdminView_bwg {
                       <img id="image_thumb_<?php echo $row->id; ?>"
                            class="preview-image gallery_image_thumb <?php echo $temp ? '' : 'bwg_no_border' ?>"
                           <?php echo $temp ? 'tempthumb_src=""' : ''; ?>
-                           data-embed="<?php echo $is_embed; ?>"
-                           data-instagram="<?php echo $is_instagram; ?>"
-                           data-type="<?php echo $row->filetype; ?>"
-                           data-src="<?php echo $temp ? '' : $image_url ?>"
-                           title="<?php echo $row->filename; ?>"
-                           alt="<?php echo $row->filename; ?>"/>
+                           data-embed="<?php echo esc_html($is_embed); ?>"
+                           data-instagram="<?php echo esc_html($is_instagram); ?>"
+                           data-type="<?php echo esc_html($row->filetype); ?>"
+                           data-src="<?php echo $temp ? '' : esc_url($image_url) ?>"
+                           title="<?php echo esc_html($row->filename); ?>"
+                           alt="<?php echo esc_html($row->filename); ?>"/>
 
                     </span>
                     <?php
@@ -722,9 +722,9 @@ class GalleriesView_bwg extends AdminView_bwg {
                   </span>
                   <?php if (!$is_oembed_instagram_post) { ?>
                   <a class="thickbox thickbox-preview" onclick="jQuery('#loading_div').show();"
-                     href="<?php echo $image_link; ?>">
+                     href="<?php echo esc_url($image_link); ?>">
                     <?php } ?>
-                    <?php echo $row->filename; ?><?php if (!$is_oembed_instagram_post) { ?>
+                    <?php echo esc_html($row->filename); ?><?php if (!$is_oembed_instagram_post) { ?>
                   </a>
                   <?php } ?>
                   <i class="wd-info dashicons dashicons-info" data-id="wd-info-<?php echo $row->id; ?>"></i>
@@ -772,11 +772,11 @@ class GalleriesView_bwg extends AdminView_bwg {
               <div class="bwg-td-container">
                 <div class="bwg-td-item">
                   <label class="wd-table-label" for="image_alt_text_<?php echo $row->id; ?>"><?php _e('Alt/Title', 'photo-gallery'); ?></label>
-                  <textarea rows="4" id="image_alt_text_<?php echo $row->id; ?>" <?php disabled($is_google_photos) ?> name="image_alt_text_<?php echo $row->id; ?>"><?php echo $row->alt; ?></textarea>
+                  <textarea rows="4" id="image_alt_text_<?php echo $row->id; ?>" <?php disabled($is_google_photos) ?> name="image_alt_text_<?php echo $row->id; ?>"><?php echo esc_html($row->alt); ?></textarea>
                 </div>
                 <div class="bwg-td-item">
                   <label class="wd-table-label" for="image_description_<?php echo $row->id; ?>"><?php _e('Description', 'photo-gallery'); ?></label>
-                  <textarea rows="4" id="image_description_<?php echo $row->id; ?>" <?php disabled($is_google_photos) ?> name="image_description_<?php echo $row->id; ?>"><?php echo $row->description; ?></textarea>
+                  <textarea rows="4" id="image_description_<?php echo $row->id; ?>" <?php disabled($is_google_photos) ?> name="image_description_<?php echo $row->id; ?>"><?php echo esc_html($row->description); ?></textarea>
                 </div>
                 <?php
                   if ( function_exists('BWGEC') ) {
@@ -802,7 +802,7 @@ class GalleriesView_bwg extends AdminView_bwg {
                       ?>
                     </p>
                   </div>
-                  <textarea rows="4" onkeypress="prevent_new_line(event)" class="bwg_redirect_url" id="redirect_url_<?php echo $row->id; ?>" name="redirect_url_<?php echo $row->id; ?>"><?php echo $row->redirect_url; ?></textarea>
+                  <textarea rows="4" onkeypress="prevent_new_line(event)" class="bwg_redirect_url" id="redirect_url_<?php echo $row->id; ?>" name="redirect_url_<?php echo $row->id; ?>"><?php echo esc_url($row->redirect_url); ?></textarea>
                 </div>
                 <div class="bwg-td-item bwg-td-item-tags">
                   <label class="wd-table-label"><?php _e('Tags', 'photo-gallery'); ?></label>
@@ -815,7 +815,7 @@ class GalleriesView_bwg extends AdminView_bwg {
                       foreach ( $row->tags as $row_tag_data ) {
                         ?>
                         <div class="tag_div<?php echo $row_tag_data->term_id == 'temptagid' ? ' wd-tag-template wd-hide' : ''; ?>" id="<?php echo $row->id; ?>_tag_<?php echo $row_tag_data->term_id; ?>">
-                          <span class="tag_name"><?php echo $row_tag_data->name; ?></span>
+                          <span class="tag_name"><?php echo esc_html($row_tag_data->name); ?></span>
                           <span class="dashicons dashicons-no-alt wd-delete-tag" title="<?php _e('Remove tag', 'photo-gallery'); ?>" onclick="bwg_remove_tag('<?php echo $row_tag_data->term_id; ?>', '<?php echo $row->id; ?>')" />
                         </div>
                         <?php
@@ -876,7 +876,7 @@ class GalleriesView_bwg extends AdminView_bwg {
           'TB_iframe' => '1',
         ), $query_url);
       ?>
-      <a class="wd-add-pricelist thickbox thickbox-preview wd-hide" href="<?php echo $query_url; ?>"></a>
+      <a class="wd-add-pricelist thickbox thickbox-preview wd-hide" href="<?php echo esc_url($query_url); ?>"></a>
       <input type="hidden" name="image_pricelist_id" id="image_pricelist_id" />
       <?php } ?>
       <input type="hidden" id="remove_pricelist" value="" />

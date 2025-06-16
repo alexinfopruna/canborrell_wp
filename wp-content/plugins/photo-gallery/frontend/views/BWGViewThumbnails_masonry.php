@@ -47,7 +47,7 @@ class BWGViewThumbnails_masonry extends BWGViewSite {
         $class = '';
         $data_image_id = '';
         $href = '';
-		    $title = '<div class="bwg-title1"><div class="bwg-title2">' . htmlspecialchars_decode($image_row->alt, ENT_COMPAT | ENT_QUOTES) . '</div></div>';
+		    $title = '<div class="bwg-title1"><div class="bwg-title2">' . wp_kses_post(htmlspecialchars_decode($image_row->alt, ENT_COMPAT | ENT_QUOTES)) . '</div></div>';
         $play_icon = '<div class="bwg-play-icon1"><i title="' . __('Play', 'photo-gallery') . '" class="bwg-icon-play bwg-title2 bwg-play-icon2"></i></div>';
         $ecommerce_icon = '<div class="bwg-ecommerce1"><div class="bwg-ecommerce2">';
         if ( $image_row->pricelist_id ) {
@@ -152,13 +152,13 @@ class BWGViewThumbnails_masonry extends BWGViewSite {
         display: inline-block;
         vertical-align: middle;
       	<?php if ( $params['masonry_hor_ver'] == 'vertical' ) { ?>
-          width: <?php echo esc_html(BWG()->options->resizable_thumbnails ? '100% !important;' : $params['thumb_width'] . 'px'); ?>;
+          width: <?php echo esc_html(BWG()->options->resizable_thumbnails ? '100% !important;' : floatval($params['thumb_width']) . 'px'); ?>;
       	<?php }
       	else { ?>
-       	 height: <?php echo esc_html($params['thumb_height'] - $theme_row->masonry_thumb_padding); ?>px;
+       	 height: <?php echo esc_html(floatval($params['thumb_height']) - floatval($theme_row->masonry_thumb_padding)); ?>px;
       	<?php } ?>
         margin: 0;
-        opacity: <?php echo number_format($theme_row->masonry_thumb_transparent / 100, 2, ".", ""); ?>;
+        opacity: <?php echo number_format(floatval($theme_row->masonry_thumb_transparent) / 100, 2, ".", ""); ?>;
       }
 
 			<?php if ( $theme_row->masonry_thumb_hover_effect == "scale" ) { ?>
@@ -185,7 +185,7 @@ class BWGViewThumbnails_masonry extends BWGViewSite {
       	<?php $thumb_bg_color = WDWLibrary::spider_hex2rgb( $theme_row->masonry_thumb_bg_color ); ?>
         background-color:rgba(<?php echo esc_html($thumb_bg_color['red'] .','. $thumb_bg_color['green'] . ',' . $thumb_bg_color['blue'] . ', '.number_format($theme_row->masonry_thumb_bg_transparency / 100, 2, ".", "")); ?>);
         border: <?php echo esc_html($theme_row->masonry_thumb_border_width); ?>px <?php echo esc_html($theme_row->masonry_thumb_border_style); ?> #<?php echo esc_html($theme_row->masonry_thumb_border_color); ?>;
-				opacity: <?php echo esc_html(number_format($theme_row->masonry_thumb_transparent / 100, 2, ".", "")); ?>;
+				opacity: <?php echo esc_html(number_format(floatval($theme_row->masonry_thumb_transparent) / 100, 2, ".", "")); ?>;
         border-radius: <?php echo esc_html($theme_row->masonry_thumb_border_radius); ?>;
       }
 
@@ -272,12 +272,12 @@ class BWGViewThumbnails_masonry extends BWGViewSite {
 				background-color: rgba(<?php echo esc_html($rgb_thumbs_bg_color['red']); ?>, <?php echo esc_html($rgb_thumbs_bg_color['green']); ?>, <?php echo esc_html($rgb_thumbs_bg_color['blue']); ?>, <?php echo number_format($theme_row->masonry_thumb_bg_transparent / 100, 2, ".", ""); ?>);
 				font-size: 0;
 				<?php if ( $params['masonry_hor_ver'] == 'vertical' ) { ?>
-					width: <?php echo esc_html($params['image_column_number'] * $params['thumb_width'] + ($theme_row->masonry_container_margin ? $theme_row->masonry_thumb_padding : 0)); ?>px;
+					width: <?php echo esc_html(floatval($params['image_column_number']) * floatval($params['thumb_width']) + ($theme_row->masonry_container_margin ? floatval($theme_row->masonry_thumb_padding) : 0)); ?>px;
 					max-width: 100%;
 				<?php
 				}
 				else { ?>
-					height: <?php echo esc_html($params['image_column_number'] * $params['thumb_height']); ?>px !important;
+					height: <?php echo esc_html(floatval($params['image_column_number']) * floatval($params['thumb_height'])); ?>px !important;
 				<?php
 				}
 				if ( $theme_row->masonry_container_margin ) { ?>
@@ -286,7 +286,7 @@ class BWGViewThumbnails_masonry extends BWGViewSite {
 				}
 				else { ?>
 					margin-right: -<?php echo esc_html($theme_row->masonry_thumb_padding); ?>px;
-					max-width: calc(100% + <?php echo esc_html($theme_row->masonry_thumb_padding); ?>px);
+					max-width: calc(100% + <?php echo esc_html(floatval($theme_row->masonry_thumb_padding)); ?>px);
 				<?php } ?>
 				<?php if ( $theme_row->masonry_thumb_align == 'center' ) { ?>
 					margin: 0 auto;

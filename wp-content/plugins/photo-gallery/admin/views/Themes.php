@@ -161,7 +161,7 @@ class ThemesView_bwg extends AdminView_bwg {
           <?php
           foreach ( $font_families as $key => $font_family ) {
             ?>
-            <option value="<?php echo $key; ?>" <?php echo (($saved_style == $key) ? 'selected="selected"' : ''); ?> style="font-family:<?php echo $font_family; ?>"><?php echo $font_family; ?></option>
+            <option value="<?php echo esc_attr($key); ?>" <?php echo (($saved_style == $key) ? 'selected="selected"' : ''); ?> style="font-family:<?php echo $font_family; ?>"><?php echo esc_html($font_family); ?></option>
             <?php
           }
           ?>
@@ -210,7 +210,7 @@ class ThemesView_bwg extends AdminView_bwg {
 		<div class="bwg-page-header">
 			<div class="wd-page-title wd-header">
 				<h1 class="wp-heading-inline"><?php _e('Theme title', 'photo-gallery'); ?></h1>
-				<input type="text" id="name" name="name" value="<?php echo !empty( $row->name ) ? $row->name : ''; ?>" class="spider_text_input bwg_requried">
+				<input type="text" id="name" name="name" value="<?php echo !empty( $row->name ) ? esc_attr($row->name) : ''; ?>" class="spider_text_input bwg_requried">
         <div class="bwg-page-actions">
 					<button class="tw-button-primary button-large" onclick="if (spider_check_required('name', 'Title')) {return false;}; spider_set_input_value('task', 'save')">
 					<?php echo !empty($row->name) ? __('Update', 'photo-gallery') :  __('Save', 'photo-gallery'); ?>
@@ -245,7 +245,7 @@ class ThemesView_bwg extends AdminView_bwg {
 								<tr>
 								  <td class="spider_label"><label for="thumb_margin"><?php _e('Distance between pictures:', 'photo-gallery'); ?> </label></td>
 								  <td>
-									  <input type="text" name="thumb_margin" id="thumb_margin" value="<?php echo $row->thumb_margin; ?>" class="spider_int_input" onkeypress="return spider_check_isnum(event)"/> px
+									  <input type="text" name="thumb_margin" id="thumb_margin" value="<?php echo esc_attr($row->thumb_margin); ?>" class="spider_int_input" onkeypress="return spider_check_isnum(event)"/> px
 								  </td>
 								</tr>
                 <tr>
@@ -261,13 +261,13 @@ class ThemesView_bwg extends AdminView_bwg {
 								<tr>
 								  <td class="spider_label"><label for="thumb_padding"><?php echo __('Padding:', 'photo-gallery'); ?> </label></td>
 								  <td>
-									<input type="text" name="thumb_padding" id="thumb_padding" value="<?php echo $row->thumb_padding; ?>" class="spider_int_input" onkeypress="return spider_check_isnum(event)"/> px
+									<input type="text" name="thumb_padding" id="thumb_padding" value="<?php echo esc_attr($row->thumb_padding); ?>" class="spider_int_input" onkeypress="return spider_check_isnum(event)"/> px
 								  </td>
 								</tr>
 								<tr>
 								  <td class="spider_label"><label for="thumb_border_width"><?php echo __('Border width:', 'photo-gallery'); ?> </label></td>
 								  <td>
-									<input type="text" name="thumb_border_width" id="thumb_border_width" value="<?php echo $row->thumb_border_width; ?>" class="spider_int_input" onkeypress="return spider_check_isnum(event)"/> px
+									<input type="text" name="thumb_border_width" id="thumb_border_width" value="<?php echo esc_attr($row->thumb_border_width); ?>" class="spider_int_input" onkeypress="return spider_check_isnum(event)"/> px
 								  </td>
 								</tr>
 								<tr>
@@ -277,7 +277,7 @@ class ThemesView_bwg extends AdminView_bwg {
 									  <?php
 									  foreach ($border_styles as $key => $border_style) {
 										?>
-										<option value="<?php echo $key; ?>" <?php echo (($row->thumb_border_style == $key) ? 'selected="selected"' : ''); ?>><?php echo __($border_style, 'photo-gallery'); ?></option>
+										<option value="<?php echo esc_attr($key); ?>" <?php echo (($row->thumb_border_style == $key) ? 'selected="selected"' : ''); ?>><?php echo esc_html__($border_style, 'photo-gallery'); ?></option>
 										<?php
 									  }
 									  ?>
@@ -287,20 +287,20 @@ class ThemesView_bwg extends AdminView_bwg {
 								<tr>
 								  <td class="spider_label"><label for="thumb_border_color"><?php echo __('Border color:', 'photo-gallery'); ?></label></td>
 								  <td>
-									<input type="text" name="thumb_border_color" id="thumb_border_color" value="<?php echo $row->thumb_border_color; ?>" class="jscolor"/>
+									<input type="text" name="thumb_border_color" id="thumb_border_color" value="<?php echo esc_attr($row->thumb_border_color); ?>" class="jscolor"/>
 								  </td>
 								</tr>
 								<tr>
 								  <td class="spider_label"><label for="thumb_border_radius"><?php echo __('Border radius:', 'photo-gallery'); ?> </label></td>
 								  <td>
-									<input type="text" name="thumb_border_radius" id="thumb_border_radius" value="<?php echo $row->thumb_border_radius; ?>" class="spider_char_input" />
+									<input type="text" name="thumb_border_radius" id="thumb_border_radius" value="<?php echo esc_attr($row->thumb_border_radius); ?>" class="spider_char_input" />
 									<div class="spider_description"><?php echo __('Use CSS type values.', 'photo-gallery'); ?></div>
 								  </td>
 								</tr>
 								<tr>
 								  <td class="spider_label"><label for="thumb_box_shadow"><?php echo __('Shadow:', 'photo-gallery'); ?> </label></td>
 								  <td>
-									<input type="text" name="thumb_box_shadow" id="thumb_box_shadow" value="<?php echo $row->thumb_box_shadow; ?>" class="spider_box_input" placeholder="10px 10px 10px #888888" />
+									<input type="text" name="thumb_box_shadow" id="thumb_box_shadow" value="<?php echo esc_attr($row->thumb_box_shadow); ?>" class="spider_box_input" placeholder="10px 10px 10px #888888" />
 									<div class="spider_description"><?php echo __('Use CSS type values.', 'photo-gallery'); ?></div>
 								  </td>
 								</tr>
@@ -311,7 +311,7 @@ class ThemesView_bwg extends AdminView_bwg {
 									  <?php
 									  foreach ($thumbnail_hover_effects as $key => $hover_effect) {
 										?>
-										<option value="<?php echo $key; ?>" <?php echo (($row->thumb_hover_effect == $key) ? 'selected="selected"' : ''); ?>><?php echo __($hover_effect, 'photo-gallery'); ?></option>
+										<option value="<?php echo esc_attr($key); ?>" <?php echo (($row->thumb_hover_effect == $key) ? 'selected="selected"' : ''); ?>><?php echo esc_html__($hover_effect, 'photo-gallery'); ?></option>
 										<?php
 									  }
 									  ?>
@@ -321,7 +321,7 @@ class ThemesView_bwg extends AdminView_bwg {
 								<tr>
 								  <td class="spider_label"><label for="thumb_hover_effect_value"><?php echo __('Hover effect value:', 'photo-gallery'); ?> </label></td>
 								  <td>
-									<input type="text" name="thumb_hover_effect_value" id="thumb_hover_effect_value" value="<?php echo $row->thumb_hover_effect_value; ?>" class="spider_char_input"/>
+									<input type="text" name="thumb_hover_effect_value" id="thumb_hover_effect_value" value="<?php echo esc_attr($row->thumb_hover_effect_value); ?>" class="spider_char_input"/>
 									<div class="spider_description"><?php echo __('E.g. Rotate: 10deg, Scale/Zoom: 1.5, Skew: 10deg.', 'photo-gallery'); ?></div>
 								  </td>
 								</tr>
@@ -349,33 +349,33 @@ class ThemesView_bwg extends AdminView_bwg {
 									  <label for="thumb_bg_color"><?php echo __('Thumbnail background color:', 'photo-gallery'); ?> </label>
 								  </td>
 								  <td>
-                    <input type="text" name="thumb_bg_color" id="thumb_bg_color" value="<?php echo $row->thumb_bg_color; ?>" class="jscolor" />
+                    <input type="text" name="thumb_bg_color" id="thumb_bg_color" value="<?php echo esc_attr($row->thumb_bg_color); ?>" class="jscolor" />
 								  </td>
 								</tr>
                 <tr>
                   <td class="spider_label"><label for="thumb_bg_transparency"><?php echo __('Thumbnail background transparency:', 'photo-gallery'); ?> </label></td>
                   <td>
-                    <input type="text" name="thumb_bg_transparency" id="thumb_bg_transparency" value="<?php echo $row->thumb_bg_transparency; ?>" class="spider_int_input" onkeypress="return spider_check_isnum(event)"/> %
+                    <input type="text" name="thumb_bg_transparency" id="thumb_bg_transparency" value="<?php echo esc_attr($row->thumb_bg_transparency); ?>" class="spider_int_input" onkeypress="return spider_check_isnum(event)"/> %
                     <div class="spider_description"><?php echo __('Value must be between 0 to 100.', 'photo-gallery'); ?></div>
                   </td>
                 </tr>
 								<tr>
 								  <td class="spider_label"><label for="thumb_transparent"><?php echo __('Thumbnail transparency:', 'photo-gallery'); ?> </label></td>
 								  <td>
-									<input type="text" name="thumb_transparent" id="thumb_transparent" value="<?php echo $row->thumb_transparent; ?>" class="spider_int_input" onkeypress="return spider_check_isnum(event)"/> %
+									<input type="text" name="thumb_transparent" id="thumb_transparent" value="<?php echo esc_attr($row->thumb_transparent); ?>" class="spider_int_input" onkeypress="return spider_check_isnum(event)"/> %
 									<div class="spider_description"><?php echo __('Value must be between 0 to 100.', 'photo-gallery'); ?></div>
 								  </td>
 								</tr>
 								<tr>
 								  <td class="spider_label"><label for="thumbs_bg_color"><?php echo __('Full background color:', 'photo-gallery'); ?> </label></td>
 								  <td>
-									<input type="text" name="thumbs_bg_color" id="thumbs_bg_color" value="<?php echo $row->thumbs_bg_color; ?>" class="jscolor"/>
+									<input type="text" name="thumbs_bg_color" id="thumbs_bg_color" value="<?php echo esc_attr($row->thumbs_bg_color); ?>" class="jscolor"/>
 								  </td>
 								</tr>
 								<tr>
 								  <td class="spider_label"><label for="thumb_bg_transparent"><?php echo __('Full background transparency:', 'photo-gallery'); ?> </label></td>
 								  <td>
-									<input type="text" name="thumb_bg_transparent" id="thumb_bg_transparent" value="<?php echo $row->thumb_bg_transparent; ?>" class="spider_int_input" onkeypress="return spider_check_isnum(event)"/> %
+									<input type="text" name="thumb_bg_transparent" id="thumb_bg_transparent" value="<?php echo esc_attr($row->thumb_bg_transparent); ?>" class="spider_int_input" onkeypress="return spider_check_isnum(event)"/> %
 									<div class="spider_description"><?php echo __('Value must be between 0 to 100.', 'photo-gallery'); ?></div>
 								  </td>
 								</tr>
@@ -386,7 +386,7 @@ class ThemesView_bwg extends AdminView_bwg {
 									  <?php
 									  foreach ($aligns as $key => $align) {
 										?>
-										<option value="<?php echo $key; ?>" <?php echo (($row->thumb_align == $key) ? 'selected="selected"' : ''); ?>><?php echo __($align, 'photo-gallery'); ?></option>
+										<option value="<?php echo esc_attr($key); ?>" <?php echo (($row->thumb_align == $key) ? 'selected="selected"' : ''); ?>><?php echo esc_html__($align, 'photo-gallery'); ?></option>
 										<?php
 									  }
 									  ?>
@@ -415,19 +415,19 @@ class ThemesView_bwg extends AdminView_bwg {
 										<tr>
 										  <td class="spider_label"><label for="thumb_title_font_size"><?php echo __('Title font size:', 'photo-gallery'); ?> </label></td>
 										  <td>
-											<input type="text" name="thumb_title_font_size" id="thumb_title_font_size" value="<?php echo $row->thumb_title_font_size; ?>" class="spider_int_input" onkeypress="return spider_check_isnum(event)"/> px
+											<input type="text" name="thumb_title_font_size" id="thumb_title_font_size" value="<?php echo esc_attr($row->thumb_title_font_size); ?>" class="spider_int_input" onkeypress="return spider_check_isnum(event)"/> px
 										  </td>
 										</tr>
 										<tr>
 										  <td class="spider_label"><label for="thumb_title_font_color"><?php echo __('Title font color:', 'photo-gallery'); ?> </label></td>
 										  <td>
-											<input type="text" name="thumb_title_font_color" id="thumb_title_font_color" value="<?php echo $row->thumb_title_font_color; ?>" class="jscolor" />
+											<input type="text" name="thumb_title_font_color" id="thumb_title_font_color" value="<?php echo esc_attr($row->thumb_title_font_color); ?>" class="jscolor" />
 										  </td>
 										</tr>
 										<tr>
 										  <td class="spider_label"><label for="thumb_title_font_color_hover"><?php echo __('Title font color (Show on hover):', 'photo-gallery'); ?> </label></td>
 										  <td>
-											<input type="text" name="thumb_title_font_color_hover" id="thumb_title_font_color_hover" value="<?php echo $row->thumb_title_font_color_hover; ?>" class="jscolor" />
+											<input type="text" name="thumb_title_font_color_hover" id="thumb_title_font_color_hover" value="<?php echo esc_attr($row->thumb_title_font_color_hover); ?>" class="jscolor" />
 										  </td>
 										</tr>
                     <tr>
@@ -441,7 +441,7 @@ class ThemesView_bwg extends AdminView_bwg {
 											  <?php
 											  foreach ($font_weights as $key => $font_weight) {
 												?>
-												<option value="<?php echo $key; ?>" <?php echo (($row->thumb_title_font_weight == $key) ? 'selected="selected"' : ''); ?>><?php echo __($font_weight, 'photo-gallery'); ?></option>
+												<option value="<?php echo esc_attr($key); ?>" <?php echo (($row->thumb_title_font_weight == $key) ? 'selected="selected"' : ''); ?>><?php echo esc_html__($font_weight, 'photo-gallery'); ?></option>
 												<?php
 											  }
 											  ?>
@@ -451,14 +451,14 @@ class ThemesView_bwg extends AdminView_bwg {
 										<tr>
 										  <td class="spider_label"><label for="thumb_title_shadow"><?php echo __('Title box shadow:', 'photo-gallery'); ?> </label></td>
 										  <td>
-											<input type="text" name="thumb_title_shadow" id="thumb_title_shadow" value="<?php echo $row->thumb_title_shadow; ?>" class="spider_box_input" placeholder="10px 10px 10px #888888" />
+											<input type="text" name="thumb_title_shadow" id="thumb_title_shadow" value="<?php echo esc_attr($row->thumb_title_shadow); ?>" class="spider_box_input" placeholder="10px 10px 10px #888888" />
 											<div class="spider_description"><?php echo __('Use CSS type values.', 'photo-gallery'); ?></div>
 										  </td>
 										</tr>
 										<tr>
 										  <td class="spider_label"><label for="thumb_title_margin"><?php echo __('Title margin:', 'photo-gallery'); ?> </label></td>
 										  <td>
-											<input type="text" name="thumb_title_margin" id="thumb_title_margin" value="<?php echo $row->thumb_title_margin; ?>" class="spider_char_input" />
+											<input type="text" name="thumb_title_margin" id="thumb_title_margin" value="<?php echo esc_attr($row->thumb_title_margin); ?>" class="spider_char_input" />
 											<div class="spider_description"><?php echo __('Use CSS type values.', 'photo-gallery'); ?></div>
 										  </td>
 										</tr>
@@ -466,13 +466,13 @@ class ThemesView_bwg extends AdminView_bwg {
                       <td class="spider_label"><label for="thumb_description_font_size"><?php echo __('Thumb description font size:', 'photo-gallery'); ?> </label></td>
                       <td>
                         <input type="text" name="thumb_description_font_size" id="thumb_description_font_size" value="<?php echo
-                        $row->thumb_description_font_size; ?>" class="spider_int_input" onkeypress="return spider_check_isnum(event)"/> px
+                        esc_attr($row->thumb_description_font_size); ?>" class="spider_int_input" onkeypress="return spider_check_isnum(event)"/> px
                       </td>
                     </tr>
                     <tr>
                       <td class="spider_label"><label for="thumb_description_font_color"><?php echo __('Thumb description font color:', 'photo-gallery'); ?> </label></td>
                       <td>
-                        <input type="text" name="thumb_description_font_color" id="thumb_description_font_color" value="<?php echo $row->thumb_description_font_color; ?>" class="jscolor" />
+                        <input type="text" name="thumb_description_font_color" id="thumb_description_font_color" value="<?php echo esc_attr($row->thumb_description_font_color); ?>" class="jscolor" />
                       </td>
                     </tr>
                     <tr>
@@ -483,13 +483,13 @@ class ThemesView_bwg extends AdminView_bwg {
 										  <td class="spider_label"><label for="thumb_gal_title_font_size"><?php echo __('Gallery title/description font size:', 'photo-gallery'); ?> </label></td>
 										  <td>
 											<input type="text" name="thumb_gal_title_font_size" id="thumb_gal_title_font_size" value="<?php echo
-											$row->thumb_gal_title_font_size; ?>" class="spider_int_input" onkeypress="return spider_check_isnum(event)"/> px
+                                            esc_attr($row->thumb_gal_title_font_size); ?>" class="spider_int_input" onkeypress="return spider_check_isnum(event)"/> px
 										  </td>
 										</tr>
 										<tr>
 										  <td class="spider_label"><label for="thumb_gal_title_font_color"><?php echo __('Gallery title/description font color:', 'photo-gallery'); ?> </label></td>
 										  <td>
-											<input type="text" name="thumb_gal_title_font_color" id="thumb_gal_title_font_color" value="<?php echo $row->thumb_gal_title_font_color; ?>" class="jscolor" />
+											<input type="text" name="thumb_gal_title_font_color" id="thumb_gal_title_font_color" value="<?php echo esc_attr($row->thumb_gal_title_font_color); ?>" class="jscolor" />
 										  </td>
 										</tr>
                     <tr>
@@ -503,7 +503,7 @@ class ThemesView_bwg extends AdminView_bwg {
 											  <?php
 											  foreach ($font_weights as $key => $font_weight) {
 												?>
-												<option value="<?php echo $key; ?>" <?php echo (($row->thumb_gal_title_font_weight == $key) ? 'selected="selected"' : ''); ?>><?php echo __($font_weight, 'photo-gallery'); ?></option>
+												<option value="<?php echo esc_attr($key); ?>" <?php echo (($row->thumb_gal_title_font_weight == $key) ? 'selected="selected"' : ''); ?>><?php echo esc_html__($font_weight, 'photo-gallery'); ?></option>
 												<?php
 											  }
 											  ?>
@@ -513,14 +513,14 @@ class ThemesView_bwg extends AdminView_bwg {
 										<tr>
 										  <td class="spider_label"><label for="thumb_gal_title_shadow"><?php echo __('Gallery title/description box shadow:', 'photo-gallery'); ?> </label></td>
 										  <td>
-											<input type="text" name="thumb_gal_title_shadow" id="thumb_gal_title_shadow" value="<?php echo $row->thumb_gal_title_shadow; ?>" class="spider_box_input" placeholder="10px 10px 10px #888888" />
+											<input type="text" name="thumb_gal_title_shadow" id="thumb_gal_title_shadow" value="<?php echo esc_attr($row->thumb_gal_title_shadow); ?>" class="spider_box_input" placeholder="10px 10px 10px #888888" />
 											<div class="spider_description"><?php echo __('Use CSS type values.', 'photo-gallery'); ?></div>
 										  </td>
 										</tr>
 										<tr>
 										  <td class="spider_label"><label for="thumb_gal_title_margin"><?php echo __('Gallery title/description margin:', 'photo-gallery'); ?> </label></td>
 										  <td>
-											<input type="text" name="thumb_gal_title_margin" id="thumb_gal_title_margin" value="<?php echo $row->thumb_gal_title_margin; ?>" class="spider_char_input" />
+											<input type="text" name="thumb_gal_title_margin" id="thumb_gal_title_margin" value="<?php echo esc_attr($row->thumb_gal_title_margin); ?>" class="spider_char_input" />
 											<div class="spider_description"><?php echo __('Use CSS type values.', 'photo-gallery'); ?></div>
 										  </td>
 										</tr>
@@ -531,7 +531,7 @@ class ThemesView_bwg extends AdminView_bwg {
 											  <?php
 											  foreach ($aligns as $key => $align) {
 												?>
-												<option value="<?php echo $key; ?>" <?php echo (($row->thumb_gal_title_align == $key) ? 'selected="selected"' : ''); ?>><?php echo _e($align, 'photo-gallery'); ?></option>
+												<option value="<?php echo esc_attr($key); ?>" <?php echo (($row->thumb_gal_title_align == $key) ? 'selected="selected"' : ''); ?>><?php echo esc_html__($align, 'photo-gallery'); ?></option>
 												<?php
 											  }
 											  ?>
@@ -555,7 +555,7 @@ class ThemesView_bwg extends AdminView_bwg {
 									<tr>
 									  <td class="spider_label"><label for="masonry_thumb_padding"><?php echo __('Distance between pictures:', 'photo-gallery'); ?> </label></td>
 									  <td>
-										<input type="text" name="masonry_thumb_padding" id="masonry_thumb_padding" value="<?php echo $row->masonry_thumb_padding; ?>" class="spider_int_input" onkeypress="return spider_check_isnum(event)"/> px
+										<input type="text" name="masonry_thumb_padding" id="masonry_thumb_padding" value="<?php echo esc_attr($row->masonry_thumb_padding); ?>" class="spider_int_input" onkeypress="return spider_check_isnum(event)"/> px
 									  </td>
 									</tr>
 									<tr>
@@ -571,7 +571,7 @@ class ThemesView_bwg extends AdminView_bwg {
 									<tr>
 									  <td class="spider_label"><label for="masonry_thumb_border_width"><?php echo __('Border width:', 'photo-gallery'); ?> </label></td>
 									  <td>
-										<input type="text" name="masonry_thumb_border_width" id="masonry_thumb_border_width" value="<?php echo $row->masonry_thumb_border_width; ?>" class="spider_int_input" onkeypress="return spider_check_isnum(event)"/> px
+										<input type="text" name="masonry_thumb_border_width" id="masonry_thumb_border_width" value="<?php echo esc_attr($row->masonry_thumb_border_width); ?>" class="spider_int_input" onkeypress="return spider_check_isnum(event)"/> px
 									  </td>
 									</tr>
 									<tr>
@@ -581,7 +581,7 @@ class ThemesView_bwg extends AdminView_bwg {
 										  <?php
 										  foreach ($border_styles as $key => $border_style) {
 											?>
-											<option value="<?php echo $key; ?>" <?php echo (($row->masonry_thumb_border_style == $key) ? 'selected="selected"' : ''); ?>><?php echo __($border_style, 'photo-gallery'); ?></option>
+											<option value="<?php echo esc_attr($key); ?>" <?php echo (($row->masonry_thumb_border_style == $key) ? 'selected="selected"' : ''); ?>><?php echo esc_html__($border_style, 'photo-gallery'); ?></option>
 											<?php
 										  }
 										  ?>
@@ -591,13 +591,13 @@ class ThemesView_bwg extends AdminView_bwg {
 									<tr>
 									  <td class="spider_label"><label for="masonry_thumb_border_color"><?php echo __('Border color:', 'photo-gallery'); ?> </label></td>
 									  <td>
-										<input type="text" name="masonry_thumb_border_color" id="masonry_thumb_border_color" value="<?php echo $row->masonry_thumb_border_color; ?>" class="jscolor" />
+										<input type="text" name="masonry_thumb_border_color" id="masonry_thumb_border_color" value="<?php echo esc_attr($row->masonry_thumb_border_color); ?>" class="jscolor" />
 									  </td>
 									</tr>
 									<tr>
 									  <td class="spider_label"><label for="masonry_thumb_border_radius"><?php echo __('Border radius:', 'photo-gallery'); ?> </label></td>
 									  <td>
-										<input type="text" name="masonry_thumb_border_radius" id="masonry_thumb_border_radius" value="<?php echo $row->masonry_thumb_border_radius; ?>" class="spider_char_input" />
+										<input type="text" name="masonry_thumb_border_radius" id="masonry_thumb_border_radius" value="<?php echo esc_attr($row->masonry_thumb_border_radius); ?>" class="spider_char_input" />
 										<div class="spider_description"><?php echo __('Use CSS type values.', 'photo-gallery'); ?></div>
 									  </td>
 									</tr>
@@ -608,7 +608,7 @@ class ThemesView_bwg extends AdminView_bwg {
 										  <?php
 										  foreach ($thumbnail_hover_effects as $key => $hover_effect) {
 											?>
-											<option value="<?php echo $key; ?>" <?php echo (($row->masonry_thumb_hover_effect == $key) ? 'selected="selected"' : ''); ?>><?php echo __($hover_effect, 'photo-gallery'); ?></option>
+											<option value="<?php echo esc_attr($key); ?>" <?php echo (($row->masonry_thumb_hover_effect == $key) ? 'selected="selected"' : ''); ?>><?php echo esc_html__($hover_effect, 'photo-gallery'); ?></option>
 											<?php
 										  }
 										  ?>
@@ -618,7 +618,7 @@ class ThemesView_bwg extends AdminView_bwg {
 									<tr>
 									  <td class="spider_label"><label for="masonry_thumb_hover_effect_value"><?php echo __('Hover effect value:', 'photo-gallery'); ?> </label></td>
 									  <td>
-										<input type="text" name="masonry_thumb_hover_effect_value" id="masonry_thumb_hover_effect_value" value="<?php echo $row->masonry_thumb_hover_effect_value; ?>" class="spider_char_input" />
+										<input type="text" name="masonry_thumb_hover_effect_value" id="masonry_thumb_hover_effect_value" value="<?php echo esc_attr($row->masonry_thumb_hover_effect_value); ?>" class="spider_char_input" />
 										<div class="spider_description"><?php echo __('E.g. Rotate: 10deg, Scale: 1.5, Skew: 10deg.', 'photo-gallery'); ?></div>
 									  </td>
 									</tr>
@@ -646,33 +646,33 @@ class ThemesView_bwg extends AdminView_bwg {
 											<label for="masonry_thumb_bg_color"><?php echo __('Thumbnail background color:', 'photo-gallery'); ?> </label>
 										</td>
 										<td>
-											<input type="text" name="masonry_thumb_bg_color" id="masonry_thumb_bg_color" value="<?php echo $row->masonry_thumb_bg_color; ?>" class="jscolor" />
+											<input type="text" name="masonry_thumb_bg_color" id="masonry_thumb_bg_color" value="<?php echo esc_attr($row->masonry_thumb_bg_color); ?>" class="jscolor" />
 										</td>
 									</tr>
                   <tr>
                     <td class="spider_label"><label for="masonry_thumb_bg_transparency"><?php echo __('Thumbnail background transparency:', 'photo-gallery'); ?> </label></td>
                     <td>
-                      <input type="text" name="masonry_thumb_bg_transparency" id="masonry_thumb_bg_transparency" value="<?php echo $row->masonry_thumb_bg_transparency; ?>" class="spider_int_input" onkeypress="return spider_check_isnum(event)"/> %
+                      <input type="text" name="masonry_thumb_bg_transparency" id="masonry_thumb_bg_transparency" value="<?php echo esc_attr($row->masonry_thumb_bg_transparency); ?>" class="spider_int_input" onkeypress="return spider_check_isnum(event)"/> %
                       <div class="spider_description"><?php echo __('Value must be between 0 to 100.', 'photo-gallery'); ?></div>
                     </td>
                   </tr>
 									<tr>
 										<td class="spider_label"><label for="masonry_thumb_transparent"><?php echo __('Transparency:', 'photo-gallery'); ?> </label></td>
 										<td>
-											<input type="text" name="masonry_thumb_transparent" id="masonry_thumb_transparent" value="<?php echo $row->masonry_thumb_transparent; ?>" class="spider_int_input" onkeypress="return spider_check_isnum(event)"/> %
+											<input type="text" name="masonry_thumb_transparent" id="masonry_thumb_transparent" value="<?php echo esc_attr($row->masonry_thumb_transparent); ?>" class="spider_int_input" onkeypress="return spider_check_isnum(event)"/> %
 											<div class="spider_description"><?php echo __('Value must be between 0 to 100.', 'photo-gallery'); ?></div>
 										</td>
 									</tr>
 									<tr>
 										<td class="spider_label"><label for="masonry_thumbs_bg_color"><?php echo __('Full Background color:', 'photo-gallery'); ?> </label></td>
 										<td>
-											<input type="text" name="masonry_thumbs_bg_color" id="masonry_thumbs_bg_color" value="<?php echo $row->masonry_thumbs_bg_color; ?>" class="jscolor" />
+											<input type="text" name="masonry_thumbs_bg_color" id="masonry_thumbs_bg_color" value="<?php echo esc_attr($row->masonry_thumbs_bg_color); ?>" class="jscolor" />
 										</td>
 									</tr>
 									<tr>
 										<td class="spider_label"><label for="masonry_thumb_bg_transparent"><?php echo __('Background transparency:', 'photo-gallery'); ?> </label></td>
 										<td>
-											<input type="text" name="masonry_thumb_bg_transparent" id="masonry_thumb_bg_transparent" value="<?php echo $row->masonry_thumb_bg_transparent; ?>" class="spider_int_input" onkeypress="return spider_check_isnum(event)"/> %
+											<input type="text" name="masonry_thumb_bg_transparent" id="masonry_thumb_bg_transparent" value="<?php echo esc_attr($row->masonry_thumb_bg_transparent); ?>" class="spider_int_input" onkeypress="return spider_check_isnum(event)"/> %
 											<div class="spider_description"><?php echo __('Value must be between 0 to 100.', 'photo-gallery'); ?></div>
 										</td>
 									</tr>
@@ -681,7 +681,7 @@ class ThemesView_bwg extends AdminView_bwg {
 										<td>
 											<select name="masonry_thumb_align" id="masonry_thumb_align">
 											<?php foreach ($aligns as $key => $align) { ?>
-												<option value="<?php echo $key; ?>" <?php echo (($row->masonry_thumb_align == $key) ? 'selected="selected"' : ''); ?>><?php echo __($align, 'photo-gallery'); ?></option>
+												<option value="<?php echo esc_attr($key); ?>" <?php echo (($row->masonry_thumb_align == $key) ? 'selected="selected"' : ''); ?>><?php echo esc_html__($align, 'photo-gallery'); ?></option>
 											<?php } ?>
 										</select>
 										</td>
@@ -699,19 +699,19 @@ class ThemesView_bwg extends AdminView_bwg {
 										<tr>
 											<td class="spider_label"><label for="masonry_thumb_title_font_size"><?php echo __('Title font size:', 'photo-gallery'); ?> </label></td>
 											<td>
-												<input type="text" name="masonry_thumb_title_font_size" id="masonry_thumb_title_font_size" value="<?php echo $row->masonry_thumb_title_font_size; ?>" class="spider_int_input" onkeypress="return spider_check_isnum(event)"/> px
+												<input type="text" name="masonry_thumb_title_font_size" id="masonry_thumb_title_font_size" value="<?php echo esc_attr($row->masonry_thumb_title_font_size); ?>" class="spider_int_input" onkeypress="return spider_check_isnum(event)"/> px
 											</td>
 										</tr>
 										<tr>
 										  <td class="spider_label"><label for="masonry_thumb_title_font_color"><?php echo __('Title font color:', 'photo-gallery'); ?> </label></td>
 										  <td>
-											<input type="text" name="masonry_thumb_title_font_color" id="masonry_thumb_title_font_color" value="<?php echo $row->masonry_thumb_title_font_color; ?>" class="jscolor" />
+											<input type="text" name="masonry_thumb_title_font_color" id="masonry_thumb_title_font_color" value="<?php echo esc_attr($row->masonry_thumb_title_font_color); ?>" class="jscolor" />
 										  </td>
 										</tr>
 										<tr>
 										  <td class="spider_label"><label for="masonry_thumb_title_font_color_hover"><?php echo __('Title font color (Show on hover):', 'photo-gallery'); ?> </label></td>
 										  <td>
-											<input type="text" name="masonry_thumb_title_font_color_hover" id="masonry_thumb_title_font_color_hover" value="<?php echo $row->masonry_thumb_title_font_color_hover; ?>" class="jscolor" />
+											<input type="text" name="masonry_thumb_title_font_color_hover" id="masonry_thumb_title_font_color_hover" value="<?php echo esc_attr($row->masonry_thumb_title_font_color_hover); ?>" class="jscolor" />
 										  </td>
 										</tr>
                     <tr>
@@ -725,7 +725,7 @@ class ThemesView_bwg extends AdminView_bwg {
 											  <?php
 											  foreach ($font_weights as $key => $font_weight) {
 												?>
-												<option value="<?php echo $key; ?>" <?php echo (($row->masonry_thumb_title_font_weight == $key) ? 'selected="selected"' : ''); ?>><?php echo __($font_weight, 'photo-gallery'); ?></option>
+												<option value="<?php echo esc_attr($key); ?>" <?php echo (($row->masonry_thumb_title_font_weight == $key) ? 'selected="selected"' : ''); ?>><?php echo esc_html__($font_weight, 'photo-gallery'); ?></option>
 												<?php
 											  }
 											  ?>
@@ -735,20 +735,20 @@ class ThemesView_bwg extends AdminView_bwg {
 										<tr>
 											<td class="spider_label"><label for="masonry_thumb_title_margin"><?php echo __('Title margin:', 'photo-gallery'); ?> </label></td>
 											<td>
-												<input type="text" name="masonry_thumb_title_margin" id="masonry_thumb_title_margin" value="<?php echo $row->masonry_thumb_title_margin; ?>" class="spider_char_input" />
+												<input type="text" name="masonry_thumb_title_margin" id="masonry_thumb_title_margin" value="<?php echo esc_attr($row->masonry_thumb_title_margin); ?>" class="spider_char_input" />
 												<div class="spider_description"><?php echo __('Use CSS type values.', 'photo-gallery'); ?></div>
 											</td>
 										</tr>
 									<tr>
 									  <td class="spider_label"><label for="masonry_description_font_size"><?php echo __('Description font size:', 'photo-gallery'); ?> </label></td>
 									  <td>
-										<input type="text" name="masonry_description_font_size" id="masonry_description_font_size" value="<?php echo $row->masonry_description_font_size; ?>" class="spider_int_input" onkeypress="return spider_check_isnum(event)"/> px
+										<input type="text" name="masonry_description_font_size" id="masonry_description_font_size" value="<?php echo esc_attr($row->masonry_description_font_size); ?>" class="spider_int_input" onkeypress="return spider_check_isnum(event)"/> px
 									  </td>
 									</tr>
 									<tr>
 									  <td class="spider_label"><label for="masonry_description_color"><?php echo __('Description font color:', 'photo-gallery'); ?> </label></td>
 									  <td>
-										<input type="text" name="masonry_description_color" id="masonry_description_color" value="<?php echo $row->masonry_description_color; ?>" class="jscolor" />
+										<input type="text" name="masonry_description_color" id="masonry_description_color" value="<?php echo esc_attr($row->masonry_description_color); ?>" class="jscolor" />
 									  </td>
 									</tr>
                   <tr>
@@ -758,13 +758,13 @@ class ThemesView_bwg extends AdminView_bwg {
 									<tr>
 									  <td class="spider_label"><label for="masonry_thumb_gal_title_font_size"><?php echo __('Gallery title/description font size:', 'photo-gallery'); ?> </label></td>
 									  <td>
-										<input type="text" name="masonry_thumb_gal_title_font_size" id="masonry_thumb_gal_title_font_size" value="<?php echo $row->masonry_thumb_gal_title_font_size; ?>" class="spider_int_input" onkeypress="return spider_check_isnum(event)"/> px
+										<input type="text" name="masonry_thumb_gal_title_font_size" id="masonry_thumb_gal_title_font_size" value="<?php echo esc_attr($row->masonry_thumb_gal_title_font_size); ?>" class="spider_int_input" onkeypress="return spider_check_isnum(event)"/> px
 									  </td>
 									</tr>
 									<tr>
 									  <td class="spider_label"><label for="masonry_thumb_gal_title_font_color"><?php echo __('Gallery title/description font color:', 'photo-gallery'); ?> </label></td>
 									  <td>
-										<input type="text" name="masonry_thumb_gal_title_font_color" id="masonry_thumb_gal_title_font_color" value="<?php echo $row->masonry_thumb_gal_title_font_color; ?>" class="jscolor" />
+										<input type="text" name="masonry_thumb_gal_title_font_color" id="masonry_thumb_gal_title_font_color" value="<?php echo esc_attr($row->masonry_thumb_gal_title_font_color); ?>" class="jscolor" />
 									  </td>
 									</tr>
                   <tr>
@@ -778,7 +778,7 @@ class ThemesView_bwg extends AdminView_bwg {
 										  <?php
 										  foreach ($font_weights as $key => $font_weight) {
 											?>
-											<option value="<?php echo $key; ?>" <?php echo (($row->masonry_thumb_gal_title_font_weight == $key) ? 'selected="selected"' : ''); ?>><?php echo __($font_weight, 'photo-gallery'); ?></option>
+											<option value="<?php echo esc_attr($key); ?>" <?php echo (($row->masonry_thumb_gal_title_font_weight == $key) ? 'selected="selected"' : ''); ?>><?php echo esc_html__($font_weight, 'photo-gallery'); ?></option>
 											<?php
 										  }
 										  ?>
@@ -788,14 +788,14 @@ class ThemesView_bwg extends AdminView_bwg {
 									<tr>
 									  <td class="spider_label"><label for="masonry_thumb_gal_title_shadow"><?php echo __('Gallery title/description box shadow:', 'photo-gallery'); ?> </label></td>
 									  <td>
-										<input type="text" name="masonry_thumb_gal_title_shadow" id="masonry_thumb_gal_title_shadow" value="<?php echo $row->masonry_thumb_gal_title_shadow; ?>" class="spider_box_input" placeholder="10px 10px 10px #888888" />
+										<input type="text" name="masonry_thumb_gal_title_shadow" id="masonry_thumb_gal_title_shadow" value="<?php echo esc_attr($row->masonry_thumb_gal_title_shadow); ?>" class="spider_box_input" placeholder="10px 10px 10px #888888" />
 										<div class="spider_description"><?php echo __('Use CSS type values.', 'photo-gallery'); ?></div>
 									  </td>
 									</tr>
 									<tr>
 									  <td class="spider_label"><label for="masonry_thumb_gal_title_margin"><?php echo __('Gallery title/description margin:', 'photo-gallery'); ?> </label></td>
 									  <td>
-										<input type="text" name="masonry_thumb_gal_title_margin" id="masonry_thumb_gal_title_margin" value="<?php echo $row->masonry_thumb_gal_title_margin; ?>" class="spider_char_input" />
+										<input type="text" name="masonry_thumb_gal_title_margin" id="masonry_thumb_gal_title_margin" value="<?php echo esc_attr($row->masonry_thumb_gal_title_margin); ?>" class="spider_char_input" />
 										<div class="spider_description"><?php echo __('Use CSS type values.', 'photo-gallery'); ?></div>
 									  </td>
 									</tr>
@@ -806,7 +806,7 @@ class ThemesView_bwg extends AdminView_bwg {
 										  <?php
 										  foreach ($aligns as $key => $align) {
 											?>
-											<option value="<?php echo $key; ?>" <?php echo (($row->masonry_thumb_gal_title_align == $key) ? 'selected="selected"' : ''); ?>><?php echo _e($align, 'photo-gallery'); ?></option>
+											<option value="<?php echo esc_attr($key); ?>" <?php echo (($row->masonry_thumb_gal_title_align == $key) ? 'selected="selected"' : ''); ?>><?php echo esc_html__($align, 'photo-gallery'); ?></option>
 											<?php
 										  }
 										  ?>
@@ -830,7 +830,7 @@ class ThemesView_bwg extends AdminView_bwg {
 									<tr>
 									  <td class="spider_label"><label for="mosaic_thumb_padding"><?php echo __('Distance between pictures:', 'photo-gallery'); ?> </label></td>
 									  <td>
-										<input type="text" name="mosaic_thumb_padding" id="mosaic_thumb_padding" value="<?php echo $row->mosaic_thumb_padding; ?>" class="spider_int_input" onkeypress="return spider_check_isnum(event)"/> px
+										<input type="text" name="mosaic_thumb_padding" id="mosaic_thumb_padding" value="<?php echo esc_attr($row->mosaic_thumb_padding); ?>" class="spider_int_input" onkeypress="return spider_check_isnum(event)"/> px
 									  </td>
 									</tr>
                   <tr>
@@ -846,7 +846,7 @@ class ThemesView_bwg extends AdminView_bwg {
 									<tr>
 									  <td class="spider_label"><label for="mosaic_thumb_border_width"><?php echo __('Border width:', 'photo-gallery'); ?> </label></td>
 									  <td>
-										<input type="text" name="mosaic_thumb_border_width" id="mosaic_thumb_border_width" value="<?php echo $row->mosaic_thumb_border_width; ?>" class="spider_int_input" onkeypress="return spider_check_isnum(event)"/> px
+										<input type="text" name="mosaic_thumb_border_width" id="mosaic_thumb_border_width" value="<?php echo esc_attr($row->mosaic_thumb_border_width); ?>" class="spider_int_input" onkeypress="return spider_check_isnum(event)"/> px
 									  </td>
 									</tr>
 									<tr>
@@ -856,7 +856,7 @@ class ThemesView_bwg extends AdminView_bwg {
 										  <?php
 										  foreach ($border_styles as $key => $border_style) {
 											?>
-											<option value="<?php echo $key; ?>" <?php echo (($row->mosaic_thumb_border_style == $key) ? 'selected="selected"' : ''); ?>><?php echo __($border_style, 'photo-gallery'); ?></option>
+											<option value="<?php echo esc_attr($key); ?>" <?php echo (($row->mosaic_thumb_border_style == $key) ? 'selected="selected"' : ''); ?>><?php echo esc_html__($border_style, 'photo-gallery'); ?></option>
 											<?php
 										  }
 										  ?>
@@ -866,13 +866,13 @@ class ThemesView_bwg extends AdminView_bwg {
 									<tr>
 									  <td class="spider_label"><label for="mosaic_thumb_border_color"><?php echo __('Border color:', 'photo-gallery'); ?> </label></td>
 									  <td>
-										<input type="text" name="mosaic_thumb_border_color" id="mosaic_thumb_border_color" value="<?php echo $row->mosaic_thumb_border_color; ?>" class="jscolor" />
+										<input type="text" name="mosaic_thumb_border_color" id="mosaic_thumb_border_color" value="<?php echo esc_attr($row->mosaic_thumb_border_color); ?>" class="jscolor" />
 									  </td>
 									</tr>
 									<tr>
 									  <td class="spider_label"><label for="mosaic_thumb_border_radius"><?php echo __('Border radius:', 'photo-gallery'); ?> </label></td>
 									  <td>
-										<input type="text" name="mosaic_thumb_border_radius" id="mosaic_thumb_border_radius" value="<?php echo $row->mosaic_thumb_border_radius; ?>" class="spider_char_input" />
+										<input type="text" name="mosaic_thumb_border_radius" id="mosaic_thumb_border_radius" value="<?php echo esc_attr($row->mosaic_thumb_border_radius); ?>" class="spider_char_input" />
 										<div class="spider_description"><?php echo __('Use CSS type values.', 'photo-gallery'); ?></div>
 									  </td>
 									</tr>
@@ -883,7 +883,7 @@ class ThemesView_bwg extends AdminView_bwg {
 											  <?php
 											  foreach ($thumbnail_hover_effects as $key => $hover_effect) {
 												?>
-												<option value="<?php echo $key; ?>" <?php echo (($row->mosaic_thumb_hover_effect == $key) ? 'selected="selected"' : ''); ?>><?php echo __($hover_effect, 'photo-gallery'); ?></option>
+												<option value="<?php echo esc_attr($key); ?>" <?php echo (($row->mosaic_thumb_hover_effect == $key) ? 'selected="selected"' : ''); ?>><?php echo esc_html__($hover_effect, 'photo-gallery'); ?></option>
 												<?php
 											  }
 											  ?>
@@ -893,7 +893,7 @@ class ThemesView_bwg extends AdminView_bwg {
 										<tr>
 										  <td class="spider_label"><label for="mosaic_thumb_hover_effect_value"><?php echo __('Hover effect value:', 'photo-gallery'); ?> </label></td>
 										  <td>
-											<input type="text" name="mosaic_thumb_hover_effect_value" id="mosaic_thumb_hover_effect_value" value="<?php echo $row->mosaic_thumb_hover_effect_value; ?>" class="spider_char_input" />
+											<input type="text" name="mosaic_thumb_hover_effect_value" id="mosaic_thumb_hover_effect_value" value="<?php echo esc_attr($row->mosaic_thumb_hover_effect_value); ?>" class="spider_char_input" />
 											<div class="spider_description"><?php echo __('E.g. Rotate: 10deg, Scale: 1.5, Skew: 10deg.', 'photo-gallery'); ?></div>
 										  </td>
 										</tr>
@@ -919,33 +919,33 @@ class ThemesView_bwg extends AdminView_bwg {
 									<tr>
 									  <td class="spider_label"><label for="mosaic_thumb_bg_color"><?php echo __('Thumbnail background color:', 'photo-gallery'); ?> </label></td>
 									  <td>
-										<input type="text" name="mosaic_thumb_bg_color" id="mosaic_thumb_bg_color" value="<?php echo $row->mosaic_thumb_bg_color; ?>" class="jscolor" />
+										<input type="text" name="mosaic_thumb_bg_color" id="mosaic_thumb_bg_color" value="<?php echo esc_attr($row->mosaic_thumb_bg_color); ?>" class="jscolor" />
 									  </td>
 									</tr>
                   <tr>
                     <td class="spider_label"><label for="mosaic_thumb_bg_transparency"><?php echo __('Thumbnail background transparency:', 'photo-gallery'); ?> </label></td>
                     <td>
-                      <input type="text" name="mosaic_thumb_bg_transparency" id="mosaic_thumb_bg_transparency" value="<?php echo $row->mosaic_thumb_bg_transparency; ?>" class="spider_int_input" onkeypress="return spider_check_isnum(event)"/> %
+                      <input type="text" name="mosaic_thumb_bg_transparency" id="mosaic_thumb_bg_transparency" value="<?php echo esc_attr($row->mosaic_thumb_bg_transparency); ?>" class="spider_int_input" onkeypress="return spider_check_isnum(event)"/> %
                       <div class="spider_description"><?php echo __('Value must be between 0 to 100.', 'photo-gallery'); ?></div>
                     </td>
                   </tr>
 									<tr>
 									  <td class="spider_label"><label for="mosaic_thumb_transparent"><?php echo __('Transparency:', 'photo-gallery'); ?> </label></td>
 									  <td>
-										<input type="text" name="mosaic_thumb_transparent" id="mosaic_thumb_transparent" value="<?php echo $row->mosaic_thumb_transparent; ?>" class="spider_int_input" onkeypress="return spider_check_isnum(event)"/> %
+										<input type="text" name="mosaic_thumb_transparent" id="mosaic_thumb_transparent" value="<?php echo esc_attr($row->mosaic_thumb_transparent); ?>" class="spider_int_input" onkeypress="return spider_check_isnum(event)"/> %
 										<div class="spider_description"><?php echo __('Value must be between 0 to 100.', 'photo-gallery'); ?></div>
 									  </td>
 									</tr>
 									<tr>
 									  <td class="spider_label"><label for="mosaic_thumbs_bg_color"><?php echo __('Full Background color:', 'photo-gallery'); ?> </label></td>
 									  <td>
-										<input type="text" name="mosaic_thumbs_bg_color" id="mosaic_thumbs_bg_color" value="<?php echo $row->mosaic_thumbs_bg_color; ?>" class="jscolor" />
+										<input type="text" name="mosaic_thumbs_bg_color" id="mosaic_thumbs_bg_color" value="<?php echo esc_attr($row->mosaic_thumbs_bg_color); ?>" class="jscolor" />
 									  </td>
 									</tr>
 									<tr>
 									  <td class="spider_label"><label for="mosaic_thumb_bg_transparent"><?php echo __('Background transparency:', 'photo-gallery'); ?> </label></td>
 									  <td>
-										<input type="text" name="mosaic_thumb_bg_transparent" id="mosaic_thumb_bg_transparent" value="<?php echo $row->mosaic_thumb_bg_transparent; ?>" class="spider_int_input" onkeypress="return spider_check_isnum(event)"/> %
+										<input type="text" name="mosaic_thumb_bg_transparent" id="mosaic_thumb_bg_transparent" value="<?php echo esc_attr($row->mosaic_thumb_bg_transparent); ?>" class="spider_int_input" onkeypress="return spider_check_isnum(event)"/> %
 										<div class="spider_description"><?php echo __('Value must be between 0 to 100.', 'photo-gallery'); ?></div>
 									  </td>
 									</tr>
@@ -956,7 +956,7 @@ class ThemesView_bwg extends AdminView_bwg {
 										  <?php
 										  foreach ($aligns as $key => $align) {
 											?>
-											<option value="<?php echo $key; ?>" <?php echo (($row->mosaic_thumb_align == $key) ? 'selected="selected"' : ''); ?>><?php echo __($align, 'photo-gallery'); ?></option>
+											<option value="<?php echo esc_attr($key); ?>" <?php echo (($row->mosaic_thumb_align == $key) ? 'selected="selected"' : ''); ?>><?php echo esc_html__($align, 'photo-gallery'); ?></option>
 											<?php
 										  }
 										  ?>
@@ -976,19 +976,19 @@ class ThemesView_bwg extends AdminView_bwg {
 										<tr>
 										  <td class="spider_label"><label for="mosaic_thumb_title_font_size"><?php echo __('Title font size:', 'photo-gallery'); ?> </label></td>
 										  <td>
-											<input type="text" name="mosaic_thumb_title_font_size" id="mosaic_thumb_title_font_size" value="<?php echo $row->mosaic_thumb_title_font_size; ?>" class="spider_int_input" onkeypress="return spider_check_isnum(event)"/> px
+											<input type="text" name="mosaic_thumb_title_font_size" id="mosaic_thumb_title_font_size" value="<?php echo esc_attr($row->mosaic_thumb_title_font_size); ?>" class="spider_int_input" onkeypress="return spider_check_isnum(event)"/> px
 										  </td>
 										</tr>
 										<tr>
 										  <td class="spider_label"><label for="mosaic_thumb_title_font_color"><?php echo __('Title font color:', 'photo-gallery'); ?> </label></td>
 										  <td>
-											<input type="text" name="mosaic_thumb_title_font_color" id="mosaic_thumb_title_font_color" value="<?php echo $row->mosaic_thumb_title_font_color; ?>" class="jscolor" />
+											<input type="text" name="mosaic_thumb_title_font_color" id="mosaic_thumb_title_font_color" value="<?php echo esc_attr($row->mosaic_thumb_title_font_color); ?>" class="jscolor" />
 										  </td>
 										</tr>
                     <tr>
                       <td class="spider_label"><label for="mosaic_thumb_title_font_color_hover"><?php echo __('Title font color (Show on hover):', 'photo-gallery'); ?> </label></td>
                       <td>
-                        <input type="text" name="mosaic_thumb_title_font_color_hover" id="mosaic_thumb_title_font_color_hover" value="<?php echo $row->mosaic_thumb_title_font_color_hover; ?>" class="jscolor" />
+                        <input type="text" name="mosaic_thumb_title_font_color_hover" id="mosaic_thumb_title_font_color_hover" value="<?php echo esc_attr($row->mosaic_thumb_title_font_color_hover); ?>" class="jscolor" />
                       </td>
                     </tr>
                     <tr>
@@ -1002,7 +1002,7 @@ class ThemesView_bwg extends AdminView_bwg {
 											  <?php
 											  foreach ($font_weights as $key => $font_weight) {
 												?>
-												<option value="<?php echo $key; ?>" <?php echo (($row->mosaic_thumb_title_font_weight == $key) ? 'selected="selected"' : ''); ?>><?php echo __($font_weight, 'photo-gallery'); ?></option>
+												<option value="<?php echo esc_attr($key); ?>" <?php echo (($row->mosaic_thumb_title_font_weight == $key) ? 'selected="selected"' : ''); ?>><?php echo esc_html__($font_weight, 'photo-gallery'); ?></option>
 												<?php
 											  }
 											  ?>
@@ -1012,27 +1012,27 @@ class ThemesView_bwg extends AdminView_bwg {
 										<tr>
 										  <td class="spider_label"><label for="mosaic_thumb_title_shadow"><?php echo __('Title box shadow:', 'photo-gallery'); ?> </label></td>
 										  <td>
-											<input type="text" name="mosaic_thumb_title_shadow" id="mosaic_thumb_title_shadow" value="<?php echo $row->mosaic_thumb_title_shadow; ?>" class="spider_box_input" placeholder="10px 10px 10px #888888" />
+											<input type="text" name="mosaic_thumb_title_shadow" id="mosaic_thumb_title_shadow" value="<?php echo esc_attr($row->mosaic_thumb_title_shadow); ?>" class="spider_box_input" placeholder="10px 10px 10px #888888" />
 											<div class="spider_description"><?php echo __('Use CSS type values.', 'photo-gallery'); ?></div>
 										  </td>
 										</tr>
 										<tr>
 										  <td class="spider_label"><label for="mosaic_thumb_title_margin"><?php echo __('Title margin:', 'photo-gallery'); ?> </label></td>
 										  <td>
-											<input type="text" name="mosaic_thumb_title_margin" id="mosaic_thumb_title_margin" value="<?php echo $row->mosaic_thumb_title_margin; ?>" class="spider_char_input" />
+											<input type="text" name="mosaic_thumb_title_margin" id="mosaic_thumb_title_margin" value="<?php echo esc_attr($row->mosaic_thumb_title_margin); ?>" class="spider_char_input" />
 											<div class="spider_description"><?php echo __('Use CSS type values.', 'photo-gallery'); ?></div>
 										  </td>
 										</tr>
 										<tr>
 										  <td class="spider_label"><label for="mosaic_thumb_gal_title_font_size"><?php echo __('Gallery title/description font size:', 'photo-gallery'); ?> </label></td>
 										  <td>
-											<input type="text" name="mosaic_thumb_gal_title_font_size" id="mosaic_thumb_gal_title_font_size" value="<?php echo $row->mosaic_thumb_gal_title_font_size; ?>" class="spider_int_input" onkeypress="return spider_check_isnum(event)"/> px
+											<input type="text" name="mosaic_thumb_gal_title_font_size" id="mosaic_thumb_gal_title_font_size" value="<?php echo esc_attr($row->mosaic_thumb_gal_title_font_size); ?>" class="spider_int_input" onkeypress="return spider_check_isnum(event)"/> px
 										  </td>
 										</tr>
 										<tr>
 										  <td class="spider_label"><label for="mosaic_thumb_gal_title_font_color"><?php echo __('Gallery title/description font color:', 'photo-gallery'); ?> </label></td>
 										  <td>
-											<input type="text" name="mosaic_thumb_gal_title_font_color" id="mosaic_thumb_gal_title_font_color" value="<?php echo $row->mosaic_thumb_gal_title_font_color; ?>" class="jscolor" />
+											<input type="text" name="mosaic_thumb_gal_title_font_color" id="mosaic_thumb_gal_title_font_color" value="<?php echo esc_attr($row->mosaic_thumb_gal_title_font_color); ?>" class="jscolor" />
 										  </td>
 										</tr>
                     <tr>
@@ -1046,7 +1046,7 @@ class ThemesView_bwg extends AdminView_bwg {
 											  <?php
 											  foreach ($font_weights as $key => $font_weight) {
 												?>
-												<option value="<?php echo $key; ?>" <?php echo (($row->mosaic_thumb_gal_title_font_weight == $key) ? 'selected="selected"' : ''); ?>><?php echo __($font_weight, 'photo-gallery'); ?></option>
+												<option value="<?php echo esc_attr($key); ?>" <?php echo (($row->mosaic_thumb_gal_title_font_weight == $key) ? 'selected="selected"' : ''); ?>><?php echo esc_html__($font_weight, 'photo-gallery'); ?></option>
 												<?php
 											  }
 											  ?>
@@ -1056,14 +1056,14 @@ class ThemesView_bwg extends AdminView_bwg {
 										<tr>
 										  <td class="spider_label"><label for="mosaic_thumb_gal_title_shadow"><?php echo __('Gallery title/description box shadow:', 'photo-gallery'); ?> </label></td>
 										  <td>
-											<input type="text" name="mosaic_thumb_gal_title_shadow" id="mosaic_thumb_gal_title_shadow" value="<?php echo $row->mosaic_thumb_gal_title_shadow; ?>" class="spider_box_input" placeholder="10px 10px 10px #888888" />
+											<input type="text" name="mosaic_thumb_gal_title_shadow" id="mosaic_thumb_gal_title_shadow" value="<?php echo esc_attr($row->mosaic_thumb_gal_title_shadow); ?>" class="spider_box_input" placeholder="10px 10px 10px #888888" />
 											<div class="spider_description"><?php echo __('Use CSS type values.', 'photo-gallery'); ?></div>
 										  </td>
 										</tr>
 										<tr>
 										  <td class="spider_label"><label for="mosaic_thumb_gal_title_margin"><?php echo __('Gallery title/description margin:', 'photo-gallery'); ?> </label></td>
 										  <td>
-											<input type="text" name="mosaic_thumb_gal_title_margin" id="mosaic_thumb_gal_title_margin" value="<?php echo $row->mosaic_thumb_gal_title_margin; ?>" class="spider_char_input" />
+											<input type="text" name="mosaic_thumb_gal_title_margin" id="mosaic_thumb_gal_title_margin" value="<?php echo esc_attr($row->mosaic_thumb_gal_title_margin); ?>" class="spider_char_input" />
 											<div class="spider_description"><?php echo __('Use CSS type values.', 'photo-gallery'); ?></div>
 										  </td>
 										</tr>
@@ -1074,7 +1074,7 @@ class ThemesView_bwg extends AdminView_bwg {
 											  <?php
 											  foreach ($aligns as $key => $align) {
 												?>
-												<option value="<?php echo $key; ?>" <?php echo (($row->mosaic_thumb_gal_title_align == $key) ? 'selected="selected"' : ''); ?>><?php echo _e($align, 'photo-gallery'); ?></option>
+												<option value="<?php echo esc_attr($key); ?>" <?php echo (($row->mosaic_thumb_gal_title_align == $key) ? 'selected="selected"' : ''); ?>><?php echo esc_html__($align, 'photo-gallery'); ?></option>
 												<?php
 											  }
 											  ?>
@@ -1098,62 +1098,62 @@ class ThemesView_bwg extends AdminView_bwg {
 									<tr>
 									  <td class="spider_label"><label for="slideshow_cont_bg_color"><?php echo __('Background color:', 'photo-gallery'); ?> </label></td>
 									  <td>
-										<input type="text" name="slideshow_cont_bg_color" id="slideshow_cont_bg_color" value="<?php echo $row->slideshow_cont_bg_color; ?>" class="jscolor"/>
+										<input type="text" name="slideshow_cont_bg_color" id="slideshow_cont_bg_color" value="<?php echo esc_attr($row->slideshow_cont_bg_color); ?>" class="jscolor"/>
 									  </td>
 									</tr>
 									<tr>
 									  <td class="spider_label"><label for="slideshow_rl_btn_size"><?php echo __('Right, left buttons size:', 'photo-gallery'); ?> </label></td>
 									  <td>
-										<input type="text" name="slideshow_rl_btn_size" id="slideshow_rl_btn_size" value="<?php echo $row->slideshow_rl_btn_size; ?>" class="spider_int_input" onkeypress="return spider_check_isnum(event)"/> px
+										<input type="text" name="slideshow_rl_btn_size" id="slideshow_rl_btn_size" value="<?php echo esc_attr($row->slideshow_rl_btn_size); ?>" class="spider_int_input" onkeypress="return spider_check_isnum(event)"/> px
 									  </td>
 									</tr>
 									<tr>
 									  <td class="spider_label"><label for="slideshow_play_pause_btn_size"><?php echo __('Play, pause buttons size:', 'photo-gallery'); ?> </label></td>
 									  <td>
-										<input type="text" name="slideshow_play_pause_btn_size" id="slideshow_play_pause_btn_size" value="<?php echo $row->slideshow_play_pause_btn_size; ?>" class="spider_int_input" onkeypress="return spider_check_isnum(event)"/> px
+										<input type="text" name="slideshow_play_pause_btn_size" id="slideshow_play_pause_btn_size" value="<?php echo esc_attr($row->slideshow_play_pause_btn_size); ?>" class="spider_int_input" onkeypress="return spider_check_isnum(event)"/> px
 									  </td>
 									</tr>
 									<tr>
 									  <td class="spider_label"><label for="slideshow_rl_btn_color"><?php echo __('Buttons color:', 'photo-gallery'); ?> </label></td>
 									  <td>
-										<input type="text" name="slideshow_rl_btn_color" id="slideshow_rl_btn_color" value="<?php echo $row->slideshow_rl_btn_color; ?>" class="jscolor"/>
+										<input type="text" name="slideshow_rl_btn_color" id="slideshow_rl_btn_color" value="<?php echo esc_attr($row->slideshow_rl_btn_color); ?>" class="jscolor"/>
 									  </td>
 									</tr>
 									<tr>
 									  <td class="spider_label"><label for="slideshow_close_btn_transparent"><?php echo __('Buttons transparency:', 'photo-gallery'); ?> </label></td>
 									  <td>
-										<input type="text" name="slideshow_close_btn_transparent" id="slideshow_close_btn_transparent" value="<?php echo $row->slideshow_close_btn_transparent; ?>" class="spider_int_input" onkeypress="return spider_check_isnum(event)"/> %
+										<input type="text" name="slideshow_close_btn_transparent" id="slideshow_close_btn_transparent" value="<?php echo esc_attr($row->slideshow_close_btn_transparent); ?>" class="spider_int_input" onkeypress="return spider_check_isnum(event)"/> %
 										<div class="spider_description"><?php echo __('Value must be between 0 to 100.', 'photo-gallery'); ?></div>
 									  </td>
 									</tr>
 									<tr>
 									  <td class="spider_label"><label for="slideshow_close_rl_btn_hover_color"><?php echo __('Buttons hover color:', 'photo-gallery'); ?> </label></td>
 									  <td>
-										<input type="text" name="slideshow_close_rl_btn_hover_color" id="slideshow_close_rl_btn_hover_color" value="<?php echo $row->slideshow_close_rl_btn_hover_color; ?>" class="jscolor"/>
+										<input type="text" name="slideshow_close_rl_btn_hover_color" id="slideshow_close_rl_btn_hover_color" value="<?php echo esc_attr($row->slideshow_close_rl_btn_hover_color); ?>" class="jscolor"/>
 									  </td>
 									</tr>
 									<tr>
 									  <td class="spider_label"><label for="slideshow_rl_btn_width"><?php echo __('Right, left buttons width:', 'photo-gallery'); ?> </label></td>
 									  <td>
-										<input type="text" name="slideshow_rl_btn_width" id="slideshow_rl_btn_width" value="<?php echo $row->slideshow_rl_btn_width; ?>" class="spider_int_input" onkeypress="return spider_check_isnum(event)"/> px
+										<input type="text" name="slideshow_rl_btn_width" id="slideshow_rl_btn_width" value="<?php echo esc_attr($row->slideshow_rl_btn_width); ?>" class="spider_int_input" onkeypress="return spider_check_isnum(event)"/> px
 									  </td>
 									</tr>
 									<tr>
 									  <td class="spider_label"><label for="slideshow_rl_btn_height"><?php echo __('Right, left buttons height:', 'photo-gallery'); ?> </label></td>
 									  <td>
-										<input type="text" name="slideshow_rl_btn_height" id="slideshow_rl_btn_height" value="<?php echo $row->slideshow_rl_btn_height; ?>" class="spider_int_input" onkeypress="return spider_check_isnum(event)"/> px
+										<input type="text" name="slideshow_rl_btn_height" id="slideshow_rl_btn_height" value="<?php echo esc_attr($row->slideshow_rl_btn_height); ?>" class="spider_int_input" onkeypress="return spider_check_isnum(event)"/> px
 									  </td>
 									</tr>
 									<tr>
 									  <td class="spider_label"><label for="slideshow_rl_btn_bg_color"><?php echo __('Right, left buttons background color:', 'photo-gallery'); ?> </label></td>
 									  <td>
-										<input type="text" name="slideshow_rl_btn_bg_color" id="slideshow_rl_btn_bg_color" value="<?php echo $row->slideshow_rl_btn_bg_color; ?>" class="jscolor"/>
+										<input type="text" name="slideshow_rl_btn_bg_color" id="slideshow_rl_btn_bg_color" value="<?php echo esc_attr($row->slideshow_rl_btn_bg_color); ?>" class="jscolor"/>
 									  </td>
 									</tr>
 									<tr>
 									  <td class="spider_label"><label for="slideshow_rl_btn_border_width"><?php echo __('Right, left buttons border width:', 'photo-gallery'); ?> </label></td>
 									  <td>
-										<input type="text" name="slideshow_rl_btn_border_width" id="slideshow_rl_btn_border_width" value="<?php echo $row->slideshow_rl_btn_border_width; ?>" class="spider_int_input" onkeypress="return spider_check_isnum(event)"/> px
+										<input type="text" name="slideshow_rl_btn_border_width" id="slideshow_rl_btn_border_width" value="<?php echo esc_attr($row->slideshow_rl_btn_border_width); ?>" class="spider_int_input" onkeypress="return spider_check_isnum(event)"/> px
 									  </td>
 									</tr>
 									<tr>
@@ -1163,7 +1163,7 @@ class ThemesView_bwg extends AdminView_bwg {
 										  <?php
 										  foreach ($border_styles as $key => $border_style) {
 											?>
-											<option value="<?php echo $key; ?>" <?php echo (($row->slideshow_rl_btn_border_style == $key) ? 'selected="selected"' : ''); ?>><?php echo __($border_style, 'photo-gallery'); ?></option>
+											<option value="<?php echo esc_attr($key); ?>" <?php echo (($row->slideshow_rl_btn_border_style == $key) ? 'selected="selected"' : ''); ?>><?php echo esc_html__($border_style, 'photo-gallery'); ?></option>
 											<?php
 										  }
 										  ?>
@@ -1173,13 +1173,13 @@ class ThemesView_bwg extends AdminView_bwg {
 									<tr>
 									  <td class="spider_label"><label for="slideshow_rl_btn_border_color"><?php echo __('Right, left buttons border color:', 'photo-gallery'); ?> </label></td>
 									  <td>
-										<input type="text" name="slideshow_rl_btn_border_color" id="slideshow_rl_btn_border_color" value="<?php echo $row->slideshow_rl_btn_border_color; ?>" class="jscolor"/>
+										<input type="text" name="slideshow_rl_btn_border_color" id="slideshow_rl_btn_border_color" value="<?php echo esc_attr($row->slideshow_rl_btn_border_color); ?>" class="jscolor"/>
 									  </td>
 									</tr>
 									<tr>
 									  <td class="spider_label"><label for="slideshow_rl_btn_border_radius"><?php echo __('Right, left buttons border radius:', 'photo-gallery'); ?> </label></td>
 									  <td>
-										<input type="text" name="slideshow_rl_btn_border_radius" id="slideshow_rl_btn_border_radius" value="<?php echo $row->slideshow_rl_btn_border_radius; ?>" class="spider_char_input"/>
+										<input type="text" name="slideshow_rl_btn_border_radius" id="slideshow_rl_btn_border_radius" value="<?php echo esc_attr($row->slideshow_rl_btn_border_radius); ?>" class="spider_char_input"/>
 										<div class="spider_description"><?php echo __('Use CSS type values.', 'photo-gallery'); ?></div>
 									  </td>
 									</tr>
@@ -1190,7 +1190,7 @@ class ThemesView_bwg extends AdminView_bwg {
 										  <?php
 										  foreach ($button_styles as $key => $button_style) {
 											?>
-											<option value="<?php echo $key; ?>" <?php echo (($row->slideshow_rl_btn_style == $key) ? 'selected="selected"' : ''); ?>><?php echo __($button_style, 'photo-gallery'); ?></option>
+											<option value="<?php echo esc_attr($key); ?>" <?php echo (($row->slideshow_rl_btn_style == $key) ? 'selected="selected"' : ''); ?>><?php echo esc_html__($button_style, 'photo-gallery'); ?></option>
 											<?php
 										  }
 										  ?>
@@ -1200,7 +1200,7 @@ class ThemesView_bwg extends AdminView_bwg {
 									<tr>
 									  <td class="spider_label"><label for="slideshow_rl_btn_box_shadow"><?php echo __('Right, left buttons box shadow:', 'photo-gallery'); ?> </label></td>
 									  <td>
-										<input type="text" name="slideshow_rl_btn_box_shadow" id="slideshow_rl_btn_box_shadow" value="<?php echo $row->slideshow_rl_btn_box_shadow; ?>" class="spider_box_input" placeholder="10px 10px 10px #888888" />
+										<input type="text" name="slideshow_rl_btn_box_shadow" id="slideshow_rl_btn_box_shadow" value="<?php echo esc_attr($row->slideshow_rl_btn_box_shadow); ?>" class="spider_box_input" placeholder="10px 10px 10px #888888" />
 										<div class="spider_description"><?php echo __('Use CSS type values.', 'photo-gallery'); ?></div>
 									  </td>
 									</tr>
@@ -1228,14 +1228,14 @@ class ThemesView_bwg extends AdminView_bwg {
 									<tr>
 									  <td class="spider_label"><label for="slideshow_filmstrip_thumb_margin"><?php echo __('Filmstrip margin:', 'photo-gallery'); ?> </label></td>
 									  <td>
-										<input type="text" name="slideshow_filmstrip_thumb_margin" id="slideshow_filmstrip_thumb_margin" value="<?php echo $row->slideshow_filmstrip_thumb_margin; ?>" class="spider_char_input"/>
+										<input type="text" name="slideshow_filmstrip_thumb_margin" id="slideshow_filmstrip_thumb_margin" value="<?php echo esc_attr($row->slideshow_filmstrip_thumb_margin); ?>" class="spider_char_input"/>
 										<div class="spider_description"><?php echo __('Use CSS type values.', 'photo-gallery'); ?></div>
 									  </td>
 									</tr>
 									<tr>
 									  <td class="spider_label"><label for="slideshow_filmstrip_thumb_border_width"><?php echo __('Filmstrip border width:', 'photo-gallery'); ?> </label></td>
 									  <td>
-										<input type="text" name="slideshow_filmstrip_thumb_border_width" id="slideshow_filmstrip_thumb_border_width" value="<?php echo $row->slideshow_filmstrip_thumb_border_width; ?>" class="spider_int_input" onkeypress="return spider_check_isnum(event)"/> px
+										<input type="text" name="slideshow_filmstrip_thumb_border_width" id="slideshow_filmstrip_thumb_border_width" value="<?php echo esc_attr($row->slideshow_filmstrip_thumb_border_width); ?>" class="spider_int_input" onkeypress="return spider_check_isnum(event)"/> px
 									  </td>
 									</tr>
 									<tr>
@@ -1246,7 +1246,7 @@ class ThemesView_bwg extends AdminView_bwg {
 										  <?php
 										  foreach ($border_styles as $key => $border_style) {
 											?>
-											<option value="<?php echo $key; ?>" <?php echo (($row->slideshow_filmstrip_thumb_border_style == $key) ? 'selected="selected"' : ''); ?>><?php echo __($border_style, 'photo-gallery'); ?></option>
+											<option value="<?php echo esc_attr($key); ?>" <?php echo (($row->slideshow_filmstrip_thumb_border_style == $key) ? 'selected="selected"' : ''); ?>><?php echo esc_html__($border_style, 'photo-gallery'); ?></option>
 											<?php
 										  }
 										  ?>
@@ -1256,100 +1256,100 @@ class ThemesView_bwg extends AdminView_bwg {
 									<tr>
 									  <td class="spider_label"><label for="slideshow_filmstrip_thumb_border_color"><?php echo __('Filmstrip border color:', 'photo-gallery'); ?> </label></td>
 									  <td>
-										<input type="text" name="slideshow_filmstrip_thumb_border_color" id="slideshow_filmstrip_thumb_border_color" value="<?php echo $row->slideshow_filmstrip_thumb_border_color; ?>" class="jscolor"/>
+										<input type="text" name="slideshow_filmstrip_thumb_border_color" id="slideshow_filmstrip_thumb_border_color" value="<?php echo esc_attr($row->slideshow_filmstrip_thumb_border_color); ?>" class="jscolor"/>
 									  </td>
 									</tr>
 									<tr>
 									  <td class="spider_label"><label for="slideshow_filmstrip_thumb_border_radius"><?php echo __('Filmstrip border radius:', 'photo-gallery'); ?> </label></td>
 									  <td>
-										<input type="text" name="slideshow_filmstrip_thumb_border_radius" id="slideshow_filmstrip_thumb_border_radius" value="<?php echo $row->slideshow_filmstrip_thumb_border_radius; ?>" class="spider_char_input"/>
+										<input type="text" name="slideshow_filmstrip_thumb_border_radius" id="slideshow_filmstrip_thumb_border_radius" value="<?php echo esc_attr($row->slideshow_filmstrip_thumb_border_radius); ?>" class="spider_char_input"/>
 										<div class="spider_description"><?php echo __('Use CSS type values.', 'photo-gallery'); ?></div>
 									  </td>
 									</tr>
 									<tr>
 									  <td class="spider_label"><label for="slideshow_filmstrip_thumb_active_border_width"><?php echo __('Filmstrip active border width:', 'photo-gallery'); ?> </label></td>
 									  <td>
-										<input type="text" name="slideshow_filmstrip_thumb_active_border_width" id="slideshow_filmstrip_thumb_active_border_width" value="<?php echo $row->slideshow_filmstrip_thumb_active_border_width; ?>" class="spider_int_input" onkeypress="return spider_check_isnum(event)"/>px
+										<input type="text" name="slideshow_filmstrip_thumb_active_border_width" id="slideshow_filmstrip_thumb_active_border_width" value="<?php echo esc_attr($row->slideshow_filmstrip_thumb_active_border_width); ?>" class="spider_int_input" onkeypress="return spider_check_isnum(event)"/>px
 									  </td>
 									</tr>
 									<tr>
 									  <td class="spider_label"><label for="slideshow_filmstrip_thumb_active_border_color"><?php echo __('Filmstrip active border color:', 'photo-gallery'); ?> </label></td>
 									  <td>
-										<input type="text" name="slideshow_filmstrip_thumb_active_border_color" id="slideshow_filmstrip_thumb_active_border_color" value="<?php echo $row->slideshow_filmstrip_thumb_active_border_color; ?>" class="jscolor"/>
+										<input type="text" name="slideshow_filmstrip_thumb_active_border_color" id="slideshow_filmstrip_thumb_active_border_color" value="<?php echo esc_attr($row->slideshow_filmstrip_thumb_active_border_color); ?>" class="jscolor"/>
 									  </td>
 									</tr>
 									<tr id="tr_appWidth">
 									  <td class="spider_label"><label for="slideshow_filmstrip_thumb_deactive_transparent"><?php echo __('Filmstrip deactive transparency: ', 'photo-gallery'); ?></label></td>
 									  <td>
-										<input type="text" name="slideshow_filmstrip_thumb_deactive_transparent" id="slideshow_filmstrip_thumb_deactive_transparent" value="<?php echo $row->slideshow_filmstrip_thumb_deactive_transparent; ?>" class="spider_int_input" onkeypress="return spider_check_isnum(event)"/> %
+										<input type="text" name="slideshow_filmstrip_thumb_deactive_transparent" id="slideshow_filmstrip_thumb_deactive_transparent" value="<?php echo esc_attr($row->slideshow_filmstrip_thumb_deactive_transparent); ?>" class="spider_int_input" onkeypress="return spider_check_isnum(event)"/> %
 										<div class="spider_description"><?php echo __('Value must be between 0 to 100.', 'photo-gallery'); ?></div>
 									  </td>
 									</tr>
 									<tr>
 									  <td class="spider_label"><label for="slideshow_filmstrip_rl_bg_color"><?php echo __('Filmstrip right, left buttons background color: ', 'photo-gallery'); ?></label></td>
 									  <td>
-										<input type="text" name="slideshow_filmstrip_rl_bg_color" id="slideshow_filmstrip_rl_bg_color" value="<?php echo $row->slideshow_filmstrip_rl_bg_color; ?>" class="jscolor"/>
+										<input type="text" name="slideshow_filmstrip_rl_bg_color" id="slideshow_filmstrip_rl_bg_color" value="<?php echo esc_attr($row->slideshow_filmstrip_rl_bg_color); ?>" class="jscolor"/>
 									  </td>
 									</tr>
 									<tr>
 									  <td class="spider_label"><label for="slideshow_filmstrip_rl_btn_color"><?php echo __('Filmstrip right, left buttons color:', 'photo-gallery'); ?> </label></td>
 									  <td>
-										<input type="text" name="slideshow_filmstrip_rl_btn_color" id="slideshow_filmstrip_rl_btn_color" value="<?php echo $row->slideshow_filmstrip_rl_btn_color; ?>" class="jscolor"/>
+										<input type="text" name="slideshow_filmstrip_rl_btn_color" id="slideshow_filmstrip_rl_btn_color" value="<?php echo esc_attr($row->slideshow_filmstrip_rl_btn_color); ?>" class="jscolor"/>
 									  </td>
 									</tr>
 									<tr>
 									  <td class="spider_label"><label for="slideshow_filmstrip_rl_btn_size"><?php echo __('Filmstrip right, left buttons size:', 'photo-gallery'); ?> </label></td>
 									  <td>
-										<input type="text" name="slideshow_filmstrip_rl_btn_size" id="slideshow_filmstrip_rl_btn_size" value="<?php echo $row->slideshow_filmstrip_rl_btn_size; ?>" class="spider_int_input" onkeypress="return spider_check_isnum(event)" /> px
+										<input type="text" name="slideshow_filmstrip_rl_btn_size" id="slideshow_filmstrip_rl_btn_size" value="<?php echo esc_attr($row->slideshow_filmstrip_rl_btn_size); ?>" class="spider_int_input" onkeypress="return spider_check_isnum(event)" /> px
 									  </td>
 									</tr>
 									<tr>
 									  <td class="spider_label"><label for="slideshow_dots_width"><?php echo __('Slider bullet width: ', 'photo-gallery'); ?></label></td>
 									  <td>
-										<input type="text" name="slideshow_dots_width" id="slideshow_dots_width" value="<?php echo $row->slideshow_dots_width; ?>" class="spider_int_input" onkeypress="return spider_check_isnum(event)"/> px
+										<input type="text" name="slideshow_dots_width" id="slideshow_dots_width" value="<?php echo esc_attr($row->slideshow_dots_width); ?>" class="spider_int_input" onkeypress="return spider_check_isnum(event)"/> px
 									  </td>
 									</tr>
 									<tr>
 									  <td class="spider_label"><label for="slideshow_dots_height"><?php echo __('Slider bullet height:', 'photo-gallery'); ?> </label></td>
 									  <td>
-										<input type="text" name="slideshow_dots_height" id="slideshow_dots_height" value="<?php echo $row->slideshow_dots_height; ?>" class="spider_int_input" onkeypress="return spider_check_isnum(event)"/> px
+										<input type="text" name="slideshow_dots_height" id="slideshow_dots_height" value="<?php echo esc_attr($row->slideshow_dots_height); ?>" class="spider_int_input" onkeypress="return spider_check_isnum(event)"/> px
 									  </td>
 									</tr>
 									<tr>
 									  <td class="spider_label"><label for="slideshow_dots_border_radius"><?php echo __('Slider bullet border radius: ', 'photo-gallery'); ?></label></td>
 									  <td>
-										<input type="text" name="slideshow_dots_border_radius" id="slideshow_dots_border_radius" value="<?php echo $row->slideshow_dots_border_radius; ?>" class="spider_char_input"/>
+										<input type="text" name="slideshow_dots_border_radius" id="slideshow_dots_border_radius" value="<?php echo esc_attr($row->slideshow_dots_border_radius); ?>" class="spider_char_input"/>
 										<div class="spider_description"><?php echo __('Use CSS type values.', 'photo-gallery'); ?></div>
 									  </td>
 									</tr>
 									<tr>
 									  <td class="spider_label"><label for="slideshow_dots_background_color"><?php echo __('Slider bullet background color:', 'photo-gallery'); ?> </label></td>
 									  <td>
-										<input type="text" name="slideshow_dots_background_color" id="slideshow_dots_background_color" value="<?php echo $row->slideshow_dots_background_color; ?>" class="jscolor"/>
+										<input type="text" name="slideshow_dots_background_color" id="slideshow_dots_background_color" value="<?php echo esc_attr($row->slideshow_dots_background_color); ?>" class="jscolor"/>
 									  </td>
 									</tr>
 									<tr>
 									  <td class="spider_label"><label for="slideshow_dots_margin"><?php echo __('Slider bullet margin:', 'photo-gallery'); ?> </label></td>
 									  <td>
-										<input type="text" name="slideshow_dots_margin" id="slideshow_dots_margin" value="<?php echo $row->slideshow_dots_margin; ?>" class="spider_int_input" onkeypress="return spider_check_isnum(event)"/> px
+										<input type="text" name="slideshow_dots_margin" id="slideshow_dots_margin" value="<?php echo esc_attr($row->slideshow_dots_margin); ?>" class="spider_int_input" onkeypress="return spider_check_isnum(event)"/> px
 									  </td>
 									</tr>
 									<tr>
 									  <td class="spider_label"><label for="slideshow_dots_active_background_color"><?php echo __('Slider bullet active background color: ', 'photo-gallery'); ?></label></td>
 									  <td>
-										<input type="text" name="slideshow_dots_active_background_color" id="slideshow_dots_active_background_color" value="<?php echo $row->slideshow_dots_active_background_color; ?>" class="jscolor"/>
+										<input type="text" name="slideshow_dots_active_background_color" id="slideshow_dots_active_background_color" value="<?php echo esc_attr($row->slideshow_dots_active_background_color); ?>" class="jscolor"/>
 									  </td>
 									</tr>
 									<tr>
 									  <td class="spider_label"><label for="slideshow_dots_active_border_width"><?php echo __('Slider bullet active border width:', 'photo-gallery'); ?> </label></td>
 									  <td>
-										<input type="text" name="slideshow_dots_active_border_width" id="slideshow_dots_active_border_width" value="<?php echo $row->slideshow_dots_active_border_width; ?>" class="spider_int_input" onkeypress="return spider_check_isnum(event)"/> px
+										<input type="text" name="slideshow_dots_active_border_width" id="slideshow_dots_active_border_width" value="<?php echo esc_attr($row->slideshow_dots_active_border_width); ?>" class="spider_int_input" onkeypress="return spider_check_isnum(event)"/> px
 									  </td>
 									</tr>
 									<tr>
 									  <td class="spider_label"><label for="slideshow_dots_active_border_color"><?php echo __('Slider bullet active border color: ', 'photo-gallery'); ?></label></td>
 									  <td>
-										<input type="text" name="slideshow_dots_active_border_color" id="slideshow_dots_active_border_color" value="<?php echo $row->slideshow_dots_active_border_color; ?>" class="jscolor"/>
+										<input type="text" name="slideshow_dots_active_border_color" id="slideshow_dots_active_border_color" value="<?php echo esc_attr($row->slideshow_dots_active_border_color); ?>" class="jscolor"/>
 									  </td>
 									</tr>
 								  </tbody>
@@ -1365,40 +1365,40 @@ class ThemesView_bwg extends AdminView_bwg {
 									<tr>
 									  <td class="spider_label"><label for="slideshow_title_background_color"><?php echo __('Title background color: ', 'photo-gallery'); ?></label></td>
 									  <td>
-										<input type="text" name="slideshow_title_background_color" id="slideshow_title_background_color" value="<?php echo $row->slideshow_title_background_color; ?>" class="jscolor"/>
+										<input type="text" name="slideshow_title_background_color" id="slideshow_title_background_color" value="<?php echo esc_attr($row->slideshow_title_background_color); ?>" class="jscolor"/>
 									  </td>
 									</tr>
 									<tr>
 									  <td class="spider_label"><label for="slideshow_title_opacity"><?php echo __('Title transparency: ', 'photo-gallery'); ?></label></td>
 									  <td>
-										<input type="text" name="slideshow_title_opacity" id="slideshow_title_opacity" value="<?php echo $row->slideshow_title_opacity; ?>" class="spider_int_input" onkeypress="return spider_check_isnum(event)"/> %
+										<input type="text" name="slideshow_title_opacity" id="slideshow_title_opacity" value="<?php echo esc_attr($row->slideshow_title_opacity); ?>" class="spider_int_input" onkeypress="return spider_check_isnum(event)"/> %
 										<div class="spider_description"><?php echo __('Value must be between 0 to 100.', 'photo-gallery'); ?></div>
 									  </td>
 									</tr>
 									<tr>
 									  <td class="spider_label"><label for="slideshow_title_border_radius"><?php echo __('Title border radius:', 'photo-gallery'); ?> </label></td>
 									  <td>
-										<input type="text" name="slideshow_title_border_radius" id="slideshow_title_border_radius" value="<?php echo $row->slideshow_title_border_radius; ?>" class="spider_char_input"/>
+										<input type="text" name="slideshow_title_border_radius" id="slideshow_title_border_radius" value="<?php echo esc_attr($row->slideshow_title_border_radius); ?>" class="spider_char_input"/>
 										<div class="spider_description"><?php echo __('Use CSS type values.', 'photo-gallery'); ?></div>
 									  </td>
 									</tr>
 									<tr>
 									  <td class="spider_label"><label for="slideshow_title_padding"><?php echo __('Title padding: ', 'photo-gallery'); ?></label></td>
 									  <td>
-										<input type="text" name="slideshow_title_padding" id="slideshow_title_padding" value="<?php echo $row->slideshow_title_padding; ?>" class="spider_char_input"/>
+										<input type="text" name="slideshow_title_padding" id="slideshow_title_padding" value="<?php echo esc_attr($row->slideshow_title_padding); ?>" class="spider_char_input"/>
 										<div class="spider_description"><?php echo __('Use CSS type values.', 'photo-gallery'); ?></div>
 									  </td>
 									</tr>
 									<tr>
 									  <td class="spider_label"><label for="slideshow_title_font_size"><?php echo __('Title font size: ', 'photo-gallery'); ?></label></td>
 									  <td>
-										<input type="text" name="slideshow_title_font_size" id="slideshow_title_font_size" value="<?php echo $row->slideshow_title_font_size; ?>" class="spider_int_input" onkeypress="return spider_check_isnum(event)" /> px
+										<input type="text" name="slideshow_title_font_size" id="slideshow_title_font_size" value="<?php echo esc_attr($row->slideshow_title_font_size); ?>" class="spider_int_input" onkeypress="return spider_check_isnum(event)" /> px
 									  </td>
 									</tr>
 									<tr>
 									  <td class="spider_label"><label for="slideshow_title_color"><?php echo __('Title color: ', 'photo-gallery'); ?></label></td>
 									  <td>
-										<input type="text" name="slideshow_title_color" id="slideshow_title_color" value="<?php echo $row->slideshow_title_color; ?>" class="jscolor"/>
+										<input type="text" name="slideshow_title_color" id="slideshow_title_color" value="<?php echo esc_attr($row->slideshow_title_color); ?>" class="jscolor"/>
 									  </td>
 									</tr>
                   <tr>
@@ -1408,40 +1408,40 @@ class ThemesView_bwg extends AdminView_bwg {
 									<tr>
 									  <td class="spider_label"><label for="slideshow_description_background_color"><?php echo __('Description background color:', 'photo-gallery'); ?> </label></td>
 									  <td>
-										<input type="text" name="slideshow_description_background_color" id="slideshow_description_background_color" value="<?php echo $row->slideshow_description_background_color; ?>" class="jscolor"/>
+										<input type="text" name="slideshow_description_background_color" id="slideshow_description_background_color" value="<?php echo esc_attr($row->slideshow_description_background_color); ?>" class="jscolor"/>
 									  </td>
 									</tr>
 									<tr>
 									  <td class="spider_label"><label for="slideshow_description_opacity"><?php echo __('Description transparency:', 'photo-gallery'); ?> </label></td>
 									  <td>
-										<input type="text" name="slideshow_description_opacity" id="slideshow_description_opacity" value="<?php echo $row->slideshow_description_opacity; ?>" class="spider_int_input" onkeypress="return spider_check_isnum(event)"/> %
+										<input type="text" name="slideshow_description_opacity" id="slideshow_description_opacity" value="<?php echo esc_attr($row->slideshow_description_opacity); ?>" class="spider_int_input" onkeypress="return spider_check_isnum(event)"/> %
 										<div class="spider_description"><?php echo __('Value must be between 0 to 100.', 'photo-gallery'); ?></div>
 									  </td>
 									</tr>
 									<tr>
 									  <td class="spider_label"><label for="slideshow_description_border_radius"><?php echo __('Description border radius:', 'photo-gallery'); ?> </label></td>
 									  <td>
-										<input type="text" name="slideshow_description_border_radius" id="slideshow_description_border_radius" value="<?php echo $row->slideshow_description_border_radius; ?>" class="spider_char_input"/>
+										<input type="text" name="slideshow_description_border_radius" id="slideshow_description_border_radius" value="<?php echo esc_attr($row->slideshow_description_border_radius); ?>" class="spider_char_input"/>
 										<div class="spider_description"><?php echo __('Use CSS type values.', 'photo-gallery'); ?></div>
 									  </td>
 									</tr>
 									<tr>
 									  <td class="spider_label"><label for="slideshow_description_padding"><?php echo __('Description padding:', 'photo-gallery'); ?> </label></td>
 									  <td>
-										<input type="text" name="slideshow_description_padding" id="slideshow_description_padding" value="<?php echo $row->slideshow_description_padding; ?>" class="spider_char_input"/>
+										<input type="text" name="slideshow_description_padding" id="slideshow_description_padding" value="<?php echo esc_attr($row->slideshow_description_padding); ?>" class="spider_char_input"/>
 										<div class="spider_description"><?php echo __('Use CSS type values.', 'photo-gallery'); ?></div>
 									  </td>
 									</tr>
 									<tr>
 									  <td class="spider_label"><label for="slideshow_description_font_size"><?php echo __('Description font size:', 'photo-gallery'); ?> </label></td>
 									  <td>
-										<input type="text" name="slideshow_description_font_size" id="slideshow_description_font_size" value="<?php echo $row->slideshow_description_font_size; ?>" class="spider_int_input" onkeypress="return spider_check_isnum(event)"/> px
+										<input type="text" name="slideshow_description_font_size" id="slideshow_description_font_size" value="<?php echo esc_attr($row->slideshow_description_font_size); ?>" class="spider_int_input" onkeypress="return spider_check_isnum(event)"/> px
 									  </td>
 									</tr>
 									<tr>
 									  <td class="spider_label"><label for="slideshow_description_color"><?php echo __('Description color:', 'photo-gallery'); ?> </label></td>
 									  <td>
-										<input type="text" name="slideshow_description_color" id="slideshow_description_color" value="<?php echo $row->slideshow_description_color; ?>" class="jscolor"/>
+										<input type="text" name="slideshow_description_color" id="slideshow_description_color" value="<?php echo esc_attr($row->slideshow_description_color); ?>" class="jscolor"/>
 									  </td>
 									</tr>
                   <tr>
@@ -1465,34 +1465,34 @@ class ThemesView_bwg extends AdminView_bwg {
 									<tr>
 									  <td class="spider_label"><label for="image_browser_full_padding"><?php echo __('Full padding:', 'photo-gallery'); ?> </label></td>
 									  <td>
-										<input type="text" name="image_browser_full_padding" id="image_browser_full_padding" value="<?php echo $row->image_browser_full_padding; ?>" class="spider_char_input"/>
+										<input type="text" name="image_browser_full_padding" id="image_browser_full_padding" value="<?php echo esc_attr($row->image_browser_full_padding); ?>" class="spider_char_input"/>
 										<div class="spider_description"><?php echo __('Use CSS type values.', 'photo-gallery'); ?></div>
 									  </td>
 									</tr>
 									<tr>
 									  <td class="spider_label"><label for="image_browser_full_bg_color"><?php echo __('Full background color:', 'photo-gallery'); ?> </label></td>
 									  <td>
-										<input type="text" name="image_browser_full_bg_color" id="image_browser_full_bg_color" value="<?php echo $row->image_browser_full_bg_color; ?>" class="jscolor" />
+										<input type="text" name="image_browser_full_bg_color" id="image_browser_full_bg_color" value="<?php echo esc_attr($row->image_browser_full_bg_color); ?>" class="jscolor" />
 									  </td>
 									</tr>
 									<tr>
 									  <td class="spider_label"><label for="image_browser_full_transparent"><?php echo __('Full background transparency:', 'photo-gallery'); ?> </label></td>
 									  <td>
-										<input type="text" name="image_browser_full_transparent" id="image_browser_full_transparent" value="<?php echo $row->image_browser_full_transparent; ?>" class="spider_int_input" onkeypress="return spider_check_isnum(event)"/> %
+										<input type="text" name="image_browser_full_transparent" id="image_browser_full_transparent" value="<?php echo esc_attr($row->image_browser_full_transparent); ?>" class="spider_int_input" onkeypress="return spider_check_isnum(event)"/> %
 										<div class="spider_description"><?php echo __('Value must be between 0 to 100.', 'photo-gallery'); ?></div>
 									  </td>
 									</tr>
 									<tr>
 									  <td class="spider_label"><label for="image_browser_full_border_radius"><?php echo __('Full border radius:', 'photo-gallery'); ?> </label></td>
 									  <td>
-										<input type="text" name="image_browser_full_border_radius" id="image_browser_full_border_radius" value="<?php echo $row->image_browser_full_border_radius; ?>" class="spider_char_input" />
+										<input type="text" name="image_browser_full_border_radius" id="image_browser_full_border_radius" value="<?php echo esc_attr($row->image_browser_full_border_radius); ?>" class="spider_char_input" />
 										<div class="spider_description"><?php echo __('Use CSS type values.', 'photo-gallery'); ?></div>
 									  </td>
 									</tr>
 									<tr>
 									  <td class="spider_label"><label for="image_browser_full_border_width"><?php echo __('Full border width:', 'photo-gallery'); ?> </label></td>
 									  <td>
-										<input type="text" name="image_browser_full_border_width" id="image_browser_full_border_width" value="<?php echo $row->image_browser_full_border_width; ?>" class="spider_int_input" onkeypress="return spider_check_isnum(event)"/> px
+										<input type="text" name="image_browser_full_border_width" id="image_browser_full_border_width" value="<?php echo esc_attr($row->image_browser_full_border_width); ?>" class="spider_int_input" onkeypress="return spider_check_isnum(event)"/> px
 									  </td>
 									</tr>
 									<tr>
@@ -1502,7 +1502,7 @@ class ThemesView_bwg extends AdminView_bwg {
 										  <?php
 										  foreach ($border_styles as $key => $border_style) {
 											?>
-											<option value="<?php echo $key; ?>" <?php echo (($row->image_browser_full_border_style == $key) ? 'selected="selected"' : ''); ?>><?php echo __($border_style, 'photo-gallery'); ?></option>
+											<option value="<?php echo esc_attr($key); ?>" <?php echo (($row->image_browser_full_border_style == $key) ? 'selected="selected"' : ''); ?>><?php echo esc_html__($border_style, 'photo-gallery'); ?></option>
 											<?php
 										  }
 										  ?>
@@ -1512,7 +1512,7 @@ class ThemesView_bwg extends AdminView_bwg {
 									<tr>
 									  <td class="spider_label"><label for="image_browser_full_border_color"><?php echo __('Full border color:', 'photo-gallery'); ?> </label></td>
 									  <td>
-										<input type="text" name="image_browser_full_border_color" id="image_browser_full_border_color" value="<?php echo $row->image_browser_full_border_color; ?>" class="jscolor" />
+										<input type="text" name="image_browser_full_border_color" id="image_browser_full_border_color" value="<?php echo esc_attr($row->image_browser_full_border_color); ?>" class="jscolor" />
 									  </td>
 									</tr>
 								  </tbody>
@@ -1532,7 +1532,7 @@ class ThemesView_bwg extends AdminView_bwg {
 											  <?php
 											  foreach ($aligns as $key => $align) {
 												?>
-												<option value="<?php echo $key; ?>" <?php echo (($row->image_browser_align == $key) ? 'selected="selected"' : ''); ?>><?php echo __($align, 'photo-gallery'); ?></option>
+												<option value="<?php echo esc_attr($key); ?>" <?php echo (($row->image_browser_align == $key) ? 'selected="selected"' : ''); ?>><?php echo esc_html__($align, 'photo-gallery'); ?></option>
 												<?php
 											  }
 											  ?>
@@ -1542,21 +1542,21 @@ class ThemesView_bwg extends AdminView_bwg {
 										<tr>
 										  <td class="spider_label"><label for="image_browser_margin"><?php echo __('Margin:', 'photo-gallery'); ?> </label></td>
 										  <td>
-											<input type="text" name="image_browser_margin" id="image_browser_margin" value="<?php echo $row->image_browser_margin; ?>" class="spider_char_input" />
+											<input type="text" name="image_browser_margin" id="image_browser_margin" value="<?php echo esc_attr($row->image_browser_margin); ?>" class="spider_char_input" />
 											<div class="spider_description"><?php echo __('Use CSS type values.', 'photo-gallery'); ?></div>
 										  </td>
 										</tr>
 										<tr>
 										  <td class="spider_label"><label for="image_browser_padding"><?php echo __('Padding:', 'photo-gallery'); ?> </label></td>
 										  <td>
-											<input type="text" name="image_browser_padding" id="image_browser_padding" value="<?php echo $row->image_browser_padding; ?>" class="spider_char_input" />
+											<input type="text" name="image_browser_padding" id="image_browser_padding" value="<?php echo esc_attr($row->image_browser_padding); ?>" class="spider_char_input" />
 											<div class="spider_description"><?php echo __('Use CSS type values.', 'photo-gallery'); ?></div>
 										  </td>
 										</tr>
 										<tr>
 										  <td class="spider_label"><label for="image_browser_border_width"><?php echo __('Border width:', 'photo-gallery'); ?> </label></td>
 										  <td>
-											<input type="text" name="image_browser_border_width" id="image_browser_border_width" value="<?php echo $row->image_browser_border_width; ?>" class="spider_int_input" onkeypress="return spider_check_isnum(event)"/> px
+											<input type="text" name="image_browser_border_width" id="image_browser_border_width" value="<?php echo esc_attr($row->image_browser_border_width); ?>" class="spider_int_input" onkeypress="return spider_check_isnum(event)"/> px
 										  </td>
 										</tr>
 										<tr>
@@ -1566,7 +1566,7 @@ class ThemesView_bwg extends AdminView_bwg {
 											  <?php
 											  foreach ($border_styles as $key => $border_style) {
 												?>
-												<option value="<?php echo $key; ?>" <?php echo (($row->image_browser_border_style == $key) ? 'selected="selected"' : ''); ?>><?php echo __($border_style, 'photo-gallery'); ?></option>
+												<option value="<?php echo esc_attr($key); ?>" <?php echo (($row->image_browser_border_style == $key) ? 'selected="selected"' : ''); ?>><?php echo esc_html__($border_style, 'photo-gallery'); ?></option>
 												<?php
 											  }
 											  ?>
@@ -1576,33 +1576,33 @@ class ThemesView_bwg extends AdminView_bwg {
 										<tr>
 										  <td class="spider_label"><label for="image_browser_border_color"><?php echo __('Border color:', 'photo-gallery'); ?> </label></td>
 										  <td>
-											<input type="text" name="image_browser_border_color" id="image_browser_border_color" value="<?php echo $row->image_browser_border_color; ?>" class="jscolor" />
+											<input type="text" name="image_browser_border_color" id="image_browser_border_color" value="<?php echo esc_attr($row->image_browser_border_color); ?>" class="jscolor" />
 										  </td>
 										</tr>
 										<tr>
 										  <td class="spider_label"><label for="image_browser_border_radius"><?php echo __('Border radius:', 'photo-gallery'); ?> </label></td>
 										  <td>
-											<input type="text" name="image_browser_border_radius" id="image_browser_border_radius" value="<?php echo $row->image_browser_border_radius; ?>" class="spider_char_input" />
+											<input type="text" name="image_browser_border_radius" id="image_browser_border_radius" value="<?php echo esc_attr($row->image_browser_border_radius); ?>" class="spider_char_input" />
 											<div class="spider_description"><?php echo __('Use CSS type values.', 'photo-gallery'); ?></div>
 										  </td>
 										</tr>
 										<tr>
 										  <td class="spider_label"><label for="image_browser_bg_color"><?php echo __('Background color:', 'photo-gallery'); ?> </label></td>
 										  <td>
-											<input type="text" name="image_browser_bg_color" id="image_browser_bg_color" value="<?php echo $row->image_browser_bg_color; ?>" class="jscolor" />
+											<input type="text" name="image_browser_bg_color" id="image_browser_bg_color" value="<?php echo esc_attr($row->image_browser_bg_color); ?>" class="jscolor" />
 										  </td>
 										</tr>
 										<tr>
 										  <td class="spider_label"><label for="image_browser_transparent"><?php echo __('Background transparency:', 'photo-gallery'); ?> </label></td>
 										  <td>
-											<input type="text" name="image_browser_transparent" id="image_browser_transparent" value="<?php echo $row->image_browser_transparent; ?>" class="spider_int_input" onkeypress="return spider_check_isnum(event)"/> %
+											<input type="text" name="image_browser_transparent" id="image_browser_transparent" value="<?php echo esc_attr($row->image_browser_transparent); ?>" class="spider_int_input" onkeypress="return spider_check_isnum(event)"/> %
 											<div class="spider_description"><?php echo __('Value must be between 0 to 100.', 'photo-gallery'); ?></div>
 										  </td>
 										</tr>
 										<tr>
 										  <td class="spider_label"><label for="image_browser_box_shadow"><?php echo __('Box shadow:', 'photo-gallery'); ?> </label></td>
 										  <td>
-											<input type="text" name="image_browser_box_shadow" id="image_browser_box_shadow" value="<?php echo $row->image_browser_box_shadow; ?>" class="spider_box_input" placeholder="10px 10px 10px #888888" />
+											<input type="text" name="image_browser_box_shadow" id="image_browser_box_shadow" value="<?php echo esc_attr($row->image_browser_box_shadow); ?>" class="spider_box_input" placeholder="10px 10px 10px #888888" />
 											<div class="spider_description"><?php echo __('Use CSS type values.', 'photo-gallery'); ?></div>
 										  </td>
 										</tr>
@@ -1632,7 +1632,7 @@ class ThemesView_bwg extends AdminView_bwg {
 										  <?php
 										  foreach ($aligns as $key => $align) {
 											?>
-											<option value="<?php echo $key; ?>" <?php echo (($row->image_browser_image_description_align == $key) ? 'selected="selected"' : ''); ?>><?php echo __($align, 'photo-gallery'); ?></option>
+											<option value="<?php echo esc_attr($key); ?>" <?php echo (($row->image_browser_image_description_align == $key) ? 'selected="selected"' : ''); ?>><?php echo esc_html__($align, 'photo-gallery'); ?></option>
 											<?php
 										  }
 										  ?>
@@ -1642,13 +1642,13 @@ class ThemesView_bwg extends AdminView_bwg {
 									<tr>
 									  <td class="spider_label"><label for="image_browser_img_font_size"><?php echo __('Font size:', 'photo-gallery'); ?> </label></td>
 									  <td>
-										<input type="text" name="image_browser_img_font_size" id="image_browser_img_font_size" value="<?php echo $row->image_browser_img_font_size; ?>" class="spider_int_input" onkeypress="return spider_check_isnum(event)"/> px
+										<input type="text" name="image_browser_img_font_size" id="image_browser_img_font_size" value="<?php echo esc_attr($row->image_browser_img_font_size); ?>" class="spider_int_input" onkeypress="return spider_check_isnum(event)"/> px
 									  </td>
 									</tr>
 									<tr>
 									  <td class="spider_label"><label for="image_browser_img_font_color"><?php echo __('Font color:', 'photo-gallery'); ?> </label></td>
 									  <td>
-										<input type="text" name="image_browser_img_font_color" id="image_browser_img_font_color" value="<?php echo $row->image_browser_img_font_color; ?>" class="jscolor" />
+										<input type="text" name="image_browser_img_font_color" id="image_browser_img_font_color" value="<?php echo esc_attr($row->image_browser_img_font_color); ?>" class="jscolor" />
 									  </td>
 									</tr>
                   <tr>
@@ -1658,21 +1658,21 @@ class ThemesView_bwg extends AdminView_bwg {
                   <tr>
 									  <td class="spider_label"><label for="image_browser_image_description_margin"><?php echo __('Description margin:', 'photo-gallery'); ?> </label></td>
 									  <td>
-										<input type="text" name="image_browser_image_description_margin" id="image_browser_image_description_margin" value="<?php echo $row->image_browser_image_description_margin; ?>" class="spider_char_input" />
+										<input type="text" name="image_browser_image_description_margin" id="image_browser_image_description_margin" value="<?php echo esc_attr($row->image_browser_image_description_margin); ?>" class="spider_char_input" />
 										<div class="spider_description"><?php echo __('Use CSS type values.', 'photo-gallery'); ?></div>
 									  </td>
 									</tr>
 									<tr>
 									  <td class="spider_label"><label for="image_browser_image_description_padding"><?php echo __('Description padding:', 'photo-gallery'); ?> </label></td>
 									  <td>
-										<input type="text" name="image_browser_image_description_padding" id="image_browser_image_description_padding" value="<?php echo $row->image_browser_image_description_padding; ?>" class="spider_char_input" />
+										<input type="text" name="image_browser_image_description_padding" id="image_browser_image_description_padding" value="<?php echo esc_attr($row->image_browser_image_description_padding); ?>" class="spider_char_input" />
 										<div class="spider_description"><?php echo __('Use CSS type values.', 'photo-gallery'); ?></div>
 									  </td>
 									</tr>
 									<tr>
 									  <td class="spider_label"><label for="image_browser_image_description_border_width"><?php echo __('Description border width:', 'photo-gallery'); ?> </label></td>
 									  <td>
-										<input type="text" name="image_browser_image_description_border_width" id="image_browser_image_description_border_width" value="<?php echo $row->image_browser_image_description_border_width; ?>" class="spider_int_input" onkeypress="return spider_check_isnum(event)" /> px
+										<input type="text" name="image_browser_image_description_border_width" id="image_browser_image_description_border_width" value="<?php echo esc_attr($row->image_browser_image_description_border_width); ?>" class="spider_int_input" onkeypress="return spider_check_isnum(event)" /> px
 									  </td>
 									</tr>
 									<tr>
@@ -1682,7 +1682,7 @@ class ThemesView_bwg extends AdminView_bwg {
 										  <?php
 										  foreach ($border_styles as $key => $border_style) {
 											?>
-											<option value="<?php echo $key; ?>" <?php echo (($row->image_browser_image_description_border_style == $key) ? 'selected="selected"' : ''); ?>><?php echo __($border_style, 'photo-gallery'); ?></option>
+											<option value="<?php echo esc_attr($key); ?>" <?php echo (($row->image_browser_image_description_border_style == $key) ? 'selected="selected"' : ''); ?>><?php echo esc_html__($border_style, 'photo-gallery'); ?></option>
 											<?php
 										  }
 										  ?>
@@ -1692,33 +1692,33 @@ class ThemesView_bwg extends AdminView_bwg {
 									<tr>
 									  <td class="spider_label"><label for="image_browser_image_description_border_color"><?php echo __('Description border color:', 'photo-gallery'); ?> </label></td>
 									  <td>
-										<input type="text" name="image_browser_image_description_border_color" id="image_browser_image_description_border_color" value="<?php echo $row->image_browser_image_description_border_color; ?>" class="jscolor" />
+										<input type="text" name="image_browser_image_description_border_color" id="image_browser_image_description_border_color" value="<?php echo esc_attr($row->image_browser_image_description_border_color); ?>" class="jscolor" />
 									  </td>
 									</tr>
 									<tr>
 									  <td class="spider_label"><label for="image_browser_image_description_border_radius"><?php echo __('Description border radius:', 'photo-gallery'); ?> </label></td>
 									  <td>
-										<input type="text" name="image_browser_image_description_border_radius" id="image_browser_image_description_border_radius" value="<?php echo $row->image_browser_image_description_border_radius; ?>" class="spider_char_input" />
+										<input type="text" name="image_browser_image_description_border_radius" id="image_browser_image_description_border_radius" value="<?php echo esc_attr($row->image_browser_image_description_border_radius); ?>" class="spider_char_input" />
 										<div class="spider_description"><?php echo __('Use CSS type values.', 'photo-gallery'); ?></div>
 									  </td>
 									</tr>
 									<tr>
 									  <td class="spider_label"><label for="image_browser_image_description_bg_color"><?php echo __('Description background color:', 'photo-gallery'); ?> </label></td>
 									  <td>
-										<input type="text" name="image_browser_image_description_bg_color" id="image_browser_image_description_bg_color" value="<?php echo $row->image_browser_image_description_bg_color; ?>" class="jscolor" />
+										<input type="text" name="image_browser_image_description_bg_color" id="image_browser_image_description_bg_color" value="<?php echo esc_attr($row->image_browser_image_description_bg_color); ?>" class="jscolor" />
 									  </td>
 									</tr>
 									<tr>
 									  <td class="spider_label"><label for="image_browser_gal_title_font_size"><?php echo __('Gallery title/description font size:', 'photo-gallery'); ?> </label></td>
 									  <td>
 										<input type="text" name="image_browser_gal_title_font_size" id="image_browser_gal_title_font_size" value="<?php echo
-										$row->image_browser_gal_title_font_size; ?>" class="spider_int_input" onkeypress="return spider_check_isnum(event)"/> px
+                                        esc_attr($row->image_browser_gal_title_font_size); ?>" class="spider_int_input" onkeypress="return spider_check_isnum(event)"/> px
 									  </td>
 									</tr>
 									<tr>
 									  <td class="spider_label"><label for="image_browser_gal_title_font_color"><?php echo __('Gallery title/description font color:', 'photo-gallery'); ?> </label></td>
 									  <td>
-										<input type="text" name="image_browser_gal_title_font_color" id="image_browser_gal_title_font_color" value="<?php echo $row->image_browser_gal_title_font_color; ?>" class="jscolor" />
+										<input type="text" name="image_browser_gal_title_font_color" id="image_browser_gal_title_font_color" value="<?php echo esc_attr($row->image_browser_gal_title_font_color); ?>" class="jscolor" />
 									  </td>
 									</tr>
                   <tr>
@@ -1732,7 +1732,7 @@ class ThemesView_bwg extends AdminView_bwg {
 										  <?php
 										  foreach ($font_weights as $key => $font_weight) {
 											?>
-											<option value="<?php echo $key; ?>" <?php echo (($row->image_browser_gal_title_font_weight == $key) ? 'selected="selected"' : ''); ?>><?php echo __($font_weight, 'photo-gallery'); ?></option>
+											<option value="<?php echo esc_attr($key); ?>" <?php echo (($row->image_browser_gal_title_font_weight == $key) ? 'selected="selected"' : ''); ?>><?php echo esc_html__($font_weight, 'photo-gallery'); ?></option>
 											<?php
 										  }
 										  ?>
@@ -1742,14 +1742,14 @@ class ThemesView_bwg extends AdminView_bwg {
 									<tr>
 									  <td class="spider_label"><label for="image_browser_gal_title_shadow"><?php echo __('Gallery title/description box shadow:', 'photo-gallery'); ?> </label></td>
 									  <td>
-										<input type="text" name="image_browser_gal_title_shadow" id="image_browser_gal_title_shadow" value="<?php echo $row->image_browser_gal_title_shadow; ?>" class="spider_box_input" placeholder="10px 10px 10px #888888" />
+										<input type="text" name="image_browser_gal_title_shadow" id="image_browser_gal_title_shadow" value="<?php echo esc_attr($row->image_browser_gal_title_shadow); ?>" class="spider_box_input" placeholder="10px 10px 10px #888888" />
 										<div class="spider_description"><?php echo __('Use CSS type values.', 'photo-gallery'); ?></div>
 									  </td>
 									</tr>
 									<tr>
 									  <td class="spider_label"><label for="image_browser_gal_title_margin"><?php echo __('Gallery title/description margin:', 'photo-gallery'); ?> </label></td>
 									  <td>
-										<input type="text" name="image_browser_gal_title_margin" id="image_browser_gal_title_margin" value="<?php echo $row->image_browser_gal_title_margin; ?>" class="spider_char_input" />
+										<input type="text" name="image_browser_gal_title_margin" id="image_browser_gal_title_margin" value="<?php echo esc_attr($row->image_browser_gal_title_margin); ?>" class="spider_char_input" />
 										<div class="spider_description"><?php echo __('Use CSS type values.', 'photo-gallery'); ?></div>
 									  </td>
 									</tr>
@@ -1760,7 +1760,7 @@ class ThemesView_bwg extends AdminView_bwg {
 										  <?php
 										  foreach ($aligns as $key => $align) {
 											?>
-											<option value="<?php echo $key; ?>" <?php echo (($row->image_browser_gal_title_align == $key) ? 'selected="selected"' : ''); ?>><?php echo _e($align, 'photo-gallery'); ?></option>
+											<option value="<?php echo esc_attr($key); ?>" <?php echo (($row->image_browser_gal_title_align == $key) ? 'selected="selected"' : ''); ?>><?php echo esc_html__($align, 'photo-gallery'); ?></option>
 											<?php
 										  }
 										  ?>
@@ -1784,7 +1784,7 @@ class ThemesView_bwg extends AdminView_bwg {
                     <tr>
                       <td class="spider_label"><label for="album_compact_thumb_margin"><?php _e('Distance between pictures:', 'photo-gallery'); ?> </label></td>
                       <td>
-                        <input type="text" name="album_compact_thumb_margin" id="album_compact_thumb_margin" value="<?php echo $row->album_compact_thumb_margin; ?>" class="spider_int_input" onkeypress="return spider_check_isnum(event)"/> px
+                        <input type="text" name="album_compact_thumb_margin" id="album_compact_thumb_margin" value="<?php echo esc_attr($row->album_compact_thumb_margin); ?>" class="spider_int_input" onkeypress="return spider_check_isnum(event)"/> px
                       </td>
                     </tr>
                     <tr>
@@ -1800,14 +1800,14 @@ class ThemesView_bwg extends AdminView_bwg {
 										<tr>
 										  <td class="spider_label"><label for="album_compact_thumb_padding"><?php echo __('Padding:', 'photo-gallery'); ?> </label></td>
 										  <td>
-											<input type="text" name="album_compact_thumb_padding" id="album_compact_thumb_padding" value="<?php echo $row->album_compact_thumb_padding; ?>" class="spider_int_input" onkeypress="return spider_check_isnum(event)"/> px
+											<input type="text" name="album_compact_thumb_padding" id="album_compact_thumb_padding" value="<?php echo esc_attr($row->album_compact_thumb_padding); ?>" class="spider_int_input" onkeypress="return spider_check_isnum(event)"/> px
 											<div class="spider_description"><?php echo __('Use CSS type values.', 'photo-gallery'); ?></div>
 										  </td>
 										</tr>
 										<tr>
 										  <td class="spider_label"><label for="album_compact_thumb_border_width"><?php echo __('Border width:', 'photo-gallery'); ?> </label></td>
 										  <td>
-											<input type="text" name="album_compact_thumb_border_width" id="album_compact_thumb_border_width" value="<?php echo $row->album_compact_thumb_border_width; ?>" class="spider_int_input" onkeypress="return spider_check_isnum(event)"/> px
+											<input type="text" name="album_compact_thumb_border_width" id="album_compact_thumb_border_width" value="<?php echo esc_attr($row->album_compact_thumb_border_width); ?>" class="spider_int_input" onkeypress="return spider_check_isnum(event)"/> px
 										  </td>
 										</tr>
 										<tr>
@@ -1817,7 +1817,7 @@ class ThemesView_bwg extends AdminView_bwg {
 											  <?php
 											  foreach ($border_styles as $key => $border_style) {
 												?>
-												<option value="<?php echo $key; ?>" <?php echo (($row->album_compact_thumb_border_style == $key) ? 'selected="selected"' : ''); ?>><?php echo __($border_style, 'photo-gallery'); ?></option>
+												<option value="<?php echo esc_attr($key); ?>" <?php echo (($row->album_compact_thumb_border_style == $key) ? 'selected="selected"' : ''); ?>><?php echo esc_html__($border_style, 'photo-gallery'); ?></option>
 												<?php
 											  }
 											  ?>
@@ -1827,20 +1827,20 @@ class ThemesView_bwg extends AdminView_bwg {
 										<tr>
 										  <td class="spider_label"><label for="album_compact_thumb_border_color"><?php echo __('Border color:', 'photo-gallery'); ?> </label></td>
 										  <td>
-											<input type="text" name="album_compact_thumb_border_color" id="album_compact_thumb_border_color" value="<?php echo $row->album_compact_thumb_border_color; ?>" class="jscolor" />
+											<input type="text" name="album_compact_thumb_border_color" id="album_compact_thumb_border_color" value="<?php echo esc_attr($row->album_compact_thumb_border_color); ?>" class="jscolor" />
 										  </td>
 										</tr>
 										<tr>
 										  <td class="spider_label"><label for="album_compact_thumb_border_radius"><?php echo __('Border radius:', 'photo-gallery'); ?> </label></td>
 										  <td>
-											<input type="text" name="album_compact_thumb_border_radius" id="album_compact_thumb_border_radius" value="<?php echo $row->album_compact_thumb_border_radius; ?>" class="spider_char_input" />
+											<input type="text" name="album_compact_thumb_border_radius" id="album_compact_thumb_border_radius" value="<?php echo esc_attr($row->album_compact_thumb_border_radius); ?>" class="spider_char_input" />
 											<div class="spider_description"><?php echo __('Use CSS type values.', 'photo-gallery'); ?></div>
 										  </td>
 										</tr>
 										<tr>
 										  <td class="spider_label"><label for="album_compact_thumb_box_shadow"><?php echo __('Shadow:', 'photo-gallery'); ?> </label></td>
 										  <td>
-											<input type="text" name="album_compact_thumb_box_shadow" id="album_compact_thumb_box_shadow" value="<?php echo $row->album_compact_thumb_box_shadow; ?>" class="spider_box_input" placeholder="10px 10px 10px #888888" />
+											<input type="text" name="album_compact_thumb_box_shadow" id="album_compact_thumb_box_shadow" value="<?php echo esc_attr($row->album_compact_thumb_box_shadow); ?>" class="spider_box_input" placeholder="10px 10px 10px #888888" />
 											<div class="spider_description"><?php echo __('Use CSS type values.', 'photo-gallery'); ?></div>
 										  </td>
 										</tr>
@@ -1851,7 +1851,7 @@ class ThemesView_bwg extends AdminView_bwg {
 											  <?php
 											  foreach ($thumbnail_hover_effects as $key => $hover_effect) {
 												?>
-												<option value="<?php echo $key; ?>" <?php echo (($row->album_compact_thumb_hover_effect == $key) ? 'selected="selected"' : ''); ?>><?php echo __($hover_effect, 'photo-gallery'); ?></option>
+												<option value="<?php echo esc_attr($key); ?>" <?php echo (($row->album_compact_thumb_hover_effect == $key) ? 'selected="selected"' : ''); ?>><?php echo esc_html__($hover_effect, 'photo-gallery'); ?></option>
 												<?php
 											  }
 											  ?>
@@ -1861,7 +1861,7 @@ class ThemesView_bwg extends AdminView_bwg {
 										<tr>
 										  <td class="spider_label"><label for="album_compact_thumb_hover_effect_value"><?php echo __('Hover effect value:', 'photo-gallery'); ?> </label></td>
 										  <td>
-											<input type="text" name="album_compact_thumb_hover_effect_value" id="album_compact_thumb_hover_effect_value" value="<?php echo $row->album_compact_thumb_hover_effect_value; ?>" class="spider_char_input" />
+											<input type="text" name="album_compact_thumb_hover_effect_value" id="album_compact_thumb_hover_effect_value" value="<?php echo esc_attr($row->album_compact_thumb_hover_effect_value); ?>" class="spider_char_input" />
 											<div class="spider_description"><?php echo __('E.g. Rotate: 10deg, Scale: 1.5, Skew: 10deg.', 'photo-gallery'); ?></div>
 										  </td>
 										</tr>
@@ -1887,33 +1887,33 @@ class ThemesView_bwg extends AdminView_bwg {
 									<tr>
 									  <td class="spider_label"><label for="album_compact_thumb_bg_color"><?php echo __('Thumbnail background color:', 'photo-gallery'); ?> </label></td>
 									  <td>
-										<input type="text" name="album_compact_thumb_bg_color" id="album_compact_thumb_bg_color" value="<?php echo $row->album_compact_thumb_bg_color; ?>" class="jscolor" />
+										<input type="text" name="album_compact_thumb_bg_color" id="album_compact_thumb_bg_color" value="<?php echo esc_attr($row->album_compact_thumb_bg_color); ?>" class="jscolor" />
 									  </td>
 									</tr>
                   <tr>
                     <td class="spider_label"><label for="album_compact_thumb_bg_transparency"><?php echo __('Thumbnail background transparency:', 'photo-gallery'); ?> </label></td>
                     <td>
-                      <input type="text" name="album_compact_thumb_bg_transparency" id="album_compact_thumb_bg_transparency" value="<?php echo $row->album_compact_thumb_bg_transparency; ?>" class="spider_int_input" onkeypress="return spider_check_isnum(event)"/> %
+                      <input type="text" name="album_compact_thumb_bg_transparency" id="album_compact_thumb_bg_transparency" value="<?php echo esc_attr($row->album_compact_thumb_bg_transparency); ?>" class="spider_int_input" onkeypress="return spider_check_isnum(event)"/> %
                       <div class="spider_description"><?php echo __('Value must be between 0 to 100.', 'photo-gallery'); ?></div>
                     </td>
                   </tr>
 									<tr>
 									  <td class="spider_label"><label for="album_compact_thumb_transparent"><?php echo __('Thumbnail transparency:', 'photo-gallery'); ?> </label></td>
 									  <td>
-										<input type="text" name="album_compact_thumb_transparent" id="album_compact_thumb_transparent" value="<?php echo $row->album_compact_thumb_transparent; ?>" class="spider_int_input" onkeypress="return spider_check_isnum(event)"/> %
+										<input type="text" name="album_compact_thumb_transparent" id="album_compact_thumb_transparent" value="<?php echo esc_attr($row->album_compact_thumb_transparent); ?>" class="spider_int_input" onkeypress="return spider_check_isnum(event)"/> %
 										<div class="spider_description"><?php echo __('Value must be between 0 to 100.', 'photo-gallery'); ?></div>
 									  </td>
 									</tr>
 									<tr>
 									  <td class="spider_label"><label for="album_compact_thumbs_bg_color"><?php echo __('Full background color:', 'photo-gallery'); ?> </label></td>
 									  <td>
-										<input type="text" name="album_compact_thumbs_bg_color" id="album_compact_thumbs_bg_color" value="<?php echo $row->album_compact_thumbs_bg_color; ?>" class="jscolor" />
+										<input type="text" name="album_compact_thumbs_bg_color" id="album_compact_thumbs_bg_color" value="<?php echo esc_attr($row->album_compact_thumbs_bg_color); ?>" class="jscolor" />
 									  </td>
 									</tr>
 									<tr>
 									  <td class="spider_label"><label for="album_compact_thumb_bg_transparent"><?php echo __('Full background transparency:', 'photo-gallery'); ?> </label></td>
 									  <td>
-										<input type="text" name="album_compact_thumb_bg_transparent" id="album_compact_thumb_bg_transparent" value="<?php echo $row->album_compact_thumb_bg_transparent; ?>" class="spider_int_input" onkeypress="return spider_check_isnum(event)"/> %
+										<input type="text" name="album_compact_thumb_bg_transparent" id="album_compact_thumb_bg_transparent" value="<?php echo esc_attr($row->album_compact_thumb_bg_transparent); ?>" class="spider_int_input" onkeypress="return spider_check_isnum(event)"/> %
 										<div class="spider_description"><?php echo __('Value must be between 0 to 100.', 'photo-gallery'); ?></div>
 									  </td>
 									</tr>
@@ -1924,7 +1924,7 @@ class ThemesView_bwg extends AdminView_bwg {
 										  <?php
 										  foreach ($aligns as $key => $align) {
 											?>
-											<option value="<?php echo $key; ?>" <?php echo (($row->album_compact_thumb_align == $key) ? 'selected="selected"' : ''); ?>><?php echo __($align, 'photo-gallery'); ?></option>
+											<option value="<?php echo esc_attr($key); ?>" <?php echo (($row->album_compact_thumb_align == $key) ? 'selected="selected"' : ''); ?>><?php echo esc_html__($align, 'photo-gallery'); ?></option>
 											<?php
 										  }
 										  ?>
@@ -1953,19 +1953,19 @@ class ThemesView_bwg extends AdminView_bwg {
 									<tr>
 									  <td class="spider_label"><label for="album_compact_title_font_size"><?php echo __('Title font size:', 'photo-gallery'); ?> </label></td>
 									  <td>
-										<input type="text" name="album_compact_title_font_size" id="album_compact_title_font_size" value="<?php echo $row->album_compact_title_font_size; ?>" class="spider_int_input" onkeypress="return spider_check_isnum(event)"/> px
+										<input type="text" name="album_compact_title_font_size" id="album_compact_title_font_size" value="<?php echo esc_attr($row->album_compact_title_font_size); ?>" class="spider_int_input" onkeypress="return spider_check_isnum(event)"/> px
 									  </td>
 									</tr>
 									<tr>
 									  <td class="spider_label"><label for="album_compact_title_font_color"><?php echo __('Title font color:', 'photo-gallery'); ?> </label></td>
 									  <td>
-										<input type="text" name="album_compact_title_font_color" id="album_compact_title_font_color" value="<?php echo $row->album_compact_title_font_color; ?>" class="jscolor" />
+										<input type="text" name="album_compact_title_font_color" id="album_compact_title_font_color" value="<?php echo esc_attr($row->album_compact_title_font_color); ?>" class="jscolor" />
 									  </td>
 									</tr>
                   <tr>
                     <td class="spider_label"><label for="album_compact_title_font_color_hover"><?php echo __('Title font color (Show on hover):', 'photo-gallery'); ?> </label></td>
                     <td>
-                      <input type="text" name="album_compact_title_font_color_hover" id="album_compact_title_font_color_hover" value="<?php echo $row->album_compact_title_font_color_hover; ?>" class="jscolor" />
+                      <input type="text" name="album_compact_title_font_color_hover" id="album_compact_title_font_color_hover" value="<?php echo esc_attr($row->album_compact_title_font_color_hover); ?>" class="jscolor" />
                     </td>
                   </tr>
                   <tr>
@@ -1979,7 +1979,7 @@ class ThemesView_bwg extends AdminView_bwg {
 										  <?php
 										  foreach ($font_weights as $key => $font_weight) {
 											?>
-											<option value="<?php echo $key; ?>" <?php echo (($row->album_compact_title_font_weight == $key) ? 'selected="selected"' : ''); ?>><?php echo __($font_weight, 'photo-gallery'); ?></option>
+											<option value="<?php echo esc_attr($key); ?>" <?php echo (($row->album_compact_title_font_weight == $key) ? 'selected="selected"' : ''); ?>><?php echo esc_html__($font_weight, 'photo-gallery'); ?></option>
 											<?php
 										  }
 										  ?>
@@ -1989,27 +1989,27 @@ class ThemesView_bwg extends AdminView_bwg {
 									<tr>
 									  <td class="spider_label"><label for="album_compact_title_shadow"><?php echo __('Title box shadow:', 'photo-gallery'); ?> </label></td>
 									  <td>
-										<input type="text" name="album_compact_title_shadow" id="album_compact_title_shadow" value="<?php echo $row->album_compact_title_shadow; ?>" class="spider_box_input" placeholder="10px 10px 10px #888888" />
+										<input type="text" name="album_compact_title_shadow" id="album_compact_title_shadow" value="<?php echo esc_attr($row->album_compact_title_shadow); ?>" class="spider_box_input" placeholder="10px 10px 10px #888888" />
 										<div class="spider_description"><?php echo __('Use CSS type values.', 'photo-gallery'); ?></div>
 									  </td>
 									</tr>
 									<tr>
 									  <td class="spider_label"><label for="album_compact_title_margin"><?php echo __('Title margin:', 'photo-gallery'); ?> </label></td>
 									  <td>
-										<input type="text" name="album_compact_title_margin" id="album_compact_title_margin" value="<?php echo $row->album_compact_title_margin; ?>" class="spider_char_input" />
+										<input type="text" name="album_compact_title_margin" id="album_compact_title_margin" value="<?php echo esc_attr($row->album_compact_title_margin); ?>" class="spider_char_input" />
 										<div class="spider_description"><?php echo __('Use CSS type values.', 'photo-gallery'); ?></div>
 									  </td>
 									</tr>
 									<tr>
 									  <td class="spider_label"><label for="album_compact_back_font_size"><?php echo __('Back Font size:', 'photo-gallery'); ?> </label></td>
 									  <td>
-										<input type="text" name="album_compact_back_font_size" id="album_compact_back_font_size" value="<?php echo $row->album_compact_back_font_size; ?>" class="spider_int_input" onkeypress="return spider_check_isnum(event)"/> px
+										<input type="text" name="album_compact_back_font_size" id="album_compact_back_font_size" value="<?php echo esc_attr($row->album_compact_back_font_size); ?>" class="spider_int_input" onkeypress="return spider_check_isnum(event)"/> px
 									  </td>
 									</tr>
 									<tr>
 									  <td class="spider_label"><label for="album_compact_back_font_color"><?php echo __('Back Font color:', 'photo-gallery'); ?> </label></td>
 									  <td>
-										<input type="text" name="album_compact_back_font_color" id="album_compact_back_font_color" value="<?php echo $row->album_compact_back_font_color; ?>" class="jscolor" />
+										<input type="text" name="album_compact_back_font_color" id="album_compact_back_font_color" value="<?php echo esc_attr($row->album_compact_back_font_color); ?>" class="jscolor" />
 									  </td>
 									</tr>
                   <tr>
@@ -2023,7 +2023,7 @@ class ThemesView_bwg extends AdminView_bwg {
 										  <?php
 										  foreach ($font_weights as $key => $font_weight) {
 											?>
-											<option value="<?php echo $key; ?>" <?php echo (($row->album_compact_back_font_weight == $key) ? 'selected="selected"' : ''); ?>><?php echo __($font_weight, 'photo-gallery'); ?></option>
+											<option value="<?php echo esc_attr($key); ?>" <?php echo (($row->album_compact_back_font_weight == $key) ? 'selected="selected"' : ''); ?>><?php echo esc_html__($font_weight, 'photo-gallery'); ?></option>
 											<?php
 										  }
 										  ?>
@@ -2033,20 +2033,20 @@ class ThemesView_bwg extends AdminView_bwg {
 									<tr>
 									  <td class="spider_label"><label for="album_compact_back_padding"><?php echo __('Back padding:', 'photo-gallery'); ?> </label></td>
 									  <td>
-										<input type="text" name="album_compact_back_padding" id="album_compact_back_padding" value="<?php echo $row->album_compact_back_padding; ?>" class="spider_char_input" />
+										<input type="text" name="album_compact_back_padding" id="album_compact_back_padding" value="<?php echo esc_attr($row->album_compact_back_padding); ?>" class="spider_char_input" />
 										<div class="spider_description"><?php echo __('Use CSS type values.', 'photo-gallery'); ?></div>
 									  </td>
 									</tr>
 									<tr>
 									  <td class="spider_label"><label for="album_compact_gal_title_font_size"><?php echo __('Gallery title/description font size:', 'photo-gallery'); ?> </label></td>
 									  <td>
-										<input type="text" name="album_compact_gal_title_font_size" id="album_compact_gal_title_font_size" value="<?php echo $row->album_compact_gal_title_font_size; ?>" class="spider_int_input" onkeypress="return spider_check_isnum(event)"/> px
+										<input type="text" name="album_compact_gal_title_font_size" id="album_compact_gal_title_font_size" value="<?php echo esc_attr($row->album_compact_gal_title_font_size); ?>" class="spider_int_input" onkeypress="return spider_check_isnum(event)"/> px
 									  </td>
 									</tr>
 									<tr>
 									  <td class="spider_label"><label for="album_compact_gal_title_font_color"><?php echo __('Gallery title/description font color:', 'photo-gallery'); ?> </label></td>
 									  <td>
-										<input type="text" name="album_compact_gal_title_font_color" id="album_compact_gal_title_font_color" value="<?php echo $row->album_compact_gal_title_font_color; ?>" class="jscolor" />
+										<input type="text" name="album_compact_gal_title_font_color" id="album_compact_gal_title_font_color" value="<?php echo esc_attr($row->album_compact_gal_title_font_color); ?>" class="jscolor" />
 									  </td>
 									</tr>
                   <tr>
@@ -2060,7 +2060,7 @@ class ThemesView_bwg extends AdminView_bwg {
 										  <?php
 										  foreach ($font_weights as $key => $font_weight) {
 											?>
-											<option value="<?php echo $key; ?>" <?php echo (($row->album_compact_gal_title_font_weight == $key) ? 'selected="selected"' : ''); ?>><?php echo __($font_weight, 'photo-gallery'); ?></option>
+											<option value="<?php echo esc_attr($key); ?>" <?php echo (($row->album_compact_gal_title_font_weight == $key) ? 'selected="selected"' : ''); ?>><?php echo esc_html__($font_weight, 'photo-gallery'); ?></option>
 											<?php
 										  }
 										  ?>
@@ -2070,14 +2070,14 @@ class ThemesView_bwg extends AdminView_bwg {
 									<tr>
 									  <td class="spider_label"><label for="album_compact_gal_title_shadow"><?php echo __('Gallery title/description box shadow:', 'photo-gallery'); ?> </label></td>
 									  <td>
-										<input type="text" name="album_compact_gal_title_shadow" id="album_compact_gal_title_shadow" value="<?php echo $row->album_compact_gal_title_shadow; ?>" class="spider_box_input" placeholder="10px 10px 10px #888888" />
+										<input type="text" name="album_compact_gal_title_shadow" id="album_compact_gal_title_shadow" value="<?php echo esc_attr($row->album_compact_gal_title_shadow); ?>" class="spider_box_input" placeholder="10px 10px 10px #888888" />
 										<div class="spider_description"><?php echo __('Use CSS type values.', 'photo-gallery'); ?></div>
 									  </td>
 									</tr>
 									<tr>
 									  <td class="spider_label"><label for="album_compact_gal_title_margin"><?php echo __('Gallery title/description margin:', 'photo-gallery'); ?> </label></td>
 									  <td>
-										<input type="text" name="album_compact_gal_title_margin" id="album_compact_gal_title_margin" value="<?php echo $row->album_compact_gal_title_margin; ?>" class="spider_char_input" />
+										<input type="text" name="album_compact_gal_title_margin" id="album_compact_gal_title_margin" value="<?php echo esc_attr($row->album_compact_gal_title_margin); ?>" class="spider_char_input" />
 										<div class="spider_description"><?php echo __('Use CSS type values.', 'photo-gallery'); ?></div>
 									  </td>
 									</tr>
@@ -2088,7 +2088,7 @@ class ThemesView_bwg extends AdminView_bwg {
 										  <?php
 										  foreach ($aligns as $key => $align) {
 											?>
-											<option value="<?php echo $key; ?>" <?php echo (($row->album_compact_gal_title_align == $key) ? 'selected="selected"' : ''); ?>><?php echo _e($align, 'photo-gallery'); ?></option>
+											<option value="<?php echo esc_attr($key); ?>" <?php echo (($row->album_compact_gal_title_align == $key) ? 'selected="selected"' : ''); ?>><?php echo esc_html__($align, 'photo-gallery'); ?></option>
 											<?php
 										  }
 										  ?>
@@ -2112,19 +2112,19 @@ class ThemesView_bwg extends AdminView_bwg {
 									<tr>
 									  <td class="spider_label"><label for="album_extended_thumb_margin"><?php echo __('Thumbnail margin:', 'photo-gallery'); ?> </label></td>
 									  <td>
-										<input type="text" name="album_extended_thumb_margin" id="album_extended_thumb_margin" value="<?php echo $row->album_extended_thumb_margin; ?>" class="spider_int_input" onkeypress="return spider_check_isnum(event)"/> px
+										<input type="text" name="album_extended_thumb_margin" id="album_extended_thumb_margin" value="<?php echo esc_attr($row->album_extended_thumb_margin); ?>" class="spider_int_input" onkeypress="return spider_check_isnum(event)"/> px
 									  </td>
 									</tr>
 									<tr>
 									  <td class="spider_label"><label for="album_extended_thumb_padding"><?php echo __('Thumbnail padding:', 'photo-gallery'); ?> </label></td>
 									  <td>
-										<input type="text" name="album_extended_thumb_padding" id="album_extended_thumb_padding" value="<?php echo $row->album_extended_thumb_padding; ?>" class="spider_int_input" onkeypress="return spider_check_isnum(event)"/> px
+										<input type="text" name="album_extended_thumb_padding" id="album_extended_thumb_padding" value="<?php echo esc_attr($row->album_extended_thumb_padding); ?>" class="spider_int_input" onkeypress="return spider_check_isnum(event)"/> px
 									  </td>
 									</tr>
 									<tr>
 									  <td class="spider_label"><label for="album_extended_thumb_border_width"><?php echo __('Thumbnail border width:', 'photo-gallery'); ?> </label></td>
 									  <td>
-										<input type="text" name="album_extended_thumb_border_width" id="album_extended_thumb_border_width" value="<?php echo $row->album_extended_thumb_border_width; ?>" class="spider_int_input" onkeypress="return spider_check_isnum(event)"/> px
+										<input type="text" name="album_extended_thumb_border_width" id="album_extended_thumb_border_width" value="<?php echo esc_attr($row->album_extended_thumb_border_width); ?>" class="spider_int_input" onkeypress="return spider_check_isnum(event)"/> px
 									  </td>
 									</tr>
 									<tr>
@@ -2134,7 +2134,7 @@ class ThemesView_bwg extends AdminView_bwg {
 										  <?php
 										  foreach ($border_styles as $key => $border_style) {
 											?>
-											<option value="<?php echo $key; ?>" <?php echo (($row->album_extended_thumb_border_style == $key) ? 'selected="selected"' : ''); ?>><?php echo __($border_style, 'photo-gallery'); ?></option>
+											<option value="<?php echo esc_attr($key); ?>" <?php echo (($row->album_extended_thumb_border_style == $key) ? 'selected="selected"' : ''); ?>><?php echo esc_html__($border_style, 'photo-gallery'); ?></option>
 											<?php
 										  }
 										  ?>
@@ -2144,20 +2144,20 @@ class ThemesView_bwg extends AdminView_bwg {
 									<tr>
 									  <td class="spider_label"><label for="album_extended_thumb_border_color"><?php echo __('Thumbnail border color:', 'photo-gallery'); ?> </label></td>
 									  <td>
-										<input type="text" name="album_extended_thumb_border_color" id="album_extended_thumb_border_color" value="<?php echo $row->album_extended_thumb_border_color; ?>" class="jscolor"/>
+										<input type="text" name="album_extended_thumb_border_color" id="album_extended_thumb_border_color" value="<?php echo esc_attr($row->album_extended_thumb_border_color); ?>" class="jscolor"/>
 									  </td>
 									</tr>
 									<tr>
 									  <td class="spider_label"><label for="album_extended_thumb_border_radius"><?php echo __('Thumbnail border radius:', 'photo-gallery'); ?> </label></td>
 									  <td>
-										<input type="text" name="album_extended_thumb_border_radius" id="album_extended_thumb_border_radius" value="<?php echo $row->album_extended_thumb_border_radius; ?>" class="spider_char_input"/>
+										<input type="text" name="album_extended_thumb_border_radius" id="album_extended_thumb_border_radius" value="<?php echo esc_attr($row->album_extended_thumb_border_radius); ?>" class="spider_char_input"/>
 										<div class="spider_description"><?php echo __('Use CSS type values.', 'photo-gallery'); ?></div>
 									  </td>
 									</tr>
 									<tr>
 									  <td class="spider_label"><label for="album_extended_thumb_box_shadow"><?php echo __('Thumbnail box shadow:', 'photo-gallery'); ?> </label></td>
 									  <td>
-										<input type="text" name="album_extended_thumb_box_shadow" id="album_extended_thumb_box_shadow" value="<?php echo $row->album_extended_thumb_box_shadow; ?>" class="spider_box_input" placeholder="10px 10px 10px #888888" />
+										<input type="text" name="album_extended_thumb_box_shadow" id="album_extended_thumb_box_shadow" value="<?php echo esc_attr($row->album_extended_thumb_box_shadow); ?>" class="spider_box_input" placeholder="10px 10px 10px #888888" />
 										<div class="spider_description"><?php echo __('Use CSS type values.', 'photo-gallery'); ?></div>
 									  </td>
 									</tr>
@@ -2177,7 +2177,7 @@ class ThemesView_bwg extends AdminView_bwg {
 										  <?php
 										  foreach ($aligns as $key => $align) {
 											?>
-											<option value="<?php echo $key; ?>" <?php echo (($row->album_extended_thumb_align == $key) ? 'selected="selected"' : ''); ?>><?php echo __($align, 'photo-gallery'); ?></option>
+											<option value="<?php echo esc_attr($key); ?>" <?php echo (($row->album_extended_thumb_align == $key) ? 'selected="selected"' : ''); ?>><?php echo esc_html__($align, 'photo-gallery'); ?></option>
 											<?php
 										  }
 										  ?>
@@ -2187,7 +2187,7 @@ class ThemesView_bwg extends AdminView_bwg {
 									<tr>
 									  <td class="spider_label"><label for="album_extended_thumb_transparent"><?php echo __('Thumbnail transparency:', 'photo-gallery'); ?> </label></td>
 									  <td>
-										<input type="text" name="album_extended_thumb_transparent" id="album_extended_thumb_transparent" value="<?php echo $row->album_extended_thumb_transparent; ?>" class="spider_int_input" onkeypress="return spider_check_isnum(event)"/> %
+										<input type="text" name="album_extended_thumb_transparent" id="album_extended_thumb_transparent" value="<?php echo esc_attr($row->album_extended_thumb_transparent); ?>" class="spider_int_input" onkeypress="return spider_check_isnum(event)"/> %
 										<div class="spider_description"><?php echo __('Value must be between 0 to 100.', 'photo-gallery'); ?></div>
 									  </td>
 									</tr>
@@ -2198,7 +2198,7 @@ class ThemesView_bwg extends AdminView_bwg {
 										  <?php
 										  foreach ($thumbnail_hover_effects as $key => $hover_effect) {
 											?>
-											<option value="<?php echo $key; ?>" <?php echo (($row->album_extended_thumb_hover_effect == $key) ? 'selected="selected"' : ''); ?>><?php echo __($hover_effect, 'photo-gallery'); ?></option>
+											<option value="<?php echo esc_attr($key); ?>" <?php echo (($row->album_extended_thumb_hover_effect == $key) ? 'selected="selected"' : ''); ?>><?php echo esc_html__($hover_effect, 'photo-gallery'); ?></option>
 											<?php
 										  }
 										  ?>
@@ -2208,26 +2208,26 @@ class ThemesView_bwg extends AdminView_bwg {
 									<tr>
 									  <td class="spider_label"><label for="album_extended_thumb_hover_effect_value"><?php echo __('Hover effect value:', 'photo-gallery'); ?> </label></td>
 									  <td>
-										<input type="text" name="album_extended_thumb_hover_effect_value" id="album_extended_thumb_hover_effect_value" value="<?php echo $row->album_extended_thumb_hover_effect_value; ?>" class="spider_char_input"/>
+										<input type="text" name="album_extended_thumb_hover_effect_value" id="album_extended_thumb_hover_effect_value" value="<?php echo esc_attr($row->album_extended_thumb_hover_effect_value); ?>" class="spider_char_input"/>
 										<div class="spider_description"><?php echo __('E.g. Rotate: 10deg, Scale: 1.5, Skew: 10deg.', 'photo-gallery'); ?></div>
 									  </td>
 									</tr>
 									<tr>
 									  <td class="spider_label"><label for="album_extended_thumb_bg_color"><?php echo __('Thumbnail background color:', 'photo-gallery'); ?> </label></td>
 									  <td>
-										<input type="text" name="album_extended_thumb_bg_color" id="album_extended_thumb_bg_color" value="<?php echo $row->album_extended_thumb_bg_color; ?>" class="jscolor"/>
+										<input type="text" name="album_extended_thumb_bg_color" id="album_extended_thumb_bg_color" value="<?php echo esc_attr($row->album_extended_thumb_bg_color); ?>" class="jscolor"/>
 									  </td>
 									</tr>
 									<tr>
 									  <td class="spider_label"><label for="album_extended_thumbs_bg_color"><?php echo __('Thumbnails background color:', 'photo-gallery'); ?> </label></td>
 									  <td>
-										<input type="text" name="album_extended_thumbs_bg_color" id="album_extended_thumbs_bg_color" value="<?php echo $row->album_extended_thumbs_bg_color; ?>" class="jscolor"/>
+										<input type="text" name="album_extended_thumbs_bg_color" id="album_extended_thumbs_bg_color" value="<?php echo esc_attr($row->album_extended_thumbs_bg_color); ?>" class="jscolor"/>
 									  </td>
 									</tr>
 									<tr>
 									  <td class="spider_label"><label for="album_extended_thumb_bg_transparent"><?php echo __('Thumbnail background transparency:', 'photo-gallery'); ?> </label></td>
 									  <td>
-										<input type="text" name="album_extended_thumb_bg_transparent" id="album_extended_thumb_bg_transparent" value="<?php echo $row->album_extended_thumb_bg_transparent; ?>" class="spider_int_input" onkeypress="return spider_check_isnum(event)"/> %
+										<input type="text" name="album_extended_thumb_bg_transparent" id="album_extended_thumb_bg_transparent" value="<?php echo esc_attr($row->album_extended_thumb_bg_transparent); ?>" class="spider_int_input" onkeypress="return spider_check_isnum(event)"/> %
 										<div class="spider_description"><?php echo __('Value must be between 0 to 100.', 'photo-gallery'); ?></div>
 									  </td>
 									</tr>
@@ -2245,21 +2245,21 @@ class ThemesView_bwg extends AdminView_bwg {
 										<tr>
 										  <td class="spider_label"><label for="album_extended_thumb_div_padding"><?php echo __('Thumbnail div padding:', 'photo-gallery'); ?> </label></td>
 										  <td>
-											<input type="text" name="album_extended_thumb_div_padding" id="album_extended_thumb_div_padding" value="<?php echo $row->album_extended_thumb_div_padding; ?>" class="spider_char_input"/>
+											<input type="text" name="album_extended_thumb_div_padding" id="album_extended_thumb_div_padding" value="<?php echo esc_attr($row->album_extended_thumb_div_padding); ?>" class="spider_char_input"/>
 											<div class="spider_description"><?php echo __('Use CSS type values.', 'photo-gallery'); ?></div>
 										  </td>
 										</tr>
 										<tr>
 										  <td class="spider_label"><label for="album_extended_thumb_div_bg_color"><?php echo __('Thumbnail div background color:', 'photo-gallery'); ?> </label></td>
 										  <td>
-											<input type="text" name="album_extended_thumb_div_bg_color" id="album_extended_thumb_div_bg_color" value="<?php echo $row->album_extended_thumb_div_bg_color; ?>" class="jscolor"/>
+											<input type="text" name="album_extended_thumb_div_bg_color" id="album_extended_thumb_div_bg_color" value="<?php echo esc_attr($row->album_extended_thumb_div_bg_color); ?>" class="jscolor"/>
 										  </td>
 										</tr>
 										<tr>
 										  <td class="spider_label"><label for="album_extended_thumb_div_border_width"><?php echo __('Thumbnail div border width:', 'photo-gallery'); ?> </label>
 										  </td>
 										  <td>
-											<input type="text" name="album_extended_thumb_div_border_width" id="album_extended_thumb_div_border_width" value="<?php echo $row->album_extended_thumb_div_border_width; ?>" class="spider_int_input" onkeypress="return spider_check_isnum(event)"/> px
+											<input type="text" name="album_extended_thumb_div_border_width" id="album_extended_thumb_div_border_width" value="<?php echo esc_attr($row->album_extended_thumb_div_border_width); ?>" class="spider_int_input" onkeypress="return spider_check_isnum(event)"/> px
 										  </td>
 										</tr>
 										<tr>
@@ -2269,7 +2269,7 @@ class ThemesView_bwg extends AdminView_bwg {
 											  <?php
 											  foreach ($border_styles as $key => $border_style) {
 												?>
-												<option value="<?php echo $key; ?>" <?php echo (($row->album_extended_thumb_div_border_style == $key) ? 'selected="selected"' : ''); ?>><?php echo __($border_style, 'photo-gallery'); ?></option>
+												<option value="<?php echo esc_attr($key); ?>" <?php echo (($row->album_extended_thumb_div_border_style == $key) ? 'selected="selected"' : ''); ?>><?php echo esc_html__($border_style, 'photo-gallery'); ?></option>
 												<?php
 											  }
 											  ?>
@@ -2279,53 +2279,53 @@ class ThemesView_bwg extends AdminView_bwg {
 										<tr>
 										  <td class="spider_label"><label for="album_extended_thumb_div_border_color"><?php echo __('Thumbnail div border color:', 'photo-gallery'); ?> </label></td>
 										  <td>
-											<input type="text" name="album_extended_thumb_div_border_color" id="album_extended_thumb_div_border_color" value="<?php echo $row->album_extended_thumb_div_border_color; ?>" class="jscolor"/>
+											<input type="text" name="album_extended_thumb_div_border_color" id="album_extended_thumb_div_border_color" value="<?php echo esc_attr($row->album_extended_thumb_div_border_color); ?>" class="jscolor"/>
 										  </td>
 										</tr>
 										<tr>
 										  <td class="spider_label"><label for="album_extended_thumb_div_border_radius"><?php echo __('Thumbnail div border radius:', 'photo-gallery'); ?> </label></td>
 										  <td>
-											<input type="text" name="album_extended_thumb_div_border_radius" id="album_extended_thumb_div_border_radius" value="<?php echo $row->album_extended_thumb_div_border_radius; ?>" class="spider_char_input"/>
+											<input type="text" name="album_extended_thumb_div_border_radius" id="album_extended_thumb_div_border_radius" value="<?php echo esc_attr($row->album_extended_thumb_div_border_radius); ?>" class="spider_char_input"/>
 											<div class="spider_description"><?php echo __('Use CSS type values.', 'photo-gallery'); ?></div>
 										  </td>
 										</tr>
 										<tr>
 										  <td class="spider_label"><label for="album_extended_div_margin"><?php echo __('Margin:', 'photo-gallery'); ?> </label></td>
 										  <td>
-											<input type="text" name="album_extended_div_margin" id="album_extended_div_margin" value="<?php echo $row->album_extended_div_margin; ?>" class="spider_char_input"/>
+											<input type="text" name="album_extended_div_margin" id="album_extended_div_margin" value="<?php echo esc_attr($row->album_extended_div_margin); ?>" class="spider_char_input"/>
 											<div class="spider_description"><?php echo __('Use CSS type values.', 'photo-gallery'); ?></div>
 										  </td>
 										</tr>
 										<tr>
 										  <td class="spider_label"><label for="album_extended_div_padding"><?php echo __('Padding:', 'photo-gallery'); ?> </label></td>
 										  <td>
-											<input type="text" name="album_extended_div_padding" id="album_extended_div_padding" value="<?php echo $row->album_extended_div_padding; ?>" class="spider_int_input" onkeypress="return spider_check_isnum(event)"/> px
+											<input type="text" name="album_extended_div_padding" id="album_extended_div_padding" value="<?php echo esc_attr($row->album_extended_div_padding); ?>" class="spider_int_input" onkeypress="return spider_check_isnum(event)"/> px
 										  </td>
 										</tr>
 										<tr>
 										  <td class="spider_label"><label for="album_extended_div_bg_color"><?php echo __('Background color:', 'photo-gallery'); ?> </label></td>
 										  <td>
-											<input type="text" name="album_extended_div_bg_color" id="album_extended_div_bg_color" value="<?php echo $row->album_extended_div_bg_color; ?>" class="jscolor"/>
+											<input type="text" name="album_extended_div_bg_color" id="album_extended_div_bg_color" value="<?php echo esc_attr($row->album_extended_div_bg_color); ?>" class="jscolor"/>
 										  </td>
 										</tr>
 										<tr>
 										  <td class="spider_label"><label for="album_extended_div_bg_transparent"><?php echo __('Background transparency:', 'photo-gallery'); ?> </label></td>
 										  <td>
-											<input type="text" name="album_extended_div_bg_transparent" id="album_extended_div_bg_transparent" value="<?php echo $row->album_extended_div_bg_transparent; ?>" class="spider_int_input" onkeypress="return spider_check_isnum(event)"/> %
+											<input type="text" name="album_extended_div_bg_transparent" id="album_extended_div_bg_transparent" value="<?php echo esc_attr($row->album_extended_div_bg_transparent); ?>" class="spider_int_input" onkeypress="return spider_check_isnum(event)"/> %
 											<div class="spider_description"><?php echo __('Value must be between 0 to 100.', 'photo-gallery'); ?></div>
 										  </td>
 										</tr>
 										<tr>
 										  <td class="spider_label"><label for="album_extended_div_border_radius"><?php echo __('Border radius:', 'photo-gallery'); ?> </label></td>
 										  <td>
-											<input type="text" name="album_extended_div_border_radius" id="album_extended_div_border_radius" value="<?php echo $row->album_extended_div_border_radius; ?>" class="spider_char_input"/>
+											<input type="text" name="album_extended_div_border_radius" id="album_extended_div_border_radius" value="<?php echo esc_attr($row->album_extended_div_border_radius); ?>" class="spider_char_input"/>
 											<div class="spider_description"><?php echo __('Use CSS type values.', 'photo-gallery'); ?></div>
 										  </td>
 										</tr>
 										<tr>
 										  <td class="spider_label"><label for="album_extended_div_separator_width"><?php echo __('Separator width:', 'photo-gallery'); ?> </label></td>
 										  <td>
-											<input type="text" name="album_extended_div_separator_width" id="album_extended_div_separator_width" value="<?php echo $row->album_extended_div_separator_width; ?>" class="spider_int_input" onkeypress="return spider_check_isnum(event)"/> px
+											<input type="text" name="album_extended_div_separator_width" id="album_extended_div_separator_width" value="<?php echo esc_attr($row->album_extended_div_separator_width); ?>" class="spider_int_input" onkeypress="return spider_check_isnum(event)"/> px
 										  </td>
 										</tr>
 										<tr>
@@ -2335,7 +2335,7 @@ class ThemesView_bwg extends AdminView_bwg {
 											  <?php
 											  foreach ($border_styles as $key => $border_style) {
 												?>
-												<option value="<?php echo $key; ?>" <?php echo (($row->album_extended_div_separator_style == $key) ? 'selected="selected"' : ''); ?>><?php echo __($border_style, 'photo-gallery'); ?></option>
+												<option value="<?php echo esc_attr($key); ?>" <?php echo (($row->album_extended_div_separator_style == $key) ? 'selected="selected"' : ''); ?>><?php echo esc_html__($border_style, 'photo-gallery'); ?></option>
 												<?php
 											  }
 											  ?>
@@ -2345,26 +2345,26 @@ class ThemesView_bwg extends AdminView_bwg {
 										<tr>
 										  <td class="spider_label"><label for="album_extended_div_separator_color"><?php echo __('Separator color:', 'photo-gallery'); ?> </label></td>
 										  <td>
-											<input type="text" name="album_extended_div_separator_color" id="album_extended_div_separator_color" value="<?php echo $row->album_extended_div_separator_color; ?>" class="jscolor"/>
+											<input type="text" name="album_extended_div_separator_color" id="album_extended_div_separator_color" value="<?php echo esc_attr($row->album_extended_div_separator_color); ?>" class="jscolor"/>
 										  </td>
 										</tr>
 										<tr>
 										  <td class="spider_label"><label for="album_extended_back_padding"><?php echo __('Back padding:', 'photo-gallery'); ?> </label></td>
 										  <td>
-											<input type="text" name="album_extended_back_padding" id="album_extended_back_padding" value="<?php echo $row->album_extended_back_padding; ?>" class="spider_char_input" />
+											<input type="text" name="album_extended_back_padding" id="album_extended_back_padding" value="<?php echo esc_attr($row->album_extended_back_padding); ?>" class="spider_char_input" />
 											<div class="spider_description"><?php echo __('Use CSS type values.', 'photo-gallery'); ?></div>
 										  </td>
 										</tr>
 										<tr>
 										  <td class="spider_label"><label for="album_extended_back_font_size"><?php echo __('Back font size:', 'photo-gallery'); ?> </label></td>
 										  <td>
-											<input type="text" name="album_extended_back_font_size" id="album_extended_back_font_size" value="<?php echo $row->album_extended_back_font_size; ?>" class="spider_int_input" onkeypress="return spider_check_isnum(event)"/> px
+											<input type="text" name="album_extended_back_font_size" id="album_extended_back_font_size" value="<?php echo esc_attr($row->album_extended_back_font_size); ?>" class="spider_int_input" onkeypress="return spider_check_isnum(event)"/> px
 										  </td>
 										</tr>
 										<tr>
 										  <td class="spider_label"><label for="album_extended_back_font_color"><?php echo __('Back font color:', 'photo-gallery'); ?> </label></td>
 										  <td>
-											<input type="text" name="album_extended_back_font_color" id="album_extended_back_font_color" value="<?php echo $row->album_extended_back_font_color; ?>" class="jscolor"/>
+											<input type="text" name="album_extended_back_font_color" id="album_extended_back_font_color" value="<?php echo esc_attr($row->album_extended_back_font_color); ?>" class="jscolor"/>
 										  </td>
 										</tr>
                     <tr>
@@ -2378,7 +2378,7 @@ class ThemesView_bwg extends AdminView_bwg {
 											  <?php
 											  foreach ($font_weights as $key => $font_weight) {
 												?>
-												<option value="<?php echo $key; ?>" <?php echo (($row->album_extended_back_font_weight == $key) ? 'selected="selected"' : ''); ?>><?php echo __($font_weight, 'photo-gallery'); ?></option>
+												<option value="<?php echo esc_attr($key); ?>" <?php echo (($row->album_extended_back_font_weight == $key) ? 'selected="selected"' : ''); ?>><?php echo esc_html__($font_weight, 'photo-gallery'); ?></option>
 												<?php
 											  }
 											  ?>
@@ -2402,7 +2402,7 @@ class ThemesView_bwg extends AdminView_bwg {
                       <?php
                       foreach ( array('top', 'center', 'bottom') as $val ) {
                         ?>
-                        <option value="<?php echo $val; ?>" <?php echo (($row->album_extended_title_desc_alignment == $val) ? 'selected="selected"' : ''); ?>><?php echo ucfirst( __($val, 'photo-gallery') ); ?></option>
+                        <option value="<?php echo esc_attr($val); ?>" <?php echo (($row->album_extended_title_desc_alignment == $val) ? 'selected="selected"' : ''); ?>><?php echo ucfirst( esc_html__($val, 'photo-gallery') ); ?></option>
                         <?php
                       }
                       ?>
@@ -2412,14 +2412,14 @@ class ThemesView_bwg extends AdminView_bwg {
 								<tr>
 								  <td class="spider_label"><label for="album_extended_text_div_padding"><?php echo __('Text div padding:', 'photo-gallery'); ?> </label></td>
 								  <td>
-									<input type="text" name="album_extended_text_div_padding" id="album_extended_text_div_padding" value="<?php echo $row->album_extended_text_div_padding; ?>" class="spider_char_input" />
+									<input type="text" name="album_extended_text_div_padding" id="album_extended_text_div_padding" value="<?php echo esc_attr($row->album_extended_text_div_padding); ?>" class="spider_char_input" />
 									<div class="spider_description"><?php echo __('Use CSS type values.', 'photo-gallery'); ?></div>
 								  </td>
 								</tr>
 								<tr>
 								  <td class="spider_label"><label for="album_extended_text_div_border_width"><?php echo __('Text div border width:', 'photo-gallery'); ?> </label></td>
 								  <td>
-									<input type="text" name="album_extended_text_div_border_width" id="album_extended_text_div_border_width" value="<?php echo $row->album_extended_text_div_border_width; ?>" class="spider_int_input" onkeypress="return spider_check_isnum(event)"/> px
+									<input type="text" name="album_extended_text_div_border_width" id="album_extended_text_div_border_width" value="<?php echo esc_attr($row->album_extended_text_div_border_width); ?>" class="spider_int_input" onkeypress="return spider_check_isnum(event)"/> px
 								  </td>
 								</tr>
 								<tr>
@@ -2429,7 +2429,7 @@ class ThemesView_bwg extends AdminView_bwg {
 									  <?php
 									  foreach ($border_styles as $key => $border_style) {
 										?>
-										<option value="<?php echo $key; ?>" <?php echo (($row->album_extended_text_div_border_style == $key) ? 'selected="selected"' : ''); ?>><?php echo __($border_style, 'photo-gallery'); ?></option>
+										<option value="<?php echo esc_attr($key); ?>" <?php echo (($row->album_extended_text_div_border_style == $key) ? 'selected="selected"' : ''); ?>><?php echo esc_html__($border_style, 'photo-gallery'); ?></option>
 										<?php
 									  }
 									  ?>
@@ -2439,39 +2439,39 @@ class ThemesView_bwg extends AdminView_bwg {
 								<tr>
 								  <td class="spider_label"><label for="album_extended_text_div_border_color"><?php echo __('Text border color:', 'photo-gallery'); ?> </label></td>
 								  <td>
-									<input type="text" name="album_extended_text_div_border_color" id="album_extended_text_div_border_color" value="<?php echo $row->album_extended_text_div_border_color; ?>" class="jscolor"/>
+									<input type="text" name="album_extended_text_div_border_color" id="album_extended_text_div_border_color" value="<?php echo esc_attr($row->album_extended_text_div_border_color); ?>" class="jscolor"/>
 								  </td>
 								</tr>
 								<tr>
 								  <td class="spider_label"><label for="album_extended_text_div_border_radius"><?php echo __('Text div border radius:', 'photo-gallery'); ?> </label></td>
 								  <td>
-									<input type="text" name="album_extended_text_div_border_radius" id="album_extended_text_div_border_radius" value="<?php echo $row->album_extended_text_div_border_radius; ?>" class="spider_char_input"/>
+									<input type="text" name="album_extended_text_div_border_radius" id="album_extended_text_div_border_radius" value="<?php echo esc_attr($row->album_extended_text_div_border_radius); ?>" class="spider_char_input"/>
 									<div class="spider_description"><?php echo __('Use CSS type values.', 'photo-gallery'); ?></div>
 								  </td>
 								</tr>
 								<tr>
 								  <td class="spider_label"><label for="album_extended_text_div_bg_color"><?php echo __('Text background color:', 'photo-gallery'); ?> </label></td>
 								  <td>
-									<input type="text" name="album_extended_text_div_bg_color" id="album_extended_text_div_bg_color" value="<?php echo $row->album_extended_text_div_bg_color; ?>" class="jscolor"/>
+									<input type="text" name="album_extended_text_div_bg_color" id="album_extended_text_div_bg_color" value="<?php echo esc_attr($row->album_extended_text_div_bg_color); ?>" class="jscolor"/>
 								  </td>
 								</tr>
 								<tr>
 								  <td class="spider_label"><label for="album_extended_title_margin_bottom"><?php echo __('Title margin:', 'photo-gallery'); ?> </label></td>
 								  <td>
-									<input type="text" name="album_extended_title_margin_bottom" id="album_extended_title_margin_bottom" value="<?php echo $row->album_extended_title_margin_bottom; ?>" class="spider_int_input" onkeypress="return spider_check_isnum(event)"/> px
+									<input type="text" name="album_extended_title_margin_bottom" id="album_extended_title_margin_bottom" value="<?php echo esc_attr($row->album_extended_title_margin_bottom); ?>" class="spider_int_input" onkeypress="return spider_check_isnum(event)"/> px
 								  </td>
 								</tr>
 								<tr>
 								  <td class="spider_label"><label for="album_extended_title_padding"><?php echo __('Title padding:', 'photo-gallery'); ?> </label></td>
 								  <td>
-									<input type="text" name="album_extended_title_padding" id="album_extended_title_padding" value="<?php echo $row->album_extended_title_padding; ?>" class="spider_char_input"/>
+									<input type="text" name="album_extended_title_padding" id="album_extended_title_padding" value="<?php echo esc_attr($row->album_extended_title_padding); ?>" class="spider_char_input"/>
 									<div class="spider_description"><?php echo __('Use CSS type values.', 'photo-gallery'); ?></div>
 								  </td>
 								</tr>
 								<tr>
 								  <td class="spider_label"><label for="album_extended_title_span_border_width"><?php echo __('Title border width:', 'photo-gallery'); ?> </label></td>
 								  <td>
-									<input type="text" name="album_extended_title_span_border_width" id="album_extended_title_span_border_width" value="<?php echo $row->album_extended_title_span_border_width; ?>" class="spider_int_input" onkeypress="return spider_check_isnum(event)"/> px
+									<input type="text" name="album_extended_title_span_border_width" id="album_extended_title_span_border_width" value="<?php echo esc_attr($row->album_extended_title_span_border_width); ?>" class="spider_int_input" onkeypress="return spider_check_isnum(event)"/> px
 								  </td>
 								</tr>
 								<tr>
@@ -2481,7 +2481,7 @@ class ThemesView_bwg extends AdminView_bwg {
 									  <?php
 									  foreach ($border_styles as $key => $border_style) {
 										?>
-										<option value="<?php echo $key; ?>" <?php echo (($row->album_extended_title_span_border_style == $key) ? 'selected="selected"' : ''); ?>><?php echo __($border_style, 'photo-gallery'); ?></option>
+										<option value="<?php echo esc_attr($key); ?>" <?php echo (($row->album_extended_title_span_border_style == $key) ? 'selected="selected"' : ''); ?>><?php echo esc_html__($border_style, 'photo-gallery'); ?></option>
 										<?php
 									  }
 									  ?>
@@ -2491,19 +2491,19 @@ class ThemesView_bwg extends AdminView_bwg {
 								<tr>
 								  <td class="spider_label"><label for="album_extended_title_span_border_color"><?php echo __('Title border color:', 'photo-gallery'); ?> </label></td>
 								  <td>
-									<input type="text" name="album_extended_title_span_border_color" id="album_extended_title_span_border_color" value="<?php echo $row->album_extended_title_span_border_color; ?>" class="jscolor"/>
+									<input type="text" name="album_extended_title_span_border_color" id="album_extended_title_span_border_color" value="<?php echo esc_attr($row->album_extended_title_span_border_color); ?>" class="jscolor"/>
 								  </td>
 								</tr>
 								<tr>
 								  <td class="spider_label"><label for="album_extended_title_font_size"><?php echo __('Title font size:', 'photo-gallery'); ?> </label></td>
 								  <td>
-									<input type="text" name="album_extended_title_font_size" id="album_extended_title_font_size" value="<?php echo $row->album_extended_title_font_size; ?>" class="spider_int_input" onkeypress="return spider_check_isnum(event)"/> px
+									<input type="text" name="album_extended_title_font_size" id="album_extended_title_font_size" value="<?php echo esc_attr($row->album_extended_title_font_size); ?>" class="spider_int_input" onkeypress="return spider_check_isnum(event)"/> px
 								  </td>
 								</tr>
 								<tr>
 								  <td class="spider_label"><label for="album_extended_title_font_color"><?php echo __('Title font color:', 'photo-gallery'); ?> </label></td>
 								  <td>
-									<input type="text" name="album_extended_title_font_color" id="album_extended_title_font_color" value="<?php echo $row->album_extended_title_font_color; ?>" class="jscolor"/>
+									<input type="text" name="album_extended_title_font_color" id="album_extended_title_font_color" value="<?php echo esc_attr($row->album_extended_title_font_color); ?>" class="jscolor"/>
 								  </td>
 								</tr>
                 <tr>
@@ -2517,7 +2517,7 @@ class ThemesView_bwg extends AdminView_bwg {
 									  <?php
 									  foreach ($font_weights as $key => $font_weight) {
 										?>
-										<option value="<?php echo $key; ?>" <?php echo (($row->album_extended_title_font_weight == $key) ? 'selected="selected"' : ''); ?>><?php echo __($font_weight, 'photo-gallery'); ?></option>
+										<option value="<?php echo esc_attr($key); ?>" <?php echo (($row->album_extended_title_font_weight == $key) ? 'selected="selected"' : ''); ?>><?php echo esc_html__($font_weight, 'photo-gallery'); ?></option>
 										<?php
 									  }
 									  ?>
@@ -2527,14 +2527,14 @@ class ThemesView_bwg extends AdminView_bwg {
 								<tr>
 								  <td class="spider_label"><label for="album_extended_desc_padding"><?php echo __('Description padding:', 'photo-gallery'); ?> </label></td>
 								  <td>
-									<input type="text" name="album_extended_desc_padding" id="album_extended_desc_padding" value="<?php echo $row->album_extended_desc_padding; ?>" class="spider_char_input"/>
+									<input type="text" name="album_extended_desc_padding" id="album_extended_desc_padding" value="<?php echo esc_attr($row->album_extended_desc_padding); ?>" class="spider_char_input"/>
 									<div class="spider_description"><?php echo __('Use CSS type values.', 'photo-gallery'); ?></div>
 								  </td>
 								</tr>
 								<tr>
 								  <td class="spider_label"><label for="album_extended_desc_span_border_width"><?php echo __('Description border width:', 'photo-gallery'); ?> </label></td>
 								  <td>
-									<input type="text" name="album_extended_desc_span_border_width" id="album_extended_desc_span_border_width" value="<?php echo $row->album_extended_desc_span_border_width; ?>" class="spider_int_input" onkeypress="return spider_check_isnum(event)"/> px
+									<input type="text" name="album_extended_desc_span_border_width" id="album_extended_desc_span_border_width" value="<?php echo esc_attr($row->album_extended_desc_span_border_width); ?>" class="spider_int_input" onkeypress="return spider_check_isnum(event)"/> px
 								  </td>
 								</tr>
 								<tr>
@@ -2544,7 +2544,7 @@ class ThemesView_bwg extends AdminView_bwg {
 									  <?php
 									  foreach ($border_styles as $key => $border_style) {
 										?>
-										<option value="<?php echo $key; ?>" <?php echo (($row->album_extended_desc_span_border_style == $key) ? 'selected="selected"' : ''); ?>><?php echo __($border_style, 'photo-gallery'); ?></option>
+										<option value="<?php echo esc_attr($key); ?>" <?php echo (($row->album_extended_desc_span_border_style == $key) ? 'selected="selected"' : ''); ?>><?php echo esc_html__($border_style, 'photo-gallery'); ?></option>
 										<?php
 									  }
 									  ?>
@@ -2554,19 +2554,19 @@ class ThemesView_bwg extends AdminView_bwg {
 								<tr>
 								  <td class="spider_label"><label for="album_extended_desc_span_border_color"><?php echo __('Description border color:', 'photo-gallery'); ?> </label></td>
 								  <td>
-									<input type="text" name="album_extended_desc_span_border_color" id="album_extended_desc_span_border_color" value="<?php echo $row->album_extended_desc_span_border_color; ?>" class="jscolor"/>
+									<input type="text" name="album_extended_desc_span_border_color" id="album_extended_desc_span_border_color" value="<?php echo esc_attr($row->album_extended_desc_span_border_color); ?>" class="jscolor"/>
 								  </td>
 								</tr>
 								<tr>
 								  <td class="spider_label"><label for="album_extended_desc_font_size"><?php echo __('Description font size:', 'photo-gallery'); ?> </label></td>
 								  <td>
-									<input type="text" name="album_extended_desc_font_size" id="album_extended_desc_font_size" value="<?php echo $row->album_extended_desc_font_size; ?>" class="spider_int_input" onkeypress="return spider_check_isnum(event)"/> px
+									<input type="text" name="album_extended_desc_font_size" id="album_extended_desc_font_size" value="<?php echo esc_attr($row->album_extended_desc_font_size); ?>" class="spider_int_input" onkeypress="return spider_check_isnum(event)"/> px
 								  </td>
 								</tr>
 								<tr>
 								  <td class="spider_label"><label for="album_extended_desc_font_color"><?php echo __('Description font color:', 'photo-gallery'); ?> </label></td>
 								  <td>
-									<input type="text" name="album_extended_desc_font_color" id="album_extended_desc_font_color" value="<?php echo $row->album_extended_desc_font_color; ?>" class="jscolor"/>
+									<input type="text" name="album_extended_desc_font_color" id="album_extended_desc_font_color" value="<?php echo esc_attr($row->album_extended_desc_font_color); ?>" class="jscolor"/>
 								  </td>
 								</tr>
                 <tr>
@@ -2580,7 +2580,7 @@ class ThemesView_bwg extends AdminView_bwg {
 									  <?php
 									  foreach ($font_weights as $key => $font_weight) {
 										?>
-										<option value="<?php echo $key; ?>" <?php echo (($row->album_extended_desc_font_weight == $key) ? 'selected="selected"' : ''); ?>><?php echo __($font_weight, 'photo-gallery'); ?></option>
+										<option value="<?php echo esc_attr($key); ?>" <?php echo (($row->album_extended_desc_font_weight == $key) ? 'selected="selected"' : ''); ?>><?php echo esc_html__($font_weight, 'photo-gallery'); ?></option>
 										<?php
 									  }
 									  ?>
@@ -2590,25 +2590,25 @@ class ThemesView_bwg extends AdminView_bwg {
 								<tr>
 								  <td class="spider_label"><label for="album_extended_desc_more_size"><?php echo __('Description more size:', 'photo-gallery'); ?> </label></td>
 								  <td>
-									<input type="text" name="album_extended_desc_more_size" id="album_extended_desc_more_size" value="<?php echo $row->album_extended_desc_more_size; ?>" class="spider_int_input" onkeypress="return spider_check_isnum(event)"/> px
+									<input type="text" name="album_extended_desc_more_size" id="album_extended_desc_more_size" value="<?php echo esc_attr($row->album_extended_desc_more_size); ?>" class="spider_int_input" onkeypress="return spider_check_isnum(event)"/> px
 								  </td>
 								</tr>
 								<tr>
 								  <td class="spider_label"><label for="album_extended_desc_more_color"><?php echo __('Description more color:', 'photo-gallery'); ?> </label></td>
 								  <td>
-									<input type="text" name="album_extended_desc_more_color" id="album_extended_desc_more_color" value="<?php echo $row->album_extended_desc_more_color; ?>" class="jscolor"/>
+									<input type="text" name="album_extended_desc_more_color" id="album_extended_desc_more_color" value="<?php echo esc_attr($row->album_extended_desc_more_color); ?>" class="jscolor"/>
 								  </td>
 								</tr>
 												<tr>
 								  <td class="spider_label"><label for="album_extended_gal_title_font_size"><?php echo __('Gallery title/description font size:', 'photo-gallery'); ?> </label></td>
 								  <td>
-									<input type="text" name="album_extended_gal_title_font_size" id="album_extended_gal_title_font_size" value="<?php echo $row->album_extended_gal_title_font_size; ?>" class="spider_int_input" onkeypress="return spider_check_isnum(event)"/> px
+									<input type="text" name="album_extended_gal_title_font_size" id="album_extended_gal_title_font_size" value="<?php echo esc_attr($row->album_extended_gal_title_font_size); ?>" class="spider_int_input" onkeypress="return spider_check_isnum(event)"/> px
 								  </td>
 								</tr>
 								<tr>
 								  <td class="spider_label"><label for="album_extended_gal_title_font_color"><?php echo __('Gallery title/description font color:', 'photo-gallery'); ?> </label></td>
 								  <td>
-									<input type="text" name="album_extended_gal_title_font_color" id="album_extended_gal_title_font_color" value="<?php echo $row->album_extended_gal_title_font_color; ?>" class="jscolor" />
+									<input type="text" name="album_extended_gal_title_font_color" id="album_extended_gal_title_font_color" value="<?php echo esc_attr($row->album_extended_gal_title_font_color); ?>" class="jscolor" />
 								  </td>
 								</tr>
                 <tr>
@@ -2622,7 +2622,7 @@ class ThemesView_bwg extends AdminView_bwg {
 									  <?php
 									  foreach ($font_weights as $key => $font_weight) {
 										?>
-										<option value="<?php echo $key; ?>" <?php echo (($row->album_extended_gal_title_font_weight == $key) ? 'selected="selected"' : ''); ?>><?php echo __($font_weight, 'photo-gallery'); ?></option>
+										<option value="<?php echo esc_attr($key); ?>" <?php echo (($row->album_extended_gal_title_font_weight == $key) ? 'selected="selected"' : ''); ?>><?php echo esc_html__($font_weight, 'photo-gallery'); ?></option>
 										<?php
 									  }
 									  ?>
@@ -2632,14 +2632,14 @@ class ThemesView_bwg extends AdminView_bwg {
 								<tr>
 								  <td class="spider_label"><label for="album_extended_gal_title_shadow"><?php echo __('Gallery title/description box shadow:', 'photo-gallery'); ?> </label></td>
 								  <td>
-									<input type="text" name="album_extended_gal_title_shadow" id="album_extended_gal_title_shadow" value="<?php echo $row->album_extended_gal_title_shadow; ?>" class="spider_box_input" placeholder="10px 10px 10px #888888" />
+									<input type="text" name="album_extended_gal_title_shadow" id="album_extended_gal_title_shadow" value="<?php echo esc_attr($row->album_extended_gal_title_shadow); ?>" class="spider_box_input" placeholder="10px 10px 10px #888888" />
 									<div class="spider_description"><?php echo __('Use CSS type values.', 'photo-gallery'); ?></div>
 								  </td>
 								</tr>
 								<tr>
 								  <td class="spider_label"><label for="album_extended_gal_title_margin"><?php echo __('Gallery title/description margin:', 'photo-gallery'); ?> </label></td>
 								  <td>
-									<input type="text" name="album_extended_gal_title_margin" id="album_extended_gal_title_margin" value="<?php echo $row->album_extended_gal_title_margin; ?>" class="spider_char_input" />
+									<input type="text" name="album_extended_gal_title_margin" id="album_extended_gal_title_margin" value="<?php echo esc_attr($row->album_extended_gal_title_margin); ?>" class="spider_char_input" />
 									<div class="spider_description"><?php echo __('Use CSS type values.', 'photo-gallery'); ?></div>
 								  </td>
 								</tr>
@@ -2650,7 +2650,7 @@ class ThemesView_bwg extends AdminView_bwg {
 									  <?php
 									  foreach ($aligns as $key => $align) {
 										?>
-										<option value="<?php echo $key; ?>" <?php echo (($row->album_extended_gal_title_align == $key) ? 'selected="selected"' : ''); ?>><?php echo _e($align, 'photo-gallery'); ?></option>
+										<option value="<?php echo esc_attr($key); ?>" <?php echo (($row->album_extended_gal_title_align == $key) ? 'selected="selected"' : ''); ?>><?php echo esc_html__($align, 'photo-gallery'); ?></option>
 										<?php
 									  }
 									  ?>
@@ -2675,7 +2675,7 @@ class ThemesView_bwg extends AdminView_bwg {
                   <tr>
                     <td class="spider_label"><label for="album_masonry_thumb_padding"><?php echo __('Distance between pictures:', 'photo-gallery'); ?> </label></td>
                     <td>
-                      <input type="text" name="album_masonry_thumb_padding" id="album_masonry_thumb_padding" value="<?php echo $row->album_masonry_thumb_padding; ?>" class="spider_int_input" onkeypress="return spider_check_isnum(event)"/> px
+                      <input type="text" name="album_masonry_thumb_padding" id="album_masonry_thumb_padding" value="<?php echo esc_attr($row->album_masonry_thumb_padding); ?>" class="spider_int_input" onkeypress="return spider_check_isnum(event)"/> px
                     </td>
                   </tr>
                   <tr>
@@ -2691,7 +2691,7 @@ class ThemesView_bwg extends AdminView_bwg {
 									<tr>
 									  <td class="spider_label"><label for="album_masonry_thumb_border_width"><?php echo __('Border width:', 'photo-gallery'); ?> </label></td>
 									  <td>
-										<input type="text" name="album_masonry_thumb_border_width" id="album_masonry_thumb_border_width" value="<?php echo $row->album_masonry_thumb_border_width; ?>" class="spider_int_input" onkeypress="return spider_check_isnum(event)"/> px
+										<input type="text" name="album_masonry_thumb_border_width" id="album_masonry_thumb_border_width" value="<?php echo esc_attr($row->album_masonry_thumb_border_width); ?>" class="spider_int_input" onkeypress="return spider_check_isnum(event)"/> px
 									  </td>
 									</tr>
 									<tr>
@@ -2701,7 +2701,7 @@ class ThemesView_bwg extends AdminView_bwg {
 										  <?php
 										  foreach ($border_styles as $key => $border_style) {
 											?>
-											<option value="<?php echo $key; ?>" <?php echo (($row->album_masonry_thumb_border_style == $key) ? 'selected="selected"' : ''); ?>><?php echo __($border_style, 'photo-gallery'); ?></option>
+											<option value="<?php echo esc_attr($key); ?>" <?php echo (($row->album_masonry_thumb_border_style == $key) ? 'selected="selected"' : ''); ?>><?php echo esc_html__($border_style, 'photo-gallery'); ?></option>
 											<?php
 										  }
 										  ?>
@@ -2711,13 +2711,13 @@ class ThemesView_bwg extends AdminView_bwg {
 									<tr>
 									  <td class="spider_label"><label for="album_masonry_thumb_border_color"><?php echo __('Border color:', 'photo-gallery'); ?> </label></td>
 									  <td>
-										<input type="text" name="album_masonry_thumb_border_color" id="album_masonry_thumb_border_color" value="<?php echo $row->album_masonry_thumb_border_color; ?>" class="jscolor" />
+										<input type="text" name="album_masonry_thumb_border_color" id="album_masonry_thumb_border_color" value="<?php echo esc_attr($row->album_masonry_thumb_border_color); ?>" class="jscolor" />
 									  </td>
 									</tr>
 									<tr>
 									  <td class="spider_label"><label for="album_masonry_thumb_border_radius"><?php echo __('Border radius:', 'photo-gallery'); ?> </label></td>
 									  <td>
-										<input type="text" name="album_masonry_thumb_border_radius" id="album_masonry_thumb_border_radius" value="<?php echo $row->album_masonry_thumb_border_radius; ?>" class="spider_char_input" />
+										<input type="text" name="album_masonry_thumb_border_radius" id="album_masonry_thumb_border_radius" value="<?php echo esc_attr($row->album_masonry_thumb_border_radius); ?>" class="spider_char_input" />
 										<div class="spider_description"><?php echo __('Use CSS type values.', 'photo-gallery'); ?></div>
 									  </td>
 									</tr>
@@ -2728,7 +2728,7 @@ class ThemesView_bwg extends AdminView_bwg {
 										  <?php
 										  foreach ($thumbnail_hover_effects as $key => $hover_effect) {
 											?>
-											<option value="<?php echo $key; ?>" <?php echo (($row->album_masonry_thumb_hover_effect == $key) ? 'selected="selected"' : ''); ?>><?php echo __($hover_effect, 'photo-gallery'); ?></option>
+											<option value="<?php echo esc_attr($key); ?>" <?php echo (($row->album_masonry_thumb_hover_effect == $key) ? 'selected="selected"' : ''); ?>><?php echo esc_html__($hover_effect, 'photo-gallery'); ?></option>
 											<?php
 										  }
 										  ?>
@@ -2738,7 +2738,7 @@ class ThemesView_bwg extends AdminView_bwg {
 									<tr>
 									  <td class="spider_label"><label for="album_masonry_thumb_hover_effect_value"><?php echo __('Hover effect value:', 'photo-gallery'); ?> </label></td>
 									  <td>
-										<input type="text" name="album_masonry_thumb_hover_effect_value" id="album_masonry_thumb_hover_effect_value" value="<?php echo $row->album_masonry_thumb_hover_effect_value; ?>" class="spider_char_input" />
+										<input type="text" name="album_masonry_thumb_hover_effect_value" id="album_masonry_thumb_hover_effect_value" value="<?php echo esc_attr($row->album_masonry_thumb_hover_effect_value); ?>" class="spider_char_input" />
 										<div class="spider_description"><?php echo __('E.g. Rotate: 10deg, Scale: 1.5, Skew: 10deg.', 'photo-gallery'); ?></div>
 									  </td>
 									</tr>
@@ -2766,26 +2766,26 @@ class ThemesView_bwg extends AdminView_bwg {
                       <label for="album_masonry_thumb_bg_color"><?php echo __('Thumbnail background color:', 'photo-gallery'); ?> </label>
                     </td>
                     <td>
-                      <input type="text" name="album_masonry_thumb_bg_color" id="album_masonry_thumb_bg_color" value="<?php echo $row->album_masonry_thumb_bg_color; ?>" class="jscolor" />
+                      <input type="text" name="album_masonry_thumb_bg_color" id="album_masonry_thumb_bg_color" value="<?php echo esc_attr($row->album_masonry_thumb_bg_color); ?>" class="jscolor" />
                     </td>
                   </tr>
 									<tr>
 									  <td class="spider_label"><label for="album_masonry_thumb_transparent"><?php echo __('Thumbnail transparency:', 'photo-gallery'); ?> </label></td>
 									  <td>
-										<input type="text" name="album_masonry_thumb_transparent" id="album_masonry_thumb_transparent" value="<?php echo $row->album_masonry_thumb_transparent; ?>" class="spider_int_input" onkeypress="return spider_check_isnum(event)"/> %
+										<input type="text" name="album_masonry_thumb_transparent" id="album_masonry_thumb_transparent" value="<?php echo esc_attr($row->album_masonry_thumb_transparent); ?>" class="spider_int_input" onkeypress="return spider_check_isnum(event)"/> %
 										<div class="spider_description"><?php echo __('Value must be between 0 to 100.', 'photo-gallery'); ?></div>
 									  </td>
 									</tr>
 									<tr>
 									  <td class="spider_label"><label for="album_masonry_thumbs_bg_color"><?php echo __('Full background color:', 'photo-gallery'); ?> </label></td>
 									  <td>
-										<input type="text" name="album_masonry_thumbs_bg_color" id="album_masonry_thumbs_bg_color" value="<?php echo $row->album_masonry_thumbs_bg_color; ?>" class="jscolor" />
+										<input type="text" name="album_masonry_thumbs_bg_color" id="album_masonry_thumbs_bg_color" value="<?php echo esc_attr($row->album_masonry_thumbs_bg_color); ?>" class="jscolor" />
 									  </td>
 									</tr>
 									<tr>
 									  <td class="spider_label"><label for="album_masonry_thumb_bg_transparent"><?php echo __('Full background transparency:', 'photo-gallery'); ?> </label></td>
 									  <td>
-										<input type="text" name="album_masonry_thumb_bg_transparent" id="album_masonry_thumb_bg_transparent" value="<?php echo $row->album_masonry_thumb_bg_transparent; ?>" class="spider_int_input" onkeypress="return spider_check_isnum(event)"/> %
+										<input type="text" name="album_masonry_thumb_bg_transparent" id="album_masonry_thumb_bg_transparent" value="<?php echo esc_attr($row->album_masonry_thumb_bg_transparent); ?>" class="spider_int_input" onkeypress="return spider_check_isnum(event)"/> %
 										<div class="spider_description"><?php echo __('Value must be between 0 to 100.', 'photo-gallery'); ?></div>
 									  </td>
 									</tr>
@@ -2796,7 +2796,7 @@ class ThemesView_bwg extends AdminView_bwg {
 										  <?php
 										  foreach ($aligns as $key => $align) {
 											?>
-											<option value="<?php echo $key; ?>" <?php echo (($row->album_masonry_thumb_align == $key) ? 'selected="selected"' : ''); ?>><?php echo __($align, 'photo-gallery'); ?></option>
+											<option value="<?php echo esc_attr($key); ?>" <?php echo (($row->album_masonry_thumb_align == $key) ? 'selected="selected"' : ''); ?>><?php echo esc_html__($align, 'photo-gallery'); ?></option>
 											<?php
 										  }
 										  ?>
@@ -2816,19 +2816,19 @@ class ThemesView_bwg extends AdminView_bwg {
 									<tr>
 									  <td class="spider_label"><label for="album_masonry_title_font_size"><?php echo __('Title font size:', 'photo-gallery'); ?> </label></td>
 									  <td>
-										<input type="text" name="album_masonry_title_font_size" id="album_masonry_title_font_size" value="<?php echo $row->album_masonry_title_font_size; ?>" class="spider_int_input" onkeypress="return spider_check_isnum(event)"/> px
+										<input type="text" name="album_masonry_title_font_size" id="album_masonry_title_font_size" value="<?php echo esc_attr($row->album_masonry_title_font_size); ?>" class="spider_int_input" onkeypress="return spider_check_isnum(event)"/> px
 									  </td>
 									</tr>
 									<tr>
 									  <td class="spider_label"><label for="album_masonry_title_font_color"><?php echo __('Title font color:', 'photo-gallery'); ?> </label></td>
 									  <td>
-										<input type="text" name="album_masonry_title_font_color" id="album_masonry_title_font_color" value="<?php echo $row->album_masonry_title_font_color; ?>" class="jscolor" />
+										<input type="text" name="album_masonry_title_font_color" id="album_masonry_title_font_color" value="<?php echo esc_attr($row->album_masonry_title_font_color); ?>" class="jscolor" />
 									  </td>
 									</tr>
                   <tr>
                     <td class="spider_label"><label for="album_masonry_thumb_title_font_color_hover"><?php echo __('Title font color (Show on hover):', 'photo-gallery'); ?> </label></td>
                     <td>
-                      <input type="text" name="album_masonry_thumb_title_font_color_hover" id="album_masonry_thumb_title_font_color_hover" value="<?php echo $row->album_masonry_thumb_title_font_color_hover; ?>" class="jscolor" />
+                      <input type="text" name="album_masonry_thumb_title_font_color_hover" id="album_masonry_thumb_title_font_color_hover" value="<?php echo esc_attr($row->album_masonry_thumb_title_font_color_hover); ?>" class="jscolor" />
                     </td>
                   </tr>
                   <tr>
@@ -2842,7 +2842,7 @@ class ThemesView_bwg extends AdminView_bwg {
 										  <?php
 										  foreach ($font_weights as $key => $font_weight) {
 											?>
-											<option value="<?php echo $key; ?>" <?php echo (($row->album_masonry_title_font_weight == $key) ? 'selected="selected"' : ''); ?>><?php echo __($font_weight, 'photo-gallery'); ?></option>
+											<option value="<?php echo esc_attr($key); ?>" <?php echo (($row->album_masonry_title_font_weight == $key) ? 'selected="selected"' : ''); ?>><?php echo esc_html__($font_weight, 'photo-gallery'); ?></option>
 											<?php
 										  }
 										  ?>
@@ -2852,20 +2852,20 @@ class ThemesView_bwg extends AdminView_bwg {
 									<tr>
 									  <td class="spider_label"><label for="album_masonry_title_shadow"><?php echo __('Title box shadow:', 'photo-gallery'); ?> </label></td>
 									  <td>
-										<input type="text" name="album_masonry_title_shadow" id="album_masonry_title_shadow" value="<?php echo $row->album_masonry_title_shadow; ?>" class="spider_box_input" placeholder="10px 10px 10px #888888" />
+										<input type="text" name="album_masonry_title_shadow" id="album_masonry_title_shadow" value="<?php echo esc_attr($row->album_masonry_title_shadow); ?>" class="spider_box_input" placeholder="10px 10px 10px #888888" />
 										<div class="spider_description"><?php echo __('Use CSS type values.', 'photo-gallery'); ?></div>
 									  </td>
 									</tr>
 									<tr>
 									  <td class="spider_label"><label for="album_masonry_back_font_size"><?php echo __('Back Font size:', 'photo-gallery'); ?> </label></td>
 									  <td>
-										<input type="text" name="album_masonry_back_font_size" id="album_masonry_back_font_size" value="<?php echo $row->album_masonry_back_font_size; ?>" class="spider_int_input" onkeypress="return spider_check_isnum(event)"/> px
+										<input type="text" name="album_masonry_back_font_size" id="album_masonry_back_font_size" value="<?php echo esc_attr($row->album_masonry_back_font_size); ?>" class="spider_int_input" onkeypress="return spider_check_isnum(event)"/> px
 									  </td>
 									</tr>
 									<tr>
 									  <td class="spider_label"><label for="album_masonry_back_font_color"><?php echo __('Back Font color:', 'photo-gallery'); ?> </label></td>
 									  <td>
-										<input type="text" name="album_masonry_back_font_color" id="album_masonry_back_font_color" value="<?php echo $row->album_masonry_back_font_color; ?>" class="jscolor" />
+										<input type="text" name="album_masonry_back_font_color" id="album_masonry_back_font_color" value="<?php echo esc_attr($row->album_masonry_back_font_color); ?>" class="jscolor" />
 									  </td>
 									</tr>
                   <tr>
@@ -2879,7 +2879,7 @@ class ThemesView_bwg extends AdminView_bwg {
 										  <?php
 										  foreach ($font_weights as $key => $font_weight) {
 											?>
-											<option value="<?php echo $key; ?>" <?php echo (($row->album_masonry_back_font_weight == $key) ? 'selected="selected"' : ''); ?>><?php echo __($font_weight, 'photo-gallery'); ?></option>
+											<option value="<?php echo esc_attr($key); ?>" <?php echo (($row->album_masonry_back_font_weight == $key) ? 'selected="selected"' : ''); ?>><?php echo esc_html__($font_weight, 'photo-gallery'); ?></option>
 											<?php
 										  }
 										  ?>
@@ -2889,20 +2889,20 @@ class ThemesView_bwg extends AdminView_bwg {
 									<tr>
 									  <td class="spider_label"><label for="album_masonry_back_padding"><?php echo __('Back padding:', 'photo-gallery'); ?> </label></td>
 									  <td>
-										<input type="text" name="album_masonry_back_padding" id="album_masonry_back_padding" value="<?php echo $row->album_masonry_back_padding; ?>" class="spider_char_input" />
+										<input type="text" name="album_masonry_back_padding" id="album_masonry_back_padding" value="<?php echo esc_attr($row->album_masonry_back_padding); ?>" class="spider_char_input" />
 										<div class="spider_description"><?php echo __('Use CSS type values.', 'photo-gallery'); ?></div>
 									  </td>
 									</tr>
 									<tr>
 									  <td class="spider_label"><label for="album_masonry_gal_title_font_size"><?php echo __('Gallery title/description font size:', 'photo-gallery'); ?> </label></td>
 									  <td>
-										<input type="text" name="album_masonry_gal_title_font_size" id="album_masonry_gal_title_font_size" value="<?php echo $row->album_masonry_gal_title_font_size; ?>" class="spider_int_input" onkeypress="return spider_check_isnum(event)"/> px
+										<input type="text" name="album_masonry_gal_title_font_size" id="album_masonry_gal_title_font_size" value="<?php echo esc_attr($row->album_masonry_gal_title_font_size); ?>" class="spider_int_input" onkeypress="return spider_check_isnum(event)"/> px
 									  </td>
 									</tr>
 									<tr>
 									  <td class="spider_label"><label for="album_masonry_gal_title_font_color"><?php echo __('Gallery title/description font color:', 'photo-gallery'); ?> </label></td>
 									  <td>
-										<input type="text" name="album_masonry_gal_title_font_color" id="album_masonry_gal_title_font_color" value="<?php echo $row->album_masonry_gal_title_font_color; ?>" class="jscolor" />
+										<input type="text" name="album_masonry_gal_title_font_color" id="album_masonry_gal_title_font_color" value="<?php echo esc_attr($row->album_masonry_gal_title_font_color); ?>" class="jscolor" />
 									  </td>
 									</tr>
                   <tr>
@@ -2916,7 +2916,7 @@ class ThemesView_bwg extends AdminView_bwg {
 										  <?php
 										  foreach ($font_weights as $key => $font_weight) {
 											?>
-											<option value="<?php echo $key; ?>" <?php echo (($row->album_masonry_gal_title_font_weight == $key) ? 'selected="selected"' : ''); ?>><?php echo __($font_weight, 'photo-gallery'); ?></option>
+											<option value="<?php echo esc_attr($key); ?>" <?php echo (($row->album_masonry_gal_title_font_weight == $key) ? 'selected="selected"' : ''); ?>><?php echo esc_html__($font_weight, 'photo-gallery'); ?></option>
 											<?php
 										  }
 										  ?>
@@ -2926,14 +2926,14 @@ class ThemesView_bwg extends AdminView_bwg {
 									<tr>
 									  <td class="spider_label"><label for="album_masonry_gal_title_shadow"><?php echo __('Gallery title/description box shadow:', 'photo-gallery'); ?> </label></td>
 									  <td>
-										<input type="text" name="album_masonry_gal_title_shadow" id="album_masonry_gal_title_shadow" value="<?php echo $row->album_masonry_gal_title_shadow; ?>" class="spider_box_input" placeholder="10px 10px 10px #888888" />
+										<input type="text" name="album_masonry_gal_title_shadow" id="album_masonry_gal_title_shadow" value="<?php echo esc_attr($row->album_masonry_gal_title_shadow); ?>" class="spider_box_input" placeholder="10px 10px 10px #888888" />
 										<div class="spider_description"><?php echo __('Use CSS type values.', 'photo-gallery'); ?></div>
 									  </td>
 									</tr>
 									<tr>
 									  <td class="spider_label"><label for="album_masonry_gal_title_margin"><?php echo __('Gallery title/description margin:', 'photo-gallery'); ?> </label></td>
 									  <td>
-										<input type="text" name="album_masonry_gal_title_margin" id="album_masonry_gal_title_margin" value="<?php echo $row->album_masonry_gal_title_margin; ?>" class="spider_char_input" />
+										<input type="text" name="album_masonry_gal_title_margin" id="album_masonry_gal_title_margin" value="<?php echo esc_attr($row->album_masonry_gal_title_margin); ?>" class="spider_char_input" />
 										<div class="spider_description"><?php echo __('Use CSS type values.', 'photo-gallery'); ?></div>
 									  </td>
 									</tr>
@@ -2944,7 +2944,7 @@ class ThemesView_bwg extends AdminView_bwg {
 										  <?php
 										  foreach ($aligns as $key => $align) {
 											?>
-											<option value="<?php echo $key; ?>" <?php echo (($row->album_masonry_gal_title_align == $key) ? 'selected="selected"' : ''); ?>><?php echo _e($align, 'photo-gallery'); ?></option>
+											<option value="<?php echo esc_attr($key); ?>" <?php echo (($row->album_masonry_gal_title_align == $key) ? 'selected="selected"' : ''); ?>><?php echo esc_html__($align, 'photo-gallery'); ?></option>
 											<?php
 										  }
 										  ?>
@@ -2968,13 +2968,13 @@ class ThemesView_bwg extends AdminView_bwg {
 									<tr>
 									  <td class="spider_label"><label for="blog_style_bg_color"><?php echo __('Background color:', 'photo-gallery'); ?> </label></td>
 									  <td>
-										<input type="text" name="blog_style_bg_color" id="blog_style_bg_color" value="<?php echo $row->blog_style_bg_color; ?>" class="jscolor"/>
+										<input type="text" name="blog_style_bg_color" id="blog_style_bg_color" value="<?php echo esc_attr($row->blog_style_bg_color); ?>" class="jscolor"/>
 									  </td>
 									</tr>
 									<tr>
 									  <td class="spider_label"><label for="blog_style_transparent"><?php echo __('Background transparency:', 'photo-gallery'); ?> </label></td>
 									  <td>
-										<input type="text" name="blog_style_transparent" id="blog_style_transparent" value="<?php echo $row->blog_style_transparent; ?>" class="spider_int_input" onkeypress="return spider_check_isnum(event)"/> %
+										<input type="text" name="blog_style_transparent" id="blog_style_transparent" value="<?php echo esc_attr($row->blog_style_transparent); ?>" class="spider_int_input" onkeypress="return spider_check_isnum(event)"/> %
 										<div class="spider_description"><?php echo __('Value must be between 0 to 100.', 'photo-gallery'); ?></div>
 									  </td>
 									</tr>
@@ -2985,7 +2985,7 @@ class ThemesView_bwg extends AdminView_bwg {
 										  <?php
 										  foreach ($aligns as $key => $align) {
 											?>
-											<option value="<?php echo $key; ?>" <?php echo (($row->blog_style_align == $key) ? 'selected="selected"' : ''); ?>><?php echo __($align, 'photo-gallery'); ?></option>
+											<option value="<?php echo esc_attr($key); ?>" <?php echo (($row->blog_style_align == $key) ? 'selected="selected"' : ''); ?>><?php echo esc_html__($align, 'photo-gallery'); ?></option>
 											<?php
 										  }
 										  ?>
@@ -2995,21 +2995,21 @@ class ThemesView_bwg extends AdminView_bwg {
 									<tr>
 									  <td class="spider_label"><label for="blog_style_margin"><?php echo __('Margin:', 'photo-gallery'); ?> </label></td>
 									  <td>
-										<input type="text" name="blog_style_margin" id="blog_style_margin" value="<?php echo $row->blog_style_margin; ?>" class="spider_char_input"/>
+										<input type="text" name="blog_style_margin" id="blog_style_margin" value="<?php echo esc_attr($row->blog_style_margin); ?>" class="spider_char_input"/>
 										<div class="spider_description"><?php echo __('Use CSS type values.', 'photo-gallery'); ?></div>
 									  </td>
 									</tr>
 									<tr>
 									  <td class="spider_label"><label for="blog_style_padding"><?php echo __('Padding:', 'photo-gallery'); ?> </label></td>
 									  <td>
-										<input type="text" name="blog_style_padding" id="blog_style_padding" value="<?php echo $row->blog_style_padding; ?>" class="spider_char_input"/>
+										<input type="text" name="blog_style_padding" id="blog_style_padding" value="<?php echo esc_attr($row->blog_style_padding); ?>" class="spider_char_input"/>
 										<div class="spider_description"><?php echo __('Use CSS type values.', 'photo-gallery'); ?></div>
 									  </td>
 									</tr>
 									<tr>
 									  <td class="spider_label"><label for="blog_style_box_shadow"><?php echo __('Box shadow:', 'photo-gallery'); ?> </label></td>
 									  <td>
-										<input type="text" name="blog_style_box_shadow" id="blog_style_box_shadow" value="<?php echo $row->blog_style_box_shadow; ?>" class="spider_box_input" placeholder="10px 10px 10px #888888" />
+										<input type="text" name="blog_style_box_shadow" id="blog_style_box_shadow" value="<?php echo esc_attr($row->blog_style_box_shadow); ?>" class="spider_box_input" placeholder="10px 10px 10px #888888" />
 										<div class="spider_description"><?php echo __('Use CSS type values.', 'photo-gallery'); ?></div>
 									  </td>
 									</tr>
@@ -3030,19 +3030,19 @@ class ThemesView_bwg extends AdminView_bwg {
                   <tr>
 									  <td class="spider_label"><label for="blog_style_img_font_size"><?php echo __('Font size:', 'photo-gallery'); ?> </label></td>
 									  <td>
-										<input type="text" name="blog_style_img_font_size" id="blog_style_img_font_size" value="<?php echo $row->blog_style_img_font_size; ?>" class="spider_int_input" onkeypress="return spider_check_isnum(event)"/> px
+										<input type="text" name="blog_style_img_font_size" id="blog_style_img_font_size" value="<?php echo esc_attr($row->blog_style_img_font_size); ?>" class="spider_int_input" onkeypress="return spider_check_isnum(event)"/> px
 									  </td>
 									</tr>
 									<tr>
 									  <td class="spider_label"><label for="blog_style_img_font_color"><?php echo __('Font color:', 'photo-gallery'); ?> </label></td>
 									  <td>
-										<input type="text" name="blog_style_img_font_color" id="blog_style_img_font_color" value="<?php echo $row->blog_style_img_font_color; ?>" class="jscolor"/>
+										<input type="text" name="blog_style_img_font_color" id="blog_style_img_font_color" value="<?php echo esc_attr($row->blog_style_img_font_color); ?>" class="jscolor"/>
 									  </td>
 									</tr>
 									<tr>
 									  <td class="spider_label"><label for="blog_style_border_width"><?php echo __('Border width:', 'photo-gallery'); ?> </label></td>
 									  <td>
-										<input type="text" name="blog_style_border_width" id="blog_style_border_width" value="<?php echo $row->blog_style_border_width; ?>" class="spider_int_input" onkeypress="return spider_check_isnum(event)"/> px
+										<input type="text" name="blog_style_border_width" id="blog_style_border_width" value="<?php echo esc_attr($row->blog_style_border_width); ?>" class="spider_int_input" onkeypress="return spider_check_isnum(event)"/> px
 									  </td>
 									</tr>
 									<tr>
@@ -3052,7 +3052,7 @@ class ThemesView_bwg extends AdminView_bwg {
 										  <?php
 										  foreach ($border_styles as $key => $border_style) {
 											?>
-											<option value="<?php echo $key; ?>" <?php echo (($row->blog_style_border_style == $key) ? 'selected="selected"' : ''); ?>><?php echo __($border_style, 'photo-gallery'); ?></option>
+											<option value="<?php echo esc_attr($key); ?>" <?php echo (($row->blog_style_border_style == $key) ? 'selected="selected"' : ''); ?>><?php echo esc_html__($border_style, 'photo-gallery'); ?></option>
 											<?php
 										  }
 										  ?>
@@ -3062,13 +3062,13 @@ class ThemesView_bwg extends AdminView_bwg {
 									<tr>
 									  <td class="spider_label"><label for="blog_style_border_color"><?php echo __('Border color:', 'photo-gallery'); ?> </label></td>
 									  <td>
-										<input type="text" name="blog_style_border_color" id="blog_style_border_color" value="<?php echo $row->blog_style_border_color; ?>" class="jscolor" />
+										<input type="text" name="blog_style_border_color" id="blog_style_border_color" value="<?php echo esc_attr($row->blog_style_border_color); ?>" class="jscolor" />
 									  </td>
 									</tr>
 									<tr>
 									  <td class="spider_label"><label for="blog_style_border_radius"><?php echo __('Border radius:', 'photo-gallery'); ?> </label></td>
 									  <td>
-										<input type="text" name="blog_style_border_radius" id="blog_style_border_radius" value="<?php echo $row->blog_style_border_radius; ?>" class="spider_char_input"/>
+										<input type="text" name="blog_style_border_radius" id="blog_style_border_radius" value="<?php echo esc_attr($row->blog_style_border_radius); ?>" class="spider_char_input"/>
 										<div class="spider_description"><?php echo __('Use CSS type values.', 'photo-gallery'); ?></div>
 									  </td>
 									</tr>
@@ -3085,26 +3085,26 @@ class ThemesView_bwg extends AdminView_bwg {
 									<tr>
 									  <td class="spider_label"><label for="blog_style_share_buttons_margin"><?php echo __('Buttons and title margin:', 'photo-gallery'); ?> </label></td>
 									  <td>
-										<input type="text" name="blog_style_share_buttons_margin" id="blog_style_share_buttons_margin" value="<?php echo $row->blog_style_share_buttons_margin; ?>" class="spider_char_input"/>
+										<input type="text" name="blog_style_share_buttons_margin" id="blog_style_share_buttons_margin" value="<?php echo esc_attr($row->blog_style_share_buttons_margin); ?>" class="spider_char_input"/>
 										<div class="spider_description"><?php echo __('Use CSS type values.', 'photo-gallery'); ?></div>
 									  </td>
 									</tr>
 									<tr>
 									  <td class="spider_label"><label for="blog_style_share_buttons_font_size"><?php echo __('Buttons size:', 'photo-gallery'); ?> </label></td>
 									  <td>
-										<input type="text" name="blog_style_share_buttons_font_size" id="blog_style_share_buttons_font_size" value="<?php echo $row->blog_style_share_buttons_font_size; ?>" class="spider_int_input" onkeypress="return spider_check_isnum(event)"/> px
+										<input type="text" name="blog_style_share_buttons_font_size" id="blog_style_share_buttons_font_size" value="<?php echo esc_attr($row->blog_style_share_buttons_font_size); ?>" class="spider_int_input" onkeypress="return spider_check_isnum(event)"/> px
 									  </td>
 									</tr>
 									<tr>
 									  <td class="spider_label"><label for="blog_style_share_buttons_color"><?php echo __('Buttons color:', 'photo-gallery'); ?> </label></td>
 									  <td>
-										<input type="text" name="blog_style_share_buttons_color" id="blog_style_share_buttons_color" value="<?php echo $row->blog_style_share_buttons_color; ?>" class="jscolor"/>
+										<input type="text" name="blog_style_share_buttons_color" id="blog_style_share_buttons_color" value="<?php echo esc_attr($row->blog_style_share_buttons_color); ?>" class="jscolor"/>
 									  </td>
 									</tr>
 								   <tr>
 									  <td class="spider_label"><label for="blog_style_share_buttons_border_width"><?php echo __('Buttons and title border width:', 'photo-gallery'); ?> </label></td>
 									  <td>
-										<input type="text" name="blog_style_share_buttons_border_width" id="blog_style_share_buttons_border_width" value="<?php echo $row->blog_style_share_buttons_border_width; ?>" class="spider_int_input" onkeypress="return spider_check_isnum(event)"/> px
+										<input type="text" name="blog_style_share_buttons_border_width" id="blog_style_share_buttons_border_width" value="<?php echo esc_attr($row->blog_style_share_buttons_border_width); ?>" class="spider_int_input" onkeypress="return spider_check_isnum(event)"/> px
 									  </td>
 									</tr>
 									<tr>
@@ -3114,7 +3114,7 @@ class ThemesView_bwg extends AdminView_bwg {
 										  <?php
 										  foreach ($border_styles as $key => $border_style) {
 											?>
-											<option value="<?php echo $key; ?>" <?php echo (($row->blog_style_share_buttons_border_style == $key) ? 'selected="selected"' : ''); ?>><?php echo __($border_style, 'photo-gallery'); ?></option>
+											<option value="<?php echo esc_attr($key); ?>" <?php echo (($row->blog_style_share_buttons_border_style == $key) ? 'selected="selected"' : ''); ?>><?php echo esc_html__($border_style, 'photo-gallery'); ?></option>
 											<?php
 										  }
 										  ?>
@@ -3124,26 +3124,26 @@ class ThemesView_bwg extends AdminView_bwg {
 									<tr>
 									  <td class="spider_label"><label for="blog_style_share_buttons_border_color"><?php echo __('Buttons and title border color:', 'photo-gallery'); ?> </label></td>
 									  <td>
-										<input type="text" name="blog_style_share_buttons_border_color" id="blog_style_share_buttons_border_color" value="<?php echo $row->blog_style_share_buttons_border_color; ?>" class="jscolor"/>
+										<input type="text" name="blog_style_share_buttons_border_color" id="blog_style_share_buttons_border_color" value="<?php echo esc_attr($row->blog_style_share_buttons_border_color); ?>" class="jscolor"/>
 									  </td>
 									</tr>
 									<tr>
 									  <td class="spider_label"><label for="blog_style_share_buttons_border_radius"><?php echo __('Buttons and title border radius:', 'photo-gallery'); ?> </label></td>
 									  <td>
-										<input type="text" name="blog_style_share_buttons_border_radius" id="blog_style_share_buttons_border_radius" value="<?php echo $row->blog_style_share_buttons_border_radius; ?>" class="spider_char_input"/>
+										<input type="text" name="blog_style_share_buttons_border_radius" id="blog_style_share_buttons_border_radius" value="<?php echo esc_attr($row->blog_style_share_buttons_border_radius); ?>" class="spider_char_input"/>
 										<div class="spider_description"><?php echo __('Use CSS type values.', 'photo-gallery'); ?></div>
 									  </td>
 									</tr>
 									<tr>
 									  <td class="spider_label"><label for="blog_style_share_buttons_bg_color"><?php echo __('Buttons and title background color:', 'photo-gallery'); ?> </label></td>
 									  <td>
-										<input type="text" name="blog_style_share_buttons_bg_color" id="blog_style_share_buttons_bg_color" value="<?php echo $row->blog_style_share_buttons_bg_color; ?>" class="jscolor"/>
+										<input type="text" name="blog_style_share_buttons_bg_color" id="blog_style_share_buttons_bg_color" value="<?php echo esc_attr($row->blog_style_share_buttons_bg_color); ?>" class="jscolor"/>
 									  </td>
 									</tr>
 									<tr>
 									  <td class="spider_label"><label for="blog_style_share_buttons_bg_transparent"><?php echo __('Buttons and title background transparency:', 'photo-gallery'); ?> </label></td>
 									  <td>
-										<input type="text" name="blog_style_share_buttons_bg_transparent" id="blog_style_share_buttons_bg_transparent" value="<?php echo $row->blog_style_share_buttons_bg_transparent; ?>" class="spider_int_input" onkeypress="return spider_check_isnum(event)"/> %
+										<input type="text" name="blog_style_share_buttons_bg_transparent" id="blog_style_share_buttons_bg_transparent" value="<?php echo esc_attr($row->blog_style_share_buttons_bg_transparent); ?>" class="spider_int_input" onkeypress="return spider_check_isnum(event)"/> %
 										<div class="spider_description"><?php echo __('Value must be between 0 to 100.', 'photo-gallery'); ?></div>
 									  </td>
 									</tr>
@@ -3154,7 +3154,7 @@ class ThemesView_bwg extends AdminView_bwg {
 										  <?php
 										  foreach ($aligns as $key => $align) {
 											?>
-											<option value="<?php echo $key; ?>" <?php echo (($row->blog_style_share_buttons_align == $key) ? 'selected="selected"' : ''); ?>><?php echo __($align, 'photo-gallery'); ?></option>
+											<option value="<?php echo esc_attr($key); ?>" <?php echo (($row->blog_style_share_buttons_align == $key) ? 'selected="selected"' : ''); ?>><?php echo esc_html__($align, 'photo-gallery'); ?></option>
 											<?php
 										  }
 										  ?>
@@ -3165,13 +3165,13 @@ class ThemesView_bwg extends AdminView_bwg {
 									  <td class="spider_label"><label for="blog_style_gal_title_font_size"><?php echo __('Gallery title/description font size:', 'photo-gallery'); ?> </label></td>
 									  <td>
 										<input type="text" name="blog_style_gal_title_font_size" id="blog_style_gal_title_font_size" value="<?php echo
-										$row->blog_style_gal_title_font_size; ?>" class="spider_int_input" onkeypress="return spider_check_isnum(event)"/> px
+                                        esc_attr($row->blog_style_gal_title_font_size); ?>" class="spider_int_input" onkeypress="return spider_check_isnum(event)"/> px
 									  </td>
 									</tr>
 									<tr>
 									  <td class="spider_label"><label for="blog_style_gal_title_font_color"><?php echo __('Gallery title/description font color:', 'photo-gallery'); ?> </label></td>
 									  <td>
-										<input type="text" name="blog_style_gal_title_font_color" id="blog_style_gal_title_font_color" value="<?php echo $row->blog_style_gal_title_font_color; ?>" class="jscolor" />
+										<input type="text" name="blog_style_gal_title_font_color" id="blog_style_gal_title_font_color" value="<?php echo esc_attr($row->blog_style_gal_title_font_color); ?>" class="jscolor" />
 									  </td>
 									</tr>
                   <tr>
@@ -3185,7 +3185,7 @@ class ThemesView_bwg extends AdminView_bwg {
 										  <?php
 										  foreach ($font_weights as $key => $font_weight) {
 											?>
-											<option value="<?php echo $key; ?>" <?php echo (($row->blog_style_gal_title_font_weight == $key) ? 'selected="selected"' : ''); ?>><?php echo __($font_weight, 'photo-gallery'); ?></option>
+											<option value="<?php echo esc_attr($key); ?>" <?php echo (($row->blog_style_gal_title_font_weight == $key) ? 'selected="selected"' : ''); ?>><?php echo esc_html__($font_weight, 'photo-gallery'); ?></option>
 											<?php
 										  }
 										  ?>
@@ -3195,14 +3195,14 @@ class ThemesView_bwg extends AdminView_bwg {
 									<tr>
 									  <td class="spider_label"><label for="blog_style_gal_title_shadow"><?php echo __('Gallery title/description box shadow:', 'photo-gallery'); ?> </label></td>
 									  <td>
-										<input type="text" name="blog_style_gal_title_shadow" id="blog_style_gal_title_shadow" value="<?php echo $row->blog_style_gal_title_shadow; ?>" class="spider_box_input" placeholder="10px 10px 10px #888888" />
+										<input type="text" name="blog_style_gal_title_shadow" id="blog_style_gal_title_shadow" value="<?php echo esc_attr($row->blog_style_gal_title_shadow); ?>" class="spider_box_input" placeholder="10px 10px 10px #888888" />
 										<div class="spider_description"><?php echo __('Use CSS type values.', 'photo-gallery'); ?></div>
 									  </td>
 									</tr>
 									<tr>
 									  <td class="spider_label"><label for="blog_style_gal_title_margin"><?php echo __('Gallery title/description margin:', 'photo-gallery'); ?> </label></td>
 									  <td>
-										<input type="text" name="blog_style_gal_title_margin" id="blog_style_gal_title_margin" value="<?php echo $row->blog_style_gal_title_margin; ?>" class="spider_char_input" />
+										<input type="text" name="blog_style_gal_title_margin" id="blog_style_gal_title_margin" value="<?php echo esc_attr($row->blog_style_gal_title_margin); ?>" class="spider_char_input" />
 										<div class="spider_description"><?php echo __('Use CSS type values.', 'photo-gallery'); ?></div>
 									  </td>
 									</tr>
@@ -3213,7 +3213,7 @@ class ThemesView_bwg extends AdminView_bwg {
 										  <?php
 										  foreach ($aligns as $key => $align) {
 											?>
-											<option value="<?php echo $key; ?>" <?php echo (($row->blog_style_gal_title_align == $key) ? 'selected="selected"' : ''); ?>><?php echo _e($align, 'photo-gallery'); ?></option>
+											<option value="<?php echo esc_attr($key); ?>" <?php echo (($row->blog_style_gal_title_align == $key) ? 'selected="selected"' : ''); ?>><?php echo esc_html__($align, 'photo-gallery'); ?></option>
 											<?php
 										  }
 										  ?>
@@ -3237,45 +3237,45 @@ class ThemesView_bwg extends AdminView_bwg {
 									<tr id="lightbox_overlay_bg">
 									  <td class="spider_label"><label for="lightbox_overlay_bg_color"><?php echo __('Overlay background color:', 'photo-gallery'); ?> </label></td>
 									  <td>
-										<input type="text" name="lightbox_overlay_bg_color" id="lightbox_overlay_bg_color" value="<?php echo $row->lightbox_overlay_bg_color; ?>" class="jscolor"/>
+										<input type="text" name="lightbox_overlay_bg_color" id="lightbox_overlay_bg_color" value="<?php echo esc_attr($row->lightbox_overlay_bg_color); ?>" class="jscolor"/>
 									  </td>
 									</tr>
 									<tr id="lightbox_overlay">
 									  <td class="spider_label"><label for="lightbox_overlay_bg_transparent"><?php echo __('Overlay background transparency:', 'photo-gallery'); ?> </label></td>
 									  <td>
-										<input type="text" name="lightbox_overlay_bg_transparent" id="lightbox_overlay_bg_transparent" value="<?php echo $row->lightbox_overlay_bg_transparent; ?>" class="spider_int_input" onkeypress="return spider_check_isnum(event)"/> %
+										<input type="text" name="lightbox_overlay_bg_transparent" id="lightbox_overlay_bg_transparent" value="<?php echo esc_attr($row->lightbox_overlay_bg_transparent); ?>" class="spider_int_input" onkeypress="return spider_check_isnum(event)"/> %
 										<div class="spider_description"><?php echo __('Value must be between 0 to 100.', 'photo-gallery'); ?></div>
 									  </td>
 									</tr>
 									<tr id="lightbox_bg">
 									  <td class="spider_label"><label for="lightbox_bg_color"><?php echo __('Lightbox background color:', 'photo-gallery'); ?> </label></td>
 									  <td>
-										<input type="text" name="lightbox_bg_color" id="lightbox_bg_color" value="<?php echo $row->lightbox_bg_color; ?>" class="jscolor"/>
+										<input type="text" name="lightbox_bg_color" id="lightbox_bg_color" value="<?php echo esc_attr($row->lightbox_bg_color); ?>" class="jscolor"/>
 									  </td>
 									</tr>
 									<tr id="lightbox_transparency">
 									  <td class="spider_label"><label for="lightbox_bg_transparent"><?php echo __('Lightbox background transparency:', 'photo-gallery'); ?> </label></td>
 									  <td>
-										<input type="text" name="lightbox_bg_transparent" id="lightbox_bg_transparent" value="<?php echo $row->lightbox_bg_transparent; ?>" class="spider_int_input" onkeypress="return spider_check_isnum(event)"/> %
+										<input type="text" name="lightbox_bg_transparent" id="lightbox_bg_transparent" value="<?php echo esc_attr($row->lightbox_bg_transparent); ?>" class="spider_int_input" onkeypress="return spider_check_isnum(event)"/> %
 										<div class="spider_description"><?php echo __('Value must be between 0 to 100.', 'photo-gallery'); ?></div>
 									  </td>
 									</tr>
 									<tr id="lightbox_cntrl1">
 									  <td class="spider_label"><label for="lightbox_ctrl_btn_height"><?php echo __('Control buttons height:', 'photo-gallery'); ?> </label></td>
 									  <td>
-										<input type="text" name="lightbox_ctrl_btn_height" id="lightbox_ctrl_btn_height" value="<?php echo $row->lightbox_ctrl_btn_height; ?>" class="spider_int_input" onkeypress="return spider_check_isnum(event)"/> px
+										<input type="text" name="lightbox_ctrl_btn_height" id="lightbox_ctrl_btn_height" value="<?php echo esc_attr($row->lightbox_ctrl_btn_height); ?>" class="spider_int_input" onkeypress="return spider_check_isnum(event)"/> px
 									  </td>
 									</tr>
 									<tr id="lightbox_cntrl2">
 									  <td class="spider_label"><label for="lightbox_ctrl_btn_margin_top"><?php echo __('Control buttons margin (top):', 'photo-gallery'); ?> </label></td>
 									  <td>
-										<input type="text" name="lightbox_ctrl_btn_margin_top" id="lightbox_ctrl_btn_margin_top" value="<?php echo $row->lightbox_ctrl_btn_margin_top; ?>" class="spider_int_input" onkeypress="return spider_check_isnum(event)"/> px
+										<input type="text" name="lightbox_ctrl_btn_margin_top" id="lightbox_ctrl_btn_margin_top" value="<?php echo esc_attr($row->lightbox_ctrl_btn_margin_top); ?>" class="spider_int_input" onkeypress="return spider_check_isnum(event)"/> px
 									  </td>
 									</tr>
 									<tr id="lightbox_cntrl3">
 									  <td class="spider_label"><label for="lightbox_ctrl_btn_margin_left"><?php echo __('Control buttons margin (left):', 'photo-gallery'); ?> </label></td>
 									  <td>
-										<input type="text" name="lightbox_ctrl_btn_margin_left" id="lightbox_ctrl_btn_margin_left" value="<?php echo $row->lightbox_ctrl_btn_margin_left; ?>" class="spider_int_input" onkeypress="return spider_check_isnum(event)"/> px
+										<input type="text" name="lightbox_ctrl_btn_margin_left" id="lightbox_ctrl_btn_margin_left" value="<?php echo esc_attr($row->lightbox_ctrl_btn_margin_left); ?>" class="spider_int_input" onkeypress="return spider_check_isnum(event)"/> px
 									  </td>
 									</tr>
 									<tr id="lightbox_cntrl9">
@@ -3290,20 +3290,20 @@ class ThemesView_bwg extends AdminView_bwg {
 									<tr id="lightbox_cntrl8">
 									  <td class="spider_label"><label for="lightbox_ctrl_cont_bg_color"><?php echo __('Control buttons background color:', 'photo-gallery'); ?> </label></td>
 									  <td>
-										<input type="text" name="lightbox_ctrl_cont_bg_color" id="lightbox_ctrl_cont_bg_color" value="<?php echo $row->lightbox_ctrl_cont_bg_color; ?>" class="jscolor"/>
+										<input type="text" name="lightbox_ctrl_cont_bg_color" id="lightbox_ctrl_cont_bg_color" value="<?php echo esc_attr($row->lightbox_ctrl_cont_bg_color); ?>" class="jscolor"/>
 									  </td>
 									</tr>
 									<tr id="lightbox_cntrl5">
 									  <td class="spider_label"><label for="lightbox_ctrl_cont_border_radius"><?php echo __('Control buttons container border radius:', 'photo-gallery'); ?> </label></td>
 									  <td>
-										<input type="text" name="lightbox_ctrl_cont_border_radius" id="lightbox_ctrl_cont_border_radius" value="<?php echo $row->lightbox_ctrl_cont_border_radius; ?>" class="spider_char_input"/>
+										<input type="text" name="lightbox_ctrl_cont_border_radius" id="lightbox_ctrl_cont_border_radius" value="<?php echo esc_attr($row->lightbox_ctrl_cont_border_radius); ?>" class="spider_char_input"/>
 										<div class="spider_description"><?php echo __('Use CSS type values.', 'photo-gallery'); ?></div>
 									  </td>
 									</tr>
 									<tr id="lightbox_cntrl6">
 									  <td class="spider_label"><label for="lightbox_ctrl_cont_transparent"><?php echo __('Control buttons container background transparency:', 'photo-gallery'); ?> </label></td>
 									  <td>
-										<input type="text" name="lightbox_ctrl_cont_transparent" id="lightbox_ctrl_cont_transparent" value="<?php echo $row->lightbox_ctrl_cont_transparent; ?>" class="spider_int_input" onkeypress="return spider_check_isnum(event)"/> %
+										<input type="text" name="lightbox_ctrl_cont_transparent" id="lightbox_ctrl_cont_transparent" value="<?php echo esc_attr($row->lightbox_ctrl_cont_transparent); ?>" class="spider_int_input" onkeypress="return spider_check_isnum(event)"/> %
 										<div class="spider_description"><?php echo __('Value must be between 0 to 100.', 'photo-gallery'); ?></div>
 									  </td>
 									</tr>
@@ -3314,7 +3314,7 @@ class ThemesView_bwg extends AdminView_bwg {
 										  <?php
 										  foreach ($aligns as $key => $align) {
 											?>
-											<option value="<?php echo $key; ?>" <?php echo (($row->lightbox_ctrl_btn_align == $key) ? 'selected="selected"' : ''); ?>><?php echo __($align, 'photo-gallery'); ?></option>
+											<option value="<?php echo esc_attr($key); ?>" <?php echo (($row->lightbox_ctrl_btn_align == $key) ? 'selected="selected"' : ''); ?>><?php echo esc_html__($align, 'photo-gallery'); ?></option>
 											<?php
 										  }
 										  ?>
@@ -3324,40 +3324,40 @@ class ThemesView_bwg extends AdminView_bwg {
 									<tr id="lightbox_cntrl7">
 									  <td class="spider_label"><label for="lightbox_ctrl_btn_color"><?php echo __('Control buttons color:', 'photo-gallery'); ?> </label></td>
 									  <td>
-										<input type="text" name="lightbox_ctrl_btn_color" id="lightbox_ctrl_btn_color" value="<?php echo $row->lightbox_ctrl_btn_color; ?>" class="jscolor"/>
+										<input type="text" name="lightbox_ctrl_btn_color" id="lightbox_ctrl_btn_color" value="<?php echo esc_attr($row->lightbox_ctrl_btn_color); ?>" class="jscolor"/>
 									  </td>
 									</tr>
 									<tr id="lightbox_cntrl4">
 									  <td class="spider_label"><label for="lightbox_ctrl_btn_transparent"><?php echo __('Control buttons transparency:', 'photo-gallery'); ?> </label></td>
 									  <td>
-										<input type="text" name="lightbox_ctrl_btn_transparent" id="lightbox_ctrl_btn_transparent" value="<?php echo $row->lightbox_ctrl_btn_transparent; ?>" class="spider_int_input" onkeypress="return spider_check_isnum(event)"/> %
+										<input type="text" name="lightbox_ctrl_btn_transparent" id="lightbox_ctrl_btn_transparent" value="<?php echo esc_attr($row->lightbox_ctrl_btn_transparent); ?>" class="spider_int_input" onkeypress="return spider_check_isnum(event)"/> %
 										<div class="spider_description"><?php echo __('Value must be between 0 to 100.', 'photo-gallery'); ?></div>
 									  </td>
 									</tr>
 									<tr id="lightbox_toggle1">
 									  <td class="spider_label"><label for="lightbox_toggle_btn_height"><?php echo __('Toggle button height:', 'photo-gallery'); ?> </label></td>
 									  <td>
-										<input type="text" name="lightbox_toggle_btn_height" id="lightbox_toggle_btn_height" value="<?php echo $row->lightbox_toggle_btn_height; ?>" class="spider_int_input" onkeypress="return spider_check_isnum(event)"/> px
+										<input type="text" name="lightbox_toggle_btn_height" id="lightbox_toggle_btn_height" value="<?php echo esc_attr($row->lightbox_toggle_btn_height); ?>" class="spider_int_input" onkeypress="return spider_check_isnum(event)"/> px
 									  </td>
 									</tr>
 									<tr id="lightbox_toggle2">
 									  <td class="spider_label"><label for="lightbox_toggle_btn_width"><?php echo __('Toggle button width:', 'photo-gallery'); ?> </label></td>
 									  <td>
-										<input type="text" name="lightbox_toggle_btn_width" id="lightbox_toggle_btn_width" value="<?php echo $row->lightbox_toggle_btn_width; ?>" class="spider_int_input" onkeypress="return spider_check_isnum(event)"/> px
+										<input type="text" name="lightbox_toggle_btn_width" id="lightbox_toggle_btn_width" value="<?php echo esc_attr($row->lightbox_toggle_btn_width); ?>" class="spider_int_input" onkeypress="return spider_check_isnum(event)"/> px
 									  </td>
 									</tr>
 									<tr id="lightbox_close1">
 									  <td class="spider_label"><label for="lightbox_close_btn_border_radius"><?php echo __('Close button border radius:', 'photo-gallery'); ?> </label>
 									  </td>
 									  <td>
-										<input type="text" name="lightbox_close_btn_border_radius" id="lightbox_close_btn_border_radius" value="<?php echo $row->lightbox_close_btn_border_radius; ?>" class="spider_char_input"/>
+										<input type="text" name="lightbox_close_btn_border_radius" id="lightbox_close_btn_border_radius" value="<?php echo esc_attr($row->lightbox_close_btn_border_radius); ?>" class="spider_char_input"/>
 										<div class="spider_description"><?php echo __('Use CSS type values.', 'photo-gallery'); ?></div>
 									  </td>
 									</tr>
 									<tr id="lightbox_close2">
 									  <td class="spider_label"><label for="lightbox_close_btn_border_width"><?php echo __('Close button border width:', 'photo-gallery'); ?> </label></td>
 									  <td>
-										<input type="text" name="lightbox_close_btn_border_width" id="lightbox_close_btn_border_width" value="<?php echo $row->lightbox_close_btn_border_width; ?>" class="spider_int_input" onkeypress="return spider_check_isnum(event)"/> px
+										<input type="text" name="lightbox_close_btn_border_width" id="lightbox_close_btn_border_width" value="<?php echo esc_attr($row->lightbox_close_btn_border_width); ?>" class="spider_int_input" onkeypress="return spider_check_isnum(event)"/> px
 									  </td>
 									</tr>
 									<tr id="lightbox_close12">
@@ -3367,7 +3367,7 @@ class ThemesView_bwg extends AdminView_bwg {
 										  <?php
 										  foreach ($border_styles as $key => $border_style) {
 											?>
-											<option value="<?php echo $key; ?>" <?php echo (($row->lightbox_close_btn_border_style == $key) ? 'selected="selected"' : ''); ?>><?php echo __($border_style, 'photo-gallery'); ?></option>
+											<option value="<?php echo esc_attr($key); ?>" <?php echo (($row->lightbox_close_btn_border_style == $key) ? 'selected="selected"' : ''); ?>><?php echo esc_html__($border_style, 'photo-gallery'); ?></option>
 											<?php
 										  }
 										  ?>
@@ -3377,79 +3377,79 @@ class ThemesView_bwg extends AdminView_bwg {
 									<tr id="lightbox_close13">
 									  <td class="spider_label"><label for="lightbox_close_btn_border_color"><?php echo __('Close button border color:', 'photo-gallery'); ?> </label></td>
 									  <td>
-										<input type="text" name="lightbox_close_btn_border_color" id="lightbox_close_btn_border_color" value="<?php echo $row->lightbox_close_btn_border_color; ?>" class="jscolor"/>
+										<input type="text" name="lightbox_close_btn_border_color" id="lightbox_close_btn_border_color" value="<?php echo esc_attr($row->lightbox_close_btn_border_color); ?>" class="jscolor"/>
 									  </td>
 									</tr>
 									<tr id="lightbox_close3">
 									  <td class="spider_label"><label for="lightbox_close_btn_box_shadow"><?php echo __('Close button box shadow:', 'photo-gallery'); ?> </label></td>
 									  <td>
-										<input type="text" name="lightbox_close_btn_box_shadow" id="lightbox_close_btn_box_shadow" value="<?php echo $row->lightbox_close_btn_box_shadow; ?>" class="spider_box_input" placeholder="10px 10px 10px #888888" />
+										<input type="text" name="lightbox_close_btn_box_shadow" id="lightbox_close_btn_box_shadow" value="<?php echo esc_attr($row->lightbox_close_btn_box_shadow); ?>" class="spider_box_input" placeholder="10px 10px 10px #888888" />
 										<div class="spider_description"><?php echo __('Use CSS type values.', 'photo-gallery'); ?></div>
 									  </td>
 									</tr>
 									<tr id="lightbox_close11">
 									  <td class="spider_label"><label for="lightbox_close_btn_bg_color"><?php echo __('Close button background color:', 'photo-gallery'); ?> </label></td>
 									  <td>
-										<input type="text" name="lightbox_close_btn_bg_color" id="lightbox_close_btn_bg_color" value="<?php echo $row->lightbox_close_btn_bg_color; ?>" class="jscolor"/>
+										<input type="text" name="lightbox_close_btn_bg_color" id="lightbox_close_btn_bg_color" value="<?php echo esc_attr($row->lightbox_close_btn_bg_color); ?>" class="jscolor"/>
                     <div class="spider_description"><?php echo __('The option does not apply to Full-width lightbox.', 'photo-gallery'); ?></div>
                     </td>
 									</tr>
 									<tr id="lightbox_close9">
 									  <td class="spider_label"><label for="lightbox_close_btn_transparent"><?php echo __('Close button transparency:', 'photo-gallery'); ?> </label></td>
 									  <td>
-										<input type="text" name="lightbox_close_btn_transparent" id="lightbox_close_btn_transparent" value="<?php echo $row->lightbox_close_btn_transparent; ?>" class="spider_int_input" onkeypress="return spider_check_isnum(event)"/> %
+										<input type="text" name="lightbox_close_btn_transparent" id="lightbox_close_btn_transparent" value="<?php echo esc_attr($row->lightbox_close_btn_transparent); ?>" class="spider_int_input" onkeypress="return spider_check_isnum(event)"/> %
 									  </td>
 									</tr>
 									<tr id="lightbox_close5">
 									  <td class="spider_label"><label for="lightbox_close_btn_width"><?php echo __('Close button width:', 'photo-gallery'); ?> </label></td>
 									  <td>
-										<input type="text" name="lightbox_close_btn_width" id="lightbox_close_btn_width" value="<?php echo $row->lightbox_close_btn_width; ?>" class="spider_int_input" onkeypress="return spider_check_isnum(event)"/> px
+										<input type="text" name="lightbox_close_btn_width" id="lightbox_close_btn_width" value="<?php echo esc_attr($row->lightbox_close_btn_width); ?>" class="spider_int_input" onkeypress="return spider_check_isnum(event)"/> px
                     <div class="spider_description"><?php echo __('The option does not apply to Full-width lightbox.', 'photo-gallery'); ?></div>
                     </td>
 									</tr>
 									<tr id="lightbox_close6">
 									  <td class="spider_label"><label for="lightbox_close_btn_height"><?php echo __('Close button height:', 'photo-gallery'); ?> </label></td>
 									  <td>
-										<input type="text" name="lightbox_close_btn_height" id="lightbox_close_btn_height" value="<?php echo $row->lightbox_close_btn_height; ?>" class="spider_int_input" onkeypress="return spider_check_isnum(event)"/> px
+										<input type="text" name="lightbox_close_btn_height" id="lightbox_close_btn_height" value="<?php echo esc_attr($row->lightbox_close_btn_height); ?>" class="spider_int_input" onkeypress="return spider_check_isnum(event)"/> px
                     <div class="spider_description"><?php echo __('The option does not apply to Full-width lightbox.', 'photo-gallery'); ?></div>
                     </td>
 									</tr>
 									<tr id="lightbox_close7">
 									  <td class="spider_label"><label for="lightbox_close_btn_top"><?php echo __('Close button top:', 'photo-gallery'); ?> </label></td>
 									  <td>
-										<input type="text" name="lightbox_close_btn_top" id="lightbox_close_btn_top" value="<?php echo $row->lightbox_close_btn_top; ?>" class="spider_int_input" onkeypress="return spider_check_isnum(event)"/> px
+										<input type="text" name="lightbox_close_btn_top" id="lightbox_close_btn_top" value="<?php echo esc_attr($row->lightbox_close_btn_top); ?>" class="spider_int_input" onkeypress="return spider_check_isnum(event)"/> px
                     <div class="spider_description"><?php echo __('The option does not apply to Full-width lightbox.', 'photo-gallery'); ?></div>
                     </td>
 									</tr>
 									<tr id="lightbox_close8">
 									  <td class="spider_label"><label for="lightbox_close_btn_right"><?php echo __('Close button right:', 'photo-gallery'); ?> </label></td>
 									  <td>
-										<input type="text" name="lightbox_close_btn_right" id="lightbox_close_btn_right" value="<?php echo $row->lightbox_close_btn_right; ?>" class="spider_int_input" onkeypress="return spider_check_isnum(event)"/> px
+										<input type="text" name="lightbox_close_btn_right" id="lightbox_close_btn_right" value="<?php echo esc_attr($row->lightbox_close_btn_right); ?>" class="spider_int_input" onkeypress="return spider_check_isnum(event)"/> px
                     <div class="spider_description"><?php echo __('The option does not apply to Full-width lightbox.', 'photo-gallery'); ?></div>
                     </td>
 									</tr>
 									<tr id="lightbox_close4">
 									  <td class="spider_label"><label for="lightbox_close_btn_size"><?php echo __('Close button size:', 'photo-gallery'); ?> </label></td>
 									  <td>
-										<input type="text" name="lightbox_close_btn_size" id="lightbox_close_btn_size" value="<?php echo $row->lightbox_close_btn_size; ?>" class="spider_int_input" onkeypress="return spider_check_isnum(event)"/> px
+										<input type="text" name="lightbox_close_btn_size" id="lightbox_close_btn_size" value="<?php echo esc_attr($row->lightbox_close_btn_size); ?>" class="spider_int_input" onkeypress="return spider_check_isnum(event)"/> px
 									  </td>
 									</tr>
 									<tr id="lightbox_close14">
 									  <td class="spider_label"><label for="lightbox_close_btn_color"><?php echo __('Close button color:', 'photo-gallery'); ?> </label></td>
 									  <td>
-										<input type="text" name="lightbox_close_btn_color" id="lightbox_close_btn_color" value="<?php echo $row->lightbox_close_btn_color; ?>" class="jscolor"/>
+										<input type="text" name="lightbox_close_btn_color" id="lightbox_close_btn_color" value="<?php echo esc_attr($row->lightbox_close_btn_color); ?>" class="jscolor"/>
 									  </td>
 									</tr>
 									<tr id="lightbox_close10">
 									  <td class="spider_label"><label for="lightbox_close_btn_full_color"><?php echo __('Fullscreen close button color:', 'photo-gallery'); ?> </label></td>
 									  <td>
-										<input type="text" name="lightbox_close_btn_full_color" id="lightbox_close_btn_full_color" value="<?php echo $row->lightbox_close_btn_full_color; ?>" class="jscolor"/>
+										<input type="text" name="lightbox_close_btn_full_color" id="lightbox_close_btn_full_color" value="<?php echo esc_attr($row->lightbox_close_btn_full_color); ?>" class="jscolor"/>
 									  </td>
 									</tr>
 									<tr id="lightbox_comment24">
 									  <td class="spider_label"><label for="lightbox_comment_share_button_color"><?php echo __('Share buttons color:', 'photo-gallery'); ?> </label></td>
 									  <td>
-										<input type="text" name="lightbox_comment_share_button_color" id="lightbox_comment_share_button_color" value="<?php echo $row->lightbox_comment_share_button_color; ?>" class="jscolor" />
+										<input type="text" name="lightbox_comment_share_button_color" id="lightbox_comment_share_button_color" value="<?php echo esc_attr($row->lightbox_comment_share_button_color); ?>" class="jscolor" />
 									  </td>
 									</tr>
 								  </tbody>
@@ -3469,7 +3469,7 @@ class ThemesView_bwg extends AdminView_bwg {
 										  <?php
 										  foreach ($button_styles as $key => $button_style) {
 											?>
-											<option value="<?php echo $key; ?>" <?php echo (($row->lightbox_rl_btn_style == $key) ? 'selected="selected"' : ''); ?>><?php echo __($button_style, 'photo-gallery'); ?></option>
+											<option value="<?php echo esc_attr($key); ?>" <?php echo (($row->lightbox_rl_btn_style == $key) ? 'selected="selected"' : ''); ?>><?php echo esc_html__($button_style, 'photo-gallery'); ?></option>
 											<?php
 										  }
 										  ?>
@@ -3479,63 +3479,63 @@ class ThemesView_bwg extends AdminView_bwg {
 									<tr id="lightbox_right_left7">
 									  <td class="spider_label"><label for="lightbox_rl_btn_bg_color"><?php echo __('Right, left buttons background color:', 'photo-gallery'); ?> </label></td>
 									  <td>
-										<input type="text" name="lightbox_rl_btn_bg_color" id="lightbox_rl_btn_bg_color" value="<?php echo $row->lightbox_rl_btn_bg_color; ?>" class="jscolor"/>
+										<input type="text" name="lightbox_rl_btn_bg_color" id="lightbox_rl_btn_bg_color" value="<?php echo esc_attr($row->lightbox_rl_btn_bg_color); ?>" class="jscolor"/>
 									  </td>
 									</tr>
 									<tr>
 									  <td class="spider_label"><label for="lightbox_rl_btn_transparent"><?php echo __('Right, left buttons transparency:', 'photo-gallery'); ?> </label></td>
 									  <td>
-										<input type="text" name="lightbox_rl_btn_transparent" id="lightbox_rl_btn_transparent" value="<?php echo $row->lightbox_rl_btn_transparent; ?>" class="spider_int_input" onkeypress="return spider_check_isnum(event)"/> %
+										<input type="text" name="lightbox_rl_btn_transparent" id="lightbox_rl_btn_transparent" value="<?php echo esc_attr($row->lightbox_rl_btn_transparent); ?>" class="spider_int_input" onkeypress="return spider_check_isnum(event)"/> %
 									  </td>
 									</tr>
 									<tr id="lightbox_right_left3">
 									  <td class="spider_label"><label for="lightbox_rl_btn_box_shadow"><?php echo __('Right, left buttons box shadow:', 'photo-gallery'); ?> </label></td>
 									  <td>
-										<input type="text" name="lightbox_rl_btn_box_shadow" id="lightbox_rl_btn_box_shadow" value="<?php echo $row->lightbox_rl_btn_box_shadow; ?>" class="spider_box_input" placeholder="10px 10px 10px #888888" />
+										<input type="text" name="lightbox_rl_btn_box_shadow" id="lightbox_rl_btn_box_shadow" value="<?php echo esc_attr($row->lightbox_rl_btn_box_shadow); ?>" class="spider_box_input" placeholder="10px 10px 10px #888888" />
 										<div class="spider_description"><?php echo __('Use CSS type values.', 'photo-gallery'); ?></div>
 									  </td>
 									</tr>
 									<tr id="lightbox_right_left4">
 									  <td class="spider_label"><label for="lightbox_rl_btn_height"><?php echo __('Right, left buttons height:', 'photo-gallery'); ?> </label></td>
 									  <td>
-										<input type="text" name="lightbox_rl_btn_height" id="lightbox_rl_btn_height" value="<?php echo $row->lightbox_rl_btn_height; ?>" class="spider_int_input" onkeypress="return spider_check_isnum(event)"/> px
+										<input type="text" name="lightbox_rl_btn_height" id="lightbox_rl_btn_height" value="<?php echo esc_attr($row->lightbox_rl_btn_height); ?>" class="spider_int_input" onkeypress="return spider_check_isnum(event)"/> px
 									  </td>
 									</tr>
 									<tr id="lightbox_right_left5">
 									  <td class="spider_label"><label for="lightbox_rl_btn_width"><?php echo __('Right, left buttons width:', 'photo-gallery'); ?> </label></td>
 									  <td>
-										<input type="text" name="lightbox_rl_btn_width" id="lightbox_rl_btn_width" value="<?php echo $row->lightbox_rl_btn_width; ?>" class="spider_int_input" onkeypress="return spider_check_isnum(event)"/> px
+										<input type="text" name="lightbox_rl_btn_width" id="lightbox_rl_btn_width" value="<?php echo esc_attr($row->lightbox_rl_btn_width); ?>" class="spider_int_input" onkeypress="return spider_check_isnum(event)"/> px
 									  </td>
 									</tr>
 									<tr id="lightbox_right_left6">
 									  <td class="spider_label"><label for="lightbox_rl_btn_size"><?php echo __('Right, left buttons size:', 'photo-gallery'); ?> </label></td>
 									  <td>
-										<input type="text" name="lightbox_rl_btn_size" id="lightbox_rl_btn_size" value="<?php echo $row->lightbox_rl_btn_size; ?>" class="spider_int_input" onkeypress="return spider_check_isnum(event)"/> px
+										<input type="text" name="lightbox_rl_btn_size" id="lightbox_rl_btn_size" value="<?php echo esc_attr($row->lightbox_rl_btn_size); ?>" class="spider_int_input" onkeypress="return spider_check_isnum(event)"/> px
 									  </td>
 									</tr>
 									<tr id="lightbox_close15">
 									  <td class="spider_label"><label for="lightbox_close_rl_btn_hover_color"><?php echo __('Right, left, close buttons hover color:', 'photo-gallery'); ?> </label></td>
 									  <td>
-										<input type="text" name="lightbox_close_rl_btn_hover_color" id="lightbox_close_rl_btn_hover_color" value="<?php echo $row->lightbox_close_rl_btn_hover_color; ?>" class="jscolor" />
+										<input type="text" name="lightbox_close_rl_btn_hover_color" id="lightbox_close_rl_btn_hover_color" value="<?php echo esc_attr($row->lightbox_close_rl_btn_hover_color); ?>" class="jscolor" />
 									  </td>
 									</tr>
 									<tr id="lightbox_right_left10">
 									  <td class="spider_label"><label for="lightbox_rl_btn_color"><?php echo __('Right, left buttons color:', 'photo-gallery'); ?> </label></td>
 									  <td>
-										<input type="text" name="lightbox_rl_btn_color" id="lightbox_rl_btn_color" value="<?php echo $row->lightbox_rl_btn_color; ?>" class="jscolor"/>
+										<input type="text" name="lightbox_rl_btn_color" id="lightbox_rl_btn_color" value="<?php echo esc_attr($row->lightbox_rl_btn_color); ?>" class="jscolor"/>
 									  </td>
 									</tr>
 									<tr id="lightbox_right_left1">
 									  <td class="spider_label"><label for="lightbox_rl_btn_border_radius"><?php echo __('Right, left buttons border radius:', 'photo-gallery'); ?> </label></td>
 									  <td>
-										<input type="text" name="lightbox_rl_btn_border_radius" id="lightbox_rl_btn_border_radius" value="<?php echo $row->lightbox_rl_btn_border_radius; ?>" class="spider_char_input"/>
+										<input type="text" name="lightbox_rl_btn_border_radius" id="lightbox_rl_btn_border_radius" value="<?php echo esc_attr($row->lightbox_rl_btn_border_radius); ?>" class="spider_char_input"/>
 										<div class="spider_description"><?php echo __('Use CSS type values.', 'photo-gallery'); ?></div>
 									  </td>
 									</tr>
 									<tr id="lightbox_right_left2">
 									  <td class="spider_label"><label for="lightbox_rl_btn_border_width"><?php echo __('Right, left buttons border width:', 'photo-gallery'); ?> </label></td>
 									  <td>
-										<input type="text" name="lightbox_rl_btn_border_width" id="lightbox_rl_btn_border_width" value="<?php echo $row->lightbox_rl_btn_border_width; ?>" class="spider_int_input" onkeypress="return spider_check_isnum(event)"/> px
+										<input type="text" name="lightbox_rl_btn_border_width" id="lightbox_rl_btn_border_width" value="<?php echo esc_attr($row->lightbox_rl_btn_border_width); ?>" class="spider_int_input" onkeypress="return spider_check_isnum(event)"/> px
 									  </td>
 									</tr>
 									<tr id="lightbox_right_left8">
@@ -3545,7 +3545,7 @@ class ThemesView_bwg extends AdminView_bwg {
 										  <?php
 										  foreach ($border_styles as $key => $border_style) {
 											?>
-											<option value="<?php echo $key; ?>" <?php echo (($row->lightbox_rl_btn_border_style == $key) ? 'selected="selected"' : ''); ?>><?php echo __($border_style, 'photo-gallery'); ?></option>
+											<option value="<?php echo esc_attr($key); ?>" <?php echo (($row->lightbox_rl_btn_border_style == $key) ? 'selected="selected"' : ''); ?>><?php echo esc_html__($border_style, 'photo-gallery'); ?></option>
 											<?php
 										  }
 										  ?>
@@ -3555,7 +3555,7 @@ class ThemesView_bwg extends AdminView_bwg {
 									<tr id="lightbox_right_left9">
 									  <td class="spider_label"><label for="lightbox_rl_btn_border_color"><?php echo __('Right, left buttons border color:', 'photo-gallery'); ?> </label></td>
 									  <td>
-										<input type="text" name="lightbox_rl_btn_border_color" id="lightbox_rl_btn_border_color" value="<?php echo $row->lightbox_rl_btn_border_color; ?>" class="jscolor"/>
+										<input type="text" name="lightbox_rl_btn_border_color" id="lightbox_rl_btn_border_color" value="<?php echo esc_attr($row->lightbox_rl_btn_border_color); ?>" class="jscolor"/>
 									  </td>
 									</tr>
 									<tr id="lightbox_filmstrip12">
@@ -3572,14 +3572,14 @@ class ThemesView_bwg extends AdminView_bwg {
 									<tr id="lightbox_filmstrip2">
 									  <td class="spider_label"><label for="lightbox_filmstrip_thumb_margin"><?php echo __('Filmstrip thumbnail margin:', 'photo-gallery'); ?> </label></td>
 									  <td>
-										<input type="text" name="lightbox_filmstrip_thumb_margin" id="lightbox_filmstrip_thumb_margin" value="<?php echo $row->lightbox_filmstrip_thumb_margin; ?>" class="spider_char_input"/>
+										<input type="text" name="lightbox_filmstrip_thumb_margin" id="lightbox_filmstrip_thumb_margin" value="<?php echo esc_attr($row->lightbox_filmstrip_thumb_margin); ?>" class="spider_char_input"/>
 										<div class="spider_description"><?php echo __('Use CSS type values.', 'photo-gallery'); ?></div>
 									  </td>
 									</tr>
 									<tr id="lightbox_filmstrip3">
 									  <td class="spider_label"><label for="lightbox_filmstrip_thumb_border_width"><?php echo __('Filmstrip thumbnail border width:', 'photo-gallery'); ?> </label></td>
 									  <td>
-										<input type="text" name="lightbox_filmstrip_thumb_border_width" id="lightbox_filmstrip_thumb_border_width" value="<?php echo $row->lightbox_filmstrip_thumb_border_width; ?>" class="spider_int_input" onkeypress="return spider_check_isnum(event)"/> px
+										<input type="text" name="lightbox_filmstrip_thumb_border_width" id="lightbox_filmstrip_thumb_border_width" value="<?php echo esc_attr($row->lightbox_filmstrip_thumb_border_width); ?>" class="spider_int_input" onkeypress="return spider_check_isnum(event)"/> px
 									  </td>
 									</tr>
 									<tr id="lightbox_filmstrip9">
@@ -3589,7 +3589,7 @@ class ThemesView_bwg extends AdminView_bwg {
 										  <?php
 										  foreach ($border_styles as $key => $border_style) {
 											?>
-											<option value="<?php echo $key; ?>" <?php echo (($row->lightbox_filmstrip_thumb_border_style == $key) ? 'selected="selected"' : ''); ?>><?php echo __($border_style, 'photo-gallery'); ?></option>
+											<option value="<?php echo esc_attr($key); ?>" <?php echo (($row->lightbox_filmstrip_thumb_border_style == $key) ? 'selected="selected"' : ''); ?>><?php echo esc_html__($border_style, 'photo-gallery'); ?></option>
 											<?php
 										  }
 										  ?>
@@ -3599,51 +3599,51 @@ class ThemesView_bwg extends AdminView_bwg {
 									<tr id="lightbox_filmstrip10">
 									  <td class="spider_label"><label for="lightbox_filmstrip_thumb_border_color"><?php echo __('Filmstrip thumbnail border color:', 'photo-gallery'); ?> </label></td>
 									  <td>
-										<input type="text" name="lightbox_filmstrip_thumb_border_color" id="lightbox_filmstrip_thumb_border_color" value="<?php echo $row->lightbox_filmstrip_thumb_border_color; ?>" class="jscolor" />
+										<input type="text" name="lightbox_filmstrip_thumb_border_color" id="lightbox_filmstrip_thumb_border_color" value="<?php echo esc_attr($row->lightbox_filmstrip_thumb_border_color); ?>" class="jscolor" />
 									  </td>
 									</tr>
 									<tr id="lightbox_filmstrip4">
 									  <td class="spider_label"><label for="lightbox_filmstrip_thumb_border_radius"><?php echo __('Filmstrip thumbnail border radius:', 'photo-gallery'); ?> </label></td>
 									  <td>
-										<input type="text" name="lightbox_filmstrip_thumb_border_radius" id="lightbox_filmstrip_thumb_border_radius" value="<?php echo $row->lightbox_filmstrip_thumb_border_radius; ?>" class="spider_char_input"/>
+										<input type="text" name="lightbox_filmstrip_thumb_border_radius" id="lightbox_filmstrip_thumb_border_radius" value="<?php echo esc_attr($row->lightbox_filmstrip_thumb_border_radius); ?>" class="spider_char_input"/>
 										<div class="spider_description"><?php echo __('Use CSS type values.', 'photo-gallery'); ?></div>
 									  </td>
 									</tr>
 									<tr id="lightbox_filmstrip6">
 									  <td class="spider_label"><label for="lightbox_filmstrip_thumb_active_border_width"><?php echo __('Filmstrip thumbnail active border width:', 'photo-gallery'); ?> </label></td>
 									  <td>
-										<input type="text" name="lightbox_filmstrip_thumb_active_border_width" id="lightbox_filmstrip_thumb_active_border_width" value="<?php echo $row->lightbox_filmstrip_thumb_active_border_width; ?>" class="spider_int_input" onkeypress="return spider_check_isnum(event)"/> px
+										<input type="text" name="lightbox_filmstrip_thumb_active_border_width" id="lightbox_filmstrip_thumb_active_border_width" value="<?php echo esc_attr($row->lightbox_filmstrip_thumb_active_border_width); ?>" class="spider_int_input" onkeypress="return spider_check_isnum(event)"/> px
 									  </td>
 									</tr>
 									<tr id="lightbox_filmstrip11">
 									  <td class="spider_label"> <label for="lightbox_filmstrip_thumb_active_border_color"><?php echo __('Filmstrip thumbnail active border color:', 'photo-gallery'); ?></label></td>
 									  <td>
-										<input type="text" name="lightbox_filmstrip_thumb_active_border_color" id="lightbox_filmstrip_thumb_active_border_color" value="<?php echo $row->lightbox_filmstrip_thumb_active_border_color; ?>" class="jscolor"/>
+										<input type="text" name="lightbox_filmstrip_thumb_active_border_color" id="lightbox_filmstrip_thumb_active_border_color" value="<?php echo esc_attr($row->lightbox_filmstrip_thumb_active_border_color); ?>" class="jscolor"/>
 									  </td>
 									</tr>
 									<tr id="lightbox_filmstrip5">
 									  <td class="spider_label"><label for="lightbox_filmstrip_thumb_deactive_transparent"><?php echo __('Filmstrip thumbnail deactive transparency:', 'photo-gallery'); ?> </label></td>
 									  <td>
-										<input type="text" name="lightbox_filmstrip_thumb_deactive_transparent" id="lightbox_filmstrip_thumb_deactive_transparent" value="<?php echo $row->lightbox_filmstrip_thumb_deactive_transparent; ?>" class="spider_int_input" onkeypress="return spider_check_isnum(event)"/> %
+										<input type="text" name="lightbox_filmstrip_thumb_deactive_transparent" id="lightbox_filmstrip_thumb_deactive_transparent" value="<?php echo esc_attr($row->lightbox_filmstrip_thumb_deactive_transparent); ?>" class="spider_int_input" onkeypress="return spider_check_isnum(event)"/> %
 										<div class="spider_description"><?php echo __('Value must be between 0 to 100.', 'photo-gallery'); ?></div>
 									  </td>
 									</tr>
 									<tr id="lightbox_filmstrip1">
 									  <td class="spider_label"><label for="lightbox_filmstrip_rl_btn_size"><?php echo __('Filmstrip right, left buttons size:', 'photo-gallery'); ?> </label></td>
 									  <td>
-										<input type="text" name="lightbox_filmstrip_rl_btn_size" id="lightbox_filmstrip_rl_btn_size" value="<?php echo $row->lightbox_filmstrip_rl_btn_size; ?>" class="spider_int_input" onkeypress="return spider_check_isnum(event)"/> px
+										<input type="text" name="lightbox_filmstrip_rl_btn_size" id="lightbox_filmstrip_rl_btn_size" value="<?php echo esc_attr($row->lightbox_filmstrip_rl_btn_size); ?>" class="spider_int_input" onkeypress="return spider_check_isnum(event)"/> px
 									  </td>
 									</tr>
 									<tr id="lightbox_filmstrip7">
 									  <td class="spider_label"><label for="lightbox_filmstrip_rl_btn_color"><?php echo __('Filmstrip right, left buttons color:', 'photo-gallery'); ?> </label></td>
 									  <td>
-										<input type="text" name="lightbox_filmstrip_rl_btn_color" id="lightbox_filmstrip_rl_btn_color" value="<?php echo $row->lightbox_filmstrip_rl_btn_color; ?>" class="jscolor"/>
+										<input type="text" name="lightbox_filmstrip_rl_btn_color" id="lightbox_filmstrip_rl_btn_color" value="<?php echo esc_attr($row->lightbox_filmstrip_rl_btn_color); ?>" class="jscolor"/>
 									  </td>
 									</tr>
 									<tr id="lightbox_filmstrip8">
 									  <td class="spider_label"><label for="lightbox_filmstrip_rl_bg_color"><?php echo __('Filmstrip right, left button background color:', 'photo-gallery'); ?></label></td>
 									  <td>
-										<input type="text" name="lightbox_filmstrip_rl_bg_color" id="lightbox_filmstrip_rl_bg_color" value="<?php echo $row->lightbox_filmstrip_rl_bg_color; ?>" class="jscolor"/>
+										<input type="text" name="lightbox_filmstrip_rl_bg_color" id="lightbox_filmstrip_rl_bg_color" value="<?php echo esc_attr($row->lightbox_filmstrip_rl_bg_color); ?>" class="jscolor"/>
 									  </td>
 									</tr>
 									<tr>
@@ -3662,7 +3662,7 @@ class ThemesView_bwg extends AdminView_bwg {
 										  <?php
 										  foreach ($aligns as $key => $align) {
 											?>
-											<option value="<?php echo $key; ?>" <?php echo (($row->lightbox_rate_align == $key) ? 'selected="selected"' : ''); ?>><?php echo __($align, 'photo-gallery'); ?></option>
+											<option value="<?php echo esc_attr($key); ?>" <?php echo (($row->lightbox_rate_align == $key) ? 'selected="selected"' : ''); ?>><?php echo esc_html__($align, 'photo-gallery'); ?></option>
 											<?php
 										  }
 										  ?>
@@ -3676,7 +3676,7 @@ class ThemesView_bwg extends AdminView_bwg {
 										  <?php
 										  foreach ($rate_icons as $key => $rate_icon) {
 											?>
-											<option value="<?php echo $key; ?>" <?php echo (($row->lightbox_rate_icon == $key) ? 'selected="selected"' : ''); ?>><?php echo __($rate_icon, 'photo-gallery'); ?></option>
+											<option value="<?php echo esc_attr($key); ?>" <?php echo (($row->lightbox_rate_icon == $key) ? 'selected="selected"' : ''); ?>><?php echo esc_html__($rate_icon, 'photo-gallery'); ?></option>
 											<?php
 										  }
 										  ?>
@@ -3686,31 +3686,31 @@ class ThemesView_bwg extends AdminView_bwg {
 									<tr>
 									  <td class="spider_label"><label for="lightbox_rate_color"><?php echo __('Rating color:', 'photo-gallery'); ?> </label></td>
 									  <td>
-										<input type="text" name="lightbox_rate_color" id="lightbox_rate_color" value="<?php echo $row->lightbox_rate_color; ?>" class="jscolor"/>
+										<input type="text" name="lightbox_rate_color" id="lightbox_rate_color" value="<?php echo esc_attr($row->lightbox_rate_color); ?>" class="jscolor"/>
 									  </td>
 									</tr>
 									<tr>
 									  <td class="spider_label"><label for="lightbox_rate_hover_color"><?php echo __('Rating hover color:', 'photo-gallery'); ?> </label></td>
 									  <td>
-										<input type="text" name="lightbox_rate_hover_color" id="lightbox_rate_hover_color" value="<?php echo $row->lightbox_rate_hover_color; ?>" class="jscolor"/>
+										<input type="text" name="lightbox_rate_hover_color" id="lightbox_rate_hover_color" value="<?php echo esc_attr($row->lightbox_rate_hover_color); ?>" class="jscolor"/>
 									  </td>
 									</tr>
 									<tr>
 									  <td class="spider_label"><label for="lightbox_rate_size"><?php echo __('Rating size:', 'photo-gallery'); ?> </label></td>
 									  <td>
-										<input type="text" name="lightbox_rate_size" id="lightbox_rate_size" value="<?php echo $row->lightbox_rate_size; ?>" class="spider_int_input" onkeypress="return spider_check_isnum(event)"/> px
+										<input type="text" name="lightbox_rate_size" id="lightbox_rate_size" value="<?php echo esc_attr($row->lightbox_rate_size); ?>" class="spider_int_input" onkeypress="return spider_check_isnum(event)"/> px
 									  </td>
 									</tr>
 									<tr>
 									  <td class="spider_label"><label for="lightbox_rate_stars_count"><?php echo __('Rating icon count:', 'photo-gallery'); ?> </label></td>
 									  <td>
-										<input type="text" name="lightbox_rate_stars_count" id="lightbox_rate_stars_count" value="<?php echo $row->lightbox_rate_stars_count; ?>" class="spider_int_input" onkeypress="return spider_check_isnum(event)"/>
+										<input type="text" name="lightbox_rate_stars_count" id="lightbox_rate_stars_count" value="<?php echo esc_attr($row->lightbox_rate_stars_count); ?>" class="spider_int_input" onkeypress="return spider_check_isnum(event)"/>
 									  </td>
 									</tr>
 									<tr>
 									  <td class="spider_label"><label for="lightbox_rate_padding"><?php echo __('Rating padding:', 'photo-gallery'); ?> </label></td>
 									  <td>
-										<input type="text" name="lightbox_rate_padding" id="lightbox_rate_padding" value="<?php echo $row->lightbox_rate_padding; ?>" class="spider_char_input"/>
+										<input type="text" name="lightbox_rate_padding" id="lightbox_rate_padding" value="<?php echo esc_attr($row->lightbox_rate_padding); ?>" class="spider_char_input"/>
 										<div class="spider_description"><?php echo __('Use CSS type values.', 'photo-gallery'); ?></div>
 									  </td>
 									</tr>
@@ -3730,7 +3730,7 @@ class ThemesView_bwg extends AdminView_bwg {
 										  <?php
 										  foreach ($aligns as $key => $align) {
 											?>
-											<option value="<?php echo $key; ?>" <?php echo (($row->lightbox_hit_align == $key) ? 'selected="selected"' : ''); ?>><?php echo __($align, 'photo-gallery'); ?></option>
+											<option value="<?php echo esc_attr($key); ?>" <?php echo (($row->lightbox_hit_align == $key) ? 'selected="selected"' : ''); ?>><?php echo esc_html__($align, 'photo-gallery'); ?></option>
 											<?php
 										  }
 										  ?>
@@ -3740,20 +3740,20 @@ class ThemesView_bwg extends AdminView_bwg {
 									<tr>
 									  <td class="spider_label"><label for="lightbox_hit_bg_color"><?php echo __('Hit counter background color:', 'photo-gallery'); ?> </label></td>
 									  <td>
-										<input type="text" name="lightbox_hit_bg_color" id="lightbox_hit_bg_color" value="<?php echo $row->lightbox_hit_bg_color; ?>" class="jscolor"/>
+										<input type="text" name="lightbox_hit_bg_color" id="lightbox_hit_bg_color" value="<?php echo esc_attr($row->lightbox_hit_bg_color); ?>" class="jscolor"/>
 									  </td>
 									</tr>
 									<tr>
 									  <td class="spider_label"><label for="lightbox_hit_bg_transparent"><?php echo __('Hit counter background transparency:', 'photo-gallery'); ?> </label></td>
 									  <td>
-										<input type="text" name="lightbox_hit_bg_transparent" id="lightbox_hit_bg_transparent" value="<?php echo $row->lightbox_hit_bg_transparent; ?>" class="spider_int_input" onkeypress="return spider_check_isnum(event)"/> %
+										<input type="text" name="lightbox_hit_bg_transparent" id="lightbox_hit_bg_transparent" value="<?php echo esc_attr($row->lightbox_hit_bg_transparent); ?>" class="spider_int_input" onkeypress="return spider_check_isnum(event)"/> %
 										<div class="spider_description"><?php echo __('Value must be between 0 to 100.', 'photo-gallery'); ?></div>
 									  </td>
 									</tr>
 									<tr>
 									  <td class="spider_label"><label for="lightbox_hit_border_width"><?php echo __('Hit counter border width:', 'photo-gallery'); ?> </label></td>
 									  <td>
-										<input type="text" name="lightbox_hit_border_width" id="lightbox_hit_border_width" value="<?php echo $row->lightbox_hit_border_width; ?>" class="spider_int_input" onkeypress="return spider_check_isnum(event)"/> px
+										<input type="text" name="lightbox_hit_border_width" id="lightbox_hit_border_width" value="<?php echo esc_attr($row->lightbox_hit_border_width); ?>" class="spider_int_input" onkeypress="return spider_check_isnum(event)"/> px
 									  </td>
 									</tr>
 									<tr>
@@ -3763,7 +3763,7 @@ class ThemesView_bwg extends AdminView_bwg {
 										  <?php
 										  foreach ($border_styles as $key => $border_style) {
 											?>
-											<option value="<?php echo $key; ?>" <?php echo (($row->lightbox_hit_border_style == $key) ? 'selected="selected"' : ''); ?>><?php echo __($border_style, 'photo-gallery'); ?></option>
+											<option value="<?php echo esc_attr($key); ?>" <?php echo (($row->lightbox_hit_border_style == $key) ? 'selected="selected"' : ''); ?>><?php echo esc_html__($border_style, 'photo-gallery'); ?></option>
 											<?php
 										  }
 										  ?>
@@ -3773,34 +3773,34 @@ class ThemesView_bwg extends AdminView_bwg {
 									<tr>
 									  <td class="spider_label"><label for="lightbox_hit_border_color"><?php echo __('Hit counter border color:', 'photo-gallery'); ?> </label></td>
 									  <td>
-										<input type="text" name="lightbox_hit_border_color" id="lightbox_hit_border_color" value="<?php echo $row->lightbox_hit_border_color; ?>" class="jscolor"/>
+										<input type="text" name="lightbox_hit_border_color" id="lightbox_hit_border_color" value="<?php echo esc_attr($row->lightbox_hit_border_color); ?>" class="jscolor"/>
 									  </td>
 									</tr>
 									<tr>
 									  <td class="spider_label"><label for="lightbox_hit_border_radius"><?php echo __('Hit counter border radius:', 'photo-gallery'); ?> </label></td>
 									  <td>
-										<input type="text" name="lightbox_hit_border_radius" id="lightbox_hit_border_radius" value="<?php echo $row->lightbox_hit_border_radius; ?>" class="spider_char_input"/>
+										<input type="text" name="lightbox_hit_border_radius" id="lightbox_hit_border_radius" value="<?php echo esc_attr($row->lightbox_hit_border_radius); ?>" class="spider_char_input"/>
 										<div class="spider_description"><?php echo __('Use CSS type values.', 'photo-gallery'); ?></div>
 									  </td>
 									</tr>
 									<tr>
 									  <td class="spider_label"><label for="lightbox_hit_padding"><?php echo __('Hit counter padding:', 'photo-gallery'); ?> </label></td>
 									  <td>
-										<input type="text" name="lightbox_hit_padding" id="lightbox_hit_padding" value="<?php echo $row->lightbox_hit_padding; ?>" class="spider_char_input"/>
+										<input type="text" name="lightbox_hit_padding" id="lightbox_hit_padding" value="<?php echo esc_attr($row->lightbox_hit_padding); ?>" class="spider_char_input"/>
 										<div class="spider_description"><?php echo __('Use CSS type values.', 'photo-gallery'); ?></div>
 									  </td>
 									</tr>
 									<tr>
 									  <td class="spider_label"><label for="lightbox_hit_margin"><?php echo __('Hit counter margin:', 'photo-gallery'); ?> </label></td>
 									  <td>
-										<input type="text" name="lightbox_hit_margin" id="lightbox_hit_margin" value="<?php echo $row->lightbox_hit_margin; ?>" class="spider_char_input"/>
+										<input type="text" name="lightbox_hit_margin" id="lightbox_hit_margin" value="<?php echo esc_attr($row->lightbox_hit_margin); ?>" class="spider_char_input"/>
 										<div class="spider_description"><?php echo __('Use CSS type values.', 'photo-gallery'); ?></div>
 									  </td>
 									</tr>
 									<tr>
 									  <td class="spider_label"><label for="lightbox_hit_color"><?php echo __('Hit counter font color:', 'photo-gallery'); ?> </label></td>
 									  <td>
-										<input type="text" name="lightbox_hit_color" id="lightbox_hit_color" value="<?php echo $row->lightbox_hit_color; ?>" class="jscolor"/>
+										<input type="text" name="lightbox_hit_color" id="lightbox_hit_color" value="<?php echo esc_attr($row->lightbox_hit_color); ?>" class="jscolor"/>
 									  </td>
 									</tr>
                   <tr>
@@ -3814,7 +3814,7 @@ class ThemesView_bwg extends AdminView_bwg {
 										  <?php
 										  foreach ($font_weights as $key => $font_weight) {
 											?>
-											<option value="<?php echo $key; ?>" <?php echo (($row->lightbox_hit_font_weight == $key) ? 'selected="selected"' : ''); ?>><?php echo __($font_weight, 'photo-gallery'); ?></option>
+											<option value="<?php echo esc_attr($key); ?>" <?php echo (($row->lightbox_hit_font_weight == $key) ? 'selected="selected"' : ''); ?>><?php echo esc_html__($font_weight, 'photo-gallery'); ?></option>
 											<?php
 										  }
 										  ?>
@@ -3825,7 +3825,7 @@ class ThemesView_bwg extends AdminView_bwg {
 									  <td class="spider_label"><label for="lightbox_hit_font_size"><?php echo __('Hit counter font size:', 'photo-gallery'); ?> </label>
 									  </td>
 									  <td>
-										<input type="text" name="lightbox_hit_font_size" id="lightbox_hit_font_size" value="<?php echo $row->lightbox_hit_font_size; ?>" class="spider_int_input" onkeypress="return spider_check_isnum(event)"/> px
+										<input type="text" name="lightbox_hit_font_size" id="lightbox_hit_font_size" value="<?php echo esc_attr($row->lightbox_hit_font_size); ?>" class="spider_int_input" onkeypress="return spider_check_isnum(event)"/> px
 									  </td>
 									</tr>
 								  </tbody>
@@ -3854,7 +3854,7 @@ class ThemesView_bwg extends AdminView_bwg {
 										  <?php
 										  foreach ($aligns as $key => $align) {
 											?>
-											<option value="<?php echo $key; ?>" <?php echo (($row->lightbox_info_align == $key) ? 'selected="selected"' : ''); ?>><?php echo __($align, 'photo-gallery'); ?></option>
+											<option value="<?php echo esc_attr($key); ?>" <?php echo (($row->lightbox_info_align == $key) ? 'selected="selected"' : ''); ?>><?php echo esc_html__($align, 'photo-gallery'); ?></option>
 											<?php
 										  }
 										  ?>
@@ -3864,20 +3864,20 @@ class ThemesView_bwg extends AdminView_bwg {
 									<tr>
 									  <td class="spider_label"><label for="lightbox_info_bg_color"><?php echo __('Info background color:', 'photo-gallery'); ?> </label></td>
 									  <td>
-										<input type="text" name="lightbox_info_bg_color" id="lightbox_info_bg_color" value="<?php echo $row->lightbox_info_bg_color; ?>" class="jscolor"/>
+										<input type="text" name="lightbox_info_bg_color" id="lightbox_info_bg_color" value="<?php echo esc_attr($row->lightbox_info_bg_color); ?>" class="jscolor"/>
 									  </td>
 									</tr>
 									<tr>
 									  <td class="spider_label"><label for="lightbox_info_bg_transparent"><?php echo __('Info background transparency:', 'photo-gallery'); ?> </label></td>
 									  <td>
-										<input type="text" name="lightbox_info_bg_transparent" id="lightbox_info_bg_transparent" value="<?php echo $row->lightbox_info_bg_transparent; ?>" class="spider_int_input" onkeypress="return spider_check_isnum(event)"/> %
+										<input type="text" name="lightbox_info_bg_transparent" id="lightbox_info_bg_transparent" value="<?php echo esc_attr($row->lightbox_info_bg_transparent); ?>" class="spider_int_input" onkeypress="return spider_check_isnum(event)"/> %
 										<div class="spider_description"><?php echo __('Value must be between 0 to 100.', 'photo-gallery'); ?></div>
 									  </td>
 									</tr>
 									<tr>
 									  <td class="spider_label"><label for="lightbox_info_border_width"><?php echo __('Info border width:', 'photo-gallery'); ?> </label></td>
 									  <td>
-										<input type="text" name="lightbox_info_border_width" id="lightbox_info_border_width" value="<?php echo $row->lightbox_info_border_width; ?>" class="spider_int_input" onkeypress="return spider_check_isnum(event)"/> px
+										<input type="text" name="lightbox_info_border_width" id="lightbox_info_border_width" value="<?php echo esc_attr($row->lightbox_info_border_width); ?>" class="spider_int_input" onkeypress="return spider_check_isnum(event)"/> px
 									  </td>
 									</tr>
 									<tr>
@@ -3887,7 +3887,7 @@ class ThemesView_bwg extends AdminView_bwg {
 										  <?php
 										  foreach ($border_styles as $key => $border_style) {
 											?>
-											<option value="<?php echo $key; ?>" <?php echo (($row->lightbox_info_border_style == $key) ? 'selected="selected"' : ''); ?>><?php echo __($border_style, 'photo-gallery'); ?></option>
+											<option value="<?php echo esc_attr($key); ?>" <?php echo (($row->lightbox_info_border_style == $key) ? 'selected="selected"' : ''); ?>><?php echo esc_html__($border_style, 'photo-gallery'); ?></option>
 											<?php
 										  }
 										  ?>
@@ -3897,34 +3897,34 @@ class ThemesView_bwg extends AdminView_bwg {
 									<tr>
 									  <td class="spider_label"><label for="lightbox_info_border_color"><?php echo __('Info border color:', 'photo-gallery'); ?> </label></td>
 									  <td>
-										<input type="text" name="lightbox_info_border_color" id="lightbox_info_border_color" value="<?php echo $row->lightbox_info_border_color; ?>" class="jscolor"/>
+										<input type="text" name="lightbox_info_border_color" id="lightbox_info_border_color" value="<?php echo esc_attr($row->lightbox_info_border_color); ?>" class="jscolor"/>
 									  </td>
 									</tr>
 									<tr>
 									  <td class="spider_label"><label for="lightbox_info_border_radius"><?php echo __('Info border radius:', 'photo-gallery'); ?> </label></td>
 									  <td>
-										<input type="text" name="lightbox_info_border_radius" id="lightbox_info_border_radius" value="<?php echo $row->lightbox_info_border_radius; ?>" class="spider_char_input"/>
+										<input type="text" name="lightbox_info_border_radius" id="lightbox_info_border_radius" value="<?php echo esc_attr($row->lightbox_info_border_radius); ?>" class="spider_char_input"/>
 										<div class="spider_description"><?php echo __('Use CSS type values.', 'photo-gallery'); ?></div>
 									  </td>
 									</tr>
 									<tr>
 									  <td class="spider_label"><label for="lightbox_info_padding"><?php echo __('Info padding:', 'photo-gallery'); ?></label></td>
 									  <td>
-										<input type="text" name="lightbox_info_padding" id="lightbox_info_padding" value="<?php echo $row->lightbox_info_padding; ?>" class="spider_char_input"/>
+										<input type="text" name="lightbox_info_padding" id="lightbox_info_padding" value="<?php echo esc_attr($row->lightbox_info_padding); ?>" class="spider_char_input"/>
 										<div class="spider_description"><?php echo __('Use CSS type values.', 'photo-gallery'); ?></div>
 									  </td>
 									</tr>
 									<tr>
 									  <td class="spider_label"><label for="lightbox_info_margin"><?php echo __('Info margin:', 'photo-gallery'); ?> </label></td>
 									  <td>
-										<input type="text" name="lightbox_info_margin" id="lightbox_info_margin" value="<?php echo $row->lightbox_info_margin; ?>" class="spider_char_input"/>
+										<input type="text" name="lightbox_info_margin" id="lightbox_info_margin" value="<?php echo esc_attr($row->lightbox_info_margin); ?>" class="spider_char_input"/>
 										<div class="spider_description"><?php echo __('Use CSS type values.', 'photo-gallery'); ?></div>
 									  </td>
 									</tr>
 									<tr>
 									  <td class="spider_label"><label for="lightbox_title_color"><?php echo __('Title font color:', 'photo-gallery'); ?> </label></td>
 									  <td>
-										<input type="text" name="lightbox_title_color" id="lightbox_title_color" value="<?php echo $row->lightbox_title_color; ?>" class="jscolor"/>
+										<input type="text" name="lightbox_title_color" id="lightbox_title_color" value="<?php echo esc_attr($row->lightbox_title_color); ?>" class="jscolor"/>
 									  </td>
 									</tr>
                   <tr>
@@ -3938,7 +3938,7 @@ class ThemesView_bwg extends AdminView_bwg {
 										  <?php
 										  foreach ($font_weights as $key => $font_weight) {
 											?>
-											<option value="<?php echo $key; ?>" <?php echo (($row->lightbox_title_font_weight == $key) ? 'selected="selected"' : ''); ?>><?php echo __($font_weight, 'photo-gallery'); ?></option>
+											<option value="<?php echo esc_attr($key); ?>" <?php echo (($row->lightbox_title_font_weight == $key) ? 'selected="selected"' : ''); ?>><?php echo esc_html__($font_weight, 'photo-gallery'); ?></option>
 											<?php
 										  }
 										  ?>
@@ -3949,13 +3949,13 @@ class ThemesView_bwg extends AdminView_bwg {
 									  <td class="spider_label"><label for="lightbox_title_font_size"><?php echo __('Title font size:', 'photo-gallery'); ?> </label>
 									  </td>
 									  <td>
-										<input type="text" name="lightbox_title_font_size" id="lightbox_title_font_size" value="<?php echo $row->lightbox_title_font_size; ?>" class="spider_int_input" onkeypress="return spider_check_isnum(event)"/> px
+										<input type="text" name="lightbox_title_font_size" id="lightbox_title_font_size" value="<?php echo esc_attr($row->lightbox_title_font_size); ?>" class="spider_int_input" onkeypress="return spider_check_isnum(event)"/> px
 									  </td>
 									</tr>
 									<tr>
 									  <td class="spider_label"><label for="lightbox_description_color"><?php echo __('Description font color:', 'photo-gallery'); ?> </label></td>
 									  <td>
-										<input type="text" name="lightbox_description_color" id="lightbox_description_color" value="<?php echo $row->lightbox_description_color; ?>" class="jscolor"/>
+										<input type="text" name="lightbox_description_color" id="lightbox_description_color" value="<?php echo esc_attr($row->lightbox_description_color); ?>" class="jscolor"/>
 									  </td>
 									</tr>
                   <tr>
@@ -3969,7 +3969,7 @@ class ThemesView_bwg extends AdminView_bwg {
 										  <?php
 										  foreach ($font_weights as $key => $font_weight) {
 											?>
-											<option value="<?php echo $key; ?>" <?php echo (($row->lightbox_description_font_weight == $key) ? 'selected="selected"' : ''); ?>><?php echo __($font_weight, 'photo-gallery'); ?></option>
+											<option value="<?php echo esc_attr($key); ?>" <?php echo (($row->lightbox_description_font_weight == $key) ? 'selected="selected"' : ''); ?>><?php echo esc_html__($font_weight, 'photo-gallery'); ?></option>
 											<?php
 										  }
 										  ?>
@@ -3980,13 +3980,13 @@ class ThemesView_bwg extends AdminView_bwg {
 									  <td class="spider_label"><label for="lightbox_description_font_size"><?php echo __('Description font size:', 'photo-gallery'); ?> </label>
 									  </td>
 									  <td>
-										<input type="text" name="lightbox_description_font_size" id="lightbox_description_font_size" value="<?php echo $row->lightbox_description_font_size; ?>" class="spider_int_input" onkeypress="return spider_check_isnum(event)"/> px
+										<input type="text" name="lightbox_description_font_size" id="lightbox_description_font_size" value="<?php echo esc_attr($row->lightbox_description_font_size); ?>" class="spider_int_input" onkeypress="return spider_check_isnum(event)"/> px
 									  </td>
 									</tr>
 									<tr>
 									  <td class="spider_label"><label for="lightbox_comment_width"><?php echo __('Comments Width:', 'photo-gallery'); ?> </label></td>
 									  <td>
-										<input type="text" name="lightbox_comment_width" id="lightbox_comment_width" value="<?php echo $row->lightbox_comment_width; ?>" class="spider_int_input" onkeypress="return spider_check_isnum(event)"/> px
+										<input type="text" name="lightbox_comment_width" id="lightbox_comment_width" value="<?php echo esc_attr($row->lightbox_comment_width); ?>" class="spider_int_input" onkeypress="return spider_check_isnum(event)"/> px
 									  </td>
 									</tr>
 									<tr id="lightbox_comment25">
@@ -4001,19 +4001,19 @@ class ThemesView_bwg extends AdminView_bwg {
 									<tr id="lightbox_comment13">
 									  <td class="spider_label"><label for="lightbox_comment_bg_color"><?php echo __('Comments background color:', 'photo-gallery'); ?> </label></td>
 									  <td>
-										<input type="text" name="lightbox_comment_bg_color" id="lightbox_comment_bg_color" value="<?php echo $row->lightbox_comment_bg_color; ?>" class="jscolor"/>
+										<input type="text" name="lightbox_comment_bg_color" id="lightbox_comment_bg_color" value="<?php echo esc_attr($row->lightbox_comment_bg_color); ?>" class="jscolor"/>
 									  </td>
 									</tr>
 									<tr id="lightbox_comment2">
 									  <td class="spider_label"><label for="lightbox_comment_font_size"><?php echo __('Comments font size:', 'photo-gallery'); ?> </label></td>
 									  <td>
-										<input type="text" name="lightbox_comment_font_size" id="lightbox_comment_font_size" value="<?php echo $row->lightbox_comment_font_size; ?>" class="spider_int_input" onkeypress="return spider_check_isnum(event)"/> px
+										<input type="text" name="lightbox_comment_font_size" id="lightbox_comment_font_size" value="<?php echo esc_attr($row->lightbox_comment_font_size); ?>" class="spider_int_input" onkeypress="return spider_check_isnum(event)"/> px
 									  </td>
 									</tr>
 									<tr id="lightbox_comment14">
 									  <td class="spider_label"><label for="lightbox_comment_font_color"><?php echo __('Comments font color:', 'photo-gallery'); ?></label></td>
 									  <td>
-										<input type="text" name="lightbox_comment_font_color" id="lightbox_comment_font_color" value="<?php echo $row->lightbox_comment_font_color; ?>" class="jscolor"/>
+										<input type="text" name="lightbox_comment_font_color" id="lightbox_comment_font_color" value="<?php echo esc_attr($row->lightbox_comment_font_color); ?>" class="jscolor"/>
 									  </td>
 									</tr>
 									<tr id="lightbox_comment15">
@@ -4024,25 +4024,25 @@ class ThemesView_bwg extends AdminView_bwg {
 									  <td class="spider_label"><label for="lightbox_comment_author_font_size"><?php echo __('Comments author font size:', 'photo-gallery'); ?> </label>
 									  </td>
 									  <td>
-										<input type="text" name="lightbox_comment_author_font_size" id="lightbox_comment_author_font_size" value="<?php echo $row->lightbox_comment_author_font_size; ?>" class="spider_int_input" onkeypress="return spider_check_isnum(event)"/> px
+										<input type="text" name="lightbox_comment_author_font_size" id="lightbox_comment_author_font_size" value="<?php echo esc_attr($row->lightbox_comment_author_font_size); ?>" class="spider_int_input" onkeypress="return spider_check_isnum(event)"/> px
 									  </td>
 									</tr>
 									<tr id="lightbox_comment11">
 									  <td class="spider_label"><label for="lightbox_comment_date_font_size"><?php echo __('Comments date font size:', 'photo-gallery'); ?> </label></td>
 									  <td>
-										<input type="text" name="lightbox_comment_date_font_size" id="lightbox_comment_date_font_size" value="<?php echo $row->lightbox_comment_date_font_size; ?>" class="spider_int_input" onkeypress="return spider_check_isnum(event)"/> px
+										<input type="text" name="lightbox_comment_date_font_size" id="lightbox_comment_date_font_size" value="<?php echo esc_attr($row->lightbox_comment_date_font_size); ?>" class="spider_int_input" onkeypress="return spider_check_isnum(event)"/> px
 									  </td>
 									</tr>
 									<tr id="lightbox_comment12">
 									  <td class="spider_label"><label for="lightbox_comment_body_font_size"><?php echo __('Comments body font size:', 'photo-gallery'); ?> </label></td>
 									  <td>
-										<input type="text" name="lightbox_comment_body_font_size" id="lightbox_comment_body_font_size" value="<?php echo $row->lightbox_comment_body_font_size; ?>" class="spider_int_input" onkeypress="return spider_check_isnum(event)"/> px
+										<input type="text" name="lightbox_comment_body_font_size" id="lightbox_comment_body_font_size" value="<?php echo esc_attr($row->lightbox_comment_body_font_size); ?>" class="spider_int_input" onkeypress="return spider_check_isnum(event)"/> px
 									  </td>
 									</tr>
 									<tr id="lightbox_comment6">
 									  <td class="spider_label"><label for="lightbox_comment_input_border_width"><?php echo __('Comment input border width:', 'photo-gallery'); ?> </label></td>
 									  <td>
-										<input type="text" name="lightbox_comment_input_border_width" id="lightbox_comment_input_border_width" value="<?php echo $row->lightbox_comment_input_border_width; ?>" class="spider_int_input" onkeypress="return spider_check_isnum(event)"/> px
+										<input type="text" name="lightbox_comment_input_border_width" id="lightbox_comment_input_border_width" value="<?php echo esc_attr($row->lightbox_comment_input_border_width); ?>" class="spider_int_input" onkeypress="return spider_check_isnum(event)"/> px
 									  </td>
 									</tr>
 									<tr id="lightbox_comment21">
@@ -4052,7 +4052,7 @@ class ThemesView_bwg extends AdminView_bwg {
 										  <?php
 										  foreach ($border_styles as $key => $border_style) {
 											?>
-											<option value="<?php echo $key; ?>" <?php echo (($row->lightbox_comment_input_border_style == $key) ? 'selected="selected"' : ''); ?>><?php echo __($border_style, 'photo-gallery'); ?></option>
+											<option value="<?php echo esc_attr($key); ?>" <?php echo (($row->lightbox_comment_input_border_style == $key) ? 'selected="selected"' : ''); ?>><?php echo esc_html__($border_style, 'photo-gallery'); ?></option>
 											<?php
 										  }
 										  ?>
@@ -4062,45 +4062,45 @@ class ThemesView_bwg extends AdminView_bwg {
 									<tr id="lightbox_comment20">
 									  <td class="spider_label"><label for="lightbox_comment_input_border_color"><?php echo __('Comment input border color:', 'photo-gallery'); ?> </label></td>
 									  <td>
-										<input type="text" name="lightbox_comment_input_border_color" id="lightbox_comment_input_border_color" value="<?php echo $row->lightbox_comment_input_border_color; ?>" class="jscolor"/>
+										<input type="text" name="lightbox_comment_input_border_color" id="lightbox_comment_input_border_color" value="<?php echo esc_attr($row->lightbox_comment_input_border_color); ?>" class="jscolor"/>
 									  </td>
 									</tr>
 									<tr id="lightbox_comment7">
 									  <td class="spider_label"><label for="lightbox_comment_input_border_radius"><?php echo __('Comment input border radius:', 'photo-gallery'); ?> </label></td>
 									  <td>
-										<input type="text" name="lightbox_comment_input_border_radius" id="lightbox_comment_input_border_radius" value="<?php echo $row->lightbox_comment_input_border_radius; ?>" class="spider_char_input"/>
+										<input type="text" name="lightbox_comment_input_border_radius" id="lightbox_comment_input_border_radius" value="<?php echo esc_attr($row->lightbox_comment_input_border_radius); ?>" class="spider_char_input"/>
 									  </td>
 									</tr>
 									<tr id="lightbox_comment8">
 									  <td class="spider_label"><label for="lightbox_comment_input_padding"><?php echo __('Comment input padding:', 'photo-gallery'); ?> </label></td>
 									  <td>
-										<input type="text" name="lightbox_comment_input_padding" id="lightbox_comment_input_padding" value="<?php echo $row->lightbox_comment_input_padding; ?>" class="spider_char_input"/>
+										<input type="text" name="lightbox_comment_input_padding" id="lightbox_comment_input_padding" value="<?php echo esc_attr($row->lightbox_comment_input_padding); ?>" class="spider_char_input"/>
 										<div class="spider_description"><?php echo __('Use CSS type values.', 'photo-gallery'); ?></div>
 									  </td>
 									</tr>
 									<tr id="lightbox_comment19">
 									  <td class="spider_label"><label for="lightbox_comment_input_bg_color"><?php echo __('Comment input background color:', 'photo-gallery'); ?> </label></td>
 									  <td>
-										<input type="text" name="lightbox_comment_input_bg_color" id="lightbox_comment_input_bg_color" value="<?php echo $row->lightbox_comment_input_bg_color; ?>" class="jscolor"/>
+										<input type="text" name="lightbox_comment_input_bg_color" id="lightbox_comment_input_bg_color" value="<?php echo esc_attr($row->lightbox_comment_input_bg_color); ?>" class="jscolor"/>
 									  </td>
 									</tr>
 									<tr id="lightbox_comment16">
 									  <td class="spider_label"><label for="lightbox_comment_button_bg_color"><?php echo __('Comment button background color:', 'photo-gallery'); ?> </label></td>
 									  <td>
-										<input type="text" name="lightbox_comment_button_bg_color" id="lightbox_comment_button_bg_color" value="<?php echo $row->lightbox_comment_button_bg_color; ?>" class="jscolor"/>
+										<input type="text" name="lightbox_comment_button_bg_color" id="lightbox_comment_button_bg_color" value="<?php echo esc_attr($row->lightbox_comment_button_bg_color); ?>" class="jscolor"/>
 									  </td>
 									</tr>
 									<tr id="lightbox_comment5">
 									  <td class="spider_label"><label for="lightbox_comment_button_padding"><?php echo __('Comment button padding:', 'photo-gallery'); ?> </label></td>
 									  <td>
-										<input type="text" name="lightbox_comment_button_padding" id="lightbox_comment_button_padding" value="<?php echo $row->lightbox_comment_button_padding; ?>" class="spider_char_input"/>
+										<input type="text" name="lightbox_comment_button_padding" id="lightbox_comment_button_padding" value="<?php echo esc_attr($row->lightbox_comment_button_padding); ?>" class="spider_char_input"/>
 										<div class="spider_description"><?php echo __('Use CSS type values.', 'photo-gallery'); ?></div>
 									  </td>
 									</tr>
 									<tr id="lightbox_comment3">
 									  <td class="spider_label"><label for="lightbox_comment_button_border_width"><?php echo __('Comment button border width:', 'photo-gallery'); ?> </label></td>
 									  <td>
-										<input type="text" name="lightbox_comment_button_border_width" id="lightbox_comment_button_border_width" value="<?php echo $row->lightbox_comment_button_border_width; ?>" class="spider_int_input" onkeypress="return spider_check_isnum(event)"/> px
+										<input type="text" name="lightbox_comment_button_border_width" id="lightbox_comment_button_border_width" value="<?php echo esc_attr($row->lightbox_comment_button_border_width); ?>" class="spider_int_input" onkeypress="return spider_check_isnum(event)"/> px
 									  </td>
 									</tr>
 									<tr id="lightbox_comment18">
@@ -4110,7 +4110,7 @@ class ThemesView_bwg extends AdminView_bwg {
 										  <?php
 										  foreach ($border_styles as $key => $border_style) {
 											?>
-											<option value="<?php echo $key; ?>" <?php echo (($row->lightbox_comment_button_border_style == $key) ? 'selected="selected"' : ''); ?>><?php echo __($border_style, 'photo-gallery'); ?></option>
+											<option value="<?php echo esc_attr($key); ?>" <?php echo (($row->lightbox_comment_button_border_style == $key) ? 'selected="selected"' : ''); ?>><?php echo esc_html__($border_style, 'photo-gallery'); ?></option>
 											<?php
 										  }
 										  ?>
@@ -4120,20 +4120,20 @@ class ThemesView_bwg extends AdminView_bwg {
 									<tr id="lightbox_comment17">
 									  <td class="spider_label"><label for="lightbox_comment_button_border_color"><?php echo __('Comment button border color:', 'photo-gallery'); ?> </label></td>
 									  <td>
-										<input type="text" name="lightbox_comment_button_border_color" id="lightbox_comment_button_border_color" value="<?php echo $row->lightbox_comment_button_border_color; ?>" class="jscolor"/>
+										<input type="text" name="lightbox_comment_button_border_color" id="lightbox_comment_button_border_color" value="<?php echo esc_attr($row->lightbox_comment_button_border_color); ?>" class="jscolor"/>
 									  </td>
 									</tr>
 									<tr id="lightbox_comment4">
 									  <td class="spider_label"><label for="lightbox_comment_button_border_radius">C<?php echo __('omment button border radius:', 'photo-gallery'); ?> </label></td>
 									  <td>
-										<input type="text" name="lightbox_comment_button_border_radius" id="lightbox_comment_button_border_radius" value="<?php echo $row->lightbox_comment_button_border_radius; ?>" class="spider_char_input" />
+										<input type="text" name="lightbox_comment_button_border_radius" id="lightbox_comment_button_border_radius" value="<?php echo esc_attr($row->lightbox_comment_button_border_radius); ?>" class="spider_char_input" />
 										<div class="spider_description"><?php echo __('Use CSS type values.', 'photo-gallery'); ?></div>
 									  </td>
 									</tr>
 									<tr id="lightbox_comment9">
 									  <td class="spider_label"><label for="lightbox_comment_separator_width"><?php echo __('Comment separator width:', 'photo-gallery'); ?> </label></td>
 									  <td>
-										<input type="text" name="lightbox_comment_separator_width" id="lightbox_comment_separator_width" value="<?php echo $row->lightbox_comment_separator_width; ?>" class="spider_int_input" onkeypress="return spider_check_isnum(event)"/> px
+										<input type="text" name="lightbox_comment_separator_width" id="lightbox_comment_separator_width" value="<?php echo esc_attr($row->lightbox_comment_separator_width); ?>" class="spider_int_input" onkeypress="return spider_check_isnum(event)"/> px
 									  </td>
 									</tr>
 									<tr id="lightbox_comment22">
@@ -4143,7 +4143,7 @@ class ThemesView_bwg extends AdminView_bwg {
 										  <?php
 										  foreach ($border_styles as $key => $border_style) {
 											?>
-											<option value="<?php echo $key; ?>" <?php echo (($row->lightbox_comment_separator_style == $key) ? 'selected="selected"' : ''); ?>><?php echo __($border_style, 'photo-gallery'); ?></option>
+											<option value="<?php echo esc_attr($key); ?>" <?php echo (($row->lightbox_comment_separator_style == $key) ? 'selected="selected"' : ''); ?>><?php echo esc_html__($border_style, 'photo-gallery'); ?></option>
 											<?php
 										  }
 										  ?>
@@ -4153,7 +4153,7 @@ class ThemesView_bwg extends AdminView_bwg {
 									<tr id="lightbox_comment23">
 									  <td class="spider_label"><label for="lightbox_comment_separator_color"><?php echo __('Comment separator color:', 'photo-gallery'); ?> </label></td>
 									  <td>
-										<input type="text" name="lightbox_comment_separator_color" id="lightbox_comment_separator_color" value="<?php echo $row->lightbox_comment_separator_color; ?>" class="jscolor"/>
+										<input type="text" name="lightbox_comment_separator_color" id="lightbox_comment_separator_color" value="<?php echo esc_attr($row->lightbox_comment_separator_color); ?>" class="jscolor"/>
 									  </td>
 									</tr>
 								  </tbody>
@@ -4173,13 +4173,13 @@ class ThemesView_bwg extends AdminView_bwg {
 									<tr>
 									  <td class="spider_label"><label for="page_nav_font_size"><?php echo __('Font size:', 'photo-gallery'); ?> </label></td>
 									  <td>
-										<input type="text" name="page_nav_font_size" id="page_nav_font_size" value="<?php echo $row->page_nav_font_size; ?>" class="spider_int_input" onkeypress="return spider_check_isnum(event)"/> px
+										<input type="text" name="page_nav_font_size" id="page_nav_font_size" value="<?php echo esc_attr($row->page_nav_font_size); ?>" class="spider_int_input" onkeypress="return spider_check_isnum(event)"/> px
 									  </td>
 									</tr>
 									<tr>
 									  <td class="spider_label"><label for="page_nav_font_color"><?php echo __('Font color:', 'photo-gallery'); ?> </label></td>
 									  <td>
-										<input type="text" name="page_nav_font_color" id="page_nav_font_color" value="<?php echo $row->page_nav_font_color; ?>" class="jscolor"/>
+										<input type="text" name="page_nav_font_color" id="page_nav_font_color" value="<?php echo esc_attr($row->page_nav_font_color); ?>" class="jscolor"/>
 									  </td>
 									</tr>
 									<tr>
@@ -4193,7 +4193,7 @@ class ThemesView_bwg extends AdminView_bwg {
 										  <?php
 										  foreach ($font_weights as $key => $font_weight) {
 											?>
-											<option value="<?php echo $key; ?>" <?php echo (($row->page_nav_font_weight == $key) ? 'selected="selected"' : ''); ?>><?php echo __($font_weight, 'photo-gallery'); ?></option>
+											<option value="<?php echo esc_attr($key); ?>" <?php echo (($row->page_nav_font_weight == $key) ? 'selected="selected"' : ''); ?>><?php echo esc_html__($font_weight, 'photo-gallery'); ?></option>
 											<?php
 										  }
 										  ?>
@@ -4203,7 +4203,7 @@ class ThemesView_bwg extends AdminView_bwg {
 									<tr>
 									  <td class="spider_label"><label for="page_nav_border_width"><?php echo __('Border width:', 'photo-gallery'); ?> </label></td>
 									  <td>
-										<input type="text" name="page_nav_border_width" id="page_nav_border_width" value="<?php echo $row->page_nav_border_width; ?>" class="spider_int_input" onkeypress="return spider_check_isnum(event)"/> px
+										<input type="text" name="page_nav_border_width" id="page_nav_border_width" value="<?php echo esc_attr($row->page_nav_border_width); ?>" class="spider_int_input" onkeypress="return spider_check_isnum(event)"/> px
 									  </td>
 									</tr>
 									<tr>
@@ -4213,7 +4213,7 @@ class ThemesView_bwg extends AdminView_bwg {
 										  <?php
 										  foreach ($border_styles as $key => $border_style) {
 											?>
-											<option value="<?php echo $key; ?>" <?php echo (($row->page_nav_border_style == $key) ? 'selected="selected"' : ''); ?>><?php echo __($border_style, 'photo-gallery'); ?></option>
+											<option value="<?php echo esc_attr($key); ?>" <?php echo (($row->page_nav_border_style == $key) ? 'selected="selected"' : ''); ?>><?php echo esc_html__($border_style, 'photo-gallery'); ?></option>
 											<?php
 										  }
 										  ?>
@@ -4223,13 +4223,13 @@ class ThemesView_bwg extends AdminView_bwg {
 									<tr>
 									  <td class="spider_label"><label for="page_nav_border_color"><?php echo __('Border color:', 'photo-gallery'); ?></label></td>
 									  <td>
-										<input type="text" name="page_nav_border_color" id="page_nav_border_color" value="<?php echo $row->page_nav_border_color; ?>" class="jscolor"/>
+										<input type="text" name="page_nav_border_color" id="page_nav_border_color" value="<?php echo esc_attr($row->page_nav_border_color); ?>" class="jscolor"/>
 									  </td>
 									</tr>
 									<tr>
 									  <td class="spider_label"><label for="page_nav_border_radius"><?php echo __('Border radius:', 'photo-gallery'); ?> </label></td>
 									  <td>
-										<input type="text" name="page_nav_border_radius" id="page_nav_border_radius" value="<?php echo $row->page_nav_border_radius; ?>" class="spider_char_input"/>
+										<input type="text" name="page_nav_border_radius" id="page_nav_border_radius" value="<?php echo esc_attr($row->page_nav_border_radius); ?>" class="spider_char_input"/>
 										<div class="spider_description"><?php echo __('Use CSS type values.', 'photo-gallery'); ?></div>
 									  </td>
 									</tr>
@@ -4246,27 +4246,27 @@ class ThemesView_bwg extends AdminView_bwg {
 									<tr>
 									  <td class="spider_label"><label for="page_nav_margin"><?php echo __('Margin:', 'photo-gallery'); ?> </label></td>
 									  <td>
-										<input type="text" name="page_nav_margin" id="page_nav_margin" value="<?php echo $row->page_nav_margin; ?>" class="spider_char_input"/>
+										<input type="text" name="page_nav_margin" id="page_nav_margin" value="<?php echo esc_attr($row->page_nav_margin); ?>" class="spider_char_input"/>
 										<div class="spider_description"><?php echo __('Use CSS type values.', 'photo-gallery'); ?></div>
 									  </td>
 									</tr>
 									<tr>
 									  <td class="spider_label"><label for="page_nav_padding"><?php echo __('Padding:', 'photo-gallery'); ?> </label></td>
 									  <td>
-										<input type="text" name="page_nav_padding" id="page_nav_padding" value="<?php echo $row->page_nav_padding; ?>" class="spider_char_input"/>
+										<input type="text" name="page_nav_padding" id="page_nav_padding" value="<?php echo esc_attr($row->page_nav_padding); ?>" class="spider_char_input"/>
 										<div class="spider_description"><?php echo __('Use CSS type values.', 'photo-gallery'); ?></div>
 									  </td>
 									</tr>
 									<tr>
 									  <td class="spider_label"><label for="page_nav_button_bg_color"><?php echo __('Button background color:', 'photo-gallery'); ?> </label></td>
 									  <td>
-										<input type="text" name="page_nav_button_bg_color" id="page_nav_button_bg_color" value="<?php echo $row->page_nav_button_bg_color; ?>" class="jscolor" />
+										<input type="text" name="page_nav_button_bg_color" id="page_nav_button_bg_color" value="<?php echo esc_attr($row->page_nav_button_bg_color); ?>" class="jscolor" />
 									  </td>
 									</tr>
 									<tr>
 									  <td class="spider_label"><label for="page_nav_button_bg_transparent"><?php echo __('Button background transparency:', 'photo-gallery'); ?> </label></td>
 									  <td>
-										<input type="text" name="page_nav_button_bg_transparent" id="page_nav_button_bg_transparent" value="<?php echo $row->page_nav_button_bg_transparent; ?>" class="spider_int_input" onkeypress="return spider_check_isnum(event)"/> %
+										<input type="text" name="page_nav_button_bg_transparent" id="page_nav_button_bg_transparent" value="<?php echo esc_attr($row->page_nav_button_bg_transparent); ?>" class="spider_int_input" onkeypress="return spider_check_isnum(event)"/> %
 										<div class="spider_description"><?php echo __('Value must be between 0 to 100.', 'photo-gallery'); ?></div>
 									  </td>
 									</tr>
@@ -4282,7 +4282,7 @@ class ThemesView_bwg extends AdminView_bwg {
 									<tr>
 									  <td class="spider_label"><label for="page_nav_box_shadow"><?php echo __('Box shadow:', 'photo-gallery'); ?> </label></td>
 									  <td>
-										<input type="text" name="page_nav_box_shadow" id="page_nav_box_shadow" value="<?php echo $row->page_nav_box_shadow; ?>" class="spider_box_input" placeholder="10px 10px 10px #888888" />
+										<input type="text" name="page_nav_box_shadow" id="page_nav_box_shadow" value="<?php echo esc_attr($row->page_nav_box_shadow); ?>" class="spider_box_input" placeholder="10px 10px 10px #888888" />
 										<div class="spider_description"><?php echo __('Use CSS type values.', 'photo-gallery'); ?></div>
 									  </td>
 									</tr>
@@ -4312,7 +4312,7 @@ class ThemesView_bwg extends AdminView_bwg {
 										  <?php
 										  foreach ($aligns as $key => $align) {
 											?>
-											<option value="<?php echo $key; ?>" <?php echo (($row->page_nav_align == $key) ? 'selected="selected"' : ''); ?>><?php echo __($align, 'photo-gallery'); ?></option>
+											<option value="<?php echo esc_attr($key); ?>" <?php echo (($row->page_nav_align == $key) ? 'selected="selected"' : ''); ?>><?php echo esc_html__($align, 'photo-gallery'); ?></option>
 											<?php
 										  }
 										  ?>
@@ -4355,69 +4355,69 @@ class ThemesView_bwg extends AdminView_bwg {
 								<tr>
 								  <td class="spider_label"><label for="carousel_cont_bg_color"><?php echo __('Background color:', 'photo-gallery'); ?> </label></td>
 								  <td>
-									<input type="text" name="carousel_cont_bg_color" id="carousel_cont_bg_color" value="<?php echo $row->carousel_cont_bg_color; ?>" class="jscolor"/>
+									<input type="text" name="carousel_cont_bg_color" id="carousel_cont_bg_color" value="<?php echo esc_attr($row->carousel_cont_bg_color); ?>" class="jscolor"/>
 								  </td>
 								</tr>
 								 <tr>
 								  <td class="spider_label"><label for="carousel_cont_btn_transparent"><?php echo __('Container opacity:', 'photo-gallery'); ?> </label></td>
 								  <td>
-									<input type="text" name="carousel_cont_btn_transparent" id="carousel_cont_btn_transparent" value="<?php echo $row->carousel_cont_btn_transparent; ?>" class="spider_int_input" onkeypress="return spider_check_isnum(event)"/> %
+									<input type="text" name="carousel_cont_btn_transparent" id="carousel_cont_btn_transparent" value="<?php echo esc_attr($row->carousel_cont_btn_transparent); ?>" class="spider_int_input" onkeypress="return spider_check_isnum(event)"/> %
 									<div class="spider_description"><?php echo __('Value must be between 0 to 100.', 'photo-gallery'); ?></div>
 								  </td>
 								</tr>
 								<tr>
 								  <td class="spider_label"><label for="carousel_rl_btn_size"><?php echo __('Right, left buttons size:', 'photo-gallery'); ?> </label></td>
 								  <td>
-									<input type="text" name="carousel_rl_btn_size" id="carousel_rl_btn_size" value="<?php echo $row->carousel_rl_btn_size; ?>" class="spider_int_input" onkeypress="return spider_check_isnum(event)"/> px
+									<input type="text" name="carousel_rl_btn_size" id="carousel_rl_btn_size" value="<?php echo esc_attr($row->carousel_rl_btn_size); ?>" class="spider_int_input" onkeypress="return spider_check_isnum(event)"/> px
 								  </td>
 								</tr>
 								 <tr>
 								  <td class="spider_label"><label for="carousel_play_pause_btn_size"><?php echo __('Play, pause buttons size:', 'photo-gallery'); ?> </label></td>
 								  <td>
-									<input type="text" name="carousel_play_pause_btn_size" id="carousel_play_pause_btn_size" value="<?php echo $row->carousel_play_pause_btn_size; ?>" class="spider_int_input" onkeypress="return spider_check_isnum(event)"/> px
+									<input type="text" name="carousel_play_pause_btn_size" id="carousel_play_pause_btn_size" value="<?php echo esc_attr($row->carousel_play_pause_btn_size); ?>" class="spider_int_input" onkeypress="return spider_check_isnum(event)"/> px
 								  </td>
 								</tr>
 								<tr>
 								  <td class="spider_label"><label for="carousel_rl_btn_color"><?php echo __('Buttons color:', 'photo-gallery'); ?> </label></td>
 								  <td>
-									<input type="text" name="carousel_rl_btn_color" id="carousel_rl_btn_color" value="<?php echo $row->carousel_rl_btn_color; ?>" class="jscolor"/>
+									<input type="text" name="carousel_rl_btn_color" id="carousel_rl_btn_color" value="<?php echo esc_attr($row->carousel_rl_btn_color); ?>" class="jscolor"/>
 								  </td>
 								</tr>
 								<tr>
 								  <td class="spider_label"><label for="carousel_close_btn_transparent"><?php echo __('Buttons transparency:', 'photo-gallery'); ?> </label></td>
 								  <td>
-									<input type="text" name="carousel_close_btn_transparent" id="carousel_close_btn_transparent" value="<?php echo $row->carousel_close_btn_transparent; ?>" class="spider_int_input" onkeypress="return spider_check_isnum(event)"/> %
+									<input type="text" name="carousel_close_btn_transparent" id="carousel_close_btn_transparent" value="<?php echo esc_attr($row->carousel_close_btn_transparent); ?>" class="spider_int_input" onkeypress="return spider_check_isnum(event)"/> %
 									<div class="spider_description"><?php echo __('Value must be between 0 to 100.', 'photo-gallery'); ?></div>
 								  </td>
 								</tr>
 								<tr>
 								  <td class="spider_label"><label for="carousel_close_rl_btn_hover_color"><?php echo __('Buttons hover color:', 'photo-gallery'); ?> </label></td>
 								  <td>
-									<input type="text" name="carousel_close_rl_btn_hover_color" id="carousel_close_rl_btn_hover_color" value="<?php echo $row->carousel_close_rl_btn_hover_color; ?>" class="jscolor"/>
+									<input type="text" name="carousel_close_rl_btn_hover_color" id="carousel_close_rl_btn_hover_color" value="<?php echo esc_attr($row->carousel_close_rl_btn_hover_color); ?>" class="jscolor"/>
 								  </td>
 								</tr>
 								<tr>
 								  <td class="spider_label"><label for="carousel_rl_btn_width"><?php echo __('Right, left buttons width:', 'photo-gallery'); ?> </label></td>
 								  <td>
-									<input type="text" name="carousel_rl_btn_width" id="carousel_rl_btn_width" value="<?php echo $row->carousel_rl_btn_width; ?>" class="spider_int_input" onkeypress="return spider_check_isnum(event)"/> px
+									<input type="text" name="carousel_rl_btn_width" id="carousel_rl_btn_width" value="<?php echo esc_attr($row->carousel_rl_btn_width); ?>" class="spider_int_input" onkeypress="return spider_check_isnum(event)"/> px
 								  </td>
 								</tr>
 								<tr>
 								  <td class="spider_label"><label for="carousel_rl_btn_height"><?php echo __('Right, left buttons height:', 'photo-gallery'); ?> </label></td>
 								  <td>
-									<input type="text" name="carousel_rl_btn_height" id="slideshow_rl_btn_height" value="<?php echo $row->carousel_rl_btn_height; ?>" class="spider_int_input" onkeypress="return spider_check_isnum(event)"/> px
+									<input type="text" name="carousel_rl_btn_height" id="slideshow_rl_btn_height" value="<?php echo esc_attr($row->carousel_rl_btn_height); ?>" class="spider_int_input" onkeypress="return spider_check_isnum(event)"/> px
 								  </td>
 								</tr>
 								<tr>
 								  <td class="spider_label"><label for="carousel_rl_btn_bg_color"><?php echo __('Right, left buttons background color:', 'photo-gallery'); ?> </label></td>
 								  <td>
-									<input type="text" name="carousel_rl_btn_bg_color" id="carousel_rl_btn_bg_color" value="<?php echo $row->carousel_rl_btn_bg_color; ?>" class="jscolor"/>
+									<input type="text" name="carousel_rl_btn_bg_color" id="carousel_rl_btn_bg_color" value="<?php echo esc_attr($row->carousel_rl_btn_bg_color); ?>" class="jscolor"/>
 								  </td>
 								</tr>
 								<tr>
 								  <td class="spider_label"><label for="carousel_rl_btn_border_width"><?php echo __('Right, left buttons border width:', 'photo-gallery'); ?> </label></td>
 								  <td>
-									<input type="text" name="carousel_rl_btn_border_width" id="carousel_rl_btn_border_width" value="<?php echo $row->carousel_rl_btn_border_width; ?>" class="spider_int_input" onkeypress="return spider_check_isnum(event)"/> px
+									<input type="text" name="carousel_rl_btn_border_width" id="carousel_rl_btn_border_width" value="<?php echo esc_attr($row->carousel_rl_btn_border_width); ?>" class="spider_int_input" onkeypress="return spider_check_isnum(event)"/> px
 								  </td>
 								</tr>
 								<tr>
@@ -4427,7 +4427,7 @@ class ThemesView_bwg extends AdminView_bwg {
 									  <?php
 									  foreach ($border_styles as $key => $border_style) {
 										?>
-										<option value="<?php echo $key; ?>" <?php echo (($row->carousel_rl_btn_border_style == $key) ? 'selected="selected"' : ''); ?>><?php echo __($border_style, 'photo-gallery'); ?></option>
+										<option value="<?php echo esc_attr($key); ?>" <?php echo (($row->carousel_rl_btn_border_style == $key) ? 'selected="selected"' : ''); ?>><?php echo esc_html__($border_style, 'photo-gallery'); ?></option>
 										<?php
 									  }
 									  ?>
@@ -4437,13 +4437,13 @@ class ThemesView_bwg extends AdminView_bwg {
 								<tr>
 								  <td class="spider_label"><label for="carousel_rl_btn_border_color"><?php echo __('Right, left buttons border color:', 'photo-gallery'); ?> </label></td>
 								  <td>
-									<input type="text" name="carousel_rl_btn_border_color" id="slideshow_rl_btn_border_color" value="<?php echo $row->carousel_rl_btn_border_color; ?>" class="jscolor"/>
+									<input type="text" name="carousel_rl_btn_border_color" id="slideshow_rl_btn_border_color" value="<?php echo esc_attr($row->carousel_rl_btn_border_color); ?>" class="jscolor"/>
 								  </td>
 								</tr>
 								<tr>
 								  <td class="spider_label"><label for="carousel_rl_btn_border_radius"><?php echo __('Right, left buttons border radius:', 'photo-gallery'); ?> </label></td>
 								  <td>
-									<input type="text" name="carousel_rl_btn_border_radius" id="carousel_rl_btn_border_radius" value="<?php echo $row->carousel_rl_btn_border_radius; ?>" class="spider_char_input"/>
+									<input type="text" name="carousel_rl_btn_border_radius" id="carousel_rl_btn_border_radius" value="<?php echo esc_attr($row->carousel_rl_btn_border_radius); ?>" class="spider_char_input"/>
 									<div class="spider_description"><?php echo __('Use CSS type values.', 'photo-gallery'); ?></div>
 								  </td>
 								</tr>
@@ -4454,7 +4454,7 @@ class ThemesView_bwg extends AdminView_bwg {
 									  <?php
 									  foreach ($button_styles as $key => $button_style) {
 										?>
-										<option value="<?php echo $key; ?>" <?php echo (($row->carousel_rl_btn_style == $key) ? 'selected="selected"' : ''); ?>><?php echo __($button_style, 'photo-gallery'); ?></option>
+										<option value="<?php echo esc_attr($key); ?>" <?php echo (($row->carousel_rl_btn_style == $key) ? 'selected="selected"' : ''); ?>><?php echo esc_html__($button_style, 'photo-gallery'); ?></option>
 										<?php
 									  }
 									  ?>
@@ -4474,13 +4474,13 @@ class ThemesView_bwg extends AdminView_bwg {
 								   <tr>
 										<td class="spider_label"><label for="carousel_mergin_bottom"><?php echo __('Carousel margin:', 'photo-gallery'); ?> </label></td>
 										<td>
-											<input type="text" name="carousel_mergin_bottom" id="carousel_mergin_bottom" value="<?php echo $row->carousel_mergin_bottom; ?>" class="spider_int_input" onkeypress="return spider_check_isnum(event)"/> px
+											<input type="text" name="carousel_mergin_bottom" id="carousel_mergin_bottom" value="<?php echo esc_attr($row->carousel_mergin_bottom); ?>" class="spider_int_input" onkeypress="return spider_check_isnum(event)"/> px
 										</td>
 									</tr>
 								 <tr>
 								  <td class="spider_label"><label for="carousel_feature_border_width"><?php echo __('Image border width:', 'photo-gallery'); ?> </label></td>
 								  <td>
-									<input type="text" name="carousel_feature_border_width" id="carousel_feature_border_width" value="<?php echo $row->carousel_feature_border_width; ?>" class="spider_int_input" onkeypress="return spider_check_isnum(event)"/>px
+									<input type="text" name="carousel_feature_border_width" id="carousel_feature_border_width" value="<?php echo esc_attr($row->carousel_feature_border_width); ?>" class="spider_int_input" onkeypress="return spider_check_isnum(event)"/>px
 								  </td>
 								</tr>
 
@@ -4492,7 +4492,7 @@ class ThemesView_bwg extends AdminView_bwg {
 									  <?php
 									  foreach ($border_styles as $key => $border_style) {
 										?>
-										<option value="<?php echo $key; ?>" <?php echo (($row->carousel_feature_border_style == $key) ? 'selected="selected"' : ''); ?>><?php echo __($border_style, 'photo-gallery'); ?></option>
+										<option value="<?php echo esc_attr($key); ?>" <?php echo (($row->carousel_feature_border_style == $key) ? 'selected="selected"' : ''); ?>><?php echo esc_html__($border_style, 'photo-gallery'); ?></option>
 										<?php
 									  }
 									  ?>
@@ -4502,7 +4502,7 @@ class ThemesView_bwg extends AdminView_bwg {
 								 <tr>
 								  <td class="spider_label"><label for="carousel_feature_border_color"><?php echo __('Image border color:', 'photo-gallery'); ?> </label></td>
 								  <td>
-									<input type="text" name="carousel_feature_border_color" id="carousel_feature_border_color" value="<?php echo $row->carousel_feature_border_color; ?>" class="jscolor"/>
+									<input type="text" name="carousel_feature_border_color" id="carousel_feature_border_color" value="<?php echo esc_attr($row->carousel_feature_border_color); ?>" class="jscolor"/>
 								  </td>
 								</tr>
 							  </tbody>
@@ -4518,34 +4518,34 @@ class ThemesView_bwg extends AdminView_bwg {
 								<tr>
 								  <td class="spider_label"><label for="carousel_caption_background_color"><?php echo __('Title background color:', 'photo-gallery'); ?> </label></td>
 								  <td>
-									<input type="text" name="carousel_caption_background_color" id="carousel_caption_background_color" value="<?php echo $row->carousel_caption_background_color; ?>" class="jscolor"/>
+									<input type="text" name="carousel_caption_background_color" id="carousel_caption_background_color" value="<?php echo esc_attr($row->carousel_caption_background_color); ?>" class="jscolor"/>
 								  </td>
 								</tr>
 
 								<tr>
 								  <td class="spider_label"><label for="carousel_title_opacity"><?php echo __('Title opacity:', 'photo-gallery'); ?> </label></td>
 								  <td>
-									<input type="text" name="carousel_title_opacity" id="carousel_title_opacity" value="<?php echo $row->carousel_title_opacity; ?>" class="spider_int_input" onkeypress="return spider_check_isnum(event)"/> %
+									<input type="text" name="carousel_title_opacity" id="carousel_title_opacity" value="<?php echo esc_attr($row->carousel_title_opacity); ?>" class="spider_int_input" onkeypress="return spider_check_isnum(event)"/> %
 									<div class="spider_description"><?php echo __('Value must be between 0 to 100.', 'photo-gallery'); ?></div>
 								  </td>
 								</tr>
 								<tr>
 								  <td class="spider_label"><label for="carousel_title_border_radius"><?php echo __('Title border radius:', 'photo-gallery'); ?> </label></td>
 								  <td>
-									<input type="text" name="carousel_title_border_radius" id="carousel_title_border_radius" value="<?php echo $row->carousel_title_border_radius; ?>" class="spider_char_input"/>
+									<input type="text" name="carousel_title_border_radius" id="carousel_title_border_radius" value="<?php echo esc_attr($row->carousel_title_border_radius); ?>" class="spider_char_input"/>
 									<div class="spider_description"><?php echo __('Use CSS type values.', 'photo-gallery'); ?></div>
 								  </td>
 								</tr>
 								<tr>
 								  <td class="spider_label"><label for="carousel_caption_p_mergin"><?php echo __('Title margin:', 'photo-gallery'); ?> </label></td>
 								  <td>
-									<input type="text" name="carousel_caption_p_mergin" id="carousel_caption_p_mergin" value="<?php echo $row->carousel_caption_p_mergin; ?>" class="spider_int_input" onkeypress="return spider_check_isnum(event)" /> px
+									<input type="text" name="carousel_caption_p_mergin" id="carousel_caption_p_mergin" value="<?php echo esc_attr($row->carousel_caption_p_mergin); ?>" class="spider_int_input" onkeypress="return spider_check_isnum(event)" /> px
 								  </td>
 								</tr>
 								<tr>
 								  <td class="spider_label"><label for="carousel_caption_p_pedding"><?php echo __('Title padding:', 'photo-gallery'); ?> </label></td>
 								  <td>
-									<input type="text" name="carousel_caption_p_pedding" id="carousel_caption_p_pedding" value="<?php echo $row->carousel_caption_p_pedding; ?>" class="spider_int_input" onkeypress="return spider_check_isnum(event)" /> px
+									<input type="text" name="carousel_caption_p_pedding" id="carousel_caption_p_pedding" value="<?php echo esc_attr($row->carousel_caption_p_pedding); ?>" class="spider_int_input" onkeypress="return spider_check_isnum(event)" /> px
 								  </td>
 								</tr>
 								<tr>
@@ -4555,13 +4555,13 @@ class ThemesView_bwg extends AdminView_bwg {
                   </tr>
 								  <td class="spider_label"><label for="carousel_caption_p_font_size"><?php echo __('Title font size:', 'photo-gallery'); ?> </label></td>
 								  <td>
-									<input type="text" name="carousel_caption_p_font_size" id="carousel_caption_p_font_size" value="<?php echo $row->carousel_caption_p_font_size; ?>" class="spider_int_input" onkeypress="return spider_check_isnum(event)" /> px
+									<input type="text" name="carousel_caption_p_font_size" id="carousel_caption_p_font_size" value="<?php echo esc_attr($row->carousel_caption_p_font_size); ?>" class="spider_int_input" onkeypress="return spider_check_isnum(event)" /> px
 								  </td>
 								</tr>
 								<tr>
 								  <td class="spider_label"><label for="carousel_caption_p_color"><?php echo __('Title color:', 'photo-gallery'); ?> </label></td>
 								  <td>
-									<input type="text" name="carousel_caption_p_color" id="carousel_caption_p_color" value="<?php echo $row->carousel_caption_p_color; ?>" class="jscolor"/>
+									<input type="text" name="carousel_caption_p_color" id="carousel_caption_p_color" value="<?php echo esc_attr($row->carousel_caption_p_color); ?>" class="jscolor"/>
 								  </td>
 								</tr>
 								<tr>
@@ -4571,7 +4571,7 @@ class ThemesView_bwg extends AdminView_bwg {
 									  <?php
 									  foreach ($font_weights as $key => $font_weight) {
 										?>
-										<option value="<?php echo $key; ?>" <?php echo (($row->carousel_caption_p_font_weight == $key) ? 'selected="selected"' : ''); ?>><?php echo __($font_weight, 'photo-gallery'); ?></option>
+										<option value="<?php echo esc_attr($key); ?>" <?php echo (($row->carousel_caption_p_font_weight == $key) ? 'selected="selected"' : ''); ?>><?php echo esc_html__($font_weight, 'photo-gallery'); ?></option>
 										<?php
 									  }
 									  ?>
@@ -4582,13 +4582,13 @@ class ThemesView_bwg extends AdminView_bwg {
                   <td class="spider_label"><label for="carousel_gal_title_font_size"><?php echo __('Gallery title/description font size:', 'photo-gallery'); ?> </label></td>
                   <td>
                     <input type="text" name="carousel_gal_title_font_size" id="carousel_gal_title_font_size" value="<?php echo
-                    $row->carousel_gal_title_font_size; ?>" class="spider_int_input" onkeypress="return spider_check_isnum(event)"/> px
+                    esc_attr($row->carousel_gal_title_font_size); ?>" class="spider_int_input" onkeypress="return spider_check_isnum(event)"/> px
                   </td>
                 </tr>
                 <tr>
                   <td class="spider_label"><label for="carousel_gal_title_font_color"><?php echo __('Gallery title/description font color:', 'photo-gallery'); ?> </label></td>
                   <td>
-                    <input type="text" name="carousel_gal_title_font_color" id="carousel_gal_title_font_color" value="<?php echo $row->carousel_gal_title_font_color; ?>" class="jscolor" />
+                    <input type="text" name="carousel_gal_title_font_color" id="carousel_gal_title_font_color" value="<?php echo esc_attr($row->carousel_gal_title_font_color); ?>" class="jscolor" />
                   </td>
                 </tr>
                 <tr>
@@ -4602,7 +4602,7 @@ class ThemesView_bwg extends AdminView_bwg {
                       <?php
                       foreach ($font_weights as $key => $font_weight) {
                         ?>
-                        <option value="<?php echo $key; ?>" <?php echo (($row->carousel_gal_title_font_weight == $key) ? 'selected="selected"' : ''); ?>><?php echo __($font_weight, 'photo-gallery'); ?></option>
+                        <option value="<?php echo esc_attr($key); ?>" <?php echo (($row->carousel_gal_title_font_weight == $key) ? 'selected="selected"' : ''); ?>><?php echo esc_html__($font_weight, 'photo-gallery'); ?></option>
                         <?php
                       }
                       ?>
@@ -4612,14 +4612,14 @@ class ThemesView_bwg extends AdminView_bwg {
                 <tr>
                   <td class="spider_label"><label for="carousel_gal_title_shadow"><?php echo __('Gallery title/description box shadow:', 'photo-gallery'); ?> </label></td>
                   <td>
-                    <input type="text" name="carousel_gal_title_shadow" id="carousel_gal_title_shadow" value="<?php echo $row->carousel_gal_title_shadow; ?>" class="spider_box_input" placeholder="10px 10px 10px #888888" />
+                    <input type="text" name="carousel_gal_title_shadow" id="carousel_gal_title_shadow" value="<?php echo esc_attr($row->carousel_gal_title_shadow); ?>" class="spider_box_input" placeholder="10px 10px 10px #888888" />
                     <div class="spider_description"><?php echo __('Use CSS type values.', 'photo-gallery'); ?></div>
                   </td>
                 </tr>
                 <tr>
                   <td class="spider_label"><label for="carousel_gal_title_margin"><?php echo __('Gallery title/description margin:', 'photo-gallery'); ?> </label></td>
                   <td>
-                    <input type="text" name="carousel_gal_title_margin" id="carousel_gal_title_margin" value="<?php echo $row->carousel_gal_title_margin; ?>" class="spider_char_input" />
+                    <input type="text" name="carousel_gal_title_margin" id="carousel_gal_title_margin" value="<?php echo esc_attr($row->carousel_gal_title_margin); ?>" class="spider_char_input" />
                     <div class="spider_description"><?php echo __('Use CSS type values.', 'photo-gallery'); ?></div>
                   </td>
                 </tr>
@@ -4630,7 +4630,7 @@ class ThemesView_bwg extends AdminView_bwg {
                       <?php
                       foreach ($aligns as $key => $align) {
                         ?>
-                        <option value="<?php echo $key; ?>" <?php echo (($row->carousel_gal_title_align == $key) ? 'selected="selected"' : ''); ?>><?php echo _e($align, 'photo-gallery'); ?></option>
+                        <option value="<?php echo esc_attr($key); ?>" <?php echo (($row->carousel_gal_title_align == $key) ? 'selected="selected"' : ''); ?>><?php echo esc_html__($align, 'photo-gallery'); ?></option>
                         <?php
                       }
                       ?>
@@ -4673,12 +4673,12 @@ class ThemesView_bwg extends AdminView_bwg {
 									<tr>
 										<td class="spider_label"><label for="tags_but_font_size"><?php echo __('Font size:', 'photo-gallery'); ?> </label></td>
 										<td>
-											<input type="text" name="tags_but_font_size" id="tags_but_font_size" value="<?php echo $row->tags_but_font_size; ?>" class="spider_int_input" onkeypress="return spider_check_isnum(event)"/> px
+											<input type="text" name="tags_but_font_size" id="tags_but_font_size" value="<?php echo esc_attr($row->tags_but_font_size); ?>" class="spider_int_input" onkeypress="return spider_check_isnum(event)"/> px
 										</td>
 									</tr>
 									<tr>
 										<td class="spider_label"><label for="tags_but_font_color"><?php echo __('Font color:', 'photo-gallery'); ?> </label></td>
-										<td><input type="text" name="tags_but_font_color" id="tags_but_font_color" value="<?php echo $row->tags_but_font_color; ?>" class="jscolor"/></td>
+										<td><input type="text" name="tags_but_font_color" id="tags_but_font_color" value="<?php echo esc_attr($row->tags_but_font_color); ?>" class="jscolor"/></td>
 									</tr>
 									<tr>
 										<!--generate font style with google fonts -->
@@ -4689,7 +4689,7 @@ class ThemesView_bwg extends AdminView_bwg {
 										<td>
 											<select name="tags_but_font_weight" id="tags_but_font_weight">
 												<?php foreach ($font_weights as $key => $font_weight) { ?>
-													<option value="<?php echo $key; ?>" <?php echo (($row->tags_but_font_weight == $key) ? 'selected="selected"' : ''); ?>><?php echo __($font_weight, 'photo-gallery'); ?></option>
+													<option value="<?php echo esc_attr($key); ?>" <?php echo (($row->tags_but_font_weight == $key) ? 'selected="selected"' : ''); ?>><?php echo esc_html__($font_weight, 'photo-gallery'); ?></option>
 											 <?php } ?>
 											</select>
 										</td>
@@ -4697,21 +4697,21 @@ class ThemesView_bwg extends AdminView_bwg {
 									<tr>
 										<td class="spider_label"><label for="tags_but_margin"><?php echo __('Margin:', 'photo-gallery'); ?> </label></td>
 										<td>
-											<input type="text" name="tags_but_margin" id="tags_but_margin" value="<?php echo $row->tags_but_margin; ?>" class="spider_char_input"/>
+											<input type="text" name="tags_but_margin" id="tags_but_margin" value="<?php echo esc_attr($row->tags_but_margin); ?>" class="spider_char_input"/>
 											<div class="spider_description"><?php echo __('Use CSS type values.', 'photo-gallery'); ?></div>
 										</td>
 									</tr>
 									<tr>
 										<td class="spider_label"><label for="tags_but_padding"><?php echo __('Padding:', 'photo-gallery'); ?> </label></td>
 										<td>
-											<input type="text" name="tags_but_padding" id="tags_but_padding" value="<?php echo $row->tags_but_padding; ?>" class="spider_char_input"/>
+											<input type="text" name="tags_but_padding" id="tags_but_padding" value="<?php echo esc_attr($row->tags_but_padding); ?>" class="spider_char_input"/>
 											<div class="spider_description"><?php echo __('Use CSS type values.', 'photo-gallery'); ?></div>
 										</td>
 									</tr>
 									<tr>
 										<td class="spider_label"><label for="tags_but_border_width"><?php echo __('Border width:', 'photo-gallery'); ?> </label></td>
 										<td>
-											<input type="text" name="tags_but_border_width" id="tags_but_border_width" value="<?php echo $row->tags_but_border_width; ?>" class="spider_int_input" onkeypress="return spider_check_isnum(event)"/> px
+											<input type="text" name="tags_but_border_width" id="tags_but_border_width" value="<?php echo esc_attr($row->tags_but_border_width); ?>" class="spider_int_input" onkeypress="return spider_check_isnum(event)"/> px
 										</td>
 									</tr>
 									<tr>
@@ -4719,52 +4719,52 @@ class ThemesView_bwg extends AdminView_bwg {
 										<td>
 											<select name="tags_but_border_style" id="tags_but_border_style">
 												<?php foreach ($border_styles as $key => $border_style) { ?>
-													<option value="<?php echo $key; ?>" <?php echo (($row->tags_but_border_style == $key) ? 'selected="selected"' : ''); ?>><?php echo __($border_style, 'photo-gallery'); ?></option>
+													<option value="<?php echo esc_attr($key); ?>" <?php echo (($row->tags_but_border_style == $key) ? 'selected="selected"' : ''); ?>><?php echo esc_html__($border_style, 'photo-gallery'); ?></option>
 											  <?php } ?>
 											</select>
 										</td>
 									</tr>
 									<tr>
 										<td class="spider_label"><label for="tags_but_border_color"><?php echo __('Border color:', 'photo-gallery'); ?></label></td>
-										<td><input type="text" name="tags_but_border_color" id="tags_but_border_color" value="<?php echo $row->tags_but_border_color; ?>" class="jscolor"/></td>
+										<td><input type="text" name="tags_but_border_color" id="tags_but_border_color" value="<?php echo esc_attr($row->tags_but_border_color); ?>" class="jscolor"/></td>
 									</tr>
 									<tr>
 										<td class="spider_label"><label for="tags_but_border_radius"><?php echo __('Border radius:', 'photo-gallery'); ?> </label></td>
 										<td>
-											<input type="text" name="tags_but_border_radius" id="tags_but_border_radius" value="<?php echo $row->tags_but_border_radius; ?>" class="spider_char_input"/>
+											<input type="text" name="tags_but_border_radius" id="tags_but_border_radius" value="<?php echo esc_attr($row->tags_but_border_radius); ?>" class="spider_char_input"/>
 											<div class="spider_description"><?php echo __('Use CSS type values.', 'photo-gallery'); ?></div>
 										</td>
 									</tr>
 									<tr>
 										<td class="spider_label"><label for="tags_but_bg_color"><?php echo __('Button background color:', 'photo-gallery'); ?> </label></td>
-										<td><input type="text" name="tags_but_bg_color" id="tags_but_bg_color" value="<?php echo $row->tags_but_bg_color; ?>" class="jscolor" /></td>
+										<td><input type="text" name="tags_but_bg_color" id="tags_but_bg_color" value="<?php echo esc_attr($row->tags_but_bg_color); ?>" class="jscolor" /></td>
 									</tr>
 									<tr>
 										<td class="spider_label"><label for="tags_but_active_bg_color"><?php echo __('Active Button background color:', 'photo-gallery'); ?> </label></td>
-										<td><input type="text" name="tags_but_active_bg_color" id="tags_but_active_bg_color" value="<?php echo $row->tags_but_active_bg_color; ?>" class="jscolor" /></td>
+										<td><input type="text" name="tags_but_active_bg_color" id="tags_but_active_bg_color" value="<?php echo esc_attr($row->tags_but_active_bg_color); ?>" class="jscolor" /></td>
 									</tr>
 									<tr>
 										<td class="spider_label"><label for="tags_but_active_color"><?php echo __('Active Button font color:', 'photo-gallery'); ?> </label></td>
-										<td><input type="text" name="tags_but_active_color" id="tags_but_active_color" value="<?php echo $row->tags_but_active_color; ?>" class="jscolor" /></td>
+										<td><input type="text" name="tags_but_active_color" id="tags_but_active_color" value="<?php echo esc_attr($row->tags_but_active_color); ?>" class="jscolor" /></td>
 									</tr>
 									<tr>
 										<td class="spider_label"><label for="tags_but_see_all_size"><?php echo __('See All Button Font size:', 'photo-gallery'); ?> </label></td>
 										<td>
-											<input type="text" name="tags_but_see_all_size" id="tags_but_see_all_size" value="<?php echo $row->tags_but_see_all_size; ?>" class="spider_int_input" onkeypress="return spider_check_isnum(event)"/> px
+											<input type="text" name="tags_but_see_all_size" id="tags_but_see_all_size" value="<?php echo esc_attr($row->tags_but_see_all_size); ?>" class="spider_int_input" onkeypress="return spider_check_isnum(event)"/> px
 										</td>
 									</tr>
 									<tr>
 										<td class="spider_label"><label for="tags_but_see_all_color"><?php echo __('See All Button Font color:', 'photo-gallery'); ?> </label></td>
-										<td><input type="text" name="tags_but_see_all_color" id="tags_but_see_all_color" value="<?php echo $row->tags_but_see_all_color; ?>" class="jscolor"/></td>
+										<td><input type="text" name="tags_but_see_all_color" id="tags_but_see_all_color" value="<?php echo esc_attr($row->tags_but_see_all_color); ?>" class="jscolor"/></td>
 									</tr>
 									<tr>
 										<td class="spider_label"><label for="tags_but_see_all_back_color"><?php echo __('See All Button background color:', 'photo-gallery'); ?> </label></td>
-										<td><input type="text" name="tags_but_see_all_back_color" id="tags_but_see_all_back_color" value="<?php echo $row->tags_but_see_all_back_color; ?>" class="jscolor" /></td>
+										<td><input type="text" name="tags_but_see_all_back_color" id="tags_but_see_all_back_color" value="<?php echo esc_attr($row->tags_but_see_all_back_color); ?>" class="jscolor" /></td>
 									</tr>
 									<tr>
 										<td class="spider_label"><label for="tags_but_see_all_border_w"><?php echo __('See All Button Border width:', 'photo-gallery'); ?> </label></td>
 										<td>
-											<input type="text" name="tags_but_see_all_border_w" id="tags_but_see_all_border_w" value="<?php echo $row->tags_but_see_all_border_w; ?>" class="spider_int_input" onkeypress="return spider_check_isnum(event)"/> px
+											<input type="text" name="tags_but_see_all_border_w" id="tags_but_see_all_border_w" value="<?php echo esc_attr($row->tags_but_see_all_border_w); ?>" class="spider_int_input" onkeypress="return spider_check_isnum(event)"/> px
 										</td>
 									</tr>
 									<tr>
@@ -4772,19 +4772,19 @@ class ThemesView_bwg extends AdminView_bwg {
 										<td>
 											<select name="tags_but_see_all_border_s" id="tags_but_see_all_border_s">
 												<?php foreach ($border_styles as $key => $border_style) { ?>
-																			<option value="<?php echo $key; ?>" <?php echo (($row->tags_but_see_all_border_s == $key) ? 'selected="selected"' : ''); ?>><?php echo __($border_style, 'photo-gallery'); ?></option>
+																			<option value="<?php echo esc_attr($key); ?>" <?php echo (($row->tags_but_see_all_border_s == $key) ? 'selected="selected"' : ''); ?>><?php echo esc_html__($border_style, 'photo-gallery'); ?></option>
 												<?php } ?>
 											</select>
 										</td>
 									</tr>
 									<tr>
 										<td class="spider_label"><label for="tags_but_see_all_border_c"><?php echo __('See All Button Border color:', 'photo-gallery'); ?></label></td>
-										<td><input type="text" name="tags_but_see_all_border_c" id="tags_but_see_all_border_c" value="<?php echo $row->tags_but_see_all_border_c; ?>" class="jscolor"/></td>
+										<td><input type="text" name="tags_but_see_all_border_c" id="tags_but_see_all_border_c" value="<?php echo esc_attr($row->tags_but_see_all_border_c); ?>" class="jscolor"/></td>
 									</tr>
 									<tr>
 										<td class="spider_label"><label for="tags_but_see_all_border_r"><?php echo __('See All Button Border radius:', 'photo-gallery'); ?> </label></td>
 										<td>
-											<input type="text" name="tags_but_see_all_border_r" id="tags_but_see_all_border_r" value="<?php echo $row->tags_but_see_all_border_r; ?>" class="spider_char_input"/>
+											<input type="text" name="tags_but_see_all_border_r" id="tags_but_see_all_border_r" value="<?php echo esc_attr($row->tags_but_see_all_border_r); ?>" class="spider_char_input"/>
 											<div class="spider_description"><?php echo __('Use CSS type values.', 'photo-gallery'); ?></div>
 										</td>
 									</tr>
@@ -4798,8 +4798,8 @@ class ThemesView_bwg extends AdminView_bwg {
 				</div>
 			</fieldset>
 		</div>
-		<input type="hidden" id="default_theme" name="default_theme" value="<?php echo $row->default_theme; ?>" />
-		<input type="hidden" id="active_tab" name="active_tab"  value="<?php echo $params['active_tab']; ?>" />
+		<input type="hidden" id="default_theme" name="default_theme" value="<?php echo esc_attr($row->default_theme); ?>" />
+		<input type="hidden" id="active_tab" name="active_tab"  value="<?php echo esc_attr($params['active_tab']); ?>" />
     <?php
 	}
 }

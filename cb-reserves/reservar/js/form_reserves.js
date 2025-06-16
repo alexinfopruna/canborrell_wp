@@ -1091,7 +1091,8 @@ function validacio()
                     },
             client_email: {required: true, email: true, remote: "../../cb-reserves/taules/verify_email.php"},
             client_nom: "required",
-            client_cognoms: "required"
+            client_cognoms: "required",
+            privacitat: "required"
         },
         messages: {
             totalComensals: {
@@ -1113,7 +1114,8 @@ function validacio()
                     },
             client_email: {required: l("Dona´ns un email"), email: l("El format no és correcte")},
             client_nom: l("Dona´ns el teu nom"),
-            client_cognoms: l("Dona´ns els teus cognoms")
+            client_cognoms: l("Dona´ns els teus cognoms"),
+            privacitat: l("Per continuar, has d'acceptar la política de privacitat")
 
         }
     });

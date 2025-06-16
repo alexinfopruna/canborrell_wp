@@ -102,7 +102,7 @@ class AlbumsgalleriesView_bwg extends AdminView_bwg {
               </th>
               <td class="column-primary column-title" data-colname="<?php _e('Title', 'photo-gallery'); ?>">
                 <strong class="has-media-icon">
-                  <a class="wd-pointer" onclick="window.parent.bwg_add_album_gallery('<?php echo $row->id; ?>', '<?php echo $row->is_album; ?>', '<?php echo esc_url( $preview_image ); ?>', '<?php echo esc_attr( $row->name ); ?>','<?php echo !$row->published ? 'dashicons-hidden' : 'bwg-hidden' ?>')" id="a_<?php echo $iterator; ?>">
+                  <a class="wd-pointer" onclick="window.parent.bwg_add_album_gallery('<?php echo $row->id; ?>', '<?php echo $row->is_album; ?>', '<?php echo esc_url( $preview_image ); ?>', '<?php echo esc_js( $row->name ); ?>','<?php echo !$row->published ? 'dashicons-hidden' : 'bwg-hidden' ?>')" id="a_<?php echo $iterator; ?>">
                     <span class="media-icon image-icon">
                       <img class="preview-image" title="<?php echo esc_attr( $row->name ); ?>" src="<?php echo esc_url( $preview_image ); ?>" width="60" height="60" />
                     </span>

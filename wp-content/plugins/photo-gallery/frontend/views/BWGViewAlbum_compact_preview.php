@@ -95,7 +95,7 @@ class BWGViewAlbum_compact_preview extends BWGViewSite {
                               ), $REQUEST_URI) );
         $href = $this->http_strip_query_param($href, 'bwg_search_' . $bwg);
         $href = $this->http_strip_query_param($href, 'page_number_' . $bwg);
-        $title = '<div class="bwg-title1"><div class="bwg-title2">' . ($row->name ? htmlspecialchars_decode($row->name, ENT_COMPAT | ENT_QUOTES) : '&nbsp;') . '</div></div>';
+        $title = '<div class="bwg-title1"><div class="bwg-title2">' . ($row->name ? wp_kses_post(htmlspecialchars_decode($row->name, ENT_COMPAT | ENT_QUOTES)) : '&nbsp;') . '</div></div>';
         $resolution_thumb = $row->resolution_thumb;
         $image_thumb_width = '';
         $image_thumb_height = '';
@@ -235,7 +235,7 @@ class BWGViewAlbum_compact_preview extends BWGViewSite {
       <?php $thumb_bg_color = WDWLibrary::spider_hex2rgb( $theme_row->album_compact_thumb_bg_color ); ?>
       background-color:rgba(<?php echo esc_html($thumb_bg_color['red']) .','. esc_html($thumb_bg_color['green']) . ',' . esc_html($thumb_bg_color['blue']) . ', '.number_format($theme_row->album_compact_thumb_bg_transparency / 100, 2, ".", ""); ?>);
       border: <?php echo esc_html($theme_row->album_compact_thumb_border_width); ?>px <?php echo esc_html($theme_row->album_compact_thumb_border_style); ?> #<?php echo esc_html($theme_row->album_compact_thumb_border_color); ?>;
-      opacity: <?php echo number_format($theme_row->album_compact_thumb_transparent / 100, 2, ".", ""); ?>;
+      opacity: <?php echo number_format(floatval($theme_row->album_compact_thumb_transparent) / 100, 2, ".", ""); ?>;
       border-radius: <?php echo esc_html($theme_row->album_compact_thumb_border_radius); ?>;
       box-shadow: <?php echo esc_html($theme_row->album_compact_thumb_box_shadow); ?>;
     }

@@ -367,7 +367,7 @@ function bwg_add_album_gallery( alb_gal_id, is_album, preview_image, name, statu
     .replace( /%%alb_gal_id%%/g, alb_gal_id )
     .replace( /%%is_album%%/g, is_album )
     .replace( /%%preview_image%%=""/g, 'style="background-image:url(&quot;' + preview_image + '&quot;)"' )
-    .replace( /%%name%%/g, name )
+    .replace( /%%name%%/g, tw_escape( name ) )
     .replace( /%%status%%/g, status );
   jQuery( '#bwg_tabs' ).children( '#bwg_template' ).last().before( html );
   bwg_albums_galleries();

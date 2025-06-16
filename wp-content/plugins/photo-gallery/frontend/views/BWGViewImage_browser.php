@@ -313,7 +313,7 @@ class BWGViewImage_browser extends BWGViewSite {
 		  margin: 4px;
 		  font-family: <?php echo esc_html($params['watermark_font']); ?>;
 		  color: #<?php echo esc_html($params['watermark_color']); ?> !important;
-		  opacity: <?php echo number_format($params['watermark_opacity'] / 100, 2, ".", ""); ?>;
+		  opacity: <?php echo number_format(floatval($params['watermark_opacity']) / 100, 2, ".", ""); ?>;
 		  text-decoration: none;
 		  position: relative;
 		  z-index: 10141;
@@ -372,7 +372,7 @@ class BWGViewImage_browser extends BWGViewSite {
         font-size: <?php echo esc_html($params['watermark_font_size']); ?>px;
         font-family: <?php echo esc_html($params['watermark_font']); ?>;
         color: #<?php echo esc_html($params['watermark_color']); ?> !important;
-        opacity: <?php echo number_format($params['watermark_opacity'] / 100, 2, ".", ""); ?>;
+        opacity: <?php echo number_format(floatval($params['watermark_opacity']) / 100, 2, ".", ""); ?>;
         position: relative;
         z-index: 10141;
       }
@@ -403,7 +403,7 @@ class BWGViewImage_browser extends BWGViewSite {
 		vertical-align: middle;
 		z-index: 10140;
 		width: <?php echo esc_html($params['watermark_width']);?>px;
-		max-width: <?php echo esc_html((($params['watermark_width']) / ($params['image_browser_width'])) * 100); ?>%;
+		max-width: <?php echo esc_html(((floatval($params['watermark_width'])) / floatval($params['image_browser_width'])) * 100); ?>%;
 		margin: 10px 10px 10px 10px ;
       }
       #bwg_container1_<?php echo esc_attr($bwg); ?> #bwg_container2_<?php echo esc_attr($bwg); ?> .bwg_image_browser_watermark_text_<?php echo esc_attr($bwg); ?>{
@@ -416,7 +416,7 @@ class BWGViewImage_browser extends BWGViewSite {
       }
       #bwg_container1_<?php echo esc_attr($bwg); ?> #bwg_container2_<?php echo esc_attr($bwg); ?> .bwg_image_browser_watermark_img_<?php echo esc_attr($bwg); ?>{
         max-width: 100%;
-        opacity: <?php echo number_format($params['watermark_opacity'] / 100, 2, ".", ""); ?>;
+        opacity: <?php echo number_format(floatval($params['watermark_opacity']) / 100, 2, ".", ""); ?>;
         position: relative;
         z-index: 10141;
       }

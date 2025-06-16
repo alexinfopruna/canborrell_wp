@@ -715,6 +715,10 @@ function spider_createpopup(url, current_view, width, height, duration, descript
         '</div>')
         .hide()
         .appendTo("body");
+      /* Load script which is append to body in the ajax response data */
+      popup.find('script').each(function () {
+        jQuery.globalEval(this.text || this.textContent || this.innerHTML || '');
+      });
       gallery_box_ready();
       spider_showpopup(description, lifetime, popup, duration, lightbox_ctrl_btn_pos);
 
@@ -1052,6 +1056,7 @@ function bwg_add_comment() {
   var url = form.attr('action');
   var post_data = {};
   post_data['ajax_task'] = 'add_comment';
+  post_data['bwg_nonce'] = form.find('#bwg_nonce').val();
   post_data['comment_name'] = form.find('#bwg_name').val();
   post_data['comment_email'] = form.find('#bwg_email').val();
   post_data['comment_text'] = form.find('#bwg_comment').val();

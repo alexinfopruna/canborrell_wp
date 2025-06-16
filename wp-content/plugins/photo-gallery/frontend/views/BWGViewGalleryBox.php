@@ -174,19 +174,19 @@ class BWGViewGalleryBox {
         background-color: rgba(<?php echo esc_html($lightbox_bg_color['red']); ?>, <?php echo esc_html($lightbox_bg_color['green']); ?>, <?php echo esc_html($lightbox_bg_color['blue']); ?>, <?php echo number_format($lightbox_bg_transparent/ 100, 2, ".", ""); ?>);
       }
       .bwg_popup_image {
-        max-width: <?php echo esc_html($params['popup_width'] - ($filmstrip_direction == 'vertical' ? $image_filmstrip_width : 0)); ?>px;
-        max-height: <?php echo esc_html($params['popup_height'] - ($filmstrip_direction == 'horizontal' ? $image_filmstrip_height : 0)); ?>px;
+        max-width: <?php echo esc_html(floatval($params['popup_width']) - ($filmstrip_direction == 'vertical' ? floatval($image_filmstrip_width) : 0)); ?>px;
+        max-height: <?php echo esc_html(floatval($params['popup_height']) - ($filmstrip_direction == 'horizontal' ? floatval($image_filmstrip_height) : 0)); ?>px;
       }
       .bwg_ctrl_btn {
         color: #<?php echo esc_html($theme_row->lightbox_ctrl_btn_color); ?>;
         font-size: <?php echo esc_html($theme_row->lightbox_ctrl_btn_height); ?>px;
         margin: <?php echo esc_html($theme_row->lightbox_ctrl_btn_margin_top); ?>px <?php echo esc_html($theme_row->lightbox_ctrl_btn_margin_left); ?>px;
-        opacity: <?php echo number_format($theme_row->lightbox_ctrl_btn_transparent / 100, 2, ".", ""); ?>;
+        opacity: <?php echo number_format(floatval($theme_row->lightbox_ctrl_btn_transparent) / 100, 2, ".", ""); ?>;
       }
       .bwg_toggle_btn {
         color: #<?php echo esc_html($theme_row->lightbox_ctrl_btn_color); ?>;
         font-size: <?php echo esc_html($theme_row->lightbox_toggle_btn_height); ?>px;
-        opacity: <?php echo number_format($theme_row->lightbox_ctrl_btn_transparent / 100, 2, ".", ""); ?>;
+        opacity: <?php echo number_format(floatval($theme_row->lightbox_ctrl_btn_transparent) / 100, 2, ".", ""); ?>;
       }
       .bwg_ctrl_btn_container {
 				<?php if( $params['popup_enable_ctrl_btn'] ) { ?>
@@ -215,22 +215,22 @@ class BWGViewGalleryBox {
           ?>
           border-bottom-left-radius: <?php echo esc_html($theme_row->lightbox_ctrl_cont_border_radius); ?>px;
           border-bottom-right-radius: <?php echo esc_html($theme_row->lightbox_ctrl_cont_border_radius); ?>px;
-          /*top: <?php echo esc_html($theme_row->lightbox_ctrl_btn_height + 2 * $theme_row->lightbox_ctrl_btn_margin_top); ?>px;*/
+          /*top: <?php echo esc_html(floatval($theme_row->lightbox_ctrl_btn_height) + 2 * floatval($theme_row->lightbox_ctrl_btn_margin_top)); ?>px;*/
           <?php
         }
         else {
           ?>
           border-top-left-radius: <?php echo esc_html($theme_row->lightbox_ctrl_cont_border_radius); ?>px;
           border-top-right-radius: <?php echo esc_html($theme_row->lightbox_ctrl_cont_border_radius); ?>px;
-          /*bottom: <?php echo esc_html($theme_row->lightbox_ctrl_btn_height + 2 * $theme_row->lightbox_ctrl_btn_margin_top); ?>px;*/
+          /*bottom: <?php echo esc_html(floatval($theme_row->lightbox_ctrl_btn_height) + 2 * floatval($theme_row->lightbox_ctrl_btn_margin_top)); ?>px;*/
           <?php
         }?>
-        margin-left: -<?php echo esc_html($theme_row->lightbox_toggle_btn_width) / 2; ?>px;
-        opacity: <?php echo number_format($theme_row->lightbox_ctrl_cont_transparent / 100, 2, ".", ""); ?>;
+        margin-left: -<?php echo esc_html(floatval($theme_row->lightbox_toggle_btn_width)) / 2; ?>px;
+        opacity: <?php echo number_format(floatval($theme_row->lightbox_ctrl_cont_transparent) / 100, 2, ".", ""); ?>;
         width: <?php echo esc_html($theme_row->lightbox_toggle_btn_width); ?>px;
       }
       .bwg_close_btn {
-        opacity: <?php echo number_format($theme_row->lightbox_close_btn_transparent / 100, 2, ".", ""); ?>;
+        opacity: <?php echo number_format(floatval($theme_row->lightbox_close_btn_transparent) / 100, 2, ".", ""); ?>;
       }
       .spider_popup_close {
         background-color: #<?php echo esc_html($theme_row->lightbox_close_btn_bg_color); ?>;
@@ -258,13 +258,13 @@ class BWGViewGalleryBox {
         height: <?php echo esc_html($theme_row->lightbox_rl_btn_height); ?>px;
         font-size: <?php echo esc_html($theme_row->lightbox_rl_btn_size); ?>px;
         width: <?php echo esc_html($theme_row->lightbox_rl_btn_width); ?>px;
-        opacity: <?php echo number_format($theme_row->lightbox_rl_btn_transparent / 100, 2, ".", ""); ?>;
+        opacity: <?php echo number_format(floatval($theme_row->lightbox_rl_btn_transparent) / 100, 2, ".", ""); ?>;
       }
       #spider_popup_left-ico {
-        padding-right: <?php echo esc_html(($theme_row->lightbox_rl_btn_width - $theme_row->lightbox_rl_btn_size)) / 3; ?>px;
+        padding-right: <?php echo esc_html((floatval($theme_row->lightbox_rl_btn_width) - floatval($theme_row->lightbox_rl_btn_size))) / 3; ?>px;
       }
       #spider_popup_right-ico {
-        padding-left: <?php echo esc_html(($theme_row->lightbox_rl_btn_width - $theme_row->lightbox_rl_btn_size)) / 3; ?>px;
+        padding-left: <?php echo esc_html((floatval($theme_row->lightbox_rl_btn_width) - floatval($theme_row->lightbox_rl_btn_size))) / 3; ?>px;
       }
       <?php
       if($params['autohide_lightbox_navigation']){?>
@@ -298,7 +298,7 @@ class BWGViewGalleryBox {
         color: #<?php echo esc_html($theme_row->lightbox_comment_font_color); ?>;
         font-size: <?php echo esc_html($theme_row->lightbox_comment_font_size); ?>px;
         font-family: <?php echo esc_html($theme_row->lightbox_comment_font_style); ?>;
-        <?php echo esc_html($theme_row->lightbox_comment_pos); ?>: -<?php echo esc_html($theme_row->lightbox_comment_width); ?>px;
+        <?php echo esc_html($theme_row->lightbox_comment_pos); ?>: -<?php echo floatval($theme_row->lightbox_comment_width); ?>px;
         width: <?php echo esc_html($theme_row->lightbox_comment_width); ?>px;
       }
         .bwg_ecommerce_body  p, .bwg_ecommerce_body span, .bwg_ecommerce_body div {
@@ -408,12 +408,12 @@ class BWGViewGalleryBox {
       }
       .bwg_filmstrip {
         <?php echo esc_html($left_or_top); ?>: <?php echo esc_html($theme_row->lightbox_filmstrip_rl_btn_size); ?>px;
-        <?php echo esc_html($width_or_height); ?>: <?php echo esc_html(($filmstrip_direction == 'horizontal' ? $params['popup_width'] - 40 : $params['popup_height'] - 40)); ?>px;
+        <?php echo esc_html($width_or_height); ?>: <?php echo esc_html(($filmstrip_direction == 'horizontal' ? floatval($params['popup_width']) - 40 : floatval($params['popup_height']) - 40)); ?>px;
       }
       .bwg_filmstrip_thumbnails {
-        height: <?php echo esc_html(($filmstrip_direction == 'horizontal' ? $image_filmstrip_height : ($image_filmstrip_height + $filmstrip_thumb_right_left_space) * count($image_rows))); ?>px;
+        height: <?php echo esc_html(($filmstrip_direction == 'horizontal' ? $image_filmstrip_height : (floatval($image_filmstrip_height) + floatval($filmstrip_thumb_right_left_space)) * count($image_rows))); ?>px;
         <?php echo esc_html($left_or_top); ?>: 0px;
-        width: <?php echo esc_html(($filmstrip_direction == 'horizontal' ? ($image_filmstrip_width + $filmstrip_thumb_right_left_space) * count($image_rows) : $image_filmstrip_width)); ?>px;
+        width: <?php echo esc_html(($filmstrip_direction == 'horizontal' ? (floatval($image_filmstrip_width) + floatval($filmstrip_thumb_right_left_space)) * count($image_rows) : $image_filmstrip_width)); ?>px;
       }
       .bwg_filmstrip_thumbnail {
         height: <?php echo esc_html($image_filmstrip_height); ?>px;
@@ -430,7 +430,7 @@ class BWGViewGalleryBox {
         border: <?php echo esc_html($theme_row->lightbox_filmstrip_thumb_active_border_width); ?>px solid #<?php echo esc_html($theme_row->lightbox_filmstrip_thumb_active_border_color); ?>;
       }
       .bwg_thumb_deactive {
-        opacity: <?php echo number_format($theme_row->lightbox_filmstrip_thumb_deactive_transparent / 100, 2, ".", ""); ?>;
+        opacity: <?php echo number_format(floatval($theme_row->lightbox_filmstrip_thumb_deactive_transparent) / 100, 2, ".", ""); ?>;
       }
       .bwg_filmstrip_left {
         background-color: #<?php echo esc_html($theme_row->lightbox_filmstrip_rl_bg_color); ?>;
@@ -470,7 +470,7 @@ class BWGViewGalleryBox {
         font-size: <?php echo esc_html($params['watermark_font_size']); ?>px;
         font-family: <?php echo esc_html($params['watermark_font']); ?>;
         color: #<?php echo esc_html($params['watermark_color']); ?> !important;
-        opacity: <?php echo number_format($params['watermark_opacity'] / 100, 2, ".", ""); ?>;
+        opacity: <?php echo number_format(floatval($params['watermark_opacity']) / 100, 2, ".", ""); ?>;
       }
       .bwg_image_info_container1 {
         display: <?php echo $params['popup_info_always_show'] ? 'table-cell' : 'none'; ?>;
@@ -490,10 +490,10 @@ class BWGViewGalleryBox {
         background: rgba(<?php echo esc_html($rgb_bwg_image_hit_bg_color['red']); ?>, <?php echo esc_html($rgb_bwg_image_hit_bg_color['green']); ?>, <?php echo esc_html($rgb_bwg_image_hit_bg_color['blue']); ?>, <?php echo number_format($theme_row->lightbox_hit_bg_transparent / 100, 2, ".", ""); ?>);
         border: <?php echo esc_html($theme_row->lightbox_hit_border_width); ?>px <?php echo esc_html($theme_row->lightbox_hit_border_style); ?> #<?php echo esc_html($theme_row->lightbox_hit_border_color); ?>;
         border-radius: <?php echo esc_html($theme_row->lightbox_info_border_radius); ?>;
-        <?php echo ($theme_row->lightbox_ctrl_btn_pos == 'bottom' && $theme_row->lightbox_hit_pos == 'bottom') ? 'bottom: ' . esc_html(($theme_row->lightbox_ctrl_btn_height + 2 * $theme_row->lightbox_ctrl_btn_margin_top)) . 'px;' : '' ?>
+        <?php echo ($theme_row->lightbox_ctrl_btn_pos == 'bottom' && $theme_row->lightbox_hit_pos == 'bottom') ? 'bottom: ' . esc_html((floatval($theme_row->lightbox_ctrl_btn_height) + 2 * floatval($theme_row->lightbox_ctrl_btn_margin_top))) . 'px;' : '' ?>
         margin: <?php echo esc_html($theme_row->lightbox_hit_margin); ?>;
         padding: <?php echo esc_html($theme_row->lightbox_hit_padding); ?>;
-        <?php echo ($theme_row->lightbox_ctrl_btn_pos == 'top' && $theme_row->lightbox_hit_pos == 'top') ? 'top: ' . esc_html(($theme_row->lightbox_ctrl_btn_height + 2 * $theme_row->lightbox_ctrl_btn_margin_top)) . 'px;' : '' ?>
+        <?php echo ($theme_row->lightbox_ctrl_btn_pos == 'top' && $theme_row->lightbox_hit_pos == 'top') ? 'top: ' . esc_html((floatval($theme_row->lightbox_ctrl_btn_height) + 2 * floatval($theme_row->lightbox_ctrl_btn_margin_top))) . 'px;' : '' ?>
       }
       .bwg_image_hits,
       .bwg_image_hits * {
@@ -503,10 +503,10 @@ class BWGViewGalleryBox {
         font-weight: <?php echo esc_html($theme_row->lightbox_hit_font_weight); ?>;
       }
       .bwg_image_info {
-        background: rgba(<?php echo esc_html($rgb_bwg_image_info_bg_color['red']); ?>, <?php echo esc_html($rgb_bwg_image_info_bg_color['green']); ?>, <?php echo esc_html($rgb_bwg_image_info_bg_color['blue']); ?>, <?php echo number_format($theme_row->lightbox_info_bg_transparent / 100, 2, ".", ""); ?>);
+        background: rgba(<?php echo esc_html($rgb_bwg_image_info_bg_color['red']); ?>, <?php echo esc_html($rgb_bwg_image_info_bg_color['green']); ?>, <?php echo esc_html($rgb_bwg_image_info_bg_color['blue']); ?>, <?php echo number_format(floatval($theme_row->lightbox_info_bg_transparent) / 100, 2, ".", ""); ?>);
         border: <?php echo esc_html($theme_row->lightbox_info_border_width); ?>px <?php echo esc_html($theme_row->lightbox_info_border_style); ?> #<?php echo esc_html($theme_row->lightbox_info_border_color); ?>;
         border-radius: <?php echo esc_html($theme_row->lightbox_info_border_radius); ?>;
-        <?php echo ((!$params['popup_enable_filmstrip'] || $theme_row->lightbox_filmstrip_pos != 'bottom') && $theme_row->lightbox_ctrl_btn_pos == 'bottom' && $theme_row->lightbox_info_pos == 'bottom') ? 'bottom: ' . esc_html(($theme_row->lightbox_ctrl_btn_height + 2 * $theme_row->lightbox_ctrl_btn_margin_top) . 'px;') : '' ?>
+        <?php echo ((!$params['popup_enable_filmstrip'] || $theme_row->lightbox_filmstrip_pos != 'bottom') && $theme_row->lightbox_ctrl_btn_pos == 'bottom' && $theme_row->lightbox_info_pos == 'bottom') ? 'bottom: ' . esc_html((floatval($theme_row->lightbox_ctrl_btn_height) + 2 * floatval($theme_row->lightbox_ctrl_btn_margin_top)) . 'px;') : '' ?>
         <?php if ($params['popup_info_full_width']) { ?>
         width: 100%;
         <?php } else { ?>
@@ -514,7 +514,7 @@ class BWGViewGalleryBox {
         margin: <?php echo esc_html($theme_row->lightbox_info_margin); ?>;
         <?php } ?>
         padding: <?php echo esc_html($theme_row->lightbox_info_padding); ?>;
-        <?php echo esc_html(((!$params['popup_enable_filmstrip'] || $theme_row->lightbox_filmstrip_pos != 'top') && $theme_row->lightbox_ctrl_btn_pos == 'top' && $theme_row->lightbox_info_pos == 'top') ? 'top: ' . ($theme_row->lightbox_ctrl_btn_height + 2 * $theme_row->lightbox_ctrl_btn_margin_top) . 'px;' : ''); ?>
+        <?php echo esc_html(((!$params['popup_enable_filmstrip'] || $theme_row->lightbox_filmstrip_pos != 'top') && $theme_row->lightbox_ctrl_btn_pos == 'top' && $theme_row->lightbox_info_pos == 'top') ? 'top: ' . (floatval($theme_row->lightbox_ctrl_btn_height) + 2 * floatval($theme_row->lightbox_ctrl_btn_margin_top)) . 'px;' : ''); ?>
         word-break : break-word;
       }
       .bwg_image_title,
@@ -538,9 +538,9 @@ class BWGViewGalleryBox {
         vertical-align: <?php echo esc_html($theme_row->lightbox_rate_pos); ?>;
       }
       .bwg_image_rate {
-        <?php echo esc_html(($theme_row->lightbox_ctrl_btn_pos == 'bottom' && $theme_row->lightbox_rate_pos == 'bottom') ? 'bottom: ' . ($theme_row->lightbox_ctrl_btn_height + 2 * $theme_row->lightbox_ctrl_btn_margin_top) . 'px;' : ''); ?>
+        <?php echo esc_html(($theme_row->lightbox_ctrl_btn_pos == 'bottom' && $theme_row->lightbox_rate_pos == 'bottom') ? 'bottom: ' . (floatval($theme_row->lightbox_ctrl_btn_height) + 2 * floatval($theme_row->lightbox_ctrl_btn_margin_top)) . 'px;' : ''); ?>
         padding: <?php echo esc_html($theme_row->lightbox_rate_padding); ?>;
-        <?php echo esc_html(($theme_row->lightbox_ctrl_btn_pos == 'top' && $theme_row->lightbox_rate_pos == 'top') ? 'top: ' . ($theme_row->lightbox_ctrl_btn_height + 2 * $theme_row->lightbox_ctrl_btn_margin_top) . 'px;' : ''); ?>
+        <?php echo esc_html(($theme_row->lightbox_ctrl_btn_pos == 'top' && $theme_row->lightbox_rate_pos == 'top') ? 'top: ' . (floatval($theme_row->lightbox_ctrl_btn_height) + 2 * floatval($theme_row->lightbox_ctrl_btn_margin_top)) . 'px;' : ''); ?>
       }
       #bwg_rate_form .bwg_hint,
       #bwg_rate_form .bwg-icon-<?php echo esc_attr($theme_row->lightbox_rate_icon); ?>,
@@ -1078,6 +1078,8 @@ class BWGViewGalleryBox {
 								<p><span class="bwg_comment_error bwg_comment_privacy_policy_error"></span></p>
 								<?php } ?>
 								<p>
+					      <?php wp_nonce_field( 'comment', 'bwg_nonce' ); ?>
+                <p><span class="bwg_comment_error bwg_comment_nonce_error"></span></p>
 								<input <?php echo ($privacy_policy_url) ? 'disabled="disabled"' : ''; ?> onclick="bwg_add_comment(); return false;" ontouchend="bwg_add_comment(); return false;" class="bwg_submit <?php echo ($privacy_policy_url) ? 'bwg-submit-disabled' : ''; ?>" type="submit"
 									 name="bwg_submit" id="bwg_submit" value="<?php echo __('Submit', 'photo-gallery'); ?>" />
 								</p>
@@ -1425,7 +1427,7 @@ class BWGViewGalleryBox {
 		  <span class="bwg_comment_date"><?php echo esc_html($row->date); ?></span>
 		</p>
 		<div class="bwg_comment_body_p">
-		  <span class="bwg_comment_body"><?php echo html_entity_decode(wpautop($row->comment)); ?></span>
+		  <span class="bwg_comment_body"><?php echo wp_kses_post(html_entity_decode(wpautop($row->comment))); ?></span>
 		</div>
   </div>
     <?php

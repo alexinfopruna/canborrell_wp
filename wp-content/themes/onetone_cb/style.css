@@ -16,8 +16,6 @@ Template: onetone
 
 .coronavirus{
 /*max-width:500px;*/
-margin: 10px auto;
-/*margin-top:10px;*/
 padding:25px;
 border:white solid 1px;
 }
@@ -40,7 +38,6 @@ ul.carta td, ul.carta table{
 }
 
 .tab-pane ul.carta li:before{
-    /*content: "\f14a \0000a0";*/
     content: "";
 }
 @media  (max-width: 999px) {
@@ -161,11 +158,6 @@ h6.infantil{font-size:13px;}
 }
 
 
-/* .site-tagline{
-  //  font-size: 16px;
-  //    position: relative;
-  //  top: -8px;
-} */
 
 .logo-left .logo-box {
     float: left;
@@ -175,14 +167,7 @@ h6.infantil{font-size:13px;}
 .widget-box.calendari_reserves{
     margin-bottom: 0;
 }
-/*
-#calendari-header{
-    position: fixed;
-    top: -5px;
-    right: 125px;
-    z-index: 99;
-}
-*/
+
 #calendari-header {
     position: absolute;
     top: 3px;
@@ -190,11 +175,7 @@ h6.infantil{font-size:13px;}
     z-index: 99;
 
 }
-/*
-.navbar-form{
-     margin-top: 0px; 
-}
-*/
+
 
 #top-datepicker{
     background-color:      #5CB85C;
@@ -381,13 +362,7 @@ section.title-left{background-color: #eee;}
 .tab-pane ul{
     padding-top: 35px;
 }
-/*
-.tab-pane.fade{
-       opacity: 1 !important;
-    filter: Alpha(opacity=1)  !important;;
-    transform: scale(1.05) !important;;
-} 
-*/
+
 @media (max-width: 1140px){
     .site-tagline {
         display:none;
@@ -534,7 +509,6 @@ h3.entry-title{
 
 .ui-dialog .ui-dialog-titlebar-close span {
     margin: -8px -8px;
-    /* margin: inherit; */
 }
 
  a.bt:focus{color:white;}
@@ -542,7 +516,6 @@ h3.entry-title{
 
 .d-mes, .d-menys {
     height: inherit;
-    /* height: 18px; */
     background-color: #F1F1F1;
     background-image:   none;
     cursor: pointer;
@@ -584,7 +557,7 @@ ul.carta li:before,
 }
 
 
-/**/
+
 .caixa-negre{
     color:white;
     background-color: #333;
@@ -600,12 +573,7 @@ ul.carta li:before,
     font-weight: bold;
     font-size:1.2em;
 }
-/*
-.preu:after {
-        content: "\0000a0\f153 \0000a0";
-        font-family: FontAwesome;
-}
-*/
+
 
 
 /***************vGALERIA ********************/
@@ -648,27 +616,7 @@ ul.carta li:before,
 .img-box i.fa.fa-link:after{
     font-family:  'Poppins', 'Open Sans', sans-serif;
 }
-/*
-.col-md-4:nth-child(1) i.fa.fa-link:after{
-        content: " Exterior";
-        
-}
- .col-md-4:nth-child(2) i.fa.fa-link:after{
-        content: " Menjadors";
-}
- .col-md-4:nth-child(3) i.fa.fa-link:after{
-        content: " Cuina";
-}
-#gallery .row:nth-child(4)  .col-md-4:nth-child(1) i.fa.fa-link:after{
-        content: " Graella";
-}
-#gallery  .row:nth-child(4) .col-md-4:nth-child(2) i.fa.fa-link:after{
-        content: " Equip";
-}
-#gallery  .row:nth-child(4) .col-md-4:nth-child(3) i.fa.fa-link:after{
-        content: " Plats";
-}
-*/
+
 .dotted {
     padding: 2.25em 1.6875em;
     background-image: -webkit-repeating-radial-gradient(center center, rgba(0,0,0,.8), rgba(0,0,0,.8) 1px, transparent 1px, transparent 100%);
@@ -706,15 +654,7 @@ section.home-section-1{
     max-height:80% ;
 }
 
-/*
-section.home-section-1{
-      background-color: black;
-      background: black;
- }
-#wrapper_mbYTP_onetone-youtube-video{
-    z-index:1 !important;
-}
-*/
+
 .magee-feature-box h3 {
     font-weight: bold;
 }
@@ -876,25 +816,6 @@ span.llista{
 .well-center img{float:none;
                  display:inline-block;}
 
-/*
-.page-horari-general-de-cuina .col-main,
-.single-menus .col-main,
-.page-template-page_excursions_template-php .col-main,
-.page-template-page_historia_template-php .col-main{  
-                                                      min-height: 20px;
-                                                      padding: 19px;
-                                                      margin-bottom: 20px;
-                                                      background-color: #f5f5f5;
-                                                      border: 1px solid #e3e3e3;
-                                                      border-radius: 4px;
-                                                      -webkit-box-shadow: inset 0 1px 1px rgba(0,0,0,.05);
-                                                      box-shadow: inset 0 1px 1px rgba(0,0,0,.05);
-
-}
-
-*/
-
-
 
 .menus-informaciosobre-els-menus img{margin-left:75px;}
 
@@ -933,19 +854,6 @@ span.llista{
     font-size: 30px !important;
     text-decoration: underline;
 }
-/*
-.entry-title:before{
-        content:url(/wp-content/uploads/assets/filigrana12.png);
-         margin:20px;
-}
-
-.entry-title:after{
-        content:url(/wp-content/uploads/assets/filigrana11.png);
-        margin:20px;
-}
-*/
-
-
 
 
 /*************** PREMSA ****************/
@@ -1070,24 +978,6 @@ span.llista{
     font-family: FontAwesome;
 }
 
-/*
-#ressenya a:hover{color:#CCC;}
-
-#ressenya .btn-success {
-    margin-top:10px;
-    float:right;
-    text-align: right;
-    color: #fff;
-    background-color: #222;
-    border-color: #333;
-}
-
-#ressenya .btn-success:hover {
-    color: #fff;
-    background-color: #333;
-    border-color: #000;
-}
-*/
 
 /************ HOME *************************/
 /************ HOME *************************/
@@ -1160,7 +1050,6 @@ body.home{
 }
 
 #gallery img{
-    /*  filter:contrast(200%) brightness(150%);*/
 }
 
 #gallery .img-frame.rounded{
@@ -1239,6 +1128,20 @@ body.page-template-page-reserva-grups .label{
     white-space: normal; 
 }
 
+.info-legal input{
+        display: inline;
+}
+
+.info-legal label{
+    display: inline;
+    margin-left: 7px;
+    color: #333;
+    text-align: left;
+    font-size: 14px;
+    white-space: normal;
+}
+
+
 #form-reserves input.coberts{
     background-color:white;
     border:#333 solid 1px;
@@ -1259,11 +1162,9 @@ body.page-template-page-reserva-grups .label{
 
 .reservar .ui-state-active{
     background:#8E7252; 
-    /*background:#B8BF00; */
 }
 .reservar .ui-state-default:hover{
     background:#BD7E22; 
-    /* background:#94A903; */
 }
 
 
@@ -1331,14 +1232,6 @@ section.home-section-1 .home-section-content, section.home-section-1 p{
      padding:15px;
 }
 
-/*.btn-md {
-    font-size: 0.7em;
-    background-color: black;
-    color: white;
-}*/
-
-
-/*.site-tagline{font-size: 19px;}*/
 
 .home-section-1 .magee-btn-normal{
 	padding:.5em;
@@ -1391,37 +1284,6 @@ input.wpcf7-submit{
 .alergogens-mos{background-position: -120px -90px;}
 .alergogens-pes{background-position: -150px -90px;}
 .alergogens-soj{background-position: -180px -90px;}
-/*
-.alergogens{
-	position:relative;
-	top:9px;
-	display:inline-flex;
-	width:30px;
-	height:30px;
-	background-color:red;
-        margin-left: 10px;
-	//background:url(/wp-content/themes/onetone_cb/img/alergogens2.png) -160px -80px;
-	background:url(/wp-content/themes/onetone_cb/img/alergenos.jpg) -160px -80px;
-}
-
-
-
-
-.alergogens-glu{background-position: -0px -0px;}
-.alergogens-cru{background-position: -30px -0px;}
-.alergogens-hue{background-position: -60px -0px;}
-.alergogens-pes{background-position: -90px -0px;}
-.alergogens-cac{background-position: -120px -0px;}
-.alergogens-soj{background-position: -150px -0px;}
-.alergogens-lac{background-position: -180px -0px;}
-.alergogens-fru{background-position: -0px -90px;}
-.alergogens-api{background-position: -30px -90px;}
-.alergogens-mos{background-position: -60px -90px;}
-.alergogens-gra{background-position: -90px -90px;}
-.alergogens-dio{background-position: -120px -90px;}
-.alergogens-alt{background-position: -150px -90px;}
-.alergogens-mol{background-position: -180px -90px;}
-*/
 
 
 #carta-seccions li.ui-tabs-active{
@@ -1446,7 +1308,6 @@ section.home-section-1 .home-section-content, section.home-section-1 p{
 
 /* COMPLEMENTS */
 .dots { 
- /* background: url('img/dot.gif') repeat-x bottom; */
 }
 .field {
   background-color: #FFFFFF;
@@ -1494,5 +1355,4 @@ float:left;
 }
 
 .single-menus img{
-    /*border-radius: 50%;*/
 }

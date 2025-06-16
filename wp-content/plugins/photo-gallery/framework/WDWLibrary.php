@@ -2008,7 +2008,7 @@ class WDWLibrary {
     }
     foreach ( array( 'title', 'caption', 'credit', 'copyright', 'camera', 'iso' ) as $key ) {
       if ( $meta[ $key ] && ! seems_utf8( $meta[ $key ] ) ) {
-        $meta[ $key ] = utf8_encode( $meta[ $key ] );
+        $meta[ $key ] = mb_convert_encoding( $meta[ $key ], 'UTF-8', 'auto' );
       }
     }
     foreach ( $meta as &$value ) {

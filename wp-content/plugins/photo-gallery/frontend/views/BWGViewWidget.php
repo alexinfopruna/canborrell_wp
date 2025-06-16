@@ -7,7 +7,7 @@ class BWGViewWidgetFrontEnd {
   }
 
   public function view_tags($params = array()) {
-    $current_url = isset($_SERVER['REQUEST_URI']) ? sanitize_url($_SERVER['REQUEST_URI']) : '';
+    $current_url = isset($_SERVER['REQUEST_URI']) ? esc_url($_SERVER['REQUEST_URI']) : '';
     $type = isset($params["type"]) ? $params["type"] : 'text';
     $bwg = isset($params["bwg"]) ? $params["bwg"] : 0;
     $show_name = isset($params["show_name"]) ? $params["show_name"] : 0;

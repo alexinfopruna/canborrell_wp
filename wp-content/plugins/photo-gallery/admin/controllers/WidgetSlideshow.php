@@ -92,17 +92,17 @@ class WidgetSlideshowController_bwg extends WP_Widget {
 
 	// Update Settings.
 	public function update($new_instance, $old_instance) {
-		$instance['title'] = isset($new_instance['title']) ? strip_tags($new_instance['title']) : '';
-		$instance['gallery_id'] = isset($new_instance['gallery_id']) ? $new_instance['gallery_id'] : 0;
-		$instance['width'] = isset($new_instance['width']) ? $new_instance['width'] : 200;
-		$instance['height'] = isset($new_instance['height']) ? $new_instance['height'] : 200;
-		$instance['filmstrip_height'] = isset($new_instance['filmstrip_height']) ? $new_instance['filmstrip_height'] : 40;
-		$instance['effect'] = isset($new_instance['effect']) ? $new_instance['effect'] : 'fade';
-		$instance['interval'] = isset($new_instance['interval']) ? $new_instance['interval'] : 5;
-		$instance['shuffle'] = isset($new_instance['shuffle']) ? $new_instance['shuffle'] : 0;
-		$instance['theme_id'] = isset($new_instance['theme_id']) ? $new_instance['theme_id'] : 1;
-		$instance['enable_ctrl_btn'] = isset($new_instance['enable_ctrl_btn']) ? $new_instance['enable_ctrl_btn'] : 0;
-		$instance['enable_autoplay'] = isset($new_instance['enable_autoplay']) ? $new_instance['enable_autoplay'] : 0;
+		$instance['title'] = isset($new_instance['title']) ? strip_tags(esc_html($new_instance['title'])) : '';
+		$instance['gallery_id'] = isset($new_instance['gallery_id']) ? intval($new_instance['gallery_id']) : 0;
+		$instance['width'] = isset($new_instance['width']) ? intval($new_instance['width']) : 200;
+		$instance['height'] = isset($new_instance['height']) ? intval($new_instance['height']) : 200;
+		$instance['filmstrip_height'] = isset($new_instance['filmstrip_height']) ? intval($new_instance['filmstrip_height']) : 40;
+		$instance['effect'] = isset($new_instance['effect']) ? esc_html($new_instance['effect']) : 'fade';
+		$instance['interval'] = isset($new_instance['interval']) ? intval($new_instance['interval']) : 5;
+		$instance['shuffle'] = isset($new_instance['shuffle']) ? intval($new_instance['shuffle']) : 0;
+		$instance['theme_id'] = isset($new_instance['theme_id']) ? intval($new_instance['theme_id']) : 1;
+		$instance['enable_ctrl_btn'] = isset($new_instance['enable_ctrl_btn']) ? intval($new_instance['enable_ctrl_btn']) : 0;
+		$instance['enable_autoplay'] = isset($new_instance['enable_autoplay']) ? intval($new_instance['enable_autoplay']) : 0;
 		return $instance;
 	}
 }

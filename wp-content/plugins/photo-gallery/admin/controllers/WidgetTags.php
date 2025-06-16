@@ -77,17 +77,17 @@ class WidgetTagsController_bwg extends WP_Widget {
    * @return mixed
    */
 	public function update($new_instance, $old_instance) {
-		$instance['title'] = isset($new_instance['title']) ? strip_tags($new_instance['title']) : '';
-		$instance['type'] = isset($new_instance['type']) ? $new_instance['type'] : 'text';
-		$instance['show_name'] = isset($new_instance['show_name']) ? $new_instance['show_name'] : 0;
-		$instance['open_option'] = isset($new_instance['open_option']) ? $new_instance['open_option'] : 'gallery';
-		$instance['count'] = isset($new_instance['count']) ? $new_instance['count'] : 0;
-		$instance['width'] = isset($new_instance['width']) ? $new_instance['width'] : 250;
-		$instance['height'] = isset($new_instance['height']) ? $new_instance['height'] : 250;
-		$instance['background_transparent'] = isset($new_instance['background_transparent']) ? $new_instance['background_transparent'] : 1;
-		$instance['background_color'] = isset($new_instance['background_color']) ? $new_instance['background_color'] : '000000';
-		$instance['text_color'] = isset($new_instance['text_color']) ? $new_instance['text_color'] : 'eeeeee';
-		$instance['theme_id'] = isset($new_instance['theme_id']) ? $new_instance['theme_id'] : 1;
+		$instance['title'] = isset($new_instance['title']) ? strip_tags(esc_html($new_instance['title'])) : '';
+		$instance['type'] = isset($new_instance['type']) ? esc_html($new_instance['type']) : 'text';
+		$instance['show_name'] = isset($new_instance['show_name']) ? intval($new_instance['show_name']) : 0;
+		$instance['open_option'] = isset($new_instance['open_option']) ? esc_html($new_instance['open_option']) : 'gallery';
+		$instance['count'] = isset($new_instance['count']) ? intval($new_instance['count']) : 0;
+		$instance['width'] = isset($new_instance['width']) ? intval($new_instance['width']) : 250;
+		$instance['height'] = isset($new_instance['height']) ? intval($new_instance['height']) : 250;
+		$instance['background_transparent'] = isset($new_instance['background_transparent']) ? esc_html($new_instance['background_transparent']) : 1;
+		$instance['background_color'] = isset($new_instance['background_color']) ? esc_html($new_instance['background_color']) : '000000';
+		$instance['text_color'] = isset($new_instance['text_color']) ? esc_html($new_instance['text_color']) : 'eeeeee';
+		$instance['theme_id'] = isset($new_instance['theme_id']) ? intval($new_instance['theme_id']) : 1;
 		return $instance;
 	}
 }

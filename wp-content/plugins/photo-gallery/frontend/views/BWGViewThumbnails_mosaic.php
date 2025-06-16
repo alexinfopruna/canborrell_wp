@@ -208,7 +208,7 @@ class BWGViewThumbnails_mosaic extends BWGViewSite {
 				-webkit-box-sizing: content-box !important;
 				box-sizing: content-box !important;
 				margin: 0;
-				opacity: <?php echo number_format($theme_row->mosaic_thumb_transparent / 100, 2, ".", ""); ?>;
+				opacity: <?php echo number_format(floatval($theme_row->mosaic_thumb_transparent) / 100, 2, ".", ""); ?>;
 			}
 
       #bwg_container1_<?php echo esc_attr($bwg); ?> #bwg_container2_<?php echo esc_attr($bwg); ?> .bwg_mosaic_thumb_spun_<?php echo esc_attr($bwg); ?>:hover {
@@ -320,7 +320,7 @@ class BWGViewThumbnails_mosaic extends BWGViewSite {
 
       .bwg_mosaic_play_icon_<?php echo esc_attr($bwg); ?> {
         color: #<?php echo esc_html($theme_row->mosaic_thumb_title_font_color); ?>;
-        font-size: <?php echo esc_html(2 * $theme_row->mosaic_thumb_title_font_size); ?>px;
+        font-size: <?php echo esc_html(2 * floatval($theme_row->mosaic_thumb_title_font_size)); ?>px;
         vertical-align: middle;
         display: table-cell !important;
         z-index: 1;

@@ -26,7 +26,7 @@ if (!defined('LLISTA_NITS_NEGRA'))
   define("LLISTA_NITS_NEGRA", ROOT . INC_FILE_PATH . "bloq_nit.txt");
 if (!defined('LLISTA_DIES_BLANCA'))
   define("LLISTA_DIES_BLANCA", ROOT . INC_FILE_PATH . "llista_dies_blanca.txt");
-if (!defined('xº'))
+if (!defined('TPV_CONFIG_FILE'))
   define("TPV_CONFIG_FILE", "TPV256_test.php");
 
 require_once(ROOT . "gestor_reserves.php");

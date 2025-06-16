@@ -90,7 +90,7 @@ class TenWebNewLibNotices {
                                 <p class="wd-notice-title">' . $admin_display_title . '</p>
                                 <p class="wd-notice-body">' . $admin_display_msg . '</p>
                                 <ul class="wd-notice-body wd-blue">' . $admin_display_link . '</ul>
-                                <a href="' . $query_str . '" class="dashicons dashicons-dismiss"></a>
+                                <a href="' . esc_url($query_str) . '" class="dashicons dashicons-dismiss"></a>
                               </div>';
           }
           else {
@@ -99,7 +99,7 @@ class TenWebNewLibNotices {
             echo '<ul class="notice-body-promo blue">
                                     ' . $admin_display_link . '
                                   </ul>';
-            echo '<a href="' . $query_str . '" class="dashicons dashicons-dismiss close-promo"></a>';
+            echo '<a href="' . esc_url($query_str) . '" class="dashicons dashicons-dismiss close-promo"></a>';
             echo '</div>';
           }
           $this->notice_spam += 1;

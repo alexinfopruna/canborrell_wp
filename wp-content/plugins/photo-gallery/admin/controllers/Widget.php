@@ -75,16 +75,16 @@ class WidgetController_bwg extends WP_Widget {
    * @return mixed
    */
 	public function update($new_instance, $old_instance) {
-		$instance['title'] = isset($new_instance['title']) ? strip_tags($new_instance['title']) : '';
-		$instance['type'] = isset($new_instance['type']) ? $new_instance['type'] : 'gallery';
-		$instance['gallery_id'] = isset($new_instance['gallery_id']) ? $new_instance['gallery_id'] : 0;
-		$instance['album_id'] = isset($new_instance['album_id']) ? $new_instance['album_id'] : 0;
-		$instance['show'] = isset($new_instance['show']) ? $new_instance['show'] : 'random';
-		$instance['count'] = isset($new_instance['count']) ? $new_instance['count'] : 4;
-		$instance['width'] = isset($new_instance['width']) ? $new_instance['width'] : 100;
-		$instance['height'] = isset($new_instance['height']) ? $new_instance['height'] : 100;
-		$instance['theme_id'] = isset($new_instance['theme_id']) ? $new_instance['theme_id'] : 1;
-		$instance['view_type'] = isset($new_instance['view_type']) ? $new_instance['view_type'] : 'thumbnails';
+		$instance['title'] = isset($new_instance['title']) ? strip_tags(esc_html($new_instance['title'])) : '';
+		$instance['type'] = isset($new_instance['type']) ? esc_html($new_instance['type']) : 'gallery';
+		$instance['gallery_id'] = isset($new_instance['gallery_id']) ? intval($new_instance['gallery_id']) : 0;
+		$instance['album_id'] = isset($new_instance['album_id']) ? intval($new_instance['album_id']) : 0;
+		$instance['show'] = isset($new_instance['show']) ? esc_html($new_instance['show']) : 'random';
+		$instance['count'] = isset($new_instance['count']) ? intval($new_instance['count']) : 4;
+		$instance['width'] = isset($new_instance['width']) ? intval($new_instance['width']) : 100;
+		$instance['height'] = isset($new_instance['height']) ? intval($new_instance['height']) : 100;
+		$instance['theme_id'] = isset($new_instance['theme_id']) ? intval($new_instance['theme_id']) : 1;
+		$instance['view_type'] = isset($new_instance['view_type']) ? esc_html($new_instance['view_type']) : 'thumbnails';
 		return $instance;
 	}
 }

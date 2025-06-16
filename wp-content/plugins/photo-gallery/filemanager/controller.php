@@ -176,8 +176,8 @@ class FilemanagerController {
    * @return mixed
    */
 	private function esc_dir($dir) {
-        $dir = str_replace(array('../', '.'), '', $dir);
-		return $dir;
+        $dir = str_replace('../', '', $dir);
+        return $dir;
 	}
 
   public function make_dir() {
