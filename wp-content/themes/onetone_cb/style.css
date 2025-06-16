@@ -160,11 +160,12 @@ h6.infantil{font-size:13px;}
     color:white;
 }
 
-.site-tagline{
+
+/* .site-tagline{
   //  font-size: 16px;
   //    position: relative;
   //  top: -8px;
-}
+} */
 
 .logo-left .logo-box {
     float: left;
@@ -245,7 +246,6 @@ color:white;
 @media (min-width: 770px){
     #calendari {
         font-size: 1.6em;
-      //  width: 450px;
     }
 }
 
@@ -258,9 +258,7 @@ color:white;
 }
 
 
-body.admin-bar #calendari-header{
-    //   top: 22px
-}
+
 
 #ui-datepicker-div{
     z-index: 10000 !important;
@@ -299,7 +297,6 @@ section.title-left{background-color: #eee;}
 	padding:0 6px;
 	border-bottom-left-radius: 4px;
 	border-bottom-right-radius: 4px;
-        //font-weight: bold;
 }
 
 .lang_selector a{
@@ -339,9 +336,7 @@ section.title-left{background-color: #eee;}
 
 
 
-.site-nav > ul {
 
-}
 .site-nav > ul > li a:hover{
     background-color: white;
     border-top-right-radius: 3px;
@@ -351,15 +346,11 @@ section.title-left{background-color: #eee;}
     background-color: rgba(215,215,215,1);
     border-top-right-radius: 3px;
     border-top-left-radius: 3px;
-    //color: #280000;
 }
 
 .fxd-header span.site-tagline{display:none;}
-.logo-left  .fxd-header .site-nav {
-    //   margin-top: 25px;
-}
+
 .logo-left .main-header .site-nav {
-    //  margin-top: 60px;
     margin-top: 52px;
 }
 .logo-left .fxd-header .site-nav {
@@ -707,9 +698,7 @@ ul.carta li:before,
 /* SECTIONS */
 
 .home-container .magee-animated{
-    //display:none;
-    //position: relative;
-    //top:-100%;
+
     visibility: hidden;
 }
 
@@ -1191,7 +1180,6 @@ body.home{
 
 #section-9 .container {
     width: 80%;
-    //background-color: rgba(255,255,255,0.3);
     border-radius: 8px;
 }
 
@@ -1201,7 +1189,6 @@ body.home{
 
 .ecp-content h1{background:#eee;color:#444;padding:10px;    font-size: 30px;}
 .ecp-content h3{
-    //display:none;
     height: 0;
     padding:0;
     margin:0;
@@ -1209,7 +1196,6 @@ body.home{
 }
 
 #contact .container h1{
-    ccborder-top: #444 solid 2px;
 }
 
 /***********************************************/
@@ -1283,13 +1269,9 @@ body.page-template-page-reserva-grups .label{
 
 label.ptpv.ui-state-active {
     background: #BD7E00;
-    /* background: #B8BF00;*/
 }
 label.ptpv.ui-state-active:hover {
     background: #BD7E22;
-    /* background: #729419;
-     background: #94A903;*/
-
 }
 #labelGrups, label[for='comGrups'] {
     font-size: 1.2em;
@@ -1298,24 +1280,13 @@ label.ptpv.ui-state-active:hover {
 
 label.ptpv {
     background: #FFC000;
-    //background: #B9D01E;
 }
 label.ptpv:hover {
     background: #FFF000;
-    /* background: #729419;
-     background: #94A903;*/
+
 }
-/*
-.number{
-    border-radius: 33px;
-    width: 52px;
-    height: 52px;
-    max-width: 52px;
-    max-height: 52px;
-    padding: 0 20px;
-    text-align: center;
-}
-*/
+
+
 .number {
     border-radius: 50%;
     float:left;
@@ -1324,7 +1295,7 @@ label.ptpv:hover {
     padding: 8px;
     margin-top: -10px;
     margin-right: 15px;
-    background:#FFC000; //#005A00;
+    background:#FFC000; 
     border: 2px solid #F3C000;
     color: #fff;
     text-align: center;
@@ -1403,7 +1374,6 @@ input.wpcf7-submit{
 	height:30px;
 	background-color:red;
         margin-left: 10px;
-	//background:url(/wp-content/themes/onetone_cb/img/alergogens2.png) -160px -80px;
 	background:url(/wp-content/themes/onetone_cb/img/alergens.png) -160px -80px;
 }
 
