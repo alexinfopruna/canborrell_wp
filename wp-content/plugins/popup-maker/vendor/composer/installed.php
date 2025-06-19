@@ -1,8 +1,8 @@
 <?php return array(
     'root' => array(
         'name' => 'popupmaker/popup-maker',
-        'pretty_version' => '1.20.2',
-        'version' => '1.20.2.0',
+        'pretty_version' => '1.20.5',
+        'version' => '1.20.5.0',
         'reference' => null,
         'type' => 'wordpress-plugin',
         'install_path' => __DIR__ . '/../../',
@@ -38,8 +38,8 @@
             'dev_requirement' => false,
         ),
         'popupmaker/popup-maker' => array(
-            'pretty_version' => '1.20.2',
-            'version' => '1.20.2.0',
+            'pretty_version' => '1.20.5',
+            'version' => '1.20.5.0',
             'reference' => null,
             'type' => 'wordpress-plugin',
             'install_path' => __DIR__ . '/../../',

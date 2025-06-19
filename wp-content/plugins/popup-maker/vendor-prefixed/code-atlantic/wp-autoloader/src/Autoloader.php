@@ -2,7 +2,7 @@
 /**
  * @license GPL-2.0+
  *
- * Modified by popupmaker on 24-September-2024 using {@see https://github.com/BrianHenryIE/strauss}.
+ * Modified by popupmaker on 30-May-2025 using {@see https://github.com/BrianHenryIE/strauss}.
  */
 /**
  * Includes the composer Autoloader used for packages and classes in the classes/ directory.

@@ -619,7 +619,7 @@ class PUM_AssetCache {
 			$theme_styles = pum_get_rendered_theme_styles( $theme->ID );
 
 			if ( '' !== $theme_styles ) {
-				$styles .= '/* Popup Theme ' . $theme->ID . ': ' . $theme->post_title . " */\r\n";
+				$styles .= '/* Popup Theme ' . esc_attr( $theme->ID ) . ': ' . esc_html( $theme->post_title ) . " */\r\n";
 				$styles .= $theme_styles . "\r\n";
 			}
 		}
@@ -669,7 +669,7 @@ class PUM_AssetCache {
 		<ul>
 			<li><a href="<?php echo esc_attr( $undo_url ); ?>"><strong><?php esc_html_e( 'Try to create cache again', 'popup-maker' ); ?></strong></a></li>
 			<li><a href="<?php echo esc_attr( $dismiss_url ); ?>" class="pum-dismiss"><?php esc_html_e( 'Keep current method', 'popup-maker' ); ?></a></li>
-			<li><a href="https://docs.wppopupmaker.com/article/521-debugging-filesystem-errors?utm_source=filesystem-error-alert&utm_medium=inline-doclink&utm_campaign=filesystem-error" target="_blank" rel="noreferrer noopener"><?php esc_html_e( 'Learn more', 'popup-maker' ); ?></a></li>
+			<li><a href="https://wppopupmaker.com/docs/problem-solving/popup-maker-detected-an-issue-with-your-file-system/?utm_source=filesystem-error-alert&utm_medium=inline-doclink&utm_campaign=filesystem-error" target="_blank" rel="noreferrer noopener"><?php esc_html_e( 'Learn more', 'popup-maker' ); ?></a></li>
 		</ul>
 		<?php
 		$html     = ob_get_clean();
