@@ -10,6 +10,7 @@ jQuery("form.contact-form #submit").click(function(){
 	var obj     = jQuery(this).parents(".contact-form");
 	var Name    = obj.find("input#name").val();
 	var Email   = obj.find("input#email").val();
+	var accept   = obj.find("input#accept").val();
 	var Message = obj.find("textarea#message").val();
 	var sendto  = obj.find("input#sendto").val();
 	var notice  = obj.find(".noticefailed");
@@ -39,6 +40,13 @@ jQuery("form.contact-form #submit").click(function(){
 		notice.html("Message is required.");
 		return false;
 	}
+
+
+	if(!accept){
+		notice.html("You must accept the privacy policy.");
+		return false;
+	}
+
 
 	notice.html("");
 	notice.append("<img alt='loading' class='loading' src='"+onetone_params.themeurl+"/images/loading.gif' />");
