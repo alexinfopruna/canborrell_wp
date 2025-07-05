@@ -61,10 +61,10 @@ global $onetone_animated;
             <input id="email" tabindex="2" name="email" size="22" type="text" value="" placeholder="<?php _e('Email', 'onetone')?>" />
             <textarea id="message" tabindex="4" cols="39" name="x-message" rows="7" placeholder="<?php _e('Message', 'onetone')?>"></textarea>
            
-           <?php _e('privacitat', 'onetone')?>
+           <?php _e('En compliment del Reglament Europeu de Protecció de Dades 2016/679 del Parlament Europeu i del Consell us demanem que accepteu la nostra <a href="#" class="privacitat">Política de Privacitat</a>.', 'onetone')?>
 
 
-          <input type="checkbox" id="myCheck" name="privacitat" required>En compliment del Reglament Europeu de Protecció de Dades 2016/679 del Parlament Europeu i del Consell us demanem que accepteu la nostra <a href="#" class="privacitat">Política de Privacitat</a>. 
+          <input type="checkbox" id="myCheck" name="privacitat" required>
 .
 
             <input id="sendto" name="sendto" type="hidden" value="<?php echo $email;?>" />
