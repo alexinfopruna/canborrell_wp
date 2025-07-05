@@ -143,7 +143,8 @@ $translate['RESERVA_CANCELADA']='<div id="error_login" style="text-align:center;
 Gràcies per utilitzar aquest servei</div>';
 
 $translate['ESBORRA_DADES']="<em>Desitjo que les meves dades siguin eliminades de la base de dades de Can Borrell després de la data de la reserva (per reserves futures els tornaràs a introduïr)</em>";
-$translate['privacitat']="Accepto la <a href='#' class='privacitat'>política de privacitat</a>*";ate['Cadira de rodes']="Mobilitat reduïda";
+$translate['privacitat']="Accepto la <a href='#' class='privacitat'>política de privacitat</a>* ";
+$translate['Cadira de rodes']="Mobilitat reduïda";
 $translate['Mobilitat reduïda']="Mobilitat reduïda";
 $translate['Algú amb mobilitat reduïda']="Mobilitat reduïda";
 $translate['Necessites ajuda?']="Necessites ajuda?";
