@@ -1038,7 +1038,7 @@ class Gestor {
     // Se crea Objeto
     $miObj = new RedsysAPI;
     // Se Rellenan los campos
-    //$miObj->setParameter("Enviroment", 'REAL'); // REAL o TEST
+    $miObj->setParameter("Enviroment", 'REAL'); // REAL o TEST
     $miObj->setParameter("DS_MERCHANT_ORDER", strval($id));
     $miObj->setParameter("DS_MERCHANT_MERCHANTCODE", $fuc);
     $miObj->setParameter("DS_MERCHANT_CURRENCY", $moneda);
