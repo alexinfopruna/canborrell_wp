@@ -474,6 +474,8 @@ if ($testTPV) {
   echo "<br>url $url";
   echo "<br>urlMerchant $urlMerchant";
   echo "</div>";
+
+  die();
 }
 ?>
 

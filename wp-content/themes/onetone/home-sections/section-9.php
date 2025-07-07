@@ -57,6 +57,8 @@ global $onetone_animated;
          <div class="<?php echo $onetone_animated;?>" data-animationduration="0.9" data-animationtype="fadeIn" data-imageanimation="no">
          <div class="contact-area">
 <form class="contact-form" action="" method="post">
+     
+            
             <input id="name" tabindex="1" name="name" size="22" type="text" value="" placeholder="<?php _e('Name', 'onetone')?>" />
             <input id="email" tabindex="2" name="email" size="22" type="text" value="" placeholder="<?php _e('Email', 'onetone')?>" />
             <textarea id="message" tabindex="4" cols="39" name="x-message" rows="7" placeholder="<?php _e('Message', 'onetone')?>"></textarea>
