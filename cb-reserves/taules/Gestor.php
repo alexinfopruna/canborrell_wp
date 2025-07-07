@@ -1024,7 +1024,7 @@ class Gestor {
 
     $file = ROOT . INC_FILE_PATH . TPV_CONFIG_FILE;
     $cla = substr($clave256, 0, 5);;
-////    $this->xgreg_log(">>>> DADES TPV ($file) >>  FUC:$fuc MONEDA:$moneda TRANSACTION:$trans URL: $url CLAVE:$cla", 0, LOG_FILE_TPVPK, TRUE);
+    $this->xgreg_log(">>>> DADES TPV ($file) >>  FUC:$fuc MONEDA:$moneda TRANSACTION:$trans URL: $url CLAVE:$cla", 0, LOG_FILE_TPVPK, TRUE);
 /////echo nl2br(file_get_contents( $file ));die(); // get the contents, and echo it out.
 
 
