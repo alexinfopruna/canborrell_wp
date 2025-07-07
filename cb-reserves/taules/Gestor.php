@@ -1024,7 +1024,7 @@ class Gestor {
 
     $file = TPV_CONFIG_FILE;
     $cla = substr($clave256, 0, 5);;
-    $this->xgreg_log("DADES TPV ($file) >>  FUC:$fuc MONEDA:$moneda TRANSACTION:$trans CLAVE:$$cla", 0, LOG_FILE_TPVPK, TRUE);
+    $this->xgreg_log(">>>> DADES TPV ($file) >>  FUC:$fuc MONEDA:$moneda TRANSACTION:$trans CLAVE:$$cla", 0, LOG_FILE_TPVPK, TRUE);
 
 
 
