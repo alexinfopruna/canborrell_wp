@@ -1021,16 +1021,20 @@ class Gestor {
     // Valores de entrada del ejemplo de redsy
     //$fuc="999008881";$terminal="871";$moneda="978";$trans="0";//$url="";$urlMerchant="";$urlOKKO="";$urlKO="";$urlOK="";$id=time();$amount="145";
     // Se incluye la librería
+    $this->xgreg_log("DADES TPV FUC:$fuc MONEDA:$moneda TRANSACTION:$trans CLAVE:$clave256", 0, LOG_FILE_TPVPK, TRUE);
+
+
+
     include ROOT.INC_FILE_PATH . 'API_PHP/redsysHMAC256_API_PHP_5.2.0/apiRedsys.php';
    
-    if( intval($_SESSION['uSer']->id) ==2 && $tpv_ok_callback=="reserva_pk_tpv_ok_callback") $trans=0;
-   if( $tpv_ok_callback=="reserva_pk_tpv_ok_callback") $trans=0;
-   else $trans=0; // reserva de grups
+    if( intval($_SESSION['uSer']->id) ==2 && $tpv_ok_callback=="reserva_pk_tpv_ok_callback") $trans=7;
+   if( $tpv_ok_callback=="reserva_pk_tpv_ok_callback") $trans=7;
+   else $trans=7; // reserva de grups
     
     // Se crea Objeto
     $miObj = new RedsysAPI;
     // Se Rellenan los campos
-    $miObj->setParameter("DS_MERCHANT_AMOUNT", $amount);
+    $miObj->setParameter("Enviroment", 'REAL'); // REAL o TEST
     $miObj->setParameter("DS_MERCHANT_ORDER", strval($id));
     $miObj->setParameter("DS_MERCHANT_MERCHANTCODE", $fuc);
     $miObj->setParameter("DS_MERCHANT_CURRENCY", $moneda);
