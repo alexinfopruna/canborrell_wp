@@ -1022,7 +1022,7 @@ class Gestor {
     //$fuc="999008881";$terminal="871";$moneda="978";$trans="0";//$url="";$urlMerchant="";$urlOKKO="";$urlKO="";$urlOK="";$id=time();$amount="145";
     // Se incluye la librería
 
-    $file = TPV_CONFIG_FILE;
+    $file = ROOT . INC_FILE_PATH . TPV_CONFIG_FILE;
     $cla = substr($clave256, 0, 5);;
     $this->xgreg_log(">>>> DADES TPV ($file) >>  FUC:$fuc MONEDA:$moneda TRANSACTION:$trans URL: $url CLAVE:$cla", 0, LOG_FILE_TPVPK, TRUE);
 
