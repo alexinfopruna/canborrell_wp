@@ -242,8 +242,8 @@ function mail_SMS_cli($id=false,$SMS=null)
 	
 	$avui=date("d/m/Y");
 	$ara=date("H:i");
-	$file = "templates/mail_cli.lbi";
-	//$file = getcwd(). "/templates/mail_cli.lbi";
+	//$file = "templates/mail_cli.lbi";
+	$file = getcwd(). "/templates/mail_cli.lbi";
 	//$file = ROOT."../editar/templates/mail_cli.lbi";
 
 	
