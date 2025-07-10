@@ -242,7 +242,8 @@ function mail_SMS_cli($id=false,$SMS=null)
 	
 	$avui=date("d/m/Y");
 	$ara=date("H:i");
-	$file = getcwd(). "/templates/mail_cli.lbi";
+	$file = "templates/mail_cli.lbi";
+	//$file = getcwd(). "/templates/mail_cli.lbi";
 	//$file = ROOT."../editar/templates/mail_cli.lbi";
 
 	
@@ -266,7 +267,7 @@ function mail_SMS_cli($id=false,$SMS=null)
 			$t->set_var('confirlink',$mulink);
 			$t->set_var('cancelink',$mulink);
     }
-                                                                                    $t->set_var('self',$file);
+            $t->set_var('self',$file);
 			$t->set_var('avui',$avui);
 			$t->set_var('titol',$txt[$v][$lang]);
 			$t->set_var('text1',$txt[$v+1][$lang]);

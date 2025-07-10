@@ -92,6 +92,5 @@ header('Content-Type: text/html; charset=UTF-8');
 		}
 	$reserva_navegador=$_SERVER['HTTP_USER_AGENT'];
 	$_POST['reserva_navegador']=$reserva_navegador;
-	
 	include ("reserves.php");
 ?>

@@ -19,4 +19,4 @@ echo $trans;
 
 require (ROOT . "../reservar/Gestor_form.php");
 $gestorf = new Gestor_form();
-echo $gestorf->generaFormTpvSHA256_v2(substr(time(),6,6), 0.1, "Test TPV", "reserva_pk_tpv_ok_callback");
+echo $gestorf->generaFormTpvSHA256(substr(time(),6,6), 0.1, "Test TPV", "reserva_pk_tpv_ok_callback");
