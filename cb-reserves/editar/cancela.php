@@ -89,7 +89,7 @@ function mail_restaurant($id=false)
 	
 	$avui=date("d/m/Y");
 	$ara=date("H:i");
-	$file=getcwd(). "/templates/cancel_rest.lbi";
+	$file = Gestor::getcwdwin(). "/templates/cancel_rest.lbi";
 	//$file = ROOT."../editar/templates/cancel_rest.lbi";
 
 	

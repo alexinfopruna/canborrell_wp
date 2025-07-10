@@ -1407,6 +1407,12 @@ EOHTML;
     return $test;
   }
 
+  public static function getcwdwin() {
+    if (DIRECTORY_SEPARATOR === '/') return getcwd();
+
+    return "./";
+  }
+
 }
 
 ///CLASS

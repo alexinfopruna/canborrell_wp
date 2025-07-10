@@ -195,7 +195,7 @@ function mail_cli($id = false, $plantilla = "templates/recordatori_cli.lbi") {
   $avui = date("d/m/Y");
   $ara = date("H:i");
 
-  $file = getcwd()."/".$plantilla;
+  $file = Gestor::getcwdwin()."/".$plantilla;
 	//$file = ROOT."../editar/$plantilla";
 
 

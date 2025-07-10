@@ -243,7 +243,7 @@ function mail_SMS_cli($id=false,$SMS=null)
 	$avui=date("d/m/Y");
 	$ara=date("H:i");
 	//$file = "templates/mail_cli.lbi";
-	$file = getcwd(). "/templates/mail_cli.lbi";
+	$file = Gestor::getcwdwin(). "/templates/mail_cli.lbi";
 	//$file = ROOT."../editar/templates/mail_cli.lbi";
 
 	
@@ -382,7 +382,7 @@ function mail_restaurant($id=false)
 	$id = $fila['id_reserva'];
 	$avui=date("d/m/Y");
 	$ara=date("H:i");
-	$file = getcwd(). "/templates/pagat_rest.lbi";
+	$file = Gestor::getcwdwin(). "/templates/pagat_rest.lbi";
 	//$file = ROOT."../editar/templates/pagat_rest.lbi";
 
 	

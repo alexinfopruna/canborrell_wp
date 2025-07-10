@@ -20,7 +20,7 @@ include_once( "SMSphp/EsendexSendService.php" );
 $mensaini="";
 
 $plantilla="pre_reserva_rest.lbi";
-$file = getcwd()."/templates/".$plantilla;
+$file = Gestor::getcwdwin()."/templates/".$plantilla;
 $file = ROOT."../editar/templates/pre_reserva_rest.lbi";
 echo file_exists($file)?"EXISTE":"NO EXISTE";
 

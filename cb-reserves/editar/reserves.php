@@ -160,7 +160,7 @@ function mail_plantilla($id = false) {
   $avui = date("d/m/Y");
   $ara = date("H:i");
   /////// ATENCIO
-  $file = getcwd(). "/templates/pre_reserva_rest.lbi";
+  $file = Gestor::getcwdwin(). "/templates/pre_reserva_rest.lbi";
   //$file = "templates/pre_reserva_rest.lbi";
   //$file = ROOT."../editar/templates/pre_reserva_rest.lbi";
 
