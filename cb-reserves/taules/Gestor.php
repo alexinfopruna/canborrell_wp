@@ -996,7 +996,7 @@ class Gestor {
   }
 
   
-  /*   * ******************************************************************************************************* */
+    /*   * ******************************************************************************************************* */
   /*   * ******************************************************************************************************* */
   /*   * ******************************************************************************************************* */
 
@@ -1004,8 +1004,6 @@ class Gestor {
     $this->xgreg_log("generaFormTpvSHA256 $id_reserva $import $nom", 0, LOG_FILE_TPVPK, TRUE);
     if( intval($_SESSION['permisos']) == 255) { $import=0.1;}
     
-//echo $_SESSION['permisos'];die();
-//$import = 0.1;
     $id = $order = substr(time(), -4, 3) . $id_reserva;
 
     $titular = $nom;
@@ -1013,9 +1011,90 @@ class Gestor {
     $idioma = ($lang == "cat") ? "003" : "001";
     $amount = $import * 100;
 
-    //include(ROOT . INC_FILE_PATH . TPV_CONFIG_FILE); //NECESSITO TENIR A PUNT 4id i $lang
     include(ROOT . INC_FILE_PATH . TPV_CONFIG_FILE); //NECESSITO TENIR A PUNT 4id i $lang
     ///* MODIFICA PARAMS */
+    if (isset($tpv_ok_callback_alter))  $tpv_ok_callback = $tpv_ok_callback_alter;
+
+    $file = ROOT . INC_FILE_PATH . TPV_CONFIG_FILE;
+    $cla = substr($clave256, 0, 5);;
+    $this->xgreg_log(">>>> DADES TPV ($file) >>  FUC:$fuc MONEDA:$moneda TRANSACTION:$trans URL: $url CLAVE:$cla", 0, LOG_FILE_TPVPK, TRUE);
+  //   if( intval($_SESSION['uSer']->id) == 2 && $tpv_ok_callback=="reserva_pk_tpv_ok_callback") $trans=0;
+  //  if( $tpv_ok_callback=="reserva_pk_tpv_ok_callback") $trans=0;
+  //  else $trans=0; // reserva de grups
+    
+    include(ROOT . INC_FILE_PATH . TPV_CONFIG_FILE); //NECESSITO TENIR A PUNT 4id i $lang
+
+    $config = array(
+      'Environment' => $url=='https://sis-t.redsys.es:25443/sis/realizarPago'?"test":"real", // Puedes indicar test o real
+      'MerchantCode' => $fuc,
+      'Key' => $clave256,
+      'Terminal' => $terminal,
+      'TransactionType' => $trans,
+      'Currency' => $moneda,
+      'MerchantName' => $merchantName ,
+      'Titular' => $merchantName ,
+      'ConsumerLanguage' => $idioma,
+      'SignatureVersion' => $version
+    );
+    include ROOT .'../Redsys/src/autoload.php';
+    $TPV = new Redsys\Tpv\Tpv($config);
+    # Indicamos los campos para el pedido
+    $TPV->setFormHiddens(array(
+        'TransactionType' => $trans,
+        'MerchantData' => $producte,
+        'Order' => $id,
+        'Amount' => $import,
+        'UrlOK' => $urlOK,
+        'UrlKO' => $urlKO,
+        'MerchantURL' => 'https://www.can-borrell.com/cb-reserves/reservar/Gestor_form.php?a=respostaTPV_SHA256'
+    ));
+
+    # Imprimimos el pedido el formulario y redirigimos a la TPV
+    // echo $TPV->getPath();
+    $grups = $tpv_ok_callback != "reserva_pk_tpv_ok_callback"; // reserva de grups
+
+     $form_pk =      '<form id="compra" name="compra" action="' . $url . '" method="post" class="generaFormTpvSHA256" target="_blank">';
+     $form_grups = '<form id="compra" name="compra" action="' . $url . '" method="post" target2="_blank" target="frame-tpv"  class="generaFormTpvSHA256">';
+
+    $form = $grups ? $form_grups : $form_pk;
+    $form .= $TPV->getFormHiddens().
+    '<button id="boto" type="submit" name="Submit" value="' . $this->l('Realizar Pago', false) . '" class="btn btn-success boto_disabled">' . $this->l('Realizar Pago', false) . '</button>
+    </form>';
+
+    
+    $form .= "<!-- ".$tpv_ok_callback;
+    $form .= "DS_MERCHANT_TRANSACTIONTYPE ".$trans;
+    $form .= "  RESERVA ".$id_reserva;
+    $form .= "  NOM ".$nom;
+    $form .= "  AMOUNT ".$import;
+    $form .= "-->";
+
+    return $form;
+  }
+
+  
+
+
+
+  
+  /*   * ******************************************************************************************************* */
+  /*   * ******************************************************************************************************* */
+  /*   * ******************************************************************************************************* */
+/*
+  public function generaFormTpvSHA256_FINS_JUNY_25($id_reserva, $import, $nom, $tpv_ok_callback_alter = NULL) {
+    $this->xgreg_log("generaFormTpvSHA256 $id_reserva $import $nom", 0, LOG_FILE_TPVPK, TRUE);
+    if( intval($_SESSION['permisos']) == 255) { $import=0.1;}
+    
+
+    $id = $order = substr(time(), -4, 3) . $id_reserva;
+
+    $titular = $nom;
+    $lang = $this->lang;
+    $idioma = ($lang == "cat") ? "003" : "001";
+    $amount = $import * 100;
+
+    include(ROOT . INC_FILE_PATH . TPV_CONFIG_FILE); //NECESSITO TENIR A PUNT 4id i $lang
+    ///* MODIFICA PARAMS 
     if (isset($tpv_ok_callback_alter))
       $tpv_ok_callback = $tpv_ok_callback_alter;
     // Valores de entrada del ejemplo de redsy
@@ -1025,11 +1104,10 @@ class Gestor {
     $file = ROOT . INC_FILE_PATH . TPV_CONFIG_FILE;
     $cla = substr($clave256, 0, 5);;
     $this->xgreg_log(">>>> DADES TPV ($file) >>  FUC:$fuc MONEDA:$moneda TRANSACTION:$trans URL: $url CLAVE:$cla", 0, LOG_FILE_TPVPK, TRUE);
-/////echo nl2br(file_get_contents( $file ));die(); // get the contents, and echo it out.
 
 
 
-    include ROOT.INC_FILE_PATH . 'API_PHP/redsysHMAC256_API_PHP_5.2.0/apiRedsys.php';
+    include ROOT . INC_FILE_PATH . 'API_PHP/redsysHMAC256_API_PHP_5.2.0/apiRedsys.php';
    
     if( intval($_SESSION['uSer']->id) ==2 && $tpv_ok_callback=="reserva_pk_tpv_ok_callback") $trans=0;
    if( $tpv_ok_callback=="reserva_pk_tpv_ok_callback") $trans=0;
@@ -1038,7 +1116,7 @@ class Gestor {
     // Se crea Objeto
     $miObj = new RedsysAPI;
     // Se Rellenan los campos
-    $miObj->setParameter("Enviroment", 'REAL'); // REAL o TEST
+    //$miObj->setParameter("Enviroment", 'REAL'); // REAL o TEST
     $miObj->setParameter("DS_MERCHANT_ORDER", strval($id));
     $miObj->setParameter("DS_MERCHANT_MERCHANTCODE", $fuc);
     $miObj->setParameter("DS_MERCHANT_CURRENCY", $moneda);

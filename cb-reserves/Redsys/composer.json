@@ -1,0 +1,26 @@
+{
+    "name": "redsys/tpv",
+    "keywords": ["tpv", "redsys", "sermepa", "servired"],
+    "description": "Package to connect with Redsys/Sermepa/Servired TPV",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Lito",
+            "email": "lito@eordes.com"
+        }
+    ],
+    "require": {
+        "php": ">=5.3",
+        "redsys/messages": "^1"
+    },
+    "require-dev": {
+        "phpunit/phpunit": "^9.5"
+    },
+    "autoload": {
+        "psr-4": {
+            "Redsys\\Tpv\\": "src/Redsys/Tpv/"
+        }
+    },
+    "minimum-stability": "dev",
+    "prefer-stable": true
+}
