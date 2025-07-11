@@ -444,6 +444,10 @@ class gestor_reserves extends Gestor {
     if (isset($_POST['taula_nom']))
       $row['estat_taula_nom'] = $_POST['taula_nom'];
 
+      if (!isset($row['estat_taula_cotxets'])){
+        $row['estat_taula_cotxets'] = 0;
+      }
+
 
     $insertSQL = sprintf("INSERT INTO " . ESTAT_TAULES . " ( estat_taula_data, estat_taula_nom, estat_taula_torn, estat_taula_taula_id, 
     reserva_id, estat_taula_x, estat_taula_y, estat_taula_persones, estat_taula_cotxets, estat_taula_grup, estat_taula_plena, estat_taula_usuari_modificacio) 

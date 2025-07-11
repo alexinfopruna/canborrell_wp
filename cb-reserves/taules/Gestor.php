@@ -409,10 +409,10 @@ class Gestor {
       $theValue = is_null($theValue) ? "NULL" : $theValue;
 
     switch ($theType) {
-           case "no_quotes":
+        case "no_quotes":
          $theValue = str_replace("'","ʻ",$theValue);
          $theValue = str_replace('"',"ʺ",$theValue);
-          $theValue = ($theValue != "") ? "'" . $theValue . "'" : "NULL";
+        $theValue = ($theValue != "") ? "'" . $theValue . "'" : "NULL";
         // $theValue = htmlentities($theValue,ENT_QUOTES);
         
         break;
