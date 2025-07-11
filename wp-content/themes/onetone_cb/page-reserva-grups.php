@@ -681,7 +681,7 @@ function reservar_enqueue_styles() {
                                                               </div>
                                                               <div style="clear:both"></div>
 
-                                                                  <div class="ui-corner-all info-legal info-legal-dades caixa caixa100">
+                                                                  <div class="ui-corner-all info-legal info-legal-dades caixa caixa100" style="width:100%;margin-top:20px">
                                                            
 
                                                                       <!-- <input type="checkbox" id="esborra_dades" name="esborra_dades" value="on" <?php print $chek ?>/><label for="esborra_dades"><?php l("ESBORRA_DADES") ?></label> -->

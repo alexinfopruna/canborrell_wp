@@ -551,6 +551,7 @@ function validaDadesClient() {
     ok = ok && $("input[name='client_mobil']").val();
     ok = ok && $("input[name='client_nom']").val();
     ok = ok && $("input[name='client_cognoms']").val();
+    ok = ok && $("input[name='privacitat']").is(":checked");
     updateResum();
     if (ok)
     {
