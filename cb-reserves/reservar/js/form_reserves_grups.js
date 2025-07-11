@@ -890,6 +890,7 @@ function validacio()
             client_email: {required: true, email: true, remote: "../../cb-reserves/taules/verify_email.php"},
             client_nom: "required",
             client_cognoms: "required",
+            privacitat: "required",
             te_comanda: {
                 menus_comensals: true
             }
@@ -923,6 +924,8 @@ function validacio()
             },
             client_nom: l("Dona´ns el teu nom"),
             client_cognoms: l("Dona´ns els teus cognoms"),
+            privacitat: l("Per continuar, has d'acceptar la política de privacitat"),
+
             te_comanda: {
                 menus_comensals: l('MENUS_COMENSALS')
             }
