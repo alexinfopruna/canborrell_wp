@@ -404,24 +404,20 @@ class Gestor {
   /*   * ************************************************************************************** */
 
   public static function SQLVal($theValue, $theType = "text", $theDefinedValue = "", $theNotDefinedValue = "") {
-   // $theValue = (!get_magic_quotes_gpc()) ? addslashes($theValue) : $theValue;
-  //  mysqli_real_escape_string
-      $theValue = is_null($theValue) ? "NULL" : $theValue;
 
+      $theValue = is_null($theValue) ? "NULL" : $theValue;
     switch ($theType) {
         case "no_quotes":
          $theValue = str_replace("'","ʻ",$theValue);
          $theValue = str_replace('"',"ʺ",$theValue);
         $theValue = ($theValue != "") ? "'" . $theValue . "'" : "NULL";
-        // $theValue = htmlentities($theValue,ENT_QUOTES);
         
         break;
 
       
       case "text":
          $theValue = htmlspecialchars($theValue,ENT_QUOTES);
-        // $theValue = htmlspecialchars($theValue?$theValue:"",ENT_QUOTES);
-        // $theValue = htmlentities($theValue,ENT_QUOTES);
+
         $theValue = ($theValue != "") ? "'" . $theValue . "'" : "NULL";
         break;
       case "long":
@@ -438,7 +434,7 @@ class Gestor {
         $theValue = ($theValue != "") ? "'" . Gestor::cambiaf_a_mysql($theValue) . "'" : "NULL";
         break;
       case "zero":
-        $theValue = ($theValue != "") ? "'" . $theValue . "'" : "0";
+        $theValue = ($theValue != "") ? "'" . $theValue . "'" : 0;
         break;
       case "defined":
         $theValue = ($theValue != "") ? $theDefinedValue : $theNotDefinedValue;

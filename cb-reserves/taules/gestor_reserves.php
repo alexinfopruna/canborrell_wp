@@ -444,12 +444,12 @@ class gestor_reserves extends Gestor {
     if (isset($_POST['taula_nom']))
       $row['estat_taula_nom'] = $_POST['taula_nom'];
 
-      if (!isset($row['estat_taula_cotxets'])){
-        $row['estat_taula_cotxets'] = 0;
-      }
-      if (!isset($row['estat_taula_grup'])){
-        $row['estat_taula_grup'] = 0;
-      }
+      // if (!isset($row['estat_taula_cotxets'])){
+      //   $row['estat_taula_cotxets'] = 0;
+      // }
+      // if (!isset($row['estat_taula_grup'])){
+      //   $row['estat_taula_grup'] = 0;
+      // }
 
 
     $insertSQL = sprintf("INSERT INTO " . ESTAT_TAULES . " ( estat_taula_data, estat_taula_nom, estat_taula_torn, estat_taula_taula_id, 
@@ -463,7 +463,7 @@ class gestor_reserves extends Gestor {
     $this->SQLVal($row['estat_taula_y'], "text"), 
     $this->SQLVal($row['estat_taula_persones'], "zero"), 
     $this->SQLVal($row['estat_taula_cotxets'], "zero"), 
-    $this->SQLVal($row['estat_taula_grup'], "text"), 
+    $this->SQLVal($row['estat_taula_grup'], "zero"), 
     $row['estat_taula_plena'], 
     $this->SQLVal($_SESSION['admin_id'], "text"));
     echo $insertSQL;
