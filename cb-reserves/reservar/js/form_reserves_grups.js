@@ -972,6 +972,11 @@ function controlSubmit()
         if (!$("#valida_calendari").valid()){
             e.preventDefault();
             return false;
+        }        
+        
+        if (!$("#privacitat").valid()){
+            e.preventDefault();
+            return false;
         }
         
         if (!$("#calendari").datepicker("getDate")){
