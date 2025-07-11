@@ -447,6 +447,9 @@ class gestor_reserves extends Gestor {
       if (!isset($row['estat_taula_cotxets'])){
         $row['estat_taula_cotxets'] = 0;
       }
+      if (!isset($row['estat_taula_grup'])){
+        $row['estat_taula_grup'] = 0;
+      }
 
 
     $insertSQL = sprintf("INSERT INTO " . ESTAT_TAULES . " ( estat_taula_data, estat_taula_nom, estat_taula_torn, estat_taula_taula_id, 
