@@ -16,7 +16,11 @@ if (TRANSLATE_DEBUG) //ESTILS
 		</style>";
 }
 else define('TRANSLATE_NO_TRANS','');
-?><script type="text/javascript">
+
+echo "<!-- Version: -->\n";
+?>
+
+<script type="text/javascript">
 var translateKey=new Array("test translate: ERROR");
 //var translateJS=new Array("<span class=\'js-translated\'>Test translate: OK</span>");
 var translateJS=new Array("<span class=\'js-translated\'>Test translate: OK</span>");
