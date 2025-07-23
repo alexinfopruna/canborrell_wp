@@ -1049,7 +1049,7 @@ class Gestor {
     // echo $TPV->getPath();
     $grups = $tpv_ok_callback != "reserva_pk_tpv_ok_callback"; // reserva de grups
 
-     $form_pk =      '<form id="compra" name="compra" action="' . $url . '" method="post" class="generaFormTpvSHA256" target="_blank">';
+     $form_pk = '<form id="compra" name="compra" action="' . $url . '" method="post" class="generaFormTpvSHA256" target="_blank">';
      $form_grups = '<form id="compra" name="compra" action="' . $url . '" method="post" target2="_blank" target="frame-tpv"  class="generaFormTpvSHA256">';
 
     $form = $grups ? $form_grups : $form_pk;
