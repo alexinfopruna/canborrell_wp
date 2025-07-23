@@ -1065,7 +1065,9 @@ class Gestor {
     // $form .= "  AMOUNT ".$import;
     // $form .= "-->";
 
-    return $form;
+    return str_replace(array("\r", "\n"), '', $form);
+
+    //return $form;
   }
 
   
