@@ -159,7 +159,7 @@ class Tpv
 
     public function getInputHidden($name, $value, $prefix = true)
     {
-        return "\n".'<input type="hidden" name="'.($prefix ? 'Ds_' : '').$name.'" value="'.$value.'" />';
+        return '<input type="hidden" name="'.($prefix ? 'Ds_' : '').$name.'" value="'.$value.'" />';
     }
 
     public function getMerchantParameters()
