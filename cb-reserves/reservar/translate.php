@@ -17,7 +17,19 @@ if (TRANSLATE_DEBUG) //ESTILS
 }
 else define('TRANSLATE_NO_TRANS','');
 
-echo "<!-- Version: -->\n";
+
+    $gitBasePath = ROOT.'/../../.git'; // e.g in laravel: base_path().'/.git';
+
+    $gitStr = file_get_contents($gitBasePath.'/HEAD');
+    $gitBranchName = rtrim(preg_replace("/(.*?\/){2}/", '', $gitStr));                                                                                            
+    $gitPathBranch = $gitBasePath.'/refs/heads/'.$gitBranchName;
+    $gitHash = file_get_contents($gitPathBranch);
+    $gitDate = date(DATE_ATOM, filemtime($gitPathBranch));
+
+
+	
+    $gitversion = "version date: ".$gitDate."<br>branch: ".$gitBranchName."<br> commit: ".$gitHash;                                                       
+echo "<!-- $gitversion  -->\n";
 ?>
 
 <script type="text/javascript">
