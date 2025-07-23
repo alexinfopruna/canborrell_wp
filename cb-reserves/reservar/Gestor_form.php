@@ -867,7 +867,7 @@ FROM client
       $import_paga_i_senyal = $this->import_paga_i_senyal_pk($pers);
       
       if (isset($_REQUEST["testTPV"]) && $_SESSION['permisos'] > 200)
-        $resposta['form_tpv'] = $this->generaTESTTpvSHA256($idr, import_paga_i_senyal, $nom);
+        $resposta['form_tpv'] = $this->generaTESTTpvSHA256($idr, $import_paga_i_senyal, $nom);
       else
         $resposta['form_tpv'] = $this->generaFormTpvSHA256($idr, $import_paga_i_senyal, $nom);
     }
