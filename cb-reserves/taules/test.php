@@ -19,7 +19,7 @@ $gestor=new gestor_reserves();
 
 require_once(ROOT . "RestrictionController.php");
 
-if (!$gestor->valida_sessio())  die("Login...");
+//if (!$gestor->valida_sessio())  die("Login...");
 
 
 class Test extends Gestor_form{
