@@ -1293,7 +1293,7 @@ function controlSubmit()
                 if (obj && obj.error)
                     err = obj.error + "\n <br>" + l(obj.error) + " <br><br>\n\n" + l("err_contacti");
                 if (obj.error == "err10") {
-                    alert("El servidor está tardando mucho en responder... Reintentar");
+                    alert("El servidor no responde... Reintentar");
                     return;
                 }//DOBLE SUBMIT?????????
 

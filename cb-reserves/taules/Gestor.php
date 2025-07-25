@@ -1058,16 +1058,15 @@ class Gestor {
     </form>';
 
     
-    // $form .= "<!-- ".$tpv_ok_callback;
-    // $form .= "DS_MERCHANT_TRANSACTIONTYPE ".$trans;
-    // $form .= "  RESERVA ".$id_reserva;
-    // $form .= "  NOM ".$nom;
-    // $form .= "  AMOUNT ".$import;
-    // $form .= "-->";
+    $form .= "<!-- ".$tpv_ok_callback;
+    $form .= "DS_MERCHANT_TRANSACTIONTYPE ".$trans;
+    $form .= "  RESERVA ".$id_reserva;
+    $form .= "  NOM ".$nom;
+    $form .= "  AMOUNT ".$import;
+    $form .= "-->";
 
-    return str_replace(array("\r", "\n"), '', $form);
-
-    //return $form;
+    $form = str_replace(array("\r", "\n"), '', $form);
+    return $form;
   }
 
   
