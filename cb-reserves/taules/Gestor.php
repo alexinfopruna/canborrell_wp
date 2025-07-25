@@ -853,7 +853,22 @@ class Gestor {
 
 
     $this->xgreg_log("jsonOK $text >>> $m", 1);
-    return json_encode($resposta);
+    ob_clean();
+
+    $json = json_encode($resposta);
+    $json = Gestor::remove_bom($json);
+
+    return $json;
+  }
+
+
+  public static function remove_bom($text){
+        $bom = pack('H*','EFBBBF');
+    if (0 === strpos($text, $bom)) {
+      $text = substr($text, strlen($bom));
+    }
+
+    return $text;
   }
 
   /*   * *************************************************************************************************** */
