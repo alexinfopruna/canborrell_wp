@@ -857,7 +857,7 @@ class Gestor {
 
     $json = json_encode($resposta);
     $json = Gestor::remove_bom($json);
-
+    header('Content-Type: application/json');
     return $json;
   }
 
