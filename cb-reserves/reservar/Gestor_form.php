@@ -1321,7 +1321,8 @@ WHERE  `client`.`client_id` =$idc;
         $response = $param['Ds_Response'];
         $response = intval($response);
 
-        $k = substr($param['Ds_Order'], 3, 6);
+        //$k = substr($param['Ds_Order'], 3, 6);
+        $k = substr($param['Ds_Order'], -6);
         $idr = $order = (int) $k;
 
         /** RESPOSTA INCORRECTA * */
