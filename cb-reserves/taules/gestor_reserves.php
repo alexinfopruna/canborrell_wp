@@ -389,7 +389,7 @@ class gestor_reserves extends Gestor {
     $_POST['RESERVA_PASTIS'] = isset($_POST['RESERVA_PASTIS']) ? $_POST['RESERVA_PASTIS'] : NULL;
     $_POST['reserva_terrassa'] = isset($_POST['reserva_terrassa']) ? $_POST['reserva_terrassa'] : NULL;
     $_POST['cotxets'] = isset($_POST['cotxets']) ? $_POST['cotxets'] : 0;
-
+    die ( $_POST['cotxets']);
     $_POST['client_id'] = $this->controlClient($_POST['client_id'], $_POST['client_mobil']);
 
 
