@@ -1054,7 +1054,7 @@ class Gestor {
         'TransactionType' => $trans,
         //'MerchantData' => $producte,
         'MerchantData' => $tpv_ok_callback,
-        'Order' => $id,
+        'Order' => $id_reserva,
         'Amount' => $import,
         'UrlOK' => $urlOK,
         'UrlKO' => $urlKO,
