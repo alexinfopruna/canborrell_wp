@@ -1052,7 +1052,8 @@ class Gestor {
     # Indicamos los campos para el pedido
     $TPV->setFormHiddens(array(
         'TransactionType' => $trans,
-        'MerchantData' => $producte,
+        //'MerchantData' => $producte,
+        'MerchantData' => $tpv_ok_callback,
         'Order' => $id,
         'Amount' => $import,
         'UrlOK' => $urlOK,
