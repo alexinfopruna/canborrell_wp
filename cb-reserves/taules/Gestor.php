@@ -1012,6 +1012,9 @@ class Gestor {
   /*   * ******************************************************************************************************* */
 
   public function generaFormTpvSHA256($id_reserva, $import, $nom, $tpv_ok_callback_alter = NULL) {
+     include(ROOT . INC_FILE_PATH . TPV_CONFIG_FILE); //NECESSITO TENIR A PUNT 4id i $lang
+
+    
     $this->xgreg_log("generaFormTpvSHA256 $id_reserva $import $nom", 0, LOG_FILE_TPVPK, TRUE);
     if( intval($_SESSION['permisos']) == 255) { $import=0.1;}
     
@@ -1033,7 +1036,6 @@ class Gestor {
   //  if( $tpv_ok_callback=="reserva_pk_tpv_ok_callback") $trans=0;
   //  else $trans=0; // reserva de grups
     
-    include(ROOT . INC_FILE_PATH . TPV_CONFIG_FILE); //NECESSITO TENIR A PUNT 4id i $lang
 
     $config = array(
       'Environment' => $url=='https://sis-t.redsys.es:25443/sis/realizarPago'?"test":"real", // Puedes indicar test o real
