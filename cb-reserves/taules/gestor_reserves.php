@@ -328,6 +328,8 @@ class gestor_reserves extends Gestor {
     $_POST['nens4_9'] = $row['nens4_9'];
     $_POST['nens10_14'] = $row['nens10_14'];
     $_POST['cotxets'] = $row['cotxets'];
+    //$_POST['cotxets'] = isset($_POST['cotxets']) ? $_POST['cotxets'] : NULL;
+
     $_POST['accessible'] = $row['accessible'];
 
     $_POST['reserva_info'] = $row['reserva_info'];
@@ -345,6 +347,7 @@ class gestor_reserves extends Gestor {
     $_POST['INFO_PASTIS'] = $row['INFO_PASTIS'];
     $_POST['resposta'] = $row['preu_reserva'];
     $_POST['MM_insert'] = "insert_reserva";
+
 
 
     $this->taulesDisponibles->data = $_POST['data'];
@@ -385,6 +388,7 @@ class gestor_reserves extends Gestor {
     $_POST['client_mobil'] = isset($_POST['client_mobil']) ? $_POST['client_mobil'] : NULL;
     $_POST['RESERVA_PASTIS'] = isset($_POST['RESERVA_PASTIS']) ? $_POST['RESERVA_PASTIS'] : NULL;
     $_POST['reserva_terrassa'] = isset($_POST['reserva_terrassa']) ? $_POST['reserva_terrassa'] : NULL;
+    $_POST['cotxets'] = isset($_POST['cotxets']) ? $_POST['cotxets'] : 0;
 
     $_POST['client_id'] = $this->controlClient($_POST['client_id'], $_POST['client_mobil']);
 
