@@ -434,7 +434,7 @@ class Gestor {
         $theValue = ($theValue != "") ? "'" . Gestor::cambiaf_a_mysql($theValue) . "'" : "NULL";
         break;
       case "zero":
-        $theValue = ($theValue != "") ? "'" . $theValue . "'" : 0;
+        $theValue = ($theValue != "" && $theValue != 'NULL') ? "'" . $theValue . "'" : 0;
         break;
       case "defined":
         $theValue = ($theValue != "") ? $theDefinedValue : $theNotDefinedValue;
