@@ -1028,7 +1028,7 @@ class Gestor {
 
     $file = ROOT . INC_FILE_PATH . TPV_CONFIG_FILE;
     $cla = substr($clave256, 0, 5);;
-    $this->xgreg_log(">>>> DADES TPV ($file) >>  FUC:$fuc MONEDA:$moneda TRANSACTION:$trans URL: $url CLAVE:$cla", 0, LOG_FILE_TPVPK, TRUE);
+    $this->xgreg_log(">>>> DADES TPV ($file) >>  FUC:$fuc MONEDA:$moneda TRANSACTION:$trans URL: $url CALLBACK: $tpv_ok_callback / $tpv_ok_callback_alter  CLAVE:$cla", 0, LOG_FILE_TPVPK, TRUE);
   //   if( intval($_SESSION['uSer']->id) == 2 && $tpv_ok_callback=="reserva_pk_tpv_ok_callback") $trans=0;
   //  if( $tpv_ok_callback=="reserva_pk_tpv_ok_callback") $trans=0;
   //  else $trans=0; // reserva de grups

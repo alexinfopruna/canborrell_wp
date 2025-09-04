@@ -311,8 +311,8 @@ $preu_persona = $pagaments->get_preu_persona_reserva($id);
           preu = Number(preu).toFixed(2);
           $("#preu_parcial").html(preu);
 
-          if (TEST) var desti = "/cb-reserves/taules/gestor_reserves.php?a=generaTESTTpvSHA256&b=" + reserva + "&c=" + preu + "&d=" + nom + "&e=" + fcallback;
-          else var desti = "/cb-reserves/taules/gestor_reserves.php?a=generaFormTpvSHA256&b=" + reserva + "&c=" + preu + "&d=" + nom + "&e=" + fcallback;
+generaFormTpvSHA256          if (TEST) var desti = "/cb-reserves/taules/gestor_reserves.php?a=generaTESTTpvSHA256&b=" + reserva + "&c=" + preu + "&d=" + nom + "&e=" + fcallback;
+          else var desti = "/cb-reserves/taules/gestor_reserves.php?a=&b=" + reserva + "&c=" + preu + "&d=" + nom + "&e=" + fcallback;
           $(".form_tpv").load(desti,function(){
             $( "#boto").unbind( "click" );
             $( "#boto").unbind( "click" );
