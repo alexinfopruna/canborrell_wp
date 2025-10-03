@@ -494,7 +494,7 @@ $translate['err21'] = '<b>No podem fer-te la reserva on-line a causa d´una rese
 $translateDirectJS['CAP_TAULA']="No tenemos ninguna mesa disponible para la fecha/cubiertos/cochecitos que nos pides.<br/><br/>Inténtalo para otra fecha";
 
 $translateJS['CALÇOTADA_NO_COMBINABLE'] = 'El menú calçotada no se puede combinar con ningún otro menú. Todos los comensales deberán pedir el mismo.  \\nSi seleccionas confirmar se eliminarán de la selección los menús no combinables';
-$translateJS['N4_NO_COMBINABLE'] = 'El menú nº 4 no se puede combinar con ningún otro menú. Todos los comensales deberán pedir el mismo.  \\nSi seleccionas confirmar se eliminarán de la selección los menús no combinables';
+$translateJS['N4_NO_COMBINABLE'] = 'El menú nº 4 solo se puede combinar con infactil o júnior. Todos los comensales deberán pedir el mismo uno de estos.  \\nSi seleccionas confirmar se eliminarán de la selección los menús no combinables';
 
 
         $translateJS['INFO_CARTA_NADAL']="Los dias especiales de navidad tenéis que escoger entre los menús que os ofrecemos. Tenéis que escoger tantos menús como comensales "

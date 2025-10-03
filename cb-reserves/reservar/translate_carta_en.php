@@ -121,7 +121,7 @@ if (!isset($PERSONES_GRUP))
   $translate['MELOCOTON EN ALMIBAR'] = 'PEACH IN SYRUP <em>MELOCOTÓN EN ALMÍBAR</em>';
   $translate['MELON NATURAL'] = 'MELON FRUIT <em>MELON FRUTA</em>';
   $translate['Menu de calçotada(hasta 25u aprox por comensal)'] = 'Menú de calçotada(up to 25u aprox)<i style="color:blue"> No combinable: Cal que tots demanin el mateix</i>';
-  $translate['Menu grupo nº 4'] = 'Menu grup nº 4 <i style="color:blue">Not combinable: All the assistants must ask for the same</i>';
+  $translate['Menu grupo nº 4'] = 'Menu grup nº 4 <i style="color:blue">Only combinable with children or junior menus: All the assistants must ask for one of them</i>';
   
   $translate['MOIXARRA A LA BRASA'] = 'Roast gilthead <em>Dorada a la brasa </em>';
   $translate['Mongetas del Ganxet amb Cansalada 1/2 Ració'] = 'Ganxet Beans with Cansalada (Pancetta) Half portion <em>Judías del Ganxet con Tocino 1/2 Ración </em>';

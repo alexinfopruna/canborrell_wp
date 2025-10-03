@@ -113,7 +113,7 @@ $translate['MELÓ AMB PERNIL'] = 'Melón con jamón';
 $translate['Meló Fruita Natural'] = 'Melón Fruta Natural';
 $translate['MENU DE CALÇOTADA(hasta 25 u aprox por comensal)'] = 'MENU DE CALÇOTADA(hasta a 25u aprox)<i style="color:blue"> No combinable: Todos deben pedir lo mismo</i>';
 $translate['Menu de calçotada(hasta 25 u aprox por comensal)'] = 'Menú de calçotada(hasta a 25u aprox)<i style="color:blue"> No combinable: Todos deben pedir lo mismo</i>';
-$translate['MENU GRUPO Nº 4'] = 'MENU GRUPO Nº 4 <i style="color:blue">No combinable: Cal que tots els comensals demanin el mateix</i>';
+$translate['MENU GRUPO Nº 4'] = 'MENU GRUPO Nº 4 <i style="color:blue">Només es pot combinar amb infatil o júnior: Cal que tots els comensals demanin un d´aquests</i>';
 
 $translate['MOIXARRA A LA BRASA'] = 'Dorada a la brasa';
 $translate['Mongetas del Ganxet amb Cansalada 1/2 Ració'] = 'Judías del Ganxet con Tocino 1/2 Ración';

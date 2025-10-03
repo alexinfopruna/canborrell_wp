@@ -157,7 +157,7 @@ $(function () {
             }
         }
 
-        if (jQuery("#carta_contador2007").val() > 0 && jQuery(".contador.cmenu").not(" #carta_contador2007").filter(function () {
+        if (jQuery("#carta_contador2007").val() > 0 && jQuery(".contador.cmenu").not(" #carta_contador2007, #carta_contador2036, #carta_contador2037").filter(function () {
             return $(this).val() > 0;
         }).size()) {
             if (confirm(l("N4_NO_COMBINABLE"))) {
