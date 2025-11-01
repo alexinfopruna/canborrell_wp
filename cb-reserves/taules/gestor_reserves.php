@@ -1034,6 +1034,7 @@ if (Gestor::user_perm()<127) {header("Location: ../taules/taules.php");die();}
     AND estat_taula_torn=$torn
     AND reserva_id=$reserva_id";
 
+    echo $query;
 
     $res = $this->log_mysql_query($query, $this->connexioDB) or die(((is_object($GLOBALS["___mysqli_ston"])) ? mysqli_error($GLOBALS["___mysqli_ston"]) : (($___mysqli_res = mysqli_connect_error()) ? $___mysqli_res : false)));
     $num = mysqli_num_rows($res);
