@@ -1028,6 +1028,7 @@ if (Gestor::user_perm()<127) {header("Location: ../taules/taules.php");die();}
 //print_r($row);
     $time = time();
     $torn = $this->torn($row['data'], $row['hora']);
+    if (!$torn) $torn=1;
 
     $query = "SELECT reserva_id FROM " . ESTAT_TAULES . " 
     WHERE estat_taula_data='{$row['data']}'
