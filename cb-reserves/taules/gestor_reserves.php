@@ -2878,6 +2878,8 @@ ORDER BY carta_subfamilia_order,carta_plats_nom_es , carta_plats_nom_ca";
 WHERE `estat_hores_hora`='$hora'
 AND (`estat_hores_data`='$data' OR `estat_hores_data`='$data_BASE')
 ORDER BY `estat_hores_data` DESC";
+
+echo  $query;
     $Result1 = mysqli_query($this->connexioDB, $query) or die(((is_object($GLOBALS["___mysqli_ston"])) ? mysqli_error($GLOBALS["___mysqli_ston"]) : (($___mysqli_res = mysqli_connect_error()) ? $___mysqli_res : false)));
 
     $row = mysqli_fetch_array($Result1);
