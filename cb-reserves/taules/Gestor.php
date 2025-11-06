@@ -91,7 +91,6 @@ class Gestor {
     $this->conf = new Configuracio();
     
     if(!isset($GLOBALS["___mysqli_ston"])){
-       echo "WWW;";
         $this->connectaBD();
     }
     

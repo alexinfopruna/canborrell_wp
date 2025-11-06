@@ -14,8 +14,8 @@ function fromAS3_print()
 
 function fromAS3_flash_ready()
 {
+	alert(date_session);
 	getFlashMovie("flash").canviData(date_session);	$("#flash").show();
-	setTimeout(function() { getFlashMovie("flash").canviData(date_session);	$("#flash").show(); }, 1000);
 
 }
 

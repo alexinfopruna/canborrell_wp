@@ -1381,7 +1381,7 @@ function comprova_refresh()
 function refresh()
 {
     data = $("#calendari").val();
-    getFlashMovie("flash").canviData(data);
+    getFlashMovie("flash").canviData($("#calendari").val());
     recargaAccordionClients();
 }
 
