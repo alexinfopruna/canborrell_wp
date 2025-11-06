@@ -16,7 +16,7 @@ function fromAS3_flash_ready()
 {
 	const parts = date_session.split('/');
 	const convertedDate = `${parts[2]}/${parts[1]}/${parts[0]}`;
-		alert(date_session+" -> "+convertedDate);
+	//alert(date_session+" -> "+convertedDate);
 
 	getFlashMovie("flash").canviData(convertedDate);	$("#flash").show();
 
