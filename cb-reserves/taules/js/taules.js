@@ -299,9 +299,10 @@ $(function () {
                      ;
                      */
                     $('#edit form').ajaxSubmit({target: '#reservesAc', success: function (datos) {
-
                             if (datos == "ORFANES!!!")
                                 alert("ATENCIO!!!\nS'han detectat reserves perdudes: Per més detalls, ves al Panel de control > Eines avançades > Reserves perdudes");
+                            if (datos == "ERROR")
+                                alert("ATENCIO!!!\nNo s'ha pogut crear la reserva");
                             recargaAccordioReserves();
                         }});
 
@@ -609,7 +610,6 @@ function recargaAccordionClients(nomesClients)
             {
                 if (datos.substr(0, 4) == "<!DO")
                     datos = "La sessió ha caducat.\n Refresca la pàgina prement F5";
-                alert(datos);
                 return false;
             }
 
@@ -644,6 +644,10 @@ function cercaClients(s)
 
 function recargaAccordioReserves(creaNovaReserva)
 {
+
+    if (creaNovaReserva=="ERROR"){
+        alert("No s'ha pogut crear la reserva");
+    }
     AC_ACTIU = $("#reservesAc").scrollTop();
     $("#reservesAc").html('<img src="css/loading_llarg.gif" class="loading_llarg"/>');
     $.ajax({url: "gestor_reserves.php?a=accordion_reserves", success: function (datos) {
@@ -1029,7 +1033,6 @@ function onClickAmpliaReserva()
   //$(".chekataula").button();
    $(".chekataula").change(function(e){
        var idr = $(this).attr("idr");
-       //if(this.checked) alert(idr+"* "+this.checked);
       reservaEntrada(idr, this.checked);
    });
 }
@@ -1151,7 +1154,9 @@ function onNovaReserva()
     {
         hora = 0;
         //$("#inserta_res_radio").html('<div class="loading"></div>');
-        recupera_hores('#inserta_res_radio');
+        if (!recupera_hores('#inserta_res_radio')){
+            $("#insertReserva").dialog("close");
+        }
     }
     else
     {
@@ -1180,9 +1185,10 @@ function recupera_hores($element) {
     $.ajax({url: "gestor_reserves.php?a=recupera_hores&c=" + TAULA + "&d=" + P + "&e=" + C, success: function (datos) {
 
             var obj = JSON.parse(datos);
-            alert(P + " -- HORES: "+obj.dinar);
-            if (obj.dinar==""){//UNDO
+            if (obj.dinar==""){
                 alert("No es pot crear aquesta reserves: \n\nSupera el màxim de coberts del menjador / hora");
+                $("#insertReserva").dialog("close");
+
                 return false;
             } 
 
@@ -1343,8 +1349,6 @@ function esborra_clients_llei() {
     });
 }
 function recordatoris() {
-    //alert("recordatoris");
-    //var desti = "gestor_reserves.php?a=recordatori_petites_3dies";
     var desti = "../editar/caducades.php"
     $.post(desti, function (datos) {
         //  if (datos.substr(0,4)!='test') alert("recordatori_petites_3dies "+datos);

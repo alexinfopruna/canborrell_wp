@@ -382,7 +382,10 @@ class gestor_reserves extends Gestor {
     if (!$this->valida_reserva($_POST['estat_taula_taula_id'], $this->cambiaf_a_mysql($_POST['data'])))
       return "DATA ANOMALA inserta_reserva";
 
-    
+    if (empty($_POST['hora']) || (isset($_POST['hora']) && $_POST['hora']=="NULL")){
+      return "ERROR";
+    }
+
 
     $this->reg_log("CREANT RESERVA: " . $_POST['data'] . " - " . $_POST['hora'] . " - " . $_POST['adults']);
 
