@@ -1085,7 +1085,6 @@ function FROM_CERCADOR_obreDetallReserva(id, data, torn)
 
     $.ajax({url: "gestor_reserves.php?a=canvi_data&p=" + $("#calendari").val() + "&q=" + torn, success: function () {
             getFlashMovie("flash").canviData($("#calendari").val());
-
             var desti = "form_reserva.php?edit=" + id + "&id=" + id;
             $.ajax({url: desti, success: function (datos) {
                     //$("#edit").html(decodeURIComponent(datos));
@@ -1381,7 +1380,8 @@ function comprova_refresh()
 
 function refresh()
 {
-    getFlashMovie("flash").canviData($("#calendari").val());
+    data = $("#calendari").val();
+    getFlashMovie("flash").canviData(data);
     recargaAccordionClients();
 }
 
