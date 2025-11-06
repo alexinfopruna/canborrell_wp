@@ -962,6 +962,7 @@ class Gestor {
    */
 
   public static function flagBit($flags, $bit, $actiu = null) {
+    $flags = (int)$flags;
     $bit--;
     if ($bit < 0)
       return false;

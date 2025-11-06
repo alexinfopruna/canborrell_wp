@@ -353,7 +353,7 @@ class gestor_reserves extends Gestor {
     $this->taulesDisponibles->data = $_POST['data'];
     $this->taulesDisponibles->torn = $torn = $this->torn($data, $_POST['hora']);
     $this->taulesDisponibles->hora = $_POST['hora'];
-    $this->taulesDisponibles->persones = $_POST['adults'] + $_POST['nens4_9'] + $_POST['nens10_14'];
+    $this->taulesDisponibles->persones = (int)$_POST['adults'] + (int)$_POST['nens4_9'] + (int)$_POST['nens10_14'];
     $this->taulesDisponibles->cotxets = $_POST['cotxets'];
     $this->taulesDisponibles->accesible = $_POST['accessible'];
     $this->taulesDisponibles->llista_dies_negra = LLISTA_DIES_NEGRA;
@@ -381,6 +381,8 @@ class gestor_reserves extends Gestor {
       return "error:sin permisos";
     if (!$this->valida_reserva($_POST['estat_taula_taula_id'], $this->cambiaf_a_mysql($_POST['data'])))
       return "DATA ANOMALA inserta_reserva";
+
+    
 
     $this->reg_log("CREANT RESERVA: " . $_POST['data'] . " - " . $_POST['hora'] . " - " . $_POST['adults']);
 
@@ -442,7 +444,7 @@ class gestor_reserves extends Gestor {
       $row['estat_taula_nom'] = $_POST['estat_taula_taula_id'];
       $row['estat_taula_x'] = $this->coordenadaX($_POST['data'], $torn);
       $row['estat_taula_y'] = 390;
-      $row['estat_taula_persones'] = $_POST['adults'] + $_POST['nens4_9'] + $_POST['nens10_14'];
+      $row['estat_taula_persones'] = (int)$_POST['adults'] + (int)$_POST['nens4_9'] + (int)$_POST['nens10_14'];
     }
     if (isset($_POST['taula_nom']))
       $row['estat_taula_nom'] = $_POST['taula_nom'];
@@ -495,7 +497,7 @@ class gestor_reserves extends Gestor {
       $_REQUEST['res'] = $idr;
       $dataSMS = $this->cambiaf_a_normal($data);
       $hora = $_POST['hora'];
-      $coberts = ($_POST['adults'] + $_POST['nens4_9'] + $_POST['nens10_14']) . "p";
+      $coberts = ((int)$_POST['adults'] + (int)$_POST['nens4_9'] + (int)$_POST['nens10_14']) . "p";
       if ($_POST['cotxets'])
         $coberts .= "+" . $_POST['cotxets'] . "cochecito";
       if ($_POST['cotxets'] > 1)
@@ -1023,9 +1025,19 @@ if (Gestor::user_perm()<127) {header("Location: ../taules/taules.php");die();}
     $this->reg_log("repara_reserva_orfana $reserva_id");
 
     $row = $this->load_reserva($reserva_id);
+
+
     if (!isset($row['torn']))
       $row['torn'] = 1;
-//print_r($row);
+
+    if (is_null($row['hora']) || $row['hora']=="NULL"){
+      $row['hora'] = "15:30";
+      $query ="UPDATE `reservestaules` SET `hora` = '15:30' WHERE `reservestaules`.`id_reserva` = $reserva_id";
+      $res = $this->log_mysql_query($query, $this->connexioDB) or die(((is_object($GLOBALS["___mysqli_ston"])) ? mysqli_error($GLOBALS["___mysqli_ston"]) : (($___mysqli_res = mysqli_connect_error()) ? $___mysqli_res : false)));
+
+      echo "Aquesta reserva no té hora assignada: Es recupera amb hora 15:30<br><br>";
+    }
+
     $time = time();
     $torn = $this->torn($row['data'], $row['hora']);
 
@@ -2130,8 +2142,7 @@ EOHTML;
     while ($row = mysqli_fetch_assoc($this->qry_result)) {
       $br = array("<br>", "<br/>", "\n", "\r");
 
-
-      $row['client_conflictes'] = str_replace($br, "", $row['client_conflictes']);
+      $row['client_conflictes'] = str_replace($br, "", (string)$row['client_conflictes']);
 
       // $query = "SELECT * FROM llista_negra WHERE llista_negra_mobil LIKE '$q%'";
       $query = "SELECT * FROM llista_negra WHERE llista_negra_mobil = '" . $row['client_mobil'] . "'";
@@ -2871,13 +2882,16 @@ ORDER BY carta_subfamilia_order,carta_plats_nom_es , carta_plats_nom_ca";
 //////////////////////////////////////////////////// 
   public function torn($data, $hora) {
     $data_BASE = $this->data_BASE;
-
+    // if (is_null($hora) || $hora == "NULL") {
+    //   $hora="15:30";
+    //   echo "<br><br>ATENCIÓ: Aquesta reaerva no té hora assignada. Es recupera amb hora 15:30";
+    // die($hora);
+    // }
     $query = "SELECT * FROM `estat_hores` 
 WHERE `estat_hores_hora`='$hora'
 AND (`estat_hores_data`='$data' OR `estat_hores_data`='$data_BASE')
 ORDER BY `estat_hores_data` DESC";
     $Result1 = mysqli_query($this->connexioDB, $query) or die(((is_object($GLOBALS["___mysqli_ston"])) ? mysqli_error($GLOBALS["___mysqli_ston"]) : (($___mysqli_res = mysqli_connect_error()) ? $___mysqli_res : false)));
-
     $row = mysqli_fetch_array($Result1);
     return $row['estat_hores_torn'];
 //return ($hora>"15")?(($hora>"19")?3:2):1;

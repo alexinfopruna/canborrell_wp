@@ -281,5 +281,20 @@ Es crearà una nova reserva pel dia <br/><br/><span id="confirma_data_dia">DIA</
 <br/><br/>Confirma que és correcte</div>
 <div id='dlg_cercador' class="none"></div>		
 <div id='debug_out'>DEBUG ACTIVAT</div>		
+
+
+	<div id="teeest">
+<a href="1615138308" dia="2025-11-12" torn="1" n="B127" p="8" c="0" f="0"><table class="taulaCercador">
+   
+<tbody><tr> 
+        <td class=" f1 id-taula">B127</td>       
+        <td class="f12">2025/11/12 </td>
+      </tr>
+      
+      <tr>        
+        <td class="f2"> 8/0</td>    
+        <td class="f22"> <span class="torn">Dinar torn 1</span></td>
+      </tr>
+      </tbody></table></a></div>
 </body>
 </html>

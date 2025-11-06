@@ -506,7 +506,7 @@ $(function () {
     $(".inserta_res input[persones]").change(calcula_adults);
 
     upercase("body ");
-    $("#flash").hide();
+    //$("#flash").hide();
 
     addHandlersAccordionClients();
     addHandlersAccordionReserves();
@@ -534,7 +534,24 @@ $(function () {
     });
     
     
- 
+            $("#teeest a").click(function (e) {
+
+                TAULA = $(this).attr("href");
+                //var dia=$(this).attr("dia");
+                //var torn=$(this).attr("torn");				
+                N = $(this).attr("n");
+                P = $(this).attr("p");
+                C = $(this).attr("c");
+                F = $(this).attr("f");
+                //$.ajax({url: "gestor_reserves.php?a=canvi_data&p="+dia+"&q="+torn,success:function(){recargaAccordioReserves("open")}});
+                fromDialog_novaReserva(TAULA, N, P, C, F);
+                $("#frm_edit_modal_inserta_res input[name=adults]").val(P);
+                $("#frm_edit_modal_inserta_res input[name=total]").val(P);
+                CERCA = P;
+                $("#selectorAdults").hide();
+
+                return false;
+            });
             
 }); // FINAL READY
 
@@ -1163,9 +1180,11 @@ function recupera_hores($element) {
     $.ajax({url: "gestor_reserves.php?a=recupera_hores&c=" + TAULA + "&d=" + P + "&e=" + C, success: function (datos) {
 
             var obj = JSON.parse(datos);
-            if (!datos)
-                alert("No es poden crear més reserves");
-            var obj = JSON.parse(datos);
+            alert(P + " -- HORES: "+obj.dinar);
+            if (obj.dinar==""){//UNDO
+                alert("No es pot crear aquesta reserves: \n\nSupera el màxim de coberts del menjador / hora");
+                return false;
+            } 
 
             if (obj.error != null && obj.error != '')
                 $($element).html(obj.error);
@@ -1709,5 +1728,7 @@ function roundNumber(num, dec) {
 function isNumber(value) {
 	return !isNaN(parseInt(value, 10));
 }
+
+
 
 

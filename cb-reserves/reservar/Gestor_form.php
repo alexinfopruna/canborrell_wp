@@ -644,7 +644,7 @@ FROM client
     if(!is_numeric($_POST['nens4_9'])) $_POST['nens4_9']=0;
       
 //COMPROVA hora - torn - taula ok?
-    $coberts = $_POST['adults'] + $_POST['nens10_14'] + $_POST['nens4_9'];
+    $coberts = (int)$_POST['adults'] + (int)$_POST['nens10_14'] + (int)$_POST['nens4_9'];
     $cotxets = $_POST['selectorCotxets'];
 
     $_POST['selectorAccesible'] =  $_POST['selectorAccesible']=="on" ? true : false;
@@ -926,7 +926,7 @@ FROM client
       $resposta['error'] = "err2: data futura: " . $_POST['selectorData'];
 
     //hora - torn - taula ok?
-    $coberts = $_POST['adults'] + $_POST['nens10_14'] + $_POST['nens4_9'];
+    $coberts = (int)$_POST['adults'] + (int)$_POST['nens10_14'] + (int)$_POST['nens4_9'];
     $PERSONES_GRUP = $this->configVars("persones_grup");
 
     if ($coberts < 2 || $coberts > $PERSONES_GRUP)

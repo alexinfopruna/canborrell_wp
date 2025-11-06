@@ -102,7 +102,7 @@ if ((isset($_POST["MM_update"])) && ($_POST["MM_update"] == "form1")) {
    Gestor::xgreg_log("<span class='grups'>Modificació reserva GRUPS: <span class='idr'>$res</span></span>",0,'log/logGRUPS.txt');
    $anterior = Gestor::log_array($row_Recordset1);
    Gestor::xgreg_log("Valor anterior:<br>$anterior",1,'log/logGRUPS.txt');
-  $coberts = $_POST['adults'] + $_POST['nens10_14'] + $_POST['nens4_9'];
+  $coberts = (int)$_POST['adults'] + (int)$_POST['nens10_14'] + (int)$_POST['nens4_9'];
    if ($_POST['estat']!=$row_Recordset1['estat']) $avis="\\n\\nL`estat de la reserva passarà de ".$estat[$row_Recordset1['estat']]." a ".$estat[$_POST['estat']];
 $preu_persona = $pagaments->get_preu_persona_reserva();
    if ($_POST['preu_reserva']!=($coberts) * $preu_persona) $avis .= "\\n\\nEl preu (".$_POST['preu_reserva'].") no escorrespon amb els coberts ($coberts)";
