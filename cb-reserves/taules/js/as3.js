@@ -14,8 +14,11 @@ function fromAS3_print()
 
 function fromAS3_flash_ready()
 {
-	alert(date_session);
-	getFlashMovie("flash").canviData(date_session);	$("#flash").show();
+	const parts = date_session.split('/');
+	const convertedDate = `${parts[2]}/${parts[1]}/${parts[0]}`;
+		alert(date_session+" -> "+convertedDate);
+
+	getFlashMovie("flash").canviData(convertedDate);	$("#flash").show();
 
 }
 
