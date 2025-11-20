@@ -184,11 +184,11 @@ $hores = $this->interseccio_hores($rules);
     //die($query);
     $hores =  8589934591; //TOTES_HORES;
     while ($row = $Result1->fetch_assoc()) {
-      $hores = $hores | $row['restriccions_hores'];
+      $hores = $hores & $row['restriccions_hores'];
     }
-//    echo "-- $hores ----";
-    //echo $query;die();
-    //var_dump(TOTES_HORES);
+  //  echo "-- $hores ----";
+  //   echo $query;die();
+ //    var_dump($hores);
     
     $hores = $this->subArrayHoresb($hores);
     return($hores);
