@@ -716,17 +716,11 @@ ORDER BY  `estat_hores_hora` ASC ";
       
       /** 
        * ESQUIVA LES HORES QUE TENEN RESTRICCIONS DE NENS
-     
-      if ($torn < 3 && is_array($this->rang_hores_nens) && count($this->rang_hores_nens) && !in_array($row['estat_hores_hora'], $this->rang_hores_nens))
-        continue;
-   */
+       */
      
       if ($row['estat_hores_hora']>='13:00'){ // Les restriccion no afecten els esmorzars
           
         if ($torn < 3 && is_array($this->rang_hores_nens) && count($this->rang_hores_nens) && !in_array($row['estat_hores_hora'], $this->rang_hores_nens))
-        // print_r($this->rang_hores_nens);
-        // die("JASTA");
-        // if (false)
              continue;
       
           
