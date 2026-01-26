@@ -395,7 +395,7 @@ $translateDirectJS['PAGAMENT REBUT']="Hem rebut l\'autorització. La teva reserv
 $translateDirectJS['EL PAGAMENT HA ESTAT ANULAT']="Malauradament no s\'ha completat el procés d\'autorització. \\n\\nGràcies per utilitzar aquest servei";
 //echo " ***************** ".$translate["MAIL_GRUPS_PAGAT_subject"];
 
-$translateJS['CALÇOTADA_NO_COMBINABLE'] = "El menú calçotada només es pot combinar amb nens, junior o vegetarià. Tots els comensales han de demanar un d\'aquests.  \\n\\nSi selecciones confirmar s\'eliminarán de la selecció els menús no combinables";
+$translateJS['CALÇOTADA_NO_COMBINABLE'] = "El menú calçotada només es pot combinar amb nens, junior o vegetarià calçotada. Tots els comensales han de demanar un d\'aquests.  \\n\\nSi selecciones confirmar s\'eliminarán de la selecció els menús no combinables";
 $translateJS['N4_NO_COMBINABLE'] = "El menú nº 4 només es pot combinar amb infantil o júnior. Tots els comensals han de demanar un d\'aquests.  \\n\\nSi selecciones confirmar s\'eliminarán de la selecció els menús no combinables";
 
        // $translateJS['INFO_CARTA_NADAL']='Los dias especiales de navidad tenéis que escoger entre los menús que os ofrecemo. Tenéis que escoger tantos menús como comensales ';
