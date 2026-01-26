@@ -493,7 +493,7 @@ $translateDirectJS['err20'] = '<b>Ya tienes una reserva hecha en Can Borrell!</b
 $translate['err21'] = '<b>No podem fer-te la reserva on-line a causa d´una reserva anterior!!</b><br/><br/>Si us plau, per reservar contacta amb el restaurant:restaurant@can-borrell.com';
 $translateDirectJS['CAP_TAULA']="No tenemos ninguna mesa disponible para la fecha/cubiertos/cochecitos que nos pides.<br/><br/>Inténtalo para otra fecha";
 
-$translateJS['CALÇOTADA_NO_COMBINABLE'] = 'El menú calçotada no se puede combinar con ningún otro menú. Todos los comensales deberán pedir el mismo.  \\nSi seleccionas confirmar se eliminarán de la selección los menús no combinables';
+$translateJS['CALÇOTADA_NO_COMBINABLE'] = 'El menú calçotada solo se puede combinar con niños, junior o vegetariano. Todos los comensales deberán pedir uno de estos.  \\nSi seleccionas confirmar se eliminarán de la selección los menús no combinables';
 $translateJS['N4_NO_COMBINABLE'] = 'El menú nº 4 solo se puede combinar con infactil o júnior. Todos los comensales deberán pedir el mismo uno de estos.  \\nSi seleccionas confirmar se eliminarán de la selección los menús no combinables';
 
 
