@@ -140,7 +140,7 @@ $(function () {
          */
         var nid = $(this).attr('nid');
 
-        if ((jQuery("#carta_contador2011").val() > 0 || jQuery("#carta_contador2010").val()) > 0 && jQuery(".contador.cmenu").not(" #carta_contador2010, #carta_contador2011, #carta_contador2036, #carta_contador2037, #carta_contador2014").filter(function () {
+        if ((jQuery("#carta_contador2011").val() > 0 || jQuery("#carta_contador2010").val()) > 0 && jQuery(".contador.cmenu").not(" #carta_contador2010, #carta_contador2011, #carta_contador2036, #carta_contador2037, #carta_contador2014, #carta_contador2024").filter(function () {
             return $(this).val() > 0;
         }).size()) {
             if (confirm(l("CALÇOTADA_NO_COMBINABLE"))) {
