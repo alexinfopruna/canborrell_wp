@@ -235,6 +235,7 @@ $translate['Mobilitat reduïda'] = "Reduced mobility";
 $translate['Algú amb mobilitat reduïda'] = "Reduced mobility";
 
 $translate['Indica si alguna persona li cal accés adaptat']="Need access for handicapped person?";
+$translate['Indica si porteu algun cotxet']="Need place for prams or push chairs?";
 $translate['Mobilitat reduïda']="Handicapped person";
 $translate['Ningú amb mobilitat reduïda']="No handicapped person";
 
@@ -509,18 +510,23 @@ $translateDirectJS['CAP_TAULA'] = "Sorry, no tables available for the requested 
 $translateJS['CALÇOTADA_NO_COMBINABLE'] = 'Menu calçotada could be combined with children, junior or vegetarian calçotada. All diners should ask for one of them. \\nIf you select confirm, the non-combinable menus will be removed from the selection';
 $translateJS['N4_NO_COMBINABLE'] = 'Menu No. 4 only can be combined with children or junior menu. All diners should ask for one of those. \\nIf you select confirm, the non-combinable menus will be removed from the selection';
 
-        $translateJS['INFO_CARTA_NADAL']="Los dias especiales de navidad tenéis que escoger entre los menús que os ofrecemos. Tenéis que escoger tantos menús como comensales "
-                . "<br><br><b>(el menú de calçotada se puede combinar con los menús nº1 i nº2)</b>"
-                . "<br><br><b>SUPLEMENTOS (para quien no quiera parrillada)</b><br>"
-                . "<ul><li>Costilla de Ternera a la brasa (9.50€)</li>"
-                . "<li>Espalda cordero a la brasa (10.40€)</li>"
-                . "<li>Bacallà a la llauna (8.50€)</li>"
-                . "<li>Caracoles a la llauna (8.50€)</li>"
-                . "<li>Dorada a la brasa  (8.50€)</li>"
-                . "<li>Lubina a la brasa  (8.50€)</li><br>";
+$translateJS['INFO_CARTA_NADAL']="Los dias especiales de navidad tenéis que escoger entre los menús que os ofrecemos. Tenéis que escoger tantos menús como comensales "
+        . "<br><br><b>(el menú de calçotada se puede combinar con los menús nº1 i nº2)</b>"
+        . "<br><br><b>SUPLEMENTOS (para quien no quiera parrillada)</b><br>"
+        . "<ul><li>Costilla de Ternera a la brasa (9.50€)</li>"
+        . "<li>Espalda cordero a la brasa (10.40€)</li>"
+        . "<li>Bacallà a la llauna (8.50€)</li>"
+        . "<li>Caracoles a la llauna (8.50€)</li>"
+        . "<li>Dorada a la brasa  (8.50€)</li>"
+        . "<li>Lubina a la brasa  (8.50€)</li><br>";
 
-        $translateJS['INFO_CARTA']=$translate['INFO_CARTA'];
-        $translateJS['INFO_MENU_NENS']='<p class="alert alert-info"><span class="glyphicon glyphicon-info-sign f1"></span>It is mandatory to request a menu for each child, later, in the menus section</p>';
+$translateJS['INFO_CARTA']=$translate['INFO_CARTA'];
+$translateJS['INFO_MENU_NENS']='<p class="alert alert-info"><span class="glyphicon glyphicon-info-sign f1"></span>It is mandatory to request a menu for each child, later, in the menus section</p>';
+
+
+
+$translateJS['Indica si alguna persona li cal accés adaptat']="Need access for handicapped person?";
+$translateJS['Indica si porteu algun cotxet']="Need place for prams or push chairs?";
 
 require_once('translate.php');
 ?>

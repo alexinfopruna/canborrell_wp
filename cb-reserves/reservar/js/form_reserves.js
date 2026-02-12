@@ -1079,7 +1079,7 @@ function validacio()
                 max: PERSONES_GRUP - 1
             },
             selectorAccesible: "required",
-            selectorCalcotsxxx: "required",
+            selectorCotxets: "required",
             valida_calendari: "required",
             hora: "required",
             selectorData: "required",
@@ -1101,6 +1101,7 @@ function validacio()
                 max: l("Si sou més de " + (PERSONES_GRUP - 1) + " comensals, selecciona la reserva per GRUPS")
             },
             selectorAccesible: l("Indica si alguna persona li cal accés adaptat"),
+            selectorCotxets: l("Indica si porteu algun cotxet"),
 
             selectorCalcots: "Selecciona les racions de calçots",
             valida_calendari: l("Cal que indiquis el dia"),
