@@ -876,6 +876,8 @@ function validacio()
                 min: 2,
                 max: 200
             },
+            selectorAccesible: "required",
+            selectorCotxets: "required",
             valida_calendari: "required",
             selectorHora: "required",
             selectorData: "required",
@@ -907,6 +909,8 @@ function validacio()
                 min: l("El nombre d'adults és massa petit"),
                 max: l("Indica el nombre d'adults")
             },
+            selectorAccesible: l("Indica si alguna persona li cal accés adaptat"),
+            selectorCotxets: l("Indica si porteu algun cotxet"),            
             valida_calendari: l("Cal que indiquis el dia"),
             selectorHora: l("Selecciona l´hora"),
             selectorData: l("Selecciona el dia"),
