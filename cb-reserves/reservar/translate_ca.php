@@ -351,8 +351,8 @@ $translateJS["PAGA_I_SENYAL"] ="<div>A continuació cal que autoritzis la fianç
         . "L&#39;import va en funció del nombre de comensals. AQUEST IMPORT NO ES DESCOMPTARÀ del teu compte, NO ES FARÀ CAP CÀRREC.<br/>"
         . "Només en cas de NO COMPAREXENÇA el dia de la reserva es farà efectiu el càrrec de l&#39;import<br/><br/>"        
         . "<br/><br/>Et transferim a una passarel·la bancària externa a Can Borrell. El restaurant no tindrà accés a les dades que introdueixis"
-        . "<div class=\"info-paga-i-senyal\">Atenció: Si no podeu venir el dia de la reserva <b>pots evitar que es realitzi el càrrec si ens avises amb 24 hores d&#39;antelació</b>. "
-        . " anul·lant la reserva enviant-nos un correu a  info@can-borrell.com"
+        . "<div class=\"info-paga-i-senyal\">Atenció: Si no podeu venir el dia de la reserva <b>pots evitar que es realitzi el càrrec si ens avises amb 24 hores d&#39;antelació</b> "
+        . " anul·lant la reserva enviant-nos un correu a  <b>info@can-borrell.com</b>"
         . "<br/><br/>En cas contrari, carregarem aquest import al teu compte com a compensació per la taula que em guardat reservada i no em pogut oferir a altres clients </div>"
         . "<br/><br/></div>";
 
