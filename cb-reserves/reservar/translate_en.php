@@ -474,7 +474,10 @@ $translateJS["REDIR_GRUPS"] = "You have marked more than " . $PERSONES_GRUP . " 
 
 $translateJS["PAGA_I_SENYAL"] = "<div>The following step is to make the " . import_paga_i_senyal . "€ authorizatipn to guarantee assistance on the day of your reservation. "
     . "The charge will only be charged in the case of failure to appear on the day of the reservation. <br/><br/>"
-    . '<div class = "info-paga-i-senyal"> Attention: If you cannot come on the day of your reservation you must inform us. <b>If we are informed with 24 hours notice</b> no charge will be done amd the reservation will be cancelled. Otherwise, the deposit cannot be returned </div> '
+    . '<div class = "info-paga-i-senyal"> Attention: If you cannot come on the day of your reservation you must inform us '
+    . "by sending a cancellation email to info@can-borrell.com<br/>"
+    .'<b>If we are informed with 24 hours notice</b>'
+    .' no charge will be done amd the reservation will be cancelled. Otherwise, the deposit cannot be returned </div> '
     . "<br/><br/>We will transfer you from Can Borrell to an external bank gateway. The restaurant will not have access to the information given."
     . "<br/><br/></div>";
 

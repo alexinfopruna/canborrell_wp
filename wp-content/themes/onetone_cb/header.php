@@ -43,6 +43,7 @@
     $overlay = '';
     if (($header_overlay == 'yes' || $header_overlay == '1') && (is_front_page()))
       $overlay = 'overlay';
+    
 
     //sticky
     $enable_sticky_header = onetone_option('enable_sticky_header', 'yes');
