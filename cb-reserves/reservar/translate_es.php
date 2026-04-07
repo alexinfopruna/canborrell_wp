@@ -314,6 +314,10 @@ $translate["QUANTS_CALCOTS"] = "Queréis calçots? Cuántas raciones?";
 $translate["INFO_CALCOTS"] = "Este dato nos permitirá tenerlo todo a punto para serviros más rápido";
 $translate["CAP"] = "Ninguna";
 $translate["MESDE15"] = "Más de doce";
+
+$translate["QUANTS_CARGOLS"] = "Queréis caracoles a la llauna? Cuántas raciones?";
+$translate["INFO_CARGOLS"] = "Los tendremos a punto para servirlos más rápido";
+
 /****************************************************************************************************/	
 /*******************************************************     JS   ***********************************/	
 /****************************************************************************************************/	

@@ -332,7 +332,8 @@ $translate["INFO_CALCOTS"] = "This data will allow us to have everything ready t
 $translate["CAP"] = "None";
 $translate["MESDE15"] = "More than twelve";
 
-
+$translate["QUANTS_CARGOLS"] = "Do you want snails? How many servings?";
+$translate["INFO_CARGOLS"] = "This data will allow us to have everything ready to serve you faster";
 /* * ************************************************************************************************* */
 /* * *****************************************************     JS   ********************************** */
 /* * ************************************************************************************************* */

@@ -176,6 +176,8 @@ $(function () {
     $("#selectorCadiraRodes").find("label").unbind("mouseup");
     $("#selectorCalcots").buttonset();
     $("#selectorCalcots").find("label").unbind("mouseup");
+    $("#selectorCargols").buttonset();
+    $("#selectorCargols").find("label").unbind("mouseup");    
     
     $("[for=cadira0]").hide();
 
@@ -318,7 +320,6 @@ $("#terrassa").change(function () {
         $(".loader").removeClass("loader");
         $(".page").fadeIn(1000);
     })
-
 
 
    

@@ -897,7 +897,7 @@ if ($testTPV) {
                                                                           <input id="te-comanda" name="te_comanda" type="text" value="" style="display:none"> 
                                                                           <!-- ******  COMANDA  ********   -->
                                                                           <div class=" ui-corner-all" >
-
+<div class="caixa">
                                                                               
                       <div id="blockCalcots" class="<?php echo (!defined("calsoton") || !calsoton)?"hidden":""?>">
                                                 <div id="selectorCalcots" class="fr-col-dere selector">
@@ -925,6 +925,41 @@ if ($testTPV) {
 
                                                                   
                                                               </div>
+
+   
+        <!-- ----------------------------------------------------------------------------- -->
+                      <div id="blockCargols" class="<?php echo (!defined("calsoton") || !calsoton)?"hidden":""?>">
+                                                <div id="selectorCargols" class="fr-col-dere selector">
+                                                    <h3><?php l("QUANTS_CARGOLS") ?></h3>
+                                                    <span style="font-style:italic;"><?php l("INFO_CARGOLS") ?></span>
+                                                    <br>
+                                                                          <input type="hidden" id="cgom" name="cargols" value="<?php echo $row['adults'] ?>"  style="width:35px;font-size:1.2em;padding-left:0;padding-right:0" class="ui-button ui-widget ui-state-default ui-button-text-only coberts"/><label for="calcGrupsN" ><?php //l('Més de ');//echo ($PERSONES_GRUP+14)          ?></label>	
+                                                                         
+<input type="radio" id="carg0" name="selectorCargols" value="0" /><label for="carg0" class="" title="No en voldrem"><?php l("CAP") ?></label>
+ <?php
+                                                                          for ($i = 2; $i < 13; $i++) {
+                                                                            $title = "Racions";
+                                                                            $check="";
+                                                                            $tpv="";
+                                                                            $bt = '<input type="radio" id="carg' . $i . '" name="selectorCargols" value="' . $i . '" ' . $chek . '/><label for="carg' . $i . '" class="' . $tpv . '" title="' . $title . '">' . $i . '</label>';
+                                                                            print $bt;
+                                                                          }
+                                                                          ?>
+<input type="radio" id="cargcmes" name="selectorCargols" value="99" /><label for="cargcmes" class="" title=">15"><?php l("MESDE15") ?></label>
+
+                                                                      </div>
+
+
+                                                                  
+                                                              </div>
+     <!-- ----------------------------------------------------------------------------- -->
+
+</div>
+
+
+
+
+
                                                                                
                                                                               <input type="checkbox" id="RESERVA_PASTIS" name="RESERVA_PASTIS" value="on" <?php echo $row['reserva_pastis'] ? 'checked="checked"' : "" ?>/>
                                                                               <label class="" for="RESERVA_PASTIS" style="display:initial"><?php l("RESERVA_PASTIS") ?></label>
