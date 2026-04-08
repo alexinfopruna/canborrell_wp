@@ -236,7 +236,7 @@ $translate["CAP"] = "Cap";
 $translate["MESDE15"] = "Més de dotze";
 
 $translate["QUANTS_CARGOLS"] = "Voldreu cargols? Quantes racions?";
-$translate["INFO_CARGOLS"] = "Aquesta dada ens permetrà tenir-ho tot preparat i poder-vos servir més ràpid";
+$translate["INFO_CARGOLS"] = "Necessitem 30 minuts per preparar uns cargols a la brasa. Si ens avises abans no hauràs d'esperar";
 
 /************ SMS ****************/
 

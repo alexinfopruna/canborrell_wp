@@ -753,12 +753,14 @@ FROM client
       $_POST['observacions'] = 'Portem cadira de rodes ' . $_POST['observacions'];
     }
     
-    if ($_POST['selectorCalcots']) {
-      $_POST['observacions'] = ' **** Racions calçots (🥬): '. $_POST['selectorCalcots']." ****"  . $_POST['observacions'];
-    }    
     if ($_POST['selectorCargols']) {
-      $_POST['observacions'] = ' **** Racions cargols (🐌): '. $_POST['selectorCargols']." ****"  . $_POST['observacions'];
+      $_POST['observacions'] = ' **** Racions cargols: '. $_POST['selectorCargols']." ****"  . $_POST['observacions'];
     }    
+
+    if ($_POST['selectorCalcots']) {
+      $_POST['observacions'] = ' **** Racions calçots: '. $_POST['selectorCalcots']." ****"  . $_POST['observacions'];
+    }    
+
     
     //INSERT INTO RESERVES TAULES
     if (!isset($_POST['resposta']))

@@ -954,7 +954,7 @@ span.llista{
 }
 
 .menus-carta .well,
-#ressenya.caixa-preus{
+#ressenya.caixa-preus{  
     padding:5px;
     background-color:#333;
     text-align:right;
@@ -1370,4 +1370,21 @@ float:left;
 }
 
 .single-menus img{
+}
+
+.hr{
+    border-top:solid 1px #999999
+}
+
+.vora{
+    background: #fbfbff;
+    /* width: 250px; */
+    /* height: 100%; */
+    padding: 8px;
+    border: 1px solid rgb(203, 199, 189);
+    /* margin-right: 20px; */
+    color: #aa8888;
+    -moz-box-shadow: 2px 2px 2px #ccc;
+    -webkit-box-shadow: 2px 2px 2px #ccc;
+    box-shadow: 2px 2px 2px #ccc;
 }

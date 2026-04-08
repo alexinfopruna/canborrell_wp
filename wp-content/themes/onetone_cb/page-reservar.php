@@ -897,7 +897,7 @@ if ($testTPV) {
                                                                           <input id="te-comanda" name="te_comanda" type="text" value="" style="display:none"> 
                                                                           <!-- ******  COMANDA  ********   -->
                                                                           <div class=" ui-corner-all" >
-<div class="caixa">
+<div class="vora">
                                                                               
                       <div id="blockCalcots" class="<?php echo (!defined("calsoton") || !calsoton)?"hidden":""?>">
                                                 <div id="selectorCalcots" class="fr-col-dere selector">
@@ -926,7 +926,7 @@ if ($testTPV) {
                                                                   
                                                               </div>
 
-   
+         <div class="hr"></div>
         <!-- ----------------------------------------------------------------------------- -->
                       <div id="blockCargols" class="<?php echo (!defined("calsoton") || !calsoton)?"hidden":""?>">
                                                 <div id="selectorCargols" class="fr-col-dere selector">
@@ -954,14 +954,9 @@ if ($testTPV) {
                                                               </div>
      <!-- ----------------------------------------------------------------------------- -->
 
-</div>
+              <div class="hr"></div><br>
 
-
-
-
-
-                                                                               
-                                                                              <input type="checkbox" id="RESERVA_PASTIS" name="RESERVA_PASTIS" value="on" <?php echo $row['reserva_pastis'] ? 'checked="checked"' : "" ?>/>
+                                                                                     <input type="checkbox" id="RESERVA_PASTIS" name="RESERVA_PASTIS" value="on" <?php echo $row['reserva_pastis'] ? 'checked="checked"' : "" ?>/>
                                                                               <label class="" for="RESERVA_PASTIS" style="display:initial"><?php l("RESERVA_PASTIS") ?></label>
                                                                               <?php
                                                                               $pastis = $row['reserva_pastis'];
@@ -971,6 +966,15 @@ if ($testTPV) {
                                                                                   <?php l("INFO_PASTIS") ?>
                                                                               </label>
                                                                               <textarea id="INFO_PASTIS" name="INFO_PASTIS" style="margin-left:25px;" class="pastis_toggle"><?php echo $pastis_info ?></textarea>
+                                                                              
+</div>
+
+
+
+
+
+                                                                               
+
                                                                               <table id="caixa-carta" class="col_dere">
                                                                                   <tr>
                                                                                       <td class="mesX"></td>
