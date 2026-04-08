@@ -928,7 +928,7 @@ if ($testTPV) {
 
          <div class="hr"></div>
         <!-- ----------------------------------------------------------------------------- -->
-                      <div id="blockCargols" class="<?php echo (!defined("calsoton") || !calsoton)?"hidden":""?>">
+                      <div id="blockCargols" class="">
                                                 <div id="selectorCargols" class="fr-col-dere selector">
                                                     <h3><?php l("QUANTS_CARGOLS") ?></h3>
                                                     <span style="font-style:italic;"><?php l("INFO_CARGOLS") ?></span>
