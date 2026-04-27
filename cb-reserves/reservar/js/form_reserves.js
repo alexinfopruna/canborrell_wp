@@ -590,7 +590,6 @@ function recargaHores()
     });
 */
     
-    $("#selectorTerrassa").hide();
     if (comensals >= MINIM_PERSONES_TERRASSA) $("#opcio_terrassa").show();
 
     // només mostra opcio terrassa en finde o festiu...
@@ -601,6 +600,8 @@ function recargaHores()
     var isWeekend = date.getDay()%6==0;
     festiu = llistablanca(date)
     if (!isWeekend && !festiu) $("#opcio_terrassa").hide();
+    //if (!isWeekend && !festiu)     $("#selectorTerrassa").hide();
+
 
     $.post(GESTOR + "?a=horesDisponibles&b=" + $("#calendari").val() + "&c=" + comensals + "&d=" + $("input[name='selectorCotxets']:checked").val() + "&e=" + accesibilidad + "&f=" + IDR + "&g=" + NENS, function (dades) {
         if (dades.substr(0, 3) == "err") {
