@@ -572,7 +572,7 @@ function recargaHores()
         HORA = "";
     }
 
-    var comensals = $("input[name='totalComensals']").val();
+    var comensals = parseInt($("input[name='totalComensals']").val());
 
     var accesibilidad = $("input[name='selectorCadiraRodes']:checked").length;
     accesibilidad += $("input[name='selectorAccesible']:checked").length;
@@ -590,7 +590,6 @@ function recargaHores()
     });
 */
     
-    if (comensals >= MINIM_PERSONES_TERRASSA) $("#opcio_terrassa").show();
 
     // només mostra opcio terrassa en finde o festiu...
     date = $("#calendari").val();
@@ -599,7 +598,11 @@ function recargaHores()
 
     var isWeekend = date.getDay()%6==0;
     festiu = llistablanca(date)
+    if (OPCIO_TERRASSA) $("#opcio_terrassa").show();
+    else  $("#opcio_terrassa").hide();
     if (!isWeekend && !festiu) $("#opcio_terrassa").hide();
+    if (comensals < MINIM_PERSONES_TERRASSA) $("#opcio_terrassa").hide();
+
     //if (!isWeekend && !festiu)     $("#selectorTerrassa").hide();
 
 
@@ -922,7 +925,13 @@ function updateResum()
         $(this).trigger("click");
     });
     
-    
+    var comensals = parseInt($("input[name='totalComensals']").val());
+    var isWeekend = date.getDay()%6==0;
+    festiu = llistablanca(date)
+    if (OPCIO_TERRASSA) $("#opcio_terrassa").show();
+    else  $("#opcio_terrassa").hide();
+    if (!isWeekend && !festiu) $("#opcio_terrassa").hide();
+    if (comensals < MINIM_PERSONES_TERRASSA) $("#opcio_terrassa").hide();
 
 }
 /********************************************************************************************************************/
