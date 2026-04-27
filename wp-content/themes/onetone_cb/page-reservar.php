@@ -831,7 +831,8 @@ if ($testTPV) {
                                                                             $opcio_terrassa = OPCIO_TERRASSA ;
                                                                             $hidden = $opcio_terrassa > 0 ? '' : 'style="display:none;"'; ?>
                                                                         <div id="opcio_terrassa" class="s" <?php echo $hidden ?>>
-                                                                          <h4 id="titol_SelectorCadiraRodes"><?php l('Vols que la taula sigui a la terrassa?'); ?>:</h4>
+
+                                                                        <h4 id="titol_SelectorCadiraRodes"><?php l('Vols que la taula sigui a la terrassa?'); ?>:</h4>
                                                                               <div class="ui-corner-all caixa caixa100 dere hores info_hora">
                                                                                 <?php l("meteo_terrassa"); ?>
                                                                              </div>
