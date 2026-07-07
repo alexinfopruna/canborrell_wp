@@ -209,7 +209,7 @@ $translate['Sense']="Sin";
 $translate['Sol·licitar reserva']="Solicitar reserva";
 
 $translate['ESBORRA_DADES']="<em>Deseo que mis datos sean eliminados de la base de datos de Can Borrell tras la fecha de la reserva (para reservas futuras los volverás a introducir)</em>";
-$translate['privacitat']="Acepto la <a href='#' class='privacitat'>política de privacidad</a>*";
+$translate['privacitat']="He leido y acepto la <a href='#' class='privacitat'>política de privacidad</a>*";
 
 $translate['Cadira de rodes']="Mobilidad reducida";
 $translate['Portem una cadira de rodes']="Llevaremos una silla de ruedas";

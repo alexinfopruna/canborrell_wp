@@ -227,7 +227,7 @@ $translate['Sense'] = "Without";
 $translate['Sol·licitar reserva'] = "Reservation request";
 
 $translate['ESBORRA_DADES'] = "<em>I would like my information to be removed from the Can Borrell database after my reservation date (for future reservations you will re-enter your information)</em>";
-$translate['privacitat']="I accept the <a href='#' class='privacitat'>privacy policy</a>* ";
+$translate['privacitat']="I've read and I accept the <a href='#' class='privacitat'>privacy policy</a>* ";
 
 $translate['Cadira de rodes'] = "Reduced mobility";
 $translate['Portem una cadira de rodes'] = "We will bring a wheelchair";
