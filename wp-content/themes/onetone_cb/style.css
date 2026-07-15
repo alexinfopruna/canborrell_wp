@@ -774,6 +774,12 @@ footer nav.footer-menu-1 #menu-main li:nth-child(8) a:before{
     font-family: FontAwesome;
 
 }
+
+footer nav.footer-menu-1 #menu-main li:nth-child(9) a:before{
+    content:"\f12c  \0000a0 \0000a0 \0000a0";
+    font-family: FontAwesome;
+
+}
 /**********/
 footer nav.footer-menu-2 #menu-main li:nth-child(1) a:before{
     content:"\f271  \0000a0 \0000a0 \0000a0";
