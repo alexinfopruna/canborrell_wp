@@ -361,9 +361,9 @@ function updateMenus() {
         $("#carta_MENUS tr[producte_id=2024]").show(); //n1
         */
         
-        $("#carta_MENUS tr[producte_id=2001]").show(); //N1
-        $("#carta_MENUS tr[producte_id=2003]").show(); //n2
-        $("#carta_MENUS tr[producte_id=2012]").show(); //n3
+        $("#carta_MENUS tr[producte_id=2001]").show(); //m1
+        $("#carta_MENUS tr[producte_id=2003]").show(); //m2
+        //$("#carta_MENUS tr[producte_id=2012]").show(); //m3
         $("#carta_MENUS tr[producte_id=2007]").show(); //n4
         $("#carta_MENUS tr[producte_id=2036]").show(); //inf
         $("#carta_MENUS tr[producte_id=2037]").show(); //jun

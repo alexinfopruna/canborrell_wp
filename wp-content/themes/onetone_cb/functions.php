@@ -1,5 +1,6 @@
 <?php
 
+
 /*
  * To change this license header, choose License Headers in Project Properties.
  * To change this template file, choose Tools | Templates
@@ -153,6 +154,7 @@ add_filter('body_class', 'add_slug_body_class');
  */
 
 function cb_preu_plat_func($atts) {
+  if (!defined('ROOT')) define('ROOT', "../taules/");
   require_once(ROOT . "Carta.php");
   $carta = new Carta();
 
