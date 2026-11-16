@@ -363,7 +363,7 @@ function updateMenus() {
         
         $("#carta_MENUS tr[producte_id=2001]").show(); //m1
         $("#carta_MENUS tr[producte_id=2003]").show(); //m2
-        //$("#carta_MENUS tr[producte_id=2012]").show(); //m3
+        $("#carta_MENUS tr[producte_id=2012]").show(); //m3
         $("#carta_MENUS tr[producte_id=2007]").show(); //n4
         $("#carta_MENUS tr[producte_id=2036]").show(); //inf
         $("#carta_MENUS tr[producte_id=2037]").show(); //jun

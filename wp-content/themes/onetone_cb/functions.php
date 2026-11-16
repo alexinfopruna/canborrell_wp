@@ -154,7 +154,8 @@ add_filter('body_class', 'add_slug_body_class');
  */
 
 function cb_preu_plat_func($atts) {
-  if (!defined('ROOT')) define('ROOT', "../taules/");
+  //echo getcwd();
+  if (!defined('ROOT')) return;
   require_once(ROOT . "Carta.php");
   $carta = new Carta();
 
