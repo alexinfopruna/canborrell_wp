@@ -906,6 +906,7 @@ function addHandlersEditReserva()
         var mob = $("#num_mobil").val();
         var msg = $(".updata_res #sms_mensa").val();
         var rsv = $(".updata_res input[name=id_reserva]").val();
+        //alert();
         $.post(desti, {p: rsv, r: mob, c: msg}, function (datos) {
             $("#llista_sms").html(datos);
             alert("S'ha enviat l'SMS");

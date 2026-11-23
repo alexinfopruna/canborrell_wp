@@ -3095,6 +3095,7 @@ ORDER BY `estat_hores_data` DESC";
 
     $query = "SELECT client_mobil, adults,nens10_14,nens4_9,data,hora FROM client INNER JOIN  `$taula_reserves` ON " . $taula_reserves . ".client_id = client.client_id
     WHERE id_Reserva = $res";
+    echo $query;
     $Result1 = mysqli_query($this->connexioDB, $query) or die(((is_object($GLOBALS["___mysqli_ston"])) ? mysqli_error($GLOBALS["___mysqli_ston"]) : (($___mysqli_res = mysqli_connect_error()) ? $___mysqli_res : false)));
     $row = mysqli_fetch_array($Result1);
     //echo $query;
