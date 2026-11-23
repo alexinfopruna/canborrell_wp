@@ -3095,7 +3095,7 @@ ORDER BY `estat_hores_data` DESC";
 
     $query = "SELECT client_mobil, adults,nens10_14,nens4_9,data,hora FROM client INNER JOIN  `$taula_reserves` ON " . $taula_reserves . ".client_id = client.client_id
     WHERE id_Reserva = $res";
-    echo $query;
+    //echo $query;
     $Result1 = mysqli_query($this->connexioDB, $query) or die(((is_object($GLOBALS["___mysqli_ston"])) ? mysqli_error($GLOBALS["___mysqli_ston"]) : (($___mysqli_res = mysqli_connect_error()) ? $___mysqli_res : false)));
     $row = mysqli_fetch_array($Result1);
     //echo $query;
@@ -3117,7 +3117,8 @@ ORDER BY `estat_hores_data` DESC";
     }
 
     $numMobil = $row['client_mobil'];
-    $this->xgreg_log(">>> ENVIA SMS: " . $res . " >>> " . $numMobil . " >>> " . $missatge, 1);
+    echo "MOB:".$numMobil;
+    $this->xgreg_log(">>> ENVIA SMS1: " . $res . " >>> " . $numMobil . " >>> " . $missatge, 1);
     $this->xgreg_log(">>> ENVIA SMS: <span class='idr'>$res</span> >>> " . $numMobil . " >>> " . $missatge, 1, '/log/logMAILSMS.txt');
 
     if (strlen($numMobil) != 9 || !is_numeric($numMobil)) {
@@ -3134,7 +3135,7 @@ ORDER BY `estat_hores_data` DESC";
     $idReserva = $res;
 
     if (ENVIA_SMS == "1" && $recipients != '999212121') {
-
+echo "ENVIEM!!!";
         // require_once ROOT . INC_FILE_PATH . 'essendex_config.php';   
         // include_once( ROOT . "../editar/SMSphp/EsendexSendService.php" );
         // $sendService = new EsendexSendService($essedex_user, $essedex_pwd, $accountReference);
