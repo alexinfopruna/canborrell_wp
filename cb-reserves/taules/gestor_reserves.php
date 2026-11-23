@@ -3195,7 +3195,7 @@ public static function esendex24($num, $msg){
     $num = '34' . preg_replace('/\D/', '', $num); // si només tens 9 dígits
 
     $message = new \Esendex\Model\DispatchMessage(
-        "canborrell", // Send from
+        "canborrell ", // Send from
         $num, // Send to any valid number
         $msg,
         \Esendex\Model\Message::SmsType
@@ -3206,7 +3206,7 @@ public static function esendex24($num, $msg){
         $essedex_user, // Your login email address
         $essedex_pwd // Your password
     );
-    $result="";
+
     try{
       $service = new \Esendex\DispatchService($authentication);
       $result = $service->send($message);
