@@ -3117,7 +3117,6 @@ ORDER BY `estat_hores_data` DESC";
     }
 
     $numMobil = $row['client_mobil'];
-    echo "MOB:".$numMobil;
     $this->xgreg_log(">>> ENVIA SMS1: " . $res . " >>> " . $numMobil . " >>> " . $missatge, 1);
     $this->xgreg_log(">>> ENVIA SMS: <span class='idr'>$res</span> >>> " . $numMobil . " >>> " . $missatge, 1, '/log/logMAILSMS.txt');
 
@@ -3135,7 +3134,6 @@ ORDER BY `estat_hores_data` DESC";
     $idReserva = $res;
 
     if (ENVIA_SMS == "1" && $recipients != '999212121') {
-echo "ENVIEM!!!";
         // require_once ROOT . INC_FILE_PATH . 'essendex_config.php';   
         // include_once( ROOT . "../editar/SMSphp/EsendexSendService.php" );
         // $sendService = new EsendexSendService($essedex_user, $essedex_pwd, $accountReference);
@@ -3162,12 +3160,39 @@ echo "ENVIEM!!!";
 
     return true;
   }
+public static function esendex24($num, $msg){
+    require ROOT . INC_FILE_PATH . 'essendex_config.php';
+    require_once ROOT . '../esendex-php-sdk/vendor/autoload.php';
 
-  public static function esendex24($num,$msg){
-    require ROOT . INC_FILE_PATH . 'essendex_config.php';   
-    require(ROOT.'../esendex-php-sdk/vendor/autoload.php'); 
+    $message = new \Esendex\Model\DispatchMessage(
+       // "canborrell",
+        "619759775",
+        $num,
+        $msg,
+        \Esendex\Model\Message::SmsType
+    );
 
+    $authentication = new \Esendex\Authentication\LoginAuthentication(
+        $accountReference,
+        $essedex_user,
+        $essedex_pwd
+    );
 
+    try {
+        $service = new \Esendex\DispatchService($authentication);
+        $result = $service->send($message);
+        error_log('Esendex OK: ' . print_r($result, true));
+        return $result;
+    } catch (\Throwable $e) {
+        error_log('Esendex ERROR: ' . get_class($e) . ' - ' . $e->getMessage());
+        return null;
+    }
+}
+  public static function esendex24bbb($num,$msg){
+    require_once ROOT . INC_FILE_PATH . 'essendex_config.php';   
+    require_once(ROOT.'../esendex-php-sdk/vendor/autoload.php'); 
+
+    $num = '34' . preg_replace('/\D/', '', $num); // si només tens 9 dígits
 
     $message = new \Esendex\Model\DispatchMessage(
         "canborrell", // Send from
@@ -3187,13 +3212,16 @@ echo "ENVIEM!!!";
       $result = $service->send($message);
 
       
-
-    } catch (Exception $e) {
-      $result=null;
-      //$result['Message'] = "";  
-      //$this->xgreg_log(">>> ERROR: SMS NO ENVIAT!!!", 1, '/log/logMAILSMS.txt');
-      //$result['Result'] = "SMS: ERROR DE CONNEXIO AL HOST: NO ENVIAT!!!";
-    }
+} catch (\Throwable $e) {
+    error_log('Esendex error: ' . $e->getMessage());
+    $result = null;
+}
+    // } catch (Exception $e) {
+    //   $result=null;
+    //   //$result['Message'] = "";  
+    //   //$this->xgreg_log(">>> ERROR: SMS NO ENVIAT!!!", 1, '/log/logMAILSMS.txt');
+    //   //$result['Result'] = "SMS: ERROR DE CONNEXIO AL HOST: NO ENVIAT!!!";
+    // }
 
     return $result;
   }
