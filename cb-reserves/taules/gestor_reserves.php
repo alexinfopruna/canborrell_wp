@@ -3088,7 +3088,7 @@ ORDER BY `estat_hores_data` DESC";
       return false;
     }
 
-    /*     * **************** */
+    /* **************** */
 //ATENCIO, PER DIFERENCIAR SI ES RESERVA DE GRUP (ESTAN EN UNA ALTRA TAULA)
     $taula_reserves = $res > SEPARADOR_ID_RESERVES ? T_RESERVES : 'reserves';
     /*     * **************** */
