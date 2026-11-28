@@ -250,7 +250,7 @@ $("#terrassa").change(function () {
     })
     .change(); //ensure visible state matches initially
 
-  /* */
+  /* 
   var d = new Date();
   var rand = d.getTime();
   var desti = "/cb-reserves/taules/dumpBD.php?drop&file&hores=4";
@@ -261,6 +261,7 @@ $("#terrassa").change(function () {
       alert("No s'ha pogut realitzar la còpia de la base de dades");
     }
   });
+*/
 
   // Si ens passen la data
   // if (typeof rdata != 'undefined')  setCalendDate(rdata);
